@@ -62,7 +62,6 @@ hints.
 | Enter / Space | double tap: activate |
 | Shift+Enter | a row's second action, where it has one (Settings: the previous sensitivity value) |
 | Escape / Backspace | two-finger scrub: `accessibilityPerformEscape` (the Back button on screens with a status bar) |
-| F2 | two-finger double tap: `accessibilityPerformMagicTap` (Play on the main menu, tarot, game over) |
 | Ctrl+Tab / Ctrl+Shift+Tab | last / first element, as End / Home do |
 | Down / Up (the unused pair) | next / previous tab or category, where the screen has them |
 | Ctrl+Down / Ctrl+Up (the unused pair) | last / first tab or category |
@@ -121,7 +120,7 @@ in one scheme does nothing in the other.  Every other action is a single binding
 | T | read the challenge timer label | same |
 
 The revive screen after a death is read like the menus (VoiceOver starts on the tip, then Revive and Game
-over); F2, the magic tap, presses Game over.
+over).
 
 Control schemes (the original's `controlScheme`):
 
@@ -492,6 +491,17 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   diamonds".  The split used here is `checkBuyOrUpgradeButton`'s own (0x10006fa68): a price below 1 means
   the diamond price.  This line is only in the accessible loadout; the sighted `ADArmoryLoadoutViewController`
   is a drag-and-drop scroller with no price text.
+* REMOVED (user request): the magic tap, and F2, the key the port had bound it to.  VoiceOver's
+  two-finger double tap is a gesture iOS gives no keyboard equivalent, and every screen that answered it
+  did so with a button the screen already reads out - so the key was a second way to press something the
+  cursor reaches anyway, and on the revive screen a second way to end the run by accident.  What each
+  implementation did, for anyone comparing with the original: `-[ADViewController
+  accessibilityPerformMagicTap]` 0x100072940 announced that a screen has none; the main menu 0x100065d40,
+  the tarot screen 0x100036634 and the challenge overview 0x1000403e0 pressed Play (the overview's pressed
+  it even while Play was disabled); the play menu 0x1000abc80 pressed Endless once tutorial_5 had been
+  completed and Challenge before that; the Endless game over 0x10009bff8 pressed Play again; the
+  challenge-completed screen 0x10006974c pressed Next mission; and the revive screen 0x100021cb4 pressed
+  Game over.  F1, which re-reads the focused element, is unaffected.
 * REMOVED (user request): the armory's Currency tab.  Its table asks `products` for its row count and
   nothing in the binary ever sets `products`, so the tab was blank on every device.  It was built to hold
   four "free coins" offers - Facebook, Twitter, the studio's other games, the App Store - each opening a web

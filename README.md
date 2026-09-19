@@ -145,7 +145,6 @@ the game.
 | Enter / Space | activate |
 | Shift+Enter | a row's second action, where it has one |
 | Escape / Backspace | back |
-| F2 | the magic tap: Play, Play again, the pause screen's Resume |
 | F1 | read the focused element again |
 
 In a game, these are the defaults; all of them can be rebound in
@@ -363,6 +362,13 @@ keyed by display name.
 
 A few things the original shipped are gone rather than ported. Each is either something that cannot work
 outside an iPhone in 2015, or a dead end that would only cost you a keypress to discover.
+
+**The magic tap, and its F2 key.** VoiceOver has a two-finger double tap that a screen can answer with
+its most obvious action, and the port had put it on F2. Every screen that answered it did so by pressing a
+button the cursor already reaches — Play, Play again, Next mission — so it was a second way to do something
+the menu does anyway, and on the revive screen after a death it was a second way to end the run without
+meaning to. `docs/PORTING_NOTES.md` records what each screen's did. F1, which reads the focused element
+again, is unaffected.
 
 **The armory's Currency tab.** It was built to hold four "free coins" offers — follow the game on Facebook,
 follow it on Twitter, look at the studio's other games, rate it on the App Store — each of which opened a

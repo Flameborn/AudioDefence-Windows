@@ -13,7 +13,6 @@ tree:
     Enter / Space               activate              (double tap)
     Shift+Enter                 a row's second action, where it has one (PORT ADDITION)
     Escape / Backspace          accessibilityPerformEscape (two-finger scrub)
-    F2                          accessibilityPerformMagicTap (two-finger double tap)
     F1                          read the focused element again
 
 Settings -> Keyboard -> Menu arrows swaps those two pairs: the arrows that move through the elements
@@ -276,7 +275,6 @@ class AccessibleScreen(Screen):
     """A presented view controller driven through the VoiceOver stand-in."""
 
     has_escape = False          # -[ADViewController accessibilityPerformEscape] exists (ADNoBar does not)
-    has_default_magic_tap = False   # -[ADViewController accessibilityPerformMagicTap] announcement
     #: PORT ADDITION: what the screen is called, said before the element the cursor lands on.  These are the
     #: game's own names: every one of these screens sends -[ADStatusBarViewController setPageTitle:] in its
     #: viewDidLoad, and the iPhone nib has no pageTitle outlet, so the title goes to nil and is never seen
@@ -432,10 +430,11 @@ class AccessibleScreen(Screen):
         if self.has_escape:
             self.back_button_pressed()
 
-    def accessibility_perform_magic_tap(self) -> None:
-        # -[ADViewController accessibilityPerformMagicTap] 0x100072940
-        if self.has_default_magic_tap:
-            self.post_announcement('No magic tap available on this screen')
+    # REMOVED (user request): the magic tap.  VoiceOver's two-finger double tap is a gesture with no
+    # keyboard equivalent on iOS, and the port had bound it to F2 - a second way to press a button that
+    # every screen already reads out, and on the revive screen a second way to end the run.  The original's
+    # own implementations are listed in docs/PORTING_NOTES.md, with -[ADViewController
+    # accessibilityPerformMagicTap] 0x100072940, whose only job was to announce that a screen has none.
 
     def back_button_pressed(self) -> None:          # -[ADNoBarViewController backButtonPressed] 0x1000195e8
         log.info('Back button')
@@ -476,8 +475,6 @@ class AccessibleScreen(Screen):
                 self.focus.activate(shift and k != pygame.K_SPACE)
         elif k in (pygame.K_ESCAPE, pygame.K_BACKSPACE):
             self.accessibility_perform_escape()
-        elif k == pygame.K_F2:
-            self.accessibility_perform_magic_tap()
         elif k == pygame.K_F1:
             if self.focus is not None:
                 self.speak(self.focus.spoken())

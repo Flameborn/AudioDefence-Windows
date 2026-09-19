@@ -448,7 +448,7 @@ class ReviveController:
             yes.add_3d_sound_end_callback(lambda _s: pl.deactivate())
         return True
 
-    def game_over_button_pressed(self) -> None:           # 0x100021b3c (also the magic tap)
+    def game_over_button_pressed(self) -> None:           # 0x100021b3c
         Tracker.shared().game_over_button_pressed()
         self.gameplay_view_controller.game_over()
         if self.revive_stand_by_sound is not None:

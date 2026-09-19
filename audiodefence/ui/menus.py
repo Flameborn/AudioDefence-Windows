@@ -198,8 +198,7 @@ class MainMenuScreen(ViewControllerScreen):
     def audio_route_changed(self) -> None:                # 0x100065488
         self.use_headphones.hidden = GameParameters.shared().is_headset_plugged_in()
 
-    def accessibility_perform_magic_tap(self) -> None:    # 0x100065d40
-        self.play_button_pressed()
+    # REMOVED (user request): the magic tap 0x100065d40 pressed Play.
 
 
 # =========================================================================================== play menu
@@ -271,12 +270,8 @@ class PlayMenuScreen(ViewControllerScreen):
         play_button_click()
         App.delegate().go_to_info_screen('endless')
 
-    def accessibility_perform_magic_tap(self) -> None:    # 0x1000abc80
-        from ..game.challenge_data import ChallengeData
-        if ChallengeData.shared().has_completed_challenge_with_name('tutorial_5'):
-            self.endless_mode_button_touched()
-        else:
-            self.challenge_button_touched()
+    # REMOVED (user request): the magic tap 0x1000abc80 pressed Endless once tutorial_5 had been
+    # completed, and Challenge before that.
 
 
 # ================================================================================================ info

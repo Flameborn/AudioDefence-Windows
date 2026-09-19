@@ -347,5 +347,4 @@ class TarotScreen(ViewControllerScreen):
             self.tarot_playlist.deactivate()
         super().dealloc()
 
-    def accessibility_perform_magic_tap(self) -> None:    # 0x100036634
-        self.play_button_pressed()
+    # REMOVED (user request): the magic tap 0x100036634 pressed Play.

@@ -167,5 +167,4 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
     def play_again_button_pressed() -> None:             # playAgainButtonPressed: 0x10009bf54
         App.delegate().go_to_tarot()
 
-    def accessibility_perform_magic_tap(self) -> None:   # 0x10009bff8
-        self.play_again_button_pressed()
+    # REMOVED (user request): the magic tap 0x10009bff8 pressed Play again.

@@ -391,8 +391,7 @@ class AccessibleChallengeOverviewScreen(ViewControllerScreen):
     def back_button_pressed(self) -> None:                # ADChallengeOverviewViewController 0x1000d8cb0
         App.delegate().go_to_challenge_selector()
 
-    def accessibility_perform_magic_tap(self) -> None:    # 0x1000403e0 (presses Play even while it is disabled)
-        self.play_button_pressed()
+    # REMOVED (user request): the magic tap 0x1000403e0 pressed Play, even while Play was disabled.
 
 
 # =================================================================================== challenge failed
@@ -600,5 +599,4 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
     def retry_button_pressed(self) -> None:               # 0x100069134
         App.delegate().go_to_challenge_with_dict(self.challenge_dict)
 
-    def accessibility_perform_magic_tap(self) -> None:    # 0x10006974c
-        self.next_mission_button_pressed()
+    # REMOVED (user request): the magic tap 0x10006974c pressed Next mission.

@@ -7,6 +7,12 @@ Newest changes first.  Dates are year-month-day.
 2026-09-20
 ----------
 
+Removed: the magic tap, and F2, the key it was on.  On each screen it pressed
+a button the cursor already reaches - Play, Play again, Next mission - so it
+was a second way to do what the menu does, and on the revive screen after a
+death it was a second way to end the run without meaning to.  F1, which reads
+the focused item again, is unchanged.
+
 Fixed: with "Remember cursor position" turned off, leaving a screen put the
 cursor back on the row that had opened it instead of at the top.  Pressing OK
 in Settings, for instance, returned you to the main menu sitting on Settings

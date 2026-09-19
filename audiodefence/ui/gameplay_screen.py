@@ -238,7 +238,7 @@ class ReviveScreen(AccessibleScreen):
     """ADReviveViewController (an ADNoBarViewController, nib ADReviveViewController view #113).
 
     It has no firstAccessibleElement, so VoiceOver starts at the top of the screen: the tip text above the two
-    buttons.  No accessibilityPerformEscape; the magic tap (F2) presses Game over."""
+    buttons.  No accessibilityPerformEscape."""
 
     def __init__(self, host, revive):
         super().__init__(host)
@@ -261,5 +261,4 @@ class ReviveScreen(AccessibleScreen):
         if not self.revive.revive_button_pressed():
             self.host.show_no_diamonds_alert()            # -[ADNoBarViewController showNoDiamondsAlert] 0x100019990
 
-    def accessibility_perform_magic_tap(self) -> None:    # 0x100021cb4
-        self.revive.game_over_button_pressed()
+    # REMOVED (user request): the magic tap 0x100021cb4 pressed Game over, ending the run.

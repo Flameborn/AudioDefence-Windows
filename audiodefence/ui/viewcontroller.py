@@ -226,7 +226,6 @@ class ViewControllerScreen(NoBarScreen):
     """ADViewController."""
 
     has_escape = True
-    has_default_magic_tap = True
 
     def __init__(self, host):
         super().__init__(host)
