@@ -719,7 +719,9 @@ fixed before you meet it, thank him.
 
 **Muhammad Hajjar** — who inspired the project and worked out how to point an AI
 at a shipped iOS binary and get a Windows game back out of it. The concept is
-his; the rest is bookkeeping.
+his; the rest is bookkeeping. He now writes the port as well, with the same
+Claude Opus 5 at the same highest effort, so from here there are two people
+directing it and two sets of commits.
 
 ## Licence
 
