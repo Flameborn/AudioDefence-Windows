@@ -1,0 +1,42 @@
+Audio Defence: Zombie Arena - Windows port
+Changelog
+
+Newest changes first.  Dates are year-month-day.
+
+
+2026-09-20
+----------
+
+Fixed: with "Remember cursor position" turned off, leaving a screen put the
+cursor back on the row that had opened it instead of at the top.  Pressing OK
+in Settings, for instance, returned you to the main menu sitting on Settings
+rather than on Play.  The same happened leaving the armory and the pages of the
+Info screen.  Off now means the cursor starts at the screen's first item, which
+is what the setting says it does.
+
+Fixed: with "Remember cursor position" turned on, coming back from a page could
+land you on a row you had been on several visits earlier, rather than the one
+you just left.  Returning from Statistics inside the Info screen put the cursor
+on Zombiepedia.
+
+Changed: Melee attack is bound to Left Ctrl or Right Ctrl, whichever hand is
+free.  Key bindings you have already saved are left exactly as they are - this
+is the default for a new profile only.  "Restore default keys" in
+Settings, Keyboard gives you both keys if you want them.
+
+Note: dismissing a message box still leaves the cursor on the row that raised
+it, whatever "Remember cursor position" is set to.  A message box is not a
+screen you went into, so there is nothing to come back from.
+
+
+First release
+-------------
+
+The whole of Audio Defence: Zombie Arena, played from the keyboard with a
+screen reader: the challenges, Endless, the armory, the tarot cards, the
+statistics and the Zombiepedia, with the original's own audio and its
+head-related transfer function for the 3D sound.
+
+The port follows the original closely.  Where it does not, README.md lists
+every difference: 83 deliberate changes, and 14 of the original's own quirks
+kept on purpose because they are part of how the game plays.

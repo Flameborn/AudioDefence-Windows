@@ -26,6 +26,8 @@ PLAY_PACKAGES = (('pygame', 'pygame-ce'), ('numpy', 'numpy'), ('av', 'av'), ('co
 DATA = (('assets/hrtf', 'assets/hrtf'),)                        # the game's own HRTF
 BINARIES = (('vendor/openal/soft_oal.dll', 'vendor/openal'),    # the audio engine itself
             ('vendor/nvda/nvdaControllerClient64.dll', 'vendor/nvda'))
+#: copied beside the executable rather than bundled inside it, so the player can open them
+SIDE_FILES = ('changelog.txt',)
 
 
 def say(text: str = '') -> None:
@@ -90,6 +92,17 @@ def copy_game(dest_root: str) -> bool:
     shutil.copytree(paths.BUNDLE, dest, dirs_exist_ok=True)
     say('  done in %.0f seconds.' % (time.perf_counter() - started))
     return True
+
+
+def copy_side_files(dest_root: str) -> None:
+    """The text the player reads, next to the game rather than inside it."""
+    for name in SIDE_FILES:
+        src = os.path.join(HERE, name)
+        if not os.path.isfile(src):
+            say('  %s is not here, so it was not copied.' % name)
+            continue
+        shutil.copy2(src, os.path.join(dest_root, name))
+        say('%s is beside the executable.' % name)
 
 
 def read_log(text: str, returncode: int, log: str) -> bool:
@@ -165,6 +178,7 @@ def main(argv=None) -> int:
     dest_root = output_dir(args)
     if not args.no_game:
         copy_game(dest_root)
+    copy_side_files(dest_root)
 
     exe = os.path.join(dest_root, NAME + '.exe')
     say()

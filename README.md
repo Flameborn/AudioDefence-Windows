@@ -604,6 +604,9 @@ frozen, and `--game PATH` (`AUDIODEFENCE_GAME`) still overrides it. Build with
 at a copy of the original. Everything else is read out of the bundle
 PyInstaller unpacks, so `assets/hrtf` and `vendor/` need no copy.
 
+`changelog.txt` is copied next to the executable as well, so whoever plays the
+build can read what changed without the repository.
+
 ### One folder, not one file
 
 The default is a folder, and that is the right shape here. `--onefile` gives a
