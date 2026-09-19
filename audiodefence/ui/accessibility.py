@@ -325,13 +325,20 @@ class AccessibleScreen(Screen):
         self.view_did_appear()
         self._reposted = self._pending_focus is not None
 
-    def on_focus(self) -> None:
+    def on_focus(self, restore: bool = True) -> None:
         # an overlay was dismissed: VoiceOver returns to this screen, unless the screen moved it itself
         if getattr(self, '_reposted', False):
             self._reposted = False
             return
         self._announce_title = True
-        self.post_screen_changed(self.focus if self.focus in self.elements() else None)
+        # PORT ADDITION: `restore` is false when a whole screen was closed over this one and cursor memory
+        # is off.  The cursor then lands on this screen's first element, the way it does when the screen is
+        # built fresh, instead of sitting on the row that opened the screen you just left.
+        element = self.focus if restore and self.focus in self.elements() else None
+        # This screen was never torn down, so where the cursor actually is beats the label remembered from
+        # the last time it was closed - which can be several visits old.
+        self._returning_to_live_focus = element is not None
+        self.post_screen_changed(element)
 
     def load_view(self) -> None:
         pass
@@ -401,8 +408,10 @@ class AccessibleScreen(Screen):
                 # found again by its label; a screen seen for the first time has nothing to restore and
                 # opens where it always did.
                 from ..game.parameters import GameParameters
+                live = getattr(self, '_returning_to_live_focus', False)
+                self._returning_to_live_focus = False
                 remembered = (_LAST_FOCUS.get(type(self).__name__)
-                              if GameParameters.shared().remember_focus() else None)
+                              if not live and GameParameters.shared().remember_focus() else None)
                 if remembered:
                     element = next((e for e in elements if e.label == remembered), element)
             if element is not None and element not in elements:

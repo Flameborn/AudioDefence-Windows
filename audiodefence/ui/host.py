@@ -76,9 +76,18 @@ class ScreenManager:
         screen.on_dismiss()
         top = self.top()
         if refocus and top is not None:
-            if getattr(screen, 'presented_controller', False) and hasattr(top, 'reappear'):
+            presented = getattr(screen, 'presented_controller', False)
+            if presented and hasattr(top, 'reappear'):
                 top.reappear()
-            top.on_focus()
+            # PORT ADDITION: closing a screen presented over this one is going *back* to a screen, so it
+            # obeys "Remember cursor position": with that off the cursor starts at the top again, as it
+            # does everywhere else.  An alert is not going back - the screen never went away - so the
+            # cursor stays on the row that raised it whatever the setting says.
+            restore = True
+            if presented:
+                from ..game.parameters import GameParameters
+                restore = GameParameters.shared().remember_focus()
+            top.on_focus(restore=restore)
 
     def quit_game(self) -> None:
         """PORT ADDITION: iOS apps have no Quit, so the main menu's Quit button ends the run loop.

@@ -28,8 +28,10 @@ class Screen:
     def on_dismiss(self) -> None:
         pass
 
-    def on_focus(self) -> None:
-        """Called when the screen becomes the top screen again (an overlay was dismissed)."""
+    def on_focus(self, restore: bool = True) -> None:
+        """Called when the screen becomes the top screen again (an overlay was dismissed).
+
+        ``restore`` is false when the cursor should not go back to where this screen left it."""
 
     def key_down(self, event) -> None:
         pass
@@ -86,7 +88,7 @@ class MenuScreen(Screen):
     def on_present(self) -> None:
         self.announce_screen()
 
-    def on_focus(self) -> None:
+    def on_focus(self, restore: bool = True) -> None:
         self.announce_screen()
 
     def announce_screen(self) -> None:
