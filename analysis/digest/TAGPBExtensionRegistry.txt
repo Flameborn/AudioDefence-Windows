@@ -1,0 +1,55 @@
+
+== -[TAGPBExtensionRegistry init]   (address 0x10013a1fc  size 128  kind objc)
+  13a230  [super init]
+  13a238  if (self == 0) goto loc_10013a268
+  13a250  [NSMutableDictionary alloc]
+  13a258  [[NSMutableDictionary alloc] init]
+  13a264  self->mutableClassMap_ = [[NSMutableDictionary alloc] init]
+loc_10013a268:
+  13a278  return
+
+== -[TAGPBExtensionRegistry dealloc]   (address 0x10013a27c  size 100  kind objc)
+  13a2a8  [self->mutableClassMap_ release]
+  13a2cc  [super dealloc]
+  13a2dc  return
+
+== -[TAGPBExtensionRegistry extensionMapForContainingType:]   (address 0x10013a2e0  size 136  kind objc)
+  13a310  [self->mutableClassMap_ objectForKey:arg1]
+  13a318  if ([self->mutableClassMap_ objectForKey:arg1] != 0) goto loc_10013a354
+  13a330  [NSMutableDictionary dictionary]
+  13a350  [self->mutableClassMap_ setObject:[NSMutableDictionary dictionary] forKey:arg1]
+loc_10013a354:
+  13a364  return
+
+== -[TAGPBExtensionRegistry addExtension:]   (address 0x10013a368  size 184  kind objc)
+  13a380  if (arg1 == 0) goto loc_10013a410
+  13a394  [arg1 containingType]
+  13a3ac  [self extensionMapForContainingType:[arg1 containingType]]
+  13a3cc  [arg1 fieldNumber]
+  13a3e4  [NSNumber numberWithInt:[arg1 fieldNumber]]
+  13a40c  tail [[self extensionMapForContainingType:[arg1 containingType]] setObject:arg1 forKey:[NSNumber numberWithInt:[arg1 fieldNumber]]]
+loc_10013a410:
+  13a41c  return
+
+== -[TAGPBExtensionRegistry getExtension:fieldNumber:]   (address 0x10013a420  size 112  kind objc)
+  13a450  [self->mutableClassMap_ objectForKey:arg1]
+  13a470  [NSNumber numberWithInteger:arg2]
+  13a48c  tail [[self->mutableClassMap_ objectForKey:arg1] objectForKey:[NSNumber numberWithInteger:arg2]]
+
+== -[TAGPBExtensionRegistry addExtensions:]   (address 0x10013a490  size 368  kind objc)
+  13a4c8  if (arg1 == 0) goto loc_10013a5c4
+  13a508  [arg1->mutableClassMap_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  13a510  if ([arg1->mutableClassMap_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] == 0) goto loc_10013a5c4
+loc_10013a544:
+loc_10013a548:
+  13a554  if (x8 == x26) goto loc_10013a560
+  13a55c  objc_enumerationMutation(arg1->mutableClassMap_)
+loc_10013a560:
+  13a574  [self extensionMapForContainingType:x2]
+  13a588  [arg1 extensionMapForContainingType:x2]
+  13a598  [[self extensionMapForContainingType:x2] addEntriesFromDictionary:[arg1 extensionMapForContainingType:x2]]
+  13a5a4  if ((x27 + 1) <u [arg1->mutableClassMap_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]) goto loc_10013a548
+  13a5b8  [arg1->mutableClassMap_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  13a5c0  if ([arg1->mutableClassMap_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] != 0) goto loc_10013a544
+loc_10013a5c4:
+  13a5f8  return

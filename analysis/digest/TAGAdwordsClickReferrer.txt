@@ -1,0 +1,40 @@
+
+== +[TAGAdwordsClickReferrer functionId]   (address 0x100172e5c  size 44  kind objc)
+  172e84  return
+
+== +[TAGAdwordsClickReferrer componentKey]   (address 0x100172e88  size 44  kind objc)
+  172eb0  return
+
+== +[TAGAdwordsClickReferrer conversionIdKey]   (address 0x100172eb4  size 44  kind objc)
+  172edc  return
+
+== -[TAGAdwordsClickReferrer init]   (address 0x100172ee0  size 184  kind objc)
+  172f14  [NSSet setWithObject:@"conversion_id"]
+  172f50  [super initWithFunctionId:@"_awcr" requiredKeys:[NSSet setWithObject:@"conversion_id"]]
+  172f74  return
+
+== -[TAGAdwordsClickReferrer isCacheable]   (address 0x100172f98  size 8  kind objc)
+  172f9c  return
+
+== -[TAGAdwordsClickReferrer evaluate:]   (address 0x100172fa0  size 520  kind objc)
+  172fdc  [arg1 objectForKey:@"conversion_id"]
+  172ff4  if ([arg1 objectForKey:@"conversion_id"] == 0) goto loc_100173064
+  17300c  [TAGTypes valueToString:[arg1 objectForKey:@"conversion_id"]]
+  17302c  [arg1 objectForKey:@"component"]
+  17303c  if ([arg1 objectForKey:@"component"] == 0) goto loc_100173084
+  17304c  [TAGTypes valueToString:[arg1 objectForKey:@"component"]]
+  173060  goto loc_10017308c
+loc_100173064:
+  173070  [TAGTypes defaultValue]
+  173080  goto loc_100173114
+loc_100173084:
+loc_10017308c:
+  1730a4  [TAGClickReferrerUtil clickReferrerForConversionId:[TAGTypes valueToString:[arg1 objectForKey:@"conversion_id"]] component:x3]
+  1730b8  if ([TAGClickReferrerUtil clickReferrerForConversionId:[TAGTypes valueToString:[arg1 objectForKey:@"conversion_id"]] component:x3] == 0) goto loc_1001730d8
+  1730cc  [TAGTypes objectToValue:[TAGClickReferrerUtil clickReferrerForConversionId:[TAGTypes valueToString:[arg1 objectForKey:@"conversion_id"]] component:x3]]
+  1730d4  goto loc_1001730ec
+loc_1001730d8:
+  1730e4  [TAGTypes defaultValue]
+loc_1001730ec:
+loc_100173114:
+  17313c  return

@@ -1,0 +1,14 @@
+// ADArmoryPowerUpViewController.nib
+TOP-LEVEL OBJECTS
+  #20 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #25 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #26 UIView  Tag=2781
+    #16 UITableView  
+  #7 UIView  Tag=2782
+    #3 UITableView  Tag=1
+
+CONNECTIONS
+  outlet  tableView                                 #20 UIProxyObject --> #16 UITableView
+  outlet  view                                      #20 UIProxyObject --> #26 UIView
+
+ACCESSIBILITY CONFIGURATIONS

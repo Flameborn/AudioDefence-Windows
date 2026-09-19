@@ -1,0 +1,4 @@
+
+== -[ADButtonWithCost initWithFrame:]   (address 0x10007830c  size 60  kind objc)
+  078338  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  078344  return

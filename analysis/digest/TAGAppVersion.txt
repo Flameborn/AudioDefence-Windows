@@ -1,0 +1,23 @@
+
+== +[TAGAppVersion functionId]   (address 0x10017364c  size 44  kind objc)
+  173674  return
+
+== -[TAGAppVersion init]   (address 0x100173678  size 176  kind objc)
+  1736a4  [NSSet set]
+  1736e0  [super initWithFunctionId:@"_av" requiredKeys:[NSSet set]]
+  173704  return
+
+== -[TAGAppVersion isCacheable]   (address 0x100173728  size 8  kind objc)
+  17372c  return
+
+== -[TAGAppVersion evaluate:]   (address 0x100173730  size 220  kind objc)
+  173754  [self class]
+  173764  [[self class] infoDictionary]
+  173788  [[[self class] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+  1737ac  [TAGTypes objectToValue:[[[self class] infoDictionary] objectForKey:@"CFBundleShortVersionString"]]
+  1737dc  return
+
+== +[TAGAppVersion infoDictionary]   (address 0x10017380c  size 120  kind objc)
+  17382c  [NSBundle mainBundle]
+  173848  [[NSBundle mainBundle] infoDictionary]
+  17386c  return

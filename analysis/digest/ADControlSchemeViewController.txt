@@ -1,0 +1,588 @@
+
+== -[ADControlSchemeViewController initWithNibName:bundle:]   (address 0x10004fadc  size 140  kind objc)
+  04fb2c  [super initWithNibName:arg1 bundle:arg2]
+  04fb50  return
+
+== -[ADControlSchemeViewController viewDidLoad]   (address 0x10004fb68  size 3484  kind objc)
+  04fbac  [super viewDidLoad]
+  04fbc4  [self setAllTabButtons:1]
+  04fbdc  [self setAllAimingButton:1]
+  04fbf4  [self selectAllTabButtons:0]
+  04fc0c  [self selectAllAimingButton:0]
+  04fc20  [self aimingButton]
+  04fc58  [[self aimingButton] addTarget:self action:@selector(aimingTabButtonPressed) forControlEvents:64]
+  04fc74  [self controlsButton]
+  04fc9c  [[self controlsButton] addTarget:self action:@selector(controlTabButtonPressed) forControlEvents:64]
+  04fcb8  [self soundButton]
+  04fce0  [[self soundButton] addTarget:self action:@selector(soundTabButtonPressed) forControlEvents:64]
+  04fcf4  [self aimingTabButtonPressed]
+  04fd0c  [self gyroButton]
+  04fd34  [[self gyroButton] addTarget:self action:@selector(gyroButtonTouched) forControlEvents:64]
+  04fd54  [self swipeButton]
+  04fd7c  [[self swipeButton] addTarget:self action:@selector(swipeButtonTouched) forControlEvents:64]
+  04fd9c  [self tiltButton]
+  04fdc4  [[self tiltButton] addTarget:self action:@selector(tiltButtonTouched) forControlEvents:64]
+  04fde4  [self buttonsButton]
+  04fe0c  [[self buttonsButton] addTarget:self action:@selector(buttonsButtonTouched) forControlEvents:64]
+  04fe2c  [self gestureButton]
+  04fe54  [[self gestureButton] addTarget:self action:@selector(gestureButtonTouched) forControlEvents:64]
+  04fe74  [self sensivityLabel]
+  04fe90  [[self sensivityLabel] setupAsTitle]
+  04fea4  [self sensivityLabel]
+  04fec4  [[self sensivityLabel] setupAsMain]
+  04fee0  [self announcerLabel]
+  04fef4  [[self announcerLabel] setupAsMain]
+  04ff14  [self sensivitySlider]
+  04ff3c  [ADGameParameters sharedParameters]
+  04ff58  [[ADGameParameters sharedParameters] sensivity]
+  04ff70  [[self sensivitySlider] setValue:x2]
+  04ff98  [self contentScrollView]
+  04ffb8  [self contentView]
+  04ffdc  [[self contentScrollView] addSubview:[self contentView]]
+  04fff8  [self contentScrollView]
+  05001c  [[self contentScrollView] setContentOffset:{0, 0}]
+  050034  [ADGameParameters sharedParameters]
+  050050  [[ADGameParameters sharedParameters] controlScheme]
+  050064  if ([[ADGameParameters sharedParameters] controlScheme] == 1) goto loc_100050138
+  05006c  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_100050200
+  050078  [self swipeButton]
+  050098  [[self swipeButton] setSelected:1]
+  0500b4  [self aimingText]
+  0500d8  [NSBundle mainBundle]
+  050108  [[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]
+  05012c  [[self aimingText] setText:[[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]]
+  050130  goto loc_1000502c8
+  050134  goto loc_1000508e8
+loc_100050138:
+  050140  [self gyroButton]
+  050160  [[self gyroButton] setSelected:1]
+  05017c  [self aimingText]
+  0501a0  [NSBundle mainBundle]
+  0501d0  [[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]
+  0501f4  [[self aimingText] setText:[[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]]
+  0501f8  goto loc_1000502c8
+  0501fc  goto loc_1000508e8
+loc_100050200:
+  050204  if ([[ADGameParameters sharedParameters] controlScheme] != 3) goto loc_1000502e0
+  050210  [self tiltButton]
+  050230  [[self tiltButton] setSelected:1]
+  05024c  [self aimingText]
+  050270  [NSBundle mainBundle]
+  0502a0  [[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]
+  0502c4  [[self aimingText] setText:[[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]]
+loc_1000502c8:
+loc_1000502e0:
+  0502f0  [self aimingText]
+  050318  [UIColor whiteColor]
+  050340  [[self aimingText] setTextColor:[UIColor whiteColor]]
+  05035c  [ADGameParameters sharedParameters]
+  050378  [[ADGameParameters sharedParameters] buttonMode]
+  05038c  if ([[ADGameParameters sharedParameters] buttonMode] == 0) goto loc_100050454
+  050394  [self buttonsButton]
+  0503b4  [[self buttonsButton] setSelected:1]
+  0503d0  [self controlsText]
+  0503f4  [NSBundle mainBundle]
+  050424  [[NSBundle mainBundle] localizedStringForKey:@"BUTTON_MODE" value:@"" table:0]
+  050448  [[self controlsText] setText:[[NSBundle mainBundle] localizedStringForKey:@"BUTTON_MODE" value:@"" table:0]]
+  05044c  goto loc_100050510
+  050450  goto loc_100050890
+loc_100050454:
+  050458  [self gestureButton]
+  050478  [[self gestureButton] setSelected:1]
+  050494  [self controlsText]
+  0504b8  [NSBundle mainBundle]
+  0504e8  [[NSBundle mainBundle] localizedStringForKey:@"GESTURE_MODE" value:@"" table:0]
+  05050c  [[self controlsText] setText:[[NSBundle mainBundle] localizedStringForKey:@"GESTURE_MODE" value:@"" table:0]]
+loc_100050510:
+  050538  [self controlsText]
+  050550  [UIColor whiteColor]
+  05056c  [[self controlsText] setTextColor:[UIColor whiteColor]]
+  050594  [self volumeText]
+  0505b8  [NSBundle mainBundle]
+  0505e8  [[NSBundle mainBundle] localizedStringForKey:@"VOLUME_WARNING" value:@"" table:0]
+  05060c  [[self volumeText] setText:[[NSBundle mainBundle] localizedStringForKey:@"VOLUME_WARNING" value:@"" table:0]]
+  050630  [self volumeText]
+  050648  [UIColor whiteColor]
+  050664  [[self volumeText] setTextColor:[UIColor whiteColor]]
+  050688  [self volumeSlider]
+  0506a0  [ADGameParameters sharedParameters]
+  0506bc  [[ADGameParameters sharedParameters] lastMasterGain]
+  0506c8  [[self volumeSlider] setValue:x2]
+  0506ec  [self announcerSwitch]
+  050704  [ADGameParameters sharedParameters]
+  050720  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  050738  [[self announcerSwitch] setOn:[[ADGameParameters sharedParameters] lastAnnouncerValue]]
+  05075c  [self showOrHideSensivity]
+  05077c  return
+
+== -[ADControlSchemeViewController loadView]   (address 0x100050904  size 3132  kind objc)
+  05093c  UIAccessibilityIsVoiceOverRunning()
+  050940  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10005096c
+  050964  [super loadView]
+  050968  goto loc_100051290
+loc_10005096c:
+  050984  [UIDevice currentDevice]
+  0509a4  [[UIDevice currentDevice] model]
+  0509cc  [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"]
+  0509d0  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] & 1)) goto loc_1000509dc
+  0509d8  goto loc_100050a2c
+loc_1000509dc:
+  0509e4  [UIDevice currentDevice]
+  0509f8  [[UIDevice currentDevice] model]
+  050a14  [[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"]
+loc_100050a2c:
+  050a50  [NSBundle mainBundle]
+  050a64  &@selector(loadNibNamed:owner:options:)
+  050a6c  if (w22 == 0) goto loc_100050b44
+  050a84  [[NSBundle mainBundle] loadNibNamed:@"ADControlSchemeViewController" owner:self options:0]
+  050ab4  [UIScreen mainScreen]
+  050ae0  [[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]
+  050af0  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] == 0) goto loc_100050b9c
+  050af8  [UIScreen mainScreen]
+  050b0c  [[UIScreen mainScreen] nativeBounds]
+  050b2c  if (fabs(([[UIScreen mainScreen] nativeBounds].3 + -1704)) >= (or unordered) 2.22045e-16) goto loc_100050bf4
+  050b40  goto loc_100050c44
+loc_100050b44:
+  050b58  [[NSBundle mainBundle] loadNibNamed:@"ADControlSchemeViewController_iPad" owner:self options:0]
+  050b98  return
+loc_100050b9c:
+  050ba0  [UIScreen mainScreen]
+  050bbc  [[UIScreen mainScreen] bounds]
+  050bec  if (fabs(([[UIScreen mainScreen] bounds].3 + -568)) < 2.22045e-16) goto loc_100050c44
+  050bf0  goto loc_100050c9c
+loc_100050bf4:
+  050bfc  [UIScreen mainScreen]
+  050c10  [[UIScreen mainScreen] nativeBounds]
+  050c40  if (fabs(([[UIScreen mainScreen] nativeBounds].3 + -1136)) >= (or unordered) 2.22045e-16) goto loc_100050c9c
+loc_100050c44:
+  050c8c  [[[NSBundle mainBundle] loadNibNamed:@"ADControlSchemeViewController" owner:self options:0] enumerateObjectsUsingBlock:^{-[ADControlSchemeViewController loadView]_block_invoke captures +0x20=self}]
+  050c98  goto loc_100051288
+loc_100050c9c:
+  050ce8  [[[NSBundle mainBundle] loadNibNamed:@"ADControlSchemeViewController" owner:self options:0] enumerateObjectsUsingBlock:^{-[ADControlSchemeViewController loadView]_block_invoke_2 captures +0x20=self}]
+  050d00  [self view]
+  050d24  [[self view] viewWithTag:8]
+  050d54  [self setValue:[[self view] viewWithTag:8] forKeyPath:@"contentScrollView"]
+  050d70  [self view]
+  050d88  [[self view] viewWithTag:1]
+  050dac  [self setValue:[[self view] viewWithTag:1] forKeyPath:@"aimingButton"]
+  050dc8  [self view]
+  050de0  [[self view] viewWithTag:10]
+  050e04  [self setValue:[[self view] viewWithTag:10] forKeyPath:@"controlsButton"]
+  050e20  [self view]
+  050e38  [[self view] viewWithTag:18]
+  050e5c  [self setValue:[[self view] viewWithTag:18] forKeyPath:@"soundButton"]
+  050e98  [NSNumber numberWithInt:2]
+  050ec4  [NSNumber numberWithInt:4]
+  050eec  [NSNumber numberWithInt:7]
+  050f14  [NSNumber numberWithInt:11]
+  050f3c  [NSNumber numberWithInt:12]
+  050f64  [NSNumber numberWithInt:13]
+  050f90  [NSNumber numberWithInt:15]
+  050fb8  [NSNumber numberWithInt:16]
+  050fe4  [NSNumber numberWithInt:17]
+  05100c  [NSNumber numberWithInt:19]
+  05103c  [NSNumber numberWithInt:20]
+  051064  [NSNumber numberWithInt:21]
+  051094  [NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12]
+  05113c  [[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] countByEnumeratingWithState:&sp[0x48] objects:&sp[0xe8] count:16]
+  051148  if ([[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] countByEnumeratingWithState:&sp[0x48] objects:&sp[0xe8] count:16] == 0) goto loc_100051260
+  051178  &@selector(integerValue)
+loc_100051180:
+loc_100051184:
+  051194  if (x8 == x9) goto loc_1000511a0
+  05119c  objc_enumerationMutation([NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12])
+loc_1000511a0:
+  0511b0  [self contentView]
+  0511d0  [[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] objectForKey:x2]
+  0511e4  [[[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] objectForKey:x2] integerValue]
+  0511f4  [[self contentView] viewWithTag:[[[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] objectForKey:x2] integerValue]]
+  051228  [self setValue:[[self contentView] viewWithTag:[[[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] objectForKey:x2] integerValue]] forKeyPath:x3]
+  05123c  if ((x20 + 1) <u [[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] countByEnumeratingWithState:&sp[0x48] obje…) goto loc_100051184
+  051254  [[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] countByEnumeratingWithState:&sp[0x48] objects:&sp[0xe8] count:16]
+  05125c  if ([[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&sp[0x168] count:12] countByEnumeratingWithState:&sp[0x48] objects:&sp[0xe8] count:16] != 0) goto loc_100051180
+loc_100051260:
+loc_100051288:
+loc_100051290:
+  0512bc  return
+
+== -[ADControlSchemeViewController loadView]_block_invoke   (address 0x100051540  size 140  kind block)
+  05156c  [blockarg1 tag]
+  051574  if ([blockarg1 tag] != 2781) goto loc_100051598
+  051594  [self setValue:blockarg1 forKeyPath:@"view"]
+loc_100051598:
+  0515ac  return
+
+== sub_1000515cc   (address 0x1000515cc  size 8  kind sub)
+
+== sub_1000515d4   (address 0x1000515d4  size 8  kind sub)
+  0515d8  return
+
+== -[ADControlSchemeViewController loadView]_block_invoke_2   (address 0x1000515dc  size 208  kind block)
+  051610  [blockarg1 tag]
+  051618  if ([blockarg1 tag] != 2782) goto loc_100051640
+  051638  [self setValue:blockarg1 forKeyPath:@"view"]
+  05163c  goto loc_100051674
+loc_100051640:
+  051648  [blockarg1 tag]
+  051650  if ([blockarg1 tag] != 3001) goto loc_100051674
+  051670  [self setValue:blockarg1 forKeyPath:@"contentView"]
+loc_100051674:
+  05168c  return
+
+== sub_1000516ac   (address 0x1000516ac  size 8  kind sub)
+
+== sub_1000516b4   (address 0x1000516b4  size 8  kind sub)
+  0516b8  return
+
+== -[ADControlSchemeViewController setAllTabButtons:]   (address 0x1000516bc  size 236  kind objc)
+  0516e0  [self aimingButton]
+  051704  [[self aimingButton] setEnabled:arg1]
+  051720  [self controlsButton]
+  051738  [[self controlsButton] setEnabled:arg1]
+  051754  [self soundButton]
+  05176c  [[self soundButton] setEnabled:arg1]
+  051780  return
+
+== -[ADControlSchemeViewController setAllAimingButton:]   (address 0x1000517a8  size 236  kind objc)
+  0517cc  [self gyroButton]
+  0517f0  [[self gyroButton] setEnabled:arg1]
+  05180c  [self swipeButton]
+  051824  [[self swipeButton] setEnabled:arg1]
+  051840  [self tiltButton]
+  051858  [[self tiltButton] setEnabled:arg1]
+  05186c  return
+
+== -[ADControlSchemeViewController selectAllTabButtons:]   (address 0x100051894  size 236  kind objc)
+  0518b8  [self aimingButton]
+  0518dc  [[self aimingButton] setSelected:arg1]
+  0518f8  [self controlsButton]
+  051910  [[self controlsButton] setSelected:arg1]
+  05192c  [self soundButton]
+  051944  [[self soundButton] setSelected:arg1]
+  051958  return
+
+== -[ADControlSchemeViewController selectAllAimingButton:]   (address 0x100051980  size 236  kind objc)
+  0519a4  [self gyroButton]
+  0519c8  [[self gyroButton] setSelected:arg1]
+  0519e4  [self swipeButton]
+  0519fc  [[self swipeButton] setSelected:arg1]
+  051a18  [self tiltButton]
+  051a30  [[self tiltButton] setSelected:arg1]
+  051a44  return
+
+== -[ADControlSchemeViewController aimingTabButtonPressed]   (address 0x100051a6c  size 212  kind objc)
+  051a90  [self selectAllTabButtons:0]
+  051aa4  [self aimingButton]
+  051ac4  [[self aimingButton] setSelected:1]
+  051ae0  [self contentScrollView]
+  051b08  [[self contentScrollView] setContentOffset:{0, 0} animated:1]
+  051b1c  return
+
+== -[ADControlSchemeViewController controlTabButtonPressed]   (address 0x100051b40  size 280  kind objc)
+  051b64  [self selectAllTabButtons:0]
+  051b78  [self controlsButton]
+  051b98  [[self controlsButton] setSelected:1]
+  051bb8  [self contentScrollView]
+  051bd0  [self contentScrollView]
+  051bec  [[self contentScrollView] frame]
+  051c0c  [[self contentScrollView] setContentOffset:{[[self contentScrollView] frame].2, 0} animated:1]
+  051c28  return
+
+== -[ADControlSchemeViewController soundTabButtonPressed]   (address 0x100051c58  size 280  kind objc)
+  051c7c  [self selectAllTabButtons:0]
+  051c90  [self soundButton]
+  051cb0  [[self soundButton] setSelected:1]
+  051cd0  [self contentScrollView]
+  051ce8  [self contentScrollView]
+  051d04  [[self contentScrollView] frame]
+  051d24  [[self contentScrollView] setContentOffset:{([[self contentScrollView] frame].2 + [[self contentScrollView] frame].2), 0} animated:1]
+  051d40  return
+
+== -[ADControlSchemeViewController showOrHideSensivity]   (address 0x100051d70  size 696  kind objc)
+  051d98  [ADGameParameters sharedParameters]
+  051db4  [[ADGameParameters sharedParameters] controlScheme]
+  051dc8  if ([[ADGameParameters sharedParameters] controlScheme] == 1) goto loc_100051e7c
+  051dd0  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_100051f24
+  051de4  [self sensivityLabel]
+  051e08  [[self sensivityLabel] setHidden:0]
+  051e24  [self sensivitySlider]
+  051e3c  [[self sensivitySlider] setHidden:0]
+  051e58  [self sensitivitySliderBack]
+  051e70  [[self sensitivitySliderBack] setHidden:0]
+  051e74  goto loc_100051fcc
+  051e78  goto loc_100052014
+loc_100051e7c:
+  051e8c  [self sensivityLabel]
+  051eb0  [[self sensivityLabel] setHidden:1]
+  051ecc  [self sensivitySlider]
+  051ee4  [[self sensivitySlider] setHidden:1]
+  051f00  [self sensitivitySliderBack]
+  051f18  [[self sensitivitySliderBack] setHidden:1]
+  051f1c  goto loc_100051fcc
+  051f20  goto loc_100052014
+loc_100051f24:
+  051f28  if ([[ADGameParameters sharedParameters] controlScheme] != 3) goto loc_100051fe0
+  051f3c  [self sensivityLabel]
+  051f60  [[self sensivityLabel] setHidden:0]
+  051f7c  [self sensivitySlider]
+  051f94  [[self sensivitySlider] setHidden:0]
+  051fb0  [self sensitivitySliderBack]
+  051fc8  [[self sensitivitySliderBack] setHidden:0]
+loc_100051fcc:
+  051fdc  return
+loc_100051fe0:
+  051fec  return
+
+== -[ADControlSchemeViewController gyroButtonTouched]   (address 0x100052028  size 524  kind objc)
+  05204c  [self showOrHideSensivity]
+  052064  [self selectAllAimingButton:0]
+  052078  [self gyroButton]
+  052098  [[self gyroButton] setSelected:1]
+  0520b8  [ADGameParameters sharedParameters]
+  0520d8  [[ADGameParameters sharedParameters] setControlScheme:1]
+  0520f8  [ADTracker sharedInstance]
+  05211c  [[ADTracker sharedInstance] setControlMode:@"gyro"]
+  052130  [self showOrHideSensivity]
+  052144  [self aimingText]
+  052168  [NSBundle mainBundle]
+  052198  [[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]
+  0521bc  [[self aimingText] setText:[[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]]
+  0521e0  return
+
+== -[ADControlSchemeViewController tiltButtonTouched]   (address 0x100052234  size 620  kind objc)
+  05225c  [self selectAllAimingButton:0]
+  052270  [self tiltButton]
+  052290  [[self tiltButton] setSelected:1]
+  0522b0  [ADGameParameters sharedParameters]
+  0522d0  [[ADGameParameters sharedParameters] setControlScheme:3]
+  0522f0  [ADTracker sharedInstance]
+  052314  [[ADTracker sharedInstance] setControlMode:@"tilt"]
+  052330  [self showOrHideSensivity]
+  052348  [self aimingText]
+  05236c  [NSBundle mainBundle]
+  05239c  [[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]
+  0523c0  [[self aimingText] setText:[[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]]
+  0523e4  [self aimingText]
+  052408  [UIColor whiteColor]
+  05242c  [[self aimingText] setTextColor:[UIColor whiteColor]]
+  05244c  return
+
+== -[ADControlSchemeViewController swipeButtonTouched]   (address 0x1000524a0  size 620  kind objc)
+  0524c8  [self selectAllAimingButton:0]
+  0524dc  [self swipeButton]
+  0524fc  [[self swipeButton] setSelected:1]
+  05251c  [ADGameParameters sharedParameters]
+  05253c  [[ADGameParameters sharedParameters] setControlScheme:2]
+  05255c  [ADTracker sharedInstance]
+  052580  [[ADTracker sharedInstance] setControlMode:@"swipe"]
+  05259c  [self showOrHideSensivity]
+  0525b4  [self aimingText]
+  0525d8  [NSBundle mainBundle]
+  052608  [[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]
+  05262c  [[self aimingText] setText:[[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]]
+  052650  [self aimingText]
+  052674  [UIColor whiteColor]
+  052698  [[self aimingText] setTextColor:[UIColor whiteColor]]
+  0526b8  return
+
+== -[ADControlSchemeViewController sensivityValueChanged:]   (address 0x10005270c  size 168  kind objc)
+  05273c  [ADGameParameters sharedParameters]
+  05275c  [arg1 value]
+  052770  [[ADGameParameters sharedParameters] setSensivity:d0]
+  05278c  return
+
+== -[ADControlSchemeViewController buttonsButtonTouched]   (address 0x1000527b4  size 644  kind objc)
+  0527d8  [self buttonsButton]
+  0527fc  [[self buttonsButton] setSelected:1]
+  052818  [self gestureButton]
+  052830  [[self gestureButton] setSelected:0]
+  052850  [ADGameParameters sharedParameters]
+  052874  [[ADGameParameters sharedParameters] setButtonMode:1]
+  052894  [ADTracker sharedInstance]
+  0528b0  [[ADTracker sharedInstance] setButtonMode:@"button"]
+  0528d0  [self controlsText]
+  0528f4  [NSBundle mainBundle]
+  052924  [[NSBundle mainBundle] localizedStringForKey:@"BUTTON_MODE" value:@"" table:0]
+  052948  [[self controlsText] setText:[[NSBundle mainBundle] localizedStringForKey:@"BUTTON_MODE" value:@"" table:0]]
+  05296c  [self controlsText]
+  052990  [UIColor whiteColor]
+  0529b4  [[self controlsText] setTextColor:[UIColor whiteColor]]
+  0529d4  return
+
+== -[ADControlSchemeViewController gestureButtonTouched]   (address 0x100052a38  size 644  kind objc)
+  052a5c  [self buttonsButton]
+  052a80  [[self buttonsButton] setSelected:0]
+  052a9c  [self gestureButton]
+  052ab4  [[self gestureButton] setSelected:1]
+  052ad4  [ADGameParameters sharedParameters]
+  052af8  [[ADGameParameters sharedParameters] setButtonMode:0]
+  052b18  [ADTracker sharedInstance]
+  052b34  [[ADTracker sharedInstance] setButtonMode:@"gesture"]
+  052b54  [self controlsText]
+  052b78  [NSBundle mainBundle]
+  052ba8  [[NSBundle mainBundle] localizedStringForKey:@"GESTURE_MODE" value:@"" table:0]
+  052bcc  [[self controlsText] setText:[[NSBundle mainBundle] localizedStringForKey:@"GESTURE_MODE" value:@"" table:0]]
+  052bf0  [self controlsText]
+  052c14  [UIColor whiteColor]
+  052c38  [[self controlsText] setTextColor:[UIColor whiteColor]]
+  052c58  return
+
+== -[ADControlSchemeViewController volumeSliderValueChanged:]   (address 0x100052cbc  size 196  kind objc)
+  052ce4  [ADGameParameters sharedParameters]
+  052d04  [self volumeSlider]
+  052d20  [[self volumeSlider] value]
+  052d34  [[ADGameParameters sharedParameters] setMasterGain:d0]
+  052d50  return
+
+== -[ADControlSchemeViewController announcerValueChanged:]   (address 0x100052d80  size 200  kind objc)
+  052da8  [ADGameParameters sharedParameters]
+  052dc8  [self announcerSwitch]
+  052de4  [[self announcerSwitch] isOn]
+  052dfc  [[ADGameParameters sharedParameters] setAnnouncer:[[self announcerSwitch] isOn]]
+  052e18  return
+
+== -[ADControlSchemeViewController TestHeadphonesButtonPressed:]   (address 0x100052e48  size 240  kind objc)
+  052e6c  [S3DEngine engine]
+  052e90  [[S3DEngine engine] playListWithName:@"headphonesTest"]
+  052eb4  [[[S3DEngine engine] playListWithName:@"headphonesTest"] S3DSound:@"HeadphonesTest"]
+  052ee4  [[[[S3DEngine engine] playListWithName:@"headphonesTest"] S3DSound:@"HeadphonesTest"] play]
+  052ef8  return
+
+== -[ADControlSchemeViewController didReceiveMemoryWarning]   (address 0x100052f38  size 60  kind objc)
+  052f64  [super didReceiveMemoryWarning]
+  052f70  return
+
+== -[ADControlSchemeViewController announcerSwitch]   (address 0x100052f74  size 16  kind objc)
+  052f80  return
+
+== -[ADControlSchemeViewController setAnnouncerSwitch:]   (address 0x100052f84  size 56  kind objc)
+  052fa8  self->_announcerSwitch = arg1
+  052fb8  return
+
+== -[ADControlSchemeViewController gyroButton]   (address 0x100052fbc  size 16  kind objc)
+  052fc8  return
+
+== -[ADControlSchemeViewController setGyroButton:]   (address 0x100052fcc  size 56  kind objc)
+  052ff0  self->_gyroButton = arg1
+  053000  return
+
+== -[ADControlSchemeViewController swipeButton]   (address 0x100053004  size 16  kind objc)
+  053010  return
+
+== -[ADControlSchemeViewController setSwipeButton:]   (address 0x100053014  size 56  kind objc)
+  053038  self->_swipeButton = arg1
+  053048  return
+
+== -[ADControlSchemeViewController tiltButton]   (address 0x10005304c  size 16  kind objc)
+  053058  return
+
+== -[ADControlSchemeViewController setTiltButton:]   (address 0x10005305c  size 56  kind objc)
+  053080  self->_tiltButton = arg1
+  053090  return
+
+== -[ADControlSchemeViewController sensivityLabel]   (address 0x100053094  size 16  kind objc)
+  0530a0  return
+
+== -[ADControlSchemeViewController setSensivityLabel:]   (address 0x1000530a4  size 56  kind objc)
+  0530c8  self->_sensivityLabel = arg1
+  0530d8  return
+
+== -[ADControlSchemeViewController sensivitySlider]   (address 0x1000530dc  size 16  kind objc)
+  0530e8  return
+
+== -[ADControlSchemeViewController setSensivitySlider:]   (address 0x1000530ec  size 56  kind objc)
+  053110  self->_sensivitySlider = arg1
+  053120  return
+
+== -[ADControlSchemeViewController sensitivitySliderBack]   (address 0x100053124  size 16  kind objc)
+  053130  return
+
+== -[ADControlSchemeViewController setSensitivitySliderBack:]   (address 0x100053134  size 56  kind objc)
+  053158  self->_sensitivitySliderBack = arg1
+  053168  return
+
+== -[ADControlSchemeViewController aimingButton]   (address 0x10005316c  size 16  kind objc)
+  053178  return
+
+== -[ADControlSchemeViewController setAimingButton:]   (address 0x10005317c  size 56  kind objc)
+  0531a0  self->_aimingButton = arg1
+  0531b0  return
+
+== -[ADControlSchemeViewController controlsButton]   (address 0x1000531b4  size 16  kind objc)
+  0531c0  return
+
+== -[ADControlSchemeViewController setControlsButton:]   (address 0x1000531c4  size 56  kind objc)
+  0531e8  self->_controlsButton = arg1
+  0531f8  return
+
+== -[ADControlSchemeViewController soundButton]   (address 0x1000531fc  size 16  kind objc)
+  053208  return
+
+== -[ADControlSchemeViewController setSoundButton:]   (address 0x10005320c  size 56  kind objc)
+  053230  self->_soundButton = arg1
+  053240  return
+
+== -[ADControlSchemeViewController buttonsButton]   (address 0x100053244  size 16  kind objc)
+  053250  return
+
+== -[ADControlSchemeViewController setButtonsButton:]   (address 0x100053254  size 56  kind objc)
+  053278  self->_buttonsButton = arg1
+  053288  return
+
+== -[ADControlSchemeViewController gestureButton]   (address 0x10005328c  size 16  kind objc)
+  053298  return
+
+== -[ADControlSchemeViewController setGestureButton:]   (address 0x10005329c  size 56  kind objc)
+  0532c0  self->_gestureButton = arg1
+  0532d0  return
+
+== -[ADControlSchemeViewController volumeSlider]   (address 0x1000532d4  size 16  kind objc)
+  0532e0  return
+
+== -[ADControlSchemeViewController setVolumeSlider:]   (address 0x1000532e4  size 56  kind objc)
+  053308  self->_volumeSlider = arg1
+  053318  return
+
+== -[ADControlSchemeViewController contentScrollView]   (address 0x10005331c  size 16  kind objc)
+  053328  return
+
+== -[ADControlSchemeViewController setContentScrollView:]   (address 0x10005332c  size 56  kind objc)
+  053350  self->_contentScrollView = arg1
+  053360  return
+
+== -[ADControlSchemeViewController contentView]   (address 0x100053364  size 16  kind objc)
+  053370  return
+
+== -[ADControlSchemeViewController setContentView:]   (address 0x100053374  size 56  kind objc)
+  053398  self->_contentView = arg1
+  0533a8  return
+
+== -[ADControlSchemeViewController aimingText]   (address 0x1000533ac  size 16  kind objc)
+  0533b8  return
+
+== -[ADControlSchemeViewController setAimingText:]   (address 0x1000533bc  size 56  kind objc)
+  0533e0  self->_aimingText = arg1
+  0533f0  return
+
+== -[ADControlSchemeViewController controlsText]   (address 0x1000533f4  size 16  kind objc)
+  053400  return
+
+== -[ADControlSchemeViewController setControlsText:]   (address 0x100053404  size 56  kind objc)
+  053428  self->_controlsText = arg1
+  053438  return
+
+== -[ADControlSchemeViewController announcerLabel]   (address 0x10005343c  size 16  kind objc)
+  053448  return
+
+== -[ADControlSchemeViewController setAnnouncerLabel:]   (address 0x10005344c  size 56  kind objc)
+  053470  self->_announcerLabel = arg1
+  053480  return
+
+== -[ADControlSchemeViewController volumeText]   (address 0x100053484  size 16  kind objc)
+  053490  return
+
+== -[ADControlSchemeViewController setVolumeText:]   (address 0x100053494  size 56  kind objc)
+  0534b8  self->_volumeText = arg1
+  0534c8  return
+
+== -[ADControlSchemeViewController .cxx_destruct]   (address 0x1000534cc  size 404  kind objc)

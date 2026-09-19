@@ -1,0 +1,50 @@
+
+== -[TAGWaitForFresh initWithContainerOpener:oldestTimeToBeFresh:]   (address 0x100151bf0  size 188  kind objc)
+  151c3c  [super init]
+  151c44  if (self == 0) goto loc_100151c74
+  151c5c  self->_containerOpener = arg1
+  151c70  self->_oldestTimeToBeFresh = arg2
+loc_100151c74:
+  151c94  return
+
+== -[TAGWaitForFresh containerRefreshBegin:refreshType:]   (address 0x100151cac  size 4  kind objc)
+  151cac  return
+
+== -[TAGWaitForFresh containerRefreshSuccess:refreshType:]   (address 0x100151cb0  size 184  kind objc)
+  151cd8  if (arg2 == 1) goto loc_100151cf4
+  151cec  [self isFresh]
+  151cf0  if ([self isFresh] == 0) goto loc_100151d30
+loc_100151cf4:
+  151d04  [self containerOpener]
+  151d24  [[self containerOpener] callNotifiers:arg1]
+loc_100151d30:
+  151d40  return
+
+== -[TAGWaitForFresh containerRefreshFailure:failure:refreshType:]   (address 0x100151d68  size 160  kind objc)
+  151d90  if (arg3 != 1) goto loc_100151dd0
+  151da4  [self containerOpener]
+  151dc4  [[self containerOpener] callNotifiers:arg1]
+loc_100151dd0:
+  151de0  return
+
+== -[TAGWaitForFresh isFresh]   (address 0x100151e08  size 204  kind objc)
+  151e2c  [self oldestTimeToBeFresh]
+  151e44  [self containerOpener]
+  151e60  [[self containerOpener] container]
+  151e7c  [[[self containerOpener] container] lastRefreshTime]
+  151eac  return
+
+== -[TAGWaitForFresh oldestTimeToBeFresh]   (address 0x100151ed4  size 20  kind objc)
+  151ee4  return
+
+== -[TAGWaitForFresh setOldestTimeToBeFresh:]   (address 0x100151ee8  size 20  kind objc)
+  151ef4  self->_oldestTimeToBeFresh = arg1
+  151ef8  return
+
+== -[TAGWaitForFresh containerOpener]   (address 0x100151efc  size 16  kind objc)
+  151f08  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGWaitForFresh setContainerOpener:]   (address 0x100151f0c  size 12  kind objc)
+  151f14  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGWaitForFresh .cxx_destruct]   (address 0x100151f18  size 20  kind objc)

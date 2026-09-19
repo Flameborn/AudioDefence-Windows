@@ -1,0 +1,28 @@
+
+== -[Accessible_ADArmoryViewController initWithNibName:bundle:]   (address 0x10007dfb8  size 140  kind objc)
+  07e008  [super initWithNibName:arg1 bundle:arg2]
+  07e02c  return
+
+== -[Accessible_ADArmoryViewController initWithNibName:bundle:loadoutEnabled:]   (address 0x10007e044  size 148  kind objc)
+  07e09c  [super initWithNibName:arg1 bundle:arg2 loadoutEnabled:arg3]
+  07e0c0  return
+
+== -[Accessible_ADArmoryViewController updateTabsAfterButtonPressed:]   (address 0x10007e0d8  size 364  kind objc)
+  07e108  [self currencyButton]
+  07e130  [[self currencyButton] setAccessibilityHint:@"Double tap to display this tab in the armory"]
+  07e14c  [self loadOutButton]
+  07e168  [[self loadOutButton] setAccessibilityHint:@"Double tap to display this tab in the armory"]
+  07e184  [self weaponsButton]
+  07e1a0  [[self weaponsButton] setAccessibilityHint:@"Double tap to display this tab in the armory"]
+  07e1bc  [self powerUpButton]
+  07e1d8  [[self powerUpButton] setAccessibilityHint:@"Double tap to display this tab in the armory "]
+  07e1f4  [arg1 setAccessibilityHint:@"This tab is currently selected"]
+  07e208  return
+
+== -[Accessible_ADArmoryViewController viewDidLoad]   (address 0x10007e244  size 60  kind objc)
+  07e270  [super viewDidLoad]
+  07e27c  return
+
+== -[Accessible_ADArmoryViewController didReceiveMemoryWarning]   (address 0x10007e280  size 60  kind objc)
+  07e2ac  [super didReceiveMemoryWarning]
+  07e2b8  return

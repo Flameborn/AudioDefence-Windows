@@ -1,0 +1,87 @@
+
+== -[DFAutoScrollTextView initWithFrame:]   (address 0x1000183e0  size 132  kind objc)
+  018414  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  01841c  if (self == 0) goto loc_10001843c
+  018438  [self setScrollPointsPerSecond:15]
+loc_10001843c:
+  01844c  return
+
+== -[DFAutoScrollTextView startScrolling]   (address 0x100018464  size 660  kind objc)
+  018488  [self stopScrolling]
+  0184a0  [self window]
+  0184b0  if ([self window] == 0) goto loc_100018508
+  0184bc  [self window]
+  0184d8  [[self window] screen]
+  0184f4  [[[self window] screen] scale]
+  018504  goto loc_100018540
+loc_100018508:
+  01851c  [UIScreen mainScreen]
+  018538  [[UIScreen mainScreen] scale]
+loc_100018540:
+  018560  [self scrollPointsPerSecond]
+  018584  [NSTimer alloc]
+  0185a8  [NSDate dateWithTimeIntervalSinceNow:0.02]
+  0185e8  [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0.02] interval:(1 / (d8 * [self scrollPointsPerSecond])) target:self selector:@selector(scrollTick) userInfo:0 repeats:1]
+  018604  [self setAutoScrollTimer:[[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0.02] interval:(1 / (d8 * [self scrollPointsPerSecond])) target:self selector:@selector(scrollTick) userInfo:0 repeats:1]]
+  01862c  [NSRunLoop mainRunLoop]
+  01864c  [self autoScrollTimer]
+  01867c  [[NSRunLoop mainRunLoop] addTimer:[self autoScrollTimer] forMode:_NSRunLoopCommonModes[+0x0]]
+  01869c  return
+
+== -[DFAutoScrollTextView stopScrolling]   (address 0x1000186f8  size 120  kind objc)
+  018714  [self autoScrollTimer]
+  018730  [[self autoScrollTimer] invalidate]
+  018758  tail [self setAutoScrollTimer:0]
+
+== -[DFAutoScrollTextView scrollTick]   (address 0x100018770  size 532  kind objc)
+  018794  NSLog(@"Tick tock", _cmd)
+  0187a8  [self window]
+  0187bc  if ([self window] != 0) goto loc_1000187d4
+  0187d0  [self stopScrolling]
+loc_1000187d4:
+  0187e4  [self autoScrollTimer]
+  018800  [[self autoScrollTimer] timeInterval]
+  018820  [self scrollPointsPerSecond]
+  01883c  [self contentOffset]
+  01884c  [self contentOffset]
+  018850  t1 = (([[self autoScrollTimer] timeInterval] * [self scrollPointsPerSecond]) + [self contentOffset].1)
+  018864  [self contentSize]
+  01887c  [self bounds]
+  018888  if (t1 <= (or unordered) ([self contentSize].1 - [self bounds].3)) goto loc_1000188b4
+  0188b0  tail [self stopScrolling]
+loc_1000188b4:
+  0188c8  [NSOperationQueue mainQueue]
+  018928  [[NSOperationQueue mainQueue] addOperationWithBlock:^{-[DFAutoScrollTextView scrollTick]_block_invoke captures +0x20=self, +0x28=[self contentOffset].0, +0x30=t1}]
+  018950  return
+
+== -[DFAutoScrollTextView scrollTick]_block_invoke   (address 0x100018984  size 28  kind block)
+  01899c  tail [self setContentOffset:{d0, d1}]
+
+== sub_1000189a0   (address 0x1000189a0  size 8  kind sub)
+
+== sub_1000189a8   (address 0x1000189a8  size 8  kind sub)
+  0189ac  return
+
+== -[DFAutoScrollTextView setScrolling:]   (address 0x1000189b0  size 36  kind objc)
+  0189b0  if (arg1 == 0) goto loc_1000189c4
+  0189c0  tail [self startScrolling]
+loc_1000189c4:
+  0189d0  tail [self stopScrolling]
+
+== -[DFAutoScrollTextView isScrolling]   (address 0x1000189d4  size 64  kind objc)
+  0189ec  [self autoScrollTimer]
+  018a10  return
+
+== -[DFAutoScrollTextView drawRect:]   (address 0x100018a14  size 60  kind objc)
+  018a40  [super drawRect:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  018a4c  return
+
+== -[DFAutoScrollTextView scrollPointsPerSecond]   (address 0x100018a50  size 20  kind objc)
+  018a60  return
+
+== -[DFAutoScrollTextView setScrollPointsPerSecond:]   (address 0x100018a64  size 20  kind objc)
+  018a70  self->_scrollPointsPerSecond = arg1
+  018a74  return
+
+== -[DFAutoScrollTextView scrolling]   (address 0x100018a78  size 16  kind objc)
+  018a84  return

@@ -1,0 +1,46 @@
+{
+ "icon_title": "05",
+ "description": "You're stuck in a dead end street. A horde of Zombies have spotted you, and you don't have  much ammo left.",
+ "accuracy_star": {
+  "reward": 100,
+  "objective": 90
+ },
+ "title": "CHALLENGE 05",
+ "ambient": {
+  "gain": 0.3,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "objective": "Defeat all Level 5 Bricks!",
+ "icon": "Challenge_icon_01",
+ "bricks": [
+  "level5_brick_1",
+  "level5_brick_2",
+  "level5_brick_3",
+  "level5_brick_4",
+  "level5_brick_5",
+  "level5_brick_6",
+  "level5_brick_7",
+  "level5_brick_8"
+ ],
+ "mission_star": {
+  "reward": 500
+ },
+ "challenge_id": "01_05",
+ "weapons": [
+  {
+   "ammo": "999",
+   "name": "pistol"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 90
+ }
+}

@@ -1,0 +1,14 @@
+// ADInventoryItemViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #34 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #14 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #20 UIView  
+    #8 UIImageView  UserInteractionDisabled=False Image='wok_icon.png'
+    #3 UIButton  
+
+CONNECTIONS
+  action  buttonPressed:                            #3 UIButton --(events 0x40)--> #34 UIProxyObject
+  outlet  view                                      #34 UIProxyObject --> #20 UIView
+  outlet  weaponImage                               #34 UIProxyObject --> #8 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,10 @@
+
+== +[TAGPValue_EscapingEnumDescriptor enumDescriptor]_block_invoke   (address 0x10014bc28  size 16  kind block)
+  14bc34  return
+
+== +[TAGPValue_EscapingEnumDescriptor enumDescriptor]   (address 0x10014bc38  size 96  kind objc)
+  14bc50  if (g_10042de78 != 0) goto loc_10014bc8c
+  14bc84  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPValue_Escaping" values:&d_10042bfe8 valueCount:17 enumVerifier:&+[TAGPValue_EscapingEnumDescriptor enumDescriptor]_block_invoke]
+  14bc88  store g_10042de78 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPValue_Escaping" values:&d_10042bfe8 valueCount:17 enumVerifier:&+[TAGPValue_EscapingEnumDescriptor enumDescriptor]_block_invoke]
+loc_10014bc8c:
+  14bc94  return

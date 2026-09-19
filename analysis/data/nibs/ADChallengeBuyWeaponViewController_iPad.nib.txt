@@ -1,0 +1,14 @@
+// ADChallengeBuyWeaponViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #21 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #11 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #30 UIView  
+    #10 UIButton  title[0]='Button'
+    #39 UIButton  title[0]='Button'
+
+CONNECTIONS
+  outlet  coinButton                                #21 UIProxyObject --> #39 UIButton
+  outlet  view                                      #21 UIProxyObject --> #30 UIView
+  outlet  weaponButton                              #21 UIProxyObject --> #10 UIButton
+
+ACCESSIBILITY CONFIGURATIONS

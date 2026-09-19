@@ -1,0 +1,103 @@
+
+== -[GAIHitUtil init]   (address 0x10011dc3c  size 128  kind objc)
+  11dc70  [super init]
+  11dc78  if (self == 0) goto loc_10011dca8
+  11dc90  [self doesNotRecognizeSelector:_cmd]
+  11dca4  [self release]
+loc_10011dca8:
+  11dcb8  return
+
+== +[GAIHitUtil systemLanguageFromLanguages:]   (address 0x10011dcbc  size 128  kind objc)
+  11dcdc  [arg1 count]
+  11dce0  if ([arg1 count] == 0) goto loc_10011dd14
+  11dcf8  [arg1 objectAtIndex:0]
+  11dd10  tail [[arg1 objectAtIndex:0] lowercaseString]
+loc_10011dd14:
+  11dd38  tail [NSString stringWithUTF8String:"en"]
+
+== +[GAIHitUtil systemCountryFromLocale:]   (address 0x10011dd3c  size 64  kind objc)
+  11dd64  [arg1 objectForKey:_NSLocaleCountryCode[+0x0]]
+  11dd78  tail [[arg1 objectForKey:_NSLocaleCountryCode[+0x0]] lowercaseString]
+
+== +[GAIHitUtil userAgentStringWithProduct:version:deviceModel:systemName:systemVersion:systemLanguage:systemCountry:]   (address 0x10011dd7c  size 80  kind objc)
+  11ddbc  [NSString stringWithFormat:@"%@/%@ (%@; U; CPU %@ %@ like Mac OS X; %@-%@)", arg1, arg2, arg3, arg4, arg5, arg6, sp[48]]
+  11ddc8  return
+
+== +[GAIHitUtil userAgentString]   (address 0x10011ddcc  size 276  kind objc)
+  11de00  [UIDevice currentDevice]
+  11de10  [&d_1003b7d70] -> @"GoogleAnalytics"
+  11de1c  [&d_1003b7d78] -> @"3.09"
+  11de2c  [[UIDevice currentDevice] model]
+  11de44  [[UIDevice currentDevice] systemName]
+  11de5c  [[UIDevice currentDevice] systemVersion]
+  11de78  [GAIHitUtil systemLanguage]
+  11de90  [GAIHitUtil systemCountry]
+  11dec0  [GAIHitUtil userAgentStringWithProduct:@"GoogleAnalytics" version:@"3.09" deviceModel:[[UIDevice currentDevice] model] systemName:[[UIDevice currentDevice] systemName] systemVersion:[[UIDevice currentDevice] systemVersion] systemLanguage:[GAIHitUtil systemLanguage] systemCountry:&@selector(setWeakerEnemies:)]
+  11dedc  return
+
+== +[GAIHitUtil systemLanguage]   (address 0x10011dee0  size 76  kind objc)
+  11df08  [NSLocale preferredLanguages]
+  11df28  tail [GAIHitUtil systemLanguageFromLanguages:[NSLocale preferredLanguages]]
+
+== +[GAIHitUtil systemCountry]   (address 0x10011df2c  size 76  kind objc)
+  11df54  [NSLocale currentLocale]
+  11df74  tail [GAIHitUtil systemCountryFromLocale:[NSLocale currentLocale]]
+
+== +[GAIHitUtil systemScreenResolution]   (address 0x10011df78  size 108  kind objc)
+  11df98  [UIScreen mainScreen]
+  11dfa8  [[UIScreen mainScreen] bounds]
+  11dfd4  [NSString stringWithFormat:@"%dx%d", (int)[[UIScreen mainScreen] bounds].2, (int)[[UIScreen mainScreen] bounds].3]
+  11dfe0  return
+
+== +[GAIHitUtil systemScreenColorDepth]   (address 0x10011dfe4  size 12  kind objc)
+  11dfec  return
+
+== +[GAIHitUtil millisecondsElapsedFrom:To:]   (address 0x10011dff0  size 52  kind objc)
+  11e008  [arg2 timeIntervalSinceDate:arg1]
+  11e020  return
+
+== +[GAIHitUtil gaHash:]   (address 0x10011e024  size 248  kind objc)
+  11e050  [arg1 length]
+  11e054  if ([arg1 length] == 0) goto loc_10011e0e4
+  11e078  [arg1 length]
+  11e0c8  [arg1 enumerateSubstringsInRange:0 options:[arg1 length] usingBlock:258]
+  11e0dc  Block_object_dispose(&sp[0x30], 8)
+  11e0e0  goto loc_10011e0e8
+loc_10011e0e4:
+loc_10011e0e8:
+  11e0fc  return
+  11e110  Block_object_dispose(&sp[0x30], 8)
+
+== +[GAIHitUtil gaHash:]_block_invoke   (address 0x10011e11c  size 116  kind block)
+  11e144  [blockarg1 characterAtIndex:0]
+  11e160  t1 = (([blockarg1 characterAtIndex:0] + ([blockarg1 characterAtIndex:0] << 14)) + ((block[+0x20][+0x8][+0x18] << 6) & 0xfffffc0))
+  11e164  block[+0x20][+0x8][+0x18] = t1
+  11e17c  t2 = ((block[+0x20][+0x8][+0x18] & 0xfe00000) == 0 ? block[+0x20][+0x8][+0x18] : (block[+0x20][+0x8][+0x18] ^ ((block[+0x20][+0x8][+0x18] & 0xfe00000) >>> 21)))
+  11e180  block[+0x20][+0x8][+0x18] = t2
+  11e18c  return
+
+== sub_10011e190   (address 0x10011e190  size 16  kind sub)
+  11e19c  tail Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+
+== sub_10011e1a0   (address 0x10011e1a0  size 12  kind sub)
+  11e1a8  tail Block_object_dispose(a0[+0x20], 8, a2, a3)
+
+== +[GAIHitUtil generateClientId]   (address 0x10011e1ac  size 100  kind objc)
+  11e1c0  CFUUIDCreate(0, _cmd)
+  11e1d0  CFUUIDCreateString(0, CFUUIDCreate(0, _cmd))
+  11e1e4  [CFUUIDCreateString(0, CFUUIDCreate(0, _cmd)) lowercaseString]
+  11e1f0  CFRelease(CFUUIDCreateString(0, CFUUIDCreate(0, _cmd)))
+  11e1f8  CFRelease(CFUUIDCreate(0, _cmd))
+  11e20c  return
+
+== +[GAIHitUtil hashIdfa:clientId:]   (address 0x10011e210  size 260  kind objc)
+  11e258  [NSString stringWithFormat:@"%@:%@", arg1, arg2]
+  11e268  [[NSString stringWithFormat:@"%@:%@", arg1, arg2] UTF8String]
+  11e270  strlen([[NSString stringWithFormat:@"%@:%@", arg1, arg2] UTF8String])
+  11e284  CC_MD5([[NSString stringWithFormat:@"%@:%@", arg1, arg2] UTF8String], strlen([[NSString stringWithFormat:@"%@:%@", arg1, arg2] UTF8String]), &sp[0x18])
+  11e2a0  [NSMutableString stringWithCapacity:32]
+  11e2b0  &@selector(appendFormat:)
+loc_10011e2c0:
+  11e2d4  [[NSMutableString stringWithCapacity:32] appendFormat:@"%02x", sp[0]]
+  11e2e0  if ((x24 + 1) != 16) goto loc_10011e2c0
+  11e30c  return

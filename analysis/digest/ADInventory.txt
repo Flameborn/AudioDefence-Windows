@@ -1,0 +1,530 @@
+
+== +[ADInventory sharedInventory]   (address 0x10000c0ac  size 152  kind objc)
+  00c0c0  objc_sync_enter(ADInventory)
+  00c0cc  if (g_10042d958 != 0) goto loc_10000c108
+  00c0e4  [ADInventory alloc]
+  00c0f4  [[ADInventory alloc] init]
+  00c0fc  store g_10042d958 = [[ADInventory alloc] init]
+loc_10000c108:
+  00c10c  objc_sync_exit(ADInventory)
+  00c130  objc_sync_exit()
+
+== -[ADInventory init]   (address 0x10000c144  size 128  kind objc)
+  00c178  [super init]
+  00c180  if (self == 0) goto loc_10000c19c
+  00c198  [self createOrRestoreWeaponDictionary]
+loc_10000c19c:
+  00c1ac  return
+
+== -[ADInventory createOrRestoreWeaponDictionary]   (address 0x10000c1c4  size 3480  kind objc)
+  00c210  [NSUserDefaults standardUserDefaults]
+  00c238  [[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"]
+  00c24c  if ([[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"] == 0) goto loc_10000c4c8
+  00c260  [self setupWeapons]
+  00c274  [self setupPowerups]
+  00c280  [NSUserDefaults standardUserDefaults]
+  00c2a0  [[NSUserDefaults standardUserDefaults] valueForKey:@"weaponSlot1"]
+  00c2c4  [self setWeaponSlot1:[[NSUserDefaults standardUserDefaults] valueForKey:@"weaponSlot1"]]
+  00c2e0  [NSUserDefaults standardUserDefaults]
+  00c2fc  [[NSUserDefaults standardUserDefaults] valueForKey:@"weaponSlot2"]
+  00c320  [self setWeaponSlot2:[[NSUserDefaults standardUserDefaults] valueForKey:@"weaponSlot2"]]
+  00c33c  [NSUserDefaults standardUserDefaults]
+  00c358  [[NSUserDefaults standardUserDefaults] valueForKey:@"weaponSlotMelee"]
+  00c37c  [self setWeaponSlotMelee:[[NSUserDefaults standardUserDefaults] valueForKey:@"weaponSlotMelee"]]
+  00c398  [NSUserDefaults standardUserDefaults]
+  00c3b4  [[NSUserDefaults standardUserDefaults] valueForKey:@"powerupSlot"]
+  00c3d8  [self setPowerUpSlot:[[NSUserDefaults standardUserDefaults] valueForKey:@"powerupSlot"]]
+  00c3f4  [NSUserDefaults standardUserDefaults]
+  00c414  [[NSUserDefaults standardUserDefaults] valueForKey:@"coins"]
+  00c434  [[[NSUserDefaults standardUserDefaults] valueForKey:@"coins"] intValue]
+  00c44c  [self setCoins:[[[NSUserDefaults standardUserDefaults] valueForKey:@"coins"] intValue]]
+  00c468  [NSUserDefaults standardUserDefaults]
+  00c484  [[NSUserDefaults standardUserDefaults] valueForKey:@"diamonds"]
+  00c498  [[[NSUserDefaults standardUserDefaults] valueForKey:@"diamonds"] intValue]
+  00c4b0  [self setDiamonds:[[[NSUserDefaults standardUserDefaults] valueForKey:@"diamonds"] intValue]]
+  00c4c4  goto loc_10000ccfc
+loc_10000c4c8:
+  00c4e0  [NSMutableArray alloc]
+  00c4f4  [[NSMutableArray alloc] init]
+  00c510  [self setWeapons:[[NSMutableArray alloc] init]]
+  00c524  [NSMutableArray alloc]
+  00c52c  [[NSMutableArray alloc] init]
+  00c548  [self setPowerups:[[NSMutableArray alloc] init]]
+  00c568  [self setCoins:0x1388]
+  00c580  [self setDiamonds:500]
+  00c5ac  [ADWeaponManager sharedWeaponManager]
+  00c5c8  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  00c608  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16]
+  00c610  if ([[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16] == 0) goto loc_10000ca90
+  00c644  &@selector(initWithObjects:forKeys:)
+  00c684  &@selector(weaponSlotMelee)
+  00c6ec  &@selector(setWeaponSlot2:)
+loc_10000c710:
+loc_10000c714:
+  00c724  if (x8 == x9) goto loc_10000c730
+  00c72c  objc_enumerationMutation([[ADWeaponManager sharedWeaponManager] getAllWeaponsArray])
+loc_10000c730:
+  00c748  [x0 objectForKey:@"price"]
+  00c75c  [[x0 objectForKey:@"price"] integerValue]
+  00c760  if ([[x0 objectForKey:@"price"] integerValue] == 0) goto loc_10000c76c
+  00c768  goto loc_10000c7a4
+loc_10000c76c:
+  00c77c  [x0 objectForKey:@"priceInDiamonds"]
+  00c790  [[x0 objectForKey:@"priceInDiamonds"] integerValue]
+loc_10000c7a4:
+  00c7b8  [NSMutableDictionary alloc]
+  00c7d4  [x0 objectForKey:@"name"]
+  00c7f4  [NSNumber numberWithBool:x2]
+  00c810  [NSNumber numberWithInt:1]
+  00c838  [NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil]
+  00c870  [NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]
+  00c8ac  [[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]]
+  00c8e8  [self weapons]
+  00c918  [[self weapons] addObject:[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]]]
+  00c934  [x0 objectForKey:@"melee"]
+  00c948  [[x0 objectForKey:@"melee"] boolValue]
+  00c958  if ([[x0 objectForKey:@"melee"] boolValue] == 0) goto loc_10000c9b0
+  00c964  [self weaponSlotMelee]
+  00c978  if ([self weaponSlotMelee] != 0) goto loc_10000ca5c
+  00c98c  [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]] objectForKey:@"name"]
+  00c9a8  [self setWeaponSlotMelee:[[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]] objectForKey:@"name"]]
+  00c9ac  goto loc_10000ca54
+loc_10000c9b0:
+  00c9b8  [self weaponSlot1]
+  00c9cc  if ([self weaponSlot1] == 0) goto loc_10000ca24
+  00c9d8  [self weaponSlot2]
+  00c9ec  if ([self weaponSlot2] != 0) goto loc_10000ca5c
+  00ca00  [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]] objectForKey:@"name"]
+  00ca1c  [self setWeaponSlot2:[[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]] objectForKey:@"name"]]
+  00ca20  goto loc_10000ca54
+loc_10000ca24:
+  00ca34  [[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]] objectForKey:@"name"]
+  00ca50  [self setWeaponSlot1:[[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:x2], [NSNumber numberWithInt:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"purchased", @"level", nil]] objectForKey:@"name"]]
+loc_10000ca54:
+loc_10000ca5c:
+  00ca6c  if ((x23 + 1) <u [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] c…) goto loc_10000c714
+  00ca84  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16]
+  00ca8c  if ([[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16] != 0) goto loc_10000c710
+loc_10000ca90:
+  00cab4  [ADWeaponManager sharedWeaponManager]
+  00cad0  [[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray]
+  00cb04  [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16]
+  00cb0c  if ([[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16] == 0) goto loc_10000cce0
+  00cb54  &@selector(powerups)
+loc_10000cb84:
+loc_10000cb88:
+  00cb98  if (x8 == x9) goto loc_10000cba4
+  00cba0  objc_enumerationMutation([[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray])
+loc_10000cba4:
+  00cbb8  [NSMutableDictionary alloc]
+  00cbd0  [x0 objectForKey:@"name"]
+  00cbf0  [NSNumber numberWithInteger:1]
+  00cc10  [NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithInteger:1], nil]
+  00cc38  [NSArray arrayWithObjects:@"name", @"level", nil]
+  00cc58  [[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithInteger:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"level", nil]]
+  00cc88  [self powerups]
+  00cca0  [[self powerups] addObject:[[NSMutableDictionary alloc] initWithObjects:[NSArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithInteger:1], nil] forKeys:[NSArray arrayWithObjects:@"name", @"level", nil]]]
+  00ccbc  if ((x28 + 1) <u [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] co…) goto loc_10000cb88
+  00ccd4  [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16]
+  00ccdc  if ([[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16] != 0) goto loc_10000cb84
+loc_10000cce0:
+loc_10000ccfc:
+  00cd0c  [self saveWeaponDictionary]
+  00cd40  return
+
+== -[ADInventory setupWeapons]   (address 0x10000cf5c  size 1328  kind objc)
+  00cfa4  [NSUserDefaults standardUserDefaults]
+  00cfcc  [[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"]
+  00cffc  [NSMutableArray alloc]
+  00d00c  [[NSMutableArray alloc] init]
+  00d028  [self setWeapons:[[NSMutableArray alloc] init]]
+  00d070  [[[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  00d078  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] == 0) goto loc_10000d340
+  00d08c  &@selector(integerValue)
+  00d094  &@selector(numberWithBool:)
+  00d09c  &@selector(intValue)
+loc_10000d114:
+loc_10000d118:
+  00d128  if (x8 == x9) goto loc_10000d134
+  00d130  objc_enumerationMutation([[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"])
+loc_10000d134:
+  00d148  [NSMutableDictionary alloc]
+  00d168  [x0 objectForKey:@"name"]
+  00d18c  [x0 objectForKey:@"purchased"]
+  00d1a0  [[x0 objectForKey:@"purchased"] integerValue]
+  00d1b4  [NSNumber numberWithBool:([[x0 objectForKey:@"purchased"] integerValue] != 0)]
+  00d1e0  [x0 valueForKey:@"level"]
+  00d1fc  [[x0 valueForKey:@"level"] intValue]
+  00d20c  [NSNumber numberWithInt:[[x0 valueForKey:@"level"] intValue]]
+  00d234  [NSMutableArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:([[x0 objectForKey:@"purchased"] in…, [NSNumber numberWithInt:[[x0 valueForKey:@"level"] intValue]…, nil]
+  00d270  [NSMutableArray arrayWithObjects:@"name", @"purchased", @"level", nil]
+  00d294  [[NSMutableDictionary alloc] initWithObjects:[NSMutableArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:([[x0 objectForKey:@"purchased"] in…, [NSNumber numberWithInt:[[x0 valueForKey:@"level"] intValue]…, nil] forKeys:[NSMutableArray arrayWithObjects:@"name", @"purchased", @"level", nil]]
+  00d2dc  [self weapons]
+  00d2f4  [[self weapons] addObject:[[NSMutableDictionary alloc] initWithObjects:[NSMutableArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithBool:([[x0 objectForKey:@"purchased"] in…, [NSNumber numberWithInt:[[x0 valueForKey:@"level"] intValue]…, nil] forKeys:[NSMutableArray arrayWithObjects:@"name", @"purchased", @"level", nil]]]
+  00d320  if ((x26 + 1) <u [[[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"] countByEnumeratingWithState:&sp[0xa8] objects:&…) goto loc_10000d118
+  00d334  [[[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  00d33c  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"weaponDictionary"] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] != 0) goto loc_10000d114
+loc_10000d340:
+  00d388  return
+
+== -[ADInventory setupPowerups]   (address 0x10000d48c  size 1120  kind objc)
+  00d4d4  [NSUserDefaults standardUserDefaults]
+  00d4fc  [[NSUserDefaults standardUserDefaults] valueForKey:@"powerupsDictionary"]
+  00d52c  [NSMutableArray alloc]
+  00d53c  [[NSMutableArray alloc] init]
+  00d558  [self setPowerups:[[NSMutableArray alloc] init]]
+  00d5a0  [[[NSUserDefaults standardUserDefaults] valueForKey:@"powerupsDictionary"] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16]
+  00d5a4  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"powerupsDictionary"] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16] == 0) goto loc_10000d7d4
+  00d5b8  &@selector(intValue)
+  00d600  &@selector(powerups)
+loc_10000d634:
+loc_10000d63c:
+  00d64c  if (x8 == x9) goto loc_10000d658
+  00d654  objc_enumerationMutation([[NSUserDefaults standardUserDefaults] valueForKey:@"powerupsDictionary"])
+loc_10000d658:
+  00d66c  [NSMutableDictionary alloc]
+  00d688  [x0 objectForKey:@"name"]
+  00d6ac  [x0 valueForKey:@"level"]
+  00d6c0  [[x0 valueForKey:@"level"] intValue]
+  00d6d0  [NSNumber numberWithInteger:[[x0 valueForKey:@"level"] intValue]]
+  00d6f4  [NSMutableArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithInteger:[[x0 valueForKey:@"level"] intVa…, nil]
+  00d718  [NSArray arrayWithObjects:@"name", @"level", nil]
+  00d740  [[NSMutableDictionary alloc] initWithObjects:[NSMutableArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithInteger:[[x0 valueForKey:@"level"] intVa…, nil] forKeys:[NSArray arrayWithObjects:@"name", @"level", nil]]
+  00d778  [self powerups]
+  00d790  [[self powerups] addObject:[[NSMutableDictionary alloc] initWithObjects:[NSMutableArray arrayWithObjects:[x0 objectForKey:@"name"], [NSNumber numberWithInteger:[[x0 valueForKey:@"level"] intVa…, nil] forKeys:[NSArray arrayWithObjects:@"name", @"level", nil]]]
+  00d7b8  if ((x23 + 1) <u [[[NSUserDefaults standardUserDefaults] valueForKey:@"powerupsDictionary"] countByEnumeratingWithState:&sp[0x98] objects…) goto loc_10000d63c
+  00d7cc  [[[NSUserDefaults standardUserDefaults] valueForKey:@"powerupsDictionary"] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16]
+  00d7d0  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"powerupsDictionary"] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16] != 0) goto loc_10000d634
+loc_10000d7d4:
+  00d81c  return
+
+== -[ADInventory setWeaponSlot1:]   (address 0x10000d8ec  size 332  kind objc)
+  00d938  [arg1 isEqualToString:objc_loadWeakRetained(x0)]
+  00d948  if (([arg1 isEqualToString:objc_loadWeakRetained(x0)] & 1)) goto loc_10000d9e0
+  00d96c  [NSUserDefaults standardUserDefaults]
+  00d98c  [self weaponSlot1]
+  00d9b8  [[NSUserDefaults standardUserDefaults] setObject:[self weaponSlot1] forKey:@"weaponSlot1"]
+  00d9d4  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_10000d9e0:
+  00d9f4  return
+
+== -[ADInventory setWeaponSlot2:]   (address 0x10000da38  size 332  kind objc)
+  00da84  [arg1 isEqualToString:objc_loadWeakRetained(x0)]
+  00da94  if (([arg1 isEqualToString:objc_loadWeakRetained(x0)] & 1)) goto loc_10000db2c
+  00daac  [NSUserDefaults standardUserDefaults]
+  00dad8  [self weaponSlot2]
+  00db04  [[NSUserDefaults standardUserDefaults] setObject:[self weaponSlot2] forKey:@"weaponSlot2"]
+  00db20  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_10000db2c:
+  00db40  return
+
+== -[ADInventory isWeaponEquipped:]   (address 0x10000db84  size 444  kind objc)
+  00dbc0  [ADInventory sharedInventory]
+  00dbdc  [[ADInventory sharedInventory] weaponSlot1]
+  00dc00  [[[ADInventory sharedInventory] weaponSlot1] isEqualToString:arg1]
+  00dc18  if (([[[ADInventory sharedInventory] weaponSlot1] isEqualToString:arg1] & 1)) goto loc_10000dc74
+  00dc24  [ADInventory sharedInventory]
+  00dc40  [[ADInventory sharedInventory] weaponSlot2]
+  00dc58  [[[ADInventory sharedInventory] weaponSlot2] isEqualToString:arg1]
+  00dc70  if (!([[[ADInventory sharedInventory] weaponSlot2] isEqualToString:arg1] & 1)) goto loc_10000dc7c
+loc_10000dc74:
+  00dc78  goto loc_10000dcd0
+loc_10000dc7c:
+  00dc84  [ADInventory sharedInventory]
+  00dca0  [[ADInventory sharedInventory] weaponSlotMelee]
+  00dcb8  [[[ADInventory sharedInventory] weaponSlotMelee] isEqualToString:arg1]
+loc_10000dcd0:
+  00dcf0  return
+
+== -[ADInventory setWeaponSlotMelee:]   (address 0x10000dd40  size 332  kind objc)
+  00dd8c  [arg1 isEqualToString:objc_loadWeakRetained(x0)]
+  00dd9c  if (([arg1 isEqualToString:objc_loadWeakRetained(x0)] & 1)) goto loc_10000de34
+  00ddb4  [NSUserDefaults standardUserDefaults]
+  00dde0  [self weaponSlotMelee]
+  00de0c  [[NSUserDefaults standardUserDefaults] setObject:[self weaponSlotMelee] forKey:@"weaponSlotMelee"]
+  00de28  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_10000de34:
+  00de48  return
+
+== -[ADInventory setPowerUpSlot:]   (address 0x10000de8c  size 332  kind objc)
+  00ded8  [arg1 isEqualToString:objc_loadWeakRetained(x0)]
+  00dee8  if (([arg1 isEqualToString:objc_loadWeakRetained(x0)] & 1)) goto loc_10000df80
+  00df00  [NSUserDefaults standardUserDefaults]
+  00df2c  [self powerUpSlot]
+  00df58  [[NSUserDefaults standardUserDefaults] setObject:[self powerUpSlot] forKey:@"powerupSlot"]
+  00df74  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_10000df80:
+  00df94  return
+
+== -[ADInventory setCoins:]   (address 0x10000dfd8  size 252  kind objc)
+  00e004  if (self->_coins <= arg1) goto loc_10000e04c
+  00e020  [ADPersistentStats persistentStats]
+  00e040  [[ADPersistentStats persistentStats] saveCoinsData:(self->_coins - arg1)]
+loc_10000e04c:
+  00e060  [NSUserDefaults standardUserDefaults]
+  00e070  self->_coins = arg1
+  00e08c  [[NSUserDefaults standardUserDefaults] setInteger:arg1 forKey:@"coins"]
+  00e0a0  [[NSUserDefaults standardUserDefaults] synchronize]
+  00e0b8  return
+
+== -[ADInventory setDiamonds:]   (address 0x10000e0d4  size 252  kind objc)
+  00e100  if (self->_diamonds <= arg1) goto loc_10000e148
+  00e11c  [ADPersistentStats persistentStats]
+  00e13c  [[ADPersistentStats persistentStats] saveDiamondsData:(self->_diamonds - arg1)]
+loc_10000e148:
+  00e15c  [NSUserDefaults standardUserDefaults]
+  00e16c  self->_diamonds = arg1
+  00e188  [[NSUserDefaults standardUserDefaults] setInteger:arg1 forKey:@"diamonds"]
+  00e19c  [[NSUserDefaults standardUserDefaults] synchronize]
+  00e1b4  return
+
+== -[ADInventory levelForWeaponWithName:]   (address 0x10000e1d0  size 564  kind objc)
+  00e230  [self weapons]
+  00e25c  [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00e264  if ([[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_10000e374
+  00e280  &@selector(isEqualToString:)
+loc_10000e290:
+loc_10000e294:
+  00e2a0  if (x8 == x21) goto loc_10000e2ac
+  00e2a8  objc_enumerationMutation([self weapons])
+loc_10000e2ac:
+  00e2c0  [x0 objectForKey:@"name"]
+  00e2d8  [[x0 objectForKey:@"name"] isEqualToString:arg1]
+  00e2e8  if ([[x0 objectForKey:@"name"] isEqualToString:arg1] != 0) goto loc_10000e328
+  00e2f4  if ((x20 + 1) <u [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10000e294
+  00e308  [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00e310  if ([[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10000e290
+  00e324  goto loc_10000e378
+loc_10000e328:
+  00e338  [x0 objectForKey:@"level"]
+  00e360  [[x0 objectForKey:@"level"] intValue]
+  00e370  goto loc_10000e378
+loc_10000e374:
+loc_10000e378:
+  00e3b4  return
+
+== -[ADInventory setLevel:forWeaponWithName:]   (address 0x10000e404  size 592  kind objc)
+  00e468  [self weapons]
+  00e498  [[self weapons] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  00e4a0  if ([[self weapons] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_10000e5b4
+loc_10000e4ec:
+loc_10000e4f0:
+  00e4fc  if (x8 == x27) goto loc_10000e508
+  00e504  objc_enumerationMutation([self weapons])
+loc_10000e508:
+  00e51c  [x0 objectForKey:@"name"]
+  00e534  [[x0 objectForKey:@"name"] isEqualToString:arg2]
+  00e544  if ([[x0 objectForKey:@"name"] isEqualToString:arg2] == 0) goto loc_10000e588
+  00e558  [NSNumber numberWithInt:arg1]
+  00e57c  [x0 setObject:[NSNumber numberWithInt:arg1] forKey:@"level"]
+loc_10000e588:
+  00e590  if ((x28 + 1) <u [[self weapons] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_10000e4f0
+  00e5a8  [[self weapons] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  00e5b0  if ([[self weapons] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_10000e4ec
+loc_10000e5b4:
+  00e5cc  [self saveWeaponDictionary]
+  00e60c  return
+
+== -[ADInventory levelForPowerUpWithName:]   (address 0x10000e654  size 564  kind objc)
+  00e6b4  [self powerups]
+  00e6e0  [[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00e6e8  if ([[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_10000e7f8
+  00e704  &@selector(isEqualToString:)
+loc_10000e714:
+loc_10000e718:
+  00e724  if (x8 == x21) goto loc_10000e730
+  00e72c  objc_enumerationMutation([self powerups])
+loc_10000e730:
+  00e744  [x0 objectForKey:@"name"]
+  00e75c  [[x0 objectForKey:@"name"] isEqualToString:arg1]
+  00e76c  if ([[x0 objectForKey:@"name"] isEqualToString:arg1] != 0) goto loc_10000e7ac
+  00e778  if ((x20 + 1) <u [[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10000e718
+  00e78c  [[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00e794  if ([[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10000e714
+  00e7a8  goto loc_10000e7fc
+loc_10000e7ac:
+  00e7bc  [x0 objectForKey:@"level"]
+  00e7e4  [[x0 objectForKey:@"level"] intValue]
+  00e7f4  goto loc_10000e7fc
+loc_10000e7f8:
+loc_10000e7fc:
+  00e838  return
+
+== -[ADInventory setLevel:forPowerUpWithName:]   (address 0x10000e888  size 592  kind objc)
+  00e8ec  [self powerups]
+  00e91c  [[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  00e924  if ([[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_10000ea38
+loc_10000e970:
+loc_10000e974:
+  00e980  if (x8 == x27) goto loc_10000e98c
+  00e988  objc_enumerationMutation([self powerups])
+loc_10000e98c:
+  00e9a0  [x0 objectForKey:@"name"]
+  00e9b8  [[x0 objectForKey:@"name"] isEqualToString:arg2]
+  00e9c8  if ([[x0 objectForKey:@"name"] isEqualToString:arg2] == 0) goto loc_10000ea0c
+  00e9dc  [NSNumber numberWithInt:arg1]
+  00ea00  [x0 setObject:[NSNumber numberWithInt:arg1] forKey:@"level"]
+loc_10000ea0c:
+  00ea14  if ((x28 + 1) <u [[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_10000e974
+  00ea2c  [[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  00ea34  if ([[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_10000e970
+loc_10000ea38:
+  00ea50  [self saveWeaponDictionary]
+  00ea90  return
+
+== -[ADInventory quantityForPowerUpWithName:]   (address 0x10000ead8  size 564  kind objc)
+  00eb38  [self powerups]
+  00eb64  [[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00eb6c  if ([[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_10000ec7c
+  00eb88  &@selector(isEqualToString:)
+loc_10000eb98:
+loc_10000eb9c:
+  00eba8  if (x8 == x21) goto loc_10000ebb4
+  00ebb0  objc_enumerationMutation([self powerups])
+loc_10000ebb4:
+  00ebc8  [x0 objectForKey:@"name"]
+  00ebe0  [[x0 objectForKey:@"name"] isEqualToString:arg1]
+  00ebf0  if ([[x0 objectForKey:@"name"] isEqualToString:arg1] != 0) goto loc_10000ec30
+  00ebfc  if ((x20 + 1) <u [[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10000eb9c
+  00ec10  [[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00ec18  if ([[self powerups] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10000eb98
+  00ec2c  goto loc_10000ec80
+loc_10000ec30:
+  00ec40  [x0 objectForKey:@"quantity"]
+  00ec68  [[x0 objectForKey:@"quantity"] intValue]
+  00ec78  goto loc_10000ec80
+loc_10000ec7c:
+loc_10000ec80:
+  00ecbc  return
+
+== -[ADInventory setQuantity:ForPowerUpWithName:]   (address 0x10000ed0c  size 592  kind objc)
+  00ed70  [self powerups]
+  00eda0  [[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  00eda8  if ([[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_10000eebc
+loc_10000edf4:
+loc_10000edf8:
+  00ee04  if (x8 == x27) goto loc_10000ee10
+  00ee0c  objc_enumerationMutation([self powerups])
+loc_10000ee10:
+  00ee24  [x0 objectForKey:@"name"]
+  00ee3c  [[x0 objectForKey:@"name"] isEqualToString:arg2]
+  00ee4c  if ([[x0 objectForKey:@"name"] isEqualToString:arg2] == 0) goto loc_10000ee90
+  00ee60  [NSNumber numberWithInt:arg1]
+  00ee84  [x0 setObject:[NSNumber numberWithInt:arg1] forKey:@"quantity"]
+loc_10000ee90:
+  00ee98  if ((x28 + 1) <u [[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_10000edf8
+  00eeb0  [[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  00eeb8  if ([[self powerups] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_10000edf4
+loc_10000eebc:
+  00eed4  [self saveWeaponDictionary]
+  00ef14  return
+
+== -[ADInventory hasUnlockedWeaponWithName:]   (address 0x10000ef5c  size 568  kind objc)
+  00efbc  [self weapons]
+  00efe8  [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00eff0  if ([[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_10000f104
+  00f00c  &@selector(isEqualToString:)
+loc_10000f01c:
+loc_10000f020:
+  00f02c  if (x8 == x21) goto loc_10000f038
+  00f034  objc_enumerationMutation([self weapons])
+loc_10000f038:
+  00f04c  [x0 objectForKey:@"name"]
+  00f064  [[x0 objectForKey:@"name"] isEqualToString:arg1]
+  00f074  if ([[x0 objectForKey:@"name"] isEqualToString:arg1] != 0) goto loc_10000f0b4
+  00f080  if ((x20 + 1) <u [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10000f020
+  00f094  [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00f09c  if ([[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10000f01c
+  00f0b0  goto loc_10000f108
+loc_10000f0b4:
+  00f0c4  [x0 objectForKey:@"purchased"]
+  00f0ec  [[x0 objectForKey:@"purchased"] boolValue]
+  00f100  goto loc_10000f108
+loc_10000f104:
+loc_10000f108:
+  00f144  return
+
+== -[ADInventory getNumberOfWeaponsUnlocked]   (address 0x10000f194  size 420  kind objc)
+  00f1e0  [self weapons]
+  00f20c  [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00f218  if ([[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_10000f2c4
+  00f234  &@selector(boolValue)
+loc_10000f244:
+loc_10000f248:
+  00f254  if (x8 == x28) goto loc_10000f260
+  00f25c  objc_enumerationMutation([self weapons])
+loc_10000f260:
+  00f270  [x0 objectForKey:@"purchased"]
+  00f284  [[x0 objectForKey:@"purchased"] boolValue]
+  00f2a0  if ((x20 + 1) <u [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10000f248
+  00f2b8  [[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  00f2c0  if ([[self weapons] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10000f244
+loc_10000f2c4:
+  00f304  return
+
+== -[ADInventory unlockWeaponWithName:]   (address 0x10000f338  size 668  kind objc)
+  00f398  [self weapons]
+  00f3c8  [[self weapons] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  00f3d0  if ([[self weapons] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] == 0) goto loc_10000f530
+loc_10000f43c:
+loc_10000f440:
+  00f44c  if (x8 == x28) goto loc_10000f458
+  00f454  objc_enumerationMutation([self weapons])
+loc_10000f458:
+  00f46c  [x0 objectForKey:@"name"]
+  00f484  [[x0 objectForKey:@"name"] isEqualToString:arg1]
+  00f494  if ([[x0 objectForKey:@"name"] isEqualToString:arg1] == 0) goto loc_10000f504
+  00f4a8  [NSNumber numberWithBool:1]
+  00f4cc  [x0 setObject:[NSNumber numberWithBool:1] forKey:@"purchased"]
+  00f4e4  [ADPersistentStats persistentStats]
+  00f4f8  [[ADPersistentStats persistentStats] updateNumberOfWeaponsOwned]
+loc_10000f504:
+  00f50c  if ((x21 + 1) <u [[self weapons] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]) goto loc_10000f440
+  00f524  [[self weapons] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  00f52c  if ([[self weapons] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] != 0) goto loc_10000f43c
+loc_10000f530:
+  00f548  [self saveWeaponDictionary]
+  00f588  return
+
+== -[ADInventory saveWeaponDictionary]   (address 0x10000f5d4  size 276  kind objc)
+  00f5fc  [NSUserDefaults standardUserDefaults]
+  00f61c  [self weapons]
+  00f64c  [[NSUserDefaults standardUserDefaults] setObject:[self weapons] forKey:@"weaponDictionary"]
+  00f668  [self powerups]
+  00f68c  [[NSUserDefaults standardUserDefaults] setObject:[self powerups] forKey:@"powerupsDictionary"]
+  00f6a8  [[NSUserDefaults standardUserDefaults] synchronize]
+  00f6bc  return
+
+== -[ADInventory coins]   (address 0x10000f6e8  size 16  kind objc)
+  00f6f4  return
+
+== -[ADInventory diamonds]   (address 0x10000f6f8  size 16  kind objc)
+  00f704  return
+
+== -[ADInventory weapons]   (address 0x10000f708  size 16  kind objc)
+  00f714  return
+
+== -[ADInventory setWeapons:]   (address 0x10000f718  size 56  kind objc)
+  00f73c  self->_weapons = arg1
+  00f74c  return
+
+== -[ADInventory powerups]   (address 0x10000f750  size 16  kind objc)
+  00f75c  return
+
+== -[ADInventory setPowerups:]   (address 0x10000f760  size 56  kind objc)
+  00f784  self->_powerups = arg1
+  00f794  return
+
+== -[ADInventory weaponSlot1]   (address 0x10000f798  size 32  kind objc)
+  00f7b4  return
+
+== -[ADInventory weaponSlot2]   (address 0x10000f7b8  size 32  kind objc)
+  00f7d4  return
+
+== -[ADInventory weaponSlotMelee]   (address 0x10000f7d8  size 32  kind objc)
+  00f7f4  return
+
+== -[ADInventory powerUpSlot]   (address 0x10000f7f8  size 32  kind objc)
+  00f814  return
+
+== -[ADInventory .cxx_destruct]   (address 0x10000f818  size 128  kind objc)

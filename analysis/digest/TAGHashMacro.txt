@@ -1,0 +1,98 @@
+
+== +[TAGHashMacro functionId]   (address 0x10017510c  size 44  kind objc)
+  175134  return
+
+== -[TAGHashMacro init]   (address 0x100175138  size 644  kind objc)
+  175170  [NSSet setWithObject:@"arg0"]
+  1751ac  [super initWithFunctionId:@"_hsh" requiredKeys:[NSSet setWithObject:@"arg0"]]
+  1751bc  if (self == 0) goto loc_100175348
+  1751d4  [NSMutableDictionary dictionary]
+  1751fc  [TAGMD5HashAlgorithm alloc]
+  175210  [[TAGMD5HashAlgorithm alloc] init]
+  175238  [[NSMutableDictionary dictionary] setObject:[[TAGMD5HashAlgorithm alloc] init] forKey:@"MD5"]
+  175250  [TAGSha1HashAlgorithm alloc]
+  175258  [[TAGSha1HashAlgorithm alloc] init]
+  175274  [[NSMutableDictionary dictionary] setObject:[[TAGSha1HashAlgorithm alloc] init] forKey:@"SHA-1"]
+  17528c  [TAGSha256HashAlgorithm alloc]
+  175294  [[TAGSha256HashAlgorithm alloc] init]
+  1752b0  [[NSMutableDictionary dictionary] setObject:[[TAGSha256HashAlgorithm alloc] init] forKey:@"SHA-256"]
+  1752c8  [TAGSha384HashAlgorithm alloc]
+  1752d0  [[TAGSha384HashAlgorithm alloc] init]
+  1752ec  [[NSMutableDictionary dictionary] setObject:[[TAGSha384HashAlgorithm alloc] init] forKey:@"SHA-384"]
+  175304  [TAGSha512HashAlgorithm alloc]
+  17530c  [[TAGSha512HashAlgorithm alloc] init]
+  175328  [[NSMutableDictionary dictionary] setObject:[[TAGSha512HashAlgorithm alloc] init] forKey:@"SHA-512"]
+  175340  self->_hashAlgorithms = [NSMutableDictionary dictionary]
+loc_100175348:
+  175360  return
+
+== -[TAGHashMacro isCacheable]   (address 0x1001753bc  size 8  kind objc)
+  1753c0  return
+
+== -[TAGHashMacro evaluate:]   (address 0x1001753c4  size 1272  kind objc)
+  17540c  [arg1 objectForKey:@"arg0"]
+  175424  if ([arg1 objectForKey:@"arg0"] == 0) goto loc_1001754c0
+  175438  [TAGTypes defaultValue]
+  175454  if ([arg1 objectForKey:@"arg0"] == [TAGTypes defaultValue]) goto loc_1001754c0
+  17546c  [TAGTypes valueToString:[arg1 objectForKey:@"arg0"]]
+  17548c  [arg1 objectForKey:@"algorithm"]
+  17549c  if ([arg1 objectForKey:@"algorithm"] == 0) goto loc_1001754e0
+  1754ac  [TAGTypes valueToString:[arg1 objectForKey:@"algorithm"]]
+  1754bc  goto loc_1001754f0
+loc_1001754c0:
+  1754cc  [TAGTypes defaultValue]
+  1754dc  goto loc_100175710
+loc_1001754e0:
+loc_1001754f0:
+  175500  [arg1 objectForKey:@"input_format"]
+  175510  if ([arg1 objectForKey:@"input_format"] == 0) goto loc_100175538
+  175524  [TAGTypes valueToString:[arg1 objectForKey:@"input_format"]]
+  175534  goto loc_10017554c
+loc_100175538:
+loc_10017554c:
+  17556c  [@"text" isEqualToString:x2]
+  175570  if ([@"text" isEqualToString:x2] == 0) goto loc_100175598
+  17558c  [[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]] dataUsingEncoding:4]
+  175594  goto loc_1001755d8
+loc_100175598:
+  1755ac  [@"base16" isEqualToString:x2]
+  1755b0  if ([@"base16" isEqualToString:x2] == 0) goto loc_100175678
+  1755d0  [TAGBase16 decode:[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]]]
+loc_1001755d8:
+  175604  [self hash:x2 algorithm:x3]
+  175628  [TAGBase16 encode:[self hash:x2 algorithm:x3]]
+  17564c  [TAGTypes objectToValue:[TAGBase16 encode:[self hash:x2 algorithm:x3]]]
+  175674  goto loc_1001756e8
+loc_100175678:
+  17569c  [@"Hash: unknown input format: " stringByAppendingString:x2]
+  1756c0  [TAGLog error:[@"Hash: unknown input format: " stringByAppendingString:x2]]
+  1756d8  [TAGTypes defaultValue]
+loc_1001756e8:
+loc_100175710:
+  175740  return
+  1757b4  if (w8 != 1) goto loc_100175874
+  1757bc  objc_begin_catch()
+  1757e8  [@"Hash error. Algorithm: " stringByAppendingString:x2]
+  175810  [TAGLog error:[@"Hash error. Algorithm: " stringByAppendingString:x2]]
+  17581c  objc_end_catch()
+  17582c  [x0 <sel x1>]
+  175868  objc_end_catch()
+
+== -[TAGHashMacro hash:algorithm:]   (address 0x1001758bc  size 416  kind objc)
+  175900  [self hashAlgorithms]
+  175920  [[self hashAlgorithms] objectForKey:arg2]
+  175938  if ([[self hashAlgorithms] objectForKey:arg2] == 0) goto loc_10017599c
+  175950  [[[self hashAlgorithms] objectForKey:arg2] hashData:arg1]
+  17598c  return
+  1759c4  [@"Unknown algorithm" stringByAppendingString:arg2]
+  1759fc  [NSException exceptionWithName:@"NoSuchAlgorithmException" reason:[@"Unknown algorithm" stringByAppendingString:arg2] userInfo:0]
+  175a1c  objc_exception_throw([NSException exceptionWithName:@"NoSuchAlgorithmException" reason:[@"Unknown algorithm" stringByAppendingString:arg2] userInfo:0])
+
+== -[TAGHashMacro hashAlgorithms]   (address 0x100175a5c  size 16  kind objc)
+  175a68  return
+
+== -[TAGHashMacro setHashAlgorithms:]   (address 0x100175a6c  size 56  kind objc)
+  175a90  self->_hashAlgorithms = arg1
+  175aa0  return
+
+== -[TAGHashMacro .cxx_destruct]   (address 0x100175aa4  size 20  kind objc)

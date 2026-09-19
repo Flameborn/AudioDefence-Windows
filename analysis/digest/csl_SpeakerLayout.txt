@@ -1,0 +1,97 @@
+
+== csl::SpeakerLayout::~SpeakerLayout   (address 0x1000f2140  size 36  kind cxx)
+  0f2150  sub_1000f20bc(a0, a1, a2, a3)
+  0f2160  return
+
+== csl::SpeakerLayout::~SpeakerLayout/*deleting*/   (address 0x1000f2164  size 56  kind cxx)
+  0f2174  sub_1000f20bc(a0, a1, a2, a3)
+  0f2184  tail ZdlPv(a0)
+  0f2190  ZdlPv()
+
+== sub_1000f219c   (address 0x1000f219c  size 416  kind sub)
+  0f21e0  Znwm(36, a1, a2, a3)
+  0f2204  sub_1000f2610(Znwm(36, a1, a2, a3))
+  0f2214  ZNSt6vectorIPN3csl7SpeakerESaIS2_EE9push_backERKS2_((a0 + 96), &sp[0x8])
+  0f2220  sub_1000e7850(a0, a0)
+  0f223c  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(__ZSt4cout, "	Pos = ", 7)
+  0f2248  ZNSo9_M_insertIdEERSoT_(__ZSt4cout)
+  0f2260  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(ZNSo9_M_insertIdEERSoT_(__ZSt4cout), " ", 1)
+  0f226c  ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))
+  0f227c  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)), " ", 1)
+  0f2288  ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)))
+  0f229c  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))), " Norm = ", 8)
+  0f22a8  ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))))
+  0f22b8  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)))), " ", 1)
+  0f22c4  ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)))))
+  0f22d4  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))))), " ", 1)
+  0f22e0  ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))))))
+  0f22f0  t1 = (ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)))))) + ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))))))[+0x0][+0x-18])
+  0f22f8  ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc(t1, 10)
+  0f2304  ZNSo3putEc(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)))))), ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc(t1, 10))
+  0f2324  tail ZNSo5flushEv(ZNSo3putEc(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)))))), ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc(t1, 10)))
+  0f2330  ZdlPv()
+
+== sub_1000f233c   (address 0x1000f233c  size 236  kind sub)
+  0f2388  Znwm(36, a1, a2, a3)
+  0f2394  Znwm(36, a1, a2, a3)[+0x0] = 3
+  0f239c  Znwm(36, a1, a2, a3)[+0x4] = 0
+  0f23a0  Znwm(36, a1, a2, a3)[+0x10] = 3
+  0f23a4  Znwm(36, a1, a2, a3)[+0x1c] = 0
+  0f23a8  Znwm(36, a1, a2, a3)[+0x14] = 0
+  0f23bc  sub_1000ef0dc(Znwm(36, a1, a2, a3), 1)
+  0f23cc  Znwm(36, a1, a2, a3)[+0x20] = 0x3f800000
+  0f23dc  ZNSt6vectorIPN3csl7SpeakerESaIS2_EE9push_backERKS2_((a0 + 96), &sp[0x8])
+  0f23e4  if (s8 == 0.0) goto loc_1000f23f0
+  0f23ec  a0[+0x78] = 3
+loc_1000f23f0:
+  0f2410  tail sub_1000e7850(a0, a0)
+  0f241c  ZdlPv()
+
+== sub_1000f2428   (address 0x1000f2428  size 232  kind sub)
+  0f2464  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(__ZSt4cout, "Number of Loudspeakers: ", 24, a3)
+  0f2470  ZNSo9_M_insertImEERSoT_(__ZSt4cout)
+  0f2488  ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc((ZNSo9_M_insertImEERSoT_(__ZSt4cout) + ZNSo9_M_insertImEERSoT_(__ZSt4cout)[+0x0][+0x-18]), 10)
+  0f2494  ZNSo3putEc(ZNSo9_M_insertImEERSoT_(__ZSt4cout), ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc((ZNSo9_M_insertImEERSoT_(__ZSt4cout) + ZNSo9_M_insertImEERSoT_(__ZSt4cout)[+0x0][+0x-18]), 10))
+  0f2498  ZNSo5flushEv(ZNSo3putEc(ZNSo9_M_insertImEERSoT_(__ZSt4cout), ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc((ZNSo9_M_insertImEERSoT_(__ZSt4cout) + ZNSo9_M_insertImEERSoT_(__ZSt4cout)[+0x0][+0x-18]), 10)))
+  0f249c  if (((x9 - x8) >>> 3) == 0) goto loc_1000f24fc
+loc_1000f24bc:
+  0f24c8  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(__ZSt4cout, "Speaker #", 9)
+  0f24d4  ZNSo9_M_insertImEERSoT_(__ZSt4cout)
+  0f24e0  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(ZNSo9_M_insertImEERSoT_(__ZSt4cout), ": ", 2)
+  0f24ec  call sub_1000f2510
+  0f24f8  if (((x9 - x8) >>> 3) != (x20 + 1)) goto loc_1000f24bc
+loc_1000f24fc:
+  0f250c  return
+
+== sub_1000f2510   (address 0x1000f2510  size 256  kind sub)
+  0f253c  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(__ZSt4cout, "Azimuth: ", 9, a3)
+  0f2544  sub_1000ef15c(a0)
+  0f2568  ZNSo9_M_insertIdEERSoT_(__ZSt4cout)
+  0f257c  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(ZNSo9_M_insertIdEERSoT_(__ZSt4cout), "	Elevation: ", 12)
+  0f2584  sub_1000ef1fc(a0)
+  0f2598  ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))
+  0f25ac  ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)), "	Distance: ", 11)
+  0f25d8  ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)))
+  0f25e8  t1 = (ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))) + ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout)))[+0x0][+0x-18])
+  0f25f0  ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc(t1, 10)
+  0f25fc  ZNSo3putEc(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))), ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc(t1, 10))
+  0f260c  tail ZNSo5flushEv(ZNSo3putEc(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(ZNSo9_M_insertIdEERSoT_(__ZSt4cout))), ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc(t1, 10)))
+
+== sub_1000f2610   (address 0x1000f2610  size 144  kind sub)
+  0f2614  a0[+0x10] = 3
+  0f261c  a0[+0x14] = 0
+  0f2620  a0[+0x0] = 3
+  0f2628  a0[+0xc] = s2
+  0f2660  if (sqrt(((((s3 - s0) * (s3 - s0)) + ((s4 - s1) * (s4 - s1))) + ((s5 - s2) * (s5 - s2)))) >= (or unordered) 1e-05) goto loc_1000f2684
+loc_1000f2684:
+  0f268c  a0[+0x10] = 3
+  0f269c  return
+
+== sub_1000f26a0   (address 0x1000f26a0  size 120  kind sub)
+  0f26b4  sub_1000f1d3c(a0, 0, a2, a3)
+  0f26c4  a0[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f26d8  sub_1000f233c(a0)
+  0f26ec  sub_1000f233c(a0)
+  0f26fc  return
+  0f2708  call sub_1000f20bc
+  0f2714  call sub_10000b760

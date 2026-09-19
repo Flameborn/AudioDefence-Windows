@@ -1,0 +1,414 @@
+
+== +[TAGResourceUtil expandResource:]   (address 0x100165610  size 2508  kind objc)
+  165664  [arg1 valueArray]
+  165684  [[arg1 valueArray] count]
+  1656a0  [NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]]
+  1656e0  goto loc_1001656ec
+loc_1001656e4:
+loc_1001656ec:
+  1656f4  [arg1 valueArray]
+  165708  [[arg1 valueArray] count]
+  165720  if ((x19 + 1) >=u [[arg1 valueArray] count]) goto loc_100165754
+  16572c  [NSNull null]
+  165748  [[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] addObject:[NSNull null]]
+  16574c  goto loc_1001656e4
+  165750  goto loc_100165e80
+loc_100165754:
+  165768  &@selector(expandIthValue:resource:expandedValues:pendingExpansions:)
+  165774  goto loc_100165790
+loc_100165778:
+loc_100165790:
+  165798  [arg1 valueArray]
+  1657ac  [[arg1 valueArray] count]
+  1657c0  if (x20 >=u [[arg1 valueArray] count]) goto loc_100165810
+  1657d4  [NSMutableSet set]
+  1657fc  [TAGResourceUtil expandIthValue:x2 resource:arg1 expandedValues:[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] pendingExpansions:[NSMutableSet set]]
+  165800  goto loc_100165778
+  16580c  goto loc_100165e9c
+loc_100165810:
+  165824  [TAGExpandedResource builder]
+  165858  [arg1 tagArray]
+  16586c  [[arg1 tagArray] count]
+  16587c  [NSMutableArray arrayWithCapacity:[[arg1 tagArray] count]]
+  1658b8  goto loc_1001658d8
+loc_1001658bc:
+loc_1001658d8:
+  1658e0  [arg1 tagArray]
+  1658f4  [[arg1 tagArray] count]
+  165908  if (x25 >=u [[arg1 tagArray] count]) goto loc_100165990
+  16591c  [arg1 tagArray]
+  165934  [[arg1 tagArray] objectAtIndex:x2]
+  16595c  [TAGResourceUtil expandFunctionCall:[[arg1 tagArray] objectAtIndex:x2] resource:arg1 expandedValues:[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] index:x5]
+  165978  [[NSMutableArray arrayWithCapacity:[[arg1 tagArray] count]] addObject:[TAGResourceUtil expandFunctionCall:[[arg1 tagArray] objectAtIndex:x2] resource:arg1 expandedValues:[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] index:x5]]
+  16597c  goto loc_1001658bc
+  16598c  goto loc_100165ee8
+loc_100165990:
+  1659ac  [arg1 predicateArray]
+  1659c0  [[arg1 predicateArray] count]
+  1659d0  [NSMutableArray arrayWithCapacity:[[arg1 predicateArray] count]]
+  1659ec  goto loc_100165a0c
+loc_1001659f0:
+loc_100165a0c:
+  165a14  [arg1 predicateArray]
+  165a28  [[arg1 predicateArray] count]
+  165a3c  if (x20 >=u [[arg1 predicateArray] count]) goto loc_100165ac8
+  165a50  [arg1 predicateArray]
+  165a68  [[arg1 predicateArray] objectAtIndex:x2]
+  165a90  [TAGResourceUtil expandFunctionCall:[[arg1 predicateArray] objectAtIndex:x2] resource:arg1 expandedValues:[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] index:x5]
+  165aac  [[NSMutableArray arrayWithCapacity:[[arg1 predicateArray] count]] addObject:[TAGResourceUtil expandFunctionCall:[[arg1 predicateArray] objectAtIndex:x2] resource:arg1 expandedValues:[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] index:x5]]
+  165ab0  goto loc_1001659f0
+  165ac4  goto loc_100165f44
+loc_100165ac8:
+  165adc  [NSMutableArray array]
+  165b0c  goto loc_100165b1c
+loc_100165b10:
+loc_100165b1c:
+  165b24  [arg1 macroArray]
+  165b38  [[arg1 macroArray] count]
+  165b4c  if (x20 >=u [[arg1 macroArray] count]) goto loc_100165bf0
+  165b60  [arg1 macroArray]
+  165b78  [[arg1 macroArray] objectAtIndex:x2]
+  165ba0  [TAGResourceUtil expandFunctionCall:[[arg1 macroArray] objectAtIndex:x2] resource:arg1 expandedValues:[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] index:x5]
+  165bcc  [[TAGExpandedResource builder] addMacro:[TAGResourceUtil expandFunctionCall:[[arg1 macroArray] objectAtIndex:x2] resource:arg1 expandedValues:[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] index:x5]]
+  165bdc  [[NSMutableArray array] addObject:[TAGResourceUtil expandFunctionCall:[[arg1 macroArray] objectAtIndex:x2] resource:arg1 expandedValues:[NSMutableArray arrayWithCapacity:[[arg1 valueArray] count]] index:x5]]
+  165be0  goto loc_100165b10
+  165bec  goto loc_100165fc4
+loc_100165bf0:
+  165c10  [arg1 ruleArray]
+  165c40  [[arg1 ruleArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  165c48  if ([[arg1 ruleArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_100165d08
+loc_100165c7c:
+loc_100165c80:
+  165c8c  if (x8 == x19) goto loc_100165c98
+  165c94  objc_enumerationMutation([arg1 ruleArray])
+loc_100165c98:
+  165cb8  [TAGResourceUtil expandRule:x2 tags:[NSMutableArray arrayWithCapacity:[[arg1 tagArray] count]] macros:[NSMutableArray array] predicates:[NSMutableArray arrayWithCapacity:[[arg1 predicateArray] count]]]
+  165cd4  [[TAGExpandedResource builder] addRule:[TAGResourceUtil expandRule:x2 tags:[NSMutableArray arrayWithCapacity:[[arg1 tagArray] count]] macros:[NSMutableArray array] predicates:[NSMutableArray arrayWithCapacity:[[arg1 predicateArray] count]]]]
+  165ce8  if ((x21 + 1) <u [[arg1 ruleArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]) goto loc_100165c80
+  165cfc  [[arg1 ruleArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  165d04  if ([[arg1 ruleArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_100165c7c
+loc_100165d08:
+  165d24  [arg1 version]
+  165d48  [[TAGExpandedResource builder] setVersion:[arg1 version]]
+  165d64  [arg1 resourceFormatVersion]
+  165d7c  [[TAGExpandedResource builder] setResourceFormatVersion:[arg1 resourceFormatVersion]]
+  165d90  [[TAGExpandedResource builder] build]
+  165e08  return
+
+== +[TAGResourceUtil valueBuilderBasedOnValue:]   (address 0x100165fdc  size 308  kind objc)
+  16600c  [TAGPValue alloc]
+  16601c  [[TAGPValue alloc] init]
+  166034  [arg1 type]
+  16604c  [[[TAGPValue alloc] init] setType:[arg1 type]]
+  166060  [arg1 escapingArray]
+  166084  [[[TAGPValue alloc] init] setEscapingArray:[arg1 escapingArray]]
+  1660a0  [arg1 containsReferences]
+  1660a4  if ([arg1 containsReferences] == 0) goto loc_1001660c0
+  1660bc  [[[TAGPValue alloc] init] setContainsReferences:1]
+loc_1001660c0:
+  1660d8  return
+
+== +[TAGResourceUtil expandIthValue:resource:expandedValues:pendingExpansions:]   (address 0x100166110  size 4004  kind objc)
+  166180  [NSNumber numberWithUnsignedInteger:arg1]
+  1661a4  [arg4 containsObject:[NSNumber numberWithUnsignedInteger:arg1]]
+  1661b4  if ([arg4 containsObject:[NSNumber numberWithUnsignedInteger:arg1]] == 0) goto loc_100166208
+  1661d8  [NSString stringWithFormat:@"Value cycle detected.  Current value reference: %lu.  Previous value references: %@.", arg1, arg4]
+  1661fc  [TAGResourceUtil logAndThrow:[NSString stringWithFormat:@"Value cycle detected.  Current value reference: %lu.  Previous value references: %@.", arg1, arg4]]
+loc_100166208:
+  166220  [arg2 valueArray]
+  166250  [TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]
+  166280  [arg3 objectAtIndex:arg1]
+  1662a8  [NSNull null]
+  1662c8  if ([arg3 objectAtIndex:arg1] == [NSNull null]) goto loc_1001662f0
+  1662d8  [arg3 objectAtIndex:arg1]
+  1662ec  goto loc_100166d88
+loc_1001662f0:
+  166308  [NSNumber numberWithUnsignedInteger:arg1]
+  166330  [arg4 addObject:[NSNumber numberWithUnsignedInteger:arg1]]
+  166350  [[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"] type]
+  16635c  if (([[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"] type] - 1) >u 8) goto loc_100166cf4
+  166370  switch (([[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"] type] - 1)) { case 0,4,5,7: goto loc_100166374; case 1: goto loc_100166384; case 2: goto loc_10016652c; case 3: goto loc_1001667f4; case 6: goto loc_1001668e0; case 8: goto loc_100166a80 }
+loc_100166374:  ; case 0, 4, 5, 7
+  166380  goto loc_100166cd0
+loc_100166384:  ; case 1
+  16639c  [TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]]
+  1663c4  [TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]]
+  1663f4  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray]
+  166414  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray] count]
+  166430  [TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray] count]]
+  166468  &@selector(expandIthValue:resource:expandedValues:pendingExpansions:)
+  166470  goto loc_100166488
+loc_100166474:
+loc_100166488:
+  166490  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray]
+  1664a4  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray] count]
+  1664b8  if (x28 >=u [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@…) goto loc_100166aa8
+  1664c4  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray]
+  1664dc  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray] int32AtIndex:x2]
+  1664f8  [TAGResourceUtil expandIthValue:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray] int32AtIndex:x2] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]
+  166514  [[TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray] count]] addObject:[TAGResourceUtil expandIthValue:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray] int32AtIndex:x2] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]]
+  166518  goto loc_100166474
+  166528  goto loc_100166f60
+loc_10016652c:  ; case 2
+  166544  [TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]]
+  166578  [TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]]
+  166598  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray]
+  1665b8  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] count]
+  1665d4  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray]
+  1665e8  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] count]
+  166604  if ([[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@… == [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@…) goto loc_1001666b8
+  166618  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray]
+  166630  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] count]
+  166640  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray]
+  166654  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] count]
+  166674  [NSString stringWithFormat:@"Uneven map keys (%lu) and map values (%lu)", [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck…, [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck…]
+  166698  [TAGResourceUtil logAndThrow:[NSString stringWithFormat:@"Uneven map keys (%lu) and map values (%lu)", [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck…, [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck…]]
+loc_1001666b8:
+  1666c8  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray]
+  1666dc  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] count]
+  1666fc  [TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] count]]
+  16672c  &@selector(expandIthValue:resource:expandedValues:pendingExpansions:)
+  166734  goto loc_10016674c
+loc_100166738:
+loc_10016674c:
+  166754  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray]
+  166768  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] count]
+  16677c  if (x22 >=u [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@…) goto loc_100166b04
+  166788  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray]
+  1667a0  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] int32AtIndex:x2]
+  1667bc  [TAGResourceUtil expandIthValue:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] int32AtIndex:x2] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]
+  1667d8  [[TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] count]] addObject:[TAGResourceUtil expandIthValue:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] int32AtIndex:x2] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]]
+  1667dc  goto loc_100166738
+  1667f0  goto loc_100166f9c
+loc_1001667f4:  ; case 3
+  16680c  [TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]]
+  166838  [TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]]
+  166858  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] hasMacroNameReference]
+  16685c  if (!([[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] hasMacroNameReference] & 1)) goto loc_100166c70
+  166874  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] macroNameReference]
+  16689c  [TAGResourceUtil expandIthValue:[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] macroNameReference] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]
+  1668c4  [TAGTypes valueToString:[TAGResourceUtil expandIthValue:[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] macroNameReference] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]]
+  1668dc  goto loc_100166ca0
+loc_1001668e0:  ; case 6
+  1668f8  [TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]]
+  166920  [TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]]
+  166950  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray]
+  166970  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray] count]
+  16698c  [TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray] count]]
+  1669c4  &@selector(expandIthValue:resource:expandedValues:pendingExpansions:)
+  1669cc  goto loc_1001669dc
+loc_1001669d0:
+loc_1001669dc:
+  1669e4  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray]
+  1669f8  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray] count]
+  166a0c  if (x28 >=u [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@…) goto loc_100166acc
+  166a18  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray]
+  166a30  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray] int32AtIndex:x2]
+  166a58  [TAGResourceUtil expandIthValue:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray] int32AtIndex:x2] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]
+  166a74  [[TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray] count]] addObject:[TAGResourceUtil expandIthValue:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray] int32AtIndex:x2] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]]
+  166a78  goto loc_1001669d0
+  166a7c  goto loc_100166f50
+loc_100166a80:  ; case 8
+  166aa0  [TAGLog warning:@"Tag type of TagReference shouldn't be present"]
+  166aa4  goto loc_100166cf4
+loc_100166aa8:
+  166ac0  [[TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] setListItemArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] listItemArray] count]]]
+  166ac4  goto loc_100166ae8
+  166ac8  goto loc_100166f70
+loc_100166acc:
+  166ae4  [[TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] setTemplateTokenArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] templateTokenArray] count]]]
+loc_100166ae8:
+  166b00  goto loc_100166c60
+loc_100166b04:
+  166b14  [[TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] setMapKeyArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapKeyArray] count]]]
+  166b24  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray]
+  166b38  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] count]
+  166b4c  [TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] count]]
+  166b6c  goto loc_100166b84
+loc_100166b70:
+loc_100166b84:
+  166b8c  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray]
+  166ba0  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] count]
+  166bb4  if (x22 >=u [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@…) goto loc_100166c2c
+  166bc0  [[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray]
+  166bd8  [[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] int32AtIndex:x2]
+  166bf4  [TAGResourceUtil expandIthValue:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] int32AtIndex:x2] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]
+  166c10  [[TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] count]] addObject:[TAGResourceUtil expandIthValue:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] int32AtIndex:x2] resource:arg2 expandedValues:arg3 pendingExpansions:arg4]]
+  166c14  goto loc_100166b70
+  166c28  goto loc_100166fb4
+loc_100166c2c:
+  166c44  [[TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] setMapValueArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[[[TAGResourceUtil servingValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] mapValueArray] count]]]
+loc_100166c60:
+  166c6c  goto loc_100166cd0
+loc_100166c70:
+  166c8c  [TAGResourceUtil logAndThrow:@"Missing macro name reference"]
+loc_100166ca0:
+  166cb4  [[TAGResourceUtil valueBuilderBasedOnValue:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 listName:@"value"]] setMacroReference:x2]
+loc_100166cd0:
+  166cd0  if (x21 == 0) goto loc_100166cf4
+  166cec  [arg3 replaceObjectAtIndex:arg1 withObject:x3]
+  166cf0  goto loc_100166d4c
+loc_100166cf4:
+  166d18  [NSString stringWithFormat:@"Invalid value: %@", [TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 li…]
+  166d3c  [TAGResourceUtil logAndThrow:[NSString stringWithFormat:@"Invalid value: %@", [TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 valueArray] index:arg1 li…]]
+loc_100166d4c:
+  166d58  [NSNumber numberWithUnsignedInteger:arg1]
+  166d7c  [arg4 removeObject:[NSNumber numberWithUnsignedInteger:arg1]]
+loc_100166d88:
+  166dc8  return
+
+== +[TAGResourceUtil servingValue:]   (address 0x1001670b4  size 292  kind objc)
+  1670f0  [TAGPServingValue ext]
+  167114  [arg1 hasExtension:[TAGPServingValue ext]]
+  167124  if (([arg1 hasExtension:[TAGPServingValue ext]] & 1)) goto loc_100167144
+  167140  [TAGResourceUtil logAndThrow:@"Expected a ServingValue and didn't get one"]
+loc_100167144:
+  16714c  [TAGPServingValue ext]
+  167170  [arg1 getExtension:[TAGPServingValue ext]]
+  1671a4  return
+
+== +[TAGResourceUtil logAndThrow:]   (address 0x1001671d8  size 132  kind objc)
+  167208  [TAGLog error:arg1]
+  167234  [NSException exceptionWithName:@"InvalidResourceException" reason:@"Resource is invalid" userInfo:0]
+  167244  objc_exception_throw([NSException exceptionWithName:@"InvalidResourceException" reason:@"Resource is invalid" userInfo:0])
+
+== +[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:index:listName:]   (address 0x10016725c  size 292  kind objc)
+  1672a8  [arg1 count]
+  1672b0  if ([arg1 count] >u arg2) goto loc_100167304
+  1672d4  [NSString stringWithFormat:@"Index out of bounds detected: %lu in %@", arg2, arg3]
+  1672f8  [TAGResourceUtil logAndThrow:[NSString stringWithFormat:@"Index out of bounds detected: %lu in %@", arg2, arg3]]
+loc_100167304:
+  167318  [arg1 objectAtIndex:arg2]
+  167350  return
+
+== +[TAGResourceUtil objectWithNSArrayBoundsCheck:index:listName:]   (address 0x100167380  size 292  kind objc)
+  1673cc  [arg1 count]
+  1673d4  if ([arg1 count] >u arg2) goto loc_100167428
+  1673f8  [NSString stringWithFormat:@"Index out of bounds detected: %lu in %@", arg2, arg3]
+  16741c  [TAGResourceUtil logAndThrow:[NSString stringWithFormat:@"Index out of bounds detected: %lu in %@", arg2, arg3]]
+loc_100167428:
+  16743c  [arg1 objectAtIndex:arg2]
+  167474  return
+
+== +[TAGResourceUtil expandFunctionCall:resource:expandedValues:index:]   (address 0x1001674a4  size 948  kind objc)
+  167508  [TAGExpandedFunctionCall builder]
+  167528  &@selector(count)
+  167530  &@selector(int32AtIndex:)
+  167538  &@selector(objectWithTAGPBArrayBoundsCheck:index:listName:)
+  167540  &@selector(keyArray)
+  1675c0  goto loc_1001675e0
+loc_1001675c4:
+loc_1001675e0:
+  1675e8  [arg1 propertyArray]
+  1675fc  [[arg1 propertyArray] count]
+  167610  if (x24 >=u [[arg1 propertyArray] count]) goto loc_100167764
+  16761c  [arg2 propertyArray]
+  167634  [arg1 propertyArray]
+  16764c  [[arg1 propertyArray] int32AtIndex:x2]
+  167668  [TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"]
+  167690  [arg2 keyArray]
+  1676a8  [[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] key]
+  1676c4  [TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 keyArray] index:[[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] key] listName:@"keys"]
+  1676e4  [[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] value]
+  167700  [TAGResourceUtil objectWithNSArrayBoundsCheck:arg3 index:[[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] value] listName:@"values"]
+  167720  [[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 keyArray] index:[[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] key] listName:@"keys"] isEqualToString:@"push_after_evaluate"]
+  167724  if ([[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 keyArray] index:[[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] key] listName:@"keys"] isEqualToString:@"push_after_evaluate"] == 0) goto loc_10016773c
+  167734  [[TAGExpandedFunctionCall builder] setPushAfterEvaluate:[TAGResourceUtil objectWithNSArrayBoundsCheck:arg3 index:[[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] value] listName:@"values"]]
+  167738  goto loc_1001675c4
+loc_10016773c:
+  16774c  [[TAGExpandedFunctionCall builder] addPropertyWithValue:[TAGResourceUtil objectWithNSArrayBoundsCheck:arg3 index:[[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] value] listName:@"values"] forKey:[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 keyArray] index:[[TAGResourceUtil objectWithTAGPBArrayBoundsCheck:[arg2 propertyArray] index:[[arg1 propertyArray] int32AtIndex:x2] listName:@"properties"] ke…
+  167750  goto loc_1001675c4
+  167760  goto loc_100167818
+loc_100167764:
+  167778  [[TAGExpandedFunctionCall builder] build]
+  1677c8  return
+
+== +[TAGResourceUtil expandRule:tags:macros:predicates:]   (address 0x100167858  size 1580  kind objc)
+  1678c8  [TAGExpandedRule builder]
+  167910  &@selector(addPositivePredicate:)
+  167918  goto loc_100167930
+loc_10016791c:
+loc_100167930:
+  167938  [arg1 positivePredicateArray]
+  16794c  [[arg1 positivePredicateArray] count]
+  167960  if (x27 >=u [[arg1 positivePredicateArray] count]) goto loc_1001679bc
+  16796c  [arg1 positivePredicateArray]
+  167984  [[arg1 positivePredicateArray] int32AtIndex:x2]
+  167994  [arg4 objectAtIndex:[[arg1 positivePredicateArray] int32AtIndex:x2]]
+  1679b0  [[TAGExpandedRule builder] addPositivePredicate:[arg4 objectAtIndex:[[arg1 positivePredicateArray] int32AtIndex:x2]]]
+  1679b4  goto loc_10016791c
+  1679b8  goto loc_100167d78
+loc_1001679bc:
+  1679d0  &@selector(addNegativePredicate:)
+  1679d8  goto loc_1001679f0
+loc_1001679dc:
+loc_1001679f0:
+  1679f8  [arg1 negativePredicateArray]
+  167a0c  [[arg1 negativePredicateArray] count]
+  167a20  if (x27 >=u [[arg1 negativePredicateArray] count]) goto loc_100167a7c
+  167a2c  [arg1 negativePredicateArray]
+  167a44  [[arg1 negativePredicateArray] int32AtIndex:x2]
+  167a54  [arg4 objectAtIndex:[[arg1 negativePredicateArray] int32AtIndex:x2]]
+  167a70  [[TAGExpandedRule builder] addNegativePredicate:[arg4 objectAtIndex:[[arg1 negativePredicateArray] int32AtIndex:x2]]]
+  167a74  goto loc_1001679dc
+  167a78  goto loc_100167d78
+loc_100167a7c:
+  167a90  &@selector(addAddTag:)
+  167a98  goto loc_100167ab0
+loc_100167a9c:
+loc_100167ab0:
+  167ab8  [arg1 addTagArray]
+  167acc  [[arg1 addTagArray] count]
+  167ae0  if (x27 >=u [[arg1 addTagArray] count]) goto loc_100167b3c
+  167aec  [arg1 addTagArray]
+  167b04  [[arg1 addTagArray] int32AtIndex:x2]
+  167b14  [arg2 objectAtIndex:[[arg1 addTagArray] int32AtIndex:x2]]
+  167b30  [[TAGExpandedRule builder] addAddTag:[arg2 objectAtIndex:[[arg1 addTagArray] int32AtIndex:x2]]]
+  167b34  goto loc_100167a9c
+  167b38  goto loc_100167d78
+loc_100167b3c:
+  167b50  &@selector(addRemoveTag:)
+  167b58  goto loc_100167b70
+loc_100167b5c:
+loc_100167b70:
+  167b78  [arg1 removeTagArray]
+  167b8c  [[arg1 removeTagArray] count]
+  167ba0  if (x27 >=u [[arg1 removeTagArray] count]) goto loc_100167bfc
+  167bac  [arg1 removeTagArray]
+  167bc4  [[arg1 removeTagArray] int32AtIndex:x2]
+  167bd4  [arg2 objectAtIndex:[[arg1 removeTagArray] int32AtIndex:x2]]
+  167bf0  [[TAGExpandedRule builder] addRemoveTag:[arg2 objectAtIndex:[[arg1 removeTagArray] int32AtIndex:x2]]]
+  167bf4  goto loc_100167b5c
+  167bf8  goto loc_100167d78
+loc_100167bfc:
+  167c10  &@selector(addAddMacro:)
+  167c18  goto loc_100167c30
+loc_100167c1c:
+loc_100167c30:
+  167c38  [arg1 addMacroArray]
+  167c4c  [[arg1 addMacroArray] count]
+  167c60  if (x27 >=u [[arg1 addMacroArray] count]) goto loc_100167cbc
+  167c6c  [arg1 addMacroArray]
+  167c84  [[arg1 addMacroArray] int32AtIndex:x2]
+  167c94  [arg3 objectAtIndex:[[arg1 addMacroArray] int32AtIndex:x2]]
+  167cb0  [[TAGExpandedRule builder] addAddMacro:[arg3 objectAtIndex:[[arg1 addMacroArray] int32AtIndex:x2]]]
+  167cb4  goto loc_100167c1c
+  167cb8  goto loc_100167d78
+loc_100167cbc:
+  167cd0  &@selector(addRemoveMacro:)
+  167cd8  goto loc_100167cf0
+loc_100167cdc:
+loc_100167cf0:
+  167cf8  [arg1 removeMacroArray]
+  167d0c  [[arg1 removeMacroArray] count]
+  167d20  if (x27 >=u [[arg1 removeMacroArray] count]) goto loc_100167d88
+  167d2c  [arg1 removeMacroArray]
+  167d44  [[arg1 removeMacroArray] int32AtIndex:x2]
+  167d54  [arg3 objectAtIndex:[[arg1 removeMacroArray] int32AtIndex:x2]]
+  167d70  [[TAGExpandedRule builder] addRemoveMacro:[arg3 objectAtIndex:[[arg1 removeMacroArray] int32AtIndex:x2]]]
+  167d74  goto loc_100167cdc
+loc_100167d78:
+  167d84  goto loc_100167e44
+loc_100167d88:
+  167d98  [[TAGExpandedRule builder] build]
+  167df0  return

@@ -1,0 +1,75 @@
+
+== -[ADMultiCell_iPodTouch awakeFromNib]   (address 0x100006f3c  size 4  kind objc)
+  006f3c  return
+
+== -[ADMultiCell_iPodTouch populateWithSubtitleString:Values:]   (address 0x100006f40  size 648  kind objc)
+  006f88  [self subTitleLabel]
+  006fac  [[self subTitleLabel] setText:arg1]
+  006fc8  [self killsValueLabel]
+  006ff0  [arg2 objectAtIndex:0]
+  00700c  [[self killsValueLabel] setText:[arg2 objectAtIndex:0]]
+  007030  [self accuracyValueLabel]
+  00704c  [arg2 objectAtIndex:1]
+  007068  [[self accuracyValueLabel] setText:[arg2 objectAtIndex:1]]
+  00708c  [self killsLabel]
+  0070a8  [[self killsLabel] setText:@"Kills"]
+  0070c4  [self isEnemyCell]
+  0070cc  &@selector(accuracyLabel)
+  0070d4  if ([self isEnemyCell] == 0) goto loc_100007104
+  0070dc  [self accuracyLabel]
+  0070f8  [[self accuracyLabel] setText:@"Casualties"]
+  0070fc  goto loc_100007128
+  007100  goto loc_1000071a4
+loc_100007104:
+  007108  [self accuracyLabel]
+  007124  [[self accuracyLabel] setText:@"Accuracy"]
+loc_100007128:
+  007150  return
+
+== -[ADMultiCell_iPodTouch setSelected:animated:]   (address 0x1000071c8  size 60  kind objc)
+  0071f4  [super setSelected:arg1 animated:arg2]
+  007200  return
+
+== -[ADMultiCell_iPodTouch killsLabel]   (address 0x100007204  size 16  kind objc)
+  007210  return
+
+== -[ADMultiCell_iPodTouch setKillsLabel:]   (address 0x100007214  size 56  kind objc)
+  007238  self->_killsLabel = arg1
+  007248  return
+
+== -[ADMultiCell_iPodTouch accuracyLabel]   (address 0x10000724c  size 16  kind objc)
+  007258  return
+
+== -[ADMultiCell_iPodTouch setAccuracyLabel:]   (address 0x10000725c  size 56  kind objc)
+  007280  self->_accuracyLabel = arg1
+  007290  return
+
+== -[ADMultiCell_iPodTouch killsValueLabel]   (address 0x100007294  size 16  kind objc)
+  0072a0  return
+
+== -[ADMultiCell_iPodTouch setKillsValueLabel:]   (address 0x1000072a4  size 56  kind objc)
+  0072c8  self->_killsValueLabel = arg1
+  0072d8  return
+
+== -[ADMultiCell_iPodTouch accuracyValueLabel]   (address 0x1000072dc  size 16  kind objc)
+  0072e8  return
+
+== -[ADMultiCell_iPodTouch setAccuracyValueLabel:]   (address 0x1000072ec  size 56  kind objc)
+  007310  self->_accuracyValueLabel = arg1
+  007320  return
+
+== -[ADMultiCell_iPodTouch subTitleLabel]   (address 0x100007324  size 16  kind objc)
+  007330  return
+
+== -[ADMultiCell_iPodTouch setSubTitleLabel:]   (address 0x100007334  size 56  kind objc)
+  007358  self->_subTitleLabel = arg1
+  007368  return
+
+== -[ADMultiCell_iPodTouch isEnemyCell]   (address 0x10000736c  size 20  kind objc)
+  00737c  return
+
+== -[ADMultiCell_iPodTouch setIsEnemyCell:]   (address 0x100007380  size 16  kind objc)
+  007388  self->_isEnemyCell = arg1
+  00738c  return
+
+== -[ADMultiCell_iPodTouch .cxx_destruct]   (address 0x100007390  size 124  kind objc)

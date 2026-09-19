@@ -1,0 +1,77 @@
+{
+ "Ambiant": "Horde_ambiant",
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "WeakZombieC"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 50,
+   "spawn_distance": 10
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "WeakZombieD"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_angle": 150,
+   "spawn_distance": 10,
+   "spawn_time": 0.01
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_angle": 110,
+   "spawn_distance": 10,
+   "spawn_time": 1.5
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_angle": 70,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 30,
+   "spawn_distance": 10,
+   "spawn_time": 4.5
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 8,
+    "enemy": "WeakZombieD"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 160,
+   "spawn_distance": 10
+  }
+ },
+ "PowerUp": {
+  "force_spawn_time": "12"
+ }
+}

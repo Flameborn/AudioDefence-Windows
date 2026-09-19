@@ -1,0 +1,96 @@
+
+== +[TAGSerialization initialize]   (address 0x10016e640  size 112  kind objc)
+  16e664  [NSNumber numberWithBool:1]
+  16e680  [[NSNumber numberWithBool:1] class]
+  16e688  store g_10042df58 = [[NSNumber numberWithBool:1] class]
+  16e698  return
+
+== +[TAGSerialization expandResourceFromData:]   (address 0x10016e6b0  size 160  kind objc)
+  16e6e0  [NSJSONSerialization JSONObjectWithData:arg1 options:4 error:&sp[0x8]]
+  16e708  [TAGSerialization expandedResourceFromDeserializedObject:[NSJSONSerialization JSONObjectWithData:arg1 options:4 error:&sp[0x8]]]
+  16e730  return
+
+== +[TAGSerialization deserializedObjectToValue:]   (address 0x10016e750  size 144  kind objc)
+  16e778  [TAGSerialization deserializedObjectToNSObject:arg1]
+  16e79c  [TAGTypes objectToValue:[TAGSerialization deserializedObjectToNSObject:arg1]]
+  16e7c0  return
+
+== +[TAGSerialization expandedResourceFromDeserializedObject:]   (address 0x10016e7e0  size 1112  kind objc)
+  16e824  [TAGSerialization deserializedObjectToValue:arg1]
+  16e850  [TAGExpandedResource builder]
+  16e870  &@selector(count)
+  16e878  &@selector(mapKeyArray)
+  16e880  &@selector(objectAtIndex:)
+  16e888  &@selector(instanceNameKey)
+  16e918  goto loc_10016e930
+loc_10016e91c:
+loc_10016e930:
+  16e938  [[TAGSerialization deserializedObjectToValue:arg1] mapValueArray]
+  16e94c  [[[TAGSerialization deserializedObjectToValue:arg1] mapValueArray] count]
+  16e960  if (x24 >=u [[[TAGSerialization deserializedObjectToValue:arg1] mapValueArray] count]) goto loc_10016eb34
+  16e970  [TAGExpandedFunctionCall builder]
+  16e98c  [[TAGSerialization deserializedObjectToValue:arg1] mapKeyArray]
+  16e9a4  [[[TAGSerialization deserializedObjectToValue:arg1] mapKeyArray] objectAtIndex:x2]
+  16e9c0  [TAGExpandedFunctionCall instanceNameKey]
+  16e9e0  [[TAGExpandedFunctionCall builder] addPropertyWithValue:[[[TAGSerialization deserializedObjectToValue:arg1] mapKeyArray] objectAtIndex:x2] forKey:[TAGExpandedFunctionCall instanceNameKey]]
+  16ea10  [TAGConstantMacro functionId]
+  16ea2c  [TAGTypes functionIdToValue:[TAGConstantMacro functionId]]
+  16ea48  [TAGExpandedFunctionCall functionKey]
+  16ea68  [[TAGExpandedFunctionCall builder] addPropertyWithValue:[TAGTypes functionIdToValue:[TAGConstantMacro functionId]] forKey:[TAGExpandedFunctionCall functionKey]]
+  16ea8c  [[TAGSerialization deserializedObjectToValue:arg1] mapValueArray]
+  16eaa4  [[[TAGSerialization deserializedObjectToValue:arg1] mapValueArray] objectAtIndex:x2]
+  16eac0  [TAGConstantMacro valueKey]
+  16eae0  [[TAGExpandedFunctionCall builder] addPropertyWithValue:[[[TAGSerialization deserializedObjectToValue:arg1] mapValueArray] objectAtIndex:x2] forKey:[TAGConstantMacro valueKey]]
+  16eb04  [[TAGExpandedFunctionCall builder] build]
+  16eb24  [[TAGExpandedResource builder] addMacro:[[TAGExpandedFunctionCall builder] build]]
+  16eb28  goto loc_10016e91c
+  16eb30  goto loc_10016ebd0
+loc_10016eb34:
+  16eb3c  [[TAGExpandedResource builder] build]
+  16eb84  return
+
+== +[TAGSerialization deserializedObjectToNSObject:]   (address 0x10016ec38  size 1108  kind objc)
+  16ec78  if (arg1 == 0) goto loc_10016ee50
+  16ec94  [NSDictionary class]
+  16ecb0  [arg1 isKindOfClass:[NSDictionary class]]
+  16ecb4  if ([arg1 isKindOfClass:[NSDictionary class]] == 0) goto loc_10016ee58
+  16ecd8  [arg1 count]
+  16ecf0  [NSMutableDictionary dictionaryWithCapacity:[arg1 count]]
+  16ed40  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  16ed48  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_10016ee30
+loc_10016ed88:
+loc_10016ed8c:
+  16ed98  if (x8 == x21) goto loc_10016eda4
+  16eda0  objc_enumerationMutation(arg1)
+loc_10016eda4:
+  16edb8  [arg1 objectForKey:x2]
+  16edd4  [TAGSerialization deserializedObjectToNSObject:[arg1 objectForKey:x2]]
+  16edf4  [[NSMutableDictionary dictionaryWithCapacity:[arg1 count]] setObject:[TAGSerialization deserializedObjectToNSObject:[arg1 objectForKey:x2]] forKey:x3]
+  16ee10  if ((x22 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10016ed8c
+  16ee24  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  16ee2c  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10016ed88
+loc_10016ee30:
+  16ee4c  goto loc_10016ef18
+loc_10016ee50:
+  16ee54  goto loc_10016ef18
+loc_10016ee58:
+  16ee68  [arg1 isKindOfClass:g_10042df58]
+  16ee6c  if ([arg1 isKindOfClass:g_10042df58] == 0) goto loc_10016eec4
+  16ee90  [arg1 boolValue]
+  16eea8  [TAGBoolean booleanWithBool:[arg1 boolValue]]
+  16eec0  goto loc_10016ef18
+loc_10016eec4:
+  16eed0  [NSNumber class]
+  16eee0  [arg1 isKindOfClass:[NSNumber class]]
+  16eee4  if (([arg1 isKindOfClass:[NSNumber class]] & 1)) goto loc_10016ef0c
+  16eef4  [NSString class]
+  16ef04  [arg1 isKindOfClass:[NSString class]]
+  16ef08  if ([arg1 isKindOfClass:[NSString class]] == 0) goto loc_10016efc4
+loc_10016ef0c:
+loc_10016ef18:
+  16ef50  return
+  16efd0  [arg1 class]
+  16efd4  NSStringFromClass([arg1 class])
+  16f00c  [NSString stringWithFormat:@"Type %@ is not supported", NSStringFromClass([arg1 class])]
+  16f054  [NSException exceptionWithName:@"NotSupportedException" reason:[NSString stringWithFormat:@"Type %@ is not supported", NSStringFromClass([arg1 class])] userInfo:0]
+  16f064  objc_exception_throw([NSException exceptionWithName:@"NotSupportedException" reason:[NSString stringWithFormat:@"Type %@ is not supported", NSStringFromClass([arg1 class])] userInfo:0])

@@ -1,0 +1,15 @@
+{
+ "Enemies": {
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_angle": 100,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  }
+ },
+ "Tips": [
+  "Aim with your ears. Shoot when you feel a Zombie is right in front of you.",
+  "Remember to switch weapons when under pressure. It's faster than reloading!",
+  "When you hear your own heartbeat, a Zombie is about to bite you. Aim at him and shoot or use your Melee weapon to dispatch him quickly!"
+ ]
+}

@@ -1,0 +1,45 @@
+
+== -[ADEncycVertCell initWithStyle:reuseIdentifier:]   (address 0x1000d6e40  size 60  kind objc)
+  0d6e6c  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  0d6e78  return
+
+== -[ADEncycVertCell awakeFromNib]   (address 0x1000d6e7c  size 92  kind objc)
+  0d6e94  [self zombieNameButton]
+  0d6eb0  [[self zombieNameButton] setupAsMain]
+  0d6ec0  return
+
+== -[ADEncycVertCell setSelected:animated:]   (address 0x1000d6ed8  size 60  kind objc)
+  0d6f04  [super setSelected:arg1 animated:arg2]
+  0d6f10  return
+
+== -[ADEncycVertCell zombieNameButtonPressed:]   (address 0x1000d6f14  size 172  kind objc)
+  0d6f30  [self delegate]
+  0d6f50  [self cellName]
+  0d6f74  [[self delegate] cellSelectedWithZombieName:[self cellName]]
+  0d6f8c  return
+
+== -[ADEncycVertCell setAccessibilityElementsHidden:]   (address 0x1000d6fc0  size 164  kind objc)
+  0d6fe0  [self contentView]
+  0d7000  [[self contentView] viewWithTag:99]
+  0d702c  [[[self contentView] viewWithTag:99] setAccessibilityElementsHidden:arg1]
+  0d7040  return
+
+== -[ADEncycVertCell zombieNameButton]   (address 0x1000d7064  size 16  kind objc)
+  0d7070  return
+
+== -[ADEncycVertCell setZombieNameButton:]   (address 0x1000d7074  size 56  kind objc)
+  0d7098  self->_zombieNameButton = arg1
+  0d70a8  return
+
+== -[ADEncycVertCell delegate]   (address 0x1000d70ac  size 32  kind objc)
+  0d70c8  return
+
+== -[ADEncycVertCell setDelegate:]   (address 0x1000d70cc  size 20  kind objc)
+
+== -[ADEncycVertCell cellName]   (address 0x1000d70e0  size 16  kind objc)
+  0d70ec  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncycVertCell setCellName:]   (address 0x1000d70f0  size 12  kind objc)
+  0d70f8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncycVertCell .cxx_destruct]   (address 0x1000d70fc  size 80  kind objc)

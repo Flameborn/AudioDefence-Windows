@@ -1,0 +1,44 @@
+{
+ "icon_title": "29",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 90
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "title": "Say it with music!",
+ "objective": "You only have a few bullets. Luckily Dr Bastard also lets you use a very sturdy Banjo to crack zombie skulls.",
+ "tip": "Melee weapons deal massive damage, but you must aim at a Zombie to hit it!",
+ "bricks": [
+  "maya_9_brick_1",
+  "maya_9_brick_2",
+  "maya_9_brick_3"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "maya_9",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "maya_8"
+ ],
+ "weapons": [
+  {
+   "ammo": "30",
+   "name": "pistol"
+  },
+  {
+   "ammo": "100",
+   "name": "microsmg"
+  },
+  {
+   "name": "banjo"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 100
+ }
+}

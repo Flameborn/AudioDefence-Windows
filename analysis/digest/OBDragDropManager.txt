@@ -1,0 +1,617 @@
+
+== +[OBDragDropManager sharedManager]   (address 0x10002a178  size 96  kind objc)
+  02a18c  if (g_10042d9a8 != 0) goto loc_10002a1cc
+  02a1a4  [OBDragDropManager alloc]
+  02a1b4  [[OBDragDropManager alloc] init]
+  02a1bc  store g_10042d9a8 = [[OBDragDropManager alloc] init]
+loc_10002a1cc:
+
+== -[OBDragDropManager init]   (address 0x10002a1d8  size 524  kind objc)
+  02a214  [super init]
+  02a21c  if (self == 0) goto loc_10002a350
+  02a240  [NSNotificationCenter defaultCenter]
+  02a264  [UIApplication sharedApplication]
+  02a290  [NSOperationQueue mainQueue]
+  02a318  [[NSNotificationCenter defaultCenter] addObserverForName:_UIApplicationDidChangeStatusBarOrientationNotification[+0x0] object:[UIApplication sharedApplication] queue:[NSOperationQueue mainQueue] usingBlock:^{-[OBDragDropManager init]_block_invoke captures +0x30=self, +0x38=OBDragDropManager}]
+loc_10002a350:
+  02a36c  return
+  02a3c0  if (w24 == 0) goto loc_10002a3cc
+
+== -[OBDragDropManager init]_block_invoke   (address 0x10002a3e4  size 120  kind block)
+  02a420  [objc_loadWeakRetained((block + 32)) handleApplicationOrientationChange:blockarg1]
+  02a43c  return
+
+== sub_10002a45c   (address 0x10002a45c  size 12  kind sub)
+  02a464  tail objc_copyWeak((a0 + 32), (a1 + 32), a2, a3)
+
+== sub_10002a468   (address 0x10002a468  size 8  kind sub)
+
+== -[OBDragDropManager dealloc]   (address 0x10002a470  size 300  kind objc)
+  02a49c  [NSNotificationCenter defaultCenter]
+  02a4c0  [UIApplication sharedApplication]
+  02a4f8  [[NSNotificationCenter defaultCenter] removeObserver:self name:_UIApplicationDidChangeStatusBarOrientationNotification[+0x0] object:[UIApplication sharedApplication]]
+  02a52c  [super dealloc]
+  02a540  return
+  02a58c  [super dealloc]
+  02a598  call sub_10000b760
+
+== -[OBDragDropManager transformForOrientation:]   (address 0x10002a59c  size 88  kind objc)
+  02a5a0  if (arg1 == 2) goto loc_10002a5b8
+  02a5a8  if (arg1 != 3) goto loc_10002a5c4
+  02a5b4  tail CGAffineTransformMakeRotation(self, _cmd, arg1)
+loc_10002a5b8:
+  02a5c0  tail CGAffineTransformMakeRotation(self, _cmd, arg1)
+loc_10002a5c4:
+  02a5c8  if (arg1 != 4) goto loc_10002a5d8
+  02a5d4  tail CGAffineTransformMakeRotation(self, _cmd, arg1)
+loc_10002a5d8:
+  02a5f0  return
+
+== -[OBDragDropManager handleApplicationOrientationChange:]   (address 0x10002a5f4  size 276  kind objc)
+  02a620  [UIApplication sharedApplication]
+  02a63c  [[UIApplication sharedApplication] statusBarOrientation]
+  02a65c  [self overlayWindow]
+  02a66c  if (self == 0) goto loc_10002a694
+  02a688  [self transformForOrientation:[[UIApplication sharedApplication] statusBarOrientation]]
+  02a690  goto loc_10002a6a4
+loc_10002a694:
+loc_10002a6a4:
+  02a6c8  [[self overlayWindow] setTransform:&sp[0x0]]
+  02a6e4  return
+
+== -[OBDragDropManager prepareOverlayWindowUsingMainWindow:]   (address 0x10002a708  size 716  kind objc)
+  02a740  [self overlayWindow]
+  02a754  if ([self overlayWindow] == 0) goto loc_10002a7a0
+  02a760  [self overlayWindow]
+  02a77c  [[self overlayWindow] removeFromSuperview]
+  02a79c  [self setOverlayWindow:0]
+loc_10002a7a0:
+  02a7b4  [UIWindow alloc]
+  02a7cc  [arg1 frame]
+  02a7e0  [[UIWindow alloc] initWithFrame:{[arg1 frame].0, [arg1 frame].1, [arg1 frame].2, [arg1 frame].3}]
+  02a7fc  [self setOverlayWindow:[[UIWindow alloc] initWithFrame:{[arg1 frame].0, [arg1 frame].1, [arg1 frame].2, [arg1 frame].3}]]
+  02a810  [self overlayWindow]
+  02a838  [[self overlayWindow] setWindowLevel:x2]
+  02a84c  [self overlayWindow]
+  02a86c  [[self overlayWindow] setHidden:1]
+  02a880  [self overlayWindow]
+  02a8a0  [[self overlayWindow] setUserInteractionEnabled:0]
+  02a8b4  [self overlayWindow]
+  02a8d8  [UIApplication sharedApplication]
+  02a8f4  [[UIApplication sharedApplication] statusBarOrientation]
+  02a8fc  if (self == 0) goto loc_10002a920
+  02a914  [self transformForOrientation:[[UIApplication sharedApplication] statusBarOrientation]]
+  02a91c  goto loc_10002a930
+loc_10002a920:
+loc_10002a930:
+  02a954  [[self overlayWindow] setTransform:&sp[0x0]]
+  02a980  return
+
+== -[OBDragDropManager findDropTargetHandler:]   (address 0x10002a9d4  size 236  kind objc)
+  02aa00  [arg1 dropZoneHandler]
+  02aa14  if ([arg1 dropZoneHandler] == 0) goto loc_10002aa28
+  02aa24  goto loc_10002aa80
+loc_10002aa28:
+  02aa38  [arg1 superview]
+  02aa48  if ([arg1 superview] == 0) goto loc_10002aa74
+  02aa60  [self findDropTargetHandler:[arg1 superview]]
+  02aa70  goto loc_10002aa78
+loc_10002aa74:
+loc_10002aa78:
+loc_10002aa80:
+  02aa98  return
+
+== -[OBDragDropManager findDropZoneHandlerInView:atLocation:]   (address 0x10002aac0  size 156  kind objc)
+  02aae8  [arg1 hitTest:{arg2.0, arg2.1} withEvent:0]
+  02aaf8  if ([arg1 hitTest:{arg2.0, arg2.1} withEvent:0] == 0) goto loc_10002ab24
+  02ab10  [self findDropTargetHandler:[arg1 hitTest:{arg2.0, arg2.1} withEvent:0]]
+  02ab20  goto loc_10002ab28
+loc_10002ab24:
+loc_10002ab28:
+  02ab3c  return
+
+== -[OBDragDropManager findDropZoneHandlerInWindow:atLocation:]   (address 0x10002ab5c  size 640  kind objc)
+  02abac  [arg1 hitTest:{arg2.0, arg2.1} withEvent:0]
+  02abd0  [self findDropTargetHandler:[arg1 hitTest:{arg2.0, arg2.1} withEvent:0]]
+  02abe0  if ([self findDropTargetHandler:[arg1 hitTest:{arg2.0, arg2.1} withEvent:0]] == 0) goto loc_10002abec
+  02abe8  goto loc_10002ad20
+loc_10002abec:
+  02ac00  [arg1 rootViewController]
+  02ac10  if ([arg1 rootViewController] == 0) goto loc_10002ad10
+  02ac1c  [arg1 rootViewController]
+  02ac3c  [[arg1 rootViewController] view]
+  02ac60  [[arg1 hitTest:{arg2.0, arg2.1} withEvent:0] hasParentView:[[arg1 rootViewController] view]]
+  02ac80  if (([[arg1 hitTest:{arg2.0, arg2.1} withEvent:0] hasParentView:[[arg1 rootViewController] view]] & 1)) goto loc_10002ad18
+  02ac8c  [arg1 rootViewController]
+  02aca0  [[arg1 rootViewController] view]
+  02acd4  [[[arg1 rootViewController] view] convertPoint:{arg2.0, arg2.1} fromView:arg1]
+  02acec  [self findDropZoneHandlerInView:[[arg1 rootViewController] view] atLocation:{[[[arg1 rootViewController] view] convertPoint:{arg2.0, arg2.1} fromView:arg1].0, [[[arg1 rootViewController] view] convertPoint:{arg2.0, arg2.1} fromView:arg1].1}]
+  02ad0c  goto loc_10002ad1c
+loc_10002ad10:
+loc_10002ad18:
+loc_10002ad1c:
+loc_10002ad20:
+  02ad5c  return
+
+== -[OBDragDropManager handleOvumMove:inWindow:atLocation:]   (address 0x10002addc  size 960  kind objc)
+  02ae3c  [self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]
+  02ae6c  [arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]]
+  02ae8c  [arg1 currentDropHandlingView]
+  02aea4  if ([arg1 currentDropHandlingView] == [self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]) goto loc_10002b060
+  02aeb0  [arg1 currentDropHandlingView]
+  02aec4  if ([arg1 currentDropHandlingView] == 0) goto loc_10002afa8
+  02aed0  [arg1 currentDropHandlingView]
+  02aef4  [arg2 convertPoint:{arg3.0, arg3.1} toView:[arg1 currentDropHandlingView]]
+  02af10  [arg1 currentDropHandlingView]
+  02af2c  [[arg1 currentDropHandlingView] dropZoneHandler]
+  02af4c  [arg1 currentDropHandlingView]
+  02af7c  [[[arg1 currentDropHandlingView] dropZoneHandler] ovumExited:arg1 inView:[arg1 currentDropHandlingView] atLocation:{[arg2 convertPoint:{arg3.0, arg3.1} toView:[arg1 currentDropHandlingView]].0, [arg2 convertPoint:{arg3.0, arg3.1} toView:[arg1 currentDropHandlingView]].1}]
+  02af9c  [arg1 setDropAction:0]
+loc_10002afa8:
+  02afbc  [arg1 setCurrentDropHandlingView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]]
+  02afc8  [arg1 currentDropHandlingView]
+  02afdc  if ([arg1 currentDropHandlingView] == 0) goto loc_10002b100
+  02afe8  [arg1 currentDropHandlingView]
+  02b004  [[arg1 currentDropHandlingView] dropZoneHandler]
+  02b03c  [[[arg1 currentDropHandlingView] dropZoneHandler] ovumEntered:arg1 inView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}] atLocation:{[arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]].0, [arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]].1}]
+  02b054  [arg1 setDropAction:[[[arg1 currentDropHandlingView] dropZoneHandler] ovumEntered:arg1 inView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}] atLocation:{[arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]].0, [arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]].1}]]
+  02b058  goto loc_10002b0f8
+  02b05c  goto loc_10002b144
+loc_10002b060:
+  02b068  [arg1 currentDropHandlingView]
+  02b084  [[arg1 currentDropHandlingView] dropZoneHandler]
+  02b0bc  [[[arg1 currentDropHandlingView] dropZoneHandler] respondsToSelector:@selector(ovumMoved:inView:atLocation:)]
+  02b0c0  if ([[[arg1 currentDropHandlingView] dropZoneHandler] respondsToSelector:@selector(ovumMoved:inView:atLocation:)] == 0) goto loc_10002b0f8
+  02b0dc  [[[arg1 currentDropHandlingView] dropZoneHandler] ovumMoved:arg1 inView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}] atLocation:{[arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]].0, [arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]].1}]
+  02b0f4  [arg1 setDropAction:[[[arg1 currentDropHandlingView] dropZoneHandler] ovumMoved:arg1 inView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}] atLocation:{[arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]].0, [arg2 convertPoint:{arg3.0, arg3.1} toView:[self findDropZoneHandlerInWindow:arg2 atLocation:{arg3.0, arg3.1}]].1}]]
+loc_10002b0f8:
+loc_10002b100:
+  02b12c  return
+
+== -[OBDragDropManager animateOvumReturningToSource:]   (address 0x10002b19c  size 696  kind objc)
+  02b1dc  [arg1 source]
+  02b208  [[arg1 source] respondsToSelector:@selector(handleReturningToSourceAnimationForOvum:completion:)]
+  02b21c  if ([[arg1 source] respondsToSelector:@selector(handleReturningToSourceAnimationForOvum:completion:)] == 0) goto loc_10002b2d0
+  02b230  [arg1 dragView]
+  02b248  [arg1 source]
+  02b2ac  [[arg1 source] handleReturningToSourceAnimationForOvum:arg1 completion:^{-[OBDragDropManager animateOvumReturningToSource:]_block_invoke captures +0x20=[arg1 dragView], +0x28=self}]
+  02b2cc  goto loc_10002b3b4
+loc_10002b2d0:
+  02b2e0  [arg1 dragViewInitialCenter]
+  02b2fc  [arg1 dragView]
+  02b394  [UIView animateWithDuration:0.25 animations:^{-[OBDragDropManager animateOvumReturningToSource:]_block_invoke_2 captures +0x20=[arg1 dragView], +0x28=[arg1 dragViewInitialCenter].0, +0x30=[arg1 dragViewInitialCenter].1} completion:^{-[OBDragDropManager animateOvumReturningToSource:]_block_invoke_3 captures +0x20=[arg1 dragView], +0x28=self, +0x30=__NSConcreteStackBlock, +0x38=0xc2000000, +0x40=&-[OBDragDropManager animateOvumReturnin…, +0x48=&d_1003b1330, +0x50=[arg1 dragView], +0x58=[arg1 dragV…
+loc_10002b3b4:
+  02b3dc  return
+
+== -[OBDragDropManager animateOvumReturningToSource:]_block_invoke   (address 0x10002b454  size 80  kind block)
+  02b474  [[arg1 dragView] removeFromSuperview]
+  02b4a0  tail [self->overlayWindow setHidden:1]
+
+== sub_10002b4a4   (address 0x10002b4a4  size 40  kind sub)
+
+== sub_10002b4cc   (address 0x10002b4cc  size 40  kind sub)
+  02b4f0  return
+
+== -[OBDragDropManager animateOvumReturningToSource:]_block_invoke_2   (address 0x10002b4f4  size 108  kind block)
+  02b51c  [[arg1 dragView] setCenter:{d0, d1}]
+  02b54c  [[arg1 dragView] setTransform:&sp[0x0]]
+  02b55c  return
+
+== sub_10002b560   (address 0x10002b560  size 8  kind sub)
+
+== sub_10002b568   (address 0x10002b568  size 8  kind sub)
+  02b56c  return
+
+== -[OBDragDropManager animateOvumReturningToSource:]_block_invoke_3   (address 0x10002b570  size 80  kind block)
+  02b590  [[arg1 dragView] removeFromSuperview]
+  02b5bc  tail [self->overlayWindow setHidden:1]
+
+== sub_10002b5c0   (address 0x10002b5c0  size 40  kind sub)
+
+== sub_10002b5e8   (address 0x10002b5e8  size 40  kind sub)
+  02b60c  return
+
+== -[OBDragDropManager animateOvumDrop:withAnimation:completion:]   (address 0x10002b610  size 388  kind objc)
+  02b658  if (arg2 == 0) goto loc_10002b718
+  02b66c  [arg1 dragView]
+  02b6f4  [UIView animateWithDuration:0.25 animations:arg2 completion:^{-[OBDragDropManager animateOvumDrop:withAnimation:completion:]_block_invoke captures +0x20=arg3, +0x28=[arg1 dragView], +0x30=self}]
+loc_10002b718:
+  02b744  return
+
+== -[OBDragDropManager animateOvumDrop:withAnimation:completion:]_block_invoke   (address 0x10002b794  size 96  kind block)
+  02b7a8  if (arg3 == 0) goto loc_10002b7b4
+  02b7b0  call arg3[+0x10]
+loc_10002b7b4:
+  02b7c4  [[arg1 dragView] removeFromSuperview]
+  02b7f0  tail [self->overlayWindow setHidden:1]
+
+== sub_10002b7f4   (address 0x10002b7f4  size 56  kind sub)
+  02b810  Block_object_assign((a0 + 32), a1[+0x20], 7, a3)
+
+== sub_10002b82c   (address 0x10002b82c  size 48  kind sub)
+  02b858  return
+
+== -[OBDragDropManager createLongPressDragDropGestureRecognizerWithSource:]   (address 0x10002b85c  size 136  kind objc)
+  02b88c  [OBLongPressDragDropGestureRecognizer class]
+  02b8a8  [self createDragDropGestureRecognizerWithClass:[OBLongPressDragDropGestureRecognizer class] source:arg1]
+  02b8cc  return
+
+== -[OBDragDropManager createDragDropGestureRecognizerWithClass:source:]   (address 0x10002b8e4  size 240  kind objc)
+  02b91c  [UIGestureRecognizer class]
+  02b934  [arg1 isSubclassOfClass:[UIGestureRecognizer class]]
+  02b938  if ([arg1 isSubclassOfClass:[UIGestureRecognizer class]] == 0) goto loc_10002b9a0
+  02b94c  [arg1 alloc]
+  02b96c  [[arg1 alloc] initWithTarget:self action:@selector(handleOvumGesture:)]
+  02b988  [[[arg1 alloc] initWithTarget:self action:@selector(handleOvumGesture:)] setOvumSource:arg2]
+  02b98c  goto loc_10002b9a4
+  02b99c  goto loc_10002b9c4
+loc_10002b9a0:
+loc_10002b9a4:
+  02b9bc  return
+
+== -[OBDragDropManager handleOvumGesture:]   (address 0x10002b9d4  size 4724  kind objc)
+  02ba28  [self ovumRecognizerShouldHandleTouch:arg1]
+  02ba2c  if (!([self ovumRecognizerShouldHandleTouch:arg1] & 1)) goto loc_10002c9dc
+  02ba44  [arg1 view]
+  02ba64  [[arg1 view] window]
+  02ba94  [arg1 locationInView:[[arg1 view] window]]
+  02bab4  [arg1 locationInView:self->overlayWindow]
+  02baf4  [arg1 state]
+  02bafc  if ([arg1 state] != 1) goto loc_10002bc9c
+  02bb08  [arg1 view]
+  02bb2c  [arg1 ovumSource]
+  02bb54  [[arg1 ovumSource] createOvumFromView:[arg1 view]]
+  02bb78  [arg1 setOvum:[[arg1 ovumSource] createOvumFromView:[arg1 view]]]
+  02bb9c  [arg1 ovum]
+  02bbb0  if ([arg1 ovum] == 0) goto loc_10002bf94
+  02bbc0  [arg1 ovum]
+  02bbe0  [[arg1 ovum] setSource:[arg1 ovumSource]]
+  02bbf8  [arg1 ovum]
+  02bc18  [[arg1 ovum] setCurrentDropHandlingView:[arg1 view]]
+  02bc4c  [[arg1 ovumSource] respondsToSelector:@selector(createDragRepresentationOfSourceView:inWindow:)]
+  02bc50  if ([[arg1 ovumSource] respondsToSelector:@selector(createDragRepresentationOfSourceView:inWindow:)] == 0) goto loc_10002c1b4
+  02bc60  [arg1 view]
+  02bc80  [[arg1 ovumSource] createDragRepresentationOfSourceView:[arg1 view] inWindow:self->overlayWindow]
+  02bc98  goto loc_10002c32c
+loc_10002bc9c:
+  02bca4  [arg1 state]
+  02bcac  if ([arg1 state] != 2) goto loc_10002bd4c
+  02bcc0  [arg1 ovum]
+  02bcdc  [[arg1 ovum] dragView]
+  02bd08  [self applyRecenteringTo:{[arg1 locationInView:self->overlayWindow].0, [arg1 locationInView:self->overlayWindow].1} withRecognizer:arg1]
+  02bd1c  [[[arg1 ovum] dragView] setCenter:{[self applyRecenteringTo:{[arg1 locationInView:self->overlayWindow].0, [arg1 locationInView:self->overlayWindow].1} withRecognizer:arg1].0, [self applyRecenteringTo:{[arg1 locationInView:self->overlayWindow].0, [arg1 locationInView:self->overlayWindow].1} withRecognizer:arg1].1}]
+  02bd40  [self handleOvumMove:[arg1 ovum] inWindow:[[arg1 view] window] atLocation:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1}]
+  02bd48  goto loc_10002c9c8
+loc_10002bd4c:
+  02bd54  [arg1 state]
+  02bd60  if ([arg1 state] != 3) goto loc_10002bf9c
+  02bd7c  [arg1 ovum]
+  02bd9c  [[arg1 ovum] currentDropHandlingView]
+  02bdb8  if ([[arg1 ovum] currentDropHandlingView] == 0) goto loc_10002bf9c
+  02bdc8  [arg1 ovum]
+  02bdf8  [self handleOvumMove:[arg1 ovum] inWindow:[[arg1 view] window] atLocation:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1}]
+  02be04  [arg1 ovum]
+  02be18  [[arg1 ovum] currentDropHandlingView]
+  02be34  [[[arg1 ovum] currentDropHandlingView] dropZoneHandler]
+  02be68  [[arg1 ovum] dropAction]
+  02be6c  if ([[arg1 ovum] dropAction] == 0) goto loc_10002c760
+  02be70  if ([[[arg1 ovum] currentDropHandlingView] dropZoneHandler] == 0) goto loc_10002c760
+  02be90  [self findDropZoneHandlerInWindow:[[arg1 view] window] atLocation:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1}]
+  02bec4  [[[arg1 view] window] convertPoint:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} toView:[self findDropZoneHandlerInWindow:[[arg1 view] window] atLocation:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1}]]
+  02beec  [self applyRecenteringTo:{[arg1 locationInView:self->overlayWindow].0, [arg1 locationInView:self->overlayWindow].1} withRecognizer:arg1]
+  02bf08  [[arg1 ovum] dragView]
+  02bf28  [[[arg1 ovum] dragView] setCenter:{[self applyRecenteringTo:{[arg1 locationInView:self->overlayWindow].0, [arg1 locationInView:self->overlayWindow].1} withRecognizer:arg1].0, [self applyRecenteringTo:{[arg1 locationInView:self->overlayWindow].0, [arg1 locationInView:self->overlayWindow].1} withRecognizer:arg1].1}]
+  02bf48  [[[[arg1 ovum] currentDropHandlingView] dropZoneHandler] ovumDropped:[arg1 ovum] inView:[self findDropZoneHandlerInWindow:[[arg1 view] window] atLocation:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1}] atLocation:{[[[arg1 view] window] convertPoint:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} toView:[self findDropZoneHandlerInWindow:[[arg1 view] window] atLocation:{[arg1 locationInView:[[arg1 view] wind…
+  02bf70  [[[[arg1 ovum] currentDropHandlingView] dropZoneHandler] respondsToSelector:@selector(handleDropAnimationForOvum:withDragView:dragDropManager:)]
+  02bf74  if ([[[[arg1 ovum] currentDropHandlingView] dropZoneHandler] respondsToSelector:@selector(handleDropAnimationForOvum:withDragView:dragDropManager:)] == 0) goto loc_10002c7d8
+  02bf8c  [[[[arg1 ovum] currentDropHandlingView] dropZoneHandler] handleDropAnimationForOvum:[arg1 ovum] withDragView:[[arg1 ovum] dragView] dragDropManager:self]
+  02bf90  goto loc_10002c838
+loc_10002bf94:
+  02bf98  goto loc_10002c74c
+loc_10002bf9c:
+  02bfa8  [arg1 state]
+  02bfb0  if ([arg1 state] == 4) goto loc_10002bfc8
+  02bfbc  [arg1 state]
+  02bfc4  if ([arg1 state] != 3) goto loc_10002c9d4
+loc_10002bfc8:
+  02bfdc  [arg1 ovum]
+  02bff8  [[arg1 ovum] dropAction]
+  02bffc  if ([[arg1 ovum] dropAction] == 0) goto loc_10002c018
+  02c014  [[arg1 ovum] setDropAction:0]
+loc_10002c018:
+  02c028  [[arg1 ovum] currentDropHandlingView]
+  02c054  [[[arg1 view] window] convertPoint:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} toView:[[arg1 ovum] currentDropHandlingView]]
+  02c070  [[[arg1 ovum] currentDropHandlingView] dropZoneHandler]
+  02c098  [[[[arg1 ovum] currentDropHandlingView] dropZoneHandler] ovumExited:[arg1 ovum] inView:[[arg1 ovum] currentDropHandlingView] atLocation:{[[[arg1 view] window] convertPoint:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} toView:[[arg1 ovum] currentDropHandlingView]].0, [[[arg1 view] window] convertPoint:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} toView:[[arg1 ovum] currentDropHandlingView]].1}]
+  02c0b0  [self animateOvumReturningToSource:[arg1 ovum]]
+  02c0c8  [self cleanupOvum:[arg1 ovum]]
+  02c0dc  [arg1 ovum]
+  02c118  [NSDictionary dictionaryWithObjectsAndKeys:[arg1 ovum], @"ovum", arg1, @"recognizer", nil]
+  02c144  [NSNotificationCenter defaultCenter]
+  02c170  [[NSNotificationCenter defaultCenter] postNotificationName:@"OBDragDropManagerDidEndDrag" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[arg1 ovum], @"ovum", arg1, @"recognizer", nil]]
+  02c190  [arg1 setOvum:0]
+  02c1b0  goto loc_10002c754
+loc_10002c1b4:
+  02c1c8  [[arg1 view] bounds]
+  02c1e8  [[arg1 view] window]
+  02c214  [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]]
+  02c238  [[arg1 view] window]
+  02c260  [self->overlayWindow convertRect:{[[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].0, [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].1, [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].2, [[ar…
+  02c28c  [UIView alloc]
+  02c2b0  [[UIView alloc] initWithFrame:{[self->overlayWindow convertRect:{[[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].0, [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].1, [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toVie…
+  02c2d0  [[[UIView alloc] initWithFrame:{[self->overlayWindow convertRect:{[[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].0, [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].1, [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toVi…
+  02c2f8  [UIColor colorWithWhite:1 alpha:0.33]
+  02c31c  [[[UIView alloc] initWithFrame:{[self->overlayWindow convertRect:{[[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].0, [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toView:[[arg1 view] window]].1, [[arg1 view] convertRect:{[[arg1 view] bounds].0, [[arg1 view] bounds].1, [[arg1 view] bounds].2, [[arg1 view] bounds].3} toVi…
+loc_10002c32c:
+  02c340  [self->overlayWindow setHidden:0]
+  02c358  [self->overlayWindow addSubview:x2]
+  02c364  [arg1 ovum]
+  02c384  [[arg1 ovum] setDragView:x2]
+  02c398  [arg1 ovum]
+  02c3bc  [x0 center]
+  02c3d0  [[arg1 ovum] setDragViewInitialCenter:{[x0 center].0, [x0 center].1}]
+  02c3e4  [arg1 ovum]
+  02c404  [[arg1 ovum] isCentered]
+  02c414  if (([[arg1 ovum] isCentered] & 1)) goto loc_10002c45c
+  02c420  [x0 center]
+  02c430  [x0 center]
+  02c440  [arg1 ovum]
+  02c458  [[arg1 ovum] setOffsetOvumAndTouch:{([arg1 locationInView:self->overlayWindow].0 - [x0 center].0), ([arg1 locationInView:self->overlayWindow].1 - [x0 center].1)}]
+loc_10002c45c:
+  02c464  [arg1 ovum]
+  02c480  [[arg1 ovum] shouldScale]
+  02c490  if ([[arg1 ovum] shouldScale] == 0) goto loc_10002c584
+  02c49c  [arg1 ovum]
+  02c4c0  [[arg1 ovum] setShiftPinchCentroid:{0, 0}]
+  02c4f0  [arg1 numberOfTouches]
+  02c4fc  self->prevNumberOfTouches = [arg1 numberOfTouches]
+  02c510  [x0 frame]
+  02c530  [arg1 numberOfTouches]
+  02c534  if ([arg1 numberOfTouches] == 0) goto loc_10002c584
+  02c550  [arg1 locationOfTouch:0 inView:[[arg1 view] window]]
+  02c574  [self distanceFrom:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} to:{[arg1 locationOfTouch:0 inView:[[arg1 view] window]].0, [arg1 locationOfTouch:0 inView:[[arg1 view] window]].1}]
+  02c580  self->initialDistance = [self distanceFrom:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} to:{[arg1 locationOfTouch:0 inView:[[arg1 view] window]].0, [arg1 locationOfTouch:0 inView:[[arg1 view] window]].1}]
+loc_10002c584:
+  02c58c  [arg1 ovum]
+  02c5ac  [[arg1 ovum] setScale:1]
+  02c5d0  [[arg1 ovumSource] respondsToSelector:@selector(dragViewWillAppear:inWindow:atLocation:)]
+  02c5d4  if ([[arg1 ovumSource] respondsToSelector:@selector(dragViewWillAppear:inWindow:atLocation:)] == 0) goto loc_10002c638
+  02c5e4  [arg1 ovum]
+  02c5f8  [[arg1 ovum] isCentered]
+  02c5fc  if (([[arg1 ovum] isCentered] & 1)) goto loc_10002c614
+  02c608  [x0 center]
+loc_10002c614:
+  02c62c  [[arg1 ovumSource] dragViewWillAppear:x2 inWindow:self->overlayWindow atLocation:{d0, d1}]
+loc_10002c638:
+  02c650  [[arg1 ovumSource] respondsToSelector:@selector(ovumDragWillBegin:)]
+  02c654  if ([[arg1 ovumSource] respondsToSelector:@selector(ovumDragWillBegin:)] == 0) goto loc_10002c688
+  02c660  [arg1 ovum]
+  02c67c  [[arg1 ovumSource] ovumDragWillBegin:[arg1 ovum]]
+loc_10002c688:
+  02c698  [arg1 ovum]
+  02c6d4  [NSDictionary dictionaryWithObjectsAndKeys:[arg1 ovum], @"ovum", arg1, @"recognizer", nil]
+  02c700  [NSNotificationCenter defaultCenter]
+  02c72c  [[NSNotificationCenter defaultCenter] postNotificationName:@"OBDragDropManagerWillBeginDrag" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[arg1 ovum], @"ovum", arg1, @"recognizer", nil]]
+loc_10002c74c:
+loc_10002c754:
+  02c75c  goto loc_10002c9d4
+loc_10002c760:
+  02c768  [[arg1 ovum] currentDropHandlingView]
+  02c794  [[[arg1 view] window] convertPoint:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} toView:[[arg1 ovum] currentDropHandlingView]]
+  02c7b0  [[[[arg1 ovum] currentDropHandlingView] dropZoneHandler] ovumExited:[arg1 ovum] inView:[[arg1 ovum] currentDropHandlingView] atLocation:{[[[arg1 view] window] convertPoint:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} toView:[[arg1 ovum] currentDropHandlingView]].0, [[[arg1 view] window] convertPoint:{[arg1 locationInView:[[arg1 view] window]].0, [arg1 locationInView:[[arg1 view] window]].1} toView:[[arg1 ovum] currentDropHandlingView]].1}]
+  02c7c8  [self animateOvumReturningToSource:[arg1 ovum]]
+  02c7d4  goto loc_10002c8dc
+loc_10002c7d8:
+  02c82c  [self animateOvumDrop:[arg1 ovum] withAnimation:^{-[OBDragDropManager handleOvumGesture:]_block_invoke captures +0x20=[[arg1 ovum] dragView]} completion:0]
+loc_10002c838:
+  02c84c  [[arg1 ovum] source]
+  02c870  [[[arg1 ovum] source] respondsToSelector:@selector(ovumWasDropped:withDropAction:)]
+  02c884  if ([[[arg1 ovum] source] respondsToSelector:@selector(ovumWasDropped:withDropAction:)] == 0) goto loc_10002c8c8
+  02c890  [[arg1 ovum] source]
+  02c8a8  [[arg1 ovum] dropAction]
+  02c8bc  [[[arg1 ovum] source] ovumWasDropped:[arg1 ovum] withDropAction:[[arg1 ovum] dropAction]]
+loc_10002c8c8:
+loc_10002c8dc:
+  02c8f0  [self cleanupOvum:[arg1 ovum]]
+  02c904  [arg1 ovum]
+  02c940  [NSDictionary dictionaryWithObjectsAndKeys:[arg1 ovum], @"ovum", arg1, @"recognizer", nil]
+  02c96c  [NSNotificationCenter defaultCenter]
+  02c998  [[NSNotificationCenter defaultCenter] postNotificationName:@"OBDragDropManagerDidEndDrag" object:self userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[arg1 ovum], @"ovum", arg1, @"recognizer", nil]]
+  02c9b8  [arg1 setOvum:0]
+loc_10002c9c8:
+loc_10002c9d4:
+loc_10002c9dc:
+  02ca10  return
+
+== -[OBDragDropManager handleOvumGesture:]_block_invoke   (address 0x10002cc48  size 132  kind block)
+  02cc70  CGAffineTransformMakeScale(block, blockarg1, blockarg2, blockarg3)
+  02cca0  [[[arg1 ovum] dragView] setTransform:&sp[0x0]]
+  02ccb8  [[[arg1 ovum] dragView] setAlpha:0]
+  02ccc8  return
+
+== sub_10002cccc   (address 0x10002cccc  size 8  kind sub)
+
+== sub_10002ccd4   (address 0x10002ccd4  size 8  kind sub)
+  02ccd8  return
+
+== -[OBDragDropManager applyRecenteringTo:withRecognizer:]   (address 0x10002ccdc  size 2208  kind objc)
+  02cd34  [arg2 ovum]
+  02cd50  [[arg2 ovum] dragView]
+  02cd70  [arg2 ovum]
+  02cd8c  [[arg2 ovum] isCentered]
+  02cda4  if (([[arg2 ovum] isCentered] & 1)) goto loc_10002ce7c
+  02cdb0  [arg2 ovum]
+  02cdd0  [[arg2 ovum] offsetOvumAndTouch]
+  02cde0  [arg2 ovum]
+  02ce00  [[arg2 ovum] scale]
+  02ce20  [arg2 ovum]
+  02ce34  [[arg2 ovum] offsetOvumAndTouch]
+  02ce44  [arg2 ovum]
+  02ce58  [[arg2 ovum] scale]
+loc_10002ce7c:
+  02ce84  [arg2 ovum]
+  02cea0  [[arg2 ovum] shouldScale]
+  02ceb0  if ([[arg2 ovum] shouldScale] == 0) goto loc_10002d40c
+  02cec4  [arg2 numberOfTouches]
+  02cedc  if (self->prevNumberOfTouches == [arg2 numberOfTouches]) goto loc_10002d198
+  02cee8  [arg2 ovum]
+  02cf10  [arg2 ovum]
+  02cf38  [[arg2 ovum] shiftPinchCentroid]
+  02cf48  [arg2 ovum]
+  02cf68  [[arg2 ovum] scale]
+  02cf80  [arg2 ovum]
+  02cf98  [[arg2 ovum] shiftPinchCentroid]
+  02cfa8  [arg2 ovum]
+  02cfc0  [[arg2 ovum] scale]
+  02cfcc  t1 = ((self->prevPinchCentroid.x - arg1.0) + ([[arg2 ovum] shiftPinchCentroid].0 * [[arg2 ovum] scale]))
+  02cfd8  t2 = ((self->prevPinchCentroid.y - arg1.1) + ([[arg2 ovum] shiftPinchCentroid].1 * [[arg2 ovum] scale]))
+  02cff0  [[arg2 ovum] setShiftPinchCentroid:{t1, t2}]
+  02d028  [arg2 ovum]
+  02d048  [arg2 ovum]
+  02d068  [[arg2 ovum] offsetOvumAndTouch]
+  02d078  [arg2 ovum]
+  02d08c  [[arg2 ovum] scale]
+  02d09c  [arg2 ovum]
+  02d0b0  [[arg2 ovum] offsetOvumAndTouch]
+  02d0c0  [arg2 ovum]
+  02d0d8  [[arg2 ovum] scale]
+  02d0f8  [[arg2 ovum] setOffsetOvumAndTouch:{([[arg2 ovum] offsetOvumAndTouch].0 * [[arg2 ovum] scale]), ([[arg2 ovum] offsetOvumAndTouch].1 * [[arg2 ovum] scale])}]
+  02d12c  if ([arg2 numberOfTouches] != 1) goto loc_10002d198
+  02d138  self->initialDistance = 0
+  02d14c  [[[arg2 ovum] dragView] frame]
+  02d16c  [arg2 ovum]
+  02d18c  [[arg2 ovum] setScale:1]
+loc_10002d198:
+  02d1a8  self->prevNumberOfTouches = [arg2 numberOfTouches]
+  02d1b0  if ([arg2 numberOfTouches] <u 2) goto loc_10002d338
+  02d1d4  [arg2 locationOfTouch:0 inView:self->overlayWindow]
+  02d1f8  [self distanceFrom:{arg1.0, arg1.1} to:{[arg2 locationOfTouch:0 inView:self->overlayWindow].0, [arg2 locationOfTouch:0 inView:self->overlayWindow].1}]
+  02d210  if (self->initialDistance != 0.0) goto loc_10002d21c
+  02d214  self->initialDistance = [self distanceFrom:{arg1.0, arg1.1} to:{[arg2 locationOfTouch:0 inView:self->overlayWindow].0, [arg2 locationOfTouch:0 inView:self->overlayWindow].1}]
+loc_10002d21c:
+  02d224  [arg2 ovum]
+  02d234  t3 = ([self distanceFrom:{arg1.0, arg1.1} to:{[arg2 locationOfTouch:0 inView:self->overlayWindow].0, [arg2 locationOfTouch:0 inView:self->overlayWindow].1}] / d11)
+  02d238  [[arg2 ovum] setScale:t3]
+  02d26c  [arg2 ovum]
+  02d28c  [[arg2 ovum] scale]
+  02d29c  [arg2 ovum]
+  02d2b0  [[arg2 ovum] scale]
+  02d2c4  CGAffineTransformScale(&sp[0x60])
+  02d320  CGRectApplyAffineTransform(&sp[0x30])
+  02d334  [[[arg2 ovum] dragView] setFrame:{d0, d1, d2, d3}]
+loc_10002d338:
+  02d340  [arg2 ovum]
+  02d360  [[arg2 ovum] shiftPinchCentroid]
+  02d370  [arg2 ovum]
+  02d390  [[arg2 ovum] scale]
+  02d3b0  [arg2 ovum]
+  02d3c4  [[arg2 ovum] shiftPinchCentroid]
+  02d3d4  [arg2 ovum]
+  02d3e8  [[arg2 ovum] scale]
+loc_10002d40c:
+  02d450  return
+
+== -[OBDragDropManager ovumRecognizerShouldHandleTouch:]   (address 0x10002d57c  size 368  kind objc)
+  02d5a4  [arg1 state]
+  02d5ac  if ([arg1 state] != 1) goto loc_10002d63c
+  02d5c0  [arg1 ovumSource]
+  02d5ec  [[arg1 ovumSource] respondsToSelector:@selector(shouldCreateOvumFromView:)]
+  02d5f0  if ([[arg1 ovumSource] respondsToSelector:@selector(shouldCreateOvumFromView:)] == 0) goto loc_10002d634
+  02d604  [arg1 view]
+  02d620  [[arg1 ovumSource] shouldCreateOvumFromView:[arg1 view]]
+  02d630  if (!([[arg1 ovumSource] shouldCreateOvumFromView:[arg1 view]] & 1)) goto loc_10002d664
+loc_10002d634:
+  02d638  goto loc_10002d694
+loc_10002d63c:
+  02d64c  [arg1 ovum]
+  02d660  goto loc_10002d698
+loc_10002d664:
+  02d67c  [arg1 setEnabled:0]
+  02d68c  [arg1 setEnabled:1]
+loc_10002d694:
+loc_10002d698:
+  02d6b4  return
+
+== -[OBDragDropManager cleanupOvum:]   (address 0x10002d6ec  size 324  kind objc)
+  02d71c  [arg1 source]
+  02d730  if ([arg1 source] == 0) goto loc_10002d7c0
+  02d73c  [arg1 source]
+  02d768  [[arg1 source] respondsToSelector:@selector(ovumDragEnded:)]
+  02d778  if ([[arg1 source] respondsToSelector:@selector(ovumDragEnded:)] == 0) goto loc_10002d7a8
+  02d784  [arg1 source]
+  02d79c  [[arg1 source] ovumDragEnded:arg1]
+loc_10002d7a8:
+  02d7bc  [arg1 setSource:0]
+loc_10002d7c0:
+  02d7d4  [arg1 setDragView:0]
+  02d7ec  [arg1 setCurrentDropHandlingView:0]
+  02d804  return
+
+== -[OBDragDropManager distanceFrom:to:]   (address 0x10002d830  size 28  kind objc)
+  02d848  return
+
+== -[OBDragDropManager updateOvum:withZoom:]   (address 0x10002d84c  size 996  kind objc)
+  02d884  if (arg1 == 0) goto loc_10002dba4
+  02d89c  [arg1 isCentered]
+  02d8a0  if (([arg1 isCentered] & 1)) goto loc_10002d8d4
+  02d8b4  [arg1 offsetOvumAndTouch]
+  02d8d0  [arg1 setOffsetOvumAndTouch:{([arg1 offsetOvumAndTouch].0 * arg2), ([arg1 offsetOvumAndTouch].1 * arg2)}]
+loc_10002d8d4:
+  02d8e8  [arg1 shouldScale]
+  02d8ec  if ([arg1 shouldScale] == 0) goto loc_10002d920
+  02d900  [arg1 shiftPinchCentroid]
+  02d91c  [arg1 setShiftPinchCentroid:{([arg1 shiftPinchCentroid].0 * arg2), ([arg1 shiftPinchCentroid].1 * arg2)}]
+loc_10002d920:
+  02d938  [arg1 isCentered]
+  02d93c  if (([arg1 isCentered] & 1)) goto loc_10002d9a4
+  02d954  [arg1 offsetOvumAndTouch]
+  02d970  [arg1 scale]
+  02d980  [arg1 offsetOvumAndTouch]
+  02d990  [arg1 scale]
+loc_10002d9a4:
+  02d9ac  [arg1 shouldScale]
+  02d9b0  if ([arg1 shouldScale] == 0) goto loc_10002da18
+  02d9c8  [arg1 shiftPinchCentroid]
+  02d9e4  [arg1 scale]
+  02d9f4  [arg1 shiftPinchCentroid]
+  02da04  [arg1 scale]
+loc_10002da18:
+  02da28  [arg1 dragView]
+  02da44  [[arg1 dragView] frame]
+  02da74  [[arg1 dragView] setFrame:{(d13 - (([[arg1 dragView] frame].2 * arg2) * 0.5)), (d12 - (([[arg1 dragView] frame].3 * arg2) * 0.5)), ([[arg1 dragView] frame].2 * arg2), ([[arg1 dragView] frame].3 * arg2)}]
+  02da8c  [arg1 currentDropHandlingView]
+  02daa8  [[arg1 currentDropHandlingView] dropZoneHandler]
+  02dae0  [[[arg1 currentDropHandlingView] dropZoneHandler] respondsToSelector:@selector(ovumMoved:inView:atLocation:)]
+  02dae4  if ([[[arg1 currentDropHandlingView] dropZoneHandler] respondsToSelector:@selector(ovumMoved:inView:atLocation:)] == 0) goto loc_10002db94
+  02db04  [arg1 currentDropHandlingView]
+  02db30  [self->overlayWindow convertPoint:{self->currentLocationInOverlayWindow.x, self->currentLocationInOverlayWindow.y} toView:[arg1 currentDropHandlingView]]
+  02db4c  [arg1 currentDropHandlingView]
+  02db70  [[[arg1 currentDropHandlingView] dropZoneHandler] ovumMoved:arg1 inView:[arg1 currentDropHandlingView] atLocation:{[self->overlayWindow convertPoint:{self->currentLocationInOverlayWindow.x, self->currentLocationInOverlayWindow.y} toView:[arg1 currentDropHandlingView]].0, [self->overlayWindow convertPoint:{self->currentLocationInOverlayWindow.x, self->currentLocationInOverlayWindow.y} toView:[arg1 currentDropHandlingView]].1}]
+  02db88  [arg1 setDropAction:[[[arg1 currentDropHandlingView] dropZoneHandler] ovumMoved:arg1 inView:[arg1 currentDropHandlingView] atLocation:{[self->overlayWindow convertPoint:{self->currentLocationInOverlayWindow.x, self->currentLocationInOverlayWindow.y} toView:[arg1 currentDropHandlingView]].0, [self->overlayWindow convertPoint:{self->currentLocationInOverlayWindow.x, self->currentLocationInOverlayWindow.y} toView:[arg1 currentDropHandlingView]].1}]]
+loc_10002db94:
+loc_10002dba4:
+  02dbc8  return
+
+== -[OBDragDropManager overlayWindow]   (address 0x10002dc30  size 16  kind objc)
+  02dc3c  return
+
+== -[OBDragDropManager setOverlayWindow:]   (address 0x10002dc40  size 56  kind objc)
+  02dc64  self->overlayWindow = arg1
+  02dc74  return
+
+== -[OBDragDropManager currentLocationInHostWindow]   (address 0x10002dc78  size 20  kind objc)
+  02dc88  return
+
+== -[OBDragDropManager setCurrentLocationInHostWindow:]   (address 0x10002dc8c  size 20  kind objc)
+  02dc9c  return
+
+== -[OBDragDropManager currentLocationInOverlayWindow]   (address 0x10002dca0  size 20  kind objc)
+  02dcb0  return
+
+== -[OBDragDropManager setCurrentLocationInOverlayWindow:]   (address 0x10002dcb4  size 20  kind objc)
+  02dcc4  return
+
+== -[OBDragDropManager .cxx_destruct]   (address 0x10002dcc8  size 20  kind objc)
+
+== -[OBDragDropManager .cxx_construct]   (address 0x10002dcdc  size 4  kind objc)
+  02dcdc  return

@@ -1,0 +1,188 @@
+
+== +[TAGModel entityWithDescription:]   (address 0x1001116ec  size 784  kind objc)
+  11173c  [arg1 objectForKeyedSubscript:@"properties"]
+  111764  [NSMutableArray array]
+  1117ac  [[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  1117b8  if ([[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_100111890
+loc_100111808:
+loc_10011180c:
+  111818  if (x8 == x19) goto loc_100111824
+  111820  objc_enumerationMutation([arg1 objectForKeyedSubscript:@"properties"])
+loc_100111824:
+  111834  [NSAttributeDescription alloc]
+  11183c  [[NSAttributeDescription alloc] init]
+  111850  [[[NSAttributeDescription alloc] init] setValuesForKeysWithDictionary:x2]
+  111860  [[NSMutableArray array] addObject:[[NSAttributeDescription alloc] init]]
+  111874  if ((x21 + 1) <u [[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10011180c
+  111884  [[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  11188c  if ([[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_100111808
+loc_100111890:
+  1118ac  [arg1 mutableCopy]
+  1118d0  [[arg1 mutableCopy] setObject:[NSMutableArray array] forKeyedSubscript:@"properties"]
+  1118e8  [NSEntityDescription alloc]
+  1118f8  [[NSEntityDescription alloc] init]
+  111914  [[[NSEntityDescription alloc] init] setValuesForKeysWithDictionary:[arg1 mutableCopy]]
+  111970  return
+
+== +[TAGModel modelWithDescription:]   (address 0x1001119fc  size 748  kind objc)
+  111a50  [arg1 objectForKeyedSubscript:@"entities"]
+  111a74  [NSMutableArray array]
+  111ac0  [[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  111acc  if ([[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] == 0) goto loc_100111b78
+loc_100111afc:
+loc_100111b00:
+  111b0c  if (x8 == x24) goto loc_100111b18
+  111b14  objc_enumerationMutation([arg1 objectForKeyedSubscript:@"entities"])
+loc_100111b18:
+  111b28  [TAGModel entityWithDescription:x2]
+  111b44  [[NSMutableArray array] addObject:[TAGModel entityWithDescription:x2]]
+  111b58  if ((x28 + 1) <u [[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]) goto loc_100111b00
+  111b6c  [[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  111b74  if ([[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] != 0) goto loc_100111afc
+loc_100111b78:
+  111b94  [arg1 mutableCopy]
+  111bb8  [[arg1 mutableCopy] setObject:[NSMutableArray array] forKeyedSubscript:@"entities"]
+  111bd0  [NSManagedObjectModel alloc]
+  111be0  [[NSManagedObjectModel alloc] init]
+  111bfc  [[[NSManagedObjectModel alloc] init] setValuesForKeysWithDictionary:[arg1 mutableCopy]]
+  111c58  return
+
+== +[TAGModel modelDescription]   (address 0x100111ce8  size 1784  kind objc)
+  111d90  [NSNumber numberWithInt:700]
+  111dc8  [NSNumber numberWithBool:1]
+  111df4  [NSNumber numberWithBool:0]
+  111e28  [NSDictionary dictionaryWithObjects:&x29[-0xe8] forKeys:&sp[0x188] count:4]
+  111e58  [NSNumber numberWithInt:900]
+  111e78  [NSNumber numberWithBool:1]
+  111e98  [NSNumber numberWithBool:0]
+  111ebc  [NSDictionary dictionaryWithObjects:&sp[0x168] forKeys:&sp[0x148] count:4]
+  111eec  [NSNumber numberWithInt:900]
+  111f0c  [NSNumber numberWithBool:1]
+  111f2c  [NSNumber numberWithBool:1]
+  111f50  [NSDictionary dictionaryWithObjects:&sp[0x128] forKeys:&sp[0x108] count:4]
+  111f80  [NSNumber numberWithInt:100]
+  111fa0  [NSNumber numberWithBool:0]
+  111fc0  [NSNumber numberWithBool:1]
+  111fe8  [NSDictionary dictionaryWithObjects:&sp[0xe8] forKeys:&sp[0xc8] count:4]
+  112018  [NSNumber numberWithInt:900]
+  112038  [NSNumber numberWithBool:1]
+  112058  [NSNumber numberWithBool:1]
+  112080  [NSDictionary dictionaryWithObjects:&sp[0xa8] forKeys:&sp[0x88] count:4]
+  1120b0  [NSArray arrayWithObjects:&x29[-0xc8] count:5]
+  1120d4  [NSDictionary dictionaryWithObjects:&x29[-0x88] forKeys:&x29[-0xa0] count:3]
+  1120f4  [NSArray arrayWithObjects:&x29[-0x70] count:1]
+  11211c  [NSDictionary dictionaryWithObjects:&x29[-0x60] forKeys:&x29[-0x68] count:1]
+  11221c  return
+
+== +[TAGModel previousModelDescription]   (address 0x1001123e0  size 1516  kind objc)
+  112488  [NSNumber numberWithInt:700]
+  1124c0  [NSNumber numberWithBool:1]
+  1124ec  [NSNumber numberWithBool:0]
+  112520  [NSDictionary dictionaryWithObjects:&x29[-0xe0] forKeys:&x29[-0x100] count:4]
+  112550  [NSNumber numberWithInt:900]
+  112570  [NSNumber numberWithBool:1]
+  112590  [NSNumber numberWithBool:0]
+  1125b4  [NSDictionary dictionaryWithObjects:&sp[0x110] forKeys:&sp[0xf0] count:4]
+  1125e4  [NSNumber numberWithInt:900]
+  112604  [NSNumber numberWithBool:1]
+  112624  [NSNumber numberWithBool:1]
+  11264c  [NSDictionary dictionaryWithObjects:&sp[0xd0] forKeys:&sp[0xb0] count:4]
+  11267c  [NSNumber numberWithInt:100]
+  1126a0  [NSNumber numberWithBool:0]
+  1126c0  [NSNumber numberWithBool:1]
+  1126e4  [NSDictionary dictionaryWithObjects:&sp[0x90] forKeys:&sp[0x70] count:4]
+  112714  [NSArray arrayWithObjects:&x29[-0xc0] count:4]
+  112738  [NSDictionary dictionaryWithObjects:&x29[-0x88] forKeys:&x29[-0xa0] count:3]
+  112758  [NSArray arrayWithObjects:&x29[-0x70] count:1]
+  112780  [NSDictionary dictionaryWithObjects:&x29[-0x60] forKeys:&x29[-0x68] count:1]
+  112860  return
+
+== +[TAGModel migrateToCurrentVersion:]   (address 0x1001129cc  size 1056  kind objc)
+  112a0c  [TAGModel previousModelDescription]
+  112a30  [TAGModel modelWithDescription:[TAGModel previousModelDescription]]
+  112a58  [TAGModel model]
+  112a88  [NSMappingModel inferredMappingModelForSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model] error:0]
+  112a98  if ([NSMappingModel inferredMappingModelForSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model] error:0] == 0) goto loc_100112c88
+  112ab0  [NSMigrationManager alloc]
+  112ac8  [[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]]
+  112ad8  NSTemporaryDirectory([[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]])
+  112b00  [NSURL fileURLWithPath:NSTemporaryDirectory([[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]]) isDirectory:1]
+  112b34  [[NSURL fileURLWithPath:NSTemporaryDirectory([[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]]) isDirectory:1] URLByAppendingPathComponent:@"migration-temp.sql"]
+  112b5c  [NSFileManager defaultManager]
+  112b84  [[NSFileManager defaultManager] removeItemAtURL:[[NSURL fileURLWithPath:NSTemporaryDirectory([[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]]) isDirectory:1] URLByAppendingPathComponent:@"migration-temp.sql"] error:0]
+  112bc4  [[[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]] migrateStoreFromURL:arg1 type:_NSSQLiteStoreType[+0x0] options:0 withMappingModel:[NSMappingModel inferredMappingModelForSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model] error:0] toDestinationURL:[[NSURL fileURLWithPath:NSTemporaryDirectory([[NSMigrationManager alloc] initWithSource…
+  112bc8  if ([[[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]] migrateStoreFromURL:arg1 type:_NSSQLiteStoreType[+0x0] options:0 withMappingModel:[NSMappingModel inferredMappingModelForSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model] error:0] toDestinationURL:[[NSURL fileURLWithPath:NSTemporaryDirectory([[NSMigrationManager alloc] initWithSource… == 0) goto loc_100112c90
+  112bd4  [NSFileManager defaultManager]
+  112bf8  [[NSFileManager defaultManager] removeItemAtURL:arg1 error:0]
+  112bfc  if (!([[NSFileManager defaultManager] removeItemAtURL:arg1 error:0] & 1)) goto loc_100112c98
+  112c08  [NSFileManager defaultManager]
+  112c30  [[NSFileManager defaultManager] copyItemAtURL:[[NSURL fileURLWithPath:NSTemporaryDirectory([[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]]) isDirectory:1] URLByAppendingPathComponent:@"migration-temp.sql"] toURL:arg1 error:0]
+  112c48  if ([[NSFileManager defaultManager] copyItemAtURL:[[NSURL fileURLWithPath:NSTemporaryDirectory([[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]]) isDirectory:1] URLByAppendingPathComponent:@"migration-temp.sql"] toURL:arg1 error:0] == 0) goto loc_100112ca0
+  112c58  [NSFileManager defaultManager]
+  112c74  [[NSFileManager defaultManager] removeItemAtURL:[[NSURL fileURLWithPath:NSTemporaryDirectory([[NSMigrationManager alloc] initWithSourceModel:[TAGModel modelWithDescription:[TAGModel previousModelDescription]] destinationModel:[TAGModel model]]) isDirectory:1] URLByAppendingPathComponent:@"migration-temp.sql"] error:0]
+  112c84  goto loc_100112ca8
+loc_100112c88:
+  112c8c  goto loc_100112cc0
+loc_100112c90:
+  112c94  goto loc_100112ca8
+loc_100112c98:
+loc_100112ca0:
+loc_100112ca8:
+loc_100112cc0:
+  112d00  return
+
+== +[TAGModel coordinatorWithURL:]   (address 0x100112dec  size 616  kind objc)
+  112e2c  [NSPersistentStoreCoordinator alloc]
+  112e44  [TAGModel model]
+  112e68  [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[TAGModel model]]
+  112eb0  [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[TAGModel model]] addPersistentStoreWithType:_NSSQLiteStoreType[+0x0] configuration:0 URL:arg1 options:0 error:&sp[0x8]]
+  112ecc  if ([[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[TAGModel model]] addPersistentStoreWithType:_NSSQLiteStoreType[+0x0] configuration:0 URL:arg1 options:0 error:&sp[0x8]] != 0) goto loc_100112fac
+  112ed0  if (0 == 0) goto loc_100112f14
+  112ee4  [0 code]
+  112ef4  if ([0 code] != 0x20bd4) goto loc_100112f14
+  112f0c  [TAGModel migrateToCurrentVersion:arg1]
+  112f10  if (([TAGModel migrateToCurrentVersion:arg1] & 1)) goto loc_100112f58
+loc_100112f14:
+  112f28  [NSFileManager defaultManager]
+  112f4c  [[NSFileManager defaultManager] removeItemAtURL:arg1 error:0]
+loc_100112f58:
+  112f78  [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[TAGModel model]] addPersistentStoreWithType:_NSSQLiteStoreType[+0x0] configuration:0 URL:arg1 options:0 error:&sp[0x0]]
+loc_100112fac:
+  112fb0  t1 = (x21 != 0 ? [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[TAGModel model]] : 0)
+  112ff8  return
+
+== +[TAGModel contextWithURL:]   (address 0x100113054  size 236  kind objc)
+  113070  [TAGModel coordinatorWithURL:arg1]
+  113080  if ([TAGModel coordinatorWithURL:arg1] == 0) goto loc_100113114
+  11309c  [NSManagedObjectContext alloc]
+  1130b0  [[NSManagedObjectContext alloc] init]
+  1130d0  [[[NSManagedObjectContext alloc] init] setPersistentStoreCoordinator:[TAGModel coordinatorWithURL:arg1]]
+  1130f4  [[[NSManagedObjectContext alloc] init] setMergePolicy:_NSOverwriteMergePolicy[+0x0]]
+  1130f8  goto loc_100113118
+  113110  goto loc_100113138
+loc_100113114:
+loc_100113118:
+  113130  return
+
+== +[TAGModel model]   (address 0x100113140  size 124  kind objc)
+  11315c  [TAGModel modelDescription]
+  113180  [TAGModel modelWithDescription:[TAGModel modelDescription]]
+  1131a4  return
+
+== +[TAGModel requestHitsWithLimit:]   (address 0x1001131bc  size 344  kind objc)
+  1131f8  [NSFetchRequest alloc]
+  113210  [[NSFetchRequest alloc] initWithEntityName:@"TAGHit"]
+  113218  if (arg1 == 0) goto loc_100113234
+  113230  [[[NSFetchRequest alloc] initWithEntityName:@"TAGHit"] setFetchLimit:arg1]
+loc_100113234:
+  113254  [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:1]
+  113284  [NSArray arrayWithObjects:&sp[0x0] count:1]
+  11329c  [[[NSFetchRequest alloc] initWithEntityName:@"TAGHit"] setSortDescriptors:[NSArray arrayWithObjects:&sp[0x0] count:1]]
+  1132b4  [[[NSFetchRequest alloc] initWithEntityName:@"TAGHit"] setIncludesPendingChanges:1]
+  1132e4  return
+
+== +[TAGModel requestHitsWithLimit:lastDispatchedBefore:]   (address 0x100113314  size 252  kind objc)
+  113350  [TAGModel requestHitsWithLimit:arg1]
+  11338c  [NSPredicate predicateWithFormat:@"(%K == NIL) OR (%K <= %@)", @"lastDispatchTime"]
+  1133b0  [[TAGModel requestHitsWithLimit:arg1] setPredicate:[NSPredicate predicateWithFormat:@"(%K == NIL) OR (%K <= %@)", @"lastDispatchTime"]]
+  1133d8  return

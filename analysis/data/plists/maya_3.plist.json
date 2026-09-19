@@ -1,0 +1,46 @@
+{
+ "icon_title": "23",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 80
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "title": "Zombie Horde!",
+ "objective": "Get ready! Dr. Bastard has unleashed a zombie horde! They'll come at you from all directions!",
+ "tip": "Remember, switching weapons is faster than reloading. It may save your life when you feel overwhelmed.",
+ "bricks": [
+  "maya_3_brick_1",
+  "maya_3_brick_2",
+  "maya_3_brick_3",
+  "maya_3_brick_4",
+  "maya_3_brick_5"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "maya_3",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "maya_2"
+ ],
+ "weapons": [
+  {
+   "ammo": "240",
+   "name": "microsmg"
+  },
+  {
+   "ammo": "20",
+   "name": "sawnoff"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 140
+ }
+}

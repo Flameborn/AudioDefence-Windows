@@ -1,0 +1,205 @@
+
+== +[TAGGTMStringEncoding binaryStringEncoding]   (address 0x100114bd0  size 24  kind objc)
+  114be4  tail [TAGGTMStringEncoding stringEncodingWithString:@"01"]
+
+== +[TAGGTMStringEncoding hexStringEncoding]   (address 0x100114be8  size 80  kind objc)
+  114c08  [TAGGTMStringEncoding stringEncodingWithString:@"0123456789ABCDEF"]
+  114c24  [[TAGGTMStringEncoding stringEncodingWithString:@"0123456789ABCDEF"] addDecodeSynonyms:@"AaBbCcDdEeFf"]
+  114c34  return
+
+== +[TAGGTMStringEncoding rfc4648Base32StringEncoding]   (address 0x100114c38  size 100  kind objc)
+  114c58  [TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"]
+  114c70  [[TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"] setPaddingChar:61]
+  114c88  [[TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"] setDoPad:1]
+  114c98  return
+
+== +[TAGGTMStringEncoding rfc4648Base32HexStringEncoding]   (address 0x100114c9c  size 100  kind objc)
+  114cbc  [TAGGTMStringEncoding stringEncodingWithString:@"0123456789ABCDEFGHIJKLMNOPQRSTUV"]
+  114cd4  [[TAGGTMStringEncoding stringEncodingWithString:@"0123456789ABCDEFGHIJKLMNOPQRSTUV"] setPaddingChar:61]
+  114cec  [[TAGGTMStringEncoding stringEncodingWithString:@"0123456789ABCDEFGHIJKLMNOPQRSTUV"] setDoPad:1]
+  114cfc  return
+
+== +[TAGGTMStringEncoding crockfordBase32StringEncoding]   (address 0x100114d00  size 80  kind objc)
+  114d20  [TAGGTMStringEncoding stringEncodingWithString:@"0123456789ABCDEFGHJKMNPQRSTVWXYZ"]
+  114d3c  [[TAGGTMStringEncoding stringEncodingWithString:@"0123456789ABCDEFGHJKMNPQRSTVWXYZ"] addDecodeSynonyms:@"0oO1iIlLAaBbCcDdEeFfGgHhJjKkMmNnPpQqRrSsTtVvWwXxYyZz"]
+  114d4c  return
+
+== +[TAGGTMStringEncoding rfc4648Base64StringEncoding]   (address 0x100114d50  size 100  kind objc)
+  114d70  [TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"]
+  114d88  [[TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"] setPaddingChar:61]
+  114da0  [[TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"] setDoPad:1]
+  114db0  return
+
+== +[TAGGTMStringEncoding rfc4648Base64WebsafeStringEncoding]   (address 0x100114db4  size 100  kind objc)
+  114dd4  [TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"]
+  114dec  [[TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"] setPaddingChar:61]
+  114e04  [[TAGGTMStringEncoding stringEncodingWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"] setDoPad:1]
+  114e14  return
+
+== +[TAGGTMStringEncoding stringEncodingWithString:]   (address 0x100114e18  size 76  kind objc)
+  114e34  [TAGGTMStringEncoding alloc]
+  114e48  [[TAGGTMStringEncoding alloc] initWithString:arg1]
+  114e60  tail [[[TAGGTMStringEncoding alloc] initWithString:arg1] autorelease]
+
+== -[TAGGTMStringEncoding initWithString:]   (address 0x100114e64  size 556  kind objc)
+  114e9c  [super init]
+  114ea4  if (self == 0) goto loc_100114fcc
+  114ebc  [arg1 dataUsingEncoding:1]
+  114ecc  [[arg1 dataUsingEncoding:1] retain]
+  114ed8  self->charMapData_ = [[arg1 dataUsingEncoding:1] retain]
+  114edc  if ([[arg1 dataUsingEncoding:1] retain] == 0) goto loc_100114fb8
+  114eec  [[[arg1 dataUsingEncoding:1] retain] bytes]
+  114ef8  self->charMap_ = [[[arg1 dataUsingEncoding:1] retain] bytes]
+  114f10  [self->charMapData_ length]
+  114f20  if (([self->charMapData_ length] - 2) >u 126) goto loc_100114fb8
+  114f2c  if ((([self->charMapData_ length] - 1) & [self->charMapData_ length]) != 0) goto loc_100114fb8
+  114f48  memset(x0, 255, 512)
+  114f4c  if ([self->charMapData_ length] == 0) goto loc_100114fe8
+loc_100114f58:
+  114f68  if (w10 != -1) goto loc_100114fb8
+  114f7c  if ((w8 + 1) <u [self->charMapData_ length]) goto loc_100114f58
+  114f90  if ([self->charMapData_ length] <=u 1) goto loc_100114ff4
+loc_100114f9c:
+  114fa0  self->shift_ = (w8 + 1)
+  114fac  if ((x11 << 1) <u [self->charMapData_ length]) goto loc_100114f9c
+  114fb4  goto loc_100114ff4
+loc_100114fb8:
+  114fc8  [self release]
+loc_100114fcc:
+  114fe4  return
+  115008  self->mask_ = ((1 << w8) - 1)
+  115018  if (self->shift_ != 8) goto loc_100115024
+  11503c  if (w8 < w10) goto loc_100115054
+  11504c  if (w14 != (w12 + self->shift_)) goto loc_100115038
+  115064  if ((w13 + 16) != w12) goto loc_10011502c
+  115088  self->padLen_ = (w10 / self->shift_)
+
+== -[TAGGTMStringEncoding dealloc]   (address 0x100115090  size 100  kind objc)
+  1150bc  [self->charMapData_ release]
+  1150e0  [super dealloc]
+  1150f0  return
+
+== -[TAGGTMStringEncoding description]   (address 0x1001150f4  size 96  kind objc)
+  115144  [NSString stringWithFormat:@"<Base%d StringEncoder: %@>", (1 << self->shift_), self->charMapData_]
+  115150  return
+
+== -[TAGGTMStringEncoding addDecodeSynonyms:]   (address 0x100115154  size 128  kind objc)
+  11517c  [arg1 cStringUsingEncoding:1]
+  115184  if ([arg1 cStringUsingEncoding:1][+0x0] == 0) goto loc_1001151c8
+loc_100115198:
+loc_10011519c:
+  1151a8  if (w11 != -1) goto loc_1001151bc
+  1151b4  if (w9 != 0) goto loc_10011519c
+  1151b8  goto loc_1001151c8
+loc_1001151bc:
+  1151c4  if (w9 != 0) goto loc_100115198
+loc_1001151c8:
+  1151d0  return
+
+== -[TAGGTMStringEncoding ignoreCharacters:]   (address 0x1001151d4  size 280  kind objc)
+  11520c  [arg1 cStringUsingEncoding:1]
+  115214  if ([arg1 cStringUsingEncoding:1][+0x0] == 0) goto loc_1001152d0
+  11521c  &@selector(currentHandler)
+  115224  &@selector(stringWithUTF8String:)
+  115230  &@selector(handleFailureInFunction:file:lineNumber:description:)
+loc_100115254:
+  115260  if (w8 == -1) goto loc_1001152c4
+  115270  [NSAssertionHandler currentHandler]
+  115288  [NSString stringWithUTF8String:"-[TAGGTMStringEncoding ignoreCharacters:]"]
+  1152a0  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  1152c0  [[NSAssertionHandler currentHandler] handleFailureInFunction:[NSString stringWithUTF8String:"-[TAGGTMStringEncoding ignoreCharacters:]"] file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:161 description:@"Character already mapped"]
+loc_1001152c4:
+  1152cc  if (w8 != 0) goto loc_100115254
+loc_1001152d0:
+  1152e8  return
+
+== -[TAGGTMStringEncoding doPad]   (address 0x1001152ec  size 16  kind objc)
+  1152f8  return
+
+== -[TAGGTMStringEncoding setDoPad:]   (address 0x1001152fc  size 16  kind objc)
+  115304  self->doPad_ = arg1
+  115308  return
+
+== -[TAGGTMStringEncoding setPaddingChar:]   (address 0x10011530c  size 36  kind objc)
+  115314  self->paddingChar_ = arg1
+  11532c  return
+
+== -[TAGGTMStringEncoding encode:]   (address 0x100115330  size 656  kind objc)
+  115360  [arg1 length]
+  115368  if ([arg1 length] == 0) goto loc_100115524
+  11537c  [arg1 bytes]
+  1153a8  if (self->doPad_ == 0) goto loc_1001153c8
+  1153c0  t1 = ((((((self->shift_ + ([arg1 length] << 3)) - 1) / self->shift_) + self->padLen_) - 1) / self->padLen_)
+loc_1001153c8:
+  1153e0  [NSMutableData dataWithLength:x2]
+  1153f4  [[NSMutableData dataWithLength:x2] mutableBytes]
+loc_100115420:
+  11542c  if (self->shift_ <= w11) goto loc_100115454
+  115430  if (!(w14 & 1)) goto loc_100115448
+  115444  goto loc_100115454
+loc_100115448:
+loc_100115454:
+  115484  if (flags <u) goto loc_100115420
+  115494  if (flags <u) goto loc_100115530
+  11549c  if (x21 == (x13 + 1)) goto loc_100115550
+  1154b4  [NSAssertionHandler currentHandler]
+  1154dc  [NSString stringWithUTF8String:"-[TAGGTMStringEncoding encode:]"]
+  1154f4  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  11551c  [[NSAssertionHandler currentHandler] handleFailureInFunction:[NSString stringWithUTF8String:"-[TAGGTMStringEncoding encode:]"] file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:220 description:@"Underflowed output buffer"]
+  115520  goto loc_100115550
+loc_100115524:
+  11552c  goto loc_1001155a8
+loc_100115530:
+loc_100115538:
+  115548  if (x21 != (x24 + 1)) goto loc_100115538
+loc_100115550:
+  115564  [[NSMutableData dataWithLength:x2] setLength:x2]
+  11557c  [NSString alloc]
+  115594  [[NSString alloc] initWithData:[NSMutableData dataWithLength:x2] encoding:1]
+  1155a4  [[[NSString alloc] initWithData:[NSMutableData dataWithLength:x2] encoding:1] autorelease]
+loc_1001155a8:
+  1155bc  return
+
+== -[TAGGTMStringEncoding encodeString:]   (address 0x1001155c0  size 76  kind objc)
+  1155e8  [arg1 dataUsingEncoding:4]
+  115608  tail [self encode:[arg1 dataUsingEncoding:4]]
+
+== -[TAGGTMStringEncoding decode:]   (address 0x10011560c  size 536  kind objc)
+  115640  [arg1 cStringUsingEncoding:1]
+  115648  if ([arg1 cStringUsingEncoding:1] == 0) goto loc_100115758
+  115650  strlen([arg1 cStringUsingEncoding:1])
+  115684  [NSMutableData dataWithLength:((self->shift_ * strlen([arg1 cStringUsingEncoding:1])) >>> 3)]
+  115698  [[NSMutableData dataWithLength:((self->shift_ * strlen([arg1 cStringUsingEncoding:1])) >>> 3)] mutableBytes]
+  11569c  if (strlen([arg1 cStringUsingEncoding:1]) == 0) goto loc_100115760
+loc_1001156c8:
+  1156d4  if (w14 == -3) goto loc_100115734
+  1156dc  if (w14 == -1) goto loc_100115758
+  1156e4  if (w14 != -2) goto loc_1001156f0
+  1156ec  goto loc_100115734
+loc_1001156f0:
+  1156f4  if (((one of {0, 1} & 1) & 1)) goto loc_100115758
+  115714  if ((self->shift_ + w9) < 8) goto loc_100115730
+  11572c  goto loc_100115734
+loc_100115730:
+loc_100115734:
+  11573c  if ((x8 + 1) <u strlen([arg1 cStringUsingEncoding:1])) goto loc_1001156c8
+  115740  if (w9 == 0) goto loc_100115798
+  115754  if ((((1 << w9) - 1) & w10) == 0) goto loc_100115798
+loc_100115758:
+  11575c  goto loc_10011577c
+loc_100115760:
+loc_100115764:
+  115778  [[NSMutableData dataWithLength:((self->shift_ * strlen([arg1 cStringUsingEncoding:1])) >>> 3)] setLength:x2]
+loc_10011577c:
+  115794  return
+  11579c  if (x21 <=u ((self->shift_ * strlen([arg1 cStringUsingEncoding:1])) >>> 3)) goto loc_100115764
+  1157b4  [NSAssertionHandler currentHandler]
+  1157dc  [NSString stringWithUTF8String:"-[TAGGTMStringEncoding decode:]"]
+  1157f4  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  11581c  [[NSAssertionHandler currentHandler] handleFailureInFunction:[NSString stringWithUTF8String:"-[TAGGTMStringEncoding decode:]"] file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:280 description:@"Overflowed buffer"]
+
+== -[TAGGTMStringEncoding stringByDecoding:]   (address 0x100115824  size 104  kind objc)
+  11583c  [self decode:arg1]
+  115858  [NSString alloc]
+  115870  [[NSString alloc] initWithData:[self decode:arg1] encoding:4]
+  115888  tail [[[NSString alloc] initWithData:[self decode:arg1] encoding:4] autorelease]

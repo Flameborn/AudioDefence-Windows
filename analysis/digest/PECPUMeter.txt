@@ -1,0 +1,42 @@
+
+== -[PECPUMeter initWithFrame:]   (address 0x10003e348  size 60  kind objc)
+  03e374  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  03e380  return
+
+== -[PECPUMeter drawRect:]   (address 0x10003e384  size 1100  kind objc)
+  03e3c0  UIGraphicsGetCurrentContext(self, _cmd)
+  03e3dc  [S3DEngine metric_app_cpu_usage]
+  03e3f4  [S3DEngine metric_MixPercent]
+  03e40c  [S3DEngine metric_MixPercentLP]
+  03e424  [S3DEngine metric_MixPercentMax]
+  03e454  [UIColor colorWithRed:1 green:0 blue:1 alpha:0.5]
+  03e474  [[UIColor colorWithRed:1 green:0 blue:1 alpha:0.5] set]
+  03e4c8  UIRectFill()
+  03e4e4  [UIColor colorWithRed:1 green:0 blue:0 alpha:0.5]
+  03e4f8  [[UIColor colorWithRed:1 green:0 blue:0 alpha:0.5] set]
+  03e520  UIRectFill()
+  03e53c  [UIColor colorWithRed:0 green:1 blue:1 alpha:0.5]
+  03e550  [[UIColor colorWithRed:0 green:1 blue:1 alpha:0.5] set]
+  03e588  UIRectFill()
+  03e5a8  [UIColor colorWithRed:0 green:1 blue:0 alpha:0.5]
+  03e5bc  [[UIColor colorWithRed:0 green:1 blue:0 alpha:0.5] set]
+  03e5f4  UIRectFill()
+  03e5fc  if (arg1.2 <= (or unordered) 0.0) goto loc_10003e780
+loc_10003e640:
+  03e65c  [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.7]
+  03e680  t1 = ((((x8 * 0x66666667) >> 33) + ((x8 * 0x66666667) >>> 63)) + ((((x8 * 0x66666667) >> 33) + ((x8 * 0x66666667) >>> 63)) << 2))
+  03e68c  if ((w25 - t1) != 0) goto loc_10003e708
+  03e6a8  [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:0.7]
+  03e6cc  if (w25 != 10) goto loc_10003e708
+  03e6ec  [UIColor colorWithRed:1 green:0 blue:0 alpha:1]
+loc_10003e708:
+  03e70c  CGContextBeginPath(UIGraphicsGetCurrentContext(self, _cmd))
+  03e718  CGContextSetLineWidth(UIGraphicsGetCurrentContext(self, _cmd))
+  03e728  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  03e738  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  03e740  CGContextClosePath(UIGraphicsGetCurrentContext(self, _cmd))
+  03e74c  [x0 setStroke]
+  03e758  CGContextDrawPath(UIGraphicsGetCurrentContext(self, _cmd), 3)
+  03e77c  if ((((arg1.2 * 0.8) / 10) + s1) < arg1.2) goto loc_10003e640
+loc_10003e780:
+  03e7a8  return

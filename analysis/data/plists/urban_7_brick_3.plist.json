@@ -1,0 +1,22 @@
+{
+ "Enemies": {
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_angle": 180,
+   "spawn_distance": 10,
+   "spawn_time": 16
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_angle": 0,
+   "spawn_distance": 10,
+   "spawn_time": 8
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_angle": 270,
+   "spawn_distance": 10,
+   "spawn_time": 1
+  }
+ }
+}

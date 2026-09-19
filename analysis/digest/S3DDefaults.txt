@@ -1,0 +1,127 @@
+
+== +[S3DDefaults linearPannerWithDuration:maxLeft:maxRight:leftToRight:]   (address 0x1000f9510  size 84  kind objc)
+  0f9560  return
+
+== +[S3DDefaults linearPannerWithDuration:maxLeft:maxRight:leftToRight:]_block_invoke   (address 0x1000f9564  size 188  kind block)
+  0f95ac  t1 = (block[+0x2c] != 0 ? ((d9 - d0) / (d1 > (d8 - d0) ? (d8 - d0) : d1)) : (1 - ((d9 - d0) / (d1 > (d8 - d0) ? (d8 - d0) : d1))))
+  0f95d0  if ((block[+0x28] + (t1 * (s2 - block[+0x28]))) >= (or unordered) -1) goto loc_1000f95dc
+  0f95d8  goto loc_1000f95ec
+loc_1000f95dc:
+  0f95e8  t2 = ((block[+0x28] + (t1 * (s2 - block[+0x28]))) > 1 ? 1 : (block[+0x28] + (t1 * (s2 - block[+0x28]))))
+loc_1000f95ec:
+  0f9600  [blockarg1 setPan:d0]
+  0f960c  blockarg2[+0x0] = (d9 >= d8)
+  0f961c  return
+
+== +[S3DDefaults sinePannerWithDuration:maxLeft:maxRight:leftToRight:]   (address 0x1000f9620  size 84  kind objc)
+  0f9670  return
+
+== +[S3DDefaults sinePannerWithDuration:maxLeft:maxRight:leftToRight:]_block_invoke   (address 0x1000f9674  size 252  kind block)
+  0f96c8  t1 = (block[+0x2c] != 0 ? ((d9 - d0) / (d1 > (d8 - d0) ? (d8 - d0) : d1)) : (1 - ((d9 - d0) / (d1 > (d8 - d0) ? (d8 - d0) : d1))))
+  0f96f4  t2 = (((t1 / (2.5 / (d1 > (d8 - d0) ? (d8 - d0) : d1))) * 3.14159) + ((t1 / (2.5 / (d1 > (d8 - d0) ? (d8 - d0) : d1))) * 3.14159))
+  0f96fc  sinf(t2, 3.14159)
+  0f9720  if ((block[+0x28] + (((s2 - block[+0x28]) * (sinf(t2, 3.14159) + 1)) / (s2 - block[+0x28]))) >= (or unordered) -1) goto loc_1000f972c
+  0f9728  goto loc_1000f9738
+loc_1000f972c:
+  0f9734  t3 = ((block[+0x28] + (((s2 - block[+0x28]) * (sinf(t2, 3.14159) + 1)) / (s2 - block[+0x28]))) > 1 ? 1 : (block[+0x28] + (((s2 - block[+0x28]) * (sinf(t2, 3.14159) + 1)) / (s2 - block[+0x28]))))
+loc_1000f9738:
+  0f9748  [blockarg1 setPan:d0]
+  0f9754  blockarg2[+0x0] = (d9 >= d8)
+  0f976c  return
+
+== +[S3DDefaults fadeIn:]   (address 0x1000f9770  size 76  kind objc)
+  0f97b8  return
+
+== +[S3DDefaults fadeIn:]_block_invoke   (address 0x1000f97bc  size 120  kind block)
+  0f97d8  if (block[+0x20] <= d1) goto loc_1000f9804
+  0f9800  tail [blockarg1 setGain:(d1 / block[+0x20])]
+loc_1000f9804:
+  0f981c  [blockarg1 setGain:1]
+  0f9824  blockarg2[+0x0] = 1
+  0f9830  return
+
+== +[S3DDefaults fadeOut:]   (address 0x1000f9834  size 260  kind objc)
+  0f98f0  Block_object_dispose(&sp[0x50], 8)
+  0f98fc  Block_object_dispose(&sp[0x70], 8)
+  0f9908  Block_object_dispose(&x29[-0x70], 8)
+  0f9914  Block_object_dispose(&x29[-0x50], 8)
+  0f9920  Block_object_dispose(&x29[-0x30], 8)
+  0f9934  return
+
+== +[S3DDefaults fadeOut:]_block_invoke   (address 0x1000f9938  size 360  kind block)
+  0f9974  if (block[+0x20][+0x8][+0x18] == 0) goto loc_1000f9980
+  0f997c  goto loc_1000f9a10
+loc_1000f9980:
+  0f998c  block[+0x28][+0x8][+0x18] = s0
+  0f99b0  block[+0x30][+0x8][+0x18] = (block[+0x28][+0x8][+0x18] + block[+0x18])
+  0f99c8  if (block[+0x0][+0x8][+0x18] <= (or unordered) d9) goto loc_1000f99d4
+  0f99d0  block[+0x0][+0x8][+0x18] = s0
+loc_1000f99d4:
+  0f99e4  [blockarg1 gain]
+  0f99f0  block[+0x38][+0x8][+0x18] = [blockarg1 gain]
+  0f99fc  block[+0x40][+0x8][+0x18] = 0
+  0f9a0c  block[+0x20][+0x8][+0x18] = 1
+loc_1000f9a10:
+  0f9a24  if (d1 <= d8) goto loc_1000f9a80
+  0f9a78  [blockarg1 setGain:(s1 - (((d8 - block[+0x28][+0x8][+0x18]) / (s0 - block[+0x28][+0x8][+0x18])) * (s1 - s2)))]
+  0f9a7c  goto loc_1000f9a88
+loc_1000f9a80:
+  0f9a84  blockarg2[+0x0] = 1
+loc_1000f9a88:
+  0f9a9c  return
+
+== sub_1000f9aa0   (address 0x1000f9aa0  size 108  kind sub)
+  0f9ac0  Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+  0f9ad0  Block_object_assign((a0 + 40), a1[+0x28], 8)
+  0f9ae0  Block_object_assign((a0 + 48), a1[+0x30], 8)
+  0f9af0  Block_object_assign((a0 + 56), a1[+0x38], 8)
+  0f9b08  tail Block_object_assign((a0 + 64), a1[+0x40], 8)
+
+== sub_1000f9b0c   (address 0x1000f9b0c  size 84  kind sub)
+  0f9b24  Block_object_dispose(a0[+0x20], 8, a2, a3)
+  0f9b30  Block_object_dispose(a0[+0x28], 8)
+  0f9b3c  Block_object_dispose(a0[+0x30], 8)
+  0f9b48  Block_object_dispose(a0[+0x38], 8)
+  0f9b5c  tail Block_object_dispose(a0[+0x40], 8)
+
+== +[S3DDefaults chain:with:]   (address 0x1000f9b60  size 272  kind objc)
+  0f9c48  Block_object_dispose(&sp[0x40], 8)
+  0f9c54  Block_object_dispose(&x29[-0x40], 8)
+  0f9c6c  return
+
+== +[S3DDefaults chain:with:]_block_invoke   (address 0x1000f9c70  size 212  kind block)
+  0f9cb4  if (block[+0x30][+0x8][+0x18] != 0) goto loc_1000f9cd4
+  0f9cd0  call block[+0x20][+0x10]
+loc_1000f9cd4:
+  0f9ce0  if (block[+0x38][+0x8][+0x18] != 0) goto loc_1000f9d00
+  0f9cfc  call block[+0x28][+0x10]
+loc_1000f9d00:
+  0f9d0c  if (block[+0x30][+0x8][+0x18] == 0) goto loc_1000f9d20
+  0f9d1c  goto loc_1000f9d24
+loc_1000f9d20:
+loc_1000f9d24:
+  0f9d24  blockarg2[+0x0] = w8
+  0f9d40  return
+
+== sub_1000f9d44   (address 0x1000f9d44  size 92  kind sub)
+  0f9d64  Block_object_assign((a0 + 48), a1[+0x30], 8, a3)
+  0f9d74  Block_object_assign((a0 + 32), a1[+0x20], 7)
+  0f9d84  Block_object_assign((a0 + 56), a1[+0x38], 8)
+  0f9d9c  tail Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_1000f9da0   (address 0x1000f9da0  size 64  kind sub)
+  0f9db8  Block_object_dispose(a0[+0x30], 8, a2, a3)
+  0f9dcc  Block_object_dispose(a0[+0x38], 8)
+  0f9ddc  return
+
+== sub_1000f9de0   (address 0x1000f9de0  size 168  kind sub)
+  0f9df4  if (a0 == 0) goto loc_1000f9e64
+  0f9e0c  [S3DEngine engine]
+  0f9e58  [[S3DEngine engine] AU_preSerialize:^{sub_1000f9e88 captures +0x20=a0}]
+loc_1000f9e64:
+  0f9e70  return
+
+== sub_1000f9e88   (address 0x1000f9e88  size 24  kind sub)
+  0f9e8c  if (a0[+0x20] == 0) goto loc_1000f9e9c
+loc_1000f9e9c:
+  0f9e9c  return

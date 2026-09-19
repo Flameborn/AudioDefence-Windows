@@ -1,0 +1,243 @@
+
+== csl::AmbisonicDecoder::~AmbisonicDecoder   (address 0x1000f6b04  size 36  kind cxx)
+  0f6b14  sub_1000f6a38(a0, a1, a2, a3)
+  0f6b24  return
+
+== csl::AmbisonicDecoder::~AmbisonicDecoder/*deleting*/   (address 0x1000f6b28  size 56  kind cxx)
+  0f6b38  sub_1000f6a38(a0, a1, a2, a3)
+  0f6b48  tail ZdlPv(a0)
+  0f6b54  ZdlPv()
+
+== sub_1000f6b60   (address 0x1000f6b60  size 1056  kind sub)
+  0f6b88  sub_1000f7118(a0, a0[+0xc8], a2, a3)
+  0f6ba8  malloc((a0[+0x60] << 3))
+  0f6bb0  if (a0[+0x60] == 0) goto loc_1000f6c10
+loc_1000f6bc0:
+  0f6bc4  Znam((a0[+0x60] << 2))
+  0f6bd0  if ((w24 - 1) != 0) goto loc_1000f6bc0
+  0f6bd8  malloc((a0[+0x60] << 3))
+  0f6be4  if (a0[+0x60] == 0) goto loc_1000f6c28
+loc_1000f6bf0:
+  0f6bf4  Znam((a0[+0x60] << 2))
+  0f6c04  if (a0[+0x60] != (x24 + 1)) goto loc_1000f6bf0
+  0f6c0c  goto loc_1000f6c2c
+loc_1000f6c10:
+  0f6c18  malloc((a0[+0x60] << 3))
+  0f6c24  goto loc_1000f6c30
+loc_1000f6c28:
+loc_1000f6c2c:
+loc_1000f6c30:
+  0f6c34  malloc(((x8 - x9) & 0x7fffffff8))
+  0f6c3c  if (((x8 - x9) >>> 3) == 0) goto loc_1000f6c60
+loc_1000f6c4c:
+  0f6c50  Znam((a0[+0x60] << 2))
+  0f6c5c  if ((w25 - 1) != 0) goto loc_1000f6c4c
+loc_1000f6c60:
+  0f6c6c  sub_1000f7118(a0, malloc(((x8 - x9) & 0x7fffffff8)))
+  0f6c70  if (a0[+0x60] == 0) goto loc_1000f6ccc
+loc_1000f6c78:
+loc_1000f6c80:
+  0f6c84  if (((x8 - x9) >>> 3) == 0) goto loc_1000f6cb4
+loc_1000f6c94:
+  0f6cb0  if ((w11 - 1) != 0) goto loc_1000f6c94
+loc_1000f6cb4:
+  0f6cbc  if ((x9 + 1) != a0[+0x60]) goto loc_1000f6c80
+  0f6cc8  if ((x8 + 1) != a0[+0x60]) goto loc_1000f6c78
+loc_1000f6ccc:
+  0f6cd8  Znam(((a0[+0x60] * a0[+0x60]) << 2))
+  0f6ce4  Znam(((a0[+0x60] * a0[+0x60]) << 2))
+  0f6cf0  Znam((a0[+0x60] << 2))
+  0f6d00  Znam((a0[+0x60] << 3))
+  0f6d0c  Znam((a0[+0x60] << 3))
+  0f6d14  if (a0[+0x60] == 0) goto loc_1000f6e50
+loc_1000f6d20:
+loc_1000f6d40:
+  0f6d50  if (a0[+0x60] != (x10 + 1)) goto loc_1000f6d40
+  0f6d60  if ((x9 + 1) != a0[+0x60]) goto loc_1000f6d20
+  0f6d78  sub_1000f8720(Znam((a0[+0x60] << 3)), a0[+0x60], a0[+0x60], Znam((a0[+0x60] << 2)))
+  0f6d7c  if (a0[+0x60] == 0) goto loc_1000f6e68
+loc_1000f6d8c:
+  0f6d9c  if ((w8 - 1) != 0) goto loc_1000f6d8c
+  0f6da0  if (a0[+0x60] == 0) goto loc_1000f6e68
+loc_1000f6dc0:
+  0f6dc8  if (s2 >= (or unordered) s0) goto loc_1000f6dd4
+  0f6dd0  goto loc_1000f6dd8
+loc_1000f6dd4:
+loc_1000f6dd8:
+  0f6de4  if (a0[+0x60] != (x8 + 1)) goto loc_1000f6dc0
+  0f6de8  if (a0[+0x60] == 0) goto loc_1000f6e68
+loc_1000f6df0:
+loc_1000f6df8:
+loc_1000f6e0c:
+  0f6e30  if (a0[+0x60] != (x11 + 1)) goto loc_1000f6e0c
+  0f6e3c  if ((x9 + 1) != a0[+0x60]) goto loc_1000f6df8
+  0f6e48  if ((x8 + 1) != a0[+0x60]) goto loc_1000f6df0
+  0f6e4c  goto loc_1000f6e68
+loc_1000f6e50:
+  0f6e64  sub_1000f8720(Znam((a0[+0x60] << 3)), a0[+0x60], a0[+0x60], Znam((a0[+0x60] << 2)))
+loc_1000f6e68:
+  0f6e6c  ZdaPv(Znam((a0[+0x60] << 2)))
+  0f6e74  ZdaPv(Znam((a0[+0x60] << 3)))
+  0f6e7c  ZdaPv(Znam((a0[+0x60] << 3)))
+  0f6e84  ZdaPv(Znam(((a0[+0x60] * a0[+0x60]) << 2)))
+  0f6e8c  ZdaPv(Znam(((a0[+0x60] * a0[+0x60]) << 2)))
+  0f6e94  if (((x8 - x9) >>> 3) == 0) goto loc_1000f6ef8
+loc_1000f6e9c:
+  0f6e9c  if (a0[+0x60] == 0) goto loc_1000f6eec
+loc_1000f6eac:
+loc_1000f6ebc:
+  0f6edc  if (a0[+0x60] != (x11 + 1)) goto loc_1000f6ebc
+  0f6ee8  if ((x9 + 1) != a0[+0x60]) goto loc_1000f6eac
+loc_1000f6eec:
+  0f6ef4  if ((x8 + 1) != ((x8 - x9) >>> 3)) goto loc_1000f6e9c
+loc_1000f6ef8:
+  0f6efc  if (a0[+0x60] == 0) goto loc_1000f6f2c
+loc_1000f6f04:
+  0f6f08  if (x0 == 0) goto loc_1000f6f10
+  0f6f0c  ZdaPv()
+loc_1000f6f10:
+  0f6f14  if (x0 == 0) goto loc_1000f6f1c
+  0f6f18  ZdaPv()
+loc_1000f6f1c:
+  0f6f28  if ((w20 - 1) != 0) goto loc_1000f6f04
+loc_1000f6f2c:
+  0f6f2c  if (((x8 - x9) >>> 3) == 0) goto loc_1000f6f4c
+loc_1000f6f34:
+  0f6f38  if (x0 == 0) goto loc_1000f6f40
+  0f6f3c  ZdaPv()
+loc_1000f6f40:
+  0f6f48  if ((w22 - 1) != 0) goto loc_1000f6f34
+loc_1000f6f4c:
+  0f6f50  free(malloc((a0[+0x60] << 3)))
+  0f6f58  free(malloc((a0[+0x60] << 3)))
+  0f6f7c  tail free(malloc(((x8 - x9) & 0x7fffffff8)))
+
+== sub_1000f6f80   (address 0x1000f6f80  size 128  kind sub)
+  0f6f94  sub_1000f7118(a0, a0[+0xc8], a2, a3)
+  0f6fa8  if (((x8 - x9) >>> 3) == 0) goto loc_1000f6ff4
+loc_1000f6fc0:
+  0f6fc0  if (a0[+0x60] == 0) goto loc_1000f6fe8
+loc_1000f6fd0:
+  0f6fe4  if ((x11 + 1) <u a0[+0x60]) goto loc_1000f6fd0
+loc_1000f6fe8:
+  0f6ff0  if ((x9 + 1) != ((x8 - x9) >>> 3)) goto loc_1000f6fc0
+loc_1000f6ff4:
+  0f6ffc  return
+
+== sub_1000f7000   (address 0x1000f7000  size 140  kind sub)
+  0f7008  if (a0[+0x60] <u 2) goto loc_1000f7088
+loc_1000f7034:
+  0f7034  if (((x9 - x10) >>> 3) == 0) goto loc_1000f707c
+loc_1000f7064:
+  0f7078  if ((w15 - 1) != 0) goto loc_1000f7064
+loc_1000f707c:
+  0f7084  if ((x11 + 1) <u a0[+0x60]) goto loc_1000f7034
+loc_1000f7088:
+  0f7088  return
+
+== sub_1000f708c   (address 0x1000f708c  size 140  kind sub)
+  0f7094  if (a0[+0x60] <u 2) goto loc_1000f7114
+loc_1000f70c0:
+  0f70c0  if (((x9 - x10) >>> 3) == 0) goto loc_1000f7108
+loc_1000f70f0:
+  0f7104  if ((w15 - 1) != 0) goto loc_1000f70f0
+loc_1000f7108:
+  0f7110  if ((x11 + 1) <u a0[+0x60]) goto loc_1000f70c0
+loc_1000f7114:
+  0f7114  return
+
+== sub_1000f7118   (address 0x1000f7118  size 200  kind sub)
+  0f7160  if (((x10 - x9) >>> 3) == 0) goto loc_1000f71c0
+  0f7174  goto loc_1000f7180
+loc_1000f7178:
+loc_1000f7180:
+  0f7194  call sub_1000ef15c
+  0f71a0  call sub_1000ef1fc
+  0f71b4  sub_1000f932c(x0, &sp[0x0])
+  0f71bc  if ((((x10 - x9) >>> 3) - 1) != w23) goto loc_1000f7178
+loc_1000f71c0:
+  0f71dc  return
+
+== csl::AmbisonicDecoder::vfunc_5   (address 0x1000f71e0  size 532  kind cxx)
+  0f7224  if (a1[+0x8] >=u ((x8 - x9) >>> 3)) goto loc_1000f72e4
+  0f7238  sub_1000e772c(2, "AmbisonicDecoder needs a buffer with %d channels, found only %d\n", a2, a3)
+  0f7240  cxa_allocate_exception(16)
+  0f7258  ZNSsC1EPKcRKSaIcE(&sp[0x20], "Insufficient number of channels in buffer passed.", &sp[0x18])
+  0f7264  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x20])
+  0f7274  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f728c  cxa_throw(cxa_allocate_exception(16), &d_100428f80, INDIRECT_SYMBOL_LOCAL)
+  0f7290  goto sub_1000f73f4
+  0f72b0  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f72d8
+loc_1000f72b8:
+  0f72c4  if (w11 != 0) goto loc_1000f72b8
+  0f72cc  if (w9 > 0) goto loc_1000f72d8
+  0f72d4  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x28])
+loc_1000f72d8:
+  0f72dc  if (w20 >= 0) goto loc_1000f73c8
+  0f72e0  cxa_call_unexpected()
+loc_1000f72e4:
+  0f72ec  sub_1000e8310(a1, a1, a2, a3)
+  0f72f8  a0[+0xb0][+0x10][+0xc] = a1[+0xc]
+  0f72fc  a0[+0xb0][+0x10][+0x2c] = 0
+  0f7310  call a0[+0xb0][+0x8][+0x0][+0x20]
+  0f7318  a0[+0xb0][+0x10][+0x2a] = 1
+  0f731c  if (a0[+0x60] == 0) goto loc_1000f73a8
+loc_1000f7324:
+  0f7338  call a0[+0xb0][+0x10][+0x0][+0x20]
+  0f7340  if (((x8 - x9) >>> 3) == 0) goto loc_1000f739c
+loc_1000f7348:
+  0f7358  call a1[+0x0][+0x20]
+  0f735c  if (a1[+0xc] == 0) goto loc_1000f7390
+loc_1000f7370:
+  0f738c  if ((w9 - 1) != 0) goto loc_1000f7370
+loc_1000f7390:
+  0f7398  if ((x23 + 1) <u ((x8 - x9) >>> 3)) goto loc_1000f7348
+loc_1000f739c:
+  0f73a4  if ((x27 + 1) <u a0[+0x60]) goto loc_1000f7324
+loc_1000f73a8:
+  0f73c4  return
+  0f73ec  cxa_free_exception()
+
+== sub_1000f73f4   (address 0x1000f73f4  size 60  kind sub)
+  0f740c  ZNSt8ios_base4InitC1Ev(&g_10042db9a, a1, a2, a3)
+  0f742c  tail cxa_atexit(__ZNSt8ios_base4InitD1Ev, &g_10042db9a, 0x100000000)
+
+== sub_1000f7430   (address 0x1000f7430  size 240  kind sub)
+  0f7450  sub_1000f0c10(a0, a2, a2, a3)
+  0f7460  a0[+0x0] = vtable<csl::AmbisonicPanner>
+  0f7468  a0[+0xa8] = vtable<csl::AmbisonicPanner (secondary, -0xa8)>
+  0f7470  a0[+0x64] = 2
+  0f7478  Znwm(216)
+  0f7488  sub_1000f77ac(Znwm(216), a1)
+  0f748c  a0[+0x128] = Znwm(216)
+  0f7494  Znwm(272)
+  0f74a4  sub_1000f7dc0(Znwm(272), Znwm(216))
+  0f74a8  a0[+0x138] = Znwm(272)
+  0f74b0  Znwm(224)
+  0f74cc  sub_1000f6a14(Znwm(224), Znwm(272), a2, 1)
+  0f74d0  a0[+0x130] = Znwm(224)
+  0f74e4  return
+  0f7508  ZdlPv()
+  0f7510  call sub_1000f0d70
+  0f751c  call sub_10000b760
+
+== sub_1000f7520   (address 0x1000f7520  size 36  kind sub)
+  0f7530  sub_1000f7430(a0, a1, a2, a3)
+  0f7540  return
+
+== sub_1000f7544   (address 0x1000f7544  size 148  kind sub)
+  0f7560  a0[+0x0] = vtable<csl::AmbisonicPanner>
+  0f7568  a0[+0xa8] = vtable<csl::AmbisonicPanner (secondary, -0xa8)>
+  0f7570  if (a0[+0x130] == 0) goto loc_1000f7580
+  0f757c  call a0[+0x130][+0x0][+0x8]
+loc_1000f7580:
+  0f7584  if (a0[+0x138] == 0) goto loc_1000f7594
+  0f7590  call a0[+0x138][+0x0][+0x8]
+loc_1000f7594:
+  0f7598  if (a0[+0x128] == 0) goto loc_1000f75a8
+  0f75a4  call a0[+0x128][+0x0][+0x8]
+loc_1000f75a8:
+  0f75ac  sub_1000f0d70(a0)
+  0f75bc  return
+  0f75c8  call sub_1000f0d70
+  0f75d4  call sub_10000b760

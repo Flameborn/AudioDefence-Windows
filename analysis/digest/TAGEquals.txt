@@ -1,0 +1,11 @@
+
+== +[TAGEquals functionId]   (address 0x100178800  size 44  kind objc)
+  178828  return
+
+== -[TAGEquals init]   (address 0x10017882c  size 68  kind objc)
+  178860  [super initWithFunctionId:@"_eq"]
+  17886c  return
+
+== -[TAGEquals evaluateWithArg0:arg1:parameters:]   (address 0x100178870  size 140  kind objc)
+  1788b4  [arg1 isEqualToString:arg2]
+  1788dc  return

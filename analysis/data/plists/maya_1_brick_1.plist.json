@@ -1,0 +1,76 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "bastard_ruins_intro"
+  }
+ ],
+ "Enemies": {
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "bastard_ruins_intro"
+   },
+   "spawn_angle": 45,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "bastard_ruins_intro"
+   },
+   "spawn_angle": 110,
+   "spawn_distance": 10
+  },
+  "RunnerB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 6,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 140,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "bastard_ruins_intro"
+   },
+   "spawn_angle": 300,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 8,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 200,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 320,
+   "spawn_distance": 10
+  }
+ }
+}

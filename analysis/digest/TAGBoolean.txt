@@ -1,0 +1,80 @@
+
+== +[TAGBoolean initialize]   (address 0x10015945c  size 144  kind objc)
+  159484  [TAGBoolean alloc]
+  15949c  [[TAGBoolean alloc] initWithBool:1]
+  1594ac  store g_10042df30 = [[TAGBoolean alloc] initWithBool:1]
+  1594c0  [TAGBoolean alloc]
+  1594cc  [[TAGBoolean alloc] initWithBool:0]
+  1594d4  store g_10042df38 = [[TAGBoolean alloc] initWithBool:0]
+  1594e8  return
+
+== -[TAGBoolean initWithBool:]   (address 0x1001594ec  size 88  kind objc)
+  159520  [super init]
+  159524  if (self == 0) goto loc_100159534
+  159530  self->_boolValue = arg1
+loc_100159534:
+  159540  return
+
+== +[TAGBoolean booleanWithBool:]   (address 0x100159544  size 72  kind objc)
+  159568  [TAGBoolean alloc]
+  15957c  [[TAGBoolean alloc] initWithBool:arg1]
+  159588  return
+
+== +[TAGBoolean booleanWithString:]   (address 0x10015958c  size 216  kind objc)
+  1595c8  [@"true" caseInsensitiveCompare:arg1]
+  1595cc  if ([@"true" caseInsensitiveCompare:arg1] == 0) goto loc_1001595f0
+  1595e0  [@"false" caseInsensitiveCompare:arg1]
+  1595e4  if ([@"false" caseInsensitiveCompare:arg1] == 0) goto loc_100159610
+  1595ec  goto loc_100159634
+loc_1001595f0:
+  159604  [TAGBoolean booleanWithBool:1]
+  15960c  goto loc_10015962c
+loc_100159610:
+  159624  [TAGBoolean booleanWithBool:0]
+loc_10015962c:
+loc_100159634:
+  15964c  return
+
+== +[TAGBoolean yes]   (address 0x100159664  size 16  kind objc)
+
+== +[TAGBoolean no]   (address 0x100159674  size 16  kind objc)
+
+== -[TAGBoolean copyWithZone:]   (address 0x100159684  size 96  kind objc)
+  1596a8  [TAGBoolean allocWithZone:arg1]
+  1596c0  [self boolValue]
+  1596e0  tail [[TAGBoolean allocWithZone:arg1] initWithBool:[self boolValue]]
+
+== -[TAGBoolean description]   (address 0x1001596e4  size 56  kind objc)
+  1596f8  [self boolValue]
+
+== -[TAGBoolean isEqual:]   (address 0x10015971c  size 188  kind objc)
+  159750  [TAGBoolean class]
+  159768  [arg1 isKindOfClass:[TAGBoolean class]]
+  15976c  if ([arg1 isKindOfClass:[TAGBoolean class]] == 0) goto loc_1001597a4
+  159784  [self boolValue]
+  159794  [arg1 boolValue]
+  1597a0  goto loc_1001597a8
+loc_1001597a4:
+loc_1001597a8:
+  1597c0  return
+
+== -[TAGBoolean hash]   (address 0x1001597d8  size 48  kind objc)
+  1597ec  [self boolValue]
+  159804  return
+
+== -[TAGBoolean initWithCoder:]   (address 0x100159808  size 148  kind objc)
+  159840  [arg1 decodeBoolForKey:@"value"]
+  15985c  [self initWithBool:[arg1 decodeBoolForKey:@"value"]]
+  15987c  return
+
+== -[TAGBoolean encodeWithCoder:]   (address 0x10015989c  size 116  kind objc)
+  1598c8  [self boolValue]
+  1598e8  [arg1 encodeBool:[self boolValue] forKey:@"value"]
+  1598f8  return
+
+== -[TAGBoolean boolValue]   (address 0x100159910  size 16  kind objc)
+  15991c  return
+
+== -[TAGBoolean setBoolValue:]   (address 0x100159920  size 16  kind objc)
+  159928  self->_boolValue = arg1
+  15992c  return

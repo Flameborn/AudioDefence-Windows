@@ -1,0 +1,123 @@
+
+== -[ADInventoryItemViewController initWithNibName:bundle:name:]   (address 0x100043ec8  size 252  kind objc)
+  043f3c  [super initWithNibName:arg1 bundle:arg2]
+  043f44  if (self == 0) goto loc_100043f64
+  043f60  [self setName:arg3]
+loc_100043f64:
+  043f94  return
+
+== -[ADInventoryItemViewController viewDidLoad]   (address 0x100043fc4  size 300  kind objc)
+  043ff8  [super viewDidLoad]
+  04400c  [self name]
+  044030  [self loadWeaponWithName:[self name]]
+  04404c  [self view]
+  044070  [UIColor clearColor]
+  044094  [[self view] setBackgroundColor:[UIColor clearColor]]
+  0440b4  return
+
+== -[ADInventoryItemViewController loadWeaponWithName:]   (address 0x1000440f0  size 176  kind objc)
+  04415c  [UIView animateWithDuration:0.3 animations:^{-[ADInventoryItemViewController loadWeaponWithName:]_block_invoke captures +0x20=self}]
+  044170  [self refreshDisplay]
+  044188  return
+
+== -[ADInventoryItemViewController loadWeaponWithName:]_block_invoke   (address 0x1000441a0  size 100  kind block)
+  0441bc  [self titleLabel]
+  0441dc  [[self titleLabel] setAlpha:1]
+  0441ec  return
+
+== sub_100044204   (address 0x100044204  size 8  kind sub)
+
+== sub_10004420c   (address 0x10004420c  size 8  kind sub)
+  044210  return
+
+== -[ADInventoryItemViewController refreshDisplay]   (address 0x100044214  size 952  kind objc)
+  044244  [self titleLabel]
+  044268  [ADWeaponManager sharedWeaponManager]
+  04428c  [self name]
+  0442b0  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self name]]
+  0442d8  [[self titleLabel] setText:[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self name]]]
+  04430c  [self weaponImage]
+  044334  [self name]
+  044364  [NSString stringWithFormat:@"%@_icon", [self name]]
+  044388  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [self name]]]
+  0443ac  [[self weaponImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [self name]]]]
+  0443e0  [self type]
+  0443e8  if ([self type] != 3) goto loc_1000444b8
+  044400  [ADInventory sharedInventory]
+  044418  [self name]
+  04443c  [[ADInventory sharedInventory] quantityForPowerUpWithName:[self name]]
+  044464  [self quantityLabel]
+  044488  [NSString stringWithFormat:@"x %i", [[ADInventory sharedInventory] quantityForPowerUpWithName:[self name]]]
+  0444a4  [[self quantityLabel] setText:[NSString stringWithFormat:@"x %i", [[ADInventory sharedInventory] quantityForPowerUpWithName:[self name]]]]
+  0444b4  goto loc_1000444f0
+loc_1000444b8:
+  0444c8  [self quantityLabel]
+  0444e8  [[self quantityLabel] setHidden:1]
+loc_1000444f0:
+  04450c  return
+
+== -[ADInventoryItemViewController makeEmpty]   (address 0x1000445cc  size 152  kind objc)
+  044634  [UIView animateWithDuration:0.3 animations:^{-[ADInventoryItemViewController makeEmpty]_block_invoke captures +0x20=self}]
+  04464c  return
+
+== -[ADInventoryItemViewController makeEmpty]_block_invoke   (address 0x100044664  size 100  kind block)
+  044680  [self titleLabel]
+  0446a0  [[self titleLabel] setAlpha:0]
+  0446b0  return
+
+== sub_1000446c8   (address 0x1000446c8  size 8  kind sub)
+
+== sub_1000446d0   (address 0x1000446d0  size 8  kind sub)
+  0446d4  return
+
+== -[ADInventoryItemViewController buttonPressed:]   (address 0x1000446d8  size 176  kind objc)
+  0446f4  [self armoryViewController]
+  044714  [self name]
+  04473c  [[self armoryViewController] openDescriptionForItemWithName:[self name] withButton:1]
+  044754  return
+
+== -[ADInventoryItemViewController didReceiveMemoryWarning]   (address 0x100044788  size 60  kind objc)
+  0447b4  [super didReceiveMemoryWarning]
+  0447c0  return
+
+== -[ADInventoryItemViewController titleLabel]   (address 0x1000447c4  size 16  kind objc)
+  0447d0  return
+
+== -[ADInventoryItemViewController setTitleLabel:]   (address 0x1000447d4  size 56  kind objc)
+  0447f8  self->_titleLabel = arg1
+  044808  return
+
+== -[ADInventoryItemViewController quantityLabel]   (address 0x10004480c  size 16  kind objc)
+  044818  return
+
+== -[ADInventoryItemViewController setQuantityLabel:]   (address 0x10004481c  size 56  kind objc)
+  044840  self->_quantityLabel = arg1
+  044850  return
+
+== -[ADInventoryItemViewController name]   (address 0x100044854  size 16  kind objc)
+  044860  return
+
+== -[ADInventoryItemViewController setName:]   (address 0x100044864  size 56  kind objc)
+  044888  self->_name = arg1
+  044898  return
+
+== -[ADInventoryItemViewController armoryViewController]   (address 0x10004489c  size 32  kind objc)
+  0448b8  return
+
+== -[ADInventoryItemViewController setArmoryViewController:]   (address 0x1000448bc  size 20  kind objc)
+
+== -[ADInventoryItemViewController weaponImage]   (address 0x1000448d0  size 16  kind objc)
+  0448dc  return
+
+== -[ADInventoryItemViewController setWeaponImage:]   (address 0x1000448e0  size 56  kind objc)
+  044904  self->_weaponImage = arg1
+  044914  return
+
+== -[ADInventoryItemViewController type]   (address 0x100044918  size 16  kind objc)
+  044924  return
+
+== -[ADInventoryItemViewController setType:]   (address 0x100044928  size 16  kind objc)
+  044930  self->_type = arg1
+  044934  return
+
+== -[ADInventoryItemViewController .cxx_destruct]   (address 0x100044938  size 120  kind objc)

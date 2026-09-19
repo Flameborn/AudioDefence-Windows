@@ -1,0 +1,141 @@
+
+== -[SharkfoodMuteSwitchDetector init]_block_invoke   (address 0x10007d764  size 40  kind block)
+  07d780  [blockarg1 complete]
+  07d788  return
+
+== -[SharkfoodMuteSwitchDetector init]   (address 0x10007d78c  size 664  kind objc)
+  07d7c8  [super init]
+  07d7d0  if (self == 0) goto loc_10007d9bc
+  07d7ec  [NSBundle mainBundle]
+  07d818  [[NSBundle mainBundle] URLForResource:@"mute" withExtension:@"caf"]
+  07d840  AudioServicesCreateSystemSoundID([[NSBundle mainBundle] URLForResource:@"mute" withExtension:@"caf"], x1)
+  07d844  if (AudioServicesCreateSystemSoundID([[NSBundle mainBundle] URLForResource:@"mute" withExtension:@"caf"], x1) == 0) goto loc_10007d864
+  07d85c  [self setSoundId:0xffffffff]
+  07d860  goto loc_10007d908
+loc_10007d864:
+  07d874  [self soundId]
+  07d87c  CFRunLoopGetMain([self soundId])
+  07d8a0  AudioServicesAddSystemSoundCompletion([self soundId], CFRunLoopGetMain([self soundId]), _kCFRunLoopDefaultMode[+0x0], &-[SharkfoodMuteSwitchDetector init]_block_invoke)
+  07d8c4  AudioServicesSetProperty(0x69737569, 4, x2, 4)
+  07d8ec  [self performSelector:@selector(loopCheck) withObject:0 afterDelay:1]
+  07d904  [self setForceEmit:1]
+loc_10007d908:
+  07d920  [NSNotificationCenter defaultCenter]
+  07d960  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackground) name:_UIApplicationDidEnterBackgroundNotification[+0x0] object:0]
+  07d974  [NSNotificationCenter defaultCenter]
+  07d9a8  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willReturnToForeground) name:_UIApplicationWillEnterForegroundNotification[+0x0] object:0]
+loc_10007d9bc:
+  07d9d4  return
+
+== -[SharkfoodMuteSwitchDetector didEnterBackground]   (address 0x10007da24  size 20  kind objc)
+  07da34  tail [self setIsPaused:1]
+
+== -[SharkfoodMuteSwitchDetector willReturnToForeground]   (address 0x10007da38  size 100  kind objc)
+  07da58  [self setIsPaused:0]
+  07da6c  [self isPlaying]
+  07da70  if (!([self isPlaying] & 1)) goto loc_10007da80
+  07da7c  return
+  07da98  tail [self scheduleCall]
+
+== -[SharkfoodMuteSwitchDetector setSilentNotify:]   (address 0x10007da9c  size 128  kind objc)
+  07dac4  [arg1 copy]
+  07dad4  self->_silentNotify = [arg1 copy]
+  07daf4  [self setForceEmit:1]
+  07db04  return
+
+== +[SharkfoodMuteSwitchDetector shared]   (address 0x10007db1c  size 80  kind objc)
+  07db30  if (g_10042da10 != 0) goto loc_10007db60
+  07db48  [SharkfoodMuteSwitchDetector new]
+  07db50  store g_10042da10 = [SharkfoodMuteSwitchDetector new]
+loc_10007db60:
+
+== -[SharkfoodMuteSwitchDetector scheduleCall]   (address 0x10007db6c  size 112  kind objc)
+  07db88  [self class]
+  07dbb0  [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(loopCheck) object:0]
+  07dbd8  tail [self performSelector:@selector(loopCheck) withObject:0 afterDelay:1]
+
+== -[SharkfoodMuteSwitchDetector complete]   (address 0x10007dbdc  size 360  kind objc)
+  07dc04  [self setIsPlaying:0]
+  07dc1c  [NSDate timeIntervalSinceReferenceDate]
+  07dc34  [self interval]
+  07dc5c  [self isMute]
+  07dc64  if ((([self isMute] ^ (([NSDate timeIntervalSinceReferenceDate] - [self interval]) < 0.1)) & 1)) goto loc_10007dc80
+  07dc78  [self forceEmit]
+  07dc7c  if ([self forceEmit] == 0) goto loc_10007dd0c
+loc_10007dc80:
+  07dc9c  [self setForceEmit:0]
+  07dca8  self->_isMute = (([NSDate timeIntervalSinceReferenceDate] - [self interval]) < 0.1)
+  07dcc0  [self silentNotify]
+  07dcd4  if ([self silentNotify] == 0) goto loc_10007dd0c
+  07dce8  [self silentNotify]
+  07dd00  call [self silentNotify][+0x10]
+loc_10007dd0c:
+  07dd2c  tail [self scheduleCall]
+
+== -[SharkfoodMuteSwitchDetector loopCheck]   (address 0x10007dd44  size 148  kind objc)
+  07dd60  [self isPaused]
+  07dd64  if (!([self isPaused] & 1)) goto loc_10007dd74
+  07dd70  return
+  07dd88  [NSDate timeIntervalSinceReferenceDate]
+  07dd9c  [self setInterval:[NSDate timeIntervalSinceReferenceDate]]
+  07ddb4  [self setIsPlaying:1]
+  07ddc8  [self soundId]
+  07ddd4  tail AudioServicesPlaySystemSound([self soundId])
+
+== -[SharkfoodMuteSwitchDetector dealloc]   (address 0x10007ddd8  size 268  kind objc)
+  07ddfc  [self soundId]
+  07de04  if ([self soundId] == -1) goto loc_10007de28
+  07de10  [self soundId]
+  07de14  AudioServicesRemoveSystemSoundCompletion([self soundId])
+  07de20  [self soundId]
+  07de24  AudioServicesDisposeSystemSoundID([self soundId])
+loc_10007de28:
+  07de3c  [NSNotificationCenter defaultCenter]
+  07de5c  [[NSNotificationCenter defaultCenter] removeObserver:self]
+  07de88  [super dealloc]
+  07de98  return
+  07ded4  [super dealloc]
+  07dee0  call sub_10000b760
+
+== -[SharkfoodMuteSwitchDetector isMute]   (address 0x10007dee4  size 16  kind objc)
+  07def0  return
+
+== -[SharkfoodMuteSwitchDetector silentNotify]   (address 0x10007def4  size 16  kind objc)
+  07df00  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[SharkfoodMuteSwitchDetector interval]   (address 0x10007df04  size 16  kind objc)
+  07df10  return
+
+== -[SharkfoodMuteSwitchDetector setInterval:]   (address 0x10007df14  size 16  kind objc)
+  07df1c  self->_interval = arg1
+  07df20  return
+
+== -[SharkfoodMuteSwitchDetector soundId]   (address 0x10007df24  size 16  kind objc)
+  07df30  return
+
+== -[SharkfoodMuteSwitchDetector setSoundId:]   (address 0x10007df34  size 16  kind objc)
+  07df3c  self->_soundId = arg1
+  07df40  return
+
+== -[SharkfoodMuteSwitchDetector forceEmit]   (address 0x10007df44  size 16  kind objc)
+  07df50  return
+
+== -[SharkfoodMuteSwitchDetector setForceEmit:]   (address 0x10007df54  size 16  kind objc)
+  07df5c  self->_forceEmit = arg1
+  07df60  return
+
+== -[SharkfoodMuteSwitchDetector isPaused]   (address 0x10007df64  size 16  kind objc)
+  07df70  return
+
+== -[SharkfoodMuteSwitchDetector setIsPaused:]   (address 0x10007df74  size 16  kind objc)
+  07df7c  self->_isPaused = arg1
+  07df80  return
+
+== -[SharkfoodMuteSwitchDetector isPlaying]   (address 0x10007df84  size 16  kind objc)
+  07df90  return
+
+== -[SharkfoodMuteSwitchDetector setIsPlaying:]   (address 0x10007df94  size 16  kind objc)
+  07df9c  self->_isPlaying = arg1
+  07dfa0  return
+
+== -[SharkfoodMuteSwitchDetector .cxx_destruct]   (address 0x10007dfa4  size 20  kind objc)

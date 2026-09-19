@@ -1,0 +1,93 @@
+
+== -[ADSlidingView awakeFromNib]   (address 0x10004f17c  size 20  kind objc)
+  04f18c  tail [self setAlpha:0]
+
+== -[ADSlidingView slide]   (address 0x10004f190  size 832  kind objc)
+  04f1b0  UIAccessibilityIsVoiceOverRunning()
+  04f1b4  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_10004f228
+  04f1cc  [self setAlpha:1]
+  04f1dc  if (self->_slideCompletion == 0) goto loc_10004f468
+  04f1f0  [self slideCompletion]
+  04f204  call [self slideCompletion][+0x10]
+  04f224  return
+loc_10004f228:
+  04f23c  [self xCenter]
+  04f24c  if ([self xCenter] == 0) goto loc_10004f27c
+  04f260  [self yCenter]
+  04f278  goto loc_10004f280
+loc_10004f27c:
+loc_10004f280:
+  04f290  if (w22 == 0) goto loc_10004f310
+  04f29c  [self xCenter]
+  04f2bc  [[self xCenter] floatValue]
+  04f2d4  [self yCenter]
+  04f2e8  [[self yCenter] floatValue]
+  04f30c  goto loc_10004f330
+loc_10004f310:
+  04f320  [self center]
+  04f328  self->originalCenter.x = [self center].0
+  04f32c  self->originalCenter.y = [self center].1
+loc_10004f330:
+  04f344  [self center]
+  04f354  [self center]
+  04f370  [self frame]
+  04f38c  [self setCenter:{[self center].0, ([self center].1 - [self frame].3)}]
+  04f398  [self frame]
+  04f3bc  [self setAlpha:1]
+  04f454  [UIView animateWithDuration:0.3 delay:0.5 options:1 animations:^{-[ADSlidingView slide]_block_invoke captures +0x20=self, +0x28=([self frame].3 * 0.1)} completion:^{-[ADSlidingView slide]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADSlidingView slide]_block_invoke, +0x40=&d_1003b1900, +0x48=self, +0x50=([self frame].3 * 0.1)}]
+loc_10004f468:
+  04f480  return
+
+== -[ADSlidingView slide]_block_invoke   (address 0x10004f4d0  size 48  kind block)
+  04f4fc  tail [self setCenter:{self->originalCenter.x, (self->originalCenter.y + ([self frame].3 * 0.1))}]
+
+== sub_10004f500   (address 0x10004f500  size 8  kind sub)
+
+== sub_10004f508   (address 0x10004f508  size 8  kind sub)
+  04f50c  return
+
+== -[ADSlidingView slide]_block_invoke_2   (address 0x10004f510  size 244  kind block)
+  04f580  [UIView animateWithDuration:0.1 animations:^{-[ADSlidingView slide]_block_invoke_2_block_invoke captures +0x20=self}]
+  04f594  if (self->_slideCompletion == 0) goto loc_10004f5c4
+  04f5a4  [self slideCompletion]
+  04f5b8  call [self slideCompletion][+0x10]
+loc_10004f5c4:
+  04f5d8  return
+
+== -[ADSlidingView slide]_block_invoke_2_block_invoke   (address 0x10004f604  size 36  kind block)
+  04f624  tail [self setCenter:{self->originalCenter.x, self->originalCenter.y}]
+
+== sub_10004f628   (address 0x10004f628  size 8  kind sub)
+
+== sub_10004f630   (address 0x10004f630  size 8  kind sub)
+  04f634  return
+
+== sub_10004f638   (address 0x10004f638  size 8  kind sub)
+
+== sub_10004f640   (address 0x10004f640  size 8  kind sub)
+  04f644  return
+
+== -[ADSlidingView slideCompletion]   (address 0x10004f648  size 16  kind objc)
+  04f654  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[ADSlidingView setSlideCompletion:]   (address 0x10004f658  size 12  kind objc)
+  04f660  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[ADSlidingView xCenter]   (address 0x10004f664  size 16  kind objc)
+  04f670  return
+
+== -[ADSlidingView setXCenter:]   (address 0x10004f674  size 56  kind objc)
+  04f698  self->_xCenter = arg1
+  04f6a8  return
+
+== -[ADSlidingView yCenter]   (address 0x10004f6ac  size 16  kind objc)
+  04f6b8  return
+
+== -[ADSlidingView setYCenter:]   (address 0x10004f6bc  size 56  kind objc)
+  04f6e0  self->_yCenter = arg1
+  04f6f0  return
+
+== -[ADSlidingView .cxx_destruct]   (address 0x10004f6f4  size 84  kind objc)
+
+== -[ADSlidingView .cxx_construct]   (address 0x10004f748  size 4  kind objc)
+  04f748  return

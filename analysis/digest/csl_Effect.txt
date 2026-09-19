@@ -1,0 +1,111 @@
+
+== csl::Effect::vfunc_7   (address 0x1000e9ee0  size 56  kind cxx)
+  0e9ef8  if ((a0[+0x0][+0x-18] + a0)[+0x20] == 0) goto loc_1000e9f0c
+  0e9f04  call (a0[+0x0][+0x-18] + a0)[+0x20][+0x0][+0x10]
+  0e9f08  goto loc_1000e9f10
+loc_1000e9f0c:
+loc_1000e9f10:
+  0e9f14  return
+
+== sub_1000e9f18   (address 0x1000e9f18  size 28  kind sub)
+  0e9f30  tail sub_1000e960c((a0 + a0[+0x0][+0x-18]), 3, a1, a3)
+
+== sub_1000e9f34   (address 0x1000e9f34  size 124  kind sub)
+  0e9f4c  if (a0[+0xa4] == 0) goto loc_1000e9f68
+  0e9f60  call a1[+0x0][+0x20]
+  0e9f64  goto loc_1000e9f94
+loc_1000e9f68:
+  0e9f7c  sub_1000e959c(a0, (a0[+0x0][+0x-18] + a0)[+0x20], a1, a3)
+  0e9f90  call a1[+0x0][+0x20]
+loc_1000e9f94:
+  0e9f94  a0[+0xa8] = a1[+0x0][+0x20](…)
+  0e9fa0  return
+  0e9fa4  if (w1 >= 0) goto loc_1000e9fac
+  0e9fa8  cxa_call_unexpected()
+
+== sub_1000e9fb0   (address 0x1000e9fb0  size 100  kind sub)
+  0e9fd4  if ((a0[+0x0][+0x-18] + a0)[+0x20] == 0) goto loc_1000e9ffc
+  0e9fe0  sub_1000e94a4(a0, (a0[+0x0][+0x-18] + a0)[+0x20], a1, a3)
+  0e9ff4  call (a0[+0x0][+0x-18] + a0)[+0x20][+0x10][+0x0][+0x20]
+  0e9ff8  a0[+0xa8] = (a0[+0x0][+0x-18] + a0)[+0x20][+0x10][+0x0][+0x20](…)
+loc_1000e9ffc:
+  0ea004  return
+  0ea008  if (w1 >= 0) goto loc_1000ea010
+  0ea00c  cxa_call_unexpected()
+
+== csl::Effect::vfunc_13   (address 0x1000ea014  size 36  kind cxx)
+  0ea024  if ((a0[+0x0][+0x-18] + a0)[+0x20] == 0) goto loc_1000ea034
+loc_1000ea034:
+  0ea034  return
+
+== csl::Effect::vfunc_12   (address 0x1000ea038  size 132  kind cxx)
+  0ea068  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0ea07c  if ((a0[+0x0][+0x-18] + a0)[+0x20] == 0) goto loc_1000ea098
+  0ea084  if ((a0[+0x0][+0x-18] + a0)[+0x20][+0x8] == 0) goto loc_1000ea098
+  0ea094  call (a0[+0x0][+0x-18] + a0)[+0x20][+0x8][+0x0][+0x60]
+loc_1000ea098:
+  0ea0b4  return
+
+== csl::Effect::thunk_vfunc_3   (address 0x1000ea0bc  size 16  kind cxx)
+  0ea0c8  tail csl::Effect::vfunc_12((a0 + a0[+0x0][+0x-28]), a1, a2, a3)
+
+== sub_1000ea0cc   (address 0x1000ea0cc  size 180  kind sub)
+  0ea0ec  sub_1000e9e40(a0, (a1 + 8), a2, a3)
+  0ea0f4  a0[+0x0] = a1[+0x0]
+  0ea114  a0[+0xb0] = vtable<csl::Buffer>
+  0ea11c  a0[+0x18] = 0
+  0ea124  a0[+0x1c] = 4
+  0ea128  a0[+0x28] = 0
+  0ea12c  a0[+0x29] = 0
+  0ea130  a0[+0x2a] = 0
+  0ea138  a0[+0x2b] = 1
+  0ea13c  a0[+0x2c] = 0
+  0ea140  a0[+0x30] = 0
+  0ea14c  sub_1000e7fac(a0, 1, 256)
+  0ea164  return
+  0ea170  call sub_1000e8918
+  0ea17c  call sub_10000b760
+
+== sub_1000ea180   (address 0x1000ea180  size 300  kind sub)
+  0ea1a8  a0[+0xf0] = vtable<csl::Controllable>
+  0ea1b8  memset((a0 + 248), 0, 104, a3)
+  0ea1d0  sub_1000e9e40(a0, &d_1003b4498, a1)
+  0ea1e0  a0[+0x0] = vtable<csl::FanOut>
+  0ea1e8  a0[+0xf0] = vtable<csl::FanOut (secondary, -0xf0)>
+  0ea1fc  a0[+0xb0] = vtable<csl::Buffer>
+  0ea200  a0[+0x18] = 0
+  0ea204  a0[+0x10] = 0
+  0ea20c  a0[+0x8] = 0
+  0ea210  a0[+0x1c] = 4
+  0ea214  a0[+0x28] = 0
+  0ea218  a0[+0x29] = 0
+  0ea21c  a0[+0x2a] = 0
+  0ea224  a0[+0x2b] = 1
+  0ea228  a0[+0x2c] = 0
+  0ea22c  a0[+0x30] = 0
+  0ea238  sub_1000e7fac(a0, 1, 256)
+  0ea250  return
+  0ea264  call sub_1000e8918
+  0ea27c  if (x0 == 0) goto loc_1000ea290
+  0ea288  call x8
+  0ea298  if ((x21 + 8) != 104) goto loc_1000ea278
+  0ea2a4  call sub_10000b760
+  0ea2a8  sub_10000b760(sub_10000b760())
+
+== csl::Effect::~Effect(…)   (address 0x1000ed72c  size 68  kind sym)
+  0ed73c  sub_1000e8918(a0, a1, a2, a3)
+  0ed744  sub_1000e9388((a0 + 176))
+  0ed754  return
+  0ed760  sub_1000e9388((x19 + 176))
+  0ed76c  call sub_10000b760
+
+== csl::Effect::~Effect/*deleting*/(…)   (address 0x1000ed770  size 56  kind sym)
+  0ed780  ZN3csl6EffectD1Ev(a0, a1, a2, a3)
+  0ed790  tail ZdlPv(a0)
+  0ed79c  ZdlPv()
+
+== csl::Effect::thunk_vfunc_0   (address 0x1000ed7a8  size 16  kind cxx)
+  0ed7b4  tail ZN3csl6EffectD1Ev((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Effect::thunk_vfunc_1   (address 0x1000ed7b8  size 16  kind cxx)
+  0ed7c4  tail ZN3csl6EffectD0Ev((a0 + a0[+0x0][+0x-18]), a1, a2, a3)

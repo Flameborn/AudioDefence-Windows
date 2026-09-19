@@ -1,0 +1,172 @@
+
+== -[GAIRequestBuilder init]   (address 0x10011e314  size 132  kind objc)
+  11e344  [super init]
+  11e34c  if (self == 0) goto loc_10011e384
+  11e364  [GAIHitUtil userAgentString]
+  11e374  [[GAIHitUtil userAgentString] copy]
+  11e380  self->userAgent_ = [[GAIHitUtil userAgentString] copy]
+loc_10011e384:
+  11e394  return
+
+== -[GAIRequestBuilder dealloc]   (address 0x10011e398  size 100  kind objc)
+  11e3c4  [self->userAgent_ release]
+  11e3e8  [super dealloc]
+  11e3f8  return
+
+== -[GAIRequestBuilder encodeParameter:withValue:]   (address 0x10011e3fc  size 236  kind objc)
+  11e42c  [GAIStringUtil stripLeadingAmpersand:arg1]
+  11e444  [arg2 length]
+  11e448  if ([arg2 length] == 0) goto loc_10011e4bc
+  11e46c  [GAIStringUtil percentEncode:[GAIStringUtil stripLeadingAmpersand:arg1]]
+  11e480  [GAIStringUtil percentEncode:arg2]
+  11e4a0  [NSString stringWithFormat:@"%@=%@", [GAIStringUtil percentEncode:[GAIStringUtil stripLeadingAmpersand:arg1]], [GAIStringUtil percentEncode:arg2]]
+  11e4b8  return
+  11e4e4  tail [GAIStringUtil percentEncode:[GAIStringUtil stripLeadingAmpersand:arg1]]
+
+== -[GAIRequestBuilder encodeParameters:]   (address 0x10011e4e8  size 536  kind objc)
+  11e53c  [arg1 count]
+  11e554  [NSMutableArray arrayWithCapacity:[arg1 count]]
+  11e57c  [arg1 allKeys]
+  11e5a0  [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  11e5a8  if ([[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_10011e6c0
+  11e5b4  [&d_1003b8500] -> @"&z"
+loc_10011e614:
+loc_10011e618:
+  11e624  if (x8 == x21) goto loc_10011e630
+  11e62c  objc_enumerationMutation([arg1 allKeys])
+loc_10011e630:
+  11e644  [x0 isEqualToString:@"&z"]
+  11e648  if (([x0 isEqualToString:@"&z"] & 1)) goto loc_10011e698
+  11e658  [arg1 objectForKey:x2]
+  11e668  [self parameterValueToString:[arg1 objectForKey:x2]]
+  11e670  if ([self parameterValueToString:[arg1 objectForKey:x2]] == 0) goto loc_10011e698
+  11e684  [self encodeParameter:x2 withValue:[self parameterValueToString:[arg1 objectForKey:x2]]]
+  11e694  [[NSMutableArray arrayWithCapacity:[arg1 count]] addObject:[self encodeParameter:x2 withValue:[self parameterValueToString:[arg1 objectForKey:x2]]]]
+loc_10011e698:
+  11e6a0  if ((x19 + 1) <u [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10011e618
+  11e6b4  [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  11e6bc  if ([[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10011e614
+loc_10011e6c0:
+  11e6f8  return
+
+== -[GAIRequestBuilder parameterValueToString:]   (address 0x10011e700  size 212  kind objc)
+  11e714  if (arg1 == 0) goto loc_10011e7bc
+  11e730  [NSNull class]
+  11e74c  [arg1 isKindOfClass:[NSNull class]]
+  11e750  if (([arg1 isKindOfClass:[NSNull class]] & 1)) goto loc_10011e7bc
+  11e760  [NSString class]
+  11e770  [arg1 isKindOfClass:[NSString class]]
+  11e774  if ([arg1 isKindOfClass:[NSString class]] != 0) goto loc_10011e7c0
+  11e784  [NSNumber class]
+  11e794  [arg1 isKindOfClass:[NSNumber class]]
+  11e798  if ([arg1 isKindOfClass:[NSNumber class]] == 0) goto loc_10011e7bc
+  11e7b8  tail [arg1 stringValue]
+loc_10011e7bc:
+loc_10011e7c0:
+  11e7d0  return
+
+== -[GAIRequestBuilder parametersForHit:]   (address 0x10011e7d4  size 732  kind objc)
+  11e804  [&d_1003b8500] -> @"&z"
+  11e810  [&d_1003b81f0] -> @"parameters"
+  11e82c  [arg1 objectForKeyedSubscript:@"parameters"]
+  11e840  [[arg1 objectForKeyedSubscript:@"parameters"] objectForKey:@"&z"]
+  11e854  [arg1 objectForKeyedSubscript:@"parameters"]
+  11e864  [[arg1 objectForKeyedSubscript:@"parameters"] allKeys]
+  11e888  [NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]
+  11e8a0  [[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]
+  11e8b4  [arg1 objectForKeyedSubscript:@"parameters"]
+  11e8c8  [[arg1 objectForKeyedSubscript:@"parameters"] dictionaryWithValuesForKeys:[[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]]
+  11e8d8  [[[arg1 objectForKeyedSubscript:@"parameters"] dictionaryWithValuesForKeys:[[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]] mutableCopy]
+  11e8e8  [[[[arg1 objectForKeyedSubscript:@"parameters"] dictionaryWithValuesForKeys:[[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]] mutableCopy] autorelease]
+  11e900  [self encodeParameters:[[[[arg1 objectForKeyedSubscript:@"parameters"] dictionaryWithValuesForKeys:[[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]] mutableCopy] autorelease]]
+  11e918  [&d_1003b81f8] -> @"timestamp"
+  11e928  [arg1 objectForKeyedSubscript:@"timestamp"]
+  11e944  [NSDate date]
+  11e960  [GAIHitUtil millisecondsElapsedFrom:[arg1 objectForKeyedSubscript:@"timestamp"] To:[NSDate date]]
+  11e974  [arg1 objectForKeyedSubscript:@"timestamp"]
+  11e984  [[arg1 objectForKeyedSubscript:@"timestamp"] timeIntervalSince1970]
+  11e9b8  [NSString stringWithFormat:@"%llu", (int)([[arg1 objectForKeyedSubscript:@"timestamp"] timeIntervalSince1970] * 1000…]
+  11e9c8  [&d_1003b8510] -> @"&ht"
+  11e9e0  [self encodeParameter:@"&ht" withValue:[NSString stringWithFormat:@"%llu", (int)([[arg1 objectForKeyedSubscript:@"timestamp"] timeIntervalSince1970] * 1000…]]
+  11e9fc  [[self encodeParameters:[[[[arg1 objectForKeyedSubscript:@"parameters"] dictionaryWithValuesForKeys:[[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]] mutableCopy] autorelease]] addObject:[self encodeParameter:@"&ht" withValue:[NSString stringWithFormat:@"%llu", (int)([[arg1 objectForKeyedSubscript:@"timestamp"] timeIntervalSince1970] * 1000…]]]
+  11ea04  if ([GAIHitUtil millisecondsElapsedFrom:[arg1 objectForKeyedSubscript:@"timestamp"] To:[NSDate date]] < 1) goto loc_10011ea50
+  11ea20  [GAIStringUtil uintString:[GAIHitUtil millisecondsElapsedFrom:[arg1 objectForKeyedSubscript:@"timestamp"] To:[NSDate date]]]
+  11ea30  [&d_1003b84f8] -> @"&qt"
+  11ea3c  [self encodeParameter:@"&qt" withValue:[GAIStringUtil uintString:[GAIHitUtil millisecondsElapsedFrom:[arg1 objectForKeyedSubscript:@"timestamp"] To:[NSDate date]]]]
+  11ea4c  [[self encodeParameters:[[[[arg1 objectForKeyedSubscript:@"parameters"] dictionaryWithValuesForKeys:[[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]] mutableCopy] autorelease]] addObject:[self encodeParameter:@"&qt" withValue:[GAIStringUtil uintString:[GAIHitUtil millisecondsElapsedFrom:[arg1 objectForKeyedSubscript:@"timestamp"] To:[NSDate date]]]]]
+loc_10011ea50:
+  11ea50  if ([[arg1 objectForKeyedSubscript:@"parameters"] objectForKey:@"&z"] == 0) goto loc_10011ea78
+  11ea64  [self encodeParameter:@"&z" withValue:[[arg1 objectForKeyedSubscript:@"parameters"] objectForKey:@"&z"]]
+  11ea74  [[self encodeParameters:[[[[arg1 objectForKeyedSubscript:@"parameters"] dictionaryWithValuesForKeys:[[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]] mutableCopy] autorelease]] addObject:[self encodeParameter:@"&z" withValue:[[arg1 objectForKeyedSubscript:@"parameters"] objectForKey:@"&z"]]]
+loc_10011ea78:
+  11eaac  tail [[self encodeParameters:[[[[arg1 objectForKeyedSubscript:@"parameters"] dictionaryWithValuesForKeys:[[[arg1 objectForKeyedSubscript:@"parameters"] allKeys] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^{-[GAIRequestBuilder parametersForHit:]_block_invoke}]]] mutableCopy] autorelease]] componentsJoinedByString:@"&"]
+
+== -[GAIRequestBuilder parametersForHit:]_block_invoke   (address 0x10011eab0  size 32  kind block)
+  11eacc  tail [blockarg1 hasPrefix:@"&"]
+
+== -[GAIRequestBuilder baseRequest]   (address 0x10011ead0  size 260  kind objc)
+  11eafc  [NSMutableURLRequest alloc]
+  11eb0c  [[NSMutableURLRequest alloc] init]
+  11eb1c  [[[NSMutableURLRequest alloc] init] autorelease]
+  11eb34  [&d_1003b81c0] -> @"application/x-www-form-urlencoded"
+  11eb40  [&d_1003b81c8] -> @"UTF-8"
+  11eb5c  [NSString stringWithFormat:@"%@; charset=%@", @"application/x-www-form-urlencoded", @"UTF-8"]
+  11eb80  [[[[NSMutableURLRequest alloc] init] autorelease] setValue:[NSString stringWithFormat:@"%@; charset=%@", @"application/x-www-form-urlencoded", @"UTF-8"] forHTTPHeaderField:@"Content-Type"]
+  11eba0  [[[[NSMutableURLRequest alloc] init] autorelease] setValue:self->userAgent_ forHTTPHeaderField:@"User-Agent"]
+  11ebb8  [[[[NSMutableURLRequest alloc] init] autorelease] setCachePolicy:4]
+  11ebd0  return
+
+== -[GAIRequestBuilder requestPostUrl:payload:compression:]   (address 0x10011ebd4  size 676  kind objc)
+  11ec14  [GAI sharedLogger]
+  11ec2c  [&d_1003b7d70] -> @"GoogleAnalytics"
+  11ec38  [&d_1003b7d78] -> @"3.09"
+  11ec50  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  11ec84  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): building URLRequest for %@", @"GoogleAnalytics", @"3.09", "-[GAIRequestBuilder requestPostUrl:payload:compression:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 167, arg1]
+  11ec9c  [[GAI sharedLogger] verbose:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): building URLRequest for %@", @"GoogleAnalytics", @"3.09", "-[GAIRequestBuilder requestPostUrl:payload:compression:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 167, arg1]]
+  11ecb0  [self baseRequest]
+  11eccc  [[self baseRequest] setHTTPMethod:@"POST"]
+  11ece4  [arg2 dataUsingEncoding:4]
+  11ecf0  if (arg3 != 2) goto loc_10011ed3c
+  11ed08  [GAICompressionUtil gai_dataByGzippingData:[arg2 dataUsingEncoding:4]]
+  11ed20  [[self baseRequest] setHTTPBody:[GAICompressionUtil gai_dataByGzippingData:[arg2 dataUsingEncoding:4]]]
+  11ed28  &@selector(setValue:forHTTPHeaderField:)
+  11ed38  goto loc_10011ed88
+loc_10011ed3c:
+  11ed40  if (arg3 != 1) goto loc_10011ed9c
+  11ed58  [GAICompressionUtil gai_dataByDeflatingData:[arg2 dataUsingEncoding:4]]
+  11ed70  [[self baseRequest] setHTTPBody:[GAICompressionUtil gai_dataByDeflatingData:[arg2 dataUsingEncoding:4]]]
+  11ed78  &@selector(setValue:forHTTPHeaderField:)
+loc_10011ed88:
+  11ed94  [[self baseRequest] setValue:one of {@"deflate", @"gzip"} forHTTPHeaderField:@"Content-Encoding"]
+  11ed98  goto loc_10011edb0
+loc_10011ed9c:
+  11edac  [[self baseRequest] setHTTPBody:[arg2 dataUsingEncoding:4]]
+loc_10011edb0:
+  11edc8  [[self baseRequest] HTTPBody]
+  11edd8  [[[self baseRequest] HTTPBody] length]
+  11edf0  [NSNumber numberWithUnsignedInteger:[[[self baseRequest] HTTPBody] length]]
+  11ee00  [[NSNumber numberWithUnsignedInteger:[[[self baseRequest] HTTPBody] length]] stringValue]
+  11ee20  [[self baseRequest] setValue:[[NSNumber numberWithUnsignedInteger:[[[self baseRequest] HTTPBody] length]] stringValue] forHTTPHeaderField:@"Content-Length"]
+  11ee3c  [NSURL URLWithString:arg1]
+  11ee54  [[self baseRequest] setURL:[NSURL URLWithString:arg1]]
+  11ee74  return
+
+== -[GAIRequestBuilder requestGetUrl:payload:]   (address 0x10011ee78  size 368  kind objc)
+  11eeb8  [GAI sharedLogger]
+  11eed0  [&d_1003b7d70] -> @"GoogleAnalytics"
+  11eedc  [&d_1003b7d78] -> @"3.09"
+  11eef4  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  11ef2c  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): building URLRequest for %@", @"GoogleAnalytics", @"3.09", "-[GAIRequestBuilder requestGetUrl:payload:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 195, arg1]
+  11ef44  [[GAI sharedLogger] verbose:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): building URLRequest for %@", @"GoogleAnalytics", @"3.09", "-[GAIRequestBuilder requestGetUrl:payload:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 195, arg1]]
+  11ef58  [self baseRequest]
+  11ef74  [[self baseRequest] setHTTPMethod:@"GET"]
+  11ef8c  [NSString stringWithFormat:@"%@?%@", arg1, arg2]
+  11efa8  [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", arg1, arg2]]
+  11efc0  [[self baseRequest] setURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", arg1, arg2]]]
+  11efe4  return
+
+== -[GAIRequestBuilder userAgent]   (address 0x10011efe8  size 16  kind objc)
+  11eff4  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[GAIRequestBuilder setUserAgent:]   (address 0x10011eff8  size 28  kind objc)
+  11f010  tail objc_setProperty(self, _cmd, x2, arg1)

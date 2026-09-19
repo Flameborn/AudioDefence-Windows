@@ -1,0 +1,215 @@
+
+== -[ADAccessibleGameView didMoveToSuperview]   (address 0x100089eb0  size 180  kind objc)
+  089ee4  [super didMoveToSuperview]
+  089efc  [UIColor clearColor]
+  089f20  [self setBackgroundColor:[UIColor clearColor]]
+  089f3c  [self initGestureRecognizers]
+  089f4c  return
+
+== -[ADAccessibleGameView initGestureRecognizers]   (address 0x100089f64  size 560  kind objc)
+  089f9c  [UISwipeGestureRecognizer alloc]
+  089fc0  [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpGesture)]
+  089fd0  self->swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpGesture)]
+  089ff4  [self->swipeUpGesture setNumberOfTouchesRequired:1]
+  08a010  [self->swipeUpGesture setDelegate:self]
+  08a02c  [self->swipeUpGesture setCancelsTouchesInView:1]
+  08a048  [self->swipeUpGesture setDirection:4]
+  08a064  [self addGestureRecognizer:self->swipeUpGesture]
+  08a070  [UISwipeGestureRecognizer alloc]
+  08a088  [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDownGesture)]
+  08a098  self->swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDownGesture)]
+  08a0b0  [self->swipeDownGesture setNumberOfTouchesRequired:1]
+  08a0c0  [self->swipeDownGesture setDelegate:self]
+  08a0d0  [self->swipeDownGesture setCancelsTouchesInView:1]
+  08a0e0  [self->swipeDownGesture setDirection:8]
+  08a0f0  [self addGestureRecognizer:self->swipeDownGesture]
+  08a100  [UITapGestureRecognizer alloc]
+  08a118  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleTap)]
+  08a128  self->tripleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleTap)]
+  08a140  [self->tripleTap setNumberOfTouchesRequired:3]
+  08a158  [self->tripleTap setDelaysTouchesBegan:0]
+  08a168  [self->tripleTap setCancelsTouchesInView:1]
+  08a190  tail [self addGestureRecognizer:self->tripleTap]
+
+== -[ADAccessibleGameView handleSwipeGesture]   (address 0x10008a194  size 80  kind objc)
+  08a1b0  self->hasSwiped = 1
+  08a1c4  [self setButtonIsDown:0]
+  08a1e0  tail [self touchCanceled]
+
+== -[ADAccessibleGameView gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:]   (address 0x10008a1e4  size 8  kind objc)
+  08a1e8  return
+
+== -[ADAccessibleGameView handleSwipeUpGesture]   (address 0x10008a1ec  size 268  kind objc)
+  08a214  [ADGameParameters sharedParameters]
+  08a230  [[ADGameParameters sharedParameters] buttonMode]
+  08a240  if (!([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_10008a254
+  08a250  return
+  08a264  [self handleSwipeGesture]
+  08a278  [self weaponManager]
+  08a294  [[self weaponManager] selectNextWeapon]
+  08a2c0  [self->swipeUpGesture setEnabled:0]
+  08a2dc  tail [self->swipeUpGesture setEnabled:1]
+
+== -[ADAccessibleGameView handleSwipeDownGesture]   (address 0x10008a2f8  size 268  kind objc)
+  08a320  [ADGameParameters sharedParameters]
+  08a33c  [[ADGameParameters sharedParameters] buttonMode]
+  08a34c  if (!([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_10008a360
+  08a35c  return
+  08a370  [self handleSwipeGesture]
+  08a384  [self weaponManager]
+  08a3a0  [[self weaponManager] reloadGestureDown]
+  08a3cc  [self->swipeDownGesture setEnabled:0]
+  08a3e8  tail [self->swipeDownGesture setEnabled:1]
+
+== -[ADAccessibleGameView touchesBegan:withEvent:]   (address 0x10008a404  size 264  kind objc)
+  08a430  [arg2 allTouches]
+  08a44c  [[arg2 allTouches] anyObject]
+  08a478  [[[arg2 allTouches] anyObject] locationInView:self]
+  08a488  self->initialPoint.x = [[[arg2 allTouches] anyObject] locationInView:self].0
+  08a48c  self->initialPoint.y = [[[arg2 allTouches] anyObject] locationInView:self].1
+  08a4a4  [self setButtonIsDown:1]
+  08a4b0  self->hasSwiped = 0
+  08a4bc  self->hasStartedToMove = 0
+  08a4d8  return
+
+== -[ADAccessibleGameView touchesEnded:withEvent:]   (address 0x10008a50c  size 152  kind objc)
+  08a52c  [self setButtonIsDown:0]
+  08a53c  self->hasSwiped = 0
+  08a544  self->hasStartedToMove = 0
+  08a558  [self weaponManager]
+  08a574  [[self weaponManager] continuousStop]
+  08a584  return
+
+== -[ADAccessibleGameView touchesMoved:withEvent:]   (address 0x10008a5a4  size 432  kind objc)
+  08a5cc  [arg2 allTouches]
+  08a5e8  [[arg2 allTouches] anyObject]
+  08a614  [[[arg2 allTouches] anyObject] locationInView:self]
+  08a630  [ADGameParameters sharedParameters]
+  08a64c  [[ADGameParameters sharedParameters] controlScheme]
+  08a660  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_10008a6c4
+  08a674  [self gameplayViewController]
+  08a6b8  [[self gameplayViewController] touchesMoveDetected:([[[arg2 allTouches] anyObject] locationInView:self].0 - self->initialPoint.x) justStarted:(self->hasStartedToMove == 0)]
+loc_10008a6c4:
+  08a6d0  self->hasStartedToMove = 1
+  08a6f0  t1 = (fabs(([[[arg2 allTouches] anyObject] locationInView:self].0 - self->initialPoint.x)) > 30)
+  08a6fc  self->hasSwiped = t1
+  08a714  return
+
+== -[ADAccessibleGameView update:]   (address 0x10008a754  size 448  kind objc)
+  08a77c  [self buttonIsDown]
+  08a788  if ([self buttonIsDown] == 0) goto loc_10008a89c
+  08a794  self->buttonPressedDuration = (self->buttonPressedDuration + arg1)
+  08a7a8  if ((self->buttonPressedDuration + arg1) <= (or unordered) 0.2) goto loc_10008a8a0
+  08a7b8  if ((self->buttonPressedDuration + arg1) > (or unordered) (arg1 + 0.2)) goto loc_10008a8a0
+  08a7c8  if (self->hasSwiped != 0) goto loc_10008a8a0
+  08a7e0  [ADGameParameters sharedParameters]
+  08a7fc  [[ADGameParameters sharedParameters] buttonMode]
+  08a80c  if (!([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_10008a8b4
+  08a830  [self frame]
+  08a840  if (self->initialPoint.x < (or unordered) ([self frame].2 * 0.5)) goto loc_10008a8a0
+  08a854  [self frame]
+  08a860  if (self->initialPoint.y >= (or unordered) ([self frame].3 * 0.5)) goto loc_10008a8a0
+  08a874  [self weaponManager]
+  08a890  [[self weaponManager] continuousStart]
+  08a894  goto loc_10008a8e4
+  08a898  goto loc_10008a900
+loc_10008a89c:
+  08a89c  self->buttonPressedDuration = 0
+loc_10008a8a0:
+  08a8b0  return
+loc_10008a8b4:
+  08a8c4  [self weaponManager]
+  08a8e0  [[self weaponManager] continuousStart]
+loc_10008a8e4:
+  08a8f8  return
+
+== -[ADAccessibleGameView solveButtonPress]   (address 0x10008a914  size 696  kind objc)
+  08a940  [ADGameParameters sharedParameters]
+  08a95c  [[ADGameParameters sharedParameters] buttonMode]
+  08a96c  if (!([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_10008a9fc
+  08a990  [self frame]
+  08a9a0  if (self->initialPoint.x >= (or unordered) ([self frame].2 * 0.5)) goto loc_10008aa44
+  08a9b4  [self frame]
+  08a9c0  if (self->initialPoint.y >= (or unordered) ([self frame].3 * 0.5)) goto loc_10008aa44
+  08a9d4  [self weaponManager]
+  08a9f0  [[self weaponManager] shootWithMelee]
+  08a9f4  goto loc_10008aa2c
+  08a9f8  goto loc_10008abb8
+loc_10008a9fc:
+  08aa0c  [self weaponManager]
+  08aa28  [[self weaponManager] weaponSingleShot]
+loc_10008aa2c:
+  08aa40  return
+loc_10008aa44:
+  08aa50  [self frame]
+  08aa5c  if (self->initialPoint.x < (or unordered) ([self frame].2 * 0.5)) goto loc_10008aab8
+  08aa70  [self frame]
+  08aa7c  if (self->initialPoint.y >= (or unordered) ([self frame].3 * 0.5)) goto loc_10008aab8
+  08aa90  [self weaponManager]
+  08aaac  [[self weaponManager] continuousStart]
+  08aab0  goto loc_10008aa2c
+  08aab4  goto loc_10008abb8
+loc_10008aab8:
+  08aac4  [self frame]
+  08aad0  if (self->initialPoint.x >= (or unordered) ([self frame].2 * 0.5)) goto loc_10008aaf4
+  08aae4  [self frame]
+  08aaf0  if (self->initialPoint.y >= ([self frame].3 * 0.5)) goto loc_10008ab44
+loc_10008aaf4:
+  08ab00  [self frame]
+  08ab0c  if (self->initialPoint.x < (or unordered) ([self frame].2 * 0.5)) goto loc_10008ab30
+  08ab20  [self frame]
+  08ab2c  if (self->initialPoint.y >= ([self frame].3 * 0.5)) goto loc_10008ab7c
+loc_10008ab30:
+  08ab40  return
+  08ab54  [self weaponManager]
+  08ab70  [[self weaponManager] selectNextWeapon]
+  08ab8c  [self weaponManager]
+  08aba8  [[self weaponManager] reloadGestureDown]
+
+== -[ADAccessibleGameView touchCanceled]   (address 0x10008abcc  size 136  kind objc)
+  08abec  [self setButtonIsDown:0]
+  08ac00  [self weaponManager]
+  08ac1c  [[self weaponManager] continuousStop]
+  08ac30  self->hasSwiped = 0
+  08ac3c  return
+
+== -[ADAccessibleGameView setButtonIsDown:]   (address 0x10008ac54  size 164  kind objc)
+  08ac6c  self->_buttonIsDown = arg1
+  08ac70  if ((arg1 & 1)) goto loc_10008acec
+  08ac80  if (self->hasSwiped != 0) goto loc_10008ace0
+  08aca0  if (self->buttonPressedDuration >= (or unordered) 0.2) goto loc_10008ace0
+  08acb4  [self weaponManager]
+  08acc8  if ([self weaponManager] == 0) goto loc_10008ace0
+  08acdc  [self solveButtonPress]
+loc_10008ace0:
+  08ace8  self->buttonPressedDuration = 0
+loc_10008acec:
+  08acf4  return
+
+== -[ADAccessibleGameView handleTripleTap]   (address 0x10008acf8  size 196  kind objc)
+  08ad20  [ADGameParameters sharedParameters]
+  08ad3c  [[ADGameParameters sharedParameters] buttonMode]
+  08ad4c  if (!([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_10008ad60
+  08ad5c  return
+loc_10008ad60:
+  08ad70  [self weaponManager]
+  08ad8c  [[self weaponManager] shootWithMelee]
+  08ada0  return
+
+== -[ADAccessibleGameView weaponManager]   (address 0x10008adbc  size 32  kind objc)
+  08add8  return
+
+== -[ADAccessibleGameView setWeaponManager:]   (address 0x10008addc  size 20  kind objc)
+
+== -[ADAccessibleGameView gameplayViewController]   (address 0x10008adf0  size 32  kind objc)
+  08ae0c  return
+
+== -[ADAccessibleGameView setGameplayViewController:]   (address 0x10008ae10  size 20  kind objc)
+
+== -[ADAccessibleGameView buttonIsDown]   (address 0x10008ae24  size 16  kind objc)
+  08ae30  return
+
+== -[ADAccessibleGameView .cxx_destruct]   (address 0x10008ae34  size 136  kind objc)
+
+== -[ADAccessibleGameView .cxx_construct]   (address 0x10008aebc  size 4  kind objc)
+  08aebc  return

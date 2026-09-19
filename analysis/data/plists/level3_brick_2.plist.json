@@ -1,0 +1,43 @@
+{
+ "Enemies": {
+  "Colossus": {
+   "spawn_sound": "",
+   "spawn_angle": 310,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_angle": 300,
+   "spawn_distance": 10,
+   "spawn_time": 5
+  },
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "WeakZombieD"
+   },
+   "spawn_angle": 330,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 320,
+   "spawn_distance": 10,
+   "spawn_time": 7
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 305,
+   "spawn_distance": 10
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "2"
+ }
+}

@@ -1,0 +1,236 @@
+
+== -[ADArmoryPowerUpUpgraderViewController initWithPowerupDictionary:]   (address 0x10004d738  size 112  kind objc)
+  04d760  self->powerUpDictionary = arg1
+  04d794  [super initWithNibName:0 bundle:0]
+  04d7a4  return
+
+== -[ADArmoryPowerUpUpgraderViewController viewDidLoad]   (address 0x10004d7a8  size 244  kind objc)
+  04d7e0  [super viewDidLoad]
+  04d7f4  [self loadInformation]
+  04d7f8  UIAccessibilityIsVoiceOverRunning()
+  04d810  [self voiceOverBack]
+  04d820  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_10004d854
+  04d848  [[self voiceOverBack] addTarget:self action:@selector(backButtonPressed:) forControlEvents:64]
+  04d84c  goto loc_10004d86c
+  04d850  goto loc_10004d888
+loc_10004d854:
+  04d868  [[self voiceOverBack] setHidden:1]
+loc_10004d86c:
+  04d884  return
+
+== -[ADArmoryPowerUpUpgraderViewController loadView]   (address 0x10004d89c  size 472  kind objc)
+  04d8f4  [NSNumber numberWithInt:1]
+  04d920  [NSNumber numberWithInt:2]
+  04d948  [NSNumber numberWithInt:3]
+  04d970  [NSNumber numberWithInt:5]
+  04d9a0  [NSDictionary dictionaryWithObjects:&sp[0x28] forKeys:&sp[0x8] count:4]
+  04d9ec  [self loADViewBasedOnDeviceWithNibName:@"ADArmoryPowerUpUpgraderViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x28] forKeys:&sp[0x8] count:4]]
+  04da1c  return
+
+== -[ADArmoryPowerUpUpgraderViewController loadInformation]   (address 0x10004da74  size 1856  kind objc)
+  04daac  [ADInventory sharedInventory]
+  04dae0  [self->powerUpDictionary objectForKey:@"name"]
+  04db04  [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary objectForKey:@"name"]]
+  04db30  [self powerUpTitle]
+  04db4c  [[self powerUpTitle] setupAsTitle]
+  04db60  [self powerUpTitle]
+  04db80  [self->powerUpDictionary objectForKey:@"displayName"]
+  04dbac  [[self powerUpTitle] setText:[self->powerUpDictionary objectForKey:@"displayName"]]
+  04dbd0  [self powerUpIcon]
+  04dc00  [self->powerUpDictionary objectForKey:@"name"]
+  04dc34  [NSString stringWithFormat:@"%@_icon", [self->powerUpDictionary objectForKey:@"name"]]
+  04dc5c  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [self->powerUpDictionary objectForKey:@"name"]]]
+  04dc84  [[self powerUpIcon] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [self->powerUpDictionary objectForKey:@"name"]]]]
+  04dcbc  [self powerUpDescription]
+  04dcd8  [[self powerUpDescription] setupAsInfo]
+  04dcec  [self powerUpDescription]
+  04dd10  [self->powerUpDictionary objectForKey:@"upgradeText"]
+  04dd2c  [[self powerUpDescription] setText:[self->powerUpDictionary objectForKey:@"upgradeText"]]
+  04dd54  [self badgeImage]
+  04dd84  [NSString stringWithFormat:@"badge_level%i", [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary …]
+  04dda0  [UIImage imageNamed:[NSString stringWithFormat:@"badge_level%i", [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary …]]
+  04ddbc  [[self badgeImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"badge_level%i", [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary …]]]
+  04ddec  [self upgradeButton]
+  04de0c  [[self upgradeButton] setupAsMain]
+  04de20  if ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary objectForKey:@"name"]] < 4) goto loc_10004def8
+  04de2c  [self upgradeButton]
+  04de4c  [[self upgradeButton] setUserInteractionEnabled:0]
+  04de60  [self upgradeButton]
+  04de88  [[self upgradeButton] setTitle:@"No Upgrade" forState:0]
+  04de9c  [self upgradeButton]
+  04debc  [[self upgradeButton] setCoins:0]
+  04ded0  [self upgradeButton]
+  04deec  [[self upgradeButton] centerButtonWithoutImage]
+  04def0  goto loc_10004e074
+  04def4  goto loc_10004e1a0
+loc_10004def8:
+  04df14  [NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]
+  04df30  [self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]]
+  04df4c  [[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]] objectForKey:@"upgradeCost"]
+  04df68  [[[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]] objectForKey:@"upgradeCost"] intValue]
+  04df90  [self upgradeButton]
+  04dfa4  [[self upgradeButton] setupAsMain]
+  04dfb8  [self upgradeButton]
+  04dfdc  [NSString stringWithFormat:@"Upgrade for %i", [[[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", …]
+  04e004  [[self upgradeButton] setTitle:[NSString stringWithFormat:@"Upgrade for %i", [[[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", …] forState:0]
+  04e020  [self upgradeButton]
+  04e040  [[self upgradeButton] setCoins:[[[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]] objectForKey:@"upgradeCost"] intValue]]
+  04e054  [self upgradeButton]
+  04e070  [[self upgradeButton] centerButtonTextWithCoinsImage]
+loc_10004e074:
+  04e094  return
+
+== -[ADArmoryPowerUpUpgraderViewController upgradeButtonPressed:]   (address 0x10004e1b4  size 2240  kind objc)
+  04e200  [ADInventory sharedInventory]
+  04e234  [self->powerUpDictionary objectForKey:@"name"]
+  04e258  [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary objectForKey:@"name"]]
+  04e274  if ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary objectForKey:@"name"]] > 3) goto loc_10004e88c
+  04e2a0  [NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]
+  04e2bc  [self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]]
+  04e2d8  [[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]] objectForKey:@"upgradeCost"]
+  04e2f4  [[[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]] objectForKey:@"upgradeCost"] intValue]
+  04e31c  [ADInventory sharedInventory]
+  04e33c  [[ADInventory sharedInventory] coins]
+  04e350  if ([[ADInventory sharedInventory] coins] >= [[[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelFor…) goto loc_10004e58c
+  04e368  [UIAlertView alloc]
+  04e388  [NSBundle mainBundle]
+  04e3bc  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_TITLE" value:@"" table:0]
+  04e3d4  [NSBundle mainBundle]
+  04e3fc  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CONTENT" value:@"" table:0]
+  04e414  [NSBundle mainBundle]
+  04e43c  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CANCEL" value:@"" table:0]
+  04e454  [NSBundle mainBundle]
+  04e47c  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]
+  04e4b4  [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CANCEL" value:@"" table:0] otherButtonTitles:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]]
+  04e50c  [self alertViewDelegate]
+  04e530  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CANCEL" value:@"" table:0] otherButtonTitles:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]] setDelegate:[self alertViewDelegate]]
+  04e54c  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CANCEL" value:@"" table:0] otherButtonTitles:[[NSBundle mainBundle] localizedStringForKey:@"COIN…
+  04e588  return
+loc_10004e58c:
+  04e594  [ADInventory sharedInventory]
+  04e5b8  [self->powerUpDictionary objectForKey:@"name"]
+  04e5e0  [[ADInventory sharedInventory] setLevel:([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary objectForKey:@"name"]] + 1) forPowerUpWithName:[self->powerUpDictionary objectForKey:@"name"]]
+  04e608  [UIApplication sharedApplication]
+  04e624  [[UIApplication sharedApplication] delegate]
+  04e640  [[[UIApplication sharedApplication] delegate] statusBar]
+  04e650  t1 = -[[[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]] objectForKey:@"upgradeCost"] intValue]
+  04e660  [[[[UIApplication sharedApplication] delegate] statusBar] animateCoins:t1]
+  04e684  [ADInventory sharedInventory]
+  04e698  [[ADInventory sharedInventory] coins]
+  04e69c  t2 = ([[ADInventory sharedInventory] coins] - [[[self->powerUpDictionary objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary…]] objectForKey:@"upgradeCost"] intValue])
+  04e6b0  [[ADInventory sharedInventory] setCoins:t2]
+  04e6d0  [self->powerUpDictionary objectForKey:@"name"]
+  04e704  [NSDictionary dictionaryWithObjects:&sp[0x40] forKeys:&sp[0x38] count:1]
+  04e730  [NSNotificationCenter defaultCenter]
+  04e75c  [[NSNotificationCenter defaultCenter] postNotificationName:@"POWERUP_UPGRADE_EVENT" object:self userInfo:[NSDictionary dictionaryWithObjects:&sp[0x40] forKeys:&sp[0x38] count:1]]
+  04e778  [self->powerUpDictionary objectForKey:@"name"]
+  04e79c  [ADTracker sharedInstance]
+  04e7bc  [self upgradeButton]
+  04e7d0  [[self upgradeButton] coins]
+  04e7ec  [[ADTracker sharedInstance] recordWeaponUpgrade:[self->powerUpDictionary objectForKey:@"name"] Price:(float)[[self upgradeButton] coins]]
+  04e810  [self showNextLevel]
+  04e820  dispatch_time(0, 0x3b9aca00)
+loc_10004e88c:
+  04e8c0  return
+
+== -[ADArmoryPowerUpUpgraderViewController upgradeButtonPressed:]_block_invoke   (address 0x10004ea74  size 20  kind block)
+  04ea84  tail [self loadInformation]
+
+== sub_10004ea88   (address 0x10004ea88  size 8  kind sub)
+
+== sub_10004ea90   (address 0x10004ea90  size 8  kind sub)
+  04ea94  return
+
+== -[ADArmoryPowerUpUpgraderViewController showNextLevel]   (address 0x10004ea98  size 524  kind objc)
+  04eac8  [ADInventory sharedInventory]
+  04eaf8  [self->powerUpDictionary objectForKey:@"name"]
+  04eb1c  [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary objectForKey:@"name"]]
+  04eb44  [self upgradeButton]
+  04eb64  [[self upgradeButton] setUserInteractionEnabled:0]
+  04eb88  [self badgeImage]
+  04ec20  [UIView transitionWithView:[self badgeImage] duration:0.5 options:0x200000 animations:^{-[ADArmoryPowerUpUpgraderViewController showNextLevel]_block_invoke captures +0x20=self, +0x28=[[ADInventory sharedInventory] levelForP…} completion:^{-[ADArmoryPowerUpUpgraderViewController showNextLevel]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADArmoryPowerUpUpgraderViewController…, +0x40=&d_1003b18a0, +0x48=self, +0x50=[[ADInventory sharedInventory] leve…
+  04ec50  return
+
+== -[ADArmoryPowerUpUpgraderViewController showNextLevel]_block_invoke   (address 0x10004eca4  size 272  kind block)
+  04eccc  [self badgeImage]
+  04ed08  [NSString stringWithFormat:@"badge_level%i", [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary …]
+  04ed2c  [UIImage imageNamed:[NSString stringWithFormat:@"badge_level%i", [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary …]]
+  04ed50  [[self badgeImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"badge_level%i", [[ADInventory sharedInventory] levelForPowerUpWithName:[self->powerUpDictionary …]]]
+  04ed78  return
+
+== sub_10004edb4   (address 0x10004edb4  size 8  kind sub)
+
+== sub_10004edbc   (address 0x10004edbc  size 8  kind sub)
+  04edc0  return
+
+== -[ADArmoryPowerUpUpgraderViewController showNextLevel]_block_invoke_2   (address 0x10004edc4  size 100  kind block)
+  04ede0  [self upgradeButton]
+  04ee00  [[self upgradeButton] setUserInteractionEnabled:1]
+  04ee10  return
+
+== sub_10004ee28   (address 0x10004ee28  size 8  kind sub)
+
+== sub_10004ee30   (address 0x10004ee30  size 8  kind sub)
+  04ee34  return
+
+== -[ADArmoryPowerUpUpgraderViewController backButtonPressed:]   (address 0x10004ee38  size 100  kind objc)
+  04ee50  [self view]
+  04ee6c  [[self view] removeFromSuperview]
+  04ee7c  return
+
+== -[ADArmoryPowerUpUpgraderViewController armoryViewController]   (address 0x10004ee9c  size 16  kind objc)
+  04eea8  return
+
+== -[ADArmoryPowerUpUpgraderViewController setArmoryViewController:]   (address 0x10004eeac  size 56  kind objc)
+  04eed0  self->_armoryViewController = arg1
+  04eee0  return
+
+== -[ADArmoryPowerUpUpgraderViewController powerUpTitle]   (address 0x10004eee4  size 16  kind objc)
+  04eef0  return
+
+== -[ADArmoryPowerUpUpgraderViewController setPowerUpTitle:]   (address 0x10004eef4  size 56  kind objc)
+  04ef18  self->_powerUpTitle = arg1
+  04ef28  return
+
+== -[ADArmoryPowerUpUpgraderViewController powerUpIcon]   (address 0x10004ef2c  size 16  kind objc)
+  04ef38  return
+
+== -[ADArmoryPowerUpUpgraderViewController setPowerUpIcon:]   (address 0x10004ef3c  size 56  kind objc)
+  04ef60  self->_powerUpIcon = arg1
+  04ef70  return
+
+== -[ADArmoryPowerUpUpgraderViewController powerUpDescription]   (address 0x10004ef74  size 16  kind objc)
+  04ef80  return
+
+== -[ADArmoryPowerUpUpgraderViewController setPowerUpDescription:]   (address 0x10004ef84  size 56  kind objc)
+  04efa8  self->_powerUpDescription = arg1
+  04efb8  return
+
+== -[ADArmoryPowerUpUpgraderViewController upgradeButton]   (address 0x10004efbc  size 16  kind objc)
+  04efc8  return
+
+== -[ADArmoryPowerUpUpgraderViewController setUpgradeButton:]   (address 0x10004efcc  size 56  kind objc)
+  04eff0  self->_upgradeButton = arg1
+  04f000  return
+
+== -[ADArmoryPowerUpUpgraderViewController voiceOverBack]   (address 0x10004f004  size 16  kind objc)
+  04f010  return
+
+== -[ADArmoryPowerUpUpgraderViewController setVoiceOverBack:]   (address 0x10004f014  size 56  kind objc)
+  04f038  self->_voiceOverBack = arg1
+  04f048  return
+
+== -[ADArmoryPowerUpUpgraderViewController badgeImage]   (address 0x10004f04c  size 16  kind objc)
+  04f058  return
+
+== -[ADArmoryPowerUpUpgraderViewController setBadgeImage:]   (address 0x10004f05c  size 56  kind objc)
+  04f080  self->_badgeImage = arg1
+  04f090  return
+
+== -[ADArmoryPowerUpUpgraderViewController alertViewDelegate]   (address 0x10004f094  size 16  kind objc)
+  04f0a0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADArmoryPowerUpUpgraderViewController setAlertViewDelegate:]   (address 0x10004f0a4  size 12  kind objc)
+  04f0ac  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADArmoryPowerUpUpgraderViewController .cxx_destruct]   (address 0x10004f0b0  size 204  kind objc)

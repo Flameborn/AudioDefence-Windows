@@ -1,0 +1,60 @@
+
+== -[TAGKeyValue isEqual:]   (address 0x10015dde0  size 488  kind objc)
+  15de0c  if (self == arg1) goto loc_10015df1c
+  15de10  if (arg1 == 0) goto loc_10015df14
+  15de28  [TAGKeyValue class]
+  15de40  [arg1 isKindOfClass:[TAGKeyValue class]]
+  15de44  if (!([arg1 isKindOfClass:[TAGKeyValue class]] & 1)) goto loc_10015df14
+  15de64  [arg1 key]
+  15de7c  [self key]
+  15dea0  [[arg1 key] isEqualToString:[self key]]
+  15dea4  if ([[arg1 key] isEqualToString:[self key]] == 0) goto loc_10015df24
+  15debc  [arg1 value]
+  15ded4  [self value]
+  15def8  [[arg1 value] isEqual:[self value]]
+  15df10  goto loc_10015df28
+loc_10015df14:
+  15df18  goto loc_10015df40
+loc_10015df1c:
+  15df20  goto loc_10015df40
+loc_10015df24:
+loc_10015df28:
+loc_10015df40:
+  15df60  return
+
+== -[TAGKeyValue hash]   (address 0x10015dfc8  size 204  kind objc)
+  15dfe8  [self key]
+  15e008  [[self key] hash]
+  15e020  [self value]
+  15e034  [[self value] hash]
+  15e048  t1 = ((([[self value] hash] << 3) - [[self value] hash]) + (([[self key] hash] << 5) - [[self key] hash]))
+  15e06c  return
+
+== -[TAGKeyValue copyWithZone:]   (address 0x10015e094  size 216  kind objc)
+  15e0bc  [TAGKeyValue allocWithZone:arg1]
+  15e0d4  [self key]
+  15e0f4  [self value]
+  15e11c  [[TAGKeyValue allocWithZone:arg1] initWithKey:[self key] value:[self value]]
+  15e144  return
+
+== -[TAGKeyValue initWithKey:value:]   (address 0x10015e16c  size 228  kind objc)
+  15e1c0  [super init]
+  15e1c8  if (self == 0) goto loc_10015e20c
+  15e1e0  self->_key = arg1
+  15e200  self->_value = arg2
+loc_10015e20c:
+  15e230  return
+
+== -[TAGKeyValue description]   (address 0x10015e250  size 212  kind objc)
+  15e27c  [self key]
+  15e29c  [self value]
+  15e2c8  [NSString stringWithFormat:@"TAGKeyValue(%@, %@)", [self key], [self value]]
+  15e2fc  return
+
+== -[TAGKeyValue key]   (address 0x10015e324  size 16  kind objc)
+  15e330  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGKeyValue value]   (address 0x10015e334  size 16  kind objc)
+  15e340  return
+
+== -[TAGKeyValue .cxx_destruct]   (address 0x10015e344  size 64  kind objc)

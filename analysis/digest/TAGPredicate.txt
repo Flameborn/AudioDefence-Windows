@@ -1,0 +1,48 @@
+
+== -[TAGPredicate initWithFunctionId:]   (address 0x100178ee8  size 220  kind objc)
+  178f34  [NSSet setWithObjects:@"arg0", @"arg1", nil]
+  178f6c  [super initWithFunctionId:arg1 requiredKeys:[NSSet setWithObjects:@"arg0", @"arg1", nil]]
+  178f98  return
+
+== -[TAGPredicate evaluate:]   (address 0x100178fc4  size 792  kind objc)
+  179020  [arg1 allValues]
+  179050  [[arg1 allValues] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  179058  if ([[arg1 allValues] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] == 0) goto loc_1001790f4
+loc_100179080:
+loc_100179084:
+  179090  if (x8 == x28) goto loc_10017909c
+  179098  objc_enumerationMutation([arg1 allValues])
+loc_10017909c:
+  1790ac  [TAGTypes defaultValue]
+  1790c4  if (x25 == [TAGTypes defaultValue]) goto loc_1001791d8
+  1790d0  if ((x19 + 1) <u [[arg1 allValues] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]) goto loc_100179084
+  1790e8  [[arg1 allValues] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  1790f0  if ([[arg1 allValues] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] != 0) goto loc_100179080
+loc_1001790f4:
+  17911c  [arg1 objectForKey:@"arg0"]
+  17913c  [arg1 objectForKey:@"arg1"]
+  179150  if ([arg1 objectForKey:@"arg0"] == 0) goto loc_10017917c
+  179154  if ([arg1 objectForKey:@"arg1"] == 0) goto loc_10017917c
+  179174  [self evaluateNoDefaultValues:[arg1 objectForKey:@"arg0"] arg1:[arg1 objectForKey:@"arg1"] parameters:arg1]
+loc_10017917c:
+  179198  [TAGBoolean booleanWithBool:x2]
+  1791bc  [TAGTypes objectToValue:[TAGBoolean booleanWithBool:x2]]
+  1791d4  goto loc_10017922c
+loc_1001791d8:
+  1791f4  [TAGBoolean booleanWithBool:0]
+  17921c  [TAGTypes objectToValue:[TAGBoolean booleanWithBool:0]]
+loc_10017922c:
+  17927c  return
+
+== -[TAGPredicate isCacheable]   (address 0x1001792dc  size 8  kind objc)
+  1792e0  return
+
+== -[TAGPredicate evaluateNoDefaultValues:arg1:parameters:]   (address 0x1001792e4  size 44  kind objc)
+  179300  [self doesNotRecognizeSelector:_cmd]
+  17930c  return
+
+== +[TAGPredicate arg0Key]   (address 0x100179310  size 44  kind objc)
+  179338  return
+
+== +[TAGPredicate arg1Key]   (address 0x10017933c  size 44  kind objc)
+  179364  return

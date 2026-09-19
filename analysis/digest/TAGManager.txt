@@ -1,0 +1,247 @@
+
+== -[TAGManager init]   (address 0x100153460  size 36  kind objc)
+  153478  [self initWithSameInstance:1]
+  153480  return
+
+== -[TAGManager initWithSameInstance:]   (address 0x100153484  size 668  kind objc)
+  1534d0  [super init]
+  1534d8  if (self == 0) goto loc_100153690
+  1534f4  [TAGManager class]
+  153504  objc_sync_enter([TAGManager class])
+  153510  if (g_10042df20 == 0) goto loc_10015351c
+  153518  if (!((arg1 ^ 1) & 1)) goto loc_100153670
+loc_10015351c:
+  153524  self->_refreshMode = 0
+  153540  [NSMutableDictionary alloc]
+  153548  [[NSMutableDictionary alloc] init]
+  153558  self->_containers = [[NSMutableDictionary alloc] init]
+  153570  [TAGDataLayer alloc]
+  153584  [TAGDataLayerPersistentStoreImpl alloc]
+  15358c  [[TAGDataLayerPersistentStoreImpl alloc] init]
+  1535a8  [[TAGDataLayer alloc] initWithPersistentStore:[[TAGDataLayerPersistentStoreImpl alloc] init]]
+  1535b8  self->_dataLayer = [[TAGDataLayer alloc] initWithPersistentStore:[[TAGDataLayerPersistentStoreImpl alloc] init]]
+  1535dc  [TAGManagerListener alloc]
+  1535f0  [[TAGManagerListener alloc] initWithTagManager:self]
+  153610  [self->_dataLayer registerListener:[[TAGManagerListener alloc] initWithTagManager:self]]
+  15362c  [TAGAdwordsClickReferrerListener alloc]
+  153634  [[TAGAdwordsClickReferrerListener alloc] init]
+  153648  [self->_dataLayer registerListener:[[TAGAdwordsClickReferrerListener alloc] init]]
+  153660  store g_10042df20 = self
+  15366c  goto loc_10015367c
+loc_100153670:
+loc_10015367c:
+  153680  objc_sync_exit([TAGManager class])
+  15368c  if (!(one of {0, 1} & 1)) goto loc_10015369c
+loc_100153690:
+loc_10015369c:
+  1536c4  return
+  153704  objc_sync_exit()
+
+== -[TAGManager openContainerById:callback:]   (address 0x100153720  size 700  kind objc)
+  153768  objc_sync_enter(self)
+  153784  [self containers]
+  1537a4  [[self containers] objectForKey:arg1]
+  1537c0  if ([[self containers] objectForKey:arg1] == 0) goto loc_100153828
+  1537e8  [NSString stringWithFormat:@"Container id: %@ has already been opened", arg1]
+  153810  [TAGLog error:[NSString stringWithFormat:@"Container id: %@ has already been opened", arg1]]
+  153824  goto loc_1001538f0
+loc_100153828:
+  153840  [self containerById:arg1]
+  153864  [self ctfeServerAddress]
+  153878  if ([self ctfeServerAddress] == 0) goto loc_1001538b4
+  153884  [self ctfeServerAddress]
+  1538a8  [[self containerById:arg1] setCtfeServerAddress:[self ctfeServerAddress]]
+loc_1001538b4:
+  1538bc  [self containers]
+  1538e0  [[self containers] setObject:[self containerById:arg1] forKey:arg1]
+loc_1001538f0:
+  1538f4  objc_sync_exit(self)
+  153900  if (!(one of {0, 1} & 1)) goto loc_100153930
+  153918  [x0 loadWithCallback:arg2]
+  15392c  goto loc_100153934
+loc_100153930:
+loc_100153934:
+  153968  return
+  1539a8  objc_sync_exit()
+
+== -[TAGManager getContainerById:]   (address 0x1001539dc  size 216  kind objc)
+  153a08  objc_sync_enter(self)
+  153a1c  [self containers]
+  153a3c  [[self containers] objectForKey:arg1]
+  153a58  objc_sync_exit(self)
+  153a7c  return
+  153a98  objc_sync_exit()
+
+== -[TAGManager previewWithUrl:]   (address 0x100153ab4  size 1472  kind objc)
+  153b00  objc_sync_enter(self)
+  153b18  [TAGPreviewManager instance]
+  153b38  [[TAGPreviewManager instance] generatePreviewDataForUrl:arg1]
+  153b3c  if (!([[TAGPreviewManager instance] generatePreviewDataForUrl:arg1] & 1)) goto loc_100153c24
+  153b54  [[TAGPreviewManager instance] containerId]
+  153b74  [[TAGPreviewManager instance] previewMode]
+  153b78  if ([[TAGPreviewManager instance] previewMode] != 0) goto loc_100153c2c
+  153b8c  [self containers]
+  153bac  [[self containers] objectForKey:[[TAGPreviewManager instance] containerId]]
+  153bd4  [[TAGPreviewManager instance] ctfeUrlPath]
+  153bf8  [[[self containers] objectForKey:[[TAGPreviewManager instance] containerId]] setCtfeUrlPathAndQuery:[[TAGPreviewManager instance] ctfeUrlPath]]
+  153c14  [[[self containers] objectForKey:[[TAGPreviewManager instance] containerId]] refresh]
+  153c20  goto loc_100153e60
+loc_100153c24:
+  153c28  goto loc_100153e6c
+loc_100153c2c:
+  153c30  if ([[TAGPreviewManager instance] previewMode] != 1) goto loc_100153e60
+  153c58  [self containers]
+  153c84  [[self containers] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  153c8c  if ([[self containers] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] == 0) goto loc_100153e50
+loc_100153d0c:
+loc_100153d10:
+  153d20  if (x8 == x9) goto loc_100153d2c
+  153d28  objc_enumerationMutation([self containers])
+loc_100153d2c:
+  153d3c  [self containers]
+  153d54  [[self containers] objectForKey:x2]
+  153d74  [[TAGPreviewManager instance] containerId]
+  153d90  [x0 isEqualToString:[[TAGPreviewManager instance] containerId]]
+  153da0  if ([x0 isEqualToString:[[TAGPreviewManager instance] containerId]] == 0) goto loc_100153de4
+  153dac  [[TAGPreviewManager instance] ctfeUrlPath]
+  153dc8  [[[self containers] objectForKey:x2] setCtfeUrlPathAndQuery:[[TAGPreviewManager instance] ctfeUrlPath]]
+  153ddc  [[[self containers] objectForKey:x2] refresh]
+  153de0  goto loc_100153e20
+loc_100153de4:
+  153dec  [[[self containers] objectForKey:x2] ctfeUrlPathAndQuery]
+  153e00  if ([[[self containers] objectForKey:x2] ctfeUrlPathAndQuery] == 0) goto loc_100153e20
+  153e10  [[[self containers] objectForKey:x2] setCtfeUrlPathAndQuery:0]
+  153e1c  [[[self containers] objectForKey:x2] refresh]
+loc_100153e20:
+  153e30  if ((x25 + 1) <u [[self containers] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]) goto loc_100153d10
+  153e44  [[self containers] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  153e4c  if ([[self containers] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] != 0) goto loc_100153d0c
+loc_100153e50:
+loc_100153e60:
+loc_100153e6c:
+  153e78  objc_sync_exit(self)
+  153ebc  return
+  153f34  if (w25 != 1) goto loc_100154054
+  153f3c  objc_begin_catch()
+  153f54  [objc_begin_catch() reason]
+  153f7c  [@"Calling previewWithUrl threw an exception: " stringByAppendingString:[objc_begin_catch() reason]]
+  153fa8  [TAGLog error:[@"Calling previewWithUrl threw an exception: " stringByAppendingString:[objc_begin_catch() reason]]]
+  153fbc  objc_end_catch()
+  154050  objc_end_catch()
+  154058  objc_sync_exit()
+
+== -[TAGManager setLogger:]   (address 0x100154074  size 40  kind objc)
+  154090  [TAGLog setLogger:arg1]
+  154098  return
+
+== -[TAGManager logger]   (address 0x10015409c  size 24  kind objc)
+  1540b0  tail [TAGLog logger]
+
+== -[TAGManager removeContainerById:]   (address 0x1001540b4  size 196  kind objc)
+  1540e0  objc_sync_enter(self)
+  1540f4  [self containers]
+  154114  [[self containers] removeObjectForKey:arg1]
+  154124  objc_sync_exit(self)
+  154140  return
+  15415c  objc_sync_exit()
+
+== +[TAGManager instance]   (address 0x100154178  size 48  kind objc)
+  15418c  [TAGManager alloc]
+  15419c  [[TAGManager alloc] init]
+  1541a4  return
+
+== +[TAGManager clearManagerInstance]   (address 0x1001541a8  size 92  kind objc)
+  1541c8  [TAGManager class]
+  1541d8  objc_sync_enter([TAGManager class])
+  1541e4  store g_10042df20 = 0
+  1541f0  objc_sync_exit([TAGManager class])
+  154200  return
+
+== -[TAGManager containerById:]   (address 0x100154204  size 124  kind objc)
+  154234  [TAGContainer alloc]
+  15424c  [[TAGContainer alloc] initWithId:arg1 tagManager:self]
+  154268  return
+
+== -[TAGManager ctfeServerAddress]   (address 0x100154280  size 96  kind objc)
+  154294  objc_sync_enter(self, _cmd)
+  1542c0  objc_sync_exit(self)
+  1542dc  return
+
+== -[TAGManager setCtfeServerAddress:]   (address 0x1001542e0  size 100  kind objc)
+  154304  objc_sync_enter(self)
+  154320  self->_ctfeServerAddress = arg1
+  15432c  objc_sync_exit(self)
+  154340  return
+
+== -[TAGManager refreshTagsInAllContainers:]   (address 0x100154344  size 436  kind objc)
+  1543a4  [self containers]
+  1543c0  [[self containers] allValues]
+  1543f8  [[[self containers] allValues] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  154400  if ([[[self containers] allValues] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] == 0) goto loc_10015447c
+  154410  &@selector(evaluateTags:)
+loc_100154420:
+loc_100154424:
+  154430  if (x8 == x27) goto loc_10015443c
+  154438  objc_enumerationMutation([[self containers] allValues])
+loc_10015443c:
+  15444c  [x0 evaluateTags:arg1]
+  154458  if ((x28 + 1) <u [[[self containers] allValues] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]) goto loc_100154424
+  154470  [[[self containers] allValues] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  154478  if ([[[self containers] allValues] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] != 0) goto loc_100154420
+loc_10015447c:
+  1544b8  return
+
+== -[TAGManager dispatch]   (address 0x1001544f8  size 160  kind objc)
+  154518  [TAGDispatcher instance]
+  154538  [[TAGDispatcher instance] dispatch]
+  154558  [GAI sharedInstance]
+  15456c  [[GAI sharedInstance] dispatch]
+  15457c  return
+
+== -[TAGManager dispatchWithCompletionHandler:]   (address 0x100154598  size 280  kind objc)
+  1545bc  if (arg1 == 0) goto loc_100154648
+  1545d4  [GAI sharedInstance]
+  154630  [[GAI sharedInstance] dispatchWithCompletionHandler:^{-[TAGManager dispatchWithCompletionHandler:]_block_invoke captures +0x20=arg1}]
+  154644  goto loc_10015465c
+loc_100154648:
+  154658  [self dispatch]
+loc_10015465c:
+  154674  return
+
+== -[TAGManager dispatchWithCompletionHandler:]_block_invoke   (address 0x1001546b0  size 180  kind block)
+  1546c0  if (blockarg1 == 0) goto loc_1001546dc
+  1546c8  if (blockarg1 != 2) goto loc_100154724
+  1546d8  goto loc_100154738
+loc_1001546dc:
+  1546f0  [TAGDispatcher instance]
+  154710  [[TAGDispatcher instance] dispatchWithCallback:arg1]
+  154720  return
+loc_100154724:
+  154728  if (blockarg1 != 1) goto loc_100154744
+loc_100154738:
+loc_100154744:
+  15474c  return
+
+== sub_100154764   (address 0x100154764  size 16  kind sub)
+  154770  tail Block_object_assign((a0 + 32), a1[+0x20], 7, a3)
+
+== sub_100154774   (address 0x100154774  size 8  kind sub)
+  154778  return
+
+== -[TAGManager refreshMode]   (address 0x10015477c  size 16  kind objc)
+  154788  return
+
+== -[TAGManager setRefreshMode:]   (address 0x10015478c  size 16  kind objc)
+  154794  self->_refreshMode = arg1
+  154798  return
+
+== -[TAGManager dataLayer]   (address 0x10015479c  size 16  kind objc)
+  1547a8  return
+
+== -[TAGManager containers]   (address 0x1001547ac  size 16  kind objc)
+  1547b8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGManager setContainers:]   (address 0x1001547bc  size 12  kind objc)
+  1547c4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGManager .cxx_destruct]   (address 0x1001547c8  size 84  kind objc)

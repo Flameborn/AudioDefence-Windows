@@ -1,0 +1,1012 @@
+"""Gameplay screens: ADGameplayViewController (endless), ADChallengeGameplayViewController,
+ADOpenerGameplayViewController, and the input objects they own.
+
+UIKit pieces are replaced by small models that keep the original decisions:
+* ``InfiniteScrollView`` - ADInfiniteScrollView: turning.  The heading is derived from a content offset
+  over a ``line.png``-wide strip (430 points in the iPhone nib), exactly as -sendOffsetToDelegate does.
+  All four gameplay scroll views receive identical input, so one instance stands for them.
+* ``MotionManager`` - ADMotionManager: fed by the keyboard instead of CoreMotion (see ``KeyboardMotion``).
+* ``AccessibleGameView`` - ADAccessibleGameView: the VoiceOver game surface.  Keys press/release
+  "touches" at the centre of the quadrant the original button mode assigns to each action.
+* ``WeaponTouchArea`` - ADWeaponTouchArea / ADButtonWithSwipe logic (used when no screen reader runs).
+
+The screen (``host``) is only asked to present things; it never decides game logic.
+"""
+from __future__ import annotations
+
+import logging
+import math
+
+from ..platform.cfloat import f32
+from ..platform.runloop import RunLoop
+from ..platform.tracker import Tracker
+from ..s3d.engine import S3DEngine
+from .ambient import AmbientManager
+from .brick_manager import BrickManager
+from .ingame_stats import InGameStats, notify_stats
+from .missions import MissionManager
+from .modifiers import GameModifiers
+from .parameters import GameParameters
+
+log = logging.getLogger('gameplay')
+
+LINE_PNG_WIDTH = 430.0          # line@2x.png is 860 px wide -> 430 points (iPhone nib, all scroll views)
+VIEW_WIDTH = 480.0              # iPhone landscape view, used only to place quadrant "touches"
+VIEW_HEIGHT = 320.0
+
+
+# ============================================================================================ motion
+class MotionManager:
+    """ADMotionManager.  The port has no CoreMotion: ``KeyboardMotion`` supplies yaw and tilt."""
+    _shared: 'MotionManager | None' = None
+
+    @classmethod
+    def shared(cls) -> 'MotionManager':                   # +[ADMotionManager sharedInstance] 0x100005830
+        if cls._shared is None:
+            cls._shared = MotionManager()
+        return cls._shared
+
+    def __init__(self):
+        self.last_gyro_angle = 0.0
+        self.last_tilt_angle = 0.0
+        self.running = False
+        self.source = None                                # KeyboardMotion
+
+    def start_motion_manager(self) -> None:               # 0x100005950
+        self.running = True
+
+    def destroy_motion_manager(self) -> None:             # 0x100005c58
+        self.running = False
+
+    def get_yaw_difference(self) -> float:                # 0x100005c9c
+        return f32(self.source.take_yaw_difference()) if (self.running and self.source) else 0.0
+
+    def get_tilt_angle(self) -> float:                    # 0x100005dec
+        return f32(self.source.tilt_angle()) if (self.running and self.source) else 0.0
+
+
+class KeyboardMotion:
+    """PORT INPUT: stands in for the device attitude.
+
+    Holding Left/Right turns the virtual device: for the gyro scheme the yaw changes by
+    ``yaw_rate`` radians per second; for the tilt scheme the device is held at ``tilt`` radians.
+    Turning right lowers the heading (the same direction as the original's rightward swipe)."""
+
+    def __init__(self, yaw_rate: float = 2.0, tilt: float = 0.5):
+        self.yaw_rate = yaw_rate
+        self.tilt = tilt
+        self.direction = 0                                # -1 left, +1 right
+        self._yaw_accum = 0.0
+        self._last = RunLoop.main().now()
+
+    def set_direction(self, direction: int) -> None:
+        self._advance()
+        self.direction = direction
+
+    def _advance(self) -> None:
+        now = RunLoop.main().now()
+        rate = self.yaw_rate * GameParameters.shared().turn_speed_factor()
+        self._yaw_accum += -self.direction * rate * (now - self._last)
+        self._last = now
+
+    def take_yaw_difference(self) -> float:
+        self._advance()
+        value, self._yaw_accum = self._yaw_accum, 0.0
+        return value
+
+    def tilt_angle(self) -> float:
+        return self.direction * self.tilt
+
+
+# ======================================================================================= scroll view
+class InfiniteScrollView:
+    def __init__(self, image_width: float = LINE_PNG_WIDTH):
+        # -[ADInfiniteScrollView awakeFromNib] 0x10009c4b0
+        self.image_width = f32(image_width)
+        self._delegate_set = False
+        self.content_offset = 0.0
+        self.set_content_offset((self.image_width * 3) * 0.5)
+        self._delegate_set = True
+        self.current_control_scheme = GameParameters.shared().control_scheme
+        self.control_scheme_changed()
+        # DIVERGENCE: the original sets this offset before it sets the delegate (0x10009c728, then
+        # 0x10009c740), so the engine's head orientation stays 0 while the heading is really pi - half a
+        # turn out.  On a phone the gyro fires within milliseconds of the game starting and corrects it
+        # before anyone notices; here nothing moves until a turn key is pressed, so the first enemies are
+        # heard half a turn from where they are.  The port sends the starting heading once.
+        self.send_offset_to_delegate()
+
+    def set_content_offset(self, x: float) -> None:       # UIScrollView: didScroll only on a change
+        if x == self.content_offset:
+            return
+        self.content_offset = x
+        if self._delegate_set:
+            self.scroll_view_did_scroll()
+
+    def scroll_view_did_scroll(self) -> None:             # 0x10009c814
+        if GameParameters.shared().control_scheme == 1:
+            return
+        self.adjust_offset()
+        self.send_offset_to_delegate()
+
+    def adjust_offset(self) -> None:                      # 0x10009c928
+        w = float(self.image_width)
+        if self.content_offset < w * 0.5:
+            self.set_content_offset(self.content_offset + w)
+        if self.content_offset > w * 1.5:
+            self.set_content_offset(self.content_offset - w)
+
+    def send_offset_to_delegate(self) -> None:            # 0x10009ca34
+        off = int(self.content_offset)                    # fcvtzs
+        width = int(self.image_width)
+        q = int(off / width)                              # sdiv truncates toward zero
+        t1 = off - q * width
+        frac = f32(1.0 - f32(float(t1) / self.image_width))
+        sign = -1.0 if GameParameters.shared().control_scheme == 2 else 1.0
+        S3DEngine.engine().set_head_orientation(f32(sign * (frac * 6.28318531)))
+
+    def control_scheme_changed(self) -> None:             # 0x10009cb50
+        scheme = GameParameters.shared().control_scheme
+        if scheme == 1 or scheme == 3:
+            self.enable_gyro()
+            MotionManager.shared().start_motion_manager()
+        if scheme == 2:
+            self.disable_gyro()
+
+    @staticmethod
+    def disable_gyro() -> None:                           # 0x10009cd04
+        MotionManager.shared().destroy_motion_manager()
+
+    @staticmethod
+    def enable_gyro() -> None:                            # 0x10009cd68
+        MotionManager.shared().start_motion_manager()
+
+    def update(self) -> None:                             # 0x10009cdcc
+        params = GameParameters.shared()
+        if self.current_control_scheme != params.control_scheme:
+            self.current_control_scheme = params.control_scheme
+            self.control_scheme_changed()
+        if params.control_scheme == 1:
+            self.gyro_did_move_from_angle(MotionManager.shared().last_gyro_angle)
+        if params.control_scheme == 3:
+            self.tilt_did_move_from_angle(MotionManager.shared().last_tilt_angle)
+
+    def tilt_did_move_from_angle(self, angle: float) -> None:   # 0x10009cfe8
+        if GameParameters.shared().control_scheme != 3:
+            return
+        delta = f32(f32(GameParameters.shared().sensivity * angle) * -15.0)
+        self.set_content_offset(delta + self.content_offset)
+        self.adjust_offset()
+        self.send_offset_to_delegate()
+
+    def gyro_did_move_from_angle(self, angle: float) -> None:   # 0x10009d148
+        if GameParameters.shared().control_scheme != 1:
+            return
+        delta = f32((angle / -6.28318531) * self.image_width)
+        self.set_content_offset(self.content_offset + delta)
+        self.adjust_offset()
+        self.send_offset_to_delegate()
+
+    def player_swiped(self, amount: float) -> None:       # 0x10009d278
+        radians = f32((f32(f32(amount) / f32(5.68888903)) * 3.14159265) / 180.0)
+        delta = f32((radians / 6.28318531) * self.image_width)
+        self.set_content_offset(self.content_offset + delta)
+        self.adjust_offset()
+        self.send_offset_to_delegate()
+
+
+# ================================================================================== touch surfaces
+class AccessibleGameView:
+    """ADAccessibleGameView - the full-screen surface used while VoiceOver (here: a screen reader) runs."""
+
+    def __init__(self, gameplay):
+        self.has_swiped = False
+        self.has_started_to_move = False
+        self.button_pressed_duration = 0.0
+        self.initial_point = (0.0, 0.0)
+        self._button_is_down = False
+        self.weapon_manager = None                        # weak
+        self.gameplay_view_controller = gameplay          # weak
+        self.frame = (0.0, 0.0, VIEW_WIDTH, VIEW_HEIGHT)
+
+    # quadrant centres, as the button-mode tests read them
+    TOP_LEFT = (VIEW_WIDTH * 0.25, VIEW_HEIGHT * 0.25)
+    TOP_RIGHT = (VIEW_WIDTH * 0.75, VIEW_HEIGHT * 0.25)
+    BOTTOM_LEFT = (VIEW_WIDTH * 0.25, VIEW_HEIGHT * 0.75)
+    BOTTOM_RIGHT = (VIEW_WIDTH * 0.75, VIEW_HEIGHT * 0.75)
+
+    def handle_swipe_gesture(self) -> None:               # 0x10008a194
+        self.has_swiped = True
+        self.set_button_is_down(False)
+        self.touch_canceled()
+
+    def handle_swipe_up_gesture(self) -> None:            # 0x10008a1ec
+        if GameParameters.shared().button_mode:
+            return
+        self.handle_swipe_gesture()
+        if self.weapon_manager is not None:
+            self.weapon_manager.select_next_weapon()
+
+    def handle_swipe_down_gesture(self) -> None:          # 0x10008a2f8
+        if GameParameters.shared().button_mode:
+            return
+        self.handle_swipe_gesture()
+        if self.weapon_manager is not None:
+            self.weapon_manager.reload_gesture_down()
+
+    def touches_began(self, point) -> None:               # 0x10008a404
+        self.initial_point = (float(point[0]), float(point[1]))
+        self.set_button_is_down(True)
+        self.has_swiped = False
+        self.has_started_to_move = False
+
+    def touches_ended(self) -> None:                      # 0x10008a50c
+        self.set_button_is_down(False)
+        self.has_swiped = False
+        self.has_started_to_move = False
+        if self.weapon_manager is not None:
+            self.weapon_manager.continuous_stop()
+
+    def touches_moved(self, point) -> None:               # 0x10008a5a4
+        dx = float(point[0]) - self.initial_point[0]
+        if GameParameters.shared().control_scheme == 2 and self.gameplay_view_controller is not None:
+            self.gameplay_view_controller.touches_move_detected(dx, not self.has_started_to_move)
+        self.has_started_to_move = True
+        self.has_swiped = abs(dx) > 30
+
+    def update(self, dt: float) -> None:                  # 0x10008a754
+        if not self._button_is_down:
+            self.button_pressed_duration = 0.0
+            return
+        self.button_pressed_duration = f32(self.button_pressed_duration + dt)
+        d = self.button_pressed_duration
+        if d <= 0.2:
+            return
+        if d > float(f32(dt)) + 0.2:
+            return
+        if self.has_swiped:
+            return
+        if GameParameters.shared().button_mode:
+            if self.initial_point[0] < self.frame[2] * 0.5:
+                return
+            if self.initial_point[1] >= self.frame[3] * 0.5:
+                return
+        if self.weapon_manager is not None:
+            self.weapon_manager.continuous_start()
+
+    def solve_button_press(self) -> None:                 # 0x10008a914
+        wm = self.weapon_manager
+        x, y = self.initial_point
+        w, h = self.frame[2], self.frame[3]
+        if GameParameters.shared().button_mode:
+            if x < w * 0.5 and y < h * 0.5:
+                wm.shoot_with_melee()
+                return
+        else:
+            wm.weapon_single_shot()
+            return
+        if x >= w * 0.5 and y < h * 0.5:
+            # DIVERGENCE: the original starts continuous fire here, even for a press too short to hold -
+            # it begins the weapon's looping "conti" sound and the release stops it again milliseconds
+            # later, so tapping fire in Button mode spends bullets almost silently and never reaches the
+            # empty click or the reload call-out.  The fire button this quadrant stands for does the
+            # opposite (ADButtonWithSwipe: a press under 0.28 s is a single shot), and so does Gesture
+            # mode, so a tap here is a single shot too.  Holding still starts continuous fire, from
+            # update(), which is untouched.
+            wm.weapon_single_shot()
+            return
+        if x < w * 0.5 and y >= h * 0.5:
+            wm.select_next_weapon()
+            return
+        if x >= w * 0.5 and y >= h * 0.5:
+            wm.reload_gesture_down()
+
+    def touch_canceled(self) -> None:                     # 0x10008abcc
+        self.set_button_is_down(False)
+        if self.weapon_manager is not None:
+            self.weapon_manager.continuous_stop()
+        self.has_swiped = False
+
+    def set_button_is_down(self, down: bool) -> None:     # 0x10008ac54
+        self._button_is_down = bool(down)
+        if down:
+            return
+        if not self.has_swiped and self.button_pressed_duration < 0.2 and self.weapon_manager is not None:
+            self.solve_button_press()
+        self.button_pressed_duration = 0.0
+
+    def handle_triple_tap(self) -> None:                  # 0x10008acf8
+        if GameParameters.shared().button_mode:
+            return
+        if self.weapon_manager is not None:
+            self.weapon_manager.shoot_with_melee()
+
+
+class ButtonWithSwipe:
+    """ADButtonWithSwipe (and ADWeaponTouchArea, which adds swipe up/down): hold 0.28 s for continuous fire,
+    release earlier for a single shot, or, without a weapon manager, the button's own action."""
+
+    def __init__(self, action=None, allow_swipe: bool = False):
+        self.has_swiped = False
+        self.button_pressed_duration = 0.0
+        self._button_is_down = False
+        self.weapon_manager = None                        # weak
+        self.gameplay_view_controller = None              # weak
+        self.action = action                              # the IBAction removed from the target list
+        self.allow_swipe = allow_swipe
+        self.pan_began = False
+
+    def update(self, dt: float) -> None:                  # 0x10002493c (icon refresh omitted)
+        if self._button_is_down:
+            self.button_pressed_duration = f32(self.button_pressed_duration + dt)
+            d = self.button_pressed_duration
+            if d > 0.28 and not d > float(f32(dt)) + 0.28 and not self.has_swiped:
+                if self.weapon_manager is not None:
+                    self.weapon_manager.continuous_start()
+        else:
+            self.button_pressed_duration = 0.0
+
+    def set_button_is_down(self, down: bool) -> None:     # 0x100024cf4
+        self._button_is_down = bool(down)
+        if down:
+            self.has_swiped = False
+            return
+        if not self.has_swiped and self.button_pressed_duration < 0.28:
+            if self.weapon_manager is not None:
+                self.weapon_manager.weapon_single_shot()
+            elif self.gameplay_view_controller is not None \
+                    and not isinstance(self.gameplay_view_controller, OpenerGameplayController) \
+                    and self.action is not None:
+                self.action()
+        self.button_pressed_duration = 0.0
+
+    def touched_down(self) -> None:                       # 0x100024e8c
+        self.set_button_is_down(True)
+
+    def touched_up(self) -> None:                         # 0x100024ea0
+        self.set_button_is_down(False)
+        if self.weapon_manager is not None:
+            self.weapon_manager.continuous_stop()
+
+    def touch_canceled(self) -> None:                     # 0x100024f38
+        if self.pan_began and self.button_pressed_duration < 0.28:
+            return
+        self.set_button_is_down(False)
+        if self.weapon_manager is not None:
+            self.weapon_manager.continuous_stop()
+
+    def handle_swipe_gesture(self) -> None:               # 0x100025004
+        self.has_swiped = True
+        self.set_button_is_down(False)
+        self.touch_canceled()
+
+    def handle_triple_tap(self) -> None:                  # 0x100025174
+        if GameParameters.shared().button_mode:
+            return
+        if self.weapon_manager is not None:
+            self.weapon_manager.shoot_with_melee()
+
+
+class WeaponTouchArea(ButtonWithSwipe):
+    def handle_swipe_up_gesture(self) -> None:            # -[ADWeaponTouchArea handleSwipeUpGesture] 0x100040884
+        self.handle_swipe_gesture()
+        if self.weapon_manager is not None:
+            self.weapon_manager.select_next_weapon()
+
+    def handle_swipe_down_gesture(self) -> None:          # 0x100040934
+        self.handle_swipe_gesture()
+        if self.weapon_manager is not None:
+            self.weapon_manager.reload_gesture_down()
+
+
+# ========================================================================================= overlays
+class ReviveController:
+    """ADReviveViewController."""
+
+    def __init__(self, cost: int):                        # -initWithCost: 0x100021168
+        self.cost = int(cost)
+        self.gameplay_view_controller = None              # weak
+        self.revive_stand_by_sound = None
+        self.revive_playlist = S3DEngine.engine().play_list_with_name('revive')
+        if self.revive_playlist is not None:
+            self.revive_playlist.activate()
+        self.revive_enabled = True
+        self.tip = None
+        self.revive_label = None
+
+    def view_did_load(self) -> None:                      # 0x100021284
+        if self.cost != 0:
+            self.revive_label = f'Revive for {self.cost} diamond'     # accessibilityLabel
+        else:
+            self.revive_label = 'free revive'
+        brick = BrickManager.shared().current_brick()
+        self.tip = brick.random_tip() if brick is not None else None
+        self.revive_stand_by_sound = self.revive_playlist.sound('revive_standby') if self.revive_playlist else None
+        if self.revive_stand_by_sound is not None:
+            self.revive_stand_by_sound.play(True)
+
+    def view_will_appear(self) -> None:                   # 0x100021794
+        from .inventory import Inventory
+        if Inventory.shared().diamonds <= 0:
+            self.revive_enabled = False                   # alpha 0.4, setEnabled:NO
+
+    def revive_button_pressed(self) -> bool:              # 0x1000218a8; False: "no diamonds" alert shown
+        from .inventory import Inventory
+        inv = Inventory.shared()
+        if not inv.diamonds >= self.cost:
+            return False
+        self.gameplay_view_controller.revive()
+        inv.set_diamonds(inv.diamonds - self.cost)
+        Tracker.shared().revive_used_with_cost(self.cost)
+        notify_stats('RESET_BRICK_TIME', None)
+        if self.revive_stand_by_sound is not None:
+            self.revive_stand_by_sound.stop()
+        yes = self.revive_playlist.sound('revive_yes') if self.revive_playlist else None
+        if yes is not None:
+            yes.play()
+            pl = self.revive_playlist
+            yes.add_3d_sound_end_callback(lambda _s: pl.deactivate())
+        return True
+
+    def game_over_button_pressed(self) -> None:           # 0x100021b3c (also the magic tap)
+        Tracker.shared().game_over_button_pressed()
+        self.gameplay_view_controller.game_over()
+        if self.revive_stand_by_sound is not None:
+            self.revive_stand_by_sound.stop()
+        no = self.revive_playlist.sound('revive_no') if self.revive_playlist else None
+        if no is not None:
+            no.set_gain(0.2)
+            no.play()
+
+
+# ======================================================================================= controller
+class GameplayController:
+    """ADGameplayViewController (endless mode)."""
+    uses_accessible_view_when_screen_reader = True
+
+    def __init__(self, host=None):                        # -initWithNibName:bundle: 0x100056da0
+        self.host = host                                  # the presenting screen
+        self.weapon_update_timer = None
+        self.update_timer = None
+        self.stats_update_timer = None
+        self.movement_on_last_frame = 0.0
+        self.pan_array: list = []
+        self.pause_view = None
+        self.revive_view_controller = None
+        self.nb_revives = 0
+        self.announcer_value_on_entering_pause = False
+        self.accessible_game_view = None
+        self.paused = False
+        self.weapon_manager = None
+        self.player = None
+        self.death_overlay_visible = False
+        self.score_label_text = '0'
+        self.combo_label_text = ''
+        self.skip_button_hidden = True
+        self.timer_view_hidden = True
+        self.timer_label_text = ''
+        self.infinite_scroll_views = [InfiniteScrollView()]
+        self.weapon_touch_area = WeaponTouchArea(allow_swipe=True)
+        self.weapon_button = ButtonWithSwipe()
+        self.shake_detector = None
+
+    # --- setup -----------------------------------------------------------------------------------
+    def init_ambiant_manager(self) -> None:               # 0x100057000
+        AmbientManager.shared().start_with_random_ambient()
+        engine = S3DEngine.engine()
+        engine.set_reverb_room_size(1.5)
+        engine.set_reverb_dampening(50.0)
+        engine.set_reverb_volume(1.0)
+
+    def ambiant_manager_did_activate_playlist(self) -> None:   # 0x100057128
+        pass
+
+    def init_brick_manager(self) -> None:                 # 0x10005712c
+        self.nb_revives = 0
+        bm = BrickManager.shared()
+        bm.set_mode(1)
+        MissionManager.shared().start_gameplay()
+        bm.reset()
+        bm.gameplay_view_controller = self
+        bm.load_brick_chance_plist('brick_chance')
+        bm.load_next_brick()
+
+    def init_stats(self) -> None:                         # 0x1000572d4
+        InGameStats.singleton().start_new_level('ENDLESS')
+        self.score_label_text = '0'
+
+    def init_ga_tracker_stats(self) -> None:              # 0x1000573e8 (analytics only)
+        self.set_game_mode_dimension()
+
+    def init_announcer(self) -> None:                     # 0x100057b0c (no caller in the binary)
+        if GameParameters.shared().last_announcer_value():
+            pl = S3DEngine.engine().play_list_with_name('announcer')
+            if pl is not None:
+                pl.activate()
+
+    def view_did_load(self) -> None:                      # 0x100057c08
+        self.init_weapon_manager()
+        self.init_ambiant_manager()
+        self.init_brick_manager()
+        self.start_update_timers()
+        self.init_button_mode()
+        from .player import Player
+        self.player = Player()
+        self.skip_button_hidden = True
+        self.timer_view_hidden = True
+        if not isinstance(self, OpenerGameplayController):
+            self.init_stats()
+            self.init_ga_tracker_stats()
+        self.update_score_view_with_animation(False)
+        if self.host is not None and self.host.screen_reader_running():
+            self.accessible_game_view = AccessibleGameView(self)
+            self.accessible_game_view.weapon_manager = self.weapon_manager
+
+    def set_game_mode_dimension(self) -> None:            # 0x100058ce4
+        Tracker.shared().set_value_for_dimension('Endless mode', 'Game mode', 0, 0)
+
+    def go_to_challenge_failed_screen(self) -> None:      # 0x100058d60
+        pass
+
+    def init_weapon_manager(self) -> None:                # 0x1000591cc
+        from .weapon_manager import WeaponManager
+        self.weapon_manager = WeaponManager.with_weapons_from_armory()
+        self._attach_touch_objects()
+
+    def _attach_touch_objects(self) -> None:
+        self.weapon_touch_area.weapon_manager = self.weapon_manager
+        self.weapon_touch_area.gameplay_view_controller = self
+        self.weapon_button.weapon_manager = self.weapon_manager
+        self.weapon_button.gameplay_view_controller = self
+
+    def start_update_timers(self) -> None:                # 0x10005948c
+        for t in (self.update_timer, self.weapon_update_timer, self.stats_update_timer):
+            if t is not None:
+                t.invalidate()
+        loop = RunLoop.main()
+        self.update_timer = loop.schedule_timer(0.05, self.update, True)
+        self.weapon_update_timer = loop.schedule_timer(0.01, self.update_weapons, True)
+        self.stats_update_timer = loop.schedule_timer(0.25, self.update_stats, True)
+
+    def init_button_mode(self) -> None:                   # 0x10005a214
+        pass                                              # ADButtonWithSwipe gameplayViewController links
+
+    # --- timers ----------------------------------------------------------------------------------
+    def update_stats(self) -> None:                       # 0x1000596d0
+        if isinstance(self, OpenerGameplayController) or self.paused:
+            return
+        if BrickManager.shared().has_skippable_sounds_playing():
+            return
+        notify_stats('TIME_ELAPSED', 0.25)
+        notify_stats('BRICK_TIME_ELAPSED', 0.25)
+        cw = self.weapon_manager.current_weapon if self.weapon_manager is not None else None
+        notify_stats('UPDATE_WEAPON_DATA', cw.name if cw is not None else None, False, False, False, False, 0.25)
+
+    def update_weapons(self) -> None:                     # 0x100059a48
+        self.weapon_touch_area.update(0.01)
+        if self.weapon_manager is not None:
+            self.weapon_manager.update(0.01)
+        self.weapon_button.update(0.01)
+        self.update_score_view_with_animation(True)
+
+    def update(self) -> None:                             # 0x100059b50
+        if not isinstance(self, OpenerGameplayController):
+            AmbientManager.shared().update(0.05)
+        params = GameParameters.shared()
+        mm = MotionManager.shared()
+        if params.control_scheme == 1:
+            mm.last_gyro_angle = mm.get_yaw_difference()
+        elif params.control_scheme == 3:
+            mm.last_tilt_angle = mm.get_tilt_angle()
+        for v in list(self.infinite_scroll_views):
+            v.update()
+        BrickManager.shared().update(0.05)
+        if self.player is not None:
+            self.player.update(0.05)
+        if self.accessible_game_view is not None:
+            self.accessible_game_view.update(0.05)
+        self.update_score_view_with_animation(True)
+
+    # --- input -----------------------------------------------------------------------------------
+    def motion_ended(self, shake: bool) -> None:          # 0x10005a108
+        if GameParameters.shared().button_mode:
+            return
+        if shake and self.weapon_manager is not None:
+            self.weapon_manager.shoot_with_melee()
+
+    def touches_move_detected(self, dx: float, just_started: bool) -> None:   # 0x10005a3e0
+        if just_started:
+            self.movement_on_last_frame = 0.0
+        sens = GameParameters.shared().sensivity
+        for v in list(self.infinite_scroll_views):
+            v.player_swiped(f32(-(sens * dx)) - self.movement_on_last_frame)
+        self.movement_on_last_frame = f32(-(sens * dx))
+
+    def pan_detected(self, translation_x: float, began: bool) -> None:   # 0x10005a748
+        if GameParameters.shared().control_scheme == 2:
+            self.touches_move_detected(translation_x, began)
+
+    def switch_weapon_button_pressed(self) -> None:       # 0x10005a86c
+        self.weapon_manager.select_next_weapon()
+
+    def reload_button_pressed(self) -> None:              # 0x10005a8d0
+        self.weapon_manager.reload_gesture_down()
+
+    def melee_button_pressed(self) -> None:               # 0x10005a934
+        self.weapon_manager.shoot_with_melee()
+
+    def power_up_button_pressed(self) -> None:            # 0x10005a998 (no button in the nib)
+        self.weapon_manager.use_power_up()
+
+    def player_killed_enemy(self, enemy, combo: int) -> None:   # 0x10005a9fc
+        pass
+
+    def player_did_a_critical_hit(self) -> None:          # 0x10005aa00
+        pass
+
+    def update_score_view_with_animation(self, animated: bool) -> None:   # 0x10005aa04 (labels only)
+        stats = InGameStats.singleton()
+        self.combo_label_text = f'x {stats.combo}'
+        shown = _ns_int(self.score_label_text)
+        score = stats.game_score
+        if score == shown:
+            return
+        if not animated:
+            self.score_label_text = self.formatted_score_from_int(score)
+            return
+        if not (score & 0xFFFFFFFF) > (shown & 0xFFFFFFFF):
+            return
+        diff = (score - shown) & 0xFFFFFFFF
+        if not diff < 1001:
+            self.score_label_text = self.formatted_score_from_int(shown + 1000)
+            shown = _ns_int(self.score_label_text)
+        diff = (score - shown) & 0xFFFFFFFF
+        if not diff % 1000 < 101:
+            self.score_label_text = self.formatted_score_from_int(shown + 100)
+            shown = _ns_int(self.score_label_text)
+        diff = (score - shown) & 0xFFFFFFFF
+        if not diff % 100 < 11:
+            self.score_label_text = self.formatted_score_from_int(shown + 10)
+            shown = _ns_int(self.score_label_text)
+        diff = (score - shown) & 0xFFFFFFFF
+        if diff % 10 != 0:
+            self.score_label_text = self.formatted_score_from_int(shown + 1)
+
+    @staticmethod
+    def formatted_score_from_int(value: int) -> str:      # 0x10005b448
+        return str(int(value))
+
+    def pause_button_touched(self) -> None:               # 0x10005b484
+        self.pause_view = PauseController(self)
+        self.pause_game()
+        if self.host is not None:
+            self.host.present_pause(self.pause_view)
+
+    def skip_button_pressed(self) -> None:                # 0x10005b538
+        pass
+
+    def quit_gameplay_with_fail(self) -> None:            # 0x10005b53c
+        self.go_to_score_screen()
+
+    def go_to_score_screen(self) -> None:                 # 0x10005b54c
+        from ..app import App
+        self.kill_gameplay()
+        App.delegate().go_to_game_over_endless()
+
+    def pause_game(self) -> None:                         # 0x10005b5fc
+        self.stop_timers()
+        BrickManager.shared().pause_all_bricks()
+        AmbientManager.shared().pause()
+        self.paused = True
+        self.announcer_value_on_entering_pause = GameParameters.shared().last_announcer_value()
+
+    def resume_game(self) -> None:                        # 0x10005b718
+        self.start_update_timers()
+        BrickManager.shared().resume_all_bricks()
+        AmbientManager.shared().resume()
+        self.pause_view = None
+        self.paused = False
+        announcer = GameParameters.shared().last_announcer_value()
+        if self.announcer_value_on_entering_pause == announcer:
+            return
+        pl = S3DEngine.engine().play_list_with_name('announcer')
+        if pl is None:
+            return
+        if announcer:
+            pl.activate()
+        else:
+            pl.deactivate()
+
+    def show_death_overlay(self) -> None:                 # 0x10005b97c
+        self.death_overlay_visible = True
+        self.paused = True
+
+    def show_revive_view(self) -> None:                   # 0x10005ba78
+        AmbientManager.shared().stop_ambient()
+        free = 1 if GameModifiers.shared().freeRevive else 0
+        cost = int(math.ldexp(1.0, self.nb_revives - free))
+        self.revive_view_controller = ReviveController(cost)
+        self.revive_view_controller.gameplay_view_controller = self
+        self.revive_view_controller.view_did_load()
+        self.revive_view_controller.view_will_appear()
+        if self.host is not None:
+            self.host.present_revive(self.revive_view_controller)
+        self.nb_revives = self.nb_revives + 1
+
+    def revive(self) -> None:                             # 0x10005bec0
+        InGameStats.singleton().set_combo(10)
+        self.update_score_view_with_animation(False)
+        self.death_overlay_visible = False
+        if self.host is not None:
+            self.host.dismiss_revive()
+        self.revive_view_controller = None
+        self.paused = False
+        BrickManager.shared().revive()
+        self.init_ambiant_manager()
+
+    def game_over(self) -> None:                          # 0x10005c10c
+        BrickManager.shared().game_over()
+
+    def kill_gameplay(self) -> None:                      # 0x10005c170
+        from .persistent_stats import PersistentStats
+        self.stop_timers()
+        AmbientManager.shared().stop_ambient()
+
+        def later():                                      # killGameplay_block_invoke 0x10005c770 (0.1 s)
+            from .weapon_manager import WeaponManager
+            AmbientManager.shared().stop_ambient()
+            if self.weapon_manager is not None:
+                self.weapon_manager.clean()
+            BrickManager.shared().clean()
+            # DIVERGENCE: -[ADWeaponManager clean] 0x1000aad50 cleans the power-up of the manager it is sent
+            # to, and this block only sends it to the gameplay manager, whose own powerUp is always nil -
+            # initPowerUp:/usePowerUp go through +sharedWeaponManager, which nothing ever cleans.  A power-up
+            # still in hand at the end of a run was therefore waiting at the start of the next one.
+            WeaponManager.shared().set_power_up(None)
+        RunLoop.main().call_later(0.1, later)
+        self.weapon_touch_area.gameplay_view_controller = None
+        self.weapon_button.gameplay_view_controller = None
+        if self.player is not None:
+            self.player.dealloc()                         # setPlayer:nil releases the only reference
+        self.player = None
+        BrickManager.shared().gameplay_view_controller = None
+        self.pan_array.clear()
+        if GameParameters.shared().last_announcer_value():
+            pl = S3DEngine.engine().play_list_with_name('announcer')
+            if pl is not None:
+                pl.deactivate()
+        if not isinstance(self, OpenerGameplayController):
+            stats = InGameStats.singleton()
+            stats.end_level()
+            stats.save_stats()
+            PersistentStats.shared().save_score(stats.game_score)
+            Tracker.shared().record_end_of_game_data()
+
+    def stop_timers(self) -> None:                        # 0x10005c904
+        for t in (self.update_timer, self.weapon_update_timer, self.stats_update_timer):
+            if t is not None:
+                t.invalidate()
+        self.update_timer = None
+        self.weapon_update_timer = None
+        self.stats_update_timer = None
+
+
+def _ns_int(text) -> int:
+    from ..platform.defaults import ns_int_value
+    return ns_int_value(text)
+
+
+# ============================================================================================ pause
+class PauseController:
+    """ADPauseViewController (the settings part lives in the settings screen port)."""
+
+    def __init__(self, gameplay):
+        self.gameplay_view_controller = gameplay          # weak
+
+    def view_did_load(self) -> None:                      # 0x100055650
+        pl = S3DEngine.engine().play_list_with_name('headphonesTest')
+        if pl is not None:
+            pl.activate()
+
+    def quit_button_touched(self) -> None:                # 0x1000559c0 ("End Game")
+        MissionManager.shared().end_gameplay()
+        gvc = self.gameplay_view_controller
+
+        def dismissed():                                  # quitButtonTouched:_block_invoke
+            if gvc is not None:
+                gvc.quit_gameplay_with_fail()
+            self.gameplay_view_controller = None
+        if gvc is not None and gvc.host is not None:
+            gvc.host.dismiss_pause(dismissed)
+        else:
+            dismissed()
+        pl = S3DEngine.engine().play_list_with_name('headphonesTest')
+        if pl is not None:
+            pl.deactivate()
+
+    def validate_button_pressed(self) -> None:            # 0x100055bbc ("Resume")
+        gvc = self.gameplay_view_controller
+
+        def dismissed():                                  # validateButtonPressed:_block_invoke
+            if gvc is not None:
+                gvc.resume_game()
+        if gvc is not None and gvc.host is not None:
+            gvc.host.dismiss_pause(dismissed)
+        else:
+            dismissed()
+        pl = S3DEngine.engine().play_list_with_name('headphonesTest')
+        if pl is not None:
+            pl.deactivate()
+
+    def back_button_pressed(self) -> None:                # 0x1000559ac
+        self.validate_button_pressed()
+
+
+# ======================================================================================== challenge
+class ChallengeGameplayController(GameplayController):
+    def __init__(self, challenge_dictionary: dict, host=None):   # 0x1000da350
+        super().__init__(host)
+        self.challenge_dictionary = challenge_dictionary
+        self.check_skip_button_counter = 0
+
+    def view_did_load(self) -> None:                      # 0x1000da420
+        super().view_did_load()
+        self.timer_view_hidden = False
+        self.timer_label_text = '00:00'
+
+    def set_game_mode_dimension(self) -> None:            # 0x1000da6ac
+        Tracker.shared().set_value_for_dimension('Challenge mode', 'Game mode', 0, 0)
+
+    def skip_button_pressed(self) -> None:                # 0x1000da728
+        BrickManager.shared().skip_skippable_sounds()
+
+    def update(self) -> None:                             # 0x1000da794
+        self.check_skip_button_counter = self.check_skip_button_counter + 1
+        if self.check_skip_button_counter == 20:
+            self.check_skip_button_counter = 0
+            if BrickManager.shared().has_skippable_sounds_playing():
+                self.skip_button_hidden = False
+                if self.host is not None:
+                    self.host.layout_changed()            # UIAccessibilityLayoutChangedNotification
+            else:
+                self.skip_button_hidden = True
+        if not self.paused and not BrickManager.shared().has_skippable_sounds_playing():
+            self.timer_label_text = self.time_string_from_seconds(int(InGameStats.singleton().challenge_time_elapsed))
+        super().update()
+
+    def update_stats(self) -> None:                       # 0x1000daa68
+        super().update_stats()
+        if self.paused or BrickManager.shared().has_skippable_sounds_playing():
+            return
+        notify_stats('UPDATE_CHALLENGE_TIME_ELAPSED', 0.25)
+
+    @staticmethod
+    def time_string_from_seconds(seconds: int) -> str:    # 0x1000dab80
+        minutes = int(seconds / 60)                       # C division
+        rest = seconds - minutes * 60
+        return f'{minutes}:{"0" if rest < 10 else ""}{rest}'
+
+    def init_weapon_manager(self) -> None:                # 0x1000dac60
+        from .weapon_manager import WeaponManager
+        self.weapon_manager = WeaponManager.with_challenge_weapon_array(self.challenge_dictionary.get('weapons'))
+        self._attach_touch_objects()
+
+    def init_brick_manager(self) -> None:                 # 0x1000daf74
+        bm = BrickManager.shared()
+        bm.reset()
+        bm.set_mode(2)
+        bm.gameplay_view_controller = self
+        bm.load_brick_challenge_array(self.challenge_dictionary.get('bricks'))
+        bm.load_next_brick()
+        MissionManager.shared().start_gameplay()
+
+    def init_ambiant_manager(self) -> None:               # 0x1000db158
+        from ..platform.defaults import ns_float_value
+        ambient = self.challenge_dictionary.get('ambient') or {}
+        AmbientManager.shared().start_with_ambient(ambient.get('ambientPlaylist'),
+                                                   ns_float_value(ambient.get('gain')))
+        engine = S3DEngine.engine()
+        engine.set_reverb_room_size(1.5)
+        engine.set_reverb_dampening(50.0)
+        engine.set_reverb_volume(1.0)
+        AmbientManager.shared().gameplay_view_controller = self
+
+    def ambiant_manager_did_activate_playlist(self) -> None:   # 0x1000db3e8
+        AmbientManager.shared().start_base_sound()
+
+    def init_stats(self) -> None:                         # 0x1000db44c
+        InGameStats.singleton().start_new_level('CHALLENGE')
+
+    def quit_gameplay_with_fail(self) -> None:            # 0x1000db4b8
+        self.go_to_challenge_failed_screen()
+
+    def go_to_challenge_failed_screen(self) -> None:      # 0x1000db4c8
+        from ..app import App
+        self.kill_gameplay()
+        App.delegate().go_to_challenge_failed_with_dictionary(self.challenge_dictionary)
+
+    def go_to_score_screen(self) -> None:                 # 0x1000db588
+        InGameStats.singleton().force_complete_accuracy()
+        self.go_to_challenge_completed_screen()
+
+    def get_challenge_id(self):                           # 0x1000db604
+        return self.challenge_dictionary.get('challenge_id')
+
+    def go_to_challenge_completed_screen(self) -> None:   # 0x1000db628
+        from ..app import App
+        self.kill_gameplay()
+        RunLoop.main().call_later(
+            0.1, lambda: App.delegate().go_to_challenge_completed_with_dictionary(self.challenge_dictionary))
+
+    def show_death_overlay(self) -> None:                 # 0x1000db788 (does not set paused)
+        # DIVERGENCE (observed, not read): the original has [[UIApplication sharedApplication] delegate]
+        # startMenuMusic:@"game_over_theme"] here, at 0x0db7f0, with nothing guarding it - and in a
+        # recording of the real game no theme is heard when you die in a challenge, nor on the retry screen
+        # that follows.  What is heard there is the retry screen's own sting, a random gameover_1..3
+        # playlist started by -[ADChallengeFailedViewController viewDidLoad] 0x100071718 at 0x071c90, and
+        # the menu theme only returns at the challenge selector.  Checked and ruled out as the cause:
+        # startMenuMusic: 0x100082ca0 (its two early exits do not apply), killGameplay 0x10005c170 and its
+        # 0.1 s block, playListWithName: 0x1000fc050 (cached, still returns the playlist once deactivated),
+        # activate: 0x1000fe9c0 (only skips while already activating), the retry screen's own viewDidLoad,
+        # and all three callers of stopMenuMusic.  The mechanism is unidentified - most likely something in
+        # S3D's asynchronous activation on the device - so this follows the ear rather than the line.
+        # Pressing End Challenge never reaches here at all, which is why that path was already silent.
+        self.death_overlay_visible = True
+
+
+# =========================================================================================== opener
+class OpenerGameplayController(GameplayController):
+    def __init__(self, host=None):                        # 0x100025334
+        super().__init__(host)
+        self.control_mode_label = None
+
+    def view_did_load(self) -> None:                      # 0x1000253c0 (does not call super)
+        self.init_ambiant_manager()
+        self.init_brick_manager()
+        self.start_update_timers()
+        self.weapon_touch_area.gameplay_view_controller = self
+        self.timer_view_hidden = True
+        scheme = GameParameters.shared().control_scheme
+        if scheme == 1:
+            self.control_mode_label = 'Move the device'
+        elif scheme == 2:
+            self.control_mode_label = 'Swipe the screen'
+        elif scheme == 3:
+            self.control_mode_label = 'Tilt the device'
+        else:
+            self.control_mode_label = 'Swipe the screen or move the device'
+        if self.host is not None and self.host.screen_reader_running():
+            # the original announces "Triple tap to skip intro" after 2 s; the port names its key.  Skipping
+            # before then leaves the opener behind, so the announcement checks it is still the screen: it
+            # used to arrive over the main menu, where pressing Enter presses whatever is focused.
+            def announce_skip() -> None:
+                from ..app import App
+                if App.delegate().view_controller is self:
+                    self.host.announce(self.host.skip_intro_announcement())
+            RunLoop.main().call_later(2.0, announce_skip)
+
+    def handle_skip_for_accessible_users(self) -> None:   # 0x100025994
+        self.skip_button_pressed()
+
+    def init_ambiant_manager(self) -> None:               # 0x100025c38
+        engine = S3DEngine.engine()
+        engine.set_reverb_room_size(1.5)
+        engine.set_reverb_dampening(50.0)
+        engine.set_reverb_volume(1.0)
+
+    def init_brick_manager(self) -> None:                 # 0x100025d20
+        bm = BrickManager.shared()
+        bm.set_mode(4)
+        bm.reset()
+        bm.gameplay_view_controller = self
+        bm.load_brick_with_name('opener')
+
+    def go_to_score_screen(self) -> None:                 # 0x100025e48
+        from ..app import App
+        self.kill_gameplay()
+        App.delegate().go_to_main_menu()
+
+    def skip_button_pressed(self) -> None:                # 0x100025ef8
+        from ..app import App
+        self.kill_gameplay()
+        App.delegate().go_to_main_menu()

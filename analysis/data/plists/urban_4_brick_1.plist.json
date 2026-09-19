@@ -1,0 +1,120 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "bastard_urban_4_1"
+  }
+ ],
+ "Enemies": {
+  "Zombie": {
+   "afterStart": true,
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 23,
+    "afterStart": true,
+    "enemy": "bastard_urban_4_1"
+   },
+   "spawn_angle": 270,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "FartyB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 270,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 11,
+    "enemy": "Zombie"
+   },
+   "spawn_angle": 270,
+   "spawn_distance": 10
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 15.02,
+    "afterStart": true,
+    "enemy": "bastard_urban_4_1"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 8,
+    "enemy": "ZombieB"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 19,
+    "afterStart": true,
+    "enemy": "bastard_urban_4_1"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "Farty"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 26,
+    "afterStart": true,
+    "enemy": "bastard_urban_4_1"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 9,
+    "enemy": "WeakZombie"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  }
+ },
+ "PowerUp": {
+  "force_spawn_time": "25"
+ }
+}

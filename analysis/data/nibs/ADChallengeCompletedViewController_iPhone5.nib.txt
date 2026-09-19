@@ -1,0 +1,61 @@
+// ADChallengeCompletedViewController_iPhone5.nib
+TOP-LEVEL OBJECTS
+  #198 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #214 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #130 UIView  
+    #188 UIImageView  UserInteractionDisabled=False Image='frame_completed.png'
+    #30 UIView  
+      #164 UIView  
+      #21 UIView  
+      #91 UIView  
+    #224 UILabel  UserInteractionDisabled=False Text='Missions'
+    #195 UIButton  
+    #20 UIImageView  UserInteractionDisabled=False Image='frame_completed.png'
+    #238 UIView  
+      #31 UIView  
+      #136 UIView  
+      #9 UIView  
+    #237 UILabel  UserInteractionDisabled=False Text='KILLS'
+    #178 UILabel  UserInteractionDisabled=False Text='Label'
+    #151 UILabel  UserInteractionDisabled=False Text='Your Time'
+    #51 UILabel  UserInteractionDisabled=False Text='Label'
+    #207 UILabel  UserInteractionDisabled=False Text='Your Accuracy'
+    #99 UILabel  UserInteractionDisabled=False Text='Label'
+    #12 UILabel  UserInteractionDisabled=False Text='SCORE'
+  #46 UIView  Tag=2781
+    #129 UIView (custom class ViewWithParalax)  
+      #144 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #152 UIScrollView  
+    #10 UIView  
+      #86 UIButton  
+      #145 UIButton  
+      #81 UIButton  
+
+CONNECTIONS
+  action  goToScoreButtonPressed:                   #195 UIButton --(events 0x40)--> #198 UIProxyObject
+  action  missionSelectButtonPressed:               #145 UIButton --(events 0x40)--> #198 UIProxyObject
+  action  nextMissionButtonPressed:                 #86 UIButton --(events 0x40)--> #198 UIProxyObject
+  action  retryButtonPressed:                       #81 UIButton --(events 0x40)--> #198 UIProxyObject
+  outlet  accuracyLabel                             #198 UIProxyObject --> #99 UILabel Text='Label'
+  outlet  accuracyTitleLabel                        #198 UIProxyObject --> #207 UILabel Text='Your Accuracy'
+  outlet  background                                #198 UIProxyObject --> #144 UIImageView
+  outlet  buttonsView                               #198 UIProxyObject --> #10 UIView
+  outlet  challengeTitle                            #198 UIProxyObject --> #12 UILabel Text='SCORE'
+  outlet  contentScrollView                         #198 UIProxyObject --> #152 UIScrollView
+  outlet  contentView                               #198 UIProxyObject --> #130 UIView
+  outlet  killsLabel                                #198 UIProxyObject --> #178 UILabel Text='Label'
+  outlet  killsTitleLabel                           #198 UIProxyObject --> #237 UILabel Text='KILLS'
+  outlet  missionPlaceholder1                       #198 UIProxyObject --> #164 UIView
+  outlet  missionPlaceholder2                       #198 UIProxyObject --> #21 UIView
+  outlet  missionPlaceholder3                       #198 UIProxyObject --> #91 UIView
+  outlet  missionView                               #198 UIProxyObject --> #30 UIView
+  outlet  missionsTitle                             #198 UIProxyObject --> #224 UILabel Text='Missions'
+  outlet  starPlaceholder1                          #198 UIProxyObject --> #31 UIView
+  outlet  starPlaceholder2                          #198 UIProxyObject --> #136 UIView
+  outlet  starPlaceholder3                          #198 UIProxyObject --> #9 UIView
+  outlet  starUnlockArea                            #198 UIProxyObject --> #238 UIView
+  outlet  timeLabel                                 #198 UIProxyObject --> #51 UILabel Text='Label'
+  outlet  timeTitleLabel                            #198 UIProxyObject --> #151 UILabel Text='Your Time'
+  outlet  view                                      #198 UIProxyObject --> #46 UIView
+
+ACCESSIBILITY CONFIGURATIONS

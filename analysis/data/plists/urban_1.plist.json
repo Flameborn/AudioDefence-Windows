@@ -1,0 +1,40 @@
+{
+ "icon_title": "11",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 50
+ },
+ "title": "First Wave",
+ "weapons": [
+  {
+   "ammo": "100",
+   "name": "microsmg"
+  },
+  {
+   "ammo": "24",
+   "name": "pistol"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "tip": "In the City Crossroad Arena, zombies will only approach you from North, South, East or West.",
+ "mission_star": {
+  "reward": 200
+ },
+ "bricks": [
+  "urban_1_brick_1",
+  "urban_1_brick_2"
+ ],
+ "objective": "Survive your first fight in the Ghost City Arena!",
+ "challenge_id": "urban_1",
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "icon": "Challenge_icon_01",
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 60
+ }
+}

@@ -1,0 +1,122 @@
+
+== csl::Freeverb::~Freeverb   (address 0x1000ecdd8  size 76  kind cxx)
+  0ecdf0  sub_1000ecc64(a0, &d_1003b54e0, a2, a3)
+  0ecdf8  sub_1000e9388((a0 + 280))
+  0ece08  return
+  0ece14  sub_1000e9388((x19 + 280))
+  0ece20  call sub_10000b760
+
+== csl::Freeverb::thunk_vfunc_0   (address 0x1000ece24  size 8  kind cxx)
+  0ece28  tail csl::Freeverb::~Freeverb((a0 - 176), a1, a2, a3)
+
+== csl::Freeverb::thunk_vfunc_0   (address 0x1000ece2c  size 16  kind cxx)
+  0ece38  tail csl::Freeverb::~Freeverb((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Freeverb::~Freeverb/*deleting*/   (address 0x1000ece3c  size 56  kind cxx)
+  0ece4c  csl::Freeverb::~Freeverb(a0, a1, a2, a3)
+  0ece5c  tail ZdlPv(a0)
+  0ece68  ZdlPv()
+
+== csl::Freeverb::thunk_vfunc_1   (address 0x1000ece74  size 8  kind cxx)
+  0ece78  tail csl::Freeverb::~Freeverb/*deleting*/((a0 - 176), a1, a2, a3)
+
+== csl::Freeverb::thunk_vfunc_1   (address 0x1000ece7c  size 16  kind cxx)
+  0ece88  tail csl::Freeverb::~Freeverb/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Freeverb::vfunc_5   (address 0x1000ece8c  size 508  kind cxx)
+  0ecebc  sub_1000e9f34(a0, a1, a2, a3)
+  0eced4  if (fabs(a0[+0xa8][+0x0]) <= (or unordered) 1) goto loc_1000ecef8
+  0ecef4  fprintf(___stderrp[+0x0], "Freeverb in: big samp: %.2f\n", a0[+0xa8][+0x0])
+loc_1000ecef8:
+  0ecef8  if (a1[+0xc] == 0) goto loc_1000ecfd8
+loc_1000ecf08:
+  0ecf10  if (x9 == x10) goto loc_1000ecf7c
+loc_1000ecf24:
+  0ecf78  if (x10 != x13) goto loc_1000ecf24
+loc_1000ecf7c:
+  0ecf84  if (x11 == x12) goto loc_1000ecfc8
+loc_1000ecf88:
+  0ecfc4  if (x12 != x13) goto loc_1000ecf88
+loc_1000ecfc8:
+  0ecfd4  if ((x8 + 1) != a1[+0xc]) goto loc_1000ecf08
+loc_1000ecfd8:
+  0ecfe8  call a1[+0x0][+0x20]
+  0ed008  vDSP_vsmul(a0[+0xd0], 1, (a0 + 192), a0[+0xd0])
+  0ed02c  vDSP_vsma(a0[+0xa8], 1, (a0 + 196), a0[+0xd0])
+  0ed03c  if (fabs(a1[+0x0][+0x20](…)[+0x0]) <= (or unordered) 1) goto loc_1000ed060
+  0ed05c  fprintf(___stderrp[+0x0], "Freeverb out: big samp: %.2f\n", a1[+0x0][+0x20](…)[+0x0])
+loc_1000ed060:
+  0ed078  return
+  0ed07c  if (w1 >= 0) goto loc_1000ed084
+  0ed080  cxa_call_unexpected()
+
+== sub_1000ed088   (address 0x1000ed088  size 580  kind sub)
+  0ed0a8  sub_1000e9560((a0 + 216), a1, a2, a3)
+  0ed0bc  sub_1000e9df0(a0, &d_1003b55f8)
+  0ed0cc  a0[+0x0] = vtable<csl::Stereoverb>
+  0ed0d4  a0[+0xd8] = vtable<csl::Stereoverb (secondary, -0xd8)>
+  0ed0dc  Znwm(352)
+  0ed0ec  sub_1000ea57c(Znwm(352), a1)
+  0ed0f0  a0[+0xc0] = Znwm(352)
+  0ed0f8  Znwm(392)
+  0ed108  sub_1000ecb64(Znwm(392), Znwm(352))
+  0ed10c  a0[+0xb0] = Znwm(392)
+  0ed114  Znwm(392)[+0xc0] = 0x3f000000
+  0ed120  if (x8 == x9) goto loc_1000ed18c
+loc_1000ed134:
+  0ed148  if (x9 != x10) goto loc_1000ed134
+  0ed150  Znwm(392)[+0xc4] = 0x3f000000
+  0ed15c  Znwm(392)[+0xb8] = 0x3ebd70a4
+  0ed164  if (x8 == x9) goto loc_1000ed19c
+loc_1000ed170:
+  0ed184  if (x9 != x8) goto loc_1000ed170
+  0ed188  goto loc_1000ed19c
+loc_1000ed18c:
+  0ed18c  Znwm(392)[+0xc4] = 0x3f000000
+  0ed198  Znwm(392)[+0xb8] = 0x3ebd70a4
+loc_1000ed19c:
+  0ed1a0  Znwm(392)
+  0ed1b0  sub_1000ecb64(Znwm(392), a0[+0xc0])
+  0ed1b4  a0[+0xb8] = Znwm(392)
+  0ed1bc  Znwm(392)[+0xc0] = 0x3f000000
+  0ed1c8  if (x8 == x9) goto loc_1000ed234
+loc_1000ed1dc:
+  0ed1f0  if (x9 != x10) goto loc_1000ed1dc
+  0ed1f8  Znwm(392)[+0xc4] = 0x3f000000
+  0ed204  Znwm(392)[+0xb8] = 0x3ebd70a4
+  0ed20c  if (x8 == x9) goto loc_1000ed244
+loc_1000ed218:
+  0ed22c  if (x9 != x8) goto loc_1000ed218
+  0ed230  goto loc_1000ed244
+loc_1000ed234:
+  0ed234  Znwm(392)[+0xc4] = 0x3f000000
+  0ed240  Znwm(392)[+0xb8] = 0x3ebd70a4
+loc_1000ed244:
+  0ed248  Znwm(288)
+  0ed25c  sub_1000ea94c(Znwm(288), a0[+0xb0], Znwm(392))
+  0ed260  a0[+0xc8] = Znwm(288)
+  0ed264  a0[+0xd0] = 0
+  0ed278  return
+  0ed2ac  ZdlPv()
+  0ed2b4  call sub_1000e8918
+  0ed2bc  call sub_1000e9388
+  0ed2c8  call sub_10000b760
+
+== sub_1000ed2cc   (address 0x1000ed2cc  size 164  kind sub)
+  0ed2e0  a0[+0x0] = a1[+0x0]
+  0ed2f4  if (a0[+0xc0] == 0) goto loc_1000ed304
+  0ed300  call a0[+0xc0][+0x0][+0x8]
+loc_1000ed304:
+  0ed308  if (a0[+0xb0] == 0) goto loc_1000ed318
+  0ed314  call a0[+0xb0][+0x0][+0x8]
+loc_1000ed318:
+  0ed31c  if (a0[+0xb8] == 0) goto loc_1000ed32c
+  0ed328  call a0[+0xb8][+0x0][+0x8]
+loc_1000ed32c:
+  0ed330  if (a0[+0xc8] == 0) goto loc_1000ed340
+  0ed33c  call a0[+0xc8][+0x0][+0x8]
+loc_1000ed340:
+  0ed344  sub_1000e8918(a0)
+  0ed354  return
+  0ed360  call sub_1000e8918
+  0ed36c  call sub_10000b760

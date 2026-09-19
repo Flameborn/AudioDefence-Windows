@@ -1,0 +1,9 @@
+
+== +[TAGPResource descriptor]   (address 0x10014c3ec  size 192  kind objc)
+  14c40c  if (g_10042ded0 != 0) goto loc_10014c498
+  14c430  [TAGPResource class]
+  14c444  [TAGPServingRoot class]
+  14c490  [TAGPBDescriptor allocDescriptorForClass:[TAGPResource class] rootClass:[TAGPServingRoot class] fields:&d_10042c9a0 fieldCount:17 enums:0 enumCount:0 ranges:tconst_1002fab28 rangeCount:136 storageSize:x10 wireFormat:x11 extraTextFormatInfo:x12]
+  14c494  store g_10042ded0 = [TAGPBDescriptor allocDescriptorForClass:[TAGPResource class] rootClass:[TAGPServingRoot class] fields:&d_10042c9a0 fieldCount:17 enums:0 enumCount:0 ranges:tconst_1002fab28 rangeCount:136 storageSize:x10 wireFormat:x11 extraTextFormatInfo:x12]
+loc_10014c498:
+  14c4a8  return

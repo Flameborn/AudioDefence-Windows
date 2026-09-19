@@ -1,0 +1,55 @@
+{
+ "icon_title": "D",
+ "accuracy_star": {
+  "reward": 200,
+  "objective": 10
+ },
+ "title": "Demo",
+ "weapons": [
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "ammo": "999",
+   "name": "sawnoff"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "tip": "Aim with your ears. Shoot when you feel a zombie is right in front of you.",
+ "mission_star": {
+  "reward": 500
+ },
+ "bricks": [
+  "demo_mode_1",
+  "level1_brick_1",
+  "level1_brick_4",
+  "level2_brick_1",
+  "level2_brick_2",
+  "level2_brick_3",
+  "level1_brick_4",
+  "level3_brick_1",
+  "level2_brick_5",
+  "level3_brick_4",
+  "level3_brick_6",
+  "level1_brick_7",
+  "level3_brick_13_runningHorde",
+  "level2_brick_16",
+  "level3_brick_19",
+  "level4_brick_12",
+  "level4_brick_8_horde"
+ ],
+ "objective": "Show Dr. Bastard you know how to handle a weapon.",
+ "challenge_id": "demo",
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "icon": "Challenge_icon_01",
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 120
+ }
+}

@@ -1,0 +1,18 @@
+// Accessible_ADGameOverEndlessViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #1 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #20 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #50 UIView  
+    #48 UITableView  
+    #29 UIButton (custom class ADButtonWithFont)  title[0]='Play again'
+    #42 UIButton (custom class ADButtonWithFont)  title[0]='Share on twitter'
+
+CONNECTIONS
+  action  AccessibleTwitterButtonPressed:           #42 ADButtonWithFont --(events 0x40)--> #1 UIProxyObject
+  action  playAgainButtonPressed:                   #29 ADButtonWithFont --(events 0x40)--> #1 UIProxyObject
+  outlet  dataSource                                #48 UITableView --> #1 UIProxyObject
+  outlet  delegate                                  #48 UITableView --> #1 UIProxyObject
+  outlet  tableView                                 #1 UIProxyObject --> #48 UITableView
+  outlet  view                                      #1 UIProxyObject --> #50 UIView
+
+ACCESSIBILITY CONFIGURATIONS

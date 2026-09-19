@@ -1,0 +1,36 @@
+// ADArmoryViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #79 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #19 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #54 UIView  
+    #24 UIImageView  Image='background_main.png'
+    #53 UIImageView  Image='chains_armory_top.png'
+    #20 UIImageView  Image='frame_armory.png'
+    #56 UIScrollView  
+    #138 UIView  
+      #17 UIScrollView  
+    #71 UIButton (custom class ADButtonWithFont)  
+    #83 UIButton (custom class ADButtonWithFont)  
+    #3 UIButton (custom class ADButtonWithFont)  
+    #35 UIButton (custom class ADButtonWithFont)  
+    #152 UIButton (custom class ADButtonWithFont)  
+    #121 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  currencyButtonPressed:                    #35 ADButtonWithFont --(events 0x40)--> #79 UIProxyObject
+  action  loadoutButtonPressed:                     #83 ADButtonWithFont --(events 0x40)--> #79 UIProxyObject
+  action  powerUpButtonPressed:                     #3 ADButtonWithFont --(events 0x40)--> #79 UIProxyObject
+  action  weaponsButtonPressed:                     #71 ADButtonWithFont --(events 0x40)--> #79 UIProxyObject
+  outlet  contentContainer                          #79 UIProxyObject --> #56 UIScrollView
+  outlet  currencyButton                            #79 UIProxyObject --> #35 ADButtonWithFont
+  outlet  delegate                                  #17 UIScrollView --> #79 UIProxyObject
+  outlet  detailScroller                            #79 UIProxyObject --> #17 UIScrollView
+  outlet  detailView                                #79 UIProxyObject --> #138 UIView
+  outlet  leftArrow                                 #79 UIProxyObject --> #152 ADButtonWithFont
+  outlet  loadOutButton                             #79 UIProxyObject --> #83 ADButtonWithFont
+  outlet  powerUpButton                             #79 UIProxyObject --> #3 ADButtonWithFont
+  outlet  rightArrow                                #79 UIProxyObject --> #121 ADButtonWithFont
+  outlet  view                                      #79 UIProxyObject --> #54 UIView
+  outlet  weaponsButton                             #79 UIProxyObject --> #71 ADButtonWithFont
+
+ACCESSIBILITY CONFIGURATIONS

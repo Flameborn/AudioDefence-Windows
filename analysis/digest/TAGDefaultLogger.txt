@@ -1,0 +1,49 @@
+
+== -[TAGDefaultLogger init]   (address 0x1001612b8  size 80  kind objc)
+  1612e4  [super init]
+  1612e8  if (self == 0) goto loc_1001612fc
+  1612f8  self->_logLevel = 3
+loc_1001612fc:
+  161304  return
+
+== -[TAGDefaultLogger error:]   (address 0x100161308  size 124  kind objc)
+  161338  [self logLevel]
+  161340  if ([self logLevel] >u 4) goto loc_10016135c
+  161358  NSLog(@"%@ error: %@", @"GoogleTagManager", arg1)
+loc_10016135c:
+  16136c  return
+
+== -[TAGDefaultLogger warning:]   (address 0x100161384  size 124  kind objc)
+  1613b4  [self logLevel]
+  1613bc  if ([self logLevel] >u 3) goto loc_1001613d8
+  1613d4  NSLog(@"%@ warning: %@", @"GoogleTagManager", arg1)
+loc_1001613d8:
+  1613e8  return
+
+== -[TAGDefaultLogger info:]   (address 0x100161400  size 124  kind objc)
+  161430  [self logLevel]
+  161438  if ([self logLevel] >u 2) goto loc_100161454
+  161450  NSLog(@"%@ info: %@", @"GoogleTagManager", arg1)
+loc_100161454:
+  161464  return
+
+== -[TAGDefaultLogger debug:]   (address 0x10016147c  size 124  kind objc)
+  1614ac  [self logLevel]
+  1614b4  if ([self logLevel] >u 1) goto loc_1001614d0
+  1614cc  NSLog(@"%@ debug: %@", @"GoogleTagManager", arg1)
+loc_1001614d0:
+  1614e0  return
+
+== -[TAGDefaultLogger verbose:]   (address 0x1001614f8  size 120  kind objc)
+  161528  [self logLevel]
+  16152c  if ([self logLevel] != 0) goto loc_100161548
+  161544  NSLog(@"%@ verbose: %@", @"GoogleTagManager", arg1)
+loc_100161548:
+  161558  return
+
+== -[TAGDefaultLogger logLevel]   (address 0x100161570  size 16  kind objc)
+  16157c  return
+
+== -[TAGDefaultLogger setLogLevel:]   (address 0x100161580  size 16  kind objc)
+  161588  self->_logLevel = arg1
+  16158c  return

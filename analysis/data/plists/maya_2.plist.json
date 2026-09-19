@@ -1,0 +1,44 @@
+{
+ "icon_title": "22",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 75
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_storm"
+ },
+ "title": "A storm is coming!",
+ "objective": "Survive a zombie wave during a fierce thunderstom.",
+ "tip": "Yes, it's hard to hear zombies through a storm. ",
+ "bricks": [
+  "maya_2_brick_1",
+  "maya_2_brick_2",
+  "maya_2_brick_3"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "maya_2",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "maya_1"
+ ],
+ "weapons": [
+  {
+   "ammo": "100",
+   "name": "microsmg"
+  },
+  {
+   "ammo": "18",
+   "name": "sawnoff"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 105
+ }
+}

@@ -1,0 +1,23 @@
+// ADEnemyUnlockPopupViewController.nib
+TOP-LEVEL OBJECTS
+  #75 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #14 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #9 UIView  
+    #74 UIView  
+      #35 UIImageView  Image='background_redline.png'
+      #87 UILabel  UserInteractionDisabled=False Text='HERE COMES A NEW ZOMBIE CHALLENGER !'
+      #66 UILabel  UserInteractionDisabled=False Text='THE TANK'
+      #94 UIButton  
+      #70 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+      #8 UILabel  UserInteractionDisabled=False Text='Next unlock : The Runner, requires 1000 more kills'
+      #46 UIButton (custom class ADButtonWithFont)  title[0]='READY FOR ACTION'
+      #79 UILabel  UserInteractionDisabled=False Text='Is now unlocked in all modes'
+
+CONNECTIONS
+  action  backButtonTouched:                        #46 ADButtonWithFont --(events 0x40)--> #75 UIProxyObject
+  outlet  descriptionTextView                       #75 UIProxyObject --> #70 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  nextUnlockLabel                           #75 UIProxyObject --> #8 UILabel Text='Next unlock : The Runner, requires 1000 more kills'
+  outlet  titleLabel                                #75 UIProxyObject --> #66 UILabel Text='THE TANK'
+  outlet  view                                      #75 UIProxyObject --> #9 UIView
+
+ACCESSIBILITY CONFIGURATIONS

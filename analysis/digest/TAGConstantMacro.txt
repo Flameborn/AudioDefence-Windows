@@ -1,0 +1,18 @@
+
+== +[TAGConstantMacro functionId]   (address 0x100173884  size 44  kind objc)
+  1738ac  return
+
+== -[TAGConstantMacro init]   (address 0x1001738b0  size 184  kind objc)
+  1738e4  [NSSet setWithObject:@"value"]
+  173920  [super initWithFunctionId:@"_c" requiredKeys:[NSSet setWithObject:@"value"]]
+  173944  return
+
+== +[TAGConstantMacro valueKey]   (address 0x100173968  size 44  kind objc)
+  173990  return
+
+== -[TAGConstantMacro isCacheable]   (address 0x100173994  size 8  kind objc)
+  173998  return
+
+== -[TAGConstantMacro evaluate:]   (address 0x10017399c  size 56  kind objc)
+  1739c0  [arg1 objectForKey:@"value"]
+  1739d0  return

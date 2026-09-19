@@ -1,0 +1,150 @@
+
+== MemFile::fgets(…)   (address 0x1000f59ac  size 112  kind sym)
+  0f59b0  if (a0 == a3) goto loc_1000f59c4
+  0f59c0  tail fgets(a1, a2, a3, a3)
+loc_1000f59c4:
+loc_1000f59e0:
+  0f59e8  a0[+0x0] = (a0[+0x0] + 1)
+  0f59f0  if (a0[+0x0] >=u 0x178533) goto loc_1000f5a10
+  0f59f8  if (w10 <= 0) goto loc_1000f5a10
+  0f5a0c  if (w12 != 10) goto loc_1000f59e0
+loc_1000f5a10:
+  0f5a10  a1[+0x0] = 0
+  0f5a18  return
+
+== std::vector<…><…>(…)   (address 0x1000f5a1c  size 60  kind sym)
+  0f5a28  if (x1 == x9) goto loc_1000f5a40
+  0f5a2c  if (x1 == 0) goto loc_1000f5a48
+  0f5a3c  goto loc_1000f5a4c
+loc_1000f5a40:
+  0f5a44  tail ZNSt6vectorIPN3csl6CPointESaIS2_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS2_S4_EERKS2_(a0, x1, a1, a3)
+loc_1000f5a48:
+loc_1000f5a4c:
+  0f5a50  a0[+0x8] = (x8 + 8)
+  0f5a54  return
+
+== MemFile::fread(…)   (address 0x1000f5a58  size 124  kind sym)
+  0f5a60  if (a0 == x4) goto loc_1000f5a78
+  0f5a74  tail fread(a1, a2, a3)
+loc_1000f5a78:
+  0f5a7c  if (a3 == 0) goto loc_1000f5ad0
+loc_1000f5a98:
+  0f5a9c  if (a2 == 0) goto loc_1000f5ac4
+loc_1000f5aa0:
+  0f5aa8  a0[+0x0] = (a0[+0x0] + 1)
+  0f5ab0  if (a0[+0x0] >=u 0x178533) goto loc_1000f5ad0
+  0f5ac0  if ((w12 + 1) != 0) goto loc_1000f5aa0
+loc_1000f5ac4:
+  0f5acc  if ((x3 - 1) != 0) goto loc_1000f5a98
+loc_1000f5ad0:
+  0f5ad0  return
+
+== std::_Vector_base<…><…>(…)   (address 0x1000f5ad4  size 80  kind sym)
+  0f5aec  a0[+0x0] = 0
+  0f5af0  if (a1 == 0) goto loc_1000f5b10
+  0f5af8  if ((a1 >>> 61) != 0) goto loc_1000f5b20
+  0f5b00  Znwm((a1 << 3), a1, a2, a3)
+  0f5b0c  a0[+0x10] = (Znwm((a1 << 3), a1, a2, a3) + (a1 << 3))
+loc_1000f5b10:
+  0f5b1c  return
+  0f5b20  ZSt17__throw_bad_allocv(a0, a1, a2, a3)
+
+== std::vector<…><…>(…)   (address 0x1000f5b24  size 336  kind sym)
+  0f5b50  if (x8 == x9) goto loc_1000f5b68
+  0f5b54  if (x8 == 0) goto loc_1000f5b8c
+  0f5b64  goto loc_1000f5b90
+loc_1000f5b68:
+  0f5b78  if (((x8 - a0[+0x0]) >> 3) != 0) goto loc_1000f5c50
+  0f5b80  if (x25 >=u ((x8 - a0[+0x0]) >> 3)) goto loc_1000f5bbc
+  0f5b88  goto loc_1000f5bc4
+loc_1000f5b8c:
+loc_1000f5b90:
+  0f5b94  a0[+0x8] = (x8 + 8)
+  0f5bb0  memmove((x8 - (((x8 - 8) - a1) & -8)), a1, ((x8 - 8) - a1), a3)
+  0f5bb4  a1[+0x0] = a2[+0x0]
+  0f5bb8  goto loc_1000f5c38
+loc_1000f5bbc:
+  0f5bc0  if ((x25 >>> 61) != 0) goto loc_1000f5c64
+loc_1000f5bc4:
+  0f5bc8  Znwm((x25 << 3), a1, a2, a3)
+  0f5be4  memmove(Znwm((x25 << 3), a1, a2, a3), a0[+0x0], (a1 - a0[+0x0]))
+  0f5bf0  if ((Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8)) == 0) goto loc_1000f5bfc
+  0f5bf8  (Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8))[+0x0] = a2[+0x0]
+loc_1000f5bfc:
+  0f5c14  memmove((Znwm((x25 << 3), a1, a2, a3) + ((((a1 - a0[+0x0]) >> 3) + 1) << 3)), a1, (a0[+0x8] - a1))
+  0f5c1c  t1 = (Znwm((x25 << 3), a1, a2, a3) + (((((a1 - a0[+0x0]) >> 3) + 1) + ((a0[+0x8] - a1) >>> 3)) << 3))
+  0f5c20  if (a0[+0x0] == 0) goto loc_1000f5c2c
+  0f5c28  ZdlPv(a0[+0x0])
+loc_1000f5c2c:
+  0f5c34  a0[+0x10] = (Znwm((x25 << 3), a1, a2, a3) + (x25 << 3))
+loc_1000f5c38:
+  0f5c4c  return
+  0f5c58  if (((x8 - a0[+0x0]) >> 3) == 0x1fffffffffffffff) goto loc_1000f5c68
+  0f5c64  ZSt17__throw_bad_allocv(a0, a1, a2, a3)
+  0f5c70  ZSt20__throw_length_errorPKc("vector::_M_insert_aux")
+
+== std::vector<…><…>(…)   (address 0x1000f5c74  size 336  kind sym)
+  0f5ca0  if (x8 == x9) goto loc_1000f5cb8
+  0f5ca4  if (x8 == 0) goto loc_1000f5cdc
+  0f5cb4  goto loc_1000f5ce0
+loc_1000f5cb8:
+  0f5cc8  if (((x8 - a0[+0x0]) >> 3) != 0) goto loc_1000f5da0
+  0f5cd0  if (x25 >=u ((x8 - a0[+0x0]) >> 3)) goto loc_1000f5d0c
+  0f5cd8  goto loc_1000f5d14
+loc_1000f5cdc:
+loc_1000f5ce0:
+  0f5ce4  a0[+0x8] = (x8 + 8)
+  0f5d00  memmove((x8 - (((x8 - 8) - a1) & -8)), a1, ((x8 - 8) - a1), a3)
+  0f5d04  a1[+0x0] = a2[+0x0]
+  0f5d08  goto loc_1000f5d88
+loc_1000f5d0c:
+  0f5d10  if ((x25 >>> 61) != 0) goto loc_1000f5db4
+loc_1000f5d14:
+  0f5d18  Znwm((x25 << 3), a1, a2, a3)
+  0f5d34  memmove(Znwm((x25 << 3), a1, a2, a3), a0[+0x0], (a1 - a0[+0x0]))
+  0f5d40  if ((Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8)) == 0) goto loc_1000f5d4c
+  0f5d48  (Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8))[+0x0] = a2[+0x0]
+loc_1000f5d4c:
+  0f5d64  memmove((Znwm((x25 << 3), a1, a2, a3) + ((((a1 - a0[+0x0]) >> 3) + 1) << 3)), a1, (a0[+0x8] - a1))
+  0f5d6c  t1 = (Znwm((x25 << 3), a1, a2, a3) + (((((a1 - a0[+0x0]) >> 3) + 1) + ((a0[+0x8] - a1) >>> 3)) << 3))
+  0f5d70  if (a0[+0x0] == 0) goto loc_1000f5d7c
+  0f5d78  ZdlPv(a0[+0x0])
+loc_1000f5d7c:
+  0f5d84  a0[+0x10] = (Znwm((x25 << 3), a1, a2, a3) + (x25 << 3))
+loc_1000f5d88:
+  0f5d9c  return
+  0f5da8  if (((x8 - a0[+0x0]) >> 3) == 0x1fffffffffffffff) goto loc_1000f5db8
+  0f5db4  ZSt17__throw_bad_allocv(a0, a1, a2, a3)
+  0f5dc0  ZSt20__throw_length_errorPKc("vector::_M_insert_aux")
+
+== sub_1000f5dc4   (address 0x1000f5dc4  size 36  kind sub)
+  0f5dd4  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0f5de4  tail ZdlPv(a0)
+
+== sub_1000f5de8   (address 0x1000f5de8  size 36  kind sub)
+  0f5df8  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0f5e08  tail ZdlPv(a0)
+
+== sub_1000f5e0c   (address 0x1000f5e0c  size 128  kind sub)
+  0f5e24  sub_1000e732c(a0, a1, a2, a3)
+  0f5e38  sub_1000e886c(a0, sub_1000e732c(a0, a1, a2, a3), 1)
+  0f5e48  a0[+0x0] = vtable<csl::AmbisonicUnitGenerator>
+  0f5e54  a0[+0x64] = 2
+  0f5e58  a0[+0xac] = 1
+  0f5e74  a0[+0x60] = (uint)(((float)a1 + 1) * ((float)a1 + 1))
+  0f5e88  return
+
+== sub_1000f5e8c   (address 0x1000f5e8c  size 172  kind sub)
+  0f5ea4  sub_1000e732c(a0, a1, a2, a3)
+  0f5eb8  sub_1000e886c(a0, sub_1000e732c(a0, a1, a2, a3), 1)
+  0f5ec8  a0[+0x0] = vtable<csl::AmbisonicUnitGenerator>
+  0f5ed0  a0[+0xac] = a1[+0x8]
+  0f5ed8  a0[+0xa4] = a1[+0x0]
+  0f5ee0  a0[+0x64] = 2
+  0f5ef0  a0[+0xac] = (w8 == w9)
+  0f5f20  a0[+0x60] = ((w10 - w21) + (uint)(((float)w9 + 1) * ((float)w9 + 1)))
+  0f5f34  return
+
+== sub_1000f5f38   (address 0x1000f5f38  size 36  kind sub)
+  0f5f48  sub_1000e8918(a0, a1, a2, a3)
+  0f5f58  return

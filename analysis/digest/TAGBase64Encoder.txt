@@ -1,0 +1,24 @@
+
+== +[TAGBase64Encoder encode:noPadding:]   (address 0x10015914c  size 196  kind objc)
+  159180  [TAGGTMStringEncoding rfc4648Base64StringEncoding]
+  1591a0  [[TAGGTMStringEncoding rfc4648Base64StringEncoding] setDoPad:(arg2 ^ 1)]
+  1591b8  [[TAGGTMStringEncoding rfc4648Base64StringEncoding] encode:arg1]
+  1591e8  return
+
+== +[TAGBase64Encoder encodeWebSafe:noPadding:]   (address 0x100159210  size 196  kind objc)
+  159244  [TAGGTMStringEncoding rfc4648Base64WebsafeStringEncoding]
+  159264  [[TAGGTMStringEncoding rfc4648Base64WebsafeStringEncoding] setDoPad:(arg2 ^ 1)]
+  15927c  [[TAGGTMStringEncoding rfc4648Base64WebsafeStringEncoding] encode:arg1]
+  1592ac  return
+
+== +[TAGBase64Encoder decode:noPadding:]   (address 0x1001592d4  size 196  kind objc)
+  159308  [TAGGTMStringEncoding rfc4648Base64StringEncoding]
+  159328  [[TAGGTMStringEncoding rfc4648Base64StringEncoding] setDoPad:(arg2 ^ 1)]
+  159340  [[TAGGTMStringEncoding rfc4648Base64StringEncoding] decode:arg1]
+  159370  return
+
+== +[TAGBase64Encoder decodeWebSafe:noPadding:]   (address 0x100159398  size 196  kind objc)
+  1593cc  [TAGGTMStringEncoding rfc4648Base64WebsafeStringEncoding]
+  1593ec  [[TAGGTMStringEncoding rfc4648Base64WebsafeStringEncoding] setDoPad:(arg2 ^ 1)]
+  159404  [[TAGGTMStringEncoding rfc4648Base64WebsafeStringEncoding] decode:arg1]
+  159434  return

@@ -1,0 +1,7 @@
+
+== -[TAGAddRemoveTagsPopulator rulePassed:add:remove:]   (address 0x100168930  size 284  kind objc)
+  168980  [arg1 addTags]
+  1689a8  [arg2 addObjectsFromArray:[arg1 addTags]]
+  1689c4  [arg1 removeTags]
+  1689e0  [arg3 addObjectsFromArray:[arg1 removeTags]]
+  168a10  return

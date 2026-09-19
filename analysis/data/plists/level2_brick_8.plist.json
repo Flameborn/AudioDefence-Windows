@@ -1,0 +1,16 @@
+{
+ "Enemies": {
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_angle": 180,
+   "spawn_distance": 10,
+   "spawn_time": 2
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 195,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  }
+ }
+}

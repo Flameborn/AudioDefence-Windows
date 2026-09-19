@@ -1,0 +1,165 @@
+
+== -[ADGameOverEndlessStatsEnemies initWithFrame:]   (address 0x1000db900  size 60  kind objc)
+  0db92c  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  0db938  return
+
+== -[ADGameOverEndlessStatsEnemies awakeFromNib]   (address 0x1000db93c  size 732  kind objc)
+  0db998  [NSNumber numberWithInt:23]
+  0db9c4  [NSNumber numberWithInt:12]
+  0db9ec  [NSNumber numberWithInt:67]
+  0dba14  [NSNumber numberWithInt:43]
+  0dba3c  [NSNumber numberWithInt:98]
+  0dba64  [NSNumber numberWithInt:21]
+  0dba94  [NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x8] count:6]
+  0dbaac  [self populateViewWithEnemyData:[NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x8] count:6]]
+  0dbaf4  [self contentView]
+  0dbb10  [[self contentView] frame]
+  0dbb2c  [self setContentSize:{[[self contentView] frame].2, [[self contentView] frame].3}]
+  0dbb40  [self contentView]
+  0dbb64  [self addSubview:[self contentView]]
+  0dbb98  return
+
+== -[ADGameOverEndlessStatsEnemies populateViewWithEnemyData:]   (address 0x1000dbc18  size 2240  kind objc)
+  0dbc80  [NSMutableArray alloc]
+  0dbc94  [[NSMutableArray alloc] init]
+  0dbcb0  [self setLabelTags:[[NSMutableArray alloc] init]]
+  0dbcc8  [NSMutableDictionary alloc]
+  0dbcd0  [[NSMutableDictionary alloc] init]
+  0dbcec  [self setLabelTagAnimationTriggers:[[NSMutableDictionary alloc] init]]
+  0dbd04  [UIView alloc]
+  0dbd20  [self frame]
+  0dbd38  [[UIView alloc] initWithFrame:{[self frame].0, [self frame].1, [self frame].2, [self frame].3}]
+  0dbd54  [self setContentView:[[UIView alloc] initWithFrame:{[self frame].0, [self frame].1, [self frame].2, [self frame].3}]]
+  0dbd6c  [self frame]
+  0dbd84  [arg1 allKeys]
+  0dbdc4  [[arg1 allKeys] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16]
+  0dbdc8  if ([[arg1 allKeys] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16] == 0) goto loc_1000dc380
+  0dbdf0  &@selector(clearColor)
+  0dbdf8  &@selector(setBackgroundColor:)
+  0dbec8  &@selector(labelTags)
+loc_1000dbf54:
+loc_1000dbf64:
+  0dbf74  if (x8 == x9) goto loc_1000dbf80
+  0dbf7c  objc_enumerationMutation([arg1 allKeys])
+loc_1000dbf80:
+  0dbf94  [UILabel alloc]
+  0dbfb8  [[UILabel alloc] initWithFrame:{10, (s15 + 0), 80, 30}]
+  0dbfcc  [[[UILabel alloc] initWithFrame:{10, (s15 + 0), 80, 30}] setText:x2]
+  0dbfdc  [UIColor whiteColor]
+  0dbff8  [[[UILabel alloc] initWithFrame:{10, (s15 + 0), 80, 30}] setTextColor:[UIColor whiteColor]]
+  0dc010  [UIColor clearColor]
+  0dc02c  [[[UILabel alloc] initWithFrame:{10, (s15 + 0), 80, 30}] setBackgroundColor:[UIColor clearColor]]
+  0dc03c  [self contentView]
+  0dc054  [[self contentView] addSubview:[[UILabel alloc] initWithFrame:{10, (s15 + 0), 80, 30}]]
+  0dc06c  [UICountingLabel alloc]
+  0dc084  [[UICountingLabel alloc] initWithFrame:{([self frame].2 + -50), (s15 + 0), 40, 30}]
+  0dc09c  [[[UICountingLabel alloc] initWithFrame:{([self frame].2 + -50), (s15 + 0), 40, 30}] setTag:(x8 + x25)]
+  0dc0ac  [UIColor clearColor]
+  0dc0c8  [[[UICountingLabel alloc] initWithFrame:{([self frame].2 + -50), (s15 + 0), 40, 30}] setBackgroundColor:[UIColor clearColor]]
+  0dc0e0  [UIColor whiteColor]
+  0dc0fc  [[[UICountingLabel alloc] initWithFrame:{([self frame].2 + -50), (s15 + 0), 40, 30}] setTextColor:[UIColor whiteColor]]
+  0dc114  [arg1 objectForKey:x2]
+  0dc128  [[arg1 objectForKey:x2] integerValue]
+  0dc144  [NSMutableDictionary alloc]
+  0dc14c  [[NSMutableDictionary alloc] init]
+  0dc178  [NSNumber numberWithBool:0]
+  0dc1a4  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithBool:0] forKey:@"triggered"]
+  0dc1c0  [NSNumber numberWithInteger:[[arg1 objectForKey:x2] integerValue]]
+  0dc1e8  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInteger:[[arg1 objectForKey:x2] integerValue]] forKey:@"killed"]
+  0dc1fc  [self labelTagAnimationTriggers]
+  0dc220  [NSNumber numberWithInt:(w8 + w25)]
+  0dc244  [[self labelTagAnimationTriggers] setObject:[[NSMutableDictionary alloc] init] forKey:[NSNumber numberWithInt:(w8 + w25)]]
+  0dc264  [self labelTags]
+  0dc27c  [[self labelTags] addObject:[[UICountingLabel alloc] initWithFrame:{([self frame].2 + -50), (s15 + 0), 40, 30}]]
+  0dc290  [self contentView]
+  0dc2a8  [[self contentView] addSubview:[[UICountingLabel alloc] initWithFrame:{([self frame].2 + -50), (s15 + 0), 40, 30}]]
+  0dc2bc  [self frame]
+  0dc2cc  if ((s15 + 50) <= (or unordered) [self frame].3) goto loc_1000dc320
+  0dc2d8  [self contentView]
+  0dc304  [[self contentView] setFrame:{0, 0, [self frame].2, ((s15 + 50) + 20)}]
+  0dc31c  [self setContentViewHeight:((s15 + 50) + 20)]
+loc_1000dc320:
+  0dc358  if ((x25 + 1) <u [[arg1 allKeys] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16]) goto loc_1000dbf64
+  0dc370  [[arg1 allKeys] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16]
+  0dc37c  if ([[arg1 allKeys] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16] != 0) goto loc_1000dbf54
+loc_1000dc380:
+  0dc3e0  return
+
+== -[ADGameOverEndlessStatsEnemies drawRect:]   (address 0x1000dc4d8  size 892  kind objc)
+  0dc52c  [self labelTags]
+  0dc558  [[self labelTags] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0dc560  if ([[self labelTags] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] == 0) goto loc_1000dc7ac
+  0dc578  &@selector(numberWithInteger:)
+  0dc580  &@selector(objectForKey:)
+  0dc588  &@selector(boolValue)
+  0dc5ec  &@selector(countFrom:to:withDuration:)
+loc_1000dc604:
+loc_1000dc608:
+  0dc618  if (x8 == x9) goto loc_1000dc624
+  0dc620  objc_enumerationMutation([self labelTags])
+loc_1000dc624:
+  0dc634  [x0 tag]
+  0dc644  [self labelTagAnimationTriggers]
+  0dc664  [NSNumber numberWithInteger:[x0 tag]]
+  0dc680  [[self labelTagAnimationTriggers] objectForKey:[NSNumber numberWithInteger:[x0 tag]]]
+  0dc6b0  [[[self labelTagAnimationTriggers] objectForKey:[NSNumber numberWithInteger:[x0 tag]]] objectForKey:@"triggered"]
+  0dc6c4  [[[[self labelTagAnimationTriggers] objectForKey:[NSNumber numberWithInteger:[x0 tag]]] objectForKey:@"triggered"] boolValue]
+  0dc6d4  if (([[[[self labelTagAnimationTriggers] objectForKey:[NSNumber numberWithInteger:[x0 tag]]] objectForKey:@"triggered"] boolValue] & 1)) goto loc_1000dc778
+  0dc6e8  [NSNumber numberWithBool:1]
+  0dc70c  [[[self labelTagAnimationTriggers] objectForKey:[NSNumber numberWithInteger:[x0 tag]]] setObject:[NSNumber numberWithBool:1] forKey:@"triggered"]
+  0dc728  [[[self labelTagAnimationTriggers] objectForKey:[NSNumber numberWithInteger:[x0 tag]]] objectForKey:@"killed"]
+  0dc73c  [[[[self labelTagAnimationTriggers] objectForKey:[NSNumber numberWithInteger:[x0 tag]]] objectForKey:@"killed"] integerValue]
+  0dc75c  [x0 setFormat:@"%d"]
+  0dc760  t1 = (float)[[[[self labelTagAnimationTriggers] objectForKey:[NSNumber numberWithInteger:[x0 tag]]] objectForKey:@"killed"] integerValue]
+  0dc774  [x0 countFrom:0 to:t1 withDuration:4]
+loc_1000dc778:
+  0dc788  if ((x23 + 1) <u [[self labelTags] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]) goto loc_1000dc608
+  0dc7a0  [[self labelTags] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0dc7a8  if ([[self labelTags] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] != 0) goto loc_1000dc604
+loc_1000dc7ac:
+  0dc7ec  return
+
+== -[ADGameOverEndlessStatsEnemies scrollViewFrame]   (address 0x1000dc854  size 64  kind objc)
+  0dc87c  objc_copyStruct(&sp[0x0], x1, 32, 1)
+  0dc890  return
+
+== -[ADGameOverEndlessStatsEnemies setScrollViewFrame:]   (address 0x1000dc894  size 64  kind objc)
+  0dc8c4  objc_copyStruct(x0, &sp[0x0], 32, 1)
+  0dc8d0  return
+
+== -[ADGameOverEndlessStatsEnemies labelTags]   (address 0x1000dc8d4  size 16  kind objc)
+  0dc8e0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverEndlessStatsEnemies setLabelTags:]   (address 0x1000dc8e4  size 12  kind objc)
+  0dc8ec  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverEndlessStatsEnemies labelTagAnimationTriggers]   (address 0x1000dc8f0  size 16  kind objc)
+  0dc8fc  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverEndlessStatsEnemies setLabelTagAnimationTriggers:]   (address 0x1000dc900  size 12  kind objc)
+  0dc908  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverEndlessStatsEnemies contentView]   (address 0x1000dc90c  size 16  kind objc)
+  0dc918  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverEndlessStatsEnemies setContentView:]   (address 0x1000dc91c  size 12  kind objc)
+  0dc924  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverEndlessStatsEnemies contentViewWidth]   (address 0x1000dc928  size 20  kind objc)
+  0dc938  return
+
+== -[ADGameOverEndlessStatsEnemies setContentViewWidth:]   (address 0x1000dc93c  size 20  kind objc)
+  0dc948  self->_contentViewWidth = arg1
+  0dc94c  return
+
+== -[ADGameOverEndlessStatsEnemies contentViewHeight]   (address 0x1000dc950  size 20  kind objc)
+  0dc960  return
+
+== -[ADGameOverEndlessStatsEnemies setContentViewHeight:]   (address 0x1000dc964  size 20  kind objc)
+  0dc970  self->_contentViewHeight = arg1
+  0dc974  return
+
+== -[ADGameOverEndlessStatsEnemies .cxx_destruct]   (address 0x1000dc978  size 84  kind objc)
+
+== -[ADGameOverEndlessStatsEnemies .cxx_construct]   (address 0x1000dc9cc  size 4  kind objc)
+  0dc9cc  return

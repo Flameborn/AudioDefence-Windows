@@ -1,0 +1,45 @@
+{
+ "icon_title": "09",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 75
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "title": "Arena Enhancers",
+ "objective": "Shoot the generator to shut it down and survive the zombie wave!",
+ "tip": "Shoot the generator multiple times to turn it off for a while.",
+ "bricks": [
+  "tutorial_9_brick_1",
+  "tutorial_9_brick_2",
+  "tutorial_9_brick_3",
+  "tutorial_9_brick_4"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "tutorial_9",
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_8"
+ ],
+ "weapons": [
+  {
+   "ammo": "20",
+   "name": "sawnoff"
+  },
+  {
+   "ammo": "100",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 90
+ }
+}

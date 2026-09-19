@@ -1,0 +1,110 @@
+
+== -[ADDiamondDropper spawn]   (address 0x10007e2bc  size 148  kind objc)
+  07e2ec  [super spawn]
+  07e304  [ADTracker sharedInstance]
+  07e320  [[ADTracker sharedInstance] diamondAppeared]
+  07e338  return
+
+== -[ADDiamondDropper update:]   (address 0x10007e350  size 1128  kind objc)
+  07e37c  [self state]
+  07e384  if ([self state] > 998) goto loc_10007e3cc
+  07e38c  if ([self state] > 100) goto loc_10007e458
+  07e390  if ([self state] != 0) goto loc_10007e4b8
+  07e3a4  [self timeInState]
+  07e3bc  [self spawn_time]
+  07e3c4  if ([self timeInState] <= (or unordered) [self spawn_time]) goto loc_10007e674
+  07e3c8  goto loc_10007e4e0
+loc_10007e3cc:
+  07e3d0  if ([self state] != 999) goto loc_10007e674
+  07e3e8  [self timeInState]
+  07e3fc  if ([self timeInState] <= (or unordered) 0.1) goto loc_10007e674
+  07e408  [self timeInState]
+  07e420  [self sound]
+  07e43c  [[self sound] duration]
+  07e450  if ([self timeInState] <= (or unordered) [[self sound] duration]) goto loc_10007e674
+  07e454  goto loc_10007e65c
+loc_10007e458:
+  07e45c  if ([self state] != 101) goto loc_10007e4f8
+  07e474  [self timeInState]
+  07e488  if ([self timeInState] <= (or unordered) 0.1) goto loc_10007e674
+  07e494  [self timeInState]
+  07e4a0  if ([self timeInState] <= (or unordered) 7.5) goto loc_10007e674
+  07e4a8  &@selector(setState:)
+  07e4b4  goto loc_10007e66c
+loc_10007e4b8:
+  07e4bc  if ([self state] != 1) goto loc_10007e674
+  07e4d4  [self spawn_sound_duration]
+  07e4dc  if ([self spawn_sound_duration] != 0.0) goto loc_10007e748
+loc_10007e4e0:
+  07e4e4  &@selector(spawn)
+loc_10007e4e8:
+  07e4f0  [self glow | spawn]
+  07e4f4  goto loc_10007e674
+loc_10007e4f8:
+  07e4fc  if ([self state] != 102) goto loc_10007e674
+  07e514  [self timeInState]
+  07e52c  [self sound]
+  07e544  if ([self timeInState] >= (or unordered) 2) goto loc_10007e584
+  07e550  [self timeInState]
+  07e574  [[self sound] setGain:(([self timeInState] * 3.5) * 0.5)]
+  07e580  goto loc_10007e674
+loc_10007e584:
+  07e594  [[self sound] stop]
+  07e5b0  [self setLifeToZero]
+  07e5c8  [ADTracker sharedInstance]
+  07e5e4  [[ADTracker sharedInstance] diamondDisappered]
+  07e604  [ADBrickManager sharedBrickManager]
+  07e624  [self name]
+  07e648  [[ADBrickManager sharedBrickManager] soundOrEnemyWithNameWasDeactivated:[self name]]
+loc_10007e65c:
+  07e660  &@selector(setState:)
+loc_10007e66c:
+  07e670  [self setState:one of {102, 0xffffffff}]
+loc_10007e674:
+  07e688  [self sound]
+  07e69c  if ([self sound] == 0) goto loc_10007e708
+  07e6a8  [self sound]
+  07e6cc  [self position]
+  07e6dc  [self position]
+  07e6fc  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+loc_10007e708:
+  07e718  [self timeInState]
+  07e744  tail [self setTimeInState:([self timeInState] + arg1)]
+loc_10007e748:
+  07e758  [self timeInState]
+  07e768  [self spawn_sound_duration]
+  07e770  if ([self timeInState] <= (or unordered) [self spawn_sound_duration]) goto loc_10007e674
+  07e778  &@selector(glow)
+  07e77c  goto loc_10007e4e8
+loc_10007e780:
+loc_10007e784:
+  07e794  goto loc_10007e780
+  07e798  goto loc_10007e780
+  07e79c  goto loc_10007e780
+  07e7a0  goto loc_10007e780
+  07e7a4  goto loc_10007e780
+  07e7b4  goto loc_10007e784
+
+== -[ADDiamondDropper glow]   (address 0x10007e7b8  size 72  kind objc)
+  07e7d8  [self setState:101]
+  07e7fc  tail [self playAnySoundContaining:@"_glow_"]
+
+== -[ADDiamondDropper die]   (address 0x10007e800  size 404  kind objc)
+  07e838  [super die]
+  07e850  [ADGameModifiers sharedModifiers]
+  07e86c  [[ADGameModifiers sharedModifiers] fullMoon]
+  07e89c  [NSNumber numberWithInt:([[ADGameModifiers sharedModifiers] fullMoon] != 0 ? 1 + 1 : 1)]
+  07e8cc  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_DIAMONDS" AndData:[NSNumber numberWithInt:([[ADGameModifiers sharedModifiers] fullMoon] != 0 ? 1 + 1 : 1)]]
+  07e8ec  [ADTracker sharedInstance]
+  07e908  [[ADTracker sharedInstance] diamondAcquired]
+  07e924  dispatch_time(0, 0x12a05f200)
+  07e960  dispatch_after(dispatch_time(0, 0x12a05f200), __dispatch_main_q, ^{-[ADDiamondDropper die]_block_invoke captures +0x20=0, +0x28=self, +0x30=ADDiamondDropper})
+  07e974  return
+
+== -[ADDiamondDropper die]_block_invoke   (address 0x10007e994  size 20  kind block)
+  07e9a4  tail [0 deactivatePlaylist]
+
+== -[ADDiamondDropper initSounds]   (address 0x10007e9a8  size 104  kind objc)
+  07e9dc  [super initSounds]
+  07e9fc  [super activatePlaylist]
+  07ea0c  return

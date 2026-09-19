@@ -1,0 +1,10 @@
+{
+ "Enemies": {
+  "QuietZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 260,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  }
+ }
+}

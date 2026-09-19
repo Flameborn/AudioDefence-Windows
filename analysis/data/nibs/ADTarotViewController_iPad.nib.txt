@@ -1,0 +1,23 @@
+// ADTarotViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #69 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #41 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #31 UIView  
+    #26 UIView (custom class ViewWithParalax)  
+      #7 UIImageView  Image='background_main.png'
+    #16 UIImageView  UserInteractionDisabled=False Image='frame_tarot.png'
+    #49 UITextView (custom class ADChallengeDescription)  Text='Dr Bastard will now read your fortune in these cards for the next game...'
+    #11 UIButton (custom class ADButtonWithFont)  Tag=3
+    #22 UIView  
+
+CONNECTIONS
+  action  playButtonPressed:                        #11 ADButtonWithFont --(events 0x40)--> #69 UIProxyObject
+  outlet  background                                #69 UIProxyObject --> #7 UIImageView
+  outlet  cardContainer                             #69 UIProxyObject --> #22 UIView
+  outlet  firstAccessibleElement                    #69 UIProxyObject --> #49 ADChallengeDescription Text='Dr Bastard will now read your fortune in these cards for the next game...'
+  outlet  infoText                                  #69 UIProxyObject --> #49 ADChallengeDescription Text='Dr Bastard will now read your fortune in these cards for the next game...'
+  outlet  playButton                                #69 UIProxyObject --> #11 ADButtonWithFont
+  outlet  view                                      #69 UIProxyObject --> #31 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#11 ADButtonWithFont' UIAccessibilityLabel='Play'

@@ -1,0 +1,98 @@
+
+== +[TAGDispatchUtil background:wait:]   (address 0x10010ed18  size 296  kind objc)
+  10ed54  [TAGDispatchUtil thread]
+  10ed78  [NSThread currentThread]
+  10ed90  if ([TAGDispatchUtil thread] == [NSThread currentThread]) goto loc_10010eddc
+  10eda4  [arg1 copy]
+  10edcc  [TAGDispatchUtil performSelector:_cmd onThread:[TAGDispatchUtil thread] withObject:[arg1 copy] waitUntilDone:arg2]
+  10edd8  goto loc_10010edec
+loc_10010eddc:
+  10eddc  if (arg1 == 0) goto loc_10010edec
+  10ede8  call arg1[+0x10]
+loc_10010edec:
+  10ee08  return
+
+== +[TAGDispatchUtil databaseFullPath:]   (address 0x10010ee40  size 248  kind objc)
+  10ee68  NSSearchPathForDirectoriesInDomains(5, 1, 1)
+  10ee84  [NSSearchPathForDirectoriesInDomains(5, 1, 1) count]
+  10ee88  if ([NSSearchPathForDirectoriesInDomains(5, 1, 1) count] == 0) goto loc_10010eedc
+  10eea0  [NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndexedSubscript:0]
+  10eec0  [[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndexedSubscript:0] stringByAppendingPathComponent:arg1]
+  10eed8  goto loc_10010eee0
+loc_10010eedc:
+loc_10010eee0:
+  10ef00  return
+
+== +[TAGDispatchUtil databaseFullURL:]   (address 0x10010ef38  size 136  kind objc)
+  10ef58  [TAGDispatchUtil databaseFullPath:arg1]
+  10ef7c  [NSURL fileURLWithPath:[TAGDispatchUtil databaseFullPath:arg1]]
+  10efa0  return
+
+== +[TAGDispatchUtil threadMain:]   (address 0x10010efc0  size 136  kind objc)
+  10efe4  &@selector(run)
+loc_10010eff0:
+  10f000  [NSRunLoop currentRunLoop]
+  10f014  [[NSRunLoop currentRunLoop] run]
+  10f028  goto loc_10010eff0
+  10f030  goto loc_10010f040
+loc_10010f040:
+
+== +[TAGDispatchUtil thread]   (address 0x10010f048  size 116  kind objc)
+  10f094  if (g_10042dc18 != -1) goto loc_10010f0ac
+loc_10010f098:
+loc_10010f0ac:
+  10f0b4  dispatch_once(&g_10042dc18, ^{+[TAGDispatchUtil thread]_block_invoke captures +0x20=TAGDispatchUtil})
+  10f0b8  goto loc_10010f098
+
+== +[TAGDispatchUtil thread]_block_invoke   (address 0x10010f0bc  size 156  kind block)
+  10f0e0  [NSThread alloc]
+  10f104  [[NSThread alloc] initWithTarget:TAGDispatchUtil selector:@selector(threadMain:) object:0]
+  10f114  store g_10042dc10 = [[NSThread alloc] initWithTarget:TAGDispatchUtil selector:@selector(threadMain:) object:0]
+  10f138  [g_10042dc10 setName:@"TAGThread"]
+  10f154  tail [g_10042dc10 start]
+
+== sub_10010f158   (address 0x10010f158  size 4  kind sub)
+  10f158  return
+
+== sub_10010f15c   (address 0x10010f15c  size 4  kind sub)
+  10f15c  return
+
+== +[TAGDispatchUtil userAgentString]   (address 0x10010f160  size 612  kind objc)
+  10f194  if (g_10042dc28 != -1) goto loc_10010f340
+  10f1ac  [NSLocale preferredLanguages]
+  10f1d0  [TAGDispatchUtil systemLanguageFromLanguages:[NSLocale preferredLanguages]]
+  10f204  [g_10042dc20 valueForKey:@"model"]
+  10f224  [g_10042dc20 valueForKey:@"systemName"]
+  10f244  [g_10042dc20 valueForKey:@"systemVersion"]
+  10f264  [NSLocale currentLocale]
+  10f288  [TAGDispatchUtil systemCountryFromLocale:[NSLocale currentLocale]]
+  10f294  [&d_1003b9788] -> @"GoogleTagManager"
+  10f2a0  [&d_1003b9780] -> @"3.09"
+  10f2dc  [TAGDispatchUtil userAgentStringWithProduct:@"GoogleTagManager" version:@"3.09" deviceModel:[g_10042dc20 valueForKey:@"model"] systemName:[g_10042dc20 valueForKey:@"systemName"] systemVersion:[g_10042dc20 valueForKey:@"systemVersion"] systemLanguage:[TAGDispatchUtil systemLanguageFromLanguages:[NSLocale preferredLanguages]] systemCountry:&@selector(setWeakerEnemies:)]
+  10f33c  return
+  10f34c  dispatch_once(&g_10042dc28, ^{+[TAGDispatchUtil userAgentString]_block_invoke})
+
+== +[TAGDispatchUtil userAgentString]_block_invoke   (address 0x10010f3c4  size 80  kind block)
+  10f3d4  NSClassFromString(@"UIDevice", blockarg1, blockarg2, blockarg3)
+  10f3ec  [NSClassFromString(@"UIDevice", blockarg1, blockarg2, blockarg3) valueForKey:@"currentDevice"]
+  10f404  store g_10042dc20 = [NSClassFromString(@"UIDevice", blockarg1, blockarg2, blockarg3) valueForKey:@"currentDevice"]
+  10f410  return
+
+== +[TAGDispatchUtil userAgentStringWithProduct:version:deviceModel:systemName:systemVersion:systemLanguage:systemCountry:]   (address 0x10010f414  size 320  kind objc)
+  10f4bc  [NSString stringWithFormat:@"%@/%@ (%@; U; CPU %@ %@ like Mac OS X; %@-%@)", arg1, arg2, arg3, arg4, arg5, arg6, sp[48]]
+  10f514  return
+
+== +[TAGDispatchUtil systemLanguageFromLanguages:]   (address 0x10010f554  size 212  kind objc)
+  10f57c  [arg1 count]
+  10f580  if ([arg1 count] == 0) goto loc_10010f5d0
+  10f598  [arg1 objectAtIndexedSubscript:0]
+  10f5b4  [[arg1 objectAtIndexedSubscript:0] lowercaseString]
+  10f5cc  goto loc_10010f5e0
+loc_10010f5d0:
+loc_10010f5e0:
+  10f600  return
+
+== +[TAGDispatchUtil systemCountryFromLocale:]   (address 0x10010f628  size 140  kind objc)
+  10f654  [arg1 objectForKey:_NSLocaleCountryCode[+0x0]]
+  10f670  [[arg1 objectForKey:_NSLocaleCountryCode[+0x0]] lowercaseString]
+  10f694  return

@@ -1,0 +1,131 @@
+
+== -[ADInfoViewController initWithPageName:]   (address 0x100039738  size 172  kind objc)
+  039784  [super initWithNibName:0 bundle:0]
+  03978c  if (self == 0) goto loc_1000397b0
+  0397a4  self->pageName = arg1
+loc_1000397b0:
+  0397cc  return
+
+== -[ADInfoViewController viewDidLoad]   (address 0x1000397e4  size 1968  kind objc)
+  039828  [super viewDidLoad]
+  039840  [self statusBarViewController]
+  039860  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  039874  [self statusBarViewController]
+  039894  [[self statusBarViewController] setCurrenciesVisibility:0]
+  0398a8  [self statusBarViewController]
+  0398c8  [[self statusBarViewController] setDiamonsdsVisibility:0]
+  0398e8  [self titleLabel]
+  039904  [[self titleLabel] setupAsTitle]
+  039918  [self statusBarViewController]
+  039934  [[self statusBarViewController] pageTitle]
+  03995c  [[[self statusBarViewController] pageTitle] setText:@"INFO"]
+  039994  [self->pageName isEqualToString:@"challenge"]
+  039998  if ([self->pageName isEqualToString:@"challenge"] == 0) goto loc_100039b84
+  0399a4  [self titleLabel]
+  0399cc  [NSBundle mainBundle]
+  039a00  [[NSBundle mainBundle] localizedStringForKey:@"CHALLENGE_INFO_TITLE" value:@"" table:0]
+  039a1c  [[self titleLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"CHALLENGE_INFO_TITLE" value:@"" table:0]]
+  039a48  [self infoTextView]
+  039a60  [NSBundle mainBundle]
+  039a88  [[NSBundle mainBundle] localizedStringForKey:@"CHALLENGE_INFO_TEXT" value:@"" table:0]
+  039aa4  [[self infoTextView] setText:[[NSBundle mainBundle] localizedStringForKey:@"CHALLENGE_INFO_TEXT" value:@"" table:0]]
+  039ad0  [self infoTitle]
+  039ae8  [NSBundle mainBundle]
+  039b10  [[NSBundle mainBundle] localizedStringForKey:@"CHALLENGE_INFO_TITLE" value:@"" table:0]
+  039b2c  [[self infoTitle] setText:[[NSBundle mainBundle] localizedStringForKey:@"CHALLENGE_INFO_TITLE" value:@"" table:0]]
+  039b58  [self armoryButton]
+  039b78  [[self armoryButton] setHidden:1]
+  039b7c  goto loc_100039d7c
+  039b80  goto loc_100039f80
+loc_100039b84:
+  039b94  [self->pageName isEqualToString:@"endless"]
+  039b98  if ([self->pageName isEqualToString:@"endless"] == 0) goto loc_100039d84
+  039bac  [self infoTextView]
+  039bd4  [NSBundle mainBundle]
+  039c08  [[NSBundle mainBundle] localizedStringForKey:@"ENDLESS_INFO_TEXT" value:@"" table:0]
+  039c24  [[self infoTextView] setText:[[NSBundle mainBundle] localizedStringForKey:@"ENDLESS_INFO_TEXT" value:@"" table:0]]
+  039c50  [self infoTitle]
+  039c68  [NSBundle mainBundle]
+  039c90  [[NSBundle mainBundle] localizedStringForKey:@"ENDLESS_INFO_TITLE" value:@"" table:0]
+  039cac  [[self infoTitle] setText:[[NSBundle mainBundle] localizedStringForKey:@"ENDLESS_INFO_TITLE" value:@"" table:0]]
+  039cd0  [self titleLabel]
+  039ce8  [NSBundle mainBundle]
+  039d10  [[NSBundle mainBundle] localizedStringForKey:@"ENDLESS_INFO_TITLE" value:@"" table:0]
+  039d2c  [[self titleLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"ENDLESS_INFO_TITLE" value:@"" table:0]]
+  039d58  [self armoryButton]
+  039d78  [[self armoryButton] setHidden:0]
+loc_100039d7c:
+loc_100039d84:
+  039d94  [self infoTextView]
+  039db0  [[self infoTextView] setupAsInfo]
+  039dd0  [self view]
+  039de8  [self statusBarViewController]
+  039dfc  [[self statusBarViewController] view]
+  039e20  [[self view] bringSubviewToFront:[[self statusBarViewController] view]]
+  039e58  return
+
+== -[ADInfoViewController continueButtonPressed:]   (address 0x100039f94  size 356  kind objc)
+  039fcc  [self->pageName isEqualToString:@"challenge"]
+  039fd0  if ([self->pageName isEqualToString:@"challenge"] == 0) goto loc_10003a02c
+  039fe8  [UIApplication sharedApplication]
+  03a004  [[UIApplication sharedApplication] delegate]
+  03a020  [[[UIApplication sharedApplication] delegate] goToTabbedChallengeScreen]
+  03a024  goto loc_10003a094
+  03a028  goto loc_10003a0d8
+loc_10003a02c:
+  03a03c  [self->pageName isEqualToString:@"endless"]
+  03a040  if ([self->pageName isEqualToString:@"endless"] == 0) goto loc_10003a0b0
+  03a058  [UIApplication sharedApplication]
+  03a074  [[UIApplication sharedApplication] delegate]
+  03a090  [[[UIApplication sharedApplication] delegate] goToTarot]
+loc_10003a094:
+  03a0ac  return
+loc_10003a0b0:
+  03a0bc  return
+
+== -[ADInfoViewController backButtonPressed]   (address 0x10003a0f8  size 160  kind objc)
+  03a11c  [UIApplication sharedApplication]
+  03a138  [[UIApplication sharedApplication] delegate]
+  03a154  [[[UIApplication sharedApplication] delegate] goToPlayMenu]
+  03a170  return
+
+== -[ADInfoViewController didReceiveMemoryWarning]   (address 0x10003a198  size 60  kind objc)
+  03a1c4  [super didReceiveMemoryWarning]
+  03a1d0  return
+
+== -[ADInfoViewController infoTitle]   (address 0x10003a1d4  size 16  kind objc)
+  03a1e0  return
+
+== -[ADInfoViewController setInfoTitle:]   (address 0x10003a1e4  size 56  kind objc)
+  03a208  self->_infoTitle = arg1
+  03a218  return
+
+== -[ADInfoViewController infoTextView]   (address 0x10003a21c  size 16  kind objc)
+  03a228  return
+
+== -[ADInfoViewController setInfoTextView:]   (address 0x10003a22c  size 56  kind objc)
+  03a250  self->_infoTextView = arg1
+  03a260  return
+
+== -[ADInfoViewController armoryButton]   (address 0x10003a264  size 16  kind objc)
+  03a270  return
+
+== -[ADInfoViewController setArmoryButton:]   (address 0x10003a274  size 56  kind objc)
+  03a298  self->_armoryButton = arg1
+  03a2a8  return
+
+== -[ADInfoViewController continueButton]   (address 0x10003a2ac  size 16  kind objc)
+  03a2b8  return
+
+== -[ADInfoViewController setContinueButton:]   (address 0x10003a2bc  size 56  kind objc)
+  03a2e0  self->_continueButton = arg1
+  03a2f0  return
+
+== -[ADInfoViewController titleLabel]   (address 0x10003a2f4  size 16  kind objc)
+  03a300  return
+
+== -[ADInfoViewController setTitleLabel:]   (address 0x10003a304  size 56  kind objc)
+  03a328  self->_titleLabel = arg1
+  03a338  return
+
+== -[ADInfoViewController .cxx_destruct]   (address 0x10003a33c  size 144  kind objc)

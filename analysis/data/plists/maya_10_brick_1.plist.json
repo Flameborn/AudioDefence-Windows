@@ -1,0 +1,81 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_zombie_shield_a"
+  }
+ ],
+ "Ambiant": "Silence_ambiant",
+ "Enemies": {
+  "Shield": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 26.05,
+    "afterStart": true,
+    "enemy": "bastard_zombie_shield_a"
+   },
+   "spawn_angle": 260,
+   "spawn_distance": 10
+  },
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 29.5,
+    "afterStart": true,
+    "enemy": "bastard_zombie_shield_a"
+   },
+   "spawn_angle": 40,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "Zombie"
+   },
+   "spawn_angle": 50,
+   "spawn_distance": 10
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 33,
+    "afterStart": true,
+    "enemy": "bastard_zombie_shield_a"
+   },
+   "spawn_angle": 15,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 32,
+    "afterStart": true,
+    "enemy": "bastard_zombie_shield_a"
+   },
+   "spawn_angle": 160,
+   "spawn_distance": 10
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 200,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "ZombieB"
+   },
+   "spawn_angle": 130,
+   "spawn_distance": 10
+  }
+ }
+}

@@ -1,0 +1,251 @@
+
+== -[ADWorldChallengeListViewController initWithNibName:bundle:]   (address 0x10004ba74  size 212  kind objc)
+  04bad4  [super initWithNibName:arg1 bundle:arg2]
+  04badc  if (self == 0) goto loc_10004bafc
+  04baf8  [self setNumberOfSectionsForStats:1]
+loc_10004bafc:
+  04bb20  return
+
+== -[ADWorldChallengeListViewController viewDidLoad]   (address 0x10004bb48  size 1284  kind objc)
+  04bb84  [super viewDidLoad]
+  04bb9c  [self statusBarViewController]
+  04bbb8  [[self statusBarViewController] pageTitle]
+  04bbdc  [[[self statusBarViewController] pageTitle] setText:@"CHALLENGE"]
+  04bbf8  [self statusBarViewController]
+  04bc18  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  04bc2c  [self statusBarViewController]
+  04bc4c  [[self statusBarViewController] setCurrenciesVisibility:1]
+  04bc60  [self statusBarViewController]
+  04bc80  [[self statusBarViewController] setDiamonsdsVisibility:1]
+  04bca0  [NSBundle mainBundle]
+  04bccc  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  04bcfc  [NSDictionary alloc]
+  04bd10  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  04bd24  [NSArray alloc]
+  04bd3c  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys]
+  04bd60  [[NSArray alloc] initWithArray:[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys]]
+  04bd80  [self setWorldNames:[[NSArray alloc] initWithArray:[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys]]]
+  04bda4  [self worldNames]
+  04bdc8  [[self worldNames] sortedArrayUsingComparator:^{-[ADWorldChallengeListViewController viewDidLoad]_block_invoke}]
+  04bde4  [self setWorldNames:[[self worldNames] sortedArrayUsingComparator:^{-[ADWorldChallengeListViewController viewDidLoad]_block_invoke}]]
+  04be0c  [ADChallengeData sharedChallengeData]
+  04be28  [[ADChallengeData sharedChallengeData] totalStarsUnlocked]
+  04be34  self->totalStarsUnlocked = [[ADChallengeData sharedChallengeData] totalStarsUnlocked]
+  04be54  [ADGameParameters sharedParameters]
+  04be70  [[ADGameParameters sharedParameters] isIphone]
+  04be84  &@selector(tableView)
+  04be8c  if ([[ADGameParameters sharedParameters] isIphone] == 0) goto loc_10004befc
+  04be94  [self tableView]
+  04bec4  [UINib nibWithNibName:@"ADChallengeWorldCellTableViewCell" bundle:0]
+  04bef0  [[self tableView] registerNib:[UINib nibWithNibName:@"ADChallengeWorldCellTableViewCell" bundle:0] forCellReuseIdentifier:@"arenaCell"]
+  04bef4  goto loc_10004bf60
+  04bef8  goto loc_10004c01c
+loc_10004befc:
+  04bf00  [self tableView]
+  04bf30  [UINib nibWithNibName:@"ADChallengeWorldCellTableViewCell_iPad" bundle:0]
+  04bf5c  [[self tableView] registerNib:[UINib nibWithNibName:@"ADChallengeWorldCellTableViewCell_iPad" bundle:0] forCellReuseIdentifier:@"arenaCell"]
+loc_10004bf60:
+  04bf94  return
+
+== -[ADWorldChallengeListViewController viewDidLoad]_block_invoke   (address 0x10004c04c  size 284  kind block)
+  04c098  [ADChallengeData sharedChallengeData]
+  04c0bc  [[ADChallengeData sharedChallengeData] starsRequirementForWorld:blockarg1]
+  04c0d4  [ADChallengeData sharedChallengeData]
+  04c0ec  [[ADChallengeData sharedChallengeData] starsRequirementForWorld:blockarg2]
+  04c100  t1 = ([[ADChallengeData sharedChallengeData] starsRequirementForWorld:blockarg1] > [[ADChallengeData sharedChallengeData] starsRequirementForWorld:blockarg2])
+  04c12c  return
+
+== -[ADWorldChallengeListViewController loadView]   (address 0x10004c168  size 260  kind objc)
+  04c1b4  [NSNumber numberWithInt:1]
+  04c1e8  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  04c21c  [self loADViewBasedOnDeviceWithNibName:@"ADWorldChallengeListViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  04c244  return
+
+== -[ADWorldChallengeListViewController didReceiveMemoryWarning]   (address 0x10004c26c  size 60  kind objc)
+  04c298  [super didReceiveMemoryWarning]
+  04c2a4  return
+
+== -[ADWorldChallengeListViewController tableView:numberOfRowsInSection:]   (address 0x10004c2a8  size 112  kind objc)
+  04c2c0  [self worldNames]
+  04c2dc  [[self worldNames] count]
+  04c2f8  return
+
+== -[ADWorldChallengeListViewController tableView:viewForHeaderInSection:]   (address 0x10004c318  size 496  kind objc)
+  04c33c  [ADGameParameters sharedParameters]
+  04c358  [[ADGameParameters sharedParameters] isIphone]
+  04c37c  [UILabel alloc]
+  04c39c  [[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  04c3b8  [UIColor clearColor]
+  04c3dc  [[[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setBackgroundColor:[UIColor clearColor]]
+  04c3fc  [[[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setTextAlignment:1]
+  04c42c  [UIFont fontWithName:@"AxeHandel" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 20 : 28)]
+  04c450  [[[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setFont:[UIFont fontWithName:@"AxeHandel" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 20 : 28)]]
+  04c46c  [UIColor whiteColor]
+  04c490  [[[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setTextColor:[UIColor whiteColor]]
+  04c4b4  [[[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@""]
+  04c4c8  return
+
+== -[ADWorldChallengeListViewController tableView:heightForHeaderInSection:]   (address 0x10004c508  size 144  kind objc)
+  04c52c  [ADGameParameters sharedParameters]
+  04c548  [[ADGameParameters sharedParameters] isIphone]
+  04c578  return
+
+== -[ADWorldChallengeListViewController tableView:heightForRowAtIndexPath:]   (address 0x10004c598  size 140  kind objc)
+  04c5b8  [ADGameParameters sharedParameters]
+  04c5d4  [[ADGameParameters sharedParameters] isIphone]
+  04c604  return
+
+== -[ADWorldChallengeListViewController numberOfSectionsInTableView:]   (address 0x10004c624  size 32  kind objc)
+  04c638  [self numberOfSectionsForStats]
+  04c640  return
+
+== -[ADWorldChallengeListViewController tableView:cellForRowAtIndexPath:]   (address 0x10004c644  size 2772  kind objc)
+  04c694  [self worldNames]
+  04c6b8  [arg2 row]
+  04c6d0  [[self worldNames] objectAtIndex:[arg2 row]]
+  04c6f0  UIAccessibilityIsVoiceOverRunning()
+  04c6f8  &@selector(dequeueReusableCellWithIdentifier:)
+  04c704  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_10004c8d8
+  04c718  [arg1 dequeueReusableCellWithIdentifier:@"arenaCellAccessible"]
+  04c728  if ([arg1 dequeueReusableCellWithIdentifier:@"arenaCellAccessible"] != 0) goto loc_10004c76c
+  04c744  [ADAccessibleTableCell alloc]
+  04c764  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"arenaCellAccessible"]
+loc_10004c76c:
+  04c784  [x0 setSelectionStyle:0]
+  04c79c  [x0 textLabel]
+  04c7c0  [[x0 textLabel] setText:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04c7f4  [ADChallengeData sharedChallengeData]
+  04c81c  [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04c830  &@selector(detailTextLabel)
+  04c83c  if (self->totalStarsUnlocked >= [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]) goto loc_10004cc6c
+  04c84c  [x0 detailTextLabel]
+  04c870  [ADChallengeData sharedChallengeData]
+  04c888  [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04c8a8  [NSString stringWithFormat:@"You need %i stars to play this level", [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldName…]
+  04c8c4  [[x0 detailTextLabel] setText:[NSString stringWithFormat:@"You need %i stars to play this level", [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldName…]]
+  04c8d4  goto loc_10004cd48
+loc_10004c8d8:
+  04c8e8  [arg1 dequeueReusableCellWithIdentifier:@"arenaCell"]
+  04c90c  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] titleLabel]
+  04c930  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] titleLabel] setText:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04c954  [UIColor clearColor]
+  04c978  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] setBackgroundColor:[UIColor clearColor]]
+  04c99c  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] setSelectionStyle:0]
+  04c9c8  [ADChallengeData sharedChallengeData]
+  04c9f0  [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04ca04  if (self->totalStarsUnlocked >= [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]) goto loc_10004cd60
+  04ca20  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starImage]
+  04ca44  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starImage] setHidden:1]
+  04ca68  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel]
+  04ca8c  [ADChallengeData sharedChallengeData]
+  04caa4  [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04cac4  [NSString stringWithFormat:@"You need %i stars", [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldName…]
+  04cae0  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel] setText:[NSString stringWithFormat:@"You need %i stars", [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldName…]]
+  04cb0c  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel]
+  04cb2c  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel]
+  04cb48  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel] font]
+  04cb64  [[[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel] font] fontName]
+  04cb88  [ADGameParameters sharedParameters]
+  04cba8  [[ADGameParameters sharedParameters] isIphone]
+  04cbd0  [UIFont fontWithName:[[[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel] font] fontName] size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 15)]
+  04cbf4  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel] setFont:[UIFont fontWithName:[[[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel] font] fontName] size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 15)]]
+  04cc40  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] lockView]
+  04cc58  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] lockView] setHidden:0]
+  04cc68  goto loc_10004cf00
+loc_10004cc6c:
+  04cc78  [x0 detailTextLabel]
+  04cc9c  [ADChallengeData sharedChallengeData]
+  04ccbc  [[ADChallengeData sharedChallengeData] totalStarsUnlockedForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04cccc  [ADChallengeData sharedChallengeData]
+  04ccf0  [[ADChallengeData sharedChallengeData] numberOfChallengesForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04ccf4  t1 = ([[ADChallengeData sharedChallengeData] numberOfChallengesForWorld:[[self worldNames] objectAtIndex:[arg2 row]]] + ([[ADChallengeData sharedChallengeData] numberOfChallengesForWorld:[[self worldNames] objectAtIndex:[arg2 row]]] << 1))
+  04cd14  [NSString stringWithFormat:@"Stars unlocked %i / %i", [[ADChallengeData sharedChallengeData] totalStarsUnlockedForWorld:[[self worldNa…, t1]
+  04cd30  [[x0 detailTextLabel] setText:[NSString stringWithFormat:@"Stars unlocked %i / %i", [[ADChallengeData sharedChallengeData] totalStarsUnlockedForWorld:[[self worldNa…, t1]]
+loc_10004cd48:
+  04cd5c  goto loc_10004cf04
+loc_10004cd60:
+  04cd78  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel]
+  04cd98  [ADChallengeData sharedChallengeData]
+  04cdb8  [[ADChallengeData sharedChallengeData] totalStarsUnlockedForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04cdc8  [ADChallengeData sharedChallengeData]
+  04cde8  [[ADChallengeData sharedChallengeData] numberOfChallengesForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04cdec  t2 = ([[ADChallengeData sharedChallengeData] numberOfChallengesForWorld:[[self worldNames] objectAtIndex:[arg2 row]]] + ([[ADChallengeData sharedChallengeData] numberOfChallengesForWorld:[[self worldNames] objectAtIndex:[arg2 row]]] << 1))
+  04ce0c  [NSString stringWithFormat:@"%i/%i", [[ADChallengeData sharedChallengeData] totalStarsUnlockedForWorld:[[self worldNa…, t2]
+  04ce28  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] starsUnlockedLabel] setText:[NSString stringWithFormat:@"%i/%i", [[ADChallengeData sharedChallengeData] totalStarsUnlockedForWorld:[[self worldNa…, t2]]
+  04ce60  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] lockView]
+  04ce80  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] lockView] setHidden:1]
+  04ce98  [[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] titleLabel]
+  04cec0  [UIColor whiteColor]
+  04cee4  [[[arg1 dequeueReusableCellWithIdentifier:@"arenaCell"] titleLabel] setTextColor:[UIColor whiteColor]]
+loc_10004cf00:
+loc_10004cf04:
+  04cf3c  return
+
+== -[ADWorldChallengeListViewController tableView:willSelectRowAtIndexPath:]   (address 0x10004d118  size 344  kind objc)
+  04d14c  [self worldNames]
+  04d16c  [arg2 row]
+  04d184  [[self worldNames] objectAtIndex:[arg2 row]]
+  04d1bc  [ADChallengeData sharedChallengeData]
+  04d1dc  [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04d1f0  if (self->totalStarsUnlocked >= [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]) goto loc_10004d1fc
+  04d1f8  goto loc_10004d208
+loc_10004d1fc:
+loc_10004d208:
+  04d22c  return
+
+== -[ADWorldChallengeListViewController tableView:didSelectRowAtIndexPath:]   (address 0x10004d270  size 548  kind objc)
+  04d2a8  [self worldNames]
+  04d2c8  [arg2 row]
+  04d2e0  [[self worldNames] objectAtIndex:[arg2 row]]
+  04d318  [ADChallengeData sharedChallengeData]
+  04d338  [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04d34c  if (self->totalStarsUnlocked < [[ADChallengeData sharedChallengeData] starsRequirementForWorld:[[self worldNames] objectAtIndex:[arg2 row]]]) goto loc_10004d404
+  04d360  [self playButtonSound]
+  04d378  [ADGameParameters sharedParameters]
+  04d398  [[ADGameParameters sharedParameters] setLastChallengeWorld:[[self worldNames] objectAtIndex:[arg2 row]]]
+  04d3b8  [UIApplication sharedApplication]
+  04d3d4  [[UIApplication sharedApplication] delegate]
+  04d3f0  [[[UIApplication sharedApplication] delegate] goToChallengeSelector]
+loc_10004d404:
+  04d424  return
+
+== -[ADWorldChallengeListViewController backButtonPressed]   (address 0x10004d494  size 160  kind objc)
+  04d4b8  [UIApplication sharedApplication]
+  04d4d4  [[UIApplication sharedApplication] delegate]
+  04d4f0  [[[UIApplication sharedApplication] delegate] goToPlayMenu]
+  04d50c  return
+
+== -[ADWorldChallengeListViewController playButtonSound]   (address 0x10004d534  size 252  kind objc)
+  04d558  [S3DEngine engine]
+  04d57c  [[S3DEngine engine] playListWithName:@"buttons"]
+  04d5a0  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_button"]
+  04d5d4  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_button"] setGain:3]
+  04d5e8  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_button"] play]
+  04d5fc  return
+
+== -[ADWorldChallengeListViewController tableView]   (address 0x10004d630  size 32  kind objc)
+  04d64c  return
+
+== -[ADWorldChallengeListViewController setTableView:]   (address 0x10004d650  size 20  kind objc)
+
+== -[ADWorldChallengeListViewController enemyData]   (address 0x10004d664  size 16  kind objc)
+  04d670  return
+
+== -[ADWorldChallengeListViewController setEnemyData:]   (address 0x10004d674  size 56  kind objc)
+  04d698  self->_enemyData = arg1
+  04d6a8  return
+
+== -[ADWorldChallengeListViewController worldNames]   (address 0x10004d6ac  size 16  kind objc)
+  04d6b8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADWorldChallengeListViewController setWorldNames:]   (address 0x10004d6bc  size 12  kind objc)
+  04d6c4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADWorldChallengeListViewController numberOfSectionsForStats]   (address 0x10004d6c8  size 16  kind objc)
+  04d6d4  return
+
+== -[ADWorldChallengeListViewController setNumberOfSectionsForStats:]   (address 0x10004d6d8  size 16  kind objc)
+  04d6e0  self->_numberOfSectionsForStats = arg1
+  04d6e4  return
+
+== -[ADWorldChallengeListViewController .cxx_destruct]   (address 0x10004d6e8  size 80  kind objc)

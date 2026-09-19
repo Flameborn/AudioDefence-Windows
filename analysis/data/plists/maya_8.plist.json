@@ -1,0 +1,45 @@
+{
+ "icon_title": "28",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 75
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "title": "Meet the Berserk!",
+ "objective": "Dr. Bastard has a new, very dangerous zombie to show you.",
+ "tip": "The Berserk usually appears close to other zombies. Wait until the Berserk goes away or aim carefully to avoid hitting it.",
+ "bricks": [
+  "maya_8_brick_1",
+  "maya_8_brick_2",
+  "maya_8_brick_3",
+  "maya_8_brick_4"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "maya_8",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "maya_7"
+ ],
+ "weapons": [
+  {
+   "ammo": "60",
+   "name": "tactical"
+  },
+  {
+   "ammo": "20",
+   "name": "hunting"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 75
+ }
+}

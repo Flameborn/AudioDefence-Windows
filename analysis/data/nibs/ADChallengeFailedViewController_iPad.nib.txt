@@ -1,0 +1,22 @@
+// ADChallengeFailedViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #27 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #70 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #65 UIView  
+    #96 UIImageView  Image='background_dead.png'
+    #54 UIImageView  Image='text_failed.png'
+    #76 UITextView (custom class ADChallengeDescription)  Text='This is a sample text descriptin'
+    #5 UIButton (custom class ADButtonWithFont)  
+    #6 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  missionSelectButtonPressed:               #6 ADButtonWithFont --(events 0x40)--> #27 UIProxyObject
+  action  tryAgainButtonPressed:                    #5 ADButtonWithFont --(events 0x40)--> #27 UIProxyObject
+  outlet  firstAccessibleElement                    #27 UIProxyObject --> #76 ADChallengeDescription Text='This is a sample text descriptin'
+  outlet  tipTextView                               #27 UIProxyObject --> #76 ADChallengeDescription Text='This is a sample text descriptin'
+  outlet  view                                      #27 UIProxyObject --> #65 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#54 UIImageView' UIAccessibilityLabel='Challenge Failed' UIIsAccessibilityElement=1
+  UIAccessibileObject='#5 ADButtonWithFont' UIAccessibilityLabel='Try again'
+  UIAccessibileObject='#6 ADButtonWithFont' UIAccessibilityLabel='challenge selection'

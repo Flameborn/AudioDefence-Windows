@@ -1,0 +1,25 @@
+// ADArmoryPowerUpUpgraderViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #121 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #26 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #30 UIView  
+    #99 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #76 UIImageView  Image='frame_popup_blank.png'
+    #75 UIButton (custom class ADButtonWithFont)  title[0]='Upgrade for'
+    #72 UIImageView  Image='wok_icon.png'
+    #44 UILabel  UserInteractionDisabled=False Text='Label'
+    #124 UIImageView  Image='badge_level1.png'
+    #40 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #32 UIButton (custom class ADButtonWithFont)  title[0]='BACK'
+
+CONNECTIONS
+  action  upgradeButtonPressed:                     #75 ADButtonWithFont --(events 0x40)--> #121 UIProxyObject
+  outlet  badgeImage                                #121 UIProxyObject --> #124 UIImageView
+  outlet  powerUpDescription                        #121 UIProxyObject --> #40 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  powerUpIcon                               #121 UIProxyObject --> #72 UIImageView
+  outlet  powerUpTitle                              #121 UIProxyObject --> #44 UILabel Text='Label'
+  outlet  upgradeButton                             #121 UIProxyObject --> #75 ADButtonWithFont
+  outlet  view                                      #121 UIProxyObject --> #30 UIView
+  outlet  voiceOverBack                             #121 UIProxyObject --> #32 ADButtonWithFont
+
+ACCESSIBILITY CONFIGURATIONS

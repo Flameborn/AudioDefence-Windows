@@ -1,0 +1,207 @@
+
+== +[TAGPBDescriptor allocDescriptorForClass:rootClass:fields:fieldCount:enums:enumCount:ranges:rangeCount:storageSize:wireFormat:]   (address 0x100135ab4  size 932  kind objc)
+  135b0c  if (arg4 == 0) goto loc_100135bc8
+  135b48  &@selector(release)
+loc_100135b58:
+  135b58  if (x21 != 0) goto loc_100135b7c
+  135b68  [TAGPBMutableArray alloc]
+  135b74  [[TAGPBMutableArray alloc] initWithValueType:0 capacity:arg4]
+loc_100135b7c:
+  135b88  [TAGPBFieldDescriptor alloc]
+  135b98  [[TAGPBFieldDescriptor alloc] initWithFieldDescription:x2 rootClass:arg2]
+  135bac  [x0 addObject:[[TAGPBFieldDescriptor alloc] initWithFieldDescription:x2 rootClass:arg2]]
+  135bb8  [[[TAGPBFieldDescriptor alloc] initWithFieldDescription:x2 rootClass:arg2] release]
+  135bc4  if ((x25 - 1) != 0) goto loc_100135b58
+loc_100135bc8:
+  135bd0  if (arg6 == 0) goto loc_100135cfc
+  135be4  &@selector(initWithValueType:capacity:)
+  135c38  &@selector(addObject:)
+loc_100135c44:
+  135c44  if (x24 != 0) goto loc_100135c6c
+  135c54  [TAGPBMutableArray alloc]
+  135c64  [[TAGPBMutableArray alloc] initWithValueType:0 capacity:arg6]
+loc_100135c6c:
+  135c7c  [TAGPBEnumDescriptor descriptorForName:x2]
+  135c84  if ([TAGPBEnumDescriptor descriptorForName:x2] != 0) goto loc_100135ce0
+  135c94  [NSAssertionHandler currentHandler]
+  135cb0  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  135cdc  [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:TAGPBDescriptor file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:106 description:@"Unable to find enum descriptor %s"]
+loc_100135ce0:
+  135cec  [x0 addObject:[TAGPBEnumDescriptor descriptorForName:x2]]
+  135cf8  if (arg6 != (x28 + 1)) goto loc_100135c44
+loc_100135cfc:
+  135d04  if (x9 == 0) goto loc_100135dbc
+  135d40  &@selector(release)
+loc_100135d4c:
+  135d4c  if (x25 != 0) goto loc_100135d74
+  135d5c  [TAGPBMutableArray alloc]
+  135d6c  [[TAGPBMutableArray alloc] initWithValueType:0 capacity:x3]
+loc_100135d74:
+  135d80  [TAGPBExtensionRange alloc]
+  135d8c  [[TAGPBExtensionRange alloc] initWithRangeDescription:x2]
+  135da0  [x0 addObject:[[TAGPBExtensionRange alloc] initWithRangeDescription:x2]]
+  135dac  [[[TAGPBExtensionRange alloc] initWithRangeDescription:x2] release]
+  135db8  if ((x20 - 1) != 0) goto loc_100135d4c
+loc_100135dbc:
+  135dd0  [TAGPBDescriptor alloc]
+  135dfc  [[TAGPBDescriptor alloc] initWithClass:arg1 fields:x3 enums:x4 extensions:0 extensionRanges:x6 storageSize:x7 wireFormat:x8]
+  135e18  [x0 release]
+  135e24  [x0 release]
+  135e30  [x0 release]
+  135e54  return
+
+== +[TAGPBDescriptor allocDescriptorForClass:rootClass:fields:fieldCount:enums:enumCount:ranges:rangeCount:storageSize:wireFormat:extraTextFormatInfo:]   (address 0x100135e58  size 412  kind objc)
+  135eb0  [TAGPBDescriptor allocDescriptorForClass:arg1 rootClass:arg2 fields:arg3 fieldCount:arg4 enums:arg5 enumCount:arg6 ranges:x8 rangeCount:x9 storageSize:x10 wireFormat:x11]
+  135eb8  if (x20 == 0) goto loc_100135fb4
+  135ed4  [NSValue valueWithPointer:x2]
+  135f1c  [[TAGPBDescriptor allocDescriptorForClass:arg1 rootClass:arg2 fields:arg3 fieldCount:arg4 enums:arg5 enumCount:arg6 ranges:x8 rangeCount:x9 storageSize:x10 wireFormat:x11]->fields_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  135f24  if ([[TAGPBDescriptor allocDescriptorForClass:arg1 rootClass:arg2 fields:arg3 fieldCount:arg4 enums:arg5 enumCount:arg6 ranges:x8 rangeCount:x9 storageSize:x10 wireFormat:x11]->fields_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_100135fb4
+loc_100135f48:
+loc_100135f4c:
+  135f58  if (x8 == x28) goto loc_100135f64
+  135f60  objc_enumerationMutation([TAGPBDescriptor allocDescriptorForClass:arg1 rootClass:arg2 fields:arg3 fieldCount:arg4 enums:arg5 enumCount:arg6 ranges:x8 rangeCount:x9 storageSize:x10 wireFormat:x11]->fields_)
+loc_100135f64:
+  135f74  if (!(x0->description_[+0x12] & (1<<5))) goto loc_100135f88
+  135f84  objc_setAssociatedObject(x0, tconst_1002faa50, [NSValue valueWithPointer:x2], 1)
+loc_100135f88:
+  135f90  if ((x19 + 1) <u [[TAGPBDescriptor allocDescriptorForClass:arg1 rootClass:arg2 fields:arg3 fieldCount:arg4 enums:arg5 enumCount:arg6 rang…) goto loc_100135f4c
+  135fa8  [[TAGPBDescriptor allocDescriptorForClass:arg1 rootClass:arg2 fields:arg3 fieldCount:arg4 enums:arg5 enumCount:arg6 ranges:x8 rangeCount:x9 storageSize:x10 wireFormat:x11]->fields_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  135fb0  if ([[TAGPBDescriptor allocDescriptorForClass:arg1 rootClass:arg2 fields:arg3 fieldCount:arg4 enums:arg5 enumCount:arg6 ranges:x8 rangeCount:x9 storageSize:x10 wireFormat:x11]->fields_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_100135f48
+loc_100135fb4:
+  135fec  return
+
+== -[TAGPBDescriptor initWithClass:fields:enums:extensions:extensionRanges:storageSize:wireFormat:]   (address 0x100135ff4  size 276  kind objc)
+  136048  [super init]
+  136050  if (self == 0) goto loc_1001360e8
+  136060  self->messageClass_ = arg1
+  136078  [arg2 retain]
+  136084  self->fields_ = [arg2 retain]
+  136090  [arg3 retain]
+  13609c  self->enums_ = [arg3 retain]
+  1360a8  [arg4 retain]
+  1360b4  self->extensions_ = [arg4 retain]
+  1360c0  [arg5 retain]
+  1360cc  self->extensionRanges_ = [arg5 retain]
+  1360d8  self->storageSize_ = arg6
+  1360e4  self->wireFormat_ = w26
+loc_1001360e8:
+  136104  return
+
+== -[TAGPBDescriptor dealloc]   (address 0x100136108  size 164  kind objc)
+  136138  [self->fields_ release]
+  13614c  [self->enums_ release]
+  136160  [self->extensions_ release]
+  136174  [self->extensionRanges_ release]
+  136198  [super dealloc]
+  1361a8  return
+
+== -[TAGPBDescriptor name]   (address 0x1001361ac  size 16  kind objc)
+  1361b8  tail NSStringFromClass(self->messageClass_, _cmd)
+
+== -[TAGPBDescriptor copyWithZone:]   (address 0x1001361bc  size 16  kind objc)
+  1361c8  tail [self retain]
+
+== -[TAGPBDescriptor fieldWithNumber:]   (address 0x1001361cc  size 304  kind objc)
+  13623c  [self->fields_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  136248  if ([self->fields_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] == 0) goto loc_1001362c8
+loc_100136260:
+loc_100136264:
+  136270  if (x8 == x26) goto loc_10013627c
+  136278  objc_enumerationMutation(self->fields_)
+loc_10013627c:
+  136294  if (x0->description_[+0x8] == arg1) goto loc_1001362c8
+  1362a0  if ((x28 + 1) <u [self->fields_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]) goto loc_100136264
+  1362b8  [self->fields_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  1362c0  if ([self->fields_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] != 0) goto loc_100136260
+loc_1001362c8:
+  1362f4  return
+
+== -[TAGPBDescriptor fieldWithName:]   (address 0x1001362fc  size 348  kind objc)
+  13636c  [self->fields_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  136378  if ([self->fields_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_100136420
+loc_1001363a8:
+loc_1001363ac:
+  1363b8  if (x8 == x28) goto loc_1001363c4
+  1363c0  objc_enumerationMutation(self->fields_)
+loc_1001363c4:
+  1363d4  [x0 name]
+  1363e0  [[x0 name] isEqualToString:arg1]
+  1363e4  if ([[x0 name] isEqualToString:arg1] != 0) goto loc_100136418
+  1363f0  if ((x25 + 1) <u [self->fields_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_1001363ac
+  136408  [self->fields_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  136410  if ([self->fields_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_1001363a8
+loc_100136418:
+loc_100136420:
+  136450  return
+
+== -[TAGPBDescriptor enumWithName:]   (address 0x100136458  size 348  kind objc)
+  1364c8  [self->enums_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  1364d4  if ([self->enums_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_10013657c
+loc_100136504:
+loc_100136508:
+  136514  if (x8 == x28) goto loc_100136520
+  13651c  objc_enumerationMutation(self->enums_)
+loc_100136520:
+  136530  [x0 name]
+  13653c  [[x0 name] isEqualToString:arg1]
+  136540  if ([[x0 name] isEqualToString:arg1] != 0) goto loc_100136574
+  13654c  if ((x25 + 1) <u [self->enums_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_100136508
+  136564  [self->enums_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  13656c  if ([self->enums_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_100136504
+loc_100136574:
+loc_10013657c:
+  1365ac  return
+
+== -[TAGPBDescriptor extensionWithNumber:]   (address 0x1001365b4  size 304  kind objc)
+  136624  [self->extensions_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  136630  if ([self->extensions_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] == 0) goto loc_1001366b0
+loc_100136648:
+loc_10013664c:
+  136658  if (x8 == x26) goto loc_100136664
+  136660  objc_enumerationMutation(self->extensions_)
+loc_100136664:
+  13667c  if (x0->description_[+0x8] == arg1) goto loc_1001366b0
+  136688  if ((x28 + 1) <u [self->extensions_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]) goto loc_10013664c
+  1366a0  [self->extensions_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  1366a8  if ([self->extensions_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] != 0) goto loc_100136648
+loc_1001366b0:
+  1366dc  return
+
+== -[TAGPBDescriptor extensionWithName:]   (address 0x1001366e4  size 348  kind objc)
+  136754  [self->extensions_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  136760  if ([self->extensions_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_100136808
+loc_100136790:
+loc_100136794:
+  1367a0  if (x8 == x28) goto loc_1001367ac
+  1367a8  objc_enumerationMutation(self->extensions_)
+loc_1001367ac:
+  1367bc  [x0 name]
+  1367c8  [[x0 name] isEqualToString:arg1]
+  1367cc  if ([[x0 name] isEqualToString:arg1] != 0) goto loc_100136800
+  1367d8  if ((x25 + 1) <u [self->extensions_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_100136794
+  1367f0  [self->extensions_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  1367f8  if ([self->extensions_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_100136790
+loc_100136800:
+loc_100136808:
+  136838  return
+
+== -[TAGPBDescriptor messageClass]   (address 0x100136840  size 16  kind objc)
+  13684c  return
+
+== -[TAGPBDescriptor fields]   (address 0x100136850  size 16  kind objc)
+  13685c  return
+
+== -[TAGPBDescriptor enums]   (address 0x100136860  size 16  kind objc)
+  13686c  return
+
+== -[TAGPBDescriptor extensions]   (address 0x100136870  size 16  kind objc)
+  13687c  return
+
+== -[TAGPBDescriptor extensionRanges]   (address 0x100136880  size 16  kind objc)
+  13688c  return
+
+== -[TAGPBDescriptor storageSize]   (address 0x100136890  size 16  kind objc)
+  13689c  return
+
+== -[TAGPBDescriptor isWireFormat]   (address 0x1001368a0  size 16  kind objc)
+  1368ac  return

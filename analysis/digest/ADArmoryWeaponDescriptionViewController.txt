@@ -1,0 +1,755 @@
+
+== -[ADArmoryWeaponDescriptionViewController initWithWeaponDictionary:]   (address 0x100092afc  size 452  kind objc)
+  092b50  [super initWithNibName:0 bundle:0]
+  092b58  if (self == 0) goto loc_100092c5c
+  092b78  self->weaponInventoryDict = arg1
+  092b94  [ADWeaponManager sharedWeaponManager]
+  092bbc  [arg1 objectForKey:@"name"]
+  092be0  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[arg1 objectForKey:@"name"]]
+  092bfc  self->weaponStatsDict = [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[arg1 objectForKey:@"name"]]
+  092c2c  [NSMutableArray alloc]
+  092c40  [[NSMutableArray alloc] init]
+  092c50  self->statBars = [[NSMutableArray alloc] init]
+loc_100092c5c:
+  092c7c  return
+
+== -[ADArmoryWeaponDescriptionViewController viewDidLoad]   (address 0x100092cc0  size 656  kind objc)
+  092d04  [super viewDidLoad]
+  092d18  [self initForCurrentLevel]
+  092d2c  [self weaponTitle]
+  092d54  [ADWeaponManager sharedWeaponManager]
+  092d8c  [self->weaponInventoryDict objectForKey:@"name"]
+  092db8  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  092de4  [[self weaponTitle] setText:[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self->weaponInventoryDict objectForKey:@"name"]]]
+  092e18  [self shopInfoTextView]
+  092e30  [ADWeaponManager sharedWeaponManager]
+  092e50  [self->weaponInventoryDict objectForKey:@"description"]
+  092e6c  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self->weaponInventoryDict objectForKey:@"description"]]
+  092e88  [[self shopInfoTextView] setText:[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self->weaponInventoryDict objectForKey:@"description"]]]
+  092ec8  return
+
+== -[ADArmoryWeaponDescriptionViewController loadView]   (address 0x100092f50  size 1408  kind objc)
+  092fac  [NSNumber numberWithInt:1]
+  092fd8  [NSNumber numberWithInt:2]
+  093000  [NSNumber numberWithInt:3]
+  093028  [NSNumber numberWithInt:4]
+  093050  [NSNumber numberWithInt:5]
+  093078  [NSNumber numberWithInt:6]
+  0930a0  [NSNumber numberWithInt:7]
+  0930c8  [NSNumber numberWithInt:8]
+  0930f0  [NSNumber numberWithInt:9]
+  093118  [NSNumber numberWithInt:10]
+  093140  [NSNumber numberWithInt:11]
+  093168  [NSNumber numberWithInt:12]
+  093190  [NSNumber numberWithInt:13]
+  0931c0  [NSDictionary dictionaryWithObjects:&sp[0xa0] forKeys:&sp[0x38] count:13]
+  093254  [self loADViewBasedOnDeviceWithNibName:@"ADArmoryWeaponDescriptionViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0xa0] forKeys:&sp[0x38] count:13]]
+  093264  &@selector(viewWithTag:)
+  093274  &@selector(setTag:)
+loc_100093280:
+  093288  [self view]
+  0932a0  [[self view] viewWithTag:x2]
+  0932b8  [[[self view] viewWithTag:x2] setTag:0]
+  0932d4  if ((x23 + 1) < 14) goto loc_100093280
+  0932e8  [self damagesView]
+  093300  [[self damagesView] setTag:1]
+  09331c  [self capacityView]
+  093334  [[self capacityView] setTag:2]
+  093350  [self reloadSpeedView]
+  093368  [[self reloadSpeedView] setTag:3]
+  0933b0  return
+
+== -[ADArmoryWeaponDescriptionViewController viewWillAppear:]   (address 0x1000934d0  size 672  kind objc)
+  0934fc  [self weaponTitle]
+  093518  [[self weaponTitle] setupAsTitle]
+  093534  [self damamgesLabel]
+  093554  [[self damamgesLabel] setupAsInfo]
+  093570  [self capacityLabel]
+  093584  [[self capacityLabel] setupAsInfo]
+  0935a0  [self effectiveAngleLabel]
+  0935b4  [[self effectiveAngleLabel] setupAsInfo]
+  0935d0  [self initForCurrentLevel]
+  0935e4  [self checkEquipButtons]
+  0935f8  [self weaponImage]
+  093638  [self->weaponInventoryDict objectForKey:@"name"]
+  093664  [NSString stringWithFormat:@"%@_icon", [self->weaponInventoryDict objectForKey:@"name"]]
+  093688  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [self->weaponInventoryDict objectForKey:@"name"]]]
+  0936ac  [[self weaponImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [self->weaponInventoryDict objectForKey:@"name"]]]]
+  0936f4  [super viewWillAppear:arg1]
+  09370c  return
+
+== -[ADArmoryWeaponDescriptionViewController handleBackActionFromStatusBar]   (address 0x100093770  size 92  kind objc)
+  093788  [self armoryViewController]
+  0937a4  [[self armoryViewController] sendDetailViewToBack]
+  0937b4  return
+
+== -[ADArmoryWeaponDescriptionViewController initForCurrentLevel]   (address 0x1000937cc  size 1048  kind objc)
+  093814  [ADInventory sharedInventory]
+  093848  [self->weaponInventoryDict objectForKey:@"name"]
+  09386c  [[ADInventory sharedInventory] levelForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  093878  self->current_level = [[ADInventory sharedInventory] levelForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  0938c0  [NSString stringWithFormat:@"level_%i", self->current_level]
+  0938dc  [self->weaponStatsDict objectForKey:[NSString stringWithFormat:@"level_%i", self->current_level]]
+  0938f4  self->currentLevelDict = [self->weaponStatsDict objectForKey:[NSString stringWithFormat:@"level_%i", self->current_level]]
+  093928  [NSString stringWithFormat:@"level_%i", (self->current_level + 1)]
+  093944  [self->weaponStatsDict objectForKey:[NSString stringWithFormat:@"level_%i", (self->current_level + 1)]]
+  09395c  self->nextLevelDict = [self->weaponStatsDict objectForKey:[NSString stringWithFormat:@"level_%i", (self->current_level + 1)]]
+  093980  [self setStatBars]
+  0939c4  [self->statBars countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0939cc  if ([self->statBars countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_100093a3c
+  0939dc  &@selector(refreshBars)
+loc_1000939e4:
+loc_1000939e8:
+  0939f4  if (x8 == x28) goto loc_100093a00
+  0939fc  objc_enumerationMutation(self->statBars)
+loc_100093a00:
+  093a0c  [x0 refreshBars]
+  093a18  if ((x25 + 1) <u [self->statBars countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_1000939e8
+  093a30  [self->statBars countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  093a38  if ([self->statBars countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_1000939e4
+loc_100093a3c:
+  093a54  [self levelImage]
+  093a84  [NSString stringWithFormat:@"badge_level%i", self->current_level]
+  093aa8  [UIImage imageNamed:[NSString stringWithFormat:@"badge_level%i", self->current_level]]
+  093ad8  [[self levelImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"badge_level%i", self->current_level]]]
+  093b04  [self cancelBuyOrUpgradeButton]
+  093b24  [[self cancelBuyOrUpgradeButton] setHidden:1]
+  093b40  [self checkLock]
+  093b6c  return
+
+== -[ADArmoryWeaponDescriptionViewController setStatBars]   (address 0x100093be4  size 1920  kind objc)
+  093c38  [self->statBars count]
+  093c3c  if ([self->statBars count] == 0) goto loc_100093d20
+  093c78  [self->statBars countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xf8] count:16]
+  093c80  if ([self->statBars countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xf8] count:16] == 0) goto loc_100093d18
+  093c9c  &@selector(removeFromSuperview)
+loc_100093ca4:
+loc_100093ca8:
+  093cb4  if (x8 == x26) goto loc_100093cc0
+  093cbc  objc_enumerationMutation(self->statBars)
+loc_100093cc0:
+  093ccc  [x0 view]
+  093ce0  [[x0 view] removeFromSuperview]
+  093cf4  if ((x27 + 1) <u [self->statBars countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xf8] count:16]) goto loc_100093ca8
+  093d0c  [self->statBars countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xf8] count:16]
+  093d14  if ([self->statBars countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xf8] count:16] != 0) goto loc_100093ca4
+loc_100093d18:
+loc_100093d20:
+  093d30  [self->statBars removeAllObjects]
+  093d58  [self view]
+  093d74  [[self view] subviews]
+  093db4  [[[self view] subviews] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x118] count:16]
+  093dbc  if ([[[self view] subviews] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x118] count:16] == 0) goto loc_10009425c
+  093de8  &@selector(frame)
+  093e38  &@selector(floatValue)
+loc_100093ec4:
+loc_100093ec8:
+  093ed8  if (x8 == x9) goto loc_100093ee4
+  093ee0  objc_enumerationMutation([[self view] subviews])
+loc_100093ee4:
+  093ef4  [x0 tag]
+  093ef8  if ([x0 tag] == 0) goto loc_100094230
+  093f08  [ADWeaponStatBarViewController alloc]
+  093f18  [[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0]
+  093f2c  [self view]
+  093f44  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] view]
+  093f60  [[self view] addSubview:[[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] view]]
+  093f7c  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] view]
+  093f94  [x0 frame]
+  093fa0  [[[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] view] setFrame:{[x0 frame].0, [x0 frame].1, [x0 frame].2, [x0 frame].3}]
+  093fbc  [self->statBars addObject:[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0]]
+  093fc8  [x0 tag]
+  093fd0  if ([x0 tag] != 1) goto loc_1000940e0
+  093fe8  [self->currentLevelDict valueForKey:@"damages"]
+  093ffc  [[self->currentLevelDict valueForKey:@"damages"] floatValue]
+  094018  [self->currentLevelDict valueForKey:@"fireRate"]
+  09402c  [[self->currentLevelDict valueForKey:@"fireRate"] floatValue]
+  094030  t1 = ([[self->currentLevelDict valueForKey:@"damages"] floatValue] / [[self->currentLevelDict valueForKey:@"fireRate"] floatValue])
+  09403c  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setCurrentValue:t1]
+  09405c  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setMaxValue:100]
+  094074  [self->nextLevelDict valueForKey:@"damages"]
+  094088  [[self->nextLevelDict valueForKey:@"damages"] intValue]
+  0940a4  [self->nextLevelDict valueForKey:@"fireRate"]
+  0940b8  [[self->nextLevelDict valueForKey:@"fireRate"] floatValue]
+  0940c0  t2 = ((float)[[self->nextLevelDict valueForKey:@"damages"] intValue] / [[self->nextLevelDict valueForKey:@"fireRate"] floatValue])
+  0940cc  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setNextLevelValue:t2]
+  0940dc  goto loc_100094220
+loc_1000940e0:
+  0940e8  [x0 tag]
+  0940f0  if ([x0 tag] != 2) goto loc_100094180
+  094108  [self->currentLevelDict valueForKey:@"capacity"]
+  09411c  [[self->currentLevelDict valueForKey:@"capacity"] floatValue]
+  094128  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setCurrentValue:[[self->currentLevelDict valueForKey:@"capacity"] floatValue]]
+  094140  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setMaxValue:80]
+  094158  [self->nextLevelDict valueForKey:@"capacity"]
+  09416c  [[self->nextLevelDict valueForKey:@"capacity"] floatValue]
+  094178  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setNextLevelValue:[[self->nextLevelDict valueForKey:@"capacity"] floatValue]]
+  09417c  goto loc_10009421c
+loc_100094180:
+  094188  [x0 tag]
+  094190  if ([x0 tag] != 3) goto loc_100094224
+  0941a8  [self->currentLevelDict valueForKey:@"spread"]
+  0941bc  [[self->currentLevelDict valueForKey:@"spread"] floatValue]
+  0941c8  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setCurrentValue:[[self->currentLevelDict valueForKey:@"spread"] floatValue]]
+  0941e0  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setMaxValue:60]
+  0941f8  [self->nextLevelDict valueForKey:@"spread"]
+  09420c  [[self->nextLevelDict valueForKey:@"spread"] floatValue]
+  094218  [[[ADWeaponStatBarViewController alloc] initWithNibName:0 bundle:0] setNextLevelValue:[[self->nextLevelDict valueForKey:@"spread"] floatValue]]
+loc_10009421c:
+loc_100094220:
+loc_100094224:
+loc_100094230:
+  094238  if ((x23 + 1) <u [[[self view] subviews] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x118] count:16]) goto loc_100093ec8
+  094250  [[[self view] subviews] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x118] count:16]
+  094258  if ([[[self view] subviews] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x118] count:16] != 0) goto loc_100093ec4
+loc_10009425c:
+  0942a0  return
+
+== -[ADArmoryWeaponDescriptionViewController checkLock]   (address 0x100094364  size 1700  kind objc)
+  094398  [ADInventory sharedInventory]
+  0943cc  [self->weaponInventoryDict objectForKey:@"name"]
+  0943f0  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  094408  if ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] == 0) goto loc_1000944c0
+  09442c  [self buyOrUpgradeButton]
+  09443c  if (self->nextLevelDict == 0) goto loc_100094638
+  094470  [NSString stringWithFormat:@"PREVIEW LEVEL %i", (self->current_level + 1)]
+  094498  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"PREVIEW LEVEL %i", (self->current_level + 1)] forState:0]
+  0944b8  self->button_state = 1
+  0944bc  goto loc_1000946a0
+loc_1000944c0:
+  0944d8  [self->weaponStatsDict objectForKey:@"price"]
+  0944ec  if ([self->weaponStatsDict objectForKey:@"price"] == 0) goto loc_100094740
+  094504  [self buyOrUpgradeButton]
+  094524  [self->weaponStatsDict objectForKey:@"price"]
+  094544  [[self->weaponStatsDict objectForKey:@"price"] intValue]
+  09455c  [[self buyOrUpgradeButton] setCoins:[[self->weaponStatsDict objectForKey:@"price"] intValue]]
+  094578  [self buyOrUpgradeButton]
+  094594  [[self buyOrUpgradeButton] centerButtonTextWithCoinsImage]
+  0945a8  [self buyOrUpgradeButton]
+  0945d0  [self->weaponStatsDict objectForKey:@"price"]
+  0945e4  [[self->weaponStatsDict objectForKey:@"price"] intValue]
+  094604  [NSString stringWithFormat:@"BUY FOR %i", [[self->weaponStatsDict objectForKey:@"price"] intValue]]
+  09462c  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"BUY FOR %i", [[self->weaponStatsDict objectForKey:@"price"] intValue]] forState:0]
+  094630  goto loc_1000948a8
+  094634  goto loc_1000949e4
+loc_100094638:
+  094654  [[self buyOrUpgradeButton] setTitle:@"NO UPGRADE" forState:0]
+  094668  self->button_state = 0
+  094674  [self buyOrUpgradeButton]
+  094694  [[self buyOrUpgradeButton] setDiamonds:0]
+loc_1000946a0:
+  0946a8  [self buyOrUpgradeButton]
+  0946c4  [[self buyOrUpgradeButton] centerButtonWithoutImage]
+  0946d8  [self buyOrUpgradeButton]
+  0946f8  [[self buyOrUpgradeButton] setCoins:0]
+  094714  [self lockImage]
+  094734  [[self lockImage] setHidden:1]
+  09473c  goto loc_100094940
+loc_100094740:
+  094750  [self->weaponStatsDict objectForKey:@"priceInDiamonds"]
+  094764  if ([self->weaponStatsDict objectForKey:@"priceInDiamonds"] == 0) goto loc_1000948c0
+  09477c  [self buyOrUpgradeButton]
+  09479c  [self->weaponStatsDict objectForKey:@"priceInDiamonds"]
+  0947bc  [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]
+  0947d4  [[self buyOrUpgradeButton] setDiamonds:[[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]]
+  0947f0  [self buyOrUpgradeButton]
+  09480c  [[self buyOrUpgradeButton] centerButtonTextWithDiamondsImage]
+  094820  [self buyOrUpgradeButton]
+  094848  [self->weaponStatsDict objectForKey:@"priceInDiamonds"]
+  09485c  [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]
+  09487c  [NSString stringWithFormat:@"BUY FOR %i", [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]]
+  0948a4  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"BUY FOR %i", [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]] forState:0]
+loc_1000948a8:
+loc_1000948c0:
+  0948cc  self->button_state = 3
+  0948e0  [self levelImage]
+  094904  [[self levelImage] setHidden:1]
+  094920  [self lockImage]
+  094938  [[self lockImage] setHidden:0]
+loc_100094940:
+  094958  return
+
+== -[ADArmoryWeaponDescriptionViewController cancelBuyOrUpgradeButtonPressed:]   (address 0x100094a08  size 32  kind objc)
+  094a1c  [self initForCurrentLevel]
+  094a24  return
+
+== -[ADArmoryWeaponDescriptionViewController buyOrUpgradeButtonPressed:]   (address 0x100094a28  size 3920  kind objc)
+  094a78  if (self->button_state >u 3) goto loc_100095784
+  094a8c  switch (self->button_state) { case 0: goto loc_100094a90; case 1: goto loc_100094ad4; case 2: goto loc_100094c80; case 3: goto loc_100094e04 }
+loc_100094a90:  ; case 0
+  094aa4  [self buyOrUpgradeButton]
+  094ac0  [[self buyOrUpgradeButton] centerButtonWithoutImage]
+  094ad0  goto loc_100095784
+loc_100094ad4:  ; case 1
+  094ae0  if (self->nextLevelDict == 0) goto loc_100095784
+  094afc  [self->nextLevelDict valueForKey:@"upgradeCost"]
+  094b1c  [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]
+  094b30  &@selector(buyOrUpgradeButton)
+  094b3c  if ([[self->nextLevelDict valueForKey:@"upgradeCost"] intValue] < 1) goto loc_10009525c
+  094b48  [self buyOrUpgradeButton]
+  094b70  [self->nextLevelDict valueForKey:@"upgradeCost"]
+  094b84  [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]
+  094ba4  [NSString stringWithFormat:@"LEVEL UP FOR %i", [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]]
+  094bcc  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"LEVEL UP FOR %i", [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]] forState:0]
+  094bf0  [self buyOrUpgradeButton]
+  094c10  [self->nextLevelDict valueForKey:@"upgradeCost"]
+  094c24  [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]
+  094c3c  [[self buyOrUpgradeButton] setCoins:[[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]]
+  094c58  [self buyOrUpgradeButton]
+  094c74  [[self buyOrUpgradeButton] centerButtonTextWithCoinsImage]
+  094c78  goto loc_100095394
+  094c7c  goto loc_1000958c8
+loc_100094c80:  ; case 2
+  094c90  [self upgradeToNextLevel]
+  094c94  if ([self upgradeToNextLevel] == 0) goto loc_100095784
+  094cac  [self buyOrUpgradeButton]
+  094cd0  [[self buyOrUpgradeButton] setUserInteractionEnabled:0]
+  094cec  [self statusBarViewController]
+  094d08  [[self statusBarViewController] backButton]
+  094d20  [[[self statusBarViewController] backButton] setUserInteractionEnabled:0]
+  094d4c  [self levelImage]
+  094de0  [UIView transitionWithView:[self levelImage] duration:0.5 options:0x200000 animations:^{-[ADArmoryWeaponDescriptionViewController buyOrUpgradeButtonPressed:]_block_invoke captures +0x20=self} completion:^{-[ADArmoryWeaponDescriptionViewController buyOrUpgradeButtonPressed:]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADArmoryWeaponDescriptionViewControll…, +0x40=&d_1003b2130, +0x48=self}]
+  094e00  goto loc_100095784
+loc_100094e04:  ; case 3
+  094e28  [self->weaponStatsDict objectForKey:@"price"]
+  094e48  [[self->weaponStatsDict objectForKey:@"price"] intValue]
+  094e58  if ([[self->weaponStatsDict objectForKey:@"price"] intValue] == 0) goto loc_100094ee4
+  094e74  [ADInventory sharedInventory]
+  094e94  [[ADInventory sharedInventory] coins]
+  094ea8  if ([[ADInventory sharedInventory] coins] >= [[self->weaponStatsDict objectForKey:@"price"] intValue]) goto loc_100094fa0
+  094ebc  [self armoryViewController]
+  094ed8  [[self armoryViewController] showNotEnoughMoneyAlert]
+  094edc  goto loc_100094f98
+  094ee0  goto loc_1000958d0
+loc_100094ee4:
+  094ef4  [self->weaponStatsDict objectForKey:@"priceInDiamonds"]
+  094f08  [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]
+  094f30  [ADInventory sharedInventory]
+  094f50  [[ADInventory sharedInventory] diamonds]
+  094f64  if ([[ADInventory sharedInventory] diamonds] >= [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]) goto loc_1000954ac
+  094f78  [self armoryViewController]
+  094f94  [[self armoryViewController] showNoDiamondsAlert]
+loc_100094f98:
+  094f9c  goto loc_100095774
+loc_100094fa0:
+  094fb8  [self->weaponInventoryDict objectForKey:@"name"]
+  094fd4  [ADInventory sharedInventory]
+  094ff4  [[ADInventory sharedInventory] unlockWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  095010  [self checkLock]
+  095028  [UIApplication sharedApplication]
+  095048  [[UIApplication sharedApplication] delegate]
+  095064  [[[UIApplication sharedApplication] delegate] statusBar]
+  095084  [[[[UIApplication sharedApplication] delegate] statusBar] animateCoins:-[[self->weaponStatsDict objectForKey:@"price"] intValue]]
+  0950ac  [ADInventory sharedInventory]
+  0950c0  [[ADInventory sharedInventory] coins]
+  0950c4  t1 = ([[ADInventory sharedInventory] coins] - [[self->weaponStatsDict objectForKey:@"price"] intValue])
+  0950dc  [[ADInventory sharedInventory] setCoins:t1]
+  0950fc  [ADTracker sharedInstance]
+  095120  [[ADTracker sharedInstance] recordPurchaseForItemOrWeapon:[self->weaponInventoryDict objectForKey:@"name"] Price:(float)[[self->weaponStatsDict objectForKey:@"price"] intValue]]
+  09513c  [self levelImage]
+  09515c  [[self levelImage] setHidden:0]
+  095178  [self buyOrUpgradeButton]
+  095190  [[self buyOrUpgradeButton] setCoins:0]
+  0951ac  [self checkEquipButtons]
+  0951c4  [self->weaponInventoryDict objectForKey:@"name"]
+  0951f8  [NSDictionary dictionaryWithObjects:&x29[-0x60] forKeys:&x29[-0x68] count:1]
+  095224  [NSNotificationCenter defaultCenter]
+  095250  [[NSNotificationCenter defaultCenter] postNotificationName:@"WEAPON_UPGRADE_EVENT" object:self userInfo:[NSDictionary dictionaryWithObjects:&x29[-0x60] forKeys:&x29[-0x68] count:1]]
+  095254  goto loc_100095760
+  095258  goto loc_100095938
+loc_10009525c:
+  095264  [self buyOrUpgradeButton]
+  09528c  [self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"]
+  0952a0  [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]
+  0952c0  [NSString stringWithFormat:@"LEVEL UP FOR %i", [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]]
+  0952e8  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"LEVEL UP FOR %i", [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]] forState:0]
+  09530c  [self buyOrUpgradeButton]
+  09532c  [self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"]
+  095340  [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]
+  095358  [[self buyOrUpgradeButton] setDiamonds:[[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]]
+  095374  [self buyOrUpgradeButton]
+  095390  [[self buyOrUpgradeButton] centerButtonTextWithDiamondsImage]
+loc_100095394:
+  0953ac  [self showNextLevel]
+  0953c0  [self cancelBuyOrUpgradeButton]
+  0953e0  [[self cancelBuyOrUpgradeButton] setHidden:0]
+  0953f0  self->button_state = 2
+  095414  [self->weaponInventoryDict objectForKey:@"name"]
+  095434  [self->nextLevelDict valueForKey:@"upgradeCost"]
+  095450  [[self->nextLevelDict valueForKey:@"upgradeCost"] integerValue]
+  095474  [ADTracker sharedInstance]
+  095498  [[ADTracker sharedInstance] recordWeaponUpgradePreview:[self->weaponInventoryDict objectForKey:@"name"] LevelPreviewed:[[self->nextLevelDict valueForKey:@"upgradeCost"] integerValue]]
+  0954a8  goto loc_100095774
+loc_1000954ac:
+  0954c4  [self->weaponInventoryDict objectForKey:@"name"]
+  0954e0  [ADInventory sharedInventory]
+  095500  [[ADInventory sharedInventory] unlockWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  09551c  [self checkLock]
+  095534  [UIApplication sharedApplication]
+  095554  [[UIApplication sharedApplication] delegate]
+  095570  [[[UIApplication sharedApplication] delegate] statusBar]
+  095590  [[[[UIApplication sharedApplication] delegate] statusBar] animateDiamonds:-[[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]]
+  0955b8  [ADInventory sharedInventory]
+  0955cc  [[ADInventory sharedInventory] diamonds]
+  0955d0  t2 = ([[ADInventory sharedInventory] diamonds] - [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue])
+  0955e8  [[ADInventory sharedInventory] setDiamonds:t2]
+  095608  [ADTracker sharedInstance]
+  09562c  [[ADTracker sharedInstance] recordPurchaseForItemOrWeapon:[self->weaponInventoryDict objectForKey:@"name"] Price:(float)[[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]]
+  095648  [self levelImage]
+  095668  [[self levelImage] setHidden:0]
+  095684  [self buyOrUpgradeButton]
+  09569c  [[self buyOrUpgradeButton] setDiamonds:0]
+  0956b8  [self checkEquipButtons]
+  0956d0  [self->weaponInventoryDict objectForKey:@"name"]
+  095704  [NSDictionary dictionaryWithObjects:&sp[0x70] forKeys:&sp[0x68] count:1]
+  095730  [NSNotificationCenter defaultCenter]
+  09575c  [[NSNotificationCenter defaultCenter] postNotificationName:@"WEAPON_UPGRADE_EVENT" object:self userInfo:[NSDictionary dictionaryWithObjects:&sp[0x70] forKeys:&sp[0x68] count:1]]
+loc_100095760:
+loc_100095774:
+loc_100095784:
+  0957b4  return
+
+== -[ADArmoryWeaponDescriptionViewController buyOrUpgradeButtonPressed:]_block_invoke   (address 0x100095978  size 288  kind block)
+  0959a0  [self levelImage]
+  0959ec  [NSString stringWithFormat:@"badge_level%i", (self->current_level + 1)]
+  095a10  [UIImage imageNamed:[NSString stringWithFormat:@"badge_level%i", (self->current_level + 1)]]
+  095a34  [[self levelImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"badge_level%i", (self->current_level + 1)]]]
+  095a5c  return
+
+== sub_100095a98   (address 0x100095a98  size 8  kind sub)
+
+== sub_100095aa0   (address 0x100095aa0  size 8  kind sub)
+  095aa4  return
+
+== -[ADArmoryWeaponDescriptionViewController buyOrUpgradeButtonPressed:]_block_invoke_2   (address 0x100095aa8  size 232  kind block)
+  095acc  [self buyOrUpgradeButton]
+  095af0  [[self buyOrUpgradeButton] setUserInteractionEnabled:1]
+  095b0c  [self statusBarViewController]
+  095b28  [[self statusBarViewController] backButton]
+  095b40  [[[self statusBarViewController] backButton] setUserInteractionEnabled:1]
+  095b5c  return
+
+== sub_100095b90   (address 0x100095b90  size 8  kind sub)
+
+== sub_100095b98   (address 0x100095b98  size 8  kind sub)
+  095b9c  return
+
+== -[ADArmoryWeaponDescriptionViewController showNextLevel]   (address 0x100095ba0  size 308  kind objc)
+  095c0c  [self->statBars countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  095c14  if ([self->statBars countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100095c84
+  095c24  &@selector(showNextLevel)
+loc_100095c2c:
+loc_100095c30:
+  095c3c  if (x8 == x24) goto loc_100095c48
+  095c44  objc_enumerationMutation(self->statBars)
+loc_100095c48:
+  095c54  [x0 showNextLevel]
+  095c60  if ((x25 + 1) <u [self->statBars countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100095c30
+  095c78  [self->statBars countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  095c80  if ([self->statBars countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_100095c2c
+loc_100095c84:
+  095cb0  return
+
+== -[ADArmoryWeaponDescriptionViewController upgradeToNextLevel]   (address 0x100095cd4  size 2908  kind objc)
+  095d2c  [self->nextLevelDict valueForKey:@"upgradeCost"]
+  095d4c  [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]
+  095d6c  [self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"]
+  095d80  [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]
+  095d98  if (flags !=) goto loc_100095e24
+  095db4  [ADInventory sharedInventory]
+  095dd4  [[ADInventory sharedInventory] coins]
+  095de8  if ([[ADInventory sharedInventory] coins] >= [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]) goto loc_100095eb8
+  095dfc  [self armoryViewController]
+  095e18  [[self armoryViewController] showNotEnoughMoneyAlert]
+  095e1c  goto loc_100096300
+  095e20  goto loc_1000967bc
+loc_100095e24:
+  095e2c  if (flags !=) goto loc_100096290
+  095e48  [ADInventory sharedInventory]
+  095e68  [[ADInventory sharedInventory] diamonds]
+  095e7c  if ([[ADInventory sharedInventory] diamonds] >= [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]) goto loc_100096310
+  095e90  [self armoryViewController]
+  095eac  [[self armoryViewController] showNoDiamondsAlert]
+  095eb0  goto loc_100096300
+  095eb4  goto loc_1000967bc
+loc_100095eb8:
+  095ef8  [self->statBars countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  095f00  if ([self->statBars countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] == 0) goto loc_100095f70
+  095f10  &@selector(upgradeToNextLevel)
+loc_100095f18:
+loc_100095f1c:
+  095f28  if (x8 == x27) goto loc_100095f34
+  095f30  objc_enumerationMutation(self->statBars)
+loc_100095f34:
+  095f40  [x0 upgradeToNextLevel]
+  095f4c  if ((x28 + 1) <u [self->statBars countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]) goto loc_100095f1c
+  095f64  [self->statBars countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  095f6c  if ([self->statBars countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] != 0) goto loc_100095f18
+loc_100095f70:
+  095f84  [ADInventory sharedInventory]
+  095fc8  [self->weaponInventoryDict objectForKey:@"name"]
+  095fe4  [[ADInventory sharedInventory] setLevel:(self->current_level + 1) forWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  096004  [ADMissionManager sharedMissionManager]
+  096028  [[ADMissionManager sharedMissionManager] upgradeWeaponToLevel:(self->current_level + 1)]
+  096048  [UIApplication sharedApplication]
+  096064  [[UIApplication sharedApplication] delegate]
+  096080  [[[UIApplication sharedApplication] delegate] statusBar]
+  0960a0  [[[[UIApplication sharedApplication] delegate] statusBar] animateCoins:-[[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]]
+  0960c8  [ADInventory sharedInventory]
+  0960dc  [[ADInventory sharedInventory] coins]
+  0960e0  t1 = ([[ADInventory sharedInventory] coins] - [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue])
+  0960f4  [[ADInventory sharedInventory] setCoins:t1]
+  096110  [self->weaponInventoryDict objectForKey:@"name"]
+  096144  [NSDictionary dictionaryWithObjects:&x29[-0xe0] forKeys:&x29[-0xe8] count:1]
+  096170  [NSNotificationCenter defaultCenter]
+  09619c  [[NSNotificationCenter defaultCenter] postNotificationName:@"WEAPON_UPGRADE_EVENT" object:self userInfo:[NSDictionary dictionaryWithObjects:&x29[-0xe0] forKeys:&x29[-0xe8] count:1]]
+  0961b8  [self->weaponInventoryDict objectForKey:@"name"]
+  0961dc  [ADTracker sharedInstance]
+  096200  [[ADTracker sharedInstance] recordWeaponUpgrade:[self->weaponInventoryDict objectForKey:@"name"] Price:(float)[[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]]
+  096228  dispatch_time(0, 0x3b9aca00)
+  096274  dispatch_after(dispatch_time(0, 0x3b9aca00), __dispatch_main_q, ^{-[ADArmoryWeaponDescriptionViewController upgradeToNextLevel]_block_invoke captures +0x20=self})
+  09628c  goto loc_1000966e4
+loc_100096290:
+  0962a0  [self weaponTitle]
+  0962bc  [[self weaponTitle] text]
+  0962fc  [NSException raise:@"Weapon upgrade exception" format:@"The weapon %@ dowsn't seem to have a price in coins or diamonds!", [[self weaponTitle] text]]
+loc_100096300:
+  09630c  goto loc_1000966ec
+loc_100096310:
+  096350  [self->statBars countByEnumeratingWithState:&sp[0x40] objects:&sp[0xf8] count:16]
+  096358  if ([self->statBars countByEnumeratingWithState:&sp[0x40] objects:&sp[0xf8] count:16] == 0) goto loc_1000963c8
+  096368  &@selector(upgradeToNextLevel)
+loc_100096370:
+loc_100096374:
+  096380  if (x8 == x27) goto loc_10009638c
+  096388  objc_enumerationMutation(self->statBars)
+loc_10009638c:
+  096398  [x0 upgradeToNextLevel]
+  0963a4  if ((x28 + 1) <u [self->statBars countByEnumeratingWithState:&sp[0x40] objects:&sp[0xf8] count:16]) goto loc_100096374
+  0963bc  [self->statBars countByEnumeratingWithState:&sp[0x40] objects:&sp[0xf8] count:16]
+  0963c4  if ([self->statBars countByEnumeratingWithState:&sp[0x40] objects:&sp[0xf8] count:16] != 0) goto loc_100096370
+loc_1000963c8:
+  0963dc  [ADInventory sharedInventory]
+  096420  [self->weaponInventoryDict objectForKey:@"name"]
+  09643c  [[ADInventory sharedInventory] setLevel:(self->current_level + 1) forWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  09645c  [ADMissionManager sharedMissionManager]
+  096480  [[ADMissionManager sharedMissionManager] upgradeWeaponToLevel:(self->current_level + 1)]
+  0964a0  [UIApplication sharedApplication]
+  0964bc  [[UIApplication sharedApplication] delegate]
+  0964d8  [[[UIApplication sharedApplication] delegate] statusBar]
+  0964f8  [[[[UIApplication sharedApplication] delegate] statusBar] animateDiamonds:-[[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]]
+  096520  [ADInventory sharedInventory]
+  096534  [[ADInventory sharedInventory] diamonds]
+  096538  t2 = ([[ADInventory sharedInventory] diamonds] - [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue])
+  09654c  [[ADInventory sharedInventory] setDiamonds:t2]
+  096568  [self->weaponInventoryDict objectForKey:@"name"]
+  09659c  [NSDictionary dictionaryWithObjects:&sp[0xf0] forKeys:&sp[0xe8] count:1]
+  0965c8  [NSNotificationCenter defaultCenter]
+  0965f4  [[NSNotificationCenter defaultCenter] postNotificationName:@"WEAPON_UPGRADE_EVENT" object:self userInfo:[NSDictionary dictionaryWithObjects:&sp[0xf0] forKeys:&sp[0xe8] count:1]]
+  096610  [self->weaponInventoryDict objectForKey:@"name"]
+  096634  [ADTracker sharedInstance]
+  096658  [[ADTracker sharedInstance] recordWeaponUpgrade:[self->weaponInventoryDict objectForKey:@"name"] Price:0]
+  096680  dispatch_time(0, 0x3b9aca00)
+  0966cc  dispatch_after(dispatch_time(0, 0x3b9aca00), __dispatch_main_q, ^{-[ADArmoryWeaponDescriptionViewController upgradeToNextLevel]_block_invoke_2 captures +0x20=self})
+loc_1000966e4:
+loc_1000966ec:
+  096714  return
+
+== -[ADArmoryWeaponDescriptionViewController upgradeToNextLevel]_block_invoke   (address 0x100096830  size 20  kind block)
+  096840  tail [self initForCurrentLevel]
+
+== sub_100096844   (address 0x100096844  size 8  kind sub)
+
+== sub_10009684c   (address 0x10009684c  size 8  kind sub)
+  096850  return
+
+== -[ADArmoryWeaponDescriptionViewController upgradeToNextLevel]_block_invoke_2   (address 0x100096854  size 20  kind block)
+  096864  tail [self initForCurrentLevel]
+
+== sub_100096868   (address 0x100096868  size 8  kind sub)
+
+== sub_100096870   (address 0x100096870  size 8  kind sub)
+  096874  return
+
+== -[ADArmoryWeaponDescriptionViewController checkEquipButtons]   (address 0x100096878  size 1056  kind objc)
+  0968a4  [self hideEquipButtons]
+  0968a8  if ([self hideEquipButtons] == 0) goto loc_100096954
+  0968bc  [self equip1Button]
+  0968e0  [[self equip1Button] setHidden:1]
+  0968fc  [self equip2Button]
+  096914  [[self equip2Button] setHidden:1]
+  096930  [self shopInfoTextView]
+  096948  [[self shopInfoTextView] setHidden:0]
+  09694c  goto loc_100096ba0
+  096950  goto loc_100096c84
+loc_100096954:
+  096964  [self shopInfoTextView]
+  096988  [[self shopInfoTextView] setHidden:1]
+  0969ac  [ADInventory sharedInventory]
+  0969e0  [self->weaponInventoryDict objectForKey:@"name"]
+  096a04  [[ADInventory sharedInventory] isWeaponEquipped:[self->weaponInventoryDict objectForKey:@"name"]]
+  096a08  if (!([[ADInventory sharedInventory] isWeaponEquipped:[self->weaponInventoryDict objectForKey:@"name"]] & 1)) goto loc_100096a20
+  096a1c  goto loc_100096b40
+loc_100096a20:
+  096a28  [ADInventory sharedInventory]
+  096a48  [self->weaponInventoryDict objectForKey:@"name"]
+  096a6c  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  096a94  if (!([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] & 1)) goto loc_100096b40
+  096aac  [ADWeaponManager sharedWeaponManager]
+  096acc  [self->weaponInventoryDict objectForKey:@"name"]
+  096af0  [[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  096b08  if ([[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] == 0) goto loc_100096bc0
+  096b1c  [self equip2Button]
+  096b34  [[self equip2Button] setHidden:1]
+  096b38  goto loc_100096ba0
+  096b3c  goto loc_100096c84
+loc_100096b40:
+  096b50  [self equip1Button]
+  096b68  [[self equip1Button] setHidden:1]
+  096b84  [self equip2Button]
+  096b9c  [[self equip2Button] setHidden:1]
+loc_100096ba0:
+  096bbc  return
+  096bd0  [self equip1Button]
+  096be8  [[self equip1Button] setHidden:0]
+  096c04  [self equip2Button]
+  096c1c  [[self equip2Button] setHidden:0]
+
+== -[ADArmoryWeaponDescriptionViewController equipSlot1ButtonPressed:]   (address 0x100096c98  size 300  kind objc)
+  096cc0  [ADInventory sharedInventory]
+  096cf0  [self->weaponInventoryDict objectForKey:@"name"]
+  096d14  [[ADInventory sharedInventory] setWeaponSlot1:[self->weaponInventoryDict objectForKey:@"name"]]
+  096d3c  [NSNotificationCenter defaultCenter]
+  096d64  [[NSNotificationCenter defaultCenter] postNotificationName:@"INVENTORY_CHANGED" object:self]
+  096d80  [self checkEquipButtons]
+  096d90  return
+
+== -[ADArmoryWeaponDescriptionViewController equipSlot2ButtonPressed:]   (address 0x100096dc4  size 300  kind objc)
+  096dec  [ADInventory sharedInventory]
+  096e1c  [self->weaponInventoryDict objectForKey:@"name"]
+  096e40  [[ADInventory sharedInventory] setWeaponSlot2:[self->weaponInventoryDict objectForKey:@"name"]]
+  096e68  [NSNotificationCenter defaultCenter]
+  096e90  [[NSNotificationCenter defaultCenter] postNotificationName:@"INVENTORY_CHANGED" object:self]
+  096eac  [self checkEquipButtons]
+  096ebc  return
+
+== -[ADArmoryWeaponDescriptionViewController dealloc]   (address 0x100096ef0  size 492  kind objc)
+  096f64  [self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  096f6c  if ([self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_100097004
+  096f88  &@selector(removeFromSuperview)
+loc_100096f90:
+loc_100096f94:
+  096fa0  if (x8 == x28) goto loc_100096fac
+  096fa8  objc_enumerationMutation(self->statBars)
+loc_100096fac:
+  096fb8  [x0 view]
+  096fcc  [[x0 view] removeFromSuperview]
+  096fe0  if ((x26 + 1) <u [self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_100096f94
+  096ff8  [self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  097000  if ([self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_100096f90
+loc_100097004:
+  09701c  [self->statBars removeAllObjects]
+  097040  [super dealloc]
+  097078  return
+  0970bc  [super dealloc]
+  0970c8  call sub_10000b760
+
+== -[ADArmoryWeaponDescriptionViewController damagesView]   (address 0x1000970dc  size 16  kind objc)
+  0970e8  return
+
+== -[ADArmoryWeaponDescriptionViewController setDamagesView:]   (address 0x1000970ec  size 56  kind objc)
+  097110  self->_damagesView = arg1
+  097120  return
+
+== -[ADArmoryWeaponDescriptionViewController capacityView]   (address 0x100097124  size 16  kind objc)
+  097130  return
+
+== -[ADArmoryWeaponDescriptionViewController setCapacityView:]   (address 0x100097134  size 56  kind objc)
+  097158  self->_capacityView = arg1
+  097168  return
+
+== -[ADArmoryWeaponDescriptionViewController reloadSpeedView]   (address 0x10009716c  size 16  kind objc)
+  097178  return
+
+== -[ADArmoryWeaponDescriptionViewController setReloadSpeedView:]   (address 0x10009717c  size 56  kind objc)
+  0971a0  self->_reloadSpeedView = arg1
+  0971b0  return
+
+== -[ADArmoryWeaponDescriptionViewController fireRateView]   (address 0x1000971b4  size 16  kind objc)
+  0971c0  return
+
+== -[ADArmoryWeaponDescriptionViewController setFireRateView:]   (address 0x1000971c4  size 56  kind objc)
+  0971e8  self->_fireRateView = arg1
+  0971f8  return
+
+== -[ADArmoryWeaponDescriptionViewController levelImage]   (address 0x1000971fc  size 16  kind objc)
+  097208  return
+
+== -[ADArmoryWeaponDescriptionViewController setLevelImage:]   (address 0x10009720c  size 56  kind objc)
+  097230  self->_levelImage = arg1
+  097240  return
+
+== -[ADArmoryWeaponDescriptionViewController lockImage]   (address 0x100097244  size 16  kind objc)
+  097250  return
+
+== -[ADArmoryWeaponDescriptionViewController setLockImage:]   (address 0x100097254  size 56  kind objc)
+  097278  self->_lockImage = arg1
+  097288  return
+
+== -[ADArmoryWeaponDescriptionViewController cancelBuyOrUpgradeButton]   (address 0x10009728c  size 16  kind objc)
+  097298  return
+
+== -[ADArmoryWeaponDescriptionViewController setCancelBuyOrUpgradeButton:]   (address 0x10009729c  size 56  kind objc)
+  0972c0  self->_cancelBuyOrUpgradeButton = arg1
+  0972d0  return
+
+== -[ADArmoryWeaponDescriptionViewController shopInfoTextView]   (address 0x1000972d4  size 16  kind objc)
+  0972e0  return
+
+== -[ADArmoryWeaponDescriptionViewController setShopInfoTextView:]   (address 0x1000972e4  size 56  kind objc)
+  097308  self->_shopInfoTextView = arg1
+  097318  return
+
+== -[ADArmoryWeaponDescriptionViewController equip1Button]   (address 0x10009731c  size 16  kind objc)
+  097328  return
+
+== -[ADArmoryWeaponDescriptionViewController setEquip1Button:]   (address 0x10009732c  size 56  kind objc)
+  097350  self->_equip1Button = arg1
+  097360  return
+
+== -[ADArmoryWeaponDescriptionViewController equip2Button]   (address 0x100097364  size 16  kind objc)
+  097370  return
+
+== -[ADArmoryWeaponDescriptionViewController setEquip2Button:]   (address 0x100097374  size 56  kind objc)
+  097398  self->_equip2Button = arg1
+  0973a8  return
+
+== -[ADArmoryWeaponDescriptionViewController hideEquipButtons]   (address 0x1000973ac  size 16  kind objc)
+  0973b8  return
+
+== -[ADArmoryWeaponDescriptionViewController setHideEquipButtons:]   (address 0x1000973bc  size 16  kind objc)
+  0973c4  self->_hideEquipButtons = arg1
+  0973c8  return
+
+== -[ADArmoryWeaponDescriptionViewController damamgesLabel]   (address 0x1000973cc  size 16  kind objc)
+  0973d8  return
+
+== -[ADArmoryWeaponDescriptionViewController setDamamgesLabel:]   (address 0x1000973dc  size 56  kind objc)
+  097400  self->_damamgesLabel = arg1
+  097410  return
+
+== -[ADArmoryWeaponDescriptionViewController capacityLabel]   (address 0x100097414  size 16  kind objc)
+  097420  return
+
+== -[ADArmoryWeaponDescriptionViewController setCapacityLabel:]   (address 0x100097424  size 56  kind objc)
+  097448  self->_capacityLabel = arg1
+  097458  return
+
+== -[ADArmoryWeaponDescriptionViewController effectiveAngleLabel]   (address 0x10009745c  size 16  kind objc)
+  097468  return
+
+== -[ADArmoryWeaponDescriptionViewController setEffectiveAngleLabel:]   (address 0x10009746c  size 56  kind objc)
+  097490  self->_effectiveAngleLabel = arg1
+  0974a0  return
+
+== -[ADArmoryWeaponDescriptionViewController .cxx_destruct]   (address 0x1000974a4  size 384  kind objc)

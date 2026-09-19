@@ -1,0 +1,18 @@
+// ADArmoryShopViewController.nib
+TOP-LEVEL OBJECTS
+  #13 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #38 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #19 UIView  Tag=2781
+    #5 UITableView  
+  #2 UIView  Tag=2782
+    #3 UITableView  Tag=1
+
+CONNECTIONS
+  outlet  dataSource                                #3 UITableView --> #13 UIProxyObject
+  outlet  dataSource                                #5 UITableView --> #13 UIProxyObject
+  outlet  delegate                                  #3 UITableView --> #13 UIProxyObject
+  outlet  delegate                                  #5 UITableView --> #13 UIProxyObject
+  outlet  tableView                                 #13 UIProxyObject --> #5 UITableView
+  outlet  view                                      #13 UIProxyObject --> #19 UIView
+
+ACCESSIBILITY CONFIGURATIONS

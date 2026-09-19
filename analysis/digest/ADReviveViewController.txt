@@ -1,0 +1,140 @@
+
+== -[ADReviveViewController initWithCost:]   (address 0x100021168  size 284  kind objc)
+  0211ac  [super initWithNibName:0 bundle:0]
+  0211b4  if (self == 0) goto loc_100021244
+  0211c0  self->cost = arg1
+  0211dc  [S3DEngine engine]
+  021200  [[S3DEngine engine] playListWithName:@"revive"]
+  02121c  self->revivePlaylist = [[S3DEngine engine] playListWithName:@"revive"]
+  021240  [self->revivePlaylist activate]
+loc_100021244:
+  021258  return
+
+== -[ADReviveViewController viewDidLoad]   (address 0x100021284  size 1296  kind objc)
+  0212c4  [super viewDidLoad]
+  0212dc  [self reviveButton]
+  0212f8  [[self reviveButton] titleLabel]
+  021324  [ADGameParameters sharedParameters]
+  021340  [[ADGameParameters sharedParameters] isIphone]
+  021370  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 17 : 50)]
+  021394  [[[self reviveButton] titleLabel] setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 17 : 50)]]
+  0213cc  [self reviveButton]
+  0213dc  if (self->cost == 0) goto loc_10002150c
+  021408  [NSString stringWithFormat:@"Revive for %i", self->cost]
+  021430  [[self reviveButton] setTitle:[NSString stringWithFormat:@"Revive for %i", self->cost] forState:0]
+  02144c  [self reviveButton]
+  02146c  [[self reviveButton] setDiamonds:self->cost]
+  021480  [self reviveButton]
+  02149c  [[self reviveButton] centerButtonTextWithDiamondsImage]
+  0214b0  [self reviveButton]
+  0214d8  [NSString stringWithFormat:@"Revive for %i diamond", self->cost]
+  0214fc  [[self reviveButton] setAccessibilityLabel:[NSString stringWithFormat:@"Revive for %i diamond", self->cost]]
+  021508  goto loc_100021564
+loc_10002150c:
+  021524  [[self reviveButton] setAccessibilityLabel:@"free revive"]
+  021538  [self reviveButton]
+  021560  [[self reviveButton] setTitle:@"Free revive" forState:0]
+loc_100021564:
+  02157c  [self gameOverButton]
+  0215a0  [[self gameOverButton] setAccessibilityLabel:@"Game over"]
+  0215bc  [self tipTextView]
+  0215e0  [ADBrickManager sharedBrickManager]
+  0215fc  [[ADBrickManager sharedBrickManager] currentBrick]
+  021618  [[[ADBrickManager sharedBrickManager] currentBrick] randomTip]
+  02163c  [[self tipTextView] setText:[[[ADBrickManager sharedBrickManager] currentBrick] randomTip]]
+  021680  [self->revivePlaylist S3DSound:@"revive_standby"]
+  021698  self->reviveStandBySound = [self->revivePlaylist S3DSound:@"revive_standby"]
+  0216b8  [self->reviveStandBySound play:1]
+  0216d4  return
+
+== -[ADReviveViewController viewWillAppear:]   (address 0x100021794  size 276  kind objc)
+  0217bc  [ADInventory sharedInventory]
+  0217d8  [[ADInventory sharedInventory] diamonds]
+  0217ec  if ([[ADInventory sharedInventory] diamonds] <= 0) goto loc_100021800
+  0217fc  return
+loc_100021800:
+  021814  [self reviveButton]
+  021838  [[self reviveButton] setAlpha:0.4]
+  02184c  [self reviveButton]
+  02186c  [[self reviveButton] setEnabled:0]
+  021880  return
+
+== -[ADReviveViewController reviveButtonPressed:]   (address 0x1000218a8  size 624  kind objc)
+  0218e0  [ADInventory sharedInventory]
+  021900  [[ADInventory sharedInventory] diamonds]
+  021920  if ([[ADInventory sharedInventory] diamonds] >= self->cost) goto loc_10002193c
+  021934  [self showNoDiamondsAlert]
+  021938  goto loc_100021ac4
+loc_10002193c:
+  02194c  [self gameplayViewController]
+  021968  [[self gameplayViewController] revive]
+  02197c  [ADInventory sharedInventory]
+  021990  [[ADInventory sharedInventory] diamonds]
+  0219ac  [[ADInventory sharedInventory] setDiamonds:([[ADInventory sharedInventory] diamonds] - self->cost)]
+  0219cc  [ADTracker sharedInstance]
+  0219ec  [[ADTracker sharedInstance] reviveUsedWithCost:self->cost]
+  021a14  [self notifyStatsSystemWithNotificationWithName:@"RESET_BRICK_TIME" AndData:0]
+  021a30  [self->reviveStandBySound stop]
+  021a54  [self->revivePlaylist S3DSound:@"revive_yes"]
+  021a70  [[self->revivePlaylist S3DSound:@"revive_yes"] play]
+  021ab8  [[self->revivePlaylist S3DSound:@"revive_yes"] add3DSoundEndCallback:^{-[ADReviveViewController reviveButtonPressed:]_block_invoke captures +0x20=self->revivePlaylist}]
+loc_100021ac4:
+  021adc  return
+
+== -[ADReviveViewController reviveButtonPressed:]_block_invoke   (address 0x100021b18  size 36  kind block)
+  021b30  [self->revivePlaylist deactivate]
+  021b38  return
+
+== -[ADReviveViewController gameOverButtonPressed:]   (address 0x100021b3c  size 316  kind objc)
+  021b60  [ADTracker sharedInstance]
+  021b7c  [[ADTracker sharedInstance] gameOverButtonPressed]
+  021b98  [self gameplayViewController]
+  021bb4  [[self gameplayViewController] gameOver]
+  021bd8  [self->reviveStandBySound stop]
+  021bfc  [self->revivePlaylist S3DSound:@"revive_no"]
+  021c20  [[self->revivePlaylist S3DSound:@"revive_no"] setGain:0.2]
+  021c34  [[self->revivePlaylist S3DSound:@"revive_no"] play]
+  021c44  return
+
+== -[ADReviveViewController didReceiveMemoryWarning]   (address 0x100021c78  size 60  kind objc)
+  021ca4  [super didReceiveMemoryWarning]
+  021cb0  return
+
+== -[ADReviveViewController accessibilityPerformMagicTap]   (address 0x100021cb4  size 40  kind objc)
+  021ccc  [self gameOverButtonPressed:0]
+  021cd8  return
+
+== -[ADReviveViewController gameplayViewController]   (address 0x100021cdc  size 32  kind objc)
+  021cf8  return
+
+== -[ADReviveViewController setGameplayViewController:]   (address 0x100021cfc  size 20  kind objc)
+
+== -[ADReviveViewController reviveButton]   (address 0x100021d10  size 16  kind objc)
+  021d1c  return
+
+== -[ADReviveViewController setReviveButton:]   (address 0x100021d20  size 56  kind objc)
+  021d44  self->_reviveButton = arg1
+  021d54  return
+
+== -[ADReviveViewController gameOverButton]   (address 0x100021d58  size 16  kind objc)
+  021d64  return
+
+== -[ADReviveViewController setGameOverButton:]   (address 0x100021d68  size 56  kind objc)
+  021d8c  self->_gameOverButton = arg1
+  021d9c  return
+
+== -[ADReviveViewController tipTextView]   (address 0x100021da0  size 16  kind objc)
+  021dac  return
+
+== -[ADReviveViewController setTipTextView:]   (address 0x100021db0  size 56  kind objc)
+  021dd4  self->_tipTextView = arg1
+  021de4  return
+
+== -[ADReviveViewController tipLabel]   (address 0x100021de8  size 16  kind objc)
+  021df4  return
+
+== -[ADReviveViewController setTipLabel:]   (address 0x100021df8  size 56  kind objc)
+  021e1c  self->_tipLabel = arg1
+  021e2c  return
+
+== -[ADReviveViewController .cxx_destruct]   (address 0x100021e30  size 160  kind objc)

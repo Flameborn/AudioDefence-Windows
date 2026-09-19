@@ -1,0 +1,235 @@
+
+== csl::Spatializer::~Spatializer   (address 0x1000f04f8  size 36  kind cxx)
+  0f0508  sub_1000f045c(a0, a1, a2, a3)
+  0f0518  return
+
+== csl::Spatializer::thunk_vfunc_0   (address 0x1000f051c  size 8  kind cxx)
+  0f0520  tail sub_1000f045c((a0 - 168), a1, a2, a3)
+
+== csl::Spatializer::~Spatializer/*deleting*/   (address 0x1000f0524  size 56  kind cxx)
+  0f0534  sub_1000f045c(a0, a1, a2, a3)
+  0f0544  tail ZdlPv(a0)
+  0f0550  ZdlPv()
+
+== csl::Spatializer::thunk_vfunc_1   (address 0x1000f055c  size 8  kind cxx)
+  0f0560  tail csl::Spatializer::~Spatializer/*deleting*/((a0 - 168), a1, a2, a3)
+
+== sub_1000f0564   (address 0x1000f0564  size 220  kind sub)
+  0f0588  if (a0[+0xf8] != 4) goto loc_1000f05b0
+loc_1000f05b0:
+  0f05b4  if (a0[+0x100] == 0) goto loc_1000f05c8
+  0f05c0  call a0[+0x100][+0x0][+0x8]
+  0f05c4  a0[+0x100] = 0
+loc_1000f05c8:
+  0f05cc  Znwm(328)
+  0f05d8  sub_1000ef27c(Znwm(328), a1)
+  0f05dc  a0[+0x100] = Znwm(328)
+  0f05e8  sub_1000ef76c(Znwm(328))
+  0f05fc  call a0[+0xb8][+0x0][+0x70]
+  0f0610  ZNSt3mapIPN3csl13SpatialSourceEPNS0_17DistanceSimulatorESt4lessIS2_ESaISt4pairIKS2_S4_EEEixERS8_((a0 + 192), &sp[0x8])
+  0f0614  ZNSt3mapIPN3csl13SpatialSourceEPNS0_17DistanceSimulatorESt4lessIS2_ESaISt4pairIKS2_S4_EEEixERS8_((a0 + 192), &sp[0x8])[+0x0] = a0[+0x100]
+  0f0628  return
+  0f0634  ZdlPv()
+
+== sub_1000f0640   (address 0x1000f0640  size 152  kind sub)
+  0f066c  ZNSt3mapIPN3csl13SpatialSourceEPNS0_17DistanceSimulatorESt4lessIS2_ESaISt4pairIKS2_S4_EEEixERS8_((a0 + 192), &sp[0x8], a2, a3)
+  0f0680  if (ZNSt3mapIPN3csl13SpatialSourceEPNS0_17DistanceSimulatorESt4lessIS2_ESaISt4pairIKS2_S4_EEEixERS8_((a0 + 192), &sp[0x8], a2, a3)[+0x0] == 0) goto loc_1000f06c0
+  0f0684  call a0[+0xb8][+0x0][+0x78]
+  0f0694  ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE11equal_rangeERS4_((a0 + 192), &sp[0x0])
+  0f06bc  tail ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE5eraseESt17_Rb_tree_iteratorIS7_ESF_((a0 + 192), ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE11equal_rangeERS4_((a0 + 192), &sp[0x0]))
+loc_1000f06c0:
+
+== csl::Spatializer::vfunc_14   (address 0x1000f06d8  size 4  kind cxx)
+  0f06d8  return
+
+== csl::Spatializer::thunk_vfunc_2   (address 0x1000f06dc  size 4  kind cxx)
+  0f06dc  return
+
+== csl::Spatializer::vfunc_12   (address 0x1000f06e0  size 112  kind cxx)
+  0f0710  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0f0718  if (a0[+0xb8] == 0) goto loc_1000f072c
+  0f0728  call a0[+0xb8][+0x0][+0x60]
+loc_1000f072c:
+  0f0748  return
+
+== sub_1000f0750   (address 0x1000f0750  size 20  kind sub)
+  0f0750  a0[+0x108] = s0
+  0f0758  if (a0[+0x100] == 0) goto loc_1000f0760
+  0f075c  tail sub_1000ef76c(a0[+0x100], a1, a2, a3)
+loc_1000f0760:
+  0f0760  return
+
+== csl::Spatializer::vfunc_4   (address 0x1000f0764  size 72  kind cxx)
+  0f077c  sub_1000e8310(a1, a1, a2, a3)
+  0f0790  call a0[+0xb8][+0x0][+0x20]
+  0f079c  return
+  0f07a0  if (w1 >= 0) goto loc_1000f07a8
+  0f07a4  cxa_call_unexpected()
+
+== std::map<…>::::DistanceSimulator(…)   (address 0x1000f07ac  size 140  kind sym)
+  0f07c4  if (a0[+0x10] == 0) goto loc_1000f07f4
+loc_1000f07d0:
+  0f07d8  if (x12 >=u a1[+0x0]) goto loc_1000f07e8
+  0f07e0  if (x10 != 0) goto loc_1000f07d0
+  0f07e4  goto loc_1000f07f4
+loc_1000f07e8:
+  0f07f0  if (x10 != 0) goto loc_1000f07d0
+loc_1000f07f4:
+  0f07f8  if (x8 == (a0 + 8)) goto loc_1000f0810
+  0f0808  if (a1[+0x0] >=u x10) goto loc_1000f0828
+  0f080c  goto loc_1000f0814
+loc_1000f0810:
+loc_1000f0814:
+  0f0820  ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE16_M_insert_uniqueESt17_Rb_tree_iteratorIS7_ERKS7_(a0, x1, &sp[0x0], a3)
+loc_1000f0828:
+  0f0834  return
+
+== std::_Rb_tree<…>::std::pair<…>(…)   (address 0x1000f0838  size 112  kind sym)
+  0f0844  if (a0[+0x10] == 0) goto loc_1000f08a0
+loc_1000f0854:
+  0f085c  if (x11 >=u a1[+0x0]) goto loc_1000f086c
+  0f0864  if (x10 != 0) goto loc_1000f0854
+  0f0868  goto loc_1000f0878
+loc_1000f086c:
+  0f0874  if (x10 != 0) goto loc_1000f0854
+loc_1000f0878:
+  0f0880  if (a1[+0x0] <u x10) goto loc_1000f0890
+  0f0888  if (x9 != 0) goto loc_1000f0878
+  0f088c  goto loc_1000f089c
+loc_1000f0890:
+  0f0898  if (x9 != 0) goto loc_1000f0878
+loc_1000f089c:
+  0f089c  return
+loc_1000f08a0:
+  0f08a4  return
+
+== std::_Rb_tree<…>::std::pair<…>(…)   (address 0x1000f08a8  size 160  kind sym)
+  0f08d8  if (flags !=) goto loc_1000f08f4
+  0f08e4  ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE8_M_eraseEPSt13_Rb_tree_nodeIS7_E(a0, a0[+0x10], a2, a3)
+  0f08f0  goto loc_1000f0934
+loc_1000f08f4:
+  0f08f8  if (a1 == a2) goto loc_1000f0934
+loc_1000f0900:
+  0f0904  ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base()
+  0f0914  ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_(x0, (a0 + 8))
+  0f0918  ZdlPv(ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_(x0, (a0 + 8)))
+  0f0924  a0[+0x28] = (a0[+0x28] - 1)
+  0f0930  if (ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base() != a2) goto loc_1000f0900
+loc_1000f0934:
+  0f0944  return
+
+== std::_Rb_tree<…>::std::pair<…>(…)   (address 0x1000f0948  size 76  kind sym)
+  0f0960  if (a1 == 0) goto loc_1000f0984
+loc_1000f0964:
+  0f096c  std::_Rb_tree<…>::std::pair<…>(…)(a0)
+  0f0978  ZdlPv()
+  0f0980  if (x21 != 0) goto loc_1000f0964
+loc_1000f0984:
+  0f0990  return
+
+== std::_Rb_tree<…>::std::pair<…>(…)   (address 0x1000f0994  size 308  kind sym)
+  0f09b8  if (a1 == (a0 + 8)) goto loc_1000f0a08
+  0f09c8  if (a2[+0x0] >=u a1[+0x20]) goto loc_1000f0a30
+  0f09d4  if (a1 == a0[+0x18]) goto loc_1000f09fc
+  0f09dc  ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base(a1, a1, a2, a3)
+  0f09f0  if (ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base(a1, a1, a2, a3)[+0x20] >=u a2[+0x0]) goto loc_1000f0a74
+  0f09f8  if (ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base(a1, a1, a2, a3)[+0x18] == 0) goto loc_1000f0aa8
+loc_1000f09fc:
+  0f0a04  goto loc_1000f0aa0
+loc_1000f0a08:
+  0f0a0c  if (a0[+0x28] == 0) goto loc_1000f0a74
+  0f0a20  if (a0[+0x20][+0x20] >=u a2[+0x0]) goto loc_1000f0a74
+  0f0a2c  goto loc_1000f0ab4
+loc_1000f0a30:
+  0f0a34  if (a1[+0x20] >=u a2[+0x0]) goto loc_1000f0a84
+  0f0a40  if (a1 == a0[+0x20]) goto loc_1000f0a98
+  0f0a48  ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base(a1, a1, a2, a3)
+  0f0a5c  if (a2[+0x0] >=u ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base(a1, a1, a2, a3)[+0x20]) goto loc_1000f0a74
+  0f0a64  if (a1[+0x18] == 0) goto loc_1000f0a98
+  0f0a70  goto loc_1000f0ab0
+loc_1000f0a74:
+  0f0a7c  ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE16_M_insert_uniqueERKS7_(a0, a2)
+loc_1000f0a84:
+  0f0a94  return
+  0f0ac4  tail ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE9_M_insertEPSt18_Rb_tree_node_baseSF_RKS7_(a0, x1, x2, a2)
+
+== std::_Rb_tree<…>::std::pair<…>(…)   (address 0x1000f0ac8  size 144  kind sym)
+  0f0af0  if (a1 != 0) goto loc_1000f0b0c
+  0f0af8  if ((a0 + 8) == a2) goto loc_1000f0b0c
+loc_1000f0b0c:
+  0f0b10  Znwm(48, a1, a2, a3)
+  0f0b1c  Znwm(48, a1, a2, a3)[+0x20] = a3[+0x0]
+  0f0b30  ZSt29_Rb_tree_insert_and_rebalancebPSt18_Rb_tree_node_baseS0_RS_(x0, Znwm(48, a1, a2, a3), a2, (a0 + 8))
+  0f0b3c  a0[+0x28] = (a0[+0x28] + 1)
+  0f0b54  return
+
+== std::_Rb_tree<…>::std::pair<…>(…)   (address 0x1000f0b58  size 184  kind sym)
+  0f0b74  if (a0[+0x10] == 0) goto loc_1000f0bac
+loc_1000f0b7c:
+  0f0b98  if ((a1[+0x0] <u x10 ? (x21 + 16) : (x21 + 24))[+0x0] != 0) goto loc_1000f0b7c
+  0f0ba4  if (a1[+0x0] >=u x10) goto loc_1000f0bc4
+  0f0ba8  goto loc_1000f0bb0
+loc_1000f0bac:
+loc_1000f0bb0:
+  0f0bb8  if (x21 == a0[+0x18]) goto loc_1000f0bd4
+  0f0bc0  ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base(x0, a1, a2, a3)
+loc_1000f0bc4:
+  0f0bd0  if (x8 >=u a1[+0x0]) goto loc_1000f0bf4
+loc_1000f0bd4:
+  0f0be4  ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE9_M_insertEPSt18_Rb_tree_node_baseSF_RKS7_(a0, 0, x2, a1)
+  0f0bf0  goto loc_1000f0bfc
+loc_1000f0bf4:
+loc_1000f0bfc:
+  0f0c0c  return
+
+== sub_1000f0c10   (address 0x1000f0c10  size 240  kind sub)
+  0f0c28  sub_1000e732c(a0, a1, a2, a3)
+  0f0c38  sub_1000e886c(a0, sub_1000e732c(a0, a1, a2, a3), 2)
+  0f0c4c  a0[+0x0] = vtable<csl::SpatialPanner>
+  0f0c58  a0[+0xa8] = vtable<csl::SpatialPanner (secondary, -0xa8)>
+  0f0c5c  a0[+0xb8] = 0
+  0f0c80  sub_1000e8084((a0 + 56), 1, 256, 4)
+  0f0c84  sub_1000e735c(sub_1000e8084((a0 + 56), 1, 256, 4))
+  0f0c94  sub_1000e7fac((a0 + 56), 1, sub_1000e735c(sub_1000e8084((a0 + 56), 1, 256, 4)))
+  0f0c9c  sub_1000e8220((a0 + 56))
+  0f0ca8  sub_1000f0d00(a0, a1)
+  0f0cbc  return
+  0f0cc8  call csl::Buffer::~Buffer
+  0f0cd8  if (x0 == 0) goto loc_1000f0ce0
+  0f0cdc  ZdlPv()
+  0f0ce4  if (x0 == 0) goto loc_1000f0cec
+  0f0ce8  ZdlPv()
+  0f0cf0  call sub_1000e8918
+  0f0cfc  call sub_10000b760
+
+== sub_1000f0d00   (address 0x1000f0d00  size 112  kind sub)
+  0f0d20  if (a0[+0xe8] == a1) goto loc_1000f0d60
+  0f0d28  if (a0[+0xe8] == 0) goto loc_1000f0d34
+  0f0d30  sub_1000e77c8(a0[+0xe8], (a0 + 168), a2, a3)
+loc_1000f0d34:
+  0f0d34  a0[+0xe8] = a1
+  0f0d40  sub_1000e7754(a1, (a0 + 168))
+loc_1000f0d60:
+  0f0d6c  return
+
+== sub_1000f0d70   (address 0x1000f0d70  size 184  kind sub)
+  0f0d8c  a0[+0x0] = vtable<csl::SpatialPanner>
+  0f0d98  a0[+0xa8] = vtable<csl::SpatialPanner (secondary, -0xa8)>
+  0f0da0  sub_1000e77c8(a0[+0x40], a0, a2, a3)
+  0f0dac  sub_1000e8130((a0 + 240))
+  0f0db4  csl::Buffer::~Buffer((a0 + 240))
+  0f0dbc  if (a0[+0xd0] == 0) goto loc_1000f0dc4
+  0f0dc0  ZdlPv(a0[+0xd0])
+loc_1000f0dc4:
+  0f0dc8  if (a0[+0xb8] == 0) goto loc_1000f0dd0
+  0f0dcc  ZdlPv(a0[+0xb8])
+loc_1000f0dd0:
+  0f0dd4  sub_1000e8918(a0)
+  0f0de4  return
+  0f0df0  csl::Buffer::~Buffer((x19 + 240))
+  0f0e00  if (x0 == 0) goto loc_1000f0e08
+  0f0e04  ZdlPv()
+  0f0e0c  if (x0 == 0) goto loc_1000f0e14
+  0f0e10  ZdlPv()
+  0f0e18  call sub_1000e8918
+  0f0e24  call sub_10000b760

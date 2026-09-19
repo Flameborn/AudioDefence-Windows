@@ -1,0 +1,56 @@
+{
+ "Training Arena": {
+  "starsRequired": 0,
+  "Description": "This secluded, abandoned foundry is Dr. Bastard's lair. If you survive what this madman's got in store for you, you'll come out this Arena a Zombie Fighter.",
+  "challenges": [
+   "tutorial_1",
+   "tutorial_2",
+   "tutorial_3",
+   "tutorial_4",
+   "tutorial_5"
+  ]
+ },
+ "City Crossroad": {
+  "starsRequired": 25,
+  "Description": "Dr. Bastard built this arena at the center of a five lane crossroad, at the heart of a once great city.",
+  "challenges": [
+   "urban_1",
+   "urban_2",
+   "urban_3",
+   "urban_4",
+   "urban_5",
+   "urban_6",
+   "urban_7",
+   "urban_8",
+   "urban_9",
+   "urban_10"
+  ]
+ },
+ "Maya Ruin": {
+  "starsRequired": 40,
+  "Description": "A pit dug in the middle of an ancient Mayan Ruin. Ideal for human sacrifices.",
+  "challenges": [
+   "maya_1",
+   "maya_2",
+   "maya_3",
+   "maya_4",
+   "maya_5",
+   "maya_6",
+   "maya_7",
+   "maya_8",
+   "maya_9",
+   "maya_10"
+  ]
+ },
+ "Roman Theater": {
+  "starsRequired": 13,
+  "Description": "This secluded, abandoned foundry is Dr. Bastard's lair. If you survive what this madman's got in store for you, you'll come out this Arena a Zombie Fighter.",
+  "challenges": [
+   "tutorial_6",
+   "tutorial_7",
+   "tutorial_8",
+   "tutorial_9",
+   "tutorial_10"
+  ]
+ }
+}

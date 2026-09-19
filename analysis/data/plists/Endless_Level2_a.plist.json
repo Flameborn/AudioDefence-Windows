@@ -1,0 +1,45 @@
+{
+ "icon_title": "02",
+ "accuracy_star": {
+  "reward": 100,
+  "objective": 30
+ },
+ "title": "TRAINING GROUNDS 02",
+ "weapons": [
+  {
+   "ammo": "999",
+   "name": "pistol"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "tip": "Defeat all Level 2 Bricks!",
+ "mission_star": {
+  "reward": 500
+ },
+ "bricks": [
+  "level2_brick_18_horde",
+  "level2_brick_19_horde",
+  "level2_brick_20",
+  "level2_brick_21",
+  "level2_brick_22",
+  "level2_brick_23",
+  "level2_brick_24"
+ ],
+ "objective": "",
+ "challenge_id": "01_01",
+ "ambient": {
+  "gain": 0.3,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "icon": "Challenge_icon_01",
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 35
+ }
+}

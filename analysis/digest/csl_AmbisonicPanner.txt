@@ -1,0 +1,64 @@
+
+== csl::AmbisonicPanner::~AmbisonicPanner   (address 0x1000f75d8  size 36  kind cxx)
+  0f75e8  sub_1000f7544(a0, a1, a2, a3)
+  0f75f8  return
+
+== csl::AmbisonicPanner::thunk_vfunc_0   (address 0x1000f75fc  size 8  kind cxx)
+  0f7600  tail sub_1000f7544((a0 - 168), a1, a2, a3)
+
+== csl::AmbisonicPanner::~AmbisonicPanner/*deleting*/   (address 0x1000f7604  size 56  kind cxx)
+  0f7614  sub_1000f7544(a0, a1, a2, a3)
+  0f7624  tail ZdlPv(a0)
+  0f7630  ZdlPv()
+
+== csl::AmbisonicPanner::thunk_vfunc_1   (address 0x1000f763c  size 8  kind cxx)
+  0f7640  tail csl::AmbisonicPanner::~AmbisonicPanner/*deleting*/((a0 - 168), a1, a2, a3)
+
+== csl::AmbisonicPanner::vfunc_14   (address 0x1000f7644  size 92  kind cxx)
+  0f7660  Znwm(192, a1, a2, a3)
+  0f7670  sub_1000f6344(Znwm(192, a1, a2, a3), a1, 1)
+  0f7688  tail sub_1000f7870(a0[+0x128], Znwm(192, a1, a2, a3))
+  0f7694  ZdlPv()
+
+== csl::AmbisonicPanner::vfunc_15   (address 0x1000f76a0  size 4  kind cxx)
+  0f76a0  return
+
+== csl::AmbisonicPanner::vfunc_4   (address 0x1000f76a4  size 44  kind cxx)
+  0f76b8  call a0[+0x130][+0x0][+0x20]
+  0f76c0  return
+  0f76c4  if (w1 >= 0) goto loc_1000f76cc
+  0f76c8  cxa_call_unexpected()
+
+== csl::AmbisonicPanner::vfunc_11   (address 0x1000f76d0  size 4  kind cxx)
+  0f76d0  return
+
+== sub_1000f76d4   (address 0x1000f76d4  size 112  kind sub)
+  0f76e4  sub_1000f5e0c(a0, a1, a2, a3)
+  0f76f4  a0[+0x0] = vtable<csl::AmbisonicMixer>
+  0f76fc  a0[+0xb0] = 0
+  0f7708  sub_1000f7744(a0)
+  0f7718  return
+  0f7728  if (x0 == 0) goto loc_1000f7730
+  0f772c  ZdlPv()
+  0f7734  call sub_1000f5f38
+  0f7740  call sub_10000b760
+
+== sub_1000f7744   (address 0x1000f7744  size 104  kind sub)
+  0f775c  Znwm(56, a1, a2, a3)
+  0f7768  sub_1000e735c(Znwm(56, a1, a2, a3))
+  0f777c  sub_1000e8084(Znwm(56, a1, a2, a3), a0[+0x60], sub_1000e735c(Znwm(56, a1, a2, a3)), 4)
+  0f7780  a0[+0xc8] = Znwm(56, a1, a2, a3)
+  0f7794  tail sub_1000e8220(Znwm(56, a1, a2, a3))
+  0f77a0  ZdlPv()
+
+== sub_1000f77ac   (address 0x1000f77ac  size 36  kind sub)
+  0f77bc  sub_1000f76d4(a0, a1, a2, a3)
+  0f77cc  return
+
+== sub_1000f77d0   (address 0x1000f77d0  size 68  kind sub)
+  0f77ec  a0[+0x0] = vtable<csl::AmbisonicMixer>
+  0f77f4  if (a0[+0xb0] == 0) goto loc_1000f77fc
+  0f77f8  ZdlPv(a0[+0xb0], a1, a2, a3)
+loc_1000f77fc:
+  0f7800  sub_1000f5f38(a0)
+  0f7810  return

@@ -1,0 +1,8 @@
+
+== -[TAGMD5HashAlgorithm hashData:]   (address 0x100174d38  size 196  kind objc)
+  174d58  malloc(16)
+  174d70  [arg1 length]
+  174d90  [arg1 bytes]
+  174d9c  CC_MD5([arg1 bytes], [arg1 length], malloc(16))
+  174dbc  [NSData dataWithBytesNoCopy:malloc(16) length:16]
+  174de4  return

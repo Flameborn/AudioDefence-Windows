@@ -1,0 +1,42 @@
+// ADArmoryWeaponDescriptionViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #45 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #69 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #79 UIView  
+    #92 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #78 UIImageView  Image='frame_popup_blank.png'
+    #58 UILabel  UserInteractionDisabled=False Text='WEAPON NAME'
+    #2 UIButton (custom class ADButtonWithFont)  
+    #75 UIButton (custom class ADButtonWithFont)  
+    #55 UIImageView  Image='smg_icon.png'
+    #103 UILabel  UserInteractionDisabled=False Text='Damages'
+    #74 UIView  Tag=1
+    #129 UILabel  UserInteractionDisabled=False Text='Capacity'
+    #54 UIView  Tag=2
+    #108 UILabel  UserInteractionDisabled=False Text='Effective angle / focus'
+    #133 UIView  Tag=3
+    #31 UIImageView  Image='badge_level1.png'
+    #155 UIButton (custom class ADButtonWithFont)  title[0]='Cancel'
+    #73 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  buyOrUpgradeButtonPressed:                #73 ADButtonWithFont --(events 0x40)--> #45 UIProxyObject
+  action  cancelBuyOrUpgradeButtonPressed:          #155 ADButtonWithFont --(events 0x40)--> #45 UIProxyObject
+  action  equipSlot1ButtonPressed:                  #2 ADButtonWithFont --(events 0x40)--> #45 UIProxyObject
+  action  equipSlot2ButtonPressed:                  #75 ADButtonWithFont --(events 0x40)--> #45 UIProxyObject
+  outlet  buyOrUpgradeButton                        #45 UIProxyObject --> #73 ADButtonWithFont
+  outlet  cancelBuyOrUpgradeButton                  #45 UIProxyObject --> #155 ADButtonWithFont
+  outlet  capacityLabel                             #45 UIProxyObject --> #129 UILabel Text='Capacity'
+  outlet  capacityView                              #45 UIProxyObject --> #54 UIView
+  outlet  damagesView                               #45 UIProxyObject --> #74 UIView
+  outlet  damamgesLabel                             #45 UIProxyObject --> #103 UILabel Text='Damages'
+  outlet  effectiveAngleLabel                       #45 UIProxyObject --> #108 UILabel Text='Effective angle / focus'
+  outlet  equip1Button                              #45 UIProxyObject --> #2 ADButtonWithFont
+  outlet  equip2Button                              #45 UIProxyObject --> #75 ADButtonWithFont
+  outlet  levelImage                                #45 UIProxyObject --> #31 UIImageView
+  outlet  reloadSpeedView                           #45 UIProxyObject --> #133 UIView
+  outlet  view                                      #45 UIProxyObject --> #79 UIView
+  outlet  weaponImage                               #45 UIProxyObject --> #55 UIImageView
+  outlet  weaponTitle                               #45 UIProxyObject --> #58 UILabel Text='WEAPON NAME'
+
+ACCESSIBILITY CONFIGURATIONS

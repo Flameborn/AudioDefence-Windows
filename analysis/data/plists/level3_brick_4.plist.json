@@ -1,0 +1,34 @@
+{
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_angle": 70,
+   "spawn_distance": 10,
+   "spawn_time": 8
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 6,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 50,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 110,
+   "spawn_distance": 10,
+   "spawn_time": 12
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_angle": 0,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "5"
+ }
+}

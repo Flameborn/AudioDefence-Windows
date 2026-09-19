@@ -1,0 +1,321 @@
+
+== csl::Mixer::~Mixer   (address 0x1000edca0  size 76  kind cxx)
+  0edcb8  sub_1000edbbc(a0, &d_1003b5990, a2, a3)
+  0edcc0  sub_1000e9388((a0 + 288))
+  0edcd0  return
+  0edcdc  sub_1000e9388((x19 + 288))
+  0edce8  call sub_10000b760
+
+== csl::Mixer::thunk_vfunc_0   (address 0x1000edcec  size 8  kind cxx)
+  0edcf0  tail csl::Mixer::~Mixer((a0 - 168), a1, a2, a3)
+
+== csl::Mixer::thunk_vfunc_0   (address 0x1000edcf4  size 16  kind cxx)
+  0edd00  tail csl::Mixer::~Mixer((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Mixer::~Mixer/*deleting*/   (address 0x1000edd04  size 56  kind cxx)
+  0edd14  csl::Mixer::~Mixer(a0, a1, a2, a3)
+  0edd24  tail ZdlPv(a0)
+  0edd30  ZdlPv()
+
+== csl::Mixer::thunk_vfunc_1   (address 0x1000edd3c  size 8  kind cxx)
+  0edd40  tail csl::Mixer::~Mixer/*deleting*/((a0 - 168), a1, a2, a3)
+
+== csl::Mixer::thunk_vfunc_1   (address 0x1000edd44  size 16  kind cxx)
+  0edd50  tail csl::Mixer::~Mixer/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== sub_1000edd54   (address 0x1000edd54  size 84  kind sub)
+  0edd78  ZNSt6vectorIPN3csl13UnitGeneratorESaIS2_EE9push_backERKS2_((a0 + 176), &sp[0x8], a2, a3)
+  0edd8c  ZNSt6vectorIfSaIfEE9push_backERKf((a0 + 200), &sp[0x4])
+  0edda4  tail sub_1000e89bc(a1, a0)
+
+== sub_1000edda8   (address 0x1000edda8  size 84  kind sub)
+  0eddcc  ZNSt6vectorIPN3csl13UnitGeneratorESaIS2_EE9push_backERKS2_((a0 + 176), &sp[0x8], a2, a3)
+  0edde0  ZNSt6vectorIfSaIfEE9push_backERKf((a0 + 200), &sp[0x4])
+  0eddf8  tail sub_1000e89bc(a1, a0)
+
+== sub_1000eddfc   (address 0x1000eddfc  size 80  kind sub)
+  0ede24  ZNSt6vectorIPN3csl13UnitGeneratorESaIS2_EE9push_backERKS2_((a0 + 176), &sp[0x0], a2, a3)
+  0ede30  ZNSt6vectorIfSaIfEE9push_backERKf((a0 + 200), &sp[0xc])
+  0ede48  tail sub_1000e89bc(a1, a0)
+
+== sub_1000ede4c   (address 0x1000ede4c  size 352  kind sub)
+  0ede6c  if (x8 == x9) goto loc_1000ede98
+loc_1000ede78:
+  0ede84  if ((x9 + (x20 << 3))[+0x0] == a1) goto loc_1000edf38
+  0ede94  if (x20 <u ((x8 - x9) >> 3)) goto loc_1000ede78
+loc_1000ede98:
+  0ede9c  cxa_allocate_exception(16, a1, a2, a3)
+  0edeb4  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Error removing mixer input: not found.", &sp[0x8])
+  0edec0  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0eded0  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0edee8  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428f80, INDIRECT_SYMBOL_LOCAL)
+  0edeec  goto sub_1000edfac
+  0edf08  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000edf30
+loc_1000edf10:
+  0edf1c  if (w11 != 0) goto loc_1000edf10
+  0edf24  if (w9 > 0) goto loc_1000edf30
+  0edf2c  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+loc_1000edf30:
+loc_1000edf38:
+  0edf44  if ((x9 + ((x20 + 1) << 3)) == x8) goto loc_1000edf54
+  0edf4c  memmove((x9 + (x20 << 3)), (x9 + ((x20 + 1) << 3)), (x8 - (x9 + ((x20 + 1) << 3))), a3)
+loc_1000edf54:
+  0edf58  a0[+0xb8] = (x8 - 8)
+  0edf68  if ((x8 + ((x20 + 1) << 2)) == x9) goto loc_1000edf7c
+  0edf74  memmove((x8 + (x20 << 2)), (x8 + ((x20 + 1) << 2)), (x9 - (x8 + ((x20 + 1) << 2))))
+loc_1000edf7c:
+  0edf80  a0[+0xd0] = (x1 - 4)
+  0edf94  return
+  0edfa4  cxa_free_exception()
+
+== sub_1000edfac   (address 0x1000edfac  size 64  kind sub)
+  0edfb4  if (x9 == x8) goto loc_1000edfdc
+loc_1000edfc0:
+  0edfc8  if (x11 == a1) goto loc_1000edfe4
+  0edfd8  if (x11 <u ((x9 - x8) >> 3)) goto loc_1000edfc0
+loc_1000edfdc:
+  0edfe0  return
+loc_1000edfe4:
+  0edfe8  return
+
+== sub_1000edfec   (address 0x1000edfec  size 92  kind sub)
+  0edffc  if (x9 == x8) goto loc_1000ee024
+loc_1000ee008:
+  0ee010  if (x12 == a1) goto loc_1000ee038
+  0ee020  if (x10 <u ((x9 - x8) >> 3)) goto loc_1000ee008
+loc_1000ee024:
+  0ee02c  sub_1000e75a0("Mixer scaleInput -- input not found", a1, a2, a3)
+  0ee034  return
+loc_1000ee038:
+  0ee044  return
+
+== sub_1000ee048   (address 0x1000ee048  size 188  kind sub)
+  0ee064  if (x8 == x9) goto loc_1000ee0f4
+loc_1000ee070:
+  0ee074  if (x0 == 0) goto loc_1000ee088
+  0ee080  call x8
+loc_1000ee088:
+  0ee094  if ((x9 + ((x21 + 1) << 3)) == x8) goto loc_1000ee0a8
+  0ee0a0  memmove((x9 + (x21 << 3)), (x9 + ((x21 + 1) << 3)), (x8 - (x9 + ((x21 + 1) << 3))))
+loc_1000ee0a8:
+  0ee0ac  a0[+0xb8] = (x8 - 8)
+  0ee0bc  if ((x9 + ((x21 + 1) << 2)) == x10) goto loc_1000ee0d4
+  0ee0c8  memmove((x9 + (x21 << 2)), (x9 + ((x21 + 1) << 2)), (x10 - (x9 + ((x21 + 1) << 2))))
+loc_1000ee0d4:
+  0ee0d8  a0[+0xd0] = (x1 - 4)
+  0ee0f0  if (x21 <u ((x8 - a0[+0xb0]) >> 3)) goto loc_1000ee070
+loc_1000ee0f4:
+  0ee100  return
+
+== csl::Mixer::vfunc_4   (address 0x1000ee104  size 728  kind cxx)
+  0ee140  sub_1000e83cc((a0 + 224), a1, a2, a3)
+  0ee148  sub_1000e8310(a1)
+  0ee15c  if (x24 == 0) goto loc_1000ee188
+  0ee16c  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), x1, a1[+0xc])
+  0ee184  goto loc_1000ee18c
+loc_1000ee188:
+loc_1000ee18c:
+  0ee18c  if (x23 == 0) goto loc_1000ee1b8
+  0ee1a4  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), x1, a1[+0xc])
+loc_1000ee1b8:
+  0ee1c0  if (((x26 - x25) >>> 3) == 0) goto loc_1000ee3a0
+loc_1000ee1d0:
+  0ee1d8  if (x25 == 0) goto loc_1000ee394
+  0ee1e8  call x8
+  0ee1ec  if (x8(…) == 0) goto loc_1000ee394
+  0ee1fc  call x8
+  0ee214  a0[+0xe8] = x8(…)
+  0ee21c  a0[+0xf8] = a1[+0x18]
+  0ee224  sub_1000e8310((a0 + 224))
+  0ee238  call x8
+  0ee244  if (x8(…) != a0[+0x60]) goto loc_1000ee2a4
+  0ee248  if (x8(…) == 0) goto loc_1000ee394
+loc_1000ee250:
+  0ee260  call a1[+0x0][+0x20]
+  0ee270  csl::Buffer::vfunc_4((a0 + 224))
+  0ee290  vDSP_vsma(csl::Buffer::vfunc_4((a0 + 224)), 1, &sp[0x1c], a1[+0x0][+0x20](…))
+  0ee29c  if ((w25 + 1) <u x8(…)) goto loc_1000ee250
+  0ee2a0  goto loc_1000ee394
+loc_1000ee2a4:
+  0ee2ac  if (flags !=) goto loc_1000ee32c
+  0ee2c0  call a1[+0x0][+0x20]
+  0ee2d8  call a1[+0x0][+0x20]
+  0ee2e8  csl::Buffer::vfunc_4((a0 + 224), 0)
+  0ee2f4  if ((s8 * s0) != 1) goto loc_1000ee344
+  0ee2fc  if (a1[+0xc] == 0) goto loc_1000ee394
+loc_1000ee300:
+  0ee324  if ((w8 - 1) != 0) goto loc_1000ee300
+  0ee328  goto loc_1000ee394
+loc_1000ee32c:
+  0ee33c  sub_1000e772c(2, "Error in mix: in = %d ch, out = %d ch\n")
+  0ee340  goto loc_1000ee394
+loc_1000ee344:
+  0ee348  if (a1[+0xc] != 0) goto loc_1000ee364
+  0ee34c  goto loc_1000ee394
+loc_1000ee350:
+loc_1000ee364:
+  0ee390  if (w8 != 0) goto loc_1000ee350
+loc_1000ee394:
+  0ee39c  if ((x28 + 1) <u ((x26 - x25) >>> 3)) goto loc_1000ee1d0
+loc_1000ee3a0:
+  0ee3a0  a0[+0x10b] = 0
+  0ee3c4  return
+  0ee3cc  if (w1 >= 0) goto loc_1000ee3d4
+  0ee3d0  cxa_call_unexpected()
+
+== csl::Mixer::vfunc_11   (address 0x1000ee3dc  size 156  kind cxx)
+  0ee418  fprintf(___stderrp[+0x0], "Mixer -- %d inputs: ", a2, a3, ((x9 - x8) >>> 3))
+  0ee424  if (x9 == x8) goto loc_1000ee464
+loc_1000ee430:
+  0ee43c  call x8
+  0ee448  fputc(10, ___stderrp[+0x0])
+  0ee460  if (x9 <u ((x10 - x8) >> 3)) goto loc_1000ee430
+loc_1000ee464:
+  0ee474  return
+
+== csl::Mixer::thunk_vfunc_2   (address 0x1000ee478  size 16  kind cxx)
+  0ee484  tail csl::Mixer::vfunc_11((a0 + a0[+0x0][+0x-20]), a1, a2, a3)
+
+== csl::Mixer::vfunc_12   (address 0x1000ee488  size 148  kind cxx)
+  0ee4b8  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0ee4c4  if (x9 == x8) goto loc_1000ee4f8
+loc_1000ee4d0:
+  0ee4e0  call x8
+  0ee4f4  if ((x22 + 1) <u ((x9 - x8) >> 3)) goto loc_1000ee4d0
+loc_1000ee4f8:
+  0ee514  return
+
+== csl::Mixer::thunk_vfunc_3   (address 0x1000ee51c  size 16  kind cxx)
+  0ee528  tail csl::Mixer::vfunc_12((a0 + a0[+0x0][+0x-28]), a1, a2, a3)
+
+== sub_1000ee52c   (address 0x1000ee52c  size 224  kind sub)
+  0ee54c  sub_1000e9560((a0 + 184), a1, a2, a3)
+  0ee564  sub_1000e9e40(a0, &d_1003b5ad8, a1)
+  0ee57c  sub_1000e9bd8((a0 + 176), &d_1003b5ae8)
+  0ee58c  a0[+0x0] = vtable<csl::Panner>
+  0ee598  a0[+0xb8] = vtable<csl::Panner (secondary, -0xb8)>
+  0ee5b4  sub_1000e9714(a0, 7)
+  0ee5c8  return
+  0ee5ec  sub_1000e9c44(x0, (x8 + 24))
+  0ee5f4  call sub_1000e8918
+  0ee5fc  call sub_1000e9388
+  0ee608  call sub_10000b760
+
+== sub_1000ee60c   (address 0x1000ee60c  size 236  kind sub)
+  0ee634  sub_1000e9560((a0 + 184), a1, a2, a3)
+  0ee64c  sub_1000e9e40(a0, &d_1003b5ad8, a1)
+  0ee664  sub_1000e9bd8((a0 + 176), &d_1003b5ae8)
+  0ee674  a0[+0x0] = vtable<csl::Panner>
+  0ee680  a0[+0xb8] = vtable<csl::Panner (secondary, -0xb8)>
+  0ee69c  sub_1000e9714(a0, 7)
+  0ee6b4  return
+  0ee6d8  sub_1000e9c44(x0, (x8 + 24))
+  0ee6e0  call sub_1000e8918
+  0ee6e8  call sub_1000e9388
+  0ee6f4  call sub_10000b760
+
+== sub_1000ee6f8   (address 0x1000ee6f8  size 76  kind sub)
+  0ee710  sub_1000e9c44((a0 + 176), (a1 + 24), a2, a3)
+  0ee718  sub_1000e8918(a0)
+  0ee728  return
+  0ee734  call sub_1000e8918
+  0ee740  call sub_10000b760
+
+== csl::Mixer::vfunc_7   (address 0x1000eea80  size 16  kind cxx)
+  0eea8c  return
+
+== std::vector<…>::_M_insert_aux(…)   (address 0x1000eea90  size 332  kind sym)
+  0eeac0  if (x8 == x9) goto loc_1000eeafc
+  0eeac8  if (x8 == 0) goto loc_1000eead4
+loc_1000eead4:
+  0eead8  a0[+0x8] = (x8 + 4)
+  0eeaf0  memmove((x8 - (((x8 - 4) - a1) & -4)), a1, ((x8 - 4) - a1), a3)
+  0eeaf4  a1[+0x0] = a2[+0x0]
+  0eeaf8  goto loc_1000eeb9c
+loc_1000eeafc:
+  0eeb0c  if (((x8 - a0[+0x0]) >> 2) != 0) goto loc_1000eebb8
+  0eeb14  if (x25 >=u ((x8 - a0[+0x0]) >> 2)) goto loc_1000eeb20
+  0eeb1c  goto loc_1000eeb28
+loc_1000eeb20:
+  0eeb24  if ((x25 >>> 62) != 0) goto loc_1000eebcc
+loc_1000eeb28:
+  0eeb2c  Znwm((x25 << 2), a1, a2, a3)
+  0eeb48  memmove(Znwm((x25 << 2), a1, a2, a3), a0[+0x0], (a1 - a0[+0x0]))
+  0eeb54  if ((Znwm((x25 << 2), a1, a2, a3) + ((a1 - a0[+0x0]) & -4)) == 0) goto loc_1000eeb60
+  0eeb5c  (Znwm((x25 << 2), a1, a2, a3) + ((a1 - a0[+0x0]) & -4))[+0x0] = a2[+0x0]
+loc_1000eeb60:
+  0eeb78  memmove((Znwm((x25 << 2), a1, a2, a3) + ((((a1 - a0[+0x0]) >> 2) + 1) << 2)), a1, (a0[+0x8] - a1))
+  0eeb80  t1 = (Znwm((x25 << 2), a1, a2, a3) + (((((a1 - a0[+0x0]) >> 2) + 1) + ((a0[+0x8] - a1) >>> 2)) << 2))
+  0eeb84  if (a0[+0x0] == 0) goto loc_1000eeb90
+  0eeb8c  ZdlPv(a0[+0x0])
+loc_1000eeb90:
+  0eeb98  a0[+0x10] = (Znwm((x25 << 2), a1, a2, a3) + (x25 << 2))
+loc_1000eeb9c:
+  0eebb4  return
+  0eebc0  if (((x8 - a0[+0x0]) >> 2) == 0x3fffffffffffffff) goto loc_1000eebd0
+  0eebcc  ZSt17__throw_bad_allocv(a0, a1, a2, a3)
+  0eebd8  ZSt20__throw_length_errorPKc("vector::_M_insert_aux")
+
+== std::vector<…><…>(…)   (address 0x1000eebdc  size 336  kind sym)
+  0eec08  if (x8 == x9) goto loc_1000eec20
+  0eec0c  if (x8 == 0) goto loc_1000eec44
+  0eec1c  goto loc_1000eec48
+loc_1000eec20:
+  0eec30  if (((x8 - a0[+0x0]) >> 3) != 0) goto loc_1000eed08
+  0eec38  if (x25 >=u ((x8 - a0[+0x0]) >> 3)) goto loc_1000eec74
+  0eec40  goto loc_1000eec7c
+loc_1000eec44:
+loc_1000eec48:
+  0eec4c  a0[+0x8] = (x8 + 8)
+  0eec68  memmove((x8 - (((x8 - 8) - a1) & -8)), a1, ((x8 - 8) - a1), a3)
+  0eec6c  a1[+0x0] = a2[+0x0]
+  0eec70  goto loc_1000eecf0
+loc_1000eec74:
+  0eec78  if ((x25 >>> 61) != 0) goto loc_1000eed1c
+loc_1000eec7c:
+  0eec80  Znwm((x25 << 3), a1, a2, a3)
+  0eec9c  memmove(Znwm((x25 << 3), a1, a2, a3), a0[+0x0], (a1 - a0[+0x0]))
+  0eeca8  if ((Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8)) == 0) goto loc_1000eecb4
+  0eecb0  (Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8))[+0x0] = a2[+0x0]
+loc_1000eecb4:
+  0eeccc  memmove((Znwm((x25 << 3), a1, a2, a3) + ((((a1 - a0[+0x0]) >> 3) + 1) << 3)), a1, (a0[+0x8] - a1))
+  0eecd4  t1 = (Znwm((x25 << 3), a1, a2, a3) + (((((a1 - a0[+0x0]) >> 3) + 1) + ((a0[+0x8] - a1) >>> 3)) << 3))
+  0eecd8  if (a0[+0x0] == 0) goto loc_1000eece4
+  0eece0  ZdlPv(a0[+0x0])
+loc_1000eece4:
+  0eecec  a0[+0x10] = (Znwm((x25 << 3), a1, a2, a3) + (x25 << 3))
+loc_1000eecf0:
+  0eed04  return
+  0eed10  if (((x8 - a0[+0x0]) >> 3) == 0x1fffffffffffffff) goto loc_1000eed20
+  0eed1c  ZSt17__throw_bad_allocv(a0, a1, a2, a3)
+  0eed28  ZSt20__throw_length_errorPKc("vector::_M_insert_aux")
+
+== sub_1000eed2c   (address 0x1000eed2c  size 176  kind sub)
+  0eed40  a0[+0x8] = a1
+  0eed58  a0[+0x14] = a3
+  0eed60  a0[+0x0] = vtable<csl::ACCFFT_Wrapper>
+  0eed6c  log2((float)a1)
+  0eed80  vDSP_create_fftsetup(((int)log2((float)a1) + 1), 0)
+  0eed84  a0[+0x38] = vDSP_create_fftsetup(((int)log2((float)a1) + 1), 0)
+  0eed94  calloc(x0, 4)
+  0eed98  a0[+0x18] = calloc(x0, 4)
+  0eeda4  calloc(x0, 4)
+  0eeda8  a0[+0x20] = calloc(x0, 4)
+  0eedb4  calloc(x0, 4)
+  0eedb8  a0[+0x28] = calloc(x0, 4)
+  0eedc4  calloc(x0, 4)
+  0eedc8  a0[+0x30] = calloc(x0, 4)
+  0eedd8  return
+
+== sub_1000eeddc   (address 0x1000eeddc  size 36  kind sub)
+  0eedec  sub_1000eed2c(a0, a1, a2, a3)
+  0eedfc  return
+
+== sub_1000eee00   (address 0x1000eee00  size 88  kind sub)
+  0eee1c  a0[+0x0] = vtable<csl::ACCFFT_Wrapper>
+  0eee24  vDSP_destroy_fftsetup(a0[+0x38], a1, a2, a3)
+  0eee2c  free(a0[+0x18])
+  0eee34  free(a0[+0x20])
+  0eee3c  free(a0[+0x28])
+  0eee44  free(a0[+0x30])
+  0eee54  return

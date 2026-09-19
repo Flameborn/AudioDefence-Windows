@@ -1,0 +1,33 @@
+
+== -[ADMeleeWeapon update:]   (address 0x10000740c  size 180  kind objc)
+  007430  [self state]
+  007438  if ([self state] != 2) goto loc_100007488
+  00744c  [self timeInState]
+  007464  [self fireRate]
+  00746c  if ([self timeInState] <= (or unordered) [self fireRate]) goto loc_100007488
+  007484  [self setState:0]
+loc_100007488:
+  007498  [self timeInState]
+  0074bc  tail [self setTimeInState:([self timeInState] + arg1)]
+
+== -[ADMeleeWeapon singleShot]   (address 0x1000074c0  size 120  kind objc)
+  0074e0  [self setState:2]
+  0074f4  [self weaponManager]
+  007510  [[self weaponManager] didShotWithMelee]
+  007520  return
+
+== -[ADMeleeWeapon playHitSound]   (address 0x100007538  size 216  kind objc)
+  007554  [self playlist]
+  007578  [[self playlist] anySoundContaining:@"_hit_"]
+  0075a4  [[[self playlist] anySoundContaining:@"_hit_"] setSpatialized:0]
+  0075c0  [[[self playlist] anySoundContaining:@"_hit_"] setGain:0.8]
+  0075d8  [[[self playlist] anySoundContaining:@"_hit_"] play:0]
+  0075ec  return
+
+== -[ADMeleeWeapon playMissSound]   (address 0x100007610  size 216  kind objc)
+  00762c  [self playlist]
+  007650  [[self playlist] anySoundContaining:@"_miss_"]
+  00767c  [[[self playlist] anySoundContaining:@"_miss_"] setSpatialized:0]
+  007698  [[[self playlist] anySoundContaining:@"_miss_"] setGain:0.8]
+  0076b0  [[[self playlist] anySoundContaining:@"_miss_"] play:0]
+  0076c4  return

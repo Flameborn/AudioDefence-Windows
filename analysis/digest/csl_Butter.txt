@@ -1,0 +1,244 @@
+
+== csl::Butter::vfunc_14   (address 0x1000ec300  size 604  kind cxx)
+  0ec334  (a0[+0x0][+0x-18] + a0)[+0x58][+0x20] = ((a0[+0x0][+0x-18] + a0)[+0x58][+0x20] + ((a0[+0x0][+0x-18] + a0)[+0x58][+0x28] << 2))
+  0ec354  (a0[+0x0][+0x-18] + a0)[+0x60][+0x20] = ((a0[+0x0][+0x-18] + a0)[+0x60][+0x20] + ((a0[+0x0][+0x-18] + a0)[+0x60][+0x28] << 2))
+  0ec35c  a0[+0x100] = 0
+  0ec368  if (a0[+0x15c] >u 3) goto loc_1000ec538
+  0ec37c  switch (a0[+0x15c]) { case 0: goto loc_1000ec380; case 1: goto loc_1000ec3e0; case 2: goto loc_1000ec450; case 3: goto loc_1000ec4cc }
+loc_1000ec380:  ; case 0
+  0ec398  tanf(((s9 / (float)a0[+0x5c]) * 3.14159), 3.14159)
+  0ec3b4  t1 = ((1 / tanf(((s9 / (float)a0[+0x5c]) * 3.14159), 3.14159)) * (1 / tanf(((s9 / (float)a0[+0x5c]) * 3.14159), 3.14159)))
+  0ec3c0  a0[+0xc0] = (1 / (t1 + (((1 / tanf(((s9 / (float)a0[+0x5c]) * 3.14159), 3.14159)) * 1.41421) + 1)))
+  0ec3c4  t2 = ((1 / (t1 + (((1 / tanf(((s9 / (float)a0[+0x5c]) * 3.14159), 3.14159)) * 1.41421) + 1))) + (1 / (t1 + (((1 / tanf(((s9 / (float)a0[+0x5c]) * 3.14159), 3.14159)) * 1.41421) + 1))))
+  0ec3d4  a0[+0x104] = ((1 - t1) * t2)
+  0ec3dc  goto loc_1000ec444
+loc_1000ec3e0:  ; case 1
+  0ec3f8  tanf(((s9 * 3.14159) / (float)a0[+0x5c]), (float)a0[+0x5c])
+  0ec410  t3 = (tanf(((s9 * 3.14159) / (float)a0[+0x5c]), (float)a0[+0x5c]) * tanf(((s9 * 3.14159) / (float)a0[+0x5c]), (float)a0[+0x5c]))
+  0ec41c  a0[+0xc0] = (1 / (t3 + ((tanf(((s9 * 3.14159) / (float)a0[+0x5c]), (float)a0[+0x5c]) * 1.41421) + 1)))
+  0ec424  t4 = ((1 / (t3 + ((tanf(((s9 * 3.14159) / (float)a0[+0x5c]), (float)a0[+0x5c]) * 1.41421) + 1))) * -2)
+  0ec42c  t5 = ((1 / (t3 + ((tanf(((s9 * 3.14159) / (float)a0[+0x5c]), (float)a0[+0x5c]) * 1.41421) + 1))) + (1 / (t3 + ((tanf(((s9 * 3.14159) / (float)a0[+0x5c]), (float)a0[+0x5c]) * 1.41421) + 1))))
+  0ec43c  a0[+0x104] = ((t3 + -1) * t5)
+loc_1000ec444:
+  0ec44c  goto loc_1000ec534
+loc_1000ec450:  ; case 2
+  0ec468  tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])
+  0ec488  cos(((s9 * 6.28319) / (float)a0[+0x5c]))
+  0ec4a0  a0[+0xc0] = (1 / ((1 / tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])) + 1))
+  0ec4a4  a0[+0xc4] = 0
+  0ec4ac  a0[+0xc8] = -(1 / ((1 / tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])) + 1))
+  0ec4b0  t6 = ((1 / tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])) * (1 / ((1 / tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])) + 1)))
+  0ec4b8  a0[+0x104] = ((cos(((s9 * 6.28319) / (float)a0[+0x5c])) * -2) * t6)
+  0ec4c4  t7 = (((1 / tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])) + -1) * (1 / ((1 / tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])) + 1)))
+  0ec4c8  goto loc_1000ec534
+loc_1000ec4cc:  ; case 3
+  0ec4e4  tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])
+  0ec500  cos(((s9 * 6.28319) / (float)a0[+0x5c]))
+  0ec51c  a0[+0xc0] = (1 / (tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c]) + 1))
+  0ec520  t8 = ((1 / (tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c]) + 1)) * (cos(((s9 * 6.28319) / (float)a0[+0x5c])) * -2))
+  0ec528  a0[+0x104] = t8
+  0ec530  t9 = ((1 - tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c])) * (1 / (tanf(((s0 * 3.14159) / (float)a0[+0x5c]), a0[+0x5c]) + 1)))
+loc_1000ec534:
+  0ec534  a0[+0x108] = s0
+loc_1000ec538:
+  0ec548  return
+
+== csl::Butter::~Butter   (address 0x1000ec560  size 80  kind cxx)
+  0ec57c  sub_1000ebc5c(a0, &d_1003b4e28, a2, a3)
+  0ec584  sub_1000e9388((a0 + 352))
+  0ec594  return
+  0ec5a0  sub_1000e9388((x19 + 352))
+  0ec5ac  call sub_10000b760
+
+== csl::Butter::~Butter/*deleting*/   (address 0x1000ec5b0  size 96  kind cxx)
+  0ec5cc  sub_1000ebc5c(a0, &d_1003b4e28, a2, a3)
+  0ec5d4  sub_1000e9388((a0 + 352))
+  0ec5e4  tail ZdlPv(a0)
+  0ec5f0  sub_1000e9388((x19 + 352))
+  0ec5f4  goto loc_1000ec600
+  0ec5f8  call sub_10000b760
+loc_1000ec600:
+  0ec604  ZdlPv()
+
+== csl::Butter::thunk_vfunc_0   (address 0x1000ec610  size 76  kind cxx)
+  0ec630  sub_1000ebc5c((a0 - 176), &d_1003b4e28, a2, a3)
+  0ec640  tail sub_1000e9388((a0 + 176))
+  0ec64c  sub_1000e9388((x19 + 176))
+  0ec658  call sub_10000b760
+
+== csl::Butter::thunk_vfunc_1   (address 0x1000ec65c  size 108  kind cxx)
+  0ec680  sub_1000ebc5c((a0 - 176), &d_1003b4e28, a2, a3)
+  0ec688  sub_1000e9388((a0 + 176))
+  0ec698  tail ZdlPv((a0 - 176))
+  0ec6a8  sub_1000e9388((x8 + 176))
+  0ec6ac  goto loc_1000ec6b8
+  0ec6b0  call sub_10000b760
+loc_1000ec6b8:
+  0ec6bc  ZdlPv()
+
+== csl::Butter::thunk_vfunc_0   (address 0x1000ec6c8  size 76  kind cxx)
+  0ec6e8  sub_1000ebc5c((a0 - 184), &d_1003b4e28, a2, a3)
+  0ec6f8  tail sub_1000e9388((a0 + 168))
+  0ec704  sub_1000e9388((x19 + 168))
+  0ec710  call sub_10000b760
+
+== csl::Butter::thunk_vfunc_1   (address 0x1000ec714  size 108  kind cxx)
+  0ec738  sub_1000ebc5c((a0 - 184), &d_1003b4e28, a2, a3)
+  0ec740  sub_1000e9388((a0 + 168))
+  0ec750  tail ZdlPv((a0 - 184))
+  0ec760  sub_1000e9388((x8 + 168))
+  0ec764  goto loc_1000ec770
+  0ec768  call sub_10000b760
+loc_1000ec770:
+  0ec774  ZdlPv()
+
+== csl::Butter::thunk_vfunc_0   (address 0x1000ec780  size 96  kind cxx)
+  0ec7a8  sub_1000ebc5c((a0 + a0[+0x0][+0x-18]), &d_1003b4e28, a2, a3)
+  0ec7bc  tail sub_1000e9388(((a0[+0x0][+0x-18] + a0) + 352))
+  0ec7d0  sub_1000e9388(((x8 + x19) + 352))
+  0ec7dc  call sub_10000b760
+
+== csl::Butter::thunk_vfunc_1   (address 0x1000ec7e0  size 132  kind cxx)
+  0ec810  sub_1000ebc5c((a0 + a0[+0x0][+0x-18]), &d_1003b4e28, a2, a3)
+  0ec81c  sub_1000e9388(((a0[+0x0][+0x-18] + a0) + 352))
+  0ec830  tail ZdlPv((a0 + a0[+0x0][+0x-18]))
+  0ec844  sub_1000e9388(((x21 + x8) + 352))
+  0ec848  goto loc_1000ec854
+  0ec84c  call sub_10000b760
+loc_1000ec854:
+  0ec858  ZdlPv()
+
+== sub_1000ec864   (address 0x1000ec864  size 768  kind sub)
+  0ec88c  Znam(48, a1, a2, a3)
+  0ec894  a0[+0x108] = Znam(48, a1, a2, a3)
+  0ec89c  Znam(24)
+  0ec8a0  a0[+0x110] = Znam(24)
+  0ec8a8  Znam(1024)
+  0ec8b0  a0[+0xd0] = Znam(1024)
+  0ec8c8  goto loc_1000ec8d4
+loc_1000ec8cc:
+loc_1000ec8d4:
+  0ec8e8  Znam((0 != (x28 *h 4) ? -1 : (x28 << 2)))
+  0ec8f4  bzero(Znam((0 != (x28 *h 4) ? -1 : (x28 << 2))), (x28 << 2))
+  0ec900  Znwm(32)
+  0ec904  Znwm(32)[+0x4] = 0
+  0ec908  Znwm(32)[+0x1c] = 0
+  0ec910  Znwm(32)[+0x10] = Znam((0 != (x28 *h 4) ? -1 : (x28 << 2)))
+  0ec91c  Znwm(32)[+0x18] = w28
+  0ec924  bzero(Znam((0 != (x28 *h 4) ? -1 : (x28 << 2))), (4 + ((w28 - 1) << 2)))
+  0ec930  ZNSt6vectorIPN3csl4CombESaIS2_EE9push_backERKS2_((a0 + 216), &sp[0x8])
+  0ec938  if (x24 != 5) goto loc_1000ec8cc
+loc_1000ec958:
+  0ec96c  Znam((0 != (x28 *h 4) ? -1 : (x28 << 2)))
+  0ec978  bzero(Znam((0 != (x28 *h 4) ? -1 : (x28 << 2))), (x28 << 2))
+  0ec988  Znwm(24)
+  0ec98c  Znwm(24)[+0x14] = 0
+  0ec994  Znwm(24)[+0x8] = Znam((0 != (x28 *h 4) ? -1 : (x28 << 2)))
+  0ec998  Znwm(24)[+0x10] = w28
+  0ec9a4  Znwm(24)[+0x0] = 0x3f000000
+  0ec9ac  bzero(Znam((0 != (x28 *h 4) ? -1 : (x28 << 2))), (4 + ((w28 - 1) << 2)))
+  0ec9b8  ZNSt6vectorIPN3csl8FAllpassESaIS2_EE9push_backERKS2_((a0 + 240), &sp[0x0])
+  0ec9c4  if ((x23 + 1) != 3) goto loc_1000ec958
+  0ec9cc  a0[+0xc0] = 0x3f000000
+  0ec9d8  if (x8 == x9) goto loc_1000eca4c
+loc_1000ec9ec:
+  0eca00  if (x9 != x10) goto loc_1000ec9ec
+  0eca08  a0[+0xc4] = 0x3f000000
+  0eca14  a0[+0xb8] = 0x3ebd70a4
+  0eca1c  if (x8 == x9) goto loc_1000eca5c
+loc_1000eca30:
+  0eca44  if (x9 != x12) goto loc_1000eca30
+  0eca48  goto loc_1000eca60
+loc_1000eca4c:
+  0eca4c  a0[+0xc4] = 0x3f000000
+  0eca58  a0[+0xb8] = 0x3ebd70a4
+loc_1000eca5c:
+loc_1000eca60:
+  0eca70  if (x8 == x9) goto loc_1000ecb2c
+loc_1000eca90:
+  0ecaa0  if (x9 != x12) goto loc_1000eca90
+  0ecaac  a0[+0xc8] = 0x3c23d70a
+  0ecab4  if (x8 == x9) goto loc_1000ecb38
+loc_1000ecad4:
+  0ecae4  if (x9 != x12) goto loc_1000ecad4
+  0ecaf0  a0[+0xcc] = 0x3c75c28f
+  0ecaf8  if (x8 == x9) goto loc_1000ecb44
+loc_1000ecb14:
+  0ecb24  if (x9 != x8) goto loc_1000ecb14
+  0ecb28  goto loc_1000ecb44
+loc_1000ecb2c:
+  0ecb34  a0[+0xc8] = 0x3c23d70a
+loc_1000ecb38:
+  0ecb40  a0[+0xcc] = 0x3c75c28f
+loc_1000ecb44:
+  0ecb60  return
+
+== sub_1000ecb64   (address 0x1000ecb64  size 256  kind sub)
+  0ecb88  sub_1000e9560((a0 + 280), a1, a2, a3)
+  0ecba0  sub_1000e9e40(a0, &d_1003b54e8, a1)
+  0ecbb0  sub_1000e9b4c((a0 + 176), &d_1003b54f8)
+  0ecbc0  a0[+0x0] = vtable<csl::Freeverb>
+  0ecbc8  a0[+0x118] = vtable<csl::Freeverb (secondary, -0x118)>
+  0ecbd0  a0[+0xb0] = vtable<csl::Freeverb (secondary, -0xb0)>
+  0ecbd8  a0[+0xd8] = 0
+  0ecbe4  a0[+0xe0] = 0
+  0ecbec  sub_1000ec864(a0)
+  0ecc04  return
+  0ecc20  if (x0 == 0) goto loc_1000ecc28
+  0ecc24  ZdlPv()
+  0ecc2c  if (x0 == 0) goto loc_1000ecc34
+  0ecc30  ZdlPv()
+  0ecc44  sub_1000e9c44(x0, &d_1003b54f8)
+  0ecc4c  call sub_1000e8918
+  0ecc54  call sub_1000e9388
+  0ecc60  call sub_10000b760
+
+== sub_1000ecc64   (address 0x1000ecc64  size 372  kind sub)
+  0ecc80  a0[+0x0] = a1[+0x0]
+  0ecc94  a0[+0xb0] = a1[+0x30]
+  0ecca0  if (x8 == x21) goto loc_1000eccd8
+loc_1000eccac:
+  0eccb4  if (x0 == 0) goto loc_1000eccc0
+  0eccb8  ZdlPv()
+loc_1000eccc0:
+  0eccd0  if (x9 <u ((x8 - x21) >> 3)) goto loc_1000eccac
+  0eccd4  goto loc_1000eccdc
+loc_1000eccd8:
+loc_1000eccdc:
+  0ecce4  if (x9 == x22) goto loc_1000ecd20
+loc_1000eccf0:
+  0eccf8  if (x0 == 0) goto loc_1000ecd04
+  0eccfc  ZdlPv()
+loc_1000ecd04:
+  0ecd14  if (x8 <u ((x9 - x22) >> 3)) goto loc_1000eccf0
+  0ecd1c  goto loc_1000ecd24
+loc_1000ecd20:
+loc_1000ecd24:
+  0ecd28  if (x21 == x8) goto loc_1000ecd54
+loc_1000ecd2c:
+  0ecd30  if (x0 == 0) goto loc_1000ecd3c
+  0ecd34  ZdlPv()
+loc_1000ecd3c:
+  0ecd44  if ((x21 + 8) != x8) goto loc_1000ecd2c
+  0ecd4c  goto loc_1000ecd54
+loc_1000ecd50:
+loc_1000ecd54:
+  0ecd58  if (x22 == x9) goto loc_1000ecd70
+  0ecd60  if (x0 == 0) goto loc_1000ecd50
+  0ecd64  ZdlPv()
+  0ecd6c  goto loc_1000ecd50
+loc_1000ecd70:
+  0ecd74  if (a0[+0xd0] == 0) goto loc_1000ecd7c
+  0ecd78  ZdlPv(a0[+0xd0])
+loc_1000ecd7c:
+  0ecd84  if (a0[+0xf0] == 0) goto loc_1000ecd8c
+  0ecd88  ZdlPv(a0[+0xf0])
+loc_1000ecd8c:
+  0ecd90  if (a0[+0xd8] == 0) goto loc_1000ecd98
+  0ecd94  ZdlPv(a0[+0xd8])
+loc_1000ecd98:
+  0ecda0  sub_1000e9c44((a0 + 176), (a1 + 24))
+  0ecda8  sub_1000e8918(a0)
+  0ecdbc  return
+  0ecdc8  call sub_1000e8918
+  0ecdd4  call sub_10000b760

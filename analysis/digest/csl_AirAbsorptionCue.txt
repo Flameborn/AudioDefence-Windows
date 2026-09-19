@@ -1,0 +1,23 @@
+
+== csl::AirAbsorptionCue::~AirAbsorptionCue   (address 0x1000ef7e8  size 4  kind cxx)
+  0ef7e8  return
+
+== csl::AirAbsorptionCue::~AirAbsorptionCue/*deleting*/   (address 0x1000ef7ec  size 4  kind cxx)
+  0ef7ec  tail ZdlPv(a0, a1, a2, a3)
+
+== csl::AirAbsorptionCue::vfunc_2   (address 0x1000ef7f0  size 112  kind cxx)
+  0ef808  sub_1000e732c(a0, a1, a2, a3)
+  0ef830  t1 = (((198000 / s8) * 6.28319) + ((float)sub_1000e732c(a0, a1, a2, a3) + (float)sub_1000e732c(a0, a1, a2, a3)))
+  0ef83c  t2 = (((float)sub_1000e732c(a0, a1, a2, a3) + (float)sub_1000e732c(a0, a1, a2, a3)) - ((198000 / s8) * 6.28319))
+  0ef844  a0[+0x8] = ((1 / t1) * t2)
+  0ef85c  return
+
+== csl::AirAbsorptionCue::vfunc_3   (address 0x1000ef860  size 120  kind cxx)
+  0ef884  call a1[+0x0][+0x20]
+  0ef88c  if (a1[+0xc] == 0) goto loc_1000ef8cc
+loc_1000ef890:
+  0ef8b4  a0[+0x14] = (((a1[+0x0][+0x20](…)[+0x0] * s4) + (s1 * s2)) + (s3 * a0[+0x8]))
+  0ef8bc  a0[+0x18] = a1[+0x0][+0x20](…)[+0x0]
+  0ef8c8  if ((w8 - 1) != 0) goto loc_1000ef890
+loc_1000ef8cc:
+  0ef8d4  return

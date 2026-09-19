@@ -1,0 +1,46 @@
+// ADInitialControlSchemeViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #45 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #107 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #108 UIView  
+    #158 UIImageView  Image='gesture_gameplay_background.png'
+    #61 UILabel  UserInteractionDisabled=False Text='AUDIO DEFENCE'
+    #89 UILabel  UserInteractionDisabled=False Text='ZOMBIE ARENA'
+    #33 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    #58 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    #14 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    #59 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #154 UIButton (custom class ADButtonWithFont)  
+    #41 UIButton  
+    #1 UIButton (custom class ADButtonWithFont)  
+    #139 UIButton  
+    #118 UIButton (custom class ADButtonWithFont)  
+    #65 UILabel  UserInteractionDisabled=False Text='RECOMMENDED'
+    #96 UIButton  
+
+CONNECTIONS
+  action  buttonControl:                            #154 ADButtonWithFont --(events 0x40)--> #45 UIProxyObject
+  action  buttonControl:                            #41 UIButton --(events 0x40)--> #45 UIProxyObject
+  action  gyroControl:                              #118 ADButtonWithFont --(events 0x40)--> #45 UIProxyObject
+  action  gyroControl:                              #96 UIButton --(events 0x40)--> #45 UIProxyObject
+  action  tiltControl:                              #139 UIButton --(events 0x40)--> #45 UIProxyObject
+  action  tiltControl:                              #1 ADButtonWithFont --(events 0x40)--> #45 UIProxyObject
+  outlet  descriptionText                           #45 UIProxyObject --> #59 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  gyroButton                                #45 UIProxyObject --> #118 ADButtonWithFont
+  outlet  gyroDescription                           #45 UIProxyObject --> #14 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  outlet  gyroTextButton                            #45 UIProxyObject --> #96 UIButton
+  outlet  recommededLabel                           #45 UIProxyObject --> #65 UILabel Text='RECOMMENDED'
+  outlet  subTitleLabel                             #45 UIProxyObject --> #89 UILabel Text='ZOMBIE ARENA'
+  outlet  swipeButton                               #45 UIProxyObject --> #154 ADButtonWithFont
+  outlet  swipeDescription                          #45 UIProxyObject --> #33 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  outlet  swipeTextButton                           #45 UIProxyObject --> #41 UIButton
+  outlet  tiltButton                                #45 UIProxyObject --> #1 ADButtonWithFont
+  outlet  tiltDescription                           #45 UIProxyObject --> #58 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  outlet  tiltTextButton                            #45 UIProxyObject --> #139 UIButton
+  outlet  titleLabel                                #45 UIProxyObject --> #61 UILabel Text='AUDIO DEFENCE'
+  outlet  view                                      #45 UIProxyObject --> #108 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#154 ADButtonWithFont' UIAccessibilityLabel='Swipe'
+  UIAccessibileObject='#1 ADButtonWithFont' UIAccessibilityLabel='Tilt'
+  UIAccessibileObject='#118 ADButtonWithFont' UIAccessibilityLabel='Gyro'

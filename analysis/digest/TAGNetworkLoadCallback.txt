@@ -1,0 +1,135 @@
+
+== -[TAGNetworkLoadCallback initWithCallback:container:]   (address 0x10014dbe0  size 220  kind objc)
+  14dc38  [super init]
+  14dc40  if (self == 0) goto loc_10014dc78
+  14dc6c  self->_container = arg2
+loc_10014dc78:
+  14dc9c  return
+
+== -[TAGNetworkLoadCallback startLoad]   (address 0x10014dcbc  size 244  kind objc)
+  14dce0  [self container]
+  14dcf0  objc_sync_enter([self container])
+  14dd04  [self callback]
+  14dd1c  [self container]
+  14dd44  [[self callback] containerRefreshBegin:[self container] refreshType:1]
+  14dd5c  objc_sync_exit([self container])
+  14dd70  return
+  14dd9c  objc_sync_exit()
+
+== -[TAGNetworkLoadCallback onSuccess:]   (address 0x10014ddb0  size 2464  kind objc)
+  14ddf4  [self container]
+  14de04  objc_sync_enter([self container])
+  14de1c  [arg1 hasResource]
+  14de20  if ([arg1 hasResource] == 0) goto loc_10014dedc
+  14de34  [arg1 resource]
+  14de4c  [self container]
+  14de6c  [[self container] setupEvaluatorsWithResource:[arg1 resource]]
+  14de80  [self container]
+  14de9c  [[self container] lastLoadedSupplementedResource]
+  14debc  [[[self container] lastLoadedSupplementedResource] setResource:[arg1 resource]]
+  14ded8  goto loc_10014df30
+loc_10014dedc:
+  14dee4  [self container]
+  14df00  [[self container] lastLoadedSupplementedResource]
+  14df14  [[[self container] lastLoadedSupplementedResource] hasResource]
+  14df2c  if (!([[[self container] lastLoadedSupplementedResource] hasResource] & 1)) goto loc_10014e4b8
+loc_10014df30:
+  14df44  [arg1 supplementalArray]
+  14df58  if ([arg1 supplementalArray] == 0) goto loc_10014e024
+  14df6c  [[arg1 supplementalArray] count]
+  14df70  if ([[arg1 supplementalArray] count] == 0) goto loc_10014e024
+  14df7c  [self container]
+  14df9c  [[self container] setSupplementals:[arg1 supplementalArray]]
+  14dfb0  [self container]
+  14dfcc  [[self container] lastLoadedSupplementedResource]
+  14dfe4  [arg1 supplementalArray]
+  14e008  [[[self container] lastLoadedSupplementedResource] setSupplementalArray:[arg1 supplementalArray]]
+loc_10014e024:
+  14e02c  [self container]
+  14e044  [self container]
+  14e060  [[self container] currentTimeInMilliseconds]
+  14e074  [[self container] setLastRefreshTime:[[self container] currentTimeInMilliseconds]]
+  14e090  [self container]
+  14e0b0  [[self container] lastLoadedSupplementedResource]
+  14e0d4  [arg1 fingerprint]
+  14e0fc  [[[self container] lastLoadedSupplementedResource] setFingerprint:[arg1 fingerprint]]
+  14e120  [self container]
+  14e134  [[self container] lastLoadedSupplementedResource]
+  14e148  [[[self container] lastLoadedSupplementedResource] fingerprint]
+  14e164  [[[[self container] lastLoadedSupplementedResource] fingerprint] length]
+  14e184  if ([[[[self container] lastLoadedSupplementedResource] fingerprint] length] != 0) goto loc_10014e260
+  14e190  [self container]
+  14e1a4  [[self container] lastLoadedSupplementedResource]
+  14e1c0  [self container]
+  14e1d4  [[self container] lastLoadedSupplementedResource]
+  14e1f0  [[[self container] lastLoadedSupplementedResource] resource]
+  14e20c  [[[[self container] lastLoadedSupplementedResource] resource] version]
+  14e228  [[[self container] lastLoadedSupplementedResource] setFingerprint:[[[[self container] lastLoadedSupplementedResource] resource] version]]
+loc_10014e260:
+  14e270  [self container]
+  14e28c  [[self container] lastRefreshTime]
+  14e2ac  [NSString stringWithFormat:@"Setting refresh time to current time: %f", [[self container] lastRefreshTime]]
+  14e2e0  [TAGLog verbose:[NSString stringWithFormat:@"Setting refresh time to current time: %f", [[self container] lastRefreshTime]]]
+  14e2f8  [TAGPreviewManager instance]
+  14e310  [self container]
+  14e32c  [[self container] containerId]
+  14e350  [[TAGPreviewManager instance] isPreviewingContainer:[[self container] containerId]]
+  14e370  if (([[TAGPreviewManager instance] isPreviewingContainer:[[self container] containerId]] & 1)) goto loc_10014e3e8
+  14e37c  [self container]
+  14e394  [self container]
+  14e3a8  [[self container] lastLoadedSupplementedResource]
+  14e3cc  [[self container] saveResourceToDisk:[[self container] lastLoadedSupplementedResource]]
+loc_10014e3e8:
+  14e3f0  [self container]
+  14e414  [TAGContainer refreshPeriodOnSuccess]
+  14e428  [[self container] loadAfterDelay:[TAGContainer refreshPeriodOnSuccess]]
+  14e444  [self callback]
+  14e45c  [self container]
+  14e484  [[self callback] containerRefreshSuccess:[self container] refreshType:1]
+  14e4ac  objc_sync_exit([self container])
+  14e4b4  goto loc_10014e4dc
+loc_10014e4b8:
+  14e4cc  [self onFailure:3]
+  14e4d4  objc_sync_exit([self container])
+loc_10014e4dc:
+  14e500  return
+  14e734  objc_sync_exit()
+
+== -[TAGNetworkLoadCallback onFailure:]   (address 0x10014e750  size 368  kind objc)
+  14e77c  [self container]
+  14e78c  objc_sync_enter([self container])
+  14e798  [self container]
+  14e7bc  [TAGContainer refreshPeriodOnFailure]
+  14e7d0  [[self container] loadAfterDelay:[TAGContainer refreshPeriodOnFailure]]
+  14e7ec  [self callback]
+  14e804  [self container]
+  14e828  [self failureToRefreshFailure:arg1]
+  14e848  [[self callback] containerRefreshFailure:[self container] failure:[self failureToRefreshFailure:arg1] refreshType:1]
+  14e860  objc_sync_exit([self container])
+  14e878  return
+  14e8ac  objc_sync_exit()
+
+== -[TAGNetworkLoadCallback failureToRefreshFailure:]   (address 0x10014e8c0  size 44  kind objc)
+  14e8e8  return
+
+== -[TAGNetworkLoadCallback close]   (address 0x10014e8ec  size 124  kind objc)
+  14e908  [self container]
+  14e918  objc_sync_enter([self container])
+  14e930  [self setCallback:0]
+  14e938  objc_sync_exit([self container])
+  14e948  return
+  14e954  objc_sync_exit()
+
+== -[TAGNetworkLoadCallback callback]   (address 0x10014e968  size 16  kind objc)
+  14e974  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGNetworkLoadCallback setCallback:]   (address 0x10014e978  size 12  kind objc)
+  14e980  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGNetworkLoadCallback container]   (address 0x10014e984  size 16  kind objc)
+  14e990  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGNetworkLoadCallback setContainer:]   (address 0x10014e994  size 12  kind objc)
+  14e99c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGNetworkLoadCallback .cxx_destruct]   (address 0x10014e9a0  size 64  kind objc)

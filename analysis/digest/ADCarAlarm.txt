@@ -1,0 +1,67 @@
+
+== -[ADCarAlarm initWithName:]   (address 0x1000ae8b8  size 176  kind objc)
+  0ae904  [super initWithName:arg1]
+  0ae90c  if (self == 0) goto loc_1000ae92c
+  0ae928  [self setUseOwnImpactSounds:1]
+loc_1000ae92c:
+  0ae948  return
+
+== -[ADCarAlarm update:]   (address 0x1000ae968  size 336  kind objc)
+  0ae98c  [self state]
+  0ae994  if ([self state] == 5) goto loc_1000ae9f8
+  0ae99c  if ([self state] != 1) goto loc_1000aea34
+  0ae9b4  [self spawn_sound_duration]
+  0ae9bc  if ([self spawn_sound_duration] == 0.0) goto loc_1000aea6c
+  0ae9d0  [self timeInState]
+  0ae9e0  [self spawn_sound_duration]
+  0ae9e8  if ([self timeInState] <= (or unordered) [self spawn_sound_duration]) goto loc_1000aea80
+  0ae9f0  &@selector(startAlarm)
+  0ae9f4  goto loc_1000aea74
+loc_1000ae9f8:
+  0aea08  [self timeInState]
+  0aea14  if ([self timeInState] <= (or unordered) 3) goto loc_1000aea80
+  0aea2c  [self setState:0xffffffff]
+  0aea30  goto loc_1000aea80
+loc_1000aea34:
+  0aea34  if ([self state] != 0) goto loc_1000aea80
+  0aea48  [self timeInState]
+  0aea60  [self spawn_time]
+  0aea68  if ([self timeInState] <= (or unordered) [self spawn_time]) goto loc_1000aea80
+loc_1000aea6c:
+  0aea70  &@selector(spawn)
+loc_1000aea74:
+  0aea7c  [self spawn | startAlarm]
+loc_1000aea80:
+  0aea90  [self timeInState]
+  0aeab4  tail [self setTimeInState:([self timeInState] + arg1)]
+
+== -[ADCarAlarm startAlarm]   (address 0x1000aeab8  size 500  kind objc)
+  0aeadc  [self playlist]
+  0aeb00  [[self playlist] anySoundContaining:@"alarm"]
+  0aeb24  [self setSound:[[self playlist] anySoundContaining:@"alarm"]]
+  0aeb4c  [self sound]
+  0aeb6c  [[self sound] setSpatialized:1]
+  0aeb80  [self sound]
+  0aeba4  [self position]
+  0aebb4  [self position]
+  0aebd4  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+  0aebe8  [self sound]
+  0aec08  [[self sound] play:1]
+  0aec1c  [self sound]
+  0aec3c  [[self sound] setGain:2]
+  0aec6c  tail [self setState:401]
+  0aec70  goto loc_1000aec8c
+  0aec74  goto loc_1000aec98
+  0aec84  goto loc_1000aec9c
+  0aec88  goto loc_1000aec8c
+loc_1000aec8c:
+  0aec94  goto loc_1000aeca0
+loc_1000aec98:
+loc_1000aec9c:
+loc_1000aeca0:
+
+== -[ADCarAlarm die]   (address 0x1000aecac  size 152  kind objc)
+  0aece0  [super die]
+  0aecf4  [self sound]
+  0aed14  [[self sound] setGain:4]
+  0aed2c  return

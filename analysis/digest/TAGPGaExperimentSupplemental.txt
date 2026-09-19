@@ -1,0 +1,9 @@
+
+== +[TAGPGaExperimentSupplemental descriptor]   (address 0x10014c560  size 180  kind objc)
+  14c580  if (g_10042dee0 != 0) goto loc_10014c600
+  14c5a4  [TAGPGaExperimentSupplemental class]
+  14c5b8  [TAGPServingRoot class]
+  14c5f8  [TAGPBDescriptor allocDescriptorForClass:[TAGPGaExperimentSupplemental class] rootClass:[TAGPServingRoot class] fields:&d_10042ce70 fieldCount:3 enums:0 enumCount:0 ranges:32 rangeCount:x9 storageSize:x10 wireFormat:x11]
+  14c5fc  store g_10042dee0 = [TAGPBDescriptor allocDescriptorForClass:[TAGPGaExperimentSupplemental class] rootClass:[TAGPServingRoot class] fields:&d_10042ce70 fieldCount:3 enums:0 enumCount:0 ranges:32 rangeCount:x9 storageSize:x10 wireFormat:x11]
+loc_10014c600:
+  14c610  return

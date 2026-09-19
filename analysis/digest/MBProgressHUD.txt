@@ -1,0 +1,901 @@
+
+== +[MBProgressHUD showHUDAddedTo:animated:]   (address 0x10002ecf4  size 192  kind objc)
+  02ed28  [MBProgressHUD alloc]
+  02ed3c  [[MBProgressHUD alloc] initWithView:arg1]
+  02ed58  [arg1 addSubview:[[MBProgressHUD alloc] initWithView:arg1]]
+  02ed70  [[[MBProgressHUD alloc] initWithView:arg1] show:arg2]
+  02ed8c  return
+
+== +[MBProgressHUD hideHUDForView:animated:]   (address 0x10002edb4  size 160  kind objc)
+  02edd0  [MBProgressHUD HUDForView:arg1]
+  02ede0  if ([MBProgressHUD HUDForView:arg1] == 0) goto loc_10002ee1c
+  02edf8  [[MBProgressHUD HUDForView:arg1] setRemoveFromSuperViewOnHide:1]
+  02ee10  [[MBProgressHUD HUDForView:arg1] hide:arg2]
+  02ee18  goto loc_10002ee20
+loc_10002ee1c:
+loc_10002ee20:
+  02ee34  return
+
+== +[MBProgressHUD hideAllHUDsForView:animated:]   (address 0x10002ee54  size 436  kind objc)
+  02ee9c  [MBProgressHUD allHUDsForView:arg1]
+  02eedc  [[MBProgressHUD allHUDsForView:arg1] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  02eee4  if ([[MBProgressHUD allHUDsForView:arg1] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_10002ef78
+  02ef00  &@selector(hide:)
+loc_10002ef08:
+loc_10002ef0c:
+  02ef18  if (x8 == x27) goto loc_10002ef24
+  02ef20  objc_enumerationMutation([MBProgressHUD allHUDsForView:arg1])
+loc_10002ef24:
+  02ef38  [x0 setRemoveFromSuperViewOnHide:1]
+  02ef48  [x0 hide:arg2]
+  02ef54  if ((x28 + 1) <u [[MBProgressHUD allHUDsForView:arg1] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_10002ef0c
+  02ef6c  [[MBProgressHUD allHUDsForView:arg1] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  02ef74  if ([[MBProgressHUD allHUDsForView:arg1] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10002ef08
+loc_10002ef78:
+  02ef90  [[MBProgressHUD allHUDsForView:arg1] count]
+  02efcc  return
+
+== +[MBProgressHUD HUDForView:]   (address 0x10002f008  size 448  kind objc)
+  02f04c  [arg1 subviews]
+  02f068  [[arg1 subviews] reverseObjectEnumerator]
+  02f0b8  [[[arg1 subviews] reverseObjectEnumerator] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  02f0c0  if ([[[arg1 subviews] reverseObjectEnumerator] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_10002f13c
+  02f0d0  &@selector(isKindOfClass:)
+loc_10002f0d8:
+loc_10002f0dc:
+  02f0e8  if (x8 == x26) goto loc_10002f0f4
+  02f0f0  objc_enumerationMutation([[arg1 subviews] reverseObjectEnumerator])
+loc_10002f0f4:
+  02f108  [x0 isKindOfClass:MBProgressHUD]
+  02f10c  if ([x0 isKindOfClass:MBProgressHUD] != 0) goto loc_10002f144
+  02f118  if ((x27 + 1) <u [[[arg1 subviews] reverseObjectEnumerator] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_10002f0dc
+  02f130  [[[arg1 subviews] reverseObjectEnumerator] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  02f138  if ([[[arg1 subviews] reverseObjectEnumerator] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10002f0d8
+loc_10002f13c:
+  02f140  goto loc_10002f150
+loc_10002f144:
+loc_10002f150:
+  02f18c  return
+
+== +[MBProgressHUD allHUDsForView:]   (address 0x10002f1c8  size 560  kind objc)
+  02f21c  [NSMutableArray array]
+  02f23c  [arg1 subviews]
+  02f280  [[arg1 subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  02f288  if ([[arg1 subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_10002f320
+  02f2a4  &@selector(addObject:)
+loc_10002f2ac:
+loc_10002f2b0:
+  02f2bc  if (x8 == x28) goto loc_10002f2c8
+  02f2c4  objc_enumerationMutation([arg1 subviews])
+loc_10002f2c8:
+  02f2dc  [x0 isKindOfClass:MBProgressHUD]
+  02f2e0  if ([x0 isKindOfClass:MBProgressHUD] == 0) goto loc_10002f2f4
+  02f2f0  [[NSMutableArray array] addObject:x2]
+loc_10002f2f4:
+  02f2fc  if ((x19 + 1) <u [[arg1 subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10002f2b0
+  02f314  [[arg1 subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  02f31c  if ([[arg1 subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10002f2ac
+loc_10002f320:
+  02f340  [NSArray arrayWithArray:[NSMutableArray array]]
+  02f3a0  return
+
+== -[MBProgressHUD initWithFrame:]   (address 0x10002f3f8  size 1216  kind objc)
+  02f438  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  02f440  if (self == 0) goto loc_10002f858
+  02f45c  [self setAnimationType:0]
+  02f478  [self setMode:0]
+  02f494  [self setLabelText:0]
+  02f4b0  [self setDetailsLabelText:0]
+  02f4d0  [self setOpacity:0.8]
+  02f4ec  [self setColor:0]
+  02f510  [UIFont boldSystemFontOfSize:16]
+  02f534  [self setLabelFont:[UIFont boldSystemFontOfSize:16]]
+  02f55c  [UIColor whiteColor]
+  02f580  [self setLabelColor:[UIColor whiteColor]]
+  02f59c  [UIFont boldSystemFontOfSize:12]
+  02f5c0  [self setDetailsLabelFont:[UIFont boldSystemFontOfSize:12]]
+  02f5d8  [UIColor whiteColor]
+  02f5fc  [self setDetailsLabelColor:[UIColor whiteColor]]
+  02f620  [self setXOffset:0]
+  02f63c  [self setYOffset:0]
+  02f658  [self setDimBackground:0]
+  02f674  [self setMargin:20]
+  02f690  [self setCornerRadius:10]
+  02f6ac  [self setGraceTime:0]
+  02f6c8  [self setMinShowTime:0]
+  02f6e4  [self setRemoveFromSuperViewOnHide:0]
+  02f708  [self setMinSize:{CGSizeZero.0, CGSizeZero.1}]
+  02f724  [self setSquare:0]
+  02f740  [self setAutoresizingMask:45]
+  02f75c  [self setOpaque:0]
+  02f774  [UIColor clearColor]
+  02f798  [self setBackgroundColor:[UIColor clearColor]]
+  02f7bc  [self setAlpha:0]
+  02f7cc  self->taskInProgress = 0
+  02f7e8  self->rotationTransform[+0x20] = _CGAffineTransformIdentity[+0x20]
+  02f7f0  self->rotationTransform[+0x10] = _CGAffineTransformIdentity[+0x10]
+  02f7f8  self->rotationTransform = _CGAffineTransformIdentity[+0x0]
+  02f80c  [self setupLabels]
+  02f824  [self updateIndicators]
+  02f83c  [self registerForKVO]
+  02f854  [self registerForNotifications]
+loc_10002f858:
+  02f874  return
+
+== -[MBProgressHUD initWithView:]   (address 0x10002f8b8  size 136  kind objc)
+  02f8e8  [arg1 bounds]
+  02f900  [self initWithFrame:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3}]
+  02f920  return
+
+== -[MBProgressHUD initWithWindow:]   (address 0x10002f940  size 32  kind objc)
+  02f954  [self initWithView:arg1]
+  02f95c  return
+
+== -[MBProgressHUD dealloc]   (address 0x10002f960  size 160  kind objc)
+  02f980  [self unregisterFromNotifications]
+  02f994  [self unregisterFromKVO]
+  02f9b8  [super dealloc]
+  02f9c8  return
+  02f9f0  [super dealloc]
+  02f9fc  call sub_10000b760
+
+== -[MBProgressHUD show:]   (address 0x10002fa00  size 260  kind objc)
+  02fa1c  self->useAnimation = arg1
+  02fa30  [self graceTime]
+  02fa38  if ([self graceTime] <= (or unordered) 0.0) goto loc_10002fab8
+  02fa4c  [self graceTime]
+  02fa7c  [NSTimer scheduledTimerWithTimeInterval:[self graceTime] target:self selector:@selector(handleGraceTimer:) userInfo:0 repeats:0]
+  02faa0  [self setGraceTimer:[NSTimer scheduledTimerWithTimeInterval:[self graceTime] target:self selector:@selector(handleGraceTimer:) userInfo:0 repeats:0]]
+  02fab4  return
+  02fac8  [self setNeedsDisplay]
+  02faec  tail [self showUsingAnimation:self->useAnimation]
+
+== -[MBProgressHUD hide:]   (address 0x10002fb04  size 388  kind objc)
+  02fb28  self->useAnimation = arg1
+  02fb3c  [self minShowTime]
+  02fb44  if ([self minShowTime] <= (or unordered) 0.0) goto loc_10002fc3c
+  02fb54  if (self->showStarted == 0) goto loc_10002fc3c
+  02fb6c  [NSDate date]
+  02fb8c  [[NSDate date] timeIntervalSinceDate:self->showStarted]
+  02fba4  [self minShowTime]
+  02fbb0  if ([[NSDate date] timeIntervalSinceDate:self->showStarted] >= (or unordered) [self minShowTime]) goto loc_10002fc3c
+  02fbc4  [self minShowTime]
+  02fbf8  [NSTimer scheduledTimerWithTimeInterval:([self minShowTime] - [[NSDate date] timeIntervalSinceDate:self->showStarted]) target:self selector:@selector(handleMinShowTimer:) userInfo:0 repeats:0]
+  02fc1c  [self setMinShowTimer:[NSTimer scheduledTimerWithTimeInterval:([self minShowTime] - [[NSDate date] timeIntervalSinceDate:self->showStarted]) target:self selector:@selector(handleMinShowTimer:) userInfo:0 repeats:0]]
+  02fc38  return
+  02fc64  tail [self hideUsingAnimation:self->useAnimation]
+
+== -[MBProgressHUD hide:afterDelay:]   (address 0x10002fc88  size 152  kind objc)
+  02fcc4  [NSNumber numberWithBool:arg1]
+  02fcf0  [self performSelector:@selector(hideDelayed:) withObject:[NSNumber numberWithBool:arg1] afterDelay:arg2]
+  02fd08  return
+
+== -[MBProgressHUD hideDelayed:]   (address 0x10002fd20  size 104  kind objc)
+  02fd48  [arg1 boolValue]
+  02fd60  [self hide:[arg1 boolValue]]
+  02fd70  return
+
+== -[MBProgressHUD handleGraceTimer:]   (address 0x10002fd88  size 96  kind objc)
+  02fda4  if (self->taskInProgress == 0) goto loc_10002fddc
+  02fdb8  [self setNeedsDisplay]
+  02fdd8  [self showUsingAnimation:self->useAnimation]
+loc_10002fddc:
+  02fde4  return
+
+== -[MBProgressHUD handleMinShowTimer:]   (address 0x10002fde8  size 44  kind objc)
+  02fe08  [self hideUsingAnimation:self->useAnimation]
+  02fe10  return
+
+== -[MBProgressHUD didMoveToSuperview]   (address 0x10002fe14  size 184  kind objc)
+  02fe34  [self superview]
+  02fe58  [UIWindow class]
+  02fe70  [[self superview] isKindOfClass:[UIWindow class]]
+  02fe80  if ([[self superview] isKindOfClass:[UIWindow class]] == 0) goto loc_10002fea8
+  02fea4  tail [self setTransformForCurrentOrientation:0]
+loc_10002fea8:
+  02feb4  return
+
+== -[MBProgressHUD showUsingAnimation:]   (address 0x10002fecc  size 616  kind objc)
+  02fee8  if (!(arg1 & 1)) goto loc_10002ffec
+  02fefc  if (self->animationType != 1) goto loc_10002ff70
+  02ff30  CGAffineTransformMakeScale(self, _cmd, arg1)
+  02ff40  CGAffineTransformConcat(&sp[0xc0], &sp[0x90])
+  02ff60  &@selector(setTransform:)
+  02ff6c  goto loc_10002ffe4
+loc_10002ff70:
+  02ff74  if (self->animationType != 2) goto loc_10002ffec
+  02ffa8  CGAffineTransformMakeScale(self, _cmd, arg1)
+  02ffb8  CGAffineTransformConcat(&x29[-0x50], &x29[-0x80])
+  02ffd8  &@selector(setTransform:)
+loc_10002ffe4:
+  02ffe8  [self setTransform:x2]
+loc_10002ffec:
+  030000  [NSDate date]
+  030024  [self setShowStarted:[NSDate date]]
+  030030  if (arg1 == 0) goto loc_1000300f4
+  030050  [UIView beginAnimations:0 context:0]
+  03006c  [UIView setAnimationDuration:0.3]
+  030084  [self setAlpha:1]
+  03009c  if ((self->animationType - 1) >u 1) goto loc_1000300dc
+  0300d8  [self setTransform:&sp[0x0]]
+loc_1000300dc:
+  0300ec  [UIView commitAnimations]
+  0300f0  goto loc_10003010c
+loc_1000300f4:
+  030108  [self setAlpha:1]
+loc_10003010c:
+  03011c  return
+
+== -[MBProgressHUD hideUsingAnimation:]   (address 0x100030134  size 552  kind objc)
+  03014c  if (!(arg1 & 1)) goto loc_100030258
+  03015c  if (self->showStarted == 0) goto loc_100030258
+  03017c  [UIView beginAnimations:0 context:0]
+  030198  [UIView setAnimationDuration:0.3]
+  0301b0  [UIView setAnimationDelegate:self]
+  0301d0  [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)]
+  0301e4  if (self->animationType != 1) goto loc_100030284
+  030218  CGAffineTransformMakeScale([UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)])
+  030228  CGAffineTransformConcat(&sp[0x90], &sp[0x60])
+  030248  &@selector(setTransform:)
+  030254  goto loc_1000302f8
+loc_100030258:
+  03026c  [self setAlpha:0]
+  030274  &@selector(done)
+  030280  goto loc_10003032c
+loc_100030284:
+  030288  if (self->animationType != 2) goto loc_100030300
+  0302bc  CGAffineTransformMakeScale([UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)])
+  0302cc  CGAffineTransformConcat(&x29[-0x50], &x29[-0x80])
+  0302ec  &@selector(setTransform:)
+loc_1000302f8:
+  0302fc  [self setTransform:x2]
+loc_100030300:
+  030318  [self setAlpha:0.02]
+  030324  &@selector(commitAnimations)
+loc_10003032c:
+  03032c  [x0 <sel x1>]
+  030344  [self setShowStarted:0]
+  030358  return
+
+== -[MBProgressHUD animationFinished:finished:context:]   (address 0x10003035c  size 32  kind objc)
+  030370  [self done]
+  030378  return
+
+== -[MBProgressHUD done]   (address 0x10003037c  size 420  kind objc)
+  0303ac  [NSObject cancelPreviousPerformRequestsWithTarget:self]
+  0303bc  self->isFinished = 1
+  0303d4  [self setAlpha:0]
+  0303e4  if (self->removeFromSuperViewOnHide == 0) goto loc_1000303fc
+  0303f8  [self removeFromSuperview]
+loc_1000303fc:
+  030410  [self completionBlock]
+  030424  if ([self completionBlock] == 0) goto loc_100030468
+  030430  [self completionBlock]
+  030444  call [self completionBlock][+0x10]
+  030464  [self setCompletionBlock:0]
+loc_100030468:
+  030498  [objc_loadWeakRetained(x0) respondsToSelector:@selector(hudWasHidden:)]
+  0304a8  if ([objc_loadWeakRetained(x0) respondsToSelector:@selector(hudWasHidden:)] == 0) goto loc_1000304e8
+  0304cc  [objc_loadWeakRetained(x0) performSelector:@selector(hudWasHidden:) withObject:self]
+  0304e4  return
+loc_1000304e8:
+  0304f8  return
+
+== -[MBProgressHUD showWhileExecuting:onTarget:withObject:animated:]   (address 0x100030520  size 276  kind objc)
+  03056c  self->methodForExecution = arg1
+  0305ac  [self setTaskInProgress:1]
+  0305d8  [NSThread detachNewThreadSelector:@selector(launchExecution) toTarget:self withObject:0]
+  0305f0  [self show:arg4]
+  030614  return
+
+== -[MBProgressHUD showAnimated:whileExecutingBlock:]   (address 0x100030634  size 168  kind objc)
+  03065c  dispatch_get_global_queue(0, 0, arg1, arg2)
+  03069c  [self showAnimated:arg1 whileExecutingBlock:arg2 onQueue:dispatch_get_global_queue(0, 0, arg1, arg2) completionBlock:0]
+  0306bc  return
+
+== -[MBProgressHUD showAnimated:whileExecutingBlock:completionBlock:]   (address 0x1000306dc  size 196  kind objc)
+  030710  dispatch_get_global_queue(0, 0)
+  030750  [self showAnimated:arg1 whileExecutingBlock:arg2 onQueue:dispatch_get_global_queue(0, 0) completionBlock:arg3]
+  030778  return
+
+== -[MBProgressHUD showAnimated:whileExecutingBlock:onQueue:]   (address 0x1000307a0  size 116  kind objc)
+  0307e8  [self showAnimated:arg1 whileExecutingBlock:arg2 onQueue:arg3 completionBlock:0]
+  0307fc  return
+
+== -[MBProgressHUD showAnimated:whileExecutingBlock:onQueue:completionBlock:]   (address 0x100030814  size 360  kind objc)
+  030874  [self setTaskInProgress:1]
+  03088c  [self setCompletionBlock:arg4]
+  0308e4  dispatch_async(arg3, ^{-[MBProgressHUD showAnimated:whileExecutingBlock:onQueue:completionBlock:]_block_invoke captures +0x20=arg2, +0x28=self})
+  0308fc  [self show:arg1]
+  03093c  return
+
+== -[MBProgressHUD showAnimated:whileExecutingBlock:onQueue:completionBlock:]_block_invoke   (address 0x10003097c  size 128  kind block)
+  030998  call arg2[+0x10]
+  0309e0  dispatch_async(__dispatch_main_q, ^{-[MBProgressHUD showAnimated:whileExecutingBlock:onQueue:completionBlock:]_block_invoke_block_invoke captures +0x20=self})
+  0309f8  return
+
+== -[MBProgressHUD showAnimated:whileExecutingBlock:onQueue:completionBlock:]_block_invoke_block_invoke   (address 0x1000309fc  size 20  kind block)
+  030a0c  tail [self cleanUp]
+
+== sub_100030a10   (address 0x100030a10  size 8  kind sub)
+
+== sub_100030a18   (address 0x100030a18  size 8  kind sub)
+  030a1c  return
+
+== sub_100030a20   (address 0x100030a20  size 48  kind sub)
+  030a3c  Block_object_assign((a0 + 32), a1[+0x20], 7, a3)
+
+== sub_100030a50   (address 0x100030a50  size 40  kind sub)
+  030a74  return
+
+== -[MBProgressHUD launchExecution]   (address 0x100030a78  size 132  kind objc)
+  030ac0  [self->targetForExecution performSelector:self->methodForExecution withObject:self->objectForExecution]
+  030ae8  [self performSelectorOnMainThread:@selector(cleanUp) withObject:0 waitUntilDone:0]
+  030af8  return
+
+== -[MBProgressHUD cleanUp]   (address 0x100030afc  size 108  kind objc)
+  030b14  self->taskInProgress = 0
+  030b24  self->targetForExecution = 0
+  030b38  self->objectForExecution = 0
+  030b64  tail [self hide:self->useAnimation]
+
+== -[MBProgressHUD setupLabels]   (address 0x100030b68  size 1112  kind objc)
+  030ba4  [UILabel alloc]
+  030bc0  [self bounds]
+  030bd8  [[UILabel alloc] initWithFrame:{[self bounds].0, [self bounds].1, [self bounds].2, [self bounds].3}]
+  030be8  self->label = [[UILabel alloc] initWithFrame:{[self bounds].0, [self bounds].1, [self bounds].2, [self bounds].3}]
+  030c0c  [self->label setAdjustsFontSizeToFitWidth:0]
+  030c28  [self->label setTextAlignment:1]
+  030c44  [self->label setOpaque:0]
+  030c64  [UIColor clearColor]
+  030c8c  [self->label setBackgroundColor:[UIColor clearColor]]
+  030cb0  [self labelColor]
+  030cd8  [self->label setTextColor:[self labelColor]]
+  030cf8  [self labelFont]
+  030d20  [self->label setFont:[self labelFont]]
+  030d40  [self labelText]
+  030d68  [self->label setText:[self labelText]]
+  030d8c  [self addSubview:self->label]
+  030d9c  [UILabel alloc]
+  030dac  [self bounds]
+  030db8  [[UILabel alloc] initWithFrame:{[self bounds].0, [self bounds].1, [self bounds].2, [self bounds].3}]
+  030dc8  self->detailsLabel = [[UILabel alloc] initWithFrame:{[self bounds].0, [self bounds].1, [self bounds].2, [self bounds].3}]
+  030dec  [self detailsLabelFont]
+  030e08  [self->detailsLabel setFont:[self detailsLabelFont]]
+  030e20  [self->detailsLabel setAdjustsFontSizeToFitWidth:0]
+  030e30  [self->detailsLabel setTextAlignment:1]
+  030e40  [self->detailsLabel setOpaque:0]
+  030e54  [UIColor clearColor]
+  030e70  [self->detailsLabel setBackgroundColor:[UIColor clearColor]]
+  030e90  [self detailsLabelColor]
+  030eac  [self->detailsLabel setTextColor:[self detailsLabelColor]]
+  030ecc  [self->detailsLabel setNumberOfLines:0]
+  030edc  [self detailsLabelFont]
+  030ef8  [self->detailsLabel setFont:[self detailsLabelFont]]
+  030f18  [self detailsLabelText]
+  030f34  [self->detailsLabel setText:[self detailsLabelText]]
+  030f68  tail [self addSubview:self->detailsLabel]
+  030f6c  goto loc_100030f70
+loc_100030f70:
+  030f78  goto loc_100030fb4
+  030f84  goto loc_100030fb4
+  030f90  goto loc_100030fb4
+  030f94  goto loc_100030f9c
+  030f98  goto loc_100030f9c
+loc_100030f9c:
+  030fa4  goto loc_100030fb4
+  030fa8  goto loc_100030fac
+loc_100030fac:
+loc_100030fb4:
+
+== -[MBProgressHUD updateIndicators]   (address 0x100030fc0  size 804  kind objc)
+  031000  [UIActivityIndicatorView class]
+  03101c  [self->indicator isKindOfClass:[UIActivityIndicatorView class]]
+  031034  [MBRoundProgressView class]
+  031044  [self->indicator isKindOfClass:[MBRoundProgressView class]]
+  031054  if (self->mode != 0) goto loc_1000310fc
+  031058  if (([self->indicator isKindOfClass:[UIActivityIndicatorView class]] & 1)) goto loc_1000310fc
+  03106c  [self->indicator removeFromSuperview]
+  031080  [UIActivityIndicatorView alloc]
+  031094  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:0]
+  0310b0  [self setIndicator:[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:0]]
+  0310cc  [self->indicator startAnimating]
+loc_1000310d0:
+  0310d8  &@selector(addSubview:)
+  0310f8  tail [self addSubview:x2  | setIndicator:x3]
+loc_1000310fc:
+  031104  if ((self->mode - 1) >u 4) goto loc_100031278
+  031118  switch ((self->mode - 1)) { case 0,2: goto loc_10003111c; case 1: goto loc_1000311d0; case 3: goto loc_100031234; case 4: goto loc_100031290 }
+loc_10003111c:  ; case 0, 2
+  03111c  if (([self->indicator isKindOfClass:[MBRoundProgressView class]] & 1)) goto loc_10003119c
+  031130  [self->indicator removeFromSuperview]
+  031144  [MBRoundProgressView alloc]
+  031154  [[MBRoundProgressView alloc] init]
+  031170  [self setIndicator:[[MBRoundProgressView alloc] init]]
+  031190  [self addSubview:self->indicator]
+loc_10003119c:
+  0311a0  if (self->mode != 3) goto loc_100031278
+  0311cc  tail [self->indicator setAnnular:1]
+loc_1000311d0:  ; case 1
+  0311e0  [self->indicator removeFromSuperview]
+  0311f8  [MBBarProgressView alloc]
+  031208  [[MBBarProgressView alloc] init]
+  031224  [self setIndicator:[[MBBarProgressView alloc] init]]
+  031230  goto loc_1000310d0
+loc_100031234:  ; case 3
+  031248  if (self->customView == self->indicator) goto loc_100031278
+  031258  [self->indicator removeFromSuperview]
+  031270  [self setIndicator:self->customView]
+  031274  goto loc_1000310d0
+loc_100031278:
+  03128c  return
+  0312a0  [self->indicator removeFromSuperview]
+  0312ac  &@selector(setIndicator:)
+
+== -[MBProgressHUD layoutSubviews]   (address 0x1000312e4  size 1524  kind objc)
+  031334  [self superview]
+  031344  if ([self superview] == 0) goto loc_100031370
+  031358  [[self superview] bounds]
+  03136c  [self setFrame:{[[self superview] bounds].0, [[self superview] bounds].1, [[self superview] bounds].2, [[self superview] bounds].3}]
+loc_100031370:
+  031384  [self bounds]
+  0313b8  [self->indicator bounds]
+  0313d8  t1 = ([self->indicator bounds].2 < ([self bounds].2 + (self->margin * -4)) ? [self->indicator bounds].2 : ([self bounds].2 + (self->margin * -4)))
+  031400  [self->label text]
+  031420  [[self->label text] length]
+  031428  if ([[self->label text] length] == 0) goto loc_1000314d0
+  031434  [self->label text]
+  031464  [self->label font]
+  031498  [NSDictionary dictionaryWithObjects:&sp[0x60] forKeys:&sp[0x58] count:1]
+  0314b0  [[self->label text] sizeWithAttributes:[NSDictionary dictionaryWithObjects:&sp[0x60] forKeys:&sp[0x58] count:1]]
+  0314cc  goto loc_1000314d4
+loc_1000314d0:
+loc_1000314d4:
+  0314e4  t2 = (d14 < ([self bounds].2 + (self->margin * -4)) ? d14 : ([self bounds].2 + (self->margin * -4)))
+  0314f0  t3 = ((CGSizeZero.0 < t1 ? t1 : CGSizeZero.0) < t2 ? t2 : (CGSizeZero.0 < t1 ? t1 : CGSizeZero.0))
+  03151c  t4 = (((d10 > 0.0) & ([self->indicator bounds].3 > 0.0)) != 1 ? ((CGSizeZero.1 + [self->indicator bounds].3) + d10) : (((CGSizeZero.1 + [self->indicator bounds].3) + d10) + 4))
+  031534  [self->detailsLabel text]
+  031548  [[self->detailsLabel text] length]
+  03154c  if ([[self->detailsLabel text] length] == 0) goto loc_100031624
+  031558  [self->detailsLabel text]
+  031588  [self->detailsLabel font]
+  0315bc  [NSDictionary dictionaryWithObjects:&sp[0x50] forKeys:&sp[0x48] count:1]
+  031604  [[self->detailsLabel text] boundingRectWithSize:{([self bounds].2 + (self->margin * -4)), ((([self bounds].3 - t4) + -4) + (self->margin * -4))} options:1 attributes:[NSDictionary dictionaryWithObjects:&sp[0x50] forKeys:&sp[0x48] count:1] context:0]
+  031620  goto loc_10003162c
+loc_100031624:
+loc_10003162c:
+  031678  t5 = (((d15 > 0.0) & (([self->indicator bounds].3 > 0.0) | (d0 > 0.0))) != 1 ? (t4 + d15) : ((t4 + d15) + 4))
+  0316c8  t6 = ((round((([self bounds].3 - (t5 + (self->margin + self->margin))) * 0.5)) + self->margin) + self->yOffset)
+  031708  [self->indicator setFrame:{(round((([self bounds].2 - t1) * 0.5)) + self->xOffset), t6, t1, [self->indicator bounds].3}]
+  03171c  t7 = (((d10 > 0.0) & ([self->indicator bounds].3 > 0.0)) == 0 ? ([self->indicator bounds].3 + t6) : (([self->indicator bounds].3 + t6) + 4))
+  031748  [self->label setFrame:{(self->xOffset + round((([self bounds].2 - t2) * 0.5))), t7, t2, d3}]
+  031760  t8 = (((d15 > 0.0) & (([self->indicator bounds].3 > 0.0) | (d0 > 0.0))) == 0 ? (d0 + t7) : ((d0 + t7) + 4))
+  03178c  [self->detailsLabel setFrame:{(self->xOffset + round((([self bounds].2 - d12) * 0.5))), t8, d2, d3}]
+  0317a4  if (self->square == 0) goto loc_1000317dc
+  0317ac  t9 = (((t3 < d12 ? d12 : t3) + (self->margin + self->margin)) < (t5 + (self->margin + self->margin)) ? (t5 + (self->margin + self->margin)) : ((t3 < d12 ? d12 : t3) + (self->margin + self->margin)))
+  0317c8  t10 = (t9 > (or unordered) ([self bounds].2 - (self->margin + self->margin)) ? ((t3 < d12 ? d12 : t3) + (self->margin + self->margin)) : t9)
+  0317d8  if (t9 <= ([self bounds].3 - (self->margin + self->margin))) goto loc_1000317e0
+loc_1000317dc:
+loc_1000317e0:
+  031810  [self setSize:{(d0 < self->minSize.width ? self->minSize.width : d0), (d1 < self->minSize.height ? self->minSize.height : d1)}]
+  031860  return
+
+== -[MBProgressHUD drawRect:]   (address 0x1000318d8  size 1124  kind objc)
+  031914  UIGraphicsGetCurrentContext(self, _cmd)
+  03191c  UIGraphicsPushContext(UIGraphicsGetCurrentContext(self, _cmd))
+  031930  [self dimBackground]
+  031934  if ([self dimBackground] == 0) goto loc_100031a0c
+  031948  [tconst_100181b50] -> 0x0
+  031960  CGColorSpaceCreateDeviceRGB([self dimBackground])
+  031974  CGGradientCreateWithColorComponents(CGColorSpaceCreateDeviceRGB([self dimBackground]), &sp[0x10], &sp[0x50], 2)
+  031980  CGColorSpaceRelease(CGColorSpaceCreateDeviceRGB([self dimBackground]))
+  031998  [self bounds]
+  0319ac  [self bounds]
+  0319bc  [self bounds]
+  0319cc  [self bounds]
+  031a00  CGContextDrawRadialGradient(UIGraphicsGetCurrentContext(self, _cmd), CGGradientCreateWithColorComponents(CGColorSpaceCreateDeviceRGB([self dimBackground]), &sp[0x10], &sp[0x50], 2), 2)
+  031a08  CGGradientRelease(CGGradientCreateWithColorComponents(CGColorSpaceCreateDeviceRGB([self dimBackground]), &sp[0x10], &sp[0x50], 2))
+loc_100031a0c:
+  031a20  [self color]
+  031a34  if ([self color] == 0) goto loc_100031a7c
+  031a40  [self color]
+  031a60  [[self color] CGColor]
+  031a6c  CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(self, _cmd), [[self color] CGColor])
+  031a78  goto loc_100031aa0
+loc_100031a7c:
+  031a8c  [self opacity]
+  031a9c  CGContextSetGrayFillColor(UIGraphicsGetCurrentContext(self, _cmd))
+loc_100031aa0:
+  031ab0  [self bounds]
+  031ad8  [self xOffset]
+  031b20  [self yOffset]
+  031b44  [self cornerRadius]
+  031b50  CGContextBeginPath(UIGraphicsGetCurrentContext(self, _cmd))
+  031b64  CGRectGetMinX(CGContextBeginPath(UIGraphicsGetCurrentContext(self, _cmd)))
+  031b80  CGRectGetMinY(CGRectGetMinX(CGContextBeginPath(UIGraphicsGetCurrentContext(self, _cmd))))
+  031b90  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  031ba4  CGRectGetMaxX(CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd)))
+  031bbc  CGRectGetMinY(CGRectGetMaxX(CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))))
+  031be4  CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0)
+  031bf8  CGRectGetMaxX(CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0))
+  031c10  CGRectGetMaxY(CGRectGetMaxX(CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0)))
+  031c38  CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0)
+  031c4c  CGRectGetMinX(CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0))
+  031c64  CGRectGetMaxY(CGRectGetMinX(CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0)))
+  031c8c  CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0)
+  031ca0  CGRectGetMinX(CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0))
+  031cb8  CGRectGetMinY(CGRectGetMinX(CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0)))
+  031cd8  CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0)
+  031ce0  CGContextClosePath(UIGraphicsGetCurrentContext(self, _cmd))
+  031ce8  CGContextFillPath(UIGraphicsGetCurrentContext(self, _cmd))
+  031cec  UIGraphicsPopContext(CGContextFillPath(UIGraphicsGetCurrentContext(self, _cmd)))
+  031d20  return
+
+== -[MBProgressHUD registerForKVO]   (address 0x100031d3c  size 344  kind objc)
+  031d8c  [self observableKeypaths]
+  031db8  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  031dc0  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100031e40
+  031dd0  &@selector(addObserver:forKeyPath:options:context:)
+loc_100031dd8:
+loc_100031ddc:
+  031de8  if (x8 == x25) goto loc_100031df4
+  031df0  objc_enumerationMutation([self observableKeypaths])
+loc_100031df4:
+  031e10  [self addObserver:self forKeyPath:x3 options:1 context:0]
+  031e1c  if ((x26 + 1) <u [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100031ddc
+  031e34  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  031e3c  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_100031dd8
+loc_100031e40:
+  031e70  return
+
+== -[MBProgressHUD unregisterFromKVO]   (address 0x100031e94  size 336  kind objc)
+  031ee4  [self observableKeypaths]
+  031f10  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  031f18  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100031f90
+  031f28  &@selector(removeObserver:forKeyPath:)
+loc_100031f30:
+loc_100031f34:
+  031f40  if (x8 == x25) goto loc_100031f4c
+  031f48  objc_enumerationMutation([self observableKeypaths])
+loc_100031f4c:
+  031f60  [self removeObserver:self forKeyPath:x3]
+  031f6c  if ((x26 + 1) <u [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100031f34
+  031f84  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  031f8c  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_100031f30
+loc_100031f90:
+  031fc0  return
+
+== -[MBProgressHUD observableKeypaths]   (address 0x100031fe4  size 152  kind objc)
+  03206c  [NSArray arrayWithObjects:@"mode", @"customView", @"labelText", @"labelFont", @"labelColor", @"detailsLabelText", @"detailsLabelFont", @"detailsLabelColor", @"progress", nil]
+  032078  return
+
+== -[MBProgressHUD observeValueForKeyPath:ofObject:change:context:]   (address 0x10003207c  size 152  kind objc)
+  0320ac  [NSThread isMainThread]
+  0320b4  &@selector(updateUIForKeypath:)
+  0320bc  if (!([NSThread isMainThread] & 1)) goto loc_1000320d4
+  0320cc  [self updateUIForKeypath:arg1]
+  0320d0  goto loc_1000320f0
+loc_1000320d4:
+  0320ec  [self performSelectorOnMainThread:@selector(updateUIForKeypath:) withObject:arg1 waitUntilDone:0]
+loc_1000320f0:
+  0320fc  return
+
+== -[MBProgressHUD updateUIForKeypath:]   (address 0x100032114  size 992  kind objc)
+  03214c  [arg1 isEqualToString:@"mode"]
+  032150  if (([arg1 isEqualToString:@"mode"] & 1)) goto loc_10003216c
+  032164  [arg1 isEqualToString:@"customView"]
+  032168  if ([arg1 isEqualToString:@"customView"] == 0) goto loc_100032184
+loc_10003216c:
+  03217c  [self updateIndicators]
+  032180  goto loc_1000323dc
+loc_100032184:
+  032194  [arg1 isEqualToString:@"labelText"]
+  032198  if ([arg1 isEqualToString:@"labelText"] == 0) goto loc_1000321e8
+  0321b8  [self labelText]
+  0321dc  [self->label setText:[self labelText]]
+  0321e0  goto loc_1000323d4
+  0321e4  goto loc_1000324d0
+loc_1000321e8:
+  0321f8  [arg1 isEqualToString:@"labelFont"]
+  0321fc  if ([arg1 isEqualToString:@"labelFont"] == 0) goto loc_10003224c
+  03221c  [self labelFont]
+  032240  [self->label setFont:[self labelFont]]
+  032244  goto loc_1000323d4
+  032248  goto loc_1000324d0
+loc_10003224c:
+  03225c  [arg1 isEqualToString:@"labelColor"]
+  032260  if ([arg1 isEqualToString:@"labelColor"] == 0) goto loc_1000322b0
+  032280  [self labelColor]
+  0322a4  [self->label setTextColor:[self labelColor]]
+  0322a8  goto loc_1000323d4
+  0322ac  goto loc_1000324d0
+loc_1000322b0:
+  0322c0  [arg1 isEqualToString:@"detailsLabelText"]
+  0322c4  if ([arg1 isEqualToString:@"detailsLabelText"] == 0) goto loc_100032314
+  0322e4  [self detailsLabelText]
+  032308  [self->detailsLabel setText:[self detailsLabelText]]
+  03230c  goto loc_1000323d4
+  032310  goto loc_1000324d0
+loc_100032314:
+  032324  [arg1 isEqualToString:@"detailsLabelFont"]
+  032328  if ([arg1 isEqualToString:@"detailsLabelFont"] == 0) goto loc_100032378
+  032348  [self detailsLabelFont]
+  03236c  [self->detailsLabel setFont:[self detailsLabelFont]]
+  032370  goto loc_1000323d4
+  032374  goto loc_1000324d0
+loc_100032378:
+  032388  [arg1 isEqualToString:@"detailsLabelColor"]
+  03238c  if ([arg1 isEqualToString:@"detailsLabelColor"] == 0) goto loc_100032418
+  0323ac  [self detailsLabelColor]
+  0323d0  [self->detailsLabel setTextColor:[self detailsLabelColor]]
+loc_1000323d4:
+loc_1000323dc:
+  0323ec  [self setNeedsLayout]
+  032400  [self setNeedsDisplay]
+loc_100032404:
+  032414  return
+  032428  [arg1 isEqualToString:@"progress"]
+  03242c  if (!([arg1 isEqualToString:@"progress"] & 1)) goto loc_1000323dc
+  032454  [self->indicator respondsToSelector:@selector(setProgress:)]
+  032458  if ([self->indicator respondsToSelector:@selector(setProgress:)] == 0) goto loc_100032404
+  032480  [NSNumber numberWithFloat:self->progress]
+  0324ac  [self->indicator setValue:[NSNumber numberWithFloat:self->progress] forKey:@"progress"]
+
+== -[MBProgressHUD registerForNotifications]   (address 0x1000324f4  size 136  kind objc)
+  032518  [NSNotificationCenter defaultCenter]
+  032554  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) name:_UIDeviceOrientationDidChangeNotification[+0x0] object:0]
+  032564  return
+
+== -[MBProgressHUD unregisterFromNotifications]   (address 0x10003257c  size 108  kind objc)
+  0325a0  [NSNotificationCenter defaultCenter]
+  0325c0  [[NSNotificationCenter defaultCenter] removeObserver:self]
+  0325d0  return
+
+== -[MBProgressHUD deviceOrientationDidChange:]   (address 0x1000325e8  size 288  kind objc)
+  03260c  [self superview]
+  03261c  if ([self superview] == 0) goto loc_1000326c8
+  032634  [UIWindow class]
+  03264c  [[self superview] isKindOfClass:[UIWindow class]]
+  032650  if ([[self superview] isKindOfClass:[UIWindow class]] == 0) goto loc_100032670
+  032668  [self setTransformForCurrentOrientation:1]
+  03266c  goto loc_1000326c8
+loc_100032670:
+  032678  [self superview]
+  032694  [[self superview] bounds]
+  0326a8  [self setFrame:{[[self superview] bounds].0, [[self superview] bounds].1, [[self superview] bounds].2, [[self superview] bounds].3}]
+  0326c4  [self setNeedsDisplay]
+loc_1000326c8:
+  0326d8  return
+
+== -[MBProgressHUD setTransformForCurrentOrientation:]   (address 0x100032708  size 608  kind objc)
+  032738  [self superview]
+  03274c  if ([self superview] == 0) goto loc_1000327a8
+  032758  [self superview]
+  032774  [[self superview] bounds]
+  032788  [self setBounds:{[[self superview] bounds].0, [[self superview] bounds].1, [[self superview] bounds].2, [[self superview] bounds].3}]
+  0327a4  [self setNeedsDisplay]
+loc_1000327a8:
+  0327bc  [UIApplication sharedApplication]
+  0327d8  [[UIApplication sharedApplication] statusBarOrientation]
+  0327f0  if (([[UIApplication sharedApplication] statusBarOrientation] - 3) >u 1) goto loc_100032858
+  03281c  [self bounds]
+  03282c  [self bounds]
+  032850  [self setBounds:{0, 0, [self bounds].3, [self bounds].2}]
+  032854  goto loc_10003286c
+loc_100032858:
+loc_10003286c:
+  032880  CGAffineTransformMakeRotation()
+  032888  self->rotationTransform[+0x20] = q0
+  032890  self->rotationTransform[+0x10] = q0
+  032898  self->rotationTransform = q0
+  03289c  if (arg1 == 0) goto loc_100032908
+  0328bc  [UIView beginAnimations:0 context:0]
+  0328ec  [self setTransform:&sp[0x0]]
+  032900  [UIView commitAnimations]
+  032904  goto loc_100032938
+loc_100032908:
+  032934  [self setTransform:&sp[0x0]]
+loc_100032938:
+  03294c  return
+
+== -[MBProgressHUD animationType]   (address 0x100032968  size 16  kind objc)
+  032974  return
+
+== -[MBProgressHUD setAnimationType:]   (address 0x100032978  size 16  kind objc)
+  032980  self->animationType = arg1
+  032984  return
+
+== -[MBProgressHUD delegate]   (address 0x100032988  size 32  kind objc)
+  0329a4  return
+
+== -[MBProgressHUD setDelegate:]   (address 0x1000329a8  size 20  kind objc)
+
+== -[MBProgressHUD opacity]   (address 0x1000329bc  size 20  kind objc)
+  0329cc  return
+
+== -[MBProgressHUD setOpacity:]   (address 0x1000329d0  size 20  kind objc)
+  0329dc  self->opacity = arg1
+  0329e0  return
+
+== -[MBProgressHUD color]   (address 0x1000329e4  size 16  kind objc)
+  0329f0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setColor:]   (address 0x1000329f4  size 12  kind objc)
+  0329fc  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD labelFont]   (address 0x100032a00  size 16  kind objc)
+  032a0c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setLabelFont:]   (address 0x100032a10  size 12  kind objc)
+  032a18  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD labelColor]   (address 0x100032a1c  size 16  kind objc)
+  032a28  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setLabelColor:]   (address 0x100032a2c  size 12  kind objc)
+  032a34  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD detailsLabelFont]   (address 0x100032a38  size 16  kind objc)
+  032a44  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setDetailsLabelFont:]   (address 0x100032a48  size 12  kind objc)
+  032a50  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD detailsLabelColor]   (address 0x100032a54  size 16  kind objc)
+  032a60  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setDetailsLabelColor:]   (address 0x100032a64  size 12  kind objc)
+  032a6c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD indicator]   (address 0x100032a70  size 16  kind objc)
+  032a7c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setIndicator:]   (address 0x100032a80  size 12  kind objc)
+  032a88  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD xOffset]   (address 0x100032a8c  size 20  kind objc)
+  032a9c  return
+
+== -[MBProgressHUD setXOffset:]   (address 0x100032aa0  size 20  kind objc)
+  032aac  self->xOffset = arg1
+  032ab0  return
+
+== -[MBProgressHUD yOffset]   (address 0x100032ab4  size 20  kind objc)
+  032ac4  return
+
+== -[MBProgressHUD setYOffset:]   (address 0x100032ac8  size 20  kind objc)
+  032ad4  self->yOffset = arg1
+  032ad8  return
+
+== -[MBProgressHUD minSize]   (address 0x100032adc  size 60  kind objc)
+  032b04  objc_copyStruct(&sp[0x0], x1, 16, 1)
+  032b14  return
+
+== -[MBProgressHUD setMinSize:]   (address 0x100032b18  size 60  kind objc)
+  032b44  objc_copyStruct(x0, &sp[0x0], 16, 1)
+  032b50  return
+
+== -[MBProgressHUD isSquare]   (address 0x100032b54  size 20  kind objc)
+  032b64  return
+
+== -[MBProgressHUD setSquare:]   (address 0x100032b68  size 16  kind objc)
+  032b70  self->square = arg1
+  032b74  return
+
+== -[MBProgressHUD margin]   (address 0x100032b78  size 20  kind objc)
+  032b88  return
+
+== -[MBProgressHUD setMargin:]   (address 0x100032b8c  size 20  kind objc)
+  032b98  self->margin = arg1
+  032b9c  return
+
+== -[MBProgressHUD dimBackground]   (address 0x100032ba0  size 20  kind objc)
+  032bb0  return
+
+== -[MBProgressHUD setDimBackground:]   (address 0x100032bb4  size 16  kind objc)
+  032bbc  self->dimBackground = arg1
+  032bc0  return
+
+== -[MBProgressHUD graceTime]   (address 0x100032bc4  size 20  kind objc)
+  032bd4  return
+
+== -[MBProgressHUD setGraceTime:]   (address 0x100032bd8  size 20  kind objc)
+  032be4  self->graceTime = arg1
+  032be8  return
+
+== -[MBProgressHUD minShowTime]   (address 0x100032bec  size 20  kind objc)
+  032bfc  return
+
+== -[MBProgressHUD setMinShowTime:]   (address 0x100032c00  size 20  kind objc)
+  032c0c  self->minShowTime = arg1
+  032c10  return
+
+== -[MBProgressHUD graceTimer]   (address 0x100032c14  size 16  kind objc)
+  032c20  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setGraceTimer:]   (address 0x100032c24  size 12  kind objc)
+  032c2c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD minShowTimer]   (address 0x100032c30  size 16  kind objc)
+  032c3c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setMinShowTimer:]   (address 0x100032c40  size 12  kind objc)
+  032c48  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD taskInProgress]   (address 0x100032c4c  size 20  kind objc)
+  032c5c  return
+
+== -[MBProgressHUD setTaskInProgress:]   (address 0x100032c60  size 16  kind objc)
+  032c68  self->taskInProgress = arg1
+  032c6c  return
+
+== -[MBProgressHUD removeFromSuperViewOnHide]   (address 0x100032c70  size 20  kind objc)
+  032c80  return
+
+== -[MBProgressHUD setRemoveFromSuperViewOnHide:]   (address 0x100032c84  size 16  kind objc)
+  032c8c  self->removeFromSuperViewOnHide = arg1
+  032c90  return
+
+== -[MBProgressHUD customView]   (address 0x100032c94  size 16  kind objc)
+  032ca0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setCustomView:]   (address 0x100032ca4  size 12  kind objc)
+  032cac  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD showStarted]   (address 0x100032cb0  size 16  kind objc)
+  032cbc  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setShowStarted:]   (address 0x100032cc0  size 12  kind objc)
+  032cc8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD mode]   (address 0x100032ccc  size 16  kind objc)
+  032cd8  return
+
+== -[MBProgressHUD setMode:]   (address 0x100032cdc  size 16  kind objc)
+  032ce4  self->mode = arg1
+  032ce8  return
+
+== -[MBProgressHUD labelText]   (address 0x100032cec  size 16  kind objc)
+  032cf8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setLabelText:]   (address 0x100032cfc  size 12  kind objc)
+  032d04  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD detailsLabelText]   (address 0x100032d08  size 16  kind objc)
+  032d14  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setDetailsLabelText:]   (address 0x100032d18  size 12  kind objc)
+  032d20  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD progress]   (address 0x100032d24  size 20  kind objc)
+  032d34  return
+
+== -[MBProgressHUD setProgress:]   (address 0x100032d38  size 20  kind objc)
+  032d44  self->progress = arg1
+  032d48  return
+
+== -[MBProgressHUD size]   (address 0x100032d4c  size 60  kind objc)
+  032d74  objc_copyStruct(&sp[0x0], x1, 16, 1)
+  032d84  return
+
+== -[MBProgressHUD setSize:]   (address 0x100032d88  size 60  kind objc)
+  032db4  objc_copyStruct(x0, &sp[0x0], 16, 1)
+  032dc0  return
+
+== -[MBProgressHUD completionBlock]   (address 0x100032dc4  size 16  kind objc)
+  032dd0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[MBProgressHUD setCompletionBlock:]   (address 0x100032dd4  size 12  kind objc)
+  032ddc  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[MBProgressHUD cornerRadius]   (address 0x100032de0  size 20  kind objc)
+  032df0  return
+
+== -[MBProgressHUD setCornerRadius:]   (address 0x100032df4  size 20  kind objc)
+  032e00  self->_cornerRadius = arg1
+  032e04  return
+
+== -[MBProgressHUD .cxx_destruct]   (address 0x100032e08  size 380  kind objc)
+
+== -[MBProgressHUD .cxx_construct]   (address 0x100032f84  size 4  kind objc)
+  032f84  return

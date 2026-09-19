@@ -1,0 +1,99 @@
+
+== -[ADChallengeFailedViewController didReceiveMemoryWarning]   (address 0x1000716dc  size 60  kind objc)
+  071708  [super didReceiveMemoryWarning]
+  071714  return
+
+== -[ADChallengeFailedViewController viewDidLoad]   (address 0x100071718  size 1332  kind objc)
+  071758  [super viewDidLoad]
+  071770  [self statusBarViewController]
+  071794  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  0717a8  [self statusBarViewController]
+  0717cc  [[self statusBarViewController] setCurrenciesVisibility:0]
+  0717e0  [self statusBarViewController]
+  071800  [[self statusBarViewController] setDiamonsdsVisibility:0]
+  071814  [self statusBarViewController]
+  071830  [[self statusBarViewController] backButton]
+  071858  [[[self statusBarViewController] backButton] setTitle:@"Main Menu" forState:0]
+  071884  [ADTracker sharedInstance]
+  0718a4  [[ADTracker sharedInstance] challengeCompleted:0]
+  0718b8  [ADTracker sharedInstance]
+  0718d8  [[ADTracker sharedInstance] accuracyObjectiveReached:0]
+  0718ec  [ADTracker sharedInstance]
+  07190c  [[ADTracker sharedInstance] timeObjectiveReached:0]
+  071928  [self tipTextView]
+  071948  [self challengeDict]
+  07196c  [[self challengeDict] objectForKey:@"tip"]
+  071994  [[self tipTextView] setText:[[self challengeDict] objectForKey:@"tip"]]
+  0719b8  [self statusBarViewController]
+  0719d4  [[self statusBarViewController] pageTitle]
+  0719f0  [[[self statusBarViewController] pageTitle] setText:@"CHALLENGE"]
+  071a0c  [self statusBarViewController]
+  071a24  [[self statusBarViewController] setCurrenciesVisibility:0]
+  071a38  [self statusBarViewController]
+  071a50  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  071a5c  rand()
+  071a7c  t1 = ((((rand() * 0x55555556) >>> 32) + ((rand() * 0x55555556) >>> 63)) + ((((rand() * 0x55555556) >>> 32) + ((rand() * 0x55555556) >>> 63)) << 1))
+  071a9c  [S3DEngine engine]
+  071acc  [NSString stringWithFormat:@"gameover_%i", ((rand() - t1) + 1)]
+  071af0  [[S3DEngine engine] playListWithName:[NSString stringWithFormat:@"gameover_%i", ((rand() - t1) + 1)]]
+  071b08  self->gameOverPlaylist = [[S3DEngine engine] playListWithName:[NSString stringWithFormat:@"gameover_%i", ((rand() - t1) + 1)]]
+  071b74  [self->gameOverPlaylist activate:^{-[ADChallengeFailedViewController viewDidLoad]_block_invoke captures +0x20=self, +0x28=self, +0x30=ADChallengeFailedViewController}]
+  071b98  return
+
+== -[ADChallengeFailedViewController viewDidLoad]_block_invoke   (address 0x100071c4c  size 116  kind block)
+  071c74  [self->gameOverPlaylist anySound]
+  071c90  [[self->gameOverPlaylist anySound] play]
+  071ca0  return
+
+== sub_100071cc0   (address 0x100071cc0  size 8  kind sub)
+
+== sub_100071cc8   (address 0x100071cc8  size 8  kind sub)
+  071ccc  return
+
+== -[ADChallengeFailedViewController loadView]   (address 0x100071cd0  size 332  kind objc)
+  071d24  [NSNumber numberWithInt:1]
+  071d4c  [NSNumber numberWithInt:1]
+  071d7c  [NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]
+  071db8  [self loADViewBasedOnDeviceWithNibName:@"ADChallengeFailedViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]]
+  071de4  return
+
+== -[ADChallengeFailedViewController missionSelectButtonPressed:]   (address 0x100071e1c  size 204  kind objc)
+  071e44  [UIApplication sharedApplication]
+  071e60  [[UIApplication sharedApplication] delegate]
+  071e7c  [[[UIApplication sharedApplication] delegate] goToChallengeSelector]
+  071ea8  [self->gameOverPlaylist deactivate]
+  071eb8  return
+
+== -[ADChallengeFailedViewController tryAgainButtonPressed:]   (address 0x100071ee8  size 284  kind objc)
+  071f08  [self playButtonSound]
+  071f20  [UIApplication sharedApplication]
+  071f3c  [[UIApplication sharedApplication] delegate]
+  071f5c  [self challengeDict]
+  071f80  [[[UIApplication sharedApplication] delegate] goToChallengeWithDict:[self challengeDict]]
+  071fb4  [self->gameOverPlaylist deactivate]
+  071fc4  return
+
+== -[ADChallengeFailedViewController backButtonPressed]   (address 0x100072004  size 192  kind objc)
+  07202c  [UIApplication sharedApplication]
+  072048  [[UIApplication sharedApplication] delegate]
+  072064  [[[UIApplication sharedApplication] delegate] goToMainMenu]
+  07209c  tail [self->gameOverPlaylist deactivate]
+  0720a4  goto loc_1000720b4
+loc_1000720b4:
+
+== -[ADChallengeFailedViewController playButtonSound]   (address 0x1000720c4  size 252  kind objc)
+  0720e8  [S3DEngine engine]
+  07210c  [[S3DEngine engine] playListWithName:@"buttons"]
+  072130  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_level_button"]
+  072164  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_level_button"] setGain:3]
+  072178  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_level_button"] play]
+  07218c  return
+
+== -[ADChallengeFailedViewController tipTextView]   (address 0x1000721c0  size 16  kind objc)
+  0721cc  return
+
+== -[ADChallengeFailedViewController setTipTextView:]   (address 0x1000721d0  size 56  kind objc)
+  0721f4  self->_tipTextView = arg1
+  072204  return
+
+== -[ADChallengeFailedViewController .cxx_destruct]   (address 0x100072208  size 64  kind objc)

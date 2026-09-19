@@ -1,0 +1,20 @@
+
+== +[TAGAdvertisingTrackingEnabledMacro functionId]   (address 0x100172cbc  size 44  kind objc)
+  172ce4  return
+
+== -[TAGAdvertisingTrackingEnabledMacro init]   (address 0x100172ce8  size 176  kind objc)
+  172d14  [NSSet set]
+  172d50  [super initWithFunctionId:@"_ate" requiredKeys:[NSSet set]]
+  172d74  return
+
+== -[TAGAdvertisingTrackingEnabledMacro isCacheable]   (address 0x100172d98  size 8  kind objc)
+  172d9c  return
+
+== -[TAGAdvertisingTrackingEnabledMacro evaluate:]   (address 0x100172da0  size 164  kind objc)
+  172db8  [self advertisingTrackingEnabled]
+  172ddc  [TAGBoolean booleanWithBool:[self advertisingTrackingEnabled]]
+  172e00  [TAGTypes objectToValue:[TAGBoolean booleanWithBool:[self advertisingTrackingEnabled]]]
+  172e24  return
+
+== -[TAGAdvertisingTrackingEnabledMacro advertisingTrackingEnabled]   (address 0x100172e44  size 24  kind objc)
+  172e58  tail [TAGAdIdAccess retrieveTrackingFlag]

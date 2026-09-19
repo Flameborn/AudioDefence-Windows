@@ -1,0 +1,107 @@
+
+== +[Reachability reachabilityWithHostName:]   (address 0x1000924c0  size 196  kind objc)
+  0924f0  [arg1 UTF8String]
+  0924fc  SCNetworkReachabilityCreateWithName(0, [arg1 UTF8String])
+  092504  if (SCNetworkReachabilityCreateWithName(0, [arg1 UTF8String]) == 0) goto loc_100092550
+  092518  [Reachability alloc]
+  092528  [[Reachability alloc] init]
+  092530  if ([[Reachability alloc] init] == 0) goto loc_100092554
+  09253c  [[Reachability alloc] init]->_reachabilityRef = SCNetworkReachabilityCreateWithName(0, [arg1 UTF8String])
+  092548  [[Reachability alloc] init]->_alwaysReturnLocalWiFiStatus = 0
+  09254c  goto loc_100092554
+loc_100092550:
+loc_100092554:
+  09256c  return
+
+== +[Reachability reachabilityWithAddress:]   (address 0x100092584  size 128  kind objc)
+  0925a4  SCNetworkReachabilityCreateWithAddress(_kCFAllocatorDefault[+0x0], arg1, arg1)
+  0925ac  if (SCNetworkReachabilityCreateWithAddress(_kCFAllocatorDefault[+0x0], arg1, arg1) == 0) goto loc_1000925f4
+  0925c0  [Reachability alloc]
+  0925d0  [[Reachability alloc] init]
+  0925d4  if ([[Reachability alloc] init] == 0) goto loc_1000925f8
+  0925e0  [[Reachability alloc] init]->_reachabilityRef = SCNetworkReachabilityCreateWithAddress(_kCFAllocatorDefault[+0x0], arg1, arg1)
+  0925ec  [[Reachability alloc] init]->_alwaysReturnLocalWiFiStatus = 0
+  0925f0  goto loc_1000925f8
+loc_1000925f4:
+loc_1000925f8:
+  092600  return
+
+== +[Reachability reachabilityForInternetConnection]   (address 0x100092604  size 104  kind objc)
+  092648  [Reachability reachabilityWithAddress:&sp[0x8]]
+  092664  return
+
+== +[Reachability reachabilityForLocalWiFi]   (address 0x10009266c  size 132  kind objc)
+  0926b8  [Reachability reachabilityWithAddress:&sp[0x8]]
+  0926bc  if ([Reachability reachabilityWithAddress:&sp[0x8]] == 0) goto loc_1000926d0
+  0926cc  [Reachability reachabilityWithAddress:&sp[0x8]]->_alwaysReturnLocalWiFiStatus = 1
+loc_1000926d0:
+  0926e8  return
+
+== -[Reachability startNotifier]   (address 0x1000926f0  size 128  kind objc)
+  092728  SCNetworkReachabilitySetCallback(self->_reachabilityRef, &-[Reachability startNotifier]_block_invoke, &sp[0x8])
+  09272c  if (SCNetworkReachabilitySetCallback(self->_reachabilityRef, &-[Reachability startNotifier]_block_invoke, &sp[0x8]) == 0) goto loc_10009275c
+  092734  CFRunLoopGetCurrent(SCNetworkReachabilitySetCallback(self->_reachabilityRef, &-[Reachability startNotifier]_block_invoke, &sp[0x8]))
+  09274c  SCNetworkReachabilityScheduleWithRunLoop(self->_reachabilityRef, CFRunLoopGetCurrent(SCNetworkReachabilitySetCallback(self->_reachabilityRef, &-[Reachability startNotifier]_block_invoke, &sp[0x8])), _kCFRunLoopDefaultMode[+0x0])
+  092754  t1 = (SCNetworkReachabilityScheduleWithRunLoop(self->_reachabilityRef, CFRunLoopGetCurrent(SCNetworkReachabilitySetCallback(se… != 0)
+  092758  goto loc_100092760
+loc_10009275c:
+loc_100092760:
+  09276c  return
+
+== -[Reachability startNotifier]_block_invoke   (address 0x100092770  size 156  kind block)
+  0927a0  [NSNotificationCenter defaultCenter]
+  0927c8  [[NSNotificationCenter defaultCenter] postNotificationName:g_100428e00 object:blockarg2]
+  0927e4  return
+
+== -[Reachability stopNotifier]   (address 0x10009280c  size 76  kind objc)
+  092824  if (self->_reachabilityRef == 0) goto loc_10009284c
+  092828  CFRunLoopGetCurrent(self, _cmd)
+  092848  tail SCNetworkReachabilityUnscheduleFromRunLoop(self->_reachabilityRef, CFRunLoopGetCurrent(self, _cmd), _kCFRunLoopDefaultMode[+0x0])
+loc_10009284c:
+  092854  return
+
+== -[Reachability dealloc]   (address 0x100092858  size 160  kind objc)
+  092878  [self stopNotifier]
+  092888  if (self->_reachabilityRef == 0) goto loc_100092890
+  09288c  CFRelease(self->_reachabilityRef)
+loc_100092890:
+  0928b0  [super dealloc]
+  0928c0  return
+  0928e8  [super dealloc]
+  0928f4  call sub_10000b760
+
+== -[Reachability localWiFiStatusForFlags:]   (address 0x1000928f8  size 60  kind objc)
+  092914  sub_100092934(arg1, "localWiFiStatusForFlags", arg1)
+  092930  return
+
+== sub_100092934   (address 0x100092934  size 168  kind sub)
+  0929cc  NSLog(@"Reachability Flag Status: %c%c %c%c%c%c%c%c%c %s\n", a1, a2, a3, ((a0 & 0x40000) != 0 ? 87 : 45), ((a0 & 2) != 0 ? 82 : 45), ((a0 & 1) != 0 ? 116 : 45), ((a0 & 4) != 0 ? 99 : 45), ((a0 & 8) != 0 ? 67 : 45), ((a0 & 16) != 0 ? 105 : 45), ((a0 & 32) != 0 ? 68 : 45), ((a0 & 0x10000) != 0 ? 108 : 45), ((a0 & 0x20000) != 0 ? 100 : 45), a1)
+  0929d8  return
+
+== -[Reachability networkStatusForFlags:]   (address 0x1000929dc  size 104  kind objc)
+  0929f8  sub_100092934(arg1, "networkStatusForFlags", arg1)
+  092a2c  t1 = ((arg1 & 0x40000) == 0 ? ((((arg1 & 40) != 0) & ((arg1 & 16) == 0)) != 0 ? 1 : (1 &~ (arg1 >>> 2))) : 2)
+  092a40  return
+
+== -[Reachability connectionRequired]   (address 0x100092a44  size 64  kind objc)
+  092a60  SCNetworkReachabilityGetFlags(self->_reachabilityRef, &x29[-0x4])
+  092a64  if (SCNetworkReachabilityGetFlags(self->_reachabilityRef, &x29[-0x4]) == 0) goto loc_100092a74
+  092a70  goto loc_100092a78
+loc_100092a74:
+loc_100092a78:
+  092a80  return
+
+== -[Reachability currentReachabilityStatus]   (address 0x100092a84  size 120  kind objc)
+  092aa8  SCNetworkReachabilityGetFlags(self->_reachabilityRef, &sp[0xc])
+  092aac  if (SCNetworkReachabilityGetFlags(self->_reachabilityRef, &sp[0xc]) == 0) goto loc_100092ad0
+  092ac0  if (self->_alwaysReturnLocalWiFiStatus == 0) goto loc_100092ad8
+  092ac8  &@selector(localWiFiStatusForFlags:)
+  092acc  goto loc_100092ae0
+loc_100092ad0:
+  092ad4  goto loc_100092aec
+loc_100092ad8:
+  092adc  &@selector(networkStatusForFlags:)
+loc_100092ae0:
+  092ae8  [self localWiFiStatusForFlags:x2  | networkStatusForFlags:x3]
+loc_100092aec:
+  092af8  return

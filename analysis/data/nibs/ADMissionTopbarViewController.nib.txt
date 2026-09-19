@@ -1,0 +1,19 @@
+// ADMissionTopbarViewController.nib
+TOP-LEVEL OBJECTS
+  #38 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #39 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #43 UIView  
+    #76 UIImageView  Image='background_main.png'
+    #10 UIImageView  Image='Frame_basic_plusheader.png'
+    #72 UILabel  UserInteractionDisabled=False Text='MISSIONS'
+    #49 UIButton  
+    #68 UIView  
+    #24 UIButton (custom class ADButtonWithFont)  title[0]='BACK'
+    #66 UIView  
+
+CONNECTIONS
+  action  backButtonTouched:                        #24 ADButtonWithFont --(events 0x40)--> #38 UIProxyObject
+  outlet  containerView                             #38 UIProxyObject --> #66 UIView
+  outlet  view                                      #38 UIProxyObject --> #43 UIView
+
+ACCESSIBILITY CONFIGURATIONS

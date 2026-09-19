@@ -1,0 +1,27 @@
+
+== +[TAGLanguage functionId]   (address 0x100176ad8  size 44  kind objc)
+  176b00  return
+
+== -[TAGLanguage init]   (address 0x100176b04  size 176  kind objc)
+  176b30  [NSSet set]
+  176b6c  [super initWithFunctionId:@"_l" requiredKeys:[NSSet set]]
+  176b90  return
+
+== -[TAGLanguage isCacheable]   (address 0x100176bb4  size 8  kind objc)
+  176bb8  return
+
+== -[TAGLanguage preferredLanguages]   (address 0x100176bbc  size 24  kind objc)
+  176bd0  tail [NSLocale preferredLanguages]
+
+== -[TAGLanguage evaluate:]   (address 0x100176bd4  size 312  kind objc)
+  176bf0  [self preferredLanguages]
+  176c0c  [[self preferredLanguages] count]
+  176c18  if ([[self preferredLanguages] count] == 0) goto loc_100176c94
+  176c30  [[self preferredLanguages] objectAtIndex:0]
+  176c4c  [[[self preferredLanguages] objectAtIndex:0] lowercaseString]
+  176c70  [TAGTypes objectToValue:[[[self preferredLanguages] objectAtIndex:0] lowercaseString]]
+  176c90  goto loc_100176cb4
+loc_100176c94:
+  176ca4  [TAGTypes defaultValue]
+loc_100176cb4:
+  176ccc  return

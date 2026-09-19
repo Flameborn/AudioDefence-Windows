@@ -1,0 +1,42 @@
+
+== -[GAIDefaultLogger init]   (address 0x100115d54  size 80  kind objc)
+  115d80  [super init]
+  115d84  if (self == 0) goto loc_100115d98
+  115d94  self->_logLevel = 2
+loc_100115d98:
+  115da0  return
+
+== -[GAIDefaultLogger verbose:]   (address 0x100115da4  size 96  kind objc)
+  115dd4  [self logLevel]
+  115ddc  if ([self logLevel] <u 4) goto loc_100115df0
+  115dec  NSLog(@"VERBOSE: %@", arg1)
+loc_100115df0:
+  115e00  return
+
+== -[GAIDefaultLogger info:]   (address 0x100115e04  size 96  kind objc)
+  115e34  [self logLevel]
+  115e3c  if ([self logLevel] <u 3) goto loc_100115e50
+  115e4c  NSLog(@"INFO: %@", arg1)
+loc_100115e50:
+  115e60  return
+
+== -[GAIDefaultLogger warning:]   (address 0x100115e64  size 96  kind objc)
+  115e94  [self logLevel]
+  115e9c  if ([self logLevel] <u 2) goto loc_100115eb0
+  115eac  NSLog(@"WARNING: %@", arg1)
+loc_100115eb0:
+  115ec0  return
+
+== -[GAIDefaultLogger error:]   (address 0x100115ec4  size 92  kind objc)
+  115ef4  [self logLevel]
+  115ef8  if ([self logLevel] == 0) goto loc_100115f0c
+  115f08  NSLog(@"ERROR: %@", arg1)
+loc_100115f0c:
+  115f1c  return
+
+== -[GAIDefaultLogger logLevel]   (address 0x100115f20  size 16  kind objc)
+  115f2c  return
+
+== -[GAIDefaultLogger setLogLevel:]   (address 0x100115f30  size 16  kind objc)
+  115f38  self->_logLevel = arg1
+  115f3c  return

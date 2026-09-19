@@ -1,0 +1,201 @@
+
+== -[ADButtonWithSwipe initWithFrame:]   (address 0x1000243e0  size 60  kind objc)
+  02440c  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  024418  return
+
+== -[ADButtonWithSwipe awakeFromNib]   (address 0x10002441c  size 96  kind objc)
+  024438  [self initGestureRecognizers]
+  024450  [self setIsAccessibilityElement:1]
+  024478  tail [self setAccessibilityTraits:_UIAccessibilityTraitAllowsDirectInteraction[+0x0]]
+
+== -[ADButtonWithSwipe setWeaponManager:]   (address 0x10002447c  size 20  kind objc)
+
+== -[ADButtonWithSwipe initGestureRecognizers]   (address 0x100024490  size 1188  kind objc)
+  0244dc  [UIPanGestureRecognizer alloc]
+  024500  [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan)]
+  024510  self->pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan)]
+  024530  [self->pan setMaximumNumberOfTouches:1]
+  02454c  [self->pan setDelaysTouchesBegan:0]
+  024568  [self->pan setCancelsTouchesInView:1]
+  024580  [self->pan setDelegate:self]
+  02459c  [self addGestureRecognizer:self->pan]
+  0245ac  [UITapGestureRecognizer alloc]
+  0245c4  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleTap)]
+  0245d4  self->tripleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTripleTap)]
+  0245f4  [self->tripleTap setNumberOfTouchesRequired:3]
+  024604  [self->tripleTap setDelaysTouchesBegan:0]
+  024614  [self->tripleTap setCancelsTouchesInView:1]
+  024624  [self addGestureRecognizer:self->tripleTap]
+  024648  [self allTargets]
+  024674  [[self allTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  02467c  if ([[self allTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_100024828
+loc_1000246e4:
+loc_1000246ec:
+  0246f8  if (x8 == x28) goto loc_100024704
+  024700  objc_enumerationMutation([self allTargets])
+loc_100024704:
+  024718  [ADGameplayViewController class]
+  024728  [x0 isKindOfClass:[ADGameplayViewController class]]
+  02472c  if ([x0 isKindOfClass:[ADGameplayViewController class]] == 0) goto loc_1000247fc
+  024740  [self actionsForTarget:x2 forControlEvent:1]
+  024754  if ([self actionsForTarget:x2 forControlEvent:1] == 0) goto loc_1000247fc
+  024764  [self setGameplayViewController:x2]
+  024778  [self actionsForTarget:x2 forControlEvent:1]
+  024790  [[self actionsForTarget:x2 forControlEvent:1] objectAtIndex:0]
+  0247b4  NSSelectorFromString([[self actionsForTarget:x2 forControlEvent:1] objectAtIndex:0])
+  0247b8  self->selector = NSSelectorFromString([[self actionsForTarget:x2 forControlEvent:1] objectAtIndex:0])
+  0247e0  [self removeTarget:x2 action:self->selector forControlEvents:1]
+loc_1000247fc:
+  024804  if ((x20 + 1) <u [[self allTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_1000246ec
+  02481c  [[self allTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  024824  if ([[self allTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_1000246e4
+loc_100024828:
+  024858  [self addTarget:self action:@selector(touchedDown) forControlEvents:1]
+  024878  [self addTarget:self action:@selector(touchedUp) forControlEvents:64]
+  024898  [self addTarget:self action:@selector(touchDragExit) forControlEvents:32]
+  0248b8  [self addTarget:self action:@selector(touchDragOutside) forControlEvents:8]
+  0248f0  return
+
+== -[ADButtonWithSwipe gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:]   (address 0x100024934  size 8  kind objc)
+  024938  return
+
+== -[ADButtonWithSwipe update:]   (address 0x10002493c  size 952  kind objc)
+  024974  [self buttonIsDown]
+  024980  if ([self buttonIsDown] == 0) goto loc_100024a00
+  02498c  self->buttonPressedDuration = (self->buttonPressedDuration + arg1)
+  0249a0  if ((self->buttonPressedDuration + arg1) <= (or unordered) 0.28) goto loc_100024a04
+  0249b0  if ((self->buttonPressedDuration + arg1) > (or unordered) (arg1 + 0.28)) goto loc_100024a04
+  0249c0  if (self->hasSwiped != 0) goto loc_100024a04
+  0249d4  [self weaponManager]
+  0249f0  [[self weaponManager] continuousStart]
+  0249fc  goto loc_100024a04
+loc_100024a00:
+  024a00  self->buttonPressedDuration = 0
+loc_100024a04:
+  024a18  [self weaponManager]
+  024a38  [[self weaponManager] currentWeapon]
+  024a58  [[[self weaponManager] currentWeapon] name]
+  024a74  [[[[self weaponManager] currentWeapon] name] length]
+  024a7c  if ([[[[self weaponManager] currentWeapon] name] length] <u 2) goto loc_100024b3c
+  024a88  [self weaponManager]
+  024a9c  [[self weaponManager] currentWeapon]
+  024ab4  [[[self weaponManager] currentWeapon] name]
+  024adc  [[[[self weaponManager] currentWeapon] name] isEqualToString:self->currentImage]
+  024b14  if (!([[[[self weaponManager] currentWeapon] name] isEqualToString:self->currentImage] & 1)) goto loc_100024b48
+  024b38  return
+loc_100024b3c:
+  024b44  goto loc_100024c20
+loc_100024b48:
+  024b50  [self weaponManager]
+  024b64  [[self weaponManager] currentWeapon]
+  024b78  [[[self weaponManager] currentWeapon] name]
+  024b88  self->currentImage = [[[self weaponManager] currentWeapon] name]
+  024bd0  [NSString stringWithFormat:@"%@_icon_game", self->currentImage]
+  024bf4  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon_game", self->currentImage]]
+  024c1c  [self setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon_game", self->currentImage]] forState:0]
+loc_100024c20:
+  024c4c  return
+
+== -[ADButtonWithSwipe setButtonIsDown:]   (address 0x100024cf4  size 408  kind objc)
+  024d10  self->_buttonIsDown = arg1
+  024d1c  if (arg1 == 0) goto loc_100024d28
+  024d20  self->hasSwiped = 0
+  024d24  goto loc_100024e5c
+loc_100024d28:
+  024d2c  if (self->hasSwiped != 0) goto loc_100024e50
+  024d4c  if (self->buttonPressedDuration >= (or unordered) 0.28) goto loc_100024e50
+  024d64  [self weaponManager]
+  024d78  if ([self weaponManager] == 0) goto loc_100024dac
+  024d84  [self weaponManager]
+  024da0  [[self weaponManager] weaponSingleShot]
+  024da4  goto loc_100024e48
+  024da8  goto loc_100024e78
+loc_100024dac:
+  024dc0  [self gameplayViewController]
+  024de4  [ADOpenerGameplayViewController class]
+  024dfc  [[self gameplayViewController] isKindOfClass:[ADOpenerGameplayViewController class]]
+  024e0c  if (([[self gameplayViewController] isKindOfClass:[ADOpenerGameplayViewController class]] & 1)) goto loc_100024e50
+  024e18  [self gameplayViewController]
+  024e44  [[self gameplayViewController] performSelector:self->selector withObject:self]
+loc_100024e48:
+loc_100024e50:
+  024e58  self->buttonPressedDuration = 0
+loc_100024e5c:
+  024e68  return
+
+== -[ADButtonWithSwipe touchedDown]   (address 0x100024e8c  size 20  kind objc)
+  024e9c  tail [self setButtonIsDown:1]
+
+== -[ADButtonWithSwipe touchedUp]   (address 0x100024ea0  size 120  kind objc)
+  024ec0  [self setButtonIsDown:0]
+  024ed4  [self weaponManager]
+  024ef0  [[self weaponManager] continuousStop]
+  024f00  return
+
+== -[ADButtonWithSwipe touchDragOutside]   (address 0x100024f18  size 16  kind objc)
+  024f24  tail [self touchCanceled]
+
+== -[ADButtonWithSwipe touchDragExit]   (address 0x100024f28  size 16  kind objc)
+  024f34  tail [self touchCanceled]
+
+== -[ADButtonWithSwipe touchCanceled]   (address 0x100024f38  size 204  kind objc)
+  024f60  [self->pan state]
+  024f68  if ([self->pan state] != 1) goto loc_100024f98
+  024f88  if (self->buttonPressedDuration >= (or unordered) 0.28) goto loc_100024f98
+  024f94  return
+loc_100024f98:
+  024fac  [self setButtonIsDown:0]
+  024fc0  [self weaponManager]
+  024fdc  [[self weaponManager] continuousStop]
+  024fec  return
+
+== -[ADButtonWithSwipe handleSwipeGesture]   (address 0x100025004  size 80  kind objc)
+  025020  self->hasSwiped = 1
+  025034  [self setButtonIsDown:0]
+  025050  tail [self touchCanceled]
+
+== -[ADButtonWithSwipe handlePan]   (address 0x100025054  size 288  kind objc)
+  02507c  [ADGameParameters sharedParameters]
+  025098  [[ADGameParameters sharedParameters] controlScheme]
+  0250ac  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_100025108
+  0250c0  [self gameplayViewController]
+  0250e8  [[self gameplayViewController] panDetected:self->pan]
+  025100  self->hasSwiped = 1
+  025104  goto loc_10002512c
+loc_100025108:
+  025120  [self->pan state]
+  025128  if ([self->pan state] != 3) goto loc_10002514c
+loc_10002512c:
+  025148  tail [self touchCanceled]
+loc_10002514c:
+  025158  return
+
+== -[ADButtonWithSwipe handleTripleTap]   (address 0x100025174  size 196  kind objc)
+  02519c  [ADGameParameters sharedParameters]
+  0251b8  [[ADGameParameters sharedParameters] buttonMode]
+  0251c8  if (!([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_1000251dc
+  0251d8  return
+loc_1000251dc:
+  0251ec  [self weaponManager]
+  025208  [[self weaponManager] shootWithMelee]
+  02521c  return
+
+== -[ADButtonWithSwipe buttonIsDown]   (address 0x100025238  size 16  kind objc)
+  025244  return
+
+== -[ADButtonWithSwipe weaponManager]   (address 0x100025248  size 32  kind objc)
+  025264  return
+
+== -[ADButtonWithSwipe allowSwipe]   (address 0x100025268  size 20  kind objc)
+  025278  return
+
+== -[ADButtonWithSwipe setAllowSwipe:]   (address 0x10002527c  size 16  kind objc)
+  025284  self->_allowSwipe = arg1
+  025288  return
+
+== -[ADButtonWithSwipe gameplayViewController]   (address 0x10002528c  size 32  kind objc)
+  0252a8  return
+
+== -[ADButtonWithSwipe setGameplayViewController:]   (address 0x1000252ac  size 20  kind objc)
+
+== -[ADButtonWithSwipe .cxx_destruct]   (address 0x1000252c0  size 116  kind objc)

@@ -1,0 +1,392 @@
+
+== -[ADGameOverEndlessStatsViewController initWithNibName:bundle:]   (address 0x100011550  size 2064  kind objc)
+  0115c4  [super initWithNibName:arg1 bundle:arg2]
+  0115cc  if (self == 0) goto loc_100011c88
+  0115ec  [NSDictionary alloc]
+  011604  [[NSDictionary alloc] init]
+  011618  self->enemyData = [[NSDictionary alloc] init]
+  01162c  [NSDictionary alloc]
+  011638  [[NSDictionary alloc] init]
+  01164c  self->weaponsData = [[NSDictionary alloc] init]
+  011660  [NSDictionary alloc]
+  01166c  [[NSDictionary alloc] init]
+  011680  self->weaponsCriticalData = [[NSDictionary alloc] init]
+  011694  [NSDictionary alloc]
+  0116a0  [[NSDictionary alloc] init]
+  0116b4  self->miscData = [[NSDictionary alloc] init]
+  0116d8  [ADInGameStats singleton]
+  0116f4  [[ADInGameStats singleton] getEnemyData]
+  011708  self->enemyData = [[ADInGameStats singleton] getEnemyData]
+  011724  [ADInGameStats singleton]
+  011740  [[ADInGameStats singleton] getWeaponData]
+  011754  self->weaponsData = [[ADInGameStats singleton] getWeaponData]
+  011770  [ADInGameStats singleton]
+  01178c  [[ADInGameStats singleton] getWeaponCriticalHitsData]
+  0117a0  self->weaponsCriticalData = [[ADInGameStats singleton] getWeaponCriticalHitsData]
+  0117c8  [self->enemyData allKeys]
+  0117e4  self->enemyKeys = [self->enemyData allKeys]
+  0117f8  [self->weaponsData allKeys]
+  011818  self->weaponsKeys = [self->weaponsData allKeys]
+  01182c  [ADInGameStats singleton]
+  011848  [[ADInGameStats singleton] getMiscData]
+  01185c  self->miscData = [[ADInGameStats singleton] getMiscData]
+  011888  [NSBundle mainBundle]
+  0118b4  [[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]
+  0118d8  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]
+  0118f0  self->enemyPlist = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]
+  011910  if (self->weaponsData == 0) goto loc_10001191c
+  011918  if (self->enemyData != 0) goto loc_100011948
+loc_10001191c:
+  011944  [NSException raise:@"Nil data" format:@"The enemy and/or weapons data values are nil in the ADGameOverEndlessStatsViewController"]
+loc_100011948:
+  011958  [NSMutableArray alloc]
+  011964  [[NSMutableArray alloc] init]
+  011970  if (self->miscData == 0) goto loc_1000119a4
+  011980  [self->miscData count]
+  011984  if ([self->miscData count] == 0) goto loc_1000119a4
+  0119a0  [[[NSMutableArray alloc] init] addObject:@"MiscCellID"]
+loc_1000119a4:
+  0119a8  if (self->weaponsData == 0) goto loc_1000119dc
+  0119b8  [self->weaponsData count]
+  0119bc  if ([self->weaponsData count] == 0) goto loc_1000119dc
+  0119d8  [[[NSMutableArray alloc] init] addObject:@"WeaponCellID"]
+loc_1000119dc:
+  0119e0  if (self->enemyData == 0) goto loc_100011a14
+  0119f0  [self->enemyData count]
+  0119f4  if ([self->enemyData count] == 0) goto loc_100011a14
+  011a10  [[[NSMutableArray alloc] init] addObject:@"EnemyCellID"]
+loc_100011a14:
+  011a20  [NSMutableDictionary alloc]
+  011a28  [[NSMutableDictionary alloc] init]
+  011a4c  &@selector(numberWithInt:)
+  011a5c  &@selector(setObject:forKey:)
+  011a68  goto loc_100011a80
+loc_100011a6c:
+loc_100011a80:
+  011a88  [[[NSMutableArray alloc] init] count]
+  011a90  if (x26 >=u [[[NSMutableArray alloc] init] count]) goto loc_100011af0
+  011aa0  [[[NSMutableArray alloc] init] objectAtIndex:x2]
+  011abc  [NSNumber numberWithInt:x2]
+  011adc  [[[NSMutableDictionary alloc] init] setObject:[[[NSMutableArray alloc] init] objectAtIndex:x2] forKey:[NSNumber numberWithInt:x2]]
+  011ae0  goto loc_100011a6c
+  011aec  goto loc_100011c70
+loc_100011af0:
+  011b04  [self setSectionsDict:[[NSMutableDictionary alloc] init]]
+  011b1c  [self sectionsDict]
+  011b30  [[self sectionsDict] count]
+  011b48  [self setNumberOfSections:[[self sectionsDict] count]]
+  011b6c  [[[NSMutableArray alloc] init] containsObject:@"WeaponCellID"]
+  011b70  if ([[[NSMutableArray alloc] init] containsObject:@"WeaponCellID"] == 0) goto loc_100011c78
+  011b80  [NSMutableArray alloc]
+  011b90  [self->weaponsKeys count]
+  011ba8  [[NSMutableArray alloc] initWithCapacity:[self->weaponsKeys count]]
+  011bc4  [self setWeaponCells:[[NSMutableArray alloc] initWithCapacity:[self->weaponsKeys count]]]
+  011bf0  &@selector(addObject:)
+  011bf8  goto loc_100011c10
+loc_100011bfc:
+loc_100011c10:
+  011c18  [self->weaponsKeys count]
+  011c20  if (x22 >=u [self->weaponsKeys count]) goto loc_100011c78
+  011c30  [self createWeaponCellForRow:x2]
+  011c48  [self weaponCells]
+  011c60  [[self weaponCells] addObject:[self createWeaponCellForRow:x2]]
+  011c64  goto loc_100011bfc
+loc_100011c70:
+  011c74  goto loc_100011cdc
+loc_100011c78:
+loc_100011c88:
+  011cb8  return
+
+== -[ADGameOverEndlessStatsViewController viewDidLoad]   (address 0x100011d60  size 1004  kind objc)
+  011d9c  [super viewDidLoad]
+  011db4  [self statusBarViewController]
+  011dd4  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  011de8  [self statusBarViewController]
+  011e08  [[self statusBarViewController] setCurrenciesVisibility:0]
+  011e1c  [self statusBarViewController]
+  011e3c  [[self statusBarViewController] setDiamonsdsVisibility:0]
+  011e50  [self statusBarViewController]
+  011e6c  [[self statusBarViewController] pageTitle]
+  011e90  [[[self statusBarViewController] pageTitle] setText:@"STATISTICS"]
+  011eb8  [self tableView]
+  011ed8  [[self tableView] setAutoresizingMask:18]
+  011eec  [self tableView]
+  011f14  [ADStatsCell class]
+  011f38  [[self tableView] registerClass:[ADStatsCell class] forCellReuseIdentifier:@"MiscCellID"]
+  011f4c  [self tableView]
+  011f64  [ADStatsCell class]
+  011f7c  [[self tableView] registerClass:[ADStatsCell class] forCellReuseIdentifier:@"EnemyCellID"]
+  011f90  [self tableView]
+  011fac  [ADStatsHeader class]
+  011fcc  [[self tableView] registerClass:[ADStatsHeader class] forHeaderFooterViewReuseIdentifier:@"headerID"]
+  011fec  [GAI sharedInstance]
+  012008  [[GAI sharedInstance] defaultTracker]
+  012028  [&d_1003b83b0] -> @"&cd"
+  012044  [[[GAI sharedInstance] defaultTracker] set:@"&cd" value:@"Game over statistics screen"]
+  01205c  [GAIDictionaryBuilder createAppView]
+  012078  [[GAIDictionaryBuilder createAppView] build]
+  01209c  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]]
+  0120cc  return
+
+== -[ADGameOverEndlessStatsViewController didReceiveMemoryWarning]   (address 0x10001214c  size 60  kind objc)
+  012178  [super didReceiveMemoryWarning]
+  012184  return
+
+== -[ADGameOverEndlessStatsViewController tableView:willDisplayCell:forRowAtIndexPath:]   (address 0x100012188  size 648  kind objc)
+  0121bc  [arg2 textLabel]
+  0121e4  [UIColor whiteColor]
+  01220c  [[arg2 textLabel] setTextColor:[UIColor whiteColor]]
+  012230  [arg2 detailTextLabel]
+  012248  [UIColor whiteColor]
+  012264  [[arg2 detailTextLabel] setTextColor:[UIColor whiteColor]]
+  012288  [UIColor clearColor]
+  0122ac  [arg2 setBackgroundColor:[UIColor clearColor]]
+  0122cc  [ADGameParameters sharedParameters]
+  0122e8  [[ADGameParameters sharedParameters] isIphone]
+  012300  [arg2 textLabel]
+  01233c  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  012360  [[arg2 textLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  01238c  return
+
+== -[ADGameOverEndlessStatsViewController tableView:numberOfRowsInSection:]   (address 0x100012410  size 488  kind objc)
+  01243c  [self sectionsDict]
+  012464  [NSNumber numberWithInteger:arg2]
+  012488  [[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]]
+  0124c4  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"EnemyCellID"]
+  0124c8  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"EnemyCellID"] == 0) goto loc_1000124f0
+  0124e4  [self->enemyData count]
+  0124ec  goto loc_100012598
+loc_1000124f0:
+  012500  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"MiscCellID"]
+  012504  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"MiscCellID"] == 0) goto loc_10001252c
+  012520  [self->miscData count]
+  012528  goto loc_100012598
+loc_10001252c:
+  01253c  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"WeaponCellID"]
+  012540  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"WeaponCellID"] == 0) goto loc_100012568
+  01255c  [self->weaponsData count]
+  012564  goto loc_100012598
+loc_100012568:
+  012590  [NSException raise:@"Section data incorrect" format:@"No data for section %d", arg2]
+loc_100012598:
+  0125b8  return
+
+== -[ADGameOverEndlessStatsViewController tableView:heightForRowAtIndexPath:]   (address 0x1000125f8  size 728  kind objc)
+  012634  [self sectionsDict]
+  01265c  [arg2 section]
+  012674  [NSNumber numberWithInteger:[arg2 section]]
+  01269c  [[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]]
+  0126d4  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]] isEqualToString:@"WeaponCellID"]
+  0126d8  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]] isEqualToString:@"WeaponCellID"] == 0) goto loc_100012824
+  0126f8  [arg2 row]
+  012710  [self->weaponsKeys objectAtIndex:[arg2 row]]
+  012734  [self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:[arg2 row]]]
+  012750  [[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:[arg2 row]]] objectForKey:@"melee"]
+  01276c  [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:[arg2 row]]] objectForKey:@"melee"] boolValue]
+  012788  t1 = ([[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:[arg2 row]]] objectForKey:@"melee"] boolValue] != 0 ? 1 : 5)
+  0127a0  [ADStatsMultiCell defaultSubTitleLabelOffset]
+  0127b8  [ADStatsMultiCell defaultSubTitleCellHeight]
+  0127d0  [ADStatsMultiCell defaultCellHeight]
+  0127e8  [ADStatsMultiCell defaultCellOffset]
+  0127ec  t2 = ([ADStatsMultiCell defaultSubTitleLabelOffset] + [ADStatsMultiCell defaultSubTitleCellHeight])
+  012808  t3 = ((t2 + ((float)t1 * [ADStatsMultiCell defaultCellHeight])) + ((float)(t1 + 1) * [ADStatsMultiCell defaultCellOffset]))
+  012820  goto loc_100012830
+loc_100012824:
+loc_100012830:
+  01285c  return
+
+== -[ADGameOverEndlessStatsViewController numberOfSectionsInTableView:]   (address 0x1000128d0  size 32  kind objc)
+  0128e4  [self numberOfSections]
+  0128ec  return
+
+== -[ADGameOverEndlessStatsViewController tableView:cellForRowAtIndexPath:]   (address 0x1000128f0  size 644  kind objc)
+  012934  [self sectionsDict]
+  01295c  [arg2 section]
+  012974  [NSNumber numberWithInteger:[arg2 section]]
+  012998  [[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]]
+  0129d4  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]] isEqualToString:@"MiscCellID"]
+  0129d8  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]] isEqualToString:@"MiscCellID"] == 0) goto loc_100012a00
+  0129f4  [self createMiscCellForRowAtIndexPath:arg2 ForTableView:arg1]
+  0129fc  goto loc_100012a38
+loc_100012a00:
+  012a10  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]] isEqualToString:@"EnemyCellID"]
+  012a14  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]] isEqualToString:@"EnemyCellID"] == 0) goto loc_100012a70
+  012a30  [self createEnemyCellForRowAtIndexPath:arg2 ForTableView:arg1]
+loc_100012a38:
+  012a6c  return
+  012a80  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]] isEqualToString:@"WeaponCellID"]
+  012a84  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:[arg2 section]]] isEqualToString:@"WeaponCellID"] == 0) goto loc_100012aec
+  012a98  [self weaponCells]
+  012ab8  [arg2 row]
+  012ad0  [[self weaponCells] objectAtIndex:[arg2 row]]
+  012b10  [NSException raise:@"Indexpath error" format:@"Unknown indexpath"]
+
+== -[ADGameOverEndlessStatsViewController createMiscCellForRowAtIndexPath:ForTableView:]   (address 0x100012b74  size 680  kind objc)
+  012bbc  [arg2 dequeueReusableCellWithIdentifier:@"MiscCellID"]
+  012bf0  [arg1 row]
+  012c08  [NSNumber numberWithInteger:[arg1 row]]
+  012c30  [self->miscData objectForKey:[NSNumber numberWithInteger:[arg1 row]]]
+  012c58  [[arg2 dequeueReusableCellWithIdentifier:@"MiscCellID"] keyLabel]
+  012c78  [[self->miscData objectForKey:[NSNumber numberWithInteger:[arg1 row]]] objectForKey:@"name"]
+  012ca0  [[[arg2 dequeueReusableCellWithIdentifier:@"MiscCellID"] keyLabel] setText:[[self->miscData objectForKey:[NSNumber numberWithInteger:[arg1 row]]] objectForKey:@"name"]]
+  012ccc  [[self->miscData objectForKey:[NSNumber numberWithInteger:[arg1 row]]] objectForKey:@"value"]
+  012cf8  [NSString stringWithFormat:@"%@", [[self->miscData objectForKey:[NSNumber numberWithInteger:[arg1 row]]] objectFor…]
+  012d20  [[arg2 dequeueReusableCellWithIdentifier:@"MiscCellID"] valueLabel]
+  012d38  [[[arg2 dequeueReusableCellWithIdentifier:@"MiscCellID"] valueLabel] setText:[NSString stringWithFormat:@"%@", [[self->miscData objectForKey:[NSNumber numberWithInteger:[arg1 row]]] objectFor…]]
+  012d5c  [[arg2 dequeueReusableCellWithIdentifier:@"MiscCellID"] keyLabelSize:0.8]
+  012d94  return
+
+== -[ADGameOverEndlessStatsViewController createEnemyCellForRowAtIndexPath:ForTableView:]   (address 0x100012e1c  size 852  kind objc)
+  012e68  [arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"]
+  012e88  [[arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"] setSelectionStyle:0]
+  012eac  [arg1 row]
+  012ec8  [self->enemyKeys objectAtIndex:[arg1 row]]
+  012ee8  [[arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"] keyLabel]
+  012f0c  [[[arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"] keyLabel] setText:[self->enemyKeys objectAtIndex:[arg1 row]]]
+  012f30  [arg1 row]
+  012f40  [self->enemyKeys objectAtIndex:[arg1 row]]
+  012f68  [self->enemyData objectForKey:[self->enemyKeys objectAtIndex:[arg1 row]]]
+  012f94  [NSDictionary class]
+  012fac  [[self->enemyData objectForKey:[self->enemyKeys objectAtIndex:[arg1 row]]] isKindOfClass:[NSDictionary class]]
+  012fb0  if ([[self->enemyData objectForKey:[self->enemyKeys objectAtIndex:[arg1 row]]] isKindOfClass:[NSDictionary class]] == 0) goto loc_10001305c
+  012fc4  [[self->enemyData objectForKey:[self->enemyKeys objectAtIndex:[arg1 row]]] objectForKey:@"Killed"]
+  012fe0  [[[self->enemyData objectForKey:[self->enemyKeys objectAtIndex:[arg1 row]]] objectForKey:@"Killed"] integerValue]
+  013000  [[arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"] valueLabel]
+  013030  [NSString stringWithFormat:@"%d", [[[self->enemyData objectForKey:[self->enemyKeys objectAtIndex:[arg1 row]]] obje…]
+  01304c  [[[arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"] valueLabel] setText:[NSString stringWithFormat:@"%d", [[[self->enemyData objectForKey:[self->enemyKeys objectAtIndex:[arg1 row]]] obje…]]
+  013058  goto loc_10001308c
+loc_10001305c:
+  01306c  [[arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"] valueLabel]
+  013088  [[[arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"] valueLabel] setText:@"-1"]
+loc_10001308c:
+  0130ac  [[arg2 dequeueReusableCellWithIdentifier:@"EnemyCellID"] keyLabelSize:0.8]
+  0130e8  return
+
+== -[ADGameOverEndlessStatsViewController createWeaponCellForRow:]   (address 0x100013170  size 1912  kind objc)
+  0131c0  [ADStatsMultiCell alloc]
+  0131dc  [[ADStatsMultiCell alloc] initWithStyle:0 reuseIdentifier:@"WeaponCellID"]
+  013200  [self->weaponsKeys objectAtIndex:arg1]
+  013230  [self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]]
+  01324c  [[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"melee"]
+  013268  [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"melee"] boolValue]
+  013280  if ([[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"melee"] boolValue] == 0) goto loc_100013384
+  013294  [[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"kills"]
+  0132b0  [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"kills"] integerValue]
+  0132d0  [NSString stringWithFormat:@"%d", [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] object…]
+  013314  [NSArray arrayWithObjects:&x29[-0x70] count:1]
+  013338  [NSArray arrayWithObjects:&sp[0x78] count:1]
+  013364  [[[ADStatsMultiCell alloc] initWithStyle:0 reuseIdentifier:@"WeaponCellID"] populateWithSubtitleString:[self->weaponsKeys objectAtIndex:arg1] Keys:[NSArray arrayWithObjects:&x29[-0x70] count:1] Values:[NSArray arrayWithObjects:&sp[0x78] count:1]]
+  013380  goto loc_100013750
+loc_100013384:
+  0133ac  [[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"shotsFired"]
+  0133cc  [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"shotsFired"] integerValue]
+  0133f0  [NSString stringWithFormat:@"%d", [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] object…]
+  013428  [[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"timeSpentWithWeapon"]
+  013444  [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"timeSpentWithWeapon"] doubleValue]
+  013478  [ADPersistentStats persistentStats]
+  013498  [[ADPersistentStats persistentStats] gameTimeToString:[[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"timeSpentWithWeapon"] doubleValue]]
+  0134d8  [[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"displayName"]
+  0134f4  [self->weaponsCriticalData objectForKey:[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"displayName"]]
+  013508  [[self->weaponsCriticalData objectForKey:[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"displayName"]] integerValue]
+  013544  [NSString stringWithFormat:@"%d", [[self->weaponsCriticalData objectForKey:[[self->weaponsData objectForKey:[self-…]
+  013574  [[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"kills"]
+  013588  [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"kills"] integerValue]
+  0135a0  [NSString stringWithFormat:@"%d", [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] object…]
+  0135cc  [[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"shotsHit"]
+  0135ec  [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"shotsHit"] floatValue]
+  013608  [[NSString stringWithFormat:@"%d", [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] object…] floatValue]
+  013618  t1 = ([[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] objectForKey:@"shotsHit"] floatValue] / [[NSString stringWithFormat:@"%d", [[[self->weaponsData objectForKey:[self->weaponsKeys objectAtIndex:arg1]] object…] floatValue])
+  01363c  [NSString stringWithFormat:@"%.0f%%", (t1 * 100)]
+  0136a8  [NSArray arrayWithObjects:&sp[0x50] count:5]
+  0136d8  [NSArray arrayWithObjects:&sp[0x28] count:5]
+  013704  [[[ADStatsMultiCell alloc] initWithStyle:0 reuseIdentifier:@"WeaponCellID"] populateWithSubtitleString:[self->weaponsKeys objectAtIndex:arg1] Keys:[NSArray arrayWithObjects:&sp[0x50] count:5] Values:[NSArray arrayWithObjects:&sp[0x28] count:5]]
+loc_100013750:
+  013790  return
+
+== -[ADGameOverEndlessStatsViewController tableView:heightForHeaderInSection:]   (address 0x1000138e8  size 192  kind objc)
+  013918  [arg1 dataSource]
+  01393c  [[arg1 dataSource] tableView:arg1 numberOfRowsInSection:arg2]
+  013980  return
+
+== -[ADGameOverEndlessStatsViewController tableView:viewForHeaderInSection:]   (address 0x1000139a8  size 648  kind objc)
+  0139d4  if (arg2 != 2) goto loc_1000139f4
+  0139ec  [arg1 numberOfRowsInSection:2]
+  0139f0  if ([arg1 numberOfRowsInSection:2] == 0) goto loc_100013bb8
+loc_1000139f4:
+  013a0c  [arg1 dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"]
+  013a2c  [self sectionsDict]
+  013a54  [NSNumber numberWithInteger:arg2]
+  013a78  [[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]]
+  013ab4  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"MiscCellID"]
+  013ab8  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"MiscCellID"] == 0) goto loc_100013afc
+  013acc  [[arg1 dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"] headerTitleLabel]
+  013af0  [[[arg1 dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"] headerTitleLabel] setText:@"Your stats!"]
+  013af4  goto loc_100013ba4
+  013af8  goto loc_100013c00
+loc_100013afc:
+  013b0c  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"EnemyCellID"]
+  013b10  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"EnemyCellID"] == 0) goto loc_100013b54
+  013b24  [[arg1 dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"] headerTitleLabel]
+  013b48  [[[arg1 dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"] headerTitleLabel] setText:@"Enemies!"]
+  013b4c  goto loc_100013ba4
+  013b50  goto loc_100013c00
+loc_100013b54:
+  013b64  [[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"WeaponCellID"]
+  013b68  if ([[[self sectionsDict] objectForKey:[NSNumber numberWithInteger:arg2]] isEqualToString:@"WeaponCellID"] == 0) goto loc_100013bac
+  013b7c  [[arg1 dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"] headerTitleLabel]
+  013ba0  [[[arg1 dequeueReusableHeaderFooterViewWithIdentifier:@"headerID"] headerTitleLabel] setText:@"Weapons!"]
+loc_100013ba4:
+loc_100013bac:
+  013bb4  goto loc_100013bbc
+loc_100013bb8:
+loc_100013bbc:
+  013bd8  return
+
+== -[ADGameOverEndlessStatsViewController backButtonPressed]   (address 0x100013c30  size 156  kind objc)
+  013c64  [super backButtonPressed]
+  013c78  [self presentingViewController]
+  013c9c  [[self presentingViewController] dismissViewControllerAnimated:0 completion:0]
+  013cb4  return
+
+== -[ADGameOverEndlessStatsViewController scrollViewDidScroll:]   (address 0x100013ccc  size 4  kind objc)
+  013ccc  return
+
+== -[ADGameOverEndlessStatsViewController tableView]   (address 0x100013cd0  size 32  kind objc)
+  013cec  return
+
+== -[ADGameOverEndlessStatsViewController setTableView:]   (address 0x100013cf0  size 20  kind objc)
+
+== -[ADGameOverEndlessStatsViewController delegate]   (address 0x100013d04  size 32  kind objc)
+  013d20  return
+
+== -[ADGameOverEndlessStatsViewController setDelegate:]   (address 0x100013d24  size 20  kind objc)
+
+== -[ADGameOverEndlessStatsViewController numberOfSections]   (address 0x100013d38  size 16  kind objc)
+  013d44  return
+
+== -[ADGameOverEndlessStatsViewController setNumberOfSections:]   (address 0x100013d48  size 16  kind objc)
+  013d50  self->_numberOfSections = arg1
+  013d54  return
+
+== -[ADGameOverEndlessStatsViewController weaponCells]   (address 0x100013d58  size 16  kind objc)
+  013d64  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverEndlessStatsViewController setWeaponCells:]   (address 0x100013d68  size 12  kind objc)
+  013d70  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverEndlessStatsViewController sectionsDict]   (address 0x100013d74  size 16  kind objc)
+  013d80  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverEndlessStatsViewController setSectionsDict:]   (address 0x100013d84  size 12  kind objc)
+  013d8c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverEndlessStatsViewController .cxx_destruct]   (address 0x100013d90  size 256  kind objc)
+
+== sub_100013e90   (address 0x100013e90  size 260  kind sub)
+  013ec8  [ADGameParameters sharedParameters]
+  013ee8  [[ADGameParameters sharedParameters] isIphone]
+  013f10  store g_10042d960 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? 30 : 60)
+  013f1c  [ADGameParameters sharedParameters]
+  013f30  [[ADGameParameters sharedParameters] isIphone]
+  013f54  store g_10042d968 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? 50 : 180)
+  013f70  return

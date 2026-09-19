@@ -1,0 +1,229 @@
+
+== -[S3DRepo didReceiveMemoryWarning:]   (address 0x10010ba70  size 180  kind objc)
+  10ba8c  [self cache]
+  10baa8  [[self cache] removeAllObjects]
+  10bacc  [NSMutableDictionary dictionaryWithCapacity:5]
+  10baf0  [self setCache:[NSMutableDictionary dictionaryWithCapacity:5]]
+  10bb00  return
+
+== -[S3DRepo dealloc]   (address 0x10010bb24  size 296  kind objc)
+  10bb44  [self class]
+  10bb48  NSStringFromClass([self class])
+  10bb64  NSLog(@"Repo %@ going away", NSStringFromClass([self class]))
+  10bb84  [NSNotificationCenter defaultCenter]
+  10bbb4  [[NSNotificationCenter defaultCenter] removeObserver:self name:_UIApplicationDidReceiveMemoryWarningNotification[+0x0] object:0]
+  10bbe0  [super dealloc]
+  10bbf0  return
+  10bc3c  [super dealloc]
+  10bc48  call sub_10000b760
+
+== -[S3DRepo initWithBundlePath:]   (address 0x10010bc4c  size 380  kind objc)
+  10bc94  [super init]
+  10bc9c  if (self == 0) goto loc_10010bd68
+  10bcb8  [self setBundlePath:arg1]
+  10bcd8  [NSMutableDictionary dictionaryWithCapacity:5]
+  10bcfc  [self setCache:[NSMutableDictionary dictionaryWithCapacity:5]]
+  10bd20  [NSNotificationCenter defaultCenter]
+  10bd5c  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:_UIApplicationDidReceiveMemoryWarningNotification[+0x0] object:0]
+loc_10010bd68:
+  10bd84  return
+
+== +[S3DRepo repoForBundlePath:]   (address 0x10010bdc8  size 272  kind objc)
+  10bdec  if (g_10042dc00 != 0) goto loc_10010be28
+  10be08  [NSMutableDictionary dictionaryWithCapacity:3]
+  10be18  store g_10042dc00 = [NSMutableDictionary dictionaryWithCapacity:3]
+loc_10010be28:
+  10be38  [g_10042dc00 objectForKey:arg1]
+  10be48  if ([g_10042dc00 objectForKey:arg1] != 0) goto loc_10010be98
+  10be60  [S3DRepo alloc]
+  10be74  [[S3DRepo alloc] initWithBundlePath:arg1]
+  10be94  [g_10042dc00 setObject:[[S3DRepo alloc] initWithBundlePath:arg1] forKey:arg1]
+loc_10010be98:
+  10beb0  return
+
+== -[S3DRepo each:block:]   (address 0x10010bed8  size 1384  kind objc)
+  10bf30  [NSFileManager defaultManager]
+  10bf54  [NSBundle mainBundle]
+  10bf70  [[NSBundle mainBundle] bundlePath]
+  10bfb8  [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->bundlePath]
+  10bfcc  NSStringFromClass(arg1)
+  10bff0  [NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)]
+  10c024  [[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] isDirectory:&sp[0x97]]
+  10c028  if (([[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] isDirectory:&sp[0x97]] & 1)) goto loc_10010c0f4
+  10c054  [[NSFileManager defaultManager] createDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] withIntermediateDirectories:1 attributes:0 error:&sp[0x88]]
+  10c064  if (0 == 0) goto loc_10010c0f4
+  10c07c  [NSException alloc]
+  10c094  [0 description]
+  10c0c4  [[NSException alloc] initWithName:@"File System Error" reason:[0 description] userInfo:0]
+  10c0dc  [[[NSException alloc] initWithName:@"File System Error" reason:[0 description] userInfo:0] raise]
+  10c0f0  goto loc_10010c0f8
+loc_10010c0f4:
+loc_10010c0f8:
+  10c114  [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] error:&sp[0x80]]
+  10c13c  if (0 == 0) goto loc_10010c1c8
+  10c154  [NSException alloc]
+  10c16c  [0 description]
+  10c19c  [[NSException alloc] initWithName:@"File System Error" reason:[0 description] userInfo:0]
+  10c1b4  [[[NSException alloc] initWithName:@"File System Error" reason:[0 description] userInfo:0] raise]
+loc_10010c1c8:
+  10c208  [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] error:&sp[0x80]] countByEnumeratingWithState:&sp[0x40] objects:&sp[0x98] count:16]
+  10c210  if ([[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] error:&sp[0x80]] countByEnumeratingWithState:&sp[0x40] objects:&sp[0x98] count:16] == 0) goto loc_10010c2a4
+  10c220  &@selector(stringByDeletingPathExtension)
+loc_10010c228:
+loc_10010c22c:
+  10c238  if (x8 == x20) goto loc_10010c244
+  10c240  objc_enumerationMutation([[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] error:&sp[0x80]])
+loc_10010c244:
+  10c250  [x0 stringByDeletingPathExtension]
+  10c26c  call arg2[+0x10]
+  10c280  if ((x26 + 1) <u [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFor…) goto loc_10010c22c
+  10c298  [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] error:&sp[0x80]] countByEnumeratingWithState:&sp[0x40] objects:&sp[0x98] count:16]
+  10c2a0  if ([[[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@/", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, NSStringFromClass(arg1)] error:&sp[0x80]] countByEnumeratingWithState:&sp[0x40] objects:&sp[0x98] count:16] != 0) goto loc_10010c228
+loc_10010c2a4:
+  10c320  return
+
+== -[S3DRepo generateIdForClass:]   (address 0x10010c440  size 448  kind objc)
+  10c4ec  [self each:arg1 block:^{-[S3DRepo generateIdForClass:]_block_invoke_3 captures +0x30=0, +0x40=0x32000000, +0x48=&-[S3DRepo generateIdForClass:]_block_in…, +0x50=&-[S3DRepo generateIdForClass:]_block_in…}]
+  10c500  if (x8 == 0) goto loc_10010c540
+  10c52c  [NSString stringWithFormat:@"%@#%d", sp[0], (x9 + 1)]
+  10c53c  goto loc_10010c588
+loc_10010c540:
+  10c544  NSStringFromClass(arg1)
+  10c570  [NSString stringWithFormat:@"%@#0", NSStringFromClass(arg1)]
+loc_10010c588:
+  10c590  Block_object_dispose(&sp[0x40], 8)
+  10c5a4  Block_object_dispose(&x29[-0x40], 8)
+  10c5bc  return
+  10c5cc  Block_object_dispose(&sp[0x40], 8)
+  10c5e0  Block_object_dispose(&x29[-0x40], 8)
+
+== -[S3DRepo generateIdForClass:]_block_invoke   (address 0x10010c600  size 16  kind block)
+  10c604  block[+0x28] = blockarg1[+0x28]
+  10c608  blockarg1[+0x28] = 0
+  10c60c  return
+
+== -[S3DRepo generateIdForClass:]_block_invoke_2   (address 0x10010c610  size 8  kind block)
+  10c614  return
+
+== -[S3DRepo generateIdForClass:]_block_invoke_3   (address 0x10010c618  size 192  kind block)
+  10c644  [blockarg1 anchorValue]
+  10c64c  if ([blockarg1 anchorValue] < 0) goto loc_10010c6b0
+  10c65c  if (block[+0x20][+0x8][+0x28] != 0) goto loc_10010c694
+  10c670  [blockarg1 anchorKey]
+  10c688  block[+0x20][+0x8][+0x28] = [blockarg1 anchorKey]
+loc_10010c694:
+  10c6a4  if (block[+0x28][+0x8][+0x18] >= [blockarg1 anchorValue]) goto loc_10010c6b0
+  10c6ac  block[+0x28][+0x8][+0x18] = [blockarg1 anchorValue]
+loc_10010c6b0:
+  10c6c0  return
+
+== sub_10010c6d8   (address 0x10010c6d8  size 60  kind sub)
+  10c6f8  Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+  10c710  tail Block_object_assign((a0 + 40), a1[+0x28], 8)
+
+== sub_10010c714   (address 0x10010c714  size 48  kind sub)
+  10c72c  Block_object_dispose(a0[+0x20], 8, a2, a3)
+  10c740  tail Block_object_dispose(a0[+0x28], 8)
+
+== -[S3DRepo extractClassName:]   (address 0x10010c744  size 296  kind objc)
+  10c774  [arg1 componentsSeparatedByString:@"."]
+  10c784  if ([arg1 componentsSeparatedByString:@"."] == 0) goto loc_10010c7f0
+  10c798  [[arg1 componentsSeparatedByString:@"."] count]
+  10c7a0  if ([[arg1 componentsSeparatedByString:@"."] count] != 2) goto loc_10010c7f0
+  10c7b8  [[arg1 componentsSeparatedByString:@"."] objectAtIndex:1]
+  10c7d4  [[[arg1 componentsSeparatedByString:@"."] objectAtIndex:1] anchorKey]
+  10c7ec  goto loc_10010c810
+loc_10010c7f0:
+  10c800  [arg1 anchorKey]
+loc_10010c810:
+  10c830  return
+
+== -[S3DRepo instancePath:]   (address 0x10010c86c  size 396  kind objc)
+  10c8a8  [NSBundle mainBundle]
+  10c8c4  [[NSBundle mainBundle] bundlePath]
+  10c90c  [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->bundlePath]
+  10c930  [self extractClassName:arg1]
+  10c958  [NSString stringWithFormat:@"%@/%@/%@.sexp", [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], self->b…, [self extractClassName:arg1], arg1]
+  10c9a0  return
+
+== -[S3DRepo read:]   (address 0x10010c9f8  size 324  kind objc)
+  10ca30  [NSFileManager defaultManager]
+  10ca54  [self instancePath:arg1]
+  10ca80  [[NSFileManager defaultManager] fileExistsAtPath:[self instancePath:arg1] isDirectory:&sp[0xf]]
+  10ca90  t1 = ([[NSFileManager defaultManager] fileExistsAtPath:[self instancePath:arg1] isDirectory:&sp[0xf]] & (0 == 0))
+  10ca98  if (t1 != 1) goto loc_10010cac4
+  10cab0  [[NSFileManager defaultManager] contentsAtPath:[self instancePath:arg1]]
+  10cac0  goto loc_10010cad8
+loc_10010cac4:
+  10cad0  NSLog(@"### File not found: %@", [self instancePath:arg1])
+loc_10010cad8:
+  10cb04  return
+
+== -[S3DRepo write:data:]   (address 0x10010cb3c  size 260  kind objc)
+  10cb80  [NSFileManager defaultManager]
+  10cba4  [self instancePath:arg1]
+  10cbd0  [[NSFileManager defaultManager] createFileAtPath:[self instancePath:arg1] contents:arg2 attributes:0]
+  10cbfc  return
+
+== -[S3DRepo load:]   (address 0x10010cc40  size 660  kind objc)
+  10cc80  [self cache]
+  10cca0  [[self cache] objectForKey:arg1]
+  10ccb8  if ([[self cache] objectForKey:arg1] != 0) goto loc_10010ce38
+  10ccd0  [self extractClassName:arg1]
+  10cce0  NSClassFromString([self extractClassName:arg1])
+  10ccf0  [0x10041dec0] -> &d_100429208
+  10cd04  [NSClassFromString([self extractClassName:arg1]) conformsToProtocol:&d_100429208]
+  10cd08  if ([NSClassFromString([self extractClassName:arg1]) conformsToProtocol:&d_100429208] == 0) goto loc_10010cdec
+  10cd28  [self read:arg1]
+  10cd50  [SExpIO decode:[self read:arg1]]
+  10cd68  if ([SExpIO decode:[self read:arg1]] == 0) goto loc_10010cdfc
+  10cd78  [NSClassFromString([self extractClassName:arg1]) decode:[SExpIO decode:[self read:arg1]]]
+  10cd9c  [[NSClassFromString([self extractClassName:arg1]) decode:[SExpIO decode:[self read:arg1]]] setXId:arg1]
+  10cda8  [self cache]
+  10cdcc  [[self cache] setObject:[NSClassFromString([self extractClassName:arg1]) decode:[SExpIO decode:[self read:arg1]]] forKey:arg1]
+  10cde8  goto loc_10010cdf0
+loc_10010cdec:
+loc_10010cdf0:
+  10cdf8  goto loc_10010ce38
+loc_10010cdfc:
+  10ce10  [arg1 UTF8String]
+  10ce20  NSLog(@"### Failed to parse sexp - invalid format %s", [arg1 UTF8String])
+loc_10010ce38:
+  10ce5c  return
+
+== -[S3DRepo store:]   (address 0x10010ced4  size 536  kind objc)
+  10cf04  [arg1 xId]
+  10cf24  [arg1 class]
+  10cf2c  if ([arg1 xId] == 0) goto loc_10010cf48
+  10cf40  [[arg1 xId] length]
+  10cf44  if ([[arg1 xId] length] != 0) goto loc_10010cfd8
+loc_10010cf48:
+  10cf5c  [self generateIdForClass:[arg1 class]]
+  10cf8c  [arg1 setXId:[self generateIdForClass:[arg1 class]]]
+  10cfa4  [self cache]
+  10cfc8  [[self cache] setObject:arg1 forKey:[self generateIdForClass:[arg1 class]]]
+loc_10010cfd8:
+  10cfe0  [0x10041dec0] -> &d_100429208
+  10cff4  [[arg1 class] conformsToProtocol:&d_100429208]
+  10cff8  if ([[arg1 class] conformsToProtocol:&d_100429208] == 0) goto loc_10010d074
+  10d014  [arg1 encode]
+  10d038  [SExpIO encode:[arg1 encode]]
+  10d060  [self write:x2 data:[SExpIO encode:[arg1 encode]]]
+loc_10010d074:
+  10d090  return
+
+== -[S3DRepo bundlePath]   (address 0x10010d0ec  size 16  kind objc)
+  10d0f8  return
+
+== -[S3DRepo setBundlePath:]   (address 0x10010d0fc  size 56  kind objc)
+  10d120  self->bundlePath = arg1
+  10d130  return
+
+== -[S3DRepo cache]   (address 0x10010d134  size 16  kind objc)
+  10d140  return
+
+== -[S3DRepo setCache:]   (address 0x10010d144  size 56  kind objc)
+  10d168  self->cache = arg1
+  10d178  return
+
+== -[S3DRepo .cxx_destruct]   (address 0x10010d17c  size 64  kind objc)

@@ -1,0 +1,38 @@
+{
+ "Ambiant": "Horde_ambiant",
+ "Enemies": {
+  "Shield": {
+   "spawn_sound": "",
+   "spawn_angle": 150,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_angle": 250,
+   "spawn_distance": 10,
+   "spawn_time": 15
+  },
+  "Dodge": {
+   "spawn_sound": "",
+   "spawn_angle": 70,
+   "spawn_distance": 10,
+   "spawn_time": 27
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_angle": 310,
+   "spawn_distance": 10,
+   "spawn_time": 21
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_angle": 90,
+   "spawn_distance": 10,
+   "spawn_time": 6
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "5"
+ }
+}

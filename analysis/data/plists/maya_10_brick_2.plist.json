@@ -1,0 +1,98 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_maya_10_2"
+  }
+ ],
+ "Enemies": {
+  "Shield": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "bastard_maya_10_2"
+   },
+   "spawn_angle": 50,
+   "spawn_distance": 10
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "bastard_maya_10_2"
+   },
+   "spawn_angle": 310,
+   "spawn_distance": 10
+  },
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 200,
+   "spawn_distance": 10,
+   "spawn_time": 13
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 170,
+   "spawn_distance": 10
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "bastard_maya_10_2"
+   },
+   "spawn_angle": 115,
+   "spawn_distance": 10
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "bastard_maya_10_2"
+   },
+   "spawn_angle": 250,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 230,
+   "spawn_distance": 10,
+   "spawn_time": 13
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10,
+   "spawn_time": 13
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 280,
+   "spawn_distance": 10,
+   "spawn_time": 13
+  }
+ }
+}

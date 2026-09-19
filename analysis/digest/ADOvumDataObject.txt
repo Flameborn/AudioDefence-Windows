@@ -1,0 +1,15 @@
+
+== -[ADOvumDataObject objName]   (address 0x100016fa8  size 16  kind objc)
+  016fb4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADOvumDataObject setObjName:]   (address 0x100016fb8  size 12  kind objc)
+  016fc0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADOvumDataObject objTag]   (address 0x100016fc4  size 16  kind objc)
+  016fd0  return
+
+== -[ADOvumDataObject setObjTag:]   (address 0x100016fd4  size 16  kind objc)
+  016fdc  self->_objTag = arg1
+  016fe0  return
+
+== -[ADOvumDataObject .cxx_destruct]   (address 0x100016fe4  size 20  kind objc)

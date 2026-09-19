@@ -1,0 +1,20 @@
+
+== -[ADSlowMotionPowerUp preload]   (address 0x1000a6cbc  size 240  kind objc)
+  0a6ce4  [S3DEngine engine]
+  0a6d08  [[S3DEngine engine] playListWithName:@"_slowmotion"]
+  0a6d2c  [self setPlaylist:[[S3DEngine engine] playListWithName:@"_slowmotion"]]
+  0a6d50  [self playlist]
+  0a6d6c  [[self playlist] activate]
+  0a6d80  return
+
+== -[ADSlowMotionPowerUp use]   (address 0x1000a6dac  size 216  kind objc)
+  0a6dd0  [self playlist]
+  0a6df4  [[self playlist] S3DSound:@"powerup_slowmo_in"]
+  0a6e20  [[[self playlist] S3DSound:@"powerup_slowmo_in"] play:0]
+  0a6e44  [super use]
+  0a6e60  return
+
+== -[ADSlowMotionPowerUp clean]   (address 0x1000a6e84  size 92  kind objc)
+  0a6e9c  [self playlist]
+  0a6eb8  [[self playlist] deactivate]
+  0a6ec8  return

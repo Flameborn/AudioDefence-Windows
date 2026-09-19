@@ -1,0 +1,89 @@
+
+== +[TAGRegexGroup functionId]   (address 0x100177630  size 44  kind objc)
+  177658  return
+
+== +[TAGRegexGroup toMatchKey]   (address 0x10017765c  size 44  kind objc)
+  177684  return
+
+== +[TAGRegexGroup regexKey]   (address 0x100177688  size 44  kind objc)
+  1776b0  return
+
+== +[TAGRegexGroup ignoreCaseKey]   (address 0x1001776b4  size 44  kind objc)
+  1776dc  return
+
+== +[TAGRegexGroup groupKey]   (address 0x1001776e0  size 44  kind objc)
+  177708  return
+
+== -[TAGRegexGroup init]   (address 0x10017770c  size 196  kind objc)
+  17774c  [NSSet setWithObjects:@"arg0", @"arg1", nil]
+  177788  [super initWithFunctionId:@"_reg" requiredKeys:[NSSet setWithObjects:@"arg0", @"arg1", nil]]
+  1777ac  return
+
+== -[TAGRegexGroup isCacheable]   (address 0x1001777d0  size 8  kind objc)
+  1777d4  return
+
+== -[TAGRegexGroup evaluate:]   (address 0x1001777d8  size 1608  kind objc)
+  17781c  [arg1 valueForKey:@"arg0"]
+  17783c  [arg1 valueForKey:@"arg1"]
+  17784c  if ([arg1 valueForKey:@"arg0"] == 0) goto loc_100177938
+  177868  [TAGTypes defaultValue]
+  177880  if (flags !=) goto loc_100177890
+  17788c  goto loc_100177938
+loc_100177890:
+  177898  [TAGTypes defaultValue]
+  1778b8  if ([arg1 valueForKey:@"arg1"] == [TAGTypes defaultValue]) goto loc_100177938
+  1778d4  [arg1 objectForKey:@"ignore_case"]
+  1778e4  if ([arg1 objectForKey:@"ignore_case"] == 0) goto loc_100177960
+  1778fc  [TAGTypes valueToBoolean:[arg1 objectForKey:@"ignore_case"]]
+  177918  [[TAGTypes valueToBoolean:[arg1 objectForKey:@"ignore_case"]] boolValue]
+  177930  t1 = ([[TAGTypes valueToBoolean:[arg1 objectForKey:@"ignore_case"]] boolValue] != 0 ? 1024 + 1 : 1024)
+  177934  goto loc_100177964
+loc_100177938:
+  17794c  [TAGTypes defaultValue]
+  17795c  goto loc_100177ce0
+loc_100177960:
+loc_100177964:
+  177974  [arg1 valueForKey:@"group"]
+  177988  if ([arg1 valueForKey:@"group"] == 0) goto loc_100177a0c
+  1779a0  [TAGTypes valueToNumber:[arg1 valueForKey:@"group"]]
+  1779c0  [TAGTypes defaultNumber]
+  1779d8  if ([TAGTypes valueToNumber:[arg1 valueForKey:@"group"]] == [TAGTypes defaultNumber]) goto loc_100177b0c
+  1779ec  [[TAGTypes valueToNumber:[arg1 valueForKey:@"group"]] intValue]
+  1779f8  if ([[TAGTypes valueToNumber:[arg1 valueForKey:@"group"]] intValue] < 0) goto loc_100177c70
+  177a08  goto loc_100177a10
+loc_100177a0c:
+loc_100177a10:
+  177a28  [TAGTypes valueToString:[arg1 valueForKey:@"arg0"]]
+  177a44  [TAGTypes valueToString:[arg1 valueForKey:@"arg1"]]
+  177a78  [NSRegularExpression regularExpressionWithPattern:[TAGTypes valueToString:[arg1 valueForKey:@"arg1"]] options:x3 error:&sp[0x28]]
+  177a94  if (0 == 0) goto loc_100177ba8
+  177ac0  [NSString stringWithFormat:@"Invalid regex pattern: %@", [TAGTypes valueToString:[arg1 valueForKey:@"arg1"]]]
+  177ae4  [TAGLog error:[NSString stringWithFormat:@"Invalid regex pattern: %@", [TAGTypes valueToString:[arg1 valueForKey:@"arg1"]]]]
+  177af8  [TAGTypes defaultValue]
+  177b08  goto loc_100177cb0
+loc_100177b0c:
+  177b30  [TAGTypes valueToString:[arg1 valueForKey:@"group"]]
+  177b5c  [NSString stringWithFormat:@"Invalid group number: %@", [TAGTypes valueToString:[arg1 valueForKey:@"group"]]]
+  177b80  [TAGLog error:[NSString stringWithFormat:@"Invalid group number: %@", [TAGTypes valueToString:[arg1 valueForKey:@"group"]]]]
+  177b9c  [TAGTypes defaultValue]
+  177ba4  goto loc_100177c80
+loc_100177ba8:
+  177bb8  [[TAGTypes valueToString:[arg1 valueForKey:@"arg0"]] length]
+  177bd8  [[NSRegularExpression regularExpressionWithPattern:[TAGTypes valueToString:[arg1 valueForKey:@"arg1"]] options:x3 error:&sp[0x28]] firstMatchInString:[TAGTypes valueToString:[arg1 valueForKey:@"arg0"]] options:x3 range:0]
+  177bf4  [[[NSRegularExpression regularExpressionWithPattern:[TAGTypes valueToString:[arg1 valueForKey:@"arg1"]] options:x3 error:&sp[0x28]] firstMatchInString:[TAGTypes valueToString:[arg1 valueForKey:@"arg0"]] options:x3 range:0] numberOfRanges]
+  177bfc  if ([[[NSRegularExpression regularExpressionWithPattern:[TAGTypes valueToString:[arg1 valueForKey:@"arg1"]] options:x3 error… <=u x22) goto loc_100177c90
+  177c14  [[[NSRegularExpression regularExpressionWithPattern:[TAGTypes valueToString:[arg1 valueForKey:@"arg1"]] options:x3 error:&sp[0x28]] firstMatchInString:[TAGTypes valueToString:[arg1 valueForKey:@"arg0"]] options:x3 range:0] rangeAtIndex:x2]
+  177c30  [[TAGTypes valueToString:[arg1 valueForKey:@"arg0"]] substringWithRange:[[[NSRegularExpression regularExpressionWithPattern:[TAGTypes valueToString:[arg1 valueForKey:@"arg1"]] options:x3 error:&sp[0x28]] firstMatchInString:[TAGTypes valueToString:[arg1 valueForKey:@"arg0"]] options:x3 range:0] rangeAtIndex:x2]]
+  177c54  [TAGTypes objectToValue:[[TAGTypes valueToString:[arg1 valueForKey:@"arg0"]] substringWithRange:[[[NSRegularExpression regularExpressionWithPattern:[TAGTypes valueToString:[arg1 valueForKey:@"arg1"]] options:x3 error:&sp[0x28]] firstMatchInString:[TAGTypes valueToString:[arg1 valueForKey:@"arg0"]] options:x3 range:0] rangeAtIndex:x2]]]
+  177c6c  goto loc_100177ca8
+loc_100177c70:
+  177c78  [TAGTypes defaultValue]
+loc_100177c80:
+  177c8c  goto loc_100177ccc
+loc_100177c90:
+  177c98  [TAGTypes defaultValue]
+loc_100177ca8:
+loc_100177cb0:
+loc_100177ccc:
+loc_100177ce0:
+  177d18  return

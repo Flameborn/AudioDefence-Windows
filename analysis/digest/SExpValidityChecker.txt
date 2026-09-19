@@ -1,0 +1,48 @@
+
+== +[SExpValidityChecker simpleValidityChecker:]   (address 0x1000e0590  size 116  kind objc)
+  0e05bc  [SExpValidityChecker alloc]
+  0e05d0  [[SExpValidityChecker alloc] initWithUnicharStream:arg1]
+  0e05ec  return
+
+== -[SExpValidityChecker initWithUnicharStream:]   (address 0x1000e0604  size 164  kind objc)
+  0e0648  [super init]
+  0e0650  if (self == 0) goto loc_1000e0674
+  0e0668  self->inStream = arg1
+loc_1000e0674:
+  0e0690  return
+
+== -[SExpValidityChecker isBasicSyntaxValid]   (address 0x1000e06a8  size 224  kind objc)
+  0e06dc  [self->inStream hasNext]
+  0e06e4  if ([self->inStream hasNext] == 0) goto loc_1000e076c
+  0e06ec  &@selector(next)
+  0e06f4  goto loc_1000e0700
+loc_1000e06f8:
+  0e06fc  goto loc_1000e075c
+loc_1000e0700:
+loc_1000e0704:
+  0e070c  [self->inStream next]
+  0e0710  if (!(w24 & 1)) goto loc_1000e0720
+  0e071c  goto loc_1000e072c
+loc_1000e0720:
+  0e0724  if ([self->inStream next] != 34) goto loc_1000e0740
+loc_1000e072c:
+  0e0734  [self->inStream hasNext]
+  0e0738  if (([self->inStream hasNext] & 1)) goto loc_1000e0704
+  0e073c  goto loc_1000e076c
+loc_1000e0740:
+  0e0744  if ([self->inStream next] == 41) goto loc_1000e0758
+  0e074c  if ([self->inStream next] == 40) goto loc_1000e06f8
+  0e0754  goto loc_1000e072c
+loc_1000e0758:
+loc_1000e075c:
+  0e0764  [self->inStream hasNext]
+  0e0768  if (([self->inStream hasNext] & 1)) goto loc_1000e0700
+loc_1000e076c:
+  0e0784  return
+
+== -[SExpValidityChecker dealloc]   (address 0x1000e0788  size 92  kind objc)
+  0e07a8  self->inStream = 0
+  0e07d0  [super dealloc]
+  0e07e0  return
+
+== -[SExpValidityChecker .cxx_destruct]   (address 0x1000e07e4  size 20  kind objc)

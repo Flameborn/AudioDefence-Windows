@@ -1,0 +1,24 @@
+// ADArmoryItemDescriptionViewController.nib
+TOP-LEVEL OBJECTS
+  #42 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #23 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #63 UIView  
+    #75 UIView  
+      #55 UIButton (custom class ADButtonWithFont)  title[0]='BACK'
+      #72 UIImageView  
+      #52 UILabel  UserInteractionDisabled=False Text='x 10'
+      #14 UIButton (custom class ADButtonWithFont)  title[0]='BUY'
+      #18 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco '
+    #6 UILabel  UserInteractionDisabled=False Text='WEAPON NAME'
+
+CONNECTIONS
+  action  backButtonPressed:                        #55 ADButtonWithFont --(events 0x40)--> #42 UIProxyObject
+  action  buyOrUpgradeButtonPressed:                #14 ADButtonWithFont --(events 0x40)--> #42 UIProxyObject
+  outlet  buyButton                                 #42 UIProxyObject --> #14 ADButtonWithFont
+  outlet  buyOrUpgradeButton                        #42 UIProxyObject --> #14 ADButtonWithFont
+  outlet  quantityLabel                             #42 UIProxyObject --> #52 UILabel Text='x 10'
+  outlet  view                                      #42 UIProxyObject --> #63 UIView
+  outlet  weaponImage                               #42 UIProxyObject --> #72 UIImageView
+  outlet  weaponTitle                               #42 UIProxyObject --> #6 UILabel Text='WEAPON NAME'
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,9 @@
+
+== +[TAGPBUninterpretedOption_NamePart descriptor]   (address 0x10012d144  size 180  kind objc)
+  12d164  if (g_10042de08 != 0) goto loc_10012d1e4
+  12d188  [TAGPBUninterpretedOption_NamePart class]
+  12d19c  [TAGPBDescriptorRoot class]
+  12d1dc  [TAGPBDescriptor allocDescriptorForClass:[TAGPBUninterpretedOption_NamePart class] rootClass:[TAGPBDescriptorRoot class] fields:&d_10042b828 fieldCount:2 enums:0 enumCount:0 ranges:24 rangeCount:x9 storageSize:x10 wireFormat:x11]
+  12d1e0  store g_10042de08 = [TAGPBDescriptor allocDescriptorForClass:[TAGPBUninterpretedOption_NamePart class] rootClass:[TAGPBDescriptorRoot class] fields:&d_10042b828 fieldCount:2 enums:0 enumCount:0 ranges:24 rangeCount:x9 storageSize:x10 wireFormat:x11]
+loc_10012d1e4:
+  12d1f4  return

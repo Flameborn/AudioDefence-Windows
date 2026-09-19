@@ -1,0 +1,29 @@
+
+== -[GAILoggerImpl info:]   (address 0x10017af10  size 40  kind objc)
+  17af2c  [TAGLog info:arg1]
+  17af34  return
+
+== -[GAILoggerImpl verbose:]   (address 0x10017af38  size 40  kind objc)
+  17af54  [TAGLog verbose:arg1]
+  17af5c  return
+
+== -[GAILoggerImpl warning:]   (address 0x10017af60  size 40  kind objc)
+  17af7c  [TAGLog warning:arg1]
+  17af84  return
+
+== -[GAILoggerImpl error:]   (address 0x10017af88  size 40  kind objc)
+  17afa4  [TAGLog error:arg1]
+  17afac  return
+
+== -[GAILoggerImpl setLogLevel:]   (address 0x10017afb0  size 32  kind objc)
+  17afcc  tail [TAGLog warning:@"GA uses GTM logger. Please use TAGManager.logger.logLevel instead."]
+
+== -[GAILoggerImpl logLevel]   (address 0x10017afd0  size 72  kind objc)
+  17aff4  [TAGLog logLevel]
+  17b014  tail [self gaLogLevelFromGtmLogLevel:[TAGLog logLevel]]
+
+== -[GAILoggerImpl gaLogLevelFromGtmLogLevel:]   (address 0x10017b018  size 32  kind objc)
+  17b01c  if (arg1 >u 5) goto loc_10017b030
+  17b02c  return
+loc_10017b030:
+  17b034  return

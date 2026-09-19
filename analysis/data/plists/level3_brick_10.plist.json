@@ -1,0 +1,28 @@
+{
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_angle": 200,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_angle": 185,
+   "spawn_distance": 10,
+   "spawn_time": 6
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_angle": 190,
+   "spawn_distance": 10,
+   "spawn_time": 15
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 180,
+   "spawn_distance": 10,
+   "spawn_time": 8.5
+  }
+ }
+}

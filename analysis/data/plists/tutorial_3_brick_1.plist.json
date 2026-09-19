@@ -1,0 +1,50 @@
+{
+ "Sounds": [
+  {
+   "gain": "0.5",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "announcer_tutorial_skip"
+  },
+  {
+   "spawn_after": {
+    "time": 0.25,
+    "enemy": "announcer_tutorial_skip"
+   },
+   "blocker": true,
+   "gain": "0.95",
+   "skippable": true,
+   "name": "bastard_tutorial_3_1"
+  },
+  {
+   "spawn_after": {
+    "time": 0.25,
+    "enemy": "bastard_tutorial_3_1"
+   },
+   "gain": "0.5",
+   "skippable": true,
+   "name": "announcer_tutorial_melee_BUTTONMODE"
+  },
+  {
+   "spawn_after": {
+    "time": 2,
+    "enemy": "announcer_tutorial_melee_BUTTONMODE"
+   },
+   "gain": "1",
+   "skippable": true,
+   "name": "bastard_tutorial_3_2"
+  }
+ ],
+ "Enemies": {
+  "Ted": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 27.2,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_3_2"
+   },
+   "spawn_angle": 100,
+   "spawn_distance": 2.9
+  }
+ }
+}

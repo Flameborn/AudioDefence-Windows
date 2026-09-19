@@ -1,0 +1,35 @@
+
+== -[UILabel(ADTitleLabel) setupAsTitle]   (address 0x10008aec0  size 324  kind objc)
+  08aee8  [ADGameParameters sharedParameters]
+  08af04  [[ADGameParameters sharedParameters] isIphone]
+  08af44  [UIColor colorWithRed:237 green:180 blue:55 alpha:1]
+  08af68  [self setTextColor:[UIColor colorWithRed:237 green:180 blue:55 alpha:1]]
+  08afa4  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 64)]
+  08afc8  [self setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 64)]]
+  08afdc  return
+
+== -[UILabel(ADTitleLabel) setupAsMain]   (address 0x10008b004  size 292  kind objc)
+  08b02c  [ADGameParameters sharedParameters]
+  08b048  [[ADGameParameters sharedParameters] isIphone]
+  08b06c  [UIColor whiteColor]
+  08b090  [self setTextColor:[UIColor whiteColor]]
+  08b0c8  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 14 : 30)]
+  08b0ec  [self setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 14 : 30)]]
+  08b100  return
+
+== -[UILabel(ADTitleLabel) setupAsInfo]   (address 0x10008b128  size 292  kind objc)
+  08b150  [ADGameParameters sharedParameters]
+  08b16c  [[ADGameParameters sharedParameters] isIphone]
+  08b190  [UIColor whiteColor]
+  08b1b4  [self setTextColor:[UIColor whiteColor]]
+  08b1ec  [UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 20)]
+  08b210  [self setFont:[UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 20)]]
+  08b224  return
+
+== -[UILabel(ADTitleLabel) playButtonSound]   (address 0x10008b24c  size 252  kind objc)
+  08b270  [S3DEngine engine]
+  08b294  [[S3DEngine engine] playListWithName:@"buttons"]
+  08b2b8  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  08b2ec  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  08b300  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  08b314  return

@@ -1,0 +1,20 @@
+
+== +[TAGTime functionId]   (address 0x1001783ac  size 44  kind objc)
+  1783d4  return
+
+== -[TAGTime init]   (address 0x1001783d8  size 176  kind objc)
+  178404  [NSSet set]
+  178440  [super initWithFunctionId:@"_t" requiredKeys:[NSSet set]]
+  178464  return
+
+== -[TAGTime isCacheable]   (address 0x100178488  size 8  kind objc)
+  17848c  return
+
+== -[TAGTime evaluate:]   (address 0x100178490  size 320  kind objc)
+  1784bc  [NSDate date]
+  1784d8  [[NSDate date] timeIntervalSince1970]
+  1784f8  [NSNumber numberWithDouble:([[NSDate date] timeIntervalSince1970] * 1000)]
+  178524  [[NSNumber numberWithDouble:([[NSDate date] timeIntervalSince1970] * 1000)] longLongValue]
+  17853c  [NSNumber numberWithLongLong:[[NSNumber numberWithDouble:([[NSDate date] timeIntervalSince1970] * 1000)] longLongValue]]
+  178564  [TAGTypes objectToValue:[NSNumber numberWithLongLong:[[NSNumber numberWithDouble:([[NSDate date] timeIntervalSince1970] * 1000)] longLongValue]]]
+  178594  return

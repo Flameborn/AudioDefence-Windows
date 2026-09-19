@@ -1,0 +1,165 @@
+
+== -[ADWeaponStatBarViewController initWithNibName:bundle:]   (address 0x1000c0040  size 244  kind objc)
+  0c00a0  [super initWithNibName:arg1 bundle:arg2]
+  0c00a8  if (self == 0) goto loc_1000c00e8
+  0c00c4  [self setCurrentValue:0]
+  0c00e4  [self setMaxValue:100]
+loc_1000c00e8:
+  0c010c  return
+
+== -[ADWeaponStatBarViewController loadView]   (address 0x1000c0134  size 472  kind objc)
+  0c018c  [NSNumber numberWithInt:1]
+  0c01b8  [NSNumber numberWithInt:2]
+  0c01e0  [NSNumber numberWithInt:3]
+  0c0208  [NSNumber numberWithInt:4]
+  0c0238  [NSDictionary dictionaryWithObjects:&sp[0x28] forKeys:&sp[0x8] count:4]
+  0c0284  [self loADViewBasedOnDeviceWithNibName:@"ADWeaponStatBarViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x28] forKeys:&sp[0x8] count:4]]
+  0c02b4  return
+
+== -[ADWeaponStatBarViewController setCurrentValue:]   (address 0x1000c030c  size 16  kind objc)
+  0c0314  self->_currentValue = arg1
+  0c0318  return
+
+== -[ADWeaponStatBarViewController setMaxValue:]   (address 0x1000c031c  size 16  kind objc)
+  0c0324  self->_maxValue = arg1
+  0c0328  return
+
+== -[ADWeaponStatBarViewController setNextLevelValue:]   (address 0x1000c032c  size 16  kind objc)
+  0c0334  self->_nextLevelValue = arg1
+  0c0338  return
+
+== -[ADWeaponStatBarViewController refreshBars]   (address 0x1000c033c  size 836  kind objc)
+  0c0378  if (self->viewDidLoad == 0) goto loc_1000c05d8
+  0c0390  [self currentValue]
+  0c03a8  [self maxValue]
+  0c03c4  [self currentValueBar]
+  0c03dc  [self currentValueBar]
+  0c03fc  [[self currentValueBar] frame]
+  0c040c  [self currentValueBar]
+  0c0420  [[self currentValueBar] frame]
+  0c0438  [self maxValueBar]
+  0c044c  [[self maxValueBar] frame]
+  0c045c  [self currentValueBar]
+  0c0470  [[self currentValueBar] frame]
+  0c049c  [[self currentValueBar] setFrame:{[[self currentValueBar] frame].0, [[self currentValueBar] frame].1, (([self currentValue] / [self maxValue]) * [[self maxValueBar] frame].2), [[self currentValueBar] frame].3}]
+  0c04d8  [self currentValueLabel]
+  0c04f8  [self currentValue]
+  0c051c  [NSString stringWithFormat:@"%i", (int)[self currentValue]]
+  0c0540  [[self currentValueLabel] setText:[NSString stringWithFormat:@"%i", (int)[self currentValue]]]
+  0c0564  [self nextLevelValueBar]
+  0c057c  [self currentValueBar]
+  0c0590  [[self currentValueBar] frame]
+  0c059c  [[self nextLevelValueBar] setFrame:{[[self currentValueBar] frame].0, [[self currentValueBar] frame].1, [[self currentValueBar] frame].2, [[self currentValueBar] frame].3}]
+  0c05d4  return
+loc_1000c05d8:
+  0c0600  return
+
+== -[ADWeaponStatBarViewController showNextLevel]   (address 0x1000c0680  size 464  kind objc)
+  0c06b0  [self nextLevelValue]
+  0c06c8  [self maxValue]
+  0c0730  [UIView animateWithDuration:1 animations:^{-[ADWeaponStatBarViewController showNextLevel]_block_invoke captures +0x20=self, +0x28=([self nextLevelValue] / [self maxValue]…}]
+  0c0744  [self currentValueLabel]
+  0c0770  [self currentValue]
+  0c0780  [self nextLevelValue]
+  0c0790  [self currentValue]
+  0c07c0  [NSString stringWithFormat:@"%i+%i", (int)[self currentValue], ((int)[self nextLevelValue] - (int)[self currentValue])]
+  0c07e4  [[self currentValueLabel] setText:[NSString stringWithFormat:@"%i+%i", (int)[self currentValue], ((int)[self nextLevelValue] - (int)[self currentValue])]]
+  0c0818  return
+
+== -[ADWeaponStatBarViewController showNextLevel]_block_invoke   (address 0x1000c0850  size 428  kind block)
+  0c0884  [self nextLevelValueBar]
+  0c089c  [self nextLevelValueBar]
+  0c08bc  [[self nextLevelValueBar] frame]
+  0c08cc  [self nextLevelValueBar]
+  0c08e0  [[self nextLevelValueBar] frame]
+  0c08f8  [self maxValueBar]
+  0c090c  [[self maxValueBar] frame]
+  0c0928  [self currentValueBar]
+  0c093c  [[self currentValueBar] frame]
+  0c0960  [[self nextLevelValueBar] setFrame:{[[self nextLevelValueBar] frame].0, [[self nextLevelValueBar] frame].1, ([[self maxValueBar] frame].2 * ([self nextLevelValue] / [self maxValue])), [[self currentValueBar] frame].3}]
+  0c09a0  return
+
+== sub_1000c09fc   (address 0x1000c09fc  size 8  kind sub)
+
+== sub_1000c0a04   (address 0x1000c0a04  size 8  kind sub)
+  0c0a08  return
+
+== -[ADWeaponStatBarViewController upgradeToNextLevel]   (address 0x1000c0a0c  size 340  kind objc)
+  0c0a78  [UIView animateWithDuration:1 animations:^{-[ADWeaponStatBarViewController upgradeToNextLevel]_block_invoke captures +0x20=self}]
+  0c0a8c  [self currentValueLabel]
+  0c0ab4  [self nextLevelValue]
+  0c0ad8  [NSString stringWithFormat:@"%i", (int)[self nextLevelValue]]
+  0c0afc  [[self currentValueLabel] setText:[NSString stringWithFormat:@"%i", (int)[self nextLevelValue]]]
+  0c0b28  return
+
+== -[ADWeaponStatBarViewController upgradeToNextLevel]_block_invoke   (address 0x1000c0b60  size 184  kind block)
+  0c0b84  [self currentValueBar]
+  0c0ba4  [self nextLevelValueBar]
+  0c0bc0  [[self nextLevelValueBar] frame]
+  0c0bd4  [[self currentValueBar] setFrame:{[[self nextLevelValueBar] frame].0, [[self nextLevelValueBar] frame].1, [[self nextLevelValueBar] frame].2, [[self nextLevelValueBar] frame].3}]
+  0c0bf0  return
+
+== sub_1000c0c18   (address 0x1000c0c18  size 8  kind sub)
+
+== sub_1000c0c20   (address 0x1000c0c20  size 8  kind sub)
+  0c0c24  return
+
+== -[ADWeaponStatBarViewController upgrade]   (address 0x1000c0c28  size 220  kind objc)
+  0c0c4c  [self currentValueLabel]
+  0c0c74  [self nextLevelValue]
+  0c0c98  [NSString stringWithFormat:@"%i", (int)[self nextLevelValue]]
+  0c0cbc  [[self currentValueLabel] setText:[NSString stringWithFormat:@"%i", (int)[self nextLevelValue]]]
+  0c0cdc  return
+
+== -[ADWeaponStatBarViewController viewDidLoad]   (address 0x1000c0d04  size 164  kind objc)
+  0c0d38  [super viewDidLoad]
+  0c0d48  self->viewDidLoad = 1
+  0c0d5c  [self currentValueLabel]
+  0c0d78  [[self currentValueLabel] setupAsInfo]
+  0c0d90  return
+
+== -[ADWeaponStatBarViewController viewDidAppear:]   (address 0x1000c0da8  size 16  kind objc)
+  0c0db4  tail [self refreshBars]
+
+== -[ADWeaponStatBarViewController didReceiveMemoryWarning]   (address 0x1000c0db8  size 60  kind objc)
+  0c0de4  [super didReceiveMemoryWarning]
+  0c0df0  return
+
+== -[ADWeaponStatBarViewController currentValueBar]   (address 0x1000c0df4  size 16  kind objc)
+  0c0e00  return
+
+== -[ADWeaponStatBarViewController setCurrentValueBar:]   (address 0x1000c0e04  size 56  kind objc)
+  0c0e28  self->_currentValueBar = arg1
+  0c0e38  return
+
+== -[ADWeaponStatBarViewController nextLevelValueBar]   (address 0x1000c0e3c  size 16  kind objc)
+  0c0e48  return
+
+== -[ADWeaponStatBarViewController setNextLevelValueBar:]   (address 0x1000c0e4c  size 56  kind objc)
+  0c0e70  self->_nextLevelValueBar = arg1
+  0c0e80  return
+
+== -[ADWeaponStatBarViewController maxValueBar]   (address 0x1000c0e84  size 16  kind objc)
+  0c0e90  return
+
+== -[ADWeaponStatBarViewController setMaxValueBar:]   (address 0x1000c0e94  size 56  kind objc)
+  0c0eb8  self->_maxValueBar = arg1
+  0c0ec8  return
+
+== -[ADWeaponStatBarViewController currentValueLabel]   (address 0x1000c0ecc  size 16  kind objc)
+  0c0ed8  return
+
+== -[ADWeaponStatBarViewController setCurrentValueLabel:]   (address 0x1000c0edc  size 56  kind objc)
+  0c0f00  self->_currentValueLabel = arg1
+  0c0f10  return
+
+== -[ADWeaponStatBarViewController maxValue]   (address 0x1000c0f14  size 16  kind objc)
+  0c0f20  return
+
+== -[ADWeaponStatBarViewController currentValue]   (address 0x1000c0f24  size 16  kind objc)
+  0c0f30  return
+
+== -[ADWeaponStatBarViewController nextLevelValue]   (address 0x1000c0f34  size 16  kind objc)
+  0c0f40  return
+
+== -[ADWeaponStatBarViewController .cxx_destruct]   (address 0x1000c0f44  size 104  kind objc)

@@ -1,0 +1,18 @@
+// ADWorldChallengeListViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #16 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #21 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #19 UIView  
+    #7 UIView (custom class ViewWithParalax)  
+      #24 UIImageView  Image='background_main.png'
+    #26 UIImageView  Image='frame_arena_text.png'
+    #14 UITableView  
+
+CONNECTIONS
+  outlet  background                                #16 UIProxyObject --> #24 UIImageView
+  outlet  dataSource                                #14 UITableView --> #16 UIProxyObject
+  outlet  delegate                                  #14 UITableView --> #16 UIProxyObject
+  outlet  tableView                                 #16 UIProxyObject --> #14 UITableView
+  outlet  view                                      #16 UIProxyObject --> #19 UIView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,237 @@
+
+== -[ADStatsCell initWithStyle:reuseIdentifier:]   (address 0x10008c83c  size 3084  kind objc)
+  08c89c  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  08c8a4  if (self == 0) goto loc_10008d294
+  08c8c0  [self contentView]
+  08c8e8  [UIColor clearColor]
+  08c910  [[self contentView] setBackgroundColor:[UIColor clearColor]]
+  08c940  [UIView alloc]
+  08c954  [self contentView]
+  08c970  [[self contentView] frame]
+  08c984  [[UIView alloc] initWithFrame:{[[self contentView] frame].0, [[self contentView] frame].1, [[self contentView] frame].2, [[self contentView] frame].3}]
+  08c9a0  [self setContainerView:[[UIView alloc] initWithFrame:{[[self contentView] frame].0, [[self contentView] frame].1, [[self contentView] frame].2, [[self contentView] frame].3}]]
+  08c9cc  [self containerView]
+  08c9e8  [UIColor clearColor]
+  08ca04  [[self containerView] setBackgroundColor:[UIColor clearColor]]
+  08ca28  [UIImageView alloc]
+  08ca40  [[UIImageView alloc] init]
+  08ca5c  [self setBackgroundKeyView:[[UIImageView alloc] init]]
+  08ca8c  [ADGameParameters sharedParameters]
+  08cab0  [[ADGameParameters sharedParameters] isIphone]
+  08caec  [NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]
+  08cb18  [self backgroundKeyView]
+  08cb44  [UIImage imageNamed:[NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]]
+  08cb6c  [[self backgroundKeyView] setImage:[UIImage imageNamed:[NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]]]
+  08cb88  [self backgroundKeyView]
+  08cba4  [UIColor clearColor]
+  08cbc0  [[self backgroundKeyView] setBackgroundColor:[UIColor clearColor]]
+  08cbe0  [UIImageView alloc]
+  08cbe8  [[UIImageView alloc] init]
+  08cc04  [self setBackgroundValueView:[[UIImageView alloc] init]]
+  08cc24  [ADGameParameters sharedParameters]
+  08cc38  [[ADGameParameters sharedParameters] isIphone]
+  08cc60  [NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]
+  08cc8c  [self backgroundValueView]
+  08cca8  [UIImage imageNamed:[NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]]
+  08ccc4  [[self backgroundValueView] setImage:[UIImage imageNamed:[NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]]]
+  08cce0  [self backgroundValueView]
+  08ccfc  [UIColor clearColor]
+  08cd18  [[self backgroundValueView] setBackgroundColor:[UIColor clearColor]]
+  08cd38  [UILabel alloc]
+  08cd40  [[UILabel alloc] init]
+  08cd5c  [self setKeyLabel:[[UILabel alloc] init]]
+  08cd7c  [self keyLabel]
+  08cd9c  [[self keyLabel] setupAsInfo]
+  08cdb0  [self keyLabel]
+  08cdcc  [UIColor clearColor]
+  08cde8  [[self keyLabel] setBackgroundColor:[UIColor clearColor]]
+  08ce04  [self keyLabel]
+  08ce28  [[self keyLabel] setTextAlignment:0]
+  08ce3c  [self keyLabel]
+  08ce64  [[self keyLabel] setText:@"Key"]
+  08ce78  [UILabel alloc]
+  08ce80  [[UILabel alloc] init]
+  08ce9c  [self setValueLabel:[[UILabel alloc] init]]
+  08cebc  [self valueLabel]
+  08ced0  [[self valueLabel] setupAsInfo]
+  08cee4  [self valueLabel]
+  08cf00  [UIColor clearColor]
+  08cf1c  [[self valueLabel] setBackgroundColor:[UIColor clearColor]]
+  08cf38  [self valueLabel]
+  08cf50  [[self valueLabel] setTextAlignment:1]
+  08cf64  [self valueLabel]
+  08cf80  [[self valueLabel] setText:@"Value"]
+  08cf94  [self contentView]
+  08cfac  [self containerView]
+  08cfd4  [[self contentView] addSubview:[self containerView]]
+  08cff0  [self containerView]
+  08d008  [self backgroundKeyView]
+  08d024  [[self containerView] addSubview:[self backgroundKeyView]]
+  08d040  [self containerView]
+  08d058  [self backgroundValueView]
+  08d074  [[self containerView] addSubview:[self backgroundValueView]]
+  08d090  [self containerView]
+  08d0a8  [self keyLabel]
+  08d0c4  [[self containerView] addSubview:[self keyLabel]]
+  08d0e0  [self containerView]
+  08d0f8  [self valueLabel]
+  08d114  [[self containerView] addSubview:[self valueLabel]]
+  08d130  [self containerView]
+  08d154  [[self containerView] setTranslatesAutoresizingMaskIntoConstraints:0]
+  08d168  [self backgroundKeyView]
+  08d180  [[self backgroundKeyView] setTranslatesAutoresizingMaskIntoConstraints:0]
+  08d194  [self backgroundValueView]
+  08d1ac  [[self backgroundValueView] setTranslatesAutoresizingMaskIntoConstraints:0]
+  08d1c0  [self keyLabel]
+  08d1d8  [[self keyLabel] setTranslatesAutoresizingMaskIntoConstraints:0]
+  08d1ec  [self valueLabel]
+  08d204  [[self valueLabel] setTranslatesAutoresizingMaskIntoConstraints:0]
+  08d220  [self addContainerViewConstraints]
+  08d23c  [self addKeyImageConstraintsToCell:0.6]
+  08d250  [self addKeyLabelConstraints]
+  08d264  [self addValueLabelConstraints]
+  08d27c  [self setSelectionStyle:0]
+loc_10008d294:
+  08d2bc  return
+
+== -[ADStatsCell addContainerViewConstraints]   (address 0x10008d448  size 952  kind objc)
+  08d494  [self containerView]
+  08d4b8  [self contentView]
+  08d4f8  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:9 relatedBy:0 toItem:[self contentView] attribute:9 multiplier:1 constant:0]
+  08d524  [self containerView]
+  08d53c  [self contentView]
+  08d570  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:10 relatedBy:0 toItem:[self contentView] attribute:10 multiplier:1 constant:0]
+  08d59c  [self containerView]
+  08d5b8  [self contentView]
+  08d5ec  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:7 relatedBy:0 toItem:[self contentView] attribute:7 multiplier:1 constant:0]
+  08d618  [self containerView]
+  08d630  [self contentView]
+  08d664  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:8 relatedBy:0 toItem:[self contentView] attribute:8 multiplier:1 constant:0]
+  08d68c  [self contentView]
+  08d6c4  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  08d6dc  [[self contentView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  08d730  return
+
+== -[ADStatsCell addKeyImageConstraintsToCell:]   (address 0x10008d800  size 968  kind objc)
+  08d854  [self backgroundKeyView]
+  08d878  [self containerView]
+  08d8b8  [NSLayoutConstraint constraintWithItem:[self backgroundKeyView] attribute:7 relatedBy:0 toItem:[self containerView] attribute:7 multiplier:arg1 constant:0]
+  08d8e4  [self backgroundKeyView]
+  08d8fc  [self containerView]
+  08d930  [NSLayoutConstraint constraintWithItem:[self backgroundKeyView] attribute:3 relatedBy:0 toItem:[self containerView] attribute:3 multiplier:1 constant:0]
+  08d95c  [self backgroundKeyView]
+  08d978  [self containerView]
+  08d9ac  [NSLayoutConstraint constraintWithItem:[self backgroundKeyView] attribute:4 relatedBy:0 toItem:[self containerView] attribute:4 multiplier:1 constant:0]
+  08d9d8  [self backgroundKeyView]
+  08d9f0  [self containerView]
+  08da24  [NSLayoutConstraint constraintWithItem:[self backgroundKeyView] attribute:5 relatedBy:0 toItem:[self containerView] attribute:1 multiplier:1 constant:0]
+  08da4c  [self containerView]
+  08da88  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  08daa0  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  08daf8  return
+
+== -[ADStatsCell addValueImageConstraintsToCell]   (address 0x10008dbc8  size 964  kind objc)
+  08dc14  [self backgroundValueView]
+  08dc34  [self backgroundKeyView]
+  08dc74  [NSLayoutConstraint constraintWithItem:[self backgroundValueView] attribute:5 relatedBy:0 toItem:[self backgroundKeyView] attribute:6 multiplier:1 constant:0]
+  08dca0  [self backgroundValueView]
+  08dcc4  [self containerView]
+  08dcf8  [NSLayoutConstraint constraintWithItem:[self backgroundValueView] attribute:3 relatedBy:0 toItem:[self containerView] attribute:3 multiplier:1 constant:0]
+  08dd24  [self backgroundValueView]
+  08dd40  [self containerView]
+  08dd74  [NSLayoutConstraint constraintWithItem:[self backgroundValueView] attribute:4 relatedBy:0 toItem:[self containerView] attribute:4 multiplier:1 constant:0]
+  08dda0  [self backgroundValueView]
+  08ddb8  [self containerView]
+  08ddec  [NSLayoutConstraint constraintWithItem:[self backgroundValueView] attribute:6 relatedBy:0 toItem:[self containerView] attribute:2 multiplier:1 constant:0]
+  08de14  [self containerView]
+  08de50  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  08de68  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  08debc  return
+
+== -[ADStatsCell addKeyLabelConstraints]   (address 0x10008df8c  size 964  kind objc)
+  08dfd8  [self keyLabel]
+  08dffc  [self backgroundKeyView]
+  08e03c  [NSLayoutConstraint constraintWithItem:[self keyLabel] attribute:3 relatedBy:0 toItem:[self backgroundKeyView] attribute:3 multiplier:1 constant:5]
+  08e068  [self keyLabel]
+  08e080  [self backgroundKeyView]
+  08e0b4  [NSLayoutConstraint constraintWithItem:[self keyLabel] attribute:1 relatedBy:0 toItem:[self backgroundKeyView] attribute:1 multiplier:1 constant:5]
+  08e0e0  [self keyLabel]
+  08e0fc  [self backgroundKeyView]
+  08e130  [NSLayoutConstraint constraintWithItem:[self keyLabel] attribute:2 relatedBy:0 toItem:[self backgroundKeyView] attribute:2 multiplier:1 constant:-5]
+  08e15c  [self keyLabel]
+  08e174  [self backgroundKeyView]
+  08e1ac  [NSLayoutConstraint constraintWithItem:[self keyLabel] attribute:4 relatedBy:0 toItem:[self backgroundKeyView] attribute:4 multiplier:1 constant:-5]
+  08e1dc  [self containerView]
+  08e214  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  08e22c  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  08e280  return
+
+== -[ADStatsCell addValueLabelConstraints]   (address 0x10008e350  size 964  kind objc)
+  08e39c  [self valueLabel]
+  08e3c0  [self backgroundValueView]
+  08e400  [NSLayoutConstraint constraintWithItem:[self valueLabel] attribute:3 relatedBy:0 toItem:[self backgroundValueView] attribute:3 multiplier:1 constant:5]
+  08e42c  [self valueLabel]
+  08e444  [self backgroundValueView]
+  08e478  [NSLayoutConstraint constraintWithItem:[self valueLabel] attribute:1 relatedBy:0 toItem:[self backgroundValueView] attribute:1 multiplier:1 constant:5]
+  08e4a4  [self valueLabel]
+  08e4c0  [self backgroundValueView]
+  08e4f4  [NSLayoutConstraint constraintWithItem:[self valueLabel] attribute:2 relatedBy:0 toItem:[self backgroundValueView] attribute:2 multiplier:1 constant:-5]
+  08e520  [self valueLabel]
+  08e538  [self backgroundValueView]
+  08e570  [NSLayoutConstraint constraintWithItem:[self valueLabel] attribute:4 relatedBy:0 toItem:[self backgroundValueView] attribute:4 multiplier:1 constant:-5]
+  08e5a0  [self containerView]
+  08e5d8  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  08e5f0  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  08e644  return
+
+== -[ADStatsCell keyLabelSize:]   (address 0x10008e714  size 424  kind objc)
+  08e740  if (flags >) goto loc_10008e864
+  08e758  [self containerView]
+  08e770  [self containerView]
+  08e78c  [[self containerView] constraints]
+  08e7b0  [[self containerView] removeConstraints:[[self containerView] constraints]]
+  08e7e0  [self addKeyImageConstraintsToCell:arg1]
+  08e7f4  [self addValueImageConstraintsToCell]
+  08e808  [self addKeyLabelConstraints]
+  08e81c  [self addValueLabelConstraints]
+  08e828  [self containerView]
+  08e844  [[self containerView] layoutIfNeeded]
+  08e860  return
+loc_10008e864:
+  08e878  return
+
+== -[ADStatsCell setSelected:animated:]   (address 0x10008e8bc  size 60  kind objc)
+  08e8e8  [super setSelected:arg1 animated:arg2]
+  08e8f4  return
+
+== -[ADStatsCell keyLabel]   (address 0x10008e8f8  size 16  kind objc)
+  08e904  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsCell setKeyLabel:]   (address 0x10008e908  size 12  kind objc)
+  08e910  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsCell valueLabel]   (address 0x10008e914  size 16  kind objc)
+  08e920  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsCell setValueLabel:]   (address 0x10008e924  size 12  kind objc)
+  08e92c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsCell containerView]   (address 0x10008e930  size 16  kind objc)
+  08e93c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsCell setContainerView:]   (address 0x10008e940  size 12  kind objc)
+  08e948  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsCell backgroundKeyView]   (address 0x10008e94c  size 16  kind objc)
+  08e958  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsCell setBackgroundKeyView:]   (address 0x10008e95c  size 12  kind objc)
+  08e964  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsCell backgroundValueView]   (address 0x10008e968  size 16  kind objc)
+  08e974  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsCell setBackgroundValueView:]   (address 0x10008e978  size 12  kind objc)
+  08e980  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsCell .cxx_destruct]   (address 0x10008e984  size 124  kind objc)

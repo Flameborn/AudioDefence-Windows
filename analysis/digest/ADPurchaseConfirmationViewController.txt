@@ -1,0 +1,152 @@
+
+== -[ADPurchaseConfirmationViewController initWithDictionary:]   (address 0x1000dc9d0  size 180  kind objc)
+  0dca20  [super initWithNibName:0 bundle:0]
+  0dca28  if (self == 0) goto loc_1000dca48
+  0dca44  [self setWeaponDict:arg1]
+loc_1000dca48:
+  0dca64  return
+
+== -[ADPurchaseConfirmationViewController viewDidLoad]   (address 0x1000dca84  size 412  kind objc)
+  0dcac0  [super viewDidLoad]
+  0dcad4  [self weaponLabel]
+  0dcaf8  [ADWeaponManager sharedWeaponManager]
+  0dcb18  [self weaponDict]
+  0dcb3c  [[self weaponDict] objectForKey:@"name"]
+  0dcb60  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[self weaponDict] objectForKey:@"name"]]
+  0dcb84  [[self weaponLabel] setText:[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[self weaponDict] objectForKey:@"name"]]]
+  0dcbc4  return
+
+== -[ADPurchaseConfirmationViewController purchaseButtonPressed:]   (address 0x1000dcc20  size 1128  kind objc)
+  0dcc58  [self purchaseButton]
+  0dcc78  [[self purchaseButton] setEnabled:0]
+  0dcc94  [self statusBarViewController]
+  0dccb8  [self weaponDict]
+  0dcce0  [[self weaponDict] objectForKey:@"price"]
+  0dcd00  [[[self weaponDict] objectForKey:@"price"] integerValue]
+  0dcd18  [[self statusBarViewController] animateCoins:-[[[self weaponDict] objectForKey:@"price"] integerValue]]
+  0dcd4c  [ADInventory sharedInventory]
+  0dcd64  [self weaponDict]
+  0dcd80  [[self weaponDict] objectForKey:@"price"]
+  0dcd94  [[[self weaponDict] objectForKey:@"price"] integerValue]
+  0dcdac  [[ADInventory sharedInventory] coins]
+  0dcdb0  t1 = ([[ADInventory sharedInventory] coins] - [[[self weaponDict] objectForKey:@"price"] integerValue])
+  0dcdc4  [[ADInventory sharedInventory] setCoins:t1]
+  0dcde8  [ADInventory sharedInventory]
+  0dce00  [self weaponDict]
+  0dce1c  [[self weaponDict] objectForKey:@"name"]
+  0dce40  [[ADInventory sharedInventory] unlockWeaponWithName:[[self weaponDict] objectForKey:@"name"]]
+  0dce64  [self purchaseButton]
+  0dce80  [[self purchaseButton] center]
+  0dceb0  [UIView beginAnimations:0 context:0]
+  0dcec8  [UIView setAnimationDuration:1]
+  0dced4  [self purchaseButton]
+  0dcef8  [[self purchaseButton] setCenter:{[[self purchaseButton] center].0, [[self purchaseButton] center].1}]
+  0dcf14  [UIView commitAnimations]
+  0dcf9c  [UIView animateWithDuration:0.2 animations:^{-[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke captures +0x20=self} completion:^{-[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADPurchaseConfirmationViewController …, +0x40=&d_1003b2af0, +0x48=self}]
+  0dcfd0  return
+
+== -[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke   (address 0x1000dd088  size 156  kind block)
+  0dd0a8  [self purchaseButton]
+  0dd0c4  CGAffineTransformMakeScale([self purchaseButton])
+  0dd0f4  [[self purchaseButton] setTransform:&sp[0x0]]
+  0dd10c  return
+
+== sub_1000dd124   (address 0x1000dd124  size 8  kind sub)
+
+== sub_1000dd12c   (address 0x1000dd12c  size 8  kind sub)
+  0dd130  return
+
+== -[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2   (address 0x1000dd134  size 224  kind block)
+  0dd1d0  [UIView animateWithDuration:0.2 animations:^{-[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke captures +0x20=self} completion:^{-[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADPurchaseConfirmationViewController …, +0x40=&d_1003b2b20, +0x48=self}]
+  0dd1f4  return
+
+== -[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke   (address 0x1000dd214  size 156  kind block)
+  0dd234  [self cancelButton]
+  0dd250  CGAffineTransformMakeScale([self cancelButton])
+  0dd280  [[self cancelButton] setTransform:&sp[0x0]]
+  0dd298  return
+
+== sub_1000dd2b0   (address 0x1000dd2b0  size 8  kind sub)
+
+== sub_1000dd2b8   (address 0x1000dd2b8  size 8  kind sub)
+  0dd2bc  return
+
+== -[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke_2   (address 0x1000dd2c0  size 224  kind block)
+  0dd35c  [UIView animateWithDuration:0.4 animations:^{-[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke_2_block_invoke captures +0x20=self} completion:^{-[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke_2_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADPurchaseConfirmationViewController …, +0x40=&d_1003b2b50, +0x48=self}]
+  0dd380  return
+
+== -[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke_2_block_invoke   (address 0x1000dd3a0  size 156  kind block)
+  0dd3c0  [self popupView]
+  0dd3dc  CGAffineTransformMakeScale([self popupView])
+  0dd40c  [[self popupView] setTransform:&sp[0x0]]
+  0dd424  return
+
+== sub_1000dd43c   (address 0x1000dd43c  size 8  kind sub)
+
+== sub_1000dd444   (address 0x1000dd444  size 8  kind sub)
+  0dd448  return
+
+== -[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke_2_block_invoke_2   (address 0x1000dd44c  size 32  kind block)
+  0dd468  tail [self dismissViewControllerAnimated:0 completion:^{-[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke_2_block_invoke_2_block_invoke}]
+
+== -[ADPurchaseConfirmationViewController purchaseButtonPressed:]_block_invoke_2_block_invoke_2_block_invoke_2_block_invoke   (address 0x1000dd46c  size 4  kind block)
+  0dd46c  return
+
+== sub_1000dd470   (address 0x1000dd470  size 8  kind sub)
+
+== sub_1000dd478   (address 0x1000dd478  size 8  kind sub)
+  0dd47c  return
+
+== sub_1000dd480   (address 0x1000dd480  size 8  kind sub)
+
+== sub_1000dd488   (address 0x1000dd488  size 8  kind sub)
+  0dd48c  return
+
+== sub_1000dd490   (address 0x1000dd490  size 8  kind sub)
+
+== sub_1000dd498   (address 0x1000dd498  size 8  kind sub)
+  0dd49c  return
+
+== -[ADPurchaseConfirmationViewController cancelButtonPressed:]   (address 0x1000dd4a0  size 44  kind objc)
+  0dd4c0  [self dismissViewControllerAnimated:0 completion:^{-[ADPurchaseConfirmationViewController cancelButtonPressed:]_block_invoke}]
+  0dd4c8  return
+
+== -[ADPurchaseConfirmationViewController cancelButtonPressed:]_block_invoke   (address 0x1000dd4cc  size 4  kind block)
+  0dd4cc  return
+
+== -[ADPurchaseConfirmationViewController weaponDict]   (address 0x1000dd4d0  size 16  kind objc)
+  0dd4dc  return
+
+== -[ADPurchaseConfirmationViewController setWeaponDict:]   (address 0x1000dd4e0  size 56  kind objc)
+  0dd504  self->_weaponDict = arg1
+  0dd514  return
+
+== -[ADPurchaseConfirmationViewController weaponLabel]   (address 0x1000dd518  size 16  kind objc)
+  0dd524  return
+
+== -[ADPurchaseConfirmationViewController setWeaponLabel:]   (address 0x1000dd528  size 56  kind objc)
+  0dd54c  self->_weaponLabel = arg1
+  0dd55c  return
+
+== -[ADPurchaseConfirmationViewController purchaseButton]   (address 0x1000dd560  size 16  kind objc)
+  0dd56c  return
+
+== -[ADPurchaseConfirmationViewController setPurchaseButton:]   (address 0x1000dd570  size 56  kind objc)
+  0dd594  self->_purchaseButton = arg1
+  0dd5a4  return
+
+== -[ADPurchaseConfirmationViewController cancelButton]   (address 0x1000dd5a8  size 16  kind objc)
+  0dd5b4  return
+
+== -[ADPurchaseConfirmationViewController setCancelButton:]   (address 0x1000dd5b8  size 56  kind objc)
+  0dd5dc  self->_cancelButton = arg1
+  0dd5ec  return
+
+== -[ADPurchaseConfirmationViewController popupView]   (address 0x1000dd5f0  size 16  kind objc)
+  0dd5fc  return
+
+== -[ADPurchaseConfirmationViewController setPopupView:]   (address 0x1000dd600  size 56  kind objc)
+  0dd624  self->_popupView = arg1
+  0dd634  return
+
+== -[ADPurchaseConfirmationViewController .cxx_destruct]   (address 0x1000dd638  size 124  kind objc)

@@ -1,0 +1,17 @@
+
+== +[TAGOsVersion functionId]   (address 0x100176ec8  size 44  kind objc)
+  176ef0  return
+
+== -[TAGOsVersion init]   (address 0x100176ef4  size 176  kind objc)
+  176f20  [NSSet set]
+  176f5c  [super initWithFunctionId:@"_ov" requiredKeys:[NSSet set]]
+  176f80  return
+
+== -[TAGOsVersion isCacheable]   (address 0x100176fa4  size 8  kind objc)
+  176fa8  return
+
+== -[TAGOsVersion evaluate:]   (address 0x100176fac  size 204  kind objc)
+  176fd8  [UIDevice currentDevice]
+  176ff4  [[UIDevice currentDevice] systemVersion]
+  177018  [TAGTypes objectToValue:[[UIDevice currentDevice] systemVersion]]
+  177048  return

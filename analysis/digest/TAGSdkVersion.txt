@@ -1,0 +1,17 @@
+
+== +[TAGSdkVersion functionId]   (address 0x1001781fc  size 44  kind objc)
+  178224  return
+
+== -[TAGSdkVersion init]   (address 0x100178228  size 176  kind objc)
+  178254  [NSSet set]
+  178290  [super initWithFunctionId:@"_sv" requiredKeys:[NSSet set]]
+  1782b4  return
+
+== -[TAGSdkVersion isCacheable]   (address 0x1001782d8  size 8  kind objc)
+  1782dc  return
+
+== -[TAGSdkVersion evaluate:]   (address 0x1001782e0  size 204  kind objc)
+  17830c  [UIDevice currentDevice]
+  178328  [[UIDevice currentDevice] systemVersion]
+  17834c  [TAGTypes objectToValue:[[UIDevice currentDevice] systemVersion]]
+  17837c  return

@@ -1,0 +1,18 @@
+
+== +[TAGPResourcewithmetadataRoot extensionRegistry]   (address 0x10014c8e4  size 192  kind objc)
+  14c900  if (g_10042df08 != 0) goto loc_10014c994
+  14c918  [TAGPBExtensionRegistry alloc]
+  14c928  [[TAGPBExtensionRegistry alloc] init]
+  14c930  store g_10042df08 = [[TAGPBExtensionRegistry alloc] init]
+  14c94c  [TAGPServingRoot extensionRegistry]
+  14c968  [[[TAGPBExtensionRegistry alloc] init] addExtensions:[TAGPServingRoot extensionRegistry]]
+  14c97c  [TAGPBObjectivecDescriptorRoot extensionRegistry]
+  14c98c  [g_10042df08 addExtensions:[TAGPBObjectivecDescriptorRoot extensionRegistry]]
+loc_10014c994:
+  14c9a0  return
+
+== +[TAGPResourcewithmetadataRoot load]   (address 0x10014c9a4  size 108  kind objc)
+  14c9c8  [NSAutoreleasePool alloc]
+  14c9d8  [[NSAutoreleasePool alloc] init]
+  14c9f0  [TAGPResourcewithmetadataRoot extensionRegistry]
+  14ca0c  tail [[[NSAutoreleasePool alloc] init] drain]

@@ -1,0 +1,26 @@
+
+== +[TAGMobileAdwordsUniqueIdMacro functionId]   (address 0x100176d0c  size 44  kind objc)
+  176d34  return
+
+== -[TAGMobileAdwordsUniqueIdMacro init]   (address 0x100176d38  size 176  kind objc)
+  176d64  [NSSet set]
+  176da0  [super initWithFunctionId:@"_awid" requiredKeys:[NSSet set]]
+  176dc4  return
+
+== -[TAGMobileAdwordsUniqueIdMacro isCacheable]   (address 0x100176de8  size 8  kind objc)
+  176dec  return
+
+== -[TAGMobileAdwordsUniqueIdMacro evaluate:]   (address 0x100176df0  size 192  kind objc)
+  176e08  [self rawAdvertiserId]
+  176e18  if ([self rawAdvertiserId] == 0) goto loc_100176e58
+  176e2c  [[self rawAdvertiserId] length]
+  176e30  if ([[self rawAdvertiserId] length] == 0) goto loc_100176e58
+  176e4c  [TAGTypes objectToValue:[self rawAdvertiserId]]
+  176e54  goto loc_100176e74
+loc_100176e58:
+  176e6c  [TAGTypes defaultValue]
+loc_100176e74:
+  176e90  return
+
+== -[TAGMobileAdwordsUniqueIdMacro rawAdvertiserId]   (address 0x100176eb0  size 24  kind objc)
+  176ec4  tail [TAGAdIdAccess retrieveId]

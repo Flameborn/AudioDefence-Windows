@@ -1,0 +1,25 @@
+// ADStatsViewController.nib
+TOP-LEVEL OBJECTS
+  #31 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #12 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #57 UIView  Tag=2781
+    #10 UIView (custom class ViewWithParalax)  
+      #79 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #16 UIImageView  UserInteractionDisabled=False Image='Frame_scroller_blank.png'
+    #72 UITableView  
+  #62 UIView  Tag=2782
+    #30 UIView (custom class ViewWithParalax)  
+      #21 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #17 UIImageView  UserInteractionDisabled=False Image='Frame_scroller_blank.png'
+    #65 UITableView  Tag=1 RestorationIdentifier='2345'
+
+CONNECTIONS
+  outlet  background                                #31 UIProxyObject --> #79 UIImageView
+  outlet  dataSource                                #72 UITableView --> #31 UIProxyObject
+  outlet  dataSource                                #65 UITableView --> #31 UIProxyObject
+  outlet  delegate                                  #72 UITableView --> #31 UIProxyObject
+  outlet  delegate                                  #65 UITableView --> #31 UIProxyObject
+  outlet  tableView                                 #31 UIProxyObject --> #72 UITableView
+  outlet  view                                      #31 UIProxyObject --> #57 UIView
+
+ACCESSIBILITY CONFIGURATIONS

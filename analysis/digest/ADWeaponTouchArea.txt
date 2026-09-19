@@ -1,0 +1,39 @@
+
+== -[ADWeaponTouchArea initGestureRecognizers]   (address 0x1000406a4  size 472  kind objc)
+  0406e0  [UISwipeGestureRecognizer alloc]
+  040704  [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpGesture)]
+  040714  self->swipeUpGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeUpGesture)]
+  040738  [self->swipeUpGesture setNumberOfTouchesRequired:1]
+  040754  [self->swipeUpGesture setDelegate:self]
+  040770  [self->swipeUpGesture setCancelsTouchesInView:1]
+  04078c  [self->swipeUpGesture setDirection:4]
+  0407a8  [self addGestureRecognizer:self->swipeUpGesture]
+  0407b4  [UISwipeGestureRecognizer alloc]
+  0407cc  [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDownGesture)]
+  0407dc  self->swipeDownGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeDownGesture)]
+  0407f4  [self->swipeDownGesture setNumberOfTouchesRequired:1]
+  040804  [self->swipeDownGesture setDelegate:self]
+  040814  [self->swipeDownGesture setCancelsTouchesInView:1]
+  040824  [self->swipeDownGesture setDirection:8]
+  040834  [self addGestureRecognizer:self->swipeDownGesture]
+  040858  [super initGestureRecognizers]
+  040878  return
+
+== -[ADWeaponTouchArea gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:]   (address 0x10004087c  size 8  kind objc)
+  040880  return
+
+== -[ADWeaponTouchArea handleSwipeUpGesture]   (address 0x100040884  size 176  kind objc)
+  0408a4  [self handleSwipeGesture]
+  0408b8  [self weaponManager]
+  0408d4  [[self weaponManager] selectNextWeapon]
+  040900  [self->swipeUpGesture setEnabled:0]
+  04091c  tail [self->swipeUpGesture setEnabled:1]
+
+== -[ADWeaponTouchArea handleSwipeDownGesture]   (address 0x100040934  size 176  kind objc)
+  040954  [self handleSwipeGesture]
+  040968  [self weaponManager]
+  040984  [[self weaponManager] reloadGestureDown]
+  0409b0  [self->swipeDownGesture setEnabled:0]
+  0409cc  tail [self->swipeDownGesture setEnabled:1]
+
+== -[ADWeaponTouchArea .cxx_destruct]   (address 0x1000409e4  size 64  kind objc)

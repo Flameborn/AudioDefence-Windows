@@ -1,0 +1,261 @@
+
+== +[TAGPBCodedInputStream streamWithData:]   (address 0x1001318d8  size 84  kind objc)
+  1318fc  [TAGPBCodedInputStream alloc]
+  131910  [[TAGPBCodedInputStream alloc] initWithData:arg1]
+  131928  tail [[[TAGPBCodedInputStream alloc] initWithData:arg1] autorelease]
+
+== -[TAGPBCodedInputStream initWithData:]   (address 0x10013192c  size 196  kind objc)
+  131964  [super init]
+  13196c  if (self == 0) goto loc_1001319d8
+  131980  [arg1 retain]
+  13198c  self->buffer_ = [arg1 retain]
+  13199c  [[arg1 retain] bytes]
+  1319a8  self->state_ = [[arg1 retain] bytes]
+  1319c0  [self->buffer_ length]
+  1319cc  self->state_[+0x8] = [self->buffer_ length]
+  1319d4  self->state_[+0x18] = -1
+loc_1001319d8:
+  1319ec  return
+
+== -[TAGPBCodedInputStream dealloc]   (address 0x1001319f0  size 100  kind objc)
+  131a1c  [self->buffer_ release]
+  131a40  [super dealloc]
+  131a50  return
+
+== -[TAGPBCodedInputStream readTag]   (address 0x100131a54  size 4  kind objc)
+  131a54  tail sub_100130f90(self, _cmd)
+
+== -[TAGPBCodedInputStream checkLastTagWas:]   (address 0x100131a58  size 96  kind objc)
+  131a74  if (self->lastTag_ == arg1) goto loc_100131aac
+  131aa8  [NSException raise:_NSParseErrorException[+0x0] format:@"Last tag: %d should be %d", self->lastTag_, arg1]
+loc_100131aac:
+  131ab4  return
+
+== -[TAGPBCodedInputStream skipField:]   (address 0x100131ab8  size 744  kind objc)
+  131ae0  if ((arg1 & 7) <=u 5) goto loc_100131b1c
+  131b10  [NSException raise:_NSParseErrorException[+0x0] format:@"Invalid tag %d", arg1]
+  131b18  goto loc_100131d70
+loc_100131b1c:
+  131b30  switch (?) { case 0: goto loc_100131b34; case 1: goto loc_100131b50; case 2: goto loc_100131be8; case 3: goto loc_100131c9c; case 4: goto loc_100131d70; case 5: goto loc_100131cd4 }
+loc_100131b34:  ; case 0
+  131b44  [self readInt32]
+  131b4c  goto loc_100131d70
+loc_100131b50:  ; case 1
+  131b70  if ((x8 + 8) <=u self->state_[+0x8]) goto loc_100131ba0
+  131b9c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131ba0:
+  131ba8  if ((x8 + 8) <=u self->state_[+0x18]) goto loc_100131bdc
+  131bd8  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131bdc:
+  131be4  goto loc_100131d68
+loc_100131be8:  ; case 2
+  131bf8  sub_100131048(x0, _cmd, arg1)
+  131c14  if ((x8 + sub_100131048(x0, _cmd, arg1)) <=u self->state_[+0x8]) goto loc_100131c44
+  131c40  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131c44:
+  131c54  if ((x8 + sub_100131048(x0, _cmd, arg1)) <=u self->state_[+0x18]) goto loc_100131c88
+  131c84  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131c88:
+  131c98  goto loc_100131d70
+loc_100131c9c:  ; case 3
+  131cac  [self skipMessage]
+  131cc8  [self checkLastTagWas:((arg1 & 0xfffffff8) | 4)]
+  131cd0  goto loc_100131d70
+loc_100131cd4:  ; case 5
+  131cf4  if ((x8 + 4) <=u self->state_[+0x8]) goto loc_100131d24
+  131d20  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131d24:
+  131d2c  if ((x8 + 4) <=u self->state_[+0x18]) goto loc_100131d60
+  131d5c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131d60:
+loc_100131d68:
+loc_100131d70:  ; case 4
+  131d84  return
+
+== -[TAGPBCodedInputStream skipMessage]   (address 0x100131da0  size 76  kind objc)
+  131db4  &@selector(skipField:)
+loc_100131dbc:
+  131dc0  sub_100130f90(self)
+  131dc8  if (sub_100130f90(self) == 0) goto loc_100131de0
+  131dd8  [self skipField:sub_100130f90(self)]
+  131ddc  if (([self skipField:sub_100130f90(self)] & 1)) goto loc_100131dbc
+loc_100131de0:
+  131de8  return
+
+== -[TAGPBCodedInputStream readDouble]   (address 0x100131dec  size 204  kind objc)
+  131e20  if ((x9 + 8) <=u self->state_[+0x8]) goto loc_100131e50
+  131e4c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131e50:
+  131e5c  if ((x9 + 8) <=u self->state_[+0x18]) goto loc_100131e90
+  131e8c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131e90:
+  131eb4  return
+
+== -[TAGPBCodedInputStream readFloat]   (address 0x100131eb8  size 204  kind objc)
+  131eec  if ((x9 + 4) <=u self->state_[+0x8]) goto loc_100131f1c
+  131f18  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131f1c:
+  131f28  if ((x9 + 4) <=u self->state_[+0x18]) goto loc_100131f5c
+  131f58  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131f5c:
+  131f80  return
+
+== -[TAGPBCodedInputStream readUInt64]   (address 0x100131f84  size 288  kind objc)
+loc_100131fdc:
+  131fe8  if ((x8 + 1) <=u x8) goto loc_100132008
+  132004  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132008:
+  132010  if ((x8 + 1) <=u x8) goto loc_100132034
+  132030  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132034:
+  132054  if (!(w9 & (1<<7))) goto loc_100132084
+  132060  if ((x24 + 7) <= 63) goto loc_100131fdc
+  13207c  [NSException raise:_NSParseErrorException[+0x0] format:@"Unable to read varint64"]
+loc_100132084:
+  1320a0  return
+
+== -[TAGPBCodedInputStream readInt64]   (address 0x1001320a4  size 288  kind objc)
+loc_1001320fc:
+  132108  if ((x8 + 1) <=u x8) goto loc_100132128
+  132124  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132128:
+  132130  if ((x8 + 1) <=u x8) goto loc_100132154
+  132150  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132154:
+  132174  if (!(w9 & (1<<7))) goto loc_1001321a4
+  132180  if ((x24 + 7) <= 63) goto loc_1001320fc
+  13219c  [NSException raise:_NSParseErrorException[+0x0] format:@"Unable to read varint64"]
+loc_1001321a4:
+  1321c0  return
+
+== -[TAGPBCodedInputStream readInt32]   (address 0x1001321c4  size 16  kind objc)
+  1321d0  tail sub_100131048(x0, _cmd)
+
+== -[TAGPBCodedInputStream readFixed64]   (address 0x1001321d4  size 200  kind objc)
+  132208  if ((x9 + 8) <=u self->state_[+0x8]) goto loc_100132238
+  132234  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132238:
+  132244  if ((x9 + 8) <=u self->state_[+0x18]) goto loc_100132278
+  132274  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132278:
+  132298  return
+
+== -[TAGPBCodedInputStream readFixed32]   (address 0x10013229c  size 200  kind objc)
+  1322d0  if ((x9 + 4) <=u self->state_[+0x8]) goto loc_100132300
+  1322fc  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132300:
+  13230c  if ((x9 + 4) <=u self->state_[+0x18]) goto loc_100132340
+  13233c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132340:
+  132360  return
+
+== -[TAGPBCodedInputStream readBool]   (address 0x100132364  size 40  kind objc)
+  132378  sub_100131048(x0, _cmd)
+  132388  return
+
+== -[TAGPBCodedInputStream readString]   (address 0x10013238c  size 32  kind objc)
+  132394  sub_100131450(self, _cmd)
+  1323a8  tail [sub_100131450(self, _cmd) autorelease]
+
+== -[TAGPBCodedInputStream readGroup:builder:extensionRegistry:]   (address 0x1001323ac  size 228  kind objc)
+  1323e4  if (self->recursionDepth_ <u 64) goto loc_100132428
+  132418  [NSException raise:_NSParseErrorException[+0x0] format:@"recursionDepth(%ld) >= %ld", self->recursionDepth_, 64]
+  132424  goto loc_10013242c
+loc_100132428:
+loc_10013242c:
+  132430  self->recursionDepth_ = (self->recursionDepth_ + 1)
+  13244c  [arg2 mergeFromCodedInputStream:self extensionRegistry:arg3]
+  132468  [self checkLastTagWas:((arg1 << 3) | 4)]
+  132474  self->recursionDepth_ = (self->recursionDepth_ - 1)
+  13248c  return
+
+== -[TAGPBCodedInputStream readUnknownGroup:builder:]   (address 0x100132490  size 220  kind objc)
+  1324c4  if (self->recursionDepth_ <u 64) goto loc_100132508
+  1324f8  [NSException raise:_NSParseErrorException[+0x0] format:@"recursionDepth(%ld) >= %ld", self->recursionDepth_, 64]
+  132504  goto loc_10013250c
+loc_100132508:
+loc_10013250c:
+  132510  self->recursionDepth_ = (self->recursionDepth_ + 1)
+  132528  [arg2 mergeFromCodedInputStream:self]
+  132544  [self checkLastTagWas:((arg1 << 3) | 4)]
+  132550  self->recursionDepth_ = (self->recursionDepth_ - 1)
+  132568  return
+
+== -[TAGPBCodedInputStream readMessage:extensionRegistry:]   (address 0x10013256c  size 256  kind objc)
+  13259c  sub_100131048(x0, _cmd, arg1, arg2)
+  1325b4  if (self->recursionDepth_ <u 64) goto loc_1001325ec
+  1325e8  [NSException raise:_NSParseErrorException[+0x0] format:@"recursionDepth(%ld) >= %ld", self->recursionDepth_, 64]
+loc_1001325ec:
+  1325f4  sub_100131850(self, sub_100131048(x0, _cmd, arg1, arg2))
+  132604  self->recursionDepth_ = (self->recursionDepth_ + 1)
+  132620  [arg1 mergeFromCodedInputStream:self extensionRegistry:arg2]
+  132638  [self checkLastTagWas:0]
+  132644  self->recursionDepth_ = (self->recursionDepth_ - 1)
+  132650  self->state_[+0x18] = sub_100131850(self, sub_100131048(x0, _cmd, arg1, arg2))
+  132668  return
+
+== -[TAGPBCodedInputStream readData]   (address 0x10013266c  size 32  kind objc)
+  132674  sub_100131730(self, _cmd)
+  132688  tail [sub_100131730(self, _cmd) autorelease]
+
+== -[TAGPBCodedInputStream readUInt32]   (address 0x10013268c  size 16  kind objc)
+  132698  tail sub_100131048(x0, _cmd)
+
+== -[TAGPBCodedInputStream readEnum]   (address 0x10013269c  size 16  kind objc)
+  1326a8  tail sub_100131048(x0, _cmd)
+
+== -[TAGPBCodedInputStream readSFixed32]   (address 0x1001326ac  size 200  kind objc)
+  1326e0  if ((x9 + 4) <=u self->state_[+0x8]) goto loc_100132710
+  13270c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132710:
+  13271c  if ((x9 + 4) <=u self->state_[+0x18]) goto loc_100132750
+  13274c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132750:
+  132770  return
+
+== -[TAGPBCodedInputStream readSFixed64]   (address 0x100132774  size 200  kind objc)
+  1327a8  if ((x9 + 8) <=u self->state_[+0x8]) goto loc_1001327d8
+  1327d4  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_1001327d8:
+  1327e4  if ((x9 + 8) <=u self->state_[+0x18]) goto loc_100132818
+  132814  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132818:
+  132838  return
+
+== -[TAGPBCodedInputStream readSInt32]   (address 0x10013283c  size 44  kind objc)
+  132850  sub_100131048(x0, _cmd)
+  132864  return
+
+== -[TAGPBCodedInputStream readSInt64]   (address 0x100132868  size 296  kind objc)
+loc_1001328c0:
+  1328cc  if ((x8 + 1) <=u x8) goto loc_1001328ec
+  1328e8  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_1001328ec:
+  1328f4  if ((x8 + 1) <=u x8) goto loc_100132918
+  132914  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100132918:
+  132938  if (!(w9 & (1<<7))) goto loc_100132968
+  132944  if ((x24 + 7) <= 63) goto loc_1001328c0
+  132960  [NSException raise:_NSParseErrorException[+0x0] format:@"Unable to read varint64"]
+loc_100132968:
+  13298c  return
+
+== -[TAGPBCodedInputStream pushLimit:]   (address 0x100132990  size 8  kind objc)
+  132994  tail sub_100131850(self, arg1, arg1)
+
+== -[TAGPBCodedInputStream popLimit:]   (address 0x100132998  size 20  kind objc)
+  1329a4  self->state_[+0x18] = arg1
+  1329a8  return
+
+== -[TAGPBCodedInputStream bytesUntilLimit]   (address 0x1001329ac  size 44  kind objc)
+  1329c0  if (self->state_[+0x18] == -1) goto loc_1001329d0
+  1329cc  return
+loc_1001329d0:
+  1329d4  return
+
+== -[TAGPBCodedInputStream isAtEnd]   (address 0x1001329d8  size 52  kind objc)
+  1329ec  if (self->state_[+0x10] != self->state_[+0x8]) goto loc_1001329f8
+  1329f4  goto loc_100132a04
+loc_1001329f8:
+loc_100132a04:
+  132a08  return

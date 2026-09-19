@@ -1,0 +1,33 @@
+
+== +[TAGRegex functionId]   (address 0x100179368  size 44  kind objc)
+  179390  return
+
+== +[TAGRegex ignoreCaseKey]   (address 0x100179394  size 44  kind objc)
+  1793bc  return
+
+== -[TAGRegex init]   (address 0x1001793c0  size 68  kind objc)
+  1793f4  [super initWithFunctionId:@"_re"]
+  179400  return
+
+== -[TAGRegex evaluateWithArg0:arg1:parameters:]   (address 0x100179404  size 476  kind objc)
+  179454  [arg3 objectForKey:@"ignore_case"]
+  179464  if ([arg3 objectForKey:@"ignore_case"] == 0) goto loc_1001794b0
+  179480  [TAGTypes valueToBoolean:[arg3 objectForKey:@"ignore_case"]]
+  17949c  [[TAGTypes valueToBoolean:[arg3 objectForKey:@"ignore_case"]] boolValue]
+  1794ac  goto loc_1001794b4
+loc_1001794b0:
+loc_1001794b4:
+  1794c8  [arg2 length]
+  1794cc  if ([arg2 length] == 0) goto loc_100179514
+  1794f4  [NSRegularExpression regularExpressionWithPattern:arg2 options:x3 error:&sp[0x8]]
+  179508  if (0 == 0) goto loc_10017951c
+  179510  goto loc_100179560
+loc_100179514:
+  179518  goto loc_100179568
+loc_10017951c:
+  179524  [arg1 length]
+  179548  [[NSRegularExpression regularExpressionWithPattern:arg2 options:x3 error:&sp[0x8]] firstMatchInString:arg1 options:x3 range:0]
+  179558  t1 = ([[NSRegularExpression regularExpressionWithPattern:arg2 options:x3 error:&sp[0x8]] firstMatchInString:arg1 options:x3 ra… != 0)
+loc_100179560:
+loc_100179568:
+  179598  return

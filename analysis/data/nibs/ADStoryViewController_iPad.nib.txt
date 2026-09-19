@@ -1,0 +1,15 @@
+// ADStoryViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #44 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #29 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #42 UIView  
+    #43 UIImageView  Image='background_main.png'
+    #28 UIImageView  Image='background_redline.png'
+    #32 UIButton (custom class ADButtonWithFont)  title[0]='SKIP'
+    #38 UILabel  UserInteractionDisabled=False Text='STORY SCREEN'
+
+CONNECTIONS
+  action  skipButtonPressed:                        #32 ADButtonWithFont --(events 0x40)--> #44 UIProxyObject
+  outlet  view                                      #44 UIProxyObject --> #42 UIView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,145 @@
+
+== +[TAGJoinerMacro functionId]   (address 0x100175ab8  size 44  kind objc)
+  175ae0  return
+
+== -[TAGJoinerMacro init]   (address 0x100175ae4  size 184  kind objc)
+  175b18  [NSSet setWithObject:@"arg0"]
+  175b54  [super initWithFunctionId:@"_jn" requiredKeys:[NSSet setWithObject:@"arg0"]]
+  175b78  return
+
+== -[TAGJoinerMacro isCacheable]   (address 0x100175b9c  size 8  kind objc)
+  175ba0  return
+
+== -[TAGJoinerMacro evaluate:]   (address 0x100175ba4  size 2920  kind objc)
+  175bfc  [arg1 objectForKey:@"arg0"]
+  175c1c  [arg1 objectForKey:@"item_separator"]
+  175c34  if ([arg1 objectForKey:@"item_separator"] == 0) goto loc_100175c64
+  175c50  [TAGTypes valueToString:[arg1 objectForKey:@"item_separator"]]
+  175c60  goto loc_100175c74
+loc_100175c64:
+loc_100175c74:
+  175c84  [arg1 objectForKey:@"key_value_separator"]
+  175c94  if ([arg1 objectForKey:@"key_value_separator"] == 0) goto loc_100175cc4
+  175cb0  [TAGTypes valueToString:[arg1 objectForKey:@"key_value_separator"]]
+  175cc0  goto loc_100175cd4
+loc_100175cc4:
+loc_100175cd4:
+  175ce8  [NSMutableSet set]
+  175d08  [arg1 objectForKey:@"escape"]
+  175d18  if ([arg1 objectForKey:@"escape"] == 0) goto loc_100175d70
+  175d34  [TAGTypes valueToString:[arg1 objectForKey:@"escape"]]
+  175d60  [@"url" isEqual:[TAGTypes valueToString:[arg1 objectForKey:@"escape"]]]
+  175d64  if (!([@"url" isEqual:[TAGTypes valueToString:[arg1 objectForKey:@"escape"]]] & 1)) goto loc_100175d7c
+  175d6c  goto loc_100175de0
+loc_100175d70:
+  175d78  goto loc_100175dec
+loc_100175d7c:
+  175d8c  [@"backslash" isEqual:[TAGTypes valueToString:[arg1 objectForKey:@"escape"]]]
+  175d90  if ([@"backslash" isEqual:[TAGTypes valueToString:[arg1 objectForKey:@"escape"]]] == 0) goto loc_10017644c
+  175dac  [self addTo:[NSMutableSet set] charsInString:x3]
+  175dbc  [self addTo:[NSMutableSet set] charsInString:x3]
+  175dd8  [[NSMutableSet set] removeObject:@"\"]
+loc_100175de0:
+loc_100175dec:
+  175e00  [[arg1 objectForKey:@"arg0"] type]
+  175e08  if ([[arg1 objectForKey:@"arg0"] type] != 2) goto loc_10017600c
+  175e2c  [[arg1 objectForKey:@"arg0"] listItemArray]
+  175e4c  [[[arg1 objectForKey:@"arg0"] listItemArray] count]
+  175e64  [NSMutableArray arrayWithCapacity:[[[arg1 objectForKey:@"arg0"] listItemArray] count]]
+  175e98  [[arg1 objectForKey:@"arg0"] listItemArray]
+  175ed8  [[[arg1 objectForKey:@"arg0"] listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xa8] count:16]
+  175ee0  if ([[[arg1 objectForKey:@"arg0"] listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xa8] count:16] == 0) goto loc_100175fc4
+loc_100175f20:
+loc_100175f24:
+  175f30  if (x8 == x27) goto loc_100175f3c
+  175f38  objc_enumerationMutation([[arg1 objectForKey:@"arg0"] listItemArray])
+loc_100175f3c:
+  175f50  [TAGTypes valueToString:x2]
+  175f70  [self escape:[TAGTypes valueToString:x2] escapeType:one of {0, 1, 2} charsToBackslashEscape:[NSMutableSet set]]
+  175f8c  [[NSMutableArray arrayWithCapacity:[[[arg1 objectForKey:@"arg0"] listItemArray] count]] addObject:[self escape:[TAGTypes valueToString:x2] escapeType:one of {0, 1, 2} charsToBackslashEscape:[NSMutableSet set]]]
+  175fa8  if ((x21 + 1) <u [[[arg1 objectForKey:@"arg0"] listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xa8] count:16]) goto loc_100175f24
+  175fb8  [[[arg1 objectForKey:@"arg0"] listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xa8] count:16]
+  175fc0  if ([[[arg1 objectForKey:@"arg0"] listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xa8] count:16] != 0) goto loc_100175f20
+loc_100175fc4:
+  175ff0  [[NSMutableArray arrayWithCapacity:[[[arg1 objectForKey:@"arg0"] listItemArray] count]] componentsJoinedByString:x2]
+  176008  goto loc_100176364
+loc_10017600c:
+  176010  if ([[arg1 objectForKey:@"arg0"] type] != 3) goto loc_10017630c
+  176034  [[arg1 objectForKey:@"arg0"] mapKeyArray]
+  176054  [[[arg1 objectForKey:@"arg0"] mapKeyArray] count]
+  17606c  [NSMutableArray arrayWithCapacity:[[[arg1 objectForKey:@"arg0"] mapKeyArray] count]]
+  176100  goto loc_100176128
+loc_100176104:
+loc_100176128:
+  176134  [[arg1 objectForKey:@"arg0"] mapKeyArray]
+  176148  [[[arg1 objectForKey:@"arg0"] mapKeyArray] count]
+  17615c  if (x26 >=u [[[arg1 objectForKey:@"arg0"] mapKeyArray] count]) goto loc_10017636c
+  176170  [[arg1 objectForKey:@"arg0"] mapKeyArray]
+  176188  [[[arg1 objectForKey:@"arg0"] mapKeyArray] objectAtIndex:x2]
+  1761a4  [TAGTypes valueToString:[[[arg1 objectForKey:@"arg0"] mapKeyArray] objectAtIndex:x2]]
+  1761d4  [[arg1 objectForKey:@"arg0"] mapValueArray]
+  1761f4  [[[arg1 objectForKey:@"arg0"] mapValueArray] objectAtIndex:x2]
+  176210  [TAGTypes valueToString:[[[arg1 objectForKey:@"arg0"] mapValueArray] objectAtIndex:x2]]
+  176250  [self escape:[TAGTypes valueToString:[[[arg1 objectForKey:@"arg0"] mapKeyArray] objectAtIndex:x2]] escapeType:one of {0, 1, 2} charsToBackslashEscape:[NSMutableSet set]]
+  176274  [self escape:[TAGTypes valueToString:[[[arg1 objectForKey:@"arg0"] mapValueArray] objectAtIndex:x2]] escapeType:one of {0, 1, 2} charsToBackslashEscape:[NSMutableSet set]]
+  176298  [NSArray arrayWithObjects:[self escape:[TAGTypes valueToString:[[[arg1 objectForKey:@"arg0"] mapKeyArray] objectAtIndex:x2]] escapeType:one of {0, 1, 2} charsToBackslashEscape:[NSMutableSet set]], [self escape:[TAGTypes valueToString:[[[arg1 objectForKey:@"…, nil]
+  1762c8  [[NSArray arrayWithObjects:[self escape:[TAGTypes valueToString:[[[arg1 objectForKey:@"arg0"] mapKeyArray] objectAtIndex:x2]] escapeType:one of {0, 1, 2} charsToBackslashEscape:[NSMutableSet set]], [self escape:[TAGTypes valueToString:[[[arg1 objectForKey:@"…, nil] componentsJoinedByString:x2]
+  1762e8  [[NSMutableArray arrayWithCapacity:[[[arg1 objectForKey:@"arg0"] mapKeyArray] count]] addObject:[[NSArray arrayWithObjects:[self escape:[TAGTypes valueToString:[[[arg1 objectForKey:@"arg0"] mapKeyArray] objectAtIndex:x2]] escapeType:one of {0, 1, 2} charsToBackslashEscape:[NSMutableSet set]], [self escape:[TAGTypes valueToString:[[[arg1 objectForKey:@"…, nil] componentsJoinedByString:x2]]
+  1762ec  goto loc_100176104
+  176308  goto loc_100176690
+loc_10017630c:
+  176328  [TAGTypes valueToString:[arg1 objectForKey:@"arg0"]]
+  176350  [self escape:[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]] escapeType:one of {0, 1, 2} charsToBackslashEscape:[NSMutableSet set]]
+loc_100176364:
+  176368  goto loc_100176398
+loc_10017636c:
+  176378  [[NSMutableArray arrayWithCapacity:[[[arg1 objectForKey:@"arg0"] mapKeyArray] count]] componentsJoinedByString:x2]
+loc_100176398:
+  1763b0  [TAGTypes objectToValue:x2]
+  176444  return
+  176468  [TAGLog error:@"Joiner: unsupported escape type"]
+  17647c  [TAGTypes defaultValue]
+
+== -[TAGJoinerMacro addTo:charsInString:]   (address 0x10017670c  size 260  kind objc)
+  176760  &@selector(addObject:)
+  176768  goto loc_100176778
+loc_10017676c:
+loc_100176778:
+  176780  [arg2 length]
+  176788  if (x21 >=u [arg2 length]) goto loc_1001767d0
+  17679c  [arg2 substringWithRange:x2]
+  1767b8  [arg1 addObject:[arg2 substringWithRange:x2]]
+  1767bc  goto loc_10017676c
+  1767cc  goto loc_1001767f8
+loc_1001767d0:
+  1767f0  return
+
+== -[TAGJoinerMacro escape:escapeType:charsToBackslashEscape:]   (address 0x100176810  size 712  kind objc)
+  176864  if (arg2 != 2) goto loc_1001769f4
+  176878  [arg1 mutableCopy]
+  176894  [[arg1 mutableCopy] length]
+  1768c8  [[arg1 mutableCopy] replaceOccurrencesOfString:@"\" withString:@"\\" options:0 range:0]
+  17690c  [arg3 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  176914  if ([arg3 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_1001769dc
+  176920  &@selector(stringByAppendingString:)
+loc_10017693c:
+loc_100176940:
+  17694c  if (x8 == x23) goto loc_100176958
+  176954  objc_enumerationMutation(arg3)
+loc_100176958:
+  176968  [[arg1 mutableCopy] length]
+  176980  [@"\" stringByAppendingString:x2]
+  1769ac  [[arg1 mutableCopy] replaceOccurrencesOfString:x2 withString:[@"\" stringByAppendingString:x2] options:0 range:0]
+  1769c0  if ((x28 + 1) <u [arg3 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]) goto loc_100176940
+  1769d0  [arg3 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  1769d8  if ([arg3 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_10017693c
+loc_1001769dc:
+  1769f0  goto loc_100176a30
+loc_1001769f4:
+  1769f8  if (arg2 != 1) goto loc_100176a24
+  176a14  [TAGValueEscapeUtil urlEncode:arg1]
+  176a20  goto loc_100176a2c
+loc_100176a24:
+loc_100176a2c:
+loc_100176a30:
+  176a70  return

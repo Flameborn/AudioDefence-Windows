@@ -1,0 +1,62 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "0.5",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "announcer_tutorial_changeControl"
+  },
+  {
+   "spawn_after": {
+    "time": 0.1,
+    "enemy": "announcer_tutorial_changeControl"
+   },
+   "gain": "1",
+   "skippable": true,
+   "name": "bastard_tutorial_2_1"
+  },
+  {
+   "spawn_after": {
+    "time": 0.1,
+    "enemy": "bastard_tutorial_2_1"
+   },
+   "gain": "0.5",
+   "skippable": true,
+   "name": "announcer_tutorial_switch_BUTTONMODE"
+  },
+  {
+   "spawn_after": {
+    "time": 1.5,
+    "enemy": "announcer_tutorial_switch_BUTTONMODE"
+   },
+   "gain": "1",
+   "skippable": true,
+   "name": "bastard_tutorial_2_2"
+  },
+  {
+   "spawn_after": {
+    "time": 20.5,
+    "afterStart": true,
+    "ignoreIfSkipped": true,
+    "enemy": "bastard_tutorial_2_2"
+   },
+   "spawn_angle": 210,
+   "gain": 8,
+   "spawn_distance": 4,
+   "name": "tutorial_elephant_SPA"
+  }
+ ],
+ "Enemies": {
+  "Ted": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 25.8,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_2_2"
+   },
+   "spawn_angle": 15,
+   "spawn_distance": 6
+  }
+ }
+}

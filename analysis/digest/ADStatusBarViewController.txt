@@ -1,0 +1,278 @@
+
+== -[ADStatusBarViewController initWithNibName:bundle:]   (address 0x10001bd70  size 256  kind objc)
+  01bda8  [ADGameParameters sharedParameters]
+  01bdc4  [[ADGameParameters sharedParameters] isIphone]
+  01bddc  t1 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"ADStatusBarViewController" : @"ADStatusBarViewController_iPad")
+  01be10  [super initWithNibName:t1 bundle:arg2]
+  01be34  return
+
+== -[ADStatusBarViewController viewDidLoad]   (address 0x10001be70  size 452  kind objc)
+  01bea8  [super viewDidLoad]
+  01bebc  [self coinsLabel]
+  01bedc  [[self coinsLabel] setupAsMain]
+  01bef8  [self diamondsLabel]
+  01bf0c  [[self diamondsLabel] setupAsMain]
+  01bf28  [self pageTitle]
+  01bf44  [[self pageTitle] setupAsTitle]
+  01bf60  [self backButton]
+  01bf74  [[self backButton] setupAsMain]
+  01bf94  [self armoryButton]
+  01bfbc  [[self armoryButton] setTitle:@"Armory" forState:0]
+  01bfd0  [self armoryButton]
+  01bfe4  [[self armoryButton] setupAsMain]
+  01c000  return
+
+== -[ADStatusBarViewController loadView]   (address 0x10001c034  size 536  kind objc)
+  01c08c  [NSNumber numberWithInt:5]
+  01c0b8  [NSNumber numberWithInt:3]
+  01c0e0  [NSNumber numberWithInt:9]
+  01c108  [NSNumber numberWithInt:2]
+  01c130  [NSNumber numberWithInt:8]
+  01c160  [NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x8] count:5]
+  01c1b4  [self loADViewBasedOnDeviceWithNibName:@"ADStatusBarViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x8] count:5]]
+  01c1e4  return
+
+== -[ADStatusBarViewController viewWillAppear:]   (address 0x10001c24c  size 92  kind objc)
+  01c280  [super viewWillAppear:arg1]
+  01c294  [self refreshCoinsAndDiamonds]
+  01c2a4  return
+
+== -[ADStatusBarViewController viewDidAppear:]   (address 0x10001c2a8  size 148  kind objc)
+  01c2dc  [super viewDidAppear:arg1]
+  01c2f0  [self currenciesView]
+  01c30c  [[self currenciesView] slide]
+  01c324  return
+
+== -[ADStatusBarViewController setSlideViewCallBack:]   (address 0x10001c33c  size 148  kind objc)
+  01c36c  [self currenciesView]
+  01c38c  [[self currenciesView] setSlideCompletion:arg1]
+  01c3a8  return
+
+== -[ADStatusBarViewController refreshCoinsAndDiamonds]   (address 0x10001c3d0  size 820  kind objc)
+  01c400  [self coinsLabel]
+  01c430  [ADInventory sharedInventory]
+  01c450  [[ADInventory sharedInventory] coins]
+  01c474  [NSString stringWithFormat:@"%d", [[ADInventory sharedInventory] coins]]
+  01c49c  [[self coinsLabel] setText:[NSString stringWithFormat:@"%d", [[ADInventory sharedInventory] coins]]]
+  01c4c8  [self diamondsLabel]
+  01c4f0  [ADInventory sharedInventory]
+  01c510  [[ADInventory sharedInventory] diamonds]
+  01c528  [NSString stringWithFormat:@"%i", [[ADInventory sharedInventory] diamonds]]
+  01c544  [[self diamondsLabel] setText:[NSString stringWithFormat:@"%i", [[ADInventory sharedInventory] diamonds]]]
+  01c57c  [ADInventory sharedInventory]
+  01c590  [[ADInventory sharedInventory] coins]
+  01c5a8  [NSString stringWithFormat:@"%i coins", [[ADInventory sharedInventory] coins]]
+  01c5d0  [self->_coinsLabel setAccessibilityLabel:[NSString stringWithFormat:@"%i coins", [[ADInventory sharedInventory] coins]]]
+  01c600  [ADInventory sharedInventory]
+  01c614  [[ADInventory sharedInventory] diamonds]
+  01c62c  [NSString stringWithFormat:@"%i diamonds", [[ADInventory sharedInventory] diamonds]]
+  01c648  [self->_diamondsLabel setAccessibilityLabel:[NSString stringWithFormat:@"%i diamonds", [[ADInventory sharedInventory] diamonds]]]
+  01c674  return
+
+== -[ADStatusBarViewController animateCoins:fromCenter:]   (address 0x10001c704  size 36  kind objc)
+  01c710  self->animationCenter.x = arg2.0
+  01c714  self->animationCenter.y = arg2.1
+  01c724  tail [self animateCoins:arg1]
+
+== -[ADStatusBarViewController animateCoins:]   (address 0x10001c728  size 296  kind objc)
+  01c754  [ADInventory sharedInventory]
+  01c770  [[ADInventory sharedInventory] coins]
+  01c780  self->coinsFloatValue = (float)[[ADInventory sharedInventory] coins]
+  01c7a4  self->coinsWantedValue = (int)((float)arg1 + self->coinsFloatValue)
+  01c7bc  self->coinsStep = ((float)arg1 / 60)
+  01c7c4  if (((float)arg1 / 60) == 0.0) goto loc_10001c82c
+  01c7fc  [NSTimer scheduledTimerWithTimeInterval:0.0166667 target:self selector:@selector(animateCoins) userInfo:0 repeats:1]
+  01c814  self->animationTimerForCoins = [NSTimer scheduledTimerWithTimeInterval:0.0166667 target:self selector:@selector(animateCoins) userInfo:0 repeats:1]
+  01c828  return
+loc_10001c82c:
+  01c838  return
+
+== -[ADStatusBarViewController animateDiamonds:]   (address 0x10001c850  size 452  kind objc)
+  01c880  [ADInventory sharedInventory]
+  01c89c  [[ADInventory sharedInventory] diamonds]
+  01c8ac  self->diamondsFloatValue = (float)[[ADInventory sharedInventory] diamonds]
+  01c8d0  self->diamondsWantedValue = (int)((float)arg1 + self->diamondsFloatValue)
+  01c8e4  if (fabs((float)arg1) >= (or unordered) 5) goto loc_10001c964
+  01c8f8  [self diamondsLabel]
+  01c92c  [NSString stringWithFormat:@"%i", self->diamondsWantedValue]
+  01c950  [[self diamondsLabel] setText:[NSString stringWithFormat:@"%i", self->diamondsWantedValue]]
+  01c960  goto loc_10001c9d0
+loc_10001c964:
+  01c978  self->diamondsStep = ((float)arg1 / 60)
+  01c9b0  [NSTimer scheduledTimerWithTimeInterval:0.0166667 target:self selector:@selector(animateDiamonds) userInfo:0 repeats:1]
+  01c9c8  self->animationTimerForDiamonds = [NSTimer scheduledTimerWithTimeInterval:0.0166667 target:self selector:@selector(animateDiamonds) userInfo:0 repeats:1]
+loc_10001c9d0:
+  01c9e0  return
+
+== -[ADStatusBarViewController animateCoins]   (address 0x10001ca14  size 340  kind objc)
+  01ca60  self->coinsFloatValue = (self->coinsFloatValue + self->coinsStep)
+  01ca78  if (fabs((self->coinsFloatValue - (float)self->coinsWantedValue)) >= (or unordered) fabs(((self->coinsFloatValue + self->coinsStep) - (float)self->coinsWantedValue))) goto loc_10001caa0
+  01ca7c  self->coinsFloatValue = (float)self->coinsWantedValue
+  01ca98  [self->animationTimerForCoins invalidate]
+  01ca9c  self->coinsStep = 0
+loc_10001caa0:
+  01cab0  self->coinAnimationRatio = (self->coinAnimationRatio - 1)
+  01cac4  [self coinsLabel]
+  01cafc  [NSString stringWithFormat:@"%i", (int)self->coinsFloatValue]
+  01cb20  [[self coinsLabel] setText:[NSString stringWithFormat:@"%i", (int)self->coinsFloatValue]]
+  01cb40  return
+
+== -[ADStatusBarViewController animateDiamonds]   (address 0x10001cb68  size 308  kind objc)
+  01cb9c  self->diamondsFloatValue = (self->diamondsStep + self->diamondsFloatValue)
+  01cbc4  if (fabs(((self->diamondsStep + self->diamondsFloatValue) - (float)self->diamondsWantedValue)) > (or unordered) fabs(self->diamondsStep)) goto loc_10001cbe8
+  01cbc8  self->diamondsFloatValue = (float)self->diamondsWantedValue
+  01cbe4  [self->animationTimerForDiamonds invalidate]
+loc_10001cbe8:
+  01cbf8  [self diamondsLabel]
+  01cc30  [NSString stringWithFormat:@"%i", (int)self->diamondsFloatValue]
+  01cc54  [[self diamondsLabel] setText:[NSString stringWithFormat:@"%i", (int)self->diamondsFloatValue]]
+  01cc74  return
+
+== -[ADStatusBarViewController stopAllAnimations]   (address 0x10001cc9c  size 76  kind objc)
+  01ccc8  [self->animationTimerForCoins invalidate]
+  01cce4  tail [self->animationTimerForDiamonds invalidate]
+
+== -[ADStatusBarViewController armoryButtonPressed:]   (address 0x10001cce8  size 256  kind objc)
+  01cd10  [UIApplication sharedApplication]
+  01cd30  [[UIApplication sharedApplication] delegate]
+  01cd48  [self delegate]
+  01cd68  [self armoryLoadoutEnabled]
+  01cd84  [[[UIApplication sharedApplication] delegate] goToArmoryFromVC:[self delegate] EnableLoadOut:[self armoryLoadoutEnabled]]
+  01cda8  return
+
+== -[ADStatusBarViewController playSound]   (address 0x10001cde8  size 252  kind objc)
+  01ce0c  [S3DEngine engine]
+  01ce30  [[S3DEngine engine] playListWithName:@"buttons"]
+  01ce54  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  01ce88  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  01ce9c  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  01ceb0  return
+
+== -[ADStatusBarViewController deactivateButtons]   (address 0x10001cee4  size 308  kind objc)
+  01cf0c  [self backButton]
+  01cf30  [[self backButton] setAlpha:0]
+  01cf50  [self armoryButton]
+  01cf68  [[self armoryButton] setAlpha:0]
+  01cf7c  [self backButton]
+  01cfa0  [[self backButton] setUserInteractionEnabled:0]
+  01cfb4  [self armoryButton]
+  01cfcc  [[self armoryButton] setUserInteractionEnabled:0]
+  01cfe4  return
+
+== -[ADStatusBarViewController activateButtons]   (address 0x10001d018  size 216  kind objc)
+  01d0ac  [UIView animateWithDuration:0.5 animations:^{-[ADStatusBarViewController activateButtons]_block_invoke captures +0x20=self} completion:^{-[ADStatusBarViewController activateButtons]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADStatusBarViewController activateBut…, +0x40=&d_1003b1140, +0x48=self}]
+  01d0d0  return
+
+== -[ADStatusBarViewController activateButtons]_block_invoke   (address 0x10001d0f0  size 180  kind block)
+  01d114  [self backButton]
+  01d138  [[self backButton] setAlpha:1]
+  01d154  [self armoryButton]
+  01d16c  [[self armoryButton] setAlpha:1]
+  01d180  return
+
+== sub_10001d1a4   (address 0x10001d1a4  size 8  kind sub)
+
+== sub_10001d1ac   (address 0x10001d1ac  size 8  kind sub)
+  01d1b0  return
+
+== -[ADStatusBarViewController activateButtons]_block_invoke_2   (address 0x10001d1b4  size 180  kind block)
+  01d1d8  [self backButton]
+  01d1fc  [[self backButton] setUserInteractionEnabled:1]
+  01d218  [self armoryButton]
+  01d230  [[self armoryButton] setUserInteractionEnabled:1]
+  01d244  return
+
+== sub_10001d268   (address 0x10001d268  size 8  kind sub)
+
+== sub_10001d270   (address 0x10001d270  size 8  kind sub)
+  01d274  return
+
+== -[ADStatusBarViewController setCoinsLabel:]   (address 0x10001d278  size 284  kind objc)
+  01d2ac  self->_coinsLabel = arg1
+  01d2d4  [ADInventory sharedInventory]
+  01d2f0  [[ADInventory sharedInventory] coins]
+  01d310  [NSString stringWithFormat:@"%i coins", [[ADInventory sharedInventory] coins]]
+  01d334  [self->_coinsLabel setAccessibilityLabel:[NSString stringWithFormat:@"%i coins", [[ADInventory sharedInventory] coins]]]
+  01d35c  return
+
+== -[ADStatusBarViewController setDiamondsLabel:]   (address 0x10001d394  size 284  kind objc)
+  01d3c8  self->_diamondsLabel = arg1
+  01d3f0  [ADInventory sharedInventory]
+  01d40c  [[ADInventory sharedInventory] diamonds]
+  01d42c  [NSString stringWithFormat:@"%i diamonds", [[ADInventory sharedInventory] diamonds]]
+  01d450  [self->_diamondsLabel setAccessibilityLabel:[NSString stringWithFormat:@"%i diamonds", [[ADInventory sharedInventory] diamonds]]]
+  01d478  return
+
+== -[ADStatusBarViewController setCurrenciesVisibility:]   (address 0x10001d4b0  size 100  kind objc)
+  01d4cc  [self currenciesView]
+  01d4ec  [[self currenciesView] setHidden:(arg1 ^ 1)]
+  01d4fc  return
+
+== -[ADStatusBarViewController setArmoryButtonVisibilty:]   (address 0x10001d514  size 180  kind objc)
+  01d53c  [self armoryButton]
+  01d55c  [[self armoryButton] setHidden:(arg1 ^ 1)]
+  01d570  [self armoryButton]
+  01d590  [[self armoryButton] setUserInteractionEnabled:arg1]
+  01d5a4  return
+
+== -[ADStatusBarViewController setDiamonsdsVisibility:]   (address 0x10001d5c8  size 100  kind objc)
+  01d5e4  [self diamondsLabel]
+  01d604  [[self diamondsLabel] setHidden:(arg1 ^ 1)]
+  01d614  return
+
+== -[ADStatusBarViewController delegate]   (address 0x10001d62c  size 32  kind objc)
+  01d648  return
+
+== -[ADStatusBarViewController setDelegate:]   (address 0x10001d64c  size 20  kind objc)
+
+== -[ADStatusBarViewController coinsLabel]   (address 0x10001d660  size 16  kind objc)
+  01d66c  return
+
+== -[ADStatusBarViewController diamondsLabel]   (address 0x10001d670  size 16  kind objc)
+  01d67c  return
+
+== -[ADStatusBarViewController pageTitle]   (address 0x10001d680  size 16  kind objc)
+  01d68c  return
+
+== -[ADStatusBarViewController setPageTitle:]   (address 0x10001d690  size 56  kind objc)
+  01d6b4  self->_pageTitle = arg1
+  01d6c4  return
+
+== -[ADStatusBarViewController armoryButton]   (address 0x10001d6c8  size 16  kind objc)
+  01d6d4  return
+
+== -[ADStatusBarViewController setArmoryButton:]   (address 0x10001d6d8  size 56  kind objc)
+  01d6fc  self->_armoryButton = arg1
+  01d70c  return
+
+== -[ADStatusBarViewController currenciesView]   (address 0x10001d710  size 16  kind objc)
+  01d71c  return
+
+== -[ADStatusBarViewController setCurrenciesView:]   (address 0x10001d720  size 56  kind objc)
+  01d744  self->_currenciesView = arg1
+  01d754  return
+
+== -[ADStatusBarViewController backButton]   (address 0x10001d758  size 16  kind objc)
+  01d764  return
+
+== -[ADStatusBarViewController setBackButton:]   (address 0x10001d768  size 56  kind objc)
+  01d78c  self->_backButton = arg1
+  01d79c  return
+
+== -[ADStatusBarViewController armoryLoadoutEnabled]   (address 0x10001d7a0  size 20  kind objc)
+  01d7b0  return
+
+== -[ADStatusBarViewController setArmoryLoadoutEnabled:]   (address 0x10001d7b4  size 16  kind objc)
+  01d7bc  self->_armoryLoadoutEnabled = arg1
+  01d7c0  return
+
+== -[ADStatusBarViewController backButtonDelegate]   (address 0x10001d7c4  size 16  kind objc)
+  01d7d0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatusBarViewController setBackButtonDelegate:]   (address 0x10001d7d4  size 12  kind objc)
+  01d7dc  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatusBarViewController .cxx_destruct]   (address 0x10001d7e0  size 220  kind objc)
+
+== -[ADStatusBarViewController .cxx_construct]   (address 0x10001d8bc  size 4  kind objc)
+  01d8bc  return

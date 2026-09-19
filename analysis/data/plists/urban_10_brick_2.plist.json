@@ -1,0 +1,49 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_urban_10_2"
+  }
+ ],
+ "Enemies": {
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "bastard_urban_10_2"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 12,
+    "enemy": "bastard_urban_10_2"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 14,
+    "enemy": "bastard_urban_10_2"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 8
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "bastard_urban_10_2"
+   },
+   "spawn_angle": 270,
+   "spawn_distance": 10
+  }
+ }
+}

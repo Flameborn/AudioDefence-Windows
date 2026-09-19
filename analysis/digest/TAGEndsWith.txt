@@ -1,0 +1,16 @@
+
+== +[TAGEndsWith functionId]   (address 0x1001786ec  size 44  kind objc)
+  178714  return
+
+== -[TAGEndsWith init]   (address 0x100178718  size 68  kind objc)
+  17874c  [super initWithFunctionId:@"_ew"]
+  178758  return
+
+== -[TAGEndsWith evaluateWithArg0:arg1:parameters:]   (address 0x10017875c  size 164  kind objc)
+  178794  [arg2 length]
+  178798  if ([arg2 length] == 0) goto loc_1001787d8
+  1787b0  [arg1 hasSuffix:arg2]
+  1787b8  goto loc_1001787dc
+loc_1001787d8:
+loc_1001787dc:
+  1787fc  return

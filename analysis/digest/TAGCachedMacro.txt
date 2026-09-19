@@ -1,0 +1,24 @@
+
+== -[TAGCachedMacro initWithValueAndStatic:pushAfterEvaluate:]   (address 0x100167e84  size 228  kind objc)
+  167ed8  [super init]
+  167ee0  if (self == 0) goto loc_100167f24
+  167ef8  self->_valueAndStatic = arg1
+  167f18  self->_pushAfterEvaluate = arg2
+loc_100167f24:
+  167f48  return
+
+== -[TAGCachedMacro valueAndStatic]   (address 0x100167f68  size 16  kind objc)
+  167f74  return
+
+== -[TAGCachedMacro setValueAndStatic:]   (address 0x100167f78  size 56  kind objc)
+  167f9c  self->_valueAndStatic = arg1
+  167fac  return
+
+== -[TAGCachedMacro pushAfterEvaluate]   (address 0x100167fb0  size 16  kind objc)
+  167fbc  return
+
+== -[TAGCachedMacro setPushAfterEvaluate:]   (address 0x100167fc0  size 56  kind objc)
+  167fe4  self->_pushAfterEvaluate = arg1
+  167ff4  return
+
+== -[TAGCachedMacro .cxx_destruct]   (address 0x100167ff8  size 64  kind objc)

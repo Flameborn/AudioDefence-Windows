@@ -1,0 +1,45 @@
+{
+ "icon_title": "27",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 95
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "title": "Short on Supplies",
+ "objective": "This time, it's all about trying to make every bullet count.",
+ "tip": "Out of bullets? Remember you still have your melee weapon!",
+ "bricks": [
+  "maya_7_brick_1",
+  "maya_7_brick_2",
+  "maya_7_brick_3",
+  "maya_7_brick_4"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "maya_7",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "maya_6"
+ ],
+ "weapons": [
+  {
+   "ammo": "65",
+   "name": "tactical"
+  },
+  {
+   "ammo": "20",
+   "name": "hunting"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 75
+ }
+}

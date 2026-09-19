@@ -1,0 +1,107 @@
+
+== csl::IntensityAttenuationCue::vfunc_2   (address 0x1000ef780  size 32  kind cxx)
+  0ef788  a0[+0x8] = (1 / s0)
+  0ef794  if ((1 / s0) <= (or unordered) a0[+0xc]) goto loc_1000ef79c
+  0ef798  a0[+0x8] = a0[+0xc]
+loc_1000ef79c:
+  0ef79c  return
+
+== csl::IntensityAttenuationCue::vfunc_3   (address 0x1000ef7a0  size 72  kind cxx)
+  0ef7c4  call a1[+0x0][+0x20]
+  0ef7e4  tail vDSP_vsmul(a1[+0x0][+0x20](…), 1, (a0 + 8), a1[+0x0][+0x20](…))
+
+== csl::IntensityAttenuationCue::~IntensityAttenuationCue   (address 0x1000ef8d8  size 4  kind cxx)
+  0ef8d8  return
+
+== csl::IntensityAttenuationCue::~IntensityAttenuationCue/*deleting*/   (address 0x1000ef8dc  size 4  kind cxx)
+  0ef8dc  tail ZdlPv(a0, a1, a2, a3)
+
+== sub_1000ef8e0   (address 0x1000ef8e0  size 696  kind sub)
+  0ef908  sub_1000f1cec(a0, a1, a2, a3)
+  0ef914  sub_1000f0c10(a0, sub_1000f1cec(a0, a1, a2, a3))
+  0ef924  a0[+0x0] = vtable<csl::SimplePanner>
+  0ef92c  a0[+0xa8] = vtable<csl::SimplePanner (secondary, -0xa8)>
+  0ef93c  sub_1000eda70((a0 + 296), 2)
+  0ef94c  sub_1000eda70((a0 + 696), 2)
+  0ef95c  sub_1000eda70((a0 + 1096), 2)
+  0ef96c  sub_1000ea57c((a0 + 1496), (a0 + 696))
+  0ef98c  sub_1000ec1e8((a0 + 1848), (a0 + 1496), 0)
+  0ef9a4  sub_1000ec1e8((a0 + 2312), (a0 + 1496), 0)
+  0ef9b8  sub_1000ea94c((a0 + 2776), (a0 + 2312), (a0 + 1848))
+  0ef9c8  sub_1000ed088((a0 + 3064), (a0 + 1096))
+  0ef9dc  sub_1000eda70((a0 + 3392), 2)
+  0ef9e0  a0[+0xee0] = 0
+  0ef9e8  a0[+0xed8] = 0
+  0ef9ec  a0[+0xed0] = 0
+  0ef9f8  sub_1000edd54((a0 + 3392), (a0 + 296))
+  0efa04  sub_1000edd54((a0 + 3392), (a0 + 2776))
+  0efa10  sub_1000edd54((a0 + 3392), (a0 + 3064))
+  0efa28  sub_1000edfec((a0 + 3392), (a0 + 296))
+  0efa38  sub_1000edfec((a0 + 3392), (a0 + 2776))
+  0efa48  sub_1000edfec((a0 + 3392), (a0 + 3064))
+  0efa54  sub_1000ed600((a0 + 3064))
+  0efa60  sub_1000ed674((a0 + 3064))
+  0efa88  return
+  0efa94  if (x0 == 0) goto loc_1000efa9c
+  0efa98  ZdlPv()
+  0efaa0  call csl::Mixer::~Mixer
+  0efaf0  call csl::Stereoverb::~Stereoverb
+  0efaf8  ZN3csl6JoinerD1Ev()
+  0efb0c  sub_1000ebc5c(x0, &d_1003b4e28)
+  0efb14  sub_1000e9388((x19 + 2664))
+  0efb28  sub_1000ebc5c(x0, &d_1003b4e28)
+  0efb30  sub_1000e9388((x19 + 2200))
+  0efb38  ZN3csl8SplitterD1Ev()
+  0efb40  call csl::Mixer::~Mixer
+  0efb48  call csl::Mixer::~Mixer
+  0efb50  call csl::Mixer::~Mixer
+  0efb58  call sub_1000f0d70
+  0efb6c  call sub_10000b760
+  0efb78  sub_1000e9388((x19 + 2664))
+  0efb80  call sub_10000b760
+  0efb8c  sub_1000e9388((x19 + 2200))
+  0efb94  call sub_10000b760
+
+== sub_1000efb98   (address 0x1000efb98  size 36  kind sub)
+  0efba8  sub_1000ef8e0(a0, a1, a2, a3)
+  0efbb8  return
+
+== sub_1000efbbc   (address 0x1000efbbc  size 460  kind sub)
+  0efbd8  a0[+0x0] = vtable<csl::SimplePanner>
+  0efbe0  a0[+0xa8] = vtable<csl::SimplePanner (secondary, -0xa8)>
+  0efbe8  if (a0[+0xed0] == 0) goto loc_1000efbf0
+  0efbec  ZdlPv(a0[+0xed0], a1, a2, a3)
+loc_1000efbf0:
+  0efbf4  csl::Mixer::~Mixer((a0 + 3392))
+  0efbfc  csl::Stereoverb::~Stereoverb((a0 + 3064))
+  0efc04  ZN3csl6JoinerD1Ev((a0 + 2776))
+  0efc18  sub_1000ebc5c((a0 + 2312), &d_1003b4e28)
+  0efc20  sub_1000e9388((a0 + 2664))
+  0efc2c  sub_1000ebc5c((a0 + 1848), &d_1003b4e28)
+  0efc34  sub_1000e9388((a0 + 2200))
+  0efc3c  ZN3csl8SplitterD1Ev((a0 + 1496))
+  0efc44  csl::Mixer::~Mixer((a0 + 1096))
+  0efc4c  csl::Mixer::~Mixer((a0 + 696))
+  0efc54  csl::Mixer::~Mixer((a0 + 296))
+  0efc5c  sub_1000f0d70(a0)
+  0efc6c  return
+  0efc78  csl::Stereoverb::~Stereoverb((x19 + 3064))
+  0efc88  ZN3csl6JoinerD1Ev((x19 + 2776))
+  0efca4  sub_1000ebc5c((x19 + 2312), &d_1003b4e28)
+  0efcac  sub_1000e9388((x19 + 2664))
+  0efcbc  sub_1000e9388((x19 + 2664))
+  0efcc4  call sub_10000b760
+  0efcdc  sub_1000ebc5c((x19 + 1848), &d_1003b4e28)
+  0efce4  sub_1000e9388((x19 + 2200))
+  0efcf4  sub_1000e9388((x19 + 2200))
+  0efcfc  call sub_10000b760
+  0efd08  ZN3csl8SplitterD1Ev((x19 + 1496))
+  0efd18  csl::Mixer::~Mixer((x19 + 1096))
+  0efd28  csl::Mixer::~Mixer((x19 + 696))
+  0efd38  csl::Mixer::~Mixer((x19 + 296))
+  0efd48  call sub_1000f0d70
+  0efd5c  call sub_10000b760
+  0efd68  sub_1000e9388((x19 + 2200))
+  0efd70  call sub_10000b760
+  0efd7c  sub_1000e9388((x19 + 2664))
+  0efd84  call sub_10000b760

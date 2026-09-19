@@ -1,0 +1,24 @@
+{
+ "PasserBy": {
+  "Jukebox": {
+   "spawn_sound": "",
+   "spawn_angle": 70,
+   "spawn_distance": 5,
+   "spawn_time": 3
+  }
+ },
+ "Enemies": {
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_angle": 20,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 170,
+   "spawn_distance": 10,
+   "spawn_time": 0
+  }
+ }
+}

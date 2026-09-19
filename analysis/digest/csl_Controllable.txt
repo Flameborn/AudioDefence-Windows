@@ -1,0 +1,143 @@
+
+== csl::Controllable::~Controllable   (address 0x1000e93e0  size 88  kind cxx)
+  0e93fc  a0[+0x0] = vtable<csl::Controllable>
+loc_1000e9404:
+  0e9408  if (x0 == 0) goto loc_1000e941c
+  0e9414  call x8
+loc_1000e941c:
+  0e9424  if ((x20 + 8) != 112) goto loc_1000e9404
+  0e9434  return
+
+== csl::Controllable::~Controllable/*deleting*/   (address 0x1000e9438  size 108  kind cxx)
+  0e9454  a0[+0x0] = vtable<csl::Controllable>
+loc_1000e945c:
+  0e9460  if (x0 == 0) goto loc_1000e9474
+  0e946c  call x8
+loc_1000e9474:
+  0e947c  if ((x20 + 8) != 112) goto loc_1000e945c
+  0e948c  tail ZdlPv(a0)
+  0e9498  ZdlPv()
+
+== sub_1000e94a4   (address 0x1000e94a4  size 188  kind sub)
+  0e94bc  if (a1 == 0) goto loc_1000e9528
+  0e94c4  if (a1[+0x8] == 0) goto loc_1000e9544
+  0e94cc  if (a1[+0x10] == 0) goto loc_1000e9538
+  0e94d4  sub_1000e9130(a1, a1, a2, a3)
+  0e94d8  a1[+0x10][+0xc] = a2
+  0e94dc  a1[+0x10][+0x2c] = 0
+  0e94e4  sub_1000e8310(a1[+0x10])
+  0e94f8  call a1[+0x8][+0x0][+0x20]
+  0e9500  a1[+0x10][+0x2a] = 1
+  0e9514  call a1[+0x10][+0x0][+0x20]
+  0e951c  a1[+0x20] = (a1[+0x10][+0x0][+0x20](…) - 4)
+  0e9520  a1[+0x2c] = 0
+  0e9524  goto loc_1000e9544
+loc_1000e9528:
+  0e9530  sub_1000e75a0("Controllable::pullInput port == null!", a1, a2, a3)
+  0e9534  goto loc_1000e9544
+loc_1000e9538:
+  0e9540  sub_1000e75a0("Controllable::pullInput Buffer == null!", a1, a2, a3)
+loc_1000e9544:
+  0e9550  return
+  0e9554  if (w1 >= 0) goto loc_1000e955c
+  0e9558  cxa_call_unexpected()
+
+== sub_1000e9560   (address 0x1000e9560  size 60  kind sub)
+  0e9588  memset(a0, 0, 104, a3)
+  0e9598  return
+
+== sub_1000e959c   (address 0x1000e959c  size 112  kind sub)
+  0e95b0  if (a1 == 0) goto loc_1000e95f4
+  0e95b8  if (a1[+0x8] == 0) goto loc_1000e95f4
+  0e95c8  call a1[+0x8][+0x0][+0x20]
+  0e95d0  a2[+0x2a] = 1
+  0e95e4  call a2[+0x0][+0x20]
+  0e95ec  a1[+0x20] = (a2[+0x0][+0x20](…) - 4)
+  0e95f0  a1[+0x2c] = 0
+loc_1000e95f4:
+  0e95fc  return
+  0e9600  if (w1 >= 0) goto loc_1000e9608
+  0e9604  cxa_call_unexpected()
+
+== sub_1000e960c   (address 0x1000e960c  size 144  kind sub)
+  0e9630  if ((a0 + (a1 << 3))[+0x8] == 0) goto loc_1000e9644
+  0e963c  call (a0 + (a1 << 3))[+0x8][+0x0][+0x8]
+  0e9640  (a0 + (a1 << 3))[+0x0] = 0
+loc_1000e9644:
+  0e9678  ZN3csl12SimpleVectorIPNS_13UnitGeneratorEE4eachEU13block_pointerFvRS2_PbE((a2 + 104), ^{sub_1000e8b64 captures +0x20=a2, +0x28=a0})
+  0e9684  a2[+0x90] = (a2[+0x90] - 1)
+  0e9698  return
+
+== sub_1000e969c   (address 0x1000e969c  size 120  kind sub)
+  0e96bc  if ((a0 + (a1 << 3))[+0x8] == 0) goto loc_1000e96d0
+  0e96c8  call (a0 + (a1 << 3))[+0x8][+0x0][+0x8]
+  0e96cc  (a0 + (a1 << 3))[+0x0] = 0
+loc_1000e96d0:
+  0e96d4  Znwm(48)
+  0e96e0  sub_1000e8f70(Znwm(48), a2)
+  0e96e4  (a0 + (a1 << 3))[+0x0] = Znwm(48)
+  0e96fc  tail sub_1000e89bc(a2, a0)
+  0e9708  ZdlPv()
+
+== sub_1000e9714   (address 0x1000e9714  size 112  kind sub)
+  0e9730  if ((a0 + (a1 << 3))[+0x8] == 0) goto loc_1000e9744
+  0e973c  call (a0 + (a1 << 3))[+0x8][+0x0][+0x8]
+  0e9740  (a0 + (a1 << 3))[+0x0] = 0
+loc_1000e9744:
+  0e9748  Znwm(48)
+  0e9758  Znwm(48)[+0x0] = vtable<csl::Port>
+  0e9764  Znwm(48)[+0x18] = s8
+  0e9768  Znwm(48)[+0x20] = Znwm(48)
+  0e976c  Znwm(48)[+0x28] = 0
+  0e9770  (a0 + (a1 << 3))[+0x0] = Znwm(48)
+  0e9780  return
+
+== sub_1000e9784   (address 0x1000e9784  size 12  kind sub)
+  0e978c  return
+
+== csl::Controllable::vfunc_2   (address 0x1000e9790  size 236  kind cxx)
+  0e97b4  sub_1000e75a0("a Controllable with the map:", a1, a2, a3)
+  0e97f0  goto loc_1000e980c
+  0e97f8  goto loc_1000e9830
+  0e9800  goto loc_1000e9830
+  0e9808  goto loc_1000e9830
+loc_1000e980c:
+  0e9814  if ((w24 - 1) >u 5) goto loc_1000e982c
+  0e9828  goto loc_1000e9830
+loc_1000e982c:
+loc_1000e9830:
+  0e9830  sub_1000e75a0("	key: Other = UG: ")
+  0e9838  if (x0 == 0) goto loc_1000e9840
+  0e983c  call sub_1000e9304
+loc_1000e9840:
+  0e9848  if ((x24 + 1) != 13) goto loc_1000e980c
+  0e9860  return
+
+== csl::Controllable::vfunc_3   (address 0x1000e987c  size 316  kind cxx)
+  0e98b8  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0e98f8  goto loc_1000e9914
+  0e9900  goto loc_1000e9938
+  0e9908  goto loc_1000e9938
+  0e9910  goto loc_1000e9938
+loc_1000e9914:
+  0e991c  if ((w26 - 1) >u 5) goto loc_1000e9934
+  0e9930  goto loc_1000e9938
+loc_1000e9934:
+loc_1000e9938:
+  0e9938  printf("	key: Other = UG: ")
+  0e9940  putchar(10)
+  0e9948  if (x8 == 0) goto loc_1000e9964
+  0e9950  if (x0 == 0) goto loc_1000e9964
+  0e9960  call x8
+loc_1000e9964:
+  0e996c  if ((x26 + 1) != 13) goto loc_1000e9914
+  0e9998  return
+
+== sub_1000e99b8   (address 0x1000e99b8  size 76  kind sub)
+  0e99cc  a0[+0x0] = a1[+0x0]
+  0e99dc  a0[+0x8] = s1
+  0e99f0  sub_1000e9714((a0 + a0[+0x0][+0x-18]), 6, a2, a3)
+  0e9a00  return
+
+== sub_1000e9a04   (address 0x1000e9a04  size 4  kind sub)
+  0e9a04  return

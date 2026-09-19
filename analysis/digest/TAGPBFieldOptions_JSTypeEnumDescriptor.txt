@@ -1,0 +1,10 @@
+
+== +[TAGPBFieldOptions_JSTypeEnumDescriptor enumDescriptor]_block_invoke   (address 0x10012c974  size 12  kind block)
+  12c97c  return
+
+== +[TAGPBFieldOptions_JSTypeEnumDescriptor enumDescriptor]   (address 0x10012c980  size 96  kind objc)
+  12c998  if (g_10042dda0 != 0) goto loc_10012c9d4
+  12c9cc  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBFieldOptions_JSType" values:&d_10042ab70 valueCount:3 enumVerifier:&+[TAGPBFieldOptions_JSTypeEnumDescriptor enumDescriptor]_block_invoke]
+  12c9d0  store g_10042dda0 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBFieldOptions_JSType" values:&d_10042ab70 valueCount:3 enumVerifier:&+[TAGPBFieldOptions_JSTypeEnumDescriptor enumDescriptor]_block_invoke]
+loc_10012c9d4:
+  12c9dc  return

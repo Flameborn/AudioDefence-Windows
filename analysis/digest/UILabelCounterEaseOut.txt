@@ -1,0 +1,5 @@
+
+== -[UILabelCounterEaseOut update:]   (address 0x10007cb8c  size 64  kind objc)
+  07cbac  [self rate]
+  07cbb8  powf((1 - arg1), [self rate])
+  07cbc8  return

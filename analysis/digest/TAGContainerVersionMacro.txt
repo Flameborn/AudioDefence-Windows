@@ -1,0 +1,24 @@
+
+== +[TAGContainerVersionMacro functionId]   (address 0x1001739d4  size 44  kind objc)
+  1739fc  return
+
+== -[TAGContainerVersionMacro initWithVersion:]   (address 0x100173a00  size 240  kind objc)
+  173a38  [NSSet set]
+  173a74  [super initWithFunctionId:@"_ctv" requiredKeys:[NSSet set]]
+  173a84  if (self == 0) goto loc_100173aa8
+  173a9c  self->_version = arg1
+loc_100173aa8:
+  173ac4  return
+
+== -[TAGContainerVersionMacro isCacheable]   (address 0x100173af0  size 8  kind objc)
+  173af4  return
+
+== -[TAGContainerVersionMacro evaluate:]   (address 0x100173af8  size 136  kind objc)
+  173b18  [self version]
+  173b3c  [TAGTypes objectToValue:[self version]]
+  173b60  return
+
+== -[TAGContainerVersionMacro version]   (address 0x100173b80  size 16  kind objc)
+  173b8c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainerVersionMacro .cxx_destruct]   (address 0x100173b90  size 20  kind objc)

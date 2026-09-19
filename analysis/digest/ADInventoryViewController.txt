@@ -1,0 +1,118 @@
+
+== -[ADInventoryViewController initWithChallengeArray:]   (address 0x10006d020  size 364  kind objc)
+  06d05c  [ADGameParameters sharedParameters]
+  06d078  [[ADGameParameters sharedParameters] isIphone]
+  06d090  t1 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"ADInventoryViewController" : @"ADInventoryViewController_iPad")
+  06d0bc  [super initWithNibName:t1 bundle:0]
+  06d0cc  if (self == 0) goto loc_10006d128
+  06d0e8  [NSArray alloc]
+  06d100  [[NSArray alloc] initWithArray:arg1]
+  06d11c  [self setWeapons:[[NSArray alloc] initWithArray:arg1]]
+loc_10006d128:
+  06d148  return
+
+== -[ADInventoryViewController viewDidLoad]   (address 0x10006d18c  size 1548  kind objc)
+  06d1d0  [super viewDidLoad]
+  06d1e8  [self weapons]
+  06d208  [[self weapons] count]
+  06d210  if ([[self weapons] count] <u 4) goto loc_10006d220
+  06d21c  goto loc_10006d5f8
+loc_10006d220:
+  06d228  [self weapons]
+  06d23c  [[self weapons] count]
+  06d254  if ([[self weapons] count] == 0) goto loc_10006d5f8
+  06d260  [self weapons]
+  06d284  [[self weapons] objectAtIndex:0]
+  06d2ac  [[[self weapons] objectAtIndex:0] objectForKey:@"name"]
+  06d2e0  [self slot1]
+  06d31c  [NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:0] objectForKey:@"name"]]
+  06d344  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:0] objectForKey:@"name"]]]
+  06d36c  [[self slot1] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:0] objectForKey:@"name"]]]]
+  06d394  [self weapons]
+  06d3ac  [[self weapons] objectAtIndex:1]
+  06d3c8  [[[self weapons] objectAtIndex:1] objectForKey:@"name"]
+  06d404  [self slot2]
+  06d434  [NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:1] objectForKey:@"name"]]
+  06d450  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:1] objectForKey:@"name"]]]
+  06d46c  [[self slot2] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:1] objectForKey:@"name"]]]]
+  06d494  [self weapons]
+  06d4ac  [[self weapons] objectAtIndex:2]
+  06d4c8  [[[self weapons] objectAtIndex:2] objectForKey:@"name"]
+  06d500  [self meleeSlot]
+  06d530  [NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:2] objectForKey:@"name"]]
+  06d54c  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:2] objectForKey:@"name"]]]
+  06d568  [[self meleeSlot] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[self weapons] objectAtIndex:2] objectForKey:@"name"]]]]
+  06d594  [self gunsLabel]
+  06d5b4  [[self gunsLabel] setupAsMain]
+  06d5d0  [self meleeLabel]
+  06d5e4  [[self meleeLabel] setupAsMain]
+  06d5f4  goto loc_10006d64c
+loc_10006d5f8:
+  06d608  [self weapons]
+  06d61c  [[self weapons] count]
+  06d644  [NSException raise:@"Incorrect number of inventory items" format:@"There are %d items in the inventory when there should be 3 and only 3", [[self weapons] count]]
+loc_10006d64c:
+  06d66c  return
+
+== -[ADInventoryViewController ammoForWeaponInSlot1]   (address 0x10006d798  size 296  kind objc)
+  06d7b8  [self weapons]
+  06d7d8  [[self weapons] objectAtIndex:0]
+  06d800  [[[self weapons] objectAtIndex:0] objectForKey:@"name"]
+  06d81c  [[[[self weapons] objectAtIndex:0] objectForKey:@"name"] objectForKey:@"ammo"]
+  06d838  [[[[[self weapons] objectAtIndex:0] objectForKey:@"name"] objectForKey:@"ammo"] intValue]
+  06d874  return
+
+== -[ADInventoryViewController ammoForWeaponInSlot2]   (address 0x10006d8c0  size 296  kind objc)
+  06d8e0  [self weapons]
+  06d900  [[self weapons] objectAtIndex:1]
+  06d928  [[[self weapons] objectAtIndex:1] objectForKey:@"name"]
+  06d944  [[[[self weapons] objectAtIndex:1] objectForKey:@"name"] objectForKey:@"ammo"]
+  06d960  [[[[[self weapons] objectAtIndex:1] objectForKey:@"name"] objectForKey:@"ammo"] intValue]
+  06d99c  return
+
+== -[ADInventoryViewController didReceiveMemoryWarning]   (address 0x10006d9e8  size 60  kind objc)
+  06da14  [super didReceiveMemoryWarning]
+  06da20  return
+
+== -[ADInventoryViewController slot1]   (address 0x10006da24  size 16  kind objc)
+  06da30  return
+
+== -[ADInventoryViewController setSlot1:]   (address 0x10006da34  size 56  kind objc)
+  06da58  self->_slot1 = arg1
+  06da68  return
+
+== -[ADInventoryViewController slot2]   (address 0x10006da6c  size 16  kind objc)
+  06da78  return
+
+== -[ADInventoryViewController setSlot2:]   (address 0x10006da7c  size 56  kind objc)
+  06daa0  self->_slot2 = arg1
+  06dab0  return
+
+== -[ADInventoryViewController meleeSlot]   (address 0x10006dab4  size 16  kind objc)
+  06dac0  return
+
+== -[ADInventoryViewController setMeleeSlot:]   (address 0x10006dac4  size 56  kind objc)
+  06dae8  self->_meleeSlot = arg1
+  06daf8  return
+
+== -[ADInventoryViewController meleeLabel]   (address 0x10006dafc  size 16  kind objc)
+  06db08  return
+
+== -[ADInventoryViewController setMeleeLabel:]   (address 0x10006db0c  size 56  kind objc)
+  06db30  self->_meleeLabel = arg1
+  06db40  return
+
+== -[ADInventoryViewController gunsLabel]   (address 0x10006db44  size 16  kind objc)
+  06db50  return
+
+== -[ADInventoryViewController setGunsLabel:]   (address 0x10006db54  size 56  kind objc)
+  06db78  self->_gunsLabel = arg1
+  06db88  return
+
+== -[ADInventoryViewController weapons]   (address 0x10006db8c  size 16  kind objc)
+  06db98  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADInventoryViewController setWeapons:]   (address 0x10006db9c  size 12  kind objc)
+  06dba4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADInventoryViewController .cxx_destruct]   (address 0x10006dba8  size 144  kind objc)

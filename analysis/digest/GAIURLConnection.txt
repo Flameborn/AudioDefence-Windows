@@ -1,0 +1,155 @@
+
+== +[GAIURLConnection setDryRun:]   (address 0x10011f8d8  size 12  kind objc)
+  11f8dc  store g_10042dc78 = arg1
+  11f8e0  return
+
+== +[GAIURLConnection dryRun]   (address 0x10011f8e4  size 12  kind objc)
+  11f8ec  return
+
+== -[GAIURLConnection dealloc]   (address 0x10011f8f0  size 196  kind objc)
+  11f920  [self->request_ release]
+  11f934  [self->connection_ release]
+  11f948  [self->response_ release]
+  11f95c  [self->data_ release]
+  11f96c  dispatch_release(self->completionQueue_)
+  11f97c  Block_release(self->completionHandler_)
+  11f9a0  [super dealloc]
+  11f9b0  return
+
+== -[GAIURLConnection init]   (address 0x10011f9b4  size 128  kind objc)
+  11f9e8  [super init]
+  11f9f0  if (self == 0) goto loc_10011fa20
+  11fa08  [self doesNotRecognizeSelector:_cmd]
+  11fa1c  [self release]
+loc_10011fa20:
+  11fa30  return
+
+== -[GAIURLConnection initWithRequest:completionQueue:completionHandler:]   (address 0x10011fa34  size 244  kind objc)
+  11fa74  [super init]
+  11fa7c  if (self == 0) goto loc_10011fb10
+  11fa90  [arg1 copy]
+  11fa9c  self->request_ = [arg1 copy]
+  11faa8  self->completionQueue_ = arg2
+  11fab0  dispatch_retain(arg2)
+  11fab8  Block_copy(arg3)
+  11fac4  self->completionHandler_ = Block_copy(arg3)
+  11fae8  [GAI thread]
+  11fb0c  [self performSelector:@selector(start) onThread:[GAI thread] withObject:0 waitUntilDone:0]
+loc_10011fb10:
+  11fb24  return
+
+== -[GAIURLConnection start]   (address 0x10011fb28  size 276  kind objc)
+  11fb54  [NSURLConnection alloc]
+  11fb78  [[NSURLConnection alloc] initWithRequest:self->request_ delegate:self startImmediately:0]
+  11fb84  self->connection_ = [[NSURLConnection alloc] initWithRequest:self->request_ delegate:self startImmediately:0]
+  11fb90  if (g_10042dc78 == 0) goto loc_10011fc20
+  11fba0  [NSHTTPURLResponse alloc]
+  11fbc0  [[NSHTTPURLResponse alloc] initWithURL:0 statusCode:200 HTTPVersion:0 headerFields:0]
+  11fbcc  self->response_ = [[NSHTTPURLResponse alloc] initWithURL:0 statusCode:200 HTTPVersion:0 headerFields:0]
+  11fbdc  [NSMutableData alloc]
+  11fbec  [[NSMutableData alloc] init]
+  11fbf8  self->data_ = [[NSMutableData alloc] init]
+  11fc1c  tail [self connectionDidFinishLoading:self->connection_]
+loc_10011fc20:
+  11fc38  tail [[[NSURLConnection alloc] initWithRequest:self->request_ delegate:self startImmediately:0] start]
+
+== -[GAIURLConnection cancel]   (address 0x10011fc3c  size 112  kind objc)
+  11fc64  [self->data_ release]
+  11fc68  self->data_ = 0
+  11fc84  [self->connection_ cancel]
+  11fca8  tail [self connection:self->connection_ didFailWithError:0]
+
+== -[GAIURLConnection connection:didFailWithError:]   (address 0x10011fcac  size 148  kind objc)
+  11fce0  [self->connection_ release]
+  11fce4  self->connection_ = 0
+  11fd28  dispatch_async(self->completionQueue_, ^{-[GAIURLConnection connection:didFailWithError:]_block_invoke captures +0x20=self, +0x28=arg2})
+  11fd3c  return
+
+== -[GAIURLConnection connection:didFailWithError:]_block_invoke   (address 0x10011fd40  size 64  kind block)
+  11fd50  if (self->completionHandler_ == 0) goto loc_10011fd7c
+loc_10011fd7c:
+  11fd7c  return
+
+== sub_10011fd80   (address 0x10011fd80  size 60  kind sub)
+  11fda0  Block_object_assign((a0 + 32), a1[+0x20], 3, a3)
+  11fdb8  tail Block_object_assign((a0 + 40), a1[+0x28], 3)
+
+== sub_10011fdbc   (address 0x10011fdbc  size 48  kind sub)
+  11fdd4  Block_object_dispose(a0[+0x20], 3, a2, a3)
+  11fde8  tail Block_object_dispose(a0[+0x28], 3)
+
+== -[GAIURLConnection connection:willSendRequest:redirectResponse:]   (address 0x10011fdec  size 8  kind objc)
+  11fdf0  return
+
+== -[GAIURLConnection connection:willCacheResponse:]   (address 0x10011fdf4  size 8  kind objc)
+  11fdf8  return
+
+== -[GAIURLConnection connection:didReceiveData:]   (address 0x10011fdfc  size 96  kind objc)
+  11fe18  if (self->data_ == 0) goto loc_10011fe38
+  11fe34  tail [self->data_ appendData:arg2]
+loc_10011fe38:
+  11fe48  [arg2 mutableCopy]
+  11fe4c  self->data_ = [arg2 mutableCopy]
+  11fe58  return
+
+== -[GAIURLConnection connection:didReceiveResponse:]   (address 0x10011fe5c  size 120  kind objc)
+  11fe90  [self->response_ release]
+  11fea4  [arg2 retain]
+  11fea8  self->response_ = [arg2 retain]
+  11febc  [self->data_ release]
+  11fec0  self->data_ = 0
+  11fed0  return
+
+== -[GAIURLConnection connectionDidFinishLoading:]   (address 0x10011fed4  size 132  kind objc)
+  11ff00  [self->connection_ release]
+  11ff04  self->connection_ = 0
+  11ff44  dispatch_async(self->completionQueue_, ^{-[GAIURLConnection connectionDidFinishLoading:]_block_invoke captures +0x20=self})
+  11ff54  return
+
+== -[GAIURLConnection connectionDidFinishLoading:]_block_invoke   (address 0x10011ff58  size 60  kind block)
+  11ff68  if (self->completionHandler_ == 0) goto loc_10011ff90
+loc_10011ff90:
+  11ff90  return
+
+== sub_10011ff94   (address 0x10011ff94  size 16  kind sub)
+  11ffa0  tail Block_object_assign((a0 + 32), a1[+0x20], 3, a3)
+
+== sub_10011ffa4   (address 0x10011ffa4  size 12  kind sub)
+  11ffac  tail Block_object_dispose(a0[+0x20], 3, a2, a3)
+
+== -[GAIURLConnection request]   (address 0x10011ffb0  size 16  kind objc)
+  11ffbc  return
+
+== -[GAIURLConnection setRequest:]   (address 0x10011ffc0  size 28  kind objc)
+  11ffd8  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAIURLConnection connection]   (address 0x10011ffdc  size 16  kind objc)
+  11ffe8  return
+
+== -[GAIURLConnection setConnection:]   (address 0x10011ffec  size 28  kind objc)
+  120004  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAIURLConnection response]   (address 0x100120008  size 16  kind objc)
+  120014  return
+
+== -[GAIURLConnection setResponse:]   (address 0x100120018  size 28  kind objc)
+  120030  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAIURLConnection data]   (address 0x100120034  size 16  kind objc)
+  120040  return
+
+== -[GAIURLConnection setData:]   (address 0x100120044  size 28  kind objc)
+  12005c  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAIURLConnection completionQueue]   (address 0x100120060  size 16  kind objc)
+  12006c  return
+
+== -[GAIURLConnection setCompletionQueue:]   (address 0x100120070  size 16  kind objc)
+  120078  self->completionQueue_ = arg1
+  12007c  return
+
+== -[GAIURLConnection completionHandler]   (address 0x100120080  size 16  kind objc)
+  12008c  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[GAIURLConnection setCompletionHandler:]   (address 0x100120090  size 28  kind objc)
+  1200a8  tail objc_setProperty(self, _cmd, x2, arg1)

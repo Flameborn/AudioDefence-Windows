@@ -1,0 +1,161 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "0.2",
+   "spawn_distance": 1,
+   "spawn_time": 0.1,
+   "name": "OPENER_STEREO_ATMOS"
+  },
+  {
+   "spawn_angle": 290,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 4,
+   "name": "OPENER_LIFT_VOICE_1_SPA"
+  },
+  {
+   "spawn_angle": 180,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 8,
+   "name": "OPENER_LIFT_DOORS_1_SPA"
+  },
+  {
+   "spawn_angle": 270,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 11.5,
+   "name": "OPENER_LIFT_BUTTON_SPA"
+  },
+  {
+   "spawn_angle": 130,
+   "blocker": true,
+   "gain": "2",
+   "spawn_distance": 0.8,
+   "spawn_time": 12,
+   "name": "OPENER_LIFT_MUSIC_SPA"
+  },
+  {
+   "spawn_angle": 190,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 0.8,
+   "spawn_time": 12,
+   "name": "AD_OPENER_LIFT_CHAIN_MONO"
+  },
+  {
+   "spawn_angle": 280,
+   "blocker": true,
+   "gain": "2",
+   "spawn_distance": 0.9,
+   "spawn_time": 12,
+   "name": "AD_OPENER_LIFT_CREAK_MONO"
+  },
+  {
+   "spawn_angle": 290,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 22,
+   "name": "OPENER_LIFT_VOICE_2_SPA"
+  },
+  {
+   "spawn_angle": 0,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 25,
+   "name": "OPENER_LIFT_DOORS_2_SPA"
+  },
+  {
+   "spawn_angle": 15,
+   "blocker": true,
+   "gain": "5",
+   "spawn_distance": 0.8,
+   "spawn_time": 27.3,
+   "name": "OPENER_FIREWORKS_SPA"
+  },
+  {
+   "spawn_angle": 135,
+   "blocker": true,
+   "gain": "5",
+   "spawn_distance": 0.8,
+   "spawn_time": 27.9,
+   "name": "OPENER_FIREWORKS_B_SPA"
+  },
+  {
+   "spawn_angle": 245,
+   "blocker": true,
+   "gain": "5",
+   "spawn_distance": 3,
+   "spawn_time": 28.2,
+   "name": "OPENER_FIREWORKS_C_SPA"
+  },
+  {
+   "blocker": true,
+   "gain": "0.2",
+   "spawn_time": 28,
+   "name": "OPENER_HELICOPTER_SPA"
+  },
+  {
+   "spawn_angle": 45,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 0.8,
+   "spawn_time": 29,
+   "name": "OPENER_CLOWN_ZOMBIE_SPA"
+  },
+  {
+   "spawn_angle": 150,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 30,
+   "name": "OPENER_WEAK_ZOMBIE_SPA"
+  },
+  {
+   "spawn_angle": 320,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 30,
+   "name": "OPENER_HULK_1_SPA"
+  },
+  {
+   "spawn_angle": 320,
+   "blocker": true,
+   "gain": "1",
+   "spawn_distance": 3,
+   "spawn_time": 33,
+   "name": "OPENER_HULK_2_SPA"
+  },
+  {
+   "spawn_angle": 240,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 41,
+   "name": "OPENER_COLOSSUS_END_SPA"
+  },
+  {
+   "spawn_angle": 30,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1,
+   "spawn_time": 45,
+   "name": "OPENER_DRBASTARD_SPA"
+  },
+  {
+   "spawn_angle": 330,
+   "blocker": true,
+   "gain": "3",
+   "spawn_distance": 1.2,
+   "spawn_time": 45.05,
+   "name": "OPENER_DRBASTARD_SPA"
+  }
+ ]
+}

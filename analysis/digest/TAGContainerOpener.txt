@@ -1,0 +1,204 @@
+
+== -[TAGContainerOpener initWithContainerId:tagManager:timeout:notifier:]   (address 0x1001521a0  size 496  kind objc)
+  152214  [super init]
+  15221c  if (self == 0) goto loc_100152318
+  152234  [arg1 copy]
+  152244  self->_containerId = [arg1 copy]
+  152264  self->_tagManager = arg2
+  152270  if (arg3 == 0) goto loc_1001522f4
+  152280  self->_timeout = arg3[+0x0]
+  152290  if (arg3[+0x0] < (or unordered) 100) goto loc_100152304
+  1522c0  [NSString stringWithFormat:@"Excessive timeout detected (%f). Timeout should be in seconds.", arg3[+0x0]]
+  1522e4  [TAGLog warning:[NSString stringWithFormat:@"Excessive timeout detected (%f). Timeout should be in seconds.", arg3[+0x0]]]
+  1522f0  goto loc_100152304
+loc_1001522f4:
+  152300  self->_timeout = 0x4000000000000000
+loc_100152304:
+loc_100152318:
+  15234c  return
+
+== +[TAGContainerOpener initialize]   (address 0x100152390  size 100  kind objc)
+  1523a4  if (g_10042df18 == 0) goto loc_1001523b4
+  1523b0  return
+loc_1001523b4:
+  1523c8  [NSMutableDictionary alloc]
+  1523d8  [[NSMutableDictionary alloc] init]
+  1523e0  store g_10042df18 = [[NSMutableDictionary alloc] init]
+  1523f0  return
+
+== +[TAGContainerOpener defaultTimeout]   (address 0x1001523f4  size 8  kind objc)
+  1523f8  return
+
+== +[TAGContainerOpener openContainerWithId:tagManager:openType:timeout:]   (address 0x1001523fc  size 404  kind objc)
+  15243c  if (arg1 == 0) goto loc_1001524e0
+  152440  if (arg2 == 0) goto loc_100152504
+  15245c  [TAGContainerFutureImpl alloc]
+  152470  [[TAGContainerFutureImpl alloc] init]
+  152484  [TAGFutureNotifier alloc]
+  15248c  [[TAGFutureNotifier alloc] init]
+  1524a8  [[[TAGFutureNotifier alloc] init] setFuture:[[TAGContainerFutureImpl alloc] init]]
+  1524d0  [TAGContainerOpener openContainerWithId:arg1 tagManager:arg2 openType:arg3 timeout:arg4 notifier:[[TAGFutureNotifier alloc] init]]
+  1524dc  goto loc_100152528
+loc_1001524e0:
+  1524fc  [TAGLog error:@"containerId must be non-nil"]
+  152500  goto loc_100152524
+loc_100152504:
+  152520  [TAGLog error:@"tagManager must be non-nil"]
+loc_100152524:
+loc_100152528:
+  152550  return
+
+== +[TAGContainerOpener openContainerWithId:tagManager:openType:timeout:notifier:]   (address 0x100152590  size 380  kind objc)
+  1525d8  if (arg1 == 0) goto loc_100152648
+  1525dc  if (arg2 == 0) goto loc_10015266c
+  1525e0  if (arg5 == 0) goto loc_100152690
+  1525f8  [TAGContainerOpener alloc]
+  152618  [[TAGContainerOpener alloc] initWithContainerId:arg1 tagManager:arg2 timeout:arg4 notifier:arg5]
+  152638  [[[TAGContainerOpener alloc] initWithContainerId:arg1 tagManager:arg2 timeout:arg4 notifier:arg5] openWithRefreshType:(arg3 != 0)]
+  152644  goto loc_1001526b0
+loc_100152648:
+  152664  [TAGLog error:@"containerId must be non-nil"]
+  152668  goto loc_1001526b0
+loc_10015266c:
+  152688  [TAGLog error:@"tagManager must be non-nil"]
+  15268c  goto loc_1001526b0
+loc_100152690:
+  1526ac  [TAGLog error:@"notifier must be non-nil"]
+loc_1001526b0:
+  1526d4  return
+
+== -[TAGContainerOpener openWithRefreshType:]   (address 0x10015270c  size 1716  kind objc)
+  152750  [NSDate date]
+  152770  [[NSDate date] timeIntervalSince1970]
+  152794  objc_sync_enter(g_10042df18)
+  1527ac  [self tagManager]
+  1527d0  [self containerId]
+  1527f4  [[self tagManager] getContainerById:[self containerId]]
+  15281c  [self setContainer:[[self tagManager] getContainerById:[self containerId]]]
+  15284c  [self container]
+  152860  if ([self container] == 0) goto loc_10015291c
+  152870  [self containerId]
+  152894  [g_10042df18 objectForKey:[self containerId]]
+  1528ac  if ([g_10042df18 objectForKey:[self containerId]] == 0) goto loc_100152a34
+  1528c0  [self notifier]
+  1528e4  [[g_10042df18 objectForKey:[self containerId]] addObject:[self notifier]]
+  152904  [self setNotifier:0]
+  152918  goto loc_100152b14
+loc_10015291c:
+  152934  [self notifier]
+  15295c  [NSMutableArray arrayWithObject:[self notifier]]
+  152988  [self setNotifier:0]
+  152998  [self containerId]
+  1529c4  [g_10042df18 setObject:[NSMutableArray arrayWithObject:[self notifier]] forKey:[self containerId]]
+  1529d0  if (arg1 == 0) goto loc_100152a40
+  1529ec  [TAGWaitForFresh alloc]
+  152a0c  [TAGContainer refreshPeriodOnSuccess]
+  152a2c  [[TAGWaitForFresh alloc] initWithContainerOpener:self oldestTimeToBeFresh:([[NSDate date] timeIntervalSince1970] - [TAGContainer refreshPeriodOnSuccess])]
+  152a30  goto loc_100152a74
+loc_100152a34:
+  152a3c  goto loc_100152b14
+loc_100152a40:
+  152a58  [TAGWaitForNonDefaultRefresh alloc]
+  152a70  [[TAGWaitForNonDefaultRefresh alloc] initWithContainerOpener:self]
+loc_100152a74:
+  152a80  [self tagManager]
+  152a98  [self containerId]
+  152ac0  [[self tagManager] openContainerById:[self containerId] callback:x3]
+  152ae0  [self setContainer:[[self tagManager] openContainerById:[self containerId] callback:x3]]
+loc_100152b14:
+  152b18  objc_sync_exit(g_10042df18)
+  152b24  if (!(one of {0, 1} & 1)) goto loc_100152b4c
+  152b48  return
+loc_100152b4c:
+  152b4c  if (one of {0, 1} == 0) goto loc_100152be8
+  152b60  [self notifier]
+  152b78  [self container]
+  152b9c  [[self notifier] containerAvailable:[self container]]
+  152be4  tail [self setNotifier:0]
+loc_100152be8:
+  152bf8  [self timeout]
+  152c0c  [NSDate date]
+  152c20  [[NSDate date] timeIntervalSince1970]
+  152c28  t1 = ([self timeout] - ([[NSDate date] timeIntervalSince1970] - [[NSDate date] timeIntervalSince1970]))
+  152c50  [self container]
+  152c84  [NSTimer scheduledTimerWithTimeInterval:t1 target:self selector:@selector(handleTimer:) userInfo:[self container] repeats:0]
+  152cb8  return
+  152d8c  objc_sync_exit()
+
+== -[TAGContainerOpener callNotifiers:]   (address 0x100152dc0  size 736  kind objc)
+  152e0c  objc_sync_enter(self)
+  152e20  [self haveNotified]
+  152e24  if (!([self haveNotified] & 1)) goto loc_100152e3c
+  152e2c  objc_sync_exit(self)
+  152e38  goto loc_100152ff0
+loc_100152e3c:
+  152e50  [self setHaveNotified:1]
+  152e58  objc_sync_exit(self)
+  152e74  objc_sync_enter(g_10042df18)
+  152e94  [self containerId]
+  152eb8  [g_10042df18 objectForKey:[self containerId]]
+  152edc  [self containerId]
+  152f00  [g_10042df18 removeObjectForKey:[self containerId]]
+  152f10  objc_sync_exit(g_10042df18)
+  152f54  [[g_10042df18 objectForKey:[self containerId]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  152f5c  if ([[g_10042df18 objectForKey:[self containerId]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] == 0) goto loc_100152fd8
+  152f6c  &@selector(containerAvailable:)
+loc_100152f7c:
+loc_100152f80:
+  152f8c  if (x8 == x28) goto loc_100152f98
+  152f94  objc_enumerationMutation([g_10042df18 objectForKey:[self containerId]])
+loc_100152f98:
+  152fa8  [x0 containerAvailable:arg1]
+  152fb4  if ((x27 + 1) <u [[g_10042df18 objectForKey:[self containerId]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]) goto loc_100152f80
+  152fcc  [[g_10042df18 objectForKey:[self containerId]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  152fd4  if ([[g_10042df18 objectForKey:[self containerId]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] != 0) goto loc_100152f7c
+loc_100152fd8:
+loc_100152ff0:
+  153024  return
+  153058  objc_sync_exit()
+  153090  objc_sync_exit()
+
+== -[TAGContainerOpener handleTimer:]   (address 0x1001530a0  size 116  kind objc)
+  1530c0  [arg1 userInfo]
+  1530e4  [self callNotifiers:[arg1 userInfo]]
+  1530f4  return
+
+== -[TAGContainerOpener tagManager]   (address 0x100153114  size 16  kind objc)
+  153120  return
+
+== -[TAGContainerOpener setTagManager:]   (address 0x100153124  size 56  kind objc)
+  153148  self->_tagManager = arg1
+  153158  return
+
+== -[TAGContainerOpener containerId]   (address 0x10015315c  size 16  kind objc)
+  153168  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGContainerOpener setContainerId:]   (address 0x10015316c  size 12  kind objc)
+  153174  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGContainerOpener timeout]   (address 0x100153178  size 16  kind objc)
+  153184  return
+
+== -[TAGContainerOpener setTimeout:]   (address 0x100153188  size 16  kind objc)
+  153190  self->_timeout = arg1
+  153194  return
+
+== -[TAGContainerOpener haveNotified]   (address 0x100153198  size 20  kind objc)
+  1531a8  return
+
+== -[TAGContainerOpener setHaveNotified:]   (address 0x1001531ac  size 16  kind objc)
+  1531b4  self->_haveNotified = arg1
+  1531b8  return
+
+== -[TAGContainerOpener notifier]   (address 0x1001531bc  size 16  kind objc)
+  1531c8  return
+
+== -[TAGContainerOpener setNotifier:]   (address 0x1001531cc  size 20  kind objc)
+
+== -[TAGContainerOpener container]   (address 0x1001531e0  size 16  kind objc)
+  1531ec  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainerOpener setContainer:]   (address 0x1001531f0  size 12  kind objc)
+  1531f8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainerOpener .cxx_destruct]   (address 0x1001531fc  size 104  kind objc)

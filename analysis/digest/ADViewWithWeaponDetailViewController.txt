@@ -1,0 +1,413 @@
+
+== -[ADViewWithWeaponDetailViewController initWithNibName:bundle:]   (address 0x10003680c  size 300  kind objc)
+  036870  [super initWithNibName:arg1 bundle:arg2]
+  036878  if (self == 0) goto loc_1000368d0
+  036894  [NSMutableArray alloc]
+  0368a8  [[NSMutableArray alloc] init]
+  0368c4  [self setItemNames:[[NSMutableArray alloc] init]]
+loc_1000368d0:
+  0368f8  return
+
+== -[ADViewWithWeaponDetailViewController initDetailScroller]   (address 0x100036938  size 896  kind objc)
+  036974  [NSMutableArray alloc]
+  036994  [ADInventory sharedInventory]
+  0369b4  [[ADInventory sharedInventory] weapons]
+  0369d4  [[[ADInventory sharedInventory] weapons] count]
+  0369ec  [[NSMutableArray alloc] initWithCapacity:[[[ADInventory sharedInventory] weapons] count]]
+  036a00  self->armoryDetails = [[NSMutableArray alloc] initWithCapacity:[[[ADInventory sharedInventory] weapons] count]]
+  036a2c  &@selector(addObject:)
+  036a38  goto loc_100036a44
+loc_100036a3c:
+loc_100036a44:
+  036a50  [ADInventory sharedInventory]
+  036a64  [[ADInventory sharedInventory] weapons]
+  036a78  [[[ADInventory sharedInventory] weapons] count]
+  036a98  if ((x19 + 1) >=u [[[ADInventory sharedInventory] weapons] count]) goto loc_100036adc
+  036ab0  [NSNull null]
+  036acc  [self->armoryDetails addObject:[NSNull null]]
+  036ad0  goto loc_100036a3c
+  036ad8  goto loc_100036c3c
+loc_100036adc:
+  036af0  [self detailScroller]
+  036b0c  [ADInventory sharedInventory]
+  036b20  [[ADInventory sharedInventory] weapons]
+  036b34  [[[ADInventory sharedInventory] weapons] count]
+  036b44  [self detailScroller]
+  036b64  [[self detailScroller] frame]
+  036b74  [self detailScroller]
+  036b88  [[self detailScroller] frame]
+  036ba8  [[self detailScroller] setContentSize:{((float)[[[ADInventory sharedInventory] weapons] count] * [[self detailScroller] frame].2), [[self detailScroller] frame].3}]
+  036bdc  [self detailScroller]
+  036bfc  [[self detailScroller] setPagingEnabled:1]
+  036c24  return
+
+== -[ADViewWithWeaponDetailViewController loadArmoryDetailAtIndex:]   (address 0x100036cb8  size 1856  kind objc)
+  036ce4  if (arg1 < 0) goto loc_100036ef4
+  036cfc  [ADInventory sharedInventory]
+  036d18  [[ADInventory sharedInventory] weapons]
+  036d34  [[[ADInventory sharedInventory] weapons] count]
+  036d54  if (arg1 >=u [[[ADInventory sharedInventory] weapons] count]) goto loc_100036ef4
+  036d78  [self->armoryDetails objectAtIndex:arg1]
+  036d9c  [ADArmoryWeaponDescriptionViewController class]
+  036db4  [[self->armoryDetails objectAtIndex:arg1] isKindOfClass:[ADArmoryWeaponDescriptionViewController class]]
+  036dc4  if ([[self->armoryDetails objectAtIndex:arg1] isKindOfClass:[ADArmoryWeaponDescriptionViewController class]] == 0) goto loc_100036f18
+  036dd4  [self->armoryDetails objectAtIndex:arg1]
+  036df4  [self hideEquipButtonsOnDetailView]
+  036e0c  [[self->armoryDetails objectAtIndex:arg1] setHideEquipButtons:[self hideEquipButtonsOnDetailView]]
+  036e24  [self->armoryDetails objectAtIndex:arg1]
+  036e40  [[self->armoryDetails objectAtIndex:arg1] initForCurrentLevel]
+  036e58  [self->armoryDetails objectAtIndex:arg1]
+  036e74  [[self->armoryDetails objectAtIndex:arg1] armoryViewController]
+  036e90  [[[self->armoryDetails objectAtIndex:arg1] armoryViewController] statusBarViewController]
+  036eac  [self->armoryDetails objectAtIndex:arg1]
+  036ed0  [[[[self->armoryDetails objectAtIndex:arg1] armoryViewController] statusBarViewController] setBackButtonDelegate:[self->armoryDetails objectAtIndex:arg1]]
+  036ef0  goto loc_1000372b4
+loc_100036ef4:
+  036f14  return
+loc_100036f18:
+  036f28  [self itemNames]
+  036f40  [[self itemNames] objectAtIndex:arg1]
+  036f74  [ADWeaponManager sharedWeaponManager]
+  036f98  [[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:[[self itemNames] objectAtIndex:arg1]]
+  036fb4  if ([[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:[[self itemNames] objectAtIndex:arg1]] == 0) goto loc_10003703c
+  036fd0  [ADArmoryItemDescriptionViewController alloc]
+  036fe4  [ADWeaponManager sharedWeaponManager]
+  036ffc  [[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:[[self itemNames] objectAtIndex:arg1]]
+  037020  [[ADArmoryItemDescriptionViewController alloc] initWithWeaponDictionary:[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:[[self itemNames] objectAtIndex:arg1]]]
+  037038  goto loc_1000370ec
+loc_10003703c:
+  037050  [ADArmoryWeaponDescriptionViewController alloc]
+  037064  [ADWeaponManager sharedWeaponManager]
+  037084  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[[self itemNames] objectAtIndex:arg1]]
+  0370a8  [[ADArmoryWeaponDescriptionViewController alloc] initWithWeaponDictionary:[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[[self itemNames] objectAtIndex:arg1]]]
+  0370d0  [self hideEquipButtonsOnDetailView]
+  0370e8  [[[ADArmoryWeaponDescriptionViewController alloc] initWithWeaponDictionary:[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[[self itemNames] objectAtIndex:arg1]]] setHideEquipButtons:[self hideEquipButtonsOnDetailView]]
+loc_1000370ec:
+  037100  [x0 setArmoryViewController:self]
+  037114  [x0 armoryViewController]
+  037130  [[x0 armoryViewController] statusBarViewController]
+  037150  [[[x0 armoryViewController] statusBarViewController] setBackButtonDelegate:x2]
+  037178  [self detailScroller]
+  03719c  [x0 view]
+  0371c0  [[self detailScroller] addSubview:[x0 view]]
+  0371ec  [self->armoryDetails replaceObjectAtIndex:arg1 withObject:x3]
+  0371f8  [x0 view]
+  037218  [[x0 view] frame]
+  037230  [x0 view]
+  037248  [self detailScroller]
+  03725c  [[self detailScroller] frame]
+  037294  [[x0 view] setCenter:{(([[x0 view] frame].2 * 0.5) + ((float)arg1 * [[x0 view] frame].2)), ([[self detailScroller] frame].3 * 0.5)}]
+loc_1000372b4:
+  0372d4  return
+
+== -[ADViewWithWeaponDetailViewController scrollViewDidEndDragging:willDecelerate:]   (address 0x1000373f8  size 32  kind objc)
+  03740c  [self loadDetailsAroundView]
+  037414  return
+
+== -[ADViewWithWeaponDetailViewController scrollViewDidEndDecelerating:]   (address 0x100037418  size 32  kind objc)
+  03742c  [self loadDetailsAroundView]
+  037434  return
+
+== -[ADViewWithWeaponDetailViewController scrollViewDidEndScrollingAnimation:]   (address 0x100037438  size 32  kind objc)
+  03744c  [self loadDetailsAroundView]
+  037454  return
+
+== -[ADViewWithWeaponDetailViewController loadDetailsAroundView]   (address 0x100037458  size 256  kind objc)
+  037480  [self detailScroller]
+  03749c  [[self detailScroller] contentOffset]
+  0374ac  [self detailScroller]
+  0374c8  [[self detailScroller] frame]
+  037500  [self loadArmoryDetailAtIndex:((int)[[self detailScroller] contentOffset].0 / (int)[[self detailScroller] frame].2)]
+  037510  [self loadArmoryDetailAtIndex:(((int)[[self detailScroller] contentOffset].0 / (int)[[self detailScroller] frame].2) - 1)]
+  037530  tail [self loadArmoryDetailAtIndex:(((int)[[self detailScroller] contentOffset].0 / (int)[[self detailScroller] frame].2) + 1)]
+  037538  goto loc_100037548
+loc_100037548:
+
+== -[ADViewWithWeaponDetailViewController nextWeaponButtonPressed:]   (address 0x100037558  size 1076  kind objc)
+  03758c  [self detailScroller]
+  0375a8  [[self detailScroller] isDecelerating]
+  0375ac  if ([[self detailScroller] isDecelerating] == 0) goto loc_1000375d4
+loc_1000375b4:
+  0375d0  return
+loc_1000375d4:
+  0375dc  [self detailScroller]
+  0375f8  [[self detailScroller] isDragging]
+  037610  if (([[self detailScroller] isDragging] & 1)) goto loc_1000378c4
+  03761c  [self detailScroller]
+  03763c  [[self detailScroller] contentOffset]
+  03764c  [self detailScroller]
+  03766c  [[self detailScroller] frame]
+  03767c  t1 = ((int)[[self detailScroller] contentOffset].0 - ((int)[[self detailScroller] contentOffset].0 / (int)[[self detailScroller] frame].2) * (int)[[self detailScroller] frame].2)
+  037690  if (t1 != 0) goto loc_1000378c4
+  03769c  [self detailScroller]
+  0376b0  [[self detailScroller] contentOffset]
+  0376c0  [self detailScroller]
+  0376dc  [[self detailScroller] contentSize]
+  0376ec  [self detailScroller]
+  037700  [[self detailScroller] frame]
+  037724  if ([[self detailScroller] contentOffset].0 >= (or unordered) ([[self detailScroller] contentSize].0 - [[self detailScroller] frame].2)) goto loc_1000378c4
+  03773c  [self currentWeaponBrowseIndex]
+  037754  [self setCurrentWeaponBrowseIndex:([self currentWeaponBrowseIndex] + 1)]
+  037768  [self itemNames]
+  037780  [self currentWeaponBrowseIndex]
+  037798  [[self itemNames] objectAtIndex:[self currentWeaponBrowseIndex]]
+  0377c4  [ADTracker sharedInstance]
+  0377ec  [[ADTracker sharedInstance] recordWeaponBrowse:[[self itemNames] objectAtIndex:[self currentWeaponBrowseIndex]] BrowseForm:@"enumerator"]
+  037800  [self currentWeaponBrowseIndex]
+  037810  NSLog(@"The current browse index = %d", [self currentWeaponBrowseIndex])
+  03781c  [self detailScroller]
+  037834  [self detailScroller]
+  037848  [[self detailScroller] contentOffset]
+  037858  [self detailScroller]
+  03786c  [[self detailScroller] frame]
+  03788c  [[self detailScroller] setContentOffset:{([[self detailScroller] contentOffset].0 + [[self detailScroller] frame].2), 0} animated:1]
+  0378b8  [self checkArrowsAfterClick]
+  0378c0  goto loc_1000375b4
+loc_1000378c4:
+  0378e0  return
+
+== -[ADViewWithWeaponDetailViewController previousWeaponButtonPressed:]   (address 0x10003798c  size 1016  kind objc)
+  0379c0  [self detailScroller]
+  0379dc  [[self detailScroller] isDecelerating]
+  0379e0  if ([[self detailScroller] isDecelerating] == 0) goto loc_100037a08
+  037a04  return
+loc_100037a08:
+  037a10  [self detailScroller]
+  037a2c  [[self detailScroller] isDragging]
+  037a44  if (([[self detailScroller] isDragging] & 1)) goto loc_100037b28
+  037a50  [self detailScroller]
+  037a70  [[self detailScroller] contentOffset]
+  037a80  [self detailScroller]
+  037aa0  [[self detailScroller] frame]
+  037ab0  t1 = ((int)[[self detailScroller] contentOffset].0 - ((int)[[self detailScroller] contentOffset].0 / (int)[[self detailScroller] frame].2) * (int)[[self detailScroller] frame].2)
+  037ac4  if (t1 != 0) goto loc_100037b28
+  037ad0  [self detailScroller]
+  037ae4  [[self detailScroller] contentOffset]
+  037af4  [self detailScroller]
+  037b08  [[self detailScroller] frame]
+  037b24  if ([[self detailScroller] contentOffset].0 >= [[self detailScroller] frame].2) goto loc_100037b48
+loc_100037b28:
+  037b44  return
+  037b5c  [self currentWeaponBrowseIndex]
+  037b74  [self setCurrentWeaponBrowseIndex:([self currentWeaponBrowseIndex] - 1)]
+  037b88  [self itemNames]
+  037ba0  [self currentWeaponBrowseIndex]
+  037bb8  [[self itemNames] objectAtIndex:[self currentWeaponBrowseIndex]]
+  037be4  [ADTracker sharedInstance]
+  037c0c  [[ADTracker sharedInstance] recordWeaponBrowse:[[self itemNames] objectAtIndex:[self currentWeaponBrowseIndex]] BrowseForm:@"enumerator"]
+  037c20  [self currentWeaponBrowseIndex]
+  037c30  NSLog(@"The current browse index = %d", [self currentWeaponBrowseIndex])
+  037c3c  [self detailScroller]
+  037c54  [self detailScroller]
+  037c68  [[self detailScroller] contentOffset]
+  037c78  [self detailScroller]
+  037c8c  [[self detailScroller] frame]
+  037cac  [[self detailScroller] setContentOffset:{([[self detailScroller] contentOffset].0 - [[self detailScroller] frame].2), 0} animated:1]
+  037cd8  [self checkArrowsAfterClick]
+
+== -[ADViewWithWeaponDetailViewController checkArrowsAfterClick]   (address 0x100037d84  size 552  kind objc)
+  037dac  [self currentWeaponBrowseIndex]
+  037dc4  [self itemNames]
+  037de0  [[self itemNames] count]
+  037e04  [self view]
+  037e18  &@selector(rightArrow)
+  037e24  if ([self currentWeaponBrowseIndex] >=u ([[self itemNames] count] - 1)) goto loc_100037e5c
+  037e2c  [self rightArrow]
+  037e50  [[self view] bringSubviewToFront:[self rightArrow]]
+  037e54  goto loc_100037e88
+  037e58  goto loc_100037f74
+loc_100037e5c:
+  037e60  [self rightArrow]
+  037e84  [[self view] sendSubviewToBack:[self rightArrow]]
+loc_100037e88:
+  037ea0  [self currentWeaponBrowseIndex]
+  037eb0  [self view]
+  037ec4  &@selector(leftArrow)
+  037ed0  if ([self currentWeaponBrowseIndex] <= 0) goto loc_100037f08
+  037ed8  [self leftArrow]
+  037efc  [[self view] bringSubviewToFront:[self leftArrow]]
+  037f00  goto loc_100037f34
+  037f04  goto loc_100037f90
+loc_100037f08:
+  037f0c  [self leftArrow]
+  037f30  [[self view] sendSubviewToBack:[self leftArrow]]
+loc_100037f34:
+  037f50  return
+
+== -[ADViewWithWeaponDetailViewController sendDetailViewToBack]   (address 0x100037fac  size 468  kind objc)
+  037fd4  [self view]
+  037ff8  [self detailView]
+  038020  [[self view] sendSubviewToBack:[self detailView]]
+  03803c  [self view]
+  03805c  [self rightArrow]
+  038078  [[self view] sendSubviewToBack:[self rightArrow]]
+  038094  [self view]
+  0380b4  [self leftArrow]
+  0380d0  [[self view] sendSubviewToBack:[self leftArrow]]
+  0380ec  [self detailView]
+  03810c  [[self detailView] setAlpha:0]
+  038124  return
+
+== -[ADViewWithWeaponDetailViewController openDescriptionForItemWithName:withButton:]   (address 0x100038180  size 424  kind objc)
+  0381e4  [self itemNames]
+  038214  [[self itemNames] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  03821c  if ([[self itemNames] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_1000382bc
+  038230  &@selector(isEqualToString:)
+loc_100038238:
+loc_10003823c:
+  038248  if (x8 == x28) goto loc_100038254
+  038250  objc_enumerationMutation([self itemNames])
+loc_100038254:
+  038264  [x0 isEqualToString:arg1]
+  038268  if ([x0 isEqualToString:arg1] != 0) goto loc_1000382a0
+  038274  if ((x26 + 1) <u [[self itemNames] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10003823c
+  03828c  [[self itemNames] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  038298  if ([[self itemNames] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_100038238
+  03829c  goto loc_1000382bc
+loc_1000382a0:
+  0382b8  [self openDescriptionForItemAtIndex:(w27 + w26) withButton:arg2]
+loc_1000382bc:
+  0382f4  return
+
+== -[ADViewWithWeaponDetailViewController openDescriptionForItemAtIndex:withButton:]   (address 0x100038328  size 1280  kind objc)
+  038370  [self setHideEquipButtonsOnDetailView:(arg2 ^ 1)]
+  03838c  [self loadArmoryDetailAtIndex:arg1]
+  03839c  [self loadArmoryDetailAtIndex:(arg1 - 1)]
+  0383ac  [self loadArmoryDetailAtIndex:(arg1 + 1)]
+  0383c4  [self view]
+  0383e8  [self detailView]
+  038410  [[self view] bringSubviewToFront:[self detailView]]
+  038438  [self detailScroller]
+  038450  [self detailScroller]
+  03846c  [[self detailScroller] frame]
+  03848c  [[self detailScroller] setContentOffset:{((float)arg1 * [[self detailScroller] frame].2), 0}]
+  0384a8  [self view]
+  0384c8  [self statusBarViewController]
+  0384dc  [[self statusBarViewController] view]
+  0384f8  [[self view] bringSubviewToFront:[[self statusBarViewController] view]]
+  038528  [self setCurrentWeaponBrowseIndex:arg1]
+  03853c  [self itemNames]
+  038560  [self currentWeaponBrowseIndex]
+  038578  [[self itemNames] objectAtIndex:[self currentWeaponBrowseIndex]]
+  0385a4  [ADTracker sharedInstance]
+  0385cc  [[ADTracker sharedInstance] recordWeaponBrowse:[[self itemNames] objectAtIndex:[self currentWeaponBrowseIndex]] BrowseForm:@"table"]
+  0385e0  [self currentWeaponBrowseIndex]
+  0385f0  NSLog(@"The current browse index = %d", [self currentWeaponBrowseIndex])
+  0385fc  [self detailView]
+  03861c  [[self detailView] setAlpha:1]
+  038670  [self->armoryDetails countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  038678  if ([self->armoryDetails countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_100038728
+  038690  &@selector(isKindOfClass:)
+  0386a0  &@selector(checkEquipButtons)
+loc_1000386ac:
+loc_1000386b0:
+  0386bc  if (x8 == x28) goto loc_1000386c8
+  0386c4  objc_enumerationMutation(self->armoryDetails)
+loc_1000386c8:
+  0386d8  [ADArmoryWeaponDescriptionViewController class]
+  0386e8  [x0 isKindOfClass:[ADArmoryWeaponDescriptionViewController class]]
+  0386ec  if ([x0 isKindOfClass:[ADArmoryWeaponDescriptionViewController class]] == 0) goto loc_1000386fc
+  0386f8  [x0 checkEquipButtons]
+loc_1000386fc:
+  038704  if ((x19 + 1) <u [self->armoryDetails countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_1000386b0
+  03871c  [self->armoryDetails countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  038724  if ([self->armoryDetails countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_1000386ac
+loc_100038728:
+  038740  [self checkArrowsAfterClick]
+  038780  return
+
+== -[ADViewWithWeaponDetailViewController showNotEnoughMoneyAlert]   (address 0x100038828  size 4  kind objc)
+  038828  return
+
+== -[ADViewWithWeaponDetailViewController backButtonPressed]   (address 0x10003882c  size 104  kind objc)
+  038848  [self class]
+  03884c  NSStringFromClass([self class])
+  038868  NSLog(@"The %@ class' back button was pressed", NSStringFromClass([self class]))
+  03887c  return
+
+== -[ADViewWithWeaponDetailViewController viewDidLoad]   (address 0x100038894  size 112  kind objc)
+  0388c8  [super viewDidLoad]
+  0388dc  [self initDetailScroller]
+  0388f0  [self sendDetailViewToBack]
+  038900  return
+
+== -[ADViewWithWeaponDetailViewController didReceiveMemoryWarning]   (address 0x100038904  size 60  kind objc)
+  038930  [super didReceiveMemoryWarning]
+  03893c  return
+
+== -[ADViewWithWeaponDetailViewController dealloc]   (address 0x100038940  size 608  kind objc)
+  0389b8  [self->armoryDetails countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0389c0  if ([self->armoryDetails countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] == 0) goto loc_100038ab4
+  0389e4  &@selector(view)
+  0389f8  &@selector(removeFromSuperview)
+loc_100038a04:
+loc_100038a08:
+  038a14  if (x8 == x21) goto loc_100038a20
+  038a1c  objc_enumerationMutation(self->armoryDetails)
+loc_100038a20:
+  038a30  [NSNull null]
+  038a4c  [x0 isEqual:[NSNull null]]
+  038a5c  if (([x0 isEqual:[NSNull null]] & 1)) goto loc_100038a88
+  038a68  [x0 view]
+  038a7c  [[x0 view] removeFromSuperview]
+loc_100038a88:
+  038a90  if ((x25 + 1) <u [self->armoryDetails countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]) goto loc_100038a08
+  038aa8  [self->armoryDetails countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  038ab0  if ([self->armoryDetails countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] != 0) goto loc_100038a04
+loc_100038ab4:
+  038ad0  [self->armoryDetails removeAllObjects]
+  038af4  [super dealloc]
+  038b2c  return
+  038b80  [super dealloc]
+  038b8c  call sub_10000b760
+
+== -[ADViewWithWeaponDetailViewController detailView]   (address 0x100038ba0  size 16  kind objc)
+  038bac  return
+
+== -[ADViewWithWeaponDetailViewController setDetailView:]   (address 0x100038bb0  size 56  kind objc)
+  038bd4  self->_detailView = arg1
+  038be4  return
+
+== -[ADViewWithWeaponDetailViewController detailScroller]   (address 0x100038be8  size 16  kind objc)
+  038bf4  return
+
+== -[ADViewWithWeaponDetailViewController setDetailScroller:]   (address 0x100038bf8  size 56  kind objc)
+  038c1c  self->_detailScroller = arg1
+  038c2c  return
+
+== -[ADViewWithWeaponDetailViewController rightArrow]   (address 0x100038c30  size 16  kind objc)
+  038c3c  return
+
+== -[ADViewWithWeaponDetailViewController setRightArrow:]   (address 0x100038c40  size 56  kind objc)
+  038c64  self->_rightArrow = arg1
+  038c74  return
+
+== -[ADViewWithWeaponDetailViewController leftArrow]   (address 0x100038c78  size 16  kind objc)
+  038c84  return
+
+== -[ADViewWithWeaponDetailViewController setLeftArrow:]   (address 0x100038c88  size 56  kind objc)
+  038cac  self->_leftArrow = arg1
+  038cbc  return
+
+== -[ADViewWithWeaponDetailViewController itemNames]   (address 0x100038cc0  size 16  kind objc)
+  038ccc  return
+
+== -[ADViewWithWeaponDetailViewController setItemNames:]   (address 0x100038cd0  size 56  kind objc)
+  038cf4  self->_itemNames = arg1
+  038d04  return
+
+== -[ADViewWithWeaponDetailViewController hideEquipButtonsOnDetailView]   (address 0x100038d08  size 16  kind objc)
+  038d14  return
+
+== -[ADViewWithWeaponDetailViewController setHideEquipButtonsOnDetailView:]   (address 0x100038d18  size 16  kind objc)
+  038d20  self->_hideEquipButtonsOnDetailView = arg1
+  038d24  return
+
+== -[ADViewWithWeaponDetailViewController currentWeaponBrowseIndex]   (address 0x100038d28  size 16  kind objc)
+  038d34  return
+
+== -[ADViewWithWeaponDetailViewController setCurrentWeaponBrowseIndex:]   (address 0x100038d38  size 16  kind objc)
+  038d40  self->_currentWeaponBrowseIndex = arg1
+  038d44  return
+
+== -[ADViewWithWeaponDetailViewController .cxx_destruct]   (address 0x100038d48  size 144  kind objc)

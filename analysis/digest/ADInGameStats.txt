@@ -1,0 +1,931 @@
+
+== -[ADInGameStats forceCompleteAccuracy]   (address 0x1000b7cb0  size 68  kind objc)
+  0b7cd0  [self setTotalShotsFired:1]
+  0b7cf0  tail [self setShotsOnTarget:1]
+
+== +[ADInGameStats singleton]   (address 0x1000b7cf4  size 116  kind objc)
+  0b7d40  if (g_10042da40 != -1) goto loc_1000b7d58
+loc_1000b7d44:
+loc_1000b7d58:
+  0b7d60  dispatch_once(&g_10042da40, ^{+[ADInGameStats singleton]_block_invoke captures +0x20=ADInGameStats})
+  0b7d64  goto loc_1000b7d44
+
+== +[ADInGameStats singleton]_block_invoke   (address 0x1000b7d68  size 72  kind block)
+  0b7d80  [ADInGameStats alloc]
+  0b7d90  [[ADInGameStats alloc] init]
+  0b7da0  store g_10042da38 = [[ADInGameStats alloc] init]
+  0b7dac  return
+
+== sub_1000b7db0   (address 0x1000b7db0  size 4  kind sub)
+  0b7db0  return
+
+== sub_1000b7db4   (address 0x1000b7db4  size 4  kind sub)
+  0b7db4  return
+
+== -[ADInGameStats init]   (address 0x1000b7db8  size 60  kind objc)
+  0b7de4  [super init]
+  0b7df0  return
+
+== +[ADInGameStats toggleOnOff:]   (address 0x1000b7df4  size 1504  kind objc)
+  0b7e20  [NSNotificationCenter defaultCenter]
+  0b7e3c  &@selector(singleton)
+  0b7e44  if (arg1 == 0) goto loc_1000b80dc
+  0b7e4c  [ADInGameStats singleton]
+  0b7e90  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"UPDATE_WEAPON_DATA" object:0]
+  0b7ea4  [ADInGameStats singleton]
+  0b7ed0  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"UPDATE_COINS_FOR_KILL" object:0]
+  0b7ee4  [ADInGameStats singleton]
+  0b7f10  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"TIME_ELAPSED" object:0]
+  0b7f24  [ADInGameStats singleton]
+  0b7f50  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"UPDATE_KILLED_ENEMY_POWERUP" object:0]
+  0b7f64  [ADInGameStats singleton]
+  0b7f90  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"UPDATE_CHALLENGE_TIME_ELAPSED" object:0]
+  0b7fa4  [ADInGameStats singleton]
+  0b7fd0  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"BRICK_TIME_ELAPSED" object:0]
+  0b7fe4  [ADInGameStats singleton]
+  0b8010  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"UPDATE_KILLED_ENEMY_WITH_WEAPON" object:0]
+  0b8024  [ADInGameStats singleton]
+  0b8050  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"UPDATE_MELEE_WEAPON_DATA" object:0]
+  0b8064  [ADInGameStats singleton]
+  0b8090  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"PLAYER_DIED" object:0]
+  0b80a4  [ADInGameStats singleton]
+  0b80d0  [[NSNotificationCenter defaultCenter] addObserver:[ADInGameStats singleton] selector:@selector(actUponNotification:) name:@"UPDATE_DIAMONDS" object:0]
+  0b80d8  goto loc_1000b8338
+loc_1000b80dc:
+  0b80e0  [ADInGameStats singleton]
+  0b8114  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"UPDATE_WEAPON_DATA" object:0]
+  0b8128  [ADInGameStats singleton]
+  0b8150  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"UPDATE_COINS_FOR_KILL" object:0]
+  0b8164  [ADInGameStats singleton]
+  0b818c  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"TIME_ELAPSED" object:0]
+  0b81a0  [ADInGameStats singleton]
+  0b81c8  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"UPDATE_KILLED_ENEMY_POWERUP" object:0]
+  0b81dc  [ADInGameStats singleton]
+  0b8204  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"UPDATE_CHALLENGE_TIME_ELAPSED" object:0]
+  0b8218  [ADInGameStats singleton]
+  0b8240  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"BRICK_TIME_ELAPSED" object:0]
+  0b8254  [ADInGameStats singleton]
+  0b827c  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"UPDATE_KILLED_ENEMY_WITH_WEAPON" object:0]
+  0b8290  [ADInGameStats singleton]
+  0b82b8  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"UPDATE_MELEE_WEAPON_DATA" object:0]
+  0b82cc  [ADInGameStats singleton]
+  0b82f4  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"PLAYER_DIED" object:0]
+  0b8308  [ADInGameStats singleton]
+  0b8330  [[NSNotificationCenter defaultCenter] removeObserver:[ADInGameStats singleton] name:@"UPDATE_DIAMONDS" object:0]
+loc_1000b8338:
+  0b8350  return
+
+== -[ADInGameStats startNewLevel:]   (address 0x1000b83d4  size 1324  kind objc)
+  0b8414  [self setSessionCompleted:0]
+  0b842c  [self setNumberOfEnemyKills:0]
+  0b8444  [self setDeath:0]
+  0b845c  [self setNumberMissionsCompleted:0]
+  0b8474  [self setNumberMissionsSkipped:0]
+  0b848c  [self setGameMode:arg1]
+  0b84a4  [self setShotsOnTarget:0]
+  0b84bc  [self setTotalShotsFired:0]
+  0b84d4  [self setHighestCombo:0]
+  0b84ec  [self setGameScore:0]
+  0b8508  [self setCombo:10]
+  0b8520  [ADGameModifiers sharedModifiers]
+  0b853c  [[ADGameModifiers sharedModifiers] baseComboBonus]
+  0b854c  if ([[ADGameModifiers sharedModifiers] baseComboBonus] == 0) goto loc_1000b8560
+  0b855c  [self setCombo:20]
+loc_1000b8560:
+  0b8574  [self setMeleeHits:0]
+  0b858c  [self setMeleeSwings:0]
+  0b85a4  [self setCoinsForKill:0]
+  0b85bc  [self setDiamondLoot:0]
+  0b85d4  [self setTimeElapsed:0]
+  0b85ec  [self setChallengeTimeElapsed:0]
+  0b8604  [self setBrickTime:0]
+  0b861c  [self setNumCriticalHits:0]
+  0b8638  [NSMutableDictionary alloc]
+  0b8648  [[NSMutableDictionary alloc] init]
+  0b8664  [self setWeaponCriticalHits:[[NSMutableDictionary alloc] init]]
+  0b8684  [self setNumberOfBricksDefeated:0]
+  0b869c  [self setTotalCoins:0]
+  0b86bc  [NSBundle mainBundle]
+  0b86ec  [[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]
+  0b8710  [NSMutableDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]
+  0b8734  [self setEnemyList:[NSMutableDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]]
+  0b8758  [NSBundle mainBundle]
+  0b877c  [[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]
+  0b87a0  [NSDictionary alloc]
+  0b87b4  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]]
+  0b87d0  [ADPersistentStats persistentStats]
+  0b87f4  [[ADPersistentStats persistentStats] buildFromDictionary:[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] ClearItems:1]
+  0b8818  [self setWeaponsData:[[ADPersistentStats persistentStats] buildFromDictionary:[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] ClearItems:1]]
+  0b8844  [ADInGameStats toggleOnOff:1]
+  0b8874  return
+
+== -[ADInGameStats saveGameSessionStats]   (address 0x1000b8900  size 240  kind objc)
+  0b8928  [NSUserDefaults standardUserDefaults]
+  0b894c  [ADInGameStats singleton]
+  0b8978  [[NSUserDefaults standardUserDefaults] setObject:[ADInGameStats singleton] forKey:@"GAME_SESSION"]
+  0b8994  [NSUserDefaults standardUserDefaults]
+  0b89b0  [[NSUserDefaults standardUserDefaults] synchronize]
+  0b89c4  return
+
+== -[ADInGameStats endLevel]   (address 0x1000b89f0  size 540  kind objc)
+  0b8a18  [self setSessionCompleted:1]
+  0b8a2c  [self filterEnemiesByDisplayName]
+  0b8a40  [self filterWeaponsByShotsFired]
+  0b8a54  [self buildMiscPostGameDataDictionary]
+  0b8a6c  [self coinsForKill]
+  0b8a70  if ([self coinsForKill] == 0) goto loc_1000b8b4c
+  0b8a7c  [self coinsForKill]
+  0b8a98  [self totalCoins]
+  0b8ab4  [self setTotalCoins:([self totalCoins] + [self coinsForKill])]
+  0b8ac8  [self highestCombo]
+  0b8ad8  [self totalCoins]
+  0b8ae8  [self setTotalCoins:([self totalCoins] + [self highestCombo])]
+  0b8afc  [self timeElapsed]
+  0b8b20  [self currentAccuracy]
+  0b8b38  [self totalCoins]
+  0b8b3c  t1 = ([self totalCoins] + (int)((([self timeElapsed] * [self timeElapsed]) / 200) * [self currentAccuracy]))
+  0b8b48  [self setTotalCoins:t1]
+loc_1000b8b4c:
+  0b8b60  [ADGameModifiers sharedModifiers]
+  0b8b7c  [[ADGameModifiers sharedModifiers] metalDetector]
+  0b8b8c  if ([[ADGameModifiers sharedModifiers] metalDetector] == 0) goto loc_1000b8bcc
+  0b8ba0  [self totalCoins]
+  0b8bc8  [self setTotalCoins:(uint)((float)[self totalCoins] * 1.15)]
+loc_1000b8bcc:
+  0b8bf4  tail [ADInGameStats toggleOnOff:0]
+
+== -[ADInGameStats saveStats]   (address 0x1000b8c0c  size 836  kind objc)
+  0b8c34  [self death]
+  0b8c38  if ([self death] == 0) goto loc_1000b8c78
+  0b8c50  [ADPersistentStats persistentStats]
+  0b8c6c  [[ADPersistentStats persistentStats] updateDeaths]
+loc_1000b8c78:
+  0b8c90  [ADPersistentStats persistentStats]
+  0b8cb0  [self enemyList]
+  0b8cd4  [[ADPersistentStats persistentStats] saveEnemyData:[self enemyList]]
+  0b8cf0  [ADPersistentStats persistentStats]
+  0b8d10  [self timeElapsed]
+  0b8d2c  [self gameMode]
+  0b8d54  [[ADPersistentStats persistentStats] savePlayTimeData:[self timeElapsed] AndMode:[self gameMode]]
+  0b8d70  [ADPersistentStats persistentStats]
+  0b8d90  [self prepareTotalsStats]
+  0b8db4  [[ADPersistentStats persistentStats] saveShotsData:[self prepareTotalsStats]]
+  0b8dd0  [ADPersistentStats persistentStats]
+  0b8df0  [self weaponsData]
+  0b8e14  [[ADPersistentStats persistentStats] saveWeaponsData:[self weaponsData]]
+  0b8e30  [self gameMode]
+  0b8e54  [[self gameMode] isEqualToString:@"ENDLESS"]
+  0b8e64  if ([[self gameMode] isEqualToString:@"ENDLESS"] == 0) goto loc_1000b8ec8
+  0b8e70  [ADPersistentStats persistentStats]
+  0b8e90  [self numberOfEnemyKills]
+  0b8ea8  [[ADPersistentStats persistentStats] saveEndlessModeKills:[self numberOfEnemyKills]]
+  0b8ec4  return
+loc_1000b8ec8:
+  0b8edc  return
+
+== -[ADInGameStats filterEnemiesByDisplayName]   (address 0x1000b8f50  size 1736  kind objc)
+  0b8f9c  [NSMutableDictionary alloc]
+  0b8fac  [[NSMutableDictionary alloc] init]
+  0b8fd8  [self enemyList]
+  0b8ff8  [[self enemyList] allKeys]
+  0b9034  [[[self enemyList] allKeys] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]
+  0b903c  if ([[[self enemyList] allKeys] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16] == 0) goto loc_1000b9474
+  0b904c  &@selector(dictionaryForEnemyName:)
+  0b9058  &@selector(objectForKey:)
+loc_1000b90c8:
+loc_1000b90cc:
+  0b90dc  if (x8 == x9) goto loc_1000b90e8
+  0b90e4  objc_enumerationMutation([[self enemyList] allKeys])
+loc_1000b90e8:
+  0b90fc  [ADBrickManager sharedBrickManager]
+  0b9114  [[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2]
+  0b9134  [self enemyList]
+  0b914c  [[self enemyList] objectForKey:x2]
+  0b9174  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]
+  0b9184  if ([[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"] == 0) goto loc_1000b9430
+  0b9190  [[[NSMutableDictionary alloc] init] allKeys]
+  0b91a8  [[[[NSMutableDictionary alloc] init] allKeys] containsObject:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]]
+  0b91b8  if (!([[[[NSMutableDictionary alloc] init] allKeys] containsObject:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] & 1)) goto loc_1000b9360
+  0b91c8  [[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]]
+  0b91f4  [[[self enemyList] objectForKey:x2] objectForKey:@"Killed"]
+  0b9208  [[[[self enemyList] objectForKey:x2] objectForKey:@"Killed"] intValue]
+  0b9220  [[[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] objectForKey:@"Killed"]
+  0b9238  [[[[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] objectForKey:@"Killed"] intValue]
+  0b923c  t1 = ([[[[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] objectForKey:@"Killed"] intValue] + [[[[self enemyList] objectForKey:x2] objectForKey:@"Killed"] intValue])
+  0b9260  [NSNumber numberWithInt:t1]
+  0b9284  [[[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] setObject:[NSNumber numberWithInt:t1] forKey:@"Killed"]
+  0b92a0  [[[self enemyList] objectForKey:x2] objectForKey:@"Casualty"]
+  0b92b4  [[[[self enemyList] objectForKey:x2] objectForKey:@"Casualty"] intValue]
+  0b92cc  [[[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] objectForKey:@"Casualty"]
+  0b92e8  [[[[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] objectForKey:@"Casualty"] intValue]
+  0b92ec  t2 = ([[[[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] objectForKey:@"Casualty"] intValue] + [[[[self enemyList] objectForKey:x2] objectForKey:@"Casualty"] intValue])
+  0b9310  [NSNumber numberWithInt:t2]
+  0b933c  [[[[NSMutableDictionary alloc] init] objectForKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]] setObject:[NSNumber numberWithInt:t2] forKey:@"Casualty"]
+  0b935c  goto loc_1000b9430
+loc_1000b9360:
+  0b936c  [NSMutableDictionary alloc]
+  0b9384  [[[self enemyList] objectForKey:x2] objectForKey:@"Killed"]
+  0b93ac  [[[self enemyList] objectForKey:x2] objectForKey:@"Casualty"]
+  0b93e8  [[NSMutableDictionary alloc] initWithObjectsAndKeys:[[[self enemyList] objectForKey:x2] objectForKey:@"Killed"], @"Killed", [[[self enemyList] objectForKey:x2] objectForKey:@"Casualty"…, @"Casualty", nil]
+  0b9414  [[[NSMutableDictionary alloc] init] setObject:[[NSMutableDictionary alloc] initWithObjectsAndKeys:[[[self enemyList] objectForKey:x2] objectForKey:@"Killed"], @"Killed", [[[self enemyList] objectForKey:x2] objectForKey:@"Casualty"…, @"Casualty", nil] forKey:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:x2] objectForKey:@"displayName"]]
+loc_1000b9430:
+  0b9450  if ((x27 + 1) <u [[[self enemyList] allKeys] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]) goto loc_1000b90cc
+  0b9468  [[[self enemyList] allKeys] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]
+  0b9470  if ([[[self enemyList] allKeys] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16] != 0) goto loc_1000b90c8
+loc_1000b9474:
+  0b9494  [self setEnemyList:0]
+  0b94b0  [self setEnemyList:[[NSMutableDictionary alloc] init]]
+  0b94e4  return
+
+== -[ADInGameStats filterWeaponsByShotsFired]   (address 0x1000b9618  size 1020  kind objc)
+  0b9660  [NSMutableDictionary alloc]
+  0b9670  [[NSMutableDictionary alloc] init]
+  0b968c  [self weaponsData]
+  0b96a8  [[self weaponsData] allKeys]
+  0b9700  [[[self weaponsData] allKeys] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0b9708  if ([[[self weaponsData] allKeys] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] == 0) goto loc_1000b98fc
+  0b9768  &@selector(setObject:forKey:)
+loc_1000b977c:
+loc_1000b9780:
+  0b978c  if (x8 == x22) goto loc_1000b9798
+  0b9794  objc_enumerationMutation([[self weaponsData] allKeys])
+loc_1000b9798:
+  0b97a8  [self weaponsData]
+  0b97c0  [[self weaponsData] objectForKey:x2]
+  0b97e8  [[[self weaponsData] objectForKey:x2] objectForKey:@"shotsFired"]
+  0b97fc  [[[[self weaponsData] objectForKey:x2] objectForKey:@"shotsFired"] integerValue]
+  0b9810  if ([[[[self weaponsData] objectForKey:x2] objectForKey:@"shotsFired"] integerValue] < 1) goto loc_1000b98c8
+  0b9824  [[[self weaponsData] objectForKey:x2] objectForKey:@"shotsFired"]
+  0b9838  [[[[self weaponsData] objectForKey:x2] objectForKey:@"shotsFired"] integerValue]
+  0b9848  [self totalShotsFired]
+  0b984c  t1 = ([self totalShotsFired] + [[[[self weaponsData] objectForKey:x2] objectForKey:@"shotsFired"] integerValue])
+  0b9858  [self setTotalShotsFired:t1]
+  0b9874  [[[self weaponsData] objectForKey:x2] objectForKey:@"shotsHit"]
+  0b9888  [[[[self weaponsData] objectForKey:x2] objectForKey:@"shotsHit"] integerValue]
+  0b9898  [self shotsOnTarget]
+  0b989c  t2 = ([self shotsOnTarget] + [[[[self weaponsData] objectForKey:x2] objectForKey:@"shotsHit"] integerValue])
+  0b98a8  [self setShotsOnTarget:t2]
+  0b98c4  [[[NSMutableDictionary alloc] init] setObject:[[self weaponsData] objectForKey:x2] forKey:x3]
+loc_1000b98c8:
+  0b98d8  if ((x27 + 1) <u [[[self weaponsData] allKeys] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]) goto loc_1000b9780
+  0b98f0  [[[self weaponsData] allKeys] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0b98f8  if ([[[self weaponsData] allKeys] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] != 0) goto loc_1000b977c
+loc_1000b98fc:
+  0b9920  [self setWeaponsData:0]
+  0b9930  [self setWeaponsData:[[NSMutableDictionary alloc] init]]
+  0b9978  return
+
+== -[ADInGameStats prepareTotalsStats]   (address 0x1000b9a14  size 332  kind objc)
+  0b9a60  [self totalShotsFired]
+  0b9a7c  [NSNumber numberWithInt:[self totalShotsFired]]
+  0b9aac  [self meleeSwings]
+  0b9abc  [NSNumber numberWithInt:[self meleeSwings]]
+  0b9af0  [NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]
+  0b9b34  return
+
+== -[ADInGameStats killedEnemi:]   (address 0x1000b9b60  size 872  kind objc)
+  0b9b9c  [self enemyList]
+  0b9bc0  [arg1 name]
+  0b9be8  [[self enemyList] objectForKey:[arg1 name]]
+  0b9c08  if ([[self enemyList] objectForKey:[arg1 name]] == 0) goto loc_1000b9cf4
+  0b9c1c  [[[self enemyList] objectForKey:[arg1 name]] objectForKey:@"Killed"]
+  0b9c38  [[[[self enemyList] objectForKey:[arg1 name]] objectForKey:@"Killed"] integerValue]
+  0b9c60  [NSNumber numberWithInt:([[[[self enemyList] objectForKey:[arg1 name]] objectForKey:@"Killed"] integerValue] + 1)]
+  0b9c8c  [[[self enemyList] objectForKey:[arg1 name]] setObject:[NSNumber numberWithInt:([[[[self enemyList] objectForKey:[arg1 name]] objectForKey:@"Killed"] integerValue] + 1)] forKey:@"Killed"]
+  0b9ca0  [self enemyList]
+  0b9cb8  [arg1 name]
+  0b9ce0  [[self enemyList] setValue:[[self enemyList] objectForKey:[arg1 name]] forKey:[arg1 name]]
+loc_1000b9cf4:
+  0b9d04  [self numberOfEnemyKills]
+  0b9d1c  [self setNumberOfEnemyKills:([self numberOfEnemyKills] + 1)]
+  0b9d30  [arg1 comboBonus]
+  0b9d4c  [self combo]
+  0b9d64  [self setCombo:([self combo] + [arg1 comboBonus])]
+  0b9d78  [arg1 coinsReward]
+  0b9d90  [self coinsForKill]
+  0b9da8  [self setCoinsForKill:([self coinsForKill] + [arg1 coinsReward])]
+  0b9dc0  [arg1 score]
+  0b9dc8  if ([arg1 score] < 2) goto loc_1000b9df4
+  0b9dd4  [arg1 score]
+  0b9de4  [self combo]
+  0b9df0  goto loc_1000b9e04
+loc_1000b9df4:
+  0b9dfc  [self combo]
+loc_1000b9e04:
+  0b9e14  [self gameScore]
+  0b9e2c  [self setGameScore:([self gameScore] + x22)]
+  0b9e50  return
+
+== -[ADInGameStats cheatKillCount:]   (address 0x1000b9ec8  size 464  kind objc)
+  0b9ef8  [self startNewLevel:@"ENDLESS"]
+  0b9f10  [self enemyList]
+  0b9f38  [[self enemyList] objectForKey:@"WeakZombie"]
+  0b9f50  if ([[self enemyList] objectForKey:@"WeakZombie"] == 0) goto loc_1000ba01c
+  0b9f64  [[[self enemyList] objectForKey:@"WeakZombie"] objectForKey:@"Killed"]
+  0b9f80  [[[[self enemyList] objectForKey:@"WeakZombie"] objectForKey:@"Killed"] integerValue]
+  0b9f84  t1 = ([[[[self enemyList] objectForKey:@"WeakZombie"] objectForKey:@"Killed"] integerValue] + arg1)
+  0b9fa8  [NSNumber numberWithInt:t1]
+  0b9fd4  [[[self enemyList] objectForKey:@"WeakZombie"] setObject:[NSNumber numberWithInt:t1] forKey:@"Killed"]
+  0b9fe8  [self enemyList]
+  0ba010  [[self enemyList] setValue:[[self enemyList] objectForKey:@"WeakZombie"] forKey:@"WeakZombie"]
+loc_1000ba01c:
+  0ba02c  [self endLevel]
+  0ba044  return
+
+== -[ADInGameStats deathByEnemyWithName:]   (address 0x1000ba098  size 424  kind objc)
+  0ba0d0  [self enemyList]
+  0ba0f4  [[self enemyList] objectForKey:arg1]
+  0ba11c  [[[self enemyList] objectForKey:arg1] objectForKey:@"Casualty"]
+  0ba138  [[[[self enemyList] objectForKey:arg1] objectForKey:@"Casualty"] integerValue]
+  0ba160  [NSNumber numberWithInt:([[[[self enemyList] objectForKey:arg1] objectForKey:@"Casualty"] integerValue] + 1)]
+  0ba18c  [[[self enemyList] objectForKey:arg1] setObject:[NSNumber numberWithInt:([[[[self enemyList] objectForKey:arg1] objectForKey:@"Casualty"] integerValue] + 1)] forKey:@"Casualty"]
+  0ba1a0  [self enemyList]
+  0ba1c4  [[self enemyList] setValue:[[self enemyList] objectForKey:arg1] forKey:arg1]
+  0ba1ec  return
+
+== -[ADInGameStats decrementCombo]   (address 0x1000ba240  size 96  kind objc)
+  0ba260  [self combo]
+  0ba264  if ([self combo] == 0) goto loc_1000ba294
+  0ba270  [self combo]
+  0ba290  tail [self setCombo:([self combo] - 1)]
+loc_1000ba294:
+  0ba29c  return
+
+== -[ADInGameStats updateMeleeWeaponsWithName:Hit:]   (address 0x1000ba2a0  size 212  kind objc)
+  0ba2c4  if (!(arg2 & 1)) goto loc_1000ba2f4
+  0ba2d8  [self meleeHits]
+  0ba2f0  [self setMeleeHits:([self meleeHits] + 1)]
+loc_1000ba2f4:
+  0ba304  [self meleeSwings]
+  0ba31c  [self setMeleeSwings:([self meleeSwings] + 1)]
+  0ba348  [self updateDataForWeaponWithName:arg1 FiredShot:1 HitFired:arg2 Killed:0 Critical:0 Time:-1]
+  0ba35c  return
+
+== -[ADInGameStats updateDataForWeaponWithName:FiredShot:HitFired:Killed:Critical:Time:]   (address 0x1000ba374  size 1432  kind objc)
+  0ba3cc  [self weaponsData]
+  0ba3f0  [[self weaponsData] objectForKey:arg1]
+  0ba408  if ([[self weaponsData] objectForKey:arg1] != 0) goto loc_1000ba47c
+  0ba414  [self weaponsData]
+  0ba438  [NSMutableDictionary alloc]
+  0ba448  [[NSMutableDictionary alloc] init]
+  0ba468  [[self weaponsData] setObject:[[NSMutableDictionary alloc] init] forKey:arg1]
+loc_1000ba47c:
+  0ba47c  if (arg2 == 0) goto loc_1000ba50c
+  0ba490  [[[self weaponsData] objectForKey:arg1] objectForKey:@"shotsFired"]
+  0ba4ac  [[[[self weaponsData] objectForKey:arg1] objectForKey:@"shotsFired"] intValue]
+  0ba4d4  [NSNumber numberWithInt:([[[[self weaponsData] objectForKey:arg1] objectForKey:@"shotsFired"] intValue] + 1)]
+  0ba500  [[[self weaponsData] objectForKey:arg1] setValue:[NSNumber numberWithInt:([[[[self weaponsData] objectForKey:arg1] objectForKey:@"shotsFired"] intValue] + 1)] forKey:@"shotsFired"]
+loc_1000ba50c:
+  0ba50c  if (arg3 == 0) goto loc_1000ba59c
+  0ba520  [[[self weaponsData] objectForKey:arg1] objectForKey:@"shotsHit"]
+  0ba53c  [[[[self weaponsData] objectForKey:arg1] objectForKey:@"shotsHit"] intValue]
+  0ba564  [NSNumber numberWithInt:([[[[self weaponsData] objectForKey:arg1] objectForKey:@"shotsHit"] intValue] + 1)]
+  0ba590  [[[self weaponsData] objectForKey:arg1] setValue:[NSNumber numberWithInt:([[[[self weaponsData] objectForKey:arg1] objectForKey:@"shotsHit"] intValue] + 1)] forKey:@"shotsHit"]
+loc_1000ba59c:
+  0ba5a0  if (arg2 != 1) goto loc_1000ba5bc
+  0ba5a4  if ((arg3 & 1)) goto loc_1000ba5bc
+  0ba5b8  [self decrementCombo]
+loc_1000ba5bc:
+  0ba5bc  if (arg4 == 0) goto loc_1000ba64c
+  0ba5d0  [[[self weaponsData] objectForKey:arg1] objectForKey:@"kills"]
+  0ba5ec  [[[[self weaponsData] objectForKey:arg1] objectForKey:@"kills"] intValue]
+  0ba614  [NSNumber numberWithInt:([[[[self weaponsData] objectForKey:arg1] objectForKey:@"kills"] intValue] + 1)]
+  0ba640  [[[self weaponsData] objectForKey:arg1] setValue:[NSNumber numberWithInt:([[[[self weaponsData] objectForKey:arg1] objectForKey:@"kills"] intValue] + 1)] forKey:@"kills"]
+loc_1000ba64c:
+  0ba64c  if (arg5 == 0) goto loc_1000ba770
+  0ba664  [self weaponCriticalHits]
+  0ba684  [[[self weaponsData] objectForKey:arg1] objectForKey:@"displayName"]
+  0ba6a0  [[self weaponCriticalHits] objectForKey:[[[self weaponsData] objectForKey:arg1] objectForKey:@"displayName"]]
+  0ba6bc  [[[self weaponCriticalHits] objectForKey:[[[self weaponsData] objectForKey:arg1] objectForKey:@"displayName"]] intValue]
+  0ba6e4  [self weaponCriticalHits]
+  0ba70c  [NSNumber numberWithInt:([[[self weaponCriticalHits] objectForKey:[[[self weaponsData] objectForKey:arg1] objectForKey:@"displayName"]] intValue] + 1)]
+  0ba72c  [[[self weaponsData] objectForKey:arg1] objectForKey:@"displayName"]
+  0ba754  [[self weaponCriticalHits] setValue:[NSNumber numberWithInt:([[[self weaponCriticalHits] objectForKey:[[[self weaponsData] objectForKey:arg1] objectForKey:@"displayName"]] intValue] + 1)] forKey:[[[self weaponsData] objectForKey:arg1] objectForKey:@"displayName"]]
+loc_1000ba770:
+  0ba774  if (arg6 <= (or unordered) 0.0) goto loc_1000ba804
+  0ba788  [[[self weaponsData] objectForKey:arg1] objectForKey:@"timeSpentWithWeapon"]
+  0ba7a4  [[[[self weaponsData] objectForKey:arg1] objectForKey:@"timeSpentWithWeapon"] doubleValue]
+  0ba7bc  t1 = ([[[[self weaponsData] objectForKey:arg1] objectForKey:@"timeSpentWithWeapon"] doubleValue] + arg6)
+  0ba7cc  [NSNumber numberWithDouble:t1]
+  0ba7f8  [[[self weaponsData] objectForKey:arg1] setValue:[NSNumber numberWithDouble:t1] forKey:@"timeSpentWithWeapon"]
+loc_1000ba804:
+  0ba82c  return
+
+== -[ADInGameStats setCombo:]   (address 0x1000ba90c  size 112  kind objc)
+  0ba92c  self->_combo = arg1
+  0ba93c  [self highestCombo]
+  0ba944  if ([self highestCombo] >=u arg1) goto loc_1000ba96c
+  0ba968  tail [self setHighestCombo:self->_combo]
+loc_1000ba96c:
+  0ba978  return
+
+== -[ADInGameStats setChallengeTimeElapsed:]   (address 0x1000ba97c  size 96  kind objc)
+  0ba9a0  [self challengeTimeElapsedCalls]
+  0ba9bc  [self setChallengeTimeElapsedCalls:([self challengeTimeElapsedCalls] + 1)]
+  0ba9c8  self->challengeTimeElapsedIvar = arg1
+  0ba9d8  return
+
+== -[ADInGameStats challengeTimeElapsed]   (address 0x1000ba9dc  size 16  kind objc)
+  0ba9e8  return
+
+== -[ADInGameStats setTimeElapsed:]   (address 0x1000ba9ec  size 96  kind objc)
+  0baa10  [self timeElapsedCalls]
+  0baa2c  [self setTimeElapsedCalls:([self timeElapsedCalls] + 1)]
+  0baa38  self->timeElapsedIvar = arg1
+  0baa48  return
+
+== -[ADInGameStats timeElapsed]   (address 0x1000baa4c  size 16  kind objc)
+  0baa58  return
+
+== -[ADInGameStats setBrickTime:]   (address 0x1000baa5c  size 96  kind objc)
+  0baa80  [self brickTimeCalls]
+  0baa9c  [self setBrickTimeCalls:([self brickTimeCalls] + 1)]
+  0baaa8  self->brickTimeIvar = arg1
+  0baab8  return
+
+== -[ADInGameStats brickTime]   (address 0x1000baabc  size 16  kind objc)
+  0baac8  return
+
+== -[ADInGameStats currentAccuracy]   (address 0x1000baacc  size 112  kind objc)
+  0baaf0  [self totalShotsFired]
+  0baaf4  if ([self totalShotsFired] == 0) goto loc_1000bab28
+  0bab08  [self shotsOnTarget]
+  0bab18  [self totalShotsFired]
+  0bab24  goto loc_1000bab2c
+loc_1000bab28:
+loc_1000bab2c:
+  0bab38  return
+
+== -[ADInGameStats computeCurrentEnemyKillCount]   (address 0x1000bab3c  size 396  kind objc)
+  0bab6c  [self enemyList]
+  0bab80  if ([self enemyList] == 0) goto loc_1000bac7c
+  0bab8c  [self enemyList]
+  0baba8  [[self enemyList] objectEnumerator]
+  0babe4  &@selector(integerValue)
+  0babf4  goto loc_1000bac08
+loc_1000babf8:
+  0bac00  t1 = ([[[[[self enemyList] objectEnumerator] nextObject] objectForKey:@"Killed"] integerValue] + x20)
+loc_1000bac08:
+  0bac10  [[[self enemyList] objectEnumerator] nextObject]
+  0bac28  if ([[[self enemyList] objectEnumerator] nextObject] == 0) goto loc_1000bac70
+  0bac3c  [[[[self enemyList] objectEnumerator] nextObject] objectForKey:@"Killed"]
+  0bac50  [[[[[self enemyList] objectEnumerator] nextObject] objectForKey:@"Killed"] integerValue]
+  0bac58  goto loc_1000babf8
+  0bac6c  goto loc_1000baca4
+loc_1000bac70:
+  0bac78  goto loc_1000bac80
+loc_1000bac7c:
+loc_1000bac80:
+  0bac9c  return
+
+== -[ADInGameStats getShotsFired]   (address 0x1000bacc8  size 16  kind objc)
+  0bacd4  tail [self totalShotsFired]
+
+== -[ADInGameStats getShotsOnTarget]   (address 0x1000bacd8  size 16  kind objc)
+  0bace4  tail [self shotsOnTarget]
+
+== -[ADInGameStats resetPowerupKills]   (address 0x1000bace8  size 20  kind objc)
+  0bacf8  tail [self setEnemyKillsWithPowerup:0]
+
+== -[ADInGameStats buildMiscPostGameDataDictionary]   (address 0x1000bacfc  size 4776  kind objc)
+  0bad3c  [self gameMode]
+  0bad60  [[self gameMode] isEqualToString:@"ENDLESS"]
+  0bad84  [NSMutableDictionary alloc]
+  0bad94  [[NSMutableDictionary alloc] init]
+  0bada0  &@selector(setPostGameData:)
+  0bada8  if ([[self gameMode] isEqualToString:@"ENDLESS"] == 0) goto loc_1000bb540
+  0badb4  [self setPostGameData:[[NSMutableDictionary alloc] init]]
+  0badd4  [self postGameData]
+  0bae24  [self numberOfEnemyKills]
+  0bae40  [NSNumber numberWithInteger:[self numberOfEnemyKills]]
+  0bae78  [NSDictionary dictionaryWithObjects:&x29[-0x68] forKeys:&x29[-0x78] count:2]
+  0bae9c  [NSNumber numberWithInt:0]
+  0baec8  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&x29[-0x68] forKeys:&x29[-0x78] count:2] forKey:[NSNumber numberWithInt:0]]
+  0baef4  [self postGameData]
+  0baf3c  [self shotsOnTarget]
+  0baf58  [NSNumber numberWithUnsignedInteger:[self shotsOnTarget]]
+  0baf84  [NSDictionary dictionaryWithObjects:&x29[-0x88] forKeys:&x29[-0x98] count:2]
+  0bafa0  [NSNumber numberWithInt:1]
+  0bafc0  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&x29[-0x88] forKeys:&x29[-0x98] count:2] forKey:[NSNumber numberWithInt:1]]
+  0bafec  [self postGameData]
+  0bb034  [self totalShotsFired]
+  0bb044  [NSNumber numberWithUnsignedInteger:[self totalShotsFired]]
+  0bb070  [NSDictionary dictionaryWithObjects:&x29[-0xa8] forKeys:&x29[-0xb8] count:2]
+  0bb088  [NSNumber numberWithInt:2]
+  0bb0a8  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&x29[-0xa8] forKeys:&x29[-0xb8] count:2] forKey:[NSNumber numberWithInt:2]]
+  0bb0d4  [self postGameData]
+  0bb11c  [self numCriticalHits]
+  0bb12c  [NSNumber numberWithInteger:[self numCriticalHits]]
+  0bb158  [NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&x29[-0xd8] count:2]
+  0bb170  [NSNumber numberWithInt:3]
+  0bb190  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&x29[-0xc8] forKeys:&x29[-0xd8] count:2] forKey:[NSNumber numberWithInt:3]]
+  0bb1bc  [self postGameData]
+  0bb1fc  [self numberOfEnemyKills]
+  0bb20c  [NSNumber numberWithInteger:[self numberOfEnemyKills]]
+  0bb238  [NSDictionary dictionaryWithObjects:&x29[-0xe8] forKeys:&x29[-0xf8] count:2]
+  0bb250  [NSNumber numberWithInt:4]
+  0bb270  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&x29[-0xe8] forKeys:&x29[-0xf8] count:2] forKey:[NSNumber numberWithInt:4]]
+  0bb29c  [self postGameData]
+  0bb2e4  [self meleeSwings]
+  0bb2f4  [NSNumber numberWithUnsignedInteger:[self meleeSwings]]
+  0bb320  [NSDictionary dictionaryWithObjects:&sp[0x178] forKeys:&sp[0x168] count:2]
+  0bb338  [NSNumber numberWithInt:5]
+  0bb358  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0x178] forKeys:&sp[0x168] count:2] forKey:[NSNumber numberWithInt:5]]
+  0bb384  [self postGameData]
+  0bb3cc  [self meleeHits]
+  0bb3dc  [NSNumber numberWithUnsignedInteger:[self meleeHits]]
+  0bb408  [NSDictionary dictionaryWithObjects:&sp[0x158] forKeys:&sp[0x148] count:2]
+  0bb420  [NSNumber numberWithInt:6]
+  0bb440  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0x158] forKeys:&sp[0x148] count:2] forKey:[NSNumber numberWithInt:6]]
+  0bb46c  [self postGameData]
+  0bb4b4  [self numberOfBricksDefeated]
+  0bb4c4  [NSNumber numberWithInteger:[self numberOfBricksDefeated]]
+  0bb4f0  [NSDictionary dictionaryWithObjects:&sp[0x138] forKeys:&sp[0x128] count:2]
+  0bb514  [NSNumber numberWithInt:7]
+  0bb534  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0x138] forKeys:&sp[0x128] count:2] forKey:[NSNumber numberWithInt:7]]
+  0bb538  goto loc_1000bbccc
+  0bb53c  goto loc_1000bbf78
+loc_1000bb540:
+  0bb548  [self setPostGameData:[[NSMutableDictionary alloc] init]]
+  0bb568  [self postGameData]
+  0bb5b8  [self numberOfEnemyKills]
+  0bb5d4  [NSNumber numberWithInteger:[self numberOfEnemyKills]]
+  0bb60c  [NSDictionary dictionaryWithObjects:&sp[0x118] forKeys:&sp[0x108] count:2]
+  0bb630  [NSNumber numberWithInt:0]
+  0bb65c  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0x118] forKeys:&sp[0x108] count:2] forKey:[NSNumber numberWithInt:0]]
+  0bb688  [self postGameData]
+  0bb6d0  [self shotsOnTarget]
+  0bb6ec  [NSNumber numberWithUnsignedInteger:[self shotsOnTarget]]
+  0bb718  [NSDictionary dictionaryWithObjects:&sp[0xf8] forKeys:&sp[0xe8] count:2]
+  0bb734  [NSNumber numberWithInt:1]
+  0bb754  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0xf8] forKeys:&sp[0xe8] count:2] forKey:[NSNumber numberWithInt:1]]
+  0bb780  [self postGameData]
+  0bb7c8  [self totalShotsFired]
+  0bb7d8  [NSNumber numberWithUnsignedInteger:[self totalShotsFired]]
+  0bb804  [NSDictionary dictionaryWithObjects:&sp[0xd8] forKeys:&sp[0xc8] count:2]
+  0bb81c  [NSNumber numberWithInt:2]
+  0bb83c  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0xd8] forKeys:&sp[0xc8] count:2] forKey:[NSNumber numberWithInt:2]]
+  0bb868  [self postGameData]
+  0bb8b0  [self numCriticalHits]
+  0bb8c0  [NSNumber numberWithInteger:[self numCriticalHits]]
+  0bb8ec  [NSDictionary dictionaryWithObjects:&sp[0xb8] forKeys:&sp[0xa8] count:2]
+  0bb904  [NSNumber numberWithInt:3]
+  0bb924  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0xb8] forKeys:&sp[0xa8] count:2] forKey:[NSNumber numberWithInt:3]]
+  0bb950  [self postGameData]
+  0bb990  [self numberOfEnemyKills]
+  0bb9a0  [NSNumber numberWithInteger:[self numberOfEnemyKills]]
+  0bb9cc  [NSDictionary dictionaryWithObjects:&sp[0x98] forKeys:&sp[0x88] count:2]
+  0bb9e4  [NSNumber numberWithInt:4]
+  0bba04  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0x98] forKeys:&sp[0x88] count:2] forKey:[NSNumber numberWithInt:4]]
+  0bba30  [self postGameData]
+  0bba78  [self meleeSwings]
+  0bba88  [NSNumber numberWithUnsignedInteger:[self meleeSwings]]
+  0bbab4  [NSDictionary dictionaryWithObjects:&sp[0x78] forKeys:&sp[0x68] count:2]
+  0bbacc  [NSNumber numberWithInt:5]
+  0bbaec  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0x78] forKeys:&sp[0x68] count:2] forKey:[NSNumber numberWithInt:5]]
+  0bbb18  [self postGameData]
+  0bbb60  [self meleeHits]
+  0bbb70  [NSNumber numberWithUnsignedInteger:[self meleeHits]]
+  0bbb9c  [NSDictionary dictionaryWithObjects:&sp[0x58] forKeys:&sp[0x48] count:2]
+  0bbbb4  [NSNumber numberWithInt:6]
+  0bbbd4  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0x58] forKeys:&sp[0x48] count:2] forKey:[NSNumber numberWithInt:6]]
+  0bbc00  [self postGameData]
+  0bbc48  [self numberOfBricksDefeated]
+  0bbc58  [NSNumber numberWithInteger:[self numberOfBricksDefeated]]
+  0bbc84  [NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x28] count:2]
+  0bbca8  [NSNumber numberWithInt:7]
+  0bbcc8  [[self postGameData] setObject:[NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x28] count:2] forKey:[NSNumber numberWithInt:7]]
+loc_1000bbccc:
+  0bbd14  return
+
+== -[ADInGameStats getEnemyData]   (address 0x1000bbfa4  size 648  kind objc)
+  0bbfe4  [self sessionCompleted]
+  0bbfe8  if ([self sessionCompleted] == 0) goto loc_1000bc19c
+  0bc000  [NSMutableDictionary alloc]
+  0bc010  [[NSMutableDictionary alloc] init]
+  0bc03c  [self enemyList]
+  0bc068  [[self enemyList] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0bc070  if ([[self enemyList] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_1000bc184
+loc_1000bc0a4:
+loc_1000bc0a8:
+  0bc0b4  if (x8 == x27) goto loc_1000bc0c0
+  0bc0bc  objc_enumerationMutation([self enemyList])
+loc_1000bc0c0:
+  0bc0d0  [self enemyList]
+  0bc0e8  [[self enemyList] objectForKey:x2]
+  0bc114  [[[self enemyList] objectForKey:x2] objectForKey:@"Killed"]
+  0bc128  [[[[self enemyList] objectForKey:x2] objectForKey:@"Killed"] intValue]
+  0bc13c  if ([[[[self enemyList] objectForKey:x2] objectForKey:@"Killed"] intValue] < 1) goto loc_1000bc150
+  0bc14c  [[[NSMutableDictionary alloc] init] setObject:[[self enemyList] objectForKey:x2] forKey:x3]
+loc_1000bc150:
+  0bc164  if ((x21 + 1) <u [[self enemyList] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_1000bc0a8
+  0bc178  [[self enemyList] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0bc180  if ([[self enemyList] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_1000bc0a4
+loc_1000bc184:
+  0bc198  goto loc_1000bc1a0
+loc_1000bc19c:
+loc_1000bc1a0:
+  0bc1cc  return
+
+== -[ADInGameStats getWeaponData]   (address 0x1000bc22c  size 84  kind objc)
+  0bc248  [self sessionCompleted]
+  0bc24c  if ([self sessionCompleted] == 0) goto loc_1000bc270
+  0bc260  [self weaponsData]
+  0bc26c  goto loc_1000bc274
+loc_1000bc270:
+loc_1000bc274:
+  0bc27c  return
+
+== -[ADInGameStats getWeaponCriticalHitsData]   (address 0x1000bc280  size 84  kind objc)
+  0bc29c  [self sessionCompleted]
+  0bc2a0  if ([self sessionCompleted] == 0) goto loc_1000bc2c4
+  0bc2b4  [self weaponCriticalHits]
+  0bc2c0  goto loc_1000bc2c8
+loc_1000bc2c4:
+loc_1000bc2c8:
+  0bc2d0  return
+
+== -[ADInGameStats getMiscData]   (address 0x1000bc2d4  size 84  kind objc)
+  0bc2f0  [self sessionCompleted]
+  0bc2f4  if ([self sessionCompleted] == 0) goto loc_1000bc318
+  0bc308  [self postGameData]
+  0bc314  goto loc_1000bc31c
+loc_1000bc318:
+loc_1000bc31c:
+  0bc324  return
+
+== -[ADInGameStats getEnemiesToCoinsReward]   (address 0x1000bc328  size 128  kind objc)
+  0bc34c  [NSMutableDictionary alloc]
+  0bc35c  [[NSMutableDictionary alloc] init]
+  0bc378  [self setEnemiesToCoins:[[NSMutableDictionary alloc] init]]
+  0bc390  return
+
+== -[ADInGameStats description]   (address 0x1000bc3a8  size 2248  kind objc)
+  0bc3dc  [NSMutableString alloc]
+  0bc3ec  [[NSMutableString alloc] init]
+  0bc40c  [[[NSMutableString alloc] init] appendString:@"\nADInGameStats:\n"]
+  0bc428  [self numberOfEnemyKills]
+  0bc44c  [NSString stringWithFormat:@"  Num Enemies Killed: %d\n", [self numberOfEnemyKills]]
+  0bc468  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Enemies Killed: %d\n", [self numberOfEnemyKills]]]
+  0bc488  [self numberMissionsCompleted]
+  0bc4a0  [NSString stringWithFormat:@"  Num Missions Completed: %d\n", [self numberMissionsCompleted]]
+  0bc4bc  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Missions Completed: %d\n", [self numberMissionsCompleted]]]
+  0bc4dc  [self numberMissionsSkipped]
+  0bc4f4  [NSString stringWithFormat:@"  Num Missions Skipped: %d\n", [self numberMissionsSkipped]]
+  0bc510  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Missions Skipped: %d\n", [self numberMissionsSkipped]]]
+  0bc530  [self gameMode]
+  0bc554  [NSString stringWithFormat:@"  Game mode: %@\n", [self gameMode]]
+  0bc570  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Game mode: %@\n", [self gameMode]]]
+  0bc598  [self shotsOnTarget]
+  0bc5b0  [NSString stringWithFormat:@"  Shots on target: %d\n", [self shotsOnTarget]]
+  0bc5cc  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Shots on target: %d\n", [self shotsOnTarget]]]
+  0bc5ec  [self totalShotsFired]
+  0bc604  [NSString stringWithFormat:@"  Total shots fired: %d\n", [self totalShotsFired]]
+  0bc620  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Total shots fired: %d\n", [self totalShotsFired]]]
+  0bc640  [self highestCombo]
+  0bc658  [NSString stringWithFormat:@"  Highest Combo: %d\n", [self highestCombo]]
+  0bc674  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Highest Combo: %d\n", [self highestCombo]]]
+  0bc694  [self combo]
+  0bc6ac  [NSString stringWithFormat:@"  Combo: %d\n", [self combo]]
+  0bc6c8  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Combo: %d\n", [self combo]]]
+  0bc6e8  [self meleeSwings]
+  0bc700  [NSString stringWithFormat:@"  Num Melee Swings: %d\n", [self meleeSwings]]
+  0bc71c  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Melee Swings: %d\n", [self meleeSwings]]]
+  0bc73c  [self meleeHits]
+  0bc754  [NSString stringWithFormat:@"  Num Melee Hits: %d\n", [self meleeHits]]
+  0bc770  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Melee Hits: %d\n", [self meleeHits]]]
+  0bc790  [self coinsForKill]
+  0bc7a8  [NSString stringWithFormat:@"  Num Coins for Kill: %d\n", [self coinsForKill]]
+  0bc7c4  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Coins for Kill: %d\n", [self coinsForKill]]]
+  0bc7e4  [self diamondLoot]
+  0bc7fc  [NSString stringWithFormat:@"  Num Diamonds: %d\n", [self diamondLoot]]
+  0bc818  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Diamonds: %d\n", [self diamondLoot]]]
+  0bc838  [self timeElapsed]
+  0bc850  [NSString stringWithFormat:@"  Time Elapsed: %.2f\n", [self timeElapsed]]
+  0bc86c  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Time Elapsed: %.2f\n", [self timeElapsed]]]
+  0bc88c  [self challengeTimeElapsed]
+  0bc8a4  [NSString stringWithFormat:@"  Challenge Time Elapsed: %.2f\n", [self challengeTimeElapsed]]
+  0bc8c0  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Challenge Time Elapsed: %.2f\n", [self challengeTimeElapsed]]]
+  0bc8e0  [self brickTime]
+  0bc8f8  [NSString stringWithFormat:@"  Brick Time: %.2f\n", [self brickTime]]
+  0bc914  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Brick Time: %.2f\n", [self brickTime]]]
+  0bc934  [self numCriticalHits]
+  0bc94c  [NSString stringWithFormat:@"  Num Critical Hits: %d\n", [self numCriticalHits]]
+  0bc968  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Critical Hits: %d\n", [self numCriticalHits]]]
+  0bc988  [self numberOfBricksDefeated]
+  0bc9a0  [NSString stringWithFormat:@"  Num Bricks Defeated: %d\n", [self numberOfBricksDefeated]]
+  0bc9bc  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Num Bricks Defeated: %d\n", [self numberOfBricksDefeated]]]
+  0bc9dc  [self gameScore]
+  0bc9f4  [NSString stringWithFormat:@"  Game score: %d\n", [self gameScore]]
+  0bca10  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Game score: %d\n", [self gameScore]]]
+  0bca30  [self totalCoins]
+  0bca48  [NSString stringWithFormat:@"  Total Coins: %d\n", [self totalCoins]]
+  0bca64  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Total Coins: %d\n", [self totalCoins]]]
+  0bca84  [self enemyList]
+  0bcaa8  [NSString stringWithFormat:@"  Enemies: %@\n", [self enemyList]]
+  0bcac4  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Enemies: %@\n", [self enemyList]]]
+  0bcaec  [self weaponCriticalHits]
+  0bcb10  [NSString stringWithFormat:@"  Weapon Critical Hits: %@\n", [self weaponCriticalHits]]
+  0bcb2c  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Weapon Critical Hits: %@\n", [self weaponCriticalHits]]]
+  0bcb54  [self weaponsData]
+  0bcb78  [NSString stringWithFormat:@"  Weapons: %@\n", [self weaponsData]]
+  0bcb94  [[[NSMutableString alloc] init] appendString:[NSString stringWithFormat:@"  Weapons: %@\n", [self weaponsData]]]
+  0bcbc4  return
+
+== -[ADInGameStats debugDescription]   (address 0x1000bcc70  size 16  kind objc)
+  0bcc7c  tail [self description]
+
+== -[ADInGameStats dealloc]   (address 0x1000bcc80  size 208  kind objc)
+  0bcca8  [NSNotificationCenter defaultCenter]
+  0bccc8  [[NSNotificationCenter defaultCenter] removeObserver:self]
+  0bccf4  [super dealloc]
+  0bcd04  return
+  0bcd40  [super dealloc]
+  0bcd4c  call sub_10000b760
+
+== -[ADInGameStats enemyList]   (address 0x1000bcd50  size 16  kind objc)
+  0bcd5c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADInGameStats setEnemyList:]   (address 0x1000bcd60  size 12  kind objc)
+  0bcd68  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADInGameStats weaponsData]   (address 0x1000bcd6c  size 16  kind objc)
+  0bcd78  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADInGameStats setWeaponsData:]   (address 0x1000bcd7c  size 12  kind objc)
+  0bcd84  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADInGameStats combo]   (address 0x1000bcd88  size 16  kind objc)
+  0bcd94  return
+
+== -[ADInGameStats meleeSwings]   (address 0x1000bcd98  size 16  kind objc)
+  0bcda4  return
+
+== -[ADInGameStats setMeleeSwings:]   (address 0x1000bcda8  size 16  kind objc)
+  0bcdb0  self->_meleeSwings = arg1
+  0bcdb4  return
+
+== -[ADInGameStats meleeHits]   (address 0x1000bcdb8  size 16  kind objc)
+  0bcdc4  return
+
+== -[ADInGameStats setMeleeHits:]   (address 0x1000bcdc8  size 16  kind objc)
+  0bcdd0  self->_meleeHits = arg1
+  0bcdd4  return
+
+== -[ADInGameStats highestCombo]   (address 0x1000bcdd8  size 16  kind objc)
+  0bcde4  return
+
+== -[ADInGameStats setHighestCombo:]   (address 0x1000bcde8  size 16  kind objc)
+  0bcdf0  self->_highestCombo = arg1
+  0bcdf4  return
+
+== -[ADInGameStats gameScore]   (address 0x1000bcdf8  size 16  kind objc)
+  0bce04  return
+
+== -[ADInGameStats setGameScore:]   (address 0x1000bce08  size 16  kind objc)
+  0bce10  self->_gameScore = arg1
+  0bce14  return
+
+== -[ADInGameStats coinsForKill]   (address 0x1000bce18  size 16  kind objc)
+  0bce24  return
+
+== -[ADInGameStats setCoinsForKill:]   (address 0x1000bce28  size 16  kind objc)
+  0bce30  self->_coinsForKill = arg1
+  0bce34  return
+
+== -[ADInGameStats totalCoins]   (address 0x1000bce38  size 16  kind objc)
+  0bce44  return
+
+== -[ADInGameStats setTotalCoins:]   (address 0x1000bce48  size 16  kind objc)
+  0bce50  self->_totalCoins = arg1
+  0bce54  return
+
+== -[ADInGameStats diamondLoot]   (address 0x1000bce58  size 16  kind objc)
+  0bce64  return
+
+== -[ADInGameStats setDiamondLoot:]   (address 0x1000bce68  size 16  kind objc)
+  0bce70  self->_diamondLoot = arg1
+  0bce74  return
+
+== -[ADInGameStats gameMode]   (address 0x1000bce78  size 16  kind objc)
+  0bce84  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADInGameStats setGameMode:]   (address 0x1000bce88  size 12  kind objc)
+  0bce90  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADInGameStats numCriticalHits]   (address 0x1000bce94  size 16  kind objc)
+  0bcea0  return
+
+== -[ADInGameStats setNumCriticalHits:]   (address 0x1000bcea4  size 16  kind objc)
+  0bceac  self->_numCriticalHits = arg1
+  0bceb0  return
+
+== -[ADInGameStats weaponCriticalHits]   (address 0x1000bceb4  size 16  kind objc)
+  0bcec0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADInGameStats setWeaponCriticalHits:]   (address 0x1000bcec4  size 12  kind objc)
+  0bcecc  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADInGameStats currentBrickName]   (address 0x1000bced0  size 16  kind objc)
+  0bcedc  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADInGameStats setCurrentBrickName:]   (address 0x1000bcee0  size 12  kind objc)
+  0bcee8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADInGameStats enemyKillsWithPowerup]   (address 0x1000bceec  size 16  kind objc)
+  0bcef8  return
+
+== -[ADInGameStats setEnemyKillsWithPowerup:]   (address 0x1000bcefc  size 16  kind objc)
+  0bcf04  self->_enemyKillsWithPowerup = arg1
+  0bcf08  return
+
+== -[ADInGameStats numberOfEnemyKills]   (address 0x1000bcf0c  size 16  kind objc)
+  0bcf18  return
+
+== -[ADInGameStats setNumberOfEnemyKills:]   (address 0x1000bcf1c  size 16  kind objc)
+  0bcf24  self->_numberOfEnemyKills = arg1
+  0bcf28  return
+
+== -[ADInGameStats numberOfBricksDefeated]   (address 0x1000bcf2c  size 16  kind objc)
+  0bcf38  return
+
+== -[ADInGameStats setNumberOfBricksDefeated:]   (address 0x1000bcf3c  size 16  kind objc)
+  0bcf44  self->_numberOfBricksDefeated = arg1
+  0bcf48  return
+
+== -[ADInGameStats death]   (address 0x1000bcf4c  size 20  kind objc)
+  0bcf5c  return
+
+== -[ADInGameStats setDeath:]   (address 0x1000bcf60  size 16  kind objc)
+  0bcf68  self->_death = arg1
+  0bcf6c  return
+
+== -[ADInGameStats numberMissionsCompleted]   (address 0x1000bcf70  size 16  kind objc)
+  0bcf7c  return
+
+== -[ADInGameStats setNumberMissionsCompleted:]   (address 0x1000bcf80  size 16  kind objc)
+  0bcf88  self->_numberMissionsCompleted = arg1
+  0bcf8c  return
+
+== -[ADInGameStats numberMissionsSkipped]   (address 0x1000bcf90  size 16  kind objc)
+  0bcf9c  return
+
+== -[ADInGameStats setNumberMissionsSkipped:]   (address 0x1000bcfa0  size 16  kind objc)
+  0bcfa8  self->_numberMissionsSkipped = arg1
+  0bcfac  return
+
+== -[ADInGameStats shotsOnTarget]   (address 0x1000bcfb0  size 16  kind objc)
+  0bcfbc  return
+
+== -[ADInGameStats setShotsOnTarget:]   (address 0x1000bcfc0  size 16  kind objc)
+  0bcfc8  self->_shotsOnTarget = arg1
+  0bcfcc  return
+
+== -[ADInGameStats totalShotsFired]   (address 0x1000bcfd0  size 16  kind objc)
+  0bcfdc  return
+
+== -[ADInGameStats setTotalShotsFired:]   (address 0x1000bcfe0  size 16  kind objc)
+  0bcfe8  self->_totalShotsFired = arg1
+  0bcfec  return
+
+== -[ADInGameStats challengeTimeElapsedCalls]   (address 0x1000bcff0  size 20  kind objc)
+  0bd000  return
+
+== -[ADInGameStats setChallengeTimeElapsedCalls:]   (address 0x1000bd004  size 20  kind objc)
+  0bd010  self->_challengeTimeElapsedCalls = arg1
+  0bd014  return
+
+== -[ADInGameStats timeElapsedCalls]   (address 0x1000bd018  size 20  kind objc)
+  0bd028  return
+
+== -[ADInGameStats setTimeElapsedCalls:]   (address 0x1000bd02c  size 20  kind objc)
+  0bd038  self->_timeElapsedCalls = arg1
+  0bd03c  return
+
+== -[ADInGameStats brickTimeCalls]   (address 0x1000bd040  size 20  kind objc)
+  0bd050  return
+
+== -[ADInGameStats setBrickTimeCalls:]   (address 0x1000bd054  size 20  kind objc)
+  0bd060  self->_brickTimeCalls = arg1
+  0bd064  return
+
+== -[ADInGameStats sessionCompleted]   (address 0x1000bd068  size 20  kind objc)
+  0bd078  return
+
+== -[ADInGameStats setSessionCompleted:]   (address 0x1000bd07c  size 16  kind objc)
+  0bd084  self->_sessionCompleted = arg1
+  0bd088  return
+
+== -[ADInGameStats postGameData]   (address 0x1000bd08c  size 16  kind objc)
+  0bd098  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADInGameStats setPostGameData:]   (address 0x1000bd09c  size 12  kind objc)
+  0bd0a4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADInGameStats enemiesToCoins]   (address 0x1000bd0a8  size 16  kind objc)
+  0bd0b4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADInGameStats setEnemiesToCoins:]   (address 0x1000bd0b8  size 12  kind objc)
+  0bd0c0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADInGameStats .cxx_destruct]   (address 0x1000bd0c4  size 164  kind objc)

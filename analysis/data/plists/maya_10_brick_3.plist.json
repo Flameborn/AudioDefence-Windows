@@ -1,0 +1,80 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_maya_10_3"
+  }
+ ],
+ "Enemies": {
+  "Shield": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 11.25,
+    "afterStart": true,
+    "enemy": "bastard_maya_10_3"
+   },
+   "spawn_angle": 100,
+   "spawn_distance": 10
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 17.25,
+    "afterStart": true,
+    "enemy": "bastard_maya_10_3"
+   },
+   "spawn_angle": 25,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "RunnerB"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "Berserk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "HulkB"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 14.25,
+    "afterStart": true,
+    "enemy": "bastard_maya_10_3"
+   },
+   "spawn_angle": 175,
+   "spawn_distance": 10
+  },
+  "HulkB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 10,
+   "spawn_distance": 10
+  },
+  "RunnerB": {
+   "New item": "",
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 350,
+   "spawn_distance": 10
+  }
+ }
+}

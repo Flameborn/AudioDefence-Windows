@@ -1,0 +1,63 @@
+
+== csl::Oscillator::~Oscillator   (address 0x1000e6b28  size 76  kind cxx)
+  0e6b40  sub_1000e6ab4(a0, &d_1003b3d10, a2, a3)
+  0e6b48  sub_1000e9388((a0 + 192))
+  0e6b58  return
+  0e6b64  sub_1000e9388((x19 + 192))
+  0e6b70  call sub_10000b760
+
+== csl::Oscillator::thunk_vfunc_0   (address 0x1000e6b74  size 8  kind cxx)
+  0e6b78  tail csl::Oscillator::~Oscillator((a0 - 168), a1, a2, a3)
+
+== csl::Oscillator::thunk_vfunc_0   (address 0x1000e6b7c  size 8  kind cxx)
+  0e6b80  tail csl::Oscillator::~Oscillator((a0 - 184), a1, a2, a3)
+
+== csl::Oscillator::thunk_vfunc_0   (address 0x1000e6b84  size 16  kind cxx)
+  0e6b90  tail csl::Oscillator::~Oscillator((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Oscillator::~Oscillator/*deleting*/   (address 0x1000e6b94  size 56  kind cxx)
+  0e6ba4  csl::Oscillator::~Oscillator(a0, a1, a2, a3)
+  0e6bb4  tail ZdlPv(a0)
+  0e6bc0  ZdlPv()
+
+== csl::Oscillator::thunk_vfunc_1   (address 0x1000e6bcc  size 8  kind cxx)
+  0e6bd0  tail csl::Oscillator::~Oscillator/*deleting*/((a0 - 168), a1, a2, a3)
+
+== csl::Oscillator::thunk_vfunc_1   (address 0x1000e6bd4  size 8  kind cxx)
+  0e6bd8  tail csl::Oscillator::~Oscillator/*deleting*/((a0 - 184), a1, a2, a3)
+
+== csl::Oscillator::thunk_vfunc_1   (address 0x1000e6bdc  size 16  kind cxx)
+  0e6be8  tail csl::Oscillator::~Oscillator/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Oscillator::vfunc_11   (address 0x1000e6bec  size 52  kind cxx)
+  0e6c04  sub_1000e75a0("an Oscillator", a1, a2, a3)
+  0e6c1c  tail csl::Controllable::vfunc_2((a0 + a0[+0xb8][+0x-18]))
+
+== csl::Oscillator::thunk_vfunc_2   (address 0x1000e6c20  size 68  kind cxx)
+  0e6c40  sub_1000e75a0("an Oscillator", a1, a2, a3)
+  0e6c60  tail csl::Controllable::vfunc_2((a0 + (x9 + (a0[+0x0][+0x-20] + 184))))
+
+== sub_1000e6c64   (address 0x1000e6c64  size 180  kind sub)
+  0e6c84  sub_1000e69d4(a0, (a1 + 8), a2, a3)
+  0e6c8c  a0[+0x0] = a1[+0x0]
+  0e6c94  a0[+0xa8] = a1[+0x48]
+  0e6ca8  a0[+0xb8] = a1[+0x58]
+  0e6cc0  sub_1000e8084((a0 + 200), 1, 256, 4)
+  0e6cd0  sub_1000e7fac((a0 + 200), 1, 256)
+  0e6cd4  a0[+0xc0] = 0
+  0e6ce8  return
+  0e6cfc  call csl::Buffer::~Buffer
+  0e6d08  call sub_1000e6ab4
+  0e6d14  call sub_10000b760
+
+== sub_1000e6d18   (address 0x1000e6d18  size 160  kind sub)
+  0e6d34  a0[+0x0] = a1[+0x0]
+  0e6d3c  a0[+0xa8] = a1[+0x48]
+  0e6d50  a0[+0xb8] = a1[+0x58]
+  0e6d5c  sub_1000e8130((a0 + 200), a1, a2, a3)
+  0e6d64  csl::Buffer::~Buffer((a0 + 200))
+  0e6d70  sub_1000e6ab4(a0, (a1 + 8))
+  0e6d84  return
+  0e6d94  call csl::Buffer::~Buffer
+  0e6da8  sub_1000e6ab4(x0, (x20 + 8))
+  0e6db4  call sub_10000b760

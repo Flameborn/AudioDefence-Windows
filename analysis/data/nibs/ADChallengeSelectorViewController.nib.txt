@@ -1,0 +1,29 @@
+// ADChallengeSelectorViewController.nib
+TOP-LEVEL OBJECTS
+  #36 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #110 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #41 UIView  Tag=2781
+    #74 UIView (custom class ViewWithParalax)  
+      #62 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #37 UIView  
+      #116 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+      #10 UIImageView  UserInteractionDisabled=False Image='frame_popup_header.png'
+      #48 UILabel  UserInteractionDisabled=False Text='Label'
+      #42 UIScrollView  
+  #76 UIView  Tag=2782
+    #98 UIView (custom class ViewWithParalax)  
+      #14 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #23 UIView  Tag=3
+      #5 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+      #43 UIImageView  UserInteractionDisabled=False Image='frame_popup_header.png'
+      #70 UILabel  Tag=1 UserInteractionDisabled=False Text='Label'
+      #97 UIScrollView  Tag=2
+
+CONNECTIONS
+  outlet  background                                #36 UIProxyObject --> #62 UIImageView
+  outlet  challengeScrollView                       #36 UIProxyObject --> #42 UIScrollView
+  outlet  challengeWorldLabel                       #36 UIProxyObject --> #48 UILabel Text='Label'
+  outlet  contentView                               #36 UIProxyObject --> #37 UIView
+  outlet  view                                      #36 UIProxyObject --> #41 UIView
+
+ACCESSIBILITY CONFIGURATIONS

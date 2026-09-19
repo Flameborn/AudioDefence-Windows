@@ -1,0 +1,439 @@
+
+== -[ADChallengeCompletedViewController viewDidLoad]   (address 0x10004699c  size 1708  kind objc)
+  0469f0  [super viewDidLoad]
+  046a08  [self statusBarViewController]
+  046a28  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  046a3c  [self statusBarViewController]
+  046a5c  [[self statusBarViewController] setCurrenciesVisibility:1]
+  046a70  [self statusBarViewController]
+  046a90  [[self statusBarViewController] setDiamonsdsVisibility:1]
+  046aa4  [self statusBarViewController]
+  046ac0  [[self statusBarViewController] backButton]
+  046ae8  [[[self statusBarViewController] backButton] setTitle:@"Main Menu" forState:0]
+  046b0c  [self timeLabel]
+  046b30  [ADInGameStats singleton]
+  046b4c  [[ADInGameStats singleton] challengeTimeElapsed]
+  046b64  [self timeStringFromSeconds:(int)[[ADInGameStats singleton] challengeTimeElapsed]]
+  046b8c  [[self timeLabel] setText:[self timeStringFromSeconds:(int)[[ADInGameStats singleton] challengeTimeElapsed]]]
+  046bc0  [ADTracker sharedInstance]
+  046be0  [[ADTracker sharedInstance] challengeCompleted:1]
+  046bf4  [ADTracker sharedInstance]
+  046c14  [[ADTracker sharedInstance] accuracyObjectiveReached:1]
+  046c28  [ADTracker sharedInstance]
+  046c48  [[ADTracker sharedInstance] timeObjectiveReached:1]
+  046c5c  [self statusBarViewController]
+  046c78  [[self statusBarViewController] pageTitle]
+  046c94  [[[self statusBarViewController] pageTitle] setText:@"Challenge completed"]
+  046cb8  [self contentScrollView]
+  046cd8  [self contentView]
+  046cf4  [[self contentView] frame]
+  046d10  [[self contentScrollView] setContentOffset:{[[self contentView] frame].2, 0}]
+  046d34  [self checkCompletion]
+  046d4c  [self setStarCoins:[self checkCompletion]]
+  046d58  [self statusBarViewController]
+  046da4  [[self statusBarViewController] setSlideViewCallBack:^{-[ADChallengeCompletedViewController viewDidLoad]_block_invoke captures +0x20=self, +0x28=self, +0x30=ADChallengeCompletedViewController}]
+  046db8  [self statusBarViewController]
+  046dd4  [[self statusBarViewController] deactivateButtons]
+  046e04  [self buttonsView]
+  046e20  [[self buttonsView] subviews]
+  046e58  [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x30] objects:&sp[0xa8] count:16]
+  046e60  if ([[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x30] objects:&sp[0xa8] count:16] == 0) goto loc_100046ed4
+  046e70  &@selector(setAlpha:)
+loc_100046e78:
+loc_100046e7c:
+  046e88  if (x8 == x27) goto loc_100046e94
+  046e90  objc_enumerationMutation([[self buttonsView] subviews])
+loc_100046e94:
+  046ea4  [x0 setAlpha:0]
+  046eb0  if ((x28 + 1) <u [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x30] objects:&sp[0xa8] count:16]) goto loc_100046e7c
+  046ec8  [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x30] objects:&sp[0xa8] count:16]
+  046ed0  if ([[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x30] objects:&sp[0xa8] count:16] != 0) goto loc_100046e78
+loc_100046ed4:
+  046ee4  [self buttonsView]
+  046f04  [[self buttonsView] setAlpha:0]
+  046f1c  dispatch_time(0, 0x89173700)
+  046f64  dispatch_after(dispatch_time(0, 0x89173700), __dispatch_main_q, ^{-[ADChallengeCompletedViewController viewDidLoad]_block_invoke_2 captures +0x20=self, +0x68=__NSConcreteStackBlock, +0x70=0xc0000000, +0x78=&-[ADChallengeCompletedViewController vi…})
+  046f98  return
+
+== -[ADChallengeCompletedViewController viewDidLoad]_block_invoke   (address 0x100047048  size 20  kind block)
+  047058  tail [self animateCoinsAndDiamonds]
+
+== -[ADChallengeCompletedViewController viewDidLoad]_block_invoke_2   (address 0x10004705c  size 220  kind block)
+  0470f4  [UIView animateWithDuration:0.5 animations:^{-[ADChallengeCompletedViewController viewDidLoad]_block_invoke_2_block_invoke captures +0x20=self} completion:^{-[ADChallengeCompletedViewController viewDidLoad]_block_invoke_2_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADChallengeCompletedViewController vi…, +0x40=&d_1003b1720, +0x48=self}]
+  047118  return
+
+== -[ADChallengeCompletedViewController viewDidLoad]_block_invoke_2_block_invoke   (address 0x100047138  size 468  kind block)
+  047194  [self buttonsView]
+  0471b0  [[self buttonsView] subviews]
+  0471e8  [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0471f0  if ([[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100047268
+  047200  &@selector(setAlpha:)
+loc_10004720c:
+loc_100047210:
+  04721c  if (x8 == x26) goto loc_100047228
+  047224  objc_enumerationMutation([[self buttonsView] subviews])
+loc_100047228:
+  047238  [x0 setAlpha:1]
+  047244  if ((x27 + 1) <u [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100047210
+  04725c  [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  047264  if ([[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10004720c
+loc_100047268:
+  047278  [self buttonsView]
+  047298  [[self buttonsView] setAlpha:1]
+  0472d0  return
+
+== sub_10004730c   (address 0x10004730c  size 8  kind sub)
+
+== sub_100047314   (address 0x100047314  size 8  kind sub)
+  047318  return
+
+== -[ADChallengeCompletedViewController viewDidLoad]_block_invoke_2_block_invoke_2   (address 0x10004731c  size 96  kind block)
+  047338  [self statusBarViewController]
+  047354  [[self statusBarViewController] activateButtons]
+  047364  return
+
+== sub_10004737c   (address 0x10004737c  size 8  kind sub)
+
+== sub_100047384   (address 0x100047384  size 8  kind sub)
+  047388  return
+
+== sub_10004738c   (address 0x10004738c  size 8  kind sub)
+
+== sub_100047394   (address 0x100047394  size 8  kind sub)
+  047398  return
+
+== -[ADChallengeCompletedViewController loadView]   (address 0x10004739c  size 876  kind objc)
+  0473d4  [UIDevice currentDevice]
+  0473f4  [[UIDevice currentDevice] model]
+  04741c  [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"]
+  047420  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] & 1)) goto loc_100047438
+  047434  goto loc_10004749c
+loc_100047438:
+  047440  [UIDevice currentDevice]
+  047454  [[UIDevice currentDevice] model]
+  047470  [[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"]
+  047498  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"] & 1)) goto loc_10004757c
+loc_10004749c:
+  0474b4  [UIScreen mainScreen]
+  0474e0  [[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]
+  0474ec  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] == 0) goto loc_100047534
+  0474f4  [UIScreen mainScreen]
+  047508  [[UIScreen mainScreen] nativeBounds]
+  047528  if (fabs(([[UIScreen mainScreen] nativeBounds].3 + -1704)) >= (or unordered) 2.22045e-16) goto loc_1000475b0
+  047530  goto loc_1000475f0
+loc_100047534:
+  047538  [UIScreen mainScreen]
+  047554  [[UIScreen mainScreen] bounds]
+  047578  goto loc_1000475f0
+loc_10004757c:
+  0475ac  tail [self loADIPadNib:@"ADChallengeCompletedViewController"]
+loc_1000475b0:
+  0475b8  [UIScreen mainScreen]
+  0475cc  [[UIScreen mainScreen] nativeBounds]
+loc_1000475f0:
+  047614  [NSBundle mainBundle]
+  047628  &@selector(loadNibNamed:owner:options:)
+  047630  if (w23 == 0) goto loc_100047654
+  047648  [[NSBundle mainBundle] loadNibNamed:@"ADChallengeCompletedViewController_iPhone5" owner:self options:0]
+  047650  goto loc_100047670
+loc_100047654:
+  047668  [[NSBundle mainBundle] loadNibNamed:@"ADChallengeCompletedViewController_iPhone4S" owner:self options:0]
+loc_100047670:
+  047694  return
+
+== -[ADChallengeCompletedViewController timeStringFromSeconds:]   (address 0x100047708  size 224  kind objc)
+  047738  t1 = (((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >> 5) + ((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >>> 31))
+  047780  [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 - t1 * 60)]
+  0477a4  [NSString stringWithFormat:@"%i:%@", t1, [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 …]
+  0477d0  return
+
+== -[ADChallengeCompletedViewController viewDidLayoutSubviews]   (address 0x1000477e8  size 60  kind objc)
+  047814  [super viewDidLayoutSubviews]
+  047820  return
+
+== -[ADChallengeCompletedViewController checkCompletion]   (address 0x100047824  size 1452  kind objc)
+  047864  [ADChallengeData sharedChallengeData]
+  047888  [self challengeDict]
+  0478b0  [[self challengeDict] objectForKey:@"challenge_id"]
+  0478d4  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  0478d8  t1 = ([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] ^ 1)
+  0478ec  [self unlockMissionStarWithGlow:t1]
+  047914  [self challengeDict]
+  047930  [[self challengeDict] objectForKey:@"time_limit_star"]
+  04794c  [[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"]
+  047970  [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"] floatValue]
+  047990  [ADInGameStats singleton]
+  0479ac  [[ADInGameStats singleton] challengeTimeElapsed]
+  0479dc  if ([[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"] floatValue] >= [[ADInGameStats singleton] challengeTimeElapsed]) goto loc_1000479ec
+  0479e8  goto loc_100047a94
+loc_1000479ec:
+  0479f8  [ADChallengeData sharedChallengeData]
+  047a10  [self challengeDict]
+  047a2c  [[self challengeDict] objectForKey:@"challenge_id"]
+  047a54  [[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  047a58  t2 = ([[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] ^ 1)
+  047a6c  [self unlockTimeLimitStarWithGlow:t2]
+loc_100047a94:
+  047a9c  [self challengeDict]
+  047ab8  [[self challengeDict] objectForKey:@"accuracy_star"]
+  047ad4  [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"]
+  047ae8  [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"] floatValue]
+  047afc  [ADInGameStats singleton]
+  047b18  [[ADInGameStats singleton] currentAccuracy]
+  047b4c  if ([[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"] floatValue] <= ([[ADInGameStats singleton] currentAccuracy] * 100)) goto loc_100047b58
+  047b54  goto loc_100047bf8
+loc_100047b58:
+  047b64  [ADChallengeData sharedChallengeData]
+  047b7c  [self challengeDict]
+  047b98  [[self challengeDict] objectForKey:@"challenge_id"]
+  047bbc  [[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  047bc0  t3 = ([[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] ^ 1)
+  047bd4  [self unlockAccuracyStarWithGlow:t3]
+loc_100047bf8:
+  047c04  [ADChallengeData sharedChallengeData]
+  047c1c  [self challengeDict]
+  047c38  [[self challengeDict] objectForKey:@"challenge_id"]
+  047c64  [[ADChallengeData sharedChallengeData] playerDidCompleteChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"] accuracyUnlocked:one of {0, 1} timeLimitUnlocked:x4]
+  047c90  [self reportScoreToGameCenter]
+  047cb8  return
+
+== -[ADChallengeCompletedViewController swipeLeft]   (address 0x100047dd0  size 80  kind objc)
+  047dec  [self checkAllAnimationsAreComplete]
+  047df0  if ([self checkAllAnimationsAreComplete] == 0) goto loc_100047e14
+  047e10  tail [self scoreButtonPressed:0]
+loc_100047e14:
+  047e1c  return
+
+== -[ADChallengeCompletedViewController swipeRight]   (address 0x100047e20  size 4  kind objc)
+  047e20  return
+
+== -[ADChallengeCompletedViewController scoreButtonPressed:]   (address 0x100047e24  size 4  kind objc)
+  047e24  return
+
+== -[ADChallengeCompletedViewController missionButtonPressed:]   (address 0x100047e28  size 4  kind objc)
+  047e28  return
+
+== -[ADChallengeCompletedViewController unlockTimeLimitStarWithGlow:]   (address 0x100047e2c  size 276  kind objc)
+  047e40  if (arg1 == 0) goto loc_100047ecc
+  047e54  self->starGlows = (self->starGlows + 1)
+  047e6c  [self timeStar]
+  047e88  [[self timeStar] glow]
+  047e9c  [self timeStar]
+  047eb8  [[self timeStar] rewardValue]
+  047ec8  goto loc_100047f08
+loc_100047ecc:
+  047edc  [self timeStar]
+  047ef8  [[self timeStar] unlockStar]
+loc_100047f08:
+  047f18  return
+
+== -[ADChallengeCompletedViewController unlockAccuracyStarWithGlow:]   (address 0x100047f40  size 276  kind objc)
+  047f54  if (arg1 == 0) goto loc_100047fe0
+  047f68  self->starGlows = (self->starGlows + 1)
+  047f80  [self accuracyStar]
+  047f9c  [[self accuracyStar] glow]
+  047fb0  [self accuracyStar]
+  047fcc  [[self accuracyStar] rewardValue]
+  047fdc  goto loc_10004801c
+loc_100047fe0:
+  047ff0  [self accuracyStar]
+  04800c  [[self accuracyStar] unlockStar]
+loc_10004801c:
+  04802c  return
+
+== -[ADChallengeCompletedViewController unlockMissionStarWithGlow:]   (address 0x100048054  size 276  kind objc)
+  048068  if (arg1 == 0) goto loc_1000480f4
+  04807c  self->starGlows = (self->starGlows + 1)
+  048094  [self missionStar]
+  0480b0  [[self missionStar] glow]
+  0480c4  [self missionStar]
+  0480e0  [[self missionStar] rewardValue]
+  0480f0  goto loc_100048130
+loc_1000480f4:
+  048104  [self missionStar]
+  048120  [[self missionStar] unlockStar]
+loc_100048130:
+  048140  return
+
+== -[ADChallengeCompletedViewController viewWillAppear:]   (address 0x100048168  size 248  kind objc)
+  0481a0  [super viewWillAppear:arg1]
+  0481b4  [self contentScrollView]
+  0481d4  [self contentView]
+  0481f0  [[self contentView] bounds]
+  048214  [[self contentScrollView] setContentOffset:{([[self contentView] bounds].2 * 0.5), 0} animated:1]
+  048238  return
+
+== -[ADChallengeCompletedViewController resumeFromStats]   (address 0x100048260  size 196  kind objc)
+  048280  [self contentScrollView]
+  0482a0  [self contentView]
+  0482bc  [[self contentView] bounds]
+  0482e0  [[self contentScrollView] setContentOffset:{([[self contentView] bounds].2 * 0.5), 0} animated:1]
+  0482fc  return
+
+== -[ADChallengeCompletedViewController checkAllAnimationsAreComplete]   (address 0x100048324  size 936  kind objc)
+  048350  [self timeStar]
+  048370  [[self timeStar] rewardLabel]
+  048390  [[[self timeStar] rewardLabel] value]
+  048398  if ([[[self timeStar] rewardLabel] value] < 1) goto loc_100048404
+  0483a4  [self timeStar]
+  0483b8  [[self timeStar] rewardLabel]
+  0483d4  [[[self timeStar] rewardLabel] didAnimate]
+  0483fc  if (([[[self timeStar] rewardLabel] didAnimate] & 1)) goto loc_100048414
+  048400  goto loc_100048580
+loc_100048404:
+loc_100048414:
+  048428  [self accuracyStar]
+  04843c  [[self accuracyStar] rewardLabel]
+  048450  [[[self accuracyStar] rewardLabel] value]
+  048458  if ([[[self accuracyStar] rewardLabel] value] < 1) goto loc_1000484c4
+  048464  [self accuracyStar]
+  048478  [[self accuracyStar] rewardLabel]
+  048494  [[[self accuracyStar] rewardLabel] didAnimate]
+  0484bc  if (!([[[self accuracyStar] rewardLabel] didAnimate] & 1)) goto loc_100048580
+  0484c0  goto loc_1000484d4
+loc_1000484c4:
+loc_1000484d4:
+  0484e8  [self missionStar]
+  0484fc  [[self missionStar] rewardLabel]
+  048510  [[[self missionStar] rewardLabel] value]
+  048518  if ([[[self missionStar] rewardLabel] value] < 1) goto loc_100048588
+  048524  [self missionStar]
+  048538  [[self missionStar] rewardLabel]
+  048554  [[[self missionStar] rewardLabel] didAnimate]
+  04857c  if (([[[self missionStar] rewardLabel] didAnimate] & 1)) goto loc_100048598
+loc_100048580:
+  048584  goto loc_100048610
+loc_100048588:
+loc_100048598:
+  0485ac  [self coinsTotal]
+  0485c0  [[self coinsTotal] value]
+  0485c8  if ([[self coinsTotal] value] < 1) goto loc_100048604
+  0485d4  [self coinsTotal]
+  0485f0  [[self coinsTotal] didAnimate]
+  048600  goto loc_100048608
+loc_100048604:
+loc_100048608:
+loc_100048610:
+  048628  return
+
+== -[ADChallengeCompletedViewController stopAnimations]   (address 0x1000486cc  size 92  kind objc)
+  0486e4  [self statusBarViewController]
+  048700  [[self statusBarViewController] stopAllAnimations]
+  048710  return
+
+== -[ADChallengeCompletedViewController backButtonPressed]   (address 0x100048728  size 316  kind objc)
+  04874c  [self stopAnimations]
+  048760  [self view]
+  04877c  [[self view] layer]
+  048798  [[[self view] layer] removeAllAnimations]
+  0487b4  [self stopAnimations]
+  0487cc  [UIApplication sharedApplication]
+  0487e8  [[UIApplication sharedApplication] delegate]
+  048804  [[[UIApplication sharedApplication] delegate] goToMainMenu]
+  048820  return
+
+== -[ADChallengeCompletedViewController missionSelectButtonPressed:]   (address 0x100048864  size 344  kind objc)
+  048884  [self playButtonSound]
+  04889c  [self stopAnimations]
+  0488b0  [self view]
+  0488cc  [[self view] layer]
+  0488e8  [[[self view] layer] removeAllAnimations]
+  048904  [self stopAnimations]
+  04891c  [UIApplication sharedApplication]
+  048938  [[UIApplication sharedApplication] delegate]
+  048954  [[[UIApplication sharedApplication] delegate] goToChallengeSelector]
+  048970  return
+
+== -[ADChallengeCompletedViewController nextMissionButtonPressed:]   (address 0x1000489bc  size 484  kind objc)
+  0489e0  [self playButtonSound]
+  0489f8  [self stopAnimations]
+  048a0c  [self view]
+  048a28  [[self view] layer]
+  048a44  [[[self view] layer] removeAllAnimations]
+  048a60  [self stopAnimations]
+  048a78  [UIApplication sharedApplication]
+  048a94  [[UIApplication sharedApplication] delegate]
+  048ab4  [self challengeDict]
+  048ad8  [[self challengeDict] objectForKey:@"challenge_id"]
+  048afc  [[[UIApplication sharedApplication] delegate] goToChallengeAfter:[[self challengeDict] objectForKey:@"challenge_id"]]
+  048b2c  return
+
+== -[ADChallengeCompletedViewController retryButtonPressed:]   (address 0x100048ba0  size 412  kind objc)
+  048bc0  [self playButtonSound]
+  048bd8  [self stopAnimations]
+  048bec  [self view]
+  048c08  [[self view] layer]
+  048c24  [[[self view] layer] removeAllAnimations]
+  048c40  [self stopAnimations]
+  048c58  [UIApplication sharedApplication]
+  048c74  [[UIApplication sharedApplication] delegate]
+  048c94  [self challengeDict]
+  048cb8  [[[UIApplication sharedApplication] delegate] goToChallengeWithDict:[self challengeDict]]
+  048cdc  return
+
+== -[ADChallengeCompletedViewController showGameStatistics:]   (address 0x100048d3c  size 308  kind objc)
+  048d60  [self stopAnimations]
+  048d74  [self view]
+  048d90  [[self view] layer]
+  048dac  [[[self view] layer] removeAllAnimations]
+  048dc8  [self stopAnimations]
+  048de0  [ADGameOverEndlessStatsViewController alloc]
+  048dfc  [[ADGameOverEndlessStatsViewController alloc] initWithNibName:@"ADGameOverEndlessStatsViewController" bundle:0]
+  048e20  [self presentViewController:[[ADGameOverEndlessStatsViewController alloc] initWithNibName:@"ADGameOverEndlessStatsViewController" bundle:0] animated:1 completion:0]
+  048e34  return
+
+== -[ADChallengeCompletedViewController moreStatsButtonPressed:]   (address 0x100048e70  size 308  kind objc)
+  048e90  [self stopAnimations]
+  048ea4  [self view]
+  048ec0  [[self view] layer]
+  048edc  [[[self view] layer] removeAllAnimations]
+  048f04  [ADGameOverEndlessStatsViewController alloc]
+  048f20  [[ADGameOverEndlessStatsViewController alloc] initWithNibName:@"ADGameOverEndlessStatsViewController" bundle:0]
+  048f3c  [[[ADGameOverEndlessStatsViewController alloc] initWithNibName:@"ADGameOverEndlessStatsViewController" bundle:0] setDelegate:self]
+  048f5c  [self presentViewController:[[ADGameOverEndlessStatsViewController alloc] initWithNibName:@"ADGameOverEndlessStatsViewController" bundle:0] animated:0 completion:0]
+  048f70  return
+
+== -[ADChallengeCompletedViewController reportScoreToGameCenter]   (address 0x100048fa4  size 852  kind objc)
+  048fe4  [UIDevice currentDevice]
+  049000  [[UIDevice currentDevice] systemVersion]
+  049028  [[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64]
+  049044  if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64] == -1) goto loc_100049274
+  049060  [GKLocalPlayer localPlayer]
+  049080  [[GKLocalPlayer localPlayer] isAuthenticated]
+  049090  if ([[GKLocalPlayer localPlayer] isAuthenticated] == 0) goto loc_10004916c
+  0490a8  [GKScore alloc]
+  0490c0  [[GKScore alloc] initWithLeaderboardIdentifier:@"TotalStarsUnlocked"]
+  0490dc  [ADChallengeData sharedChallengeData]
+  0490f8  [[ADChallengeData sharedChallengeData] computeTotalChallengesWon]
+  049110  [[[GKScore alloc] initWithLeaderboardIdentifier:@"TotalStarsUnlocked"] setValue:[[ADChallengeData sharedChallengeData] computeTotalChallengesWon]]
+  049140  [NSArray arrayWithObjects:&sp[0x10] count:1]
+  049160  [GKScore reportScores:[NSArray arrayWithObjects:&sp[0x10] count:1] withCompletionHandler:^{-[ADChallengeCompletedViewController reportScoreToGameCenter]_block_invoke}]
+loc_10004916c:
+  049174  [GKLocalPlayer localPlayer]
+  049188  [[GKLocalPlayer localPlayer] isAuthenticated]
+  049198  if ([[GKLocalPlayer localPlayer] isAuthenticated] == 0) goto loc_100049274
+  0491b0  [GKScore alloc]
+  0491c8  [[GKScore alloc] initWithLeaderboardIdentifier:@"TotalZombiesKilled"]
+  0491e4  [ADPersistentStats persistentStats]
+  049200  [[ADPersistentStats persistentStats] computeTotalEnemyKillCount]
+  049218  [[[GKScore alloc] initWithLeaderboardIdentifier:@"TotalZombiesKilled"] setValue:[[ADPersistentStats persistentStats] computeTotalEnemyKillCount]]
+  049248  [NSArray arrayWithObjects:&sp[0x8] count:1]
+  049268  [GKScore reportScores:[NSArray arrayWithObjects:&sp[0x8] count:1] withCompletionHandler:^{-[ADChallengeCompletedViewController reportScoreToGameCenter]_block_invoke_2}]
+loc_100049274:
+  049298  return
+
+== -[ADChallengeCompletedViewController reportScoreToGameCenter]_block_invoke   (address 0x1000492f8  size 4  kind block)
+  0492f8  return
+
+== -[ADChallengeCompletedViewController reportScoreToGameCenter]_block_invoke_2   (address 0x1000492fc  size 4  kind block)
+  0492fc  return
+
+== -[ADChallengeCompletedViewController playButtonSound]   (address 0x100049300  size 252  kind objc)
+  049324  [S3DEngine engine]
+  049348  [[S3DEngine engine] playListWithName:@"buttons"]
+  04936c  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  0493a0  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  0493b4  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  0493c8  return
+
+== -[ADChallengeCompletedViewController .cxx_destruct]   (address 0x1000493fc  size 20  kind objc)

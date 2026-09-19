@@ -1,0 +1,33 @@
+
+== -[ViewWithParalax initWithFrame:]   (address 0x100055d84  size 60  kind objc)
+  055db0  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  055dbc  return
+
+== -[ViewWithParalax awakeFromNib]   (address 0x100055dc0  size 92  kind objc)
+  055df4  [super awakeFromNib]
+  055e08  [self addCustomMotionEffect]
+  055e18  return
+
+== -[ViewWithParalax addCustomMotionEffect]   (address 0x100055e1c  size 816  kind objc)
+  055e64  [UIDevice currentDevice]
+  055e80  [[UIDevice currentDevice] systemVersion]
+  055ea8  [[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64]
+  055ec4  if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64] == -1) goto loc_1000560b0
+  055ee4  [UIInterpolatingMotionEffect alloc]
+  055f04  [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:1]
+  055f28  [NSNumber numberWithInt:0xffffffce]
+  055f50  [[[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:1] setMinimumRelativeValue:[NSNumber numberWithInt:0xffffffce]]
+  055f68  [NSNumber numberWithInt:50]
+  055f90  [[[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:1] setMaximumRelativeValue:[NSNumber numberWithInt:50]]
+  055fa4  [UIInterpolatingMotionEffect alloc]
+  055fb8  [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:0]
+  055fcc  [NSNumber numberWithInt:0xffffffce]
+  055fe8  [[[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:0] setMinimumRelativeValue:[NSNumber numberWithInt:0xffffffce]]
+  056000  [NSNumber numberWithInt:50]
+  05601c  [[[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:0] setMaximumRelativeValue:[NSNumber numberWithInt:50]]
+  05603c  [UIMotionEffectGroup new]
+  056064  [NSArray arrayWithObjects:&sp[0x8] count:2]
+  05607c  [[UIMotionEffectGroup new] setMotionEffects:[NSArray arrayWithObjects:&sp[0x8] count:2]]
+  056094  [self addMotionEffect:[UIMotionEffectGroup new]]
+loc_1000560b0:
+  0560d8  return

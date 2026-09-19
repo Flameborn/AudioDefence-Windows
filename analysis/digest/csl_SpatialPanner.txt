@@ -1,0 +1,289 @@
+
+== csl::SpatialPanner::vfunc_5   (address 0x1000f0168  size 216  kind cxx)
+  0f017c  cxa_allocate_exception(16, a1, a2, a3)
+  0f0194  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Asking for mono nextBuffer of a SpatialPanner", &sp[0x8])
+  0f01a0  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0f01b0  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f01c8  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0f01cc  goto loc_1000f0218
+  0f01ec  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f0214
+loc_1000f01f4:
+  0f0200  if (w11 != 0) goto loc_1000f01f4
+  0f0208  if (w9 > 0) goto loc_1000f0214
+  0f0210  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+loc_1000f0214:
+  0f0214  if (w20 >= 0) goto loc_1000f0220
+loc_1000f0218:
+  0f021c  cxa_call_unexpected()
+loc_1000f0220:
+  0f0238  cxa_free_exception()
+  0f023c  goto loc_1000f0214
+
+== csl::SpatialPanner::vfunc_18   (address 0x1000f0240  size 4  kind cxx)
+  0f0240  return
+
+== sub_1000f0244   (address 0x1000f0244  size 192  kind sub)
+  0f0260  sub_1000e732c(a0, a1, a2, a3)
+  0f0270  sub_1000e886c(a0, sub_1000e732c(a0, a1, a2, a3), 1)
+  0f0288  a0[+0x0] = vtable<csl::Spatializer>
+  0f028c  a0[+0xa8] = vtable<csl::Spatializer (secondary, -0xa8)>
+  0f0290  a0[+0xb8] = 0
+  0f02a0  a0[+0xc8] = 0
+  0f02a8  a0[+0xf0] = a2
+  0f02ac  a0[+0x100] = 0
+  0f02b4  a0[+0x60] = 0x200000002
+  0f02c0  sub_1000f0304(a0, a1)
+  0f02c8  a0[+0x108] = 0x42c80000
+  0f02dc  return
+  0f02ec  ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE8_M_eraseEPSt13_Rb_tree_nodeIS7_E((x19 + 192))
+  0f02f4  call sub_1000e8918
+  0f0300  call sub_10000b760
+
+== sub_1000f0304   (address 0x1000f0304  size 308  kind sub)
+  0f0318  a0[+0xf8] = a1
+  0f0320  if (a1 >u 4) goto loc_1000f0348
+  0f0338  switch (a1) { case 0: goto loc_1000f033c; case 1: goto loc_1000f03c0; case 2: goto loc_1000f0348; case 3: goto loc_1000f03dc; case 4: goto loc_1000f03fc }
+loc_1000f033c:  ; case 0
+  0f0340  a0[+0xf8] = 2
+  0f0344  goto loc_1000f0364
+loc_1000f0348:  ; case 2
+  0f0354  sub_1000e772c(1, "Unknown PannerMode Specified.", a2, a3)
+  0f0360  sub_1000f0304(a0, 0)
+loc_1000f0364:
+  0f036c  goto loc_1000f0390
+loc_1000f0370:
+  0f0380  call x8
+  0f0388  ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base()
+loc_1000f0390:
+  0f0394  if (x21 != (a0 + 200)) goto loc_1000f0370
+  0f039c  if (a0[+0xb8] == 0) goto loc_1000f03ac
+  0f03a8  call a0[+0xb8][+0x0][+0x8]
+loc_1000f03ac:
+  0f03ac  a0[+0xb8] = x20
+  0f03bc  return
+  0f03c4  Znwm(648, a1, a2, a3)
+  0f03d0  sub_1000f2ec4(Znwm(648, a1, a2, a3), 256)
+  0f03e0  Znwm(320, a1, a2, a3)
+  0f03f0  sub_1000f7520(Znwm(320, a1, a2, a3), 1, a0[+0xf0])
+  0f0400  Znwm(3816, a1, a2, a3)
+  0f0408  sub_1000efb98(Znwm(3816, a1, a2, a3))
+  0f0418  ZdlPv()
+
+== sub_1000f0438   (address 0x1000f0438  size 36  kind sub)
+  0f0448  sub_1000f0244(a0, a1, a2, a3)
+  0f0458  return
+
+== sub_1000f045c   (address 0x1000f045c  size 156  kind sub)
+  0f0478  a0[+0x0] = vtable<csl::Spatializer>
+  0f0480  a0[+0xa8] = vtable<csl::Spatializer (secondary, -0xa8)>
+  0f0488  if (a0[+0xb8] == 0) goto loc_1000f0498
+  0f0494  call a0[+0xb8][+0x0][+0x8]
+loc_1000f0498:
+  0f049c  if (a0[+0x100] == 0) goto loc_1000f04b0
+  0f04a8  call a0[+0x100][+0x0][+0x8]
+  0f04ac  a0[+0x100] = 0
+loc_1000f04b0:
+  0f04b8  ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE8_M_eraseEPSt13_Rb_tree_nodeIS7_E((a0 + 192), a0[+0xd0])
+  0f04c0  sub_1000e8918(a0)
+  0f04d0  return
+  0f04e0  ZNSt8_Rb_treeIPN3csl13SpatialSourceESt4pairIKS2_PNS0_17DistanceSimulatorEESt10_Select1stIS7_ESt4lessIS2_ESaIS7_EE8_M_eraseEPSt13_Rb_tree_nodeIS7_E((x19 + 192))
+  0f04e8  call sub_1000e8918
+  0f04f4  call sub_10000b760
+
+== csl::SpatialPanner::~SpatialPanner   (address 0x1000f0e28  size 36  kind cxx)
+  0f0e38  sub_1000f0d70(a0, a1, a2, a3)
+  0f0e48  return
+
+== csl::SpatialPanner::thunk_vfunc_0   (address 0x1000f0e4c  size 8  kind cxx)
+  0f0e50  tail sub_1000f0d70((a0 - 168), a1, a2, a3)
+
+== csl::SpatialPanner::~SpatialPanner/*deleting*/   (address 0x1000f0e54  size 56  kind cxx)
+  0f0e64  sub_1000f0d70(a0, a1, a2, a3)
+  0f0e74  tail ZdlPv(a0)
+  0f0e80  ZdlPv()
+
+== csl::SpatialPanner::thunk_vfunc_1   (address 0x1000f0e8c  size 8  kind cxx)
+  0f0e90  tail csl::SpatialPanner::~SpatialPanner/*deleting*/((a0 - 168), a1, a2, a3)
+
+== csl::SpatialPanner::vfunc_14   (address 0x1000f0e94  size 96  kind cxx)
+  0f0ebc  call x8
+  0f0ecc  ZNSt6vectorIPN3csl15SourceCacheRootESaIS2_EE9push_backERKS2_((a0 + 208), &sp[0x8])
+  0f0edc  ZNSt6vectorIPN3csl13UnitGeneratorESaIS2_EE9push_backERKS2_(a0, &sp[0x0])
+  0f0ef0  return
+
+== csl::SpatialPanner::vfunc_15   (address 0x1000f0ef4  size 224  kind cxx)
+  0f0f10  if (x8 == x9) goto loc_1000f0fb8
+loc_1000f0f1c:
+  0f0f24  if (x12 == a1) goto loc_1000f0f3c
+  0f0f34  if (x20 <u ((x8 - x9) >> 3)) goto loc_1000f0f1c
+  0f0f38  goto loc_1000f0fb8
+loc_1000f0f3c:
+  0f0f4c  if (((x11 - x10) >> 3) <=u x20) goto loc_1000f0fc8
+  0f0f54  if (x0 == 0) goto loc_1000f0f68
+  0f0f60  call x8
+loc_1000f0f68:
+  0f0f74  if ((x9 + ((x20 + 1) << 3)) == x8) goto loc_1000f0f88
+  0f0f80  memmove((x9 + (x20 << 3)), (x9 + ((x20 + 1) << 3)), (x8 - (x9 + ((x20 + 1) << 3))))
+loc_1000f0f88:
+  0f0f8c  a0[+0xc0] = (x8 - 8)
+  0f0f9c  if ((x8 + ((x20 + 1) << 3)) == x9) goto loc_1000f0fb0
+  0f0fa8  memmove((x8 + (x20 << 3)), (x8 + ((x20 + 1) << 3)), (x9 - (x8 + ((x20 + 1) << 3))))
+loc_1000f0fb0:
+  0f0fb4  a0[+0xd8] = (x1 - 8)
+loc_1000f0fb8:
+  0f0fc4  return
+  0f0fd0  ZSt20__throw_out_of_rangePKc("vector::_M_range_check", a1, a2, a3)
+
+== csl::SpatialPanner::vfunc_17   (address 0x1000f0fd4  size 40  kind cxx)
+  0f0fe0  Znwm(8, a1, a2, a3)
+  0f0ff0  Znwm(8, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f0ff8  return
+
+== csl::SpatialPanner::vfunc_16   (address 0x1000f0ffc  size 64  kind cxx)
+  0f1010  if (a0[+0xe8] != 0) goto loc_1000f1024
+  0f1014  sub_1000f1cec(a0, a1, a2, a3)
+  0f1020  sub_1000f0d00(a0, sub_1000f1cec(a0, a1, a2, a3))
+loc_1000f1024:
+
+== csl::SpatialPanner::thunk_vfunc_2   (address 0x1000f103c  size 8  kind cxx)
+  0f1040  tail csl::SpatialPanner::vfunc_16((a0 - 168), a1, a2, a3)
+
+== csl::SpatialPanner::vfunc_12   (address 0x1000f1044  size 168  kind cxx)
+  0f1078  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0f108c  if (((x9 - x8) >>> 3) < 1) goto loc_1000f10c4
+  0f109c  goto loc_1000f10a8
+loc_1000f10a0:
+loc_1000f10a8:
+  0f10b8  call x8
+  0f10c0  if ((((x9 - x8) >>> 3) - 1) != w22) goto loc_1000f10a0
+loc_1000f10c4:
+  0f10e4  return
+
+== std::vector<…><…>(…)   (address 0x1000f10ec  size 60  kind sym)
+  0f10f8  if (x1 == x9) goto loc_1000f1110
+  0f10fc  if (x1 == 0) goto loc_1000f1118
+  0f110c  goto loc_1000f111c
+loc_1000f1110:
+  0f1114  tail ZNSt6vectorIPN3csl15SourceCacheRootESaIS2_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS2_S4_EERKS2_(a0, x1, a1, a3)
+loc_1000f1118:
+loc_1000f111c:
+  0f1120  a0[+0x8] = (x8 + 8)
+  0f1124  return
+
+== std::vector<…><…>(…)   (address 0x1000f1128  size 336  kind sym)
+  0f1154  if (x8 == x9) goto loc_1000f116c
+  0f1158  if (x8 == 0) goto loc_1000f1190
+  0f1168  goto loc_1000f1194
+loc_1000f116c:
+  0f117c  if (((x8 - a0[+0x0]) >> 3) != 0) goto loc_1000f1254
+  0f1184  if (x25 >=u ((x8 - a0[+0x0]) >> 3)) goto loc_1000f11c0
+  0f118c  goto loc_1000f11c8
+loc_1000f1190:
+loc_1000f1194:
+  0f1198  a0[+0x8] = (x8 + 8)
+  0f11b4  memmove((x8 - (((x8 - 8) - a1) & -8)), a1, ((x8 - 8) - a1), a3)
+  0f11b8  a1[+0x0] = a2[+0x0]
+  0f11bc  goto loc_1000f123c
+loc_1000f11c0:
+  0f11c4  if ((x25 >>> 61) != 0) goto loc_1000f1268
+loc_1000f11c8:
+  0f11cc  Znwm((x25 << 3), a1, a2, a3)
+  0f11e8  memmove(Znwm((x25 << 3), a1, a2, a3), a0[+0x0], (a1 - a0[+0x0]))
+  0f11f4  if ((Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8)) == 0) goto loc_1000f1200
+  0f11fc  (Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8))[+0x0] = a2[+0x0]
+loc_1000f1200:
+  0f1218  memmove((Znwm((x25 << 3), a1, a2, a3) + ((((a1 - a0[+0x0]) >> 3) + 1) << 3)), a1, (a0[+0x8] - a1))
+  0f1220  t1 = (Znwm((x25 << 3), a1, a2, a3) + (((((a1 - a0[+0x0]) >> 3) + 1) + ((a0[+0x8] - a1) >>> 3)) << 3))
+  0f1224  if (a0[+0x0] == 0) goto loc_1000f1230
+  0f122c  ZdlPv(a0[+0x0])
+loc_1000f1230:
+  0f1238  a0[+0x10] = (Znwm((x25 << 3), a1, a2, a3) + (x25 << 3))
+loc_1000f123c:
+  0f1250  return
+  0f125c  if (((x8 - a0[+0x0]) >> 3) == 0x1fffffffffffffff) goto loc_1000f126c
+  0f1268  ZSt17__throw_bad_allocv(a0, a1, a2, a3)
+  0f1274  ZSt20__throw_length_errorPKc("vector::_M_insert_aux")
+
+== sub_1000f1278   (address 0x1000f1278  size 4  kind sub)
+  0f1278  return
+
+== sub_1000f127c   (address 0x1000f127c  size 4  kind sub)
+  0f127c  tail ZdlPv(a0, a1, a2, a3)
+
+== sub_1000f1280   (address 0x1000f1280  size 448  kind sub)
+  0f12b4  sub_1000e732c(a0, a1, a2, a3)
+  0f12c8  sub_1000e886c(a0, sub_1000e732c(a0, a1, a2, a3), 1)
+  0f12d0  a0[+0x0] = a1[+0x0]
+  0f12f0  a0[+0xa8] = 0
+  0f12f4  a0[+0xb1] = 1
+  0f1304  call a2[+0x0][+0x18]
+  0f130c  if (a2[+0x0][+0x18](…) != 1) goto loc_1000f1378
+  0f133c  sub_1000f1440(a0, 1)
+  0f1354  sub_1000e969c((a0 + a0[+0x0][+0x-20]), 3, a2)
+  0f1374  return
+  0f137c  cxa_allocate_exception(16)
+  0f1394  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Adding a non-mono ugen to a spatial source", &sp[0x8])
+  0f13a0  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x10])
+  0f13b0  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f13c8  cxa_throw(cxa_allocate_exception(16), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0f13cc  goto sub_1000f1440
+  0f13e8  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f1410
+  0f13fc  if (w11 != 0) goto loc_1000f13f0
+  0f1404  if (w9 > 0) goto loc_1000f1410
+  0f140c  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0f1414  call sub_1000e8918
+  0f1420  call sub_10000b760
+  0f1438  cxa_free_exception()
+
+== sub_1000f1440   (address 0x1000f1440  size 160  kind sub)
+  0f1470  if (a0[+0xa8] == 0) goto loc_1000f1488
+  0f1478  if (a0[+0xb0] == 0) goto loc_1000f1488
+  0f147c  ZdlPv(a0[+0xa8], a1, a2, a3)
+  0f1480  a0[+0xa8] = 0
+  0f1484  a0[+0xb0] = 0
+loc_1000f1488:
+  0f148c  Znwm(16)
+  0f14a4  sub_1000ef058(Znwm(16), a1)
+  0f14a8  a0[+0xa8] = Znwm(16)
+  0f14b0  a0[+0xb0] = 1
+  0f14c8  return
+  0f14d4  ZdlPv()
+
+== sub_1000f14e0   (address 0x1000f14e0  size 516  kind sub)
+  0f151c  sub_1000e9560((a0 + 192), a1, a2, a3)
+  0f1534  sub_1000e9b4c((a0 + 184), &d_1003b6638)
+  0f1538  sub_1000e732c(sub_1000e9b4c((a0 + 184), &d_1003b6638))
+  0f154c  sub_1000e886c(a0, sub_1000e732c(sub_1000e9b4c((a0 + 184), &d_1003b6638)), 1)
+  0f155c  a0[+0x0] = vtable<csl::SpatialSource>
+  0f156c  a0[+0xa8] = 0
+  0f1570  a0[+0xb1] = 1
+  0f1580  call a1[+0x0][+0x18]
+  0f1588  if (a1[+0x0][+0x18](…) != 1) goto loc_1000f15f8
+  0f15b8  sub_1000f1440(a0, 1)
+  0f15d0  sub_1000e969c((a0 + a0[+0x0][+0x-20]), 3, a1)
+  0f15f4  return
+  0f15fc  cxa_allocate_exception(16)
+  0f1614  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Adding a non-mono ugen to a spatial source", &sp[0x8])
+  0f1620  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x10])
+  0f1630  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f1648  cxa_throw(cxa_allocate_exception(16), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0f164c  goto sub_1000f16e4
+  0f1668  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f1690
+  0f167c  if (w11 != 0) goto loc_1000f1670
+  0f1684  if (w9 > 0) goto loc_1000f1690
+  0f168c  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0f1694  call sub_1000e8918
+  0f16a8  sub_1000e9c44(x0, (x23 + 24))
+  0f16c0  call sub_1000e9388
+  0f16cc  call sub_10000b760
+  0f16dc  cxa_free_exception()
+
+== sub_1000f16e4   (address 0x1000f16e4  size 100  kind sub)
+  0f16f8  a0[+0x0] = a1[+0x0]
+  0f171c  if (a0[+0xa8] == 0) goto loc_1000f1730
+  0f1724  if (a0[+0xb0] == 0) goto loc_1000f1730
+  0f1728  ZdlPv(a0[+0xa8], a1, a2, a3)
+  0f172c  a0[+0xa8] = 0
+loc_1000f1730:
+  0f1734  sub_1000e8918(a0)
+  0f1744  return

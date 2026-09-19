@@ -1,0 +1,13 @@
+
+== -[TAGPBExtensionRange initWithRangeDescription:]   (address 0x100138388  size 88  kind objc)
+  1383bc  [super init]
+  1383c0  if (self == 0) goto loc_1001383d0
+  1383cc  self->description_ = arg1
+loc_1001383d0:
+  1383dc  return
+
+== -[TAGPBExtensionRange start]   (address 0x1001383e0  size 20  kind objc)
+  1383f0  return
+
+== -[TAGPBExtensionRange end]   (address 0x1001383f4  size 20  kind objc)
+  138404  return

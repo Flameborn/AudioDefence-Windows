@@ -1,0 +1,41 @@
+// ADGameOverEndlessViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #23 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #87 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #42 UIView  
+    #116 UIView (custom class ViewWithParalax)  
+      #88 UIImageView  Image='background_main.png'
+    #74 UIScrollView  
+    #43 UIButton (custom class ADButtonWithFont)  
+  #109 UIView  
+    #115 UIImageView  Image='frame_endless_score.png'
+    #105 UIView  
+      #7 UILabel  UserInteractionDisabled=False Text='10,000'
+      #72 UILabel  UserInteractionDisabled=False Text='10,000'
+      #17 UILabel  UserInteractionDisabled=False Text='10,000'
+      #112 UILabel  UserInteractionDisabled=False Text='10,000'
+      #107 UILabel  UserInteractionDisabled=False Text='10,000'
+      #25 UILabel  UserInteractionDisabled=False Text='0'
+      #33 UIImageView  UserInteractionDisabled=False Image='icon_diamond_medium.png'
+      #53 UILabel (custom class ADLabelWithCoins)  UserInteractionDisabled=False Text='0'
+      #121 UIButton (custom class ADButtonWithFont)  
+      #52 UIImageView  UserInteractionDisabled=False Image='currency_icon.png'
+      #86 UILabel  UserInteractionDisabled=False Text='High score : 25,000'
+
+CONNECTIONS
+  action  playAgainButtonPressed:                   #43 ADButtonWithFont --(events 0x40)--> #23 UIProxyObject
+  action  twitterScreenshotButtonPressed:           #121 ADButtonWithFont --(events 0x40)--> #23 UIProxyObject
+  outlet  accuracyLabel                             #23 UIProxyObject --> #17 UILabel Text='10,000'
+  outlet  coinsTotal                                #23 UIProxyObject --> #53 ADLabelWithCoins Text='0'
+  outlet  comboLabel                                #23 UIProxyObject --> #112 UILabel Text='10,000'
+  outlet  contentScrollView                         #23 UIProxyObject --> #74 UIScrollView
+  outlet  contentView                               #23 UIProxyObject --> #109 UIView
+  outlet  diamondsLoot                              #23 UIProxyObject --> #25 UILabel Text='0'
+  outlet  highScoreLabel                            #23 UIProxyObject --> #86 UILabel Text='High score : 25,000'
+  outlet  killsLabel                                #23 UIProxyObject --> #107 UILabel Text='10,000'
+  outlet  scoreLabel                                #23 UIProxyObject --> #7 UILabel Text='10,000'
+  outlet  timeLabel                                 #23 UIProxyObject --> #72 UILabel Text='10,000'
+  outlet  view                                      #23 UIProxyObject --> #42 UIView
+  outlet  viewForTwitterScreenshot                  #23 UIProxyObject --> #105 UIView
+
+ACCESSIBILITY CONFIGURATIONS

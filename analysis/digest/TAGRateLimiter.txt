@@ -1,0 +1,71 @@
+
+== +[TAGRateLimiter rateLimiterWithMaxTokens:secondsPerToken:]   (address 0x100114874  size 144  kind objc)
+  114898  [TAGRateLimiter alloc]
+  1148a8  [[TAGRateLimiter alloc] init]
+  1148c0  [[[TAGRateLimiter alloc] init] setMaxTokens:arg1]
+  1148d8  [[[TAGRateLimiter alloc] init] setSecondsPerToken:arg2]
+  1148ec  return
+
+== -[TAGRateLimiter tokenAvailable]   (address 0x100114904  size 588  kind objc)
+  114924  objc_sync_enter(self)
+  114938  [self secondsPerToken]
+  114944  if ([self secondsPerToken] <= (or unordered) 0.0) goto loc_100114a4c
+  11495c  [NSDate timeIntervalSinceReferenceDate]
+  114978  [self tokens]
+  114994  [self maxTokens]
+  11499c  if ([self tokens] >= (or unordered) [self maxTokens]) goto loc_100114a1c
+  1149b0  [self lastTrackTime]
+  1149c0  [self maxTokens]
+  1149d0  [self tokens]
+  1149d8  t1 = (([NSDate timeIntervalSinceReferenceDate] - [self lastTrackTime]) / [self secondsPerToken])
+  1149e4  if ([self maxTokens] >= (or unordered) (t1 + [self tokens])) goto loc_1001149f8
+  1149f0  [self maxTokens]
+  1149f4  goto loc_100114a08
+loc_1001149f8:
+  114a00  [self tokens]
+loc_100114a08:
+  114a18  [self setTokens:d0]
+loc_100114a1c:
+  114a30  [self setLastTrackTime:[NSDate timeIntervalSinceReferenceDate]]
+  114a3c  [self tokens]
+  114a48  if ([self tokens] >= 1) goto loc_100114abc
+loc_100114a4c:
+  114a60  [TAGDispatcher instance]
+  114a7c  [[TAGDispatcher instance] logger]
+  114aa0  [[[TAGDispatcher instance] logger] warning:@"Excessive tracking detected and throttled."]
+  114ab8  goto loc_100114ae8
+loc_100114abc:
+  114ac4  [self tokens]
+  114ae0  [self setTokens:([self tokens] + -1)]
+loc_100114ae8:
+  114aec  objc_sync_exit(self)
+  114b10  return
+  114b3c  objc_sync_exit()
+
+== -[TAGRateLimiter secondsPerToken]   (address 0x100114b50  size 16  kind objc)
+  114b5c  return
+
+== -[TAGRateLimiter setSecondsPerToken:]   (address 0x100114b60  size 16  kind objc)
+  114b68  self->_secondsPerToken = arg1
+  114b6c  return
+
+== -[TAGRateLimiter maxTokens]   (address 0x100114b70  size 16  kind objc)
+  114b7c  return
+
+== -[TAGRateLimiter setMaxTokens:]   (address 0x100114b80  size 16  kind objc)
+  114b88  self->_maxTokens = arg1
+  114b8c  return
+
+== -[TAGRateLimiter tokens]   (address 0x100114b90  size 16  kind objc)
+  114b9c  return
+
+== -[TAGRateLimiter setTokens:]   (address 0x100114ba0  size 16  kind objc)
+  114ba8  self->_tokens = arg1
+  114bac  return
+
+== -[TAGRateLimiter lastTrackTime]   (address 0x100114bb0  size 16  kind objc)
+  114bbc  return
+
+== -[TAGRateLimiter setLastTrackTime:]   (address 0x100114bc0  size 16  kind objc)
+  114bc8  self->_lastTrackTime = arg1
+  114bcc  return

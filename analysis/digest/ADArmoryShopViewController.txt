@@ -1,0 +1,331 @@
+
+== -[ADArmoryShopViewController viewDidLoad]   (address 0x10008ea00  size 612  kind objc)
+  08ea38  [super viewDidLoad]
+  08ea50  [self tableView]
+  08ea70  [[self tableView] setDataSource:self]
+  08ea84  [self tableView]
+  08eaa4  [[self tableView] setDelegate:self]
+  08eac4  [ADGameParameters sharedParameters]
+  08eae0  [[ADGameParameters sharedParameters] isIphone]
+  08eaf8  [self tableView]
+  08eb14  &@selector(nibWithNibName:bundle:)
+  08eb1c  if ([[ADGameParameters sharedParameters] isIphone] == 0) goto loc_10008eb64
+  08eb2c  [UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles" bundle:0]
+  08eb58  [[self tableView] registerNib:[UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles" bundle:0] forCellReuseIdentifier:@"ArmoryShopCell"]
+  08eb5c  goto loc_10008eba0
+  08eb60  goto loc_10008ec48
+loc_10008eb64:
+  08eb70  [UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles_iPad" bundle:0]
+  08eb9c  [[self tableView] registerNib:[UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles_iPad" bundle:0] forCellReuseIdentifier:@"ArmoryShopCell"]
+loc_10008eba0:
+  08ebc4  [NSNotificationCenter defaultCenter]
+  08ebfc  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWeaponUpgrade:) name:@"WEAPON_UPGRADE_EVENT" object:0]
+  08ec18  return
+
+== -[ADArmoryShopViewController dealloc]   (address 0x10008ec64  size 220  kind objc)
+  08ec8c  [NSNotificationCenter defaultCenter]
+  08ecb8  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WEAPON_UPGRADE_EVENT" object:0]
+  08ece4  [super dealloc]
+  08ecf4  return
+  08ed30  [super dealloc]
+  08ed3c  call sub_10000b760
+
+== -[ADArmoryShopViewController loadView]   (address 0x10008ed40  size 260  kind objc)
+  08ed8c  [NSNumber numberWithInt:1]
+  08edc0  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  08edf4  [self loADViewBasedOnDeviceWithNibName:@"ADArmoryShopViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  08ee1c  return
+
+== -[ADArmoryShopViewController tableView:heightForRowAtIndexPath:]   (address 0x10008ee44  size 140  kind objc)
+  08ee64  [ADGameParameters sharedParameters]
+  08ee80  [[ADGameParameters sharedParameters] isIphone]
+  08eeb0  return
+
+== -[ADArmoryShopViewController numberOfSectionsInTableView:]   (address 0x10008eed0  size 8  kind objc)
+  08eed4  return
+
+== -[ADArmoryShopViewController tableView:numberOfRowsInSection:]   (address 0x10008eed8  size 184  kind objc)
+  08eefc  [ADWeaponManager sharedWeaponManager]
+  08ef18  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08ef34  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count]
+  08ef5c  return
+
+== -[ADArmoryShopViewController tableView:cellForRowAtIndexPath:]   (address 0x10008ef90  size 6500  kind objc)
+  08efec  [arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"]
+  08f020  [ADWeaponManager sharedWeaponManager]
+  08f040  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08f064  [arg2 row]
+  08f080  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08f0a8  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  08f0e0  [self weaponReverseLookUp]
+  08f100  [[self weaponReverseLookUp] addObject:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  08f124  [UIColor clearColor]
+  08f14c  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] setBackgroundColor:[UIColor clearColor]]
+  08f170  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] setSelectionStyle:0]
+  08f188  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel]
+  08f1a4  [ADWeaponManager sharedWeaponManager]
+  08f1b8  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08f1d0  [arg2 row]
+  08f1e0  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08f1fc  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"displayName"]
+  08f224  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel] setText:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"displayName"]]
+  08f264  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] detailLabel]
+  08f280  [ADWeaponManager sharedWeaponManager]
+  08f294  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08f2ac  [arg2 row]
+  08f2bc  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08f2d8  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"description"]
+  08f2f4  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] detailLabel] setText:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"description"]]
+  08f334  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] image]
+  08f374  [NSString stringWithFormat:@"%@_icon", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…]
+  08f3a0  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…]]
+  08f3c8  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] image] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…]]]
+  08f3e4  UIAccessibilityIsVoiceOverRunning()
+  08f3ec  &@selector(buyUpgradeButton)
+  08f3f4  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_10008f760
+  08f400  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08f420  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setEnabled:0]
+  08f434  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08f454  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setHidden:1]
+  08f468  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel]
+  08f484  [ADWeaponManager sharedWeaponManager]
+  08f498  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08f4b0  [arg2 row]
+  08f4c0  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08f4e0  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"displayName"]
+  08f500  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel] setText:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"displayName"]]
+  08f53c  [ADInventory sharedInventory]
+  08f558  [ADWeaponManager sharedWeaponManager]
+  08f570  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08f590  [arg2 row]
+  08f5a0  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08f5c4  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  08f5e8  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  08f618  if ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]] == 0) goto loc_10008fd94
+  08f628  [ADInventory sharedInventory]
+  08f650  [ADWeaponManager sharedWeaponManager]
+  08f664  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08f680  [arg2 row]
+  08f690  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08f6ac  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  08f6d0  [[ADInventory sharedInventory] levelForWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  08f708  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel]
+  08f738  [NSString stringWithFormat:@"%@ : owned : level %i", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…, [[ADInventory sharedInventory] levelForWeaponWithName:[[[[ADWeaponManager shared…]
+  08f754  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel] setText:[NSString stringWithFormat:@"%@ : owned : level %i", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…, [[ADInventory sharedInventory] levelForWeaponWithName:[[[[ADWeaponManager shared…]]
+  08f758  goto loc_1000903c4
+  08f75c  goto loc_1000908b8
+loc_10008f760:
+  08f768  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08f78c  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setFontName:@"Monstro"]
+  08f7a0  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08f7c8  [NSNumber numberWithInt:50]
+  08f7ec  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setFontSize:[NSNumber numberWithInt:50]]
+  08f808  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08f844  [UIColor colorWithRed:0.046875 green:0.1875 blue:0.382812 alpha:1]
+  08f860  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setBackgroundColor:[UIColor colorWithRed:0.046875 green:0.1875 blue:0.382812 alpha:1]]
+  08f87c  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08f8a4  [UIColor whiteColor]
+  08f8cc  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setTitleColor:[UIColor whiteColor] forState:0]
+  08f8fc  [ADInventory sharedInventory]
+  08f91c  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  08f92c  if ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]] == 0) goto loc_10008fae0
+  08f93c  [ADInventory sharedInventory]
+  08f958  [ADWeaponManager sharedWeaponManager]
+  08f96c  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08f984  [arg2 row]
+  08f994  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08f9b0  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  08f9d4  [[ADInventory sharedInventory] levelForWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  08fa18  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] statusLevel]
+  08fa48  [NSString stringWithFormat:@"badge_level%d.png", [[ADInventory sharedInventory] levelForWeaponWithName:[[[[ADWeaponManager shared…]
+  08fa64  [UIImage imageNamed:[NSString stringWithFormat:@"badge_level%d.png", [[ADInventory sharedInventory] levelForWeaponWithName:[[[[ADWeaponManager shared…]]
+  08fa80  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] statusLevel] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"badge_level%d.png", [[ADInventory sharedInventory] levelForWeaponWithName:[[[[ADWeaponManager shared…]]]
+  08faa0  if ([[ADInventory sharedInventory] levelForWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objec… < 4) goto loc_10008ff48
+  08faac  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08fad4  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setTitle:@"View" forState:0]
+  08fad8  goto loc_10008ff7c
+  08fadc  goto loc_100090878
+loc_10008fae0:
+  08faf4  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] statusLevel]
+  08fb0c  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] statusLevel] setImage:0]
+  08fb24  [ADWeaponManager sharedWeaponManager]
+  08fb38  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08fb50  [arg2 row]
+  08fb60  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08fb7c  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"]
+  08fbb0  if ([[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"] == 0) goto loc_1000900e8
+  08fbb8  [ADWeaponManager sharedWeaponManager]
+  08fbcc  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08fbe4  [arg2 row]
+  08fbf4  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08fc10  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"]
+  08fc2c  [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"] intValue]
+  08fc5c  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08fc7c  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setCoins:[[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"] intValue]]
+  08fc90  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08fcb0  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setEnabled:0]
+  08fcc4  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08fcec  [NSString stringWithFormat:@"%i", [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg…]
+  08fd14  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setTitle:[NSString stringWithFormat:@"%i", [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg…] forState:0]
+  08fd30  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08fd4c  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] centerButtonTextWithCoinsImage]
+  08fd68  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] lockIcon]
+  08fd88  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] lockIcon] setHidden:0]
+  08fd8c  goto loc_1000902c0
+  08fd90  goto loc_100090878
+loc_10008fd94:
+  08fda8  [ADWeaponManager sharedWeaponManager]
+  08fdc8  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08fde0  [arg2 row]
+  08fdf0  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08fe0c  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"]
+  08fe40  if ([[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"] == 0) goto loc_1000902c8
+  08fe48  [ADWeaponManager sharedWeaponManager]
+  08fe5c  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  08fe74  [arg2 row]
+  08fe84  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  08fea4  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"]
+  08fec0  [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"price"] intValue]
+  08fef0  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel]
+  08ff20  [NSString stringWithFormat:@"%@ : buy for %i coins", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…, [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg…]
+  08ff3c  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel] setText:[NSString stringWithFormat:@"%@ : buy for %i coins", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…, [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg…]]
+  08ff40  goto loc_1000903c4
+  08ff44  goto loc_1000908b8
+loc_10008ff48:
+  08ff50  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08ff78  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setTitle:@"Upgrade" forState:0]
+loc_10008ff7c:
+  08ff94  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] lockIcon]
+  08ffb4  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] lockIcon] setHidden:1]
+  08ffc8  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  08ffe8  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setEnabled:1]
+  08fffc  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  090018  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] centerButtonWithoutImage]
+  09002c  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  09004c  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setOpaque:1]
+  090060  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel]
+  090084  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel] setAlpha:1]
+  090098  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] detailLabel]
+  0900b0  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] detailLabel] setAlpha:1]
+  0900c4  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] image]
+  0900dc  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] image] setAlpha:1]
+  0900e4  goto loc_1000903dc
+loc_1000900e8:
+  0900ec  [ADWeaponManager sharedWeaponManager]
+  090100  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  090118  [arg2 row]
+  090128  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  090144  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"priceInDiamonds"]
+  090160  [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"priceInDiamonds"] intValue]
+  090190  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  0901b0  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setDiamonds:[[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"priceInDiamonds"] intValue]]
+  0901c4  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  0901e4  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setEnabled:0]
+  0901f8  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  090220  [NSString stringWithFormat:@"%i", [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg…]
+  090248  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] setTitle:[NSString stringWithFormat:@"%i", [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg…] forState:0]
+  090264  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton]
+  090280  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] buyUpgradeButton] centerButtonTextWithDiamondsImage]
+  09029c  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] lockIcon]
+  0902bc  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] lockIcon] setHidden:0]
+loc_1000902c0:
+  0902c4  goto loc_1000903dc
+loc_1000902c8:
+  0902cc  [ADWeaponManager sharedWeaponManager]
+  0902e0  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  0902f8  [arg2 row]
+  090308  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  090328  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"priceInDiamonds"]
+  090344  [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"priceInDiamonds"] intValue]
+  090374  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel]
+  0903a4  [NSString stringWithFormat:@"%@ : buy for %i diamonds", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…, [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg…]
+  0903c0  [[[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] titleLabel] setText:[NSString stringWithFormat:@"%@ : buy for %i diamonds", [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2…, [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg…]]
+loc_1000903c4:
+loc_1000903dc:
+  0903ec  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] setSelectionStyle:0]
+  0903fc  [UIColor clearColor]
+  090418  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] setBackgroundColor:[UIColor clearColor]]
+  090438  [[arg1 dequeueReusableCellWithIdentifier:@"ArmoryShopCell"] setOpaque:1]
+  09046c  return
+
+== -[ADArmoryShopViewController handleWeaponUpgrade:]   (address 0x1000908f4  size 100  kind objc)
+  09090c  [self tableView]
+  090928  [[self tableView] reloadData]
+  090938  return
+
+== -[ADArmoryShopViewController playSound]   (address 0x100090958  size 252  kind objc)
+  09097c  [S3DEngine engine]
+  0909a0  [[S3DEngine engine] playListWithName:@"buttons"]
+  0909c4  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  0909f8  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  090a0c  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  090a20  return
+
+== -[ADArmoryShopViewController tableView:didSelectRowAtIndexPath:]   (address 0x100090a54  size 476  kind objc)
+  090a88  [self playSound]
+  090a8c  UIAccessibilityIsVoiceOverRunning()
+  090a90  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_100090b64
+  090aa8  [ADWeaponManager sharedWeaponManager]
+  090ac4  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  090ae4  [arg2 row]
+  090afc  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]]
+  090b20  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  090b44  [self showAccessibleDetailViewForWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  090b60  goto loc_100090bb4
+loc_100090b64:
+  090b74  [self armoryViewController]
+  090b94  [arg2 row]
+  090bb0  [[self armoryViewController] openDescriptionForItemAtIndex:[arg2 row] withButton:0]
+loc_100090bb4:
+  090bd0  return
+
+== -[ADArmoryShopViewController showAccessibleDetailViewForWeaponWithName:]   (address 0x100090c30  size 820  kind objc)
+  090c6c  [self tableView]
+  090c8c  [[self tableView] setAccessibilityElementsHidden:1]
+  090cac  [Accessible_ADWeaponDescriptionViewController alloc]
+  090cc8  [ADWeaponManager sharedWeaponManager]
+  090ce8  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:arg1]
+  090d0c  [[Accessible_ADWeaponDescriptionViewController alloc] initWithWeaponDictionary:[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:arg1]]
+  090d1c  self->detailView = [[Accessible_ADWeaponDescriptionViewController alloc] initWithWeaponDictionary:[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:arg1]]
+  090d4c  [self->detailView setHideButtons:1]
+  090d64  [self armoryViewController]
+  090d88  [self->detailView setArmoryViewController:[self armoryViewController]]
+  090da0  [self tableView]
+  090dc4  [self->detailView setParentTableView:[self tableView]]
+  090de4  [self view]
+  090dfc  [self->detailView view]
+  090e20  [[self view] addSubview:[self->detailView view]]
+  090e3c  [self->detailView view]
+  090e54  [self tableView]
+  090e70  [[self tableView] center]
+  090e84  [[self->detailView view] setCenter:{[[self tableView] center].0, [[self tableView] center].1}]
+  090ea0  [self->detailView view]
+  090ec0  [[self->detailView view] setAccessibilityViewIsModal:1]
+  090ee4  return
+
+== -[ADArmoryShopViewController viewWillLayoutSubviews]   (address 0x100090f64  size 172  kind objc)
+  090f88  [self tableView]
+  090fa4  [[self tableView] reloadData]
+  090fb8  [self tableView]
+  090fd8  [[self tableView] setAlpha:1]
+  090fec  return
+
+== -[ADArmoryShopViewController tableView]   (address 0x100091010  size 16  kind objc)
+  09101c  return
+
+== -[ADArmoryShopViewController setTableView:]   (address 0x100091020  size 56  kind objc)
+  091044  self->_tableView = arg1
+  091054  return
+
+== -[ADArmoryShopViewController armoryViewController]   (address 0x100091058  size 32  kind objc)
+  091074  return
+
+== -[ADArmoryShopViewController setArmoryViewController:]   (address 0x100091078  size 20  kind objc)
+
+== -[ADArmoryShopViewController weaponReverseLookUp]   (address 0x10009108c  size 16  kind objc)
+  091098  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADArmoryShopViewController setWeaponReverseLookUp:]   (address 0x10009109c  size 12  kind objc)
+  0910a4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADArmoryShopViewController .cxx_destruct]   (address 0x1000910a8  size 100  kind objc)

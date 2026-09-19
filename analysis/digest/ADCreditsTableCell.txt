@@ -1,0 +1,27 @@
+
+== -[ADCreditsTableCell initWithStyle:reuseIdentifier:]   (address 0x1000b7b64  size 60  kind objc)
+  0b7b90  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  0b7b9c  return
+
+== -[ADCreditsTableCell awakeFromNib]   (address 0x1000b7ba0  size 4  kind objc)
+  0b7ba0  return
+
+== -[ADCreditsTableCell setSelected:animated:]   (address 0x1000b7ba4  size 60  kind objc)
+  0b7bd0  [super setSelected:arg1 animated:arg2]
+  0b7bdc  return
+
+== -[ADCreditsTableCell nameLabel]   (address 0x1000b7be0  size 16  kind objc)
+  0b7bec  return
+
+== -[ADCreditsTableCell setNameLabel:]   (address 0x1000b7bf0  size 56  kind objc)
+  0b7c14  self->_nameLabel = arg1
+  0b7c24  return
+
+== -[ADCreditsTableCell roleLabel]   (address 0x1000b7c28  size 16  kind objc)
+  0b7c34  return
+
+== -[ADCreditsTableCell setRoleLabel:]   (address 0x1000b7c38  size 56  kind objc)
+  0b7c5c  self->_roleLabel = arg1
+  0b7c6c  return
+
+== -[ADCreditsTableCell .cxx_destruct]   (address 0x1000b7c70  size 64  kind objc)

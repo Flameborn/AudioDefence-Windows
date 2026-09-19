@@ -1,0 +1,72 @@
+
+== +[TAGDataLayerWrite functionId]   (address 0x10017a7b8  size 44  kind objc)
+  17a7e0  return
+
+== +[TAGDataLayerWrite valueKey]   (address 0x10017a7e4  size 44  kind objc)
+  17a80c  return
+
+== -[TAGDataLayerWrite initWithDataLayer:]   (address 0x10017a810  size 248  kind objc)
+  17a850  [NSSet setWithObject:@"value"]
+  17a88c  [super initWithFunctionId:@"_dlw" requiredKeys:[NSSet setWithObject:@"value"]]
+  17a89c  if (self == 0) goto loc_10017a8c0
+  17a8b4  self->_dataLayer = arg1
+loc_10017a8c0:
+  17a8dc  return
+
+== -[TAGDataLayerWrite evaluateTrackingTag:]   (address 0x10017a908  size 236  kind objc)
+  17a940  [arg1 objectForKey:@"value"]
+  17a964  [self pushToDataLayer:[arg1 objectForKey:@"value"]]
+  17a980  [arg1 objectForKey:@"clear_data_layer_prefix"]
+  17a9a4  [self clearPersistent:[arg1 objectForKey:@"clear_data_layer_prefix"]]
+  17a9c0  return
+
+== -[TAGDataLayerWrite clearPersistent:]   (address 0x10017a9f4  size 304  kind objc)
+  17aa14  if (arg1 == 0) goto loc_10017aadc
+  17aa2c  [TAGTypes defaultObject]
+  17aa44  if ([TAGTypes defaultObject] == arg1) goto loc_10017aadc
+  17aa5c  [TAGTypes valueToString:arg1]
+  17aa7c  [TAGTypes defaultString]
+  17aa94  if ([TAGTypes valueToString:arg1] == [TAGTypes defaultString]) goto loc_10017aad4
+  17aaa8  [self dataLayer]
+  17aac8  [[self dataLayer] clearPersistentKeysWithPrefix:[TAGTypes valueToString:arg1]]
+loc_10017aad4:
+loc_10017aadc:
+  17aaec  return
+
+== -[TAGDataLayerWrite pushToDataLayer:]   (address 0x10017ab24  size 732  kind objc)
+  17ab64  if (arg1 == 0) goto loc_10017ad50
+  17ab7c  [TAGTypes defaultObject]
+  17ab94  if ([TAGTypes defaultObject] == arg1) goto loc_10017ad50
+  17abac  [TAGTypes valueToObject:arg1]
+  17abd4  [NSArray class]
+  17abf0  [[TAGTypes valueToObject:arg1] isKindOfClass:[NSArray class]]
+  17abf4  if (!([[TAGTypes valueToObject:arg1] isKindOfClass:[NSArray class]] & 1)) goto loc_10017ad48
+  17ac38  [[TAGTypes valueToObject:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  17ac44  if ([[TAGTypes valueToObject:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_10017ad28
+loc_10017ac7c:
+loc_10017ac80:
+  17ac8c  if (x8 == x19) goto loc_10017ac98
+  17ac94  objc_enumerationMutation([TAGTypes valueToObject:arg1])
+loc_10017ac98:
+  17aca8  [NSDictionary class]
+  17acb8  [x0 isKindOfClass:[NSDictionary class]]
+  17acbc  if (!([x0 isKindOfClass:[NSDictionary class]] & 1)) goto loc_10017ad00
+  17acd4  [self dataLayer]
+  17acec  [[self dataLayer] push:x2]
+loc_10017ad00:
+  17ad08  if ((x22 + 1) <u [[TAGTypes valueToObject:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10017ac80
+  17ad1c  [[TAGTypes valueToObject:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  17ad24  if ([[TAGTypes valueToObject:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10017ac7c
+loc_10017ad28:
+loc_10017ad48:
+loc_10017ad50:
+  17ad84  return
+
+== -[TAGDataLayerWrite dataLayer]   (address 0x10017ae00  size 16  kind objc)
+  17ae0c  return
+
+== -[TAGDataLayerWrite setDataLayer:]   (address 0x10017ae10  size 56  kind objc)
+  17ae34  self->_dataLayer = arg1
+  17ae44  return
+
+== -[TAGDataLayerWrite .cxx_destruct]   (address 0x10017ae48  size 20  kind objc)

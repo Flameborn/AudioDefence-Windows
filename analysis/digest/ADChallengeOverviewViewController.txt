@@ -1,0 +1,109 @@
+
+== -[ADChallengeOverviewViewController initWithDictionary:]   (address 0x1000d8178  size 208  kind objc)
+  0d81c8  [super initWithNibName:0 bundle:0]
+  0d81d0  if (self == 0) goto loc_1000d820c
+  0d81ec  [self setChallengeDict:arg1]
+  0d8208  [self setIgnoreRewards:1]
+loc_1000d820c:
+  0d8228  return
+
+== -[ADChallengeOverviewViewController viewDidLoad]   (address 0x1000d8248  size 1088  kind objc)
+  0d8284  [super viewDidLoad]
+  0d829c  [self statusBarViewController]
+  0d82bc  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  0d82d0  [self statusBarViewController]
+  0d82f0  [[self statusBarViewController] setCurrenciesVisibility:0]
+  0d8304  [self statusBarViewController]
+  0d8324  [[self statusBarViewController] setDiamonsdsVisibility:0]
+  0d8338  [self statusBarViewController]
+  0d8358  [[self statusBarViewController] setArmoryLoadoutEnabled:0]
+  0d836c  [self statusBarViewController]
+  0d838c  [[self statusBarViewController] setDelegate:self]
+  0d83a8  [self challengeTitle]
+  0d83c4  [[self challengeTitle] setupAsTitle]
+  0d83e4  [self challengeObjective]
+  0d8400  [[self challengeObjective] setupAsInfo]
+  0d8414  [self challengeObjective]
+  0d8440  [ADGameParameters sharedParameters]
+  0d845c  [[ADGameParameters sharedParameters] isIphone]
+  0d8488  [UIFont fontWithName:@"Chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 9 : 20)]
+  0d84ac  [[self challengeObjective] setFont:[UIFont fontWithName:@"Chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 9 : 20)]]
+  0d84d8  [self loadMissionOverlay]
+  0d84e4  [self statusBarViewController]
+  0d8500  [[self statusBarViewController] pageTitle]
+  0d8528  [[[self statusBarViewController] pageTitle] setText:@"CHALLENGE"]
+  0d8544  [self challengeObjective]
+  0d8564  [self challengeDict]
+  0d8588  [[self challengeDict] objectForKey:@"objective"]
+  0d85a4  [[self challengeObjective] setText:[[self challengeDict] objectForKey:@"objective"]]
+  0d85d0  [self loadEquipment]
+  0d85e8  return
+
+== -[ADChallengeOverviewViewController loadView]   (address 0x1000d8688  size 740  kind objc)
+  0d86e4  [NSNumber numberWithInt:1]
+  0d8710  [NSNumber numberWithInt:2]
+  0d8738  [NSNumber numberWithInt:3]
+  0d8760  [NSNumber numberWithInt:4]
+  0d8788  [NSNumber numberWithInt:5]
+  0d87b0  [NSNumber numberWithInt:6]
+  0d87dc  [NSNumber numberWithInt:7]
+  0d8804  [NSNumber numberWithInt:8]
+  0d8834  [NSDictionary dictionaryWithObjects:&sp[0x48] forKeys:&sp[0x8] count:8]
+  0d88a0  [self loADViewBasedOnDeviceWithNibName:@"ADChallengeOverviewViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x48] forKeys:&sp[0x8] count:8]]
+  0d88d4  return
+
+== -[ADChallengeOverviewViewController loadEquipment]   (address 0x1000d896c  size 476  kind objc)
+  0d8998  [ADInventoryViewController alloc]
+  0d89b0  [self challengeDict]
+  0d89d4  [[self challengeDict] objectForKey:@"weapons"]
+  0d89f8  [[ADInventoryViewController alloc] initWithChallengeArray:[[self challengeDict] objectForKey:@"weapons"]]
+  0d8a08  self->equipement = [[ADInventoryViewController alloc] initWithChallengeArray:[[self challengeDict] objectForKey:@"weapons"]]
+  0d8a38  [self view]
+  0d8a50  [self->equipement view]
+  0d8a74  [[self view] addSubview:[self->equipement view]]
+  0d8a90  [self->equipement view]
+  0d8ab0  [self challengeEquipement]
+  0d8acc  [[self challengeEquipement] center]
+  0d8ae0  [[self->equipement view] setCenter:{[[self challengeEquipement] center].0, [[self challengeEquipement] center].1}]
+  0d8b00  return
+
+== -[ADChallengeOverviewViewController playButtonPressed:]   (address 0x1000d8b48  size 256  kind objc)
+  0d8b68  [self playButtonSound]
+  0d8b80  [UIApplication sharedApplication]
+  0d8b9c  [[UIApplication sharedApplication] delegate]
+  0d8bbc  [self challengeDict]
+  0d8be0  [[[UIApplication sharedApplication] delegate] goToChallengeWithDict:[self challengeDict]]
+  0d8c04  return
+
+== -[ADChallengeOverviewViewController missionsButtonPressed:]   (address 0x1000d8c48  size 104  kind objc)
+  0d8c60  [self missionTopbarViewController]
+  0d8c80  [[self missionTopbarViewController] missionButtonPressed:0]
+  0d8c90  return
+
+== -[ADChallengeOverviewViewController backButtonPressed]   (address 0x1000d8cb0  size 160  kind objc)
+  0d8cd4  [UIApplication sharedApplication]
+  0d8cf0  [[UIApplication sharedApplication] delegate]
+  0d8d0c  [[[UIApplication sharedApplication] delegate] goToChallengeSelector]
+  0d8d28  return
+
+== -[ADChallengeOverviewViewController playButtonSound]   (address 0x1000d8d50  size 252  kind objc)
+  0d8d74  [S3DEngine engine]
+  0d8d98  [[S3DEngine engine] playListWithName:@"buttons"]
+  0d8dbc  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_level_button"]
+  0d8df0  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_level_button"] setGain:3]
+  0d8e04  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_level_button"] play]
+  0d8e18  return
+
+== -[ADChallengeOverviewViewController challengeEquipement]   (address 0x1000d8e4c  size 16  kind objc)
+  0d8e58  return
+
+== -[ADChallengeOverviewViewController setChallengeEquipement:]   (address 0x1000d8e5c  size 56  kind objc)
+  0d8e80  self->_challengeEquipement = arg1
+  0d8e90  return
+
+== -[ADChallengeOverviewViewController challengeObjective]   (address 0x1000d8e94  size 32  kind objc)
+  0d8eb0  return
+
+== -[ADChallengeOverviewViewController setChallengeObjective:]   (address 0x1000d8eb4  size 20  kind objc)
+
+== -[ADChallengeOverviewViewController .cxx_destruct]   (address 0x1000d8ec8  size 100  kind objc)

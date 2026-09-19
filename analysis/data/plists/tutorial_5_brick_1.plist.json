@@ -1,0 +1,33 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_tutorial_5_1"
+  }
+ ],
+ "Enemies": {
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 25.1,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_5_1"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 26.6,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_5_1"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  }
+ }
+}

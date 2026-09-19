@@ -1,0 +1,166 @@
+
+== -[SExpIO header]   (address 0x1000e1d1c  size 128  kind objc)
+  0e1d3c  [SExpIO properties]
+  0e1d60  [[SExpIO properties] objectForKey:g_100428ea8]
+  0e1d84  return
+
+== +[SExpIO properties]   (address 0x1000e1d9c  size 464  kind objc)
+  0e1dcc  if (g_10042db78 != 0) goto loc_1000e1edc
+  0e1dec  [NSDate date]
+  0e1e08  [[NSDate date] description]
+  0e1e34  [NSString stringWithFormat:@";;; Generated on %@ [GMT] by SExpIO with default settings", [[NSDate date] description]]
+  0e1e88  [NSMutableDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  0e1e98  store g_10042db78 = [NSMutableDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+loc_1000e1ea8:
+  0e1eb8  if ((x20 - 8) != -8) goto loc_1000e1ea8
+loc_1000e1ec4:
+  0e1ed4  if ((x19 - 8) != -8) goto loc_1000e1ec4
+loc_1000e1edc:
+  0e1f08  goto loc_1000e1f28
+  0e1f10  goto loc_1000e1f20
+loc_1000e1f20:
+loc_1000e1f28:
+loc_1000e1f38:
+  0e1f48  if ((x21 - 8) != -8) goto loc_1000e1f38
+loc_1000e1f54:
+  0e1f64  if ((x19 - 8) != -8) goto loc_1000e1f54
+  0e1f68  goto loc_1000e1f28
+
+== +[SExpIO sexpio]   (address 0x1000e1f6c  size 56  kind objc)
+  0e1f88  [SExpIO alloc]
+  0e1f98  [[SExpIO alloc] init]
+  0e1fa0  return
+
+== +[SExpIO decode:]   (address 0x1000e1fa4  size 560  kind objc)
+  0e1fe4  [NSString alloc]
+  0e1ffc  [[NSString alloc] initWithData:arg1 encoding:4]
+  0e2028  [SimpleUnicharInputStream simpleStreamWithString:[[NSString alloc] initWithData:arg1 encoding:4]]
+  0e204c  [SExpValidityChecker simpleValidityChecker:[SimpleUnicharInputStream simpleStreamWithString:[[NSString alloc] initWithData:arg1 encoding:4]]]
+  0e2074  [[SExpValidityChecker simpleValidityChecker:[SimpleUnicharInputStream simpleStreamWithString:[[NSString alloc] initWithData:arg1 encoding:4]]] isBasicSyntaxValid]
+  0e2078  if (!([[SExpValidityChecker simpleValidityChecker:[SimpleUnicharInputStream simpleStreamWithString:[[NSString alloc] initWithData:arg1 encoding:4]]] isBasicSyntaxValid] & 1)) goto loc_1000e2124
+  0e2090  [SimpleUnicharInputStream simpleStreamWithString:[[NSString alloc] initWithData:arg1 encoding:4]]
+  0e20b4  [SExpTokenizer simpleSExpTokenizer:[SimpleUnicharInputStream simpleStreamWithString:[[NSString alloc] initWithData:arg1 encoding:4]]]
+  0e20e0  [SExpIO sexpio]
+  0e2100  [[SExpIO sexpio] read:[SExpTokenizer simpleSExpTokenizer:[SimpleUnicharInputStream simpleStreamWithString:[[NSString alloc] initWithData:arg1 encoding:4]]]]
+  0e2120  goto loc_1000e2128
+loc_1000e2124:
+loc_1000e2128:
+  0e2160  return
+
+== -[SExpIO read:]   (address 0x1000e21d4  size 1024  kind objc)
+  0e2218  [SExp sexp]
+  0e223c  [NSMutableArray stack]
+  0e2270  [[SExp sexp] setToken:@"<root>"]
+  0e2294  [[NSMutableArray stack] push:[SExp sexp]]
+  0e2328  goto loc_1000e2338
+loc_1000e232c:
+loc_1000e2338:
+  0e2340  [arg1 nextToken]
+  0e2348  if ([arg1 nextToken] >u 4) goto loc_1000e2338
+  0e2364  [x0 <sel x1>]
+  0e2368  goto loc_1000e232c
+  0e2378  [x0 <sel x1>]
+  0e2398  [[x0 <sel x1>] <sel x1>]
+  0e23ac  if ([[x0 <sel x1>] <sel x1>] == 0) goto loc_1000e2494
+  0e23b8  [[x0 <sel x1>] <sel x1>]
+  0e23d0  [x0 <sel x1>]
+  0e23ec  [[[x0 <sel x1>] <sel x1>] <sel x1>]
+  0e23f8  goto loc_1000e24bc
+  0e2410  [SExp <sel x1>]
+  0e2434  [x0 <sel x1>]
+  0e2454  [[x0 <sel x1>] <sel x1>]
+  0e246c  [[[x0 <sel x1>] <sel x1>] <sel x1>]
+  0e2484  [x0 <sel x1>]
+  0e2490  goto loc_1000e2338
+loc_1000e2494:
+  0e249c  [x0 <sel x1>]
+  0e24b8  [x0 <sel x1>]
+loc_1000e24bc:
+  0e24c8  goto loc_1000e2338
+  0e2518  return
+
+== +[SExpIO encode:]   (address 0x1000e25d4  size 296  kind objc)
+  0e2608  [NSMutableString stringWithCapacity:200]
+  0e262c  [SExpIO sexpio]
+  0e2650  [[SExpIO sexpio] write:arg1 toString:[NSMutableString stringWithCapacity:200]]
+  0e267c  [[[SExpIO sexpio] write:arg1 toString:[NSMutableString stringWithCapacity:200]] dataUsingEncoding:4]
+  0e26b4  return
+
+== -[SExpIO write:toString:]   (address 0x1000e26fc  size 260  kind objc)
+  0e273c  [self header]
+  0e2760  [arg2 appendString:[self header]]
+  0e2780  [self setContiguousClose:2]
+  0e27a0  [self write:arg1 toString:arg2 atLevel:0]
+  0e27d0  return
+
+== -[SExpIO write:toString:atLevel:]   (address 0x1000e2800  size 1296  kind objc)
+  0e286c  [self contiguousClose]
+  0e2874  if ([self contiguousClose] < 2) goto loc_1000e2894
+  0e2890  [arg2 appendFormat:@"\n"]
+loc_1000e2894:
+  0e28ac  [self setContiguousClose:0]
+  0e28b4  &@selector(token)
+  0e28bc  if (arg3 == 0) goto loc_1000e2904
+  0e28c4  [arg1 token]
+  0e28f4  [arg2 appendFormat:@"\n%*s(%@", (arg3 << 1), " "]
+  0e28f8  goto loc_1000e2940
+  0e2900  goto loc_1000e2cd0
+loc_1000e2904:
+  0e2908  [arg1 token]
+  0e2934  [arg2 appendFormat:@"\n(%@", [arg1 token]]
+loc_1000e2940:
+  0e2954  [arg1 attributes]
+  0e2974  [[arg1 attributes] count]
+  0e2984  if ([[arg1 attributes] count] == 0) goto loc_1000e2b2c
+  0e29a0  [arg1 attributes]
+  0e29d8  [[arg1 attributes] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]
+  0e29e0  if ([[arg1 attributes] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16] == 0) goto loc_1000e2b10
+  0e2a0c  &@selector(appendFormat:)
+loc_1000e2a24:
+loc_1000e2a28:
+  0e2a38  if (x8 == x9) goto loc_1000e2a44
+  0e2a40  objc_enumerationMutation([arg1 attributes])
+loc_1000e2a44:
+  0e2a50  [x0 description]
+  0e2a6c  [[x0 description] componentsSeparatedByString:@" "]
+  0e2a88  if ([[x0 description] componentsSeparatedByString:@" "] == 0) goto loc_1000e2abc
+  0e2a98  [[[x0 description] componentsSeparatedByString:@" "] count]
+  0e2aa4  if ([[[x0 description] componentsSeparatedByString:@" "] count] <u 2) goto loc_1000e2abc
+loc_1000e2abc:
+  0e2acc  [arg2 appendFormat:one of {@" %@", @" \"%@\""}]
+  0e2af0  if ((x20 + 1) <u [[arg1 attributes] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]) goto loc_1000e2a28
+  0e2b04  [[arg1 attributes] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]
+  0e2b0c  if ([[arg1 attributes] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16] != 0) goto loc_1000e2a24
+loc_1000e2b10:
+loc_1000e2b2c:
+  0e2b4c  [arg1 children]
+  0e2b78  [[arg1 children] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16]
+  0e2b80  if ([[arg1 children] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16] == 0) goto loc_1000e2c0c
+  0e2b94  &@selector(write:toString:atLevel:)
+loc_1000e2b9c:
+loc_1000e2ba0:
+  0e2bac  if (x8 == x20) goto loc_1000e2bb8
+  0e2bb4  objc_enumerationMutation([arg1 children])
+loc_1000e2bb8:
+  0e2bd0  [self write:x2 toString:arg2 atLevel:(arg3 + 1)]
+  0e2be8  if ((x21 + 1) <u [[arg1 children] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16]) goto loc_1000e2ba0
+  0e2c00  [[arg1 children] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16]
+  0e2c08  if ([[arg1 children] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16] != 0) goto loc_1000e2b9c
+loc_1000e2c0c:
+  0e2c2c  [arg2 appendString:@")"]
+  0e2c38  [self contiguousClose]
+  0e2c48  [self setContiguousClose:([self contiguousClose] + 1)]
+  0e2c80  return
+
+== -[SExpIO dump:]   (address 0x1000e2d10  size 228  kind objc)
+  0e2d4c  [NSMutableString stringWithCapacity:256]
+  0e2d74  [self write:arg1 toString:[NSMutableString stringWithCapacity:256]]
+  0e2d90  NSLog(@"%@", [self write:arg1 toString:[NSMutableString stringWithCapacity:256]])
+  0e2db8  return
+
+== -[SExpIO contiguousClose]   (address 0x1000e2df4  size 16  kind objc)
+  0e2e00  return
+
+== -[SExpIO setContiguousClose:]   (address 0x1000e2e04  size 16  kind objc)
+  0e2e0c  self->contiguousClose = arg1
+  0e2e10  return

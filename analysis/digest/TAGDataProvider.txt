@@ -1,0 +1,285 @@
+
+== -[TAGDataProvider updateFailedHits:]   (address 0x10010d1bc  size 224  kind objc)
+  10d240  [TAGDispatchUtil background:^{-[TAGDataProvider updateFailedHits:]_block_invoke captures +0x20=arg1, +0x28=self} wait:0]
+  10d26c  return
+
+== -[TAGDataProvider updateFailedHits:]_block_invoke   (address 0x10010d29c  size 552  kind block)
+  10d2e8  [NSDate date]
+  10d330  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  10d338  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] == 0) goto loc_10010d408
+loc_10010d378:
+loc_10010d37c:
+  10d388  if (x8 == x20) goto loc_10010d394
+  10d390  objc_enumerationMutation(arg1)
+loc_10010d394:
+  10d3a4  [x0 dispatchTime]
+  10d3b8  if ([x0 dispatchTime] != 0) goto loc_10010d3cc
+  10d3c8  [x0 setDispatchTime:[NSDate date]]
+loc_10010d3cc:
+  10d3d8  [x0 setLastDispatchTime:[NSDate date]]
+  10d3e4  if ((x22 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]) goto loc_10010d37c
+  10d3f8  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  10d404  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] != 0) goto loc_10010d378
+loc_10010d408:
+  10d428  [self save]
+  10d434  goto loc_10010d46c
+  10d458  if (w22 != 1) goto loc_10010d4c0
+  10d45c  objc_begin_catch()
+  10d460  objc_end_catch(objc_begin_catch())
+loc_10010d46c:
+  10d498  return
+
+== sub_10010d4c4   (address 0x10010d4c4  size 40  kind sub)
+
+== sub_10010d4ec   (address 0x10010d4ec  size 40  kind sub)
+  10d510  return
+
+== -[TAGDataProvider addHitWithURLString:]   (address 0x10010d514  size 232  kind objc)
+  10d5a0  [TAGDispatchUtil background:^{-[TAGDataProvider addHitWithURLString:]_block_invoke captures +0x20=self, +0x28=arg1} wait:0]
+  10d5cc  return
+
+== -[TAGDataProvider addHitWithURLString:]_block_invoke   (address 0x10010d5fc  size 352  kind block)
+  10d628  [self context]
+  10d634  [&d_1003b7bf0] -> @"TAGHit"
+  10d65c  [NSEntityDescription insertNewObjectForEntityForName:@"TAGHit" inManagedObjectContext:[self context]]
+  10d688  [[NSEntityDescription insertNewObjectForEntityForName:@"TAGHit" inManagedObjectContext:[self context]] setDispatchURL:arg1]
+  10d6a0  [NSDate date]
+  10d6c4  [[NSEntityDescription insertNewObjectForEntityForName:@"TAGHit" inManagedObjectContext:[self context]] setTimestamp:[NSDate date]]
+  10d6e0  [self save]
+  10d6f4  return
+  10d740  if (w22 != 1) goto loc_10010d758
+  10d744  objc_begin_catch()
+  10d754  tail objc_end_catch(objc_begin_catch())
+
+== sub_10010d75c   (address 0x10010d75c  size 40  kind sub)
+
+== sub_10010d784   (address 0x10010d784  size 40  kind sub)
+  10d7a8  return
+
+== -[TAGDataProvider fetchHitsWithLimit:completion:]   (address 0x10010d7ac  size 236  kind objc)
+  10d83c  [TAGDispatchUtil background:^{-[TAGDataProvider fetchHitsWithLimit:completion:]_block_invoke captures +0x20=self, +0x28=arg2, +0x30=arg1} wait:0]
+  10d868  return
+
+== -[TAGDataProvider fetchHitsWithLimit:completion:]_block_invoke   (address 0x10010d898  size 380  kind block)
+  10d8cc  [TAGModel requestHitsWithLimit:arg1]
+  10d8ec  [self context]
+  10d914  [[self context] executeFetchRequest:[TAGModel requestHitsWithLimit:arg1] error:&sp[0x8]]
+  10d944  [[[self context] executeFetchRequest:[TAGModel requestHitsWithLimit:arg1] error:&sp[0x8]] count]
+  10d94c  t1 = ([[[self context] executeFetchRequest:[TAGModel requestHitsWithLimit:arg1] error:&sp[0x8]] count] != 0)
+  10d960  [self setHasHits:t1]
+  10d970  call arg2[+0x10]
+  10d9a8  return
+  10da00  if (w24 != 1) goto loc_10010da10
+  10da04  objc_begin_catch()
+  10da08  objc_end_catch(objc_begin_catch())
+
+== sub_10010da14   (address 0x10010da14  size 52  kind sub)
+  10da44  tail Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_10010da48   (address 0x10010da48  size 40  kind sub)
+  10da6c  return
+
+== -[TAGDataProvider fetchNotRecentlyAttemptedHitsWithLimit:completion:]   (address 0x10010da70  size 236  kind objc)
+  10db00  [TAGDispatchUtil background:^{-[TAGDataProvider fetchNotRecentlyAttemptedHitsWithLimit:completion:]_block_invoke captures +0x20=self, +0x28=arg2, +0x30=arg1} wait:0]
+  10db2c  return
+
+== -[TAGDataProvider fetchNotRecentlyAttemptedHitsWithLimit:completion:]_block_invoke   (address 0x10010db5c  size 464  kind block)
+  10db98  [NSDate dateWithTimeIntervalSinceNow:-120]
+  10dbc4  [TAGModel requestHitsWithLimit:arg1 lastDispatchedBefore:[NSDate dateWithTimeIntervalSinceNow:-120]]
+  10dbe4  [self context]
+  10dc0c  [[self context] executeFetchRequest:[TAGModel requestHitsWithLimit:arg1 lastDispatchedBefore:[NSDate dateWithTimeIntervalSinceNow:-120]] error:&sp[0x8]]
+  10dc3c  [[[self context] executeFetchRequest:[TAGModel requestHitsWithLimit:arg1 lastDispatchedBefore:[NSDate dateWithTimeIntervalSinceNow:-120]] error:&sp[0x8]] count]
+  10dc44  t1 = ([[[self context] executeFetchRequest:[TAGModel requestHitsWithLimit:arg1 lastDispatchedBefore:[NSDate dateWithTimeInterv… != 0)
+  10dc58  [self setHasHits:t1]
+  10dc68  call arg2[+0x10]
+  10dcac  return
+  10dd18  if (w25 != 1) goto loc_10010dd28
+  10dd1c  objc_begin_catch()
+  10dd20  objc_end_catch(objc_begin_catch())
+
+== sub_10010dd2c   (address 0x10010dd2c  size 52  kind sub)
+  10dd5c  tail Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_10010dd60   (address 0x10010dd60  size 40  kind sub)
+  10dd84  return
+
+== -[TAGDataProvider deleteHits:]   (address 0x10010dd88  size 232  kind objc)
+  10de14  [TAGDispatchUtil background:^{-[TAGDataProvider deleteHits:]_block_invoke captures +0x20=self, +0x28=arg1} wait:0]
+  10de40  return
+
+== -[TAGDataProvider deleteHits:]_block_invoke   (address 0x10010de70  size 468  kind block)
+  10deb4  [self context]
+  10defc  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  10df04  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_10010df8c
+loc_10010df28:
+loc_10010df30:
+  10df3c  if (x8 == x28) goto loc_10010df48
+  10df44  objc_enumerationMutation(arg1)
+loc_10010df48:
+  10df58  [[self context] deleteObject:x2]
+  10df64  if ((x27 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_10010df30
+  10df80  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  10df88  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_10010df28
+loc_10010df8c:
+  10dfa4  [self save]
+  10dfb0  goto loc_10010dfe4
+  10dfd8  if (w22 != 1) goto loc_10010e040
+  10dfdc  objc_begin_catch()
+  10dfe0  objc_end_catch(objc_begin_catch())
+loc_10010dfe4:
+  10e010  return
+
+== sub_10010e044   (address 0x10010e044  size 40  kind sub)
+
+== sub_10010e06c   (address 0x10010e06c  size 40  kind sub)
+  10e090  return
+
+== -[TAGDataProvider onExit:]   (address 0x10010e094  size 152  kind objc)
+  10e0f8  [TAGDispatchUtil background:^{-[TAGDataProvider onExit:]_block_invoke captures +0x20=self} wait:1]
+  10e110  return
+
+== -[TAGDataProvider onExit:]_block_invoke   (address 0x10010e12c  size 64  kind block)
+  10e144  [self save]
+  10e14c  return
+  10e158  if (w8 != 1) goto loc_10010e168
+  10e15c  objc_begin_catch()
+  10e164  tail objc_end_catch(objc_begin_catch())
+
+== sub_10010e16c   (address 0x10010e16c  size 8  kind sub)
+
+== sub_10010e174   (address 0x10010e174  size 8  kind sub)
+  10e178  return
+
+== -[TAGDataProvider context:deleteRequest:error:]   (address 0x10010e17c  size 508  kind objc)
+  10e1dc  [arg2 setIncludesPropertyValues:0]
+  10e1f8  [arg1 executeFetchRequest:arg2 error:arg3]
+  10e23c  [[arg1 executeFetchRequest:arg2 error:arg3] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  10e244  if ([[arg1 executeFetchRequest:arg2 error:arg3] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_10010e2c0
+  10e254  &@selector(deleteObject:)
+loc_10010e264:
+loc_10010e268:
+  10e274  if (x8 == x28) goto loc_10010e280
+  10e27c  objc_enumerationMutation([arg1 executeFetchRequest:arg2 error:arg3])
+loc_10010e280:
+  10e290  [arg1 deleteObject:x2]
+  10e29c  if ((x20 + 1) <u [[arg1 executeFetchRequest:arg2 error:arg3] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_10010e268
+  10e2b4  [[arg1 executeFetchRequest:arg2 error:arg3] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  10e2bc  if ([[arg1 executeFetchRequest:arg2 error:arg3] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_10010e264
+loc_10010e2c0:
+  10e2c8  if (arg3 == 0) goto loc_10010e2dc
+  10e2d8  goto loc_10010e2e0
+loc_10010e2dc:
+loc_10010e2e0:
+  10e330  return
+
+== -[TAGDataProvider deleteExcessHits:]   (address 0x10010e378  size 708  kind objc)
+  10e3ac  [self context]
+  10e3d0  [self maxHitAge]
+  10e3d8  if ([self maxHitAge] == 0.0) goto loc_10010e4cc
+  10e3f4  [TAGModel requestHitsWithLimit:0]
+  10e41c  [self maxHitAge]
+  10e434  [NSDate dateWithTimeIntervalSinceNow:-[self maxHitAge]]
+  10e440  [&d_1003b7bf8] -> @"timestamp"
+  10e46c  [NSPredicate predicateWithFormat:@"%K <= %@", @"timestamp"]
+  10e490  [[TAGModel requestHitsWithLimit:0] setPredicate:[NSPredicate predicateWithFormat:@"%K <= %@", @"timestamp"]]
+  10e4c0  [self context:[self context] deleteRequest:[TAGModel requestHitsWithLimit:0] error:arg1]
+loc_10010e4cc:
+  10e4e0  [self maxHitCount]
+  10e4e4  if ([self maxHitCount] == 0) goto loc_10010e598
+  10e4f0  [self context]
+  10e518  [self context:[self context] hitCount:arg1]
+  10e530  [self maxHitCount]
+  10e538  if ([self context:[self context] hitCount:arg1] <=u [self maxHitCount]) goto loc_10010e598
+  10e544  [self maxHitCount]
+  10e560  [TAGModel requestHitsWithLimit:([self context:[self context] hitCount:arg1] - [self maxHitCount])]
+  10e58c  [self context:[self context] deleteRequest:[TAGModel requestHitsWithLimit:([self context:[self context] hitCount:arg1] - [self maxHitCount])] error:arg1]
+loc_10010e598:
+  10e598  if (arg1 == 0) goto loc_10010e5ac
+  10e5a8  goto loc_10010e5b0
+loc_10010e5ac:
+loc_10010e5b0:
+  10e5d4  return
+
+== -[TAGDataProvider context:hitCount:]   (address 0x10010e63c  size 176  kind objc)
+  10e674  [TAGModel requestHitsWithLimit:0]
+  10e69c  [arg1 countForFetchRequest:[TAGModel requestHitsWithLimit:0] error:arg2]
+  10e6c4  return
+
+== -[TAGDataProvider save]   (address 0x10010e6ec  size 432  kind objc)
+  10e718  [self context]
+  10e734  [[self context] hasChanges]
+  10e744  if ([[self context] hasChanges] == 0) goto loc_10010e844
+  10e764  [self deleteExcessHits:&sp[0x18]]
+  10e77c  [self context]
+  10e7a0  [[self context] save:&sp[0x10]]
+  10e7cc  [self context]
+  10e7f8  [self context:[self context] hitCount:&sp[0x8]]
+  10e830  [self setHasHits:([self context:[self context] hitCount:&sp[0x8]] != 0)]
+loc_10010e844:
+  10e858  return
+
+== -[TAGDataProvider init]   (address 0x10010e89c  size 488  kind objc)
+  10e8dc  [super init]
+  10e8e4  if (self == 0) goto loc_10010ea20
+  10e8f8  self->_maxHitCount = 2000
+  10e90c  self->_maxHitAge = 0x4143c68000000000
+  10e928  [NSNotificationCenter defaultCenter]
+  10e96c  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onExit:) name:_UIApplicationWillResignActiveNotification[+0x0] object:0]
+  10e984  [NSNotificationCenter defaultCenter]
+  10e9b0  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onExit:) name:_UIApplicationWillTerminateNotification[+0x0] object:0]
+  10ea14  [TAGDispatchUtil background:^{-[TAGDataProvider init]_block_invoke captures +0x20=self, +0x28=self, +0x30=TAGDataProvider} wait:0]
+loc_10010ea20:
+  10ea3c  return
+
+== -[TAGDataProvider init]_block_invoke   (address 0x10010ea84  size 236  kind block)
+  10eab4  [TAGDispatchUtil databaseFullURL:@"GTM.sql"]
+  10eadc  [TAGModel contextWithURL:[TAGDispatchUtil databaseFullURL:@"GTM.sql"]]
+  10eaf8  self->_context = [TAGModel contextWithURL:[TAGDispatchUtil databaseFullURL:@"GTM.sql"]]
+  10eb18  [self setHasHits:1]
+  10eb2c  return
+  10eb54  if (w21 != 1) goto loc_10010eb6c
+  10eb58  objc_begin_catch()
+  10eb68  tail objc_end_catch(objc_begin_catch())
+
+== sub_10010eb70   (address 0x10010eb70  size 8  kind sub)
+
+== sub_10010eb78   (address 0x10010eb78  size 8  kind sub)
+  10eb7c  return
+
+== -[TAGDataProvider dealloc]   (address 0x10010eb80  size 220  kind objc)
+  10ebac  [NSNotificationCenter defaultCenter]
+  10ebcc  [[NSNotificationCenter defaultCenter] removeObserver:self]
+  10ebf8  [super dealloc]
+  10ec0c  return
+  10ec4c  [super dealloc]
+  10ec58  objc_terminate()
+
+== -[TAGDataProvider hasHits]   (address 0x10010ec5c  size 16  kind objc)
+  10ec68  return
+
+== -[TAGDataProvider setHasHits:]   (address 0x10010ec6c  size 16  kind objc)
+  10ec74  self->_hasHits = arg1
+  10ec78  return
+
+== -[TAGDataProvider maxHitCount]   (address 0x10010ec7c  size 16  kind objc)
+  10ec88  return
+
+== -[TAGDataProvider setMaxHitCount:]   (address 0x10010ec8c  size 16  kind objc)
+  10ec94  self->_maxHitCount = arg1
+  10ec98  return
+
+== -[TAGDataProvider maxHitAge]   (address 0x10010ec9c  size 16  kind objc)
+  10eca8  return
+
+== -[TAGDataProvider setMaxHitAge:]   (address 0x10010ecac  size 16  kind objc)
+  10ecb4  self->_maxHitAge = arg1
+  10ecb8  return
+
+== -[TAGDataProvider context]   (address 0x10010ecbc  size 16  kind objc)
+  10ecc8  return
+
+== -[TAGDataProvider setContext:]   (address 0x10010eccc  size 56  kind objc)
+  10ecf0  self->_context = arg1
+  10ed00  return
+
+== -[TAGDataProvider .cxx_destruct]   (address 0x10010ed04  size 20  kind objc)

@@ -1,0 +1,1309 @@
+// C++ classes recovered from RTTI (typeinfo name, bases) and vtables
+class csl::ACCFFT_Wrapper : ext@0x100428fc8   // typeinfo 0x1003b5d90 (20)
+    vtable @0x1003b5d70
+      [ 0] csl::ACCFFT_Wrapper::~ACCFFT_Wrapper
+      [ 1] csl::ACCFFT_Wrapper::~ACCFFT_Wrapper/*deleting*/
+      [ 2] csl::ACCFFT_Wrapper::vfunc_2
+class csl::AUIO : csl::IO   // typeinfo 0x1003b2db0 (20)
+    vtable @0x1003b2ce0
+      [ 0] csl::AUIO::~AUIO
+      [ 1] csl::AUIO::~AUIO/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::AUIO::vfunc_3
+      [ 4] csl::AUIO::vfunc_4
+      [ 5] csl::AUIO::vfunc_5
+      [ 6] csl::AUIO::vfunc_6
+      [ 7] csl::IO::vfunc_7
+      [ 8] csl::AUIO::vfunc_8
+      [ 9] csl::AUIO::vfunc_9
+      [10] csl::IO::vfunc_10
+class csl::Abst_SoundFile : csl::WavetableOscillator, csl::Writeable, csl::Seekable   // typeinfo 0x1003b33d0 (21)
+    vtable @0x1003b2e08
+      [ 0] csl::Abst_SoundFile::~Abst_SoundFile
+      [ 1] csl::Abst_SoundFile::~Abst_SoundFile/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::Abst_SoundFile::vfunc_4
+      [ 5] csl::WavetableOscillator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Abst_SoundFile::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Abst_SoundFile::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::Abst_SoundFile::vfunc_13
+      [14] pure virtual
+      [15] pure virtual
+      [16] pure virtual
+      [17] pure virtual
+      [18] pure virtual
+      [19] csl::Abst_SoundFile::vfunc_19
+      [20] csl::Abst_SoundFile::vfunc_20
+      [21] csl::Abst_SoundFile::vfunc_21
+      [22] csl::Abst_SoundFile::vfunc_22
+      [23] csl::Abst_SoundFile::vfunc_23
+      [24] csl::Abst_SoundFile::vfunc_24
+      [25] csl::Abst_SoundFile::vfunc_25
+      [26] pure virtual
+      [27] csl::Abst_SoundFile::vfunc_27
+      [28] pure virtual
+    vtable (secondary, -0xa8) @0x1003b2f08
+      [ 0] csl::Abst_SoundFile::thunk_vfunc_0
+      [ 1] csl::Abst_SoundFile::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b2f30
+      [ 0] csl::Abst_SoundFile::thunk_vfunc_0
+      [ 1] csl::Abst_SoundFile::thunk_vfunc_1
+      [ 2] csl::Abst_SoundFile::thunk_vfunc_2
+    vtable (secondary, -0x100) @0x1003b2f58
+      [ 0] pure virtual
+      [ 1] csl::Abst_SoundFile::thunk_vfunc_1
+      [ 2] csl::Abst_SoundFile::thunk_vfunc_2
+      [ 3] csl::Writeable::vfunc_3
+    vtable (secondary, -0x108) @0x1003b2f88
+      [ 0] csl::Abst_SoundFile::thunk_vfunc_0
+      [ 1] csl::Abst_SoundFile::thunk_vfunc_1
+      [ 2] pure virtual
+      [ 3] csl::Seekable::vfunc_3
+      [ 4] csl::Abst_SoundFile::thunk_vfunc_4
+    vtable (secondary, -0x1c0) @0x1003b2fd8
+      [ 0] csl::Abst_SoundFile::thunk_vfunc_0
+      [ 1] csl::Abst_SoundFile::thunk_vfunc_1
+      [ 2] csl::Abst_SoundFile::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b36e8
+      [ 0] csl::Abst_SoundFile::~Abst_SoundFile
+      [ 1] csl::Abst_SoundFile::~Abst_SoundFile/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::Abst_SoundFile::vfunc_4
+      [ 5] csl::WavetableOscillator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Abst_SoundFile::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Abst_SoundFile::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::Abst_SoundFile::vfunc_13
+      [14] pure virtual
+      [15] pure virtual
+      [16] pure virtual
+      [17] pure virtual
+      [18] pure virtual
+      [19] csl::Abst_SoundFile::vfunc_19
+      [20] csl::Abst_SoundFile::vfunc_20
+      [21] csl::Abst_SoundFile::vfunc_21
+      [22] csl::Abst_SoundFile::vfunc_22
+      [23] csl::Abst_SoundFile::vfunc_23
+      [24] csl::Abst_SoundFile::vfunc_24
+      [25] csl::Abst_SoundFile::vfunc_25
+      [26] pure virtual
+      [27] csl::Abst_SoundFile::vfunc_27
+      [28] pure virtual
+    vtable (secondary, -0xa8) @0x1003b37e8
+      [ 0] csl::Abst_SoundFile::thunk_vfunc_0
+      [ 1] csl::Abst_SoundFile::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b3810
+      [ 0] csl::Abst_SoundFile::thunk_vfunc_0
+      [ 1] csl::Abst_SoundFile::thunk_vfunc_1
+      [ 2] csl::Abst_SoundFile::thunk_vfunc_2
+    vtable (secondary, -0x1d8) @0x1003b3850
+      [ 0] csl::Abst_SoundFile::thunk_vfunc_0
+      [ 1] csl::Abst_SoundFile::thunk_vfunc_1
+      [ 2] csl::Abst_SoundFile::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+class csl::AirAbsorptionCue : ext@0x100428fd8   // typeinfo 0x1003b61c0 (20)
+    vtable @0x1003b5f50
+      [ 0] csl::AirAbsorptionCue::~AirAbsorptionCue
+      [ 1] csl::AirAbsorptionCue::~AirAbsorptionCue/*deleting*/
+      [ 2] csl::AirAbsorptionCue::vfunc_2
+      [ 3] csl::AirAbsorptionCue::vfunc_3
+class csl::AmbisonicDecoder : csl::AmbisonicUnitGenerator   // typeinfo 0x1003b6a60 (20)
+    vtable @0x1003b69b0
+      [ 0] csl::AmbisonicDecoder::~AmbisonicDecoder
+      [ 1] csl::AmbisonicDecoder::~AmbisonicDecoder/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::AmbisonicDecoder::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+class csl::AmbisonicEncoder : csl::AmbisonicUnitGenerator   // typeinfo 0x1003b6a40 (20)
+    vtable @0x1003b6930
+      [ 0] csl::AmbisonicEncoder::~AmbisonicEncoder
+      [ 1] csl::AmbisonicEncoder::~AmbisonicEncoder/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::AmbisonicEncoder::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+class csl::AmbisonicMixer : csl::AmbisonicUnitGenerator   // typeinfo 0x1003b6c70 (20)
+    vtable @0x1003b6b80
+      [ 0] csl::AmbisonicMixer::~AmbisonicMixer
+      [ 1] csl::AmbisonicMixer::~AmbisonicMixer/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::AmbisonicMixer::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+class csl::AmbisonicPanner : csl::SpatialPanner   // typeinfo 0x1003b6b50 (20)
+    vtable @0x1003b6a90
+      [ 0] csl::AmbisonicPanner::~AmbisonicPanner
+      [ 1] csl::AmbisonicPanner::~AmbisonicPanner/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::AmbisonicPanner::vfunc_4
+      [ 5] csl::SpatialPanner::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::AmbisonicPanner::vfunc_11
+      [12] csl::SpatialPanner::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+      [14] csl::AmbisonicPanner::vfunc_14
+      [15] csl::AmbisonicPanner::vfunc_15
+      [16] csl::SpatialPanner::vfunc_16
+      [17] csl::SpatialPanner::vfunc_17
+      [18] csl::SpatialPanner::vfunc_18
+    vtable (secondary, -0xa8) @0x1003b6b38
+      [ 0] csl::AmbisonicPanner::thunk_vfunc_0
+      [ 1] csl::AmbisonicPanner::thunk_vfunc_1
+      [ 2] csl::SpatialPanner::thunk_vfunc_2
+class csl::AmbisonicRotator : csl::AmbisonicUnitGenerator   // typeinfo 0x1003b6c90 (20)
+    vtable @0x1003b6c00
+      [ 0] csl::AmbisonicRotator::~AmbisonicRotator
+      [ 1] csl::AmbisonicRotator::~AmbisonicRotator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::AmbisonicRotator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+class csl::AmbisonicUnitGenerator : csl::UnitGenerator   // typeinfo 0x1003b6a20 (20)
+    vtable @0x1003b68b0
+      [ 0] csl::AmbisonicUnitGenerator::~AmbisonicUnitGenerator
+      [ 1] csl::AmbisonicUnitGenerator::~AmbisonicUnitGenerator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+class csl::BinauralPanner : csl::SpatialPanner   // typeinfo 0x1003b6860 (20)
+    vtable @0x1003b6780
+      [ 0] csl::BinauralPanner::~BinauralPanner
+      [ 1] csl::BinauralPanner::~BinauralPanner/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::BinauralPanner::vfunc_4
+      [ 5] csl::SpatialPanner::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::SpatialPanner::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+      [14] csl::SpatialPanner::vfunc_14
+      [15] csl::SpatialPanner::vfunc_15
+      [16] csl::SpatialPanner::vfunc_16
+      [17] csl::BinauralPanner::vfunc_17
+      [18] csl::SpatialPanner::vfunc_18
+    vtable (secondary, -0xa8) @0x1003b6828
+      [ 0] csl::BinauralPanner::thunk_vfunc_0
+      [ 1] csl::BinauralPanner::thunk_vfunc_1
+      [ 2] csl::SpatialPanner::thunk_vfunc_2
+class csl::BinauralSourceCache : ext@0x100429020   // typeinfo 0x1003b6880 (20)
+    vtable @0x1003b6850
+      [ 0] csl::BinauralSourceCache::~BinauralSourceCache
+      [ 1] csl::BinauralSourceCache::~BinauralSourceCache/*deleting*/
+class csl::Buffer   // typeinfo 0x1003b4708 (17)
+    vtable @0x1003b4270
+      [ 0] csl::Buffer::~Buffer
+      [ 1] csl::Buffer::~Buffer/*deleting*/
+      [ 2] csl::Buffer::vfunc_2
+      [ 3] csl::Buffer::vfunc_3
+      [ 4] csl::Buffer::vfunc_4
+      [ 5] csl::Buffer::vfunc_5
+      [ 6] csl::Buffer::vfunc_6
+      [ 7] csl::Buffer::vfunc_7
+      [ 8] csl::Buffer::vfunc_8
+class csl::Butter : csl::Filter   // typeinfo 0x1003b53c0 (20)
+    vtable @0x1003b4d08
+      [ 0] csl::Butter::~Butter
+      [ 1] csl::Butter::~Butter/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::Filter::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Filter::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+      [14] csl::Butter::vfunc_14
+    vtable (secondary, -0xb0) @0x1003b4d98
+      [ 0] csl::Butter::thunk_vfunc_0
+      [ 1] csl::Butter::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xb8) @0x1003b4dc8
+      [ 0] csl::Butter::thunk_vfunc_0
+      [ 1] csl::Butter::thunk_vfunc_1
+    vtable (secondary, -0x160) @0x1003b4e00
+      [ 0] csl::Butter::thunk_vfunc_0
+      [ 1] csl::Butter::thunk_vfunc_1
+      [ 2] csl::Filter::thunk_vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+class csl::CASoundFile : csl::Abst_SoundFile   // typeinfo 0x1003b3bc0 (20)
+    vtable @0x1003b3438
+      [ 0] csl::CASoundFile::~CASoundFile
+      [ 1] csl::CASoundFile::~CASoundFile/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::Abst_SoundFile::vfunc_4
+      [ 5] csl::WavetableOscillator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Abst_SoundFile::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::CASoundFile::vfunc_11
+      [12] csl::CASoundFile::vfunc_12
+      [13] csl::Abst_SoundFile::vfunc_13
+      [14] csl::CASoundFile::vfunc_14
+      [15] csl::CASoundFile::vfunc_15
+      [16] csl::CASoundFile::vfunc_16
+      [17] csl::CASoundFile::vfunc_17
+      [18] csl::CASoundFile::vfunc_18
+      [19] csl::Abst_SoundFile::vfunc_19
+      [20] csl::Abst_SoundFile::vfunc_20
+      [21] csl::Abst_SoundFile::vfunc_21
+      [22] csl::Abst_SoundFile::vfunc_22
+      [23] csl::Abst_SoundFile::vfunc_23
+      [24] csl::Abst_SoundFile::vfunc_24
+      [25] csl::Abst_SoundFile::vfunc_25
+      [26] csl::CASoundFile::vfunc_26
+      [27] csl::Abst_SoundFile::vfunc_27
+      [28] csl::CASoundFile::vfunc_28
+    vtable (secondary, -0xa8) @0x1003b3538
+      [ 0] csl::CASoundFile::thunk_vfunc_0
+      [ 1] csl::CASoundFile::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b3560
+      [ 0] csl::CASoundFile::thunk_vfunc_0
+      [ 1] csl::CASoundFile::thunk_vfunc_1
+      [ 2] csl::Abst_SoundFile::thunk_vfunc_2
+    vtable (secondary, -0x100) @0x1003b3588
+      [ 0] csl::CASoundFile::thunk_vfunc_0
+      [ 1] csl::CASoundFile::thunk_vfunc_1
+      [ 2] csl::CASoundFile::thunk_vfunc_2
+      [ 3] csl::Writeable::vfunc_3
+    vtable (secondary, -0x108) @0x1003b35b8
+      [ 0] csl::CASoundFile::thunk_vfunc_0
+      [ 1] csl::CASoundFile::thunk_vfunc_1
+      [ 2] csl::CASoundFile::thunk_vfunc_2
+      [ 3] csl::Seekable::vfunc_3
+      [ 4] csl::Abst_SoundFile::thunk_vfunc_4
+    vtable (secondary, -0x1d8) @0x1003b3608
+      [ 0] csl::CASoundFile::thunk_vfunc_0
+      [ 1] csl::CASoundFile::thunk_vfunc_1
+      [ 2] csl::CASoundFile::thunk_vfunc_2
+      [ 3] csl::CASoundFile::thunk_vfunc_3
+class csl::Controllable   // typeinfo 0x1003b4718 (17)
+    vtable @0x1003b43a0
+      [ 0] csl::Controllable::~Controllable
+      [ 1] csl::Controllable::~Controllable/*deleting*/
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+class csl::DistanceSimulator : csl::SpatialSource   // typeinfo 0x1003b61a0 (20)
+    vtable @0x1003b5dd0
+      [ 0] csl::DistanceSimulator::~DistanceSimulator
+      [ 1] csl::DistanceSimulator::~DistanceSimulator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::SpatialSource::vfunc_4
+      [ 5] csl::DistanceSimulator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::SpatialSource::vfunc_11
+      [12] csl::DistanceSimulator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+      [14] csl::SpatialSource::vfunc_14
+      [15] csl::SpatialSource::vfunc_15
+      [16] csl::SpatialSource::vfunc_16
+      [17] csl::SpatialSource::vfunc_17
+      [18] csl::SpatialSource::vfunc_18
+      [19] csl::DistanceSimulator::vfunc_19
+    vtable (secondary, -0xd0) @0x1003b5e98
+      [ 0] csl::DistanceSimulator::thunk_vfunc_0
+      [ 1] csl::DistanceSimulator::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xd8) @0x1003b5ed8
+      [ 0] csl::DistanceSimulator::thunk_vfunc_0
+      [ 1] csl::DistanceSimulator::thunk_vfunc_1
+      [ 2] csl::SpatialSource::thunk_vfunc_2
+      [ 3] csl::DistanceSimulator::thunk_vfunc_3
+class csl::Effect : csl::UnitGenerator, csl::Controllable   // typeinfo 0x1003b4780 (21)
+    vtable @0x1003b47d8
+      [ 0] csl::Effect::~Effect(…)
+      [ 1] csl::Effect::~Effect/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xf0) @0x1003b4870
+      [ 0] csl::Effect::thunk_vfunc_0
+      [ 1] csl::Effect::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+    vtable @0x1003b4a78
+      [ 0] csl::Effect::~Effect(…)
+      [ 1] csl::Effect::~Effect/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xf0) @0x1003b4b10
+      [ 0] csl::Effect::thunk_vfunc_0
+      [ 1] csl::Effect::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+    vtable @0x1003b4ea8
+      [ 0] csl::Effect::~Effect(…)
+      [ 1] csl::Effect::~Effect/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0x160) @0x1003b4f40
+      [ 0] csl::Effect::thunk_vfunc_0
+      [ 1] csl::Effect::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+    vtable @0x1003b5218
+      [ 0] csl::Effect::~Effect(…)
+      [ 1] csl::Effect::~Effect/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0x160) @0x1003b52b0
+      [ 0] csl::Effect::thunk_vfunc_0
+      [ 1] csl::Effect::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+    vtable @0x1003b5628
+      [ 0] csl::Effect::~Effect(…)
+      [ 1] csl::Effect::~Effect/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0x118) @0x1003b56c0
+      [ 0] csl::Effect::thunk_vfunc_0
+      [ 1] csl::Effect::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+    vtable @0x1003b57b8
+      [ 0] csl::Effect::~Effect(…)
+      [ 1] csl::Effect::~Effect/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xd8) @0x1003b5850
+      [ 0] csl::Effect::thunk_vfunc_0
+      [ 1] csl::Effect::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+    vtable @0x1003b5b28
+      [ 0] csl::Effect::~Effect(…)
+      [ 1] csl::Effect::~Effect/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xb8) @0x1003b5bc0
+      [ 0] csl::Effect::thunk_vfunc_0
+      [ 1] csl::Effect::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+class csl::FanOut : csl::Effect   // typeinfo 0x1003b4890 (20)
+    vtable @0x1003b43d8
+      [ 0] csl::FanOut::~FanOut(…)
+      [ 1] csl::FanOut::~FanOut/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::FanOut::vfunc_4
+      [ 5] csl::FanOut::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::FanOut::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xf0) @0x1003b4470
+      [ 0] csl::FanOut::thunk_vfunc_0
+      [ 1] csl::FanOut::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::FanOut::thunk_vfunc_3
+    vtable @0x1003b49a8
+      [ 0] csl::FanOut::~FanOut(…)
+      [ 1] csl::FanOut::~FanOut/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::FanOut::vfunc_4
+      [ 5] csl::FanOut::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::FanOut::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xf0) @0x1003b4a40
+      [ 0] csl::FanOut::thunk_vfunc_0
+      [ 1] csl::FanOut::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::FanOut::thunk_vfunc_3
+class csl::Filter : csl::Effect, csl::Scalable, csl::FrequencyAmount   // typeinfo 0x1003b5080 (21)
+    vtable @0x1003b4b88
+      [ 0] csl::Filter::~Filter
+      [ 1] csl::Filter::~Filter/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::Filter::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Filter::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+      [14] csl::Filter::vfunc_14
+    vtable (secondary, -0xb0) @0x1003b4c18
+      [ 0] csl::Filter::thunk_vfunc_0
+      [ 1] csl::Filter::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xb8) @0x1003b4c48
+      [ 0] csl::Filter::thunk_vfunc_0
+      [ 1] csl::Filter::thunk_vfunc_1
+    vtable (secondary, -0x160) @0x1003b4c80
+      [ 0] csl::Filter::thunk_vfunc_0
+      [ 1] csl::Filter::thunk_vfunc_1
+      [ 2] csl::Filter::thunk_vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+    vtable @0x1003b50e8
+      [ 0] csl::Filter::~Filter
+      [ 1] csl::Filter::~Filter/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::Filter::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Filter::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+      [14] csl::Filter::vfunc_14
+    vtable (secondary, -0xb0) @0x1003b5178
+      [ 0] csl::Filter::thunk_vfunc_0
+      [ 1] csl::Filter::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xb8) @0x1003b51a8
+      [ 0] csl::Filter::thunk_vfunc_0
+      [ 1] csl::Filter::thunk_vfunc_1
+    vtable (secondary, -0x160) @0x1003b51e0
+      [ 0] csl::Filter::thunk_vfunc_0
+      [ 1] csl::Filter::thunk_vfunc_1
+      [ 2] csl::Filter::thunk_vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+class csl::Freeverb : csl::Effect, csl::Scalable   // typeinfo 0x1003b5760 (21)
+    vtable @0x1003b53f8
+      [ 0] csl::Freeverb::~Freeverb
+      [ 1] csl::Freeverb::~Freeverb/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::Freeverb::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xb0) @0x1003b5480
+      [ 0] csl::Freeverb::thunk_vfunc_0
+      [ 1] csl::Freeverb::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x118) @0x1003b54c0
+      [ 0] csl::Freeverb::thunk_vfunc_0
+      [ 1] csl::Freeverb::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+class csl::FrequencyAmount : csl::Controllable   // typeinfo 0x1003b5050 (21)
+    vtable @0x1003b4ff8
+      [ 0] csl::FrequencyAmount::~FrequencyAmount
+      [ 1] csl::FrequencyAmount::~FrequencyAmount/*deleting*/
+    vtable (secondary, -0xa8) @0x1003b5030
+      [ 0] csl::FrequencyAmount::thunk_vfunc_0
+      [ 1] csl::FrequencyAmount::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b5368
+      [ 0] csl::FrequencyAmount::~FrequencyAmount
+      [ 1] csl::FrequencyAmount::~FrequencyAmount/*deleting*/
+    vtable (secondary, -0xa8) @0x1003b53a0
+      [ 0] csl::FrequencyAmount::thunk_vfunc_0
+      [ 1] csl::FrequencyAmount::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+class csl::IO : ext@0x100429068   // typeinfo 0x1003b4b50 (20)
+    vtable @0x1003b4690
+      [ 0] csl::IO::~IO
+      [ 1] csl::IO::~IO/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::IO::vfunc_3
+      [ 4] csl::IO::vfunc_4
+      [ 5] csl::IO::vfunc_5
+      [ 6] csl::IO::vfunc_6
+      [ 7] csl::IO::vfunc_7
+      [ 8] csl::IO::vfunc_8
+      [ 9] csl::IO::vfunc_9
+      [10] csl::IO::vfunc_10
+class csl::IntensityAttenuationCue : ext@0x100428fd8   // typeinfo 0x1003b5fa0 (20)
+    vtable @0x1003b5f80
+      [ 0] csl::IntensityAttenuationCue::~IntensityAttenuationCue
+      [ 1] csl::IntensityAttenuationCue::~IntensityAttenuationCue/*deleting*/
+      [ 2] csl::IntensityAttenuationCue::vfunc_2
+      [ 3] csl::IntensityAttenuationCue::vfunc_3
+class csl::Joiner : csl::Effect   // typeinfo 0x1003b48b0 (20)
+    vtable @0x1003b45c8
+      [ 0] csl::Joiner::~Joiner(…)
+      [ 1] csl::Joiner::~Joiner/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::Joiner::vfunc_4
+      [ 5] csl::Joiner::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Joiner::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Joiner::vfunc_13
+    vtable (secondary, -0xb0) @0x1003b4660
+      [ 0] csl::Joiner::thunk_vfunc_0
+      [ 1] csl::Joiner::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+class csl::Mixer : csl::UnitGenerator, csl::Scalable   // typeinfo 0x1003b5d20 (21)
+    vtable @0x1003b58a8
+      [ 0] csl::Mixer::~Mixer
+      [ 1] csl::Mixer::~Mixer/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::Mixer::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Mixer::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Mixer::vfunc_11
+      [12] csl::Mixer::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+    vtable (secondary, -0xa8) @0x1003b5930
+      [ 0] csl::Mixer::thunk_vfunc_0
+      [ 1] csl::Mixer::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x120) @0x1003b5970
+      [ 0] csl::Mixer::thunk_vfunc_0
+      [ 1] csl::Mixer::thunk_vfunc_1
+      [ 2] csl::Mixer::thunk_vfunc_2
+      [ 3] csl::Mixer::thunk_vfunc_3
+class csl::Oscillator : csl::UnitGenerator, csl::Phased, csl::Scalable   // typeinfo 0x1003b3fd0 (21)
+    vtable @0x1003b31c8
+      [ 0] csl::Oscillator::~Oscillator
+      [ 1] csl::Oscillator::~Oscillator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Oscillator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+    vtable (secondary, -0xa8) @0x1003b3250
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b3278
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x1c0) @0x1003b32b8
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+      [ 2] csl::Oscillator::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b39b8
+      [ 0] csl::Oscillator::~Oscillator
+      [ 1] csl::Oscillator::~Oscillator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Oscillator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+    vtable (secondary, -0xa8) @0x1003b3a40
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b3a68
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x1d8) @0x1003b3aa8
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+      [ 2] csl::Oscillator::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b3bf8
+      [ 0] csl::Oscillator::~Oscillator
+      [ 1] csl::Oscillator::~Oscillator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Oscillator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+    vtable (secondary, -0xa8) @0x1003b3c80
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b3ca8
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xc0) @0x1003b3ce8
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+      [ 2] csl::Oscillator::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b4038
+      [ 0] csl::Oscillator::~Oscillator
+      [ 1] csl::Oscillator::~Oscillator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Oscillator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+    vtable (secondary, -0xa8) @0x1003b40c0
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b40e8
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x100) @0x1003b4128
+      [ 0] csl::Oscillator::thunk_vfunc_0
+      [ 1] csl::Oscillator::thunk_vfunc_1
+      [ 2] csl::Oscillator::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+class csl::Panner : csl::Effect, csl::Scalable   // typeinfo 0x1003b5c60 (21)
+    vtable @0x1003b59d8
+      [ 0] csl::Panner::~Panner
+      [ 1] csl::Panner::~Panner/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::Panner::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Effect::vfunc_12
+      [13] csl::Effect::vfunc_13
+      [14] csl::Panner::vfunc_14
+    vtable (secondary, -0xb0) @0x1003b5a68
+      [ 0] csl::Panner::thunk_vfunc_0
+      [ 1] csl::Panner::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xb8) @0x1003b5aa8
+      [ 0] csl::Panner::thunk_vfunc_0
+      [ 1] csl::Panner::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Effect::thunk_vfunc_3
+class csl::Phased : csl::Controllable   // typeinfo 0x1003b4930 (21)
+    vtable @0x1003b32f8
+      [ 0] csl::Phased::~Phased
+      [ 1] csl::Phased::~Phased/*deleting*/
+    vtable (secondary, -0x118) @0x1003b3330
+      [ 0] csl::Phased::thunk_vfunc_0
+      [ 1] csl::Phased::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b3ae8
+      [ 0] csl::Phased::~Phased
+      [ 1] csl::Phased::~Phased/*deleting*/
+    vtable (secondary, -0x130) @0x1003b3b20
+      [ 0] csl::Phased::thunk_vfunc_0
+      [ 1] csl::Phased::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b3ef8
+      [ 0] csl::Phased::~Phased
+      [ 1] csl::Phased::~Phased/*deleting*/
+    vtable (secondary, -0x18) @0x1003b3f30
+      [ 0] csl::Phased::thunk_vfunc_0
+      [ 1] csl::Phased::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b4168
+      [ 0] csl::Phased::~Phased
+      [ 1] csl::Phased::~Phased/*deleting*/
+    vtable (secondary, -0x58) @0x1003b41a0
+      [ 0] csl::Phased::thunk_vfunc_0
+      [ 1] csl::Phased::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+class csl::Port   // typeinfo 0x1003b4918 (17)
+    vtable @0x1003b4370
+      [ 0] csl::Port::~Port
+      [ 1] csl::Port::~Port/*deleting*/
+      [ 2] csl::Port::vfunc_2
+      [ 3] csl::Port::vfunc_3
+class csl::Scalable : csl::Controllable   // typeinfo 0x1003b4960 (21)
+    vtable @0x1003b3368
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x108) @0x1003b33a8
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b3b58
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x120) @0x1003b3b98
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b3f68
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x8) @0x1003b3fa8
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b41d8
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x48) @0x1003b4218
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b4f78
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xb0) @0x1003b4fb8
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b52e8
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xb0) @0x1003b5328
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b56f8
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x68) @0x1003b5738
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b5bf8
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x8) @0x1003b5c38
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b5cb8
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x78) @0x1003b5cf8
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b6138
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x8) @0x1003b6178
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b6678
+      [ 0] csl::Scalable::~Scalable
+      [ 1] csl::Scalable::~Scalable/*deleting*/
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x8) @0x1003b66b8
+      [ 0] csl::Scalable::thunk_vfunc_0
+      [ 1] csl::Scalable::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+class csl::Seekable   // typeinfo 0x1003b4768 (17)
+    vtable @0x1003b4740
+      [ 0] csl::Seekable::~Seekable
+      [ 1] csl::Seekable::~Seekable/*deleting*/
+      [ 2] pure virtual
+      [ 3] csl::Seekable::vfunc_3
+      [ 4] pure virtual
+class csl::SimplePanner : csl::SpatialPanner   // typeinfo 0x1003b62b0 (20)
+    vtable @0x1003b61f0
+      [ 0] csl::SimplePanner::~SimplePanner
+      [ 1] csl::SimplePanner::~SimplePanner/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::SimplePanner::vfunc_4
+      [ 5] csl::SpatialPanner::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::SpatialPanner::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+      [14] csl::SimplePanner::vfunc_14
+      [15] csl::SimplePanner::vfunc_15
+      [16] csl::SpatialPanner::vfunc_16
+      [17] csl::SpatialPanner::vfunc_17
+      [18] csl::SpatialPanner::vfunc_18
+    vtable (secondary, -0xa8) @0x1003b6298
+      [ 0] csl::SimplePanner::thunk_vfunc_0
+      [ 1] csl::SimplePanner::thunk_vfunc_1
+      [ 2] csl::SpatialPanner::thunk_vfunc_2
+class csl::SpatialPanner : csl::UnitGenerator, ext@0x100428ff0   // typeinfo 0x1003b6490 (21)
+    vtable @0x1003b63d0
+      [ 0] csl::SpatialPanner::~SpatialPanner
+      [ 1] csl::SpatialPanner::~SpatialPanner/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] pure virtual
+      [ 5] csl::SpatialPanner::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::SpatialPanner::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+      [14] csl::SpatialPanner::vfunc_14
+      [15] csl::SpatialPanner::vfunc_15
+      [16] csl::SpatialPanner::vfunc_16
+      [17] csl::SpatialPanner::vfunc_17
+      [18] csl::SpatialPanner::vfunc_18
+    vtable (secondary, -0xa8) @0x1003b6478
+      [ 0] csl::SpatialPanner::thunk_vfunc_0
+      [ 1] csl::SpatialPanner::thunk_vfunc_1
+      [ 2] csl::SpatialPanner::thunk_vfunc_2
+class csl::SpatialSource : csl::UnitGenerator, csl::Scalable   // typeinfo 0x1003b66e0 (21)
+    vtable @0x1003b5fe0
+      [ 0] csl::SpatialSource::~SpatialSource
+      [ 1] csl::SpatialSource::~SpatialSource/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::SpatialSource::vfunc_4
+      [ 5] csl::SpatialSource::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::SpatialSource::vfunc_11
+      [12] csl::SpatialSource::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+      [14] csl::SpatialSource::vfunc_14
+      [15] csl::SpatialSource::vfunc_15
+      [16] csl::SpatialSource::vfunc_16
+      [17] csl::SpatialSource::vfunc_17
+      [18] csl::SpatialSource::vfunc_18
+      [19] csl::SpatialSource::vfunc_19
+    vtable (secondary, -0xd0) @0x1003b60a8
+      [ 0] csl::SpatialSource::thunk_vfunc_0
+      [ 1] csl::SpatialSource::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xd8) @0x1003b60e8
+      [ 0] csl::SpatialSource::thunk_vfunc_0
+      [ 1] csl::SpatialSource::thunk_vfunc_1
+      [ 2] csl::SpatialSource::thunk_vfunc_2
+      [ 3] csl::SpatialSource::thunk_vfunc_3
+    vtable @0x1003b64f0
+      [ 0] csl::SpatialSource::~SpatialSource
+      [ 1] csl::SpatialSource::~SpatialSource/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::SpatialSource::vfunc_4
+      [ 5] csl::SpatialSource::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::SpatialSource::vfunc_11
+      [12] csl::SpatialSource::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+      [14] csl::SpatialSource::vfunc_14
+      [15] csl::SpatialSource::vfunc_15
+      [16] csl::SpatialSource::vfunc_16
+      [17] csl::SpatialSource::vfunc_17
+      [18] csl::SpatialSource::vfunc_18
+      [19] csl::SpatialSource::vfunc_19
+    vtable (secondary, -0xb8) @0x1003b65b8
+      [ 0] csl::SpatialSource::thunk_vfunc_0
+      [ 1] csl::SpatialSource::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0xc0) @0x1003b65f8
+      [ 0] csl::SpatialSource::thunk_vfunc_0
+      [ 1] csl::SpatialSource::thunk_vfunc_1
+      [ 2] csl::SpatialSource::thunk_vfunc_2
+      [ 3] csl::SpatialSource::thunk_vfunc_3
+class csl::Spatializer : csl::UnitGenerator, ext@0x100428ff0   // typeinfo 0x1003b6380 (21)
+    vtable @0x1003b62e0
+      [ 0] csl::Spatializer::~Spatializer
+      [ 1] csl::Spatializer::~Spatializer/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::Spatializer::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Spatializer::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+      [14] csl::Spatializer::vfunc_14
+    vtable (secondary, -0xa8) @0x1003b6368
+      [ 0] csl::Spatializer::thunk_vfunc_0
+      [ 1] csl::Spatializer::thunk_vfunc_1
+      [ 2] csl::Spatializer::thunk_vfunc_2
+class csl::SpeakerLayout : ext@0x100429068   // typeinfo 0x1003b6750 (20)
+    vtable @0x1003b6730
+      [ 0] csl::SpeakerLayout::~SpeakerLayout
+      [ 1] csl::SpeakerLayout::~SpeakerLayout/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+class csl::Splitter : csl::FanOut   // typeinfo 0x1003b4b30 (20)
+    vtable @0x1003b44c8
+      [ 0] csl::Splitter::~Splitter(…)
+      [ 1] csl::Splitter::~Splitter/*deleting*/(…)
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::Splitter::vfunc_3
+      [ 4] csl::Splitter::vfunc_4
+      [ 5] csl::Splitter::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Effect::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::FanOut::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xf0) @0x1003b4560
+      [ 0] csl::Splitter::thunk_vfunc_0
+      [ 1] csl::Splitter::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::FanOut::thunk_vfunc_3
+class csl::Stereoverb : csl::Effect   // typeinfo 0x1003b5870 (20)
+    vtable @0x1003b5538
+      [ 0] csl::Stereoverb::~Stereoverb
+      [ 1] csl::Stereoverb::~Stereoverb/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::Stereoverb::vfunc_3
+      [ 4] csl::Stereoverb::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::Stereoverb::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::Stereoverb::vfunc_12
+      [13] csl::Effect::vfunc_13
+    vtable (secondary, -0xd8) @0x1003b55d0
+      [ 0] csl::Stereoverb::thunk_vfunc_0
+      [ 1] csl::Stereoverb::thunk_vfunc_1
+      [ 2] csl::Controllable::vfunc_2
+      [ 3] csl::Stereoverb::thunk_vfunc_3
+class csl::UnitGenerator : ext@0x100429068   // typeinfo 0x1003b46f0 (20)
+    vtable @0x1003b42d0
+      [ 0] csl::UnitGenerator::~UnitGenerator
+      [ 1] csl::UnitGenerator::~UnitGenerator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::UnitGenerator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::UnitGenerator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+class csl::WavetableOscillator : csl::Oscillator   // typeinfo 0x1003b4240 (20)
+    vtable @0x1003b3098
+      [ 0] csl::WavetableOscillator::~WavetableOscillator
+      [ 1] csl::WavetableOscillator::~WavetableOscillator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::WavetableOscillator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Oscillator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+    vtable (secondary, -0xa8) @0x1003b3120
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b3148
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x1c0) @0x1003b3188
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+      [ 2] csl::Oscillator::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b3888
+      [ 0] csl::WavetableOscillator::~WavetableOscillator
+      [ 1] csl::WavetableOscillator::~WavetableOscillator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::WavetableOscillator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Oscillator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+    vtable (secondary, -0xa8) @0x1003b3910
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b3938
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x1d8) @0x1003b3978
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+      [ 2] csl::Oscillator::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+    vtable @0x1003b3d68
+      [ 0] csl::WavetableOscillator::~WavetableOscillator
+      [ 1] csl::WavetableOscillator::~WavetableOscillator/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::UnitGenerator::vfunc_3
+      [ 4] csl::UnitGenerator::vfunc_4
+      [ 5] csl::WavetableOscillator::vfunc_5
+      [ 6] csl::UnitGenerator::vfunc_6
+      [ 7] csl::UnitGenerator::vfunc_7
+      [ 8] csl::UnitGenerator::vfunc_8
+      [ 9] csl::UnitGenerator::vfunc_9
+      [10] csl::UnitGenerator::vfunc_10
+      [11] csl::Oscillator::vfunc_11
+      [12] csl::UnitGenerator::vfunc_12
+      [13] csl::UnitGenerator::vfunc_13
+    vtable (secondary, -0xa8) @0x1003b3df0
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+    vtable (secondary, -0xb8) @0x1003b3e18
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+      [ 2] csl::Scalable::vfunc_2
+    vtable (secondary, -0x100) @0x1003b3e58
+      [ 0] csl::WavetableOscillator::thunk_vfunc_0
+      [ 1] csl::WavetableOscillator::thunk_vfunc_1
+      [ 2] csl::Oscillator::thunk_vfunc_2
+      [ 3] csl::Controllable::vfunc_3
+class csl::Writeable   // typeinfo 0x1003b4900 (17)
+    vtable @0x1003b48e0
+      [ 0] csl::Writeable::~Writeable
+      [ 1] csl::Writeable::~Writeable/*deleting*/
+      [ 2] csl::Writeable::vfunc_2
+      [ 3] csl::Writeable::vfunc_3
+class csl::iPhoneIO : csl::AUIO   // typeinfo 0x1003b2dd0 (20)
+    vtable @0x1003b2d50
+      [ 0] csl::iPhoneIO::~iPhoneIO
+      [ 1] csl::iPhoneIO::~iPhoneIO/*deleting*/
+      [ 2] csl::UnitGenerator::vfunc_2
+      [ 3] csl::iPhoneIO::vfunc_3
+      [ 4] csl::iPhoneIO::vfunc_4
+      [ 5] csl::iPhoneIO::vfunc_5
+      [ 6] csl::iPhoneIO::vfunc_6
+      [ 7] csl::IO::vfunc_7
+      [ 8] csl::AUIO::vfunc_8
+      [ 9] csl::AUIO::vfunc_9
+      [10] csl::IO::vfunc_10

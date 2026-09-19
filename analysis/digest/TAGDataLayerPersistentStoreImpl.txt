@@ -1,0 +1,543 @@
+
+== -[TAGDataLayerPersistentStoreImpl init]   (address 0x10015e5ac  size 164  kind objc)
+  15e5d4  [NSOperationQueue alloc]
+  15e5e4  [[NSOperationQueue alloc] init]
+  15e60c  [self initWithDatabaseName:@"google_tagmanager.db" maxNumStoredItems:2000 operationQueue:[[NSOperationQueue alloc] init]]
+  15e62c  return
+
+== -[TAGDataLayerPersistentStoreImpl initWithDatabaseName:maxNumStoredItems:operationQueue:]   (address 0x10015e650  size 296  kind objc)
+  15e6b0  [super init]
+  15e6b8  if (self == 0) goto loc_10015e728
+  15e6d4  self->_databaseName = arg1
+  15e6ec  self->_maxNumStoredItems = x8
+  15e704  self->_operationQueue = arg3
+  15e724  [self->_operationQueue setMaxConcurrentOperationCount:1]
+loc_10015e728:
+  15e750  return
+
+== -[TAGDataLayerPersistentStoreImpl dealloc]   (address 0x10015e778  size 148  kind objc)
+  15e798  [self closeDatabase]
+  15e7bc  [super dealloc]
+  15e7cc  return
+  15e7fc  [super dealloc]
+  15e808  objc_terminate()
+
+== -[TAGDataLayerPersistentStoreImpl saveKeyValues:lifetimeInMillis:]   (address 0x10015e80c  size 348  kind objc)
+  15e84c  [self serializeValues:arg1]
+  15e86c  [self operationQueue]
+  15e8d8  [[self operationQueue] addOperationWithBlock:^{-[TAGDataLayerPersistentStoreImpl saveKeyValues:lifetimeInMillis:]_block_invoke captures +0x20=self, +0x28=[self serializeValues:arg1], +0x30=arg2}]
+  15e918  return
+
+== -[TAGDataLayerPersistentStoreImpl saveKeyValues:lifetimeInMillis:]_block_invoke   (address 0x10015e968  size 28  kind block)
+  15e980  tail [x0 saveSingleThreaded:x2 lifetimeInMillis:arg2]
+
+== sub_10015e984   (address 0x10015e984  size 40  kind sub)
+
+== sub_10015e9ac   (address 0x10015e9ac  size 40  kind sub)
+  15e9d0  return
+
+== -[TAGDataLayerPersistentStoreImpl loadSaved:]   (address 0x10015e9d4  size 276  kind objc)
+  15ea08  [self operationQueue]
+  15ea74  [[self operationQueue] addOperationWithBlock:^{-[TAGDataLayerPersistentStoreImpl loadSaved:]_block_invoke captures +0x20=arg1, +0x28=self}]
+  15eaa8  return
+
+== -[TAGDataLayerPersistentStoreImpl loadSaved:]_block_invoke   (address 0x10015eae8  size 104  kind block)
+  15eb04  [x0 loadSingleThreaded]
+  15eb28  [x0 onKeyValuesLoaded:[x0 loadSingleThreaded]]
+  15eb38  return
+
+== sub_10015eb50   (address 0x10015eb50  size 40  kind sub)
+
+== sub_10015eb78   (address 0x10015eb78  size 40  kind sub)
+  15eb9c  return
+
+== -[TAGDataLayerPersistentStoreImpl clearKeysWithPrefix:]   (address 0x10015eba0  size 276  kind objc)
+  15ebd4  [self operationQueue]
+  15ec40  [[self operationQueue] addOperationWithBlock:^{-[TAGDataLayerPersistentStoreImpl clearKeysWithPrefix:]_block_invoke captures +0x20=self, +0x28=arg1}]
+  15ec74  return
+
+== -[TAGDataLayerPersistentStoreImpl clearKeysWithPrefix:]_block_invoke   (address 0x10015ecb4  size 24  kind block)
+  15ecc8  tail [x0 clearKeysWithPrefixSingleThreaded:x2]
+
+== sub_10015eccc   (address 0x10015eccc  size 40  kind sub)
+
+== sub_10015ecf4   (address 0x10015ecf4  size 40  kind sub)
+  15ed18  return
+
+== -[TAGDataLayerPersistentStoreImpl loadSingleThreaded]   (address 0x10015ed1c  size 288  kind objc)
+  15ed40  [self openDatabaseAndInitStatements]
+  15ed44  if (!([self openDatabaseAndInitStatements] & 1)) goto loc_10015ede4
+  15ed58  [self currentTimeInMilliseconds]
+  15ed70  [self deleteEntriesOlderThan:(uint)[self currentTimeInMilliseconds]]
+  15ed84  [self loadSerialized]
+  15eda8  [self unserializeValues:[self loadSerialized]]
+  15edd0  [self closeDatabase]
+  15edd4  goto loc_10015ee10
+  15ede0  goto loc_10015ee30
+loc_10015ede4:
+  15ee00  [NSArray arrayWithObjects:&sp[0x8] count:0]
+loc_10015ee10:
+  15ee24  return
+
+== -[TAGDataLayerPersistentStoreImpl saveSingleThreaded:lifetimeInMillis:]   (address 0x10015ee3c  size 260  kind objc)
+  15ee70  [self openDatabaseAndInitStatements]
+  15ee74  if (!([self openDatabaseAndInitStatements] & 1)) goto loc_10015ef18
+  15ee8c  [self currentTimeInMilliseconds]
+  15eea4  [self deleteEntriesOlderThan:(uint)[self currentTimeInMilliseconds]]
+  15eeb8  [arg1 count]
+  15eed0  [self makeRoomForEntries:[arg1 count]]
+  15eedc  [self currentTimeInMilliseconds]
+  15ef00  [self writeEntriesToDatabase:arg1 expireTime:(uint)((float)arg2 + [self currentTimeInMilliseconds])]
+  15ef14  [self closeDatabase]
+loc_10015ef18:
+  15ef28  return
+
+== -[TAGDataLayerPersistentStoreImpl clearKeysWithPrefixSingleThreaded:]   (address 0x10015ef40  size 580  kind objc)
+  15ef80  [self openDatabaseAndInitStatements]
+  15ef84  if (!([self openDatabaseAndInitStatements] & 1)) goto loc_10015f11c
+  15efc0  [NSString stringWithFormat:@"DELETE from %@ WHERE %@ = ? or %@ like ?;", @"datalayer", @"key", @"key"]
+  15efec  [self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ = ? or %@ like ?;", @"datalayer", @"key", @"key"] description:@"delete entries with key prefix"]
+  15f008  [NSString stringWithFormat:@"%@.%%", arg1]
+  15f030  [arg1 UTF8String]
+  15f048  sqlite3_bind_text([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ = ? or %@ like ?;", @"datalayer", @"key", @"key"] description:@"delete entries with key prefix"], 1, [arg1 UTF8String], 0xffffffff)
+  15f05c  [[NSString stringWithFormat:@"%@.%%", arg1] UTF8String]
+  15f074  sqlite3_bind_text([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ = ? or %@ like ?;", @"datalayer", @"key", @"key"] description:@"delete entries with key prefix"], 2, [[NSString stringWithFormat:@"%@.%%", arg1] UTF8String], 0xffffffff)
+  15f07c  sqlite3_step([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ = ? or %@ like ?;", @"datalayer", @"key", @"key"] description:@"delete entries with key prefix"])
+  15f084  if (sqlite3_step([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ = ? or %@ like ?;", @"datalayer", @"k… != 1) goto loc_10015f0f0
+  15f0a4  [self database]
+  15f0a8  sqlite3_errmsg([self database])
+  15f0c0  [NSString stringWithFormat:@"Error: Failed to delete entries from database: %s", sqlite3_errmsg([self database])]
+  15f0e4  [TAGLog error:[NSString stringWithFormat:@"Error: Failed to delete entries from database: %s", sqlite3_errmsg([self database])]]
+loc_10015f0f0:
+  15f0f4  sqlite3_finalize([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ = ? or %@ like ?;", @"datalayer", @"key", @"key"] description:@"delete entries with key prefix"])
+  15f108  [self closeDatabase]
+loc_10015f11c:
+  15f13c  return
+
+== -[TAGDataLayerPersistentStoreImpl unserializeValues:]   (address 0x10015f184  size 724  kind objc)
+  15f1d8  [NSMutableArray array]
+  15f220  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]
+  15f22c  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16] == 0) goto loc_10015f38c
+loc_10015f298:
+loc_10015f29c:
+  15f2ac  if (x8 == x9) goto loc_10015f2b8
+  15f2b4  objc_enumerationMutation(arg1)
+loc_10015f2b8:
+  15f2c8  [x0 serialized]
+  15f2e4  [self unserialize:[x0 serialized]]
+  15f308  [TAGKeyValue alloc]
+  15f318  [x0 key]
+  15f338  [[TAGKeyValue alloc] initWithKey:[x0 key] value:[self unserialize:[x0 serialized]]]
+  15f34c  [[NSMutableArray array] addObject:[[TAGKeyValue alloc] initWithKey:[x0 key] value:[self unserialize:[x0 serialized]]]]
+  15f370  if ((x25 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]) goto loc_10015f29c
+  15f380  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]
+  15f388  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16] != 0) goto loc_10015f298
+loc_10015f38c:
+  15f3d8  return
+
+== -[TAGDataLayerPersistentStoreImpl serializeValues:]   (address 0x10015f458  size 724  kind objc)
+  15f4ac  [NSMutableArray array]
+  15f4f4  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]
+  15f500  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16] == 0) goto loc_10015f660
+loc_10015f56c:
+loc_10015f570:
+  15f580  if (x8 == x9) goto loc_10015f58c
+  15f588  objc_enumerationMutation(arg1)
+loc_10015f58c:
+  15f59c  [x0 value]
+  15f5b8  [self serialize:[x0 value]]
+  15f5dc  [TAGKeyAndSerialized alloc]
+  15f5ec  [x0 key]
+  15f60c  [[TAGKeyAndSerialized alloc] initWithKey:[x0 key] serialized:[self serialize:[x0 value]]]
+  15f620  [[NSMutableArray array] addObject:[[TAGKeyAndSerialized alloc] initWithKey:[x0 key] serialized:[self serialize:[x0 value]]]]
+  15f644  if ((x25 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]) goto loc_10015f570
+  15f654  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]
+  15f65c  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16] != 0) goto loc_10015f56c
+loc_10015f660:
+  15f6ac  return
+
+== -[TAGDataLayerPersistentStoreImpl unserialize:]   (address 0x10015f72c  size 48  kind objc)
+  15f748  [NSKeyedUnarchiver unarchiveObjectWithData:arg1]
+  15f758  return
+
+== -[TAGDataLayerPersistentStoreImpl serialize:]   (address 0x10015f75c  size 48  kind objc)
+  15f778  [NSKeyedArchiver archivedDataWithRootObject:arg1]
+  15f788  return
+
+== -[TAGDataLayerPersistentStoreImpl loadSerialized]   (address 0x10015f78c  size 512  kind objc)
+  15f7c4  [NSMutableArray array]
+  15f814  &@selector(addObject:)
+  15f81c  goto loc_10015f838
+loc_10015f820:
+loc_10015f838:
+  15f840  [self queryAllEntriesStmt]
+  15f844  sqlite3_step([self queryAllEntriesStmt])
+  15f84c  if (sqlite3_step([self queryAllEntriesStmt]) != 100) goto loc_10015f920
+  15f858  [self queryAllEntriesStmt]
+  15f860  sqlite3_column_text([self queryAllEntriesStmt], 0)
+  15f874  [NSString stringWithUTF8String:sqlite3_column_text([self queryAllEntriesStmt], 0)]
+  15f88c  [self queryAllEntriesStmt]
+  15f894  sqlite3_column_blob([self queryAllEntriesStmt], 1)
+  15f8a4  [self queryAllEntriesStmt]
+  15f8ac  sqlite3_column_bytes([self queryAllEntriesStmt], 1)
+  15f8c8  [NSData dataWithBytes:sqlite3_column_blob([self queryAllEntriesStmt], 1) length:sqlite3_column_bytes([self queryAllEntriesStmt], 1)]
+  15f8e4  [TAGKeyAndSerialized alloc]
+  15f8f4  [[TAGKeyAndSerialized alloc] initWithKey:[NSString stringWithUTF8String:sqlite3_column_text([self queryAllEntriesStmt], 0)] serialized:[NSData dataWithBytes:sqlite3_column_blob([self queryAllEntriesStmt], 1) length:sqlite3_column_bytes([self queryAllEntriesStmt], 1)]]
+  15f908  [[NSMutableArray array] addObject:[[TAGKeyAndSerialized alloc] initWithKey:[NSString stringWithUTF8String:sqlite3_column_text([self queryAllEntriesStmt], 0)] serialized:[NSData dataWithBytes:sqlite3_column_blob([self queryAllEntriesStmt], 1) length:sqlite3_column_bytes([self queryAllEntriesStmt], 1)]]]
+  15f90c  goto loc_10015f820
+  15f91c  goto loc_10015f964
+loc_10015f920:
+  15f928  [self queryAllEntriesStmt]
+  15f92c  sqlite3_reset([self queryAllEntriesStmt])
+  15f950  return
+
+== -[TAGDataLayerPersistentStoreImpl writeEntriesToDatabase:expireTime:]   (address 0x10015f98c  size 908  kind objc)
+  15fa00  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16]
+  15fa08  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16] == 0) goto loc_10015fc6c
+  15fa1c  &@selector(key)
+  15fa24  &@selector(UTF8String)
+loc_10015faac:
+loc_10015fab0:
+  15fac0  if (x8 == x9) goto loc_10015facc
+  15fac8  objc_enumerationMutation(arg1)
+loc_10015facc:
+  15fadc  [self insertAnEntryStmt]
+  15faec  [x0 key]
+  15fb04  [[x0 key] UTF8String]
+  15fb1c  sqlite3_bind_text([self insertAnEntryStmt], 1, [[x0 key] UTF8String], 0xffffffff)
+  15fb30  [self insertAnEntryStmt]
+  15fb40  [x0 serialized]
+  15fb58  [[x0 serialized] bytes]
+  15fb68  [x0 serialized]
+  15fb7c  [[x0 serialized] length]
+  15fb94  sqlite3_bind_blob([self insertAnEntryStmt], 2, [[x0 serialized] bytes], [[x0 serialized] length])
+  15fbb0  [self insertAnEntryStmt]
+  15fbbc  sqlite3_bind_int64([self insertAnEntryStmt], 3, arg2)
+  15fbc8  [self insertAnEntryStmt]
+  15fbcc  sqlite3_step([self insertAnEntryStmt])
+  15fbd4  if (sqlite3_step([self insertAnEntryStmt]) == 101) goto loc_10015fc34
+  15fbf0  [self database]
+  15fbf4  sqlite3_errmsg([self database])
+  15fc0c  [NSString stringWithFormat:@"Failed to insert data: %s", sqlite3_errmsg([self database])]
+  15fc28  [TAGLog error:[NSString stringWithFormat:@"Failed to insert data: %s", sqlite3_errmsg([self database])]]
+loc_10015fc34:
+  15fc3c  [self insertAnEntryStmt]
+  15fc40  sqlite3_reset([self insertAnEntryStmt])
+  15fc4c  if ((x28 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16]) goto loc_10015fab0
+  15fc60  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16]
+  15fc68  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16] != 0) goto loc_10015faac
+loc_10015fc6c:
+  15fcb4  return
+
+== -[TAGDataLayerPersistentStoreImpl makeRoomForEntries:]   (address 0x10015fd18  size 328  kind objc)
+  15fd40  [self numStoredEntries]
+  15fd58  [self maxNumStoredItems]
+  15fd68  if ((([self numStoredEntries] - [self maxNumStoredItems]) + arg1) < 1) goto loc_10015fe28
+  15fd7c  [self peekEntryIds:(([self numStoredEntries] - [self maxNumStoredItems]) + arg1)]
+  15fda8  [[self peekEntryIds:(([self numStoredEntries] - [self maxNumStoredItems]) + arg1)] count]
+  15fdc8  [NSString stringWithFormat:@"DataLayer store full, deleting %lu entries to make room.", [[self peekEntryIds:(([self numStoredEntries] - [self maxNumStoredItems]) + arg1…]
+  15fdec  [TAGLog info:[NSString stringWithFormat:@"DataLayer store full, deleting %lu entries to make room.", [[self peekEntryIds:(([self numStoredEntries] - [self maxNumStoredItems]) + arg1…]]
+  15fe0c  [self deleteEntries:[self peekEntryIds:(([self numStoredEntries] - [self maxNumStoredItems]) + arg1)]]
+  15fe24  return
+loc_10015fe28:
+  15fe38  return
+
+== -[TAGDataLayerPersistentStoreImpl deleteEntries:]   (address 0x10015fe60  size 784  kind objc)
+  15feb4  [arg1 count]
+  15fecc  [self questionMarks:[arg1 count]]
+  15ff10  [NSString stringWithFormat:@"DELETE from %@ WHERE %@ IN (%@);", @"datalayer", @"ID", [self questionMarks:[arg1 count]]]
+  15ff44  [self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ IN (%@);", @"datalayer", @"ID", [self questionMarks:[arg1 count]]] description:@"delete old Entries"]
+  15ff4c  if ([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ IN (%@);", @"datalayer", @"ID", [self questionMarks:[arg1 count]]] description:@"delete old Entries"] == 0) goto loc_1001600cc
+  15ff94  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  15ff9c  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_100160030
+loc_10015ffc0:
+loc_10015ffc8:
+  15ffd4  if (x8 == x22) goto loc_10015ffe0
+  15ffdc  objc_enumerationMutation(arg1)
+loc_10015ffe0:
+  15ffec  [x0 intValue]
+  15fffc  sqlite3_bind_int([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ IN (%@);", @"datalayer", @"ID", [self questionMarks:[arg1 count]]] description:@"delete old Entries"], (x21 + x20), [x0 intValue])
+  160008  if ((x20 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10015ffc8
+  160020  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  16002c  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10015ffc0
+loc_100160030:
+  160040  sqlite3_step([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ IN (%@);", @"datalayer", @"ID", [self questionMarks:[arg1 count]]] description:@"delete old Entries"])
+  160058  if (sqlite3_step([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ IN (%@);", @"datalayer", @"ID", [self… != 1) goto loc_1001600c4
+  160078  [self database]
+  16007c  sqlite3_errmsg([self database])
+  160094  [NSString stringWithFormat:@"Error: Failed to delete entries from database: %s", sqlite3_errmsg([self database])]
+  1600b8  [TAGLog error:[NSString stringWithFormat:@"Error: Failed to delete entries from database: %s", sqlite3_errmsg([self database])]]
+loc_1001600c4:
+  1600c8  sqlite3_finalize([self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ IN (%@);", @"datalayer", @"ID", [self questionMarks:[arg1 count]]] description:@"delete old Entries"])
+loc_1001600cc:
+  160108  return
+
+== -[TAGDataLayerPersistentStoreImpl peekEntryIds:]   (address 0x100160170  size 376  kind objc)
+  1601a4  [NSMutableArray array]
+  1601b4  if (arg1 == 0) goto loc_100160294
+  1601cc  [self queryEntryIdsStmt]
+  1601d8  sqlite3_bind_int64([self queryEntryIdsStmt], 1, arg1)
+  1601e8  &@selector(initWithLongLong:)
+  1601f8  &@selector(addObject:)
+  160204  goto loc_100160210
+loc_100160208:
+loc_100160210:
+  160218  [self queryEntryIdsStmt]
+  16021c  sqlite3_step([self queryEntryIdsStmt])
+  160224  if (sqlite3_step([self queryEntryIdsStmt]) != 100) goto loc_100160280
+  160230  [self queryEntryIdsStmt]
+  160238  sqlite3_column_int64([self queryEntryIdsStmt], 0)
+  160248  [NSNumber alloc]
+  160254  [[NSNumber alloc] initWithLongLong:sqlite3_column_int64([self queryEntryIdsStmt], 0)]
+  160268  [[NSMutableArray array] addObject:[[NSNumber alloc] initWithLongLong:sqlite3_column_int64([self queryEntryIdsStmt], 0)]]
+  16026c  goto loc_100160208
+  16027c  goto loc_1001602d8
+loc_100160280:
+  160288  [self queryEntryIdsStmt]
+  16028c  sqlite3_reset([self queryEntryIdsStmt])
+  160290  goto loc_1001602b4
+loc_100160294:
+  1602b0  [TAGLog warning:@"Invalid maxEntries specified. Skipping."]
+loc_1001602b4:
+  1602cc  return
+
+== -[TAGDataLayerPersistentStoreImpl numStoredEntries]   (address 0x1001602e8  size 264  kind objc)
+  160310  [self queryNumberEntriesStmt]
+  160314  sqlite3_step([self queryNumberEntriesStmt])
+  16031c  if (sqlite3_step([self queryNumberEntriesStmt]) != 1) goto loc_10016039c
+  160340  [self database]
+  160344  sqlite3_errmsg([self database])
+  160364  [NSString stringWithFormat:@"Error: Failed to retrieve number of entries from database: %s", sqlite3_errmsg([self database])]
+  160388  [TAGLog error:[NSString stringWithFormat:@"Error: Failed to retrieve number of entries from database: %s", sqlite3_errmsg([self database])]]
+  160398  goto loc_1001603c8
+loc_10016039c:
+  1603a4  [self queryNumberEntriesStmt]
+  1603ac  sqlite3_column_int64([self queryNumberEntriesStmt], 0)
+  1603bc  [self queryNumberEntriesStmt]
+  1603c0  sqlite3_reset([self queryNumberEntriesStmt])
+loc_1001603c8:
+  1603d8  return
+
+== -[TAGDataLayerPersistentStoreImpl questionMarks:]   (address 0x1001603f0  size 192  kind objc)
+  16041c  [NSMutableString string]
+  16042c  if (arg1 == 0) goto loc_100160480
+  16044c  [[NSMutableString string] appendString:@"?"]
+  160454  if ((arg1 - 1) == 0) goto loc_100160480
+loc_100160464:
+  160470  [[NSMutableString string] appendString:@", ?"]
+  16047c  if ((x23 + 1) <u (arg1 - 1)) goto loc_100160464
+loc_100160480:
+  160494  return
+
+== -[TAGDataLayerPersistentStoreImpl deleteEntriesOlderThan:]   (address 0x1001604b0  size 252  kind objc)
+  1604dc  [self deleteOlderThanStmt]
+  1604e8  sqlite3_bind_int64([self deleteOlderThanStmt], 1, arg1)
+  1604f4  [self deleteOlderThanStmt]
+  1604f8  sqlite3_step([self deleteOlderThanStmt])
+  160500  if (sqlite3_step([self deleteOlderThanStmt]) == 101) goto loc_100160578
+  160524  [self database]
+  160528  sqlite3_errmsg([self database])
+  160548  [NSString stringWithFormat:@"Error: Failed to delete older entries: %s", sqlite3_errmsg([self database])]
+  16056c  [TAGLog error:[NSString stringWithFormat:@"Error: Failed to delete older entries: %s", sqlite3_errmsg([self database])]]
+loc_100160578:
+  160580  [self deleteOlderThanStmt]
+  160594  tail sqlite3_reset([self deleteOlderThanStmt])
+
+== -[TAGDataLayerPersistentStoreImpl tablePresent:]   (address 0x1001605ac  size 404  kind objc)
+  1605ec  [self database]
+  1605f0  if ([self database] == 0) goto loc_100160670
+  160618  [NSString stringWithFormat:@"SELECT name FROM sqlite_master WHERE type='table' AND name='%@'", arg1]
+  160644  [self prepareSql:[NSString stringWithFormat:@"SELECT name FROM sqlite_master WHERE type='table' AND name='%@'", arg1] description:@"table exists"]
+  16064c  if ([self prepareSql:[NSString stringWithFormat:@"SELECT name FROM sqlite_master WHERE type='table' AND name='%@'", arg1] description:@"table exists"] == 0) goto loc_100160678
+  160654  sqlite3_step([self prepareSql:[NSString stringWithFormat:@"SELECT name FROM sqlite_master WHERE type='table' AND name='%@'", arg1] description:@"table exists"])
+  160660  sqlite3_finalize([self prepareSql:[NSString stringWithFormat:@"SELECT name FROM sqlite_master WHERE type='table' AND name='%@'", arg1] description:@"table exists"])
+  160668  t1 = (sqlite3_step([self prepareSql:[NSString stringWithFormat:@"SELECT name FROM sqlite_master WHERE type='table' AND name='%… == 100)
+  16066c  goto loc_1001606dc
+loc_100160670:
+  160674  goto loc_1001606e4
+loc_100160678:
+  16068c  [self database]
+  160690  sqlite3_errmsg([self database])
+  1606a8  [NSString stringWithFormat:@"Error: Failed to prepare table exists stmt: %s", sqlite3_errmsg([self database])]
+  1606cc  [TAGLog error:[NSString stringWithFormat:@"Error: Failed to prepare table exists stmt: %s", sqlite3_errmsg([self database])]]
+loc_1001606dc:
+loc_1001606e4:
+  160708  return
+
+== -[TAGDataLayerPersistentStoreImpl prepareSql:description:]   (address 0x100160740  size 364  kind objc)
+  16078c  [self database]
+  160790  if ([self database] == 0) goto loc_100160848
+  1607a0  [self database]
+  1607bc  [arg1 UTF8String]
+  1607d4  sqlite3_prepare_v2([self database], [arg1 UTF8String], 0xffffffff, &sp[0x18])
+  1607d8  if (sqlite3_prepare_v2([self database], [arg1 UTF8String], 0xffffffff, &sp[0x18]) == 0) goto loc_100160850
+  1607f4  [self database]
+  1607f8  sqlite3_errcode([self database])
+  160818  [NSString stringWithFormat:@"Error: Failed to prepare %@ statement: %d", arg2, sqlite3_errcode([self database])]
+  16083c  [TAGLog error:[NSString stringWithFormat:@"Error: Failed to prepare %@ statement: %d", arg2, sqlite3_errcode([self database])]]
+loc_100160848:
+  16084c  goto loc_100160854
+loc_100160850:
+loc_100160854:
+  16087c  return
+
+== -[TAGDataLayerPersistentStoreImpl openDatabaseAndInitStatements]   (address 0x1001608ac  size 1748  kind objc)
+  1608e0  [self database]
+  1608e4  if ([self database] == 0) goto loc_1001608f0
+  1608ec  goto loc_100160e30
+loc_1001608f0:
+  1608fc  NSSearchPathForDirectoriesInDomains(5, 1, 1)
+  16091c  [NSSearchPathForDirectoriesInDomains(5, 1, 1) count]
+  160920  if ([NSSearchPathForDirectoriesInDomains(5, 1, 1) count] == 0) goto loc_1001609f4
+  16093c  [NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0]
+  16095c  [self databaseName]
+  160980  [[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:[self databaseName]]
+  1609b8  [[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:[self databaseName]] UTF8String]
+  1609c8  sqlite3_open([[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:[self databaseName]] UTF8String], x1)
+  1609cc  if (sqlite3_open([[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:[self databaseName]] UTF8String], x1) == 0) goto loc_100160a00
+  1609ec  [TAGLog error:@"Unable to open GTM database"]
+  1609f0  goto loc_1001609f8
+loc_1001609f4:
+loc_1001609f8:
+  1609fc  goto loc_100160e20
+loc_100160a00:
+  160a18  [self tablePresent:@"datalayer"]
+  160a1c  if (([self tablePresent:@"datalayer"] & 1)) goto loc_100160ad8
+  160a74  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ( '%@' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%@' STRI…", @"datalayer", @"ID", @"key", @"value", @"expires"]
+  160aa0  [self prepareSql:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ( '%@' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%@' STRI…", @"datalayer", @"ID", @"key", @"value", @"expires"] description:@"create maps table"]
+  160aa8  if ([self prepareSql:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ( '%@' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%@' STRI…", @"datalayer", @"ID", @"key", @"value", @"expires"] description:@"create maps table"] == 0) goto loc_100160abc
+  160ab0  sqlite3_step([self prepareSql:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ( '%@' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%@' STRI…", @"datalayer", @"ID", @"key", @"value", @"expires"] description:@"create maps table"])
+  160ab8  goto loc_100160ac0
+loc_100160abc:
+loc_100160ac0:
+  160ac4  sqlite3_finalize([self prepareSql:[NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ ( '%@' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%@' STRI…", @"datalayer", @"ID", @"key", @"value", @"expires"] description:@"create maps table"])
+  160acc  if (w26 != 101) goto loc_100160e54
+loc_100160ad8:
+  160b04  [NSString stringWithFormat:@"SELECT COUNT(*) FROM %@", @"datalayer"]
+  160b38  [self prepareSql:[NSString stringWithFormat:@"SELECT COUNT(*) FROM %@", @"datalayer"] description:@"query number of stored entries"]
+  160b50  [self setQueryNumberEntriesStmt:[self prepareSql:[NSString stringWithFormat:@"SELECT COUNT(*) FROM %@", @"datalayer"] description:@"query number of stored entries"]]
+  160b78  [NSString stringWithFormat:@"DELETE from %@ WHERE %@ <= ?;", @"datalayer", @"expires"]
+  160ba0  [self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ <= ?;", @"datalayer", @"expires"] description:@"delete old Entries"]
+  160bb8  [self setDeleteOlderThanStmt:[self prepareSql:[NSString stringWithFormat:@"DELETE from %@ WHERE %@ <= ?;", @"datalayer", @"expires"] description:@"delete old Entries"]]
+  160bf0  [NSString stringWithFormat:@"INSERT INTO %@ (%@, %@, %@) VALUES (?, ?, ?)", @"datalayer", @"key", @"value", @"expires"]
+  160c18  [self prepareSql:[NSString stringWithFormat:@"INSERT INTO %@ (%@, %@, %@) VALUES (?, ?, ?)", @"datalayer", @"key", @"value", @"expires"] description:@"insert an entry"]
+  160c30  [self setInsertAnEntryStmt:[self prepareSql:[NSString stringWithFormat:@"INSERT INTO %@ (%@, %@, %@) VALUES (?, ?, ?)", @"datalayer", @"key", @"value", @"expires"] description:@"insert an entry"]]
+  160c5c  [NSString stringWithFormat:@"SELECT %@ FROM %@ ORDER BY %@ ASC Limit ?", @"ID", @"datalayer", @"ID"]
+  160c84  [self prepareSql:[NSString stringWithFormat:@"SELECT %@ FROM %@ ORDER BY %@ ASC Limit ?", @"ID", @"datalayer", @"ID"] description:@"fetch entryIds"]
+  160c9c  [self setQueryEntryIdsStmt:[self prepareSql:[NSString stringWithFormat:@"SELECT %@ FROM %@ ORDER BY %@ ASC Limit ?", @"ID", @"datalayer", @"ID"] description:@"fetch entryIds"]]
+  160cc0  [NSString stringWithFormat:@"SELECT %@, %@ FROM %@ ORDER BY %@", @"key", @"value", @"datalayer", @"ID"]
+  160ce4  [self prepareSql:[NSString stringWithFormat:@"SELECT %@, %@ FROM %@ ORDER BY %@", @"key", @"value", @"datalayer", @"ID"] description:@"query data"]
+  160cfc  [self setQueryAllEntriesStmt:[self prepareSql:[NSString stringWithFormat:@"SELECT %@, %@ FROM %@ ORDER BY %@", @"key", @"value", @"datalayer", @"ID"] description:@"query data"]]
+  160d10  [self queryNumberEntriesStmt]
+  160d14  if ([self queryNumberEntriesStmt] == 0) goto loc_100160d80
+  160d28  [self deleteOlderThanStmt]
+  160d2c  if ([self deleteOlderThanStmt] == 0) goto loc_100160d80
+  160d40  [self insertAnEntryStmt]
+  160d44  if ([self insertAnEntryStmt] == 0) goto loc_100160d80
+  160d58  [self queryEntryIdsStmt]
+  160d5c  if ([self queryEntryIdsStmt] == 0) goto loc_100160d80
+  160d70  [self queryAllEntriesStmt]
+  160d74  if ([self queryAllEntriesStmt] == 0) goto loc_100160d80
+  160d7c  goto loc_100160df8
+loc_100160d80:
+  160d94  [self database]
+  160d98  sqlite3_errmsg([self database])
+  160db0  [NSString stringWithFormat:@"Error initializing GTM database: %s", sqlite3_errmsg([self database])]
+  160dd4  [TAGLog error:[NSString stringWithFormat:@"Error initializing GTM database: %s", sqlite3_errmsg([self database])]]
+  160df0  [self closeDatabase]
+loc_100160df8:
+loc_100160e20:
+loc_100160e30:
+  160e50  return
+  160e68  [self database]
+  160e6c  sqlite3_errmsg([self database])
+  160e84  [NSString stringWithFormat:@"Error initializing GTM database: %s", sqlite3_errmsg([self database])]
+  160ea8  [TAGLog error:[NSString stringWithFormat:@"Error initializing GTM database: %s", sqlite3_errmsg([self database])]]
+  160ec4  [self closeDatabase]
+
+== -[TAGDataLayerPersistentStoreImpl closeDatabase]   (address 0x100160f80  size 376  kind objc)
+  160fa8  [self database]
+  160fac  if ([self database] == 0) goto loc_1001610d0
+  160fc0  [self deleteOlderThanStmt]
+  160fc4  sqlite3_finalize([self deleteOlderThanStmt])
+  160fd8  [self insertAnEntryStmt]
+  160fdc  sqlite3_finalize([self insertAnEntryStmt])
+  160ff0  [self queryNumberEntriesStmt]
+  160ff4  sqlite3_finalize([self queryNumberEntriesStmt])
+  161008  [self queryEntryIdsStmt]
+  16100c  sqlite3_finalize([self queryEntryIdsStmt])
+  161020  [self queryAllEntriesStmt]
+  161024  sqlite3_finalize([self queryAllEntriesStmt])
+  161030  [self database]
+  161034  sqlite3_close([self database])
+  161038  if (sqlite3_close([self database]) == 0) goto loc_1001610a8
+  161054  [self database]
+  161058  sqlite3_errmsg([self database])
+  161078  [NSString stringWithFormat:@"Failed to close database: %s", sqlite3_errmsg([self database])]
+  16109c  [TAGLog error:[NSString stringWithFormat:@"Failed to close database: %s", sqlite3_errmsg([self database])]]
+loc_1001610a8:
+  1610cc  tail [self setDatabase:0]
+loc_1001610d0:
+  1610e0  return
+
+== -[TAGDataLayerPersistentStoreImpl currentTimeInMilliseconds]   (address 0x1001610f8  size 128  kind objc)
+  16111c  [NSDate date]
+  161138  [[NSDate date] timeIntervalSince1970]
+  161160  return
+
+== -[TAGDataLayerPersistentStoreImpl databaseName]   (address 0x100161178  size 16  kind objc)
+  161184  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayerPersistentStoreImpl maxNumStoredItems]   (address 0x100161188  size 16  kind objc)
+  161194  return
+
+== -[TAGDataLayerPersistentStoreImpl setMaxNumStoredItems:]   (address 0x100161198  size 16  kind objc)
+  1611a0  self->_maxNumStoredItems = arg1
+  1611a4  return
+
+== -[TAGDataLayerPersistentStoreImpl operationQueue]   (address 0x1001611a8  size 16  kind objc)
+  1611b4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayerPersistentStoreImpl database]   (address 0x1001611b8  size 16  kind objc)
+  1611c4  return
+
+== -[TAGDataLayerPersistentStoreImpl setDatabase:]   (address 0x1001611c8  size 16  kind objc)
+  1611d0  self->_database = arg1
+  1611d4  return
+
+== -[TAGDataLayerPersistentStoreImpl insertAnEntryStmt]   (address 0x1001611d8  size 16  kind objc)
+  1611e4  return
+
+== -[TAGDataLayerPersistentStoreImpl setInsertAnEntryStmt:]   (address 0x1001611e8  size 16  kind objc)
+  1611f0  self->_insertAnEntryStmt = arg1
+  1611f4  return
+
+== -[TAGDataLayerPersistentStoreImpl queryNumberEntriesStmt]   (address 0x1001611f8  size 16  kind objc)
+  161204  return
+
+== -[TAGDataLayerPersistentStoreImpl setQueryNumberEntriesStmt:]   (address 0x100161208  size 16  kind objc)
+  161210  self->_queryNumberEntriesStmt = arg1
+  161214  return
+
+== -[TAGDataLayerPersistentStoreImpl queryAllEntriesStmt]   (address 0x100161218  size 16  kind objc)
+  161224  return
+
+== -[TAGDataLayerPersistentStoreImpl setQueryAllEntriesStmt:]   (address 0x100161228  size 16  kind objc)
+  161230  self->_queryAllEntriesStmt = arg1
+  161234  return
+
+== -[TAGDataLayerPersistentStoreImpl queryEntryIdsStmt]   (address 0x100161238  size 16  kind objc)
+  161244  return
+
+== -[TAGDataLayerPersistentStoreImpl setQueryEntryIdsStmt:]   (address 0x100161248  size 16  kind objc)
+  161250  self->_queryEntryIdsStmt = arg1
+  161254  return
+
+== -[TAGDataLayerPersistentStoreImpl deleteOlderThanStmt]   (address 0x100161258  size 16  kind objc)
+  161264  return
+
+== -[TAGDataLayerPersistentStoreImpl setDeleteOlderThanStmt:]   (address 0x100161268  size 16  kind objc)
+  161270  self->_deleteOlderThanStmt = arg1
+  161274  return
+
+== -[TAGDataLayerPersistentStoreImpl .cxx_destruct]   (address 0x100161278  size 64  kind objc)

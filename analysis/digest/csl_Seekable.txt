@@ -1,0 +1,109 @@
+
+== csl::Seekable::vfunc_3   (address 0x1000eae30  size 268  kind cxx)
+  0eae50  call a0[+0x0][+0x10]
+  0eae54  if (a0[+0x0][+0x10](…) == 0) goto loc_1000eae68
+  0eae64  return
+  0eae6c  cxa_allocate_exception(16)
+  0eae84  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Error seeking", &sp[0x8])
+  0eae90  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x10])
+  0eaea0  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0eaeb8  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0eaedc  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000eaf04
+  0eaef0  if (w11 != 0) goto loc_1000eaee4
+  0eaef8  if (w9 > 0) goto loc_1000eaf04
+  0eaf00  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0eaf04  if (w20 >= 0) goto loc_1000eaf10
+  0eaf0c  cxa_call_unexpected()
+  0eaf34  cxa_free_exception()
+
+== sub_1000eaf3c   (address 0x1000eaf3c  size 224  kind sub)
+  0eaf6c  if ((a1[+0x8] <u w4 ? a1[+0x8] : w4) == 0) goto loc_1000eafc4
+loc_1000eaf7c:
+  0eaf8c  call a1[+0x0][+0x20]
+  0eaf9c  if (a3 == 0) goto loc_1000eafb4
+loc_1000eafa0:
+  0eafb0  if ((w10 - 1) != 0) goto loc_1000eafa0
+loc_1000eafb4:
+  0eafc0  if ((x23 + 1) <u (a1[+0x8] <u w4 ? a1[+0x8] : w4)) goto loc_1000eaf7c
+loc_1000eafc4:
+  0eafc8  if (a1[+0x8] <=u (a1[+0x8] <u w4 ? a1[+0x8] : w4)) goto loc_1000eaff4
+loc_1000eafcc:
+  0eafdc  call a1[+0x0][+0x20]
+  0eafe4  bzero(a1[+0x0][+0x20](…), a1[+0x14])
+  0eaff0  if ((w20 + 1) <u a1[+0x8]) goto loc_1000eafcc
+loc_1000eaff4:
+  0eb008  return
+  0eb010  if (w1 >= 0) goto loc_1000eb018
+  0eb014  cxa_call_unexpected()
+
+== sub_1000eb01c   (address 0x1000eb01c  size 348  kind sub)
+  0eb044  a0[+0x8] = 0
+  0eb054  a0[+0x28] = 0
+  0eb05c  a0[+0x50] = 0
+  0eb060  a0[+0x51] = 0
+  0eb074  a0[+0x0] = vtable<csl::IO>
+  0eb078  a0[+0x60] = 0
+  0eb08c  a0[+0x68] = vtable<csl::Buffer>
+  0eb090  a0[+0x18] = 0
+  0eb09c  a0[+0x1c] = 4
+  0eb0a0  a0[+0x28] = 0
+  0eb0a4  a0[+0x29] = 0
+  0eb0a8  a0[+0x2a] = 0
+  0eb0b0  a0[+0x2b] = 1
+  0eb0b4  a0[+0x2c] = 0
+  0eb0b8  a0[+0x30] = 0
+  0eb0c8  sub_1000e7fac(a0, 1, 256, a3)
+  0eb0d0  a0[+0xa0] = vtable<csl::Buffer>
+  0eb0d4  a0[+0x18] = 0
+  0eb0dc  a0[+0x1c] = 4
+  0eb0e0  a0[+0x28] = 0
+  0eb0e4  a0[+0x29] = 0
+  0eb0e8  a0[+0x2a] = 0
+  0eb0ec  a0[+0x2b] = 1
+  0eb0f0  a0[+0x2c] = 0
+  0eb0f4  a0[+0x30] = 0
+  0eb104  sub_1000e7fac(a0, 1, 256)
+  0eb108  a0[+0xe8] = 0
+  0eb10c  sub_1000e736c(sub_1000e7fac(a0, 1, 256))
+  0eb118  a0[+0x100] = w20
+  0eb11c  a0[+0x104] = 0
+  0eb120  a0[+0x108] = 0
+  0eb13c  return
+  0eb158  call sub_1000e80e0
+  0eb160  call sub_1000e80e0
+  0eb168  ZN3csl5ModelD2Ev()
+  0eb174  call sub_10000b760
+
+== sub_1000eb178   (address 0x1000eb178  size 48  kind sub)
+  0eb194  sub_1000e89bc(a1, a0, a2, a3)
+  0eb198  a0[+0x60] = a1
+  0eb1a4  return
+
+== sub_1000eb1a8   (address 0x1000eb1a8  size 280  kind sub)
+  0eb1c4  if (a0[+0x60] == 0) goto loc_1000eb1f8
+  0eb1d0  a0[+0xec] = (a0[+0xec] + 1)
+  0eb1d4  a1[+0x18] = (a0[+0xec] + 1)
+  0eb1e4  call a0[+0x60][+0x0][+0x20]
+  0eb1ec  if (a0[+0x109] == 0) goto loc_1000eb1f8
+  0eb1f4  sub_1000e8310(a1)
+loc_1000eb1f8:
+  0eb204  return
+  0eb214  if (w20 != 1) goto loc_1000eb2a4
+  0eb21c  cxa_get_exception_ptr()
+  0eb240  ZNSsC1ERKSs((&sp[0x10] + 8), (cxa_get_exception_ptr() + 8))
+  0eb248  cxa_begin_catch()
+  0eb260  sub_1000e772c(2, "An error occured in the CSL nextBuffer method: %s\n")
+  0eb268  ZN3csl10CExceptionD2Ev(&sp[0x10])
+  0eb26c  cxa_end_catch(ZN3csl10CExceptionD2Ev(&sp[0x10]))
+  0eb288  ZNSt9exceptionD2Ev(&sp[0x10])
+  0eb29c  ZN3csl10CExceptionD2Ev(&sp[0x10])
+  0eb2a0  cxa_end_catch(ZN3csl10CExceptionD2Ev(&sp[0x10]))
+  0eb2a8  if (w20 >= 0) goto loc_1000eb2b0
+  0eb2ac  cxa_call_unexpected()
+  0eb2bc  call sub_10000b760
+
+== csl::Seekable::~Seekable   (address 0x1000eb590  size 4  kind cxx)
+  0eb590  return
+
+== csl::Seekable::~Seekable/*deleting*/   (address 0x1000eb594  size 4  kind cxx)
+  0eb594  tail ZdlPv(a0, a1, a2, a3)

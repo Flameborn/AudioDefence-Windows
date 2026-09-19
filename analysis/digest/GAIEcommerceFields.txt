@@ -1,0 +1,33 @@
+
+== +[GAIEcommerceFields stripAmpersandIfPresent:]   (address 0x100115a8c  size 124  kind objc)
+  115ab8  [arg1 hasPrefix:@"&"]
+  115abc  if ([arg1 hasPrefix:@"&"] == 0) goto loc_100115ae4
+  115ad4  [arg1 substringFromIndex:1]
+  115ae0  goto loc_100115aec
+loc_100115ae4:
+loc_100115aec:
+  115b04  return
+
+== +[GAIEcommerceFields productFieldForIndex:suffix:]   (address 0x100115b08  size 200  kind objc)
+  115b28  if (arg2 == 0) goto loc_100115b8c
+  115b44  [GAIEcommerceFields stripAmpersandIfPresent:arg2]
+  115b70  [NSString stringWithFormat:@"&pr%lu%@", arg1, [GAIEcommerceFields stripAmpersandIfPresent:arg2]]
+  115b88  goto loc_100115bb8
+loc_100115b8c:
+  115ba8  [NSString stringWithFormat:@"&pr%lu", arg1]
+loc_100115bb8:
+  115bcc  return
+
+== +[GAIEcommerceFields impressionListForIndex:]   (address 0x100115bd0  size 60  kind objc)
+  115bfc  [NSString stringWithFormat:@"&il%lu", arg1]
+  115c08  return
+
+== +[GAIEcommerceFields productImpressionForList:index:suffix:]   (address 0x100115c0c  size 180  kind objc)
+  115c54  [GAIEcommerceFields stripAmpersandIfPresent:arg3]
+  115c84  [NSString stringWithFormat:@"%@pi%lu%@", arg1, arg2, [GAIEcommerceFields stripAmpersandIfPresent:arg3]]
+  115cbc  return
+
+== +[GAIEcommerceFields promotionForIndex:suffix:]   (address 0x100115cc0  size 148  kind objc)
+  115cf8  [GAIEcommerceFields stripAmpersandIfPresent:arg2]
+  115d24  [NSString stringWithFormat:@"&promo%lu%@", arg1, [GAIEcommerceFields stripAmpersandIfPresent:arg2]]
+  115d50  return

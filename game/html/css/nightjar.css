@@ -1,0 +1,31 @@
+body {
+	font: 12px "Futura-CondensedMedium", serif !important;
+	color:#00bbff;
+}
+
+.nj_papaenginesize
+{
+    width: 111px;
+    height: 82px;
+}
+
+.nj_liveaudiosize
+{
+    width: 132px;
+    height: 82px;
+}
+
+.nj_heading1
+{
+    font-size: large;
+}
+
+.nj_heading2
+{
+    font-size: medium;
+}
+
+a:link {color:#00bbff;}    /* unvisited link */
+a:visited {color:#00bbff;} /* visited link */
+a:hover {color:#00bbff;}   /* mouse over link */
+a:active {color:#00bbff;}  /* selected link */

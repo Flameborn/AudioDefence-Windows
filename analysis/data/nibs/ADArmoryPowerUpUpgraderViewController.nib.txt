@@ -1,0 +1,32 @@
+// ADArmoryPowerUpUpgraderViewController.nib
+TOP-LEVEL OBJECTS
+  #139 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #147 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #69 UIView  Tag=2781
+    #62 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #95 UIImageView  Image='frame_popup_blank.png'
+    #9 UITextView  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #146 UIImageView  Image='fireworks_icon.png'
+    #46 UIButton (custom class ADButtonWithFont)  title[0]='UPDATE'
+    #124 UILabel  UserInteractionDisabled=False Text='Label'
+    #103 UIButton (custom class ADButtonWithFont)  title[0]='  BACK'
+  #78 UIView  Tag=2782
+    #1 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #76 UIImageView  Image='frame_popup_blank.png'
+    #32 UITextView  Tag=1 Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #115 UIImageView  Tag=2 Image='fireworks_icon.png'
+    #123 UIButton (custom class ADButtonWithFont)  Tag=5 title[0]='UPDATE'
+    #43 UILabel  Tag=3 UserInteractionDisabled=False Text='Label'
+
+CONNECTIONS
+  action  upgradeButtonPressed:                     #46 ADButtonWithFont --(events 0x40)--> #139 UIProxyObject
+  action  upgradeButtonPressed:                     #123 ADButtonWithFont --(events 0x40)--> #139 UIProxyObject
+  outlet  powerUpDescription                        #139 UIProxyObject --> #9 UITextView Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  powerUpIcon                               #139 UIProxyObject --> #146 UIImageView
+  outlet  powerUpTitle                              #139 UIProxyObject --> #124 UILabel Text='Label'
+  outlet  upgradeButton                             #139 UIProxyObject --> #46 ADButtonWithFont
+  outlet  view                                      #139 UIProxyObject --> #69 UIView
+  outlet  voiceOverBack                             #139 UIProxyObject --> #103 ADButtonWithFont
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#103 ADButtonWithFont' UIAccessibilityLabel='Back'

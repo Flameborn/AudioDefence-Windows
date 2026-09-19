@@ -1,0 +1,107 @@
+
+== -[TAGPBString dealloc]   (address 0x100132a0c  size 132  kind objc)
+  132a2c  if (self->string_ == 0) goto loc_100132a34
+  132a30  CFRelease(self->string_, _cmd)
+loc_100132a34:
+  132a40  if (self->utf8_ == 0) goto loc_100132a5c
+  132a54  if (self->utf8_ == x8) goto loc_100132a5c
+  132a58  free(self->utf8_)
+loc_100132a5c:
+  132a7c  [super dealloc]
+  132a8c  return
+
+== -[TAGPBString length]   (address 0x100132a90  size 104  kind objc)
+  132abc  if (self->utf8_ == x9) goto loc_100132ae0
+  132ac4  sub_100132af8(self, _cmd)
+  132adc  tail CFStringGetLength(self->string_)
+loc_100132ae0:
+  132af4  return
+
+== sub_100132af8   (address 0x100132af8  size 216  kind sub)
+  132b1c  OSSpinLockLock(x0, a1, a2, a3)
+  132b2c  if (a0->string_ != 0) goto loc_100132bb4
+  132b3c  if (a0->utf8_ == 0) goto loc_100132bb4
+  132b68  CFStringCreateWithBytesNoCopy(0, a0->utf8_, a0->utf8Len_, 0x8000100)
+  132b70  a0->string_ = CFStringCreateWithBytesNoCopy(0, a0->utf8_, a0->utf8Len_, 0x8000100)
+  132b74  if (CFStringCreateWithBytesNoCopy(0, a0->utf8_, a0->utf8Len_, 0x8000100) != 0) goto loc_100132b8c
+  132b80  a0->string_ = @""
+  132b88  a0->utf8Len_ = 0
+loc_100132b8c:
+  132ba4  if (a0->utf8_ == x8) goto loc_100132bb4
+  132ba8  free(a0->utf8_)
+  132bb0  a0->utf8_ = 0
+loc_100132bb4:
+  132bcc  tail OSSpinLockUnlock(x0)
+
+== -[TAGPBString characterAtIndex:]   (address 0x100132bd0  size 100  kind objc)
+  132c00  if (self->utf8_ == x9) goto loc_100132c24
+  132c08  sub_100132af8(self, _cmd, arg1)
+  132c1c  CFStringGetCharacterAtIndex(self->string_, arg1)
+  132c20  goto loc_100132c28
+loc_100132c24:
+loc_100132c28:
+  132c30  return
+
+== -[TAGPBString copyWithZone:]   (address 0x100132c34  size 128  kind objc)
+  132c64  if (self->utf8_ == x9) goto loc_100132c98
+  132c6c  sub_100132af8(self, _cmd, arg1)
+  132c94  tail [self->string_ copyWithZone:arg1]
+loc_100132c98:
+  132cb0  tail [self retain]
+
+== -[TAGPBString mutableCopyWithZone:]   (address 0x100132cb4  size 64  kind objc)
+  132cc8  sub_100132af8(self, _cmd, arg1)
+  132cf0  tail [self->string_ mutableCopyWithZone:arg1]
+
+== -[TAGPBString hash]   (address 0x100132cf4  size 44  kind objc)
+  132d04  sub_100132af8(self, _cmd)
+  132d1c  tail CFHash(self->string_)
+
+== -[TAGPBString isEqual:]   (address 0x100132d20  size 152  kind objc)
+  132d38  if (arg1 == self) goto loc_100132d9c
+  132d50  [NSString class]
+  132d68  [arg1 isKindOfClass:[NSString class]]
+  132d6c  if ([arg1 isKindOfClass:[NSString class]] == 0) goto loc_100132da4
+  132d74  sub_100132af8(self)
+  132d8c  CFStringCompare(self->string_, arg1, 0)
+  132d98  goto loc_100132da8
+loc_100132d9c:
+  132da0  goto loc_100132da8
+loc_100132da4:
+loc_100132da8:
+  132db4  return
+
+== -[TAGPBString getCharacters:range:]   (address 0x100132db8  size 152  kind objc)
+  132df4  if (self->utf8_ == x9) goto loc_100132e28
+  132dfc  sub_100132af8(self, _cmd, arg1, arg2)
+  132e24  tail CFStringGetCharacters(self->string_, arg2, x2, arg1)
+loc_100132e28:
+  132e28  if (x19 == 0) goto loc_100132e40
+loc_100132e30:
+  132e3c  if ((x19 - 1) != 0) goto loc_100132e30
+loc_100132e40:
+  132e4c  return
+
+== -[TAGPBString lengthOfBytesUsingEncoding:]   (address 0x100132e50  size 172  kind objc)
+  132e68  if (arg1 != 1) goto loc_100132e90
+  132e88  if (self->utf8_ != x9) goto loc_100132ecc
+  132e8c  goto loc_100132e98
+loc_100132e90:
+  132e94  if (arg1 != 4) goto loc_100132ecc
+loc_100132e98:
+  132ec8  return
+  132ed0  sub_100132af8(self, _cmd, arg1)
+  132ef8  tail [self->string_ lengthOfBytesUsingEncoding:arg1]
+
+== -[TAGPBString getBytes:maxLength:usedLength:encoding:options:range:remainingRange:]   (address 0x100132efc  size 320  kind objc)
+  132f58  if (self->utf8_ != x9) goto loc_100132f98
+  132f7c  if (flags ==) goto loc_100132f98
+  132f94  if ((x27 + x25) <=u self->utf8Len_) goto loc_100132ffc
+loc_100132f98:
+  132f9c  sub_100132af8(self, _cmd, arg1, arg2)
+  132fd4  [self->string_ getBytes:arg1 maxLength:arg2 usedLength:arg3 encoding:arg4 options:arg5 range:x7 remainingRange:&@selector(currentContext)]
+  132ff8  return
+  133010  memcpy(arg1, (self->utf8_ + x27), (x25 <u arg2 ? x25 : arg2), arg2)
+  133014  if (arg3 == 0) goto loc_10013301c
+  133018  arg3[+0x0] = (x25 <u arg2 ? x25 : arg2)
+  13301c  if (x26 == 0) goto loc_100133030

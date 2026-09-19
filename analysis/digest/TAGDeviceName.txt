@@ -1,0 +1,17 @@
+
+== +[TAGDeviceName functionId]   (address 0x100173f60  size 44  kind objc)
+  173f88  return
+
+== -[TAGDeviceName init]   (address 0x100173f8c  size 176  kind objc)
+  173fb8  [NSSet set]
+  173ff4  [super initWithFunctionId:@"_dn" requiredKeys:[NSSet set]]
+  174018  return
+
+== -[TAGDeviceName isCacheable]   (address 0x10017403c  size 8  kind objc)
+  174040  return
+
+== -[TAGDeviceName evaluate:]   (address 0x100174044  size 204  kind objc)
+  174070  [UIDevice currentDevice]
+  17408c  [[UIDevice currentDevice] model]
+  1740b0  [TAGTypes objectToValue:[[UIDevice currentDevice] model]]
+  1740e0  return

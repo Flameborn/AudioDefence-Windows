@@ -1,0 +1,38 @@
+// ADCheatViewController.nib
+TOP-LEVEL OBJECTS
+  #73 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #66 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #12 UIView  
+    #64 UISlider  Value=500.0
+    #120 UISlider  Value=25000.0
+    #61 UISlider  Value=500.0
+    #125 UILabel  UserInteractionDisabled=False Text='Label'
+    #94 UILabel  UserInteractionDisabled=False Text='Label'
+    #51 UILabel  UserInteractionDisabled=False Text='Label'
+    #10 UIButton  title[0]='Increase kills'
+    #136 UIButton  title[0]='Increase coins'
+    #7 UIButton  title[0]='Incrase diamonds'
+    #5 UIButton  title[0]='BACK'
+    #70 UILabel  UserInteractionDisabled=False Text='CHEAT MENU'
+    #1 UILabel  UserInteractionDisabled=False Text='Debug map'
+    #88 UISwitch  
+
+CONNECTIONS
+  action  backButtonTouched:                        #5 UIButton --(events 0x40)--> #73 UIProxyObject
+  action  coinsButtonTouched:                       #136 UIButton --(events 0x40)--> #73 UIProxyObject
+  action  coinsSliderValueChanged:                  #120 UISlider --(events 0x1000)--> #73 UIProxyObject
+  action  debugMapValueChanged:                     #88 UISwitch --(events 0x1000)--> #73 UIProxyObject
+  action  diamondsButtonTouched:                    #7 UIButton --(events 0x40)--> #73 UIProxyObject
+  action  diamondsSliderValueChanged:               #61 UISlider --(events 0x1000)--> #73 UIProxyObject
+  action  killsButtonTouched:                       #10 UIButton --(events 0x40)--> #73 UIProxyObject
+  action  killsSliderValueChanged:                  #64 UISlider --(events 0x1000)--> #73 UIProxyObject
+  outlet  coinsLabel                                #73 UIProxyObject --> #94 UILabel Text='Label'
+  outlet  coinsSlider                               #73 UIProxyObject --> #120 UISlider
+  outlet  debugMapSwitch                            #73 UIProxyObject --> #88 UISwitch
+  outlet  diamondsLabel                             #73 UIProxyObject --> #51 UILabel Text='Label'
+  outlet  diamondsSlider                            #73 UIProxyObject --> #61 UISlider
+  outlet  killsLabel                                #73 UIProxyObject --> #125 UILabel Text='Label'
+  outlet  killsSlider                               #73 UIProxyObject --> #64 UISlider
+  outlet  view                                      #73 UIProxyObject --> #12 UIView
+
+ACCESSIBILITY CONFIGURATIONS

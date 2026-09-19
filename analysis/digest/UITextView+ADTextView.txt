@@ -1,0 +1,27 @@
+
+== -[UITextView(ADTextView) setupAsInfo]   (address 0x1000d5388  size 300  kind objc)
+  0d53b0  [UIColor whiteColor]
+  0d53d4  [self setTextColor:[UIColor whiteColor]]
+  0d53fc  [ADGameParameters sharedParameters]
+  0d5418  [[ADGameParameters sharedParameters] isIphone]
+  0d5444  [UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 20)]
+  0d5468  [self setFont:[UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 20)]]
+  0d5484  return
+
+== -[UITextView(ADTextView) setupAsParagraph]   (address 0x1000d54b4  size 300  kind objc)
+  0d54dc  [UIColor whiteColor]
+  0d5500  [self setTextColor:[UIColor whiteColor]]
+  0d5528  [ADGameParameters sharedParameters]
+  0d5544  [[ADGameParameters sharedParameters] isIphone]
+  0d5570  [UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 17)]
+  0d5594  [self setFont:[UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 17)]]
+  0d55b0  return
+
+== -[UITextView(ADTextView) setupAsMain]   (address 0x1000d55e0  size 300  kind objc)
+  0d5608  [UIColor whiteColor]
+  0d562c  [self setTextColor:[UIColor whiteColor]]
+  0d5654  [ADGameParameters sharedParameters]
+  0d5670  [[ADGameParameters sharedParameters] isIphone]
+  0d569c  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 14 : 17)]
+  0d56c0  [self setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 14 : 17)]]
+  0d56dc  return

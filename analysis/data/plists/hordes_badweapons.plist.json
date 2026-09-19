@@ -1,0 +1,47 @@
+{
+ "icon_title": "H1",
+ "accuracy_star": {
+  "reward": 100,
+  "objective": 25
+ },
+ "title": "TRAINING GROUNDS 1",
+ "ambient": {
+  "gain": 0.1,
+  "spatialised_1": {
+   "position": "",
+   "soundName": "beach_stationaryobject_SPA_1"
+  },
+  "ambientSound": "beach_ambient_PRE"
+ },
+ "tip": "Aim with your ears. Shoot when you hear the Zombie right in front of you.",
+ "mission_star": {
+  "reward": 500
+ },
+ "bricks": [
+  "level2_brick_12_horde",
+  "level2_brick_18_horde",
+  "level2_brick_19_horde",
+  "level3_brick_13_runningHorde",
+  "level4_brick_8_horde"
+ ],
+ "icon": "Challenge_icon_01",
+ "challenge_id": "HORDE_01",
+ "objective": "Defeat All level 1 Bricks",
+ "weapons": [
+  {
+   "ammo": "999",
+   "name": "pistol"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 40
+ }
+}

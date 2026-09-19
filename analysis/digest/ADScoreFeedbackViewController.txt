@@ -1,0 +1,89 @@
+
+== -[ADScoreFeedbackViewController initWithEnemi:combo:]   (address 0x1000b1cd0  size 204  kind objc)
+  0b1d20  [super initWithNibName:0 bundle:0]
+  0b1d28  if (self == 0) goto loc_1000b1d68
+  0b1d40  self->enemy = arg1
+  0b1d54  self->combo = arg2
+  0b1d64  self->type = 1
+loc_1000b1d68:
+  0b1d84  return
+
+== -[ADScoreFeedbackViewController initWithCritical]   (address 0x1000b1d9c  size 136  kind objc)
+  0b1dd4  [super initWithNibName:0 bundle:0]
+  0b1ddc  if (self == 0) goto loc_1000b1e10
+  0b1dec  self->enemy = 0
+  0b1dfc  self->combo = 0
+  0b1e0c  self->type = 2
+loc_1000b1e10:
+  0b1e20  return
+
+== -[ADScoreFeedbackViewController viewDidLoad]   (address 0x1000b1e24  size 672  kind objc)
+  0b1e60  [super viewDidLoad]
+  0b1e74  [self view]
+  0b1e94  [[self view] setUserInteractionEnabled:0]
+  0b1eb0  if (self->type != 2) goto loc_1000b1f30
+  0b1ec4  [self titleLabel]
+  0b1ee8  [[self titleLabel] setText:@"CRITICAL SHOT"]
+  0b1f04  [self scoreLabel]
+  0b1f24  [[self scoreLabel] setHidden:1]
+  0b1f2c  goto loc_1000b203c
+loc_1000b1f30:
+  0b1f34  if (self->type != 1) goto loc_1000b2040
+  0b1f48  [self titleLabel]
+  0b1f70  [self->enemy name]
+  0b1f98  [[self titleLabel] setText:[self->enemy name]]
+  0b1fbc  [self scoreLabel]
+  0b1fe4  [self->enemy score]
+  0b2010  [NSString stringWithFormat:@"%i x %i", [self->enemy score], self->combo]
+  0b202c  [[self scoreLabel] setText:[NSString stringWithFormat:@"%i x %i", [self->enemy score], self->combo]]
+loc_1000b203c:
+loc_1000b2040:
+  0b2064  [self performSelector:@selector(fadeAndRemove) withObject:self afterDelay:2]
+  0b207c  return
+
+== -[ADScoreFeedbackViewController fadeAndRemove]   (address 0x1000b20c4  size 216  kind objc)
+  0b2158  [UIView animateWithDuration:1 animations:^{-[ADScoreFeedbackViewController fadeAndRemove]_block_invoke captures +0x20=self} completion:^{-[ADScoreFeedbackViewController fadeAndRemove]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADScoreFeedbackViewController fadeAnd…, +0x40=&d_1003b2550, +0x48=self}]
+  0b217c  return
+
+== -[ADScoreFeedbackViewController fadeAndRemove]_block_invoke   (address 0x1000b219c  size 100  kind block)
+  0b21b8  [self view]
+  0b21d8  [[self view] setAlpha:0]
+  0b21e8  return
+
+== sub_1000b2200   (address 0x1000b2200  size 8  kind sub)
+
+== sub_1000b2208   (address 0x1000b2208  size 8  kind sub)
+  0b220c  return
+
+== -[ADScoreFeedbackViewController fadeAndRemove]_block_invoke_2   (address 0x1000b2210  size 96  kind block)
+  0b222c  [self view]
+  0b2248  [[self view] removeFromSuperview]
+  0b2258  return
+
+== sub_1000b2270   (address 0x1000b2270  size 8  kind sub)
+
+== sub_1000b2278   (address 0x1000b2278  size 8  kind sub)
+  0b227c  return
+
+== -[ADScoreFeedbackViewController dealloc]   (address 0x1000b2280  size 140  kind objc)
+  0b229c  NSLog(@"Dealloc score feedback", _cmd)
+  0b22c0  [super dealloc]
+  0b22d0  return
+  0b22fc  [super dealloc]
+  0b2308  call sub_10000b760
+
+== -[ADScoreFeedbackViewController titleLabel]   (address 0x1000b230c  size 16  kind objc)
+  0b2318  return
+
+== -[ADScoreFeedbackViewController setTitleLabel:]   (address 0x1000b231c  size 56  kind objc)
+  0b2340  self->_titleLabel = arg1
+  0b2350  return
+
+== -[ADScoreFeedbackViewController scoreLabel]   (address 0x1000b2354  size 16  kind objc)
+  0b2360  return
+
+== -[ADScoreFeedbackViewController setScoreLabel:]   (address 0x1000b2364  size 56  kind objc)
+  0b2388  self->_scoreLabel = arg1
+  0b2398  return
+
+== -[ADScoreFeedbackViewController .cxx_destruct]   (address 0x1000b239c  size 84  kind objc)

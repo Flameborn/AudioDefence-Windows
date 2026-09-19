@@ -1,0 +1,79 @@
+
+== +[TAGClickReferrerUtil initialize]   (address 0x100159930  size 24  kind objc)
+  159944  tail [TAGClickReferrerUtil clearCache]
+
+== +[TAGClickReferrerUtil addClickReferrer:]   (address 0x100159948  size 356  kind objc)
+  159984  [TAGClickReferrerUtil extractComponent:@"conv" fromReferrer:arg1]
+  159994  if ([TAGClickReferrerUtil extractComponent:@"conv" fromReferrer:arg1] == 0) goto loc_100159a6c
+  1599a8  [[TAGClickReferrerUtil extractComponent:@"conv" fromReferrer:arg1] length]
+  1599ac  if ([[TAGClickReferrerUtil extractComponent:@"conv" fromReferrer:arg1] length] == 0) goto loc_100159a6c
+  1599b8  if (g_10042df40 != 0) goto loc_100159a30
+  1599d8  [TAGPropertyListUtil readPropertyList:@"ClickReferrer"]
+  1599e8  store g_10042df40 = [TAGPropertyListUtil readPropertyList:@"ClickReferrer"]
+  1599f8  if (g_10042df40 != 0) goto loc_100159a30
+  159a10  [NSMutableDictionary dictionary]
+  159a20  store g_10042df40 = [NSMutableDictionary dictionary]
+loc_100159a30:
+  159a44  [g_10042df40 setObject:arg1 forKey:[TAGClickReferrerUtil extractComponent:@"conv" fromReferrer:arg1]]
+  159a68  [TAGPropertyListUtil writePropertyListAsync:@"ClickReferrer" withData:g_10042df40]
+loc_100159a6c:
+  159a84  return
+
+== +[TAGClickReferrerUtil extractComponent:fromReferrer:]   (address 0x100159aac  size 260  kind objc)
+  159adc  if (arg2 == 0) goto loc_100159b34
+  159ae0  if (arg1 == 0) goto loc_100159b3c
+  159af8  [TAGClickReferrerUtil parseComponentsFromQueryParameters:arg2]
+  159b18  [[TAGClickReferrerUtil parseComponentsFromQueryParameters:arg2] objectForKey:arg1]
+  159b30  goto loc_100159b60
+loc_100159b34:
+  159b38  goto loc_100159b60
+loc_100159b3c:
+  159b4c  [arg2 length]
+loc_100159b60:
+  159b80  return
+
+== +[TAGClickReferrerUtil parseComponentsFromQueryParameters:]   (address 0x100159bb0  size 984  kind objc)
+  159c00  [NSMutableDictionary dictionary]
+  159c2c  [arg1 componentsSeparatedByString:@"&"]
+  159c70  [[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  159c78  if ([[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] == 0) goto loc_100159e78
+  159c84  &@selector(count)
+loc_100159cf0:
+loc_100159cf4:
+  159d04  if (x8 == x9) goto loc_100159d10
+  159d0c  objc_enumerationMutation([arg1 componentsSeparatedByString:@"&"])
+loc_100159d10:
+  159d28  [x0 componentsSeparatedByString:@"="]
+  159d3c  [[x0 componentsSeparatedByString:@"="] count]
+  159d44  if ([[x0 componentsSeparatedByString:@"="] count] != 2) goto loc_100159e08
+  159d5c  [[x0 componentsSeparatedByString:@"="] objectAtIndex:1]
+  159d7c  [TAGValueEscapeUtil urlDecode:[[x0 componentsSeparatedByString:@"="] objectAtIndex:1]]
+  159da0  [[x0 componentsSeparatedByString:@"="] objectAtIndex:0]
+  159dbc  [TAGValueEscapeUtil urlDecode:[[x0 componentsSeparatedByString:@"="] objectAtIndex:0]]
+  159ddc  [[NSMutableDictionary dictionary] setObject:[TAGValueEscapeUtil urlDecode:[[x0 componentsSeparatedByString:@"="] objectAtIndex:1]] forKey:[TAGValueEscapeUtil urlDecode:[[x0 componentsSeparatedByString:@"="] objectAtIndex:0]]]
+  159e04  goto loc_100159e48
+loc_100159e08:
+  159e20  [@"Invalid component: " stringByAppendingString:x2]
+  159e3c  [TAGLog warning:[@"Invalid component: " stringByAppendingString:x2]]
+loc_100159e48:
+  159e58  if ((x22 + 1) <u [[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]) goto loc_100159cf4
+  159e6c  [[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  159e74  if ([[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] != 0) goto loc_100159cf0
+loc_100159e78:
+  159ecc  return
+
+== +[TAGClickReferrerUtil clickReferrerForConversionId:component:]   (address 0x100159f88  size 380  kind objc)
+  159fdc  [g_10042df40 objectForKey:arg1]
+  159fec  if ([g_10042df40 objectForKey:arg1] != 0) goto loc_10015a06c
+  15a00c  [TAGPropertyListUtil readPropertyList:@"ClickReferrer"]
+  15a024  [[TAGPropertyListUtil readPropertyList:@"ClickReferrer"] objectForKey:arg1]
+  15a034  if ([[TAGPropertyListUtil readPropertyList:@"ClickReferrer"] objectForKey:arg1] != 0) goto loc_10015a048
+loc_10015a048:
+  15a060  [g_10042df40 setObject:x2 forKey:arg1]
+loc_10015a06c:
+  15a084  [TAGClickReferrerUtil extractComponent:arg2 fromReferrer:x3]
+  15a0c4  return
+
+== +[TAGClickReferrerUtil clearCache]   (address 0x10015a104  size 16  kind objc)
+  15a10c  store g_10042df40 = 0
+  15a110  return

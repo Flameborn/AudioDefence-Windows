@@ -1,0 +1,15 @@
+// ADScoreFeedbackViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #7 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #19 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #10 UIView  
+    #21 UILabel  UserInteractionDisabled=False Text='KILL'
+    #34 UILabel  UserInteractionDisabled=False Text='100 * 50'
+
+CONNECTIONS
+  outlet  scoreLabel                                #7 UIProxyObject --> #34 UILabel Text='100 * 50'
+  outlet  titleLabel                                #7 UIProxyObject --> #21 UILabel Text='KILL'
+  outlet  view                                      #7 UIProxyObject --> #10 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#10 UIView' UIAccessibilityTraits=256

@@ -1,0 +1,23 @@
+
+== -[NSObject(StatsNotifier) notifyStatsSystemWithNotificationWithName:AndData:]   (address 0x1000bda04  size 760  kind objc)
+  0bda60  [NSMutableArray alloc]
+  0bda70  [[NSMutableArray alloc] init]
+  0bda78  if (arg2 == 0) goto loc_1000bdba8
+  0bda94  [[[NSMutableArray alloc] init] addObject:arg2]
+loc_1000bdaa4:
+  0bdac8  if (x23 == 0) goto loc_1000bdb10
+  0bdad8  [[[NSMutableArray alloc] init] addObject:x2]
+  0bdadc  goto loc_1000bdaa4
+loc_1000bdb10:
+  0bdb20  [[[NSMutableArray alloc] init] copy]
+  0bdb48  [NSDictionary dictionaryWithObject:[[[NSMutableArray alloc] init] copy] forKey:@"PARAM_ARRAY"]
+  0bdb6c  [NSNotificationCenter defaultCenter]
+  0bdb94  [[NSNotificationCenter defaultCenter] postNotificationName:arg1 object:0 userInfo:[NSDictionary dictionaryWithObject:[[[NSMutableArray alloc] init] copy] forKey:@"PARAM_ARRAY"]]
+  0bdba4  goto loc_1000bdc4c
+loc_1000bdba8:
+  0bdbd8  [NSArray arrayWithObjects:&sp[0x10] count:1]
+  0bdbf8  [NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:&sp[0x10] count:1] forKey:@"PARAM_ARRAY"]
+  0bdc1c  [NSNotificationCenter defaultCenter]
+  0bdc44  [[NSNotificationCenter defaultCenter] postNotificationName:arg1 object:0 userInfo:[NSDictionary dictionaryWithObject:[NSArray arrayWithObjects:&sp[0x10] count:1] forKey:@"PARAM_ARRAY"]]
+loc_1000bdc4c:
+  0bdc94  return

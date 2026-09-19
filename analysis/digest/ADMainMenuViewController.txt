@@ -1,0 +1,263 @@
+
+== -[ADMainMenuViewController initWithNibName:bundle:]   (address 0x1000645a8  size 140  kind objc)
+  0645f8  [super initWithNibName:arg1 bundle:arg2]
+  06461c  return
+
+== -[ADMainMenuViewController viewDidLoad]   (address 0x100064634  size 1368  kind objc)
+  064670  [super viewDidLoad]
+  064688  [ADGameModifiers sharedModifiers]
+  0646a4  [[ADGameModifiers sharedModifiers] fullMoon]
+  0646c4  [self fullMoonView]
+  0646d8  &@selector(setHidden:)
+  0646e0  if ([[ADGameModifiers sharedModifiers] fullMoon] == 0) goto loc_1000646fc
+  0646f0  [[self fullMoonView] setHidden:0]
+  0646f4  goto loc_10006470c
+  0646f8  goto loc_100064b78
+loc_1000646fc:
+  064708  [[self fullMoonView] setHidden:1]
+loc_10006470c:
+  064728  [self statusBarViewController]
+  064744  [[self statusBarViewController] pageTitle]
+  06476c  [[[self statusBarViewController] pageTitle] setText:@"AUDIO DEFENCE"]
+  064788  [self statusBarViewController]
+  0647a8  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  0647bc  [self statusBarViewController]
+  0647dc  [[self statusBarViewController] setCurrenciesVisibility:0]
+  0647f0  [self statusBarViewController]
+  064810  [[self statusBarViewController] setDelegate:self]
+  064824  [self statusBarViewController]
+  064840  [[self statusBarViewController] backButton]
+  064858  [[[self statusBarViewController] backButton] setHidden:1]
+  06487c  [self cheatMenu]
+  064894  [[self cheatMenu] setHidden:1]
+  0648b0  [self versionNumberLabel]
+  0648cc  [[self versionNumberLabel] setText:@"Version 1.1"]
+  0648d8  UIAccessibilityIsVoiceOverRunning()
+  0648f8  [ADTracker sharedInstance]
+  06493c  [[ADTracker sharedInstance] setValue:(UIAccessibilityIsVoiceOverRunning() != 0 ? @"YES" : @"NO") ForDimension:@"Accessibility" AndValue:0 ForMetric:0]
+  064954  [GAI sharedInstance]
+  064970  [[GAI sharedInstance] defaultTracker]
+  064990  [&d_1003b83b0] -> @"&cd"
+  0649ac  [[[GAI sharedInstance] defaultTracker] set:@"&cd" value:@"Home Screen"]
+  0649c4  [GAIDictionaryBuilder createAppView]
+  0649e0  [[GAIDictionaryBuilder createAppView] build]
+  064a04  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]]
+  064a2c  [NSNotificationCenter defaultCenter]
+  064a68  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioRouteChanged) name:@"AD_MESSAGE_AudioRouteChanged" object:0]
+  064a7c  [self audioRouteChanged]
+  064a94  [UIApplication sharedApplication]
+  064ab4  [[UIApplication sharedApplication] setIdleTimerDisabled:0]
+  064adc  return
+
+== -[ADMainMenuViewController loadView]   (address 0x100064b8c  size 400  kind objc)
+  064be0  [NSNumber numberWithInt:1]
+  064c0c  [NSNumber numberWithInt:2]
+  064c34  [NSNumber numberWithInt:3]
+  064c64  [NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]
+  064ca8  [self loADViewBasedOnDeviceWithNibName:@"ADMainMenuViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]]
+  064cd4  return
+
+== -[ADMainMenuViewController viewDidAppear:]   (address 0x100064d1c  size 388  kind objc)
+  064d58  [super viewDidAppear:arg1]
+  064d7c  [self slidingView]
+  064df8  [[self slidingView] setSlideCompletion:^{-[ADMainMenuViewController viewDidAppear:]_block_invoke captures +0x30=self, +0x38=ADMainMenuViewController}]
+  064e0c  [self slidingView]
+  064e28  [[self slidingView] slide]
+  064e58  return
+
+== -[ADMainMenuViewController viewDidAppear:]_block_invoke   (address 0x100064ea0  size 252  kind block)
+  064ecc  [UIDevice currentDevice]
+  064ee8  [[UIDevice currentDevice] systemVersion]
+  064f04  [[[UIDevice currentDevice] systemVersion] floatValue]
+  064f24  if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) goto loc_100064f3c
+  064f38  return
+loc_100064f3c:
+  064f54  [objc_loadWeakRetained((block + 32)) authenticatePlayerOnGameCenter]
+  064f6c  return
+
+== sub_100064f9c   (address 0x100064f9c  size 12  kind sub)
+  064fa4  tail objc_copyWeak((a0 + 32), (a1 + 32), a2, a3)
+
+== sub_100064fa8   (address 0x100064fa8  size 8  kind sub)
+
+== -[ADMainMenuViewController armoryButtonPressed:]   (address 0x100064fb0  size 148  kind objc)
+  064fd4  [ADArmoryViewController alloc]
+  064ff0  [[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0]
+  065014  [self presentViewController:[[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0] animated:0 completion:0]
+  065024  return
+
+== -[ADMainMenuViewController cheatButtonPressed:]   (address 0x100065044  size 148  kind objc)
+  065068  [ADCheatViewController alloc]
+  065084  [[ADCheatViewController alloc] initWithNibName:@"ADCheatViewController" bundle:0]
+  0650a8  [self presentViewController:[[ADCheatViewController alloc] initWithNibName:@"ADCheatViewController" bundle:0] animated:0 completion:0]
+  0650b8  return
+
+== -[ADMainMenuViewController playButtonPressed:]   (address 0x1000650d8  size 648  kind objc)
+  06510c  [ADGameParameters sharedParameters]
+  065128  [[ADGameParameters sharedParameters] isHeadsetPluggedIn]
+  065138  if (!([[ADGameParameters sharedParameters] isHeadsetPluggedIn] & 1)) goto loc_10006519c
+  065150  [UIApplication sharedApplication]
+  06516c  [[UIApplication sharedApplication] delegate]
+  065188  [[[UIApplication sharedApplication] delegate] goToPlayMenu]
+  065198  goto loc_1000652d8
+loc_10006519c:
+  0651b0  [UIAlertView alloc]
+  0651d0  [NSBundle mainBundle]
+  065204  [[NSBundle mainBundle] localizedStringForKey:@"ALERT_TITLE" value:@"" table:0]
+  06521c  [NSBundle mainBundle]
+  065244  [[NSBundle mainBundle] localizedStringForKey:@"ALERT_CONTENT" value:@"" table:0]
+  065280  [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:0 otherButtonTitles:@"OK"]
+  0652bc  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:0 otherButtonTitles:@"OK"] setDelegate:self]
+  0652d0  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:0 otherButtonTitles:@"OK"] show]
+loc_1000652d8:
+  0652f0  return
+
+== -[ADMainMenuViewController settingsButtonTouched:]   (address 0x100065360  size 148  kind objc)
+  065384  [ADSettingsViewController alloc]
+  0653a0  [[ADSettingsViewController alloc] initWithNibName:@"ADSettingsViewController" bundle:0]
+  0653c4  [self presentViewController:[[ADSettingsViewController alloc] initWithNibName:@"ADSettingsViewController" bundle:0] animated:0 completion:0]
+  0653d4  return
+
+== -[ADMainMenuViewController moveToEncyclopedia:]   (address 0x1000653f4  size 148  kind objc)
+  065418  [ADStatsPortalViewController alloc]
+  065434  [[ADStatsPortalViewController alloc] initWithNibName:@"ADStatsPortalViewController" bundle:0]
+  065458  [self presentViewController:[[ADStatsPortalViewController alloc] initWithNibName:@"ADStatsPortalViewController" bundle:0] animated:0 completion:0]
+  065468  return
+
+== -[ADMainMenuViewController audioRouteChanged]   (address 0x100065488  size 216  kind objc)
+  0654b0  [ADGameParameters sharedParameters]
+  0654cc  [[ADGameParameters sharedParameters] isHeadsetPluggedIn]
+  0654ec  [self useHeadphones]
+  065500  &@selector(setHidden:)
+  065508  if ([[ADGameParameters sharedParameters] isHeadsetPluggedIn] == 0) goto loc_100065520
+  065514  [[self useHeadphones] setHidden:1]
+  065518  goto loc_10006552c
+  06551c  goto loc_10006554c
+loc_100065520:
+  065528  [[self useHeadphones] setHidden:0]
+loc_10006552c:
+  06553c  return
+
+== -[ADMainMenuViewController alertView:willDismissWithButtonIndex:]   (address 0x100065560  size 260  kind objc)
+  065584  [arg1 buttonTitleAtIndex:arg2]
+  0655a8  [[arg1 buttonTitleAtIndex:arg2] isEqualToString:@"OK"]
+  0655ac  if ([[arg1 buttonTitleAtIndex:arg2] isEqualToString:@"OK"] == 0) goto loc_100065610
+  0655c4  [UIApplication sharedApplication]
+  0655e0  [[UIApplication sharedApplication] delegate]
+  0655fc  [[[UIApplication sharedApplication] delegate] goToPlayMenu]
+loc_100065610:
+  065620  return
+
+== -[ADMainMenuViewController authenticatePlayerOnGameCenter]   (address 0x100065664  size 16  kind objc)
+  065670  tail [self authenticateLocalPlayer]
+
+== -[ADMainMenuViewController authenticateLocalPlayer]   (address 0x100065674  size 496  kind objc)
+  0656a4  [UIDevice currentDevice]
+  0656c0  [[UIDevice currentDevice] systemVersion]
+  0656f0  [[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."]
+  065710  [[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0]
+  06572c  [[[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0] intValue]
+  065748  if ([[[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."] objectAtIndex:0] intValue] < 6) goto loc_1000657ec
+  065760  [GKLocalPlayer localPlayer]
+  0657d0  [[GKLocalPlayer localPlayer] setAuthenticateHandler:^{-[ADMainMenuViewController authenticateLocalPlayer]_block_invoke captures +0x20=self}]
+loc_1000657ec:
+  065808  return
+
+== -[ADMainMenuViewController authenticateLocalPlayer]_block_invoke   (address 0x100065864  size 172  kind block)
+  06589c  [objc_loadWeakRetained((block + 40)) isAuthenticated]
+  0658ac  if (blockarg1 == 0) goto loc_1000658d8
+  0658b4  if (!(([objc_loadWeakRetained((block + 40)) isAuthenticated] ^ 1) & 1)) goto loc_1000658d8
+  0658d4  [self presentViewController:blockarg1 animated:0 completion:0]
+loc_1000658d8:
+  0658e8  return
+
+== sub_100065910   (address 0x100065910  size 44  kind sub)
+  065928  objc_copyWeak((a0 + 40), (a1 + 40), a2, a3)
+
+== sub_10006593c   (address 0x10006593c  size 40  kind sub)
+  065960  return
+
+== -[ADMainMenuViewController leaderboardsButtonPressed:]   (address 0x100065964  size 588  kind objc)
+  0659a0  [UIDevice currentDevice]
+  0659c0  [[UIDevice currentDevice] systemVersion]
+  0659e0  [[[UIDevice currentDevice] systemVersion] floatValue]
+  0659f4  NSLog(@"Version : %f", [[[UIDevice currentDevice] systemVersion] floatValue])
+  065a10  [UIDevice currentDevice]
+  065a24  [[UIDevice currentDevice] systemVersion]
+  065a38  [[[UIDevice currentDevice] systemVersion] floatValue]
+  065a58  if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) goto loc_100065a7c
+  065a78  return
+loc_100065a7c:
+  065a90  [GKGameCenterViewController alloc]
+  065aa0  [[GKGameCenterViewController alloc] init]
+  065aa8  if ([[GKGameCenterViewController alloc] init] == 0) goto loc_100065b38
+  065ac0  [[[GKGameCenterViewController alloc] init] setGameCenterDelegate:self]
+  065ad8  [[[GKGameCenterViewController alloc] init] setViewState:0]
+  065af0  [[[GKGameCenterViewController alloc] init] setLeaderboardTimeScope:2]
+  065b0c  [[[GKGameCenterViewController alloc] init] setLeaderboardIdentifier:@"EndlessModeScoreLeaderboard"]
+  065b34  [self performSelector:@selector(presentGameCenter:) withObject:[[GKGameCenterViewController alloc] init] afterDelay:0]
+loc_100065b38:
+  065b58  return
+
+== -[ADMainMenuViewController presentGameCenter:]   (address 0x100065bb0  size 40  kind objc)
+  065bcc  [self presentViewController:arg1 animated:1 completion:0]
+  065bd4  return
+
+== -[ADMainMenuViewController gameCenterViewControllerDidFinish:]   (address 0x100065bd8  size 40  kind objc)
+  065bf4  [self dismissViewControllerAnimated:1 completion:0]
+  065bfc  return
+
+== -[ADMainMenuViewController betaHasExpired]   (address 0x100065c00  size 320  kind objc)
+  065c24  [NSDateFormatter alloc]
+  065c34  [[NSDateFormatter alloc] init]
+  065c54  [[[NSDateFormatter alloc] init] setDateFormat:@"yyyy-MM-dd"]
+  065c70  [[[NSDateFormatter alloc] init] dateFromString:@"2014-10-21"]
+  065c94  [NSDate date]
+  065cb4  [[NSDate date] compare:[[[NSDateFormatter alloc] init] dateFromString:@"2014-10-21"]]
+  065cbc  if ([[NSDate date] compare:[[[NSDateFormatter alloc] init] dateFromString:@"2014-10-21"]] != 1) goto loc_100065cd4
+  065cc8  NSLog(@"BETA IS OVER")
+  065cd0  goto loc_100065cd8
+loc_100065cd4:
+loc_100065cd8:
+  065d00  return
+
+== -[ADMainMenuViewController accessibilityPerformMagicTap]   (address 0x100065d40  size 40  kind objc)
+  065d58  [self playButtonPressed:0]
+  065d64  return
+
+== -[ADMainMenuViewController fullMoonView]   (address 0x100065d68  size 16  kind objc)
+  065d74  return
+
+== -[ADMainMenuViewController setFullMoonView:]   (address 0x100065d78  size 56  kind objc)
+  065d9c  self->_fullMoonView = arg1
+  065dac  return
+
+== -[ADMainMenuViewController cheatMenu]   (address 0x100065db0  size 16  kind objc)
+  065dbc  return
+
+== -[ADMainMenuViewController setCheatMenu:]   (address 0x100065dc0  size 56  kind objc)
+  065de4  self->_cheatMenu = arg1
+  065df4  return
+
+== -[ADMainMenuViewController versionNumberLabel]   (address 0x100065df8  size 16  kind objc)
+  065e04  return
+
+== -[ADMainMenuViewController setVersionNumberLabel:]   (address 0x100065e08  size 56  kind objc)
+  065e2c  self->_versionNumberLabel = arg1
+  065e3c  return
+
+== -[ADMainMenuViewController useHeadphones]   (address 0x100065e40  size 16  kind objc)
+  065e4c  return
+
+== -[ADMainMenuViewController setUseHeadphones:]   (address 0x100065e50  size 56  kind objc)
+  065e74  self->_useHeadphones = arg1
+  065e84  return
+
+== -[ADMainMenuViewController slidingView]   (address 0x100065e88  size 16  kind objc)
+  065e94  return
+
+== -[ADMainMenuViewController setSlidingView:]   (address 0x100065e98  size 56  kind objc)
+  065ebc  self->_slidingView = arg1
+  065ecc  return
+
+== -[ADMainMenuViewController .cxx_destruct]   (address 0x100065ed0  size 124  kind objc)

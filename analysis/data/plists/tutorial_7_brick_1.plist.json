@@ -1,0 +1,53 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_tutorial_7_1"
+  },
+  {
+   "spawn_after": {
+    "time": 1.5,
+    "enemy": "Farty"
+   },
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "name": "bastard_tutorial_7_2"
+  },
+  {
+   "spawn_after": {
+    "time": 1.5,
+    "enemy": "Farty - 2"
+   },
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "name": "bastard_tutorial_7_3"
+  }
+ ],
+ "Enemies": {
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 25.6,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_7_1"
+   },
+   "spawn_angle": 30,
+   "spawn_distance": 6
+  },
+  "Farty - 2": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 16.9,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_7_2"
+   },
+   "spawn_angle": 60,
+   "spawn_distance": 10
+  }
+ }
+}

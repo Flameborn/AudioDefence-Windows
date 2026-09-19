@@ -1,0 +1,25 @@
+
+== -[TAGManagerListener initWithTagManager:]   (address 0x100153264  size 164  kind objc)
+  1532a8  [super init]
+  1532b0  if (self == 0) goto loc_1001532d4
+  1532c8  self->_tagManager = arg1
+loc_1001532d4:
+  1532f0  return
+
+== -[TAGManagerListener changed:]   (address 0x100153308  size 252  kind objc)
+  153338  [arg1 objectForKey:@"event"]
+  153348  if ([arg1 objectForKey:@"event"] == 0) goto loc_1001533b4
+  15335c  [self tagManager]
+  15337c  [[arg1 objectForKey:@"event"] description]
+  1533a0  [[self tagManager] refreshTagsInAllContainers:[[arg1 objectForKey:@"event"] description]]
+loc_1001533b4:
+  1533c4  return
+
+== -[TAGManagerListener tagManager]   (address 0x100153404  size 16  kind objc)
+  153410  return
+
+== -[TAGManagerListener setTagManager:]   (address 0x100153414  size 56  kind objc)
+  153438  self->_tagManager = arg1
+  153448  return
+
+== -[TAGManagerListener .cxx_destruct]   (address 0x10015344c  size 20  kind objc)

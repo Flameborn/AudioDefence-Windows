@@ -1,0 +1,20 @@
+// ADEnemyStatsCell.nib
+TOP-LEVEL OBJECTS
+  #34 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #9 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #50 UITableViewCell (custom class ADEnemyStatsCell)  
+    #36 UITableViewCellContentView  
+      #5 UIView  
+        #56 UIImageView  UserInteractionDisabled=False Image='currency_coins.png'
+        #40 UILabel  UserInteractionDisabled=False Text='Label'
+        #3 UILabel  UserInteractionDisabled=False Text='L'
+    #16 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #36)
+
+CONNECTIONS
+  outlet  coinsAmountLabel                          #50 ADEnemyStatsCell --> #3 UILabel Text='L'
+  outlet  customView                                #50 ADEnemyStatsCell --> #5 UIView
+  outlet  enemyNameLabel                            #50 ADEnemyStatsCell --> #40 UILabel Text='Label'
+
+ACCESSIBILITY CONFIGURATIONS

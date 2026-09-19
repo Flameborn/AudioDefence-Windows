@@ -1,0 +1,313 @@
+
+== -[ADArmoryLoadoutViewController initWithNibName:bundle:]   (address 0x10000938c  size 408  kind objc)
+  0093f8  [super initWithNibName:arg1 bundle:arg2]
+  009400  if (self == 0) goto loc_1000094ac
+  009420  [NSNotificationCenter defaultCenter]
+  009460  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:@"INVENTORY_CHANGED" object:0]
+  009478  [NSNotificationCenter defaultCenter]
+  0094a0  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:@"WEAPON_UPGRADE_EVENT" object:0]
+loc_1000094ac:
+  0094dc  return
+
+== -[ADArmoryLoadoutViewController viewDidLoad]   (address 0x100009524  size 408  kind objc)
+  00955c  [super viewDidLoad]
+  009570  [self initWeaponScroller]
+  009584  [self initInventoryView]
+  00959c  [self loadoutInfoTextView]
+  0095b8  [[self loadoutInfoTextView] setupAsInfo]
+  0095cc  [self loadoutInfoTextView]
+  0095f0  [NSBundle mainBundle]
+  009620  [[NSBundle mainBundle] localizedStringForKey:@"LOADOUT_INFO" value:@"" table:0]
+  009644  [[self loadoutInfoTextView] setText:[[NSBundle mainBundle] localizedStringForKey:@"LOADOUT_INFO" value:@"" table:0]]
+  009670  return
+
+== -[ADArmoryLoadoutViewController loadView]   (address 0x1000096bc  size 536  kind objc)
+  009714  [NSNumber numberWithInt:1]
+  009740  [NSNumber numberWithInt:2]
+  009768  [NSNumber numberWithInt:3]
+  009790  [NSNumber numberWithInt:4]
+  0097b8  [NSNumber numberWithInt:5]
+  0097e8  [NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x8] count:5]
+  00983c  [self loADViewBasedOnDeviceWithNibName:@"ADArmoryLoadoutViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x8] count:5]]
+  00986c  return
+
+== -[ADArmoryLoadoutViewController initInventoryView]   (address 0x1000098d4  size 968  kind objc)
+  009910  [ADInventory sharedInventory]
+  009930  [[ADInventory sharedInventory] weaponSlot1]
+  009950  [ADInventory sharedInventory]
+  009970  [[ADInventory sharedInventory] weaponSlot2]
+  009990  [ADInventory sharedInventory]
+  0099ac  [[ADInventory sharedInventory] weaponSlotMelee]
+  0099cc  [self weaponSlot1]
+  009a0c  [NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]
+  009a34  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]]
+  009a5c  [[self weaponSlot1] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]]]
+  009a80  [self weaponSlot2]
+  009aac  [NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]
+  009ac8  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]]
+  009ae4  [[self weaponSlot2] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]]]
+  009b10  [self meleeSlot]
+  009b3c  [NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlotMelee]]
+  009b58  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlotMelee]]]
+  009b74  [[self meleeSlot] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlotMelee]]]]
+  009bc0  return
+
+== -[ADArmoryLoadoutViewController initWeaponScroller]   (address 0x100009c9c  size 484  kind objc)
+  009cc4  [self weaponScrollViewController]
+  009cd8  if ([self weaponScrollViewController] != 0) goto loc_100009d34
+  009cf0  [ADLoadoutScrollViewController alloc]
+  009d0c  [[ADLoadoutScrollViewController alloc] initWithNibName:@"ADLoadoutScrollViewController" bundle:0]
+  009d28  [self setWeaponScrollViewController:[[ADLoadoutScrollViewController alloc] initWithNibName:@"ADLoadoutScrollViewController" bundle:0]]
+loc_100009d34:
+  009d44  [self weaponScroller]
+  009d5c  [self weaponScrollViewController]
+  009d7c  [[self weaponScrollViewController] view]
+  009da0  [[self weaponScroller] addSubview:[[self weaponScrollViewController] view]]
+  009dc4  [self weaponScrollViewController]
+  009de4  [[self weaponScrollViewController] setItemDelegate:self]
+  009df8  [self view]
+  009e18  [[self view] setDropZoneHandler:self]
+  009e30  return
+
+== -[ADArmoryLoadoutViewController ovumEntered:inView:atLocation:]   (address 0x100009e80  size 8  kind objc)
+  009e84  return
+
+== -[ADArmoryLoadoutViewController ovumExited:inView:atLocation:]   (address 0x100009e88  size 4  kind objc)
+  009e88  return
+
+== -[ADArmoryLoadoutViewController ovumDropped:inView:atLocation:]   (address 0x100009e8c  size 3820  kind objc)
+  009edc  [self weaponSlot1]
+  009efc  [[self weaponSlot1] frame]
+  009f08  CGRectContainsPoint()
+  009f18  if (CGRectContainsPoint() == 0) goto loc_10000a22c
+  009f30  [arg1 dataObject]
+  009f4c  [[arg1 dataObject] objName]
+  009f6c  [arg1 dataObject]
+  009f88  [[arg1 dataObject] objTag]
+  009f9c  if ([[arg1 dataObject] objTag] != 1) goto loc_10000a8c8
+  009fb8  [ADInventory sharedInventory]
+  009fcc  [[ADInventory sharedInventory] weaponSlot1]
+  009fec  [ADInventory sharedInventory]
+  00a010  [[ADInventory sharedInventory] weaponSlot2]
+  00a040  [[[ADInventory sharedInventory] weaponSlot2] isEqualToString:[[arg1 dataObject] objName]]
+  00a044  if ([[[ADInventory sharedInventory] weaponSlot2] isEqualToString:[[arg1 dataObject] objName]] == 0) goto loc_10000a780
+  00a068  [self weaponSlot1]
+  00a0a8  [NSString stringWithFormat:@"%@_icon", [[arg1 dataObject] objName]]
+  00a0d4  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[arg1 dataObject] objName]]]
+  00a0fc  [[self weaponSlot1] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[arg1 dataObject] objName]]]]
+  00a128  [self weaponSlot2]
+  00a158  [NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]
+  00a174  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]]
+  00a190  [[self weaponSlot2] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]]]
+  00a1bc  [ADInventory sharedInventory]
+  00a1dc  [[ADInventory sharedInventory] setWeaponSlot1:[[arg1 dataObject] objName]]
+  00a1f8  [ADInventory sharedInventory]
+  00a218  [[ADInventory sharedInventory] setWeaponSlot2:[[ADInventory sharedInventory] weaponSlot1]]
+  00a228  goto loc_10000a8b8
+loc_10000a22c:
+  00a240  [self weaponSlot2]
+  00a254  [[self weaponSlot2] frame]
+  00a260  CGRectContainsPoint()
+  00a270  if (CGRectContainsPoint() == 0) goto loc_10000a57c
+  00a288  [arg1 dataObject]
+  00a2a4  [[arg1 dataObject] objName]
+  00a2c4  [arg1 dataObject]
+  00a2e0  [[arg1 dataObject] objTag]
+  00a2f4  if ([[arg1 dataObject] objTag] != 1) goto loc_10000aa18
+  00a310  [ADInventory sharedInventory]
+  00a328  [[ADInventory sharedInventory] weaponSlot1]
+  00a348  [ADInventory sharedInventory]
+  00a35c  [[ADInventory sharedInventory] weaponSlot2]
+  00a38c  [[[ADInventory sharedInventory] weaponSlot1] isEqualToString:[[arg1 dataObject] objName]]
+  00a390  if ([[[ADInventory sharedInventory] weaponSlot1] isEqualToString:[[arg1 dataObject] objName]] == 0) goto loc_10000a8d0
+  00a3b4  [self weaponSlot1]
+  00a3f0  [NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]
+  00a41c  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]]
+  00a444  [[self weaponSlot1] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]]]
+  00a470  [self weaponSlot2]
+  00a4a4  [NSString stringWithFormat:@"%@_icon", [[arg1 dataObject] objName]]
+  00a4c0  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[arg1 dataObject] objName]]]
+  00a4dc  [[self weaponSlot2] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[arg1 dataObject] objName]]]]
+  00a508  [ADInventory sharedInventory]
+  00a528  [[ADInventory sharedInventory] setWeaponSlot1:[[ADInventory sharedInventory] weaponSlot2]]
+  00a544  [ADInventory sharedInventory]
+  00a568  [[ADInventory sharedInventory] setWeaponSlot2:[[arg1 dataObject] objName]]
+  00a578  goto loc_10000aa08
+loc_10000a57c:
+  00a590  [self meleeSlot]
+  00a5a4  [[self meleeSlot] frame]
+  00a5b0  CGRectContainsPoint()
+  00a5c0  if (CGRectContainsPoint() == 0) goto loc_10000aa20
+  00a5d8  [arg1 dataObject]
+  00a5f4  [[arg1 dataObject] objName]
+  00a614  [arg1 dataObject]
+  00a630  [[arg1 dataObject] objTag]
+  00a644  if ([[arg1 dataObject] objTag] != 2) goto loc_10000a778
+  00a660  [ADInventory sharedInventory]
+  00a680  [[ADInventory sharedInventory] setWeaponSlotMelee:[[arg1 dataObject] objName]]
+  00a694  [self meleeSlot]
+  00a6bc  [ADInventory sharedInventory]
+  00a6d8  [[ADInventory sharedInventory] weaponSlotMelee]
+  00a704  [NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlotMelee]]
+  00a728  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlotMelee]]]
+  00a74c  [[self meleeSlot] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlotMelee]]]]
+loc_10000a778:
+  00a77c  goto loc_10000aa1c
+loc_10000a780:
+  00a790  [ADInventory sharedInventory]
+  00a7b0  [[ADInventory sharedInventory] setWeaponSlot1:[[arg1 dataObject] objName]]
+  00a7c8  [self weaponSlot1]
+  00a7f8  [ADInventory sharedInventory]
+  00a80c  [[ADInventory sharedInventory] weaponSlot1]
+  00a838  [NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]
+  00a85c  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]]
+  00a880  [[self weaponSlot1] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot1]]]]
+loc_10000a8b8:
+loc_10000a8c8:
+  00a8cc  goto loc_10000aa1c
+loc_10000a8d0:
+  00a8e0  [ADInventory sharedInventory]
+  00a900  [[ADInventory sharedInventory] setWeaponSlot2:[[arg1 dataObject] objName]]
+  00a918  [self weaponSlot2]
+  00a948  [ADInventory sharedInventory]
+  00a95c  [[ADInventory sharedInventory] weaponSlot2]
+  00a988  [NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]
+  00a9ac  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]]
+  00a9d0  [[self weaponSlot2] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[ADInventory sharedInventory] weaponSlot2]]]]
+loc_10000aa08:
+loc_10000aa18:
+loc_10000aa1c:
+loc_10000aa20:
+  00aa44  return
+
+== -[ADArmoryLoadoutViewController refresh:]   (address 0x10000ad78  size 124  kind objc)
+  00ad94  [self initInventoryView]
+  00ada8  [self weaponScrollViewController]
+  00adc4  [[self weaponScrollViewController] refresh]
+  00add4  return
+
+== -[ADArmoryLoadoutViewController handleItemTap:]   (address 0x10000adf4  size 116  kind objc)
+  00ae14  [arg1 itemName]
+  00ae38  [self openDescriptionForItemWithName:[arg1 itemName]]
+  00ae48  return
+
+== -[ADArmoryLoadoutViewController openDescriptionForItemWithName:]   (address 0x10000ae68  size 548  kind objc)
+  00aecc  [self weaponScrollViewController]
+  00aee8  [[self weaponScrollViewController] childViewControllers]
+  00af24  [[[self weaponScrollViewController] childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  00af2c  if ([[[self weaponScrollViewController] childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_10000aff8
+  00af58  &@selector(openDescriptionForItemAtIndex:)
+loc_10000af60:
+loc_10000af68:
+  00af74  if (x8 == x22) goto loc_10000af80
+  00af7c  objc_enumerationMutation([[self weaponScrollViewController] childViewControllers])
+loc_10000af80:
+  00af8c  [x0 itemName]
+  00afa4  [[x0 itemName] isEqualToString:arg1]
+  00afb4  if ([[x0 itemName] isEqualToString:arg1] == 0) goto loc_10000afc8
+  00afc4  [self openDescriptionForItemAtIndex:(x21 + x20)]
+loc_10000afc8:
+  00afd0  if ((x20 + 1) <u [[[self weaponScrollViewController] childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:…) goto loc_10000af68
+  00afe8  [[[self weaponScrollViewController] childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  00aff4  if ([[[self weaponScrollViewController] childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_10000af60
+loc_10000aff8:
+  00b03c  return
+
+== -[ADArmoryLoadoutViewController openDescriptionForItemAtIndex:]   (address 0x10000b08c  size 196  kind objc)
+  00b0b0  [self armoryViewController]
+  00b0d4  [[self armoryViewController] openDescriptionForItemAtIndex:arg1 withButton:1]
+  00b0f0  [self weaponScroller]
+  00b10c  [[self weaponScroller] contentOffset]
+  00b120  [self setScrollOffset:{[[self weaponScroller] contentOffset].0, [[self weaponScroller] contentOffset].1}]
+  00b134  return
+
+== -[ADArmoryLoadoutViewController dealloc]   (address 0x10000b150  size 300  kind objc)
+  00b184  [NSNotificationCenter defaultCenter]
+  00b1b4  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"INVENTORY_CHANGED" object:0]
+  00b1c8  [NSNotificationCenter defaultCenter]
+  00b1ec  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WEAPON_UPGRADE_EVENT" object:0]
+  00b218  [super dealloc]
+  00b230  return
+  00b26c  [super dealloc]
+  00b278  call sub_10000b760
+
+== -[ADArmoryLoadoutViewController slotOneTapped:]   (address 0x10000b27c  size 176  kind objc)
+  00b2a4  [ADInventory sharedInventory]
+  00b2c0  [[ADInventory sharedInventory] weaponSlot1]
+  00b2ec  [self openDescriptionForItemWithName:[[ADInventory sharedInventory] weaponSlot1]]
+  00b300  return
+
+== -[ADArmoryLoadoutViewController slotTwoTapped:]   (address 0x10000b32c  size 176  kind objc)
+  00b354  [ADInventory sharedInventory]
+  00b370  [[ADInventory sharedInventory] weaponSlot2]
+  00b39c  [self openDescriptionForItemWithName:[[ADInventory sharedInventory] weaponSlot2]]
+  00b3b0  return
+
+== -[ADArmoryLoadoutViewController slotThreeTapped:]   (address 0x10000b3dc  size 176  kind objc)
+  00b404  [ADInventory sharedInventory]
+  00b420  [[ADInventory sharedInventory] weaponSlotMelee]
+  00b44c  [self openDescriptionForItemWithName:[[ADInventory sharedInventory] weaponSlotMelee]]
+  00b460  return
+
+== -[ADArmoryLoadoutViewController weaponScroller]   (address 0x10000b48c  size 16  kind objc)
+  00b498  return
+
+== -[ADArmoryLoadoutViewController setWeaponScroller:]   (address 0x10000b49c  size 56  kind objc)
+  00b4c0  self->_weaponScroller = arg1
+  00b4d0  return
+
+== -[ADArmoryLoadoutViewController loadoutInfoTextView]   (address 0x10000b4d4  size 16  kind objc)
+  00b4e0  return
+
+== -[ADArmoryLoadoutViewController setLoadoutInfoTextView:]   (address 0x10000b4e4  size 56  kind objc)
+  00b508  self->_loadoutInfoTextView = arg1
+  00b518  return
+
+== -[ADArmoryLoadoutViewController armoryViewController]   (address 0x10000b51c  size 32  kind objc)
+  00b538  return
+
+== -[ADArmoryLoadoutViewController setArmoryViewController:]   (address 0x10000b53c  size 20  kind objc)
+
+== -[ADArmoryLoadoutViewController scrollOffset]   (address 0x10000b550  size 60  kind objc)
+  00b578  objc_copyStruct(&sp[0x0], x1, 16, 1)
+  00b588  return
+
+== -[ADArmoryLoadoutViewController setScrollOffset:]   (address 0x10000b58c  size 60  kind objc)
+  00b5b8  objc_copyStruct(x0, &sp[0x0], 16, 1)
+  00b5c4  return
+
+== -[ADArmoryLoadoutViewController weaponSlot1]   (address 0x10000b5c8  size 16  kind objc)
+  00b5d4  return
+
+== -[ADArmoryLoadoutViewController setWeaponSlot1:]   (address 0x10000b5d8  size 56  kind objc)
+  00b5fc  self->_weaponSlot1 = arg1
+  00b60c  return
+
+== -[ADArmoryLoadoutViewController weaponSlot2]   (address 0x10000b610  size 16  kind objc)
+  00b61c  return
+
+== -[ADArmoryLoadoutViewController setWeaponSlot2:]   (address 0x10000b620  size 56  kind objc)
+  00b644  self->_weaponSlot2 = arg1
+  00b654  return
+
+== -[ADArmoryLoadoutViewController meleeSlot]   (address 0x10000b658  size 16  kind objc)
+  00b664  return
+
+== -[ADArmoryLoadoutViewController setMeleeSlot:]   (address 0x10000b668  size 56  kind objc)
+  00b68c  self->_meleeSlot = arg1
+  00b69c  return
+
+== -[ADArmoryLoadoutViewController weaponScrollViewController]   (address 0x10000b6a0  size 16  kind objc)
+  00b6ac  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADArmoryLoadoutViewController setWeaponScrollViewController:]   (address 0x10000b6b0  size 12  kind objc)
+  00b6b8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADArmoryLoadoutViewController .cxx_destruct]   (address 0x10000b6bc  size 160  kind objc)
+
+== -[ADArmoryLoadoutViewController .cxx_construct]   (address 0x10000b75c  size 4  kind objc)
+  00b75c  return
+
+== sub_10000b760   (address 0x10000b760  size 16  kind sub)
+  00b768  cxa_begin_catch(a0, a1, a2, a3)
+  00b76c  ZSt9terminatev(cxa_begin_catch(a0, a1, a2, a3))

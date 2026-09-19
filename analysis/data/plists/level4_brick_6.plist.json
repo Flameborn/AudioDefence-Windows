@@ -1,0 +1,37 @@
+{
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_angle": 150,
+   "spawn_distance": 10,
+   "spawn_time": 6
+  },
+  "Berserk": {
+   "spawn_sound": "",
+   "spawn_angle": 85,
+   "spawn_distance": 5,
+   "spawn_time": 3
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_angle": 200,
+   "spawn_distance": 10,
+   "spawn_time": 9
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 300,
+   "spawn_distance": 10,
+   "spawn_time": 12
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 100,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "5"
+ }
+}

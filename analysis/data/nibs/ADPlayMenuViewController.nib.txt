@@ -1,0 +1,58 @@
+// ADPlayMenuViewController.nib
+TOP-LEVEL OBJECTS
+  #63 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #108 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #157 UIView  Tag=2781
+    #223 UIView (custom class ViewWithParalax)  
+      #85 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #53 UIView (custom class ADSlidingView)  
+      #10 UIImageView  UserInteractionDisabled=False Image='chains_play_menu.png'
+      #232 UIButton (custom class ADButtonWithFont)  
+      #146 UIButton (custom class ADButtonWithFont)  
+      #242 UIView  
+        #123 UIImageView  UserInteractionDisabled=False Image='icon_locked_wide.png'
+        #68 UIImageView  Image='frame_locked.png'
+        #181 UILabel  UserInteractionDisabled=False Text='Finish 5 challenges to unlock this mode' NumberOfLines=2
+      #186 UIButton  
+      #131 UIButton  
+  #70 UIView  Tag=2782
+    #221 UIView (custom class ViewWithParalax)  
+      #230 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #88 UIView (custom class ADSlidingView)  Tag=5
+      #239 UIImageView  UserInteractionDisabled=False Image='chains_play_menu.png'
+      #20 UIButton (custom class ADButtonWithFont)  
+      #153 UIButton (custom class ADButtonWithFont)  Tag=3
+      #99 UIView  Tag=4
+        #240 UIImageView  Image='frame_locked.png'
+        #121 UIImageView  UserInteractionDisabled=False Image='icon_locked_wide.png'
+        #225 UILabel  UserInteractionDisabled=False Text='Finish 5 challenges to unlock this mode' NumberOfLines=2
+      #84 UIButton  Tag=1
+      #59 UIButton  Tag=2
+
+CONNECTIONS
+  action  challengeButtonTouched:                   #232 ADButtonWithFont --(events 0x40)--> #63 UIProxyObject
+  action  challengeButtonTouched:                   #20 ADButtonWithFont --(events 0x40)--> #63 UIProxyObject
+  action  challengeInfoButtonPressed:               #84 UIButton --(events 0x40)--> #63 UIProxyObject
+  action  challengeInfoButtonPressed:               #186 UIButton --(events 0x40)--> #63 UIProxyObject
+  action  endlessInfoButtonPressed:                 #59 UIButton --(events 0x40)--> #63 UIProxyObject
+  action  endlessInfoButtonPressed:                 #131 UIButton --(events 0x40)--> #63 UIProxyObject
+  action  endlessModeButtonTouched:                 #153 ADButtonWithFont --(events 0x40)--> #63 UIProxyObject
+  action  endlessModeButtonTouched:                 #146 ADButtonWithFont --(events 0x40)--> #63 UIProxyObject
+  outlet  background                                #63 UIProxyObject --> #85 UIImageView
+  outlet  challengeInfoButton                       #63 UIProxyObject --> #186 UIButton
+  outlet  endlessInfoButton                         #63 UIProxyObject --> #131 UIButton
+  outlet  endlessModeButton                         #63 UIProxyObject --> #146 ADButtonWithFont
+  outlet  endlessModeLockView                       #63 UIProxyObject --> #242 UIView
+  outlet  firstAccessibleElement                    #63 UIProxyObject --> #232 ADButtonWithFont
+  outlet  slidingView                               #63 UIProxyObject --> #53 ADSlidingView
+  outlet  view                                      #63 UIProxyObject --> #157 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#232 ADButtonWithFont' UIAccessibilityLabel='Challenge'
+  UIAccessibileObject='#146 ADButtonWithFont' UIAccessibilityLabel='Endless'
+  UIAccessibileObject='#186 UIButton' UIAccessibilityLabel='Challenge Info'
+  UIAccessibileObject='#131 UIButton' UIAccessibilityLabel='Endless Info'
+  UIAccessibileObject='#20 ADButtonWithFont' UIAccessibilityLabel='Challenge'
+  UIAccessibileObject='#153 ADButtonWithFont' UIAccessibilityLabel='Endless'
+  UIAccessibileObject='#84 UIButton' UIAccessibilityLabel='Challenge Info'
+  UIAccessibileObject='#59 UIButton' UIAccessibilityLabel='Endless Info'

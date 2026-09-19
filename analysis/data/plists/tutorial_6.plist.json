@@ -1,0 +1,45 @@
+{
+ "icon_title": "06",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 75
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "title": "Double-barreled Carnage",
+ "objective": "Time to test that new Sawn-off Shotgun you just bought!",
+ "tip": "Shotguns do more damage the closer the target is.",
+ "bricks": [
+  "tutorial_6_brick_1",
+  "tutorial_6_brick_2",
+  "tutorial_6_brick_3",
+  "tutorial_6_brick_4"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "tutorial_6",
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_5"
+ ],
+ "weapons": [
+  {
+   "ammo": "20",
+   "name": "sawnoff"
+  },
+  {
+   "ammo": "12",
+   "name": "pistol"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 50
+ }
+}

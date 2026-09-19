@@ -1,0 +1,149 @@
+
+== -[ADOpenerGameplayViewController initWithNibName:bundle:]   (address 0x100025334  size 140  kind objc)
+  025384  [super initWithNibName:arg1 bundle:arg2]
+  0253a8  return
+
+== -[ADOpenerGameplayViewController viewDidLoad]   (address 0x1000253c0  size 1468  kind objc)
+  025400  [self scoreView]
+  025424  [[self scoreView] setHidden:1]
+  025440  [self initAmbiantManager]
+  025454  [self initBrickManager]
+  025468  [self startUpdateTimers]
+  02547c  [self skipButton]
+  025498  [[self skipButton] setupAsMain]
+  0254b8  [self controlModeLabel]
+  0254d4  [[self controlModeLabel] titleLabel]
+  0254f0  [[[self controlModeLabel] titleLabel] setupAsInfo]
+  025528  [self infiniteScrollViews]
+  025554  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  02555c  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_1000255f0
+  025578  &@selector(setUserInteractionEnabled:)
+loc_100025580:
+loc_100025584:
+  025590  if (x8 == x28) goto loc_10002559c
+  025598  objc_enumerationMutation([self infiniteScrollViews])
+loc_10002559c:
+  0255b0  [x0 setScrollEnabled:0]
+  0255c0  [x0 setUserInteractionEnabled:0]
+  0255cc  if ((x21 + 1) <u [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_100025584
+  0255e4  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0255ec  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_100025580
+loc_1000255f0:
+  02560c  [self weaponTouchArea]
+  02562c  [[self weaponTouchArea] setGameplayViewController:self]
+  025648  [self timerView]
+  025660  [[self timerView] setHidden:1]
+  025680  [ADGameParameters sharedParameters]
+  02569c  [[ADGameParameters sharedParameters] controlScheme]
+  0256b8  if ([[ADGameParameters sharedParameters] controlScheme] == 1) goto loc_1000256f8
+  0256c0  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_10002572c
+  0256c4  [self controlModeLabel]
+  0256ec  [[self controlModeLabel] setTitle:@"Swipe the screen" forState:0]
+  0256f0  goto loc_100025794
+  0256f4  goto loc_100025970
+loc_1000256f8:
+  0256f8  [self controlModeLabel]
+  025720  [[self controlModeLabel] setTitle:@"Move the device" forState:0]
+  025724  goto loc_100025794
+  025728  goto loc_100025970
+loc_10002572c:
+  025730  if ([[ADGameParameters sharedParameters] controlScheme] != 3) goto loc_100025768
+  025734  [self controlModeLabel]
+  02575c  [[self controlModeLabel] setTitle:@"Tilt the device" forState:0]
+  025760  goto loc_100025794
+  025764  goto loc_100025970
+loc_100025768:
+  025768  [self controlModeLabel]
+  025790  [[self controlModeLabel] setTitle:@"Swipe the screen or move the device" forState:0]
+loc_100025794:
+  02579c  UIAccessibilityIsVoiceOverRunning()
+  0257a0  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10002588c
+  0257b0  dispatch_time(0, 0x77359400)
+  0257c4  dispatch_after(dispatch_time(0, 0x77359400), __dispatch_main_q, ^{-[ADOpenerGameplayViewController viewDidLoad]_block_invoke})
+  0257dc  [self weaponTouchArea]
+  0257f4  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [self weaponTouchArea])
+  025814  [UITapGestureRecognizer alloc]
+  025834  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSkipForAccessibleUsers)]
+  02584c  [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSkipForAccessibleUsers)] setNumberOfTapsRequired:3]
+  025858  [self weaponTouchArea]
+  025878  [[self weaponTouchArea] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSkipForAccessibleUsers)]]
+loc_10002588c:
+  0258a0  [UIApplication sharedApplication]
+  0258c0  [[UIApplication sharedApplication] setIdleTimerDisabled:1]
+  025900  return
+
+== -[ADOpenerGameplayViewController viewDidLoad]_block_invoke   (address 0x10002597c  size 24  kind block)
+  025990  tail UIAccessibilityPostNotification(_UIAccessibilityAnnouncementNotification[+0x0], @"Triple tap to skip intro", blockarg2, blockarg3)
+
+== -[ADOpenerGameplayViewController handleSkipForAccessibleUsers]   (address 0x100025994  size 20  kind objc)
+  0259a4  tail [self skipButtonPressed:0]
+
+== -[ADOpenerGameplayViewController loadView]   (address 0x1000259a8  size 656  kind objc)
+  0259fc  [NSNumber numberWithInt:1]
+  025a28  [NSNumber numberWithInt:2]
+  025a50  [NSNumber numberWithInt:3]
+  025a80  [NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]
+  025ac4  [self loADViewBasedOnDeviceWithNibName:@"ADOpenerGameplayViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]]
+  025adc  [self view]
+  025af8  [[self view] tag]
+  025b0c  if ([[self view] tag] != 2782) goto loc_100025b94
+  025b18  [self view]
+  025b38  [[self view] viewWithTag:10]
+  025b68  [NSArray arrayWithObjects:&sp[0x0] count:1]
+  025b80  [self setInfiniteScrollViews:[NSArray arrayWithObjects:&sp[0x0] count:1]]
+loc_100025b94:
+  025bbc  return
+
+== -[ADOpenerGameplayViewController initAmbiantManager]   (address 0x100025c38  size 232  kind objc)
+  025c60  [S3DEngine engine]
+  025c80  [[S3DEngine engine] setReverbRoomSize:1.5]
+  025c94  [S3DEngine engine]
+  025cb8  [[S3DEngine engine] setReverbDampening:50]
+  025ccc  [S3DEngine engine]
+  025cec  [[S3DEngine engine] setReverbVolume:1]
+  025d00  return
+
+== -[ADOpenerGameplayViewController initBrickManager]   (address 0x100025d20  size 296  kind objc)
+  025d4c  [ADBrickManager sharedBrickManager]
+  025d6c  [[ADBrickManager sharedBrickManager] setMode:4]
+  025d80  [ADBrickManager sharedBrickManager]
+  025d9c  [[ADBrickManager sharedBrickManager] reset]
+  025db0  [ADBrickManager sharedBrickManager]
+  025dd0  [[ADBrickManager sharedBrickManager] setGameplayViewController:self]
+  025de4  [ADBrickManager sharedBrickManager]
+  025e08  [[ADBrickManager sharedBrickManager] loadBrickWithName:@"opener"]
+  025e1c  return
+
+== -[ADOpenerGameplayViewController goToScoreScreen]   (address 0x100025e48  size 176  kind objc)
+  025e64  [self killGameplay]
+  025e7c  [UIApplication sharedApplication]
+  025e98  [[UIApplication sharedApplication] delegate]
+  025eb4  [[[UIApplication sharedApplication] delegate] goToMainMenu]
+  025ed0  return
+
+== -[ADOpenerGameplayViewController skipButtonPressed:]   (address 0x100025ef8  size 180  kind objc)
+  025f10  [self killGameplay]
+  025f28  [UIApplication sharedApplication]
+  025f44  [[UIApplication sharedApplication] delegate]
+  025f60  [[[UIApplication sharedApplication] delegate] goToMainMenu]
+  025f78  return
+
+== -[ADOpenerGameplayViewController didReceiveMemoryWarning]   (address 0x100025fac  size 60  kind objc)
+  025fd8  [super didReceiveMemoryWarning]
+  025fe4  return
+
+== -[ADOpenerGameplayViewController dealloc]   (address 0x100025fe8  size 140  kind objc)
+  026004  NSLog(@"dealloc Opener", _cmd)
+  026028  [super dealloc]
+  026038  return
+  026064  [super dealloc]
+  026070  call sub_10000b760
+
+== -[ADOpenerGameplayViewController controlModeLabel]   (address 0x100026074  size 16  kind objc)
+  026080  return
+
+== -[ADOpenerGameplayViewController setControlModeLabel:]   (address 0x100026084  size 56  kind objc)
+  0260a8  self->_controlModeLabel = arg1
+  0260b8  return
+
+== -[ADOpenerGameplayViewController .cxx_destruct]   (address 0x1000260bc  size 20  kind objc)

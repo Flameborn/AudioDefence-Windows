@@ -1,0 +1,319 @@
+
+== -[ADTarotViewController viewDidLoad]   (address 0x10003461c  size 2152  kind objc)
+  03465c  [super viewDidLoad]
+  034670  [self loadMissionOverlay]
+  034688  [self statusBarViewController]
+  0346a8  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  0346bc  [self statusBarViewController]
+  0346d8  [[self statusBarViewController] armoryButton]
+  0346fc  [[[self statusBarViewController] armoryButton] setAlpha:0]
+  034718  [self statusBarViewController]
+  034738  [[self statusBarViewController] setCurrenciesVisibility:1]
+  03474c  [self statusBarViewController]
+  03476c  [[self statusBarViewController] setDiamonsdsVisibility:1]
+  034780  [self statusBarViewController]
+  0347a0  [[self statusBarViewController] setArmoryLoadoutEnabled:0]
+  0347b4  [self statusBarViewController]
+  0347d4  [[self statusBarViewController] setDelegate:self]
+  0347e8  [self statusBarViewController]
+  034804  [[self statusBarViewController] pageTitle]
+  03482c  [[[self statusBarViewController] pageTitle] setText:@"Dr Bastard's Tarot"]
+  034854  [S3DEngine engine]
+  034878  [[S3DEngine engine] playListWithName:@"tarot"]
+  034890  self->tarotPlaylist = [[S3DEngine engine] playListWithName:@"tarot"]
+  0348b4  [self->tarotPlaylist activate]
+  0348cc  [NSUserDefaults standardUserDefaults]
+  0348f0  [[NSUserDefaults standardUserDefaults] objectForKey:@"tarotCard1"]
+  034920  [self infoText]
+  03493c  &@selector(mainBundle)
+  034944  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"tarotCard1"] == 0) goto loc_1000349a0
+  034948  [NSBundle mainBundle]
+  034978  [[NSBundle mainBundle] localizedStringForKey:@"TAROT_NO_RELOAD" value:@"" table:0]
+  034994  [[self infoText] setText:[[NSBundle mainBundle] localizedStringForKey:@"TAROT_NO_RELOAD" value:@"" table:0]]
+  034998  goto loc_1000349f0
+  03499c  goto loc_100034e60
+loc_1000349a0:
+  0349a0  [NSBundle mainBundle]
+  0349d0  [[NSBundle mainBundle] localizedStringForKey:@"TAROT_INFO" value:@"" table:0]
+  0349ec  [[self infoText] setText:[[NSBundle mainBundle] localizedStringForKey:@"TAROT_INFO" value:@"" table:0]]
+loc_1000349f0:
+  034a10  [self infoText]
+  034a34  [UIColor whiteColor]
+  034a58  [[self infoText] setTextColor:[UIColor whiteColor]]
+  034a74  [self infoText]
+  034aa0  [ADGameParameters sharedParameters]
+  034abc  [[ADGameParameters sharedParameters] isIphone]
+  034ae8  [UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 17)]
+  034b0c  [[self infoText] setFont:[UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 17)]]
+  034b30  [self infoText]
+  034b50  [[self infoText] setTextAlignment:1]
+  034b70  [NSMutableArray alloc]
+  034b80  [[NSMutableArray alloc] init]
+  034b90  self->tarotCards = [[NSMutableArray alloc] init]
+  034b9c  UIAccessibilityIsVoiceOverRunning()
+  034bb8  [self playButton]
+  034bc8  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100034c80
+  034bd8  [[self playButton] setAlpha:1]
+  034bf8  [self missionButton]
+  034c10  [[self missionButton] setAlpha:1]
+  034c24  [self playButton]
+  034c48  [[self playButton] setUserInteractionEnabled:1]
+  034c5c  [self missionButton]
+  034c74  [[self missionButton] setUserInteractionEnabled:1]
+  034c7c  goto loc_100034c9c
+loc_100034c80:
+  034c94  [[self playButton] setUserInteractionEnabled:0]
+loc_100034c9c:
+  034ca8  [self statusBarViewController]
+  034cc4  [[self statusBarViewController] deactivateButtons]
+  034ce0  self->cardsToLoad = 2
+  034ce8  &@selector(loadCardWithNumber:)
+loc_100034cf0:
+  034d00  [self loadCardWithNumber:(w20 + 1)]
+  034d0c  if ((w20 + 1) < self->cardsToLoad) goto loc_100034cf0
+  034d1c  dispatch_time(0, 0x89173700)
+  034d6c  dispatch_after(dispatch_time(0, 0x89173700), __dispatch_main_q, ^{-[ADTarotViewController viewDidLoad]_block_invoke captures +0x20=self, +0x28=self, +0x30=self, +0x38=ADTarotViewController})
+  034d90  return
+
+== -[ADTarotViewController viewDidLoad]_block_invoke   (address 0x100034e84  size 484  kind block)
+  034eb0  if (self->backbuttonpressed != 0) goto loc_100035028
+  034f08  [UIView animateWithDuration:0.5 animations:^{-[ADTarotViewController viewDidLoad]_block_invoke_block_invoke captures +0x20=self}]
+  034f44  [UIView animateWithDuration:1 animations:^{-[ADTarotViewController viewDidLoad]_block_invoke_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc0000000, +0x38=&-[ADTarotViewController viewDidLoad]_bl…, +0x40=&d_1003b1490, +0x48=self}]
+  034f5c  [self statusBarViewController]
+  034f78  [[self statusBarViewController] activateButtons]
+  034f94  [self playButton]
+  034fb4  [[self playButton] setUserInteractionEnabled:1]
+  034fc8  [self statusBarViewController]
+  034fe8  [[self statusBarViewController] setArmoryLoadoutEnabled:1]
+  034ffc  [self statusBarViewController]
+  03501c  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+loc_100035028:
+  03503c  return
+
+== -[ADTarotViewController viewDidLoad]_block_invoke_block_invoke   (address 0x100035068  size 100  kind block)
+  035084  [self playButton]
+  0350a4  [[self playButton] setAlpha:1]
+  0350b4  return
+
+== -[ADTarotViewController viewDidLoad]_block_invoke_block_invoke_2   (address 0x1000350cc  size 232  kind block)
+  0350f0  [self missionButton]
+  035114  [[self missionButton] setAlpha:1]
+  035130  [self statusBarViewController]
+  03514c  [[self statusBarViewController] armoryButton]
+  035164  [[[self statusBarViewController] armoryButton] setAlpha:1]
+  035180  return
+
+== sub_1000351b4   (address 0x1000351b4  size 8  kind sub)
+
+== sub_1000351bc   (address 0x1000351bc  size 8  kind sub)
+  0351c0  return
+
+== -[ADTarotViewController loadView]   (address 0x1000351c4  size 400  kind objc)
+  035218  [NSNumber numberWithInt:1]
+  035244  [NSNumber numberWithInt:2]
+  03526c  [NSNumber numberWithInt:3]
+  03529c  [NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]
+  0352e0  [self loADViewBasedOnDeviceWithNibName:@"ADTarotViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]]
+  03530c  return
+
+== -[ADTarotViewController viewDidAppear:]   (address 0x100035354  size 60  kind objc)
+  035380  [super viewDidAppear:arg1]
+  03538c  return
+
+== -[ADTarotViewController loadCardWithNumber:]   (address 0x100035390  size 1552  kind objc)
+  0353dc  [NSUserDefaults standardUserDefaults]
+  035410  [NSString stringWithFormat:@"tarotCard%i", arg1]
+  035438  [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"tarotCard%i", arg1]]
+  035468  &@selector(alloc)
+  035470  if ([[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"tarotCard%i", arg1]] == 0) goto loc_100035518
+  035478  [ADTarotCardViewController alloc]
+  03548c  [NSUserDefaults standardUserDefaults]
+  0354b0  [NSString stringWithFormat:@"tarotCard%i", arg1]
+  0354cc  [[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"tarotCard%i", arg1]]
+  0354f4  [[ADTarotCardViewController alloc] initWithCardLevel:arg1 modifier:[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"tarotCard%i", arg1]]]
+  035514  goto loc_10003560c
+loc_100035518:
+  03551c  [ADTarotCardViewController alloc]
+  035538  [[ADTarotCardViewController alloc] initWithCardLevel:arg1 modifier:0]
+  03554c  [NSUserDefaults standardUserDefaults]
+  03556c  [[[ADTarotCardViewController alloc] initWithCardLevel:arg1 modifier:0] modifierName]
+  035590  [NSString stringWithFormat:@"tarotCard%i", arg1]
+  0355b8  [[NSUserDefaults standardUserDefaults] setValue:[[[ADTarotCardViewController alloc] initWithCardLevel:arg1 modifier:0] modifierName] forKey:[NSString stringWithFormat:@"tarotCard%i", arg1]]
+  0355e0  [NSUserDefaults standardUserDefaults]
+  0355fc  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_10003560c:
+  035620  [x0 setTarotViewController:self]
+  035640  [self->tarotCards addObject:x2]
+  035658  [self cardContainer]
+  035678  [[self cardContainer] frame]
+  035694  [x0 view]
+  0356a8  [[x0 view] frame]
+  0356d8  [self cardContainer]
+  0356f0  [x0 view]
+  035714  [[self cardContainer] addSubview:[x0 view]]
+  035730  [x0 view]
+  035748  [x0 view]
+  03575c  [[x0 view] frame]
+  03576c  [x0 view]
+  035780  [[x0 view] frame]
+  035790  [self cardContainer]
+  0357a4  [[self cardContainer] frame]
+  0357c0  t1 = (([[self cardContainer] frame].2 - ([[x0 view] frame].2 * (float)self->cardsToLoad)) / (float)(self->cardsToLoad + 1))
+  035804  [[x0 view] setCenter:{((t1 + ([[x0 view] frame].2 * 0.5)) + ((float)(arg1 - 1) * (t1 + [[x0 view] frame].2))), (([[self cardContainer] frame].3 * 0.5) + -10)}]
+  035878  dispatch_after(arg1, __dispatch_main_q, ^{-[ADTarotViewController loadCardWithNumber:]_block_invoke captures +0x28=arg1})
+  0358b0  return
+
+== -[ADTarotViewController loadCardWithNumber:]_block_invoke   (address 0x1000359a0  size 152  kind block)
+  0359dc  [NSNumber numberWithBool:0]
+  035a0c  [block[+0x20] performSelector:@selector(flipCard:) withObject:[NSNumber numberWithBool:0] afterDelay:(float)arg1]
+  035a20  return
+
+== sub_100035a38   (address 0x100035a38  size 8  kind sub)
+
+== sub_100035a40   (address 0x100035a40  size 8  kind sub)
+  035a44  return
+
+== -[ADTarotViewController rerollCardWithNumber:]   (address 0x100035a48  size 20  kind objc)
+  035a58  tail [self recordCardReloadWithNumber:arg1]
+
+== -[ADTarotViewController applyAllModifiers]   (address 0x100035a5c  size 840  kind objc)
+  035aa8  [NSMutableDictionary alloc]
+  035ab8  [[NSMutableDictionary alloc] init]
+  035b00  [self->tarotCards countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  035b0c  if ([self->tarotCards countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_100035c88
+  035b3c  &@selector(numberWithBool:)
+  035b4c  &@selector(setValue:forKey:)
+loc_100035b54:
+loc_100035b58:
+  035b64  if (x8 == x19) goto loc_100035b70
+  035b6c  objc_enumerationMutation(self->tarotCards)
+loc_100035b70:
+  035b80  [x0 modifierName]
+  035b9c  [self applyModifier:[x0 modifierName]]
+  035bb0  [x0 isGood]
+  035bc0  if ([x0 isGood] == 0) goto loc_100035c0c
+  035bcc  [NSNumber numberWithBool:1]
+  035be4  [x0 modifierName]
+  035c04  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithBool:1] forKey:[x0 modifierName]]
+  035c08  goto loc_100035c50
+loc_100035c0c:
+  035c14  [NSNumber numberWithBool:0]
+  035c2c  [x0 modifierName]
+  035c4c  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithBool:0] forKey:[x0 modifierName]]
+loc_100035c50:
+  035c68  if ((x21 + 1) <u [self->tarotCards countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_100035b58
+  035c7c  [self->tarotCards countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  035c84  if ([self->tarotCards countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_100035b54
+loc_100035c88:
+  035ca4  [ADTracker initGamePlayTracker]
+  035cb8  [ADTracker sharedInstance]
+  035cdc  [[ADTracker sharedInstance] setModifierDimensions:[[NSMutableDictionary alloc] init]]
+  035d24  return
+
+== -[ADTarotViewController applyModifier:]   (address 0x100035da4  size 636  kind objc)
+  035de0  [NSMutableDictionary alloc]
+  035df0  [[NSMutableDictionary alloc] init]
+  035e0c  [arg1 substringToIndex:1]
+  035e28  [[arg1 substringToIndex:1] uppercaseString]
+  035e54  [arg1 stringByReplacingCharactersInRange:0 withString:1]
+  035e94  [NSString stringWithFormat:@"set%@:", [arg1 stringByReplacingCharactersInRange:0 withString:1]]
+  035eb4  NSSelectorFromString([NSString stringWithFormat:@"set%@:", [arg1 stringByReplacingCharactersInRange:0 withString:1]])
+  035ed4  [ADGameModifiers sharedModifiers]
+  035ef4  [[ADGameModifiers sharedModifiers] respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"set%@:", [arg1 stringByReplacingCharactersInRange:0 withString:1]])]
+  035f04  if ([[ADGameModifiers sharedModifiers] respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"set%@:", [arg1 stringByReplacingCharactersInRange:0 withString:1]])] == 0) goto loc_100035f54
+  035f20  [NSNumber numberWithBool:1]
+  035f48  [[[NSMutableDictionary alloc] init] setObject:[NSNumber numberWithBool:1] forKey:arg1]
+loc_100035f54:
+  035f5c  [ADGameModifiers sharedModifiers]
+  035f7c  [[ADGameModifiers sharedModifiers] setValuesForKeysWithDictionary:[[NSMutableDictionary alloc] init]]
+  035fb4  return
+
+== -[ADTarotViewController playButtonPressed:]   (address 0x100036020  size 408  kind objc)
+  036048  [ADGameModifiers sharedModifiers]
+  036064  [[ADGameModifiers sharedModifiers] resetModifiers]
+  036080  [self applyAllModifiers]
+  036098  [GAI sharedInstance]
+  0360b4  [[GAI sharedInstance] defaultTracker]
+  0360d4  [&d_1003b8398] -> @"&sc"
+  0360f0  [[[GAI sharedInstance] defaultTracker] set:@"&sc" value:@"start"]
+  036108  [UIApplication sharedApplication]
+  036124  [[UIApplication sharedApplication] delegate]
+  036140  [[[UIApplication sharedApplication] delegate] goToGameplay]
+  036164  return
+
+== -[ADTarotViewController showMissionsOverlay:]   (address 0x1000361b8  size 104  kind objc)
+  0361d0  [self missionTopbarViewController]
+  0361f0  [[self missionTopbarViewController] missionButtonPressed:0]
+  036200  return
+
+== -[ADTarotViewController recordCardReloadWithNumber:]   (address 0x100036220  size 712  kind objc)
+  036294  [self->tarotCards countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0362a0  if ([self->tarotCards countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100036338
+  0362b0  &@selector(cardLevel)
+loc_1000362b8:
+loc_1000362bc:
+  0362c8  if (x8 == x27) goto loc_1000362d4
+  0362d0  objc_enumerationMutation(self->tarotCards)
+loc_1000362d4:
+  0362e4  [x0 cardLevel]
+  0362f0  if ([x0 cardLevel] != arg1) goto loc_10003630c
+loc_10003630c:
+  036314  if ((x28 + 1) <u [self->tarotCards countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000362bc
+  03632c  [self->tarotCards countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  036334  if ([self->tarotCards countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000362b8
+loc_100036338:
+  036350  [x0 isGood]
+  036380  [GAI sharedInstance]
+  03639c  [[GAI sharedInstance] defaultTracker]
+  0363e0  [GAIDictionaryBuilder createEventWithCategory:@"Tarot card event" action:@"tarot card reloaded" label:([x0 isGood] != 0 ? @"was good" : @"was bad") value:0]
+  0363fc  [[GAIDictionaryBuilder createEventWithCategory:@"Tarot card event" action:@"tarot card reloaded" label:([x0 isGood] != 0 ? @"was good" : @"was bad") value:0] build]
+  036420  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Tarot card event" action:@"tarot card reloaded" label:([x0 isGood] != 0 ? @"was good" : @"was bad") value:0] build]]
+  03646c  return
+
+== -[ADTarotViewController backButtonPressed]   (address 0x1000364e8  size 176  kind objc)
+  036504  self->backbuttonpressed = 1
+  03651c  [UIApplication sharedApplication]
+  036538  [[UIApplication sharedApplication] delegate]
+  036554  [[[UIApplication sharedApplication] delegate] goToPlayMenu]
+  036570  return
+
+== -[ADTarotViewController dealloc]   (address 0x100036598  size 156  kind objc)
+  0365c4  [self->tarotPlaylist deactivate]
+  0365e8  [super dealloc]
+  0365f8  return
+  036624  [super dealloc]
+  036630  call sub_10000b760
+
+== -[ADTarotViewController accessibilityPerformMagicTap]   (address 0x100036634  size 40  kind objc)
+  03664c  [self playButtonPressed:0]
+  036658  return
+
+== -[ADTarotViewController playButton]   (address 0x10003665c  size 16  kind objc)
+  036668  return
+
+== -[ADTarotViewController setPlayButton:]   (address 0x10003666c  size 56  kind objc)
+  036690  self->_playButton = arg1
+  0366a0  return
+
+== -[ADTarotViewController missionButton]   (address 0x1000366a4  size 16  kind objc)
+  0366b0  return
+
+== -[ADTarotViewController setMissionButton:]   (address 0x1000366b4  size 56  kind objc)
+  0366d8  self->_missionButton = arg1
+  0366e8  return
+
+== -[ADTarotViewController infoText]   (address 0x1000366ec  size 16  kind objc)
+  0366f8  return
+
+== -[ADTarotViewController setInfoText:]   (address 0x1000366fc  size 56  kind objc)
+  036720  self->_infoText = arg1
+  036730  return
+
+== -[ADTarotViewController cardContainer]   (address 0x100036734  size 16  kind objc)
+  036740  return
+
+== -[ADTarotViewController setCardContainer:]   (address 0x100036744  size 56  kind objc)
+  036768  self->_cardContainer = arg1
+  036778  return
+
+== -[ADTarotViewController .cxx_destruct]   (address 0x10003677c  size 144  kind objc)

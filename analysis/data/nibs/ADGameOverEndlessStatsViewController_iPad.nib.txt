@@ -1,0 +1,16 @@
+// ADGameOverEndlessStatsViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #36 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #11 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #25 UIView  
+    #4 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #39 UIImageView  UserInteractionDisabled=False Image='Frame_scroller_blank.png'
+    #3 UITableView  
+
+CONNECTIONS
+  outlet  dataSource                                #3 UITableView --> #36 UIProxyObject
+  outlet  delegate                                  #3 UITableView --> #36 UIProxyObject
+  outlet  tableView                                 #36 UIProxyObject --> #3 UITableView
+  outlet  view                                      #36 UIProxyObject --> #25 UIView
+
+ACCESSIBILITY CONFIGURATIONS

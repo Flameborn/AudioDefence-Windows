@@ -1,0 +1,95 @@
+// ADGameplayViewController.nib
+TOP-LEVEL OBJECTS
+  #222 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #229 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #236 UIView  Tag=2781
+    #41 UIView  
+    #88 UIView  
+    #223 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_background.png'
+    #49 UIScrollView (custom class ADInfiniteScrollView)  
+    #117 UIScrollView (custom class ADInfiniteScrollView)  
+    #46 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_foreground.png'
+    #14 UIButton (custom class ADWeaponTouchArea)  
+    #67 UIView  
+      #157 UIImageView  UserInteractionDisabled=False Image='normal_gameplay_background.png'
+      #170 UIScrollView (custom class ADInfiniteScrollView)  
+      #228 UIScrollView (custom class ADInfiniteScrollView)  
+      #234 UIButton (custom class ADButtonWithSwipe)  
+      #196 UIButton (custom class ADButtonWithSwipe)  Tag=3000
+      #87 UIButton (custom class ADButtonWithSwipe)  
+      #175 UIButton (custom class ADButtonWithSwipe)  
+      #6 UIImageView  UserInteractionDisabled=False Image='normal_gameplay_foreground.png'
+    #165 UIButton (custom class ADButtonWithFont)  
+    #110 UIView  UserInteractionDisabled=False
+      #155 UIImageView  UserInteractionDisabled=False Image='stat_back_time.png'
+      #23 UILabel  UserInteractionDisabled=False Text='Label'
+    #187 UIView  UserInteractionDisabled=False
+      #9 UIImageView  UserInteractionDisabled=False Image='stat_back_combo.png'
+      #137 UIImageView  Image='combo_light.png'
+      #141 UILabel  UserInteractionDisabled=False Text='Label'
+    #143 UIButton (custom class ADButtonWithFont)  
+  #156 UIView  Tag=2782
+    #16 UIView  Tag=1
+    #153 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_background.png'
+    #219 UIScrollView (custom class ADInfiniteScrollView)  Tag=20
+    #231 UIScrollView (custom class ADInfiniteScrollView)  Tag=21
+    #132 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_foreground.png'
+    #162 UIButton (custom class ADWeaponTouchArea)  Tag=3
+    #13 UIView  Tag=2
+      #127 UIImageView  UserInteractionDisabled=False Image='normal_gameplay_background.png'
+      #97 UIScrollView (custom class ADInfiniteScrollView)  Tag=22
+      #144 UIScrollView (custom class ADInfiniteScrollView)  Tag=23
+      #172 UIButton (custom class ADButtonWithSwipe)  Tag=5
+      #186 UIButton (custom class ADButtonWithSwipe)  Tag=3000
+      #226 UIButton (custom class ADButtonWithSwipe)  Tag=6
+      #224 UIButton (custom class ADButtonWithSwipe)  Tag=4
+      #1 UIImageView  UserInteractionDisabled=False Image='normal_gameplay_foreground.png'
+    #129 UIButton (custom class ADButtonWithFont)  Tag=12
+    #17 UIView  Tag=10 UserInteractionDisabled=False
+      #152 UIImageView  UserInteractionDisabled=False Image='stat_back_time.png'
+      #138 UILabel  Tag=11 UserInteractionDisabled=False Text='Label'
+    #159 UIView  Tag=7 UserInteractionDisabled=False
+      #90 UIImageView  UserInteractionDisabled=False Image='stat_back_combo.png'
+      #209 UIImageView  Tag=9 Image='combo_light.png'
+      #27 UILabel  Tag=8 UserInteractionDisabled=False Text='Label'
+    #79 UIButton (custom class ADButtonWithFont)  Tag=13
+
+CONNECTIONS
+  action  meleeButtonPressed:                       #234 ADButtonWithSwipe --(events 0x1)--> #222 UIProxyObject
+  action  meleeButtonPressed:                       #172 ADButtonWithSwipe --(events 0x1)--> #222 UIProxyObject
+  action  pauseButtonTouched:                       #79 ADButtonWithFont --(events 0x40)--> #222 UIProxyObject
+  action  pauseButtonTouched:                       #143 ADButtonWithFont --(events 0x40)--> #222 UIProxyObject
+  action  reloadButtonPressed:                      #196 ADButtonWithSwipe --(events 0x1)--> #222 UIProxyObject
+  action  reloadButtonPressed:                      #186 ADButtonWithSwipe --(events 0x1)--> #222 UIProxyObject
+  action  skipButtonPressed:                        #165 ADButtonWithFont --(events 0x40)--> #222 UIProxyObject
+  action  skipButtonPressed:                        #129 ADButtonWithFont --(events 0x40)--> #222 UIProxyObject
+  action  switchWeaponButtonPressed:                #87 ADButtonWithSwipe --(events 0x1)--> #222 UIProxyObject
+  action  switchWeaponButtonPressed:                #226 ADButtonWithSwipe --(events 0x1)--> #222 UIProxyObject
+  outlet  infiniteScrollViews                       #222 UIProxyObject --> #95 NSMutableArray
+  outlet  buttonsView                               #222 UIProxyObject --> #67 UIView
+  outlet  comboMeter                                #222 UIProxyObject --> #137 UIImageView
+  outlet  deathOverlay                              #222 UIProxyObject --> #41 UIView
+  outlet  meleeButton                               #222 UIProxyObject --> #234 ADButtonWithSwipe
+  outlet  pauseButton                               #222 UIProxyObject --> #143 ADButtonWithFont
+  outlet  scoreLabel                                #222 UIProxyObject --> #141 UILabel Text='Label'
+  outlet  scoreView                                 #222 UIProxyObject --> #187 UIView
+  outlet  skipButton                                #222 UIProxyObject --> #165 ADButtonWithFont
+  outlet  switchWeaponButton                        #222 UIProxyObject --> #87 ADButtonWithSwipe
+  outlet  timerLabel                                #222 UIProxyObject --> #23 UILabel Text='Label'
+  outlet  timerView                                 #222 UIProxyObject --> #110 UIView
+  outlet  view                                      #222 UIProxyObject --> #236 UIView
+  outlet  weaponButton                              #222 UIProxyObject --> #175 ADButtonWithSwipe
+  outlet  weaponTouchArea                           #222 UIProxyObject --> #14 ADWeaponTouchArea
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#41 UIView' UIIsAccessibilityElement=1
+  UIAccessibileObject='#14 ADWeaponTouchArea' UIAccessibilityLabel='game area'
+  UIAccessibileObject='#165 ADButtonWithFont' UIAccessibilityLabel='Skip'
+  UIAccessibileObject="#23 UILabel Text='Label'" UIAccessibilityHint='Challenge timer'
+  UIAccessibileObject="#141 UILabel Text='Label'" UIAccessibilityHint='' UIIsAccessibilityElement=0
+  UIAccessibileObject='#143 ADButtonWithFont' UIAccessibilityLabel='Pause'
+  UIAccessibileObject='#16 UIView' UIIsAccessibilityElement=1
+  UIAccessibileObject='#162 ADWeaponTouchArea' UIAccessibilityLabel='game area'
+  UIAccessibileObject='#129 ADButtonWithFont' UIAccessibilityLabel='Skip'
+  UIAccessibileObject="#138 UILabel Text='Label'" UIAccessibilityHint='Challenge timer'
+  UIAccessibileObject='#79 ADButtonWithFont' UIAccessibilityLabel='Pause'

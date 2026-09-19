@@ -1,0 +1,28 @@
+{
+ "Enemies": {
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_angle": 310,
+   "spawn_distance": 10,
+   "spawn_time": 9
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_angle": 270,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  },
+  "HulkB": {
+   "spawn_sound": "",
+   "spawn_angle": 0,
+   "spawn_distance": 10,
+   "spawn_time": 14
+  },
+  "RunnerB": {
+   "spawn_sound": "",
+   "spawn_angle": 45,
+   "spawn_distance": 10,
+   "spawn_time": 19
+  }
+ }
+}

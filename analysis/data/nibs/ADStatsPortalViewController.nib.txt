@@ -1,0 +1,46 @@
+// ADStatsPortalViewController.nib
+TOP-LEVEL OBJECTS
+  #154 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #100 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #4 UIView  Tag=2781
+    #158 UIView (custom class ViewWithParalax)  
+      #120 UIImageView  Image='background_main.png'
+    #10 UIImageView  UserInteractionDisabled=False Image='chains_info.png'
+    #77 UIButton (custom class ADButtonWithFont)  Tag=1
+    #26 UIButton (custom class ADButtonWithFont)  Tag=2
+    #80 UIButton (custom class ADButtonWithFont)  Tag=3
+    #127 UIButton (custom class ADButtonWithFont)  Tag=4
+  #12 UIView  Tag=2782
+    #124 UIView (custom class ViewWithParalax)  
+      #81 UIImageView  Image='background_main.png'
+    #60 UIImageView  UserInteractionDisabled=False Image='chains_info.png'
+    #40 UIButton (custom class ADButtonWithFont)  Tag=1
+    #115 UIButton (custom class ADButtonWithFont)  Tag=2
+    #22 UIButton (custom class ADButtonWithFont)  Tag=3
+    #110 UIButton (custom class ADButtonWithFont)  Tag=4
+
+CONNECTIONS
+  action  buttonPressed:                            #80 ADButtonWithFont --(events 0x40)--> #154 UIProxyObject
+  action  buttonPressed:                            #115 ADButtonWithFont --(events 0x40)--> #154 UIProxyObject
+  action  buttonPressed:                            #26 ADButtonWithFont --(events 0x40)--> #154 UIProxyObject
+  action  buttonPressed:                            #22 ADButtonWithFont --(events 0x40)--> #154 UIProxyObject
+  action  buttonPressed:                            #127 ADButtonWithFont --(events 0x40)--> #154 UIProxyObject
+  action  buttonPressed:                            #77 ADButtonWithFont --(events 0x40)--> #154 UIProxyObject
+  action  buttonPressed:                            #40 ADButtonWithFont --(events 0x40)--> #154 UIProxyObject
+  action  buttonPressed:                            #110 ADButtonWithFont --(events 0x40)--> #154 UIProxyObject
+  outlet  background                                #154 UIProxyObject --> #120 UIImageView
+  outlet  credits                                   #154 UIProxyObject --> #127 ADButtonWithFont
+  outlet  moreGames                                 #154 UIProxyObject --> #80 ADButtonWithFont
+  outlet  stats                                     #154 UIProxyObject --> #26 ADButtonWithFont
+  outlet  view                                      #154 UIProxyObject --> #4 UIView
+  outlet  zombipedia                                #154 UIProxyObject --> #77 ADButtonWithFont
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#77 ADButtonWithFont' UIAccessibilityLabel='Zombiepedia'
+  UIAccessibileObject='#26 ADButtonWithFont' UIAccessibilityLabel='Stats'
+  UIAccessibileObject='#80 ADButtonWithFont' UIAccessibilityLabel='more games'
+  UIAccessibileObject='#127 ADButtonWithFont' UIAccessibilityLabel='Credits'
+  UIAccessibileObject='#40 ADButtonWithFont' UIAccessibilityLabel='Zombiepedia'
+  UIAccessibileObject='#115 ADButtonWithFont' UIAccessibilityLabel='Stats'
+  UIAccessibileObject='#22 ADButtonWithFont' UIAccessibilityLabel='More games'
+  UIAccessibileObject='#110 ADButtonWithFont' UIAccessibilityLabel='Credits'

@@ -1,0 +1,22 @@
+// ADReviveViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #39 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #10 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #41 UIView  
+    #17 UIImageView  Image='background_dead.png'
+    #1 UIImageView  Image='text_dead.png'
+    #46 UIView  
+      #25 UIButton (custom class ADButtonWithFont)  
+      #22 UIButton (custom class ADButtonWithFont)  title[0]='REVIVE FOR 1'
+      #12 UITextView (custom class ADChallengeDescription)  
+
+CONNECTIONS
+  action  gameOverButtonPressed:                    #25 ADButtonWithFont --(events 0x40)--> #39 UIProxyObject
+  action  reviveButtonPressed:                      #22 ADButtonWithFont --(events 0x40)--> #39 UIProxyObject
+  outlet  gameOverButton                            #39 UIProxyObject --> #25 ADButtonWithFont
+  outlet  reviveButton                              #39 UIProxyObject --> #22 ADButtonWithFont
+  outlet  tipTextView                               #39 UIProxyObject --> #12 ADChallengeDescription
+  outlet  view                                      #39 UIProxyObject --> #41 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#25 ADButtonWithFont' UIAccessibilityLabel='Game Over'

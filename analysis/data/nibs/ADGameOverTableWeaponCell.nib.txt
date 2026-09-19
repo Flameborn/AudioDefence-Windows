@@ -1,0 +1,37 @@
+// ADGameOverTableWeaponCell.nib
+TOP-LEVEL OBJECTS
+  #94 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #114 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #87 UITableViewCell (custom class ADGameOverTableWeaponCell)  
+    #101 UITableViewCellContentView  
+      #28 UIView  Tag=99 UserInteractionDisabled=False
+        #126 UILabel  UserInteractionDisabled=False Text='Name'
+        #15 UILabel  UserInteractionDisabled=False Text='Shots'
+        #115 UILabel  UserInteractionDisabled=False Text='Shot_Val'
+        #61 UILabel  UserInteractionDisabled=False Text='Time'
+        #60 UILabel  UserInteractionDisabled=False Text='Time_Val'
+        #123 UILabel  UserInteractionDisabled=False Text='Acc_Val'
+        #33 UILabel  UserInteractionDisabled=False Text='Accuracy'
+        #51 UILabel  UserInteractionDisabled=False Text='Criticals'
+        #38 UILabel  UserInteractionDisabled=False Text='Criticals_Val'
+        #34 UILabel  UserInteractionDisabled=False Text='Kills'
+        #32 UILabel  UserInteractionDisabled=False Text='Kills_val'
+    #10 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #101)
+
+CONNECTIONS
+  outlet  accuracyLabel                             #87 ADGameOverTableWeaponCell --> #33 UILabel Text='Accuracy'
+  outlet  accuracyValue                             #87 ADGameOverTableWeaponCell --> #123 UILabel Text='Acc_Val'
+  outlet  criticalsFiredValue                       #87 ADGameOverTableWeaponCell --> #38 UILabel Text='Criticals_Val'
+  outlet  criticalsLabel                            #87 ADGameOverTableWeaponCell --> #51 UILabel Text='Criticals'
+  outlet  killsLabel                                #87 ADGameOverTableWeaponCell --> #34 UILabel Text='Kills'
+  outlet  killsValue                                #87 ADGameOverTableWeaponCell --> #32 UILabel Text='Kills_val'
+  outlet  mainParentView                            #87 ADGameOverTableWeaponCell --> #28 UIView
+  outlet  nameLabel                                 #87 ADGameOverTableWeaponCell --> #126 UILabel Text='Name'
+  outlet  shotsFiredLabel                           #87 ADGameOverTableWeaponCell --> #15 UILabel Text='Shots'
+  outlet  shotsFiredValue                           #87 ADGameOverTableWeaponCell --> #115 UILabel Text='Shot_Val'
+  outlet  timeSpentLabel                            #87 ADGameOverTableWeaponCell --> #61 UILabel Text='Time'
+  outlet  timeSpentValue                            #87 ADGameOverTableWeaponCell --> #60 UILabel Text='Time_Val'
+
+ACCESSIBILITY CONFIGURATIONS

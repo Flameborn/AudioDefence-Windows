@@ -1,0 +1,535 @@
+
+== -[ADAppDelegate application:didFinishLaunchingWithOptions:]   (address 0x10008099c  size 1652  kind objc)
+  0809d4  [UIWindow alloc]
+  0809f0  [UIScreen mainScreen]
+  080a0c  [[UIScreen mainScreen] bounds]
+  080a20  [[UIWindow alloc] initWithFrame:{[[UIScreen mainScreen] bounds].0, [[UIScreen mainScreen] bounds].1, [[UIScreen mainScreen] bounds].2, [[UIScreen mainScreen] bounds].3}]
+  080a3c  [self setWindow:[[UIWindow alloc] initWithFrame:{[[UIScreen mainScreen] bounds].0, [[UIScreen mainScreen] bounds].1, [[UIScreen mainScreen] bounds].2, [[UIScreen mainScreen] bounds].3}]]
+  080a60  [self initPapaEngine]
+  080a78  [OBDragDropManager sharedManager]
+  080a9c  [self window]
+  080ac0  [[OBDragDropManager sharedManager] prepareOverlayWindowUsingMainWindow:[self window]]
+  080ae4  [GAI sharedInstance]
+  080b00  [[GAI sharedInstance] defaultTracker]
+  080b20  [GAI sharedInstance]
+  080b40  [[GAI sharedInstance] setDispatchInterval:2]
+  080b54  [GAI sharedInstance]
+  080b70  [[GAI sharedInstance] logger]
+  080b90  [[[GAI sharedInstance] logger] setLogLevel:0]
+  080bac  NSLog(@"Tracking with Beta!!")
+  080bb8  [GAI sharedInstance]
+  080bdc  [[GAI sharedInstance] trackerWithTrackingId:@"UA-46904274-3"]
+  080bfc  [GAI sharedInstance]
+  080c1c  [[GAI sharedInstance] setTrackUncaughtExceptions:1]
+  080c3c  [ADTracker initGamePlayTracker]
+  080c50  [ADTracker initArmoryTracker]
+  080c5c  [self window]
+  080c80  [UIColor whiteColor]
+  080ca8  [[self window] setBackgroundColor:[UIColor whiteColor]]
+  080cc8  [UIViewController alloc]
+  080ce8  [[UIViewController alloc] initWithNibName:@"ADEmptyViewController" bundle:0]
+  080d04  [self setViewController:[[UIViewController alloc] initWithNibName:@"ADEmptyViewController" bundle:0]]
+  080d24  [self viewController]
+  080d40  [[self viewController] view]
+  080d60  [UIColor blackColor]
+  080d7c  [[[self viewController] view] setBackgroundColor:[UIColor blackColor]]
+  080da0  [self window]
+  080db8  [self viewController]
+  080ddc  [[self window] setRootViewController:[self viewController]]
+  080df8  [self window]
+  080e14  [[self window] makeKeyAndVisible]
+  080e2c  [ADLogoScreenViewController alloc]
+  080e48  [ADGameParameters sharedParameters]
+  080e64  [[ADGameParameters sharedParameters] isIphone]
+  080e7c  t1 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"ADLogoScreenViewController" : @"ADLogoScreenViewController_iPad")
+  080e8c  [[ADLogoScreenViewController alloc] initWithNibName:t1 bundle:0]
+  080ea4  [self viewController]
+  080ed0  [[self viewController] presentViewController:[[ADLogoScreenViewController alloc] initWithNibName:t1 bundle:0] animated:1 completion:^{-[ADAppDelegate application:didFinishLaunchingWithOptions:]_block_invoke}]
+  080eec  [self runSanityCheck]
+  080f1c  return
+
+== -[ADAppDelegate application:didFinishLaunchingWithOptions:]_block_invoke   (address 0x100081010  size 4  kind block)
+  081010  return
+
+== -[ADAppDelegate runSanityCheck]   (address 0x100081014  size 180  kind objc)
+  08103c  [ADBrickManager sharedBrickManager]
+  081060  [[ADBrickManager sharedBrickManager] loadBrickChancePlist:@"brick_chance"]
+  081074  [ADBrickManager sharedBrickManager]
+  081090  [[ADBrickManager sharedBrickManager] runSanityCheck]
+  0810a4  return
+
+== -[ADAppDelegate dictionaryForChallengeWithName:]   (address 0x1000810c8  size 244  kind objc)
+  0810f8  [NSBundle mainBundle]
+  081120  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  08114c  [NSDictionary alloc]
+  081160  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  081188  return
+
+== -[ADAppDelegate loadViewController:]   (address 0x1000811bc  size 300  kind objc)
+  0811f0  [arg1 setModalTransitionStyle:2]
+  081204  [self viewController]
+  081274  [[self viewController] dismissViewControllerAnimated:1 completion:^{-[ADAppDelegate loadViewController:]_block_invoke captures +0x20=self, +0x28=arg1}]
+  0812a8  return
+
+== -[ADAppDelegate loadViewController:]_block_invoke   (address 0x1000812e8  size 116  kind block)
+  081308  [self viewController]
+  081334  [[self viewController] presentViewController:arg1 animated:1 completion:^{-[ADAppDelegate loadViewController:]_block_invoke_block_invoke}]
+  081344  return
+
+== -[ADAppDelegate loadViewController:]_block_invoke_block_invoke   (address 0x10008135c  size 4  kind block)
+  08135c  return
+
+== sub_100081360   (address 0x100081360  size 40  kind sub)
+
+== sub_100081388   (address 0x100081388  size 40  kind sub)
+  0813ac  return
+
+== -[ADAppDelegate goToAccessibleChallengeOverviewWithDictionary:]   (address 0x1000813b0  size 168  kind objc)
+  0813e4  [Accessible_ADChallengeOverviewViewController alloc]
+  0813f8  [[Accessible_ADChallengeOverviewViewController alloc] initWithDictionary:arg1]
+  081414  [self loadViewController:[[Accessible_ADChallengeOverviewViewController alloc] initWithDictionary:arg1]]
+  081430  return
+
+== -[ADAppDelegate goToChallengeOverviewWithDictionary:]   (address 0x100081458  size 168  kind objc)
+  08148c  [ADChallengeOverviewViewController alloc]
+  0814a0  [[ADChallengeOverviewViewController alloc] initWithDictionary:arg1]
+  0814bc  [self loadViewController:[[ADChallengeOverviewViewController alloc] initWithDictionary:arg1]]
+  0814d8  return
+
+== -[ADAppDelegate goToInputModeSelectScreen]   (address 0x100081500  size 132  kind objc)
+  081524  [ADInitialControlSchemeViewController alloc]
+  081540  [[ADInitialControlSchemeViewController alloc] initWithNibName:@"ADInitialControlSchemeViewController" bundle:0]
+  08155c  [self loadViewController:[[ADInitialControlSchemeViewController alloc] initWithNibName:@"ADInitialControlSchemeViewController" bundle:0]]
+  08156c  return
+
+== -[ADAppDelegate goToOpener]   (address 0x100081584  size 132  kind objc)
+  0815a8  [ADOpenerGameplayViewController alloc]
+  0815c4  [[ADOpenerGameplayViewController alloc] initWithNibName:@"ADOpenerGameplayViewController" bundle:0]
+  0815e0  [self loadViewController:[[ADOpenerGameplayViewController alloc] initWithNibName:@"ADOpenerGameplayViewController" bundle:0]]
+  0815f0  return
+
+== -[ADAppDelegate goToGameOverEndless]   (address 0x100081608  size 216  kind objc)
+  08161c  UIAccessibilityIsVoiceOverRunning()
+  081620  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_100081664
+  08163c  [Accessible_ADGameOverEndlessViewController alloc]
+  08165c  [[Accessible_ADGameOverEndlessViewController alloc] initWithNibName:@"Accessible_ADGameOverEndlessViewController" bundle:0]
+  081660  goto loc_1000816a0
+loc_100081664:
+  08167c  [ADGameOverEndlessViewController alloc]
+  08169c  [[ADGameOverEndlessViewController alloc] initWithNibName:@"ADGameOverEndlessViewController" bundle:0]
+loc_1000816a0:
+  0816b8  [self loadViewController:x2]
+  0816c8  return
+
+== -[ADAppDelegate goToChallengeSelector]   (address 0x1000816e0  size 444  kind objc)
+  0816fc  UIAccessibilityIsVoiceOverRunning()
+  081700  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100081798
+  08171c  [Accessible_ADChallengeSelectorViewController alloc]
+  08173c  [ADGameParameters sharedParameters]
+  081758  [[ADGameParameters sharedParameters] lastChallengeWorld]
+  081788  [[Accessible_ADChallengeSelectorViewController alloc] initWithNibName:0 bundle:0 loadChallenge:0 worldName:[[ADGameParameters sharedParameters] lastChallengeWorld]]
+  081790  goto loc_100081824
+  081794  goto loc_100081880
+loc_100081798:
+  0817b0  [ADChallengeSelectorViewController alloc]
+  0817d0  [ADGameParameters sharedParameters]
+  0817ec  [[ADGameParameters sharedParameters] lastChallengeWorld]
+  08181c  [[ADChallengeSelectorViewController alloc] initWithNibName:0 bundle:0 loadChallenge:0 worldName:[[ADGameParameters sharedParameters] lastChallengeWorld]]
+loc_100081824:
+  081848  [self loadViewController:x2]
+  081860  return
+
+== -[ADAppDelegate goToChallengeCompletedWithDictionary:]   (address 0x10008189c  size 284  kind objc)
+  0818d4  [self startMenuMusic:@"game_over_theme"]
+  0818d8  UIAccessibilityIsVoiceOverRunning()
+  0818dc  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100081930
+  0818f4  [Accessible_ADChallengeCompletedViewController alloc]
+  081908  [[Accessible_ADChallengeCompletedViewController alloc] initWithDictionary:arg1]
+  081924  [self loadViewController:[[Accessible_ADChallengeCompletedViewController alloc] initWithDictionary:arg1]]
+  081928  goto loc_100081978
+  08192c  goto loc_10008199c
+loc_100081930:
+  081944  [ADChallengeCompletedViewController alloc]
+  081958  [[ADChallengeCompletedViewController alloc] initWithDictionary:arg1]
+  081974  [self loadViewController:[[ADChallengeCompletedViewController alloc] initWithDictionary:arg1]]
+loc_100081978:
+  081990  return
+
+== -[ADAppDelegate goToChallengeFailedWithDictionary:]   (address 0x1000819b8  size 168  kind objc)
+  0819ec  [ADChallengeFailedViewController alloc]
+  081a00  [[ADChallengeFailedViewController alloc] initWithDictionary:arg1]
+  081a1c  [self loadViewController:[[ADChallengeFailedViewController alloc] initWithDictionary:arg1]]
+  081a38  return
+
+== -[ADAppDelegate goToArmoryFromVC:EnableLoadOut:]   (address 0x100081a60  size 524  kind objc)
+  081a88  UIAccessibilityIsVoiceOverRunning()
+  081a8c  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100081ad4
+  081aa8  [Accessible_ADArmoryViewController alloc]
+  081acc  [[Accessible_ADArmoryViewController alloc] initWithNibName:@"Accessible_ADArmoryViewController" bundle:0 loadoutEnabled:arg2]
+  081ad0  goto loc_100081c08
+loc_100081ad4:
+  081af0  [ADTarotViewController class]
+  081b10  [arg1 isKindOfClass:[ADTarotViewController class]]
+  081b14  if ([arg1 isKindOfClass:[ADTarotViewController class]] == 0) goto loc_100081b64
+  081b30  [ADArmoryViewController alloc]
+  081b5c  [[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0 tab:@"loadout" loadoutEnabled:arg2]
+  081b60  goto loc_100081c08
+loc_100081b64:
+  081b74  [ADChallengeOverviewViewController class]
+  081b88  [arg1 isKindOfClass:[ADChallengeOverviewViewController class]]
+  081b9c  &@selector(alloc)
+  081ba4  if ([arg1 isKindOfClass:[ADChallengeOverviewViewController class]] == 0) goto loc_100081bdc
+  081bac  [ADArmoryViewController alloc]
+  081bd4  [[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0 tab:0 loadoutEnabled:arg2]
+  081bd8  goto loc_100081c08
+loc_100081bdc:
+  081be0  [ADArmoryViewController alloc]
+  081c04  [[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0 loadoutEnabled:arg2]
+loc_100081c08:
+  081c2c  [arg1 presentViewController:x2 animated:0 completion:^{-[ADAppDelegate goToArmoryFromVC:EnableLoadOut:]_block_invoke}]
+  081c4c  return
+
+== -[ADAppDelegate goToArmoryFromVC:EnableLoadOut:]_block_invoke   (address 0x100081c6c  size 4  kind block)
+  081c6c  return
+
+== -[ADAppDelegate goToChallengeAfter:]   (address 0x100081c70  size 1132  kind objc)
+  081cbc  [ADChallengeData sharedChallengeData]
+  081ce4  [ADGameParameters sharedParameters]
+  081d08  [[ADGameParameters sharedParameters] lastChallengeWorld]
+  081d30  [[ADChallengeData sharedChallengeData] hasChallengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]
+  081d50  if ([[ADChallengeData sharedChallengeData] hasChallengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]] == 0) goto loc_100081e6c
+  081d60  [ADChallengeData sharedChallengeData]
+  081d7c  [ADGameParameters sharedParameters]
+  081d90  [[ADGameParameters sharedParameters] lastChallengeWorld]
+  081db8  [[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]
+  081de0  UIAccessibilityIsVoiceOverRunning()
+  081de4  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100081e88
+  081df0  [ADChallengeData sharedChallengeData]
+  081e10  [[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]]
+  081e20  if (!([[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]] & 1)) goto loc_100081f78
+  081e38  [self dictionaryForChallengeWithName:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]]
+  081e5c  [self goToAccessibleChallengeOverviewWithDictionary:[self dictionaryForChallengeWithName:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]]]
+  081e68  goto loc_100081f8c
+loc_100081e6c:
+  081e80  [self goToWorldSelector]
+  081e84  goto loc_100081ff4
+loc_100081e88:
+  081e9c  [NSBundle mainBundle]
+  081ec4  [[NSBundle mainBundle] URLForResource:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]] withExtension:@"plist"]
+  081ef4  [NSDictionary alloc]
+  081f08  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]] withExtension:@"plist"]]
+  081f18  [ADChallengeData sharedChallengeData]
+  081f38  [[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]]
+  081f48  if (!([[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]] & 1)) goto loc_100081f9c
+  081f58  [ADChallengeOverviewViewController alloc]
+  081f6c  [[ADChallengeOverviewViewController alloc] initWithDictionary:[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]] withExtension:@"plist"]]]
+  081f74  goto loc_100081fc4
+loc_100081f78:
+  081f88  [self goToChallengeSelector]
+loc_100081f8c:
+  081f98  goto loc_100081ff4
+loc_100081f9c:
+  081fa8  [ADChallengeLockedViewController alloc]
+  081fbc  [[ADChallengeLockedViewController alloc] initWithDictionary:[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[ADChallengeData sharedChallengeData] challengeAfter:arg1 inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]] withExtension:@"plist"]]]
+loc_100081fc4:
+  081ff0  [self loadViewController:x2]
+loc_100081ff4:
+  08201c  return
+
+== -[ADAppDelegate goToStory]   (address 0x1000820dc  size 132  kind objc)
+  082100  [ADStoryViewController alloc]
+  08211c  [[ADStoryViewController alloc] initWithNibName:@"ADStoryViewController" bundle:0]
+  082138  [self loadViewController:[[ADStoryViewController alloc] initWithNibName:@"ADStoryViewController" bundle:0]]
+  082148  return
+
+== -[ADAppDelegate goToRoulette]   (address 0x100082160  size 132  kind objc)
+  082184  [ADScenarioRouletteViewController alloc]
+  0821a0  [[ADScenarioRouletteViewController alloc] initWithNibName:@"ADScenarioRouletteViewController" bundle:0]
+  0821bc  [self loadViewController:[[ADScenarioRouletteViewController alloc] initWithNibName:@"ADScenarioRouletteViewController" bundle:0]]
+  0821cc  return
+
+== -[ADAppDelegate goToGameplay]   (address 0x1000821e4  size 148  kind objc)
+  082200  [self stopMenuMusic]
+  082218  [ADGameplayViewController alloc]
+  082234  [[ADGameplayViewController alloc] initWithNibName:@"ADGameplayViewController" bundle:0]
+  082250  [self loadViewController:[[ADGameplayViewController alloc] initWithNibName:@"ADGameplayViewController" bundle:0]]
+  082260  return
+
+== -[ADAppDelegate goToChallengeWithDict:]   (address 0x100082278  size 196  kind objc)
+  0822a8  [self stopMenuMusic]
+  0822c0  [ADChallengeGameplayViewController alloc]
+  0822dc  [[ADChallengeGameplayViewController alloc] initWithNibName:0 bundle:0 challengeDictionary:arg1]
+  0822f8  [self loadViewController:[[ADChallengeGameplayViewController alloc] initWithNibName:0 bundle:0 challengeDictionary:arg1]]
+  082314  return
+
+== -[ADAppDelegate goToWorldSelector]   (address 0x10008233c  size 156  kind objc)
+  082360  [self startMenuMusic:@"main_menu_theme"]
+  082378  [ADWorldChallengeListViewController alloc]
+  082394  [[ADWorldChallengeListViewController alloc] initWithNibName:@"ADWorldChallengeListViewController" bundle:0]
+  0823b0  [self loadViewController:[[ADWorldChallengeListViewController alloc] initWithNibName:@"ADWorldChallengeListViewController" bundle:0]]
+  0823c0  return
+
+== -[ADAppDelegate goToMainMenu]   (address 0x1000823d8  size 156  kind objc)
+  0823fc  [self startMenuMusic:@"main_menu_theme"]
+  082414  [ADMainMenuViewController alloc]
+  082430  [[ADMainMenuViewController alloc] initWithNibName:@"ADMainMenuViewController" bundle:0]
+  08244c  [self loadViewController:[[ADMainMenuViewController alloc] initWithNibName:@"ADMainMenuViewController" bundle:0]]
+  08245c  return
+
+== -[ADAppDelegate goToPlayMenu]   (address 0x100082474  size 160  kind objc)
+  082498  [self startMenuMusic:@"main_menu_theme"]
+  0824b0  [ADPlayMenuViewController alloc]
+  0824d0  [[ADPlayMenuViewController alloc] initWithNibName:@"ADPlayMenuViewController" bundle:0 shouldAnimate:0]
+  0824ec  [self loadViewController:[[ADPlayMenuViewController alloc] initWithNibName:@"ADPlayMenuViewController" bundle:0 shouldAnimate:0]]
+  0824fc  return
+
+== -[ADAppDelegate goToInfoScreen:]   (address 0x100082514  size 168  kind objc)
+  082548  [ADInfoViewController alloc]
+  08255c  [[ADInfoViewController alloc] initWithPageName:arg1]
+  082578  [self loadViewController:[[ADInfoViewController alloc] initWithPageName:arg1]]
+  082594  return
+
+== -[ADAppDelegate goToTarot]   (address 0x1000825bc  size 132  kind objc)
+  0825e0  [ADTarotViewController alloc]
+  0825fc  [[ADTarotViewController alloc] initWithNibName:@"ADTarotViewController" bundle:0]
+  082618  [self loadViewController:[[ADTarotViewController alloc] initWithNibName:@"ADTarotViewController" bundle:0]]
+  082628  return
+
+== -[ADAppDelegate popToRoot]   (address 0x100082640  size 4  kind objc)
+  082640  return
+
+== -[ADAppDelegate goToTabbedChallengeScreen]   (address 0x100082644  size 132  kind objc)
+  082668  [ADWorldChallengeListViewController alloc]
+  082684  [[ADWorldChallengeListViewController alloc] initWithNibName:@"ADWorldChallengeListViewController" bundle:0]
+  0826a0  [self loadViewController:[[ADWorldChallengeListViewController alloc] initWithNibName:@"ADWorldChallengeListViewController" bundle:0]]
+  0826b0  return
+
+== -[ADAppDelegate showMetrics]   (address 0x1000826c8  size 724  kind objc)
+  082708  [self->metricsViewController view]
+  082724  [[self->metricsViewController view] removeFromSuperview]
+  082740  [self window]
+  082758  [self->metricsViewController view]
+  08277c  [[self window] addSubview:[self->metricsViewController view]]
+  082790  [self->metricsViewController view]
+  0827a8  [self->metricsViewController view]
+  0827c8  [[self->metricsViewController view] frame]
+  0827d8  [self->metricsViewController view]
+  0827ec  [[self->metricsViewController view] frame]
+  082810  [[self->metricsViewController view] setFrame:{0, 385, [[self->metricsViewController view] frame].2, [[self->metricsViewController view] frame].3}]
+  082834  [self->metricsViewController view]
+  082854  [[self->metricsViewController view] setUserInteractionEnabled:0]
+  082868  [self->metricsViewController view]
+  0828a4  [[self->metricsViewController view] setTransform:&sp[0x60]]
+  0828b8  [self->metricsViewController view]
+  0828d4  CGAffineTransformMakeRotation([self->metricsViewController view])
+  0828fc  [[self->metricsViewController view] setTransform:&sp[0x0]]
+  08292c  return
+
+== -[ADAppDelegate setStatusBar:]   (address 0x10008299c  size 56  kind objc)
+  0829c0  self->_statusBar = arg1
+  0829d0  return
+
+== -[ADAppDelegate initPapaEngine]   (address 0x1000829d4  size 548  kind objc)
+  082a04  [S3DEngine setPlayListMetaPath:@"meta"]
+  082a20  [S3DEngine setProductName:@"AudioDefense"]
+  082a38  [S3DEngine engine]
+  082a58  [[S3DEngine engine] setMasterGain:1.5]
+  082a6c  [S3DEngine engine]
+  082a8c  [[S3DEngine engine] setTraceLevel:0]
+  082aa0  [S3DEngine engine]
+  082ac0  [[S3DEngine engine] setReverbRoomSize:1.5]
+  082ad4  [S3DEngine engine]
+  082af8  [[S3DEngine engine] setReverbDampening:50]
+  082b0c  [S3DEngine engine]
+  082b2c  [[S3DEngine engine] setReverbVolume:1]
+  082b40  [S3DEngine engine]
+  082b64  [[S3DEngine engine] setDistanceScale:0.8]
+  082b78  [S3DEngine engine]
+  082b98  [[S3DEngine engine] setMaxSpatialGain:6]
+  082bc0  tail [self activateButtonsPlaylist]
+  082bc4  goto loc_100082bd8
+  082bc8  goto loc_100082bd8
+  082bcc  goto loc_100082bd8
+  082bd0  goto loc_100082bd8
+  082bd4  goto loc_100082bd8
+loc_100082bd8:
+loc_100082be0:
+  082bf4  goto loc_100082be0
+
+== -[ADAppDelegate activateButtonsPlaylist]   (address 0x100082bf8  size 168  kind objc)
+  082c1c  [S3DEngine engine]
+  082c40  [[S3DEngine engine] playListWithName:@"buttons"]
+  082c5c  [[[S3DEngine engine] playListWithName:@"buttons"] activate]
+  082c78  return
+
+== -[ADAppDelegate startMenuMusic:]   (address 0x100082ca0  size 576  kind objc)
+  082ce4  [self->openSound playing]
+  082ce8  if ([self->openSound playing] == 0) goto loc_100082d0c
+  082d04  [arg1 isEqualToString:@"main_menu_theme"]
+  082d08  if (([arg1 isEqualToString:@"main_menu_theme"] & 1)) goto loc_100082e64
+loc_100082d0c:
+  082d20  [S3DEngine engine]
+  082d44  [[S3DEngine engine] playListWithName:@"main_menu"]
+  082d6c  [self menu_music_playing]
+  082d70  if ([self menu_music_playing] == 0) goto loc_100082ddc
+  082d8c  [[[S3DEngine engine] playListWithName:@"main_menu"] S3DSound:@"main_menu_theme"]
+  082da0  [[[[S3DEngine engine] playListWithName:@"main_menu"] S3DSound:@"main_menu_theme"] playing]
+  082db0  if (([[[[S3DEngine engine] playListWithName:@"main_menu"] S3DSound:@"main_menu_theme"] playing] & 1)) goto loc_100082e5c
+  082dc4  [self stopMenuMusic]
+  082dd4  self->start_theme_after_fade = 1
+  082dd8  goto loc_100082e5c
+loc_100082ddc:
+  082e40  [[[S3DEngine engine] playListWithName:@"main_menu"] activate:^{-[ADAppDelegate startMenuMusic:]_block_invoke captures +0x20=arg1, +0x28=self, +0x30=[[S3DEngine engine] playListWithName:@"m…, +0x38=self}]
+loc_100082e5c:
+loc_100082e64:
+  082e80  return
+
+== -[ADAppDelegate startMenuMusic:]_block_invoke   (address 0x100082ee0  size 664  kind block)
+  082f10  [arg1 isEqualToString:@"main_menu_theme"]
+  082f14  if ([arg1 isEqualToString:@"main_menu_theme"] == 0) goto loc_100083010
+  082f30  [[[S3DEngine engine] playListWithName:@"main_menu"] S3DSound:@"main_menu_open"]
+  082f4c  self->openSound = [[[S3DEngine engine] playListWithName:@"main_menu"] S3DSound:@"main_menu_open"]
+  082f74  [self->openSound setGain:0.4]
+  082f8c  [self->openSound play]
+  082ff8  [self->openSound add3DSoundMonitor:^{-[ADAppDelegate startMenuMusic:]_block_invoke_block_invoke captures +0x20=[[S3DEngine engine] playListWithName:@"m…, +0x28=arg1, +0x30=self}]
+  08300c  goto loc_100083118
+loc_100083010:
+  083024  [x0 S3DSound:arg1]
+  083048  [x0 setCurrentMenuMusic:[x0 S3DSound:arg1]]
+  083068  [self currentMenuMusic]
+  08308c  [[self currentMenuMusic] setGain:0.4]
+  0830a0  [self currentMenuMusic]
+  0830c0  [[self currentMenuMusic] setStream:1]
+  0830d4  [self currentMenuMusic]
+  0830f4  [[self currentMenuMusic] play:1]
+  083114  [self setMenu_music_playing:1]
+loc_100083118:
+  083128  return
+
+== -[ADAppDelegate startMenuMusic:]_block_invoke_block_invoke   (address 0x100083178  size 436  kind block)
+  0831b4  if ((d8 * 0.7) > (or unordered) d9) goto loc_1000832d8
+  0831c8  [self menu_music_playing]
+  0831cc  if (([self menu_music_playing] & 1)) goto loc_1000832d8
+  0831e4  [[[S3DEngine engine] playListWithName:@"main_menu"] S3DSound:x2]
+  083208  [x0 setCurrentMenuMusic:[[[S3DEngine engine] playListWithName:@"main_menu"] S3DSound:x2]]
+  083228  [self currentMenuMusic]
+  08324c  [[self currentMenuMusic] setGain:0.4]
+  083260  [self currentMenuMusic]
+  083280  [[self currentMenuMusic] setStream:1]
+  083294  [self currentMenuMusic]
+  0832b4  [[self currentMenuMusic] play:1]
+  0832d4  [self setMenu_music_playing:1]
+loc_1000832d8:
+  0832ec  return
+
+== sub_10008332c   (address 0x10008332c  size 40  kind sub)
+
+== sub_100083354   (address 0x100083354  size 40  kind sub)
+  083378  return
+
+== sub_10008337c   (address 0x10008337c  size 48  kind sub)
+
+== sub_1000833ac   (address 0x1000833ac  size 48  kind sub)
+  0833d8  return
+
+== -[ADAppDelegate stopMenuMusic]   (address 0x1000833dc  size 132  kind objc)
+  0833f8  if (self->fadeOutTimer == 0) goto loc_100083408
+  083404  return
+loc_100083408:
+  08343c  [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(reduceMainMenuThemeVolume) userInfo:0 repeats:1]
+  08344c  self->fadeOutTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(reduceMainMenuThemeVolume) userInfo:0 repeats:1]
+  08345c  return
+
+== -[ADAppDelegate reduceMainMenuThemeVolume]   (address 0x100083460  size 728  kind objc)
+  083494  [S3DEngine engine]
+  0834b8  [[S3DEngine engine] playListWithName:@"main_menu"]
+  0834e4  [self currentMenuMusic]
+  083504  [[self currentMenuMusic] gain]
+  083530  [[self currentMenuMusic] setGain:([[self currentMenuMusic] gain] + -0.01)]
+  083550  [self->openSound gain]
+  083568  [self->openSound setGain:([self->openSound gain] + -0.01)]
+  083574  [self currentMenuMusic]
+  083588  [[self currentMenuMusic] gain]
+  083590  if ([[self currentMenuMusic] gain] <= 0.0) goto loc_1000835b8
+  08359c  [self->openSound gain]
+  0835b0  if ([self->openSound gain] <= 0.0) goto loc_1000835c0
+  0835b4  goto loc_1000836c4
+loc_1000835b8:
+loc_1000835c0:
+  0835c8  [self currentMenuMusic]
+  0835e0  [[self currentMenuMusic] setGain:0]
+  0835f8  [self->openSound setGain:0]
+  083610  [self->openSound stop]
+  08361c  [self currentMenuMusic]
+  083630  [[self currentMenuMusic] stop]
+  083650  [self setMenu_music_playing:0]
+  08366c  [self->fadeOutTimer invalidate]
+  083674  self->fadeOutTimer = 0
+  08368c  [[[S3DEngine engine] playListWithName:@"main_menu"] deactivate]
+  08369c  if (self->start_theme_after_fade == 0) goto loc_1000836c0
+  0836b8  [self startMenuMusic:@"main_menu_theme"]
+loc_1000836c0:
+  0836c0  self->start_theme_after_fade = 0
+loc_1000836c4:
+  0836e0  return
+
+== -[ADAppDelegate pauseGame]   (address 0x100083738  size 228  kind objc)
+  08375c  [self viewController]
+  083780  [ADGameplayViewController class]
+  083798  [[self viewController] isKindOfClass:[ADGameplayViewController class]]
+  0837a8  if ([[self viewController] isKindOfClass:[ADGameplayViewController class]] == 0) goto loc_1000837ec
+  0837b4  [self viewController]
+  0837d4  [[self viewController] pauseButtonTouched:0]
+  0837e8  return
+loc_1000837ec:
+  0837f8  return
+
+== -[ADAppDelegate applicationWillResignActive:]   (address 0x10008381c  size 32  kind objc)
+  083830  [self pauseGame]
+  083838  return
+
+== -[ADAppDelegate applicationDidEnterBackground:]   (address 0x10008383c  size 32  kind objc)
+  083850  [self pauseGame]
+  083858  return
+
+== -[ADAppDelegate applicationWillEnterForeground:]   (address 0x10008385c  size 4  kind objc)
+  08385c  return
+
+== -[ADAppDelegate applicationDidBecomeActive:]   (address 0x100083860  size 4  kind objc)
+  083860  return
+
+== -[ADAppDelegate applicationWillTerminate:]   (address 0x100083864  size 4  kind objc)
+  083864  return
+
+== -[ADAppDelegate window]   (address 0x100083868  size 16  kind objc)
+  083874  return
+
+== -[ADAppDelegate setWindow:]   (address 0x100083878  size 56  kind objc)
+  08389c  self->_window = arg1
+  0838ac  return
+
+== -[ADAppDelegate viewController]   (address 0x1000838b0  size 16  kind objc)
+  0838bc  return
+
+== -[ADAppDelegate setViewController:]   (address 0x1000838c0  size 56  kind objc)
+  0838e4  self->_viewController = arg1
+  0838f4  return
+
+== -[ADAppDelegate statusBar]   (address 0x1000838f8  size 16  kind objc)
+  083904  return
+
+== -[ADAppDelegate menu_music_playing]   (address 0x100083908  size 16  kind objc)
+  083914  return
+
+== -[ADAppDelegate setMenu_music_playing:]   (address 0x100083918  size 16  kind objc)
+  083920  self->_menu_music_playing = arg1
+  083924  return
+
+== -[ADAppDelegate currentMenuMusic]   (address 0x100083928  size 16  kind objc)
+  083934  return
+
+== -[ADAppDelegate setCurrentMenuMusic:]   (address 0x100083938  size 56  kind objc)
+  08395c  self->_currentMenuMusic = arg1
+  08396c  return
+
+== -[ADAppDelegate .cxx_destruct]   (address 0x100083970  size 184  kind objc)

@@ -1,0 +1,441 @@
+
+== -[TAGPBMutableArray dealloc]   (address 0x10012f5b0  size 232  kind objc)
+  12f5d8  if (self->_delegate == 0) goto loc_10012f65c
+  12f5f0  [NSAssertionHandler currentHandler]
+  12f618  [NSString stringWithUTF8String:"-[TAGPBMutableArray dealloc]"]
+  12f630  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  12f658  [[NSAssertionHandler currentHandler] handleFailureInFunction:[NSString stringWithUTF8String:"-[TAGPBMutableArray dealloc]"] file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:608 description:@"Delegate must be cleared before release."]
+loc_10012f65c:
+  12f67c  [super dealloc]
+  12f694  return
+
+== +[TAGPBMutableArray arrayWithValueType:capacity:]   (address 0x10012f698  size 84  kind objc)
+  12f6b8  [TAGPBMutableArray alloc]
+  12f6d0  [[TAGPBMutableArray alloc] initWithValueType:arg1 capacity:arg2]
+  12f6e8  tail [[[TAGPBMutableArray alloc] initWithValueType:arg1 capacity:arg2] autorelease]
+
+== -[TAGPBMutableArray initWithValueType:capacity:]   (address 0x10012f6ec  size 80  kind objc)
+  12f708  [self initWithValueType:arg1]
+  12f710  if (self == 0) goto loc_10012f72c
+  12f728  [self ensureAdditionalCapacity:arg2]
+loc_10012f72c:
+  12f738  return
+
+== -[TAGPBMutableArray copyWithZone:]   (address 0x10012f73c  size 100  kind objc)
+  12f760  [TAGPBArray allocWithZone:arg1]
+  12f79c  tail [[TAGPBArray allocWithZone:arg1] initWithValues:self->_data count:self->_count valueType:self->_valueType]
+
+== -[TAGPBMutableArray countByEnumeratingWithState:objects:count:]   (address 0x10012f7a0  size 180  kind objc)
+  12f7bc  if (arg1[+0x0] == 0) goto loc_10012f7c8
+  12f7c4  goto loc_10012f80c
+loc_10012f7c8:
+  12f7d4  if (self->_valueType != 0) goto loc_10012f81c
+  12f7e4  arg1[+0x10] = x8
+  12f7f4  arg1[+0x8] = self->_data
+  12f804  arg1[+0x0] = self->_count
+loc_10012f80c:
+  12f818  return
+  12f84c  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeObject"]
+
+== -[TAGPBMutableArray enumerateObjectsUsingBlock:]   (address 0x10012f854  size 348  kind objc)
+  12f888  if (self->_valueType != 0) goto loc_10012f978
+  12f8a8  if (self->_count == 0) goto loc_10012f958
+  12f8d4  &@selector(raise:format:)
+loc_10012f8e8:
+  12f900  call arg1[+0x10]
+  12f90c  if (self->_mutationCount == self->_mutationCount) goto loc_10012f940
+  12f920  [self class]
+  12f93c  [NSException raise:_NSGenericException[+0x0] format:@"*** Collection <%@: %p> was mutated while being enumerated.", [self class], self]
+loc_10012f940:
+  12f954  if (flags ==) goto loc_10012f8e8
+loc_10012f958:
+  12f974  return
+  12f9a8  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeObject"]
+
+== -[TAGPBMutableArray enumerateInt32sUsingBlock:]   (address 0x10012f9b0  size 444  kind objc)
+  12f9ec  if (self->_valueType != 2) goto loc_10012fb34
+  12fa0c  if (self->_count == 0) goto loc_10012fb14
+  12fa28  &@selector(class)
+loc_10012fa5c:
+  12fa84  call arg1[+0x10]
+  12fa90  if (self->_mutationCount == self->_mutationCount) goto loc_10012fafc
+  12fac0  [self class]
+  12faf8  [NSException raise:_NSGenericException[+0x0] format:@"*** Collection <%@: %p> was mutated while being enumerated.", [self class], self]
+loc_10012fafc:
+  12fb10  if (flags ==) goto loc_10012fa5c
+loc_10012fb14:
+  12fb30  return
+  12fb64  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeInt32"]
+
+== -[TAGPBMutableArray ensureAdditionalCapacity:]   (address 0x10012fb6c  size 256  kind objc)
+  12fbb8  [self->_delegate pbMutableArray:self willAddElements:arg1]
+  12fbcc  if ((self->_count + arg1) <=u self->_capacity) goto loc_10012fc28
+  12fbe0  self->_capacity = (self->_capacity == 0 ? (self->_count + arg1) : (((self->_count + arg1) + 32) & -32))
+  12fc04  t1 = (x8 * (self->_capacity == 0 ? (self->_count + arg1) : (((self->_count + arg1) + 32) & -32)))
+  12fc18  reallocf(self->_data, t1)
+  12fc20  self->_data = reallocf(self->_data, t1)
+  12fc24  if (reallocf(self->_data, t1) == 0) goto loc_10012fc3c
+loc_10012fc28:
+  12fc38  return
+  12fc64  [NSException raise:@"TAGPBArrayAllocationFailureException" format:@"failed to allocate %lu bytes", t1]
+
+== -[TAGPBMutableArray addObject:]   (address 0x10012fc6c  size 56  kind objc)
+  12fc8c  [arg1 retain]
+  12fca0  tail sub_10012f4c4(self, [arg1 retain])
+
+== -[TAGPBMutableArray addBool:]   (address 0x10012fca4  size 232  kind objc)
+  12fcd0  if (self->_valueType != 1) goto loc_10012fd54
+  12fce8  [self ensureAdditionalCapacity:1]
+  12fd28  self->_count = (self->_count + 1)
+  12fd3c  self->_mutationCount = (self->_mutationCount + 1)
+  12fd50  return
+  12fd84  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeBool"]
+
+== -[TAGPBMutableArray addInt32:]   (address 0x10012fd8c  size 232  kind objc)
+  12fdb8  if (self->_valueType != 2) goto loc_10012fe3c
+  12fdd0  [self ensureAdditionalCapacity:1]
+  12fe10  self->_count = (self->_count + 1)
+  12fe24  self->_mutationCount = (self->_mutationCount + 1)
+  12fe38  return
+  12fe6c  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeInt32"]
+
+== -[TAGPBMutableArray addUInt32:]   (address 0x10012fe74  size 232  kind objc)
+  12fea0  if (self->_valueType != 3) goto loc_10012ff24
+  12feb8  [self ensureAdditionalCapacity:1]
+  12fef8  self->_count = (self->_count + 1)
+  12ff0c  self->_mutationCount = (self->_mutationCount + 1)
+  12ff20  return
+  12ff54  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeUInt32"]
+
+== -[TAGPBMutableArray addInt64:]   (address 0x10012ff5c  size 232  kind objc)
+  12ff88  if (self->_valueType != 4) goto loc_10013000c
+  12ffa0  [self ensureAdditionalCapacity:1]
+  12ffe0  self->_count = (self->_count + 1)
+  12fff4  self->_mutationCount = (self->_mutationCount + 1)
+  130008  return
+  13003c  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeInt64"]
+
+== -[TAGPBMutableArray addUInt64:]   (address 0x100130044  size 232  kind objc)
+  130070  if (self->_valueType != 5) goto loc_1001300f4
+  130088  [self ensureAdditionalCapacity:1]
+  1300c8  self->_count = (self->_count + 1)
+  1300dc  self->_mutationCount = (self->_mutationCount + 1)
+  1300f0  return
+  130124  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeUInt64"]
+
+== -[TAGPBMutableArray addFloat:]   (address 0x10013012c  size 232  kind objc)
+  130158  if (self->_valueType != 6) goto loc_1001301dc
+  130170  [self ensureAdditionalCapacity:1]
+  1301b0  self->_count = (self->_count + 1)
+  1301c4  self->_mutationCount = (self->_mutationCount + 1)
+  1301d8  return
+  13020c  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeFloat"]
+
+== -[TAGPBMutableArray addDouble:]   (address 0x100130214  size 232  kind objc)
+  130240  if (self->_valueType != 7) goto loc_1001302c4
+  130258  [self ensureAdditionalCapacity:1]
+  130298  self->_count = (self->_count + 1)
+  1302ac  self->_mutationCount = (self->_mutationCount + 1)
+  1302c0  return
+  1302f4  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeDouble"]
+
+== -[TAGPBMutableArray replaceObjectAtIndex:withObject:]   (address 0x1001302fc  size 316  kind objc)
+  13032c  if (self->_valueType != 0) goto loc_1001303cc
+  130340  if (self->_count <=u arg1) goto loc_100130404
+  130374  if (x0 == arg2) goto loc_1001303a0
+  130384  [x0 release]
+  130398  [arg2 retain]
+loc_1001303a0:
+  1303b0  self->_mutationCount = (self->_mutationCount + 1)
+  1303c8  return
+  1303fc  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeObject"]
+  130430  [NSException raise:_NSRangeException[+0x0] format:@"idx (%lu) beyond bounds (%lu)", arg1, self->_count]
+
+== -[TAGPBMutableArray setObject:atIndexedSubscript:]   (address 0x100130438  size 68  kind objc)
+  13044c  if (self->_count != arg2) goto loc_100130464
+  130460  tail [self addObject:arg1]
+loc_100130464:
+  130478  tail [self replaceObjectAtIndex:arg2 withObject:arg1]
+
+== -[TAGPBMutableArray replaceBoolAtIndex:withBool:]   (address 0x10013047c  size 264  kind objc)
+  1304ac  if (self->_valueType != 1) goto loc_100130518
+  1304c0  if (self->_count <=u arg1) goto loc_100130550
+  130500  self->_mutationCount = (self->_mutationCount + 1)
+  130514  return
+  130548  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeBool"]
+  13057c  [NSException raise:_NSRangeException[+0x0] format:@"idx (%lu) beyond bounds (%lu)", arg1, self->_count]
+
+== -[TAGPBMutableArray replaceInt32AtIndex:withInt32:]   (address 0x100130584  size 264  kind objc)
+  1305b4  if (self->_valueType != 2) goto loc_100130620
+  1305c8  if (self->_count <=u arg1) goto loc_100130658
+  130608  self->_mutationCount = (self->_mutationCount + 1)
+  13061c  return
+  130650  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeInt32"]
+  130684  [NSException raise:_NSRangeException[+0x0] format:@"idx (%lu) beyond bounds (%lu)", arg1, self->_count]
+
+== -[TAGPBMutableArray replaceUInt32AtIndex:withUInt32:]   (address 0x10013068c  size 264  kind objc)
+  1306bc  if (self->_valueType != 3) goto loc_100130728
+  1306d0  if (self->_count <=u arg1) goto loc_100130760
+  130710  self->_mutationCount = (self->_mutationCount + 1)
+  130724  return
+  130758  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeUInt32"]
+  13078c  [NSException raise:_NSRangeException[+0x0] format:@"idx (%lu) beyond bounds (%lu)", arg1, self->_count]
+
+== -[TAGPBMutableArray replaceInt64AtIndex:withInt64:]   (address 0x100130794  size 264  kind objc)
+  1307c4  if (self->_valueType != 4) goto loc_100130830
+  1307d8  if (self->_count <=u arg1) goto loc_100130868
+  130818  self->_mutationCount = (self->_mutationCount + 1)
+  13082c  return
+  130860  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeInt64"]
+  130894  [NSException raise:_NSRangeException[+0x0] format:@"idx (%lu) beyond bounds (%lu)", arg1, self->_count]
+
+== -[TAGPBMutableArray replaceUInt64AtIndex:withUInt64:]   (address 0x10013089c  size 264  kind objc)
+  1308cc  if (self->_valueType != 5) goto loc_100130938
+  1308e0  if (self->_count <=u arg1) goto loc_100130970
+  130920  self->_mutationCount = (self->_mutationCount + 1)
+  130934  return
+  130968  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeUInt64"]
+  13099c  [NSException raise:_NSRangeException[+0x0] format:@"idx (%lu) beyond bounds (%lu)", arg1, self->_count]
+
+== -[TAGPBMutableArray replaceFloatAtIndex:withFloat:]   (address 0x1001309a4  size 272  kind objc)
+  1309d8  if (self->_valueType != 6) goto loc_100130a48
+  1309ec  if (self->_count <=u arg1) goto loc_100130a80
+  130a2c  self->_mutationCount = (self->_mutationCount + 1)
+  130a44  return
+  130a78  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeFloat"]
+  130aac  [NSException raise:_NSRangeException[+0x0] format:@"idx (%lu) beyond bounds (%lu)", arg1, self->_count]
+
+== -[TAGPBMutableArray replaceDoubleAtIndex:withDouble:]   (address 0x100130ab4  size 272  kind objc)
+  130ae8  if (self->_valueType != 7) goto loc_100130b58
+  130afc  if (self->_count <=u arg1) goto loc_100130b90
+  130b3c  self->_mutationCount = (self->_mutationCount + 1)
+  130b54  return
+  130b88  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "TAGPBArrayValueTypeDouble"]
+  130bbc  [NSException raise:_NSRangeException[+0x0] format:@"idx (%lu) beyond bounds (%lu)", arg1, self->_count]
+
+== -[TAGPBMutableArray setArray:]   (address 0x100130bc4  size 92  kind objc)
+  130bdc  if (self == arg1) goto loc_100130c14
+  130bf0  [self removeAllValues]
+  130c10  tail [self appendArray:arg1]
+loc_100130c14:
+  130c1c  return
+
+== -[TAGPBMutableArray appendArray:]   (address 0x100130c20  size 340  kind objc)
+  130c40  if (arg1 == 0) goto loc_100130d24
+  130c50  if (arg1->_data == 0) goto loc_100130d24
+  130c68  if (self->_valueType != arg1->_valueType) goto loc_100130d3c
+  130c88  [self ensureAdditionalCapacity:arg1->_count]
+  130cbc  memcpy((self->_data + self->_count * x8), arg1->_data, (arg1->_count * x8))
+  130ccc  self->_count = (self->_count + arg1->_count)
+  130cd4  if (self->_valueType != 0) goto loc_100130d10
+  130cdc  if (arg1->_count == 0) goto loc_100130d10
+  130ce8  &@selector(retain)
+loc_100130cf0:
+  130cfc  [x0 retain]
+  130d0c  if ((x24 + 1) <u arg1->_count) goto loc_100130cf0
+loc_100130d10:
+  130d20  self->_mutationCount = (self->_mutationCount + 1)
+loc_100130d24:
+  130d38  return
+  130d6c  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "array->_valueType"]
+
+== -[TAGPBMutableArray appendValues:valueType:count:]   (address 0x100130d74  size 304  kind objc)
+  130da8  if (self->_valueType != arg2) goto loc_100130e6c
+  130dc0  [self ensureAdditionalCapacity:arg3]
+  130e00  memcpy((self->_data + self->_count * x8), arg1, (x8 * arg3))
+  130e0c  self->_count = (self->_count + arg3)
+  130e1c  if (flags ==) goto loc_100130e40
+  130e24  &@selector(retain)
+loc_100130e2c:
+  130e34  [x0 retain]
+  130e3c  if ((x20 - 1) != 0) goto loc_100130e2c
+loc_100130e40:
+  130e50  self->_mutationCount = (self->_mutationCount + 1)
+  130e68  return
+  130e9c  [NSException raise:@"TAGPBArrayTypeMismatchException" format:@"array value type mismatch (expected '%s')", "valueType"]
+
+== -[TAGPBMutableArray removeAllValues]   (address 0x100130ea4  size 204  kind objc)
+  130ec8  if (self->_data == 0) goto loc_100130f30
+  130ed8  if (self->_valueType != 0) goto loc_100130f28
+  130ee8  if (self->_count == 0) goto loc_100130f28
+  130ef4  &@selector(release)
+  130efc  goto loc_100130f04
+loc_100130f00:
+loc_100130f04:
+  130f0c  [x0 release]
+  130f1c  if ((x24 + 1) <u self->_count) goto loc_100130f00
+loc_100130f28:
+  130f28  free(self->_data)
+  130f2c  self->_data = 0
+loc_100130f30:
+  130f38  self->_count = 0
+  130f44  self->_capacity = 0
+  130f58  self->_mutationCount = (self->_mutationCount + 1)
+  130f6c  return
+
+== -[TAGPBMutableArray delegate]   (address 0x100130f70  size 16  kind objc)
+  130f7c  return
+
+== -[TAGPBMutableArray setDelegate:]   (address 0x100130f80  size 16  kind objc)
+  130f88  self->_delegate = arg1
+  130f8c  return
+
+== sub_100130f90   (address 0x100130f90  size 184  kind sub)
+  130fb8  if (a0->state_[+0x10] == a0->state_[+0x8]) goto loc_100130fcc
+  130fc8  if (a0->state_[+0x10] != a0->state_[+0x18]) goto loc_100130fe0
+loc_100130fcc:
+  130fd8  a0->lastTag_ = 0
+  130fdc  goto loc_100131038
+loc_100130fe0:
+  130fe4  sub_100131048(x0, a1, a2, a3)
+  130ff0  a0->lastTag_ = sub_100131048(x0, a1, a2, a3)
+  130ffc  if (a0->lastTag_ != 0) goto loc_100131038
+  13102c  [NSException raise:_NSParseErrorException[+0x0] format:@"Invalid last tag %d", 0]
+loc_100131038:
+  131044  return
+
+== sub_100131048   (address 0x100131048  size 1032  kind sub)
+  131070  if ((x9 + 1) <=u x8) goto loc_1001310a0
+  13109c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_1001310a0:
+  1310a8  if ((x9 + 1) <=u a0[+0x18]) goto loc_1001310dc
+  1310ac  a0[+0x10] = a0[+0x18]
+  1310d8  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_1001310dc:
+  1310e4  a0[+0x10] = (a0[+0x10] + 1)
+  1310f4  if (w20 >= 0) goto loc_100131238
+  131104  if ((a0[+0x10] + 2) <=u a0[+0x8]) goto loc_100131134
+  131130  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131134:
+  131140  if ((a0[+0x10] + 2) <=u a0[+0x18]) goto loc_100131174
+  131144  a0[+0x10] = a0[+0x18]
+  131170  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131174:
+  13117c  a0[+0x10] = (a0[+0x10] + 1)
+  131190  if (w9 >= 0) goto loc_100131234
+  1311a0  if ((a0[+0x10] + 2) <=u a0[+0x8]) goto loc_1001311d0
+  1311cc  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_1001311d0:
+  1311dc  if ((a0[+0x10] + 2) <=u a0[+0x18]) goto loc_100131210
+  1311e0  a0[+0x10] = a0[+0x18]
+  13120c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_100131210:
+  13121c  a0[+0x10] = (a0[+0x10] + 1)
+  131230  if (w9 < 0) goto loc_100131254
+loc_100131234:
+loc_100131238:
+  131250  return
+  131260  if ((a0[+0x10] + 2) <=u a0[+0x8]) goto loc_100131290
+  13128c  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+  13129c  if ((a0[+0x10] + 2) <=u a0[+0x18]) goto loc_1001312d0
+  1312a0  a0[+0x10] = a0[+0x18]
+  1312cc  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+  1312dc  a0[+0x10] = (a0[+0x10] + 1)
+  1312f0  if (w10 < 0) goto loc_1001312fc
+  13130c  if ((a0[+0x10] + 2) <=u a0[+0x8]) goto loc_10013133c
+  131338  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+  13133c  t1 = (((w10 << 21) & 0xfe00000) | (((w9 << 14) & 0x1fc000) | (((w9 << 7) & 0x3f80) | (w20 & 127))))
+  131348  if ((a0[+0x10] + 2) <=u a0[+0x18]) goto loc_10013137c
+  13134c  a0[+0x10] = a0[+0x18]
+  131378  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+  131384  a0[+0x10] = (a0[+0x10] + 1)
+  131398  if (w9 >= 0) goto loc_100131238
+  1313b0  &@selector(raise:format:)
+  1313d0  if (((a0[+0x10] + 1) + 1) <=u a0[+0x8]) goto loc_1001313e8
+  1313e4  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+  1313f0  if (((a0[+0x10] + 1) + 1) <=u a0[+0x18]) goto loc_10013140c
+  1313f4  a0[+0x10] = a0[+0x18]
+  131408  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+  131414  a0[+0x10] = (a0[+0x10] + 1)
+  131424  if (w9 >= 0) goto loc_100131238
+  131430  if ((w24 + 1) <= 4) goto loc_1001313c4
+  131448  [NSException raise:_NSParseErrorException[+0x0] format:@"Unable to read varint32"]
+
+== sub_100131450   (address 0x100131450  size 252  kind sub)
+  131478  sub_100131048(x0, a1, a2, a3)
+  131480  if (sub_100131048(x0, a1, a2, a3) == 0) goto loc_100131530
+  13149c  if ((x8 + sub_100131048(x0, a1, a2, a3)) <=u a0->state_[+0x8]) goto loc_1001314cc
+  1314c8  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_1001314cc:
+  1314d8  if ((x8 + sub_100131048(x0, a1, a2, a3)) <=u a0->state_[+0x18]) goto loc_10013150c
+  131508  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_10013150c:
+  13151c  sub_10013154c((a0->state_ + x8), sub_100131048(x0, a1, a2, a3))
+  13152c  goto loc_100131538
+loc_100131530:
+loc_100131538:
+  131548  return
+
+== sub_10013154c   (address 0x10013154c  size 484  kind sub)
+  131564  if (a1 == 0) goto loc_100131598
+loc_100131570:
+  131574  if ((x8 & 7) == 0) goto loc_1001315ac
+  131580  if (w10 < 0) goto loc_10013164c
+  13158c  if ((x9 - 1) != 0) goto loc_100131570
+  131594  goto loc_100131638
+loc_100131598:
+  1315a0  goto loc_100131638
+loc_1001315a4:
+loc_1001315ac:
+  1315b0  if (x9 <=u 31) goto loc_1001315dc
+  1315cc  if (((((x11 | x10) | x11) | x12) & 0x8080808080808080) == 0) goto loc_1001315a4
+  1315d0  goto loc_10013164c
+loc_1001315d4:
+loc_1001315dc:
+  1315e0  if (x9 <=u 15) goto loc_100131600
+  1315f0  if (((x11 | x10) & 0x8080808080808080) == 0) goto loc_1001315d4
+  1315f4  goto loc_10013164c
+loc_1001315f8:
+loc_100131600:
+  131604  if (x9 <=u 7) goto loc_100131620
+  131610  if ((x10 & 0x8080808080808080) == 0) goto loc_1001315f8
+  131614  goto loc_10013164c
+loc_100131618:
+loc_100131620:
+  131624  if (x9 <=u 3) goto loc_100131638
+  131630  if ((w10 & 0x80808080) == 0) goto loc_100131618
+  131634  goto loc_10013164c
+loc_100131638:
+  131638  if (x9 == 0) goto loc_100131680
+  131648  if (w10 >= 0) goto loc_100131638
+loc_10013164c:
+  131660  [TAGPBString class]
+  13166c  NSAllocateObject([TAGPBString class], 0, 0)
+  131678  malloc(a1)
+  13167c  goto loc_1001316b4
+loc_100131680:
+  131694  [TAGPBString class]
+  1316a0  NSAllocateObject([TAGPBString class], a1, 0)
+loc_1001316b4:
+  1316bc  x21->utf8_ = x0
+  1316c8  memcpy(x0, a0, a1)
+  1316d4  x21->utf8Len_ = a1
+  1316e0  x21->lock_ = 0
+  1316e8  if (a1 <u 3) goto loc_10013171c
+  131704  memcmp(x21->utf8_, "﻿", 3)
+  131708  if (memcmp(x21->utf8_, "﻿", 3) != 0) goto loc_10013171c
+  131718  x21->hasBOM_ = 1
+loc_10013171c:
+  13172c  return
+
+== sub_100131730   (address 0x100131730  size 288  kind sub)
+  131758  sub_100131048(x0, a1, a2, a3)
+  131764  if (sub_100131048(x0, a1, a2, a3) < 0) goto loc_100131838
+  131780  if ((x8 + sub_100131048(x0, a1, a2, a3)) <=u a0->state_[+0x8]) goto loc_1001317b0
+  1317ac  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_1001317b0:
+  1317bc  if ((x8 + sub_100131048(x0, a1, a2, a3)) <=u a0->state_[+0x18]) goto loc_1001317f0
+  1317ec  [NSException raise:_NSParseErrorException[+0x0] format:@""]
+loc_1001317f0:
+  131804  [NSData alloc]
+  131824  [[NSData alloc] initWithBytes:(a0->state_ + x9) length:sub_100131048(x0, a1, a2, a3)]
+  131834  goto loc_10013183c
+loc_100131838:
+loc_10013183c:
+  13184c  return
+
+== sub_100131850   (address 0x100131850  size 136  kind sub)
+  131888  if ((a0->state_[+0x10] + a1) <=u x20) goto loc_1001318bc
+  1318b8  [NSException raise:_NSInvalidArgumentException[+0x0] format:@"byteLimit > oldLimit: %ld > %ld", (a0->state_[+0x10] + a1), sp[8]]
+loc_1001318bc:
+  1318d4  return

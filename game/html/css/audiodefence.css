@@ -1,0 +1,35 @@
+@font-face {
+	font-family: 'Monstro'
+	src: url('Monstro.ttf');
+}
+
+body {
+	color:#EDE76E;
+	font: Packard Antique, Helvetica, Arial, Garamond, serif;
+}
+
+p {
+	color: #ffffff;
+	font-family: 'Monstro', Helvetica, serif;
+}
+
+a:link {color:#EDE76E;}    /* unvisited link */
+a:visited {color:#EDE76E;} /* visited link */
+a:hover {color:#ffff00;}   /* mouse over link */
+a:active {color:#ff80ff;}  /* selected link */
+
+.ad_heading1
+{
+    font-size: 24pt;
+    color:#ffffff;
+    text-align: center;
+}
+
+.ad_divider
+{
+   position: absolute;
+   left: 50%;
+   width: 480px;
+   height: 60px;
+   margin-left: -240px; /* Half the width */
+}

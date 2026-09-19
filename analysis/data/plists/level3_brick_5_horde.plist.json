@@ -1,0 +1,68 @@
+{
+ "Ambiant": "Horde_ambiant",
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 6,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 300,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4.5,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 240,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "Clown"
+   },
+   "spawn_angle": 350,
+   "spawn_distance": 10
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_angle": 27,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_angle": 200,
+   "spawn_distance": 10,
+   "spawn_time": 2
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_angle": 90,
+   "spawn_distance": 10,
+   "spawn_time": 6
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 12,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "7"
+ }
+}

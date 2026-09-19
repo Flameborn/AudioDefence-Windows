@@ -1,0 +1,23 @@
+
+== +[TAGPServingRoot extensionRegistry]   (address 0x10014bc98  size 344  kind objc)
+  14bcc0  if (g_10042de80 != 0) goto loc_10014bdd8
+  14bcdc  [TAGPBExtensionRegistry alloc]
+  14bcec  [[TAGPBExtensionRegistry alloc] init]
+  14bcf0  store g_10042de80 = [[TAGPBExtensionRegistry alloc] init]
+  14bd30  [TAGPBExtensionField alloc]
+  14bd40  [[TAGPBExtensionField alloc] initWithDescription:&d_10042c0f8]
+  14bd54  [g_10042de80 addExtension:[[TAGPBExtensionField alloc] initWithDescription:&d_10042c0f8]]
+  14bd64  [TAGPServingRoot globallyRegisterExtension:[[TAGPBExtensionField alloc] initWithDescription:&d_10042c0f8]]
+  14bd70  [[[TAGPBExtensionField alloc] initWithDescription:&d_10042c0f8] release]
+  14bd90  [TAGPTypeSystemRoot extensionRegistry]
+  14bdac  [g_10042de80 addExtensions:[TAGPTypeSystemRoot extensionRegistry]]
+  14bdc0  [TAGPBObjectivecDescriptorRoot extensionRegistry]
+  14bdd0  [g_10042de80 addExtensions:[TAGPBObjectivecDescriptorRoot extensionRegistry]]
+loc_10014bdd8:
+  14bdec  return
+
+== +[TAGPServingRoot load]   (address 0x10014bdf0  size 108  kind objc)
+  14be14  [NSAutoreleasePool alloc]
+  14be24  [[NSAutoreleasePool alloc] init]
+  14be3c  [TAGPServingRoot extensionRegistry]
+  14be58  tail [[[NSAutoreleasePool alloc] init] drain]

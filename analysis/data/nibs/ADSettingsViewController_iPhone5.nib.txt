@@ -1,0 +1,15 @@
+// ADSettingsViewController_iPhone5.nib
+TOP-LEVEL OBJECTS
+  #29 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #13 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #38 UIView  
+    #19 UIImageView  Image='default_background.png'
+    #15 UIView  
+    #16 UIButton (custom class ADButtonWithFont)  title[0]='OK'
+
+CONNECTIONS
+  action  validateButtonPressed:                    #16 ADButtonWithFont --(events 0x40)--> #29 UIProxyObject
+  outlet  controlSchemeView                         #29 UIProxyObject --> #15 UIView
+  outlet  view                                      #29 UIProxyObject --> #38 UIView
+
+ACCESSIBILITY CONFIGURATIONS

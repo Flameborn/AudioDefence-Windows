@@ -1,0 +1,24 @@
+// ADOpenerGameplayViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #106 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #54 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #64 UIView  
+    #112 UIButton (custom class ADWeaponTouchArea)  
+    #1 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_background.png'
+    #52 UIScrollView (custom class ADInfiniteScrollView)  Tag=10 UserInteractionDisabled=False
+    #95 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_foreground.png'
+    #11 UIImageView  UserInteractionDisabled=False Image='image_intro_headphones.png'
+    #59 UIButton (custom class ADButtonWithFont)  
+    #18 UIButton  UserInteractionDisabled=False title[0]='SWIPE TO LOOK AROUND'
+
+CONNECTIONS
+  action  skipButtonPressed:                        #59 ADButtonWithFont --(events 0x40)--> #106 UIProxyObject
+  outlet  infiniteScrollViews                       #106 UIProxyObject --> #38 NSMutableArray
+  outlet  controlModeLabel                          #106 UIProxyObject --> #18 UIButton
+  outlet  skipButton                                #106 UIProxyObject --> #59 ADButtonWithFont
+  outlet  view                                      #106 UIProxyObject --> #64 UIView
+  outlet  weaponTouchArea                           #106 UIProxyObject --> #112 ADWeaponTouchArea
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#112 ADWeaponTouchArea' UIAccessibilityLabel='Gameplay area'
+  UIAccessibileObject='#59 ADButtonWithFont' UIAccessibilityLabel='Skip intro'

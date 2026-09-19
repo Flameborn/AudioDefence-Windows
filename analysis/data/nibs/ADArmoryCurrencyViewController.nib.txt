@@ -1,0 +1,18 @@
+// ADArmoryCurrencyViewController.nib
+TOP-LEVEL OBJECTS
+  #28 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #6 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #22 UIView  Tag=2781
+    #15 UITableView  
+  #23 UIView  Tag=2782
+    #7 UITableView  Tag=1
+
+CONNECTIONS
+  outlet  dataSource                                #15 UITableView --> #28 UIProxyObject
+  outlet  dataSource                                #7 UITableView --> #28 UIProxyObject
+  outlet  delegate                                  #7 UITableView --> #28 UIProxyObject
+  outlet  delegate                                  #15 UITableView --> #28 UIProxyObject
+  outlet  tableView                                 #28 UIProxyObject --> #15 UITableView
+  outlet  view                                      #28 UIProxyObject --> #22 UIView
+
+ACCESSIBILITY CONFIGURATIONS

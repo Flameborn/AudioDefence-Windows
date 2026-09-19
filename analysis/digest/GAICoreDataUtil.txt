@@ -1,0 +1,121 @@
+
+== -[GAICoreDataUtil init]   (address 0x10011ca10  size 116  kind objc)
+  11ca44  [super init]
+  11ca4c  if (self == 0) goto loc_10011ca68
+  11ca64  [self doesNotRecognizeSelector:_cmd]
+loc_10011ca68:
+  11ca80  return
+
+== +[GAICoreDataUtil model]   (address 0x10011ca84  size 104  kind objc)
+  11caa0  [GAICoreDataUtil modelDescription]
+  11cac4  [GAICoreDataUtil modelWithDescription:[GAICoreDataUtil modelDescription]]
+  11cae8  return
+
+== +[GAICoreDataUtil oldModel]   (address 0x10011caec  size 104  kind objc)
+  11cb08  [GAICoreDataUtil oldModelDescription]
+  11cb2c  [GAICoreDataUtil modelWithDescription:[GAICoreDataUtil oldModelDescription]]
+  11cb50  return
+
+== +[GAICoreDataUtil entityWithDescription:]   (address 0x10011cb54  size 656  kind objc)
+  11cbb4  [arg1 objectForKeyedSubscript:@"properties"]
+  11cbd8  [NSMutableArray array]
+  11cc20  [[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  11cc28  if ([[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_10011ccfc
+loc_10011cc74:
+loc_10011cc78:
+  11cc84  if (x8 == x20) goto loc_10011cc90
+  11cc8c  objc_enumerationMutation([arg1 objectForKeyedSubscript:@"properties"])
+loc_10011cc90:
+  11cca4  [NSAttributeDescription alloc]
+  11ccac  [[NSAttributeDescription alloc] init]
+  11ccbc  [[[NSAttributeDescription alloc] init] setValuesForKeysWithDictionary:x2]
+  11cccc  [[NSMutableArray array] addObject:[[NSAttributeDescription alloc] init]]
+  11cce0  if ((x19 + 1) <u [[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]) goto loc_10011cc78
+  11ccf0  [[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  11ccf8  if ([[arg1 objectForKeyedSubscript:@"properties"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_10011cc74
+loc_10011ccfc:
+  11cd18  [arg1 mutableCopy]
+  11cd48  [[arg1 mutableCopy] setObject:[NSMutableArray array] forKeyedSubscript:@"properties"]
+  11cd60  [NSEntityDescription alloc]
+  11cd70  [[NSEntityDescription alloc] init]
+  11cd88  [[[NSEntityDescription alloc] init] setValuesForKeysWithDictionary:[arg1 mutableCopy]]
+  11cddc  return
+
+== +[GAICoreDataUtil modelWithDescription:]   (address 0x10011cde4  size 612  kind objc)
+  11ce48  [arg1 objectForKeyedSubscript:@"entities"]
+  11ce6c  [NSMutableArray array]
+  11ceb4  [[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  11cebc  if ([[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] == 0) goto loc_10011cf68
+loc_10011ceec:
+loc_10011cef0:
+  11cefc  if (x8 == x24) goto loc_10011cf08
+  11cf04  objc_enumerationMutation([arg1 objectForKeyedSubscript:@"entities"])
+loc_10011cf08:
+  11cf18  [GAICoreDataUtil entityWithDescription:x2]
+  11cf34  [[NSMutableArray array] addObject:[GAICoreDataUtil entityWithDescription:x2]]
+  11cf48  if ((x28 + 1) <u [[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]) goto loc_10011cef0
+  11cf5c  [[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  11cf64  if ([[arg1 objectForKeyedSubscript:@"entities"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] != 0) goto loc_10011ceec
+loc_10011cf68:
+  11cf80  [arg1 mutableCopy]
+  11cfac  [[arg1 mutableCopy] setObject:[NSMutableArray array] forKeyedSubscript:@"entities"]
+  11cfc4  [NSManagedObjectModel alloc]
+  11cfd4  [[NSManagedObjectModel alloc] init]
+  11cfec  [[[NSManagedObjectModel alloc] init] setValuesForKeysWithDictionary:[arg1 mutableCopy]]
+  11d040  return
+
+== +[GAICoreDataUtil modelDescription]   (address 0x10011d048  size 852  kind objc)
+  11d0f0  [NSNumber numberWithInt:900]
+  11d128  [NSNumber numberWithBool:1]
+  11d154  [NSNumber numberWithBool:1]
+  11d18c  [NSDictionary dictionaryWithObjects:&sp[0xa0] forKeys:&sp[0x80] count:4]
+  11d1c0  [NSNumber numberWithInt:1800]
+  11d1fc  [NSNumber numberWithBool:0]
+  11d220  [NSNumber numberWithBool:1]
+  11d248  [NSDictionary dictionaryWithObjects:&sp[0x58] forKeys:&sp[0x30] count:5]
+  11d27c  [NSArray arrayWithObjects:&x29[-0xb0] count:2]
+  11d2a4  [NSDictionary dictionaryWithObjects:&x29[-0x88] forKeys:&x29[-0xa0] count:3]
+  11d2c8  [NSArray arrayWithObjects:&x29[-0x70] count:1]
+  11d2f0  [NSDictionary dictionaryWithObjects:&x29[-0x60] forKeys:&x29[-0x68] count:1]
+  11d394  return
+
+== +[GAICoreDataUtil oldModelDescription]   (address 0x10011d39c  size 2208  kind objc)
+  11d444  [NSNumber numberWithInt:700]
+  11d480  [NSNumber numberWithBool:1]
+  11d4b0  [NSNumber numberWithBool:0]
+  11d4ec  [NSDictionary dictionaryWithObjects:&x29[-0xe8] forKeys:&sp[0x318] count:4]
+  11d520  [NSNumber numberWithInt:700]
+  11d548  [NSNumber numberWithBool:0]
+  11d56c  [NSNumber numberWithBool:1]
+  11d594  [NSDictionary dictionaryWithObjects:&sp[0x2f8] forKeys:&sp[0x2d8] count:4]
+  11d5c8  [NSNumber numberWithInt:300]
+  11d5f0  [NSNumber numberWithBool:0]
+  11d618  [NSNumber numberWithBool:1]
+  11d640  [NSDictionary dictionaryWithObjects:&sp[0x2b8] forKeys:&sp[0x298] count:4]
+  11d674  [NSNumber numberWithInt:700]
+  11d698  [NSNumber numberWithBool:1]
+  11d6bc  [NSNumber numberWithBool:0]
+  11d6e8  [NSDictionary dictionaryWithObjects:&sp[0x278] forKeys:&sp[0x258] count:4]
+  11d720  [NSArray arrayWithObjects:&x29[-0xc8] count:4]
+  11d74c  [NSDictionary dictionaryWithObjects:&x29[-0x90] forKeys:&x29[-0xa8] count:3]
+  11d7b0  [NSNumber numberWithInt:900]
+  11d7d8  [NSNumber numberWithBool:1]
+  11d804  [NSNumber numberWithBool:0]
+  11d82c  [NSDictionary dictionaryWithObjects:&sp[0x1e8] forKeys:&sp[0x1c8] count:4]
+  11d864  [NSNumber numberWithInt:1000]
+  11d88c  [NSNumber numberWithBool:0]
+  11d8b0  [NSNumber numberWithBool:0]
+  11d8d8  [NSDictionary dictionaryWithObjects:&sp[0x1a8] forKeys:&sp[0x188] count:4]
+  11d90c  [NSNumber numberWithInt:700]
+  11d930  [NSNumber numberWithBool:1]
+  11d954  [NSNumber numberWithBool:0]
+  11d97c  [NSDictionary dictionaryWithObjects:&sp[0x168] forKeys:&sp[0x148] count:4]
+  11d9b0  [NSNumber numberWithInt:700]
+  11d9d4  [NSNumber numberWithBool:1]
+  11d9f8  [NSNumber numberWithBool:0]
+  11da20  [NSDictionary dictionaryWithObjects:&sp[0x128] forKeys:&sp[0x108] count:4]
+  11da4c  [NSArray arrayWithObjects:&sp[0x208] count:4]
+  11da74  [NSDictionary dictionaryWithObjects:&sp[0x240] forKeys:&sp[0x228] count:3]
+  11da98  [NSArray arrayWithObjects:&x29[-0x78] count:2]
+  11dac0  [NSDictionary dictionaryWithObjects:&x29[-0x60] forKeys:&x29[-0x68] count:1]
+  11dc34  return

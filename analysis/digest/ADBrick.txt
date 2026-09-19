@@ -1,0 +1,932 @@
+
+== -[ADBrick initBrickWithName:]   (address 0x10009ea80  size 2036  kind objc)
+  09eae8  [super init]
+  09eaf0  if (self == 0) goto loc_10009f144
+  09eb0c  [self setName:arg1]
+  09eb28  [NSBundle mainBundle]
+  09eb50  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  09eb80  [NSDictionary alloc]
+  09eb94  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  09eba4  self->brickDictionnary = [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  09ebbc  [NSMutableArray alloc]
+  09ebc4  [[NSMutableArray alloc] init]
+  09ebd8  self->enemiesArray = [[NSMutableArray alloc] init]
+  09ebec  [NSMutableArray alloc]
+  09ebf4  [[NSMutableArray alloc] init]
+  09ec04  self->soundsArray = [[NSMutableArray alloc] init]
+  09ec1c  [NSMutableSet alloc]
+  09ec24  [[NSMutableSet alloc] init]
+  09ec40  [self setPlaylists:[[NSMutableSet alloc] init]]
+  09ec54  [NSMutableSet alloc]
+  09ec5c  [[NSMutableSet alloc] init]
+  09ec6c  self->playlistsRequiringActivation = [[NSMutableSet alloc] init]
+  09ec80  self->playlistsActivated = 0
+  09eca0  [self->brickDictionnary objectForKey:@"Tips"]
+  09ecb8  self->tips = [self->brickDictionnary objectForKey:@"Tips"]
+  09ecd4  [self->brickDictionnary objectForKey:@"PowerUp"]
+  09ecec  self->powerUpDictionary = [self->brickDictionnary objectForKey:@"PowerUp"]
+  09ed00  if (self->enemiesArray != 0) goto loc_10009ed14
+  09ed10  NSLog(@"%@ does not have an enemy list. Check brick name is correct", arg1)
+loc_10009ed14:
+  09ed24  [self->brickDictionnary objectForKey:@"Enemies"]
+  09ed50  [[self->brickDictionnary objectForKey:@"Enemies"] allKeys]
+  09ed80  [[[self->brickDictionnary objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16]
+  09ed88  if ([[[self->brickDictionnary objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16] == 0) goto loc_10009f0f4
+  09edac  &@selector(playlists)
+  09edb4  &@selector(soundsPrefix)
+  09eddc  &@selector(tag)
+  09ede4  &@selector(count)
+  09edec  &@selector(setTag:)
+  09ee58  &@selector(setSpawn_time:)
+loc_10009ee84:
+loc_10009ee88:
+  09ee98  if (x8 == x9) goto loc_10009eea4
+  09eea0  objc_enumerationMutation([[self->brickDictionnary objectForKey:@"Enemies"] allKeys])
+loc_10009eea4:
+  09eec0  [[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2]
+  09eedc  [ADEnemy alloc]
+  09eee8  [[ADEnemy alloc] initWithName:x2]
+  09ef00  [[[ADEnemy alloc] initWithName:x2] setRandomAdditionalSpawnAngle:0]
+  09ef10  [[[ADEnemy alloc] initWithName:x2] setParentBrick:self]
+  09ef1c  [self playlists]
+  09ef34  [[[ADEnemy alloc] initWithName:x2] soundsPrefix]
+  09ef50  [[self playlists] addObject:[[[ADEnemy alloc] initWithName:x2] soundsPrefix]]
+  09ef70  [[[ADEnemy alloc] initWithName:x2] setPositionFromDictionary:[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2]]
+  09ef7c  [self tag]
+  09ef90  [self->enemiesArray count]
+  09efac  [[[ADEnemy alloc] initWithName:x2] setTag:((([self tag] * 100) | 1) + [self->enemiesArray count])]
+  09efc0  [self->enemiesArray addObject:[[ADEnemy alloc] initWithName:x2]]
+  09efd4  [[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_time"]
+  09efe8  if ([[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_time"] == 0) goto loc_10009f03c
+  09effc  [[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_time"]
+  09f010  [[[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_time"] floatValue]
+  09f01c  [[[ADEnemy alloc] initWithName:x2] setSpawn_time:[[[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_time"] floatValue]]
+  09f034  [[[ADEnemy alloc] initWithName:x2] setState:0]
+  09f038  goto loc_10009f0ac
+loc_10009f03c:
+  09f04c  [[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"]
+  09f060  if ([[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"] == 0) goto loc_10009f0a0
+  09f074  [[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"]
+  09f090  [[[ADEnemy alloc] initWithName:x2] setSpawn_after:[[[self->brickDictionnary objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"]]
+  09f09c  goto loc_10009f0ac
+loc_10009f0a0:
+  09f0a8  [[[ADEnemy alloc] initWithName:x2] spawn]
+loc_10009f0ac:
+  09f0d0  if ((x27 + 1) <u [[[self->brickDictionnary objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] co…) goto loc_10009ee88
+  09f0e8  [[[self->brickDictionnary objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16]
+  09f0f0  if ([[[self->brickDictionnary objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16] != 0) goto loc_10009ee84
+loc_10009f0f4:
+  09f110  [self initPassersBy]
+  09f124  [self initSounds]
+loc_10009f144:
+  09f178  return
+
+== -[ADBrick initSounds]   (address 0x10009f274  size 588  kind objc)
+  09f2b8  [self->brickDictionnary objectForKey:@"Sounds"]
+  09f2d4  [[self->brickDictionnary objectForKey:@"Sounds"] count]
+  09f2d8  if ([[self->brickDictionnary objectForKey:@"Sounds"] count] == 0) goto loc_10009f3d8
+  09f2f0  [S3DEngine engine]
+  09f310  [self name]
+  09f334  [[S3DEngine engine] playListWithName:[self name]]
+  09f34c  self->soundsPlaylist = [[S3DEngine engine] playListWithName:[self name]]
+  09f3c4  [self->soundsPlaylist activate:^{-[ADBrick initSounds]_block_invoke captures +0x20=self, +0x28=[self->brickDictionnary objectForKey:@"S…}]
+loc_10009f3d8:
+  09f3e8  [self->brickDictionnary objectForKey:@"Ambiant"]
+  09f3fc  if ([self->brickDictionnary objectForKey:@"Ambiant"] == 0) goto loc_10009f440
+  09f410  [self->brickDictionnary objectForKey:@"Ambiant"]
+  09f434  [self setAmbiantName:[self->brickDictionnary objectForKey:@"Ambiant"]]
+loc_10009f440:
+  09f460  return
+
+== -[ADBrick initSounds]_block_invoke   (address 0x10009f4c0  size 420  kind block)
+  09f52c  [[self->brickDictionnary objectForKey:@"Sounds"] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  09f534  if ([[self->brickDictionnary objectForKey:@"Sounds"] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_10009f5f4
+  09f564  &@selector(addObject:)
+loc_10009f570:
+loc_10009f574:
+  09f580  if (x8 == x28) goto loc_10009f58c
+  09f588  objc_enumerationMutation([self->brickDictionnary objectForKey:@"Sounds"])
+loc_10009f58c:
+  09f59c  [ADSound alloc]
+  09f5a8  [[ADSound alloc] initWithDictionary:x2]
+  09f5c0  [self->soundsArray addObject:[[ADSound alloc] initWithDictionary:x2]]
+  09f5d4  if ((x19 + 1) <u [[self->brickDictionnary objectForKey:@"Sounds"] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10009f574
+  09f5e8  [[self->brickDictionnary objectForKey:@"Sounds"] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  09f5f0  if ([[self->brickDictionnary objectForKey:@"Sounds"] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10009f570
+loc_10009f5f4:
+  09f630  return
+
+== sub_10009f664   (address 0x10009f664  size 40  kind sub)
+
+== sub_10009f68c   (address 0x10009f68c  size 40  kind sub)
+  09f6b0  return
+
+== -[ADBrick initPassersBy]   (address 0x10009f6b4  size 1508  kind objc)
+  09f70c  [self->brickDictionnary objectForKey:@"PasserBy"]
+  09f71c  if ([self->brickDictionnary objectForKey:@"PasserBy"] == 0) goto loc_10009fbf0
+  09f740  [[self->brickDictionnary objectForKey:@"PasserBy"] allKeys]
+  09f76c  [[[self->brickDictionnary objectForKey:@"PasserBy"] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  09f774  if ([[[self->brickDictionnary objectForKey:@"PasserBy"] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] == 0) goto loc_10009fbdc
+  09f788  &@selector(alloc)
+  09f790  &@selector(initWithName:)
+  09f798  &@selector(activatePlaylist)
+  09f7a0  &@selector(setPositionFromDictionary:)
+  09f7b0  &@selector(tag)
+  09f7b8  &@selector(count)
+  09f7c0  &@selector(setTag:)
+  09f7c8  &@selector(spawn)
+  09f7d0  &@selector(setSpawn_after:)
+  09f7d8  &@selector(sharedBrickManager)
+  09f7e0  &@selector(addPasserBy:)
+  09f7e8  &@selector(floatValue)
+  09f7f0  &@selector(setSpawn_time:)
+  09f7f8  &@selector(setState:)
+loc_10009f880:
+loc_10009f88c:
+  09f89c  if (x8 == x9) goto loc_10009f8a8
+  09f8a4  objc_enumerationMutation([[self->brickDictionnary objectForKey:@"PasserBy"] allKeys])
+loc_10009f8a8:
+  09f8c4  [[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2]
+  09f8f0  [x0 isEqualToString:@"Jukebox"]
+  09f8fc  if ([x0 isEqualToString:@"Jukebox"] == 0) goto loc_10009f928
+  09f910  [ADJukeBox alloc]
+  09f920  [[ADJukeBox alloc] initWithName:x2]
+  09f924  goto loc_10009f9a0
+loc_10009f928:
+  09f93c  [x0 isEqualToString:@"Car"]
+  09f940  if (([x0 isEqualToString:@"Car"] & 1)) goto loc_10009f97c
+  09f958  [x0 isEqualToString:@"Car2"]
+  09f95c  if (([x0 isEqualToString:@"Car2"] & 1)) goto loc_10009f97c
+  09f974  [x0 isEqualToString:@"Car3"]
+  09f978  if ([x0 isEqualToString:@"Car3"] == 0) goto loc_10009fb48
+loc_10009f97c:
+  09f98c  [ADCarAlarm alloc]
+  09f99c  [[ADCarAlarm alloc] initWithName:x2]
+loc_10009f9a0:
+  09f9a8  [x0 activatePlaylist]
+  09f9b8  [x0 setPositionFromDictionary:[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2]]
+  09f9c4  [self tag]
+  09f9d8  [self->enemiesArray count]
+  09f9fc  [x0 setTag:((((x8 + x28) + [self tag] * 100) + [self->enemiesArray count]) + 0x30d41)]
+  09fa10  [[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_time"]
+  09fa24  if ([[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_time"] == 0) goto loc_10009fa78
+  09fa38  [[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_time"]
+  09fa4c  [[[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_time"] floatValue]
+  09fa58  [x0 setSpawn_time:[[[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_time"] floatValue]]
+  09fa70  [x0 setState:0]
+  09fa74  goto loc_10009fae8
+loc_10009fa78:
+  09fa88  [[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_after"]
+  09fa9c  if ([[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_after"] == 0) goto loc_10009fadc
+  09fab0  [[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_after"]
+  09facc  [x0 setSpawn_after:[[[self->brickDictionnary objectForKey:@"PasserBy"] objectForKey:x2] objectForKey:@"spawn_after"]]
+  09fad8  goto loc_10009fae8
+loc_10009fadc:
+  09fae4  [x0 spawn]
+loc_10009fae8:
+  09faf4  [ADBrickManager sharedBrickManager]
+  09fb0c  [[ADBrickManager sharedBrickManager] addPasserBy:x2]
+  09fb40  if ((x28 + 1) <u [[[self->brickDictionnary objectForKey:@"PasserBy"] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] c…) goto loc_10009f88c
+  09fb44  goto loc_10009fbb4
+loc_10009fb48:
+  09fb5c  [x0 isEqualToString:@"Machine"]
+  09fb60  if ([x0 isEqualToString:@"Machine"] == 0) goto loc_10009fb8c
+  09fb74  [ADMachine alloc]
+  09fb84  [[ADMachine alloc] initWithName:x2]
+  09fb88  goto loc_10009f9a0
+loc_10009fb8c:
+  09fb9c  [ADPasserBy alloc]
+  09fbac  [[ADPasserBy alloc] initWithName:x2]
+  09fbb0  goto loc_10009f9a0
+loc_10009fbb4:
+  09fbc8  [[[self->brickDictionnary objectForKey:@"PasserBy"] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  09fbd8  if ([[[self->brickDictionnary objectForKey:@"PasserBy"] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] != 0) goto loc_10009f880
+loc_10009fbdc:
+loc_10009fbf0:
+  09fc20  return
+
+== -[ADBrick activateAllPlaylists]   (address 0x10009fc98  size 340  kind objc)
+  09fce8  [self playlists]
+  09fd14  [[self playlists] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  09fd1c  if ([[self playlists] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_10009fd98
+  09fd34  &@selector(addObject:)
+loc_10009fd3c:
+loc_10009fd40:
+  09fd4c  if (x8 == x25) goto loc_10009fd58
+  09fd54  objc_enumerationMutation([self playlists])
+loc_10009fd58:
+  09fd68  [self->playlistsRequiringActivation addObject:x2]
+  09fd74  if ((x27 + 1) <u [[self playlists] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_10009fd40
+  09fd8c  [[self playlists] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  09fd94  if ([[self playlists] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10009fd3c
+loc_10009fd98:
+  09fdc8  return
+
+== -[ADBrick loadPLaylistWithName:]   (address 0x10009fdec  size 380  kind objc)
+  09fe28  [S3DEngine engine]
+  09fe48  [[S3DEngine engine] playListWithName:arg1]
+  09fee4  [[[S3DEngine engine] playListWithName:arg1] activate:^{-[ADBrick loadPLaylistWithName:]_block_invoke_3 captures +0x28=self, +0x40=0x32000000, +0x48=&-[ADBrick loadPLaylistWithName:]_block_…, +0x50=&-[ADBrick loadPLaylistWithName:]_block_…, +0x58=arg1}]
+  09fef0  Block_object_dispose(&sp[0x30], 8)
+  09ff20  return
+  09ff44  Block_object_dispose(&sp[0x30], 8)
+
+== -[ADBrick loadPLaylistWithName:]_block_invoke   (address 0x10009ff68  size 16  kind block)
+  09ff6c  block[+0x28] = blockarg1[+0x28]
+  09ff70  blockarg1[+0x28] = 0
+  09ff74  return
+
+== -[ADBrick loadPLaylistWithName:]_block_invoke_2   (address 0x10009ff78  size 8  kind block)
+  09ff7c  return
+
+== -[ADBrick loadPLaylistWithName:]_block_invoke_3   (address 0x10009ff80  size 44  kind block)
+  09ffa0  [x0 onPlaylistActivated:x2]
+  09ffa8  return
+
+== sub_10009ffac   (address 0x10009ffac  size 16  kind sub)
+  09ffb8  tail Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+
+== sub_10009ffbc   (address 0x10009ffbc  size 12  kind sub)
+  09ffc4  tail Block_object_dispose(a0[+0x20], 8, a2, a3)
+
+== -[ADBrick activatePLaylistsNotInSet:]   (address 0x10009ffc8  size 840  kind objc)
+  0a0020  [NSMutableSet alloc]
+  0a0034  [[NSMutableSet alloc] initWithSet:arg1]
+  0a005c  [self playlists]
+  0a0088  [[self playlists] countByEnumeratingWithState:&sp[0x98] objects:&x29[-0xd8] count:16]
+  0a0090  if ([[self playlists] countByEnumeratingWithState:&sp[0x98] objects:&x29[-0xd8] count:16] == 0) goto loc_1000a0250
+loc_1000a00f4:
+loc_1000a00f8:
+  0a0108  if (x8 == x9) goto loc_1000a0114
+  0a0110  objc_enumerationMutation([self playlists])
+loc_1000a0114:
+  0a0148  [arg1 countByEnumeratingWithState:&sp[0x58] objects:&sp[0xd8] count:16]
+  0a0150  if ([arg1 countByEnumeratingWithState:&sp[0x58] objects:&sp[0xd8] count:16] == 0) goto loc_1000a0208
+loc_1000a0160:
+loc_1000a0164:
+  0a0170  if (x8 == x22) goto loc_1000a017c
+  0a0178  objc_enumerationMutation(arg1)
+loc_1000a017c:
+  0a018c  [x0 isEqualToString:x2]
+  0a01a0  if ((x24 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x58] objects:&sp[0xd8] count:16]) goto loc_1000a0164
+  0a01b8  [arg1 countByEnumeratingWithState:&sp[0x58] objects:&sp[0xd8] count:16]
+  0a01c0  if ([arg1 countByEnumeratingWithState:&sp[0x58] objects:&sp[0xd8] count:16] != 0) goto loc_1000a0160
+  0a01d0  if (((w25 & ([x0 isEqualToString:x2] ^ 1)) & 1)) goto loc_1000a0210
+  0a01e4  self->playlistsActivated = (self->playlistsActivated + 1)
+  0a01f0  [self onPlaylistActivated:x2]
+  0a0200  [[[NSMutableSet alloc] initWithSet:arg1] removeObject:x2]
+  0a0204  goto loc_1000a0224
+loc_1000a0208:
+loc_1000a0210:
+  0a0220  [self->playlistsRequiringActivation addObject:x2]
+loc_1000a0224:
+  0a022c  if ((x19 + 1) <u [[self playlists] countByEnumeratingWithState:&sp[0x98] objects:&x29[-0xd8] count:16]) goto loc_1000a00f8
+  0a0244  [[self playlists] countByEnumeratingWithState:&sp[0x98] objects:&x29[-0xd8] count:16]
+  0a024c  if ([[self playlists] countByEnumeratingWithState:&sp[0x98] objects:&x29[-0xd8] count:16] != 0) goto loc_1000a00f4
+loc_1000a0250:
+  0a0268  [self checkAllPlaylistsAreLoaded]
+  0a02ac  return
+
+== -[ADBrick randomTip]   (address 0x1000a0310  size 592  kind objc)
+  0a0338  if (self->tips == 0) goto loc_1000a0400
+  0a0350  [self->tips count]
+  0a0354  if ([self->tips count] == 0) goto loc_1000a0400
+  0a0360  rand()
+  0a0374  [self->tips count]
+  0a0398  [self->tips objectAtIndex:(rand() - (rand() / [self->tips count]) * [self->tips count])]
+  0a03a8  if ([self->tips objectAtIndex:(rand() - (rand() / [self->tips count]) * [self->tips count])] == 0) goto loc_1000a0400
+  0a03c4  [[self->tips objectAtIndex:(rand() - (rand() / [self->tips count]) * [self->tips count])] hasPrefix:@"Tip"]
+  0a03c8  if (([[self->tips objectAtIndex:(rand() - (rand() / [self->tips count]) * [self->tips count])] hasPrefix:@"Tip"] & 1)) goto loc_1000a0404
+  0a03cc  rand()
+  0a03f8  if ((rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) > 19) goto loc_1000a04f0
+  0a03fc  goto loc_1000a0404
+loc_1000a0400:
+loc_1000a0404:
+  0a0418  [NSBundle mainBundle]
+  0a0444  [[NSBundle mainBundle] URLForResource:@"Tips" withExtension:@"plist"]
+  0a0470  [NSArray alloc]
+  0a0484  [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tips" withExtension:@"plist"]]
+  0a048c  rand()
+  0a04a4  [[[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tips" withExtension:@"plist"]] count]
+  0a04ac  t1 = (rand() / [[[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tips" withExtension:@"plist"]] count])
+  0a04b0  t2 = (rand() - t1 * [[[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tips" withExtension:@"plist"]] count])
+  0a04c4  [[[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tips" withExtension:@"plist"]] objectAtIndex:t2]
+loc_1000a04f0:
+  0a04fc  NSLog(@"Tip after : %@", sp[0])
+  0a0518  return
+
+== -[ADBrick deactivatePlaylistsFromSet:]   (address 0x1000a0560  size 540  kind objc)
+  0a05cc  [arg1 countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0a05d4  if ([arg1 countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] == 0) goto loc_1000a06e0
+  0a05fc  &@selector(deactivate:)
+loc_1000a060c:
+loc_1000a0610:
+  0a061c  if (x8 == x28) goto loc_1000a0628
+  0a0624  objc_enumerationMutation(arg1)
+loc_1000a0628:
+  0a063c  [S3DEngine engine]
+  0a0654  [[S3DEngine engine] playListWithName:x2]
+  0a06a4  [[[S3DEngine engine] playListWithName:x2] deactivate:^{-[ADBrick deactivatePlaylistsFromSet:]_block_invoke}]
+  0a06c0  if ((x19 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]) goto loc_1000a0610
+  0a06d4  [arg1 countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0a06dc  if ([arg1 countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] != 0) goto loc_1000a060c
+loc_1000a06e0:
+  0a0728  return
+
+== -[ADBrick deactivatePlaylistsFromSet:]_block_invoke   (address 0x1000a077c  size 44  kind block)
+  0a0798  NSLog(@"playlist %@ is now deactivated", blockarg1, blockarg2, blockarg3, block[+0x20])
+  0a07a4  return
+
+== sub_1000a07a8   (address 0x1000a07a8  size 8  kind sub)
+
+== sub_1000a07b0   (address 0x1000a07b0  size 8  kind sub)
+  0a07b4  return
+
+== -[ADBrick deactivateAllPlaylists]   (address 0x1000a07b8  size 592  kind objc)
+  0a0808  [self playlists]
+  0a0834  [[self playlists] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0a083c  if ([[self playlists] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] == 0) goto loc_1000a0948
+  0a0864  &@selector(deactivate:)
+loc_1000a0874:
+loc_1000a0878:
+  0a0884  if (x8 == x20) goto loc_1000a0890
+  0a088c  objc_enumerationMutation([self playlists])
+loc_1000a0890:
+  0a08a4  [S3DEngine engine]
+  0a08bc  [[S3DEngine engine] playListWithName:x2]
+  0a090c  [[[S3DEngine engine] playListWithName:x2] deactivate:^{-[ADBrick deactivateAllPlaylists]_block_invoke}]
+  0a0928  if ((x19 + 1) <u [[self playlists] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]) goto loc_1000a0878
+  0a093c  [[self playlists] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0a0944  if ([[self playlists] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] != 0) goto loc_1000a0874
+loc_1000a0948:
+  0a0960  if (self->soundsPlaylist == 0) goto loc_1000a0974
+  0a0970  [self->soundsPlaylist deactivate]
+loc_1000a0974:
+  0a0988  [self setPlaylists:0]
+  0a09c0  return
+
+== -[ADBrick deactivateAllPlaylists]_block_invoke   (address 0x1000a0a08  size 4  kind block)
+  0a0a08  return
+
+== sub_1000a0a0c   (address 0x1000a0a0c  size 8  kind sub)
+
+== sub_1000a0a14   (address 0x1000a0a14  size 8  kind sub)
+  0a0a18  return
+
+== -[ADBrick onPlaylistActivated:]   (address 0x1000a0a1c  size 472  kind objc)
+  0a0a7c  [self enemies]
+  0a0aa8  [[self enemies] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0a0ab0  if ([[self enemies] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_1000a0b6c
+  0a0ad8  &@selector(initSounds)
+loc_1000a0ae0:
+loc_1000a0ae4:
+  0a0af0  if (x8 == x21) goto loc_1000a0afc
+  0a0af8  objc_enumerationMutation([self enemies])
+loc_1000a0afc:
+  0a0b0c  [x0 soundsPrefix]
+  0a0b24  [[x0 soundsPrefix] isEqualToString:arg1]
+  0a0b34  if ([[x0 soundsPrefix] isEqualToString:arg1] == 0) goto loc_1000a0b44
+  0a0b40  [x0 initSounds]
+loc_1000a0b44:
+  0a0b4c  if ((x20 + 1) <u [[self enemies] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_1000a0ae4
+  0a0b60  [[self enemies] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0a0b68  if ([[self enemies] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_1000a0ae0
+loc_1000a0b6c:
+  0a0bb0  return
+
+== -[ADBrick checkAllPlaylistsAreLoaded]   (address 0x1000a0bf4  size 400  kind objc)
+  0a0c3c  [self playlists]
+  0a0c58  [[self playlists] count]
+  0a0c6c  if (self->playlistsActivated != [[self playlists] count]) goto loc_1000a0d30
+  0a0cb0  [self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a0cb8  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000a0d28
+  0a0cc8  &@selector(initSounds)
+loc_1000a0cd0:
+loc_1000a0cd4:
+  0a0ce0  if (x8 == x24) goto loc_1000a0cec
+  0a0ce8  objc_enumerationMutation(self->enemiesArray)
+loc_1000a0cec:
+  0a0cf8  [x0 initSounds]
+  0a0d04  if ((x25 + 1) <u [self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000a0cd4
+  0a0d1c  [self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a0d24  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000a0cd0
+loc_1000a0d28:
+loc_1000a0d30:
+  0a0d54  return
+
+== -[ADBrick enemies]   (address 0x1000a0d84  size 16  kind objc)
+
+== -[ADBrick clearEnemies]   (address 0x1000a0d94  size 316  kind objc)
+  0a0ddc  [self enemies]
+  0a0e08  [[self enemies] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a0e10  if ([[self enemies] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000a0e80
+  0a0e20  &@selector(deactivate)
+loc_1000a0e28:
+loc_1000a0e2c:
+  0a0e38  if (x8 == x24) goto loc_1000a0e44
+  0a0e40  objc_enumerationMutation([self enemies])
+loc_1000a0e44:
+  0a0e50  [x0 deactivate]
+  0a0e5c  if ((x25 + 1) <u [[self enemies] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000a0e2c
+  0a0e74  [[self enemies] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a0e7c  if ([[self enemies] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000a0e28
+loc_1000a0e80:
+  0a0eac  return
+
+== -[ADBrick update:]   (address 0x1000a0ed0  size 1204  kind objc)
+  0a0f20  self->timeInBrick = (self->timeInBrick + arg1)
+  0a0f64  [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xf8] count:16]
+  0a0f6c  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xf8] count:16] == 0) goto loc_1000a0fe0
+  0a0f7c  &@selector(update:)
+loc_1000a0f84:
+loc_1000a0f88:
+  0a0f94  if (x8 == x26) goto loc_1000a0fa0
+  0a0f9c  objc_enumerationMutation(self->enemiesArray)
+loc_1000a0fa0:
+  0a0fb0  [x0 update:arg1]
+  0a0fbc  if ((x27 + 1) <u [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xf8] count:16]) goto loc_1000a0f88
+  0a0fd4  [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xf8] count:16]
+  0a0fdc  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xf8] count:16] != 0) goto loc_1000a0f84
+loc_1000a0fe0:
+  0a101c  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]
+  0a1024  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16] == 0) goto loc_1000a1098
+  0a1034  &@selector(update:)
+loc_1000a103c:
+loc_1000a1040:
+  0a104c  if (x8 == x26) goto loc_1000a1058
+  0a1054  objc_enumerationMutation(self->soundsArray)
+loc_1000a1058:
+  0a1068  [x0 update:arg1]
+  0a1074  if ((x27 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]) goto loc_1000a1040
+  0a108c  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]
+  0a1094  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16] != 0) goto loc_1000a103c
+loc_1000a1098:
+  0a10ac  if (self->powerUpDictionary == 0) goto loc_1000a12cc
+  0a10c8  [self->powerUpDictionary objectForKey:@"spawn_time"]
+  0a10d4  if ([self->powerUpDictionary objectForKey:@"spawn_time"] == 0) goto loc_1000a10e0
+  0a10dc  goto loc_1000a1108
+loc_1000a10e0:
+  0a10f0  [self->powerUpDictionary objectForKey:@"force_spawn_time"]
+  0a1104  if ([self->powerUpDictionary objectForKey:@"force_spawn_time"] == 0) goto loc_1000a12cc
+loc_1000a1108:
+  0a111c  [self->powerUpDictionary objectForKey:@"spawn_time"]
+  0a113c  [[self->powerUpDictionary objectForKey:@"spawn_time"] floatValue]
+  0a1148  if ((self->timeInBrick - arg1) >= (or unordered) [[self->powerUpDictionary objectForKey:@"spawn_time"] floatValue]) goto loc_1000a11d0
+  0a1160  [self->powerUpDictionary objectForKey:@"spawn_time"]
+  0a1174  [[self->powerUpDictionary objectForKey:@"spawn_time"] floatValue]
+  0a1190  if (self->timeInBrick < (or unordered) [[self->powerUpDictionary objectForKey:@"spawn_time"] floatValue]) goto loc_1000a11d8
+  0a11a8  [ADBrickManager sharedBrickManager]
+  0a11c4  [[ADBrickManager sharedBrickManager] tryToPopPowerUpContainer]
+  0a11cc  goto loc_1000a12c8
+loc_1000a11d0:
+loc_1000a11d8:
+  0a11ec  [self->powerUpDictionary objectForKey:@"force_spawn_time"]
+  0a1200  [[self->powerUpDictionary objectForKey:@"force_spawn_time"] floatValue]
+  0a120c  if ((self->timeInBrick - arg1) >= (or unordered) [[self->powerUpDictionary objectForKey:@"force_spawn_time"] floatValue]) goto loc_1000a12c4
+  0a1224  [self->powerUpDictionary objectForKey:@"force_spawn_time"]
+  0a1238  [[self->powerUpDictionary objectForKey:@"force_spawn_time"] floatValue]
+  0a1254  if (self->timeInBrick < (or unordered) [[self->powerUpDictionary objectForKey:@"force_spawn_time"] floatValue]) goto loc_1000a12cc
+  0a126c  [ADBrickManager sharedBrickManager]
+  0a128c  [self->powerUpDictionary objectForKey:@"type"]
+  0a12b0  [[ADBrickManager sharedBrickManager] forceToPopPowerUpContainerWithType:[self->powerUpDictionary objectForKey:@"type"]]
+  0a12c0  goto loc_1000a12c8
+loc_1000a12c4:
+loc_1000a12c8:
+loc_1000a12cc:
+  0a12fc  return
+
+== -[ADBrick stopAllEnemiesAfterPlayerDeath]   (address 0x1000a1384  size 500  kind objc)
+  0a13d0  [ADTracker sharedInstance]
+  0a13fc  [self name]
+  0a1418  [[ADTracker sharedInstance] timeOfDeathInBrick:self->timeInBrick BrickName:[self name]]
+  0a142c  [ADTracker sharedInstance]
+  0a144c  [[ADTracker sharedInstance] setBrickCounter:0]
+  0a1498  [self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a14a0  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000a1510
+  0a14b0  &@selector(stopAfterPlayerWasKilled)
+loc_1000a14b8:
+loc_1000a14bc:
+  0a14c8  if (x8 == x24) goto loc_1000a14d4
+  0a14d0  objc_enumerationMutation(self->enemiesArray)
+loc_1000a14d4:
+  0a14e0  [x0 stopAfterPlayerWasKilled]
+  0a14ec  if ((x25 + 1) <u [self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000a14bc
+  0a1504  [self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a150c  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000a14b8
+loc_1000a1510:
+  0a1540  return
+
+== -[ADBrick stopBrickAmbiant]   (address 0x1000a1578  size 224  kind objc)
+  0a159c  [self ambiantName]
+  0a15b0  if ([self ambiantName] == 0) goto loc_1000a1624
+  0a15c8  [ADAmbientManager sharedAmbiantManager]
+  0a15e0  [self ambiantName]
+  0a1604  [[ADAmbientManager sharedAmbiantManager] brickWithAmbiantCleared:[self ambiantName]]
+  0a1620  return
+loc_1000a1624:
+  0a1630  return
+
+== -[ADBrick brickIsCleared]   (address 0x1000a1658  size 932  kind objc)
+  0a16a0  [ADTracker sharedInstance]
+  0a16c4  [self name]
+  0a16f8  [[ADTracker sharedInstance] defeatBrick:[self name] InTime:self->timeInBrick]
+  0a172c  [self enemies]
+  0a1758  [[self enemies] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xd8] count:16]
+  0a1760  if ([[self enemies] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xd8] count:16] == 0) goto loc_1000a17dc
+  0a1770  &@selector(life)
+loc_1000a1778:
+loc_1000a177c:
+  0a1788  if (x8 == x27) goto loc_1000a1794
+  0a1790  objc_enumerationMutation([self enemies])
+loc_1000a1794:
+  0a17a4  [x0 life]
+  0a17ac  if ([x0 life] > 0.0) goto loc_1000a18c0
+  0a17b8  if ((x28 + 1) <u [[self enemies] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xd8] count:16]) goto loc_1000a177c
+  0a17d0  [[self enemies] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xd8] count:16]
+  0a17d8  if ([[self enemies] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xd8] count:16] != 0) goto loc_1000a1778
+loc_1000a17dc:
+  0a1818  [self->soundsArray countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16]
+  0a1820  if ([self->soundsArray countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16] == 0) goto loc_1000a18b8
+  0a183c  &@selector(state)
+loc_1000a1844:
+loc_1000a1848:
+  0a1854  if (x8 == x27) goto loc_1000a1860
+  0a185c  objc_enumerationMutation(self->soundsArray)
+loc_1000a1860:
+  0a1870  [x0 blocker]
+  0a1874  if ([x0 blocker] == 0) goto loc_1000a188c
+  0a1880  [x0 state]
+  0a1888  if ([x0 state] != 3) goto loc_1000a1920
+loc_1000a188c:
+  0a1894  if ((x28 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16]) goto loc_1000a1848
+  0a18ac  [self->soundsArray countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16]
+  0a18b4  if ([self->soundsArray countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16] != 0) goto loc_1000a1844
+loc_1000a18b8:
+  0a18bc  goto loc_1000a1954
+loc_1000a18c0:
+  0a18c8  [x0 name]
+  0a18e0  [x0 life]
+  0a18f8  NSLog(@"%@ still alive, life = %f", [x0 name], [x0 life])
+  0a191c  goto loc_1000a196c
+loc_1000a1920:
+  0a1928  [x0 name]
+  0a1944  NSLog(@"%@ blocker sound still alive", [x0 name])
+loc_1000a1954:
+loc_1000a196c:
+  0a1988  return
+
+== -[ADBrick checkSpawnOnStart:]   (address 0x1000a19fc  size 1712  kind objc)
+  0a1a5c  [self enemies]
+  0a1a90  [[self enemies] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]
+  0a1a98  if ([[self enemies] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16] == 0) goto loc_1000a1cf0
+  0a1aa4  &@selector(life)
+  0a1aac  &@selector(spawn_after)
+  0a1ab4  &@selector(objectForKey:)
+  0a1abc  &@selector(isEqualToString:)
+loc_1000a1b2c:
+loc_1000a1b30:
+  0a1b3c  if (x8 == x21) goto loc_1000a1b48
+  0a1b44  objc_enumerationMutation([self enemies])
+loc_1000a1b48:
+  0a1b58  [x0 life]
+  0a1b60  if ([x0 life] <= (or unordered) 0.0) goto loc_1000a1cc4
+  0a1b6c  [x0 spawn_after]
+  0a1b88  [[x0 spawn_after] objectForKey:@"enemy"]
+  0a1b9c  [[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1]
+  0a1ba0  if ([[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1] == 0) goto loc_1000a1cb4
+  0a1bac  [x0 spawn_after]
+  0a1bc8  [[x0 spawn_after] objectForKey:@"afterStart"]
+  0a1be0  [[[x0 spawn_after] objectForKey:@"afterStart"] boolValue]
+  0a1c10  if ([[[x0 spawn_after] objectForKey:@"afterStart"] boolValue] == 0) goto loc_1000a1cc4
+  0a1c1c  [x0 name]
+  0a1c3c  NSLog(@"Spawn %@ after %@", [x0 name], arg1)
+  0a1c50  [x0 spawn_after]
+  0a1c6c  [[x0 spawn_after] objectForKey:@"time"]
+  0a1c80  [[[x0 spawn_after] objectForKey:@"time"] floatValue]
+  0a1c8c  [x0 setSpawn_time:[[[x0 spawn_after] objectForKey:@"time"] floatValue]]
+  0a1cac  [x0 setState:0]
+  0a1cb0  goto loc_1000a1cc4
+loc_1000a1cb4:
+loc_1000a1cc4:
+  0a1ccc  if ((x26 + 1) <u [[self enemies] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]) goto loc_1000a1b30
+  0a1ce4  [[self enemies] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16]
+  0a1cec  if ([[self enemies] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xd8] count:16] != 0) goto loc_1000a1b2c
+loc_1000a1cf0:
+  0a1d34  [self->soundsArray countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16]
+  0a1d3c  if ([self->soundsArray countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16] == 0) goto loc_1000a1f58
+  0a1d50  &@selector(spawn_after)
+loc_1000a1dc0:
+loc_1000a1dc4:
+  0a1dd0  if (x8 == x26) goto loc_1000a1ddc
+  0a1dd8  objc_enumerationMutation(self->soundsArray)
+loc_1000a1ddc:
+  0a1dec  [x0 state]
+  0a1df4  if ([x0 state] == 3) goto loc_1000a1f2c
+  0a1e00  [x0 spawn_after]
+  0a1e1c  [[x0 spawn_after] objectForKey:@"enemy"]
+  0a1e34  [[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1]
+  0a1e38  if ([[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1] == 0) goto loc_1000a1f1c
+  0a1e44  [x0 spawn_after]
+  0a1e60  [[x0 spawn_after] objectForKey:@"afterStart"]
+  0a1e78  [[[x0 spawn_after] objectForKey:@"afterStart"] boolValue]
+  0a1ea4  if ([[[x0 spawn_after] objectForKey:@"afterStart"] boolValue] == 0) goto loc_1000a1f2c
+  0a1eb0  [x0 spawn_after]
+  0a1ed0  [[x0 spawn_after] objectForKey:@"time"]
+  0a1ee4  [[[x0 spawn_after] objectForKey:@"time"] floatValue]
+  0a1ef0  [x0 setSpawn_time:[[[x0 spawn_after] objectForKey:@"time"] floatValue]]
+  0a1f10  [x0 setState:1]
+  0a1f18  goto loc_1000a1f2c
+loc_1000a1f1c:
+loc_1000a1f2c:
+  0a1f34  if ((x24 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16]) goto loc_1000a1dc4
+  0a1f4c  [self->soundsArray countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16]
+  0a1f54  if ([self->soundsArray countByEnumeratingWithState:&sp[0x78] objects:&sp[0xf8] count:16] != 0) goto loc_1000a1dc0
+loc_1000a1f58:
+  0a1f9c  return
+
+== -[ADBrick checkSpawnAfterKill:skipped:]   (address 0x1000a20ac  size 2744  kind objc)
+  0a20f8  if (!(arg2 & 1)) goto loc_1000a2290
+  0a211c  [self enemies]
+  0a2148  [[self enemies] countByEnumeratingWithState:&sp[0x108] objects:&x29[-0xe8] count:16]
+  0a2158  if ([[self enemies] countByEnumeratingWithState:&sp[0x108] objects:&x29[-0xe8] count:16] == 0) goto loc_1000a229c
+loc_1000a21ac:
+loc_1000a21b0:
+  0a21bc  if (x8 == x27) goto loc_1000a21c8
+  0a21c4  objc_enumerationMutation([self enemies])
+loc_1000a21c8:
+  0a21d8  [x0 life]
+  0a21e0  if ([x0 life] <= (or unordered) 0.0) goto loc_1000a2260
+  0a21ec  [x0 spawn_after]
+  0a2208  [[x0 spawn_after] objectForKey:@"enemy"]
+  0a2220  [[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1]
+  0a2238  if ([[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1] == 0) goto loc_1000a2260
+  0a2244  [x0 spawn_time]
+  0a224c  if ([x0 spawn_time] >= (or unordered) s8) goto loc_1000a2260
+  0a2258  [x0 spawn_time]
+loc_1000a2260:
+  0a2268  if ((x24 + 1) <u [[self enemies] countByEnumeratingWithState:&sp[0x108] objects:&x29[-0xe8] count:16]) goto loc_1000a21b0
+  0a2280  [[self enemies] countByEnumeratingWithState:&sp[0x108] objects:&x29[-0xe8] count:16]
+  0a2288  if ([[self enemies] countByEnumeratingWithState:&sp[0x108] objects:&x29[-0xe8] count:16] != 0) goto loc_1000a21ac
+  0a228c  goto loc_1000a22a0
+loc_1000a2290:
+  0a2298  goto loc_1000a22b8
+loc_1000a229c:
+loc_1000a22a0:
+loc_1000a22b8:
+  0a22d8  [self enemies]
+  0a2308  [[self enemies] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1c8] count:16]
+  0a2310  if ([[self enemies] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1c8] count:16] == 0) goto loc_1000a2678
+  0a232c  &@selector(objectForKey:)
+  0a2334  &@selector(isEqualToString:)
+  0a233c  &@selector(boolValue)
+  0a2344  &@selector(setState:)
+  0a234c  &@selector(spawn_time)
+  0a2354  &@selector(setSpawn_time:)
+loc_1000a23c4:
+loc_1000a23c8:
+  0a23d4  if (x8 == x23) goto loc_1000a23e0
+  0a23dc  objc_enumerationMutation([self enemies])
+loc_1000a23e0:
+  0a23f0  [x0 life]
+  0a23f8  if ([x0 life] <= (or unordered) 0.0) goto loc_1000a264c
+  0a2404  [x0 spawn_after]
+  0a2420  [[x0 spawn_after] objectForKey:@"enemy"]
+  0a2438  [[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1]
+  0a2450  if ([[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1] == 0) goto loc_1000a264c
+  0a245c  [x0 spawn_after]
+  0a2478  [[x0 spawn_after] objectForKey:@"afterStart"]
+  0a248c  [[[x0 spawn_after] objectForKey:@"afterStart"] boolValue]
+  0a24a4  if (!([[[x0 spawn_after] objectForKey:@"afterStart"] boolValue] & 1)) goto loc_1000a2518
+  0a24ac  if (arg2 == 0) goto loc_1000a264c
+  0a24b8  [x0 spawn_after]
+  0a24d4  [[x0 spawn_after] objectForKey:@"ignoreIfSkipped"]
+  0a24e8  [[[x0 spawn_after] objectForKey:@"ignoreIfSkipped"] boolValue]
+  0a2500  if (!([[[x0 spawn_after] objectForKey:@"ignoreIfSkipped"] boolValue] & 1)) goto loc_1000a25b8
+  0a2510  [x0 setState:0xffffffff]
+  0a2514  goto loc_1000a264c
+loc_1000a2518:
+  0a2520  [x0 name]
+  0a2540  NSLog(@"Spawn %@ after %@", [x0 name], arg1)
+  0a2554  [x0 spawn_after]
+  0a2570  [[x0 spawn_after] objectForKey:@"time"]
+  0a2584  [[[x0 spawn_after] objectForKey:@"time"] floatValue]
+  0a2590  [x0 setSpawn_time:[[[x0 spawn_after] objectForKey:@"time"] floatValue]]
+  0a25b0  [x0 setState:0]
+  0a25b4  goto loc_1000a264c
+loc_1000a25b8:
+  0a25c0  [x0 spawn_time]
+  0a25d0  [x0 setSpawn_time:([x0 spawn_time] - s8)]
+  0a25e4  [x0 name]
+  0a25fc  [x0 spawn_time]
+  0a261c  [NSString stringWithFormat:@"Reduced spawn time of %@ by %f. New value : %f", [x0 name], sp[8], [x0 spawn_time]]
+  0a2638  NSLog(@"%@", [NSString stringWithFormat:@"Reduced spawn time of %@ by %f. New value : %f", [x…)
+loc_1000a264c:
+  0a2654  if ((x28 + 1) <u [[self enemies] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1c8] count:16]) goto loc_1000a23c8
+  0a266c  [[self enemies] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1c8] count:16]
+  0a2674  if ([[self enemies] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1c8] count:16] != 0) goto loc_1000a23c4
+loc_1000a2678:
+  0a26b8  [self->soundsArray countByEnumeratingWithState:&sp[0x88] objects:&sp[0x148] count:16]
+  0a26c0  if ([self->soundsArray countByEnumeratingWithState:&sp[0x88] objects:&sp[0x148] count:16] == 0) goto loc_1000a2948
+  0a26cc  &@selector(state)
+  0a26d4  &@selector(spawn_after)
+  0a26dc  &@selector(objectForKey:)
+  0a26e4  &@selector(isEqualToString:)
+loc_1000a2750:
+loc_1000a2754:
+  0a2760  if (x8 == x23) goto loc_1000a276c
+  0a2768  objc_enumerationMutation(self->soundsArray)
+loc_1000a276c:
+  0a277c  [x0 state]
+  0a2784  if ([x0 state] == 3) goto loc_1000a291c
+  0a2790  [x0 spawn_after]
+  0a27ac  [[x0 spawn_after] objectForKey:@"enemy"]
+  0a27c4  [[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1]
+  0a27dc  if ([[[x0 spawn_after] objectForKey:@"enemy"] isEqualToString:arg1] == 0) goto loc_1000a291c
+  0a27e8  [x0 spawn_after]
+  0a2804  [[x0 spawn_after] objectForKey:@"afterStart"]
+  0a2818  [[[x0 spawn_after] objectForKey:@"afterStart"] boolValue]
+  0a2830  if (!([[[x0 spawn_after] objectForKey:@"afterStart"] boolValue] & 1)) goto loc_1000a28a4
+  0a2838  if (arg2 == 0) goto loc_1000a291c
+  0a2844  [x0 spawn_after]
+  0a2860  [[x0 spawn_after] objectForKey:@"ignoreIfSkipped"]
+  0a2874  [[[x0 spawn_after] objectForKey:@"ignoreIfSkipped"] boolValue]
+  0a288c  if (!([[[x0 spawn_after] objectForKey:@"ignoreIfSkipped"] boolValue] & 1)) goto loc_1000a2910
+  0a289c  [x0 setState:0]
+  0a28a0  goto loc_1000a291c
+loc_1000a28a4:
+  0a28ac  [x0 spawn_after]
+  0a28c8  [[x0 spawn_after] objectForKey:@"time"]
+  0a28dc  [[[x0 spawn_after] objectForKey:@"time"] floatValue]
+  0a28e8  [x0 setSpawn_time:[[[x0 spawn_after] objectForKey:@"time"] floatValue]]
+  0a2908  [x0 setState:1]
+  0a290c  goto loc_1000a291c
+loc_1000a2910:
+  0a2918  [x0 play]
+loc_1000a291c:
+  0a2924  if ((x25 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x88] objects:&sp[0x148] count:16]) goto loc_1000a2754
+  0a293c  [self->soundsArray countByEnumeratingWithState:&sp[0x88] objects:&sp[0x148] count:16]
+  0a2944  if ([self->soundsArray countByEnumeratingWithState:&sp[0x88] objects:&sp[0x148] count:16] != 0) goto loc_1000a2750
+loc_1000a2948:
+  0a2960  if (self->powerUpDictionary == 0) goto loc_1000a2a14
+  0a297c  [self->powerUpDictionary objectForKey:@"spawn_after"]
+  0a2990  if ([self->powerUpDictionary objectForKey:@"spawn_after"] == 0) goto loc_1000a2a14
+  0a29a4  [self->powerUpDictionary objectForKey:@"spawn_after"]
+  0a29c4  [[self->powerUpDictionary objectForKey:@"spawn_after"] isEqualToString:arg1]
+  0a29d4  if ([[self->powerUpDictionary objectForKey:@"spawn_after"] isEqualToString:arg1] == 0) goto loc_1000a2a14
+  0a29ec  [ADBrickManager sharedBrickManager]
+  0a2a08  [[ADBrickManager sharedBrickManager] tryToPopPowerUpContainer]
+loc_1000a2a14:
+  0a2a54  return
+
+== -[ADBrick stopAllSounds]   (address 0x1000a2b64  size 308  kind objc)
+  0a2bd0  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a2bd8  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000a2c48
+  0a2be8  &@selector(stopWithNoCallback)
+loc_1000a2bf0:
+loc_1000a2bf4:
+  0a2c00  if (x8 == x24) goto loc_1000a2c0c
+  0a2c08  objc_enumerationMutation(self->soundsArray)
+loc_1000a2c0c:
+  0a2c18  [x0 stopWithNoCallback]
+  0a2c24  if ((x25 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000a2bf4
+  0a2c3c  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a2c44  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000a2bf0
+loc_1000a2c48:
+  0a2c74  return
+
+== -[ADBrick hasSkippableSoundsPlaying]   (address 0x1000a2c98  size 424  kind objc)
+  0a2d0c  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a2d14  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000a2dd8
+loc_1000a2d4c:
+loc_1000a2d50:
+  0a2d5c  if (x8 == x27) goto loc_1000a2d68
+  0a2d64  objc_enumerationMutation(self->soundsArray)
+loc_1000a2d68:
+  0a2d78  [x0 skippable]
+  0a2d7c  if ([x0 skippable] == 0) goto loc_1000a2dac
+  0a2d88  [x0 state]
+  0a2d90  if ([x0 state] != 2) goto loc_1000a2dac
+  0a2d9c  [x0 timeInState]
+  0a2da8  if ([x0 timeInState] > 0.15) goto loc_1000a2de0
+loc_1000a2dac:
+  0a2db4  if ((x28 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000a2d50
+  0a2dcc  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a2dd4  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000a2d4c
+loc_1000a2dd8:
+  0a2ddc  goto loc_1000a2de4
+loc_1000a2de0:
+loc_1000a2de4:
+  0a2e1c  return
+
+== -[ADBrick skipAllSkippableSounds]   (address 0x1000a2e40  size 380  kind objc)
+  0a2eb0  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a2eb8  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000a2f68
+  0a2ee0  &@selector(skip)
+loc_1000a2ee8:
+loc_1000a2eec:
+  0a2ef8  if (x8 == x27) goto loc_1000a2f04
+  0a2f00  objc_enumerationMutation(self->soundsArray)
+loc_1000a2f04:
+  0a2f14  [x0 skippable]
+  0a2f18  if ([x0 skippable] == 0) goto loc_1000a2f3c
+  0a2f24  [x0 state]
+  0a2f2c  if ([x0 state] != 2) goto loc_1000a2f3c
+  0a2f38  [x0 skip]
+loc_1000a2f3c:
+  0a2f44  if ((x28 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000a2eec
+  0a2f5c  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a2f64  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000a2ee8
+loc_1000a2f68:
+  0a2f98  return
+
+== -[ADBrick pause]   (address 0x1000a2fbc  size 520  kind objc)
+  0a3030  [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16]
+  0a3038  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16] == 0) goto loc_1000a30a8
+  0a3048  &@selector(pause)
+loc_1000a3050:
+loc_1000a3054:
+  0a3060  if (x8 == x25) goto loc_1000a306c
+  0a3068  objc_enumerationMutation(self->enemiesArray)
+loc_1000a306c:
+  0a3078  [x0 pause]
+  0a3084  if ((x26 + 1) <u [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16]) goto loc_1000a3054
+  0a309c  [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16]
+  0a30a4  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16] != 0) goto loc_1000a3050
+loc_1000a30a8:
+  0a30e4  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]
+  0a30ec  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16] == 0) goto loc_1000a315c
+  0a30fc  &@selector(pause)
+loc_1000a3104:
+loc_1000a3108:
+  0a3114  if (x8 == x23) goto loc_1000a3120
+  0a311c  objc_enumerationMutation(self->soundsArray)
+loc_1000a3120:
+  0a312c  [x0 pause]
+  0a3138  if ((x25 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]) goto loc_1000a3108
+  0a3150  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]
+  0a3158  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16] != 0) goto loc_1000a3104
+loc_1000a315c:
+  0a318c  return
+
+== -[ADBrick resume]   (address 0x1000a31c4  size 520  kind objc)
+  0a3238  [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16]
+  0a3240  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16] == 0) goto loc_1000a32b0
+  0a3250  &@selector(resume)
+loc_1000a3258:
+loc_1000a325c:
+  0a3268  if (x8 == x25) goto loc_1000a3274
+  0a3270  objc_enumerationMutation(self->enemiesArray)
+loc_1000a3274:
+  0a3280  [x0 resume]
+  0a328c  if ((x26 + 1) <u [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16]) goto loc_1000a325c
+  0a32a4  [self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16]
+  0a32ac  if ([self->enemiesArray countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16] != 0) goto loc_1000a3258
+loc_1000a32b0:
+  0a32ec  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]
+  0a32f4  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16] == 0) goto loc_1000a3364
+  0a3304  &@selector(resume)
+loc_1000a330c:
+loc_1000a3310:
+  0a331c  if (x8 == x23) goto loc_1000a3328
+  0a3324  objc_enumerationMutation(self->soundsArray)
+loc_1000a3328:
+  0a3334  [x0 resume]
+  0a3340  if ((x25 + 1) <u [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]) goto loc_1000a3310
+  0a3358  [self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]
+  0a3360  if ([self->soundsArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16] != 0) goto loc_1000a330c
+loc_1000a3364:
+  0a3394  return
+
+== -[ADBrick clean]   (address 0x1000a33cc  size 104  kind objc)
+  0a3400  [self->enemiesArray makeObjectsPerformSelector:@selector(destroyEnemy)]
+  0a3414  [self->enemiesArray removeAllObjects]
+  0a3430  tail [self deactivateAllPlaylists]
+
+== -[ADBrick tag]   (address 0x1000a3434  size 16  kind objc)
+  0a3440  return
+
+== -[ADBrick setTag:]   (address 0x1000a3444  size 16  kind objc)
+  0a344c  self->_tag = arg1
+  0a3450  return
+
+== -[ADBrick name]   (address 0x1000a3454  size 16  kind objc)
+  0a3460  return
+
+== -[ADBrick setName:]   (address 0x1000a3464  size 56  kind objc)
+  0a3488  self->_name = arg1
+  0a3498  return
+
+== -[ADBrick ambiantName]   (address 0x1000a349c  size 16  kind objc)
+  0a34a8  return
+
+== -[ADBrick setAmbiantName:]   (address 0x1000a34ac  size 56  kind objc)
+  0a34d0  self->_ambiantName = arg1
+  0a34e0  return
+
+== -[ADBrick playlists]   (address 0x1000a34e4  size 16  kind objc)
+  0a34f0  return
+
+== -[ADBrick setPlaylists:]   (address 0x1000a34f4  size 56  kind objc)
+  0a3518  self->_playlists = arg1
+  0a3528  return
+
+== -[ADBrick .cxx_destruct]   (address 0x1000a352c  size 224  kind objc)

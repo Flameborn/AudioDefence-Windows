@@ -1,0 +1,25 @@
+// Accessible_ADArmoryViewController.nib
+TOP-LEVEL OBJECTS
+  #16 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #60 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #81 UIView  
+    #38 UIButton  title[0]='Weapons'
+    #6 UIButton  title[0]='Loadout'
+    #76 UIButton  title[0]='Powerup'
+    #10 UIButton  title[0]='Currency'
+    #39 UIScrollView  
+    #2 UILabel  UserInteractionDisabled=False Text='Change tabs at the bottom of the screen to navigate the armory' NumberOfLines=2
+
+CONNECTIONS
+  action  currencyButtonPressed:                    #10 UIButton --(events 0x40)--> #16 UIProxyObject
+  action  loadoutButtonPressed:                     #6 UIButton --(events 0x40)--> #16 UIProxyObject
+  action  powerUpButtonPressed:                     #76 UIButton --(events 0x40)--> #16 UIProxyObject
+  action  weaponsButtonPressed:                     #38 UIButton --(events 0x40)--> #16 UIProxyObject
+  outlet  contentContainer                          #16 UIProxyObject --> #39 UIScrollView
+  outlet  currencyButton                            #16 UIProxyObject --> #10 UIButton
+  outlet  loadOutButton                             #16 UIProxyObject --> #6 UIButton
+  outlet  powerUpButton                             #16 UIProxyObject --> #76 UIButton
+  outlet  view                                      #16 UIProxyObject --> #81 UIView
+  outlet  weaponsButton                             #16 UIProxyObject --> #38 UIButton
+
+ACCESSIBILITY CONFIGURATIONS

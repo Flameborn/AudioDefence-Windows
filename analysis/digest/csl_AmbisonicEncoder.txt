@@ -1,0 +1,134 @@
+
+== csl::AmbisonicEncoder::~AmbisonicEncoder   (address 0x1000f63d8  size 36  kind cxx)
+  0f63e8  sub_1000f6368(a0, a1, a2, a3)
+  0f63f8  return
+
+== csl::AmbisonicEncoder::~AmbisonicEncoder/*deleting*/   (address 0x1000f63fc  size 56  kind cxx)
+  0f640c  sub_1000f6368(a0, a1, a2, a3)
+  0f641c  tail ZdlPv(a0)
+  0f6428  ZdlPv()
+
+== csl::AmbisonicEncoder::vfunc_5   (address 0x1000f6434  size 340  kind cxx)
+  0f6460  sub_1000e8310(a1, a1, a2, a3)
+  0f6470  if (a1[+0x8] >=u a0[+0x60]) goto loc_1000f6488
+  0f6484  sub_1000e772c(2, "The AmbisonicEncoder requires %d output channels, found only %d ???\n")
+loc_1000f6488:
+  0f6490  a0[+0xb8][+0x10][+0xc] = a1[+0xc]
+  0f6494  a0[+0xb8][+0x10][+0x2c] = 0
+  0f64a8  call a0[+0xb8][+0x8][+0x0][+0x20]
+  0f64b0  a0[+0xb8][+0x10][+0x2a] = 1
+  0f64c0  call sub_1000ef15c
+  0f64cc  call sub_1000ef1fc
+  0f64e0  sub_1000f932c(x0, (a0 + 164))
+  0f64e8  if (a0[+0x60] == 0) goto loc_1000f655c
+loc_1000f64f0:
+  0f6500  call a0[+0xb8][+0x10][+0x0][+0x20]
+  0f6518  call a1[+0x0][+0x20]
+  0f651c  if (a1[+0xc] == 0) goto loc_1000f654c
+loc_1000f652c:
+  0f6548  if ((w10 - 1) != 0) goto loc_1000f652c
+loc_1000f654c:
+  0f6558  if ((w22 + 1) <u a0[+0x60]) goto loc_1000f64f0
+loc_1000f655c:
+  0f6574  return
+  0f6578  if (w1 >= 0) goto loc_1000f6580
+  0f657c  cxa_call_unexpected()
+
+== sub_1000f6588   (address 0x1000f6588  size 168  kind sub)
+  0f65c8  sub_1000f5e8c(a0, &sp[0x0], a2, a3)
+  0f65d8  a0[+0x0] = vtable<csl::AmbisonicDecoder>
+  0f65dc  a0[+0xb0] = 0
+  0f65e0  a0[+0xd0] = a2
+  0f65f0  sub_1000f6630(a0, a1)
+  0f660c  return
+  0f6620  call sub_1000e8918
+  0f662c  call sub_10000b760
+
+== sub_1000f6630   (address 0x1000f6630  size 996  kind sub)
+  0f6670  Znwm(48, a1, a2, a3)
+  0f667c  sub_1000e9060(Znwm(48, a1, a2, a3), a1)
+  0f6680  a0[+0xb0] = Znwm(48, a1, a2, a3)
+  0f668c  sub_1000e89bc(a1, a0)
+  0f66a8  call a1[+0x0][+0x18]
+  0f66e4  if (((w8 - w9) + (uint)(((float)w22 + 1) * ((float)w22 + 1))) <=u a1[+0x0][+0x18](…)) goto loc_1000f6778
+  0f66ec  goto loc_1000f66f8
+loc_1000f66f0:
+loc_1000f66f8:
+  0f6704  call a1[+0x0][+0x18]
+  0f6728  if ((w23 + ((uint)(((float)w22 + 1) * ((float)w22 + 1)) - (w22 << 1))) <=u a1[+0x0][+0x18](…)) goto loc_1000f6784
+  0f6730  if (w22 <u w26) goto loc_1000f66f0
+  0f6740  call a1[+0x0][+0x18]
+  0f6770  if (((w23 + ((uint)(((float)(w22 - 1) + 1) * ((float)(w22 - 1) + 1)) - (w22 << 1))) + 2) >u a1[+0x0][+0x18](…)) goto loc_1000f66f0
+  0f6774  goto loc_1000f6788
+loc_1000f6778:
+  0f6780  goto loc_1000f67bc
+loc_1000f6784:
+loc_1000f6788:
+  0f6798  call a1[+0x0][+0x18]
+  0f67b4  sub_1000e772c(1, "Reducing decoding order because encoded input does not contain enough channels for specifi…")
+loc_1000f67bc:
+  0f67e4  a0[+0x60] = ((w8 - w21) + (uint)(((float)w25 + 1) * ((float)w25 + 1)))
+  0f6808  t1 = (15 + ((uint)(((float)(w26 >u w25 ? w26 : w25) + 1) * ((float)(w26 >u w25 ? w26 : w25) + 1)) << 2))
+  0f6828  t2 = ((uint)(((float)(w26 >u w25 ? w26 : w25) + 1) * ((float)(w26 >u w25 ? w26 : w25) + 1)) << 2)
+  0f6830  bzero((&sp[0x0] - (t1 & -16)), t2)
+  0f683c  sub_1000f601c(a0, (&sp[0x0] - (t1 & -16)))
+  0f6848  sub_1000f6140(a0, (&sp[0x0] - (t1 & -16)))
+  0f6858  Znam((a0[+0x60] << 2))
+  0f6860  a0[+0xc0] = Znam((a0[+0x60] << 2))
+  0f6864  if (a0[+0x60] == 0) goto loc_1000f6884
+loc_1000f6868:
+  0f687c  if ((x23 + 1) <u a0[+0x60]) goto loc_1000f6868
+loc_1000f6884:
+  0f6894  malloc(((x8 - x28) & 0x7fffffff8))
+  0f6898  a0[+0xc8] = malloc(((x8 - x28) & 0x7fffffff8))
+  0f689c  if (((x8 - x28) >>> 3) == 0) goto loc_1000f68c0
+loc_1000f68a4:
+  0f68a8  Znam()
+  0f68bc  if ((x22 + 1) <u ((x8 - x28) >>> 3)) goto loc_1000f68a4
+loc_1000f68c0:
+  0f68c4  if (a0[+0xd8] == 0) goto loc_1000f68d4
+  0f68cc  sub_1000f6f80(a0)
+  0f68d0  goto loc_1000f68dc
+loc_1000f68d4:
+  0f68d8  sub_1000f6b60(a0)
+loc_1000f68dc:
+  0f68e4  if (a0[+0xdc] != 2) goto loc_1000f6944
+  0f68ec  if (w26 == w25) goto loc_1000f6900
+  0f68fc  sub_1000e772c(1, "AmbisonicDecoder: the max-rE decoding method is only well defined for non-hybrid systems -…")
+loc_1000f6900:
+  0f6940  tail sub_1000f708c(a0, (w26 >u w25 ? w26 : w25))
+loc_1000f6944:
+  0f6948  if (a0[+0xdc] != 1) goto loc_1000f69a8
+  0f6950  if (w26 == w25) goto loc_1000f6964
+  0f6960  sub_1000e772c(1, "AmbisonicDecoder: the in-phase decoding method is only well defined for non-hybrid systems…")
+loc_1000f6964:
+  0f69a4  tail sub_1000f7000(a0, (w26 >u w25 ? w26 : w25))
+loc_1000f69a8:
+  0f69e0  return
+  0f6a00  ZdlPv()
+
+== sub_1000f6a14   (address 0x1000f6a14  size 36  kind sub)
+  0f6a24  sub_1000f6588(a0, a1, a2, a3)
+  0f6a34  return
+
+== sub_1000f6a38   (address 0x1000f6a38  size 204  kind sub)
+  0f6a54  a0[+0x0] = vtable<csl::AmbisonicDecoder>
+  0f6a64  sub_1000e8af8(a0[+0xb0][+0x8], a0, a2, a3)
+  0f6a6c  if (a0[+0xb0] == 0) goto loc_1000f6a7c
+  0f6a78  call a0[+0xb0][+0x0][+0x8]
+loc_1000f6a7c:
+  0f6a80  if (a0[+0xc0] == 0) goto loc_1000f6a88
+  0f6a84  ZdaPv(a0[+0xc0])
+loc_1000f6a88:
+  0f6a98  if (((x10 - x9) >>> 3) == 0) goto loc_1000f6acc
+loc_1000f6aa0:
+  0f6aa8  if (x0 == 0) goto loc_1000f6ab4
+  0f6aac  ZdaPv()
+loc_1000f6ab4:
+  0f6ac8  if ((w20 + 1) <u ((x10 - x9) >>> 3)) goto loc_1000f6aa0
+loc_1000f6acc:
+  0f6ad0  free(a0[+0xc8])
+  0f6ad8  sub_1000e8918(a0)
+  0f6ae8  return
+  0f6af4  call sub_1000e8918
+  0f6b00  call sub_10000b760

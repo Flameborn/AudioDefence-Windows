@@ -1,0 +1,58 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 4,
+   "name": "bastard_passerby_jukebox_a"
+  }
+ ],
+ "PasserBy": {
+  "Jukebox": {
+   "spawn_sound": "",
+   "spawn_angle": 135,
+   "gain": "2",
+   "spawn_distance": 5,
+   "spawn_time": 2
+  }
+ },
+ "Enemies": {
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 11,
+    "enemy": "bastard_passerby_jukebox_a"
+   },
+   "spawn_angle": 270,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 6.5,
+    "enemy": "bastard_passerby_jukebox_a"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "bastard_passerby_jukebox_a"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "bastard_passerby_jukebox_a"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  }
+ }
+}

@@ -1,0 +1,15 @@
+// ADDebugMapViewController.nib
+TOP-LEVEL OBJECTS
+  #8 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #2 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #31 UIView  UserInteractionDisabled=False
+    #33 UIView (custom class ADDebugMapView)  UserInteractionDisabled=False
+      #15 UILabel  UserInteractionDisabled=False Text='Debug'
+      #7 UILabel  UserInteractionDisabled=False Text='Label'
+
+CONNECTIONS
+  outlet  brickName                                 #8 UIProxyObject --> #7 UILabel Text='Label'
+  outlet  debugMapView                              #8 UIProxyObject --> #33 ADDebugMapView
+  outlet  view                                      #8 UIProxyObject --> #31 UIView
+
+ACCESSIBILITY CONFIGURATIONS

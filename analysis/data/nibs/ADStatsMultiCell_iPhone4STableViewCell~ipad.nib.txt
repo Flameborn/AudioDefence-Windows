@@ -1,0 +1,28 @@
+// ADStatsMultiCell_iPhone4STableViewCell~ipad.nib
+TOP-LEVEL OBJECTS
+  #72 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #70 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #81 UITableViewCell (custom class ADStatsMultiCell_iPhone4STableViewCell)  
+    #51 UITableViewCellContentView  
+      #89 UIImageView  UserInteractionDisabled=False Image='list_oneline_subhead.png'
+      #25 UIImageView  UserInteractionDisabled=False Image='list_single_left.png'
+      #45 UIImageView  UserInteractionDisabled=False Image='list_single_right.png'
+      #30 UIImageView  UserInteractionDisabled=False Image='list_single_left.png'
+      #109 UIImageView  UserInteractionDisabled=False Image='list_single_right.png'
+      #86 UILabel  UserInteractionDisabled=False Text='Label'
+      #20 UILabel  UserInteractionDisabled=False Text='Label'
+      #101 UILabel  UserInteractionDisabled=False Text='Label'
+      #80 UILabel  UserInteractionDisabled=False Text='Label'
+      #40 UILabel  UserInteractionDisabled=False Text='Subtitle'
+    #87 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #51)
+
+CONNECTIONS
+  outlet  accuracyLabel                             #81 ADStatsMultiCell_iPhone4STableViewCell --> #20 UILabel Text='Label'
+  outlet  accuracyValueLabel                        #81 ADStatsMultiCell_iPhone4STableViewCell --> #80 UILabel Text='Label'
+  outlet  killsLabel                                #81 ADStatsMultiCell_iPhone4STableViewCell --> #86 UILabel Text='Label'
+  outlet  killsValueLabel                           #81 ADStatsMultiCell_iPhone4STableViewCell --> #101 UILabel Text='Label'
+  outlet  subTitleLabel                             #81 ADStatsMultiCell_iPhone4STableViewCell --> #40 UILabel Text='Subtitle'
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,873 @@
+
+== -[ADPersistentStats init]   (address 0x100083a28  size 196  kind objc)
+  083a5c  [super init]
+  083a64  if (self == 0) goto loc_100083ad4
+  083a84  self->_enemyStatsDataRef = @"ENEMY_DATA"
+  083aa8  self->_totalsStatsDataRef = @"TOTALS_DATA"
+  083acc  self->_weaponsStatsDataRef = @"WEAPON_DATA"
+loc_100083ad4:
+  083ae8  return
+
+== +[ADPersistentStats persistentStats]   (address 0x100083aec  size 2844  kind objc)
+  083b24  objc_sync_enter(ADPersistentStats)
+  083b30  if (g_10042da18 != 0) goto loc_1000843cc
+  083b4c  [ADPersistentStats alloc]
+  083b60  [[ADPersistentStats alloc] init]
+  083b68  store g_10042da18 = [[ADPersistentStats alloc] init]
+  083b8c  [NSUserDefaults standardUserDefaults]
+  083bb0  [g_10042da18 enemyStatsDataRef]
+  083bd8  [[NSUserDefaults standardUserDefaults] dictionaryForKey:[g_10042da18 enemyStatsDataRef]]
+  083bfc  if ([[NSUserDefaults standardUserDefaults] dictionaryForKey:[g_10042da18 enemyStatsDataRef]] != 0) goto loc_100083f70
+  083c0c  [NSDictionary alloc]
+  083c28  [NSBundle mainBundle]
+  083c58  [[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]
+  083c7c  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]
+  083ca4  [NSMutableDictionary alloc]
+  083cac  [[NSMutableDictionary alloc] init]
+  083cf0  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16]
+  083cf8  if ([[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16] == 0) goto loc_100083eb0
+  083d20  &@selector(dictionaryWithObjectsAndKeys:)
+loc_100083d40:
+loc_100083d44:
+  083d54  if (x8 == x9) goto loc_100083d60
+  083d5c  objc_enumerationMutation([[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]])
+loc_100083d60:
+  083d70  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] objectForKey:x2]
+  083d8c  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] objectForKey:x2] objectForKey:@"displayName"]
+  083da0  if ([[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] objectForKey:x2] objectForKey:@"displayName"] == 0) goto loc_100083e7c
+  083dbc  [NSNumber numberWithInteger:0]
+  083de0  [NSNumber numberWithInteger:0]
+  083e14  [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:0], @"Killed", [NSNumber numberWithInteger:0], @"Casualty", nil]
+  083e34  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] objectForKey:x2] objectForKey:@"displayName"]
+  083e54  [[[NSMutableDictionary alloc] init] setValue:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:0], @"Killed", [NSNumber numberWithInteger:0], @"Casualty", nil] forKey:[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] objectForKey:x2] objectForKey:@"displayName"]]
+loc_100083e7c:
+  083e8c  if ((x25 + 1) <u [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] c…) goto loc_100083d44
+  083ea4  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16]
+  083eac  if ([[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16] != 0) goto loc_100083d40
+loc_100083eb0:
+  083ecc  [NSUserDefaults standardUserDefaults]
+  083ef4  [g_10042da18 enemyStatsDataRef]
+  083f1c  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] init] forKey:[g_10042da18 enemyStatsDataRef]]
+  083f38  [NSUserDefaults standardUserDefaults]
+  083f54  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_100083f70:
+  083f78  [NSUserDefaults standardUserDefaults]
+  083f9c  [g_10042da18 totalsStatsDataRef]
+  083fb8  [[NSUserDefaults standardUserDefaults] dictionaryForKey:[g_10042da18 totalsStatsDataRef]]
+  083fdc  if ([[NSUserDefaults standardUserDefaults] dictionaryForKey:[g_10042da18 totalsStatsDataRef]] != 0) goto loc_100084208
+  083ff4  [ADInventory sharedInventory]
+  084010  [[ADInventory sharedInventory] getNumberOfWeaponsUnlocked]
+  08402c  [NSMutableDictionary alloc]
+  084048  [NSBundle mainBundle]
+  084074  [[NSBundle mainBundle] URLForResource:@"totalsStats" withExtension:@"plist"]
+  084098  [[NSMutableDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"totalsStats" withExtension:@"plist"]]
+  0840c8  [NSNumber numberWithInteger:[[ADInventory sharedInventory] getNumberOfWeaponsUnlocked]]
+  0840f4  [[[NSMutableDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"totalsStats" withExtension:@"plist"]] setValue:[NSNumber numberWithInteger:[[ADInventory sharedInventory] getNumberOfWeaponsUnlocked]] forKey:@"Weapons obtained"]
+  084108  [NSUserDefaults standardUserDefaults]
+  084120  [g_10042da18 totalsStatsDataRef]
+  08414c  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"totalsStats" withExtension:@"plist"]] forKey:[g_10042da18 totalsStatsDataRef]]
+  084168  [NSUserDefaults standardUserDefaults]
+  084198  [NSString stringWithFormat:@"%d", 0]
+  0841bc  [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", 0] forKey:@"TOTAL_TIME_PLAYED"]
+  0841d8  [NSUserDefaults standardUserDefaults]
+  0841f4  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_100084208:
+  084210  [NSUserDefaults standardUserDefaults]
+  084234  [g_10042da18 weaponsStatsDataRef]
+  084250  [[NSUserDefaults standardUserDefaults] dictionaryForKey:[g_10042da18 weaponsStatsDataRef]]
+  084274  if ([[NSUserDefaults standardUserDefaults] dictionaryForKey:[g_10042da18 weaponsStatsDataRef]] != 0) goto loc_1000843cc
+  08428c  [NSBundle mainBundle]
+  0842b8  [[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]
+  0842dc  [NSDictionary alloc]
+  0842f0  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]]
+  084314  [g_10042da18 buildFromDictionary:[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] ClearItems:1]
+  084330  [NSUserDefaults standardUserDefaults]
+  084348  [g_10042da18 weaponsStatsDataRef]
+  084370  [[NSUserDefaults standardUserDefaults] setObject:[g_10042da18 buildFromDictionary:[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] ClearItems:1] forKey:[g_10042da18 weaponsStatsDataRef]]
+  08438c  [NSUserDefaults standardUserDefaults]
+  0843a8  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_1000843cc:
+  0843d0  objc_sync_exit(ADPersistentStats)
+  084418  goto loc_100084470
+loc_10008441c:
+  084424  goto loc_100084478
+  084430  goto loc_100084464
+  084438  goto loc_100084458
+  084440  goto loc_100084450
+loc_100084450:
+loc_100084458:
+loc_100084464:
+loc_100084470:
+loc_100084478:
+loc_10008447c:
+loc_100084480:
+loc_100084488:
+loc_100084490:
+  084494  objc_sync_exit()
+  0844a8  goto loc_10008441c
+  0844b0  goto loc_100084490
+  0844b8  goto loc_1000845a0
+  0844c0  goto loc_10008455c
+  0844c4  goto loc_100084550
+  0844cc  goto loc_1000845b0
+  0844d0  goto loc_1000844dc
+  0844d8  goto loc_1000845b0
+loc_1000844dc:
+  0844e8  goto loc_1000845b0
+  0844f0  goto loc_100084488
+  0844f8  goto loc_100084480
+  084504  goto loc_1000845fc
+  08450c  goto loc_1000845ec
+  084514  goto loc_10008455c
+  084518  goto loc_100084550
+  08451c  goto loc_10008441c
+  084520  goto loc_100084534
+  084530  goto loc_100084538
+loc_100084534:
+loc_100084538:
+  08453c  goto loc_10008447c
+  084544  goto loc_10008455c
+  08454c  goto loc_10008455c
+loc_100084550:
+loc_10008455c:
+  084564  goto loc_100084490
+  084568  goto loc_100084594
+  084570  goto loc_10008458c
+  084574  goto loc_100084580
+  08457c  goto loc_10008458c
+loc_100084580:
+loc_10008458c:
+  084590  goto loc_10008459c
+loc_100084594:
+loc_10008459c:
+loc_1000845a0:
+  0845a8  goto loc_100084490
+loc_1000845b0:
+  0845b8  goto loc_100084490
+  0845c0  goto loc_1000845f4
+  0845c8  goto loc_1000845d8
+loc_1000845d8:
+  0845dc  goto loc_1000845e8
+loc_1000845e8:
+loc_1000845ec:
+loc_1000845f4:
+loc_1000845fc:
+  084604  goto loc_100084490
+
+== -[ADPersistentStats buildFromDictionary:ClearItems:]   (address 0x100084608  size 1236  kind objc)
+  084660  [NSMutableDictionary alloc]
+  084674  [[NSMutableDictionary alloc] init]
+  084698  [arg1 objectForKey:@"Weapons"]
+  0846dc  [[arg1 objectForKey:@"Weapons"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0846e4  if ([[arg1 objectForKey:@"Weapons"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] == 0) goto loc_1000849ec
+  084700  &@selector(setValue:forKey:)
+loc_100084728:
+loc_10008472c:
+  08473c  if (x8 == x9) goto loc_100084748
+  084744  objc_enumerationMutation([arg1 objectForKey:@"Weapons"])
+loc_100084748:
+  08475c  [NSMutableDictionary alloc]
+  084764  [[NSMutableDictionary alloc] init]
+  084770  if (arg2 == 0) goto loc_100084824
+  084780  [NSNumber numberWithInt:0]
+  0847a4  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInt:0] forKey:@"shotsFired"]
+  0847bc  [NSNumber numberWithInt:0]
+  0847e0  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInt:0] forKey:@"shotsHit"]
+  0847f8  [NSNumber numberWithInt:0]
+  08481c  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInt:0] forKey:@"kills"]
+  084820  goto loc_1000848dc
+loc_100084824:
+  084834  [x0 objectForKey:@"shotsFired"]
+  084858  [[[NSMutableDictionary alloc] init] setValue:[x0 objectForKey:@"shotsFired"] forKey:@"shotsFired"]
+  084874  [x0 objectForKey:@"shotsHit"]
+  084898  [[[NSMutableDictionary alloc] init] setValue:[x0 objectForKey:@"shotsHit"] forKey:@"shotsHit"]
+  0848b4  [x0 objectForKey:@"kills"]
+  0848d8  [[[NSMutableDictionary alloc] init] setValue:[x0 objectForKey:@"kills"] forKey:@"kills"]
+loc_1000848dc:
+  0848f4  [x0 objectForKey:@"melee"]
+  084918  [NSNumber numberWithBool:([x0 objectForKey:@"melee"] != 0)]
+  08493c  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithBool:([x0 objectForKey:@"melee"] != 0)] forKey:@"melee"]
+  084954  [x0 objectForKey:@"displayName"]
+  084974  [[[NSMutableDictionary alloc] init] setValue:[x0 objectForKey:@"displayName"] forKey:@"displayName"]
+  084990  [x0 objectForKey:@"name"]
+  0849b0  [[[NSMutableDictionary alloc] init] setValue:[[NSMutableDictionary alloc] init] forKey:[x0 objectForKey:@"name"]]
+  0849cc  if ((x21 + 1) <u [[arg1 objectForKey:@"Weapons"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]) goto loc_10008472c
+  0849e0  [[arg1 objectForKey:@"Weapons"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0849e8  if ([[arg1 objectForKey:@"Weapons"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] != 0) goto loc_100084728
+loc_1000849ec:
+  084a40  return
+
+== -[ADPersistentStats getEnemyStatData]   (address 0x100084adc  size 196  kind objc)
+  084b04  [NSUserDefaults standardUserDefaults]
+  084b24  [self enemyStatsDataRef]
+  084b48  [[NSUserDefaults standardUserDefaults] objectForKey:[self enemyStatsDataRef]]
+  084b78  return
+
+== -[ADPersistentStats getTotalStatData]   (address 0x100084ba0  size 196  kind objc)
+  084bc8  [NSUserDefaults standardUserDefaults]
+  084be8  [self totalsStatsDataRef]
+  084c0c  [[NSUserDefaults standardUserDefaults] dictionaryForKey:[self totalsStatsDataRef]]
+  084c3c  return
+
+== -[ADPersistentStats getWeaponStatData]   (address 0x100084c64  size 196  kind objc)
+  084c8c  [NSUserDefaults standardUserDefaults]
+  084cac  [self weaponsStatsDataRef]
+  084cd0  [[NSUserDefaults standardUserDefaults] dictionaryForKey:[self weaponsStatsDataRef]]
+  084d00  return
+
+== -[ADPersistentStats getEnemyKillsByName:]   (address 0x100084d28  size 384  kind objc)
+  084d5c  [self enemies]
+  084d70  if ([self enemies] != 0) goto loc_100084db4
+  084d84  [self getEnemyStatData]
+  084da8  [self setEnemies:[self getEnemyStatData]]
+loc_100084db4:
+  084dbc  [self enemies]
+  084de0  [[self enemies] objectForKey:arg1]
+  084e08  [[[self enemies] objectForKey:arg1] objectForKey:@"Killed"]
+  084e24  [[[[self enemies] objectForKey:arg1] objectForKey:@"Killed"] integerValue]
+  084e54  return
+
+== -[ADPersistentStats getKillRequirementForEnemyWithName:]   (address 0x100084ea8  size 468  kind objc)
+  084ee4  [ADBrickManager sharedBrickManager]
+  084f04  [[ADBrickManager sharedBrickManager] dictionaryForEnemyName:arg1]
+  084f2c  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:arg1] objectForKey:@"bestiary"]
+  084f5c  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:arg1] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"]
+  084f7c  [[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:arg1] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"] intValue]
+  084f90  if ([[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:arg1] objectForKey:@"bestiary"] objectForKey:@"Unlock req… < 1) goto loc_100084fec
+  084fa4  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:arg1] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"]
+  084fb8  [[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:arg1] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"] intValue]
+  084fd0  [self computeTotalEnemyKillCount]
+  084fd4  t1 = ([[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:arg1] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"] intValue] - [self computeTotalEnemyKillCount])
+  084fe8  goto loc_100084ff0
+loc_100084fec:
+loc_100084ff0:
+  085018  return
+
+== -[ADPersistentStats getNumberOfZombiesUnlocked]   (address 0x10008507c  size 104  kind objc)
+  085094  [self getAllUnlockedEnemies]
+  0850b0  [[self getAllUnlockedEnemies] count]
+  0850cc  return
+
+== -[ADPersistentStats saveEnemyData:]   (address 0x1000850e4  size 3312  kind objc)
+  085138  [self getAllUnlockedEnemies]
+  08515c  [self getEnemyStatData]
+  08518c  [NSMutableDictionary alloc]
+  0851a0  [[NSMutableDictionary alloc] init]
+  0851c8  [[self getEnemyStatData] allKeys]
+  0851f8  [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  085204  if ([[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] == 0) goto loc_10008562c
+loc_100085264:
+loc_100085268:
+  085278  if (x8 == x9) goto loc_100085284
+  085280  objc_enumerationMutation([[self getEnemyStatData] allKeys])
+loc_100085284:
+  085298  [arg1 objectForKey:x2]
+  0852ac  if ([arg1 objectForKey:x2] == 0) goto loc_1000854b4
+  0852bc  [[self getEnemyStatData] objectForKey:x2]
+  0852d8  [[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"]
+  0852ec  [[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] integerValue]
+  085310  [[self getEnemyStatData] objectForKey:x2]
+  08532c  [[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Casualty"]
+  085340  [[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Casualty"] integerValue]
+  085364  [arg1 objectForKey:x2]
+  085380  [[arg1 objectForKey:x2] objectForKey:@"Killed"]
+  085394  [[[arg1 objectForKey:x2] objectForKey:@"Killed"] integerValue]
+  0853b8  [arg1 objectForKey:x2]
+  0853d4  [[arg1 objectForKey:x2] objectForKey:@"Casualty"]
+  0853ec  [[[arg1 objectForKey:x2] objectForKey:@"Casualty"] integerValue]
+  085414  t1 = ([[[arg1 objectForKey:x2] objectForKey:@"Killed"] integerValue] + [[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] integerValue])
+  085424  [NSNumber numberWithInteger:t1]
+  08543c  t2 = ([[[arg1 objectForKey:x2] objectForKey:@"Casualty"] integerValue] + [[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Casualty"] integerValue])
+  085444  [NSNumber numberWithInteger:t2]
+  085478  [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:t1], @"Killed", [NSNumber numberWithInteger:t2], @"Casualty", nil]
+  085498  [[[NSMutableDictionary alloc] init] setValue:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:t1], @"Killed", [NSNumber numberWithInteger:t2], @"Casualty", nil] forKey:x3]
+  0854b0  goto loc_100085600
+loc_1000854b4:
+  0854c0  [[self getEnemyStatData] objectForKey:x2]
+  0854dc  [[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"]
+  0854f0  [[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] integerValue]
+  085514  [[self getEnemyStatData] objectForKey:x2]
+  085530  [[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Casualty"]
+  085544  [[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Casualty"] integerValue]
+  085574  [NSNumber numberWithInteger:[[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] integerValue]]
+  085594  [NSNumber numberWithInteger:[[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Casualty"] integerValue]]
+  0855c8  [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:[[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] integerValue]], @"Killed", [NSNumber numberWithInteger:[[[[self getEnemyStatData] objec…, @"Casualty", nil]
+  0855e8  [[[NSMutableDictionary alloc] init] setValue:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:[[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] integerValue]], @"Killed", [NSNumber numberWithInteger:[[[[self getEnemyStatData] objec…, @"Casualty", nil] forKey:x3]
+loc_100085600:
+  08560c  if ((x27 + 1) <u [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]) goto loc_100085268
+  085620  [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  085628  if ([[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] != 0) goto loc_100085264
+loc_10008562c:
+  085654  [NSUserDefaults standardUserDefaults]
+  085678  [self enemyStatsDataRef]
+  0856a0  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] init] forKey:[self enemyStatsDataRef]]
+  0856bc  [self getAllUnlockedEnemies]
+  0856e4  [self setUnlockedEnemies:[self getAllUnlockedEnemies]]
+  085708  [self unlockedEnemies]
+  08572c  [[self unlockedEnemies] removeObjectsInArray:[self getAllUnlockedEnemies]]
+  085740  [self unlockedEnemies]
+  085760  [[self unlockedEnemies] count]
+  085774  if ([[self unlockedEnemies] count] <u 2) goto loc_100085a70
+  085784  [NSMutableArray alloc]
+  08578c  [[NSMutableArray alloc] init]
+  0857f8  goto loc_100085804
+loc_1000857fc:
+loc_100085804:
+  08580c  [self unlockedEnemies]
+  085820  [[self unlockedEnemies] count]
+  085834  if (x26 >=u ([[self unlockedEnemies] count] - 1)) goto loc_100085a2c
+  085844  goto loc_10008585c
+loc_100085848:
+loc_10008585c:
+  085864  [self unlockedEnemies]
+  085878  [[self unlockedEnemies] count]
+  08588c  if (x21 >=u [[self unlockedEnemies] count]) goto loc_1000857fc
+  085898  [ADBrickManager sharedBrickManager]
+  0858b0  [self unlockedEnemies]
+  0858c8  [[self unlockedEnemies] objectAtIndex:x2]
+  0858e4  [[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[self unlockedEnemies] objectAtIndex:x2]]
+  085914  [ADBrickManager sharedBrickManager]
+  08592c  [self unlockedEnemies]
+  085944  [[self unlockedEnemies] objectAtIndex:x2]
+  085978  [[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[self unlockedEnemies] objectAtIndex:x2]]
+  0859b0  [[[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[self unlockedEnemies] objectAtIndex:x2]] isEqualToString:[[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[self unlockedEnemies] objectAtIndex:x2]]]
+  0859cc  if ([[[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[self unlockedEnemies] objectAtIndex:x2]] isEqualToString:[[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[self unlockedEnemies] objectAtIndex:x2]]] == 0) goto loc_100085848
+  0859d8  [self unlockedEnemies]
+  0859f0  [[self unlockedEnemies] objectAtIndex:x2]
+  085a10  [[[NSMutableArray alloc] init] addObject:[[self unlockedEnemies] objectAtIndex:x2]]
+  085a28  goto loc_100085848
+loc_100085a2c:
+  085a34  [self unlockedEnemies]
+  085a54  [[self unlockedEnemies] removeObjectsInArray:[[NSMutableArray alloc] init]]
+loc_100085a70:
+  085a78  [NSUserDefaults standardUserDefaults]
+  085a94  [[NSUserDefaults standardUserDefaults] synchronize]
+  085af4  return
+
+== -[ADPersistentStats getAllUnlockedEnemies]   (address 0x100085dd4  size 508  kind objc)
+  085e1c  [NSMutableArray alloc]
+  085e2c  [[NSMutableArray alloc] init]
+  085e54  [self getEnemyStatData]
+  085e70  [[self getEnemyStatData] allKeys]
+  085ea8  [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  085eb0  if ([[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100085f4c
+  085ecc  &@selector(addObject:)
+loc_100085ed4:
+loc_100085ed8:
+  085ee4  if (x8 == x28) goto loc_100085ef0
+  085eec  objc_enumerationMutation([[self getEnemyStatData] allKeys])
+loc_100085ef0:
+  085f04  [self getKillRequirementForEnemyWithName:x2]
+  085f0c  if ([self getKillRequirementForEnemyWithName:x2] > 0) goto loc_100085f20
+  085f1c  [[[NSMutableArray alloc] init] addObject:x2]
+loc_100085f20:
+  085f28  if ((x27 + 1) <u [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100085ed8
+  085f40  [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  085f48  if ([[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_100085ed4
+loc_100085f4c:
+  085f8c  return
+
+== -[ADPersistentStats getNextUnlockEnemy]   (address 0x100085fd0  size 528  kind objc)
+  086020  [self getEnemyStatData]
+  08603c  [[self getEnemyStatData] allKeys]
+  086074  [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  086080  if ([[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_100086154
+  086090  &@selector(getKillRequirementForEnemyWithName:)
+loc_10008609c:
+loc_1000860a0:
+  0860ac  if (x8 == x28) goto loc_1000860bc
+  0860b8  objc_enumerationMutation([[self getEnemyStatData] allKeys])
+loc_1000860bc:
+  0860d4  [self getKillRequirementForEnemyWithName:x2]
+  0860dc  if ([self getKillRequirementForEnemyWithName:x2] < 1) goto loc_100086128
+  0860f0  [self getKillRequirementForEnemyWithName:x2]
+  0860f8  if ([self getKillRequirementForEnemyWithName:x2] >= w25) goto loc_100086128
+  08611c  [self getKillRequirementForEnemyWithName:x2]
+loc_100086128:
+  086130  if ((x27 + 1) <u [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_1000860a0
+  086148  [[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  086150  if ([[[self getEnemyStatData] allKeys] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10008609c
+loc_100086154:
+  086194  return
+
+== -[ADPersistentStats saveEndlessModeKills:]   (address 0x1000861e0  size 724  kind objc)
+  086218  [NSMutableDictionary alloc]
+  086230  [self getTotalStatData]
+  086254  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  086280  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total kills"]
+  0862a0  [[[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total kills"] intValue]
+  0862b8  t1 = ([[[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total kills"] intValue] + arg1)
+  0862cc  [NSNumber numberWithInt:t1]
+  0862fc  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:t1] forKey:@"Total kills"]
+  086318  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Best number of kills"]
+  08632c  [[[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Best number of kills"] intValue]
+  086340  if ([[[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Best number of kills"] intValu… >= arg1) goto loc_100086380
+  086350  [NSNumber numberWithInt:arg1]
+  086374  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:arg1] forKey:@"Best number of kills"]
+loc_100086380:
+  086398  [NSUserDefaults standardUserDefaults]
+  0863b8  [self totalsStatsDataRef]
+  0863e0  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  0863fc  [NSUserDefaults standardUserDefaults]
+  086418  [[NSUserDefaults standardUserDefaults] synchronize]
+  086440  return
+
+== -[ADPersistentStats savePlayTimeData:AndMode:]   (address 0x1000864b4  size 1344  kind objc)
+  086500  [NSMutableDictionary alloc]
+  086518  [self getTotalStatData]
+  08653c  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  086568  [arg2 isEqualToString:@"CHALLENGE"]
+  08656c  if ([arg2 isEqualToString:@"CHALLENGE"] == 0) goto loc_1000865c4
+  08658c  [self updateTotalPlayTime:arg1 WithKey:@"Total play time in Challenge Mode"]
+  0865b8  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[self updateTotalPlayTime:arg1 WithKey:@"Total play time in Challenge Mode"] forKey:@"Total play time in Challenge Mode"]
+  0865bc  goto loc_100086670
+  0865c0  goto loc_10008697c
+loc_1000865c4:
+  0865d4  [arg2 isEqualToString:@"ENDLESS"]
+  0865d8  if ([arg2 isEqualToString:@"ENDLESS"] == 0) goto loc_100086678
+  0865f8  [self updateTotalPlayTime:arg1 WithKey:@"Total play time in Endless Mode"]
+  086628  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[self updateTotalPlayTime:arg1 WithKey:@"Total play time in Endless Mode"] forKey:@"Total play time in Endless Mode"]
+  086640  [self updateLongestEndlessPlayTime:arg1]
+  086664  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[self updateLongestEndlessPlayTime:arg1] forKey:@"Longest Endless Mode"]
+loc_100086670:
+loc_100086678:
+  086690  [NSUserDefaults standardUserDefaults]
+  0866b0  [self totalsStatsDataRef]
+  0866dc  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  0866f8  [NSUserDefaults standardUserDefaults]
+  086718  [[NSUserDefaults standardUserDefaults] synchronize]
+  086734  [self getTotalTimePlayed]
+  086744  [NSUserDefaults standardUserDefaults]
+  08676c  [[NSUserDefaults standardUserDefaults] stringForKey:@"TOTAL_TIME_PLAYED"]
+  086788  [[[NSUserDefaults standardUserDefaults] stringForKey:@"TOTAL_TIME_PLAYED"] intValue]
+  0867a8  if ([self getTotalTimePlayed] <= [[[NSUserDefaults standardUserDefaults] stringForKey:@"TOTAL_TIME_PLAYED"] intValue]) goto loc_1000868c0
+  0867c0  [self nearestDiscreteTime:[self getTotalTimePlayed]]
+  0867e4  [ADTracker sharedInstance]
+  086814  [[ADTracker sharedInstance] setValue:[self nearestDiscreteTime:[self getTotalTimePlayed]] ForDimension:@"Hours played" AndValue:0 ForMetric:0]
+  086828  [NSUserDefaults standardUserDefaults]
+  086858  [NSString stringWithFormat:@"%d", [self getTotalTimePlayed]]
+  08687c  [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", [self getTotalTimePlayed]] forKey:@"TOTAL_TIME_PLAYED"]
+  086898  [NSUserDefaults standardUserDefaults]
+  0868ac  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_1000868c0:
+  0868ec  return
+
+== -[ADPersistentStats saveCoinsData:]   (address 0x1000869f4  size 568  kind objc)
+  086a20  [self getTotalStatData]
+  086a44  [NSMutableDictionary alloc]
+  086a58  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  086a78  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total Money Spent"]
+  086a94  [[[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total Money Spent"] integerValue]
+  086aac  t1 = ([[[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total Money Spent"] integerValue] + arg1)
+  086abc  [NSNumber numberWithInt:t1]
+  086ae8  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:t1] forKey:@"Total Money Spent"]
+  086b04  [NSUserDefaults standardUserDefaults]
+  086b24  [self totalsStatsDataRef]
+  086b4c  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  086b68  [NSUserDefaults standardUserDefaults]
+  086b84  [[NSUserDefaults standardUserDefaults] synchronize]
+  086bb8  return
+
+== -[ADPersistentStats saveDiamondsData:]   (address 0x100086c2c  size 568  kind objc)
+  086c58  [self getTotalStatData]
+  086c7c  [NSMutableDictionary alloc]
+  086c90  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  086cb0  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total Diamonds Spent"]
+  086ccc  [[[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total Diamonds Spent"] integerValue]
+  086ce4  t1 = ([[[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] objectForKey:@"Total Diamonds Spent"] integerValue] + arg1)
+  086cf4  [NSNumber numberWithInt:t1]
+  086d20  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:t1] forKey:@"Total Diamonds Spent"]
+  086d3c  [NSUserDefaults standardUserDefaults]
+  086d5c  [self totalsStatsDataRef]
+  086d84  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  086da0  [NSUserDefaults standardUserDefaults]
+  086dbc  [[NSUserDefaults standardUserDefaults] synchronize]
+  086df0  return
+
+== -[ADPersistentStats saveShotsData:]   (address 0x100086e64  size 852  kind objc)
+  086ea0  [self getTotalStatData]
+  086ec4  [NSMutableDictionary alloc]
+  086ed8  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  086efc  [[self getTotalStatData] objectForKey:@"Shots fired"]
+  086f1c  [[[self getTotalStatData] objectForKey:@"Shots fired"] integerValue]
+  086f3c  [[self getTotalStatData] objectForKey:@"Melee swings"]
+  086f50  [[[self getTotalStatData] objectForKey:@"Melee swings"] integerValue]
+  086f70  [arg1 objectForKey:@"Shots fired"]
+  086f84  [[arg1 objectForKey:@"Shots fired"] integerValue]
+  086fa4  [arg1 objectForKey:@"Melee swings"]
+  086fb8  [[arg1 objectForKey:@"Melee swings"] integerValue]
+  086fd0  t1 = ([[arg1 objectForKey:@"Shots fired"] integerValue] + [[[self getTotalStatData] objectForKey:@"Shots fired"] integerValue])
+  086fe4  [NSNumber numberWithInt:t1]
+  087014  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:t1] forKey:@"Shots fired"]
+  087024  t2 = ([[arg1 objectForKey:@"Melee swings"] integerValue] + [[[self getTotalStatData] objectForKey:@"Melee swings"] integerValue])
+  08702c  [NSNumber numberWithInt:t2]
+  087050  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:t2] forKey:@"Melee swings"]
+  087074  [NSUserDefaults standardUserDefaults]
+  087094  [self totalsStatsDataRef]
+  0870bc  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  0870d8  [NSUserDefaults standardUserDefaults]
+  0870f4  [[NSUserDefaults standardUserDefaults] synchronize]
+  08712c  return
+
+== -[ADPersistentStats saveWeaponsData:]   (address 0x1000871b8  size 1852  kind objc)
+  087208  [self getWeaponStatData]
+  087230  [NSMutableDictionary alloc]
+  087244  [[NSMutableDictionary alloc] init]
+  08725c  [[self getWeaponStatData] allKeys]
+  0872a0  [[[self getWeaponStatData] allKeys] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16]
+  0872a4  if ([[[self getWeaponStatData] allKeys] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16] == 0) goto loc_100087688
+  0872cc  &@selector(numberWithInt:)
+  0872e4  &@selector(setValue:forKey:)
+loc_1000872f4:
+loc_1000872fc:
+  08730c  if (x8 == x9) goto loc_100087318
+  087314  objc_enumerationMutation([[self getWeaponStatData] allKeys])
+loc_100087318:
+  08732c  [NSMutableDictionary alloc]
+  087334  [[NSMutableDictionary alloc] init]
+  08734c  [[self getWeaponStatData] objectForKey:x2]
+  087368  [[[self getWeaponStatData] objectForKey:x2] objectForKey:@"shotsFired"]
+  08737c  [[[[self getWeaponStatData] objectForKey:x2] objectForKey:@"shotsFired"] intValue]
+  0873a0  [[self getWeaponStatData] objectForKey:x2]
+  0873b8  [[[self getWeaponStatData] objectForKey:x2] objectForKey:@"shotsHit"]
+  0873cc  [[[[self getWeaponStatData] objectForKey:x2] objectForKey:@"shotsHit"] intValue]
+  0873f0  [arg1 objectForKey:x2]
+  08740c  [[arg1 objectForKey:x2] objectForKey:@"shotsFired"]
+  087420  [[[arg1 objectForKey:x2] objectForKey:@"shotsFired"] intValue]
+  087444  [arg1 objectForKey:x2]
+  08745c  [[arg1 objectForKey:x2] objectForKey:@"shotsHit"]
+  087474  [[[arg1 objectForKey:x2] objectForKey:@"shotsHit"] intValue]
+  087498  [arg1 objectForKey:x2]
+  0874b8  [[arg1 objectForKey:x2] objectForKey:@"kills"]
+  0874d0  [[[arg1 objectForKey:x2] objectForKey:@"kills"] intValue]
+  0874f4  [[self getWeaponStatData] objectForKey:x2]
+  08751c  [[[self getWeaponStatData] objectForKey:x2] objectForKey:@"kills"]
+  08753c  [[[[self getWeaponStatData] objectForKey:x2] objectForKey:@"kills"] intValue]
+  087564  t1 = ([[[arg1 objectForKey:x2] objectForKey:@"shotsFired"] intValue] + [[[[self getWeaponStatData] objectForKey:x2] objectForKey:@"shotsFired"] intValue])
+  087578  [NSNumber numberWithInt:t1]
+  0875ac  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInt:t1] forKey:@"shotsFired"]
+  0875c8  t2 = ([[[arg1 objectForKey:x2] objectForKey:@"shotsHit"] intValue] + [[[[self getWeaponStatData] objectForKey:x2] objectForKey:@"shotsHit"] intValue])
+  0875d0  [NSNumber numberWithInt:t2]
+  0875f0  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInt:t2] forKey:@"shotsHit"]
+  087608  t3 = ([[[[self getWeaponStatData] objectForKey:x2] objectForKey:@"kills"] intValue] + [[[arg1 objectForKey:x2] objectForKey:@"kills"] intValue])
+  087610  [NSNumber numberWithInt:t3]
+  087634  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInt:t3] forKey:@"kills"]
+  087650  [[[NSMutableDictionary alloc] init] setValue:[[NSMutableDictionary alloc] init] forKey:x3]
+  08766c  if ((x19 + 1) <u [[[self getWeaponStatData] allKeys] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16]) goto loc_1000872fc
+  087680  [[[self getWeaponStatData] allKeys] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16]
+  087684  if ([[[self getWeaponStatData] allKeys] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16] != 0) goto loc_1000872f4
+loc_100087688:
+  0876ac  [NSUserDefaults standardUserDefaults]
+  0876cc  [self weaponsStatsDataRef]
+  0876f4  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] init] forKey:[self weaponsStatsDataRef]]
+  087710  [NSUserDefaults standardUserDefaults]
+  08772c  [[NSUserDefaults standardUserDefaults] synchronize]
+  08778c  return
+
+== -[ADPersistentStats updateCounterStatsWithKey:]   (address 0x1000878f4  size 592  kind objc)
+  08792c  [self getTotalStatData]
+  087950  [NSMutableDictionary alloc]
+  087964  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  087980  [[self getTotalStatData] objectForKey:arg1]
+  08799c  [[[self getTotalStatData] objectForKey:arg1] integerValue]
+  0879c4  [NSNumber numberWithInt:([[[self getTotalStatData] objectForKey:arg1] integerValue] + 1)]
+  0879ec  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:([[[self getTotalStatData] objectForKey:arg1] integerValue] + 1)] forKey:arg1]
+  087a08  [NSUserDefaults standardUserDefaults]
+  087a28  [self totalsStatsDataRef]
+  087a50  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  087a6c  [NSUserDefaults standardUserDefaults]
+  087a88  [[NSUserDefaults standardUserDefaults] synchronize]
+  087ac4  return
+
+== -[ADPersistentStats updateMissionsCompleted:]   (address 0x100087b44  size 568  kind objc)
+  087b70  [self getTotalStatData]
+  087b94  [NSMutableDictionary alloc]
+  087ba8  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  087bc8  [[self getTotalStatData] objectForKey:@"Total number of missions completed"]
+  087be4  [[[self getTotalStatData] objectForKey:@"Total number of missions completed"] integerValue]
+  087bfc  t1 = ([[[self getTotalStatData] objectForKey:@"Total number of missions completed"] integerValue] + arg1)
+  087c0c  [NSNumber numberWithInt:t1]
+  087c38  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:t1] forKey:@"Total number of missions completed"]
+  087c54  [NSUserDefaults standardUserDefaults]
+  087c74  [self totalsStatsDataRef]
+  087c9c  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  087cb8  [NSUserDefaults standardUserDefaults]
+  087cd4  [[NSUserDefaults standardUserDefaults] synchronize]
+  087d08  return
+
+== -[ADPersistentStats updateMissionsSkipped:]   (address 0x100087d7c  size 568  kind objc)
+  087da8  [self getTotalStatData]
+  087dcc  [NSMutableDictionary alloc]
+  087de0  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  087e00  [[self getTotalStatData] objectForKey:@"Total number of missions skipped"]
+  087e1c  [[[self getTotalStatData] objectForKey:@"Total number of missions skipped"] integerValue]
+  087e34  t1 = ([[[self getTotalStatData] objectForKey:@"Total number of missions skipped"] integerValue] + arg1)
+  087e44  [NSNumber numberWithInt:t1]
+  087e70  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:t1] forKey:@"Total number of missions skipped"]
+  087e8c  [NSUserDefaults standardUserDefaults]
+  087eac  [self totalsStatsDataRef]
+  087ed4  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  087ef0  [NSUserDefaults standardUserDefaults]
+  087f0c  [[NSUserDefaults standardUserDefaults] synchronize]
+  087f40  return
+
+== -[ADPersistentStats updateDeaths]   (address 0x100087fb4  size 560  kind objc)
+  087fdc  [self getTotalStatData]
+  088000  [NSMutableDictionary alloc]
+  088014  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  088034  [[self getTotalStatData] objectForKey:@"Deaths"]
+  088050  [[[self getTotalStatData] objectForKey:@"Deaths"] integerValue]
+  088078  [NSNumber numberWithInt:([[[self getTotalStatData] objectForKey:@"Deaths"] integerValue] + 1)]
+  0880a4  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:([[[self getTotalStatData] objectForKey:@"Deaths"] integerValue] + 1)] forKey:@"Deaths"]
+  0880c0  [NSUserDefaults standardUserDefaults]
+  0880e0  [self totalsStatsDataRef]
+  088108  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  088124  [NSUserDefaults standardUserDefaults]
+  088140  [[NSUserDefaults standardUserDefaults] synchronize]
+  088174  return
+
+== -[ADPersistentStats updateNumberOfWeaponsOwned]   (address 0x1000881e4  size 560  kind objc)
+  08820c  [self getTotalStatData]
+  088230  [NSMutableDictionary alloc]
+  088244  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  088264  [[self getTotalStatData] objectForKey:@"Weapons obtained"]
+  088280  [[[self getTotalStatData] objectForKey:@"Weapons obtained"] integerValue]
+  0882a8  [NSNumber numberWithInt:([[[self getTotalStatData] objectForKey:@"Weapons obtained"] integerValue] + 1)]
+  0882d4  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInt:([[[self getTotalStatData] objectForKey:@"Weapons obtained"] integerValue] + 1)] forKey:@"Weapons obtained"]
+  0882f0  [NSUserDefaults standardUserDefaults]
+  088310  [self totalsStatsDataRef]
+  088338  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  088354  [NSUserDefaults standardUserDefaults]
+  088370  [[NSUserDefaults standardUserDefaults] synchronize]
+  0883a4  return
+
+== -[ADPersistentStats gameTimeToString:]   (address 0x100088414  size 172  kind objc)
+  088440  t1 = (((((int)floor(arg1) *h 0x8888888888888889) + (int)floor(arg1)) >> 5) + ((((int)floor(arg1) *h 0x8888888888888889) + (int)floor(arg1)) >>> 63))
+  088484  t2 = (((((int)floor((arg1 / 60)) *h 0x8888888888888889) + (int)floor((arg1 / 60))) >> 5) + ((((int)floor((arg1 / 60)) *h 0x8888888888888889) + (int)floor((arg1 / 60))) >>> 63))
+  0884b0  [NSString stringWithFormat:@"%02d:%02d:%02d", (int)floor(((float)(int)floor((arg1 / 60)) / 60)), ((int)floor((arg1 / 60)) - t2 * 60), ((int)floor(arg1) - t1 * 60)]
+  0884bc  return
+
+== -[ADPersistentStats updateTotalPlayTime:WithKey:]   (address 0x1000884c0  size 640  kind objc)
+  088504  [self getTotalStatData]
+  088524  [[self getTotalStatData] objectForKey:arg2]
+  088554  [[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"]
+  08857c  [[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:2]
+  08859c  [[[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:2] integerValue]
+  0885b8  [[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:1]
+  0885cc  [[[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:1] integerValue]
+  0885e8  [[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:0]
+  0885fc  [[[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:0] integerValue]
+  088600  t1 = (float)[[[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:2] integerValue]
+  088620  t2 = ([[[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:1] integerValue] + (((uint)(floor(arg1) + t1) *h 0x8888888888888889) >>> 5))
+  088634  t3 = ([[[[[self getTotalStatData] objectForKey:arg2] componentsSeparatedByString:@":"] objectAtIndex:0] integerValue] + ((t2 *h 0x8888888888888889) >>> 5))
+  088688  [NSString stringWithFormat:@"%02d:%02d:%02d", t3, (t2 - ((t2 *h 0x8888888888888889) >>> 5) * 60), ((uint)(floor(arg1) + t1) - (((uint)(floor(arg1) + t1) *h 0x8888888888888889) >>…]
+  0886d0  return
+
+== -[ADPersistentStats updateLongestEndlessPlayTime:]   (address 0x100088740  size 540  kind objc)
+  088774  [self getTotalStatData]
+  088798  [[self getTotalStatData] objectForKey:@"Longest Endless Mode"]
+  0887c8  [[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"]
+  0887ec  [[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:0]
+  08880c  [[[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:0] integerValue]
+  088820  [[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:1]
+  088834  [[[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:1] integerValue]
+  08884c  [[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:2]
+  088860  [[[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:2] integerValue]
+  088868  t1 = ([[[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:0] integerValue] * 3600)
+  08886c  t2 = (t1 + [[[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:1] integerValue] * 60)
+  088870  t3 = (t2 + [[[[[self getTotalStatData] objectForKey:@"Longest Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:2] integerValue])
+  088894  if ((float)t3 >= (or unordered) arg1) goto loc_1000888bc
+  0888ac  [self gameTimeToString:arg1]
+  0888b8  goto loc_1000888c4
+loc_1000888bc:
+loc_1000888c4:
+  0888f8  return
+
+== -[ADPersistentStats computeTotalEnemyKillCount]   (address 0x10008895c  size 504  kind objc)
+  088988  [self getEnemyStatData]
+  0889a4  [[self getEnemyStatData] objectEnumerator]
+  0889f8  &@selector(integerValue)
+  088a04  goto loc_100088a20
+loc_100088a08:
+  088a14  t1 = ([[[[[self getEnemyStatData] objectEnumerator] nextObject] objectForKey:@"Killed"] integerValue] + x8)
+loc_100088a20:
+  088a28  [[[self getEnemyStatData] objectEnumerator] nextObject]
+  088a40  if ([[[self getEnemyStatData] objectEnumerator] nextObject] == 0) goto loc_100088ae4
+  088a50  [NSDictionary class]
+  088a64  [[[[self getEnemyStatData] objectEnumerator] nextObject] isKindOfClass:[NSDictionary class]]
+  088a6c  if ([[[[self getEnemyStatData] objectEnumerator] nextObject] isKindOfClass:[NSDictionary class]] == 0) goto loc_100088a20
+  088a84  [[[[self getEnemyStatData] objectEnumerator] nextObject] objectForKey:@"Killed"]
+  088a98  [[[[[self getEnemyStatData] objectEnumerator] nextObject] objectForKey:@"Killed"] integerValue]
+  088aac  if ([[[[[self getEnemyStatData] objectEnumerator] nextObject] objectForKey:@"Killed"] integerValue] == 0) goto loc_100088a20
+  088ac0  [[[[self getEnemyStatData] objectEnumerator] nextObject] objectForKey:@"Killed"]
+  088ad4  [[[[[self getEnemyStatData] objectEnumerator] nextObject] objectForKey:@"Killed"] integerValue]
+  088adc  goto loc_100088a08
+  088ae0  goto loc_100088b2c
+loc_100088ae4:
+  088b0c  return
+
+== -[ADPersistentStats computeChallengesWonAndSave]   (address 0x100088b54  size 556  kind objc)
+  088b80  [ADChallengeData sharedChallengeData]
+  088b9c  [[ADChallengeData sharedChallengeData] computeTotalChallengesWon]
+  088bc0  [NSMutableDictionary alloc]
+  088bd8  [self getTotalStatData]
+  088bfc  [[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]]
+  088c24  [NSNumber numberWithInteger:[[ADChallengeData sharedChallengeData] computeTotalChallengesWon]]
+  088c50  [[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] setValue:[NSNumber numberWithInteger:[[ADChallengeData sharedChallengeData] computeTotalChallengesWon]] forKey:@"Challenge stars unlocked"]
+  088c74  [NSUserDefaults standardUserDefaults]
+  088c94  [self totalsStatsDataRef]
+  088cbc  [[NSUserDefaults standardUserDefaults] setObject:[[NSMutableDictionary alloc] initWithDictionary:[self getTotalStatData]] forKey:[self totalsStatsDataRef]]
+  088cd8  [NSUserDefaults standardUserDefaults]
+  088cf4  [[NSUserDefaults standardUserDefaults] synchronize]
+  088d1c  return
+
+== -[ADPersistentStats highScore]   (address 0x100088d80  size 120  kind objc)
+  088da0  [NSUserDefaults standardUserDefaults]
+  088dc4  [[NSUserDefaults standardUserDefaults] integerForKey:@"highscore"]
+  088de0  return
+
+== -[ADPersistentStats saveScore:]   (address 0x100088df8  size 228  kind objc)
+  088e18  [self highScore]
+  088e20  if ([self highScore] >= arg1) goto loc_100088eac
+  088e3c  [NSUserDefaults standardUserDefaults]
+  088e64  [[NSUserDefaults standardUserDefaults] setInteger:arg1 forKey:@"highscore"]
+  088e78  [NSUserDefaults standardUserDefaults]
+  088e94  [[NSUserDefaults standardUserDefaults] synchronize]
+  088ea8  return
+loc_100088eac:
+  088eb8  return
+
+== -[ADPersistentStats getEnemyListWithKillsGreaterThan:]   (address 0x100088edc  size 684  kind objc)
+  088f18  [self getEnemyStatData]
+  088f3c  [NSMutableDictionary alloc]
+  088f4c  [[NSMutableDictionary alloc] init]
+  088f90  [[self getEnemyStatData] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  088f98  if ([[self getEnemyStatData] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_1000890c8
+loc_100088fdc:
+loc_100088fe0:
+  088ff0  if (x8 == x9) goto loc_100088ffc
+  088ff8  objc_enumerationMutation([self getEnemyStatData])
+loc_100088ffc:
+  089010  [[self getEnemyStatData] objectForKey:x2]
+  089028  [[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"]
+  089038  if ([[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] == 0) goto loc_100089094
+  089048  [[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"]
+  089060  [[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] integerValue]
+  089080  if ([[[[self getEnemyStatData] objectForKey:x2] objectForKey:@"Killed"] integerValue] < 1) goto loc_100089094
+  089090  [[[NSMutableDictionary alloc] init] setValue:[[self getEnemyStatData] objectForKey:x2] forKey:x3]
+loc_100089094:
+  0890a4  if ((x27 + 1) <u [[self getEnemyStatData] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_100088fe0
+  0890bc  [[self getEnemyStatData] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0890c4  if ([[self getEnemyStatData] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_100088fdc
+loc_1000890c8:
+  089110  return
+
+== -[ADPersistentStats getUnlockedWeapons]   (address 0x100089188  size 768  kind objc)
+  0891d0  [NSMutableDictionary alloc]
+  0891e0  [[NSMutableDictionary alloc] init]
+  0891f8  [self getWeaponStatData]
+  08921c  [ADInventory sharedInventory]
+  089238  [[ADInventory sharedInventory] weapons]
+  089288  [[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  089290  if ([[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_1000893ac
+  0892ac  &@selector(boolValue)
+  0892b4  &@selector(setObject:forKey:)
+loc_1000892c8:
+loc_1000892cc:
+  0892d8  if (x8 == x28) goto loc_1000892e4
+  0892e0  objc_enumerationMutation([[ADInventory sharedInventory] weapons])
+loc_1000892e4:
+  0892f8  [x0 objectForKey:@"purchased"]
+  08930c  [[x0 objectForKey:@"purchased"] boolValue]
+  08931c  if ([[x0 objectForKey:@"purchased"] boolValue] == 0) goto loc_100089380
+  089330  [x0 objectForKey:@"name"]
+  08934c  [[self getWeaponStatData] objectForKey:[x0 objectForKey:@"name"]]
+  08936c  [[[NSMutableDictionary alloc] init] setObject:[[self getWeaponStatData] objectForKey:[x0 objectForKey:@"name"]] forKey:[x0 objectForKey:@"name"]]
+loc_100089380:
+  089388  if ((x21 + 1) <u [[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_1000892cc
+  0893a0  [[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0893a8  if ([[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_1000892c8
+loc_1000893ac:
+  089400  return
+
+== -[ADPersistentStats getTotalTimePlayed]   (address 0x100089488  size 636  kind objc)
+  0894b0  [self getTotalStatData]
+  0894d8  [[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"]
+  0894f8  [[self getTotalStatData] objectForKey:@"Total play time in Endless Mode"]
+  089524  [[[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"] componentsSeparatedByString:@":"]
+  089548  [[[[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"] componentsSeparatedByString:@":"] objectAtIndex:0]
+  089568  [[[[[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"] componentsSeparatedByString:@":"] objectAtIndex:0] intValue]
+  089584  [[[[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"] componentsSeparatedByString:@":"] objectAtIndex:1]
+  089598  [[[[[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"] componentsSeparatedByString:@":"] objectAtIndex:1] intValue]
+  0895b0  t1 = ([[[[[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"] componentsSeparatedByString:@":"] objectA… > 29 ? [[[[[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"] componentsSeparatedByString:@":"] objectAtIndex:0] intValue] + 1 : [[[[[self getTotalStatData] objectForKey:@"Total play time in Challenge Mode"] componentsSeparatedByString:@":"] objectAtInd…
+  0895c4  [[[self getTotalStatData] objectForKey:@"Total play time in Endless Mode"] componentsSeparatedByString:@":"]
+  0895ec  [[[[self getTotalStatData] objectForKey:@"Total play time in Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:0]
+  089600  [[[[[self getTotalStatData] objectForKey:@"Total play time in Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:0] intValue]
+  089620  [[[[self getTotalStatData] objectForKey:@"Total play time in Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:1]
+  089634  [[[[[self getTotalStatData] objectForKey:@"Total play time in Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:1] intValue]
+  08964c  t2 = (t1 + [[[[[self getTotalStatData] objectForKey:@"Total play time in Endless Mode"] componentsSeparatedByString:@":"] objectAtIndex:0] intValue])
+  089650  t3 = ([[[[[self getTotalStatData] objectForKey:@"Total play time in Endless Mode"] componentsSeparatedByString:@":"] objectAtI… > 29 ? t2 + 1 : t2)
+  089690  return
+
+== -[ADPersistentStats nearestDiscreteTime:]   (address 0x100089704  size 800  kind objc)
+  089754  [NSNumber numberWithInt:3]
+  089774  [NSNumber numberWithInt:5]
+  089790  [NSNumber numberWithInt:10]
+  0897ac  [NSNumber numberWithInt:15]
+  0897c8  [NSNumber numberWithInt:20]
+  0897f4  [NSArray arrayWithObjects:&sp[0x10] count:5]
+  089830  if (arg1 >= 4) goto loc_100089868
+  089854  [NSString stringWithFormat:@"%d", arg1]
+  089864  goto loc_100089978
+loc_100089868:
+  08987c  &@selector(objectAtIndex:)
+  08988c  &@selector(intValue)
+  08989c  goto loc_1000898c0
+loc_1000898a0:
+  0898a4  t1 = (([[[NSArray arrayWithObjects:&sp[0x10] count:5] objectAtIndex:x2] intValue] - arg1) <0 ? -([[[NSArray arrayWithObjects:&sp[0x10] count:5] objectAtIndex:x2] intValue] - arg1) : ([[[NSArray arrayWithObjects:&sp[0x10] count:5] objectAtIndex:x2] intValue] - arg1))
+loc_1000898c0:
+  0898c8  [[NSArray arrayWithObjects:&sp[0x10] count:5] count]
+  0898d0  if (x22 >=u [[NSArray arrayWithObjects:&sp[0x10] count:5] count]) goto loc_10008990c
+  0898e0  [[NSArray arrayWithObjects:&sp[0x10] count:5] objectAtIndex:x2]
+  0898f4  [[[NSArray arrayWithObjects:&sp[0x10] count:5] objectAtIndex:x2] intValue]
+  0898f8  goto loc_1000898a0
+  089908  goto loc_1000899b8
+loc_10008990c:
+  089920  [[NSArray arrayWithObjects:&sp[0x10] count:5] objectAtIndex:x2]
+  089940  [[[NSArray arrayWithObjects:&sp[0x10] count:5] objectAtIndex:x2] intValue]
+  089960  [NSString stringWithFormat:@"%d+", [[[NSArray arrayWithObjects:&sp[0x10] count:5] objectAtIndex:x2] intValue]]
+loc_100089978:
+  0899ac  return
+
+== -[ADPersistentStats enemyStatsDataRef]   (address 0x100089a24  size 16  kind objc)
+  089a30  return
+
+== -[ADPersistentStats totalsStatsDataRef]   (address 0x100089a34  size 16  kind objc)
+  089a40  return
+
+== -[ADPersistentStats weaponsStatsDataRef]   (address 0x100089a44  size 16  kind objc)
+  089a50  return
+
+== -[ADPersistentStats enemyBestiaryDataRef]   (address 0x100089a54  size 16  kind objc)
+  089a60  return
+
+== -[ADPersistentStats unlockedEnemies]   (address 0x100089a64  size 16  kind objc)
+  089a70  return
+
+== -[ADPersistentStats setUnlockedEnemies:]   (address 0x100089a74  size 56  kind objc)
+  089a98  self->_unlockedEnemies = arg1
+  089aa8  return
+
+== -[ADPersistentStats bestiary]   (address 0x100089aac  size 16  kind objc)
+  089ab8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADPersistentStats setBestiary:]   (address 0x100089abc  size 12  kind objc)
+  089ac4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADPersistentStats enemies]   (address 0x100089ac8  size 16  kind objc)
+  089ad4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADPersistentStats setEnemies:]   (address 0x100089ad8  size 12  kind objc)
+  089ae0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADPersistentStats .cxx_destruct]   (address 0x100089ae4  size 164  kind objc)

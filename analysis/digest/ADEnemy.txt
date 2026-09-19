@@ -1,0 +1,1440 @@
+
+== -[ADEnemy initWithName:]   (address 0x10005ddd4  size 2128  kind objc)
+  05de2c  [super init]
+  05de34  if (self == 0) goto loc_10005e508
+  05de50  [self setName:arg1]
+  05de74  [arg1 componentsSeparatedByString:@" "]
+  05de98  [[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]
+  05debc  [self setSoundsPrefix:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]]
+  05dee8  [ADBrickManager sharedBrickManager]
+  05df08  [arg1 componentsSeparatedByString:@" "]
+  05df20  [[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]
+  05df44  [[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]]
+  05df84  [self setAttackDistance:0.3]
+  05dfa4  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"life"]
+  05dfc4  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"life"] floatValue]
+  05dfdc  [self setLife:[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"life"] floatValue]]
+  05dffc  [self life]
+  05e010  [self setMaxLife:[self life]]
+  05e024  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"speed"]
+  05e038  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"speed"] floatValue]
+  05e050  [self setSpeed:[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"speed"] floatValue]]
+  05e06c  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"ambiant"]
+  05e084  self->ambiantName = [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"ambiant"]
+  05e0a0  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"score"]
+  05e0c0  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"score"] intValue]
+  05e0d8  [self setScore:[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"score"] intValue]]
+  05e0f4  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"comboBonus"]
+  05e108  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"comboBonus"] intValue]
+  05e120  [self setComboBonus:[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"comboBonus"] intValue]]
+  05e13c  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"coinsReward"]
+  05e150  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"coinsReward"] intValue]
+  05e168  [self setCoinsReward:[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"coinsReward"] intValue]]
+  05e184  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"explosion"]
+  05e1a8  [self setExplosion_dictionary:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"explosion"]]
+  05e1c4  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"shield"]
+  05e1e8  [self setShield_dictionary:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"shield"]]
+  05e204  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"dodge"]
+  05e228  [self setDodge_dictionary:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"dodge"]]
+  05e244  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"circling"]
+  05e268  [self setCircling_dictionary:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"circling"]]
+  05e284  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"berserk"]
+  05e2a8  [self setBerserk_dictionary:[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"berserk"]]
+  05e2c8  [self setState:0xffffffff]
+  05e2e0  [self setSpawn_sound_duration:1]
+  05e2f4  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"agressiveSpeed"]
+  05e308  if ([[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"agressiveSpeed"] == 0) goto loc_10005e354
+  05e31c  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"agressiveSpeed"]
+  05e330  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"agressiveSpeed"] floatValue]
+  05e344  [self setAgressiveSpeed:[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"agressiveSpeed"] floatValue]]
+  05e350  goto loc_10005e37c
+loc_10005e354:
+  05e364  [self speed]
+  05e378  [self setAgressiveSpeed:[self speed]]
+loc_10005e37c:
+  05e394  [ADGameModifiers sharedModifiers]
+  05e3b0  [[ADGameModifiers sharedModifiers] enemiLifeModifier]
+  05e3c0  [self life]
+  05e3d0  [self setLife:([[ADGameModifiers sharedModifiers] enemiLifeModifier] * [self life])]
+  05e3e4  [ADGameModifiers sharedModifiers]
+  05e400  [[ADGameModifiers sharedModifiers] enemiSpeedModifier]
+  05e418  [self speed]
+  05e428  [self setSpeed:([[ADGameModifiers sharedModifiers] enemiSpeedModifier] * [self speed])]
+  05e448  [S3DEngine engine]
+  05e468  [self soundsPrefix]
+  05e48c  [[S3DEngine engine] playListWithName:[self soundsPrefix]]
+  05e4a4  self->playlist = [[S3DEngine engine] playListWithName:[self soundsPrefix]]
+  05e4d0  [self displayNameForName]
+  05e4f4  [self setDisplayName:[self displayNameForName]]
+loc_10005e508:
+  05e534  return
+
+== -[ADEnemy setPositionFromDictionary:]   (address 0x10005e624  size 516  kind objc)
+  05e668  [arg1 objectForKey:@"spawn_angle"]
+  05e688  [[arg1 objectForKey:@"spawn_angle"] floatValue]
+  05e6a8  [self randomAdditionalSpawnAngle]
+  05e6c0  [arg1 objectForKey:@"spawn_distance"]
+  05e6d4  [[arg1 objectForKey:@"spawn_distance"] floatValue]
+  05e6ec  t1 = (([[arg1 objectForKey:@"spawn_angle"] floatValue] + [self randomAdditionalSpawnAngle]) * 3.14159)
+  05e70c  d0 = sin((t1 / 180)), d1 = cos((t1 / 180))
+  05e730  [self setPosition:{([[arg1 objectForKey:@"spawn_distance"] floatValue] * sin((t1 / 180))), ([[arg1 objectForKey:@"spawn_distance"] floatValue] * cos((t1 / 180)))}]
+  05e744  [self updateOrientation]
+  05e758  [self dodge_dictionary]
+  05e768  if ([self dodge_dictionary] == 0) goto loc_10005e778
+  05e774  goto loc_10005e7a8
+loc_10005e778:
+  05e788  [self circling_dictionary]
+  05e7a4  if ([self circling_dictionary] == 0) goto loc_10005e7d0
+loc_10005e7a8:
+  05e7b8  [self randomizeNormalAngle]
+  05e7cc  [self updateNormalOrientation]
+loc_10005e7d0:
+  05e7ec  return
+
+== -[ADEnemy setOrientationWithX:andY:]   (address 0x10005e828  size 168  kind objc)
+  05e86c  self->orientation.x = (arg1 / sqrt(((arg1 * arg1) + (arg2 * arg2))))
+  05e874  self->orientation.y = (arg2 / sqrt(((arg1 * arg1) + (arg2 * arg2))))
+  05e888  [self position]
+  05e89c  [self position]
+  05e8ac  atan2f(([self position].1 / sqrt(((arg1 * arg1) + (arg2 * arg2)))), ([self position].0 / sqrt(((arg1 * arg1) + (arg2 * arg2)))))
+  05e8cc  tail [self setAngleFromPlayer:atan2f(([self position].1 / sqrt(((arg1 * arg1) + (arg2 * arg2)))), ([self position].0 / sqrt(((arg1 * arg1) + (arg2 * arg2)))))]
+
+== -[ADEnemy getOrientation]   (address 0x10005e8d0  size 20  kind objc)
+  05e8e0  return
+
+== -[ADEnemy updateOrientation]   (address 0x10005e8e4  size 204  kind objc)
+  05e90c  [self position]
+  05e91c  self->orientation.x = -[self position].0
+  05e928  [self position]
+  05e944  t1 = sqrt(((self->orientation.x * self->orientation.x) + ([self position].1 * [self position].1)))
+  05e964  [self position]
+  05e978  [self position]
+  05e988  atan2f(([self position].1 / t1), ([self position].0 / t1))
+  05e9ac  tail [self setAngleFromPlayer:atan2f(([self position].1 / t1), ([self position].0 / t1))]
+
+== -[ADEnemy randomizeNormalAngle]   (address 0x10005e9b0  size 60  kind objc)
+  05e9c0  rand()
+  05e9dc  self->normalAngle = s0
+  05e9e8  return
+
+== -[ADEnemy updateNormalOrientation]   (address 0x10005e9ec  size 148  kind objc)
+  05ea20  d0 = sin(self->normalAngle), d1 = cos(self->normalAngle)
+  05ea44  t1 = ((self->orientation.x * cos(self->normalAngle)) - (self->orientation.y * sin(self->normalAngle)))
+  05ea48  t2 = ((cos(self->normalAngle) * self->orientation.y) + (self->orientation.x * sin(self->normalAngle)))
+  05ea7c  tail [self updateOrientation]
+
+== -[ADEnemy setPosition:]   (address 0x10005ea80  size 276  kind objc)
+  05eab4  [self sound]
+  05ead8  [self position]
+  05eae8  [self position]
+  05eb08  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+  05eb1c  [self position]
+  05eb2c  [self position]
+  05eb3c  [self position]
+  05eb4c  [self position]
+  05eb7c  tail [self setSquaredDistance:(([self position].0 * [self position].0) + ([self position].1 * [self position].1))]
+
+== -[ADEnemy update:]   (address 0x10005eb94  size 3952  kind objc)
+  05ebd0  [self state]
+  05ebd8  if ([self state] > 998) goto loc_10005ed60
+  05ebe0  if ([self state] >u 9) goto loc_10005f920
+  05ebf8  switch ([self state]) { case 0: goto loc_10005ebfc; case 1: goto loc_10005ee80; case 2: goto loc_10005eeac; case 3: goto loc_10005ef80; case 4: goto loc_10005f198; case 5: goto loc_10005f1b4; case 6: goto loc_10005f1f8; case 7: goto loc_10005f2d0; case 8: goto loc_10005f398; case 9: goto loc_10005f470 }
+loc_10005ebfc:  ; case 0
+  05ec10  [self timeInState]
+  05ec2c  [self spawn_time]
+  05ec3c  if ([self timeInState] <= (or unordered) ([self spawn_time] + -2)) goto loc_10005ecd8
+  05ec50  [self requiredPlaylistActivation]
+  05ec54  if (([self requiredPlaylistActivation] & 1)) goto loc_10005ecd8
+  05ec6c  [self setRequiredPlaylistActivation:1]
+  05ec80  [self parentBrick]
+  05eca0  [self soundsPrefix]
+  05ecc4  [[self parentBrick] loadPLaylistWithName:[self soundsPrefix]]
+loc_10005ecd8:
+  05ece0  [self timeInState]
+  05ecf0  [self spawn_time]
+  05ecf8  if ([self timeInState] <= (or unordered) [self spawn_time]) goto loc_10005f920
+  05ed0c  [self playlistActivated]
+  05ed10  if ([self playlistActivated] != 0) goto loc_10005eea0
+  05ed24  [self name]
+  05ed40  NSLog(@"%@ wants to spawn but has no playlist", [self name])
+  05ed50  &@selector(setPlaylistActivated:)
+  05ed5c  goto loc_10005f1ec
+loc_10005ed60:
+  05ed64  if ([self state] != 999) goto loc_10005f920
+  05ed7c  [self timeInState]
+  05ed90  if ([self timeInState] <= (or unordered) 0.1) goto loc_10005edc4
+  05edac  [self->painSound playing]
+  05edb0  if ([self->painSound playing] == 0) goto loc_10005edc4
+  05edc0  self->deadSoundHasPlayed = 1
+loc_10005edc4:
+  05edcc  [self timeInState]
+  05edd8  if ([self timeInState] <= (or unordered) 0.1) goto loc_10005f920
+  05ede4  [self timeInState]
+  05ee04  [self->painSound duration]
+  05ee0c  if ([self timeInState] <= (or unordered) [self->painSound duration]) goto loc_10005f920
+  05ee1c  if (self->deadSoundHasPlayed == 0) goto loc_10005f920
+  05ee34  [ADBrickManager sharedBrickManager]
+  05ee50  [[ADBrickManager sharedBrickManager] checkPlaylistDeactivation]
+  05ee70  [self setState:0xffffffff]
+  05ee78  &@selector(destroyEnemy)
+  05ee7c  goto loc_10005f914
+loc_10005ee80:  ; case 1
+  05ee94  [self spawn_sound_duration]
+  05ee9c  if ([self spawn_sound_duration] != 0.0) goto loc_10005f5c8
+loc_10005eea0:
+  05eea4  &@selector(spawn)
+  05eea8  goto loc_10005f914
+loc_10005eeac:  ; case 2
+  05eec0  [self circling_dictionary]
+  05eed4  if ([self circling_dictionary] == 0) goto loc_10005f620
+  05eee0  [self circling_dictionary]
+  05ef04  [[self circling_dictionary] objectForKey:@"circlingFactor"]
+  05ef20  [[[self circling_dictionary] objectForKey:@"circlingFactor"] floatValue]
+  05ef54  t1 = ((1 - [[[self circling_dictionary] objectForKey:@"circlingFactor"] floatValue]) * self->orientation.x)
+  05ef68  t2 = ([[[self circling_dictionary] objectForKey:@"circlingFactor"] floatValue] * self->normalOrientation.x)
+  05ef70  t3 = ((1 - [[[self circling_dictionary] objectForKey:@"circlingFactor"] floatValue]) * self->orientation.y)
+  05ef74  t4 = ([[[self circling_dictionary] objectForKey:@"circlingFactor"] floatValue] * self->normalOrientation.y)
+  05ef7c  goto loc_10005f630
+loc_10005ef80:  ; case 3
+  05ef90  [self agressiveSpeed]
+  05efa4  [self setSpeed:[self agressiveSpeed]]
+  05efbc  [self position]
+  05efe4  [self speed]
+  05eff4  [self position]
+  05f020  [self speed]
+  05f048  [self setPosition:{([self position].0 + (arg1 * (self->orientation.x * [self speed]))), ([self position].1 + (arg1 * (self->orientation.y * [self speed])))}]
+  05f05c  [self squaredDistance]
+  05f078  [self attackDistance]
+  05f088  [self attackDistance]
+  05f094  if ([self squaredDistance] >= (or unordered) ([self attackDistance] * [self attackDistance])) goto loc_10005f920
+  05f0ac  [NSArray alloc]
+  05f0c4  [self name]
+  05f0ec  [[NSArray alloc] initWithObjects:[self name]]
+  05f11c  [NSDictionary dictionaryWithObject:[[NSArray alloc] initWithObjects:[self name]] forKey:@"PARAM_ARRAY"]
+  05f140  [NSNotificationCenter defaultCenter]
+  05f16c  [[NSNotificationCenter defaultCenter] postNotificationName:@"PLAYER_DIED" object:0 userInfo:[NSDictionary dictionaryWithObject:[[NSArray alloc] initWithObjects:[self name]] forKey:@"PARAM_ARRAY"]]
+  05f188  [self attack]
+  05f194  goto loc_10005f850
+loc_10005f198:  ; case 4
+  05f1ac  [self setSpeed:0]
+  05f1b0  goto loc_10005f920
+loc_10005f1b4:  ; case 5
+  05f1c4  [self timeInState]
+  05f1d8  if ([self timeInState] <= (or unordered) 0.1) goto loc_10005f920
+  05f1e0  &@selector(setState:)
+loc_10005f1ec:
+  05f1f0  [self <sel x1>]
+  05f1f4  goto loc_10005f920
+loc_10005f1f8:  ; case 6
+  05f20c  [self timeInState]
+  05f228  [self shield_dictionary]
+  05f250  [[self shield_dictionary] objectForKey:@"shieldTime"]
+  05f270  [[[self shield_dictionary] objectForKey:@"shieldTime"] floatValue]
+  05f28c  if ([self timeInState] < (or unordered) [[[self shield_dictionary] objectForKey:@"shieldTime"] floatValue]) goto loc_10005f920
+  05f2a0  if (self->shieldDuration != 0.0) goto loc_10005f8a0
+  05f2c4  [self playAnySoundContaining:@"_shieldup" looping:0 spatialized:1]
+  05f2c8  self->shieldDuration = [self playAnySoundContaining:@"_shieldup" looping:0 spatialized:1]
+  05f2cc  goto loc_10005f920
+loc_10005f2d0:  ; case 7
+  05f2e0  [self timeInState]
+  05f2fc  [self dodge_dictionary]
+  05f324  [[self dodge_dictionary] objectForKey:@"dodgeTime"]
+  05f344  [[[self dodge_dictionary] objectForKey:@"dodgeTime"] floatValue]
+  05f360  if ([self timeInState] <= (or unordered) [[[self dodge_dictionary] objectForKey:@"dodgeTime"] floatValue]) goto loc_10005f4fc
+  05f374  [self walk]
+  05f388  [self randomizeNormalAngle]
+  05f390  &@selector(updateNormalOrientation)
+  05f394  goto loc_10005f914
+loc_10005f398:  ; case 8
+  05f3ac  [self position]
+  05f3d4  [self speed]
+  05f3e4  [self position]
+  05f410  [self speed]
+  05f438  [self setPosition:{([self position].0 + (arg1 * (self->orientation.x * [self speed]))), ([self position].1 + (arg1 * (self->orientation.y * [self speed])))}]
+  05f44c  [self squaredDistance]
+  05f460  if ([self squaredDistance] >= (or unordered) 0.09) goto loc_10005f920
+  05f468  &@selector(attack)
+  05f46c  goto loc_10005f914
+loc_10005f470:  ; case 9
+  05f484  [self timeInState]
+  05f498  if ([self timeInState] <= (or unordered) 0.1) goto loc_10005f920
+  05f4a4  [self timeInState]
+  05f4bc  [self sound]
+  05f4d8  [[self sound] duration]
+  05f4ec  if ([self timeInState] <= (or unordered) [[self sound] duration]) goto loc_10005f920
+  05f4f4  &@selector(berserk)
+  05f4f8  goto loc_10005f914
+loc_10005f4fc:
+  05f504  [self dodge_dictionary]
+  05f520  [[self dodge_dictionary] objectForKey:@"dodgeSpeed"]
+  05f534  [[[self dodge_dictionary] objectForKey:@"dodgeSpeed"] floatValue]
+  05f560  [self position]
+  05f57c  [self position]
+  05f588  t5 = ([[[self dodge_dictionary] objectForKey:@"dodgeSpeed"] floatValue] * self->normalOrientation.x)
+  05f59c  t6 = ([[[self dodge_dictionary] objectForKey:@"dodgeSpeed"] floatValue] * self->normalOrientation.y)
+  05f5b8  [self setPosition:{([self position].0 + (arg1 * t5)), ([self position].1 + (arg1 * t6))}]
+  05f5c0  &@selector(updateOrientation)
+  05f5c4  goto loc_10005f914
+loc_10005f5c8:
+  05f5d8  [self timeInState]
+  05f5e8  [self spawn_sound_duration]
+  05f5f0  if ([self timeInState] <= (or unordered) [self spawn_sound_duration]) goto loc_10005f920
+  05f604  [self squaredDistance]
+  05f610  if ([self squaredDistance] >= (or unordered) 9) goto loc_10005f90c
+  05f618  &@selector(aggressive)
+  05f61c  goto loc_10005f914
+loc_10005f620:
+loc_10005f630:
+  05f644  [self berserk_dictionary]
+  05f658  if ([self berserk_dictionary] == 0) goto loc_10005f674
+loc_10005f674:
+  05f688  [self position]
+  05f6a4  [self speed]
+  05f6c4  [self position]
+  05f6d4  [self speed]
+  05f6fc  [self setPosition:{([self position].0 + (arg1 * (d10 * [self speed]))), ([self position].1 + (arg1 * (d11 * [self speed])))}]
+  05f714  [self squaredDistance]
+  05f720  if ([self squaredDistance] >= (or unordered) 9) goto loc_10005f764
+  05f72c  [self berserk_dictionary]
+  05f740  if ([self berserk_dictionary] == 0) goto loc_10005f750
+  05f748  &@selector(transitionToBerserk)
+  05f74c  goto loc_10005f758
+loc_10005f750:
+  05f754  &@selector(aggressive)
+loc_10005f758:
+  05f760  [self aggressive | transitionToBerserk]
+loc_10005f764:
+  05f76c  [self circling_dictionary]
+  05f780  if ([self circling_dictionary] == 0) goto loc_10005f7ac
+  05f794  [self updateOrientation]
+  05f7a8  [self updateNormalOrientation]
+loc_10005f7ac:
+  05f7b4  [self berserk_dictionary]
+  05f7c4  if ([self berserk_dictionary] == 0) goto loc_10005f850
+  05f7d8  [self timeInState]
+  05f7e8  [self berserk_dictionary]
+  05f80c  [[self berserk_dictionary] objectForKey:@"disappearAfter"]
+  05f828  [[[self berserk_dictionary] objectForKey:@"disappearAfter"] floatValue]
+  05f830  if ([self timeInState] <= (or unordered) [[[self berserk_dictionary] objectForKey:@"disappearAfter"] floatValue]) goto loc_10005f85c
+  05f84c  goto loc_10005f894
+loc_10005f850:
+  05f858  goto loc_10005f920
+loc_10005f85c:
+  05f864  [self squaredDistance]
+  05f890  if ([self squaredDistance] <= (or unordered) 144) goto loc_10005f920
+loc_10005f894:
+  05f898  &@selector(berserkGoAway)
+  05f89c  goto loc_10005f914
+loc_10005f8a0:
+  05f8a8  [self timeInState]
+  05f8b8  [self shield_dictionary]
+  05f8d4  [[self shield_dictionary] objectForKey:@"shieldTime"]
+  05f8e8  [[[self shield_dictionary] objectForKey:@"shieldTime"] floatValue]
+  05f8f0  t7 = ([[[self shield_dictionary] objectForKey:@"shieldTime"] floatValue] + self->shieldDuration)
+  05f908  if ([self timeInState] <= (or unordered) t7) goto loc_10005f920
+loc_10005f90c:
+  05f910  &@selector(walk)
+loc_10005f914:
+  05f91c  [self aggressive | attack | berserk | berserkGoAway | destroyEnemy | spawn | updateNormalOrientation | updateOrientation | walk]
+loc_10005f920:
+  05f934  [self sound]
+  05f948  if ([self sound] == 0) goto loc_10005f9b4
+  05f954  [self sound]
+  05f978  [self position]
+  05f988  [self position]
+  05f9a8  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+loc_10005f9b4:
+  05f9c4  [self timeInState]
+  05fa00  tail [self setTimeInState:([self timeInState] + arg1)]
+loc_10005fa04:
+loc_10005fa08:
+loc_10005fa0c:
+  05fa18  goto loc_10005fa04
+  05fa1c  goto loc_10005fa04
+  05fa20  goto loc_10005facc
+  05fa28  goto loc_10005fa38
+loc_10005fa38:
+  05fa3c  goto loc_10005fa0c
+  05fa44  goto loc_10005fabc
+  05fa50  goto loc_10005fab8
+  05fa5c  goto loc_10005fa94
+  05fa64  goto loc_10005fa80
+  05fa74  goto loc_10005fa80
+  05fa78  goto loc_10005facc
+loc_10005fa80:
+  05fa84  goto loc_10005fa0c
+  05fa88  goto loc_10005fa04
+loc_10005fa94:
+  05fa98  goto loc_10005fad0
+  05fa9c  goto loc_10005fa04
+  05faa0  goto loc_10005fa04
+  05faa4  goto loc_10005facc
+  05faac  goto loc_10005fabc
+loc_10005fab8:
+loc_10005fabc:
+  05fac0  goto loc_10005fa0c
+  05fac4  goto loc_10005fa04
+  05fac8  goto loc_10005fa04
+loc_10005facc:
+loc_10005fad0:
+  05fad8  goto loc_10005fa08
+
+== -[ADEnemy setState:]   (address 0x10005fb04  size 188  kind objc)
+  05fb30  if (self->_state != arg1) goto loc_10005fb48
+  05fb44  return
+  05fb58  [self name]
+  05fb74  NSLog(@"[%@] Change state to : %i", [self name], arg1)
+  05fb80  self->_state = arg1
+  05fba8  tail [self setTimeInState:0]
+
+== -[ADEnemy spawn]   (address 0x10005fbc0  size 588  kind objc)
+  05fbe8  [self setState:1]
+  05fc0c  [self playAnySoundContaining:@"_spawn" looping:0 spatialized:1]
+  05fc20  [self setSpawn_sound_duration:[self playAnySoundContaining:@"_spawn" looping:0 spatialized:1]]
+  05fc38  [self name]
+  05fc54  NSLog(@"[%@] Spawn", [self name])
+  05fc68  [self name]
+  05fc88  [self spawn_sound_duration]
+  05fca0  NSLog(@"[%@] Spawn sound duration : %.2f", [self name], [self spawn_sound_duration])
+  05fcb4  [self name]
+  05fcd4  [self squaredDistance]
+  05fcf0  NSLog(@"[%@] Spawned at distance %f", [self name], sqrt([self squaredDistance]))
+  05fd08  if (self->spawned != 0) goto loc_10005fd64
+  05fd10  self->spawned = 1
+  05fd20  if (self->ambiantName == 0) goto loc_10005fd64
+  05fd38  [ADAmbientManager sharedAmbiantManager]
+  05fd58  [[ADAmbientManager sharedAmbiantManager] enemyWithAmbiantNameAppeared:self->ambiantName]
+loc_10005fd64:
+  05fd78  [ADBrickManager sharedBrickManager]
+  05fd90  [self name]
+  05fdb4  [[ADBrickManager sharedBrickManager] checkSpawnOnStart:[self name]]
+  05fdd4  return
+
+== -[ADEnemy walk]   (address 0x10005fe0c  size 72  kind objc)
+  05fe2c  [self setState:2]
+  05fe50  tail [self playAnySoundContaining:@"_approach_"]
+
+== -[ADEnemy walkOrAgressive]   (address 0x10005fe54  size 168  kind objc)
+  05fe70  [self life]
+  05fe78  if ([self life] <= 0.0) goto loc_10005fef0
+  05fe8c  [self destroyed]
+  05fe90  if (([self destroyed] & 1)) goto loc_10005fef0
+  05fea8  [self state]
+  05feb0  if ([self state] != 3) goto loc_10005fec0
+  05feb8  &@selector(aggressive)
+  05febc  goto loc_10005fedc
+loc_10005fec0:
+  05fec8  [self state]
+  05fed0  if ([self state] != 2) goto loc_10005fef0
+  05fed8  &@selector(walk)
+loc_10005fedc:
+  05feec  tail [self aggressive | walk]
+loc_10005fef0:
+  05fef8  return
+
+== -[ADEnemy dodge]   (address 0x10005fefc  size 80  kind objc)
+  05ff1c  [self setState:7]
+  05ff48  tail [self playAnySoundContaining:@"_dodge_" looping:0 spatialized:1]
+
+== -[ADEnemy protect]   (address 0x10005ff4c  size 136  kind objc)
+  05ff68  [self state]
+  05ff70  if ([self state] != 2) goto loc_10005ffc8
+  05ff80  self->shieldDamagesTaken = 0
+  05ff88  self->shieldDuration = 0
+  05ffa0  [self setState:6]
+  05ffc4  tail [self playAnySoundContaining:@"_invincible"]
+loc_10005ffc8:
+  05ffd0  return
+
+== -[ADEnemy aggressive]   (address 0x10005ffd4  size 644  kind objc)
+  05fff8  [self updateOrientation]
+  060014  [ADGameModifiers sharedModifiers]
+  060030  [[ADGameModifiers sharedModifiers] tesla]
+  060040  if ([[ADGameModifiers sharedModifiers] tesla] == 0) goto loc_1000601c0
+  060058  [S3DEngine engine]
+  06007c  [[S3DEngine engine] playListWithName:@"roulette_tesla"]
+  0600ac  [[[S3DEngine engine] playListWithName:@"roulette_tesla"] S3DSound:@"roulette_tesla_SPA"]
+  0600cc  [[[[S3DEngine engine] playListWithName:@"roulette_tesla"] S3DSound:@"roulette_tesla_SPA"] setSpatialized:1]
+  0600e0  [self sound]
+  0600fc  [[self sound] planar]
+  060110  [[[[S3DEngine engine] playListWithName:@"roulette_tesla"] S3DSound:@"roulette_tesla_SPA"] setPlanar:{[[self sound] planar].0, [[self sound] planar].1, [[self sound] planar].2}]
+  06012c  [[[[S3DEngine engine] playListWithName:@"roulette_tesla"] S3DSound:@"roulette_tesla_SPA"] play]
+  060148  [[[[S3DEngine engine] playListWithName:@"roulette_tesla"] S3DSound:@"roulette_tesla_SPA"] add3DSoundEndCallback:^{-[ADEnemy aggressive]_block_invoke}]
+  060154  [ADGameModifiers sharedModifiers]
+  060174  [[ADGameModifiers sharedModifiers] setTesla:0]
+  060188  self->_life = 0
+  06019c  [self die]
+  0601bc  return
+  0601d4  [self setState:3]
+  060200  tail [self playAnySoundContaining:@"_aggressive"]
+
+== -[ADEnemy aggressive]_block_invoke   (address 0x100060258  size 172  kind block)
+  060278  [S3DEngine engine]
+  06029c  [[S3DEngine engine] playListWithName:@"roulette_tesla"]
+  0602b8  [[[S3DEngine engine] playListWithName:@"roulette_tesla"] deactivate]
+  0602d0  return
+
+== -[ADEnemy attack]   (address 0x100060304  size 640  kind objc)
+  060330  [self setSpeed:0]
+  06034c  [ADBrickManager sharedBrickManager]
+  060368  [[ADBrickManager sharedBrickManager] playerIsDead]
+  060378  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_10006051c
+  060390  [self setState:4]
+  0603b4  [self playAnySoundContaining:@"_attack" looping:0 spatialized:0]
+  0603cc  [self sound]
+  0603f0  [[self sound] setGain:1.3]
+  060404  [ADBrickManager sharedBrickManager]
+  060428  [NSString alloc]
+  060440  [self name]
+  060464  [[NSString alloc] initWithString:[self name]]
+  060480  [[ADBrickManager sharedBrickManager] stopAllEnemiesAfterPlayerDeathByEnemyWithName:[[NSString alloc] initWithString:[self name]]]
+  0604a4  [self sound]
+  0604b8  if ([self sound] == 0) goto loc_10006051c
+  0604c4  [self sound]
+  060510  [[self sound] add3DSoundEndCallback:^{-[ADEnemy attack]_block_invoke captures +0x20=self}]
+loc_10006051c:
+  060530  return
+
+== -[ADEnemy attack]_block_invoke   (address 0x100060584  size 92  kind block)
+  0605d0  dispatch_sync(__dispatch_main_q, ^{-[ADEnemy attack]_block_invoke_block_invoke captures +0x20=self}, blockarg2, blockarg3)
+  0605dc  return
+
+== -[ADEnemy attack]_block_invoke_block_invoke   (address 0x1000605e0  size 20  kind block)
+  0605f0  tail [self afterAttackSound]
+
+== -[ADEnemy afterAttackSound]   (address 0x1000605f4  size 392  kind objc)
+  060620  [self setState:0xffffffff]
+  060634  [self name]
+  060650  NSLog(@"%@ : after attack", [self name])
+  060674  [ADBrickManager sharedBrickManager]
+  060694  [[ADBrickManager sharedBrickManager] mode]
+  0606ac  [ADBrickManager sharedBrickManager]
+  0606c0  if ([[ADBrickManager sharedBrickManager] mode] != 2) goto loc_1000606e0
+  0606d4  [[ADBrickManager sharedBrickManager] gameOver]
+  0606d8  goto loc_100060728
+  0606dc  goto loc_100060768
+loc_1000606e0:
+  0606e8  [[ADBrickManager sharedBrickManager] mode]
+  0606fc  if ([[ADBrickManager sharedBrickManager] mode] != 1) goto loc_100060744
+  060708  [ADBrickManager sharedBrickManager]
+  060724  [[ADBrickManager sharedBrickManager] showReviveView]
+loc_100060728:
+  060740  return
+loc_100060744:
+  060758  return
+
+== -[ADEnemy transitionToBerserk]   (address 0x10006077c  size 168  kind objc)
+  06079c  [self state]
+  0607a4  if ([self state] == 8) goto loc_1000607bc
+  0607b0  [self state]
+  0607b8  if ([self state] != 9) goto loc_1000607c8
+loc_1000607bc:
+  0607c4  return
+  0607dc  [self setSpeed:0]
+  060800  [self playAnySoundContaining:@"_transition" looping:0 spatialized:1]
+  060820  tail [self setState:9]
+
+== -[ADEnemy berserk]   (address 0x100060824  size 288  kind objc)
+  060844  [self state]
+  06084c  if ([self state] != 8) goto loc_100060860
+  06085c  return
+  060870  [self berserk_dictionary]
+  060894  [[self berserk_dictionary] objectForKey:@"berserkSpeed"]
+  0608b0  [[[self berserk_dictionary] objectForKey:@"berserkSpeed"] floatValue]
+  0608c4  [self setSpeed:[[[self berserk_dictionary] objectForKey:@"berserkSpeed"] floatValue]]
+  0608ec  [self setState:8]
+  06091c  tail [self playAnySoundContaining:@"_aggressive" looping:1 spatialized:1]
+
+== -[ADEnemy berserkGoAway]   (address 0x100060944  size 276  kind objc)
+  060964  [self setState:0xffffffff]
+  060978  [self setLifeToZero]
+  06098c  [self sound]
+  0609a8  [[self sound] stop]
+  0609c8  [ADBrickManager sharedBrickManager]
+  0609e8  [self name]
+  060a0c  [[ADBrickManager sharedBrickManager] soundOrEnemyWithNameWasDeactivated:[self name]]
+  060a24  return
+
+== -[ADEnemy stopAfterPlayerWasKilled]   (address 0x100060a58  size 212  kind objc)
+  060a78  [self state]
+  060a80  if ([self state] != 4) goto loc_100060ac8
+  060a94  [self name]
+  060ab0  NSLog(@"%@ Already attacking", [self name])
+  060ac4  return
+  060ad8  [self stopAllSounds]
+  060af0  [self setState:0xffffffff]
+  060b14  tail [self setSpeed:0]
+
+== -[ADEnemy hitByWeapon:multiHitFactor:]   (address 0x100060b2c  size 4  kind objc)
+  060b2c  return
+
+== -[ADEnemy hitByWeapon:]   (address 0x100060b30  size 1384  kind objc)
+  060b74  [ADBrickManager sharedBrickManager]
+  060b90  [[ADBrickManager sharedBrickManager] playerIsDead]
+  060ba0  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_100061024
+  060bb4  [self state]
+  060bbc  if ([self state] != 6) goto loc_100060c8c
+  060be0  [self->playlist anySoundContaining:@"shieldimpact"]
+  060c04  [self position]
+  060c14  [self position]
+  060c34  [[self->playlist anySoundContaining:@"shieldimpact"] setPlanar:{[self position].0, [self position].1, 0}]
+  060c4c  [[self->playlist anySoundContaining:@"shieldimpact"] setSpatialized:1]
+  060c68  [[self->playlist anySoundContaining:@"shieldimpact"] setGain:17.5]
+  060c80  [[self->playlist anySoundContaining:@"shieldimpact"] play:0]
+  060c88  goto loc_100061020
+loc_100060c8c:
+  060c9c  [arg1 damages]
+  060cb8  [arg1 dispersal]
+  060cc8  if ([arg1 dispersal] >= (or unordered) 99) goto loc_100060d48
+  060cdc  [self squaredDistance]
+  060cf8  [arg1 range]
+  060d08  [arg1 range]
+  060d18  [arg1 dispersal]
+  060d40  t1 = ((1 - ([self squaredDistance] / ([arg1 range] * [arg1 range]))) * ([arg1 damages] - ([arg1 damages] * ([arg1 dispersal] / 100))))
+loc_100060d48:
+  060d58  [self nextShotWillBeCritical]
+  060d5c  if ([self nextShotWillBeCritical] == 0) goto loc_100060d7c
+  060d70  [arg1 criticalMultiplier]
+  060d78  goto loc_100060da8
+loc_100060d7c:
+  060d8c  [self nextShotWillBePrecise]
+  060d90  if ([self nextShotWillBePrecise] == 0) goto loc_100060da8
+loc_100060da8:
+  060dbc  [ADWeaponManager sharedWeaponManager]
+  060de0  [arg1 name]
+  060e04  [[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[arg1 name]]
+  060e28  &@selector(sharedModifiers)
+  060e30  if ([[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[arg1 name]] == 0) goto loc_100060e60
+  060e34  [ADGameModifiers sharedModifiers]
+  060e50  [[ADGameModifiers sharedModifiers] meleeDamagesModifier]
+  060e58  goto loc_100060e84
+  060e5c  goto loc_10006106c
+loc_100060e60:
+  060e60  [ADGameModifiers sharedModifiers]
+  060e7c  [[ADGameModifiers sharedModifiers] gunDamagesModifier]
+loc_100060e84:
+  060ea0  [self life]
+  060ebc  [self setLife:([self life] - (s8 * s9))]
+  060ec8  [self name]
+  060ee0  [self life]
+  060efc  NSLog(@"[%@] life : %f (lost %f)", [self name], [self life], (s8 * s9))
+  060f1c  [ADMeleeWeapon class]
+  060f34  [arg1 isKindOfClass:[ADMeleeWeapon class]]
+  060f50  [self playImpactAndHitSoundForDamages:(s8 * s9) melee:[arg1 isKindOfClass:[ADMeleeWeapon class]]]
+  060f64  [self dodge_dictionary]
+  060f74  if ([self dodge_dictionary] == 0) goto loc_100060fb0
+  060f80  [self life]
+  060f94  if ([self life] <= (or unordered) 0.0) goto loc_100060fb8
+  060fa8  [self dodge]
+  060fac  goto loc_100061024
+loc_100060fb0:
+loc_100060fb8:
+  060fc8  [self berserk_dictionary]
+  060fd8  if ([self berserk_dictionary] == 0) goto loc_10006101c
+  060fe4  [self life]
+  060ff8  if ([self life] <= (or unordered) 0.0) goto loc_100061024
+  06100c  [self transitionToBerserk]
+  061010  goto loc_100061024
+  061018  goto loc_100061088
+loc_10006101c:
+loc_100061020:
+loc_100061024:
+  061044  return
+
+== -[ADEnemy hitByProjectile:]   (address 0x100061098  size 492  kind objc)
+  0610dc  [ADBrickManager sharedBrickManager]
+  0610f8  [[ADBrickManager sharedBrickManager] playerIsDead]
+  061108  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_10006121c
+  061120  [arg1 weapon]
+  06113c  [[arg1 weapon] damages]
+  061158  [ADGameModifiers sharedModifiers]
+  061174  [[ADGameModifiers sharedModifiers] gunDamagesModifier]
+  06119c  [arg1 position]
+  0611b0  [arg1 weapon]
+  0611cc  [[arg1 weapon] dispersal]
+  0611e4  [arg1 explosionRadius]
+  061210  [self hitByExplosionAtPosition:{[arg1 position].0, [arg1 position].1} withDamages:([[arg1 weapon] damages] * [[ADGameModifiers sharedModifiers] gunDamagesModifier]) dispersal:[[arg1 weapon] dispersal] radius:[arg1 explosionRadius] powerupname:0]
+loc_10006121c:
+  06123c  return
+
+== -[ADEnemy hitByExplosionAtPosition:withDamages:dispersal:radius:powerupname:]   (address 0x100061284  size 604  kind objc)
+  0612d4  [ADBrickManager sharedBrickManager]
+  0612f0  [[ADBrickManager sharedBrickManager] playerIsDead]
+  061300  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_1000614a0
+  061310  if (arg3 >= (or unordered) 99) goto loc_1000613b4
+  061328  [self position]
+  061338  [self position]
+  061348  [self position]
+  061358  [self position]
+  061374  t1 = (((arg1.0 - [self position].0) * (arg1.0 - [self position].0)) + ((arg1.1 - [self position].1) * (arg1.1 - [self position].1)))
+  0613ac  t2 = ((arg2 - ((arg3 / 100) * arg2)) * ((1 - ((t1 / arg4) * arg4)) < 0.0 ? 0 : (1 - ((t1 / arg4) * arg4))))
+loc_1000613b4:
+  0613c4  [self life]
+  0613dc  [self setLife:([self life] - s8)]
+  0613e0  random()
+  061400  t3 = ((((random() *h 0xa3d70a3d70a3d70b) + random()) >> 5) + (((random() *h 0xa3d70a3d70a3d70b) + random()) >>> 63))
+  061440  dispatch_time(0, (int)((((float)(random() - t3 * 50) / 200) + 0.2) * 1e+09))
+  061494  dispatch_after(dispatch_time(0, (int)((((float)(random() - t3 * 50) / 200) + 0.2) * 1e+09)), __dispatch_main_q, ^{-[ADEnemy hitByExplosionAtPosition:withDamages:dispersal:radius:powerupname:]_block_invoke captures +0x20=self})
+loc_1000614a0:
+  0614c0  return
+
+== -[ADEnemy hitByExplosionAtPosition:withDamages:dispersal:radius:powerupname:]_block_invoke   (address 0x1000614e0  size 28  kind block)
+  0614f8  tail [self playHitSoundForDamages:block[+0x28]]
+
+== sub_1000614fc   (address 0x1000614fc  size 8  kind sub)
+
+== sub_100061504   (address 0x100061504  size 8  kind sub)
+  061508  return
+
+== -[ADEnemy playImpactAndHitSoundForDamages:melee:]   (address 0x10006150c  size 1240  kind objc)
+  061538  if (arg2 != 0) goto loc_10006189c
+  061550  [self useOwnImpactSounds]
+  061554  if ([self useOwnImpactSounds] == 0) goto loc_1000615a4
+  06156c  [self playlist]
+  061590  [[self playlist] anySoundContaining:@"impact_"]
+  0615a0  goto loc_10006179c
+loc_1000615a4:
+  0615bc  [S3DEngine engine]
+  0615e0  [[S3DEngine engine] playListWithName:@"impact"]
+  061610  [self multiHitFactor]
+  061618  if ([self multiHitFactor] < 2) goto loc_100061694
+  061630  [self multiHitFactor]
+  061654  [NSString stringWithFormat:@"impactmulti_%i", [self multiHitFactor]]
+  061678  [[[S3DEngine engine] playListWithName:@"impact"] anySoundContaining:[NSString stringWithFormat:@"impactmulti_%i", [self multiHitFactor]]]
+  061690  goto loc_10006173c
+loc_100061694:
+  0616a0  [self multiHitFactor]
+  0616a4  if ([self multiHitFactor] == 0) goto loc_1000616c0
+  0616b4  [self multiHitFactor]
+  0616bc  if ([self multiHitFactor] != 1) goto loc_10006172c
+loc_1000616c0:
+  0616d4  [self life]
+  0616dc  &@selector(anySoundContaining:)
+  0616e8  if ([self life] <= (or unordered) 0.0) goto loc_100061708
+  0616fc  [[[S3DEngine engine] playListWithName:@"impact"] anySoundContaining:@"impact_"]
+  061704  goto loc_100061720
+loc_100061708:
+  061718  [[[S3DEngine engine] playListWithName:@"impact"] anySoundContaining:@"KillConfirm_"]
+loc_100061720:
+  061728  goto loc_10006173c
+loc_10006172c:
+  061738  [self multiHitFactor]
+loc_10006173c:
+  06174c  [self name]
+  06176c  [x0 key]
+  061788  NSLog(@"[%@] play impact sound : %@", [self name], [x0 key])
+loc_10006179c:
+  0617a4  if (x21 == 0) goto loc_100061894
+  0617bc  [self position]
+  0617cc  [self position]
+  0617ec  [x0 setPlanar:{[self position].0, [self position].1, 0}]
+  061804  [x0 setSpatialized:1]
+  061810  [self position]
+  061820  [self position]
+  061830  [self position]
+  061840  [self position]
+  06185c  t1 = (sqrt((([self position].0 * [self position].0) + ([self position].1 * [self position].1))) / 10)
+  061878  [x0 setGain:(t1 * 5)]
+  061890  [x0 play:0]
+loc_100061894:
+loc_10006189c:
+  0618c4  [self multiHitFactor]
+  0618cc  if ([self multiHitFactor] != -1) goto loc_10006190c
+  0618d0  rand()
+  061904  t2 = ((float)(rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) / 500)
+loc_10006190c:
+  061920  dispatch_time(0, (int)(d9 * 1e+09))
+  061960  dispatch_after(dispatch_time(0, (int)(d9 * 1e+09)), __dispatch_main_q, ^{-[ADEnemy playImpactAndHitSoundForDamages:melee:]_block_invoke captures +0x20=self, +0x28=arg1})
+  061980  return
+
+== -[ADEnemy playImpactAndHitSoundForDamages:melee:]_block_invoke   (address 0x1000619e4  size 28  kind block)
+  0619fc  tail [self playHitSoundForDamages:arg1]
+
+== -[ADEnemy setLife:]   (address 0x100061a00  size 184  kind objc)
+  061a2c  if (self->_life <= (or unordered) arg1) goto loc_100061a74
+  061a40  [self shield_dictionary]
+  061a54  if ([self shield_dictionary] == 0) goto loc_100061a74
+  061a70  self->shieldDamagesTaken = ((self->_life - arg1) + self->shieldDamagesTaken)
+loc_100061a74:
+  061a74  self->_life = arg1
+  061a7c  if (arg1 <= 0.0) goto loc_100061a94
+  061a90  return
+  061ab4  tail [self die]
+
+== -[ADEnemy setLifeToZero]   (address 0x100061ab8  size 16  kind objc)
+  061ac0  self->_life = 0
+  061ac4  return
+
+== -[ADEnemy die]   (address 0x100061ac8  size 932  kind objc)
+  061af4  [self name]
+  061b10  NSLog(@"[%@] died", [self name])
+  061b34  [ADBrickManager sharedBrickManager]
+  061b50  [[ADBrickManager sharedBrickManager] playerIsDead]
+  061b60  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_100061de0
+  061b74  [self explosion_dictionary]
+  061b88  if ([self explosion_dictionary] == 0) goto loc_100061bb4
+  061b9c  [self explode]
+  061ba4  &@selector(setState:)
+  061bb0  goto loc_100061bc4
+loc_100061bb4:
+  061bb8  &@selector(setState:)
+loc_100061bc4:
+  061bc8  [self setState:one of {5, 999}]
+  061be0  [self setSpeed:0]
+  061bf4  [self sound]
+  061c10  [[self sound] stop]
+  061c28  if (self->ambiantName == 0) goto loc_100061c78
+  061c40  [ADAmbientManager sharedAmbiantManager]
+  061c60  [[ADAmbientManager sharedAmbiantManager] enemyWithAmbiantNameKilled:self->ambiantName]
+  061c70  self->ambiantName = 0
+loc_100061c78:
+  061c80  [ADBrickManager sharedBrickManager]
+  061c98  [self name]
+  061cbc  [[ADBrickManager sharedBrickManager] soundOrEnemyWithNameWasDeactivated:[self name]]
+  061cd8  [self name]
+  061d00  [[self name] isEqualToString:@"Diamond"]
+  061d04  if (!([[self name] isEqualToString:@"Diamond"] & 1)) goto loc_100061dc4
+  061d1c  [ADInGameStats singleton]
+  061d38  [[ADInGameStats singleton] gameMode]
+  061d54  [[[ADInGameStats singleton] gameMode] isEqualToString:@"CHALLENGE"]
+  061d74  if ([[[ADInGameStats singleton] gameMode] isEqualToString:@"CHALLENGE"] == 0) goto loc_100061de0
+  061d90  [NSNumber numberWithInt:1]
+  061dc0  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_DIAMONDS" AndData:[NSNumber numberWithInt:1]]
+loc_100061dc4:
+  061ddc  return
+loc_100061de0:
+  061df4  return
+
+== -[ADEnemy explode]   (address 0x100061e6c  size 252  kind objc)
+  061e98  [ADBrickManager sharedBrickManager]
+  061eb8  [self explosion_dictionary]
+  061ed8  [self position]
+  061ef4  [self name]
+  061f1c  [[ADBrickManager sharedBrickManager] solveExplosionWithDictionary:[self explosion_dictionary] atPosition:{[self position].0, [self position].1} withWeaponName:[self name] ignoreTinnitus:0]
+  061f3c  return
+
+== -[ADEnemy canBeShotAt]   (address 0x100061f68  size 128  kind objc)
+  061f84  [self life]
+  061f8c  if ([self life] <= 0.0) goto loc_100061fc0
+  061fa4  [self state]
+  061fa8  if ([self state] == 0) goto loc_100061fc0
+  061fb4  [self state]
+  061fbc  if ([self state] != 999) goto loc_100061fc8
+loc_100061fc0:
+  061fc4  goto loc_100061fdc
+loc_100061fc8:
+  061fd0  [self state]
+loc_100061fdc:
+  061fe4  return
+
+== -[ADEnemy blowAway:]   (address 0x100061fe8  size 148  kind objc)
+  062018  [self position]
+  062034  [self position]
+  062078  tail [self setPosition:{([self position].0 - (arg1 * self->orientation.x)), ([self position].1 - (arg1 * self->orientation.y))}]
+
+== -[ADEnemy displayNameForName]   (address 0x10006207c  size 448  kind objc)
+  0620a8  if (((w8 & 1) & 1)) goto loc_100062158
+  0620ac  cxa_guard_acquire(&g_10042d9c8, _cmd)
+  0620b0  if (cxa_guard_acquire(&g_10042d9c8, _cmd) == 0) goto loc_100062158
+  0620c8  [NSDictionary alloc]
+  0620e4  [NSBundle mainBundle]
+  062110  [[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]
+  062134  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]
+  062154  cxa_guard_release(&g_10042d9c0)
+loc_100062158:
+  06216c  [self name]
+  062194  [g_10042d9c0 objectForKey:[self name]]
+  0621b0  [[g_10042d9c0 objectForKey:[self name]] objectForKey:@"displayName"]
+  0621e4  return
+  062230  cxa_guard_abort((x23 + 8))
+
+== -[ADEnemy initSounds]   (address 0x10006223c  size 228  kind objc)
+  062260  [self setPlaylistActivated:1]
+  062278  [S3DEngine engine]
+  062298  [self soundsPrefix]
+  0622bc  [[S3DEngine engine] playListWithName:[self soundsPrefix]]
+  0622d4  self->playlist = [[S3DEngine engine] playListWithName:[self soundsPrefix]]
+  0622f8  return
+
+== -[ADEnemy deactivate]   (address 0x100062320  size 60  kind objc)
+  062340  [self setState:0xffffffff]
+  06234c  self->_life = 0
+  062358  return
+
+== -[ADEnemy activatePlaylist]   (address 0x10006235c  size 148  kind objc)
+  0623c0  [self->playlist activate:^{-[ADEnemy activatePlaylist]_block_invoke captures +0x20=self}]
+  0623d8  return
+
+== -[ADEnemy activatePlaylist]_block_invoke   (address 0x1000623f0  size 4  kind block)
+  0623f0  return
+
+== sub_1000623f4   (address 0x1000623f4  size 8  kind sub)
+
+== sub_1000623fc   (address 0x1000623fc  size 8  kind sub)
+  062400  return
+
+== -[ADEnemy deactivatePlaylist]   (address 0x100062404  size 28  kind objc)
+  06241c  tail [self->playlist deactivate]
+
+== -[ADEnemy playAnySoundContaining:looping:spatialized:]   (address 0x100062420  size 2080  kind objc)
+  062470  [self sound]
+  06248c  [[self sound] stop]
+  0624a8  [self destroyed]
+  0624ac  if (!([self destroyed] & 1)) goto loc_1000624bc
+  0624b8  goto loc_100062b10
+loc_1000624bc:
+  0624d0  [self name]
+  0624ec  NSLog(@"[%@] Play any sound containing : %@", [self name], arg1)
+  062554  [self->playlist soundsMatchingPredicate:^{-[ADEnemy playAnySoundContaining:looping:spatialized:]_block_invoke captures +0x20=arg1}]
+  062570  [[self->playlist soundsMatchingPredicate:^{-[ADEnemy playAnySoundContaining:looping:spatialized:]_block_invoke captures +0x20=arg1}] count]
+  062590  NSLog(@"%i sounds contains %@", [[self->playlist soundsMatchingPredicate:^{-[ADEnemy playAnySoundContaining:loop…, arg1)
+  06259c  [self sound]
+  0625c0  [[self sound] key]
+  0625e0  &@selector(anySoundContaining:)
+  0625f0  if ([[self->playlist soundsMatchingPredicate:^{-[ADEnemy playAnySoundContaining:looping:spatialized:]_block_invoke captures … == 1) goto loc_100062700
+  0625f8  if ((arg2 ^ 1) != 0) goto loc_100062700
+  062604  [self->playlist anySoundContaining:arg1]
+  06262c  [self setSound:[self->playlist anySoundContaining:arg1]]
+  062640  [self sound]
+  062654  if ([self sound] == 0) goto loc_10006273c
+  062660  if (arg2 == 0) goto loc_1000627c0
+  062668  &@selector(isEqualToString:)
+  062670  goto loc_10006267c
+loc_100062674:
+loc_10006267c:
+  062684  [self sound]
+  062698  [[self sound] key]
+  0626b0  [[[self sound] key] isEqualToString:[[self sound] key]]
+  0626c8  if ([[[self sound] key] isEqualToString:[[self sound] key]] == 0) goto loc_1000627c0
+  0626d8  [self->playlist anySoundContaining:arg1]
+  0626f4  [self setSound:[self->playlist anySoundContaining:arg1]]
+  0626f8  goto loc_100062674
+  0626fc  goto loc_100062bd8
+loc_100062700:
+  062708  [self->playlist anySoundContaining:arg1]
+  06272c  [self setSound:[self->playlist anySoundContaining:arg1]]
+  062738  goto loc_1000628a8
+loc_10006273c:
+  062744  [self sound]
+  062760  if ([self sound] != 0) goto loc_1000627c0
+  062778  [self playlist]
+  06278c  [[self playlist] name]
+  0627ac  NSLog(@"NO SOUND in %@ CONTAINS %@", [[self playlist] name], arg1)
+loc_1000627c0:
+  0627cc  [self sound]
+  0627e4  [[self sound] key]
+  062808  NSLog(@"Loop from %@ to %@", [[self sound] key], [[self sound] key])
+  06281c  if (arg2 == 0) goto loc_1000628a4
+  062828  [self sound]
+  062890  [[self sound] add3DSoundEndCallback:^{-[ADEnemy playAnySoundContaining:looping:spatialized:]_block_invoke_2 captures +0x20=arg1, +0x28=self, +0x30=arg3, +0x38=__NSConcreteStackBlock, +0x40=0xc2000000, +0x48=&-[ADEnemy playAnySoundContaining:loopin…, +0x50=&d_1003b1c40, +0x58=arg1}]
+loc_1000628a4:
+loc_1000628a8:
+  0628b0  [self sound]
+  0628c4  if ([self sound] != 0) goto loc_100062920
+  0628d8  [self playlist]
+  0628ec  [[self playlist] name]
+  06290c  NSLog(@"NO SOUND in %@ CONTAINS %@", [[self playlist] name], arg1)
+loc_100062920:
+  062924  if (arg3 == 0) goto loc_100062a30
+  062930  [self sound]
+  062950  [[self sound] setSpatialized:1]
+  062964  [self sound]
+  062988  [self position]
+  062998  [self position]
+  0629b8  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+  0629cc  [self sound]
+  0629ec  [[self sound] setGain:3.5]
+  062a00  [self sound]
+  062a24  [self setReverbAndWetBalanceOnSound:[self sound]]
+  062a28  goto loc_100062a90
+  062a2c  goto loc_100062bd4
+loc_100062a30:
+  062a38  [self sound]
+  062a58  [[self sound] setSpatialized:0]
+  062a6c  [self sound]
+  062a8c  [[self sound] setGain:0.5]
+loc_100062a90:
+  062aa0  [self sound]
+  062ac0  [[self sound] play:x2]
+  062ad4  [self sound]
+  062af0  [[self sound] duration]
+loc_100062b10:
+  062b3c  return
+
+== -[ADEnemy playAnySoundContaining:looping:spatialized:]_block_invoke   (address 0x100062c40  size 56  kind block)
+  062c60  [blockarg1 rangeOfString:arg1]
+  062c74  return
+
+== sub_100062c78   (address 0x100062c78  size 8  kind sub)
+
+== sub_100062c80   (address 0x100062c80  size 8  kind sub)
+  062c84  return
+
+== -[ADEnemy playAnySoundContaining:looping:spatialized:]_block_invoke_2   (address 0x100062c88  size 200  kind block)
+  062cac  if (self == 0) goto loc_100062d24
+  062cbc  [self destroyed]
+  062cc0  if (([self destroyed] & 1)) goto loc_100062d24
+  062d18  dispatch_async(__dispatch_main_q, ^{-[ADEnemy playAnySoundContaining:looping:spatialized:]_block_invoke_2_block_invoke captures +0x20=arg1, +0x28=self, +0x30=arg3})
+loc_100062d24:
+  062d38  return
+
+== -[ADEnemy playAnySoundContaining:looping:spatialized:]_block_invoke_2_block_invoke   (address 0x100062d50  size 32  kind block)
+  062d6c  tail [x0 playAnySoundContaining:x2 looping:1 spatialized:arg3]
+
+== sub_100062d70   (address 0x100062d70  size 8  kind sub)
+
+== sub_100062d78   (address 0x100062d78  size 8  kind sub)
+  062d7c  return
+
+== sub_100062d80   (address 0x100062d80  size 8  kind sub)
+
+== sub_100062d88   (address 0x100062d88  size 8  kind sub)
+  062d8c  return
+
+== -[ADEnemy playAnySoundContaining:]   (address 0x100062d90  size 40  kind objc)
+  062dac  [self playAnySoundContaining:arg1 looping:1 spatialized:1]
+  062db4  return
+
+== -[ADEnemy playHitSoundForDamages:]   (address 0x100062db8  size 2100  kind objc)
+  062dec  [self destroyed]
+  062df0  if (([self destroyed] & 1)) goto loc_1000634e0
+  062e04  [self life]
+  062e0c  if ([self life] <= 0.0) goto loc_100062f14
+  062e28  [self->painSound playing]
+  062e2c  if (([self->painSound playing] & 1)) goto loc_1000634e0
+  062e48  [self state]
+  062e50  if ([self state] != 2) goto loc_1000630e4
+  062e6c  [self shield_dictionary]
+  062e7c  if ([self shield_dictionary] == 0) goto loc_1000630e4
+  062e94  [self shield_dictionary]
+  062eb8  [[self shield_dictionary] objectForKey:@"damagesBeforeShield"]
+  062ed4  [[[self shield_dictionary] objectForKey:@"damagesBeforeShield"] floatValue]
+  062ef8  if (self->shieldDamagesTaken <= (or unordered) [[[self shield_dictionary] objectForKey:@"damagesBeforeShield"] floatValue]) goto loc_1000630e4
+  062f10  goto loc_100063118
+loc_100062f14:
+  062f24  [self explosion_dictionary]
+  062f34  if ([self explosion_dictionary] == 0) goto loc_1000630a8
+  062f50  [self->explosionSound playing]
+  062f60  if (([self->explosionSound playing] & 1)) goto loc_1000630b0
+  062f74  [self playlist]
+  062f98  [[self playlist] anySoundContaining:@"explosion"]
+  062fa8  self->explosionSound = [[self playlist] anySoundContaining:@"explosion"]
+  062fd4  [self position]
+  062fe4  [self position]
+  063004  [self->explosionSound setPlanar:{[self position].0, [self position].1, 0}]
+  06301c  [self->explosionSound setSpatialized:1]
+  063034  [self->explosionSound setGain:15]
+  06304c  [self->explosionSound play:0]
+  063060  [self name]
+  063080  [self->explosionSound key]
+  06309c  NSLog(@"[%@] play explosion sound : %@", [self name], [self->explosionSound key])
+loc_1000630a8:
+loc_1000630b0:
+  0630e0  tail [self playDeathSound]
+loc_1000630e4:
+  0630f0  [self state]
+  0630f8  if ([self state] != 6) goto loc_100063104
+  063100  goto loc_1000634d8
+loc_100063104:
+loc_100063118:
+  06312c  [self name]
+  063148  NSLog(@"Play pain sound : %@ on %@", one of {@"_hit_", @"_shielddown_"}, [self name])
+  063168  [self playlist]
+  06318c  [[self playlist] anySoundContaining:one of {@"_hit_", @"_shielddown_"}]
+  06319c  self->painSound = [[self playlist] anySoundContaining:one of {@"_hit_", @"_shielddown_"}]
+  0631b4  if (self->painSound != 0) goto loc_100063280
+  0631c0  [self playlist]
+  0631dc  [[self playlist] anySoundContaining:@"_hit_"]
+  0631ec  self->painSound = [[self playlist] anySoundContaining:@"_hit_"]
+  063208  [self playlist]
+  06321c  [[self playlist] name]
+  06323c  [self->painSound key]
+  06325c  NSLog(@"No sound contains %@ in %@, playing %@ instead", one of {@"_hit_", @"_shielddown_"}, [[self playlist] name], [self->painSound key])
+loc_100063280:
+  063290  [self->painSound setGain:5]
+  063298  if (self->painSound == 0) goto loc_1000634d8
+  0632cc  [self sound]
+  0632ec  [[self sound] key]
+  063314  [[[self sound] key] rangeOfString:@"_approach"]
+  063320  if ([[[self sound] key] rangeOfString:@"_approach"] != 0x7fffffffffffffff) goto loc_10006339c
+  06332c  [self sound]
+  063344  [[self sound] key]
+  063360  [[[self sound] key] rangeOfString:@"_aggressive"]
+  063394  if ([[[self sound] key] rangeOfString:@"_aggressive"] != 0x7fffffffffffffff) goto loc_1000633ac
+  063398  goto loc_100063400
+loc_10006339c:
+loc_1000633ac:
+  0633b4  [self sound]
+  0633d0  [[self sound] stop]
+  0633f0  [self setSound:0]
+loc_100063400:
+  06344c  [self->painSound add3DSoundEndCallback:^{-[ADEnemy playHitSoundForDamages:]_block_invoke captures +0x28=self, +0x30=one of {0, 1}, +0x48=0x20000000, +0x50=0}]
+  063468  [self position]
+  063478  [self position]
+  063498  [self->painSound setPlanar:{[self position].0, [self position].1, 0}]
+  0634b0  [self->painSound setSpatialized:1]
+  0634c8  [self->painSound play:0]
+  0634d4  Block_object_dispose(&sp[0x60], 8)
+loc_1000634d8:
+loc_1000634e0:
+  063500  return
+  0635d8  Block_object_dispose(&sp[0x60], 8)
+
+== -[ADEnemy playHitSoundForDamages:]_block_invoke   (address 0x1000635ec  size 128  kind block)
+  06360c  if (one of {0, 1} == 0) goto loc_100063624
+  063620  [self protect]
+loc_100063624:
+  063630  if (block[+0x20][+0x8][+0x18] == 0) goto loc_100063648
+  063644  [self walkOrAgressive]
+loc_100063648:
+  063654  return
+
+== sub_10006366c   (address 0x10006366c  size 16  kind sub)
+  063678  tail Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+
+== sub_10006367c   (address 0x10006367c  size 12  kind sub)
+  063684  tail Block_object_dispose(a0[+0x20], 8, a2, a3)
+
+== -[ADEnemy playDeathSound]   (address 0x100063688  size 960  kind objc)
+  0636c0  [self->painSound playing]
+  0636c4  if ([self->painSound playing] == 0) goto loc_1000637a8
+  0636dc  [self->painSound key]
+  063704  [[self->painSound key] rangeOfString:@"_death"]
+  063710  if ([[self->painSound key] rangeOfString:@"_death"] != 0x7fffffffffffffff) goto loc_100063754
+  06371c  [self->painSound key]
+  063738  [[self->painSound key] rangeOfString:@"_die"]
+  063750  goto loc_100063758
+loc_100063754:
+loc_100063758:
+  063768  [self->painSound key]
+  063778  if (w22 == 0) goto loc_1000639c8
+  063788  NSLog(@"STOPPED %@ pain sound", [self->painSound key])
+  0637a4  [self->painSound stop]
+loc_1000637a8:
+  0637b8  [self nextShotWillBeCritical]
+  0637d4  [self playlist]
+  0637e8  &@selector(anySoundContaining:)
+  0637f0  if ([self nextShotWillBeCritical] == 0) goto loc_100063860
+  063804  [[self playlist] anySoundContaining:@"death_crit"]
+  063814  self->painSound = [[self playlist] anySoundContaining:@"death_crit"]
+  06382c  if (self->painSound != 0) goto loc_1000638e4
+  063838  [self playlist]
+  063854  [[self playlist] anySoundContaining:@"_diecrit_"]
+  06385c  goto loc_1000638c8
+loc_100063860:
+  063870  [[self playlist] anySoundContaining:@"_death_"]
+  063880  self->painSound = [[self playlist] anySoundContaining:@"_death_"]
+  063898  if (self->painSound != 0) goto loc_1000638e4
+  0638a4  [self playlist]
+  0638c0  [[self playlist] anySoundContaining:@"_die_"]
+loc_1000638c8:
+  0638d0  self->painSound = x0
+loc_1000638e4:
+  0638f8  [self->painSound setGain:4]
+  06390c  [self->painSound key]
+  063928  NSLog(@"Death sound : %@", [self->painSound key])
+  06394c  [self position]
+  06395c  [self position]
+  06397c  [self->painSound setPlanar:{[self position].0, [self position].1, 0}]
+  063994  [self->painSound setSpatialized:1]
+  0639c4  tail [self->painSound play:0]
+loc_1000639c8:
+  0639d4  NSLog(@"Already playing death sound : %@", [self->painSound key])
+  0639f4  return
+
+== -[ADEnemy setReverbAndWetBalanceOnSound:]   (address 0x100063a48  size 104  kind objc)
+  063a70  [arg1 setSendToReverb:1]
+  063a88  [arg1 setWetGain:1]
+  063a98  return
+
+== -[ADEnemy stopAllSounds]   (address 0x100063ab0  size 196  kind objc)
+  063ad4  [self name]
+  063af0  NSLog(@"[%@] Stop all sounds", [self name])
+  063b0c  [self sound]
+  063b2c  [[self sound] stop]
+  063b58  tail [self->painSound stop]
+  063b5c  goto loc_100063b60
+loc_100063b60:
+
+== -[ADEnemy destroyEnemy]   (address 0x100063b74  size 224  kind objc)
+  063b94  [self stopAllSounds]
+  063bac  [self setSpeed:0]
+  063bc4  [self setDestroyed:1]
+  063bd4  if (self->ambiantName == 0) goto loc_100063c30
+  063bec  [ADAmbientManager sharedAmbiantManager]
+  063c0c  [[ADAmbientManager sharedAmbiantManager] enemyWithAmbiantNameKilled:self->ambiantName]
+  063c1c  self->ambiantName = 0
+  063c2c  return
+loc_100063c30:
+  063c3c  return
+
+== -[ADEnemy getAmbiantName]   (address 0x100063c54  size 16  kind objc)
+
+== -[ADEnemy pause]   (address 0x100063c64  size 208  kind objc)
+  063c88  [self sound]
+  063ca4  [[self sound] playing]
+  063cb0  self->soundWasPlaying = [[self sound] playing]
+  063cc4  [self sound]
+  063ce0  [[self sound] pause]
+  063d10  tail [self->painSound stop]
+  063d1c  goto loc_100063d28
+loc_100063d28:
+
+== -[ADEnemy resume]   (address 0x100063d34  size 120  kind objc)
+  063d4c  if (self->soundWasPlaying == 0) goto loc_100063d8c
+  063d5c  [self sound]
+  063d78  [[self sound] play]
+  063d88  return
+loc_100063d8c:
+  063d94  return
+
+== -[ADEnemy playlist]   (address 0x100063dac  size 16  kind objc)
+
+== -[ADEnemy getType]   (address 0x100063dbc  size 8  kind objc)
+  063dc0  return
+
+== -[ADEnemy dealloc]   (address 0x100063dc4  size 156  kind objc)
+  063de0  NSLog(@"Dealloc enemi", _cmd)
+  063df4  [self destroyEnemy]
+  063e18  [super dealloc]
+  063e28  return
+  063e50  [super dealloc]
+  063e5c  call sub_10000b760
+
+== -[ADEnemy randomAdditionalSpawnAngle]   (address 0x100063e60  size 16  kind objc)
+  063e6c  return
+
+== -[ADEnemy setRandomAdditionalSpawnAngle:]   (address 0x100063e70  size 16  kind objc)
+  063e78  self->_randomAdditionalSpawnAngle = arg1
+  063e7c  return
+
+== -[ADEnemy spawn_time]   (address 0x100063e80  size 16  kind objc)
+  063e8c  return
+
+== -[ADEnemy setSpawn_time:]   (address 0x100063e90  size 16  kind objc)
+  063e98  self->_spawn_time = arg1
+  063e9c  return
+
+== -[ADEnemy angleFromPlayer]   (address 0x100063ea0  size 16  kind objc)
+  063eac  return
+
+== -[ADEnemy setAngleFromPlayer:]   (address 0x100063eb0  size 16  kind objc)
+  063eb8  self->_angleFromPlayer = arg1
+  063ebc  return
+
+== -[ADEnemy squaredDistance]   (address 0x100063ec0  size 16  kind objc)
+  063ecc  return
+
+== -[ADEnemy setSquaredDistance:]   (address 0x100063ed0  size 16  kind objc)
+  063ed8  self->_squaredDistance = arg1
+  063edc  return
+
+== -[ADEnemy attackDistance]   (address 0x100063ee0  size 16  kind objc)
+  063eec  return
+
+== -[ADEnemy setAttackDistance:]   (address 0x100063ef0  size 16  kind objc)
+  063ef8  self->_attackDistance = arg1
+  063efc  return
+
+== -[ADEnemy life]   (address 0x100063f00  size 16  kind objc)
+  063f0c  return
+
+== -[ADEnemy maxLife]   (address 0x100063f10  size 16  kind objc)
+  063f1c  return
+
+== -[ADEnemy setMaxLife:]   (address 0x100063f20  size 16  kind objc)
+  063f28  self->_maxLife = arg1
+  063f2c  return
+
+== -[ADEnemy state]   (address 0x100063f30  size 16  kind objc)
+  063f3c  return
+
+== -[ADEnemy tag]   (address 0x100063f40  size 16  kind objc)
+  063f4c  return
+
+== -[ADEnemy setTag:]   (address 0x100063f50  size 16  kind objc)
+  063f58  self->_tag = arg1
+  063f5c  return
+
+== -[ADEnemy comboBonus]   (address 0x100063f60  size 16  kind objc)
+  063f6c  return
+
+== -[ADEnemy setComboBonus:]   (address 0x100063f70  size 16  kind objc)
+  063f78  self->_comboBonus = arg1
+  063f7c  return
+
+== -[ADEnemy score]   (address 0x100063f80  size 16  kind objc)
+  063f8c  return
+
+== -[ADEnemy setScore:]   (address 0x100063f90  size 16  kind objc)
+  063f98  self->_score = arg1
+  063f9c  return
+
+== -[ADEnemy coinsReward]   (address 0x100063fa0  size 16  kind objc)
+  063fac  return
+
+== -[ADEnemy setCoinsReward:]   (address 0x100063fb0  size 16  kind objc)
+  063fb8  self->_coinsReward = arg1
+  063fbc  return
+
+== -[ADEnemy speed]   (address 0x100063fc0  size 16  kind objc)
+  063fcc  return
+
+== -[ADEnemy setSpeed:]   (address 0x100063fd0  size 16  kind objc)
+  063fd8  self->_speed = arg1
+  063fdc  return
+
+== -[ADEnemy agressiveSpeed]   (address 0x100063fe0  size 16  kind objc)
+  063fec  return
+
+== -[ADEnemy setAgressiveSpeed:]   (address 0x100063ff0  size 16  kind objc)
+  063ff8  self->_agressiveSpeed = arg1
+  063ffc  return
+
+== -[ADEnemy name]   (address 0x100064000  size 16  kind objc)
+  06400c  return
+
+== -[ADEnemy setName:]   (address 0x100064010  size 56  kind objc)
+  064034  self->_name = arg1
+  064044  return
+
+== -[ADEnemy displayName]   (address 0x100064048  size 16  kind objc)
+  064054  return
+
+== -[ADEnemy setDisplayName:]   (address 0x100064058  size 56  kind objc)
+  06407c  self->_displayName = arg1
+  06408c  return
+
+== -[ADEnemy soundsPrefix]   (address 0x100064090  size 16  kind objc)
+  06409c  return
+
+== -[ADEnemy setSoundsPrefix:]   (address 0x1000640a0  size 56  kind objc)
+  0640c4  self->_soundsPrefix = arg1
+  0640d4  return
+
+== -[ADEnemy spawn_after]   (address 0x1000640d8  size 16  kind objc)
+  0640e4  return
+
+== -[ADEnemy setSpawn_after:]   (address 0x1000640e8  size 56  kind objc)
+  06410c  self->_spawn_after = arg1
+  06411c  return
+
+== -[ADEnemy nextShotWillBeCritical]   (address 0x100064120  size 16  kind objc)
+  06412c  return
+
+== -[ADEnemy setNextShotWillBeCritical:]   (address 0x100064130  size 16  kind objc)
+  064138  self->_nextShotWillBeCritical = arg1
+  06413c  return
+
+== -[ADEnemy nextShotWillBePrecise]   (address 0x100064140  size 16  kind objc)
+  06414c  return
+
+== -[ADEnemy setNextShotWillBePrecise:]   (address 0x100064150  size 16  kind objc)
+  064158  self->_nextShotWillBePrecise = arg1
+  06415c  return
+
+== -[ADEnemy position]   (address 0x100064160  size 20  kind objc)
+  064170  return
+
+== -[ADEnemy timeInState]   (address 0x100064174  size 20  kind objc)
+  064184  return
+
+== -[ADEnemy setTimeInState:]   (address 0x100064188  size 20  kind objc)
+  064194  self->_timeInState = arg1
+  064198  return
+
+== -[ADEnemy spawn_sound_duration]   (address 0x10006419c  size 20  kind objc)
+  0641ac  return
+
+== -[ADEnemy setSpawn_sound_duration:]   (address 0x1000641b0  size 20  kind objc)
+  0641bc  self->_spawn_sound_duration = arg1
+  0641c0  return
+
+== -[ADEnemy sound]   (address 0x1000641c4  size 16  kind objc)
+  0641d0  return
+
+== -[ADEnemy setSound:]   (address 0x1000641d4  size 56  kind objc)
+  0641f8  self->_sound = arg1
+  064208  return
+
+== -[ADEnemy useOwnImpactSounds]   (address 0x10006420c  size 16  kind objc)
+  064218  return
+
+== -[ADEnemy setUseOwnImpactSounds:]   (address 0x10006421c  size 16  kind objc)
+  064224  self->_useOwnImpactSounds = arg1
+  064228  return
+
+== -[ADEnemy explosion_dictionary]   (address 0x10006422c  size 16  kind objc)
+  064238  return
+
+== -[ADEnemy setExplosion_dictionary:]   (address 0x10006423c  size 56  kind objc)
+  064260  self->_explosion_dictionary = arg1
+  064270  return
+
+== -[ADEnemy shield_dictionary]   (address 0x100064274  size 16  kind objc)
+  064280  return
+
+== -[ADEnemy setShield_dictionary:]   (address 0x100064284  size 56  kind objc)
+  0642a8  self->_shield_dictionary = arg1
+  0642b8  return
+
+== -[ADEnemy dodge_dictionary]   (address 0x1000642bc  size 16  kind objc)
+  0642c8  return
+
+== -[ADEnemy setDodge_dictionary:]   (address 0x1000642cc  size 56  kind objc)
+  0642f0  self->_dodge_dictionary = arg1
+  064300  return
+
+== -[ADEnemy circling_dictionary]   (address 0x100064304  size 16  kind objc)
+  064310  return
+
+== -[ADEnemy setCircling_dictionary:]   (address 0x100064314  size 56  kind objc)
+  064338  self->_circling_dictionary = arg1
+  064348  return
+
+== -[ADEnemy berserk_dictionary]   (address 0x10006434c  size 16  kind objc)
+  064358  return
+
+== -[ADEnemy setBerserk_dictionary:]   (address 0x10006435c  size 56  kind objc)
+  064380  self->_berserk_dictionary = arg1
+  064390  return
+
+== -[ADEnemy destroyed]   (address 0x100064394  size 20  kind objc)
+  0643a4  return
+
+== -[ADEnemy setDestroyed:]   (address 0x1000643a8  size 16  kind objc)
+  0643b0  self->_destroyed = arg1
+  0643b4  return
+
+== -[ADEnemy parentBrick]   (address 0x1000643b8  size 16  kind objc)
+  0643c4  return
+
+== -[ADEnemy setParentBrick:]   (address 0x1000643c8  size 56  kind objc)
+  0643ec  self->_parentBrick = arg1
+  0643fc  return
+
+== -[ADEnemy requiredPlaylistActivation]   (address 0x100064400  size 16  kind objc)
+  06440c  return
+
+== -[ADEnemy setRequiredPlaylistActivation:]   (address 0x100064410  size 16  kind objc)
+  064418  self->_requiredPlaylistActivation = arg1
+  06441c  return
+
+== -[ADEnemy playlistActivated]   (address 0x100064420  size 16  kind objc)
+  06442c  return
+
+== -[ADEnemy setPlaylistActivated:]   (address 0x100064430  size 16  kind objc)
+  064438  self->_playlistActivated = arg1
+  06443c  return
+
+== -[ADEnemy multiHitFactor]   (address 0x100064440  size 16  kind objc)
+  06444c  return
+
+== -[ADEnemy setMultiHitFactor:]   (address 0x100064450  size 16  kind objc)
+  064458  self->_multiHitFactor = arg1
+  06445c  return
+
+== -[ADEnemy .cxx_destruct]   (address 0x100064460  size 324  kind objc)
+
+== -[ADEnemy .cxx_construct]   (address 0x1000645a4  size 4  kind objc)
+  0645a4  return

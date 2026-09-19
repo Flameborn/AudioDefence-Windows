@@ -1,0 +1,262 @@
+
+== -[TAGPBField dealloc]   (address 0x10013a600  size 184  kind objc)
+  13a630  [self->mutableVarintList_ release]
+  13a644  [self->mutableFixed32List_ release]
+  13a658  [self->mutableFixed64List_ release]
+  13a66c  [self->mutableLengthDelimitedList_ release]
+  13a680  [self->mutableGroupList_ release]
+  13a6a4  [super dealloc]
+  13a6b4  return
+
+== -[TAGPBField isEqual:]   (address 0x10013a6b8  size 524  kind objc)
+  13a6d0  if (arg1 == self) goto loc_10013a8b4
+  13a6e8  [TAGPBField class]
+  13a700  [arg1 isKindOfClass:[TAGPBField class]]
+  13a704  if ([arg1 isKindOfClass:[TAGPBField class]] == 0) goto loc_10013a880
+  13a714  if (self->mutableVarintList_ == 0) goto loc_10013a730
+  13a724  if (self->mutableVarintList_->_count == 0) goto loc_10013a730
+  13a72c  goto loc_10013a748
+loc_10013a730:
+  13a734  if (arg1->mutableVarintList_ == 0) goto loc_10013a75c
+  13a744  if (arg1->mutableVarintList_->_count == 0) goto loc_10013a75c
+loc_10013a748:
+  13a754  [self->mutableVarintList_ isEqual:arg1->mutableVarintList_]
+  13a758  if ([self->mutableVarintList_ isEqual:arg1->mutableVarintList_] == 0) goto loc_10013a880
+loc_10013a75c:
+  13a768  if (self->mutableFixed32List_ == 0) goto loc_10013a784
+  13a778  if (self->mutableFixed32List_->_count == 0) goto loc_10013a784
+  13a780  goto loc_10013a79c
+loc_10013a784:
+  13a788  if (arg1->mutableFixed32List_ == 0) goto loc_10013a7b0
+  13a798  if (arg1->mutableFixed32List_->_count == 0) goto loc_10013a7b0
+loc_10013a79c:
+  13a7a8  [self->mutableFixed32List_ isEqual:arg1->mutableFixed32List_]
+  13a7ac  if ([self->mutableFixed32List_ isEqual:arg1->mutableFixed32List_] == 0) goto loc_10013a880
+loc_10013a7b0:
+  13a7bc  if (self->mutableFixed64List_ == 0) goto loc_10013a7d8
+  13a7cc  if (self->mutableFixed64List_->_count == 0) goto loc_10013a7d8
+  13a7d4  goto loc_10013a7f0
+loc_10013a7d8:
+  13a7dc  if (arg1->mutableFixed64List_ == 0) goto loc_10013a804
+  13a7ec  if (arg1->mutableFixed64List_->_count == 0) goto loc_10013a804
+loc_10013a7f0:
+  13a7fc  [self->mutableFixed64List_ isEqual:arg1->mutableFixed64List_]
+  13a800  if ([self->mutableFixed64List_ isEqual:arg1->mutableFixed64List_] == 0) goto loc_10013a880
+loc_10013a804:
+  13a810  if (self->mutableLengthDelimitedList_ == 0) goto loc_10013a82c
+  13a820  if (self->mutableLengthDelimitedList_->_count == 0) goto loc_10013a82c
+  13a828  goto loc_10013a844
+loc_10013a82c:
+  13a830  if (arg1->mutableLengthDelimitedList_ == 0) goto loc_10013a858
+  13a840  if (arg1->mutableLengthDelimitedList_->_count == 0) goto loc_10013a858
+loc_10013a844:
+  13a850  [self->mutableLengthDelimitedList_ isEqual:arg1->mutableLengthDelimitedList_]
+  13a854  if ([self->mutableLengthDelimitedList_ isEqual:arg1->mutableLengthDelimitedList_] == 0) goto loc_10013a880
+loc_10013a858:
+  13a864  if (self->mutableGroupList_ == 0) goto loc_10013a888
+  13a874  if (self->mutableGroupList_->_count == 0) goto loc_10013a888
+  13a87c  goto loc_10013a8a0
+loc_10013a880:
+  13a884  goto loc_10013a8b8
+loc_10013a888:
+  13a88c  if (arg1->mutableGroupList_ == 0) goto loc_10013a8b4
+  13a89c  if (arg1->mutableGroupList_->_count == 0) goto loc_10013a8b4
+loc_10013a8a0:
+  13a8ac  [self->mutableGroupList_ isEqual:arg1->mutableGroupList_]
+  13a8b0  goto loc_10013a8b8
+loc_10013a8b4:
+loc_10013a8b8:
+  13a8c0  return
+
+== -[TAGPBField writeToOutput:]   (address 0x10013a8c4  size 372  kind objc)
+  13a8e4  if (self->mutableVarintList_ == 0) goto loc_10013a91c
+  13a8f4  if (self->mutableVarintList_->_count == 0) goto loc_10013a91c
+  13a918  [arg1 writeUInt64s:self->number_ values:self->mutableVarintList_ tag:0]
+loc_10013a91c:
+  13a928  if (self->mutableFixed32List_ == 0) goto loc_10013a960
+  13a938  if (self->mutableFixed32List_->_count == 0) goto loc_10013a960
+  13a95c  [arg1 writeFixed32s:self->number_ values:self->mutableFixed32List_ tag:0]
+loc_10013a960:
+  13a96c  if (self->mutableFixed64List_ == 0) goto loc_10013a9a4
+  13a97c  if (self->mutableFixed64List_->_count == 0) goto loc_10013a9a4
+  13a9a0  [arg1 writeFixed64s:self->number_ values:self->mutableFixed64List_ tag:0]
+loc_10013a9a4:
+  13a9b0  if (self->mutableLengthDelimitedList_ == 0) goto loc_10013a9e4
+  13a9c0  if (self->mutableLengthDelimitedList_->_count == 0) goto loc_10013a9e4
+  13a9e0  [arg1 writeDatas:self->number_ values:self->mutableLengthDelimitedList_]
+loc_10013a9e4:
+  13a9f0  if (self->mutableGroupList_ == 0) goto loc_10013aa2c
+  13aa00  if (self->mutableGroupList_->_count == 0) goto loc_10013aa2c
+  13aa28  tail [arg1 writeUnknownGroups:self->number_ values:self->mutableGroupList_]
+loc_10013aa2c:
+  13aa34  return
+
+== -[TAGPBField serializedSize]   (address 0x10013aa38  size 968  kind objc)
+  13aa78  if (self->mutableVarintList_ == 0) goto loc_10013aacc
+  13aa94  [self->mutableVarintList_ data]
+  13aa9c  if (self->mutableVarintList_->_count == 0) goto loc_10013aadc
+loc_10013aab0:
+  13aab8  sub_1001354ec(self->number_)
+  13aac4  if ((x19 - 1) != 0) goto loc_10013aab0
+  13aac8  goto loc_10013aae0
+loc_10013aacc:
+  13aad8  [self->mutableVarintList_ data]
+loc_10013aadc:
+loc_10013aae0:
+  13aaec  if (self->mutableFixed32List_ == 0) goto loc_10013ab60
+  13ab08  [self->mutableFixed32List_ data]
+  13ab0c  if (self->mutableFixed32List_->_count == 0) goto loc_10013ab70
+loc_10013ab38:
+  13ab4c  t1 = ((self->number_ << 3) <u 0x4000 ? ((self->number_ << 3) >=u 128 ? 5 + 1 : 5) : ((self->number_ << 3) <u 0x200000 ? 7 : (w9 != 0 ? 8 + 1 : 8)))
+  13ab58  if ((x19 - 1) != 0) goto loc_10013ab38
+  13ab5c  goto loc_10013ab70
+loc_10013ab60:
+  13ab6c  [self->mutableFixed32List_ data]
+loc_10013ab70:
+  13ab7c  if (self->mutableFixed64List_ == 0) goto loc_10013abf0
+  13ab98  [self->mutableFixed64List_ data]
+  13ab9c  if (self->mutableFixed64List_->_count == 0) goto loc_10013ac00
+loc_10013abc8:
+  13abdc  t2 = ((self->number_ << 3) <u 0x4000 ? ((self->number_ << 3) >=u 128 ? 9 + 1 : 9) : ((self->number_ << 3) <u 0x200000 ? 11 : (w9 != 0 ? 12 + 1 : 12)))
+  13abe8  if ((x19 - 1) != 0) goto loc_10013abc8
+  13abec  goto loc_10013ac00
+loc_10013abf0:
+  13abfc  [self->mutableFixed64List_ data]
+loc_10013ac00:
+  13ac3c  [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16]
+  13ac44  if ([self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16] == 0) goto loc_10013acbc
+loc_10013ac60:
+loc_10013ac64:
+  13ac70  if (x8 == x19) goto loc_10013ac7c
+  13ac78  objc_enumerationMutation(self->mutableLengthDelimitedList_)
+loc_10013ac7c:
+  13ac88  sub_10013571c(self->number_)
+  13ac98  if ((x26 + 1) <u [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16]) goto loc_10013ac64
+  13acb0  [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16]
+  13acb8  if ([self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16] != 0) goto loc_10013ac60
+loc_10013acbc:
+  13acec  [self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16]
+  13acf4  if ([self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16] == 0) goto loc_10013adc0
+loc_10013ad30:
+loc_10013ad34:
+  13ad40  if (x8 == x28) goto loc_10013ad4c
+  13ad48  objc_enumerationMutation(self->mutableGroupList_)
+loc_10013ad4c:
+  13ad7c  t3 = ((self->number_ << 3) <u 0x4000 ? 4 : ((self->number_ << 3) <u 0x200000 ? 6 : (((self->number_ << 3) >>> 28) == 0 ? 8 : 10)))
+  13ad90  [x0 serializedSize]
+  13ada4  if ((x21 + 1) <u [self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16]) goto loc_10013ad34
+  13adb4  [self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16]
+  13adbc  if ([self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16] != 0) goto loc_10013ad30
+loc_10013adc0:
+  13adf8  return
+
+== -[TAGPBField writeAsMessageSetExtensionToOutput:]   (address 0x10013ae00  size 320  kind objc)
+  13ae74  [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  13ae7c  if ([self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_10013af04
+  13ae94  &@selector(writeRawMessageSetExtension:value:)
+loc_10013aea4:
+loc_10013aea8:
+  13aeb4  if (x8 == x28) goto loc_10013aec0
+  13aebc  objc_enumerationMutation(self->mutableLengthDelimitedList_)
+loc_10013aec0:
+  13aed4  [arg1 writeRawMessageSetExtension:self->number_ value:x3]
+  13aee0  if ((x22 + 1) <u [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_10013aea8
+  13aef8  [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  13af00  if ([self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_10013aea4
+loc_10013af04:
+  13af38  return
+
+== -[TAGPBField serializedSizeAsMessageSetExtension]   (address 0x10013af40  size 312  kind objc)
+  13afb0  [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  13afbc  if ([self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] == 0) goto loc_10013b038
+loc_10013afdc:
+loc_10013afe0:
+  13afec  if (x8 == x27) goto loc_10013aff8
+  13aff4  objc_enumerationMutation(self->mutableLengthDelimitedList_)
+loc_10013aff8:
+  13b004  sub_100135a14(self->number_)
+  13b014  if ((x26 + 1) <u [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]) goto loc_10013afe0
+  13b02c  [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  13b034  if ([self->mutableLengthDelimitedList_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] != 0) goto loc_10013afdc
+loc_10013b038:
+  13b070  return
+
+== -[TAGPBField description]   (address 0x10013b078  size 1004  kind objc)
+  13b0c0  [self class]
+  13b0f0  [NSMutableString stringWithFormat:@"<%@ %p>: Field: %d {\n", [self class], self, self->number_]
+  13b104  if (self->mutableVarintList_ == 0) goto loc_10013b174
+  13b114  if (self->mutableVarintList_->_count == 0) goto loc_10013b174
+  13b12c  &@selector(appendFormat:)
+  13b140  goto loc_10013b14c
+loc_10013b144:
+loc_10013b14c:
+  13b154  [self->mutableVarintList_ uint64AtIndex:x2]
+  13b168  [[NSMutableString stringWithFormat:@"<%@ %p>: Field: %d {\n", [self class], self, self->number_] appendFormat:@"	%llu\n", [self->mutableVarintList_ uint64AtIndex:x2]]
+  13b170  if ((self->mutableVarintList_->_count - 1) != x21) goto loc_10013b144
+loc_10013b174:
+  13b180  if (self->mutableFixed32List_ == 0) goto loc_10013b1f0
+  13b190  if (self->mutableFixed32List_->_count == 0) goto loc_10013b1f0
+  13b1a8  &@selector(appendFormat:)
+  13b1bc  goto loc_10013b1c8
+loc_10013b1c0:
+loc_10013b1c8:
+  13b1d0  [self->mutableFixed32List_ uint32AtIndex:x2]
+  13b1e4  [[NSMutableString stringWithFormat:@"<%@ %p>: Field: %d {\n", [self class], self, self->number_] appendFormat:@"	%u\n", [self->mutableFixed32List_ uint32AtIndex:x2]]
+  13b1ec  if ((self->mutableFixed32List_->_count - 1) != x21) goto loc_10013b1c0
+loc_10013b1f0:
+  13b1fc  if (self->mutableFixed64List_ == 0) goto loc_10013b26c
+  13b20c  if (self->mutableFixed64List_->_count == 0) goto loc_10013b26c
+  13b224  &@selector(appendFormat:)
+  13b238  goto loc_10013b244
+loc_10013b23c:
+loc_10013b244:
+  13b24c  [self->mutableFixed64List_ uint64AtIndex:x2]
+  13b260  [[NSMutableString stringWithFormat:@"<%@ %p>: Field: %d {\n", [self class], self, self->number_] appendFormat:@"	%llu\n", [self->mutableFixed64List_ uint64AtIndex:x2]]
+  13b268  if ((self->mutableFixed64List_->_count - 1) != x21) goto loc_10013b23c
+loc_10013b26c:
+  13b2ac  [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16]
+  13b2b4  if ([self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16] == 0) goto loc_10013b340
+  13b2c0  &@selector(appendFormat:)
+loc_10013b2dc:
+loc_10013b2e0:
+  13b2ec  if (x8 == x28) goto loc_10013b2f8
+  13b2f4  objc_enumerationMutation(self->mutableLengthDelimitedList_)
+loc_10013b2f8:
+  13b310  [[NSMutableString stringWithFormat:@"<%@ %p>: Field: %d {\n", [self class], self, self->number_] appendFormat:@"	%@\n", sp[0]]
+  13b31c  if ((x20 + 1) <u [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16]) goto loc_10013b2e0
+  13b334  [self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16]
+  13b33c  if ([self->mutableLengthDelimitedList_ countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xe8] count:16] != 0) goto loc_10013b2dc
+loc_10013b340:
+  13b374  [self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16]
+  13b37c  if ([self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16] == 0) goto loc_10013b408
+  13b388  &@selector(appendFormat:)
+loc_10013b3a4:
+loc_10013b3a8:
+  13b3b4  if (x8 == x27) goto loc_10013b3c0
+  13b3bc  objc_enumerationMutation(self->mutableGroupList_)
+loc_10013b3c0:
+  13b3d8  [[NSMutableString stringWithFormat:@"<%@ %p>: Field: %d {\n", [self class], self, self->number_] appendFormat:@"	%@\n", sp[0]]
+  13b3e4  if ((x28 + 1) <u [self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16]) goto loc_10013b3a8
+  13b3fc  [self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16]
+  13b404  if ([self->mutableGroupList_ countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x28] count:16] != 0) goto loc_10013b3a4
+loc_10013b408:
+  13b420  [[NSMutableString stringWithFormat:@"<%@ %p>: Field: %d {\n", [self class], self, self->number_] appendString:@"}"]
+  13b45c  return
+
+== -[TAGPBField varintList]   (address 0x10013b464  size 16  kind objc)
+  13b470  return
+
+== -[TAGPBField fixed32List]   (address 0x10013b474  size 16  kind objc)
+  13b480  return
+
+== -[TAGPBField fixed64List]   (address 0x10013b484  size 16  kind objc)
+  13b490  return
+
+== -[TAGPBField lengthDelimitedList]   (address 0x10013b494  size 16  kind objc)
+  13b4a0  return
+
+== -[TAGPBField groupList]   (address 0x10013b4a4  size 16  kind objc)
+  13b4b0  return
+
+== -[TAGPBField number]   (address 0x10013b4b4  size 16  kind objc)
+  13b4c0  return

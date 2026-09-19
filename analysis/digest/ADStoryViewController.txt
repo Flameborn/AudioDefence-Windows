@@ -1,0 +1,25 @@
+
+== -[ADStoryViewController initWithNibName:bundle:]   (address 0x1000bd168  size 140  kind objc)
+  0bd1b8  [super initWithNibName:arg1 bundle:arg2]
+  0bd1dc  return
+
+== -[ADStoryViewController viewDidLoad]   (address 0x1000bd1f4  size 60  kind objc)
+  0bd220  [super viewDidLoad]
+  0bd22c  return
+
+== -[ADStoryViewController didReceiveMemoryWarning]   (address 0x1000bd230  size 60  kind objc)
+  0bd25c  [super didReceiveMemoryWarning]
+  0bd268  return
+
+== -[ADStoryViewController skipButtonPressed:]   (address 0x1000bd26c  size 148  kind objc)
+  0bd290  [ADMainMenuViewController alloc]
+  0bd2ac  [[ADMainMenuViewController alloc] initWithNibName:@"ADMainMenuViewController" bundle:0]
+  0bd2d0  [self presentViewController:[[ADMainMenuViewController alloc] initWithNibName:@"ADMainMenuViewController" bundle:0] animated:0 completion:0]
+  0bd2e0  return
+
+== -[ADStoryViewController dealloc]   (address 0x1000bd300  size 140  kind objc)
+  0bd31c  NSLog(@"Dealloc story view controller", _cmd)
+  0bd340  [super dealloc]
+  0bd350  return
+  0bd37c  [super dealloc]
+  0bd388  call sub_10000b760

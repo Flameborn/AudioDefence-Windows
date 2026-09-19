@@ -1,0 +1,337 @@
+
+== -[ADChallengeSelectorViewController initWithNibName:bundle:loadChallenge:worldName:]   (address 0x1000c99d4  size 644  kind objc)
+  0c9a60  [super initWithNibName:arg1 bundle:arg2]
+  0c9a68  if (self == 0) goto loc_1000c9b88
+  0c9a84  self->challengeToLoad = arg3
+  0c9aa4  [NSBundle mainBundle]
+  0c9ad0  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  0c9b00  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  0c9b24  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg4]
+  0c9b40  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg4] objectForKey:@"challenges"]
+  0c9b64  [self setChallengeFiles:[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg4] objectForKey:@"challenges"]]
+loc_1000c9b88:
+  0c9bc8  return
+
+== -[ADChallengeSelectorViewController dictionaryForChallengeWithName:]   (address 0x1000c9c58  size 244  kind objc)
+  0c9c88  [NSBundle mainBundle]
+  0c9cb0  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  0c9cdc  [NSDictionary alloc]
+  0c9cf0  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  0c9d18  return
+
+== -[ADChallengeSelectorViewController viewDidLoad]   (address 0x1000c9d4c  size 708  kind objc)
+  0c9d88  [super viewDidLoad]
+  0c9da0  [self statusBarViewController]
+  0c9dc0  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  0c9dd4  [self statusBarViewController]
+  0c9df4  [[self statusBarViewController] setCurrenciesVisibility:1]
+  0c9e08  [self statusBarViewController]
+  0c9e28  [[self statusBarViewController] setDiamonsdsVisibility:1]
+  0c9e48  [self challengeWorldLabel]
+  0c9e64  [[self challengeWorldLabel] setupAsTitle]
+  0c9e80  [self contentView]
+  0c9ea0  [[self contentView] setHidden:0]
+  0c9eb4  [self challengeWorldLabel]
+  0c9ed8  [ADGameParameters sharedParameters]
+  0c9ef4  [[ADGameParameters sharedParameters] lastChallengeWorld]
+  0c9f1c  [[self challengeWorldLabel] setText:[[ADGameParameters sharedParameters] lastChallengeWorld]]
+  0c9f40  [self statusBarViewController]
+  0c9f5c  [[self statusBarViewController] pageTitle]
+  0c9f78  [[[self statusBarViewController] pageTitle] setText:@"CHALLENGE"]
+  0c9fa0  return
+
+== -[ADChallengeSelectorViewController loadView]   (address 0x1000ca010  size 400  kind objc)
+  0ca064  [NSNumber numberWithInt:1]
+  0ca090  [NSNumber numberWithInt:2]
+  0ca0b8  [NSNumber numberWithInt:3]
+  0ca0e8  [NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]
+  0ca12c  [self loADViewBasedOnDeviceWithNibName:@"ADChallengeSelectorViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]]
+  0ca158  return
+
+== -[ADChallengeSelectorViewController viewWillAppear:]   (address 0x1000ca1a0  size 128  kind objc)
+  0ca1d4  [super viewWillAppear:arg1]
+  0ca1e8  [self initChallengeList]
+  0ca1f8  if (self->challengeToLoad == 0) goto loc_1000ca210
+  0ca20c  [self loadChallengeWithName:self->challengeToLoad]
+loc_1000ca210:
+  0ca21c  return
+
+== -[ADChallengeSelectorViewController viewDidAppear:]   (address 0x1000ca220  size 60  kind objc)
+  0ca24c  [super viewDidAppear:arg1]
+  0ca258  return
+
+== -[ADChallengeSelectorViewController dealloc]   (address 0x1000ca25c  size 392  kind objc)
+  0ca2b4  &@selector(removeFromSuperview)
+  0ca2bc  goto loc_1000ca2d0
+loc_1000ca2c0:
+loc_1000ca2d0:
+  0ca2d8  [self->icons count]
+  0ca2e8  if (x20 >=u [self->icons count]) goto loc_1000ca34c
+  0ca2f4  [self->icons objectAtIndex:x2]
+  0ca308  [[self->icons objectAtIndex:x2] view]
+  0ca31c  [[[self->icons objectAtIndex:x2] view] removeFromSuperview]
+  0ca33c  [self->icons objectAtIndex:x2]
+  0ca340  goto loc_1000ca2c0
+  0ca348  goto loc_1000ca3b4
+loc_1000ca34c:
+  0ca34c  self->icons = 0
+  0ca374  [super dealloc]
+  0ca394  return
+  0ca3d4  [super dealloc]
+  0ca3e0  call sub_10000b760
+
+== -[ADChallengeSelectorViewController initChallengeList]   (address 0x1000ca3e4  size 1472  kind objc)
+  0ca418  if (self->icons == 0) goto loc_1000ca4a4
+  0ca42c  [self challengeScrollView]
+  0ca448  [[self challengeScrollView] subviews]
+  0ca470  [[[self challengeScrollView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)]
+  0ca494  [self->icons removeAllObjects]
+  0ca49c  self->icons = 0
+loc_1000ca4a4:
+  0ca4bc  [NSMutableArray alloc]
+  0ca4cc  [[NSMutableArray alloc] init]
+  0ca4d4  self->icons = [[NSMutableArray alloc] init]
+  0ca4f4  [self challengeFiles]
+  0ca518  [[self challengeFiles] objectAtIndex:0]
+  0ca548  [self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:0]]
+  0ca55c  if ([self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:0]] == 0) goto loc_1000ca5d8
+  0ca570  [ADChallengeIconViewController alloc]
+  0ca584  [self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:0]]
+  0ca5a8  [[ADChallengeIconViewController alloc] initWithDictionary:[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:0]]]
+  0ca5c4  [self->icons addObject:[[ADChallengeIconViewController alloc] initWithDictionary:[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:0]]]]
+loc_1000ca5d8:
+  0ca5e8  [self challengeScrollView]
+  0ca608  [[self challengeScrollView] frame]
+  0ca61c  [self->icons objectAtIndex:0]
+  0ca63c  [[self->icons objectAtIndex:0] view]
+  0ca650  [[[self->icons objectAtIndex:0] view] frame]
+  0ca65c  t1 = ([[self challengeScrollView] frame].2 + ([[[self->icons objectAtIndex:0] view] frame].2 * -5))
+  0ca6fc  [self->icons objectAtIndex:0]
+  0ca720  call x8
+  0ca750  &@selector(addObject:)
+  0ca75c  goto loc_1000ca770
+loc_1000ca760:
+loc_1000ca770:
+  0ca778  [self challengeFiles]
+  0ca78c  [[self challengeFiles] count]
+  0ca7a0  if (x19 >=u [[self challengeFiles] count]) goto loc_1000ca86c
+  0ca7b0  [ADChallengeIconViewController alloc]
+  0ca7c0  [self challengeFiles]
+  0ca7dc  [[self challengeFiles] objectAtIndex:x2]
+  0ca7f8  [self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:x2]]
+  0ca814  [[ADChallengeIconViewController alloc] initWithDictionary:[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:x2]]]
+  0ca844  [self->icons addObject:[[ADChallengeIconViewController alloc] initWithDictionary:[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:x2]]]]
+  0ca858  call x8
+  0ca85c  goto loc_1000ca760
+  0ca868  goto loc_1000ca8ec
+loc_1000ca86c:
+  0ca884  Block_object_dispose(&sp[0x70], 8)
+  0ca8b0  return
+  0ca90c  Block_object_dispose(&sp[0x70], 8)
+
+== -[ADChallengeSelectorViewController initChallengeList]_block_invoke   (address 0x1000ca9a4  size 1444  kind block)
+  0ca9e4  [block[+0x20] challengeScrollView]
+  0caa1c  [block[+0x20]->icons objectAtIndex:blockarg2]
+  0caa3c  [[block[+0x20]->icons objectAtIndex:blockarg2] view]
+  0caa60  [[block[+0x20] challengeScrollView] addSubview:[[block[+0x20]->icons objectAtIndex:blockarg2] view]]
+  0caa8c  [block[+0x20]->icons objectAtIndex:blockarg2]
+  0caaa0  [[block[+0x20]->icons objectAtIndex:blockarg2] view]
+  0caac0  [[[block[+0x20]->icons objectAtIndex:blockarg2] view] setTag:blockarg2]
+  0caae8  [UITapGestureRecognizer alloc]
+  0cab08  [[UITapGestureRecognizer alloc] initWithTarget:block[+0x20] action:@selector(challengeButtonPressed:)]
+  0cab20  [block[+0x20]->icons objectAtIndex:blockarg2]
+  0cab34  [[block[+0x20]->icons objectAtIndex:blockarg2] view]
+  0cab54  [[[block[+0x20]->icons objectAtIndex:blockarg2] view] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:block[+0x20] action:@selector(challengeButtonPressed:)]]
+  0cab78  [block[+0x20]->icons objectAtIndex:blockarg2]
+  0cab8c  [[block[+0x20]->icons objectAtIndex:blockarg2] view]
+  0cabac  if (blockarg2 >= 5) goto loc_1000cabc0
+  0cabbc  goto loc_1000cac14
+loc_1000cabc0:
+  0cabd4  [block[+0x20]->icons objectAtIndex:blockarg2]
+  0cabe8  [[block[+0x20]->icons objectAtIndex:blockarg2] view]
+  0cac04  [[[block[+0x20]->icons objectAtIndex:blockarg2] view] frame]
+loc_1000cac14:
+  0cac24  [block[+0x20]->icons objectAtIndex:blockarg2]
+  0cac40  [[block[+0x20]->icons objectAtIndex:blockarg2] view]
+  0cac68  [[[block[+0x20]->icons objectAtIndex:blockarg2] view] frame]
+  0cac80  [block[+0x20]->icons objectAtIndex:blockarg2]
+  0cac98  [[block[+0x20]->icons objectAtIndex:blockarg2] view]
+  0cacac  [[[block[+0x20]->icons objectAtIndex:blockarg2] view] frame]
+  0caccc  [[[block[+0x20]->icons objectAtIndex:blockarg2] view] setFrame:{block[+0x28][+0x8][+0x18], d1, [[[block[+0x20]->icons objectAtIndex:blockarg2] view] frame].2, [[[block[+0x20]->icons objectAtIndex:blockarg2] view] frame].3}]
+  0cacf4  if (one of {0, 1} == 0) goto loc_1000cad08
+loc_1000cad08:
+  0cad30  [block[+0x20]->icons objectAtIndex:blockarg2]
+  0cad48  [[block[+0x20]->icons objectAtIndex:blockarg2] view]
+  0cad5c  [[[block[+0x20]->icons objectAtIndex:blockarg2] view] frame]
+  0cad70  t1 = ((block[+0x30] + [[[block[+0x20]->icons objectAtIndex:blockarg2] view] frame].2) + block[+0x30])
+  0cad8c  block[+0x28][+0x8][+0x18] = (t1 + block[+0x28][+0x8][+0x18])
+  0cada4  if (blockarg2 != 4) goto loc_1000cadb8
+  0cadb4  block[+0x28][+0x8][+0x18] = block[+0x30]
+loc_1000cadb8:
+  0cade0  return
+  0cae90  if (w28 == 0) goto loc_1000caf28
+  0caec8  if ((w8 & 1)) goto loc_1000caf18
+
+== sub_1000caf48   (address 0x1000caf48  size 52  kind sub)
+  0caf78  tail Block_object_assign((a0 + 40), a1[+0x28], 8)
+
+== sub_1000caf7c   (address 0x1000caf7c  size 44  kind sub)
+  0cafa4  tail Block_object_dispose(a0[+0x28], 8)
+
+== -[ADChallengeSelectorViewController challengeButtonPressed:]   (address 0x1000cafa8  size 1268  kind objc)
+  0cb008  [self challengeScrollView]
+  0cb028  [[self challengeScrollView] subviews]
+  0cb060  [[[self challengeScrollView] subviews] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16]
+  0cb068  if ([[[self challengeScrollView] subviews] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16] == 0) goto loc_1000cb140
+  0cb084  &@selector(view)
+loc_1000cb08c:
+loc_1000cb090:
+  0cb09c  if (x8 == x21) goto loc_1000cb0a8
+  0cb0a4  objc_enumerationMutation([[self challengeScrollView] subviews])
+loc_1000cb0a8:
+  0cb0b8  [x0 tag]
+  0cb0c8  [arg1 view]
+  0cb0dc  [[arg1 view] tag]
+  0cb0f0  if ([x0 tag] == [[arg1 view] tag]) goto loc_1000cb124
+  0cb0fc  if ((x19 + 1) <u [[[self challengeScrollView] subviews] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16]) goto loc_1000cb090
+  0cb114  [[[self challengeScrollView] subviews] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16]
+  0cb11c  if ([[[self challengeScrollView] subviews] countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16] != 0) goto loc_1000cb08c
+  0cb120  goto loc_1000cb140
+loc_1000cb124:
+  0cb13c  [x0 setAlpha:0.4]
+loc_1000cb140:
+  0cb180  [self->icons countByEnumeratingWithState:&sp[0x88] objects:&sp[0x108] count:16]
+  0cb188  if ([self->icons countByEnumeratingWithState:&sp[0x88] objects:&sp[0x108] count:16] == 0) goto loc_1000cb274
+  0cb1a4  &@selector(tag)
+loc_1000cb1ac:
+loc_1000cb1b0:
+  0cb1bc  if (x8 == x22) goto loc_1000cb1c8
+  0cb1c4  objc_enumerationMutation(self->icons)
+loc_1000cb1c8:
+  0cb1d8  [x0 view]
+  0cb1ec  [[x0 view] tag]
+  0cb1fc  [arg1 view]
+  0cb210  [[arg1 view] tag]
+  0cb22c  if ([[x0 view] tag] == [[arg1 view] tag]) goto loc_1000cb260
+  0cb238  if ((x19 + 1) <u [self->icons countByEnumeratingWithState:&sp[0x88] objects:&sp[0x108] count:16]) goto loc_1000cb1b0
+  0cb24c  [self->icons countByEnumeratingWithState:&sp[0x88] objects:&sp[0x108] count:16]
+  0cb254  if ([self->icons countByEnumeratingWithState:&sp[0x88] objects:&sp[0x108] count:16] != 0) goto loc_1000cb1ac
+  0cb25c  goto loc_1000cb26c
+loc_1000cb260:
+loc_1000cb26c:
+  0cb270  goto loc_1000cb278
+loc_1000cb274:
+loc_1000cb278:
+  0cb290  [self playButtonSound]
+  0cb2a4  [x0 challengeLock]
+  0cb2c0  [[x0 challengeLock] isHidden]
+  0cb2dc  if (!([[x0 challengeLock] isHidden] & 1)) goto loc_1000cb34c
+  0cb2e0  dispatch_time(0, 0)
+  0cb338  dispatch_after(dispatch_time(0, 0), __dispatch_main_q, ^{-[ADChallengeSelectorViewController challengeButtonPressed:]_block_invoke captures +0x20=self})
+  0cb348  goto loc_1000cb3b4
+loc_1000cb34c:
+  0cb34c  dispatch_time(0, 0)
+  0cb3a4  dispatch_after(dispatch_time(0, 0), __dispatch_main_q, ^{-[ADChallengeSelectorViewController challengeButtonPressed:]_block_invoke_2 captures +0x28=self})
+loc_1000cb3b4:
+  0cb3fc  return
+
+== -[ADChallengeSelectorViewController challengeButtonPressed:]_block_invoke_2   (address 0x1000cb49c  size 200  kind block)
+  0cb4c4  [ADChallengeLockedViewController alloc]
+  0cb4dc  [block[+0x20] challengeDict]
+  0cb500  [[ADChallengeLockedViewController alloc] initWithDictionary:[block[+0x20] challengeDict]]
+  0cb52c  [self presentViewController:[[ADChallengeLockedViewController alloc] initWithDictionary:[block[+0x20] challengeDict]] animated:0 completion:0]
+  0cb540  return
+
+== sub_1000cb564   (address 0x1000cb564  size 40  kind sub)
+
+== sub_1000cb58c   (address 0x1000cb58c  size 40  kind sub)
+  0cb5b0  return
+
+== -[ADChallengeSelectorViewController challengeButtonPressed:]_block_invoke   (address 0x1000cb5b4  size 172  kind block)
+  0cb5d4  [x0 challengeDict]
+  0cb5f8  [[x0 challengeDict] objectForKey:@"challenge_id"]
+  0cb61c  [x0 loadChallengeWithName:[[x0 challengeDict] objectForKey:@"challenge_id"]]
+  0cb638  return
+
+== sub_1000cb660   (address 0x1000cb660  size 40  kind sub)
+
+== sub_1000cb688   (address 0x1000cb688  size 40  kind sub)
+  0cb6ac  return
+
+== -[ADChallengeSelectorViewController loadChallengeWithName:]   (address 0x1000cb6b0  size 532  kind objc)
+  0cb6e8  [ADChallengeData sharedChallengeData]
+  0cb708  [[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:arg1]
+  0cb718  if (!([[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:arg1] & 1)) goto loc_1000cb7ac
+  0cb730  [self dictionaryForChallengeWithName:arg1]
+  0cb754  [UIApplication sharedApplication]
+  0cb770  [[UIApplication sharedApplication] delegate]
+  0cb790  [[[UIApplication sharedApplication] delegate] goToChallengeOverviewWithDictionary:[self dictionaryForChallengeWithName:arg1]]
+  0cb7a8  goto loc_1000cb834
+loc_1000cb7ac:
+  0cb7c0  [ADChallengeLockedViewController alloc]
+  0cb7dc  [self dictionaryForChallengeWithName:arg1]
+  0cb800  [[ADChallengeLockedViewController alloc] initWithDictionary:[self dictionaryForChallengeWithName:arg1]]
+  0cb82c  [self presentViewController:[[ADChallengeLockedViewController alloc] initWithDictionary:[self dictionaryForChallengeWithName:arg1]] animated:0 completion:0]
+loc_1000cb834:
+  0cb84c  return
+
+== -[ADChallengeSelectorViewController canStartChallengeWithName:]   (address 0x1000cb8c4  size 244  kind objc)
+  0cb8fc  [ADChallengeData sharedChallengeData]
+  0cb91c  [[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:arg1]
+  0cb92c  if (!([[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:arg1] & 1)) goto loc_1000cb96c
+  0cb938  [ADChallengeData sharedChallengeData]
+  0cb958  [[ADChallengeData sharedChallengeData] hasChallengeRequirementsForChallengeWithName:arg1]
+  0cb968  goto loc_1000cb970
+loc_1000cb96c:
+loc_1000cb970:
+  0cb98c  return
+
+== -[ADChallengeSelectorViewController backButtonPressed]   (address 0x1000cb9b8  size 160  kind objc)
+  0cb9dc  [UIApplication sharedApplication]
+  0cb9f8  [[UIApplication sharedApplication] delegate]
+  0cba14  [[[UIApplication sharedApplication] delegate] goToWorldSelector]
+  0cba30  return
+
+== -[ADChallengeSelectorViewController playButtonSound]   (address 0x1000cba58  size 252  kind objc)
+  0cba7c  [S3DEngine engine]
+  0cbaa0  [[S3DEngine engine] playListWithName:@"buttons"]
+  0cbac4  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_button"]
+  0cbaf8  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_button"] setGain:3]
+  0cbb0c  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"start_button"] play]
+  0cbb20  return
+
+== -[ADChallengeSelectorViewController challengeWorldLabel]   (address 0x1000cbb54  size 16  kind objc)
+  0cbb60  return
+
+== -[ADChallengeSelectorViewController setChallengeWorldLabel:]   (address 0x1000cbb64  size 56  kind objc)
+  0cbb88  self->_challengeWorldLabel = arg1
+  0cbb98  return
+
+== -[ADChallengeSelectorViewController challengeScrollView]   (address 0x1000cbb9c  size 16  kind objc)
+  0cbba8  return
+
+== -[ADChallengeSelectorViewController setChallengeScrollView:]   (address 0x1000cbbac  size 56  kind objc)
+  0cbbd0  self->_challengeScrollView = arg1
+  0cbbe0  return
+
+== -[ADChallengeSelectorViewController challengeIndex]   (address 0x1000cbbe4  size 16  kind objc)
+  0cbbf0  return
+
+== -[ADChallengeSelectorViewController setChallengeIndex:]   (address 0x1000cbbf4  size 56  kind objc)
+  0cbc18  self->_challengeIndex = arg1
+  0cbc28  return
+
+== -[ADChallengeSelectorViewController contentView]   (address 0x1000cbc2c  size 16  kind objc)
+  0cbc38  return
+
+== -[ADChallengeSelectorViewController setContentView:]   (address 0x1000cbc3c  size 56  kind objc)
+  0cbc60  self->_contentView = arg1
+  0cbc70  return
+
+== -[ADChallengeSelectorViewController challengeFiles]   (address 0x1000cbc74  size 16  kind objc)
+  0cbc80  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADChallengeSelectorViewController setChallengeFiles:]   (address 0x1000cbc84  size 12  kind objc)
+  0cbc8c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADChallengeSelectorViewController .cxx_destruct]   (address 0x1000cbc90  size 164  kind objc)

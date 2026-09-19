@@ -1,0 +1,45 @@
+{
+ "icon_title": "07",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 60
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "title": "Meet The Farty",
+ "objective": "Meet Dr. Bastard's first undead experiment: the explosive Farty!",
+ "tip": "Farties will deafen you for a few seconds you if they blow up too close to you.",
+ "bricks": [
+  "tutorial_7_brick_1",
+  "tutorial_7_brick_2",
+  "tutorial_7_brick_3",
+  "tutorial_7_brick_4"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "tutorial_7",
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_6"
+ ],
+ "weapons": [
+  {
+   "ammo": "100",
+   "name": "microsmg"
+  },
+  {
+   "ammo": "10",
+   "name": "sawnoff"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 55
+ }
+}

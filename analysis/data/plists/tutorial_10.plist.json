@@ -1,0 +1,46 @@
+{
+ "icon_title": "10",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 70
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "title": "You're Hired!",
+ "objective": "Survive the Chainsaw Zombies!",
+ "tip": "Chainsaw Zombies move towards you sidestepping to the left or the right. Turn with them to make sure they don't evade your shots!",
+ "bricks": [
+  "tutorial_10_brick_1",
+  "tutorial_10_brick_2",
+  "tutorial_10_brick_3",
+  "tutorial_10_brick_4",
+  "tutorial_10_brick_5"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "tutorial_10",
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_9"
+ ],
+ "weapons": [
+  {
+   "ammo": "20",
+   "name": "sawnoff"
+  },
+  {
+   "ammo": "100",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 70
+ }
+}

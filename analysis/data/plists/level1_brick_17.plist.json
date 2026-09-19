@@ -1,0 +1,51 @@
+{
+ "Enemies": {
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 40,
+   "spawn_distance": 10
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2.2,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 230,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2.5,
+    "enemy": "WeakZombie"
+   },
+   "spawn_angle": 80,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 340,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2.2,
+    "enemy": "ZombieB"
+   },
+   "spawn_angle": 335,
+   "spawn_distance": 10
+  }
+ },
+ "Tips": [
+  "Aim with your ears. Shoot when you feel a Zombie is right in front of you.",
+  "Remember to switch weapons when under pressure. It's faster than reloading!",
+  "When you hear your own heartbeat, a Zombie is about to bite you. Aim at him and shoot or use your Melee weapon to dispatch him quickly!"
+ ]
+}

@@ -1,0 +1,17 @@
+
+== -[ADViewController(HandleAppNotification) registerForAppNotifications]   (address 0x10006cedc  size 208  kind objc)
+  06cf04  [NSNotificationCenter defaultCenter]
+  06cf28  [UIApplication sharedApplication]
+  06cf68  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAppEnteringBackground:) name:@"UIApplicationWillEntedBackgroundNotification" object:[UIApplication sharedApplication]]
+  06cf84  return
+
+== -[ADViewController(HandleAppNotification) deRegisterForAppNotifications]   (address 0x10006cfac  size 108  kind objc)
+  06cfd0  [NSNotificationCenter defaultCenter]
+  06cff0  [[NSNotificationCenter defaultCenter] removeObserver:self]
+  06d000  return
+
+== -[ADViewController(HandleAppNotification) handleAppEnteringBackground:]   (address 0x10006d018  size 4  kind objc)
+  06d018  return
+
+== -[ADViewController(HandleAppNotification) handleAppEnteringForeground:]   (address 0x10006d01c  size 4  kind objc)
+  06d01c  return

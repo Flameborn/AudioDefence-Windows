@@ -1,0 +1,12 @@
+// ADArmoryShopViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #22 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #19 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #12 UIView  
+    #15 UITableView  
+
+CONNECTIONS
+  outlet  tableView                                 #22 UIProxyObject --> #15 UITableView
+  outlet  view                                      #22 UIProxyObject --> #12 UIView
+
+ACCESSIBILITY CONFIGURATIONS

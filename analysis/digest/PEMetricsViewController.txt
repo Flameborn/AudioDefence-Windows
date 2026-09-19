@@ -1,0 +1,167 @@
+
+== -[PEMetricsViewController initWithNibName:bundle:]   (address 0x1000bf474  size 140  kind objc)
+  0bf4c4  [super initWithNibName:arg1 bundle:arg2]
+  0bf4e8  return
+
+== -[PEMetricsViewController updateMetrics]   (address 0x1000bf500  size 1256  kind objc)
+  0bf54c  [S3DEngine metric_MixPercent]
+  0bf580  [NSString stringWithFormat:@"%03.02f", ([S3DEngine metric_MixPercent] * 100)]
+  0bf5a8  [self->_ctrlMixPercent setText:[NSString stringWithFormat:@"%03.02f", ([S3DEngine metric_MixPercent] * 100)]]
+  0bf5d4  [S3DEngine metric_MixPercentLP]
+  0bf5f4  [NSString stringWithFormat:@"%03.02f", ([S3DEngine metric_MixPercentLP] * 100)]
+  0bf610  [self->_ctrlMixPercentLP setText:[NSString stringWithFormat:@"%03.02f", ([S3DEngine metric_MixPercentLP] * 100)]]
+  0bf63c  [S3DEngine metric_MixPercentMax]
+  0bf65c  [NSString stringWithFormat:@"%03.02f", ([S3DEngine metric_MixPercentMax] * 100)]
+  0bf678  [self->_ctrlMixPercentMax setText:[NSString stringWithFormat:@"%03.02f", ([S3DEngine metric_MixPercentMax] * 100)]]
+  0bf6a4  [S3DEngine metric_app_cpu_usage]
+  0bf6c0  [NSString stringWithFormat:@"%03.02f", [S3DEngine metric_app_cpu_usage]]
+  0bf6dc  [self->_ctrlAppCPU setText:[NSString stringWithFormat:@"%03.02f", [S3DEngine metric_app_cpu_usage]]]
+  0bf708  [S3DEngine metric_BufferBytesAllocated]
+  0bf738  [NSString stringWithFormat:@"%03.03f", (((float)[S3DEngine metric_BufferBytesAllocated] * 0.000976562) * 0.000976562)]
+  0bf754  [self->_ctrlAudioMemMB setText:[NSString stringWithFormat:@"%03.03f", (((float)[S3DEngine metric_BufferBytesAllocated] * 0.000976562) * 0.000976562)]]
+  0bf780  [S3DEngine metric_NumSoundsLoaded]
+  0bf798  [NSString stringWithFormat:@"%i", [S3DEngine metric_NumSoundsLoaded]]
+  0bf7b4  [self->_ctrlLoadedSnds setText:[NSString stringWithFormat:@"%i", [S3DEngine metric_NumSoundsLoaded]]]
+  0bf7e0  [S3DEngine metric_NumActiveSounds]
+  0bf7f8  [NSString stringWithFormat:@"%i", [S3DEngine metric_NumActiveSounds]]
+  0bf814  [self->_ctrlTotalActiveSnds setText:[NSString stringWithFormat:@"%i", [S3DEngine metric_NumActiveSounds]]]
+  0bf840  [S3DEngine metric_NumActiveSpatialSounds]
+  0bf858  [NSString stringWithFormat:@"%i", [S3DEngine metric_NumActiveSpatialSounds]]
+  0bf874  [self->_ctrlActSpatial setText:[NSString stringWithFormat:@"%i", [S3DEngine metric_NumActiveSpatialSounds]]]
+  0bf8a0  [S3DEngine metric_NumActiveNonSpatialSounds]
+  0bf8b8  [NSString stringWithFormat:@"%i", [S3DEngine metric_NumActiveNonSpatialSounds]]
+  0bf8d4  [self->_ctrlActNonSpatial setText:[NSString stringWithFormat:@"%i", [S3DEngine metric_NumActiveNonSpatialSounds]]]
+  0bf900  [S3DEngine engineVersion]
+  0bf920  [[S3DEngine engineVersion] UTF8String]
+  0bf938  [NSString stringWithFormat:@"%s", [[S3DEngine engineVersion] UTF8String]]
+  0bf954  [self->_ctrlPapaEngineVersion setText:[NSString stringWithFormat:@"%s", [[S3DEngine engineVersion] UTF8String]]]
+  0bf99c  tail [self->_ctrlCPUMeter setNeedsDisplay]
+  0bf9a0  goto loc_1000bf9c4
+  0bf9a4  goto loc_1000bf9c4
+  0bf9a8  goto loc_1000bf9c4
+  0bf9ac  goto loc_1000bf9c4
+  0bf9b0  goto loc_1000bf9c4
+  0bf9b4  goto loc_1000bf9c4
+  0bf9b8  goto loc_1000bf9c4
+  0bf9bc  goto loc_1000bf9c4
+  0bf9c0  goto loc_1000bf9c4
+loc_1000bf9c4:
+loc_1000bf9c8:
+  0bf9e4  goto loc_1000bf9c8
+
+== -[PEMetricsViewController shouldAutotate]   (address 0x1000bf9e8  size 8  kind objc)
+  0bf9ec  return
+
+== -[PEMetricsViewController viewDidLoad]   (address 0x1000bf9f0  size 160  kind objc)
+  0bfa24  [super viewDidLoad]
+  0bfa5c  [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateMetrics) userInfo:0 repeats:1]
+  0bfa74  self->mTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateMetrics) userInfo:0 repeats:1]
+  0bfa8c  return
+
+== -[PEMetricsViewController didReceiveMemoryWarning]   (address 0x1000bfa90  size 60  kind objc)
+  0bfabc  [super didReceiveMemoryWarning]
+  0bfac8  return
+
+== -[PEMetricsViewController dealloc]   (address 0x1000bfacc  size 60  kind objc)
+  0bfaf8  [super dealloc]
+  0bfb04  return
+
+== -[PEMetricsViewController viewDidUnload]   (address 0x1000bfb08  size 308  kind objc)
+  0bfb2c  [self setCtrlAppCPU:0]
+  0bfb44  [self setCtrlLoadedSnds:0]
+  0bfb5c  [self setCtrlMixPercent:0]
+  0bfb74  [self setCtrlMixPercentLP:0]
+  0bfb8c  [self setCtrlTotalActiveSnds:0]
+  0bfba4  [self setCtrlActSpatial:0]
+  0bfbbc  [self setCtrlActNonSpatial:0]
+  0bfbd4  [self setCtrlAudioMemMB:0]
+  0bfbec  [self setCtrlPapaEngineVersion:0]
+  0bfc04  [self setCtrlCPUMeter:0]
+  0bfc28  [super viewDidUnload]
+  0bfc38  return
+
+== -[PEMetricsViewController ctrlAppCPU]   (address 0x1000bfc3c  size 16  kind objc)
+  0bfc48  return
+
+== -[PEMetricsViewController setCtrlAppCPU:]   (address 0x1000bfc4c  size 56  kind objc)
+  0bfc70  self->_ctrlAppCPU = arg1
+  0bfc80  return
+
+== -[PEMetricsViewController ctrlLoadedSnds]   (address 0x1000bfc84  size 16  kind objc)
+  0bfc90  return
+
+== -[PEMetricsViewController setCtrlLoadedSnds:]   (address 0x1000bfc94  size 56  kind objc)
+  0bfcb8  self->_ctrlLoadedSnds = arg1
+  0bfcc8  return
+
+== -[PEMetricsViewController ctrlMixPercent]   (address 0x1000bfccc  size 16  kind objc)
+  0bfcd8  return
+
+== -[PEMetricsViewController setCtrlMixPercent:]   (address 0x1000bfcdc  size 56  kind objc)
+  0bfd00  self->_ctrlMixPercent = arg1
+  0bfd10  return
+
+== -[PEMetricsViewController ctrlMixPercentLP]   (address 0x1000bfd14  size 16  kind objc)
+  0bfd20  return
+
+== -[PEMetricsViewController setCtrlMixPercentLP:]   (address 0x1000bfd24  size 56  kind objc)
+  0bfd48  self->_ctrlMixPercentLP = arg1
+  0bfd58  return
+
+== -[PEMetricsViewController ctrlTotalActiveSnds]   (address 0x1000bfd5c  size 16  kind objc)
+  0bfd68  return
+
+== -[PEMetricsViewController setCtrlTotalActiveSnds:]   (address 0x1000bfd6c  size 56  kind objc)
+  0bfd90  self->_ctrlTotalActiveSnds = arg1
+  0bfda0  return
+
+== -[PEMetricsViewController ctrlActSpatial]   (address 0x1000bfda4  size 16  kind objc)
+  0bfdb0  return
+
+== -[PEMetricsViewController setCtrlActSpatial:]   (address 0x1000bfdb4  size 56  kind objc)
+  0bfdd8  self->_ctrlActSpatial = arg1
+  0bfde8  return
+
+== -[PEMetricsViewController ctrlActNonSpatial]   (address 0x1000bfdec  size 16  kind objc)
+  0bfdf8  return
+
+== -[PEMetricsViewController setCtrlActNonSpatial:]   (address 0x1000bfdfc  size 56  kind objc)
+  0bfe20  self->_ctrlActNonSpatial = arg1
+  0bfe30  return
+
+== -[PEMetricsViewController ctrlAudioMemMB]   (address 0x1000bfe34  size 16  kind objc)
+  0bfe40  return
+
+== -[PEMetricsViewController setCtrlAudioMemMB:]   (address 0x1000bfe44  size 56  kind objc)
+  0bfe68  self->_ctrlAudioMemMB = arg1
+  0bfe78  return
+
+== -[PEMetricsViewController ctrlPapaEngineVersion]   (address 0x1000bfe7c  size 16  kind objc)
+  0bfe88  return
+
+== -[PEMetricsViewController setCtrlPapaEngineVersion:]   (address 0x1000bfe8c  size 56  kind objc)
+  0bfeb0  self->_ctrlPapaEngineVersion = arg1
+  0bfec0  return
+
+== -[PEMetricsViewController ctrlMixPercentMax]   (address 0x1000bfec4  size 16  kind objc)
+  0bfed0  return
+
+== -[PEMetricsViewController setCtrlMixPercentMax:]   (address 0x1000bfed4  size 56  kind objc)
+  0bfef8  self->_ctrlMixPercentMax = arg1
+  0bff08  return
+
+== -[PEMetricsViewController myViewController]   (address 0x1000bff0c  size 16  kind objc)
+  0bff18  return
+
+== -[PEMetricsViewController setMyViewController:]   (address 0x1000bff1c  size 16  kind objc)
+  0bff24  self->_myViewController = arg1
+  0bff28  return
+
+== -[PEMetricsViewController ctrlCPUMeter]   (address 0x1000bff2c  size 16  kind objc)
+  0bff38  return
+
+== -[PEMetricsViewController setCtrlCPUMeter:]   (address 0x1000bff3c  size 16  kind objc)
+  0bff44  self->_ctrlCPUMeter = arg1
+  0bff48  return
+
+== -[PEMetricsViewController .cxx_destruct]   (address 0x1000bff4c  size 244  kind objc)

@@ -1,0 +1,160 @@
+
+== +[TAGNetOperation automaticallyNotifiesObserversForKey:]   (address 0x100113410  size 8  kind objc)
+  113414  return
+
+== -[TAGNetOperation isConcurrent]   (address 0x100113418  size 8  kind objc)
+  11341c  return
+
+== -[TAGNetOperation finish]   (address 0x100113420  size 376  kind objc)
+  113440  [self connection]
+  113464  [NSRunLoop currentRunLoop]
+  113494  [[self connection] unscheduleFromRunLoop:[NSRunLoop currentRunLoop] forMode:_NSRunLoopCommonModes[+0x0]]
+  1134bc  [self setConnection:0]
+  1134d0  [self isExecuting]
+  1134d4  if ([self isExecuting] == 0) goto loc_100113508
+  1134ec  [self setIsExecuting:0]
+  113504  [self setIsFinished:1]
+loc_100113508:
+  11351c  [self completion]
+  11352c  if ([self completion] == 0) goto loc_100113558
+  113544  [self setCompletion:0]
+  113554  call [self completion][+0x10]
+loc_100113558:
+  113568  return
+
+== -[TAGNetOperation start]   (address 0x100113598  size 204  kind objc)
+  1135bc  [self setIsExecuting:1]
+  1135d0  [self isReady]
+  1135d4  if ([self isReady] == 0) goto loc_10011363c
+  113630  [TAGDispatchUtil background:^{-[TAGNetOperation start]_block_invoke captures +0x20=self} wait:0]
+loc_10011363c:
+  113648  return
+
+== -[TAGNetOperation start]_block_invoke   (address 0x100113664  size 316  kind block)
+  11368c  [NSURLConnection alloc]
+  1136a4  [self request]
+  1136d0  [[NSURLConnection alloc] initWithRequest:[self request] delegate:self startImmediately:0]
+  1136f4  [self setConnection:[[NSURLConnection alloc] initWithRequest:[self request] delegate:self startImmediately:0]]
+  11370c  [NSRunLoop currentRunLoop]
+  11373c  [[[NSURLConnection alloc] initWithRequest:[self request] delegate:self startImmediately:0] scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:_NSRunLoopCommonModes[+0x0]]
+  113758  [[[NSURLConnection alloc] initWithRequest:[self request] delegate:self startImmediately:0] start]
+  11376c  return
+
+== sub_1001137a0   (address 0x1001137a0  size 8  kind sub)
+
+== sub_1001137a8   (address 0x1001137a8  size 8  kind sub)
+  1137ac  return
+
+== -[TAGNetOperation cancel]   (address 0x1001137b0  size 152  kind objc)
+  113814  [TAGDispatchUtil background:^{-[TAGNetOperation cancel]_block_invoke captures +0x20=self} wait:0]
+  11382c  return
+
+== -[TAGNetOperation cancel]_block_invoke   (address 0x100113848  size 192  kind block)
+  113868  [self connection]
+  113884  [[self connection] cancel]
+  1138a4  [self setData:0]
+  1138bc  [self setResponse:0]
+  1138d4  [self setIsCancelled:1]
+  1138f0  tail [self finish]
+
+== sub_100113908   (address 0x100113908  size 8  kind sub)
+
+== sub_100113910   (address 0x100113910  size 8  kind sub)
+  113914  return
+
+== +[TAGNetOperation operationWithRequest:andCompletion:]   (address 0x100113918  size 216  kind objc)
+  113958  [TAGNetOperation alloc]
+  113968  [[TAGNetOperation alloc] init]
+  113984  [[[TAGNetOperation alloc] init] setRequest:arg1]
+  11399c  [[[TAGNetOperation alloc] init] setCompletion:arg2]
+  1139c0  return
+
+== -[TAGNetOperation connection:didFailWithError:]   (address 0x1001139f0  size 108  kind objc)
+  113a20  [self setError:arg2]
+  113a34  [self finish]
+  113a44  return
+
+== -[TAGNetOperation connection:didReceiveData:]   (address 0x100113a5c  size 148  kind objc)
+  113a8c  [self data]
+  113aac  [[self data] appendData:arg2]
+  113ac8  return
+
+== -[TAGNetOperation connection:didReceiveResponse:]   (address 0x100113af0  size 180  kind objc)
+  113b24  [self setResponse:arg2]
+  113b3c  [NSMutableData data]
+  113b60  [self setData:[NSMutableData data]]
+  113b7c  return
+
+== -[TAGNetOperation connectionDidFinishLoading:]   (address 0x100113ba4  size 32  kind objc)
+  113bb8  [self finish]
+  113bc0  return
+
+== -[TAGNetOperation connection:willSendRequest:redirectResponse:]   (address 0x100113bc4  size 24  kind objc)
+  113bd8  return
+
+== -[TAGNetOperation connection:willCacheResponse:]   (address 0x100113bdc  size 8  kind objc)
+  113be0  return
+
+== -[TAGNetOperation request]   (address 0x100113be4  size 16  kind objc)
+  113bf0  return
+
+== -[TAGNetOperation setRequest:]   (address 0x100113bf4  size 56  kind objc)
+  113c18  self->_request = arg1
+  113c28  return
+
+== -[TAGNetOperation response]   (address 0x100113c2c  size 16  kind objc)
+  113c38  return
+
+== -[TAGNetOperation setResponse:]   (address 0x100113c3c  size 56  kind objc)
+  113c60  self->_response = arg1
+  113c70  return
+
+== -[TAGNetOperation data]   (address 0x100113c74  size 16  kind objc)
+  113c80  return
+
+== -[TAGNetOperation setData:]   (address 0x100113c84  size 56  kind objc)
+  113ca8  self->_data = arg1
+  113cb8  return
+
+== -[TAGNetOperation error]   (address 0x100113cbc  size 16  kind objc)
+  113cc8  return
+
+== -[TAGNetOperation setError:]   (address 0x100113ccc  size 56  kind objc)
+  113cf0  self->_error = arg1
+  113d00  return
+
+== -[TAGNetOperation isCancelled]   (address 0x100113d04  size 16  kind objc)
+  113d10  return
+
+== -[TAGNetOperation setIsCancelled:]   (address 0x100113d14  size 16  kind objc)
+  113d1c  self->_isCancelled = arg1
+  113d20  return
+
+== -[TAGNetOperation isExecuting]   (address 0x100113d24  size 16  kind objc)
+  113d30  return
+
+== -[TAGNetOperation setIsExecuting:]   (address 0x100113d34  size 16  kind objc)
+  113d3c  self->_isExecuting = arg1
+  113d40  return
+
+== -[TAGNetOperation isFinished]   (address 0x100113d44  size 16  kind objc)
+  113d50  return
+
+== -[TAGNetOperation setIsFinished:]   (address 0x100113d54  size 16  kind objc)
+  113d5c  self->_isFinished = arg1
+  113d60  return
+
+== -[TAGNetOperation connection]   (address 0x100113d64  size 16  kind objc)
+  113d70  return
+
+== -[TAGNetOperation setConnection:]   (address 0x100113d74  size 56  kind objc)
+  113d98  self->_connection = arg1
+  113da8  return
+
+== -[TAGNetOperation completion]   (address 0x100113dac  size 16  kind objc)
+  113db8  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGNetOperation setCompletion:]   (address 0x100113dbc  size 12  kind objc)
+  113dc4  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGNetOperation .cxx_destruct]   (address 0x100113dc8  size 144  kind objc)

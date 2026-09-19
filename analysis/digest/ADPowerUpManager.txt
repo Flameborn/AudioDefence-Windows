@@ -1,0 +1,55 @@
+
+== -[ADPowerUpManager init]   (address 0x10004b524  size 128  kind objc)
+  04b558  [super init]
+  04b560  if (self == 0) goto loc_10004b57c
+  04b578  [self resetPowerUpCooldown]
+loc_10004b57c:
+  04b58c  return
+
+== -[ADPowerUpManager update:]   (address 0x10004b5a4  size 156  kind objc)
+  04b5d4  [ADBrickManager sharedBrickManager]
+  04b5f0  [[ADBrickManager sharedBrickManager] playerIsDead]
+  04b600  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_10004b618
+  04b614  self->powerupCoolDown = (self->powerupCoolDown - arg1)
+loc_10004b618:
+  04b628  return
+
+== -[ADPowerUpManager resetPowerUpCooldown]   (address 0x10004b640  size 552  kind objc)
+  04b670  [ADWeaponManager sharedWeaponManager]
+  04b694  [[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"frequency"]
+  04b6c0  [ADInventory sharedInventory]
+  04b6e4  [[ADInventory sharedInventory] levelForPowerUpWithName:@"frequency"]
+  04b714  [NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForPowerUpWithName:@"frequency"]]
+  04b73c  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"frequency"] objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForPowerUpWithName:@"frequency"]]]
+  04b758  [[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"frequency"] objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForPowerUpWithName:@"frequency"]]] objectForKey:@"cooldownTime"]
+  04b774  [[[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"frequency"] objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForPowerUpWithName:@"frequency"]]] objectForKey:@"cooldownTime"] intValue]
+  04b778  t1 = (float)[[[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"frequency"] objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForPowerUpWithName:@"frequency"]]] objectForKey:@"cooldownTime"] intValue]
+  04b784  self->powerupCoolDown = t1
+  04b7b4  [ADGameModifiers sharedModifiers]
+  04b7d0  [[ADGameModifiers sharedModifiers] morePowerUps]
+  04b7e0  if ([[ADGameModifiers sharedModifiers] morePowerUps] == 0) goto loc_10004b7f4
+  04b7f0  self->powerupCoolDown = (self->powerupCoolDown + -10)
+loc_10004b7f4:
+  04b80c  return
+
+== -[ADPowerUpManager tryToPopPowerUp]   (address 0x10004b868  size 92  kind objc)
+  04b884  if (self->powerupCoolDown <= (or unordered) 0.0) goto loc_10004b8a8
+  04b898  NSLog(@"Cooldown has %f seconds left, can't pop powerup", _cmd, self->powerupCoolDown)
+  04b8a4  return
+  04b8c0  tail [self popPowerUpWithType:0]
+
+== -[ADPowerUpManager popPowerUpWithType:]   (address 0x10004b8c4  size 432  kind objc)
+  04b8f4  [ADPowerUpContainer alloc]
+  04b90c  [[ADPowerUpContainer alloc] initWithName:@"PowerUpContainer"]
+  04b924  [[[ADPowerUpContainer alloc] initWithName:@"PowerUpContainer"] setPowerUpType:arg1]
+  04b938  [[[ADPowerUpContainer alloc] initWithName:@"PowerUpContainer"] activatePlaylist]
+  04b950  [[[ADPowerUpContainer alloc] initWithName:@"PowerUpContainer"] setRandomPositionAtDistance:5]
+  04b96c  [ADBrickManager sharedBrickManager]
+  04b988  [[ADBrickManager sharedBrickManager] passersByCount]
+  04b9a8  [[[ADPowerUpContainer alloc] initWithName:@"PowerUpContainer"] setTag:([[ADBrickManager sharedBrickManager] passersByCount] + 0x30d40)]
+  04b9c8  [[[ADPowerUpContainer alloc] initWithName:@"PowerUpContainer"] setState:0]
+  04b9e0  [[[ADPowerUpContainer alloc] initWithName:@"PowerUpContainer"] setSpawn_time:2]
+  04b9ec  [ADBrickManager sharedBrickManager]
+  04ba0c  [[ADBrickManager sharedBrickManager] addPasserBy:[[ADPowerUpContainer alloc] initWithName:@"PowerUpContainer"]]
+  04ba28  [self resetPowerUpCooldown]
+  04ba40  return

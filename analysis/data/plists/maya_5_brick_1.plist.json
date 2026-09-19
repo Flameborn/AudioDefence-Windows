@@ -1,0 +1,23 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1.3",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "bastard_zombie_whisperer_a"
+  }
+ ],
+ "Ambiant": "Silence_ambiant",
+ "Enemies": {
+  "QuietZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "bastard_zombie_whisperer_a"
+   },
+   "spawn_angle": 120,
+   "spawn_distance": 10
+  }
+ }
+}

@@ -1,0 +1,23 @@
+// ADCustomTableViewCellWithSubtitles_iPad.nib
+TOP-LEVEL OBJECTS
+  #64 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #81 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #22 UITableViewCell (custom class ADCustomTableViewCellWithSubtitles)  
+    #49 UITableViewCellContentView  
+      #11 UIImageView  Image='banjo_icon.png'
+      #65 UILabel  UserInteractionDisabled=False Text='Label'
+      #9 UILabel  UserInteractionDisabled=False Text='Label' NumberOfLines=2
+      #50 UIImageView  UserInteractionDisabled=False
+      #3 UIButton (custom class ADButtonWithFont)  UserInteractionDisabled=False title[0]='Button'
+    #58 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #49)
+
+CONNECTIONS
+  outlet  buyUpgradeButton                          #22 ADCustomTableViewCellWithSubtitles --> #3 ADButtonWithFont
+  outlet  detailLabel                               #22 ADCustomTableViewCellWithSubtitles --> #9 UILabel Text='Label'
+  outlet  image                                     #22 ADCustomTableViewCellWithSubtitles --> #11 UIImageView
+  outlet  statusLevel                               #22 ADCustomTableViewCellWithSubtitles --> #50 UIImageView
+  outlet  titleLabel                                #22 ADCustomTableViewCellWithSubtitles --> #65 UILabel Text='Label'
+
+ACCESSIBILITY CONFIGURATIONS

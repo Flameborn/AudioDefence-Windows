@@ -1,0 +1,37 @@
+
+== -[TAGAddRemoveMacrosPopulator initWithAddMacros:removeMacros:]   (address 0x1001685d4  size 228  kind objc)
+  168628  [super init]
+  168630  if (self == 0) goto loc_100168674
+  168648  self->_addMacros = arg1
+  168668  self->_removeMacros = arg2
+loc_100168674:
+  168698  return
+
+== -[TAGAddRemoveMacrosPopulator rulePassed:add:remove:]   (address 0x1001686b8  size 424  kind objc)
+  168710  [self addMacros]
+  168734  [[self addMacros] objectForKey:arg1]
+  16874c  if ([[self addMacros] objectForKey:arg1] == 0) goto loc_100168768
+  168764  [arg2 unionSet:[[self addMacros] objectForKey:arg1]]
+loc_100168768:
+  168778  [self removeMacros]
+  168790  [[self removeMacros] objectForKey:arg1]
+  1687a8  if ([[self removeMacros] objectForKey:arg1] == 0) goto loc_1001687c4
+  1687c0  [arg3 unionSet:[[self removeMacros] objectForKey:arg1]]
+loc_1001687c4:
+  1687fc  return
+
+== -[TAGAddRemoveMacrosPopulator addMacros]   (address 0x100168860  size 16  kind objc)
+  16886c  return
+
+== -[TAGAddRemoveMacrosPopulator setAddMacros:]   (address 0x100168870  size 56  kind objc)
+  168894  self->_addMacros = arg1
+  1688a4  return
+
+== -[TAGAddRemoveMacrosPopulator removeMacros]   (address 0x1001688a8  size 16  kind objc)
+  1688b4  return
+
+== -[TAGAddRemoveMacrosPopulator setRemoveMacros:]   (address 0x1001688b8  size 56  kind objc)
+  1688dc  self->_removeMacros = arg1
+  1688ec  return
+
+== -[TAGAddRemoveMacrosPopulator .cxx_destruct]   (address 0x1001688f0  size 64  kind objc)

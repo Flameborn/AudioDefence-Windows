@@ -1,0 +1,66 @@
+
+== -[TAGMacroInfo init]   (address 0x100168038  size 284  kind objc)
+  168070  [super init]
+  168078  if (self == 0) goto loc_100168128
+  168094  [NSMutableSet set]
+  1680b0  self->_rules = [NSMutableSet set]
+  1680d4  [NSMutableDictionary dictionary]
+  1680f0  self->_addMacros = [NSMutableDictionary dictionary]
+  168104  [NSMutableDictionary dictionary]
+  16811c  self->_removeMacros = [NSMutableDictionary dictionary]
+loc_100168128:
+  16813c  return
+
+== -[TAGMacroInfo addAddMacro:forRule:]   (address 0x100168154  size 380  kind objc)
+  16819c  [self addMacros]
+  1681bc  [[self addMacros] objectForKey:arg2]
+  1681d4  if ([[self addMacros] objectForKey:arg2] != 0) goto loc_100168244
+  1681ec  [NSMutableSet alloc]
+  1681fc  [[NSMutableSet alloc] init]
+  168210  [self addMacros]
+  168234  [[self addMacros] setObject:[[NSMutableSet alloc] init] forKey:arg2]
+loc_100168244:
+  168258  [x0 addObject:arg1]
+  168280  return
+
+== -[TAGMacroInfo addRemoveMacro:forRule:]   (address 0x1001682d0  size 380  kind objc)
+  168318  [self removeMacros]
+  168338  [[self removeMacros] objectForKey:arg2]
+  168350  if ([[self removeMacros] objectForKey:arg2] != 0) goto loc_1001683c0
+  168368  [NSMutableSet alloc]
+  168378  [[NSMutableSet alloc] init]
+  16838c  [self removeMacros]
+  1683b0  [[self removeMacros] setObject:[[NSMutableSet alloc] init] forKey:arg2]
+loc_1001683c0:
+  1683d4  [x0 addObject:arg1]
+  1683fc  return
+
+== -[TAGMacroInfo rules]   (address 0x10016844c  size 16  kind objc)
+  168458  return
+
+== -[TAGMacroInfo setRules:]   (address 0x10016845c  size 56  kind objc)
+  168480  self->_rules = arg1
+  168490  return
+
+== -[TAGMacroInfo addMacros]   (address 0x100168494  size 16  kind objc)
+  1684a0  return
+
+== -[TAGMacroInfo setAddMacros:]   (address 0x1001684a4  size 56  kind objc)
+  1684c8  self->_addMacros = arg1
+  1684d8  return
+
+== -[TAGMacroInfo removeMacros]   (address 0x1001684dc  size 16  kind objc)
+  1684e8  return
+
+== -[TAGMacroInfo setRemoveMacros:]   (address 0x1001684ec  size 56  kind objc)
+  168510  self->_removeMacros = arg1
+  168520  return
+
+== -[TAGMacroInfo defaultFunctionCall]   (address 0x100168524  size 16  kind objc)
+  168530  return
+
+== -[TAGMacroInfo setDefaultFunctionCall:]   (address 0x100168534  size 56  kind objc)
+  168558  self->_defaultFunctionCall = arg1
+  168568  return
+
+== -[TAGMacroInfo .cxx_destruct]   (address 0x10016856c  size 104  kind objc)

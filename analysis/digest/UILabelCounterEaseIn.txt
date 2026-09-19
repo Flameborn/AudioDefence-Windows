@@ -1,0 +1,4 @@
+
+== -[UILabelCounterEaseIn update:]   (address 0x10007cb58  size 52  kind objc)
+  07cb74  [self rate]
+  07cb88  tail powf(arg1, [self rate])

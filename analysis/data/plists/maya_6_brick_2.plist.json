@@ -1,0 +1,85 @@
+{
+ "Enemies": {
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "WeakZombie"
+   },
+   "spawn_angle": 240,
+   "spawn_distance": 10
+  },
+  "RunnerB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "WeakZombieC"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "QuietZombie"
+   },
+   "spawn_angle": 290,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 310,
+   "spawn_distance": 10
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "QuietZombie"
+   },
+   "spawn_angle": 200,
+   "spawn_distance": 10
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "ZombieB"
+   },
+   "spawn_angle": 120,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 20,
+   "spawn_distance": 10
+  },
+  "QuietZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 120,
+   "spawn_distance": 10,
+   "spawn_time": 2
+  }
+ },
+ "PowerUp": {
+  "force_spawn_time": "12"
+ }
+}

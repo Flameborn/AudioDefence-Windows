@@ -1,0 +1,58 @@
+{
+ "icon_title": "01",
+ "accuracy_star": {
+  "reward": 100,
+  "objective": 25
+ },
+ "ambient": {
+  "gain": 0.3,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "title": "TRAINING GROUNDS 1",
+ "objective": "Defeat All level 1 Bricks",
+ "tip": "Aim with your ears. Shoot when you hear the Zombie right in front of you.",
+ "bricks": [
+  "level1_brick_1",
+  "level1_brick_2",
+  "level1_brick_3",
+  "level1_brick_4",
+  "level1_brick_5",
+  "level1_brick_6",
+  "level1_brick_7",
+  "level1_brick_8",
+  "level1_brick_9",
+  "level1_brick_10",
+  "level1_brick_11",
+  "level1_brick_12",
+  "level1_brick_13",
+  "level1_brick_14",
+  "level1_brick_15",
+  "level1_brick_16",
+  "level1_brick_17"
+ ],
+ "mission_star": {
+  "reward": 500
+ },
+ "challenge_id": "01_02",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "tutorial_1"
+ ],
+ "weapons": [
+  {
+   "ammo": "999",
+   "name": "tactical"
+  },
+  {
+   "ammo": "999",
+   "name": "policeshotgun"
+  },
+  {
+   "name": "claymore"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 40
+ }
+}

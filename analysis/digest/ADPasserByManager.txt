@@ -1,0 +1,222 @@
+
+== -[ADPasserByManager init]   (address 0x1000d570c  size 180  kind objc)
+  0d5748  [super init]
+  0d5750  if (self == 0) goto loc_1000d5794
+  0d576c  [NSMutableArray alloc]
+  0d5778  [[NSMutableArray alloc] init]
+  0d5788  self->passersBy = [[NSMutableArray alloc] init]
+loc_1000d5794:
+  0d57a8  return
+
+== -[ADPasserByManager startTimers]   (address 0x1000d57c0  size 420  kind objc)
+  0d57f0  [ADGameModifiers sharedModifiers]
+  0d580c  [[ADGameModifiers sharedModifiers] cows]
+  0d581c  if ([[ADGameModifiers sharedModifiers] cows] == 0) goto loc_1000d5834
+  0d5830  [self randomizeNextCow]
+loc_1000d5834:
+  0d583c  [ADGameModifiers sharedModifiers]
+  0d5858  [[ADGameModifiers sharedModifiers] cars]
+  0d5868  if ([[ADGameModifiers sharedModifiers] cars] == 0) goto loc_1000d5880
+  0d587c  [self randomizeNextCar]
+loc_1000d5880:
+  0d5888  [ADGameModifiers sharedModifiers]
+  0d58a4  [[ADGameModifiers sharedModifiers] jukebox]
+  0d58b4  if ([[ADGameModifiers sharedModifiers] jukebox] == 0) goto loc_1000d58cc
+  0d58c8  [self addJukebox]
+loc_1000d58cc:
+  0d58d4  [ADGameModifiers sharedModifiers]
+  0d58f0  [[ADGameModifiers sharedModifiers] machine]
+  0d5900  if ([[ADGameModifiers sharedModifiers] machine] == 0) goto loc_1000d5928
+  0d5924  tail [self addMachine]
+loc_1000d5928:
+  0d5938  return
+
+== -[ADPasserByManager allPasserBy]   (address 0x1000d5964  size 16  kind objc)
+
+== -[ADPasserByManager addPasserBy:]   (address 0x1000d5974  size 44  kind objc)
+  0d5994  [self->passersBy addObject:arg1]
+  0d599c  return
+
+== -[ADPasserByManager removeAllPassersBy]   (address 0x1000d59a0  size 28  kind objc)
+  0d59b8  tail [self->passersBy removeAllObjects]
+
+== -[ADPasserByManager clean]   (address 0x1000d59bc  size 40  kind objc)
+  0d59e0  tail [self->passersBy makeObjectsPerformSelector:@selector(deactivatePlaylist)]
+
+== -[ADPasserByManager update:]   (address 0x1000d59e4  size 800  kind objc)
+  0d5a60  [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0d5a68  if ([self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000d5adc
+  0d5a78  &@selector(update:)
+loc_1000d5a80:
+loc_1000d5a84:
+  0d5a90  if (x8 == x25) goto loc_1000d5a9c
+  0d5a98  objc_enumerationMutation(self->passersBy)
+loc_1000d5a9c:
+  0d5aac  [x0 update:arg1]
+  0d5ab8  if ((x26 + 1) <u [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000d5a84
+  0d5ad0  [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0d5ad8  if ([self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000d5a80
+loc_1000d5adc:
+  0d5afc  [ADBrickManager sharedBrickManager]
+  0d5b18  [[ADBrickManager sharedBrickManager] mode]
+  0d5b2c  if ([[ADBrickManager sharedBrickManager] mode] != 1) goto loc_1000d5c90
+  0d5b48  [ADGameModifiers sharedModifiers]
+  0d5b64  [[ADGameModifiers sharedModifiers] cows]
+  0d5b74  if ([[ADGameModifiers sharedModifiers] cows] == 0) goto loc_1000d5be8
+  0d5b88  if (self->nextCow >= (or unordered) 0.0) goto loc_1000d5ba4
+  0d5b9c  [self generateCow]
+  0d5ba0  goto loc_1000d5be8
+loc_1000d5ba4:
+  0d5bac  [ADBrickManager sharedBrickManager]
+  0d5bc8  [[ADBrickManager sharedBrickManager] playerIsDead]
+  0d5bd8  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_1000d5be8
+  0d5be4  self->nextCow = (self->nextCow - arg1)
+loc_1000d5be8:
+  0d5bf0  [ADGameModifiers sharedModifiers]
+  0d5c0c  [[ADGameModifiers sharedModifiers] cars]
+  0d5c1c  if ([[ADGameModifiers sharedModifiers] cars] == 0) goto loc_1000d5c90
+  0d5c30  if (self->nextCar >= (or unordered) 0.0) goto loc_1000d5c4c
+  0d5c44  [self generateCar]
+  0d5c48  goto loc_1000d5c90
+loc_1000d5c4c:
+  0d5c54  [ADBrickManager sharedBrickManager]
+  0d5c70  [[ADBrickManager sharedBrickManager] playerIsDead]
+  0d5c80  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_1000d5c90
+  0d5c8c  self->nextCar = (self->nextCar - arg1)
+loc_1000d5c90:
+  0d5cbc  return
+
+== -[ADPasserByManager generateCow]   (address 0x1000d5d04  size 516  kind objc)
+  0d5d38  [NSMutableArray alloc]
+  0d5d5c  [[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]
+  0d5d78  [self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]]
+  0d5d88  if ([self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]] == 0) goto loc_1000d5ea0
+  0d5d98  [ADPasserBy alloc]
+  0d5dac  [[ADPasserBy alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]]]
+  0d5dc4  [[[ADPasserBy alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]]] initSounds]
+  0d5dd8  [[[ADPasserBy alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]]] setRandomPosition]
+  0d5df4  [self->passersBy count]
+  0d5e14  [[[ADPasserBy alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]]] setTag:([self->passersBy count] + 0x30d41)]
+  0d5e28  [[[ADPasserBy alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]]] spawn]
+  0d5e40  [self->passersBy addObject:[[ADPasserBy alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]]]]
+  0d5e58  [ADBrickManager sharedBrickManager]
+  0d5e78  [[ADBrickManager sharedBrickManager] addPasserBy:[[ADPasserBy alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Cow", @"Cow2", nil]]]]
+  0d5e94  [self randomizeNextCow]
+loc_1000d5ea0:
+  0d5ec0  return
+
+== -[ADPasserByManager generateCar]   (address 0x1000d5f08  size 476  kind objc)
+  0d5f3c  [NSMutableArray alloc]
+  0d5f6c  [[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]
+  0d5f88  [self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]]
+  0d5f98  if ([self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]] == 0) goto loc_1000d608c
+  0d5fa8  [ADCarAlarm alloc]
+  0d5fbc  [[ADCarAlarm alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]]]
+  0d5fd4  [[[ADCarAlarm alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]]] initSounds]
+  0d5fec  [[[ADCarAlarm alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]]] setRandomPositionAtDistance:6]
+  0d6008  [self->passersBy count]
+  0d6028  [[[ADCarAlarm alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]]] setTag:([self->passersBy count] + 0x30d41)]
+  0d603c  [[[ADCarAlarm alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]]] spawn]
+  0d6054  [self->passersBy addObject:[[ADCarAlarm alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]]]]
+  0d606c  [self addPasserBy:[[ADCarAlarm alloc] initWithName:[self availablePlaylistNameInArray:[[NSMutableArray alloc] initWithObjects:@"Car", @"Car2", @"Car3", nil]]]]
+  0d6080  [self randomizeNextCar]
+loc_1000d608c:
+  0d60ac  return
+
+== -[ADPasserByManager randomizeNextCar]   (address 0x1000d60e4  size 92  kind objc)
+  0d60f4  rand()
+  0d6114  t1 = (((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >> 5) + ((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >>> 31))
+  0d6130  self->nextCar = (float)((rand() - t1 * 45) + 25)
+  0d613c  return
+
+== -[ADPasserByManager randomizeNextCow]   (address 0x1000d6140  size 92  kind objc)
+  0d6150  rand()
+  0d6170  t1 = (((((rand() * 0xffffffffea0ea0eb) >>> 32) + rand()) >> 5) + ((((rand() * 0xffffffffea0ea0eb) >>> 32) + rand()) >>> 31))
+  0d618c  self->nextCow = (float)((rand() - t1 * 35) + 15)
+  0d6198  return
+
+== -[ADPasserByManager availablePlaylistNameInArray:]   (address 0x1000d619c  size 568  kind objc)
+  0d621c  [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0d6224  if ([self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000d62e4
+  0d624c  &@selector(removeObject:)
+loc_1000d6254:
+loc_1000d6258:
+  0d6264  if (x8 == x28) goto loc_1000d6270
+  0d626c  objc_enumerationMutation(self->passersBy)
+loc_1000d6270:
+  0d6280  [x0 canBeShotAt]
+  0d6284  if ([x0 canBeShotAt] == 0) goto loc_1000d62b8
+  0d6290  [x0 soundsPrefix]
+  0d62ac  [arg1 removeObject:[x0 soundsPrefix]]
+loc_1000d62b8:
+  0d62c0  if ((x27 + 1) <u [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000d6258
+  0d62d8  [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0d62e0  if ([self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000d6254
+loc_1000d62e4:
+  0d6300  [arg1 count]
+  0d6304  if ([arg1 count] == 0) goto loc_1000d634c
+  0d6308  rand()
+  0d6318  [arg1 count]
+  0d6338  [arg1 objectAtIndex:(rand() - (rand() / [arg1 count]) * [arg1 count])]
+  0d6348  goto loc_1000d6350
+loc_1000d634c:
+loc_1000d6350:
+  0d6390  return
+
+== -[ADPasserByManager addJukebox]   (address 0x1000d63d4  size 272  kind objc)
+  0d63f8  [ADJukeBox alloc]
+  0d6410  [[ADJukeBox alloc] initWithName:@"Jukebox"]
+  0d6424  [[[ADJukeBox alloc] initWithName:@"Jukebox"] initSounds]
+  0d6438  [[[ADJukeBox alloc] initWithName:@"Jukebox"] setRandomPosition]
+  0d6450  [[[ADJukeBox alloc] initWithName:@"Jukebox"] setState:0]
+  0d6468  [[[ADJukeBox alloc] initWithName:@"Jukebox"] setSpawn_time:2]
+  0d6484  [self->passersBy count]
+  0d64a4  [[[ADJukeBox alloc] initWithName:@"Jukebox"] setTag:([self->passersBy count] + 0x30d40)]
+  0d64bc  [self addPasserBy:[[ADJukeBox alloc] initWithName:@"Jukebox"]]
+  0d64cc  return
+
+== -[ADPasserByManager addMachine]   (address 0x1000d64e4  size 276  kind objc)
+  0d6508  [ADMachine alloc]
+  0d6520  [[ADMachine alloc] initWithName:@"Machine"]
+  0d6534  [[[ADMachine alloc] initWithName:@"Machine"] initSounds]
+  0d654c  [[[ADMachine alloc] initWithName:@"Machine"] setRandomPositionAtDistance:6]
+  0d6564  [[[ADMachine alloc] initWithName:@"Machine"] setState:0]
+  0d657c  [[[ADMachine alloc] initWithName:@"Machine"] setSpawn_time:2]
+  0d6598  [self->passersBy count]
+  0d65b8  [[[ADMachine alloc] initWithName:@"Machine"] setTag:([self->passersBy count] + 0x30d40)]
+  0d65d0  [self addPasserBy:[[ADMachine alloc] initWithName:@"Machine"]]
+  0d65e0  return
+
+== -[ADPasserByManager pause]   (address 0x1000d65f8  size 308  kind objc)
+  0d6664  [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0d666c  if ([self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000d66dc
+  0d667c  &@selector(pause)
+loc_1000d6684:
+loc_1000d6688:
+  0d6694  if (x8 == x24) goto loc_1000d66a0
+  0d669c  objc_enumerationMutation(self->passersBy)
+loc_1000d66a0:
+  0d66ac  [x0 pause]
+  0d66b8  if ((x25 + 1) <u [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000d6688
+  0d66d0  [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0d66d8  if ([self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000d6684
+loc_1000d66dc:
+  0d6708  return
+
+== -[ADPasserByManager resume]   (address 0x1000d672c  size 308  kind objc)
+  0d6798  [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0d67a0  if ([self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000d6810
+  0d67b0  &@selector(resume)
+loc_1000d67b8:
+loc_1000d67bc:
+  0d67c8  if (x8 == x24) goto loc_1000d67d4
+  0d67d0  objc_enumerationMutation(self->passersBy)
+loc_1000d67d4:
+  0d67e0  [x0 resume]
+  0d67ec  if ((x25 + 1) <u [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000d67bc
+  0d6804  [self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0d680c  if ([self->passersBy countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000d67b8
+loc_1000d6810:
+  0d683c  return
+
+== -[ADPasserByManager .cxx_destruct]   (address 0x1000d6860  size 20  kind objc)

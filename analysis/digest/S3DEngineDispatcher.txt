@@ -1,0 +1,474 @@
+
+== -[S3DEngineDispatcher dealloc]   (address 0x1001078c4  size 60  kind objc)
+  1078f0  [super dealloc]
+  1078fc  return
+
+== -[S3DEngineDispatcher init]   (address 0x100107900  size 628  kind objc)
+  10793c  [super init]
+  107944  if (self == 0) goto loc_100107b04
+  107968  [NSMutableSet setWithCapacity:10]
+  10798c  [self setAgents:[NSMutableSet setWithCapacity:10]]
+  1079a8  [NSMutableSet setWithCapacity:10]
+  1079cc  [self setPlayLists:[NSMutableSet setWithCapacity:10]]
+  1079e8  [NSMutableSet setWithCapacity:10]
+  107a0c  [self setLingering:[NSMutableSet setWithCapacity:10]]
+  107a34  [NSMutableDictionary dictionaryWithCapacity:10]
+  107a58  [self setMonitors:[NSMutableDictionary dictionaryWithCapacity:10]]
+  107a7c  [self setNeedsPositionUpdate:0]
+  107a94  [S3DEngine engine]
+  107af0  [[S3DEngine engine] dispatch:^{-[S3DEngineDispatcher init]_block_invoke captures +0x20=self, +0x28=self, +0x30=S3DEngineDispatcher}]
+loc_100107b04:
+  107b1c  return
+
+== -[S3DEngineDispatcher init]_block_invoke   (address 0x100107b74  size 20  kind block)
+  107b84  tail [self dispatch_pump]
+
+== sub_100107b88   (address 0x100107b88  size 8  kind sub)
+
+== sub_100107b90   (address 0x100107b90  size 8  kind sub)
+  107b94  return
+
+== -[S3DEngineDispatcher dispatch_pump]   (address 0x100107b98  size 236  kind objc)
+  107bbc  dispatch_time(0, 0x98967f)
+  107bd8  [S3DEngine engine]
+  107c38  [[S3DEngine engine] dispatch_after:dispatch_time(0, 0x98967f) block:^{-[S3DEngineDispatcher dispatch_pump]_block_invoke captures +0x20=self}]
+  107c5c  return
+
+== -[S3DEngineDispatcher dispatch_pump]_block_invoke   (address 0x100107c84  size 88  kind block)
+  107ca0  pthread_mutex_lock(&g_10042d788, blockarg1, blockarg2, blockarg3)
+  107cb4  [self dispatched_fired]
+  107cbc  pthread_mutex_unlock(&g_10042d788)
+  107cd8  tail [self dispatch_pump]
+
+== sub_100107cdc   (address 0x100107cdc  size 8  kind sub)
+
+== sub_100107ce4   (address 0x100107ce4  size 8  kind sub)
+  107ce8  return
+
+== +[S3DEngineDispatcher dispatcher]   (address 0x100107cec  size 68  kind objc)
+  107d08  if (g_10042dbf8 != -1) goto loc_100107d1c
+loc_100107d0c:
+loc_100107d1c:
+  107d28  dispatch_once(&g_10042dbf8, ^{+[S3DEngineDispatcher dispatcher]_block_invoke})
+  107d2c  goto loc_100107d0c
+
+== +[S3DEngineDispatcher dispatcher]_block_invoke   (address 0x100107d30  size 76  kind block)
+  107d4c  [S3DEngineDispatcher alloc]
+  107d5c  [[S3DEngineDispatcher alloc] init]
+  107d6c  store g_10042dbf0 = [[S3DEngineDispatcher alloc] init]
+  107d78  return
+
+== -[S3DEngineDispatcher startTrackingPlayList:]   (address 0x100107d7c  size 272  kind objc)
+  107da0  if (arg1 == 0) goto loc_100107e3c
+  107db8  [S3DEngine engine]
+  107e20  [[S3DEngine engine] dispatch:^{-[S3DEngineDispatcher startTrackingPlayList:]_block_invoke captures +0x20=arg1, +0x28=self}]
+loc_100107e3c:
+  107e54  return
+
+== -[S3DEngineDispatcher startTrackingPlayList:]_block_invoke   (address 0x100107e8c  size 280  kind block)
+  107eb8  [S3DEngine engine]
+  107ee8  [[S3DEngine engine] quietLog:2 format:@"Starting to track playlist: %@"]
+  107f08  [self playLists]
+  107f18  objc_sync_enter([self playLists])
+  107f24  [self playLists]
+  107f44  [[self playLists] addObject:arg1]
+  107f54  objc_sync_exit([self playLists])
+  107f6c  return
+  107f90  objc_sync_exit()
+
+== sub_100107fa4   (address 0x100107fa4  size 40  kind sub)
+
+== sub_100107fcc   (address 0x100107fcc  size 40  kind sub)
+  107ff0  return
+
+== -[S3DEngineDispatcher stopTrackingPlayList:]   (address 0x100107ff4  size 272  kind objc)
+  108018  if (arg1 == 0) goto loc_1001080b4
+  108030  [S3DEngine engine]
+  108098  [[S3DEngine engine] dispatch:^{-[S3DEngineDispatcher stopTrackingPlayList:]_block_invoke captures +0x20=arg1, +0x28=self}]
+loc_1001080b4:
+  1080cc  return
+
+== -[S3DEngineDispatcher stopTrackingPlayList:]_block_invoke   (address 0x100108104  size 280  kind block)
+  108130  [S3DEngine engine]
+  108160  [[S3DEngine engine] quietLog:2 format:@"stop tracking for playlist: %@"]
+  108180  [self playLists]
+  108190  objc_sync_enter([self playLists])
+  10819c  [self playLists]
+  1081bc  [[self playLists] removeObject:arg1]
+  1081cc  objc_sync_exit([self playLists])
+  1081e4  return
+  108208  objc_sync_exit()
+
+== sub_10010821c   (address 0x10010821c  size 40  kind sub)
+
+== sub_100108244   (address 0x100108244  size 40  kind sub)
+  108268  return
+
+== -[S3DEngineDispatcher startTracking:]   (address 0x10010826c  size 272  kind objc)
+  108290  if (arg1 == 0) goto loc_10010832c
+  1082a8  [S3DEngine engine]
+  108310  [[S3DEngine engine] dispatch:^{-[S3DEngineDispatcher startTracking:]_block_invoke captures +0x20=arg1, +0x28=self}]
+loc_10010832c:
+  108344  return
+
+== -[S3DEngineDispatcher startTracking:]_block_invoke   (address 0x10010837c  size 280  kind block)
+  1083a8  [S3DEngine engine]
+  1083d8  [[S3DEngine engine] quietLog:2 format:@"Starting to track sound: %@"]
+  1083f8  [self agents]
+  108408  objc_sync_enter([self agents])
+  108414  [self agents]
+  108434  [[self agents] addObject:arg1]
+  108444  objc_sync_exit([self agents])
+  10845c  return
+  108480  objc_sync_exit()
+
+== sub_100108494   (address 0x100108494  size 40  kind sub)
+
+== sub_1001084bc   (address 0x1001084bc  size 40  kind sub)
+  1084e0  return
+
+== -[S3DEngineDispatcher stopTracking:]   (address 0x1001084e4  size 544  kind objc)
+  10850c  if (arg1 == 0) goto loc_10010869c
+  108524  [self agents]
+  108534  objc_sync_enter([self agents])
+  108540  [self agents]
+  108560  [[self agents] containsObject:arg1]
+  108570  if (!([[self agents] containsObject:arg1] & 1)) goto loc_10010868c
+  10857c  [self agents]
+  1085a0  [[self agents] removeObject:arg1]
+  1085b0  objc_sync_exit([self agents])
+  1085d0  [self lingering]
+  1085e0  objc_sync_enter([self lingering])
+  1085ec  [self lingering]
+  108604  [[self lingering] removeObject:arg1]
+  108614  objc_sync_exit([self lingering])
+  108634  [S3DEngine engine]
+  108660  [[S3DEngine engine] quietLog:2 format:@"Quitting tracking sound: %@"]
+  10867c  [arg1 stop]
+  108680  goto loc_10010869c
+  108688  goto loc_1001086ec
+loc_10010868c:
+  108690  objc_sync_exit([self agents])
+loc_10010869c:
+  1086b4  return
+  1086e0  objc_sync_exit()
+
+== -[S3DEngineDispatcher fadeAllBut:]   (address 0x100108704  size 272  kind objc)
+  10873c  [S3DEngine engine]
+  1087a8  [[S3DEngine engine] dispatch:^{-[S3DEngineDispatcher fadeAllBut:]_block_invoke captures +0x20=self, +0x28=arg1}]
+  1087dc  return
+
+== -[S3DEngineDispatcher fadeAllBut:]_block_invoke   (address 0x100108814  size 488  kind block)
+  10885c  [self agents]
+  10886c  objc_sync_enter([self agents])
+  108878  [self agents]
+  108894  [[self agents] copy]
+  1088a8  objc_sync_exit([self agents])
+  1088ec  [[[self agents] copy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  1088f4  if ([[[self agents] copy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100108970
+  108904  &@selector(fadeOut)
+loc_10010890c:
+loc_100108910:
+  10891c  if (x8 == x25) goto loc_100108928
+  108924  objc_enumerationMutation([[self agents] copy])
+loc_100108928:
+  108938  if (x0 == arg1) goto loc_100108944
+  108940  [x0 fadeOut]
+loc_100108944:
+  10894c  if ((x26 + 1) <u [[[self agents] copy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100108910
+  108964  [[[self agents] copy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  10896c  if ([[[self agents] copy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10010890c
+loc_100108970:
+  1089a8  return
+  1089f0  objc_sync_exit()
+
+== sub_1001089fc   (address 0x1001089fc  size 40  kind sub)
+
+== sub_100108a24   (address 0x100108a24  size 40  kind sub)
+  108a48  return
+
+== -[S3DEngineDispatcher dispatched_fired]   (address 0x100108a4c  size 2400  kind objc)
+  108a90  [self needsPositionUpdate]
+  108aac  [self setNeedsPositionUpdate:0]
+  108b0c  [self agents]
+  108b1c  objc_sync_enter([self agents])
+  108b28  [self agents]
+  108b48  [[self agents] mutableCopy]
+  108b60  objc_sync_exit([self agents])
+  108b80  [self lingering]
+  108b90  objc_sync_enter([self lingering])
+  108b9c  [self lingering]
+  108bb0  [[self lingering] mutableCopy]
+  108bc8  objc_sync_exit([self lingering])
+  108c0c  [[[self lingering] mutableCopy] countByEnumeratingWithState:&sp[0x140] objects:&x29[-0xd8] count:16]
+  108c14  if ([[[self lingering] mutableCopy] countByEnumeratingWithState:&sp[0x140] objects:&x29[-0xd8] count:16] == 0) goto loc_100108cd0
+  108c24  &@selector(removeObject:)
+loc_100108c2c:
+loc_100108c30:
+  108c3c  if (x8 == x28) goto loc_100108c48
+  108c44  objc_enumerationMutation([[self lingering] mutableCopy])
+loc_100108c48:
+  108c58  [self lingering]
+  108c70  [[self lingering] removeObject:x2]
+  108c84  [self agents]
+  108c9c  [[self agents] removeObject:x2]
+  108cb0  if ((x23 + 1) <u [[[self lingering] mutableCopy] countByEnumeratingWithState:&sp[0x140] objects:&x29[-0xd8] count:16]) goto loc_100108c30
+  108cc4  [[[self lingering] mutableCopy] countByEnumeratingWithState:&sp[0x140] objects:&x29[-0xd8] count:16]
+  108ccc  if ([[[self lingering] mutableCopy] countByEnumeratingWithState:&sp[0x140] objects:&x29[-0xd8] count:16] != 0) goto loc_100108c2c
+loc_100108cd0:
+  108ce4  if ([[self agents] mutableCopy] == 0) goto loc_1001091b8
+  108cf4  &@selector(anyObject)
+  108cfc  &@selector(removeObject:)
+  108d04  &@selector(soundFile)
+  108d0c  &@selector(engine)
+  108d14  &@selector(quietLog:format:)
+  108db4  goto loc_100108dc4
+loc_100108db8:
+loc_100108dc4:
+  108dcc  [[[self agents] mutableCopy] count]
+  108dd0  if ([[[self agents] mutableCopy] count] == 0) goto loc_1001091b8
+  108ddc  [[[self agents] mutableCopy] anyObject]
+  108df8  [[[self agents] mutableCopy] removeObject:[[[self agents] mutableCopy] anyObject]]
+  108e04  [[[[self agents] mutableCopy] anyObject] soundFile]
+  108e08  if ([[[[self agents] mutableCopy] anyObject] soundFile] == 0) goto loc_100109178
+  108e10  if (!([self needsPositionUpdate] & 1)) goto loc_100108e3c
+  108e20  [[[[self agents] mutableCopy] anyObject] setPlanarInternal]
+  108e24  goto loc_100108e3c
+loc_100108e28:
+loc_100108e3c:
+  108e44  [[[[self agents] mutableCopy] anyObject] soundFile]
+  108e54  if ([[[[self agents] mutableCopy] anyObject] soundFile][+0x130] == [[[[self agents] mutableCopy] anyObject] soundFile][+0x12c]) goto loc_100108db8
+  108e60  t1 = (([[[[self agents] mutableCopy] anyObject] soundFile][+0x130] + 1) / [[[[self agents] mutableCopy] anyObject] soundFile][+0x128])
+  108e64  t2 = (([[[[self agents] mutableCopy] anyObject] soundFile][+0x130] + 1) - t1 * [[[[self agents] mutableCopy] anyObject] soundFile][+0x128])
+  108e68  [[[[self agents] mutableCopy] anyObject] soundFile][+0x130] = t2
+  108e74  t3 = ([[[[self agents] mutableCopy] anyObject] soundFile][+0x138] + [[[[self agents] mutableCopy] anyObject] soundFile][+0x130] * 40)
+  108e78  if (t3 == 0) goto loc_100108db8
+  108e84  [self monitors]
+  108e94  objc_sync_enter([self monitors])
+  108ea4  call x8
+  108eac  objc_sync_exit([self monitors])
+  108ebc  t4 = ([[[[self agents] mutableCopy] anyObject] soundFile][+0x138] + [[[[self agents] mutableCopy] anyObject] soundFile][+0x130] * 40)
+  108ec8  if (t4[+0x20] == 1) goto loc_100108f24
+  108ed0  if (t4[+0x20] != 2) goto loc_10010909c
+  108ed8  t5 = ([[[[self agents] mutableCopy] anyObject] soundFile][+0x138] + [[[[self agents] mutableCopy] anyObject] soundFile][+0x130] * 40)
+  108ee0  if (t5[+0x10] == 0) goto loc_100108eec
+  108ee8  if (t5[+0x10][+0x191] == 0) goto loc_1001090b8
+loc_100108eec:
+  108ef8  [S3DEngine engine]
+  108f1c  [[S3DEngine engine] quietLog:3 format:@"Sound %@ is at end - and we ARE looping!"]
+  108f20  goto loc_100108f58
+loc_100108f24:
+  108f30  [S3DEngine engine]
+  108f54  [[S3DEngine engine] quietLog:3 format:@"Sound %@ is stopping!"]
+loc_100108f58:
+loc_100108f5c:
+loc_100108f60:
+  108f64  if (t4[+0x20] != 1) goto loc_100108e3c
+  108f74  [self playLists]
+  108f84  objc_sync_enter([self playLists])
+  108f90  [self playLists]
+  108fa4  [[self playLists] copy]
+  108fb8  objc_sync_exit([self playLists])
+  108ff0  [[[self playLists] copy] countByEnumeratingWithState:&sp[0xd0] objects:&sp[0x1a8] count:16]
+  108ff8  if ([[[self playLists] copy] countByEnumeratingWithState:&sp[0xd0] objects:&sp[0x1a8] count:16] == 0) goto loc_100108e28
+loc_100109004:
+loc_100109008:
+  109014  if (x8 == x23) goto loc_100109020
+  10901c  objc_enumerationMutation([[self playLists] copy])
+loc_100109020:
+  109058  [x0 each:^{-[S3DEngineDispatcher dispatched_fired]_block_invoke_2 captures +0x20=[[[self agents] mutableCopy] anyObject]}]
+  109074  if ((x21 + 1) <u [[[self playLists] copy] countByEnumeratingWithState:&sp[0xd0] objects:&sp[0x1a8] count:16]) goto loc_100109008
+  10908c  [[[self playLists] copy] countByEnumeratingWithState:&sp[0xd0] objects:&sp[0x1a8] count:16]
+  109094  if ([[[self playLists] copy] countByEnumeratingWithState:&sp[0xd0] objects:&sp[0x1a8] count:16] != 0) goto loc_100109004
+  109098  goto loc_100108e28
+loc_10010909c:
+  1090a0  if (t4[+0x20] != 3) goto loc_100108e3c
+  1090ac  [[[[self agents] mutableCopy] anyObject] soundFile]
+  1090b0  sub_1000e4aac([[[[self agents] mutableCopy] anyObject] soundFile])
+  1090b4  goto loc_100108f60
+loc_1001090b8:
+  1090c4  [S3DEngine engine]
+  1090e8  [[S3DEngine engine] quietLog:3 format:@"Sound %@ is at end - and we are not looping!"]
+  109100  [S3DEngine engine]
+  10915c  [[S3DEngine engine] dispatch:^{-[S3DEngineDispatcher dispatched_fired]_block_invoke_3 captures +0x20=self, +0x28=[[[self agents] mutableCopy] anyObject], +0x70=__NSConcreteStackBlock, +0x78=0xc2000000}]
+  109174  goto loc_100108f5c
+loc_100109178:
+  109184  [S3DEngine engine]
+  1091a8  [[S3DEngine engine] quietLog:1 format:@"### sound %@ has no soundfile ###"]
+  1091b4  goto loc_100108db8
+loc_1001091b8:
+  10920c  return
+  1092b8  objc_sync_exit()
+  1092e0  objc_sync_exit()
+  109364  objc_sync_exit()
+  10939c  objc_sync_exit()
+
+== -[S3DEngineDispatcher dispatched_fired]_block_invoke   (address 0x1001093ac  size 1400  kind block)
+  1093fc  [block[+0x20] monitors]
+  109430  [[block[+0x20] monitors] allKeys]
+  109464  [[[block[+0x20] monitors] allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xd8] count:16]
+  10946c  if ([[[block[+0x20] monitors] allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xd8] count:16] == 0) goto loc_100109844
+  109484  &@selector(objectForKey:)
+loc_1001094a4:
+loc_1001094a8:
+  1094b4  if (x8 == x26) goto loc_1001094c0
+  1094bc  objc_enumerationMutation([[block[+0x20] monitors] allKeys])
+loc_1001094c0:
+  1094c8  if (x28 == 0) goto loc_1001096d4
+  1094d4  [x0 soundFile]
+  1094e0  if (flags ==) goto loc_1001096d4
+  1094e8  if (blockarg1[+0x10] == 0) goto loc_1001096d4
+  1094f4  [x0 soundFile]
+  109500  if ([x0 soundFile] != blockarg1[+0x10]) goto loc_1001096d4
+  109510  [[block[+0x20] monitors] objectForKey:x2]
+  109520  if ([[block[+0x20] monitors] objectForKey:x2] == 0) goto loc_1001096cc
+  109530  [[[block[+0x20] monitors] objectForKey:x2] count]
+  109538  if ([[[block[+0x20] monitors] objectForKey:x2] count] == 0) goto loc_1001096cc
+  1095b0  [[[block[+0x20] monitors] objectForKey:x2] countByEnumeratingWithState:&sp[0x70] objects:&sp[0x118] count:16]
+  1095b8  if ([[[block[+0x20] monitors] objectForKey:x2] countByEnumeratingWithState:&sp[0x70] objects:&sp[0x118] count:16] == 0) goto loc_100109690
+loc_1001095c4:
+loc_1001095c8:
+  1095d4  if (x8 == x20) goto loc_1001095e0
+  1095dc  objc_enumerationMutation([[block[+0x20] monitors] objectForKey:x2])
+loc_1001095e0:
+  1095f0  [x0 soundFile]
+  1095f4  if ([x0 soundFile] == 0) goto loc_100109704
+  109600  [x0 soundFile]
+  109604  sub_1000e4aac([x0 soundFile])
+  109638  t1 = (blockarg1[+0x20] == 2 ? ((float)(w9 - w8) / ((float)(w9 - w8) / d0)) : ((float)(blockarg1[+0x8] - w8) / ((float)(w9 - w8) / d0)))
+  109654  call x8
+  10965c  if (0 != 0) goto loc_100109778
+  109668  if ((x25 + 1) <u [[[block[+0x20] monitors] objectForKey:x2] countByEnumeratingWithState:&sp[0x70] objects:&sp[0x118] count:16]) goto loc_1001095c8
+  109684  [[[block[+0x20] monitors] objectForKey:x2] countByEnumeratingWithState:&sp[0x70] objects:&sp[0x118] count:16]
+  10968c  if ([[[block[+0x20] monitors] objectForKey:x2] countByEnumeratingWithState:&sp[0x70] objects:&sp[0x118] count:16] != 0) goto loc_1001095c4
+loc_100109690:
+  1096c8  goto loc_1001096d4
+loc_1001096cc:
+loc_1001096d4:
+  1096dc  if ((x24 + 1) <u [[[block[+0x20] monitors] allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xd8] count:16]) goto loc_1001094a8
+  1096f4  [[[block[+0x20] monitors] allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xd8] count:16]
+  1096fc  if ([[[block[+0x20] monitors] allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xd8] count:16] != 0) goto loc_1001094a4
+  109700  goto loc_100109844
+loc_100109704:
+  10971c  [S3DEngine engine]
+  109758  [[S3DEngine engine] quietLog:3 format:@"Sound %@ is already playing! Skipping redundant actions!"]
+  109770  call x8
+  109774  goto loc_10010981c
+loc_100109778:
+  109788  call x8
+  1097a4  [block[+0x20] monitors]
+  1097c4  [[block[+0x20] monitors] removeObjectForKey:x2]
+  1097e4  [S3DEngine engine]
+  109810  [[S3DEngine engine] quietLog:2 format:@"Removed Sound Monitor from monitors for %@"]
+loc_10010981c:
+loc_100109844:
+  10987c  return
+
+== -[S3DEngineDispatcher dispatched_fired]_block_invoke_block_invoke   (address 0x100109924  size 148  kind block)
+  10997c  [block[+0x20] removeObject:blockarg1]
+  109998  return
+
+== sub_1001099b8   (address 0x1001099b8  size 8  kind sub)
+
+== sub_1001099c0   (address 0x1001099c0  size 8  kind sub)
+  1099c4  return
+
+== sub_1001099c8   (address 0x1001099c8  size 8  kind sub)
+
+== sub_1001099d0   (address 0x1001099d0  size 8  kind sub)
+  1099d4  return
+
+== -[S3DEngineDispatcher dispatched_fired]_block_invoke_3   (address 0x1001099d8  size 296  kind block)
+  109a00  [self lingering]
+  109a10  objc_sync_enter([self lingering])
+  109a1c  [self lingering]
+  109a3c  [[self lingering] addObject:[[[self agents] mutableCopy] anyObject]]
+  109a4c  objc_sync_exit([self lingering])
+  109a68  [self agents]
+  109a88  [[self agents] containsObject:[[[self agents] mutableCopy] anyObject]]
+  109a98  if ([[self agents] containsObject:[[[self agents] mutableCopy] anyObject]] == 0) goto loc_100109abc
+  109ab8  tail [x0 stopTracking:x2]
+loc_100109abc:
+  109ac8  return
+  109ae4  objc_sync_exit()
+
+== sub_100109b00   (address 0x100109b00  size 40  kind sub)
+
+== sub_100109b28   (address 0x100109b28  size 40  kind sub)
+  109b4c  return
+
+== -[S3DEngineDispatcher dispatched_fired]_block_invoke_2   (address 0x100109b50  size 220  kind block)
+  109b80  if ([[[self agents] mutableCopy] anyObject] != blockarg1) goto loc_100109bf0
+  109b88  blockarg2[+0x0] = 1
+  109ba0  [S3DEngine engine]
+  109bcc  [[S3DEngine engine] quietLog:3 format:@"Calling playlist repeat policy with sound: %@"]
+  109bec  [block[+0x28] applyRepeatPolicyTo:blockarg1]
+loc_100109bf0:
+  109c04  return
+
+== sub_100109c2c   (address 0x100109c2c  size 40  kind sub)
+
+== sub_100109c54   (address 0x100109c54  size 40  kind sub)
+  109c78  return
+
+== -[S3DEngineDispatcher add3DSoundMonitor:forSound:]   (address 0x100109c7c  size 764  kind objc)
+  109cd0  [self monitors]
+  109ce0  objc_sync_enter([self monitors])
+  109cec  [self monitors]
+  109d0c  [[self monitors] objectForKey:arg2]
+  109d3c  [S3DEngine engine]
+  109d6c  [[S3DEngine engine] quietLog:2 format:@"Adding Sound Monitor to %@"]
+  109d7c  if ([[self monitors] objectForKey:arg2] == 0) goto loc_100109df4
+  109d84  [S3DEngine engine]
+  109da8  [[S3DEngine engine] quietLog:3 format:@"     Actions != 0 for %@"]
+  109dc4  [[[self monitors] objectForKey:arg2] removeAllObjects]
+  109de8  [[[self monitors] objectForKey:arg2] addObject:arg1]
+  109dec  goto loc_100109e98
+  109df0  goto loc_100109f3c
+loc_100109df4:
+  109df8  [S3DEngine engine]
+  109e1c  [[S3DEngine engine] quietLog:3 format:@"     Actions == 0 for %@"]
+  109e50  [NSMutableSet setWithObject:arg1]
+  109e70  [self monitors]
+  109e94  [[self monitors] setObject:[NSMutableSet setWithObject:arg1] forKey:arg2]
+loc_100109e98:
+  109eac  objc_sync_exit([self monitors])
+  109ee0  return
+  109f54  objc_sync_exit()
+
+== -[S3DEngineDispatcher agents]   (address 0x100109f78  size 16  kind objc)
+  109f84  return
+
+== -[S3DEngineDispatcher setAgents:]   (address 0x100109f88  size 56  kind objc)
+  109fac  self->agents = arg1
+  109fbc  return
+
+== -[S3DEngineDispatcher playLists]   (address 0x100109fc0  size 16  kind objc)
+  109fcc  return
+
+== -[S3DEngineDispatcher setPlayLists:]   (address 0x100109fd0  size 56  kind objc)
+  109ff4  self->playLists = arg1
+  10a004  return
+
+== -[S3DEngineDispatcher lingering]   (address 0x10010a008  size 16  kind objc)
+  10a014  return
+
+== -[S3DEngineDispatcher setLingering:]   (address 0x10010a018  size 56  kind objc)
+  10a03c  self->lingering = arg1
+  10a04c  return
+
+== -[S3DEngineDispatcher monitors]   (address 0x10010a050  size 16  kind objc)
+  10a05c  return
+
+== -[S3DEngineDispatcher setMonitors:]   (address 0x10010a060  size 56  kind objc)
+  10a084  self->monitors = arg1
+  10a094  return
+
+== -[S3DEngineDispatcher needsPositionUpdate]   (address 0x10010a098  size 16  kind objc)
+  10a0a4  return
+
+== -[S3DEngineDispatcher setNeedsPositionUpdate:]   (address 0x10010a0a8  size 16  kind objc)
+  10a0b0  self->needsPositionUpdate = arg1
+  10a0b4  return
+
+== -[S3DEngineDispatcher .cxx_destruct]   (address 0x10010a0b8  size 104  kind objc)

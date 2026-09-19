@@ -1,0 +1,109 @@
+
+== -[ADGameOverTableEnemyCell initWithStyle:reuseIdentifier:]   (address 0x100040a24  size 1756  kind objc)
+  040a88  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  040a90  if (self == 0) goto loc_100040fe0
+  040aac  [ADGameParameters sharedParameters]
+  040ac8  [[ADGameParameters sharedParameters] isIphone]
+  040af4  [UIView alloc]
+  040b1c  [[UIView alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  040b38  [self setMainParentView:[[UIView alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]]
+  040b5c  [self mainParentView]
+  040b80  [[self mainParentView] setTranslatesAutoresizingMaskIntoConstraints:0]
+  040b9c  [UILabel alloc]
+  040bb0  [[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  040bcc  [self setNameLabel:[[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]]
+  040bf0  [self nameLabel]
+  040c08  [[self nameLabel] setTranslatesAutoresizingMaskIntoConstraints:0]
+  040c20  [self nameLabel]
+  040c48  [UIColor whiteColor]
+  040c74  [[self nameLabel] setTextColor:[UIColor whiteColor]]
+  040c94  [self nameLabel]
+  040cc0  [UIColor clearColor]
+  040cec  [[self nameLabel] setBackgroundColor:[UIColor clearColor]]
+  040d0c  [self nameLabel]
+  040d48  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  040d6c  [[self nameLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  040d8c  [self mainParentView]
+  040da4  [self nameLabel]
+  040dcc  [[self mainParentView] addSubview:[self nameLabel]]
+  040df0  [UILabel alloc]
+  040e04  [[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  040e20  [self setKillsLabel:[[UILabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]]
+  040e44  [self killsLabel]
+  040e5c  [[self killsLabel] setTranslatesAutoresizingMaskIntoConstraints:0]
+  040e74  [self killsLabel]
+  040e90  [UIColor whiteColor]
+  040eac  [[self killsLabel] setTextColor:[UIColor whiteColor]]
+  040ecc  [self killsLabel]
+  040ee8  [UIColor clearColor]
+  040f04  [[self killsLabel] setBackgroundColor:[UIColor clearColor]]
+  040f24  [self mainParentView]
+  040f3c  [self killsLabel]
+  040f58  [[self mainParentView] addSubview:[self killsLabel]]
+  040f80  [self contentView]
+  040f98  [self mainParentView]
+  040fb4  [[self contentView] addSubview:[self mainParentView]]
+  040fdc  [self setupInitialConstraints]
+loc_100040fe0:
+  041008  return
+
+== -[ADGameOverTableEnemyCell setupInitialConstraints]   (address 0x100041100  size 1292  kind objc)
+  041130  [self nameLabel]
+  041150  [self killsLabel]
+  041174  [self mainParentView]
+  04119c  NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])
+  0411dc  [NSLayoutConstraint constraintsWithVisualFormat:@"V:[localMainParentView]-(<=10)-[localNameLabel]" options:2 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]
+  0411f4  [self mainParentView]
+  041218  [[self mainParentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[localMainParentView]-(<=10)-[localNameLabel]" options:2 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]]
+  041240  [NSLayoutConstraint constraintsWithVisualFormat:@"V:[localKillsLabel]-(<=10)-[localMainParentView]" options:4 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]
+  041264  [self mainParentView]
+  04127c  [[self mainParentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[localKillsLabel]-(<=10)-[localMainParentView]" options:4 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]]
+  0412a8  [NSLayoutConstraint constraintsWithVisualFormat:@"H:[localMainParentView]-(<=10)-[localNameLabel]" options:1024 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]
+  0412cc  [self mainParentView]
+  0412e4  [[self mainParentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[localMainParentView]-(<=10)-[localNameLabel]" options:1024 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]]
+  041310  [NSLayoutConstraint constraintsWithVisualFormat:@"H:[localKillsLabel]-(<=10)-[localMainParentView]" options:1024 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]
+  041330  [self mainParentView]
+  041348  [[self mainParentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[localKillsLabel]-(<=10)-[localMainParentView]" options:1024 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]]
+  041370  [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(<=10)-[localMainParentView]" options:512 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]
+  041394  [self contentView]
+  0413ac  [[self contentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(<=10)-[localMainParentView]" options:512 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]]
+  0413d4  [NSLayoutConstraint constraintsWithVisualFormat:@"V:[localMainParentView]-(<=10)-|" options:512 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]
+  0413f8  [self contentView]
+  041410  [[self contentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[localMainParentView]-(<=10)-|" options:512 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]]
+  04143c  [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(<=10)-[localMainParentView]" options:1024 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]
+  04145c  [self contentView]
+  041474  [[self contentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(<=10)-[localMainParentView]" options:1024 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]]
+  04149c  [NSLayoutConstraint constraintsWithVisualFormat:@"H:[localMainParentView]-(<=10)-|" options:1024 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]
+  0414c0  [self contentView]
+  0414d8  [[self contentView] addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[localMainParentView]-(<=10)-|" options:1024 metrics:0 views:NSDictionaryOfVariableBindings(@"localNameLabel, localKillsLabel, localMainParentView", [self nameLabel])]]
+  04152c  return
+
+== -[ADGameOverTableEnemyCell setSelected:animated:]   (address 0x10004160c  size 60  kind objc)
+  041638  [super setSelected:arg1 animated:arg2]
+  041644  return
+
+== -[ADGameOverTableEnemyCell startKillsAnimationUpTo::]   (address 0x100041648  size 192  kind objc)
+  04166c  [self killsLabel]
+  04169c  [NSString stringWithFormat:@"%d", arg1]
+  0416c0  [[self killsLabel] setText:[NSString stringWithFormat:@"%d", arg1]]
+  0416e0  return
+
+== -[ADGameOverTableEnemyCell nameLabel]   (address 0x100041708  size 16  kind objc)
+  041714  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverTableEnemyCell setNameLabel:]   (address 0x100041718  size 12  kind objc)
+  041720  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverTableEnemyCell killsLabel]   (address 0x100041724  size 16  kind objc)
+  041730  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverTableEnemyCell setKillsLabel:]   (address 0x100041734  size 12  kind objc)
+  04173c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverTableEnemyCell mainParentView]   (address 0x100041740  size 16  kind objc)
+  04174c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverTableEnemyCell setMainParentView:]   (address 0x100041750  size 12  kind objc)
+  041758  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverTableEnemyCell .cxx_destruct]   (address 0x10004175c  size 84  kind objc)

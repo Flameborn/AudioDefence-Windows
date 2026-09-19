@@ -1,0 +1,99 @@
+
+== -[ADSettingsViewController initWithNibName:bundle:]   (address 0x1000af12c  size 140  kind objc)
+  0af17c  [super initWithNibName:arg1 bundle:arg2]
+  0af1a0  return
+
+== -[ADSettingsViewController viewDidLoad]   (address 0x1000af1b8  size 548  kind objc)
+  0af1f0  [super viewDidLoad]
+  0af204  [self addControlSchemePanel]
+  0af21c  [self statusBarViewController]
+  0af238  [[self statusBarViewController] backButton]
+  0af260  [[[self statusBarViewController] backButton] setTitle:@"Main Menu" forState:0]
+  0af27c  [self statusBarViewController]
+  0af29c  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  0af2b0  [self statusBarViewController]
+  0af2d0  [[self statusBarViewController] setCurrenciesVisibility:1]
+  0af2e4  [self statusBarViewController]
+  0af304  [[self statusBarViewController] setDiamonsdsVisibility:1]
+  0af324  [S3DEngine engine]
+  0af348  [[S3DEngine engine] playListWithName:@"headphonesTest"]
+  0af364  [[[S3DEngine engine] playListWithName:@"headphonesTest"] activate]
+  0af388  return
+
+== -[ADSettingsViewController loadView]   (address 0x1000af3dc  size 260  kind objc)
+  0af428  [NSNumber numberWithInt:1]
+  0af45c  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  0af490  [self loADViewBasedOnDeviceWithNibName:@"ADSettingsViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  0af4b8  return
+
+== -[ADSettingsViewController viewWillAppear:]   (address 0x1000af4e0  size 216  kind objc)
+  0af508  [self statusBarViewController]
+  0af524  [[self statusBarViewController] backButton]
+  0af544  [[[self statusBarViewController] backButton] setHidden:0]
+  0af57c  [super viewWillAppear:arg1]
+  0af590  return
+
+== -[ADSettingsViewController addControlSchemePanel]   (address 0x1000af5b8  size 704  kind objc)
+  0af5d0  UIAccessibilityIsVoiceOverRunning()
+  0af5d4  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_1000af690
+  0af5ec  [Accessible_ADControlSchemeViewController alloc]
+  0af608  [[Accessible_ADControlSchemeViewController alloc] initWithNibName:@"Accessible_ADControlSchemeViewController" bundle:0]
+  0af624  [self setControlScheme:[[Accessible_ADControlSchemeViewController alloc] initWithNibName:@"Accessible_ADControlSchemeViewController" bundle:0]]
+  0af64c  [self controlScheme]
+  0af668  [[self controlScheme] tableView]
+  0af680  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [[self controlScheme] tableView])
+  0af68c  goto loc_1000af6e0
+loc_1000af690:
+  0af6a4  [ADControlSchemeViewController alloc]
+  0af6c0  [[ADControlSchemeViewController alloc] initWithNibName:@"ADControlSchemeViewController" bundle:0]
+  0af6dc  [self setControlScheme:[[ADControlSchemeViewController alloc] initWithNibName:@"ADControlSchemeViewController" bundle:0]]
+loc_1000af6e0:
+  0af6fc  [self view]
+  0af720  [self controlScheme]
+  0af734  [[self controlScheme] view]
+  0af758  [[self view] addSubview:[[self controlScheme] view]]
+  0af77c  [self controlScheme]
+  0af790  [[self controlScheme] view]
+  0af7b0  [self controlSchemeView]
+  0af7cc  [[self controlSchemeView] center]
+  0af7e0  [[[self controlScheme] view] setCenter:{[[self controlSchemeView] center].0, [[self controlSchemeView] center].1}]
+  0af808  return
+
+== -[ADSettingsViewController dealloc]   (address 0x1000af878  size 148  kind objc)
+  0af89c  [self setControlScheme:0]
+  0af8c0  [super dealloc]
+  0af8d0  return
+  0af8fc  [super dealloc]
+  0af908  call sub_10000b760
+
+== -[ADSettingsViewController didReceiveMemoryWarning]   (address 0x1000af90c  size 60  kind objc)
+  0af938  [super didReceiveMemoryWarning]
+  0af944  return
+
+== -[ADSettingsViewController backButtonPressed]   (address 0x1000af948  size 272  kind objc)
+  0af968  [S3DEngine engine]
+  0af98c  [[S3DEngine engine] playListWithName:@"headphonesTest"]
+  0af9a8  [[[S3DEngine engine] playListWithName:@"headphonesTest"] deactivate]
+  0af9d0  [UIApplication sharedApplication]
+  0af9ec  [[UIApplication sharedApplication] delegate]
+  0afa08  [[[UIApplication sharedApplication] delegate] goToMainMenu]
+  0afa20  return
+
+== -[ADSettingsViewController validateButtonPressed:]   (address 0x1000afa58  size 40  kind objc)
+  0afa74  [self dismissViewControllerAnimated:0 completion:0]
+  0afa7c  return
+
+== -[ADSettingsViewController controlSchemeView]   (address 0x1000afa80  size 16  kind objc)
+  0afa8c  return
+
+== -[ADSettingsViewController setControlSchemeView:]   (address 0x1000afa90  size 56  kind objc)
+  0afab4  self->_controlSchemeView = arg1
+  0afac4  return
+
+== -[ADSettingsViewController controlScheme]   (address 0x1000afac8  size 16  kind objc)
+  0afad4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADSettingsViewController setControlScheme:]   (address 0x1000afad8  size 12  kind objc)
+  0afae0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADSettingsViewController .cxx_destruct]   (address 0x1000afae4  size 64  kind objc)

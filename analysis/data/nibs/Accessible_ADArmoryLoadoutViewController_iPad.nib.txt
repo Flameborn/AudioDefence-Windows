@@ -1,0 +1,14 @@
+// Accessible_ADArmoryLoadoutViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #3 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #9 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #22 UIView  
+    #13 UITableView  
+
+CONNECTIONS
+  outlet  dataSource                                #13 UITableView --> #3 UIProxyObject
+  outlet  delegate                                  #13 UITableView --> #3 UIProxyObject
+  outlet  tableView                                 #3 UIProxyObject --> #13 UITableView
+  outlet  view                                      #3 UIProxyObject --> #22 UIView
+
+ACCESSIBILITY CONFIGURATIONS

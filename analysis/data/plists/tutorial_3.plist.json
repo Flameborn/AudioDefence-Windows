@@ -1,0 +1,43 @@
+{
+ "icon_title": "03",
+ "accuracy_star": {
+  "reward": 200,
+  "objective": 10
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "title": "Clonk!",
+ "objective": "You have no more ammo but that's okay! Grab a frying pan and whack some zombies for Dr. Bastard!",
+ "tip": "If you hear your heartbeat, one or more zombies are in your melee weapon's range.",
+ "bricks": [
+  "tutorial_3_brick_1",
+  "tutorial_3_brick_2"
+ ],
+ "mission_star": {
+  "reward": 500
+ },
+ "challenge_id": "tutorial_3",
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_2"
+ ],
+ "weapons": [
+  {
+   "ammo": "0",
+   "name": "pistol"
+  },
+  {
+   "ammo": "0",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 90
+ }
+}

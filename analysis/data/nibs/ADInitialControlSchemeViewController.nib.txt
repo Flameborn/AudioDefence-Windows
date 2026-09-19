@@ -1,0 +1,51 @@
+// ADInitialControlSchemeViewController.nib
+TOP-LEVEL OBJECTS
+  #137 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #110 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #156 UIView  Tag=2781
+    #228 UIImageView  Image='gesture_gameplay_background.png'
+    #230 UIButton (custom class ADButtonWithFont)  
+    #50 UIButton (custom class ADButtonWithFont)  
+    #150 UIButton (custom class ADButtonWithFont)  
+    #108 UILabel  UserInteractionDisabled=False Text='RECOMMENDED'
+    #239 UILabel  UserInteractionDisabled=False Text='AUDIO DEFENCE ZOMBIE ARENA' NumberOfLines=2
+    #182 UITextView  UserInteractionDisabled=False Text="This game requires you to explore a 3D audio environment. Select a control mode you are confortable with. You'll be able to change it at any time in the Settings menu. For a more immersive experience, we recommend the GYRO mode"
+    #179 UITextView  UserInteractionDisabled=False Text='Drag your finger across the screen to turn'
+    #29 UITextView  UserInteractionDisabled=False Text='Turn to face the zombie holding the device in front of you'
+    #144 UITextView  Text='Tilt the device left or right to turn'
+  #31 UIView  Tag=2782
+    #34 UIImageView  Image='gesture_gameplay_background.png'
+    #152 UIButton (custom class ADButtonWithFont)  
+    #244 UIButton (custom class ADButtonWithFont)  
+    #85 UIButton (custom class ADButtonWithFont)  
+    #67 UILabel  UserInteractionDisabled=False Text='RECOMMENDED'
+    #99 UILabel  UserInteractionDisabled=False Text='AUDIO DEFENCE ZOMBIE ARENA' NumberOfLines=2
+    #226 UITextView  Text='Tilt the device left or right to turn'
+    #197 UITextView  Text='Turn to face the zombie holding the device in front of you'
+    #48 UITextView  Text='Drag your finger across the screen to turn'
+    #90 UITextView  UserInteractionDisabled=False Text="This game requires you to explore a 3D audio environment. Select a control mode you are confortable with. You'll be able to change it at any time in the Settings menu. For a more immersive experience, we recommend you use the GYRO mode"
+
+CONNECTIONS
+  action  buttonControl:                            #150 ADButtonWithFont --(events 0x40)--> #137 UIProxyObject
+  action  buttonControl:                            #85 ADButtonWithFont --(events 0x40)--> #137 UIProxyObject
+  action  gyroControl:                              #50 ADButtonWithFont --(events 0x40)--> #137 UIProxyObject
+  action  gyroControl:                              #244 ADButtonWithFont --(events 0x40)--> #137 UIProxyObject
+  action  tiltControl:                              #230 ADButtonWithFont --(events 0x40)--> #137 UIProxyObject
+  action  tiltControl:                              #152 ADButtonWithFont --(events 0x40)--> #137 UIProxyObject
+  outlet  gyroButton                                #137 UIProxyObject --> #50 ADButtonWithFont
+  outlet  gyroDescription                           #137 UIProxyObject --> #29 UITextView Text='Turn to face the zombie holding the device in front of you'
+  outlet  gyroTextButton                            #137 UIProxyObject --> #50 ADButtonWithFont
+  outlet  recommededLabel                           #137 UIProxyObject --> #108 UILabel Text='RECOMMENDED'
+  outlet  swipeButton                               #137 UIProxyObject --> #150 ADButtonWithFont
+  outlet  swipeDescription                          #137 UIProxyObject --> #179 UITextView Text='Drag your finger across the screen to turn'
+  outlet  tiltButton                                #137 UIProxyObject --> #230 ADButtonWithFont
+  outlet  tiltDescription                           #137 UIProxyObject --> #144 UITextView Text='Tilt the device left or right to turn'
+  outlet  view                                      #137 UIProxyObject --> #156 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#230 ADButtonWithFont' UIAccessibilityLabel='Tilt'
+  UIAccessibileObject='#50 ADButtonWithFont' UIAccessibilityLabel='Gyro'
+  UIAccessibileObject='#150 ADButtonWithFont' UIAccessibilityLabel='Swipe'
+  UIAccessibileObject='#152 ADButtonWithFont' UIAccessibilityLabel='Tilt'
+  UIAccessibileObject='#244 ADButtonWithFont' UIAccessibilityLabel='Gyro'
+  UIAccessibileObject='#85 ADButtonWithFont' UIAccessibilityLabel='Swipe'

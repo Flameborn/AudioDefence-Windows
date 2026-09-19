@@ -1,0 +1,150 @@
+{
+ "GoodRoulette": [
+  {
+   "selector": "freeRevive",
+   "title": "Free revive",
+   "description": "You revive for free on your first death.",
+   "icon": "Roulette_icon_threezombies"
+  },
+  {
+   "selector": "luckyShots",
+   "title": "Lucky shots",
+   "description": "All shots have a 1% chance of dealing critical damage.",
+   "icon": "Roulette_icon_luck"
+  },
+  {
+   "selector": "moreDamages",
+   "title": "Military grade weapons",
+   "description": "Your guns deal 10% more damage.",
+   "icon": "Roulette_icon_target"
+  },
+  {
+   "selector": "weakerEnemies",
+   "title": "Failed experiments",
+   "description": "Zombies have 10% less hit points.",
+   "icon": "Roulette_icon_poison"
+  },
+  {
+   "selector": "tesla",
+   "title": "Tesla Field",
+   "description": "Kills the first zombie who gets in your Melee range.",
+   "icon": "Roulette_icon_tesla"
+  },
+  {
+   "selector": "meleeDamagesModifier",
+   "title": "Barbarian Serum",
+   "description": "You deal 25% more damage with your Melee weapon.",
+   "icon": "Roulette_icon_inject"
+  },
+  {
+   "selector": "metalDetector",
+   "title": "Metal Detector",
+   "description": "You’ll earn 15% more coins this game!",
+   "icon": "Roulette_icon_sonar"
+  },
+  {
+   "selector": "slowerEnemies",
+   "title": "Glu barrels",
+   "description": "Enemies are 10% slower.",
+   "icon": "Roulette_icon_glue"
+  },
+  {
+   "selector": "widerSpread",
+   "title": "Zen Focus",
+   "description": "Hitting enemies is a bit easier.",
+   "icon": "Roulette_icon_zen"
+  },
+  {
+   "selector": "moreHeadshots",
+   "title": "Head-Seeking Bullets",
+   "description": "Increases your headshot chance by 50%.",
+   "icon": "Roulette_icon_headshot"
+  },
+  {
+   "selector": "goldenBullet",
+   "title": "Golden Bullet",
+   "description": "All your weapons carry 10% more bullets (minimum 1 extra bullet!)",
+   "icon": "Roulette_icon_tripleshot"
+  }
+ ],
+ "BadRoulette": [
+  {
+   "selector": "cows",
+   "title": "Cows",
+   "description": "Stupid cows are walking around. Harmless, but noisy...",
+   "icon": "Roulette_icon_cow"
+  },
+  {
+   "selector": "cars",
+   "title": "Parking lot",
+   "description": "Car alarms will go off around you. Shoot them to blow up the cars!",
+   "icon": "Roulette_icon_car"
+  },
+  {
+   "selector": "jukebox",
+   "title": "Jukebox",
+   "description": "An old jukebox keeps playing terrible music. Shoot it to stop it!",
+   "icon": "Roulette_icon_music"
+  },
+  {
+   "selector": "storm",
+   "title": "Thunderstorm",
+   "description": "Rain and random thunder hinder your hearing.",
+   "icon": "Roulette_icon_storm"
+  },
+  {
+   "selector": "rustyWeapons",
+   "title": "Rusty Weapons",
+   "description": "Your weapons have a chance of jamming, forcing you to reload.",
+   "icon": "Roulette_icon_poison"
+  },
+  {
+   "selector": "strongerEnemies",
+   "title": "Elite zombies",
+   "description": "Uh-oh, Zombies have 20% more hit points!",
+   "icon": "Roulette_icon_target"
+  },
+  {
+   "selector": "bullshit",
+   "title": "Earpiece",
+   "description": "Dr. Bastard will yell directions in your ear.",
+   "icon": "Roulette_icon_not"
+  },
+  {
+   "selector": "fasterEnemies",
+   "title": "Faster",
+   "description": "Enemies are 20% faster",
+   "icon": "Roulette_icon_inject"
+  },
+  {
+   "selector": "enragedHorde",
+   "title": "Enraged Horde",
+   "description": "Get ready! Zombies will get increasingly faster and tougher!",
+   "icon": "Roulette_icon_increase"
+  },
+  {
+   "selector": "machine",
+   "title": "Generator Malfunction",
+   "description": "That noisy generator is not working properly. Shoot it to turn it off ... for a while.",
+   "icon": "Roulette_icon_cogs"
+  },
+  {
+   "selector": "lessMeleeDamages",
+   "title": "Toy Sword",
+   "description": "Your melee weapon deals 25% less damage.",
+   "icon": "Roulette_icon_glue"
+  },
+  {
+   "selector": "lessHeadshots",
+   "title": "Zombies With Helmets!",
+   "description": "Landing critical hits is twice as hard.",
+   "icon": "Roulette_icon_threezombies"
+  },
+  {
+   "selector": "narrowedSpread",
+   "title": "Rigged Guns",
+   "description": "Your accuracy is slightly reduced. You’ll have to aim more carefully!",
+   "icon": "Roulette_icon_luck"
+  }
+ ]
+}

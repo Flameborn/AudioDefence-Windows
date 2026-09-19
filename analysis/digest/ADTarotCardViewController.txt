@@ -1,0 +1,357 @@
+
+== -[ADTarotCardViewController viewDidLoad]   (address 0x1000a4bd4  size 1448  kind objc)
+  0a4c14  [super viewDidLoad]
+  0a4c2c  [self cardLevel]
+  0a4c34  if ([self cardLevel] != 1) goto loc_1000a4c48
+  0a4c44  self->cost = 3
+loc_1000a4c48:
+  0a4c50  [self cardLevel]
+  0a4c58  if ([self cardLevel] != 2) goto loc_1000a4c6c
+  0a4c68  self->cost = 2
+loc_1000a4c6c:
+  0a4c74  [self cardLevel]
+  0a4c7c  if ([self cardLevel] != 3) goto loc_1000a4c90
+  0a4c8c  self->cost = 1
+loc_1000a4c90:
+  0a4ca4  [self changeCardButton]
+  0a4ccc  [[self changeCardButton] setDiamonds:self->cost]
+  0a4ce0  [self changeCardButton]
+  0a4cfc  [[self changeCardButton] titleLabel]
+  0a4d28  [ADGameParameters sharedParameters]
+  0a4d44  [[ADGameParameters sharedParameters] isIphone]
+  0a4d70  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 25)]
+  0a4d94  [[[self changeCardButton] titleLabel] setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 25)]]
+  0a4dc0  [self changeCardButton]
+  0a4de4  [UIColor blackColor]
+  0a4e0c  [[self changeCardButton] setTitleColor:[UIColor blackColor] forState:0]
+  0a4e28  [self changeCardButton]
+  0a4e5c  [NSString stringWithFormat:@"Change for %d", self->cost]
+  0a4e84  [[self changeCardButton] setTitle:[NSString stringWithFormat:@"Change for %d", self->cost] forState:0]
+  0a4ea0  [self changeCardButton]
+  0a4ebc  [[self changeCardButton] centerButtonTextWithDiamondsImage]
+  0a4ec8  UIAccessibilityIsVoiceOverRunning()
+  0a4ecc  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_1000a5038
+  0a4ee4  [self view]
+  0a4f00  [[self view] subviews]
+  0a4f28  [[[self view] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)]
+  0a4f50  [ADButtonWithFont alloc]
+  0a4f60  [self view]
+  0a4f7c  [[self view] frame]
+  0a4f90  [[ADButtonWithFont alloc] initWithFrame:{[[self view] frame].0, [[self view] frame].1, [[self view] frame].2, [[self view] frame].3}]
+  0a4fac  [self setAccessibleCard:[[ADButtonWithFont alloc] initWithFrame:{[[self view] frame].0, [[self view] frame].1, [[self view] frame].2, [[self view] frame].3}]]
+  0a4fc8  [self view]
+  0a4fe8  [self accessibleCard]
+  0a500c  [[self view] addSubview:[self accessibleCard]]
+  0a5030  [self refreshCard]
+  0a5034  goto loc_1000a50b4
+loc_1000a5038:
+  0a5048  [self refreshCard]
+  0a505c  [self view]
+  0a507c  [self cardBack]
+  0a50a0  [[self view] addSubview:[self cardBack]]
+loc_1000a50b4:
+  0a50cc  return
+
+== -[ADTarotCardViewController initWithCardLevel:forbiddenModifier:]   (address 0x1000a517c  size 840  kind objc)
+  0a51d8  [super initWithNibName:0 bundle:0]
+  0a51e0  if (self == 0) goto loc_1000a5418
+  0a51fc  [self setCardLevel:arg1]
+  0a5218  [NSBundle mainBundle]
+  0a5244  [[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]
+  0a5270  [NSDictionary alloc]
+  0a5284  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]]
+  0a52ac  [NSString stringWithFormat:@"level_%i", arg1]
+  0a52d8  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]]
+  0a52f4  rand()
+  0a5310  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count]
+  0a5318  t1 = (rand() / [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count])
+  0a531c  t2 = (rand() - t1 * [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count])
+  0a5334  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] objectAtIndex:t2]
+  0a534c  self->cardDictionary = [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] objectAtIndex:t2]
+  0a535c  if (arg2 == 0) goto loc_1000a5400
+  0a5364  &@selector(isEqualToString:)
+  0a5374  goto loc_1000a5390
+loc_1000a5378:
+  0a5384  self->cardDictionary = [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] objectAtIndex:t4]
+loc_1000a5390:
+  0a539c  [self->cardDictionary objectForKey:@"selector"]
+  0a53b4  [[self->cardDictionary objectForKey:@"selector"] isEqualToString:arg2]
+  0a53c4  if ([[self->cardDictionary objectForKey:@"selector"] isEqualToString:arg2] == 0) goto loc_1000a5400
+  0a53c8  rand()
+  0a53d8  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count]
+  0a53e0  t3 = (rand() / [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count])
+  0a53e4  t4 = (rand() - t3 * [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count])
+  0a53f0  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] objectAtIndex:t4]
+  0a53f4  goto loc_1000a5378
+  0a53fc  goto loc_1000a5450
+loc_1000a5400:
+loc_1000a5418:
+  0a5440  return
+
+== -[ADTarotCardViewController initWithCardLevel:modifier:]   (address 0x1000a54c4  size 1052  kind objc)
+  0a5534  [super initWithNibName:0 bundle:0]
+  0a553c  if (self == 0) goto loc_1000a57f0
+  0a5558  [self setCardLevel:arg1]
+  0a5574  [NSBundle mainBundle]
+  0a55a0  [[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]
+  0a55cc  [NSDictionary alloc]
+  0a55e0  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]]
+  0a5608  [NSString stringWithFormat:@"level_%i", arg1]
+  0a5634  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]]
+  0a5688  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] count:16]
+  0a5694  if ([[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] count:16] == 0) goto loc_1000a5754
+  0a56a0  &@selector(isEqualToString:)
+loc_1000a56b4:
+loc_1000a56b8:
+  0a56c4  if (x8 == x19) goto loc_1000a56d0
+  0a56cc  objc_enumerationMutation([[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]])
+loc_1000a56d0:
+  0a56e8  [x0 objectForKey:@"selector"]
+  0a5700  [[x0 objectForKey:@"selector"] isEqualToString:arg2]
+  0a5710  if ([[x0 objectForKey:@"selector"] isEqualToString:arg2] == 0) goto loc_1000a572c
+  0a5720  self->cardDictionary = x0
+loc_1000a572c:
+  0a5734  if ((x20 + 1) <u [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] ob…) goto loc_1000a56b8
+  0a5748  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] count:16]
+  0a5750  if ([[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] count:16] != 0) goto loc_1000a56b4
+loc_1000a5754:
+  0a5774  if (self->cardDictionary != 0) goto loc_1000a57cc
+  0a5778  rand()
+  0a5790  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count]
+  0a5798  t1 = (rand() / [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count])
+  0a579c  t2 = (rand() - t1 * [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] count])
+  0a57b0  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] objectAtIndex:t2]
+  0a57c0  self->cardDictionary = [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", arg1]] objectAtIndex:t2]
+loc_1000a57cc:
+loc_1000a57f0:
+  0a5824  return
+
+== -[ADTarotCardViewController refreshCard]   (address 0x1000a58e0  size 1392  kind objc)
+  0a58fc  UIAccessibilityIsVoiceOverRunning()
+  0a5900  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_1000a5b90
+  0a5914  [self view]
+  0a5938  [UIColor greenColor]
+  0a595c  [[self view] setBackgroundColor:[UIColor greenColor]]
+  0a5984  [self accessibleCard]
+  0a59a8  [self accessibleDescription]
+  0a59d0  [[self accessibleCard] setTitle:[self accessibleDescription] forState:0]
+  0a59ec  [self accessibleCard]
+  0a5a04  [self accessibleDescription]
+  0a5a28  [[self accessibleCard] setAccessibilityLabel:[self accessibleDescription]]
+  0a5a44  [self accessibleCard]
+  0a5a74  [[self accessibleCard] addTarget:self action:@selector(changeCardButtonPressed:) forControlEvents:64]
+  0a5a88  [self accessibleCard]
+  0a5ab4  [ADInventory sharedInventory]
+  0a5ad0  [[ADInventory sharedInventory] diamonds]
+  0a5af0  [NSString stringWithFormat:@"You have %i diamonds", [[ADInventory sharedInventory] diamonds]]
+  0a5b14  [[self accessibleCard] setAccessibilityHint:[NSString stringWithFormat:@"You have %i diamonds", [[ADInventory sharedInventory] diamonds]]]
+  0a5b38  [self accessibleCard]
+  0a5b54  [[self accessibleCard] makeAccessible]
+  0a5b68  [self accessibleCard]
+  0a5b84  [[self accessibleCard] setupAsAccessibleTarotCardInfo]
+  0a5b88  goto loc_1000a5d5c
+  0a5b8c  goto loc_1000a5e2c
+loc_1000a5b90:
+  0a5ba0  [self cardTitle]
+  0a5bd4  [self->cardDictionary objectForKey:@"title"]
+  0a5bfc  [[self cardTitle] setText:[self->cardDictionary objectForKey:@"title"]]
+  0a5c20  [self cardDescription]
+  0a5c40  [self->cardDictionary objectForKey:@"description"]
+  0a5c5c  [[self cardDescription] setText:[self->cardDictionary objectForKey:@"description"]]
+  0a5c80  [self->cardDictionary objectForKey:@"goodbad"]
+  0a5ca4  [[self->cardDictionary objectForKey:@"goodbad"] isEqualToString:@"bad"]
+  0a5cc4  [self backgroundImage]
+  0a5ce0  &@selector(imageNamed:)
+  0a5ce8  if ([[self->cardDictionary objectForKey:@"goodbad"] isEqualToString:@"bad"] == 0) goto loc_1000a5d24
+  0a5cf4  [UIImage imageNamed:@"cards_front_bad"]
+  0a5d18  [[self backgroundImage] setImage:[UIImage imageNamed:@"cards_front_bad"]]
+  0a5d1c  goto loc_1000a5d54
+  0a5d20  goto loc_1000a5e34
+loc_1000a5d24:
+  0a5d2c  [UIImage imageNamed:@"cards_front_good"]
+  0a5d50  [[self backgroundImage] setImage:[UIImage imageNamed:@"cards_front_good"]]
+loc_1000a5d54:
+loc_1000a5d5c:
+  0a5d84  [self->cardDictionary objectForKey:@"title"]
+  0a5d9c  self->currentTitle = [self->cardDictionary objectForKey:@"title"]
+  0a5db8  return
+
+== -[ADTarotCardViewController flipCard:]   (address 0x1000a5e50  size 640  kind objc)
+  0a5e78  UIAccessibilityIsVoiceOverRunning()
+  0a5e7c  if ((UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_1000a6050
+  0a5e90  [arg1 boolValue]
+  0a5eb0  [self flipped]
+  0a5eb4  if (!([self flipped] & 1)) goto loc_1000a5f00
+  0a5ed0  [self cardBack]
+  0a5ef4  [self cardFront]
+  0a5efc  goto loc_1000a5f44
+loc_1000a5f00:
+  0a5f18  [self cardFront]
+  0a5f3c  [self cardBack]
+loc_1000a5f44:
+  0a5fa4  [UIView transitionFromView:x2 toView:x3 duration:0.5 options:0x200000 completion:^{-[ADTarotCardViewController flipCard:]_block_invoke captures +0x20=self, +0x28=[arg1 boolValue]}]
+  0a5fbc  [S3DEngine engine]
+  0a5fe0  [[S3DEngine engine] playListWithName:@"tarot"]
+  0a6010  [[[S3DEngine engine] playListWithName:@"tarot"] anySoundContaining:@"flip"]
+  0a602c  [[[[S3DEngine engine] playListWithName:@"tarot"] anySoundContaining:@"flip"] play]
+loc_1000a6050:
+  0a606c  return
+
+== -[ADTarotCardViewController flipCard:]_block_invoke   (address 0x1000a60d0  size 208  kind block)
+  0a60f4  [self flipped]
+  0a610c  [self setFlipped:([self flipped] ^ 1)]
+  0a6114  if ([arg1 boolValue] == 0) goto loc_1000a6180
+  0a6128  [self changeCard]
+  0a6148  [NSNumber numberWithBool:0]
+  0a616c  [self flipCard:[NSNumber numberWithBool:0]]
+  0a617c  return
+loc_1000a6180:
+  0a6188  return
+
+== -[ADTarotCardViewController accessibleDescription]   (address 0x1000a61a0  size 280  kind objc)
+  0a61d0  [self cardLevel]
+  0a61fc  [self->cardDictionary objectForKey:@"title"]
+  0a621c  [self->cardDictionary objectForKey:@"description"]
+  0a6258  [NSString stringWithFormat:@"Tarot card number %i : %@ \n\n %@ \n\n(double tap to change for %i diamonds)", [self cardLevel], [self->cardDictionary objectForKey:@"title"], [self->cardDictionary objectForKey:@"description"], self->cost]
+  0a6290  return
+
+== -[ADTarotCardViewController changeCardButtonPressed:]   (address 0x1000a62b8  size 748  kind objc)
+  0a62ec  [ADInventory sharedInventory]
+  0a630c  [[ADInventory sharedInventory] diamonds]
+  0a632c  if ([[ADInventory sharedInventory] diamonds] >= self->cost) goto loc_1000a635c
+  0a6340  [self showNoDiamondsAlert]
+  0a6358  return
+loc_1000a635c:
+  0a635c  UIAccessibilityIsVoiceOverRunning()
+  0a6360  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_1000a640c
+  0a6378  [S3DEngine engine]
+  0a639c  [[S3DEngine engine] playListWithName:@"tarot"]
+  0a63cc  [[[S3DEngine engine] playListWithName:@"tarot"] anySoundContaining:@"flip"]
+  0a63e8  [[[[S3DEngine engine] playListWithName:@"tarot"] anySoundContaining:@"flip"] play]
+  0a63fc  [self changeCard]
+  0a6408  goto loc_1000a644c
+loc_1000a640c:
+  0a6424  [NSNumber numberWithBool:1]
+  0a6448  [self flipCard:[NSNumber numberWithBool:1]]
+loc_1000a644c:
+  0a6468  [UIApplication sharedApplication]
+  0a6484  [[UIApplication sharedApplication] delegate]
+  0a64a0  [[[UIApplication sharedApplication] delegate] statusBar]
+  0a64c4  [[[[UIApplication sharedApplication] delegate] statusBar] animateDiamonds:-self->cost]
+  0a64e8  [ADInventory sharedInventory]
+  0a64fc  [[ADInventory sharedInventory] diamonds]
+  0a6518  [[ADInventory sharedInventory] setDiamonds:([[ADInventory sharedInventory] diamonds] - self->cost)]
+  0a6534  return
+
+== -[ADTarotCardViewController changeCard]   (address 0x1000a65a4  size 804  kind objc)
+  0a65dc  [NSBundle mainBundle]
+  0a6608  [[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]
+  0a6634  [NSDictionary alloc]
+  0a6648  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]]
+  0a666c  [self cardLevel]
+  0a668c  [NSString stringWithFormat:@"level_%i", [self cardLevel]]
+  0a66b8  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]]
+  0a66d0  rand()
+  0a66ec  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] count]
+  0a66f4  t1 = (rand() / [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] count])
+  0a66f8  t2 = (rand() - t1 * [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] count])
+  0a6710  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] objectAtIndex:t2]
+  0a6728  self->cardDictionary = [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] objectAtIndex:t2]
+  0a6744  [self->cardDictionary objectForKey:@"title"]
+  0a6770  [[self->cardDictionary objectForKey:@"title"] isEqualToString:self->currentTitle]
+  0a6780  if ([[self->cardDictionary objectForKey:@"title"] isEqualToString:self->currentTitle] == 0) goto loc_1000a6814
+  0a6784  goto loc_1000a67a0
+loc_1000a6788:
+  0a6794  self->cardDictionary = [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] objectAtIndex:t4]
+loc_1000a67a0:
+  0a67b0  [self->cardDictionary objectForKey:@"title"]
+  0a67c8  [[self->cardDictionary objectForKey:@"title"] isEqualToString:self->currentTitle]
+  0a67d8  if ([[self->cardDictionary objectForKey:@"title"] isEqualToString:self->currentTitle] == 0) goto loc_1000a6814
+  0a67dc  rand()
+  0a67ec  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] count]
+  0a67f4  t3 = (rand() / [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] count])
+  0a67f8  t4 = (rand() - t3 * [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] count])
+  0a6804  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Tarot" withExtension:@"plist"]] objectForKey:[NSString stringWithFormat:@"level_%i", [self cardLevel]]] objectAtIndex:t4]
+  0a6808  goto loc_1000a6788
+  0a6810  goto loc_1000a6868
+loc_1000a6814:
+  0a6824  [self refreshCard]
+  0a6858  return
+
+== -[ADTarotCardViewController modifierName]   (address 0x1000a68c8  size 36  kind objc)
+  0a68e8  tail [self->cardDictionary objectForKey:@"selector"]
+
+== -[ADTarotCardViewController isGood]   (address 0x1000a68ec  size 132  kind objc)
+  0a6918  [self->cardDictionary objectForKey:@"goodbad"]
+  0a693c  [[self->cardDictionary objectForKey:@"goodbad"] isEqualToString:@"good"]
+  0a6958  return
+
+== -[ADTarotCardViewController cardDescription]   (address 0x1000a6970  size 16  kind objc)
+  0a697c  return
+
+== -[ADTarotCardViewController setCardDescription:]   (address 0x1000a6980  size 56  kind objc)
+  0a69a4  self->_cardDescription = arg1
+  0a69b4  return
+
+== -[ADTarotCardViewController cardTitle]   (address 0x1000a69b8  size 16  kind objc)
+  0a69c4  return
+
+== -[ADTarotCardViewController setCardTitle:]   (address 0x1000a69c8  size 56  kind objc)
+  0a69ec  self->_cardTitle = arg1
+  0a69fc  return
+
+== -[ADTarotCardViewController cardLevel]   (address 0x1000a6a00  size 16  kind objc)
+  0a6a0c  return
+
+== -[ADTarotCardViewController setCardLevel:]   (address 0x1000a6a10  size 16  kind objc)
+  0a6a18  self->_cardLevel = arg1
+  0a6a1c  return
+
+== -[ADTarotCardViewController tarotViewController]   (address 0x1000a6a20  size 32  kind objc)
+  0a6a3c  return
+
+== -[ADTarotCardViewController setTarotViewController:]   (address 0x1000a6a40  size 20  kind objc)
+
+== -[ADTarotCardViewController changeCardButton]   (address 0x1000a6a54  size 16  kind objc)
+  0a6a60  return
+
+== -[ADTarotCardViewController setChangeCardButton:]   (address 0x1000a6a64  size 56  kind objc)
+  0a6a88  self->_changeCardButton = arg1
+  0a6a98  return
+
+== -[ADTarotCardViewController backgroundImage]   (address 0x1000a6a9c  size 16  kind objc)
+  0a6aa8  return
+
+== -[ADTarotCardViewController setBackgroundImage:]   (address 0x1000a6aac  size 56  kind objc)
+  0a6ad0  self->_backgroundImage = arg1
+  0a6ae0  return
+
+== -[ADTarotCardViewController accessibleCard]   (address 0x1000a6ae4  size 16  kind objc)
+  0a6af0  return
+
+== -[ADTarotCardViewController setAccessibleCard:]   (address 0x1000a6af4  size 56  kind objc)
+  0a6b18  self->_accessibleCard = arg1
+  0a6b28  return
+
+== -[ADTarotCardViewController cardBack]   (address 0x1000a6b2c  size 16  kind objc)
+  0a6b38  return
+
+== -[ADTarotCardViewController setCardBack:]   (address 0x1000a6b3c  size 56  kind objc)
+  0a6b60  self->_cardBack = arg1
+  0a6b70  return
+
+== -[ADTarotCardViewController cardFront]   (address 0x1000a6b74  size 16  kind objc)
+  0a6b80  return
+
+== -[ADTarotCardViewController setCardFront:]   (address 0x1000a6b84  size 56  kind objc)
+  0a6ba8  self->_cardFront = arg1
+  0a6bb8  return
+
+== -[ADTarotCardViewController flipped]   (address 0x1000a6bbc  size 20  kind objc)
+  0a6bcc  return
+
+== -[ADTarotCardViewController setFlipped:]   (address 0x1000a6bd0  size 16  kind objc)
+  0a6bd8  self->_flipped = arg1
+  0a6bdc  return
+
+== -[ADTarotCardViewController .cxx_destruct]   (address 0x1000a6be0  size 220  kind objc)

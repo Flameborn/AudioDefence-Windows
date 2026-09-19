@@ -1,0 +1,43 @@
+
+== +[TAGFunctionCallImplementation functionKey]   (address 0x100162290  size 44  kind objc)
+  1622b8  return
+
+== +[TAGFunctionCallImplementation instanceNameKey]   (address 0x1001622bc  size 44  kind objc)
+  1622e4  return
+
+== +[TAGFunctionCallImplementation notDefaultMacroKey]   (address 0x1001622e8  size 44  kind objc)
+  162310  return
+
+== -[TAGFunctionCallImplementation init]   (address 0x100162314  size 84  kind objc)
+  162338  [self doesNotRecognizeSelector:_cmd]
+  162350  return
+
+== -[TAGFunctionCallImplementation initWithFunctionId:requiredKeys:]   (address 0x100162368  size 256  kind objc)
+  1623c0  [super init]
+  1623c8  if (self == 0) goto loc_10016241c
+  1623e0  [arg1 copy]
+  1623f0  self->_instanceFunctionId = [arg1 copy]
+  162410  self->_requiredKeys = arg2
+loc_10016241c:
+  162440  return
+
+== -[TAGFunctionCallImplementation isCacheable]   (address 0x100162468  size 44  kind objc)
+  162484  [self doesNotRecognizeSelector:_cmd]
+  162490  return
+
+== -[TAGFunctionCallImplementation evaluate:]   (address 0x100162494  size 44  kind objc)
+  1624b0  [self doesNotRecognizeSelector:_cmd]
+  1624bc  return
+
+== -[TAGFunctionCallImplementation hasRequiredKeys:]   (address 0x1001624c0  size 160  kind objc)
+  1624f0  [self requiredKeys]
+  162510  [[self requiredKeys] isSubsetOfSet:arg1]
+  162538  return
+
+== -[TAGFunctionCallImplementation instanceFunctionId]   (address 0x100162560  size 16  kind objc)
+  16256c  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGFunctionCallImplementation requiredKeys]   (address 0x100162570  size 16  kind objc)
+  16257c  return
+
+== -[TAGFunctionCallImplementation .cxx_destruct]   (address 0x100162580  size 64  kind objc)

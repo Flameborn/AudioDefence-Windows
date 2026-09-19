@@ -1,0 +1,106 @@
+
+== -[CWLOrderedDictionary init]   (address 0x1000df2a4  size 36  kind objc)
+  0df2bc  [self initWithCapacity:0]
+  0df2c4  return
+
+== -[CWLOrderedDictionary initWithCapacity:]   (address 0x1000df2c8  size 324  kind objc)
+  0df308  [super init]
+  0df310  if (self == 0) goto loc_1000df3bc
+  0df330  [NSMutableDictionary alloc]
+  0df34c  [[NSMutableDictionary alloc] initWithCapacity:arg1]
+  0df368  [self setDictionary:[[NSMutableDictionary alloc] initWithCapacity:arg1]]
+  0df384  [NSMutableArray alloc]
+  0df394  [[NSMutableArray alloc] initWithCapacity:arg1]
+  0df3b0  [self setArray:[[NSMutableArray alloc] initWithCapacity:arg1]]
+loc_1000df3bc:
+  0df3d4  return
+
+== -[CWLOrderedDictionary dealloc]   (address 0x1000df40c  size 60  kind objc)
+  0df438  [super dealloc]
+  0df444  return
+
+== -[CWLOrderedDictionary copy]   (address 0x1000df448  size 16  kind objc)
+  0df454  tail [self mutableCopy]
+
+== -[CWLOrderedDictionary setObject:forKey:]   (address 0x1000df458  size 224  kind objc)
+  0df4a8  [self->dictionary objectForKey:arg2]
+  0df4bc  if ([self->dictionary objectForKey:arg2] != 0) goto loc_1000df4e0
+  0df4dc  [self->array addObject:arg2]
+loc_1000df4e0:
+  0df4f8  [self->dictionary setObject:arg1 forKey:arg2]
+  0df518  return
+
+== -[CWLOrderedDictionary removeObjectForKey:]   (address 0x1000df538  size 128  kind objc)
+  0df570  [self->dictionary removeObjectForKey:arg1]
+  0df590  [self->array removeObject:arg1]
+  0df5a0  return
+
+== -[CWLOrderedDictionary count]   (address 0x1000df5b8  size 28  kind objc)
+  0df5d0  tail [self->dictionary count]
+
+== -[CWLOrderedDictionary objectForKey:]   (address 0x1000df5d4  size 52  kind objc)
+  0df5f4  [self->dictionary objectForKey:arg1]
+  0df604  return
+
+== -[CWLOrderedDictionary keyEnumerator]   (address 0x1000df608  size 28  kind objc)
+  0df620  tail [self->array objectEnumerator]
+
+== -[CWLOrderedDictionary reverseKeyEnumerator]   (address 0x1000df624  size 28  kind objc)
+  0df63c  tail [self->array reverseObjectEnumerator]
+
+== -[CWLOrderedDictionary insertObject:forKey:atIndex:]   (address 0x1000df640  size 256  kind objc)
+  0df694  [self->dictionary objectForKey:arg2]
+  0df6a8  if ([self->dictionary objectForKey:arg2] == 0) goto loc_1000df6c4
+  0df6c0  [self removeObjectForKey:arg2]
+loc_1000df6c4:
+  0df6e4  [self->array insertObject:arg2 atIndex:arg3]
+  0df700  [self->dictionary setObject:arg1 forKey:arg2]
+  0df720  return
+
+== -[CWLOrderedDictionary keyAtIndex:]   (address 0x1000df740  size 28  kind objc)
+  0df758  tail [self->array objectAtIndex:arg1]
+
+== -[CWLOrderedDictionary descriptionWithLocale:indent:]   (address 0x1000df75c  size 780  kind objc)
+  0df7b8  [NSMutableString string]
+  0df7c8  if (arg2 == 0) goto loc_1000df800
+  0df7d4  &@selector(appendFormat:)
+loc_1000df7e4:
+  0df7f0  [[NSMutableString string] appendFormat:@"    "]
+  0df7fc  if ((x26 + 1) <u arg2) goto loc_1000df7e4
+loc_1000df800:
+  0df808  [NSMutableString string]
+  0df834  [[NSMutableString string] appendFormat:@"%@{\n", [NSMutableString string]]
+  0df874  [self countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0df87c  if ([self countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] == 0) goto loc_1000df96c
+  0df88c  &@selector(objectForKey:)
+loc_1000df894:
+loc_1000df898:
+  0df8a4  if (x8 == x28) goto loc_1000df8b0
+  0df8ac  objc_enumerationMutation(self)
+loc_1000df8b0:
+  0df8c4  sub_1000df150(x0, arg1, arg2)
+  0df8e0  [self objectForKey:x2]
+  0df8f8  sub_1000df150([self objectForKey:x2], arg1, arg2)
+  0df924  [[NSMutableString string] appendFormat:@"%@    %@ = %@;\n", [NSMutableString string], sub_1000df150(x0, arg1, arg2), sub_1000df150([self objectForKey:x2], arg1, arg2)]
+  0df948  if ((x24 + 1) <u [self countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]) goto loc_1000df898
+  0df960  [self countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0df968  if ([self countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] != 0) goto loc_1000df894
+loc_1000df96c:
+  0df98c  [[NSMutableString string] appendFormat:@"%@}\n", [NSMutableString string]]
+  0df9d8  return
+
+== -[CWLOrderedDictionary dictionary]   (address 0x1000dfa68  size 16  kind objc)
+  0dfa74  return
+
+== -[CWLOrderedDictionary setDictionary:]   (address 0x1000dfa78  size 56  kind objc)
+  0dfa9c  self->dictionary = arg1
+  0dfaac  return
+
+== -[CWLOrderedDictionary array]   (address 0x1000dfab0  size 16  kind objc)
+  0dfabc  return
+
+== -[CWLOrderedDictionary setArray:]   (address 0x1000dfac0  size 56  kind objc)
+  0dfae4  self->array = arg1
+  0dfaf4  return
+
+== -[CWLOrderedDictionary .cxx_destruct]   (address 0x1000dfaf8  size 64  kind objc)

@@ -1,0 +1,20 @@
+// ADInventoryViewController_iPhone.nib
+TOP-LEVEL OBJECTS
+  #68 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #63 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #16 UIView  
+    #15 UIImageView  UserInteractionDisabled=False
+    #4 UIImageView  UserInteractionDisabled=False
+    #11 UILabel  UserInteractionDisabled=False Text='GUNS'
+    #61 UILabel  UserInteractionDisabled=False Text='MELEE'
+    #44 UIImageView  UserInteractionDisabled=False
+
+CONNECTIONS
+  outlet  gunsLabel                                 #68 UIProxyObject --> #11 UILabel Text='GUNS'
+  outlet  meleeLabel                                #68 UIProxyObject --> #61 UILabel Text='MELEE'
+  outlet  meleeSlot                                 #68 UIProxyObject --> #44 UIImageView
+  outlet  slot1                                     #68 UIProxyObject --> #15 UIImageView
+  outlet  slot2                                     #68 UIProxyObject --> #4 UIImageView
+  outlet  view                                      #68 UIProxyObject --> #16 UIView
+
+ACCESSIBILITY CONFIGURATIONS

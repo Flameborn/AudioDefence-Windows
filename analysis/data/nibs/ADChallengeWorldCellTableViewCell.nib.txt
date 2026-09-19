@@ -1,0 +1,23 @@
+// ADChallengeWorldCellTableViewCell.nib
+TOP-LEVEL OBJECTS
+  #27 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #45 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #52 UITableViewCell (custom class ADChallengeWorldCellTableViewCell)  
+    #14 UITableViewCellContentView  
+      #40 UIImageView  UserInteractionDisabled=False Image='button_arena.png'
+      #69 UILabel  UserInteractionDisabled=False Text='CITY CROSSROAD'
+      #58 UIView  
+        #21 UIImageView  UserInteractionDisabled=False Image='icon_locked_wide.png'
+      #46 UIImageView  UserInteractionDisabled=False Image='icon_star_small.png'
+      #18 UILabel  UserInteractionDisabled=False Text='0/30'
+    #16 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #14)
+
+CONNECTIONS
+  outlet  lockView                                  #52 ADChallengeWorldCellTableViewCell --> #58 UIView
+  outlet  starImage                                 #52 ADChallengeWorldCellTableViewCell --> #46 UIImageView
+  outlet  starsUnlockedLabel                        #52 ADChallengeWorldCellTableViewCell --> #18 UILabel Text='0/30'
+  outlet  titleLabel                                #52 ADChallengeWorldCellTableViewCell --> #69 UILabel Text='CITY CROSSROAD'
+
+ACCESSIBILITY CONFIGURATIONS

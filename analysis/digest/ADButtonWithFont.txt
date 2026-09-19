@@ -1,0 +1,112 @@
+
+== -[ADButtonWithFont initWithFrame:]   (address 0x100072f40  size 60  kind objc)
+  072f6c  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  072f78  return
+
+== -[ADButtonWithFont awakeFromNib]   (address 0x100072f7c  size 176  kind objc)
+  072fb0  [super awakeFromNib]
+  072fc8  [self setContentHorizontalAlignment:0]
+  072ff0  [self addTarget:self action:@selector(playSound) forControlEvents:64]
+  072ff4  UIAccessibilityIsVoiceOverRunning()
+  072ff8  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100073008
+  073000  &@selector(makeAccessible)
+  073004  goto loc_100073010
+loc_100073008:
+  07300c  &@selector(setupAsMain)
+loc_100073010:
+  073018  [self makeAccessible | setupAsMain]
+  073028  return
+
+== -[ADButtonWithFont makeAccessible]   (address 0x10007302c  size 972  kind objc)
+  07305c  [UIColor blackColor]
+  073080  [self setBackgroundColor:[UIColor blackColor]]
+  0730a8  [self setImage:0 forState:0]
+  0730bc  [self setImage:0 forState:4]
+  0730dc  [self setBackgroundImage:0 forState:4]
+  0730f0  [self setBackgroundImage:0 forState:0]
+  073104  [self accessibilityLabel]
+  07312c  [self setTitle:[self accessibilityLabel] forState:0]
+  07314c  [UIColor whiteColor]
+  073174  [self setTitleColor:[UIColor whiteColor] forState:0]
+  073194  [self titleLabel]
+  0731b4  [self titleLabel]
+  0731d0  [[self titleLabel] font]
+  0731ec  [[[self titleLabel] font] pointSize]
+  073208  [UIFont fontWithName:@"Tiresias Infofont" size:[[[self titleLabel] font] pointSize]]
+  07322c  [[self titleLabel] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:[[[self titleLabel] font] pointSize]]]
+  073258  [self titleLabel]
+  073278  [[self titleLabel] setLineBreakMode:0]
+  07328c  [self titleLabel]
+  0732ac  [[self titleLabel] setTextAlignment:1]
+  0732cc  [self layer]
+  0732ec  [[self layer] setBorderWidth:3]
+  073300  [self layer]
+  073318  [UIColor whiteColor]
+  073338  [[UIColor whiteColor] CGColor]
+  073350  [[self layer] setBorderColor:[[UIColor whiteColor] CGColor]]
+  073374  return
+
+== -[ADButtonWithFont setTitle:forState:]   (address 0x1000733f8  size 384  kind objc)
+  073430  self->wantedTitle = arg1
+  073460  [super setTitle:arg1 forState:arg2]
+  073474  [self coins]
+  073478  if ([self coins] == 0) goto loc_1000734cc
+  07349c  [NSString stringWithFormat:@"%@ coins", arg1]
+  0734c0  [self setAccessibilityLabel:[NSString stringWithFormat:@"%@ coins", arg1]]
+loc_1000734cc:
+  0734dc  [self diamonds]
+  0734e0  if ([self diamonds] == 0) goto loc_100073534
+  073504  [NSString stringWithFormat:@"%@ diamonds", arg1]
+  073528  [self setAccessibilityLabel:[NSString stringWithFormat:@"%@ diamonds", arg1]]
+loc_100073534:
+  07354c  return
+
+== -[ADButtonWithFont playSound]   (address 0x100073578  size 252  kind objc)
+  07359c  [S3DEngine engine]
+  0735c0  [[S3DEngine engine] playListWithName:@"buttons"]
+  0735e4  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  073618  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  07362c  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  073640  return
+
+== -[ADButtonWithFont isIphone]   (address 0x100073674  size 112  kind objc)
+  073694  [ADGameParameters sharedParameters]
+  0736b0  [[ADGameParameters sharedParameters] isIphone]
+  0736cc  return
+
+== -[ADButtonWithFont fontSize]   (address 0x1000736e4  size 16  kind objc)
+  0736f0  return
+
+== -[ADButtonWithFont setFontSize:]   (address 0x1000736f4  size 56  kind objc)
+  073718  self->_fontSize = arg1
+  073728  return
+
+== -[ADButtonWithFont fontName]   (address 0x10007372c  size 16  kind objc)
+  073738  return
+
+== -[ADButtonWithFont setFontName:]   (address 0x10007373c  size 56  kind objc)
+  073760  self->_fontName = arg1
+  073770  return
+
+== -[ADButtonWithFont glow]   (address 0x100073774  size 16  kind objc)
+  073780  return
+
+== -[ADButtonWithFont setGlow:]   (address 0x100073784  size 56  kind objc)
+  0737a8  self->_glow = arg1
+  0737b8  return
+
+== -[ADButtonWithFont diamonds]   (address 0x1000737bc  size 16  kind objc)
+  0737c8  return
+
+== -[ADButtonWithFont setDiamonds:]   (address 0x1000737cc  size 16  kind objc)
+  0737d4  self->_diamonds = arg1
+  0737d8  return
+
+== -[ADButtonWithFont coins]   (address 0x1000737dc  size 16  kind objc)
+  0737e8  return
+
+== -[ADButtonWithFont setCoins:]   (address 0x1000737ec  size 16  kind objc)
+  0737f4  self->_coins = arg1
+  0737f8  return
+
+== -[ADButtonWithFont .cxx_destruct]   (address 0x1000737fc  size 104  kind objc)

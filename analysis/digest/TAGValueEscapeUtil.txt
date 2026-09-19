@@ -1,0 +1,59 @@
+
+== +[TAGValueEscapeUtil applyEscapings:toValue:]   (address 0x10017241c  size 284  kind objc)
+  17246c  &@selector(int32AtIndex:)
+  17247c  &@selector(applyEscaping:toValue:)
+  172488  goto loc_1001724a8
+loc_10017248c:
+loc_1001724a8:
+  1724b0  [arg1 count]
+  1724b8  if (x22 >=u [arg1 count]) goto loc_100172508
+  1724c8  [arg1 int32AtIndex:x2]
+  1724dc  [TAGValueEscapeUtil applyEscaping:[arg1 int32AtIndex:x2] toValue:x3]
+  1724e0  goto loc_10017248c
+loc_100172508:
+  172534  return
+
+== +[TAGValueEscapeUtil applyEscaping:toValue:]   (address 0x100172538  size 380  kind objc)
+  172570  [arg2 value]
+  172594  [TAGValueEscapeUtil isValidStringType:[arg2 value]]
+  1725a4  if (!([TAGValueEscapeUtil isValidStringType:[arg2 value]] & 1)) goto loc_1001725d4
+  1725ac  if (arg1 != 12) goto loc_1001725f8
+  1725c4  [TAGValueEscapeUtil escapeUri:arg2]
+  1725d0  goto loc_100172658
+loc_1001725d4:
+  1725f0  [TAGLog error:@"Escaping can only be applied to strings."]
+  1725f4  goto loc_100172650
+loc_1001725f8:
+  172620  [NSString stringWithFormat:@"Unsupported Value Escaping: %ld", arg1]
+  172644  [TAGLog error:[NSString stringWithFormat:@"Unsupported Value Escaping: %ld", arg1]]
+loc_100172650:
+loc_100172658:
+  17267c  return
+
+== +[TAGValueEscapeUtil urlEncode:]   (address 0x1001726b4  size 48  kind objc)
+  1726d8  CFURLCreateStringByAddingPercentEscapes(0, arg1, 0, @"!*'();:@&=+$,/?%#[]")
+  1726e0  return
+
+== +[TAGValueEscapeUtil urlDecode:]   (address 0x1001726e4  size 48  kind objc)
+  172708  CFURLCreateStringByReplacingPercentEscapesUsingEncoding(0, arg1, @"", 0x8000100)
+  172710  return
+
+== +[TAGValueEscapeUtil escapeUri:]   (address 0x100172714  size 380  kind objc)
+  172744  [arg1 value]
+  172760  [[arg1 value] string]
+  172784  [TAGValueEscapeUtil urlEncode:[[arg1 value] string]]
+  1727c4  [TAGTypes objectToValue:[TAGValueEscapeUtil urlEncode:[[arg1 value] string]]]
+  1727e4  [arg1 isStatic]
+  172800  [TAGPValueAndStatic valueWithValue:[TAGTypes objectToValue:[TAGValueEscapeUtil urlEncode:[[arg1 value] string]]] isStatic:[arg1 isStatic]]
+  17283c  return
+
+== +[TAGValueEscapeUtil isValidStringType:]   (address 0x100172890  size 148  kind objc)
+  1728b4  [arg1 hasType]
+  1728b8  if ([arg1 hasType] == 0) goto loc_100172908
+  1728cc  [arg1 type]
+  1728d4  if ([arg1 type] != 1) goto loc_100172908
+  1728e8  [arg1 hasString]
+  1728f0  goto loc_10017290c
+loc_100172908:
+loc_10017290c:
+  172920  return

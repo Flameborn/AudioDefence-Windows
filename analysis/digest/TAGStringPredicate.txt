@@ -1,0 +1,25 @@
+
+== -[TAGStringPredicate initWithFunctionId:]   (address 0x1001796f4  size 60  kind objc)
+  179720  [super initWithFunctionId:arg1]
+  17972c  return
+
+== -[TAGStringPredicate evaluateNoDefaultValues:arg1:parameters:]   (address 0x100179730  size 452  kind objc)
+  179794  [TAGTypes valueToString:arg1]
+  1797bc  [TAGTypes valueToString:arg2]
+  1797e0  [TAGTypes defaultString]
+  1797f4  if ([TAGTypes valueToString:arg1] == [TAGTypes defaultString]) goto loc_100179850
+  179800  [TAGTypes defaultString]
+  179814  if ([TAGTypes valueToString:arg2] == [TAGTypes defaultString]) goto loc_100179858
+  179834  [self evaluateWithArg0:[TAGTypes valueToString:arg1] arg1:[TAGTypes valueToString:arg2] parameters:arg3]
+  17983c  goto loc_10017985c
+  17984c  goto loc_1001798c4
+loc_100179850:
+  179854  goto loc_100179864
+loc_100179858:
+loc_10017985c:
+loc_100179864:
+  1798a4  return
+
+== -[TAGStringPredicate evaluateWithArg0:arg1:parameters:]   (address 0x1001798f4  size 44  kind objc)
+  179910  [self doesNotRecognizeSelector:_cmd]
+  17991c  return

@@ -1,0 +1,132 @@
+
+== +[GAICompressionUtil gai_dataByCompressingBytes:length:compressionLevel:mode:]   (address 0x10012b460  size 488  kind objc)
+  12b49c  if (arg2 == 0) goto loc_10012b614
+  12b4a0  if (arg1 == 0) goto loc_10012b614
+  12b4a8  if ((arg2 >>> 32) != 0) goto loc_10012b614
+  12b4d8  bzero(&sp[0x18], 112, arg1, arg2)
+  12b518  deflateInit2_(&sp[0x18], (arg3 == -1 ? 0xffffffff : (arg3 < 1 ? 1 : (arg3 > 9 ? 9 : arg3))), 8, (arg4 == 2 ? 0xfffffff1 : (arg4 != 1 ? 15 : 31)))
+  12b51c  if (deflateInit2_(&sp[0x18], (arg3 == -1 ? 0xffffffff : (arg3 < 1 ? 1 : (arg3 > 9 ? 9 : arg3))), 8, (arg4 == 2 ? 0xfffffff1 : (arg4 != 1 ? 15 : 31))) == 0) goto loc_10012b538
+  12b52c  NSLog(@"Failed to init for deflate w/ level %d, error %d", (arg3 == -1 ? 0xffffffff : (arg3 < 1 ? 1 : (arg3 > 9 ? 9 : arg3))), deflateInit2_(&sp[0x18], (arg3 == -1 ? 0xffffffff : (arg3 < 1 ? 1 : (arg3 > 9 ? …)
+  12b534  goto loc_10012b614
+loc_10012b538:
+  12b550  [NSMutableData dataWithCapacity:(arg2 >>> 2)]
+  12b564  &@selector(appendBytes:length:)
+loc_10012b578:
+  12b588  deflate(&sp[0x18], 4)
+  12b594  if (deflate(&sp[0x18], 4) >=u 2) goto loc_10012b5f8
+  12b5a0  if (1024 == 1024) goto loc_10012b5b8
+  12b5b4  [[NSMutableData dataWithCapacity:(arg2 >>> 2)] appendBytes:&sp[0x88] length:(1024 - 1024)]
+loc_10012b5b8:
+  12b5b8  if (deflate(&sp[0x18], 4) == 0) goto loc_10012b578
+  12b5c0  if (arg2 == 0) goto loc_10012b5d4
+  12b5d0  NSLog(@"finished deflate w/o using all input, %u bytes left", arg2)
+loc_10012b5d4:
+  12b5d8  if (deflate(&sp[0x18], 4) == 1) goto loc_10012b5ec
+  12b5e8  NSLog(@"finished deflate w/o getting a result of stream end, code %d", deflate(&sp[0x18], 4))
+loc_10012b5ec:
+  12b5f0  deflateEnd(&sp[0x18])
+  12b5f4  goto loc_10012b614
+loc_10012b5f8:
+  12b604  NSLog(@"Error trying to deflate some of the payload, error %d", deflate(&sp[0x18], 4))
+  12b60c  deflateEnd(&sp[0x18])
+loc_10012b614:
+  12b640  return
+
+== +[GAICompressionUtil gai_dataByInflatingBytes:length:isRawData:]   (address 0x10012b648  size 544  kind objc)
+  12b690  if (arg2 == 0) goto loc_10012b830
+  12b694  if (arg1 == 0) goto loc_10012b830
+  12b69c  if ((arg2 >>> 32) != 0) goto loc_10012b830
+  12b6ac  bzero(&sp[0x18], 112, arg1, arg2)
+  12b6d8  inflateInit2_(&sp[0x18], (arg3 != 0 ? 0xfffffff1 : 47), "1.2.5", 112)
+  12b6dc  if (inflateInit2_(&sp[0x18], (arg3 != 0 ? 0xfffffff1 : 47), "1.2.5", 112) == 0) goto loc_10012b6f8
+  12b6ec  NSLog(@"Failed to init for inflate, error %d", inflateInit2_(&sp[0x18], (arg3 != 0 ? 0xfffffff1 : 47), "1.2.5", 112))
+  12b6f4  goto loc_10012b830
+loc_10012b6f8:
+  12b710  [NSMutableData dataWithCapacity:(arg2 << 2)]
+  12b71c  &@selector(appendBytes:length:)
+loc_10012b730:
+  12b740  inflate(&sp[0x18], 0)
+  12b74c  if (inflate(&sp[0x18], 0) >=u 2) goto loc_10012b810
+  12b758  if (1024 == 1024) goto loc_10012b770
+  12b76c  [[NSMutableData dataWithCapacity:(arg2 << 2)] appendBytes:&sp[0x88] length:(1024 - 1024)]
+loc_10012b770:
+  12b770  if (inflate(&sp[0x18], 0) == 0) goto loc_10012b730
+  12b778  if (arg2 == 0) goto loc_10012b790
+  12b788  NSLog(@"tfinished inflate w/o using all input, %u bytes left", arg2)
+loc_10012b790:
+  12b794  if (inflate(&sp[0x18], 0) == 1) goto loc_10012b804
+  12b7ac  [NSAssertionHandler currentHandler]
+  12b7d0  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  12b800  [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:GAICompressionUtil file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:202 description:@"finished inflate w/o getting a result of stream end, code %d"]
+loc_10012b804:
+  12b808  inflateEnd(&sp[0x18])
+  12b80c  goto loc_10012b830
+loc_10012b810:
+  12b820  NSLog(@"Error trying to inflate some of the payload, error %d: %s", inflate(&sp[0x18], 0), sp[8])
+  12b828  inflateEnd(&sp[0x18])
+loc_10012b830:
+  12b860  return
+
+== +[GAICompressionUtil gai_dataByGzippingBytes:length:]   (address 0x10012b868  size 24  kind objc)
+  12b87c  tail [GAICompressionUtil gai_dataByCompressingBytes:arg1 length:arg2 compressionLevel:0xffffffff mode:1]
+
+== +[GAICompressionUtil gai_dataByGzippingData:]   (address 0x10012b880  size 116  kind objc)
+  12b8a8  [arg1 bytes]
+  12b8c0  [arg1 length]
+  12b8f0  tail [GAICompressionUtil gai_dataByCompressingBytes:[arg1 bytes] length:[arg1 length] compressionLevel:0xffffffff mode:1]
+
+== +[GAICompressionUtil gai_dataByGzippingBytes:length:compressionLevel:]   (address 0x10012b8f4  size 20  kind objc)
+  12b904  tail [GAICompressionUtil gai_dataByCompressingBytes:arg1 length:arg2 compressionLevel:arg3 mode:1]
+
+== +[GAICompressionUtil gai_dataByGzippingData:compressionLevel:]   (address 0x10012b908  size 120  kind objc)
+  12b934  [arg1 bytes]
+  12b94c  [arg1 length]
+  12b97c  tail [GAICompressionUtil gai_dataByCompressingBytes:[arg1 bytes] length:[arg1 length] compressionLevel:arg2 mode:1]
+
+== +[GAICompressionUtil gai_dataByDeflatingBytes:length:]   (address 0x10012b980  size 24  kind objc)
+  12b994  tail [GAICompressionUtil gai_dataByCompressingBytes:arg1 length:arg2 compressionLevel:0xffffffff mode:0]
+
+== +[GAICompressionUtil gai_dataByDeflatingData:]   (address 0x10012b998  size 116  kind objc)
+  12b9c0  [arg1 bytes]
+  12b9d8  [arg1 length]
+  12ba08  tail [GAICompressionUtil gai_dataByCompressingBytes:[arg1 bytes] length:[arg1 length] compressionLevel:0xffffffff mode:0]
+
+== +[GAICompressionUtil gai_dataByDeflatingBytes:length:compressionLevel:]   (address 0x10012ba0c  size 20  kind objc)
+  12ba1c  tail [GAICompressionUtil gai_dataByCompressingBytes:arg1 length:arg2 compressionLevel:arg3 mode:0]
+
+== +[GAICompressionUtil gai_dataByDeflatingData:compressionLevel:]   (address 0x10012ba20  size 120  kind objc)
+  12ba4c  [arg1 bytes]
+  12ba64  [arg1 length]
+  12ba94  tail [GAICompressionUtil gai_dataByCompressingBytes:[arg1 bytes] length:[arg1 length] compressionLevel:arg2 mode:0]
+
+== +[GAICompressionUtil gai_dataByInflatingBytes:length:]   (address 0x10012ba98  size 20  kind objc)
+  12baa8  tail [GAICompressionUtil gai_dataByInflatingBytes:arg1 length:arg2 isRawData:0]
+
+== +[GAICompressionUtil gai_dataByInflatingData:]   (address 0x10012baac  size 112  kind objc)
+  12bad4  [arg1 bytes]
+  12baec  [arg1 length]
+  12bb18  tail [GAICompressionUtil gai_dataByInflatingBytes:[arg1 bytes] length:[arg1 length] isRawData:0]
+
+== +[GAICompressionUtil gai_dataByRawDeflatingBytes:length:]   (address 0x10012bb1c  size 24  kind objc)
+  12bb30  tail [GAICompressionUtil gai_dataByCompressingBytes:arg1 length:arg2 compressionLevel:0xffffffff mode:2]
+
+== +[GAICompressionUtil gai_dataByRawDeflatingData:]   (address 0x10012bb34  size 116  kind objc)
+  12bb5c  [arg1 bytes]
+  12bb74  [arg1 length]
+  12bba4  tail [GAICompressionUtil gai_dataByCompressingBytes:[arg1 bytes] length:[arg1 length] compressionLevel:0xffffffff mode:2]
+
+== +[GAICompressionUtil gai_dataByRawDeflatingBytes:length:compressionLevel:]   (address 0x10012bba8  size 20  kind objc)
+  12bbb8  tail [GAICompressionUtil gai_dataByCompressingBytes:arg1 length:arg2 compressionLevel:arg3 mode:2]
+
+== +[GAICompressionUtil gai_dataByRawDeflatingData:compressionLevel:]   (address 0x10012bbbc  size 120  kind objc)
+  12bbe8  [arg1 bytes]
+  12bc00  [arg1 length]
+  12bc30  tail [GAICompressionUtil gai_dataByCompressingBytes:[arg1 bytes] length:[arg1 length] compressionLevel:arg2 mode:2]
+
+== +[GAICompressionUtil gai_dataByRawInflatingBytes:length:]   (address 0x10012bc34  size 20  kind objc)
+  12bc44  tail [GAICompressionUtil gai_dataByInflatingBytes:arg1 length:arg2 isRawData:1]
+
+== +[GAICompressionUtil gai_dataByRawInflatingData:]   (address 0x10012bc48  size 112  kind objc)
+  12bc70  [arg1 bytes]
+  12bc88  [arg1 length]
+  12bcb4  tail [GAICompressionUtil gai_dataByInflatingBytes:[arg1 bytes] length:[arg1 length] isRawData:1]

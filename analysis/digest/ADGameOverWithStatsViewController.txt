@@ -1,0 +1,445 @@
+
+== -[ADGameOverWithStatsViewController viewDidLoad]   (address 0x100041958  size 2552  kind objc)
+  04199c  [super viewDidLoad]
+  0419b0  [self initScrollView]
+  0419c8  [self accuracyLabel]
+  0419f8  [ADInGameStats singleton]
+  041a14  [[ADInGameStats singleton] currentAccuracy]
+  041a48  [NSString stringWithFormat:@"%i %%", (int)([[ADInGameStats singleton] currentAccuracy] * 100)]
+  041a70  [[self accuracyLabel] setText:[NSString stringWithFormat:@"%i %%", (int)([[ADInGameStats singleton] currentAccuracy] * 100)]]
+  041aa4  [self killsLabel]
+  041ac0  [ADInGameStats singleton]
+  041adc  [[ADInGameStats singleton] computeCurrentEnemyKillCount]
+  041af4  [NSString stringWithFormat:@"%i", [[ADInGameStats singleton] computeCurrentEnemyKillCount]]
+  041b10  [[self killsLabel] setText:[NSString stringWithFormat:@"%i", [[ADInGameStats singleton] computeCurrentEnemyKillCount]]]
+  041b3c  [self comboLabel]
+  041b58  [ADInGameStats singleton]
+  041b74  [[ADInGameStats singleton] highestCombo]
+  041b8c  [NSString stringWithFormat:@"%i", [[ADInGameStats singleton] highestCombo]]
+  041ba8  [[self comboLabel] setText:[NSString stringWithFormat:@"%i", [[ADInGameStats singleton] highestCombo]]]
+  041bdc  [self timeLabel]
+  041bf4  [ADInGameStats singleton]
+  041c14  [[ADInGameStats singleton] timeElapsed]
+  041c2c  [self timeStringFromSeconds:(int)[[ADInGameStats singleton] timeElapsed]]
+  041c48  [[self timeLabel] setText:[self timeStringFromSeconds:(int)[[ADInGameStats singleton] timeElapsed]]]
+  041c78  [self scoreLabel]
+  041c9c  [ADInGameStats singleton]
+  041cbc  [[ADInGameStats singleton] gameScore]
+  041cd4  [self formattedScoreFromInt:[[ADInGameStats singleton] gameScore]]
+  041cf8  [NSString stringWithFormat:@"%@", [self formattedScoreFromInt:[[ADInGameStats singleton] gameScore]]]
+  041d14  [[self scoreLabel] setText:[NSString stringWithFormat:@"%@", [self formattedScoreFromInt:[[ADInGameStats singleton] gameScore]]]]
+  041d40  [self killsLabel]
+  041d60  [[self killsLabel] setupAsInfo]
+  041d74  [self accuracyLabel]
+  041d88  [[self accuracyLabel] setupAsInfo]
+  041da0  [self timeLabel]
+  041db4  [[self timeLabel] setupAsInfo]
+  041dd4  [self killsTitleLabel]
+  041de8  [[self killsTitleLabel] setupAsInfo]
+  041e08  [self accuracyTitleLabel]
+  041e1c  [[self accuracyTitleLabel] setupAsInfo]
+  041e38  [self timeTitleLabel]
+  041e4c  [[self timeTitleLabel] setupAsInfo]
+  041e60  [self scoreLabel]
+  041e74  [[self scoreLabel] setupAsInfo]
+  041e94  [self diamondsLoot]
+  041ea8  [[self diamondsLoot] setupAsInfo]
+  041ebc  [self diamondsLoot]
+  041ed8  [ADInGameStats singleton]
+  041ef8  [[ADInGameStats singleton] diamondLoot]
+  041f10  [NSString stringWithFormat:@"%i", [[ADInGameStats singleton] diamondLoot]]
+  041f2c  [[self diamondsLoot] setText:[NSString stringWithFormat:@"%i", [[ADInGameStats singleton] diamondLoot]]]
+  041f58  [self coinsTotal]
+  041f74  [ADInGameStats singleton]
+  041f94  [[ADInGameStats singleton] totalCoins]
+  041fac  [NSString stringWithFormat:@"%i", [[ADInGameStats singleton] totalCoins]]
+  041fc8  [[self coinsTotal] setText:[NSString stringWithFormat:@"%i", [[ADInGameStats singleton] totalCoins]]]
+  041ff8  [ADGameModifiers sharedModifiers]
+  042014  [[ADGameModifiers sharedModifiers] resetModifiers]
+  042030  [self ignoreRewards]
+  042048  [self statusBarViewController]
+  042068  [[self statusBarViewController] setDelegate:self]
+  04207c  [self statusBarViewController]
+  04209c  [[self statusBarViewController] setArmoryLoadoutEnabled:1]
+  0420c0  [ADInventory sharedInventory]
+  0420d8  [ADInGameStats singleton]
+  0420ec  [[ADInGameStats singleton] totalCoins]
+  042104  [[ADInventory sharedInventory] coins]
+  04211c  [[ADInventory sharedInventory] setCoins:([[ADInventory sharedInventory] coins] + [[ADInGameStats singleton] totalCoins])]
+  042138  [ADInventory sharedInventory]
+  042150  [ADInGameStats singleton]
+  042164  [[ADInGameStats singleton] diamondLoot]
+  04217c  [[ADInventory sharedInventory] diamonds]
+  042194  [[ADInventory sharedInventory] setDiamonds:([[ADInventory sharedInventory] diamonds] + [[ADInGameStats singleton] diamondLoot])]
+  0421c4  return
+
+== -[ADGameOverWithStatsViewController awakeFromNib]   (address 0x100042350  size 92  kind objc)
+  042368  [self view]
+  042384  [[self view] layoutIfNeeded]
+  042394  return
+
+== -[ADGameOverWithStatsViewController animateCoinsAndDiamonds]   (address 0x1000423ac  size 452  kind objc)
+  0423e0  [ADInGameStats singleton]
+  042400  [self starCoins]
+  04241c  [[ADInGameStats singleton] totalCoins]
+  042434  [[ADInGameStats singleton] setTotalCoins:([[ADInGameStats singleton] totalCoins] + [self starCoins])]
+  042454  [self statusBarViewController]
+  04246c  [ADInGameStats singleton]
+  042480  [[ADInGameStats singleton] totalCoins]
+  042498  [[self statusBarViewController] animateCoins:[[ADInGameStats singleton] totalCoins]]
+  0424b4  [self statusBarViewController]
+  0424cc  [ADInGameStats singleton]
+  0424e8  [[ADInGameStats singleton] diamondLoot]
+  042500  [[self statusBarViewController] animateDiamonds:[[ADInGameStats singleton] diamondLoot]]
+  042524  return
+
+== -[ADGameOverWithStatsViewController viewDidLayoutSubviews]   (address 0x100042570  size 60  kind objc)
+  04259c  [super viewDidLayoutSubviews]
+  0425a8  return
+
+== -[ADGameOverWithStatsViewController checkAllAnimationsAreComplete]   (address 0x1000425ac  size 200  kind objc)
+  0425d0  [self coinsTotal]
+  0425ec  [[self coinsTotal] value]
+  0425f4  if ([[self coinsTotal] value] < 1) goto loc_100042630
+  042600  [self coinsTotal]
+  04261c  [[self coinsTotal] didAnimate]
+  04262c  goto loc_100042634
+loc_100042630:
+loc_100042634:
+  04264c  return
+
+== -[ADGameOverWithStatsViewController formattedScoreFromInt:]   (address 0x100042674  size 232  kind objc)
+  04269c  [NSNumberFormatter alloc]
+  0426ac  [[NSNumberFormatter alloc] init]
+  0426c4  [[[NSNumberFormatter alloc] init] setNumberStyle:1]
+  0426e0  [NSNumber numberWithInt:arg1]
+  042704  [[[NSNumberFormatter alloc] init] stringFromNumber:[NSNumber numberWithInt:arg1]]
+  042734  return
+
+== -[ADGameOverWithStatsViewController checkUnlocksAndPopups]   (address 0x10004275c  size 4  kind objc)
+  04275c  return
+
+== -[ADGameOverWithStatsViewController viewDidAppear:]   (address 0x100042760  size 92  kind objc)
+  042794  [super viewDidAppear:arg1]
+  0427a8  [self checkUnlocksAndPopups]
+  0427b8  return
+
+== -[ADGameOverWithStatsViewController initScrollView]   (address 0x1000427bc  size 900  kind objc)
+  0427f8  [UISwipeGestureRecognizer alloc]
+  04281c  [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)]
+  042838  [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)] setDirection:2]
+  042850  [self view]
+  042874  [[self view] addGestureRecognizer:[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft)]]
+  042888  [UISwipeGestureRecognizer alloc]
+  0428a0  [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight)]
+  0428b4  [[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight)] setDirection:1]
+  0428c0  [self view]
+  0428d8  [[self view] addGestureRecognizer:[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight)]]
+  0428f8  [self contentScrollView]
+  042918  [self contentView]
+  04293c  [[self contentScrollView] addSubview:[self contentView]]
+  042958  [self contentScrollView]
+  042970  [self contentScrollView]
+  04298c  [[self contentScrollView] frame]
+  0429ac  [[self contentScrollView] setContentOffset:{[[self contentScrollView] frame].2, 0} animated:0]
+  042a08  dispatch_async(__dispatch_main_q, ^{-[ADGameOverWithStatsViewController initScrollView]_block_invoke captures +0x20=self})
+  042a1c  [self missionsTitle]
+  042a3c  [[self missionsTitle] setupAsTitle]
+  042a58  [self challengeTitle]
+  042a6c  [[self challengeTitle] setupAsTitle]
+  042aac  return
+
+== -[ADGameOverWithStatsViewController initScrollView]_block_invoke   (address 0x100042b40  size 192  kind block)
+  042b68  [self contentScrollView]
+  042b80  [self contentScrollView]
+  042b9c  [[self contentScrollView] frame]
+  042bbc  [[self contentScrollView] setContentOffset:{[[self contentScrollView] frame].2, 0} animated:0]
+  042bd8  return
+
+== sub_100042c00   (address 0x100042c00  size 8  kind sub)
+
+== sub_100042c08   (address 0x100042c08  size 8  kind sub)
+  042c0c  return
+
+== -[ADGameOverWithStatsViewController loadMissions]   (address 0x100042c10  size 1740  kind objc)
+  042c44  [self missionView]
+  042c58  if ([self missionView] == 0) goto loc_10004318c
+  042c74  [NSMutableArray alloc]
+  042c84  [[NSMutableArray alloc] init]
+  042c94  self->missionsViewControllerArray = [[NSMutableArray alloc] init]
+  042cb4  [ADMissionManager sharedMissionManager]
+  042cd0  [[ADMissionManager sharedMissionManager] activeMissions]
+  042cfc  [[[ADMissionManager sharedMissionManager] activeMissions] count]
+  042d04  if ([[[ADMissionManager sharedMissionManager] activeMissions] count] <u 4) goto loc_100042d2c
+  042d28  [NSException raise:@"There should never be more than 3 missions active at any one time!!" format:0]
+loc_100042d2c:
+  042d38  [ADMissionForTopbarViewController alloc]
+  042d58  [[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:0]
+  042d84  [[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:0] skippable:1]
+  042dac  [self->missionsViewControllerArray addObject:[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:0] skippable:1]]
+  042db8  [self missionView]
+  042ddc  [[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:0] skippable:1] view]
+  042e04  [[self missionView] addSubview:[[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:0] skippable:1] view]]
+  042e20  [[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:0] skippable:1] view]
+  042e48  [self missionPlaceholder1]
+  042e6c  [[self missionPlaceholder1] frame]
+  042e84  [[[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:0] skippable:1] view] setFrame:{[[self missionPlaceholder1] frame].0, [[self missionPlaceholder1] frame].1, [[self missionPlaceholder1] frame].2, [[self missionPlaceholder1] frame].3}]
+  042ea8  [ADMissionForTopbarViewController alloc]
+  042ebc  [[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:1]
+  042edc  [[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:1] skippable:1]
+  042efc  [self->missionsViewControllerArray addObject:[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:1] skippable:1]]
+  042f08  [self missionView]
+  042f24  [[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:1] skippable:1] view]
+  042f40  [[self missionView] addSubview:[[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:1] skippable:1] view]]
+  042f5c  [[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:1] skippable:1] view]
+  042f80  [self missionPlaceholder2]
+  042f94  [[self missionPlaceholder2] frame]
+  042fa0  [[[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:1] skippable:1] view] setFrame:{[[self missionPlaceholder2] frame].0, [[self missionPlaceholder2] frame].1, [[self missionPlaceholder2] frame].2, [[self missionPlaceholder2] frame].3}]
+  042fc0  [ADMissionForTopbarViewController alloc]
+  042fd4  [[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:2]
+  042ff4  [[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:2] skippable:1]
+  043010  [self->missionsViewControllerArray addObject:[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:2] skippable:1]]
+  04301c  [self missionView]
+  043034  [[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:2] skippable:1] view]
+  043050  [[self missionView] addSubview:[[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:2] skippable:1] view]]
+  04306c  [[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:2] skippable:1] view]
+  043090  [self missionPlaceholder3]
+  0430a4  [[self missionPlaceholder3] frame]
+  0430b0  [[[[ADMissionForTopbarViewController alloc] initWithMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:2] skippable:1] view] setFrame:{[[self missionPlaceholder3] frame].0, [[self missionPlaceholder3] frame].1, [[self missionPlaceholder3] frame].2, [[self missionPlaceholder3] frame].3}]
+  0430cc  [self missionPlaceholder1]
+  0430ec  [[self missionPlaceholder1] removeFromSuperview]
+  043100  [self missionPlaceholder2]
+  043114  [[self missionPlaceholder2] removeFromSuperview]
+  043128  [self missionPlaceholder3]
+  043144  [[self missionPlaceholder3] removeFromSuperview]
+  043188  return
+loc_10004318c:
+  0431a8  return
+
+== -[ADGameOverWithStatsViewController timeStringFromSeconds:]   (address 0x1000432dc  size 224  kind objc)
+  04330c  t1 = (((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >> 5) + ((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >>> 31))
+  043354  [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 - t1 * 60)]
+  043378  [NSString stringWithFormat:@"%i:%@", t1, [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 …]
+  0433a4  return
+
+== -[ADGameOverWithStatsViewController animateButtonsInAndrestoreControl]   (address 0x1000433bc  size 4  kind objc)
+  0433bc  return
+
+== -[ADGameOverWithStatsViewController swipeLeft]   (address 0x1000433c0  size 80  kind objc)
+  0433dc  [self checkAllAnimationsAreComplete]
+  0433e0  if ([self checkAllAnimationsAreComplete] == 0) goto loc_100043404
+  043400  tail [self goToScoreButtonPressed:0]
+loc_100043404:
+  04340c  return
+
+== -[ADGameOverWithStatsViewController swipeRight]   (address 0x100043410  size 20  kind objc)
+  043420  tail [self goToMissionsButtonPressed:0]
+
+== -[ADGameOverWithStatsViewController goToMissionsButtonPressed:]   (address 0x100043424  size 4  kind objc)
+  043424  return
+
+== -[ADGameOverWithStatsViewController goToScoreButtonPressed:]   (address 0x100043428  size 196  kind objc)
+  04344c  [self contentScrollView]
+  043464  [self contentScrollView]
+  043480  [[self contentScrollView] frame]
+  0434a0  [[self contentScrollView] setContentOffset:{[[self contentScrollView] frame].2, 0} animated:1]
+  0434bc  return
+
+== -[ADGameOverWithStatsViewController dealloc]   (address 0x1000434ec  size 164  kind objc)
+  043518  [self->missionsViewControllerArray removeAllObjects]
+  043520  self->missionsViewControllerArray = 0
+  043548  [super dealloc]
+  043558  return
+  043580  [super dealloc]
+  04358c  call sub_10000b760
+
+== -[ADGameOverWithStatsViewController challengeTitle]   (address 0x100043590  size 16  kind objc)
+  04359c  return
+
+== -[ADGameOverWithStatsViewController setChallengeTitle:]   (address 0x1000435a0  size 56  kind objc)
+  0435c4  self->_challengeTitle = arg1
+  0435d4  return
+
+== -[ADGameOverWithStatsViewController missionsTitle]   (address 0x1000435d8  size 16  kind objc)
+  0435e4  return
+
+== -[ADGameOverWithStatsViewController setMissionsTitle:]   (address 0x1000435e8  size 56  kind objc)
+  04360c  self->_missionsTitle = arg1
+  04361c  return
+
+== -[ADGameOverWithStatsViewController missionsButton]   (address 0x100043620  size 16  kind objc)
+  04362c  return
+
+== -[ADGameOverWithStatsViewController setMissionsButton:]   (address 0x100043630  size 56  kind objc)
+  043654  self->_missionsButton = arg1
+  043664  return
+
+== -[ADGameOverWithStatsViewController scoreLabel]   (address 0x100043668  size 16  kind objc)
+  043674  return
+
+== -[ADGameOverWithStatsViewController setScoreLabel:]   (address 0x100043678  size 56  kind objc)
+  04369c  self->_scoreLabel = arg1
+  0436ac  return
+
+== -[ADGameOverWithStatsViewController comboLabel]   (address 0x1000436b0  size 16  kind objc)
+  0436bc  return
+
+== -[ADGameOverWithStatsViewController setComboLabel:]   (address 0x1000436c0  size 56  kind objc)
+  0436e4  self->_comboLabel = arg1
+  0436f4  return
+
+== -[ADGameOverWithStatsViewController killsLabel]   (address 0x1000436f8  size 16  kind objc)
+  043704  return
+
+== -[ADGameOverWithStatsViewController setKillsLabel:]   (address 0x100043708  size 56  kind objc)
+  04372c  self->_killsLabel = arg1
+  04373c  return
+
+== -[ADGameOverWithStatsViewController accuracyLabel]   (address 0x100043740  size 16  kind objc)
+  04374c  return
+
+== -[ADGameOverWithStatsViewController setAccuracyLabel:]   (address 0x100043750  size 56  kind objc)
+  043774  self->_accuracyLabel = arg1
+  043784  return
+
+== -[ADGameOverWithStatsViewController timeLabel]   (address 0x100043788  size 16  kind objc)
+  043794  return
+
+== -[ADGameOverWithStatsViewController setTimeLabel:]   (address 0x100043798  size 56  kind objc)
+  0437bc  self->_timeLabel = arg1
+  0437cc  return
+
+== -[ADGameOverWithStatsViewController coinsTotal]   (address 0x1000437d0  size 16  kind objc)
+  0437dc  return
+
+== -[ADGameOverWithStatsViewController setCoinsTotal:]   (address 0x1000437e0  size 56  kind objc)
+  043804  self->_coinsTotal = arg1
+  043814  return
+
+== -[ADGameOverWithStatsViewController diamondsTotal]   (address 0x100043818  size 16  kind objc)
+  043824  return
+
+== -[ADGameOverWithStatsViewController setDiamondsTotal:]   (address 0x100043828  size 56  kind objc)
+  04384c  self->_diamondsTotal = arg1
+  04385c  return
+
+== -[ADGameOverWithStatsViewController diamondsLoot]   (address 0x100043860  size 16  kind objc)
+  04386c  return
+
+== -[ADGameOverWithStatsViewController setDiamondsLoot:]   (address 0x100043870  size 56  kind objc)
+  043894  self->_diamondsLoot = arg1
+  0438a4  return
+
+== -[ADGameOverWithStatsViewController missionView]   (address 0x1000438a8  size 16  kind objc)
+  0438b4  return
+
+== -[ADGameOverWithStatsViewController setMissionView:]   (address 0x1000438b8  size 56  kind objc)
+  0438dc  self->_missionView = arg1
+  0438ec  return
+
+== -[ADGameOverWithStatsViewController contentView]   (address 0x1000438f0  size 16  kind objc)
+  0438fc  return
+
+== -[ADGameOverWithStatsViewController setContentView:]   (address 0x100043900  size 56  kind objc)
+  043924  self->_contentView = arg1
+  043934  return
+
+== -[ADGameOverWithStatsViewController buttonsView]   (address 0x100043938  size 16  kind objc)
+  043944  return
+
+== -[ADGameOverWithStatsViewController setButtonsView:]   (address 0x100043948  size 56  kind objc)
+  04396c  self->_buttonsView = arg1
+  04397c  return
+
+== -[ADGameOverWithStatsViewController contentScrollView]   (address 0x100043980  size 16  kind objc)
+  04398c  return
+
+== -[ADGameOverWithStatsViewController setContentScrollView:]   (address 0x100043990  size 56  kind objc)
+  0439b4  self->_contentScrollView = arg1
+  0439c4  return
+
+== -[ADGameOverWithStatsViewController ignoreRewards]   (address 0x1000439c8  size 20  kind objc)
+  0439d8  return
+
+== -[ADGameOverWithStatsViewController setIgnoreRewards:]   (address 0x1000439dc  size 16  kind objc)
+  0439e4  self->_ignoreRewards = arg1
+  0439e8  return
+
+== -[ADGameOverWithStatsViewController delayForDisplayingScore]   (address 0x1000439ec  size 20  kind objc)
+  0439fc  return
+
+== -[ADGameOverWithStatsViewController setDelayForDisplayingScore:]   (address 0x100043a00  size 20  kind objc)
+  043a0c  self->_delayForDisplayingScore = arg1
+  043a10  return
+
+== -[ADGameOverWithStatsViewController killsTitleLabel]   (address 0x100043a14  size 16  kind objc)
+  043a20  return
+
+== -[ADGameOverWithStatsViewController setKillsTitleLabel:]   (address 0x100043a24  size 56  kind objc)
+  043a48  self->_killsTitleLabel = arg1
+  043a58  return
+
+== -[ADGameOverWithStatsViewController accuracyTitleLabel]   (address 0x100043a5c  size 16  kind objc)
+  043a68  return
+
+== -[ADGameOverWithStatsViewController setAccuracyTitleLabel:]   (address 0x100043a6c  size 56  kind objc)
+  043a90  self->_accuracyTitleLabel = arg1
+  043aa0  return
+
+== -[ADGameOverWithStatsViewController timeTitleLabel]   (address 0x100043aa4  size 16  kind objc)
+  043ab0  return
+
+== -[ADGameOverWithStatsViewController setTimeTitleLabel:]   (address 0x100043ab4  size 56  kind objc)
+  043ad8  self->_timeTitleLabel = arg1
+  043ae8  return
+
+== -[ADGameOverWithStatsViewController missionPlaceholder1]   (address 0x100043aec  size 16  kind objc)
+  043af8  return
+
+== -[ADGameOverWithStatsViewController setMissionPlaceholder1:]   (address 0x100043afc  size 56  kind objc)
+  043b20  self->_missionPlaceholder1 = arg1
+  043b30  return
+
+== -[ADGameOverWithStatsViewController missionPlaceholder2]   (address 0x100043b34  size 16  kind objc)
+  043b40  return
+
+== -[ADGameOverWithStatsViewController setMissionPlaceholder2:]   (address 0x100043b44  size 56  kind objc)
+  043b68  self->_missionPlaceholder2 = arg1
+  043b78  return
+
+== -[ADGameOverWithStatsViewController missionPlaceholder3]   (address 0x100043b7c  size 16  kind objc)
+  043b88  return
+
+== -[ADGameOverWithStatsViewController setMissionPlaceholder3:]   (address 0x100043b8c  size 56  kind objc)
+  043bb0  self->_missionPlaceholder3 = arg1
+  043bc0  return
+
+== -[ADGameOverWithStatsViewController starPlaceholder1]   (address 0x100043bc4  size 16  kind objc)
+  043bd0  return
+
+== -[ADGameOverWithStatsViewController setStarPlaceholder1:]   (address 0x100043bd4  size 56  kind objc)
+  043bf8  self->_starPlaceholder1 = arg1
+  043c08  return
+
+== -[ADGameOverWithStatsViewController starPlaceholder2]   (address 0x100043c0c  size 16  kind objc)
+  043c18  return
+
+== -[ADGameOverWithStatsViewController setStarPlaceholder2:]   (address 0x100043c1c  size 56  kind objc)
+  043c40  self->_starPlaceholder2 = arg1
+  043c50  return
+
+== -[ADGameOverWithStatsViewController starPlaceholder3]   (address 0x100043c54  size 16  kind objc)
+  043c60  return
+
+== -[ADGameOverWithStatsViewController setStarPlaceholder3:]   (address 0x100043c64  size 56  kind objc)
+  043c88  self->_starPlaceholder3 = arg1
+  043c98  return
+
+== -[ADGameOverWithStatsViewController starCoins]   (address 0x100043c9c  size 16  kind objc)
+  043ca8  return
+
+== -[ADGameOverWithStatsViewController setStarCoins:]   (address 0x100043cac  size 16  kind objc)
+  043cb4  self->_starCoins = arg1
+  043cb8  return
+
+== -[ADGameOverWithStatsViewController .cxx_destruct]   (address 0x100043cbc  size 524  kind objc)

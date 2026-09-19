@@ -1,0 +1,78 @@
+{
+ "Sounds": [
+  {
+   "spawn_angle": 15,
+   "gain": "4",
+   "spawn_distance": 2.5,
+   "spawn_time": 0.1,
+   "name": "tutorial_1_dog_SPA"
+  },
+  {
+   "spawn_angle": 145,
+   "gain": "4",
+   "spawn_distance": 2,
+   "spawn_time": 7,
+   "name": "tutorial_1_bird_2_SPA"
+  },
+  {
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 10,
+   "name": "bastard_tutorial_1_1"
+  },
+  {
+   "position": "{4,0}",
+   "gain": "1",
+   "skippable": false,
+   "spawn_time": 50,
+   "name": "tutorial_fireball"
+  },
+  {
+   "spawn_after": {
+    "time": 0.1,
+    "enemy": "bastard_tutorial_1_1"
+   },
+   "gain": "0.5",
+   "skippable": true,
+   "name": "announcer_tutorial_aim_CONTROLMODE"
+  },
+  {
+   "spawn_after": {
+    "time": 4,
+    "enemy": "announcer_tutorial_aim_CONTROLMODE"
+   },
+   "gain": "1",
+   "skippable": true,
+   "name": "bastard_tutorial_1_2"
+  },
+  {
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "bastard_tutorial_1_2"
+   },
+   "gain": "0.5",
+   "skippable": true,
+   "name": "announcer_tutorial_shoot_BUTTONMODE"
+  },
+  {
+   "spawn_after": {
+    "time": 20,
+    "enemy": "announcer_tutorial_shoot_BUTTONMODE"
+   },
+   "gain": "0.5",
+   "skippable": true,
+   "name": "announcer_tutorial_aimhelp"
+  }
+ ],
+ "Enemies": {
+  "Bob": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "announcer_tutorial_shoot_BUTTONMODE"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 5
+  }
+ }
+}

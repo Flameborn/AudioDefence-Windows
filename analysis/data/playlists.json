@@ -1,0 +1,7547 @@
+{
+ "BerserkClown": {
+  "name": "BerserkClown",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_aggressive_SPA.m4a",
+    "name": "BerserkClown_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_approach_a_SPA.m4a",
+    "name": "BerserkClown_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_approach_b_SPA.m4a",
+    "name": "BerserkClown_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_approach_c_SPA.m4a",
+    "name": "BerserkClown_approach_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_approach_d_SPA.m4a",
+    "name": "BerserkClown_approach_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_attack_SPA.m4a",
+    "name": "BerserkClown_attack_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_berserk_a_SPA.m4a",
+    "name": "BerserkClown_berserk_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_berserk_b_SPA.m4a",
+    "name": "BerserkClown_berserk_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_berserk_c_SPA.m4a",
+    "name": "BerserkClown_berserk_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_berserk_d_SPA.m4a",
+    "name": "BerserkClown_berserk_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_hit_a_SPA.wav",
+    "name": "BerserkClown_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_hit_b_SPA.wav",
+    "name": "BerserkClown_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_hit_c_SPA.wav",
+    "name": "BerserkClown_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_hit_d_SPA.wav",
+    "name": "BerserkClown_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/BerserkClown/BerserkClown_spawn_SPA.m4a",
+    "name": "BerserkClown_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "BersekClown.S3DPlayListModel#0.sexp"
+ },
+ "Berserk": {
+  "name": "Berserk",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_aggressive_a_SPA.m4a",
+    "name": "Berserk_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_aggressive_b_SPA.m4a",
+    "name": "Berserk_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_approach_a_SPA.m4a",
+    "name": "Berserk_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_approach_b_SPA.m4a",
+    "name": "Berserk_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_approach_c_SPA.m4a",
+    "name": "Berserk_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Berserk/Berserk_attack.m4a",
+    "name": "Berserk_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_death_a_SPA.m4a",
+    "name": "Berserk_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_death_b_SPA.m4a",
+    "name": "Berserk_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_death_crit_SPA.m4a",
+    "name": "Berserk_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_hit_a_SPA.m4a",
+    "name": "Berserk_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_hit_b_SPA.m4a",
+    "name": "Berserk_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_hit_c_SPA.m4a",
+    "name": "Berserk_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_hit_d_SPA.m4a",
+    "name": "Berserk_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_hit_e_SPA.m4a",
+    "name": "Berserk_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_spawn_SPA.m4a",
+    "name": "Berserk_spawn_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Berserk/Berserk_transition_SPA.m4a",
+    "name": "Berserk_transition_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Berserk.S3DPlayListModel#0.sexp"
+ },
+ "Bob": {
+  "name": "Bob",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_aggressive_a_SPA.m4a",
+    "name": "Bob_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_aggressive_b_SPA.m4a",
+    "name": "Bob_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_approach_a_SPA.m4a",
+    "name": "Bob_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_approach_b_SPA.m4a",
+    "name": "Bob_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_approach_c_SPA.m4a",
+    "name": "Bob_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Bob/Bob_attack.m4a",
+    "name": "Bob_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_death_a_SPA.m4a",
+    "name": "Bob_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_death_b_SPA.m4a",
+    "name": "Bob_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_death_crit_SPA.m4a",
+    "name": "Bob_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_hit_a_SPA.m4a",
+    "name": "Bob_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_hit_b_SPA.m4a",
+    "name": "Bob_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_hit_c_SPA.m4a",
+    "name": "Bob_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_hit_d_SPA.m4a",
+    "name": "Bob_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_hit_e_SPA.m4a",
+    "name": "Bob_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_hit_f_SPA.m4a",
+    "name": "Bob_hit_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_spawn_a_SPA.m4a",
+    "name": "Bob_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Bob/Bob_spawn_b_SPA.m4a",
+    "name": "Bob_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Bob.S3DPlayListModel#0.sexp"
+ },
+ "Car": {
+  "name": "Car",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car/Car_alarm_1_SPA.m4a",
+    "name": "Car_alarm_1_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car/Car_death_SPA.m4a",
+    "name": "Car_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car/Car_impact_a_SPA.m4a",
+    "name": "Car_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car/Car_spawn_SPA.m4a",
+    "name": "Car_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Car.S3DPlayListModel#0.sexp"
+ },
+ "Car2": {
+  "name": "Car2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car2/Car2_alarm_2_SPA.m4a",
+    "name": "Car2_alarm_2_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car2/Car2_death_SPA.m4a",
+    "name": "Car2_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car2/Car2_impact_a_SPA.m4a",
+    "name": "Car2_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car2/Car2_spawn_SPA.m4a",
+    "name": "Car2_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Car2.S3DPlayListModel#0.sexp"
+ },
+ "Car3": {
+  "name": "Car3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car3/Car3_alarm_3_SPA.m4a",
+    "name": "Car3_alarm_3_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car3/Car3_death_SPA.m4a",
+    "name": "Car3_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car3/Car3_impact_a_SPA.m4a",
+    "name": "Car3_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Car3/Car3_spawn_SPA.m4a",
+    "name": "Car3_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Car3.S3DPlayListModel#0.sexp"
+ },
+ "Chainsaw": {
+  "name": "Chainsaw",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_aggressive_a_SPA.m4a",
+    "name": "Chainsaw_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_aggressive_b_SPA.m4a",
+    "name": "Chainsaw_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_approach_a_SPA.m4a",
+    "name": "Chainsaw_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_approach_b_SPA.m4a",
+    "name": "Chainsaw_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_approach_c_SPA.m4a",
+    "name": "Chainsaw_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Chainsaw/Chainsaw_attack.m4a",
+    "name": "Chainsaw_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_death_a_SPA.m4a",
+    "name": "Chainsaw_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_death_b_SPA.m4a",
+    "name": "Chainsaw_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_death_crit_SPA.m4a",
+    "name": "Chainsaw_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_die_a_SPA.m4a",
+    "name": "Chainsaw_die_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_die_b_SPA.m4a",
+    "name": "Chainsaw_die_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_diecrit_SPA.m4a",
+    "name": "Chainsaw_diecrit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_hit_a_SPA.m4a",
+    "name": "Chainsaw_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_hit_b_SPA.m4a",
+    "name": "Chainsaw_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_hit_c_SPA.m4a",
+    "name": "Chainsaw_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_hit_d_SPA.m4a",
+    "name": "Chainsaw_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_hit_e_SPA.m4a",
+    "name": "Chainsaw_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Chainsaw/Chainsaw_spawn_SPA.m4a",
+    "name": "Chainsaw_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Chainsaw.S3DPlayListModel#0.sexp"
+ },
+ "Clown": {
+  "name": "Clown",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_aggressive_SPA.m4a",
+    "name": "Clown_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_approach_a_SPA.m4a",
+    "name": "Clown_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_approach_b_SPA.m4a",
+    "name": "Clown_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_approach_c_SPA.m4a",
+    "name": "Clown_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Clown/Clown_attack.m4a",
+    "name": "Clown_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_death_a_SPA.m4a",
+    "name": "Clown_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_death_b_SPA.m4a",
+    "name": "Clown_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_death_crit_SPA.m4a",
+    "name": "Clown_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_hit_a_SPA.m4a",
+    "name": "Clown_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_hit_b_SPA.m4a",
+    "name": "Clown_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_hit_c_SPA.m4a",
+    "name": "Clown_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_hit_d_SPA.m4a",
+    "name": "Clown_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_hit_e_SPA.m4a",
+    "name": "Clown_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_spawn_a_SPA.m4a",
+    "name": "Clown_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Clown/Clown_spawn_b_SPA.m4a",
+    "name": "Clown_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Clown.S3DPlayListModel#0.sexp"
+ },
+ "Colossus": {
+  "name": "Colossus",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_aggressive_a_SPA.m4a",
+    "name": "Colossus_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_aggressive_b_SPA.m4a",
+    "name": "Colossus_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_approach_a_SPA.m4a",
+    "name": "Colossus_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_approach_c_SPA.m4a",
+    "name": "Colossus_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Colossus/Colossus_attack.m4a",
+    "name": "Colossus_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_death_a_SPA.m4a",
+    "name": "Colossus_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_death_b_SPA.m4a",
+    "name": "Colossus_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_death_crit_SPA.m4a",
+    "name": "Colossus_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_hit_a_SPA.m4a",
+    "name": "Colossus_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_hit_b_SPA.m4a",
+    "name": "Colossus_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_hit_c_SPA.m4a",
+    "name": "Colossus_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_hit_d_SPA.m4a",
+    "name": "Colossus_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_hit_e_SPA.m4a",
+    "name": "Colossus_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Colossus/Colossus_spawn_a_SPA.m4a",
+    "name": "Colossus_spawn_a_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Colossus.S3DPlayListModel#0.sexp"
+ },
+ "Cow": {
+  "name": "Cow",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow/Cow_death_SPA.m4a",
+    "name": "Cow_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow/Cow_moving_a_SPA.m4a",
+    "name": "Cow_moving_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow/Cow_moving_b_SPA.m4a",
+    "name": "Cow_moving_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow/Cow_spawn_SPA.m4a",
+    "name": "Cow_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Cow.S3DPlayListModel#0.sexp"
+ },
+ "Cow2": {
+  "name": "Cow2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow2/Cow2_death_SPA.m4a",
+    "name": "Cow2_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow2/Cow2_moving_a_SPA.m4a",
+    "name": "Cow2_moving_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow2/Cow2_moving_b_SPA.m4a",
+    "name": "Cow2_moving_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow2/Cow2_spawn_SPA.m4a",
+    "name": "Cow2_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Cow2.S3DPlayListModel#0.sexp"
+ },
+ "Cow3": {
+  "name": "Cow3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow3/Cow3_death_SPA.m4a",
+    "name": "Cow3_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow3/Cow3_moving_a_SPA.m4a",
+    "name": "Cow3_moving_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow3/Cow3_moving_b_SPA.m4a",
+    "name": "Cow3_moving_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Cow3/Cow3_spawn_SPA.m4a",
+    "name": "Cow3_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Cow3.S3DPlayListModel#0.sexp"
+ },
+ "Diamond": {
+  "name": "Diamond",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_approach_a_SPA.m4a",
+    "name": "Diamond_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_approach_b_SPA.m4a",
+    "name": "Diamond_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_death_SPA.m4a",
+    "name": "Diamond_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_glow_a_SPA.m4a",
+    "name": "Diamond_glow_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_glow_b_SPA.m4a",
+    "name": "Diamond_glow_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_hit_a_SPA.m4a",
+    "name": "Diamond_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_hit_b_SPA.m4a",
+    "name": "Diamond_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_hit_c_SPA.m4a",
+    "name": "Diamond_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Diamond/Diamond_spawn_a_SPA.m4a",
+    "name": "Diamond_spawn_a_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Diamond.S3DPlayListModel#0.sexp"
+ },
+ "Dodge": {
+  "name": "Dodge",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_aggressive_SPA.m4a",
+    "name": "Dodge_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_approach_a_SPA.m4a",
+    "name": "Dodge_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_approach_b_SPA.m4a",
+    "name": "Dodge_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_approach_c_SPA.m4a",
+    "name": "Dodge_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Dodge/Dodge_attack.m4a",
+    "name": "Dodge_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_death_a_SPA.m4a",
+    "name": "Dodge_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_death_b_SPA.m4a",
+    "name": "Dodge_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_death_crit_SPA.m4a",
+    "name": "Dodge_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_dodge_SPA.m4a",
+    "name": "Dodge_dodge_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_hit_a_SPA.m4a",
+    "name": "Dodge_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_hit_b_SPA.m4a",
+    "name": "Dodge_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_hit_c_SPA.m4a",
+    "name": "Dodge_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_hit_d_SPA.m4a",
+    "name": "Dodge_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_hit_e_SPA.m4a",
+    "name": "Dodge_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Dodge/Dodge_spawn_SPA.m4a",
+    "name": "Dodge_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Dodge.S3DPlayListModel#0.sexp"
+ },
+ "DodgeB": {
+  "name": "DodgeB",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_aggressive_SPA.m4a",
+    "name": "DodgeB_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_approach_a_SPA.m4a",
+    "name": "DodgeB_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_approach_b_SPA.m4a",
+    "name": "DodgeB_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_approach_c_SPA.m4a",
+    "name": "DodgeB_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/DodgeB/DodgeB_attack.m4a",
+    "name": "DodgeB_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_death_a_SPA.m4a",
+    "name": "DodgeB_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_death_b_SPA.m4a",
+    "name": "DodgeB_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_death_crit_SPA.m4a",
+    "name": "DodgeB_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_dodge_SPA.m4a",
+    "name": "DodgeB_dodge_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_hit_a_SPA.m4a",
+    "name": "DodgeB_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_hit_b_SPA.m4a",
+    "name": "DodgeB_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_hit_c_SPA.m4a",
+    "name": "DodgeB_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_hit_d_SPA.m4a",
+    "name": "DodgeB_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_hit_e_SPA.m4a",
+    "name": "DodgeB_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/DodgeB/DodgeB_spawn_SPA.m4a",
+    "name": "DodgeB_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "DodgeB.S3DPlayListModel#0.sexp"
+ },
+ "Farty": {
+  "name": "Farty",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_aggressive_a_SPA.m4a",
+    "name": "Farty_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_aggressive_b_SPA.m4a",
+    "name": "Farty_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_approach_a_SPA.m4a",
+    "name": "Farty_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_approach_b_SPA.m4a",
+    "name": "Farty_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_approach_c_SPA.m4a",
+    "name": "Farty_approach_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_approach_d_SPA.m4a",
+    "name": "Farty_approach_d_SPA"
+   },
+   {
+    "file": "sounds/enemies/Farty/Farty_attack_a.m4a",
+    "name": "Farty_attack_a"
+   },
+   {
+    "file": "sounds/enemies/Farty/Farty_attack_b.m4a",
+    "name": "Farty_attack_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_death_a_SPA.m4a",
+    "name": "Farty_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_death_b_SPA.m4a",
+    "name": "Farty_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_death_crit_a_SPA.m4a",
+    "name": "Farty_death_crit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_explosion_SPA.m4a",
+    "name": "Farty_explosion_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_hit_a_SPA.m4a",
+    "name": "Farty_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_hit_b_SPA.m4a",
+    "name": "Farty_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_hit_c_SPA.m4a",
+    "name": "Farty_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_hit_d_SPA.m4a",
+    "name": "Farty_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_hit_e_SPA.m4a",
+    "name": "Farty_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_spawn_a_SPA.m4a",
+    "name": "Farty_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Farty/Farty_spawn_b_SPA.m4a",
+    "name": "Farty_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Farty.S3DPlayListModel#0.sexp"
+ },
+ "FartyB": {
+  "name": "FartyB",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_aggressive_a_SPA.m4a",
+    "name": "FartyB_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_aggressive_b_SPA.m4a",
+    "name": "FartyB_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_approach_a_SPA.m4a",
+    "name": "FartyB_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_approach_b_SPA.m4a",
+    "name": "FartyB_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_approach_c_SPA.m4a",
+    "name": "FartyB_approach_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_approach_d_SPA.m4a",
+    "name": "FartyB_approach_d_SPA"
+   },
+   {
+    "file": "sounds/enemies/FartyB/FartyB_attack_a.m4a",
+    "name": "FartyB_attack_a"
+   },
+   {
+    "file": "sounds/enemies/FartyB/FartyB_attack_b.m4a",
+    "name": "FartyB_attack_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_death_a_SPA.m4a",
+    "name": "FartyB_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_death_b_SPA.m4a",
+    "name": "FartyB_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_death_crit_a_SPA.m4a",
+    "name": "FartyB_death_crit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_explosion_SPA.m4a",
+    "name": "FartyB_explosion_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_hit_a_SPA.m4a",
+    "name": "FartyB_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_hit_b_SPA.m4a",
+    "name": "FartyB_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_hit_c_SPA.m4a",
+    "name": "FartyB_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_hit_d_SPA.m4a",
+    "name": "FartyB_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_hit_e_SPA.m4a",
+    "name": "FartyB_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_spawn_a_SPA.m4a",
+    "name": "FartyB_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/FartyB/FartyB_spawn_b_SPA.m4a",
+    "name": "FartyB_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "FartyB.S3DPlayListModel#0.sexp"
+ },
+ "Hulk": {
+  "name": "Hulk",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_aggressive_a_SPA.m4a",
+    "name": "Hulk_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_aggressive_b_SPA.m4a",
+    "name": "Hulk_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_approach_a_SPA.m4a",
+    "name": "Hulk_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_approach_b_SPA.m4a",
+    "name": "Hulk_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_approach_c_SPA.m4a",
+    "name": "Hulk_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Hulk/Hulk_attack.m4a",
+    "name": "Hulk_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_death_a_SPA.m4a",
+    "name": "Hulk_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_death_b_SPA.m4a",
+    "name": "Hulk_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_death_crit_SPA.m4a",
+    "name": "Hulk_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_a_SPA.m4a",
+    "name": "Hulk_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_b_SPA.m4a",
+    "name": "Hulk_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_c_SPA.m4a",
+    "name": "Hulk_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_d_SPA.m4a",
+    "name": "Hulk_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_e_SPA.m4a",
+    "name": "Hulk_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_f_SPA.m4a",
+    "name": "Hulk_hit_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_g_SPA.m4a",
+    "name": "Hulk_hit_g_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_h_SPA.m4a",
+    "name": "Hulk_hit_h_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_i_SPA.m4a",
+    "name": "Hulk_hit_i_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_hit_j_SPA.m4a",
+    "name": "Hulk_hit_j_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_spawn_a_SPA.m4a",
+    "name": "Hulk_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Hulk/Hulk_spawn_b_SPA.m4a",
+    "name": "Hulk_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Hulk.S3DPlayListModel#0.sexp"
+ },
+ "HulkB": {
+  "name": "HulkB",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_aggressive_a_SPA.m4a",
+    "name": "HulkB_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_aggressive_b_SPA.m4a",
+    "name": "HulkB_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_approach_a_SPA.m4a",
+    "name": "HulkB_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_approach_b_SPA.m4a",
+    "name": "HulkB_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_approach_c_SPA.m4a",
+    "name": "HulkB_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/HulkB/HulkB_attack.m4a",
+    "name": "HulkB_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_death_a_SPA.m4a",
+    "name": "HulkB_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_death_b_SPA.m4a",
+    "name": "HulkB_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_death_crit_SPA.m4a",
+    "name": "HulkB_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_a_SPA.m4a",
+    "name": "HulkB_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_b_SPA.m4a",
+    "name": "HulkB_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_c_SPA.m4a",
+    "name": "HulkB_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_d_SPA.m4a",
+    "name": "HulkB_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_e_SPA.m4a",
+    "name": "HulkB_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_f_SPA.m4a",
+    "name": "HulkB_hit_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_g_SPA.m4a",
+    "name": "HulkB_hit_g_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_h_SPA.m4a",
+    "name": "HulkB_hit_h_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_i_SPA.m4a",
+    "name": "HulkB_hit_i_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_hit_j_SPA.m4a",
+    "name": "HulkB_hit_j_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_spawn_a_SPA.m4a",
+    "name": "HulkB_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/HulkB/HulkB_spawn_b_SPA.m4a",
+    "name": "HulkB_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "HulkB.S3DPlayListModel#0.sexp"
+ },
+ "Jim": {
+  "name": "Jim",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_aggressive_a_SPA.m4a",
+    "name": "Jim_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_aggressive_b_SPA.m4a",
+    "name": "Jim_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_approach_a_SPA.m4a",
+    "name": "Jim_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_approach_b_SPA.m4a",
+    "name": "Jim_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_approach_c_SPA.m4a",
+    "name": "Jim_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Jim/Jim_attack.m4a",
+    "name": "Jim_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_death_a_SPA.m4a",
+    "name": "Jim_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_death_b_SPA.m4a",
+    "name": "Jim_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_death_crit_SPA.m4a",
+    "name": "Jim_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_hit_a_SPA.m4a",
+    "name": "Jim_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_hit_b_SPA.m4a",
+    "name": "Jim_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_hit_c_SPA.m4a",
+    "name": "Jim_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_hit_d_SPA.m4a",
+    "name": "Jim_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_hit_e_SPA.m4a",
+    "name": "Jim_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_spawn_a_SPA.m4a",
+    "name": "Jim_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Jim/Jim_spawn_b_SPA.m4a",
+    "name": "Jim_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Jim.S3DPlayListModel#0.sexp"
+ },
+ "Jukebox": {
+  "name": "Jukebox",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Jukebox/roulette_jukebox_hit_SPA.m4a",
+    "name": "roulette_jukebox_hit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Jukebox/roulette_jukebox_music_a_SPA.m4a",
+    "name": "roulette_jukebox_music_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Jukebox/roulette_jukebox_music_b_SPA.m4a",
+    "name": "roulette_jukebox_music_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Jukebox/roulette_jukebox_music_c_SPA.m4a",
+    "name": "roulette_jukebox_music_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Jukebox/roulette_jukebox_resume_SPA.m4a",
+    "name": "roulette_jukebox_resume_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Jukebox.S3DPlayListModel#0.sexp"
+ },
+ "Machine": {
+  "name": "Machine",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Machine/Machine_death_SPA.m4a",
+    "name": "Machine_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Machine/Machine_impact_a_SPA.m4a",
+    "name": "Machine_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Machine/Machine_impact_b_SPA.m4a",
+    "name": "Machine_impact_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Machine/Machine_impact_c_SPA.m4a",
+    "name": "Machine_impact_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Machine/Machine_machine_loop_SPA.m4a",
+    "name": "Machine_machine_loop_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/Machine/Machine_machine_spawn_SPA.m4a",
+    "name": "Machine_machine_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Machine.S3DPlayListModel#0.sexp"
+ },
+ "PowerUpContainer": {
+  "name": "PowerUpContainer",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/PowerUpContainer/PowerUpContainer_alerting_SPA.m4a",
+    "name": "PowerUpContainer_alerting_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/PowerUpContainer/PowerUpContainer_death_SPA.m4a",
+    "name": "PowerUpContainer_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/PowerUpContainer/PowerUpContainer_spawn_SPA.m4a",
+    "name": "PowerUpContainer_spawn_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/passerBy/PowerUpContainer/PowerUpContainer_splash_SPA .m4a",
+    "name": "PowerUpContainer_splash_SPA "
+   }
+  ],
+  "subplaylists": [],
+  "file": "PowerUpContainer.S3DPlayListModel#0.sexp"
+ },
+ "QuietZombie": {
+  "name": "QuietZombie",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_aggressive_SPA.m4a",
+    "name": "QuietZombie_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_approach_a_SPA.m4a",
+    "name": "QuietZombie_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_approach_b_SPA.m4a",
+    "name": "QuietZombie_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_approach_c_SPA.m4a",
+    "name": "QuietZombie_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/QuietZombie/QuietZombie_attack.m4a",
+    "name": "QuietZombie_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_death_a_SPA.m4a",
+    "name": "QuietZombie_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_death_b_SPA.m4a",
+    "name": "QuietZombie_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_death_crit_SPA.m4a",
+    "name": "QuietZombie_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_hit_a_SPA.m4a",
+    "name": "QuietZombie_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_hit_b_SPA.m4a",
+    "name": "QuietZombie_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_hit_c_SPA.m4a",
+    "name": "QuietZombie_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_hit_d_SPA.m4a",
+    "name": "QuietZombie_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_hit_e_SPA.m4a",
+    "name": "QuietZombie_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/QuietZombie/QuietZombie_spawn_SPA.m4a",
+    "name": "QuietZombie_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "QuietZombie.S3DPlayListModel#0.sexp"
+ },
+ "Runner": {
+  "name": "Runner",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_aggressive_a_SPA.m4a",
+    "name": "Runner_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_aggressive_b_SPA.m4a",
+    "name": "Runner_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_aggressive_c_SPA.m4a",
+    "name": "Runner_aggressive_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_approach_a_SPA.m4a",
+    "name": "Runner_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_approach_b_SPA.m4a",
+    "name": "Runner_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_approach_c_SPA.m4a",
+    "name": "Runner_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Runner/Runner_attack_a.m4a",
+    "name": "Runner_attack_a"
+   },
+   {
+    "file": "sounds/enemies/Runner/Runner_attack_b.m4a",
+    "name": "Runner_attack_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_death_crit_SPA.m4a",
+    "name": "Runner_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_hit_a_SPA.m4a",
+    "name": "Runner_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_hit_b_SPA.m4a",
+    "name": "Runner_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_hit_c_SPA.m4a",
+    "name": "Runner_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_hit_d_SPA.m4a",
+    "name": "Runner_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_hit_e_SPA.m4a",
+    "name": "Runner_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_impact_a_SPA.m4a",
+    "name": "Runner_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_impact_b_SPA.m4a",
+    "name": "Runner_impact_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_impact_c_SPA.m4a",
+    "name": "Runner_impact_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_spawn_a_SPA.m4a",
+    "name": "Runner_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Runner/Runner_spawn_b_SPA.m4a",
+    "name": "Runner_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Runner.S3DPlayListModel#0.sexp"
+ },
+ "RunnerB": {
+  "name": "RunnerB",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_aggressive_a_SPA.m4a",
+    "name": "RunnerB_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_aggressive_b_SPA.m4a",
+    "name": "RunnerB_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_aggressive_c_SPA.m4a",
+    "name": "RunnerB_aggressive_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_approach_a_SPA.m4a",
+    "name": "RunnerB_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_approach_b_SPA.m4a",
+    "name": "RunnerB_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_approach_c_SPA.m4a",
+    "name": "RunnerB_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/RunnerB/RunnerB_attack_a.m4a",
+    "name": "RunnerB_attack_a"
+   },
+   {
+    "file": "sounds/enemies/RunnerB/RunnerB_attack_b.m4a",
+    "name": "RunnerB_attack_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_death_crit_SPA.m4a",
+    "name": "RunnerB_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_hit_a_SPA.m4a",
+    "name": "RunnerB_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_hit_b_SPA.m4a",
+    "name": "RunnerB_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_hit_c_SPA.m4a",
+    "name": "RunnerB_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_hit_d_SPA.m4a",
+    "name": "RunnerB_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_hit_e_SPA.m4a",
+    "name": "RunnerB_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_impact_a_SPA.m4a",
+    "name": "RunnerB_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_impact_b_SPA.m4a",
+    "name": "RunnerB_impact_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_impact_c_SPA.m4a",
+    "name": "RunnerB_impact_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_spawn_a_SPA.m4a",
+    "name": "RunnerB_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerB/RunnerB_spawn_b_SPA.m4a",
+    "name": "RunnerB_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "RunnerB.S3DPlayListModel#0.sexp"
+ },
+ "RunnerC": {
+  "name": "RunnerC",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_aggressive_a_SPA.m4a",
+    "name": "RunnerC_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_aggressive_b_SPA.m4a",
+    "name": "RunnerC_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_aggressive_c_SPA.m4a",
+    "name": "RunnerC_aggressive_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_approach_a_SPA.m4a",
+    "name": "RunnerC_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_approach_b_SPA.m4a",
+    "name": "RunnerC_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_approach_c_SPA.m4a",
+    "name": "RunnerC_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/RunnerC/RunnerC_attack_a.m4a",
+    "name": "RunnerC_attack_a"
+   },
+   {
+    "file": "sounds/enemies/RunnerC/RunnerC_attack_b.m4a",
+    "name": "RunnerC_attack_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_death_crit_SPA.m4a",
+    "name": "RunnerC_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_hit_a_SPA.m4a",
+    "name": "RunnerC_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_hit_b_SPA.m4a",
+    "name": "RunnerC_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_hit_c_SPA.m4a",
+    "name": "RunnerC_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_hit_d_SPA.m4a",
+    "name": "RunnerC_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_hit_e_SPA.m4a",
+    "name": "RunnerC_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_impact_a_SPA.m4a",
+    "name": "RunnerC_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_impact_b_SPA.m4a",
+    "name": "RunnerC_impact_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_impact_c_SPA.m4a",
+    "name": "RunnerC_impact_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_spawn_a_SPA.m4a",
+    "name": "RunnerC_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/RunnerC/RunnerC_spawn_b_SPA.m4a",
+    "name": "RunnerC_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "RunnerC.S3DPlayListModel#0.sexp"
+ },
+ "Shield": {
+  "name": "Shield",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_aggressive_SPA.m4a",
+    "name": "Shield_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_approach_a_SPA.m4a",
+    "name": "Shield_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_approach_b_SPA.m4a",
+    "name": "Shield_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_approach_c_SPA.m4a",
+    "name": "Shield_approach_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_approach_d_SPA.m4a",
+    "name": "Shield_approach_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_approach_e_SPA.m4a",
+    "name": "Shield_approach_e_SPA"
+   },
+   {
+    "file": "sounds/enemies/Shield/Shield_attack.m4a",
+    "name": "Shield_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_death_a_SPA.m4a",
+    "name": "Shield_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_death_b_SPA.m4a",
+    "name": "Shield_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_death_c_SPA.m4a",
+    "name": "Shield_death_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_death_d_SPA.m4a",
+    "name": "Shield_death_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_hit_a_SPA.m4a",
+    "name": "Shield_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_hit_b_SPA.m4a",
+    "name": "Shield_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_hit_c_SPA.m4a",
+    "name": "Shield_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_hit_d_SPA.m4a",
+    "name": "Shield_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_hit_e_SPA.m4a",
+    "name": "Shield_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_hit_f_SPA.m4a",
+    "name": "Shield_hit_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_invincible_a_SPA.m4a",
+    "name": "Shield_invincible_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_invincible_b_SPA.m4a",
+    "name": "Shield_invincible_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_shielddown_a_SPA.m4a",
+    "name": "Shield_shielddown_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_shielddown_b_SPA.m4a",
+    "name": "Shield_shielddown_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_shieldimpact_a_SPA.m4a",
+    "name": "Shield_shieldimpact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_shieldimpact_b_SPA.m4a",
+    "name": "Shield_shieldimpact_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_shieldimpact_c_SPA.m4a",
+    "name": "Shield_shieldimpact_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_shieldup_a_SPA.m4a",
+    "name": "Shield_shieldup_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_shieldup_b_SPA.m4a",
+    "name": "Shield_shieldup_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Shield/Shield_spawn_a_SPA.m4a",
+    "name": "Shield_spawn_a_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Shield.S3DPlayListModel#0.sexp"
+ },
+ "StillZombie": {
+  "name": "StillZombie",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_aggressive_a_SPA.m4a",
+    "name": "WeakZombie_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_aggressive_b_SPA.m4a",
+    "name": "WeakZombie_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_a_SPA.m4a",
+    "name": "WeakZombie_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_c_SPA.m4a",
+    "name": "WeakZombie_approach_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_f_SPA.m4a",
+    "name": "WeakZombie_approach_f_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombie/WeakZombie_attack_a.m4a",
+    "name": "WeakZombie_attack_a"
+   },
+   {
+    "file": "sounds/enemies/WeakZombie/WeakZombie_attack_d.m4a",
+    "name": "WeakZombie_attack_d"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_c_SPA.m4a",
+    "name": "WeakZombie_death_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_crit_a_SPA.m4a",
+    "name": "WeakZombie_death_crit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_critical_f_SPA.m4a",
+    "name": "WeakZombie_hit_critical_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_heavy_a_SPA.m4a",
+    "name": "WeakZombie_hit_heavy_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_light_a_SPA.m4a",
+    "name": "WeakZombie_hit_light_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_medium_b_SPA.m4a",
+    "name": "WeakZombie_hit_medium_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_impact_a_SPA.m4a",
+    "name": "WeakZombie_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_impact_b_SPA.m4a",
+    "name": "WeakZombie_impact_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_impact_c_SPA.m4a",
+    "name": "WeakZombie_impact_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_spawn_a_SPA.m4a",
+    "name": "WeakZombie_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_spawn_b_SPA.m4a",
+    "name": "WeakZombie_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "StillZombie.S3DPlayListModel#0.sexp"
+ },
+ "StillZombieB": {
+  "name": "StillZombieB",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_aggressive_a_SPA.m4a",
+    "name": "WeakZombie_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_aggressive_b_SPA.m4a",
+    "name": "WeakZombie_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_a_SPA.m4a",
+    "name": "WeakZombie_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_c_SPA.m4a",
+    "name": "WeakZombie_approach_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_f_SPA.m4a",
+    "name": "WeakZombie_approach_f_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombie/WeakZombie_attack_a.m4a",
+    "name": "WeakZombie_attack_a"
+   },
+   {
+    "file": "sounds/enemies/WeakZombie/WeakZombie_attack_d.m4a",
+    "name": "WeakZombie_attack_d"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_c_SPA.m4a",
+    "name": "WeakZombie_death_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_crit_a_SPA.m4a",
+    "name": "WeakZombie_death_crit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_critical_f_SPA.m4a",
+    "name": "WeakZombie_hit_critical_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_heavy_a_SPA.m4a",
+    "name": "WeakZombie_hit_heavy_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_light_a_SPA.m4a",
+    "name": "WeakZombie_hit_light_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_medium_b_SPA.m4a",
+    "name": "WeakZombie_hit_medium_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_impact_a_SPA.m4a",
+    "name": "WeakZombie_impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_impact_b_SPA.m4a",
+    "name": "WeakZombie_impact_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_impact_c_SPA.m4a",
+    "name": "WeakZombie_impact_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_spawn_a_SPA.m4a",
+    "name": "WeakZombie_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_spawn_b_SPA.m4a",
+    "name": "WeakZombie_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "StillZombieB.S3DPlayListModel#0.sexp"
+ },
+ "Ted": {
+  "name": "Ted",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_aggressive_a_SPA.m4a",
+    "name": "Ted_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_aggressive_b_SPA.m4a",
+    "name": "Ted_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_approach_a_SPA.m4a",
+    "name": "Ted_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_approach_b_SPA.m4a",
+    "name": "Ted_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_approach_c_SPA.m4a",
+    "name": "Ted_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Ted/Ted_attack.m4a",
+    "name": "Ted_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_death_a_SPA.m4a",
+    "name": "Ted_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_death_b_SPA.m4a",
+    "name": "Ted_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_death_crit_SPA.m4a",
+    "name": "Ted_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_hit_a_SPA.m4a",
+    "name": "Ted_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_hit_b_SPA.m4a",
+    "name": "Ted_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_hit_c_SPA.m4a",
+    "name": "Ted_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_hit_d_SPA.m4a",
+    "name": "Ted_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_hit_e_SPA.m4a",
+    "name": "Ted_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_hit_f_SPA.m4a",
+    "name": "Ted_hit_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_spawn_a_SPA.m4a",
+    "name": "Ted_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Ted/Ted_spawn_b_SPA.m4a",
+    "name": "Ted_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Ted.S3DPlayListModel#0.sexp"
+ },
+ "Weak": {
+  "name": "Weak",
+  "options": {
+   "Zombie": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_aggressive_a_SPA.m4a",
+    "name": "WeakZombie_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_aggressive_b_SPA.m4a",
+    "name": "WeakZombie_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_a_SPA.m4a",
+    "name": "WeakZombie_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_b_SPA.m4a",
+    "name": "WeakZombie_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_c_SPA.m4a",
+    "name": "WeakZombie_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombie/WeakZombie_attack.m4a",
+    "name": "WeakZombie_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_a_SPA.m4a",
+    "name": "WeakZombie_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_b_SPA.m4a",
+    "name": "WeakZombie_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_crit_SPA.m4a",
+    "name": "WeakZombie_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_a_SPA.m4a",
+    "name": "WeakZombie_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_b_SPA.m4a",
+    "name": "WeakZombie_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_c_SPA.m4a",
+    "name": "WeakZombie_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_d_SPA.m4a",
+    "name": "WeakZombie_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_e_SPA.m4a",
+    "name": "WeakZombie_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_spawn_a_SPA.m4a",
+    "name": "WeakZombie_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_spawn_b_SPA.m4a",
+    "name": "WeakZombie_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Weak.S3DPlayListModel#0.sexp"
+ },
+ "WeakZombie": {
+  "name": "WeakZombie",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_aggressive_a_SPA.m4a",
+    "name": "WeakZombie_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_aggressive_b_SPA.m4a",
+    "name": "WeakZombie_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_a_SPA.m4a",
+    "name": "WeakZombie_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_b_SPA.m4a",
+    "name": "WeakZombie_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_approach_c_SPA.m4a",
+    "name": "WeakZombie_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombie/WeakZombie_attack.m4a",
+    "name": "WeakZombie_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_a_SPA.m4a",
+    "name": "WeakZombie_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_b_SPA.m4a",
+    "name": "WeakZombie_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_death_crit_SPA.m4a",
+    "name": "WeakZombie_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_a_SPA.m4a",
+    "name": "WeakZombie_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_b_SPA.m4a",
+    "name": "WeakZombie_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_c_SPA.m4a",
+    "name": "WeakZombie_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_d_SPA.m4a",
+    "name": "WeakZombie_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_hit_e_SPA.m4a",
+    "name": "WeakZombie_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_spawn_a_SPA.m4a",
+    "name": "WeakZombie_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombie/WeakZombie_spawn_b_SPA.m4a",
+    "name": "WeakZombie_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "WeakZombie.S3DPlayListModel#0.sexp"
+ },
+ "WeakZombieB": {
+  "name": "WeakZombieB",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_aggressive_a_SPA.m4a",
+    "name": "WeakZombieB_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_aggressive_b_SPA.m4a",
+    "name": "WeakZombieB_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_approach_a_SPA.m4a",
+    "name": "WeakZombieB_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_approach_b_SPA.m4a",
+    "name": "WeakZombieB_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_approach_c_SPA.m4a",
+    "name": "WeakZombieB_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_attack.m4a",
+    "name": "WeakZombieB_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_death_a_SPA.m4a",
+    "name": "WeakZombieB_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_death_b_SPA.m4a",
+    "name": "WeakZombieB_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_death_crit_SPA.m4a",
+    "name": "WeakZombieB_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_hit_a_SPA.m4a",
+    "name": "WeakZombieB_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_hit_b_SPA.m4a",
+    "name": "WeakZombieB_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_hit_c_SPA.m4a",
+    "name": "WeakZombieB_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_hit_d_SPA.m4a",
+    "name": "WeakZombieB_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_hit_e_SPA.m4a",
+    "name": "WeakZombieB_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_spawn_a_SPA.m4a",
+    "name": "WeakZombieB_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieB/WeakZombieB_spawn_b_SPA.m4a",
+    "name": "WeakZombieB_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "WeakZombieB.S3DPlayListModel#0.sexp"
+ },
+ "WeakZombieC": {
+  "name": "WeakZombieC",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_aggressive_a_SPA.m4a",
+    "name": "WeakZombieC_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_aggressive_b_SPA.m4a",
+    "name": "WeakZombieC_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_approach_a_SPA.m4a",
+    "name": "WeakZombieC_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_approach_b_SPA.m4a",
+    "name": "WeakZombieC_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_approach_c_SPA.m4a",
+    "name": "WeakZombieC_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_attack.m4a",
+    "name": "WeakZombieC_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_death_a_SPA.m4a",
+    "name": "WeakZombieC_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_death_b_SPA.m4a",
+    "name": "WeakZombieC_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_death_crit_SPA.m4a",
+    "name": "WeakZombieC_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_hit_a_SPA.m4a",
+    "name": "WeakZombieC_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_hit_b_SPA.m4a",
+    "name": "WeakZombieC_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_hit_c_SPA.m4a",
+    "name": "WeakZombieC_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_hit_d_SPA.m4a",
+    "name": "WeakZombieC_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_hit_e_SPA.m4a",
+    "name": "WeakZombieC_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_spawn_a_SPA.m4a",
+    "name": "WeakZombieC_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieC/WeakZombieC_spawn_b_SPA.m4a",
+    "name": "WeakZombieC_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "WeakZombieC.S3DPlayListModel#0.sexp"
+ },
+ "WeakZombieD": {
+  "name": "WeakZombieD",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_aggressive_a_SPA.m4a",
+    "name": "WeakZombieD_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_aggressive_b_SPA.m4a",
+    "name": "WeakZombieD_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_aggressive_c_SPA.m4a",
+    "name": "WeakZombieD_aggressive_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_approach_a_SPA.m4a",
+    "name": "WeakZombieD_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_approach_b_SPA.m4a",
+    "name": "WeakZombieD_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_approach_c_SPA.m4a",
+    "name": "WeakZombieD_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_attack.m4a",
+    "name": "WeakZombieD_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_die_a_SPA.m4a",
+    "name": "WeakZombieD_die_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_die_b_SPA.m4a",
+    "name": "WeakZombieD_die_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_hit_a_SPA.m4a",
+    "name": "WeakZombieD_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_hit_b_SPA.m4a",
+    "name": "WeakZombieD_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_hit_c_SPA.m4a",
+    "name": "WeakZombieD_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_spawn_a_SPA.m4a",
+    "name": "WeakZombieD_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombieD/WeakZombieD_spawn_b_SPA.m4a",
+    "name": "WeakZombieD_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "WeakZombieD.S3DPlayListModel#0.sexp"
+ },
+ "WeakZombiePowerUp": {
+  "name": "WeakZombiePowerUp",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_aggressive_a_SPA.m4a",
+    "name": "WeakZombiePowerUp_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_aggressive_b_SPA.m4a",
+    "name": "WeakZombiePowerUp_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_approach_a_SPA.m4a",
+    "name": "WeakZombiePowerUp_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_approach_b_SPA.m4a",
+    "name": "WeakZombiePowerUp_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_approach_c_SPA.m4a",
+    "name": "WeakZombiePowerUp_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_attack.m4a",
+    "name": "WeakZombiePowerUp_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_death_a_SPA.m4a",
+    "name": "WeakZombiePowerUp_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_death_b_SPA.m4a",
+    "name": "WeakZombiePowerUp_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_death_crit_SPA.m4a",
+    "name": "WeakZombiePowerUp_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_hit_a_SPA.m4a",
+    "name": "WeakZombiePowerUp_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_hit_b_SPA.m4a",
+    "name": "WeakZombiePowerUp_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_hit_c_SPA.m4a",
+    "name": "WeakZombiePowerUp_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_hit_d_SPA.m4a",
+    "name": "WeakZombiePowerUp_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_hit_e_SPA.m4a",
+    "name": "WeakZombiePowerUp_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_spawn_a_SPA.m4a",
+    "name": "WeakZombiePowerUp_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUp/WeakZombiePowerUp_spawn_b_SPA.m4a",
+    "name": "WeakZombiePowerUp_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "WeakZombiePowerUp.S3DPlayListModel#0.sexp"
+ },
+ "WeakZombiePowerUpB": {
+  "name": "WeakZombiePowerUpB",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_aggressive_a_SPA.m4a",
+    "name": "WeakZombiePowerUpB_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_aggressive_b_SPA.m4a",
+    "name": "WeakZombiePowerUpB_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_approach_a_SPA.m4a",
+    "name": "WeakZombiePowerUpB_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_approach_b_SPA.m4a",
+    "name": "WeakZombiePowerUpB_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_approach_c_SPA.m4a",
+    "name": "WeakZombiePowerUpB_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_attack.m4a",
+    "name": "WeakZombiePowerUpB_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_death_a_SPA.m4a",
+    "name": "WeakZombiePowerUpB_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_death_b_SPA.m4a",
+    "name": "WeakZombiePowerUpB_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_death_crit_SPA.m4a",
+    "name": "WeakZombiePowerUpB_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_hit_a_SPA.m4a",
+    "name": "WeakZombiePowerUpB_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_hit_b_SPA.m4a",
+    "name": "WeakZombiePowerUpB_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_hit_c_SPA.m4a",
+    "name": "WeakZombiePowerUpB_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_hit_d_SPA.m4a",
+    "name": "WeakZombiePowerUpB_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_hit_e_SPA.m4a",
+    "name": "WeakZombiePowerUpB_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_spawn_a_SPA.m4a",
+    "name": "WeakZombiePowerUpB_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpB/WeakZombiePowerUpB_spawn_b_SPA.m4a",
+    "name": "WeakZombiePowerUpB_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "WeakZombiePowerUpB.S3DPlayListModel#0.sexp"
+ },
+ "WeakZombiePowerUpC": {
+  "name": "WeakZombiePowerUpC",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_aggressive_a_SPA.m4a",
+    "name": "WeakZombiePowerUpC_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_aggressive_b_SPA.m4a",
+    "name": "WeakZombiePowerUpC_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_approach_a_SPA.m4a",
+    "name": "WeakZombiePowerUpC_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_approach_b_SPA.m4a",
+    "name": "WeakZombiePowerUpC_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_approach_c_SPA.m4a",
+    "name": "WeakZombiePowerUpC_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_attack.m4a",
+    "name": "WeakZombiePowerUpC_attack"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_death_a_SPA.m4a",
+    "name": "WeakZombiePowerUpC_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_death_b_SPA.m4a",
+    "name": "WeakZombiePowerUpC_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_death_crit_SPA.m4a",
+    "name": "WeakZombiePowerUpC_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_hit_a_SPA.m4a",
+    "name": "WeakZombiePowerUpC_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_hit_b_SPA.m4a",
+    "name": "WeakZombiePowerUpC_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_hit_c_SPA.m4a",
+    "name": "WeakZombiePowerUpC_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_hit_d_SPA.m4a",
+    "name": "WeakZombiePowerUpC_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_hit_e_SPA.m4a",
+    "name": "WeakZombiePowerUpC_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_spawn_a_SPA.m4a",
+    "name": "WeakZombiePowerUpC_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/WeakZombiePowerUpC/WeakZombiePowerUpC_spawn_b_SPA.m4a",
+    "name": "WeakZombiePowerUpC_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "WeakZombiePowerUpC.S3DPlayListModel#0.sexp"
+ },
+ "Zombie": {
+  "name": "Zombie",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_aggressive_a_SPA.m4a",
+    "name": "Zombie_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_aggressive_b_SPA.m4a",
+    "name": "Zombie_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_approach_a_SPA.m4a",
+    "name": "Zombie_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_approach_b_SPA.m4a",
+    "name": "Zombie_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_approach_c_SPA.m4a",
+    "name": "Zombie_approach_c_SPA"
+   },
+   {
+    "file": "sounds/enemies/Zombie/Zombie_attack_a.m4a",
+    "name": "Zombie_attack_a"
+   },
+   {
+    "file": "sounds/enemies/Zombie/Zombie_attack_b.m4a",
+    "name": "Zombie_attack_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_death_a_SPA.m4a",
+    "name": "Zombie_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_death_b_SPA.m4a",
+    "name": "Zombie_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_death_crit_SPA.m4a",
+    "name": "Zombie_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_hit_a_SPA.m4a",
+    "name": "Zombie_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_hit_b_SPA.m4a",
+    "name": "Zombie_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_hit_c_SPA.m4a",
+    "name": "Zombie_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_hit_d_SPA.m4a",
+    "name": "Zombie_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_hit_e_SPA.m4a",
+    "name": "Zombie_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_hit_f_SPA.m4a",
+    "name": "Zombie_hit_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_spawn_a_SPA.m4a",
+    "name": "Zombie_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/Zombie/Zombie_spawn_b_SPA.m4a",
+    "name": "Zombie_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "Zombie.S3DPlayListModel#0.sexp"
+ },
+ "ZombieB": {
+  "name": "ZombieB",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_aggressive_a_SPA.m4a",
+    "name": "ZombieB_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_aggressive_b_SPA.m4a",
+    "name": "ZombieB_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_approach_a_SPA.m4a",
+    "name": "ZombieB_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_approach_b_SPA.m4a",
+    "name": "ZombieB_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_approach_c_SPA.m4a",
+    "name": "ZombieB_approach_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_approach_d_SPA.m4a",
+    "name": "ZombieB_approach_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_approach_e_SPA.m4a",
+    "name": "ZombieB_approach_e_SPA"
+   },
+   {
+    "file": "sounds/enemies/ZombieB/ZombieB_attack_a.m4a",
+    "name": "ZombieB_attack_a"
+   },
+   {
+    "file": "sounds/enemies/ZombieB/ZombieB_attack_b.m4a",
+    "name": "ZombieB_attack_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_death_a_SPA.m4a",
+    "name": "ZombieB_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_death_b_SPA.m4a",
+    "name": "ZombieB_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_death_crit_SPA.m4a",
+    "name": "ZombieB_death_crit_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_hit_a_SPA.m4a",
+    "name": "ZombieB_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_hit_b_SPA.m4a",
+    "name": "ZombieB_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_hit_c_SPA.m4a",
+    "name": "ZombieB_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_hit_d_SPA.m4a",
+    "name": "ZombieB_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_hit_e_SPA.m4a",
+    "name": "ZombieB_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_hit_f_SPA.m4a",
+    "name": "ZombieB_hit_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_spawn_a_SPA.m4a",
+    "name": "ZombieB_spawn_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieB/ZombieB_spawn_b_SPA.m4a",
+    "name": "ZombieB_spawn_b_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ZombieB.S3DPlayListModel#0.sexp"
+ },
+ "ZombieC": {
+  "name": "ZombieC",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_aggressive_a_SPA.m4a",
+    "name": "ZombieC_aggressive_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_aggressive_b_SPA.m4a",
+    "name": "ZombieC_aggressive_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_aggressive_c_SPA.m4a",
+    "name": "ZombieC_aggressive_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_approach_a_SPA.m4a",
+    "name": "ZombieC_approach_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_approach_b_SPA.m4a",
+    "name": "ZombieC_approach_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_approach_c_SPA.m4a",
+    "name": "ZombieC_approach_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_approach_d_SPA.m4a",
+    "name": "ZombieC_approach_d_SPA"
+   },
+   {
+    "file": "sounds/enemies/ZombieC/ZombieC_attack_a.m4a",
+    "name": "ZombieC_attack_a"
+   },
+   {
+    "file": "sounds/enemies/ZombieC/ZombieC_attack_b.m4a",
+    "name": "ZombieC_attack_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_death_a_SPA.m4a",
+    "name": "ZombieC_death_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_death_b_SPA.m4a",
+    "name": "ZombieC_death_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_hit_a_SPA.m4a",
+    "name": "ZombieC_hit_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_hit_b_SPA.m4a",
+    "name": "ZombieC_hit_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_hit_c_SPA.m4a",
+    "name": "ZombieC_hit_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_hit_d_SPA.m4a",
+    "name": "ZombieC_hit_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_hit_e_SPA.m4a",
+    "name": "ZombieC_hit_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_hit_f_SPA.m4a",
+    "name": "ZombieC_hit_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_hit_g_SPA.m4a",
+    "name": "ZombieC_hit_g_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/ZombieC/ZombieC_spawn_a_SPA.m4a",
+    "name": "ZombieC_spawn_a_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ZombieC.S3DPlayListModel#0.sexp"
+ },
+ "_rifle": {
+  "name": "_rifle",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/rifle/rifle_deploy.m4a",
+    "name": "rifle_deploy"
+   },
+   {
+    "file": "sounds/_weapons/rifle/rifle_empty_a.m4a",
+    "name": "rifle_empty_a"
+   },
+   {
+    "file": "sounds/_weapons/rifle/rifle_empty_b.m4a",
+    "name": "rifle_empty_b"
+   },
+   {
+    "file": "sounds/_weapons/rifle/rifle_fire.m4a",
+    "name": "rifle_fire"
+   },
+   {
+    "file": "sounds/_weapons/rifle/rifle_reload.m4a",
+    "name": "rifle_reload"
+   }
+  ],
+  "subplaylists": [],
+  "file": "_rifle.S3DPlayListModel#0.sexp"
+ },
+ "_sawnoff": {
+  "name": "_sawnoff",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_deploy.m4a",
+    "name": "weapon_gun_sawnoff_deploy"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_empty.m4a",
+    "name": "weapon_gun_sawnoff_empty"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_fire_a.m4a",
+    "name": "weapon_gun_sawnoff_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_fire_b.m4a",
+    "name": "weapon_gun_sawnoff_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_fire_c.m4a",
+    "name": "weapon_gun_sawnoff_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_reloadfull.m4a",
+    "name": "weapon_gun_sawnoff_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_reloadin.m4a",
+    "name": "weapon_gun_sawnoff_reloadin"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_reloadout.m4a",
+    "name": "weapon_gun_sawnoff_reloadout"
+   }
+  ],
+  "subplaylists": [],
+  "file": "_sawnoff.S3DPlayListModel#0.sexp"
+ },
+ "_shotgun": {
+  "name": "_shotgun",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/shotgun/shotgun_deploy.m4a",
+    "name": "shotgun_deploy"
+   },
+   {
+    "file": "sounds/_weapons/shotgun/shotgun_empty_a.m4a",
+    "name": "shotgun_empty_a"
+   },
+   {
+    "file": "sounds/_weapons/shotgun/shotgun_empty_b.m4a",
+    "name": "shotgun_empty_b"
+   },
+   {
+    "file": "sounds/_weapons/shotgun/shotgun_fire_a.m4a",
+    "name": "shotgun_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/shotgun/shotgun_reload.m4a",
+    "name": "shotgun_reload"
+   }
+  ],
+  "subplaylists": [],
+  "file": "_shotgun.S3DPlayListModel#0.sexp"
+ },
+ "_slowmotion": {
+  "name": "_slowmotion",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/powerup/slowmotion/powerup_slowmo_in.m4a",
+    "name": "powerup_slowmo_in"
+   },
+   {
+    "file": "sounds/powerup/slowmotion/powerup_slowmo_out.m4a",
+    "name": "powerup_slowmo_out"
+   }
+  ],
+  "subplaylists": [],
+  "file": "_slowmotion.S3DPlayListModel#0.sexp"
+ },
+ "_wok": {
+  "name": "_wok",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_hit_a.m4a",
+    "name": "weapon_melee_wok_hit_a"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_hit_b.m4a",
+    "name": "weapon_melee_wok_hit_b"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_miss_a.m4a",
+    "name": "weapon_melee_wok_miss_a"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_miss_b.m4a",
+    "name": "weapon_melee_wok_miss_b"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_miss_c.m4a",
+    "name": "weapon_melee_wok_miss_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "_wok.S3DPlayListModel#0.sexp"
+ },
+ "airstrike": {
+  "name": "airstrike",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/powerup/airstrike/airstrike_announce.m4a",
+    "name": "airstrike_announce"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_a_SPA.m4a",
+    "name": "airstrike_explosion_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_b_SPA.m4a",
+    "name": "airstrike_explosion_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_c_SPA.m4a",
+    "name": "airstrike_explosion_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_d_SPA.m4a",
+    "name": "airstrike_explosion_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_e_SPA.m4a",
+    "name": "airstrike_explosion_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_f_SPA.m4a",
+    "name": "airstrike_explosion_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_g_SPA.m4a",
+    "name": "airstrike_explosion_g_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_h_SPA.m4a",
+    "name": "airstrike_explosion_h_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/airstrike/airstrike_explosion_i_SPA.m4a",
+    "name": "airstrike_explosion_i_SPA"
+   },
+   {
+    "file": "sounds/powerup/airstrike/airstrike_plane.m4a",
+    "name": "airstrike_plane"
+   }
+  ],
+  "subplaylists": [],
+  "file": "airstrike.S3DPlayListModel#0.sexp"
+ },
+ "ambient_arena": {
+  "name": "ambient_arena",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_arena/arena_ambient.m4a",
+    "name": "arena_ambient"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_arena.S3DPlayListModel#0.sexp"
+ },
+ "ambient_beach": {
+  "name": "ambient_beach",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "preload": true,
+    "file": "sounds/ambient/ambient_beach/beach_ambient_PRE.m4a",
+    "name": "beach_ambient_PRE"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_beach/beach_stationaryobject_SPA_1.m4a",
+    "name": "beach_stationaryobject_SPA_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_beach.S3DPlayListModel#0.sexp"
+ },
+ "ambient_cave": {
+  "name": "ambient_cave",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_cave/cave_ambient.m4a",
+    "name": "cave_ambient"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_cave/cave_stationaryobject_SPA_1.m4a",
+    "name": "cave_stationaryobject_SPA_1"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_cave/cave_stationaryobject_SPA_2.m4a",
+    "name": "cave_stationaryobject_SPA_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_cave.S3DPlayListModel#0.sexp"
+ },
+ "ambient_city": {
+  "name": "ambient_city",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_city/crucial_town_ambience.m4a",
+    "name": "crucial_town_ambience"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_city.S3DPlayListModel#0.sexp"
+ },
+ "ambient_factory": {
+  "name": "ambient_factory",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "preload": true,
+    "file": "sounds/ambient/ambient_factory/factory_ambient_PRE.m4a",
+    "name": "factory_ambient_PRE"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_factory/factory_stationaryobject_SPA_1.m4a",
+    "name": "factory_stationaryobject_SPA_1"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_factory/factory_stationaryobject_SPA_2.m4a",
+    "name": "factory_stationaryobject_SPA_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_factory.S3DPlayListModel#0.sexp"
+ },
+ "ambient_foundr": {
+  "name": "ambient_foundr",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/BASE_bubbles_SPA.m4a",
+    "name": "BASE_bubbles_SPA"
+   },
+   {
+    "file": "sounds/ambient/ambient_foundry/foundry_ambient.m4a",
+    "name": "foundry_ambient"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_crow_a_SPA.m4a",
+    "name": "RANDOM_crow_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_crow_b_SPA.m4a",
+    "name": "RANDOM_crow_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_gears_b_SPA.m4a",
+    "name": "RANDOM_gears_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_steam_a_SPA.m4a",
+    "name": "RANDOM_steam_a_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_foundr.S3DPlayListModel#0.sexp"
+ },
+ "ambient_foundry": {
+  "name": "ambient_foundry",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/BASE_bubbles_SPA.m4a",
+    "name": "BASE_bubbles_SPA"
+   },
+   {
+    "file": "sounds/ambient/ambient_foundry/foundry_ambient.m4a",
+    "name": "foundry_ambient"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_AirValve_SPA.m4a",
+    "name": "RANDOM_Foundry_AirValve_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_Cans_a_SPA.m4a",
+    "name": "RANDOM_Foundry_Cans_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_Cans_b_SPA.m4a",
+    "name": "RANDOM_Foundry_Cans_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_Conveyor_a_SPA.m4a",
+    "name": "RANDOM_Foundry_Conveyor_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_Fan_a_SPA.m4a",
+    "name": "RANDOM_Foundry_Fan_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_GlassFootsteps_SPA.m4a",
+    "name": "RANDOM_Foundry_GlassFootsteps_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_Machine_a_SPA.m4a",
+    "name": "RANDOM_Foundry_Machine_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_Machine_c_SPA.m4a",
+    "name": "RANDOM_Foundry_Machine_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_foundry/RANDOM_Foundry_MetalFalling_SPA.m4a",
+    "name": "RANDOM_Foundry_MetalFalling_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_foundry.S3DPlayListModel#0.sexp"
+ },
+ "ambient_ghosttown": {
+  "name": "ambient_ghosttown",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ghosttown/BASE_City_Fire_SPA.m4a",
+    "name": "BASE_City_Fire_SPA"
+   },
+   {
+    "file": "sounds/ambient/ambient_ghosttown/ghosttown_ambient.m4a",
+    "name": "ghosttown_ambient"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ghosttown/RANDOM_City_DistantExplosion_SPA.m4a",
+    "name": "RANDOM_City_DistantExplosion_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ghosttown/RANDOM_City_Dogs_a_SPA.m4a",
+    "name": "RANDOM_City_Dogs_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ghosttown/RANDOM_City_SewerWater_b_SPA.m4a",
+    "name": "RANDOM_City_SewerWater_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ghosttown/RANDOM_City_Siren_SPA.m4a",
+    "name": "RANDOM_City_Siren_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_ghosttown.S3DPlayListModel#0.sexp"
+ },
+ "ambient_lab": {
+  "name": "ambient_lab",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_lab/lab_ambient.m4a",
+    "name": "lab_ambient"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_lab/lab_stationaryobject_SPA_1.m4a",
+    "name": "lab_stationaryobject_SPA_1"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_lab/lab_stationaryobject_SPA_2.m4a",
+    "name": "lab_stationaryobject_SPA_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_lab.S3DPlayListModel#0.sexp"
+ },
+ "ambient_outside": {
+  "name": "ambient_outside",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_outside/outside1_ambient.m4a",
+    "name": "outside1_ambient"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_outside/outside1_stationaryobject_SPA_1.m4a",
+    "name": "outside1_stationaryobject_SPA_1"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_outside/outside1_stationaryobject_SPA_2.m4a",
+    "name": "outside1_stationaryobject_SPA_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_outside.S3DPlayListModel#0.sexp"
+ },
+ "ambient_roman": {
+  "name": "ambient_roman",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_roman/ambient_amphitheatre.m4a",
+    "name": "ambient_amphitheatre"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/BASE_amphitheatre_pyre_SPA.m4a",
+    "name": "BASE_amphitheatre_pyre_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_crumbling_a_SPA.m4a",
+    "name": "RANDOM_amphitheatre_crumbling_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_crumbling_b_SPA.m4a",
+    "name": "RANDOM_amphitheatre_crumbling_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_crumbling_c_SPA.m4a",
+    "name": "RANDOM_amphitheatre_crumbling_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_dustydebris_a_SPA.m4a",
+    "name": "RANDOM_amphitheatre_dustydebris_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_dustydebris_b_SPA.m4a",
+    "name": "RANDOM_amphitheatre_dustydebris_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_dustydebris_d_SPA.m4a",
+    "name": "RANDOM_amphitheatre_dustydebris_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_flag_SPA.m4a",
+    "name": "RANDOM_amphitheatre_flag_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_gust_SPA.m4a",
+    "name": "RANDOM_amphitheatre_gust_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_roman/RANDOM_amphitheatre_rock_SPA.m4a",
+    "name": "RANDOM_amphitheatre_rock_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_roman.S3DPlayListModel#0.sexp"
+ },
+ "ambient_ruin": {
+  "name": "ambient_ruin",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_ruin/ruins_ambient.m4a",
+    "name": "ruins_ambient"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruin/ruins_stationaryobject_SPA_1.m4a",
+    "name": "ruins_stationaryobject_SPA_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_ruin.S3DPlayListModel#0.sexp"
+ },
+ "ambient_ruins": {
+  "name": "ambient_ruins",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/BASE_Ruins_Waterfall_SPA.m4a",
+    "name": "BASE_Ruins_Waterfall_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_DistantHowl_SPA.m4a",
+    "name": "RANDOM_Ruins_DistantHowl_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_DustyEarthDebris_SPA.m4a",
+    "name": "RANDOM_Ruins_DustyEarthDebris_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_Frogs_SPA.m4a",
+    "name": "RANDOM_Ruins_Frogs_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_GustOfWind_SPA.m4a",
+    "name": "RANDOM_Ruins_GustOfWind_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_Insect_a_SPA.m4a",
+    "name": "RANDOM_Ruins_Insect_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_Insect_b_SPA.m4a",
+    "name": "RANDOM_Ruins_Insect_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_Insect_c_SPA.m4a",
+    "name": "RANDOM_Ruins_Insect_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_Monkeys_a_SPA.m4a",
+    "name": "RANDOM_Ruins_Monkeys_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_ruins/RANDOM_Ruins_Monkeys_b_SPA.m4a",
+    "name": "RANDOM_Ruins_Monkeys_b_SPA"
+   },
+   {
+    "file": "sounds/ambient/ambient_ruins/ruins_ambient.m4a",
+    "name": "ruins_ambient"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_ruins.S3DPlayListModel#0.sexp"
+ },
+ "ambient_storm": {
+  "name": "ambient_storm",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_storm/storm_ambient.m4a",
+    "name": "storm_ambient"
+   },
+   {
+    "file": "sounds/ambient/ambient_storm/thunder_high_a.m4a",
+    "name": "thunder_high_a"
+   },
+   {
+    "file": "sounds/ambient/ambient_storm/thunder_high_b.m4a",
+    "name": "thunder_high_b"
+   },
+   {
+    "file": "sounds/ambient/ambient_storm/thunder_high_c.m4a",
+    "name": "thunder_high_c"
+   },
+   {
+    "file": "sounds/ambient/ambient_storm/thunder_high_d.m4a",
+    "name": "thunder_high_d"
+   },
+   {
+    "file": "sounds/ambient/ambient_storm/thunder_high_e.m4a",
+    "name": "thunder_high_e"
+   },
+   {
+    "file": "sounds/ambient/ambient_storm/thunder_low_a.m4a",
+    "name": "thunder_low_a"
+   },
+   {
+    "file": "sounds/ambient/ambient_storm/thunder_low_b.m4a",
+    "name": "thunder_low_b"
+   },
+   {
+    "file": "sounds/ambient/ambient_storm/thunder_low_c.m4a",
+    "name": "thunder_low_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_storm.S3DPlayListModel#0.sexp"
+ },
+ "ambient_warehouse": {
+  "name": "ambient_warehouse",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/ambient_warehouse/warehouse1_ambient.m4a",
+    "name": "warehouse1_ambient"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_warehouse/warehouse1_stationaryobject_SPA_1.m4a",
+    "name": "warehouse1_stationaryobject_SPA_1"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/ambient/ambient_warehouse/warehouse1_stationaryobject_SPA_2.m4a",
+    "name": "warehouse1_stationaryobject_SPA_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "ambient_warehouse.S3DPlayListModel#0.sexp"
+ },
+ "announcer": {
+  "name": "announcer",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/announcer/announcer_outofammo_c.m4a",
+    "name": "announcer_outofammo_c"
+   },
+   {
+    "file": "sounds/announcer/announcer_reload_b.m4a",
+    "name": "announcer_reload_b"
+   },
+   {
+    "file": "sounds/announcer/announcer_reload_g.m4a",
+    "name": "announcer_reload_g"
+   },
+   {
+    "file": "sounds/announcer/announcer_revive_a.m4a",
+    "name": "announcer_revive_a"
+   },
+   {
+    "file": "sounds/announcer/announcer_revive_b.m4a",
+    "name": "announcer_revive_b"
+   },
+   {
+    "file": "sounds/announcer/announcer_reviveyes.m4a",
+    "name": "announcer_reviveyes"
+   },
+   {
+    "file": "sounds/announcer/fireworks_announce_b.m4a",
+    "name": "fireworks_announce_b"
+   },
+   {
+    "file": "sounds/announcer/minigun_announce_c.m4a",
+    "name": "minigun_announce_c"
+   },
+   {
+    "file": "sounds/announcer/tesla_announce_a.m4a",
+    "name": "tesla_announce_a"
+   },
+   {
+    "file": "sounds/announcer/tornado_announce_a.m4a",
+    "name": "tornado_announce_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "announcer.S3DPlayListModel#0.sexp"
+ },
+ "banjo": {
+  "name": "banjo",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/banjo/weapon_melee_banjo_hit_a.m4a",
+    "name": "weapon_melee_banjo_hit_a"
+   },
+   {
+    "file": "sounds/_weapons/banjo/weapon_melee_banjo_hit_b.m4a",
+    "name": "weapon_melee_banjo_hit_b"
+   },
+   {
+    "file": "sounds/_weapons/banjo/weapon_melee_banjo_hit_c.m4a",
+    "name": "weapon_melee_banjo_hit_c"
+   },
+   {
+    "file": "sounds/_weapons/banjo/weapon_melee_banjo_hit_d.m4a",
+    "name": "weapon_melee_banjo_hit_d"
+   },
+   {
+    "file": "sounds/_weapons/banjo/weapon_melee_banjo_miss_a.m4a",
+    "name": "weapon_melee_banjo_miss_a"
+   },
+   {
+    "file": "sounds/_weapons/banjo/weapon_melee_banjo_miss_b.m4a",
+    "name": "weapon_melee_banjo_miss_b"
+   },
+   {
+    "file": "sounds/_weapons/banjo/weapon_melee_banjo_miss_c.m4a",
+    "name": "weapon_melee_banjo_miss_c"
+   },
+   {
+    "file": "sounds/_weapons/banjo/weapon_melee_banjo_miss_d.m4a",
+    "name": "weapon_melee_banjo_miss_d"
+   }
+  ],
+  "subplaylists": [],
+  "file": "banjo.S3DPlayListModel#0.sexp"
+ },
+ "baseball_bat": {
+  "name": "baseball_bat",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/baseball_bat/melee_baseball_bat_hit_a.m4a",
+    "name": "melee_baseball_bat_hit_a"
+   },
+   {
+    "file": "sounds/_weapons/baseball_bat/melee_baseball_bat_hit_b.m4a",
+    "name": "melee_baseball_bat_hit_b"
+   },
+   {
+    "file": "sounds/_weapons/baseball_bat/melee_baseball_bat_miss_a.mp3",
+    "name": "melee_baseball_bat_miss_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "baseball_bat.S3DPlayListModel#0.sexp"
+ },
+ "bastard_tutorial_4_1": {
+  "name": "bastard_tutorial_4_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [],
+  "file": "bastard_tutorial_4_1.S3DPlayListModel#0.sexp"
+ },
+ "bastard_tutorial_4_3": {
+  "name": "bastard_tutorial_4_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [],
+  "file": "bastard_tutorial_4_3.S3DPlayListModel#0.sexp"
+ },
+ "bazooka": {
+  "name": "bazooka",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_empty.m4a",
+    "name": "weapon_gun_bazooka_empty"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_explosion_a_SPA.m4a",
+    "name": "weapon_gun_bazooka_explosion_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_explosion_b_SPA.m4a",
+    "name": "weapon_gun_bazooka_explosion_b_SPA"
+   },
+   {
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_fire_a.m4a",
+    "name": "weapon_gun_bazooka_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_fire_b.m4a",
+    "name": "weapon_gun_bazooka_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_move_a.m4a",
+    "name": "weapon_gun_bazooka_move_a"
+   },
+   {
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_move_b.m4a",
+    "name": "weapon_gun_bazooka_move_b"
+   },
+   {
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_reloadfull.m4a",
+    "name": "weapon_gun_bazooka_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/bazooka/weapon_gun_bazooka_voice.m4a",
+    "name": "weapon_gun_bazooka_voice"
+   }
+  ],
+  "subplaylists": [],
+  "file": "bazooka.S3DPlayListModel#0.sexp"
+ },
+ "brick_with_sound": {
+  "name": "brick_with_sound",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/bricks/brick_with_sound/tutorial_sound_1.m4a",
+    "name": "tutorial_sound_1"
+   },
+   {
+    "file": "sounds/bricks/brick_with_sound/tutorial_sound_2.m4a",
+    "name": "tutorial_sound_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "brick_with_sound.S3DPlayListModel#0.sexp"
+ },
+ "buttons": {
+  "name": "buttons",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/menu/buttons/back_button.m4a",
+    "name": "back_button"
+   },
+   {
+    "file": "sounds/menu/buttons/click_button.m4a",
+    "name": "click_button"
+   },
+   {
+    "file": "sounds/menu/buttons/popup_appeared.m4a",
+    "name": "popup_appeared"
+   },
+   {
+    "file": "sounds/menu/buttons/start_button.m4a",
+    "name": "start_button"
+   },
+   {
+    "file": "sounds/menu/buttons/start_level_button.m4a",
+    "name": "start_level_button"
+   }
+  ],
+  "subplaylists": [],
+  "file": "buttons.S3DPlayListModel#0.sexp"
+ },
+ "claymore": {
+  "name": "claymore",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/claymore/weapon_melee_claymore_hit_a.m4a",
+    "name": "weapon_melee_claymore_hit_a"
+   },
+   {
+    "file": "sounds/_weapons/claymore/weapon_melee_claymore_hit_b.m4a",
+    "name": "weapon_melee_claymore_hit_b"
+   },
+   {
+    "file": "sounds/_weapons/claymore/weapon_melee_claymore_hit_c.m4a",
+    "name": "weapon_melee_claymore_hit_c"
+   },
+   {
+    "file": "sounds/_weapons/claymore/weapon_melee_claymore_miss_a.m4a",
+    "name": "weapon_melee_claymore_miss_a"
+   },
+   {
+    "file": "sounds/_weapons/claymore/weapon_melee_claymore_miss_b.m4a",
+    "name": "weapon_melee_claymore_miss_b"
+   },
+   {
+    "file": "sounds/_weapons/claymore/weapon_melee_claymore_miss_c.m4a",
+    "name": "weapon_melee_claymore_miss_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "claymore.S3DPlayListModel#0.sexp"
+ },
+ "demo_mode_1": {
+  "name": "demo_mode_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/demo_mode_1/announcer_tutorial_melee_buttonMode.m4a",
+    "name": "announcer_tutorial_melee_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/announcer_tutorial_melee_gestureMode.m4a",
+    "name": "announcer_tutorial_melee_gestureMode"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/announcer_tutorial_reload_buttonMode.m4a",
+    "name": "announcer_tutorial_reload_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/announcer_tutorial_reload_gestureMode.m4a",
+    "name": "announcer_tutorial_reload_gestureMode"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/announcer_tutorial_switch_buttonMode.m4a",
+    "name": "announcer_tutorial_switch_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/announcer_tutorial_switch_gestureMode.m4a",
+    "name": "announcer_tutorial_switch_gestureMode"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/demo_bastard_1.m4a",
+    "name": "demo_bastard_1"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/demo_bastard_2.m4a",
+    "name": "demo_bastard_2"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/demo_bastard_3.m4a",
+    "name": "demo_bastard_3"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/demo_bastard_4.m4a",
+    "name": "demo_bastard_4"
+   },
+   {
+    "file": "sounds/challenges/demo_mode_1/demo_bastard_5.m4a",
+    "name": "demo_bastard_5"
+   }
+  ],
+  "subplaylists": [],
+  "file": "demo_mode_1.S3DPlayListModel#0.sexp"
+ },
+ "encyclopedia": {
+  "name": "encyclopedia",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/encyclopedia/Berserk.m4a",
+    "name": "Berserk"
+   },
+   {
+    "file": "sounds/encyclopedia/Chainsaw.m4a",
+    "name": "Chainsaw"
+   },
+   {
+    "file": "sounds/encyclopedia/Clown.m4a",
+    "name": "Clown"
+   },
+   {
+    "file": "sounds/encyclopedia/Colossus.m4a",
+    "name": "Colossus"
+   },
+   {
+    "file": "sounds/encyclopedia/Diamond.m4a",
+    "name": "Diamond"
+   },
+   {
+    "file": "sounds/encyclopedia/Dodge.m4a",
+    "name": "Dodge"
+   },
+   {
+    "file": "sounds/encyclopedia/Farty.m4a",
+    "name": "Farty"
+   },
+   {
+    "file": "sounds/encyclopedia/Hulk.m4a",
+    "name": "Hulk"
+   },
+   {
+    "file": "sounds/encyclopedia/locked_Berserk.m4a",
+    "name": "locked_Berserk"
+   },
+   {
+    "file": "sounds/encyclopedia/locked_Colossus.m4a",
+    "name": "locked_Colossus"
+   },
+   {
+    "file": "sounds/encyclopedia/locked_Dodge.m4a",
+    "name": "locked_Dodge"
+   },
+   {
+    "file": "sounds/encyclopedia/locked_Farty.m4a",
+    "name": "locked_Farty"
+   },
+   {
+    "file": "sounds/encyclopedia/locked_QuietZombie.m4a",
+    "name": "locked_QuietZombie"
+   },
+   {
+    "file": "sounds/encyclopedia/locked_Shield.m4a",
+    "name": "locked_Shield"
+   },
+   {
+    "file": "sounds/encyclopedia/QuietZombie.m4a",
+    "name": "QuietZombie"
+   },
+   {
+    "file": "sounds/encyclopedia/Runner.m4a",
+    "name": "Runner"
+   },
+   {
+    "file": "sounds/encyclopedia/Shield.m4a",
+    "name": "Shield"
+   },
+   {
+    "file": "sounds/encyclopedia/WeakZombieB.m4a",
+    "name": "WeakZombieB"
+   },
+   {
+    "file": "sounds/encyclopedia/Zombie.m4a",
+    "name": "Zombie"
+   }
+  ],
+  "subplaylists": [],
+  "file": "encyclopedia.S3DPlayListModel#0.sexp"
+ },
+ "enemiesAmbiant": {
+  "name": "enemiesAmbiant",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/ambient/enemiesAmbiant/Chainsaw_ambiant.m4a",
+    "name": "Chainsaw_ambiant"
+   },
+   {
+    "file": "sounds/ambient/enemiesAmbiant/Dodger_ambiant.m4a",
+    "name": "Dodger_ambiant"
+   },
+   {
+    "file": "sounds/ambient/enemiesAmbiant/Horde_ambiant.m4a",
+    "name": "Horde_ambiant"
+   },
+   {
+    "file": "sounds/ambient/enemiesAmbiant/Hulk_ambiant.m4a",
+    "name": "Hulk_ambiant"
+   },
+   {
+    "file": "sounds/ambient/enemiesAmbiant/Silence_ambiant.m4a",
+    "name": "Silence_ambiant"
+   },
+   {
+    "file": "sounds/ambient/enemiesAmbiant/Whisperer_ambiant.m4a",
+    "name": "Whisperer_ambiant"
+   }
+  ],
+  "subplaylists": [],
+  "file": "enemiesAmbiant.S3DPlayListModel#0.sexp"
+ },
+ "enemy_zombie_1": {
+  "name": "enemy_zombie_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_1/enemy_zombie_1_aggressive_SPA.m4a",
+    "name": "enemy_zombie_1_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_1/enemy_zombie_1_approach_SPA.m4a",
+    "name": "enemy_zombie_1_approach_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_1/enemy_zombie_1_attack_SPA.m4a",
+    "name": "enemy_zombie_1_attack_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_1/enemy_zombie_1_death_SPA.m4a",
+    "name": "enemy_zombie_1_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_1/enemy_zombie_1_hit_SPA_a.m4a",
+    "name": "enemy_zombie_1_hit_SPA_a"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_1/enemy_zombie_1_hit_SPA_b.m4a",
+    "name": "enemy_zombie_1_hit_SPA_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_1/enemy_zombie_1_hit_SPA_c.m4a",
+    "name": "enemy_zombie_1_hit_SPA_c"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_1/enemy_zombie_1_spawn_SPA.m4a",
+    "name": "enemy_zombie_1_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "enemy_zombie_1.S3DPlayListModel#0.sexp"
+ },
+ "enemy_zombie_2": {
+  "name": "enemy_zombie_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_2/enemy_zombie_2_aggressive_SPA.m4a",
+    "name": "enemy_zombie_2_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_2/enemy_zombie_2_approach_SPA.m4a",
+    "name": "enemy_zombie_2_approach_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_2/enemy_zombie_2_attack_SPA.m4a",
+    "name": "enemy_zombie_2_attack_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_2/enemy_zombie_2_death_SPA.m4a",
+    "name": "enemy_zombie_2_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_2/enemy_zombie_2_hit_SPA_a.m4a",
+    "name": "enemy_zombie_2_hit_SPA_a"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_2/enemy_zombie_2_hit_SPA_b.m4a",
+    "name": "enemy_zombie_2_hit_SPA_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_2/enemy_zombie_2_hit_SPA_c.m4a",
+    "name": "enemy_zombie_2_hit_SPA_c"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_2/enemy_zombie_2_spawn_SPA.m4a",
+    "name": "enemy_zombie_2_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "enemy_zombie_2.S3DPlayListModel#0.sexp"
+ },
+ "enemy_zombie_3": {
+  "name": "enemy_zombie_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_3/enemy_zombie_3_aggressive_SPA.m4a",
+    "name": "enemy_zombie_3_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_3/enemy_zombie_3_approach_SPA.m4a",
+    "name": "enemy_zombie_3_approach_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_3/enemy_zombie_3_attack_SPA.m4a",
+    "name": "enemy_zombie_3_attack_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_3/enemy_zombie_3_death_SPA.m4a",
+    "name": "enemy_zombie_3_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_3/enemy_zombie_3_hit_SPA_a.m4a",
+    "name": "enemy_zombie_3_hit_SPA_a"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_3/enemy_zombie_3_hit_SPA_b.m4a",
+    "name": "enemy_zombie_3_hit_SPA_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_3/enemy_zombie_3_hit_SPA_c.m4a",
+    "name": "enemy_zombie_3_hit_SPA_c"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_3/enemy_zombie_3_spawn_SPA.m4a",
+    "name": "enemy_zombie_3_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "enemy_zombie_3.S3DPlayListModel#0.sexp"
+ },
+ "enemy_zombie_4": {
+  "name": "enemy_zombie_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_4/enemy_zombie_4_aggressive_SPA.m4a",
+    "name": "enemy_zombie_4_aggressive_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_4/enemy_zombie_4_approach_SPA.m4a",
+    "name": "enemy_zombie_4_approach_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_4/enemy_zombie_4_attack_SPA.m4a",
+    "name": "enemy_zombie_4_attack_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_4/enemy_zombie_4_death_SPA.m4a",
+    "name": "enemy_zombie_4_death_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_4/enemy_zombie_4_hit_SPA_a.m4a",
+    "name": "enemy_zombie_4_hit_SPA_a"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_4/enemy_zombie_4_hit_SPA_b.m4a",
+    "name": "enemy_zombie_4_hit_SPA_b"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_4/enemy_zombie_4_hit_SPA_c.m4a",
+    "name": "enemy_zombie_4_hit_SPA_c"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/enemy_zombie_4/enemy_zombie_4_spawn_SPA.m4a",
+    "name": "enemy_zombie_4_spawn_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "enemy_zombie_4.S3DPlayListModel#0.sexp"
+ },
+ "fireworks": {
+  "name": "fireworks",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/powerup/fireworks/fireworks_announce.m4a",
+    "name": "fireworks_announce"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/fireworks/fireworks_explode_a_SPA.m4a",
+    "name": "fireworks_explode_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/fireworks/fireworks_explode_b_SPA.m4a",
+    "name": "fireworks_explode_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/fireworks/fireworks_explode_c_SPA.m4a",
+    "name": "fireworks_explode_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/fireworks/fireworks_explode_d_SPA.m4a",
+    "name": "fireworks_explode_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/fireworks/fireworks_explode_e_SPA.m4a",
+    "name": "fireworks_explode_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/fireworks/fireworks_explode_f_SPA.m4a",
+    "name": "fireworks_explode_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/fireworks/fireworks_explode_g_SPA.m4a",
+    "name": "fireworks_explode_g_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/fireworks/fireworks_explode_h_SPA.m4a",
+    "name": "fireworks_explode_h_SPA"
+   },
+   {
+    "file": "sounds/powerup/fireworks/fireworks_launch.m4a",
+    "name": "fireworks_launch"
+   }
+  ],
+  "subplaylists": [],
+  "file": "fireworks.S3DPlayListModel#0.sexp"
+ },
+ "gameover": {
+  "name": "gameover",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/gameover/bastard_gameover_a.m4a",
+    "name": "bastard_gameover_a"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_b.m4a",
+    "name": "bastard_gameover_b"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_c.m4a",
+    "name": "bastard_gameover_c"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_d.m4a",
+    "name": "bastard_gameover_d"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_e.m4a",
+    "name": "bastard_gameover_e"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_f.m4a",
+    "name": "bastard_gameover_f"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_g.m4a",
+    "name": "bastard_gameover_g"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_h.m4a",
+    "name": "bastard_gameover_h"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_i.m4a",
+    "name": "bastard_gameover_i"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_j.m4a",
+    "name": "bastard_gameover_j"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_k.m4a",
+    "name": "bastard_gameover_k"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_l.m4a",
+    "name": "bastard_gameover_l"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_m.m4a",
+    "name": "bastard_gameover_m"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_n.m4a",
+    "name": "bastard_gameover_n"
+   },
+   {
+    "file": "sounds/gameover/bastard_gameover_o.m4a",
+    "name": "bastard_gameover_o"
+   }
+  ],
+  "subplaylists": [],
+  "file": "gameover.S3DPlayListModel#0.sexp"
+ },
+ "gameover_1": {
+  "name": "gameover_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/gameover_1/bastard_gameover_a.m4a",
+    "name": "bastard_gameover_a"
+   },
+   {
+    "file": "sounds/gameover_1/bastard_gameover_b.m4a",
+    "name": "bastard_gameover_b"
+   },
+   {
+    "file": "sounds/gameover_1/bastard_gameover_c.m4a",
+    "name": "bastard_gameover_c"
+   },
+   {
+    "file": "sounds/gameover_1/bastard_gameover_d.m4a",
+    "name": "bastard_gameover_d"
+   },
+   {
+    "file": "sounds/gameover_1/bastard_gameover_e.m4a",
+    "name": "bastard_gameover_e"
+   }
+  ],
+  "subplaylists": [],
+  "file": "gameover_1.S3DPlayListModel#0.sexp"
+ },
+ "gameover_2": {
+  "name": "gameover_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/gameover_2/bastard_gameover_f.m4a",
+    "name": "bastard_gameover_f"
+   },
+   {
+    "file": "sounds/gameover_2/bastard_gameover_g.m4a",
+    "name": "bastard_gameover_g"
+   },
+   {
+    "file": "sounds/gameover_2/bastard_gameover_h.m4a",
+    "name": "bastard_gameover_h"
+   },
+   {
+    "file": "sounds/gameover_2/bastard_gameover_i.m4a",
+    "name": "bastard_gameover_i"
+   },
+   {
+    "file": "sounds/gameover_2/bastard_gameover_j.m4a",
+    "name": "bastard_gameover_j"
+   }
+  ],
+  "subplaylists": [],
+  "file": "gameover_2.S3DPlayListModel#0.sexp"
+ },
+ "gameover_3": {
+  "name": "gameover_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/gameover_3/bastard_gameover_k.m4a",
+    "name": "bastard_gameover_k"
+   },
+   {
+    "file": "sounds/gameover_3/bastard_gameover_l.m4a",
+    "name": "bastard_gameover_l"
+   },
+   {
+    "file": "sounds/gameover_3/bastard_gameover_m.m4a",
+    "name": "bastard_gameover_m"
+   },
+   {
+    "file": "sounds/gameover_3/bastard_gameover_n.m4a",
+    "name": "bastard_gameover_n"
+   },
+   {
+    "file": "sounds/gameover_3/bastard_gameover_o.m4a",
+    "name": "bastard_gameover_o"
+   }
+  ],
+  "subplaylists": [],
+  "file": "gameover_3.S3DPlayListModel#0.sexp"
+ },
+ "golf": {
+  "name": "golf",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/golf/weapon_melee_golf_hit_a.m4a",
+    "name": "weapon_melee_golf_hit_a"
+   },
+   {
+    "file": "sounds/_weapons/golf/weapon_melee_golf_hit_b.m4a",
+    "name": "weapon_melee_golf_hit_b"
+   },
+   {
+    "file": "sounds/_weapons/golf/weapon_melee_golf_hit_c.m4a",
+    "name": "weapon_melee_golf_hit_c"
+   },
+   {
+    "file": "sounds/_weapons/golf/weapon_melee_golf_miss_a.m4a",
+    "name": "weapon_melee_golf_miss_a"
+   },
+   {
+    "file": "sounds/_weapons/golf/weapon_melee_golf_miss_b.m4a",
+    "name": "weapon_melee_golf_miss_b"
+   },
+   {
+    "file": "sounds/_weapons/golf/weapon_melee_golf_miss_c.m4a",
+    "name": "weapon_melee_golf_miss_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "golf.S3DPlayListModel#0.sexp"
+ },
+ "grenade": {
+  "name": "grenade",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_empty.m4a",
+    "name": "weapon_gun_grenade_empty"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_explosion_a_SPA.m4a",
+    "name": "weapon_gun_grenade_explosion_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_explosion_b_SPA.m4a",
+    "name": "weapon_gun_grenade_explosion_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_explosion_c_SPA.m4a",
+    "name": "weapon_gun_grenade_explosion_c_SPA"
+   },
+   {
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_fire_a.m4a",
+    "name": "weapon_gun_grenade_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_fire_b.m4a",
+    "name": "weapon_gun_grenade_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_fire_c.m4a",
+    "name": "weapon_gun_grenade_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_reloadfull.m4a",
+    "name": "weapon_gun_grenade_reloadfull"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_timer_a_SPA.m4a",
+    "name": "weapon_gun_grenade_timer_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_timer_b_SPA.m4a",
+    "name": "weapon_gun_grenade_timer_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_timer_c_SPA.m4a",
+    "name": "weapon_gun_grenade_timer_c_SPA"
+   },
+   {
+    "file": "sounds/_weapons/grenade/weapon_gun_grenade_voice.m4a",
+    "name": "weapon_gun_grenade_voice"
+   }
+  ],
+  "subplaylists": [],
+  "file": "grenade.S3DPlayListModel#0.sexp"
+ },
+ "headphonesTest": {
+  "name": "headphonesTest",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/headphonesTest/HeadphonesTest.m4a",
+    "name": "HeadphonesTest"
+   }
+  ],
+  "subplaylists": [],
+  "file": "headphonesTest.S3DPlayListModel#0.sexp"
+ },
+ "hunting": {
+  "name": "hunting",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_deploy.m4a",
+    "name": "weapon_gun_hunting_deploy"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_empty.m4a",
+    "name": "weapon_gun_hunting_empty"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_fire_a.m4a",
+    "name": "weapon_gun_hunting_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_fire_b.m4a",
+    "name": "weapon_gun_hunting_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_fire_c.m4a",
+    "name": "weapon_gun_hunting_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_reloadfull.m4a",
+    "name": "weapon_gun_hunting_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_reloadin.m4a",
+    "name": "weapon_gun_hunting_reloadin"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_reloadout.m4a",
+    "name": "weapon_gun_hunting_reloadout"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_voice.m4a",
+    "name": "weapon_gun_hunting_voice"
+   },
+   {
+    "file": "sounds/_weapons/hunting/weapon_gun_hunting_warning.m4a",
+    "name": "weapon_gun_hunting_warning"
+   }
+  ],
+  "subplaylists": [],
+  "file": "hunting.S3DPlayListModel#0.sexp"
+ },
+ "huntingrifle": {
+  "name": "huntingrifle",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_deploy.m4a",
+    "name": "weapon_gun_hunting_deploy"
+   },
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_fire_a.m4a",
+    "name": "weapon_gun_hunting_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_fire_b.m4a",
+    "name": "weapon_gun_hunting_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_fire_c.m4a",
+    "name": "weapon_gun_hunting_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_out.m4a",
+    "name": "weapon_gun_hunting_out"
+   },
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_reloadfull.m4a",
+    "name": "weapon_gun_hunting_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_reloadin.m4a",
+    "name": "weapon_gun_hunting_reloadin"
+   },
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_reloadout.m4a",
+    "name": "weapon_gun_hunting_reloadout"
+   },
+   {
+    "file": "sounds/_weapons/huntingrifle/weapon_gun_hunting_warning.m4a",
+    "name": "weapon_gun_hunting_warning"
+   }
+  ],
+  "subplaylists": [],
+  "file": "huntingrifle.S3DPlayListModel#0.sexp"
+ },
+ "impact": {
+  "name": "impact",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impact_a_SPA.m4a",
+    "name": "impact_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impact_b_SPA.m4a",
+    "name": "impact_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impact_c_SPA.m4a",
+    "name": "impact_c_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impact_d_SPA.m4a",
+    "name": "impact_d_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impact_e_SPA.m4a",
+    "name": "impact_e_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impact_f_SPA.m4a",
+    "name": "impact_f_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impact_g_SPA.m4a",
+    "name": "impact_g_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impactmulti_2_a_SPA.m4a",
+    "name": "impactmulti_2_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impactmulti_3_a_SPA.m4a",
+    "name": "impactmulti_3_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/enemies/impact/impactmulti_4_a_SPA.m4a",
+    "name": "impactmulti_4_a_SPA"
+   },
+   {
+    "file": "sounds/enemies/impact/KillConfirm_v1.m4a",
+    "name": "KillConfirm_v1"
+   },
+   {
+    "file": "sounds/enemies/impact/KillConfirm_v3.m4a",
+    "name": "KillConfirm_v3"
+   },
+   {
+    "file": "sounds/enemies/impact/KillConfirm_v4.m4a",
+    "name": "KillConfirm_v4"
+   },
+   {
+    "file": "sounds/enemies/impact/KillConfirm_v5.m4a",
+    "name": "KillConfirm_v5"
+   }
+  ],
+  "subplaylists": [],
+  "file": "impact.S3DPlayListModel#0.sexp"
+ },
+ "machinegun": {
+  "name": "machinegun",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/machinegun/weapon_gun_machinegun_conti.m4a",
+    "name": "weapon_gun_machinegun_conti"
+   },
+   {
+    "file": "sounds/_weapons/machinegun/weapon_gun_machinegun_deploy.m4a",
+    "name": "weapon_gun_machinegun_deploy"
+   },
+   {
+    "file": "sounds/_weapons/machinegun/weapon_gun_machinegun_fire_a.m4a",
+    "name": "weapon_gun_machinegun_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/machinegun/weapon_gun_machinegun_reloadfull.m4a",
+    "name": "weapon_gun_machinegun_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/machinegun/weapon_gun_machinegun_tail.m4a",
+    "name": "weapon_gun_machinegun_tail"
+   },
+   {
+    "file": "sounds/_weapons/machinegun/weapon_gun_machinegun_voice.m4a",
+    "name": "weapon_gun_machinegun_voice"
+   },
+   {
+    "file": "sounds/_weapons/machinegun/weapon_gun_machinegun_warning_b.m4a",
+    "name": "weapon_gun_machinegun_warning_b"
+   },
+   {
+    "file": "sounds/_weapons/machinegun/weapon_gun_machinegun_warningloop_d.m4a",
+    "name": "weapon_gun_machinegun_warningloop_d"
+   }
+  ],
+  "subplaylists": [],
+  "file": "machinegun.S3DPlayListModel#0.sexp"
+ },
+ "main_menu": {
+  "name": "main_menu",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/menu/main_menu/game_over_theme.m4a",
+    "name": "game_over_theme"
+   },
+   {
+    "file": "sounds/menu/main_menu/main_menu_open.m4a",
+    "name": "main_menu_open"
+   },
+   {
+    "file": "sounds/menu/main_menu/main_menu_theme.m4a",
+    "name": "main_menu_theme"
+   }
+  ],
+  "subplaylists": [],
+  "file": "main_menu.S3DPlayListModel#0.sexp"
+ },
+ "maya_10_brick_1": {
+  "name": "maya_10_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_10_brick_1/bastard_zombie_shield_a.m4a",
+    "name": "bastard_zombie_shield_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_10_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_10_brick_2": {
+  "name": "maya_10_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_10_brick_2/bastard_maya_10_2.m4a",
+    "name": "bastard_maya_10_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_10_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "maya_10_brick_3": {
+  "name": "maya_10_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_10_brick_3/bastard_maya_10_3.m4a",
+    "name": "bastard_maya_10_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_10_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "maya_10_brick_4": {
+  "name": "maya_10_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_10_brick_4/bastard_maya_10_4.m4a",
+    "name": "bastard_maya_10_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_10_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "maya_10_brick_5": {
+  "name": "maya_10_brick_5",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [],
+  "file": "maya_10_brick_5.S3DPlayListModel#0.sexp"
+ },
+ "maya_1_brick_1": {
+  "name": "maya_1_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_1_brick_1/bastard_ruins_intro.m4a",
+    "name": "bastard_ruins_intro"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_1_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_1_brick_3": {
+  "name": "maya_1_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_1_brick_3/bastard_maya_1_1.m4a",
+    "name": "bastard_maya_1_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_1_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "maya_2_brick_1": {
+  "name": "maya_2_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_2_brick_1/bastard_passerby_storm_a.m4a",
+    "name": "bastard_passerby_storm_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_2_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_2_brick_3": {
+  "name": "maya_2_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_2_brick_3/bastard_maya_2_2.m4a",
+    "name": "bastard_maya_2_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_2_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "maya_3_brick_1": {
+  "name": "maya_3_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_3_brick_1/bastard_zombie_horde_c.m4a",
+    "name": "bastard_zombie_horde_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_3_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_3_brick_2": {
+  "name": "maya_3_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_3_brick_2/bastard_maya_3_1.m4a",
+    "name": "bastard_maya_3_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_3_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "maya_3_brick_3": {
+  "name": "maya_3_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_3_brick_3/bastard_maya_3_1.m4a",
+    "name": "bastard_maya_3_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_3_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "maya_3_brick_4": {
+  "name": "maya_3_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_3_brick_4/bastard_maya_3_2.m4a",
+    "name": "bastard_maya_3_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_3_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "maya_3_brick_5": {
+  "name": "maya_3_brick_5",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_3_brick_5/bastard_maya_3_2.m4a",
+    "name": "bastard_maya_3_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_3_brick_5.S3DPlayListModel#0.sexp"
+ },
+ "maya_4_brick_1": {
+  "name": "maya_4_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_4_brick_1/bastard_passerby_cows_a.m4a",
+    "name": "bastard_passerby_cows_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_4_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_4_brick_3": {
+  "name": "maya_4_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_4_brick_3/bastard_maya_4_2.m4a",
+    "name": "bastard_maya_4_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_4_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "maya_5_brick_1": {
+  "name": "maya_5_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_5_brick_1/bastard_zombie_whisperer_a.m4a",
+    "name": "bastard_zombie_whisperer_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_5_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_5_brick_2": {
+  "name": "maya_5_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_5_brick_2/bastard_maya_5_2.m4a",
+    "name": "bastard_maya_5_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_5_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "maya_5_brick_4": {
+  "name": "maya_5_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_5_brick_4/bastard_maya_5_3.m4a",
+    "name": "bastard_maya_5_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_5_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "maya_5_brick_5": {
+  "name": "maya_5_brick_5",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_5_brick_5/bastard_maya_5_4.m4a",
+    "name": "bastard_maya_5_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_5_brick_5.S3DPlayListModel#0.sexp"
+ },
+ "maya_6_brick_1": {
+  "name": "maya_6_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_6_brick_1/bastard_maya_6_1.m4a",
+    "name": "bastard_maya_6_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_6_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_6_brick_3": {
+  "name": "maya_6_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_6_brick_3/bastard_maya_6_2.m4a",
+    "name": "bastard_maya_6_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_6_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "maya_6_brick_4": {
+  "name": "maya_6_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_6_brick_4/bastard_maya_6_3.m4a",
+    "name": "bastard_maya_6_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_6_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "maya_7_brick_1": {
+  "name": "maya_7_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_7_brick_1/bastard_maya_7_1.m4a",
+    "name": "bastard_maya_7_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_7_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_7_brick_4": {
+  "name": "maya_7_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_7_brick_4/bastard_maya_7_2.m4a",
+    "name": "bastard_maya_7_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_7_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "maya_8_brick_1": {
+  "name": "maya_8_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_8_brick_1/bastard_zombie_berserk_a.m4a",
+    "name": "bastard_zombie_berserk_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_8_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_8_brick_2": {
+  "name": "maya_8_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_8_brick_2/bastard_maya_8_2.m4a",
+    "name": "bastard_maya_8_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_8_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "maya_8_brick_3": {
+  "name": "maya_8_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_8_brick_3/bastard_maya_8_3.m4a",
+    "name": "bastard_maya_8_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_8_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "maya_8_brick_4": {
+  "name": "maya_8_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_8_brick_4/bastard_maya_8_4.m4a",
+    "name": "bastard_maya_8_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_8_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "maya_9_brick_1": {
+  "name": "maya_9_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_9_brick_1/bastard_maya_9_1.m4a",
+    "name": "bastard_maya_9_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_9_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "maya_9_brick_2": {
+  "name": "maya_9_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [],
+  "file": "maya_9_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "maya_9_brick_3": {
+  "name": "maya_9_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/maya_9_brick_3/bastard_maya_9_2.m4a",
+    "name": "bastard_maya_9_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "maya_9_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "microsmg": {
+  "name": "microsmg",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_conti.m4a",
+    "name": "weapon_gun_microsmg_conti"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_deploy.m4a",
+    "name": "weapon_gun_microsmg_deploy"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_empty_a.m4a",
+    "name": "weapon_gun_microsmg_empty_a"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_empty_b.m4a",
+    "name": "weapon_gun_microsmg_empty_b"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_fire_a.m4a",
+    "name": "weapon_gun_microsmg_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_fire_b.m4a",
+    "name": "weapon_gun_microsmg_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_fire_c.m4a",
+    "name": "weapon_gun_microsmg_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_reloadfull.m4a",
+    "name": "weapon_gun_microsmg_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_tail_a.m4a",
+    "name": "weapon_gun_microsmg_tail_a"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_tail_b.m4a",
+    "name": "weapon_gun_microsmg_tail_b"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_voice.m4a",
+    "name": "weapon_gun_microsmg_voice"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_warning.m4a",
+    "name": "weapon_gun_microsmg_warning"
+   },
+   {
+    "file": "sounds/_weapons/microsmg/weapon_gun_microsmg_warningloop.m4a",
+    "name": "weapon_gun_microsmg_warningloop"
+   }
+  ],
+  "subplaylists": [],
+  "file": "microsmg.S3DPlayListModel#0.sexp"
+ },
+ "minigun": {
+  "name": "minigun",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/powerup/minigun/minigun_announce.m4a",
+    "name": "minigun_announce"
+   },
+   {
+    "file": "sounds/powerup/minigun/minigun_fire_a.m4a",
+    "name": "minigun_fire_a"
+   },
+   {
+    "file": "sounds/powerup/minigun/minigun_fire_b.m4a",
+    "name": "minigun_fire_b"
+   },
+   {
+    "file": "sounds/powerup/minigun/minigun_launch_a.m4a",
+    "name": "minigun_launch_a"
+   },
+   {
+    "file": "sounds/powerup/minigun/minigun_launch_b.m4a",
+    "name": "minigun_launch_b"
+   },
+   {
+    "file": "sounds/powerup/minigun/minigun_tail_a.m4a",
+    "name": "minigun_tail_a"
+   },
+   {
+    "file": "sounds/powerup/minigun/minigun_tail_b.m4a",
+    "name": "minigun_tail_b"
+   }
+  ],
+  "subplaylists": [],
+  "file": "minigun.S3DPlayListModel#0.sexp"
+ },
+ "opener": {
+  "name": "opener",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/opener/AD_OPENER_LIFT_CHAIN_MONO.m4a",
+    "name": "AD_OPENER_LIFT_CHAIN_MONO"
+   },
+   {
+    "file": "sounds/opener/AD_OPENER_LIFT_CREAK_MONO.m4a",
+    "name": "AD_OPENER_LIFT_CREAK_MONO"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_CLOWN_ZOMBIE_SPA.m4a",
+    "name": "OPENER_CLOWN_ZOMBIE_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_COLOSSUS_END_SPA.m4a",
+    "name": "OPENER_COLOSSUS_END_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_DRBASTARD_B_SPA.m4a",
+    "name": "OPENER_DRBASTARD_B_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_DRBASTARD_SPA.m4a",
+    "name": "OPENER_DRBASTARD_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_FIREWORKS_B_SPA.m4a",
+    "name": "OPENER_FIREWORKS_B_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_FIREWORKS_C_SPA.m4a",
+    "name": "OPENER_FIREWORKS_C_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_FIREWORKS_SPA.m4a",
+    "name": "OPENER_FIREWORKS_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_HELICOPTER_SPA.m4a",
+    "name": "OPENER_HELICOPTER_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_HULK_1_SPA.m4a",
+    "name": "OPENER_HULK_1_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_HULK_2_SPA.m4a",
+    "name": "OPENER_HULK_2_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_LIFT_BUTTON_SPA.m4a",
+    "name": "OPENER_LIFT_BUTTON_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_LIFT_DOORS_1_SPA.m4a",
+    "name": "OPENER_LIFT_DOORS_1_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_LIFT_DOORS_2_SPA.m4a",
+    "name": "OPENER_LIFT_DOORS_2_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_LIFT_MUSIC_SPA.m4a",
+    "name": "OPENER_LIFT_MUSIC_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_LIFT_VOICE_1_SPA.m4a",
+    "name": "OPENER_LIFT_VOICE_1_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_LIFT_VOICE_2_SPA.m4a",
+    "name": "OPENER_LIFT_VOICE_2_SPA"
+   },
+   {
+    "file": "sounds/opener/OPENER_STEREO_ATMOS.m4a",
+    "name": "OPENER_STEREO_ATMOS"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/opener/OPENER_WEAK_ZOMBIE_SPA.m4a",
+    "name": "OPENER_WEAK_ZOMBIE_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "opener.S3DPlayListModel#0.sexp"
+ },
+ "pistol": {
+  "name": "pistol",
+  "options": {
+   "preload": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/pistol/weapon_gun_pistol_deploy.m4a",
+    "name": "weapon_gun_pistol_deploy"
+   },
+   {
+    "file": "sounds/_weapons/pistol/weapon_gun_pistol_empty.m4a",
+    "name": "weapon_gun_pistol_empty"
+   },
+   {
+    "file": "sounds/_weapons/pistol/weapon_gun_pistol_fire_a.m4a",
+    "name": "weapon_gun_pistol_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/pistol/weapon_gun_pistol_fire_b.m4a",
+    "name": "weapon_gun_pistol_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/pistol/weapon_gun_pistol_fire_c.m4a",
+    "name": "weapon_gun_pistol_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/pistol/weapon_gun_pistol_reloadfull.m4a",
+    "name": "weapon_gun_pistol_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/pistol/weapon_gun_pistol_voice.m4a",
+    "name": "weapon_gun_pistol_voice"
+   },
+   {
+    "file": "sounds/_weapons/pistol/weapon_gun_pistol_warning.m4a",
+    "name": "weapon_gun_pistol_warning"
+   }
+  ],
+  "subplaylists": [],
+  "file": "pistol.S3DPlayListModel#0.sexp"
+ },
+ "player": {
+  "name": "player",
+  "options": {
+   "repeat": "none",
+   "preload": true
+  },
+  "sounds": [
+   {
+    "file": "sounds/player/heartbeat_a.mp3",
+    "name": "heartbeat_a"
+   },
+   {
+    "file": "sounds/player/heartbeat_b.mp3",
+    "name": "heartbeat_b"
+   },
+   {
+    "file": "sounds/player/heartbeat_c.mp3",
+    "name": "heartbeat_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "player.S3DPlayListModel#0.sexp"
+ },
+ "policeshotgun": {
+  "name": "policeshotgun",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/policeshotgun/weapon_gun_policeshotgun_deploy.m4a",
+    "name": "weapon_gun_policeshotgun_deploy"
+   },
+   {
+    "file": "sounds/_weapons/policeshotgun/weapon_gun_policeshotgun_empty.m4a",
+    "name": "weapon_gun_policeshotgun_empty"
+   },
+   {
+    "file": "sounds/_weapons/policeshotgun/weapon_gun_policeshotgun_fire_a.m4a",
+    "name": "weapon_gun_policeshotgun_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/policeshotgun/weapon_gun_policeshotgun_fire_b.m4a",
+    "name": "weapon_gun_policeshotgun_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/policeshotgun/weapon_gun_policeshotgun_fire_c.m4a",
+    "name": "weapon_gun_policeshotgun_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/policeshotgun/weapon_gun_policeshotgun_reloadfull.m4a",
+    "name": "weapon_gun_policeshotgun_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/policeshotgun/weapon_gun_policeshotgun_voice.m4a",
+    "name": "weapon_gun_policeshotgun_voice"
+   },
+   {
+    "file": "sounds/_weapons/policeshotgun/weapon_gun_policeshotgun_warning.m4a",
+    "name": "weapon_gun_policeshotgun_warning"
+   }
+  ],
+  "subplaylists": [],
+  "file": "policeshotgun.S3DPlayListModel#0.sexp"
+ },
+ "preload": {
+  "name": "preload",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "preload": true,
+    "file": "sounds/ambient/ambient_arena/arena_ambient_PRE.m4a",
+    "name": "arena_ambient_PRE"
+   }
+  ],
+  "subplaylists": [],
+  "file": "preload.S3DPlayListModel#0.sexp"
+ },
+ "prod": {
+  "name": "prod",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/prod/weapon_melee_prod_hit_a.m4a",
+    "name": "weapon_melee_prod_hit_a"
+   },
+   {
+    "file": "sounds/_weapons/prod/weapon_melee_prod_hit_b.m4a",
+    "name": "weapon_melee_prod_hit_b"
+   },
+   {
+    "file": "sounds/_weapons/prod/weapon_melee_prod_hit_c.m4a",
+    "name": "weapon_melee_prod_hit_c"
+   },
+   {
+    "file": "sounds/_weapons/prod/weapon_melee_prod_miss_a.m4a",
+    "name": "weapon_melee_prod_miss_a"
+   },
+   {
+    "file": "sounds/_weapons/prod/weapon_melee_prod_miss_b.m4a",
+    "name": "weapon_melee_prod_miss_b"
+   },
+   {
+    "file": "sounds/_weapons/prod/weapon_melee_prod_miss_c.m4a",
+    "name": "weapon_melee_prod_miss_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "prod.S3DPlayListModel#0.sexp"
+ },
+ "revive": {
+  "name": "revive",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/revive/revive_no.m4a",
+    "name": "revive_no"
+   },
+   {
+    "file": "sounds/revive/revive_standby.m4a",
+    "name": "revive_standby"
+   },
+   {
+    "file": "sounds/revive/revive_yes.m4a",
+    "name": "revive_yes"
+   }
+  ],
+  "subplaylists": [],
+  "file": "revive.S3DPlayListModel#0.sexp"
+ },
+ "roulette_tesla": {
+  "name": "roulette_tesla",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/roulette/tesla/roulette_tesla_SPA.m4a",
+    "name": "roulette_tesla_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "roulette_tesla.S3DPlayListModel#0.sexp"
+ },
+ "sawnoff": {
+  "name": "sawnoff",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_deploy.m4a",
+    "name": "weapon_gun_sawnoff_deploy"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_empty.m4a",
+    "name": "weapon_gun_sawnoff_empty"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_fire_a.m4a",
+    "name": "weapon_gun_sawnoff_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_fire_b.m4a",
+    "name": "weapon_gun_sawnoff_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_fire_c.m4a",
+    "name": "weapon_gun_sawnoff_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_reloadfull.m4a",
+    "name": "weapon_gun_sawnoff_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/sawnoff/weapon_gun_sawnoff_voice.m4a",
+    "name": "weapon_gun_sawnoff_voice"
+   }
+  ],
+  "subplaylists": [],
+  "file": "sawnoff.S3DPlayListModel#0.sexp"
+ },
+ "sonic": {
+  "name": "sonic",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/sonic/weapon_gun_sonic_deploy.m4a",
+    "name": "weapon_gun_sonic_deploy"
+   },
+   {
+    "file": "sounds/_weapons/sonic/weapon_gun_sonic_empty_a.m4a",
+    "name": "weapon_gun_sonic_empty_a"
+   },
+   {
+    "file": "sounds/_weapons/sonic/weapon_gun_sonic_empty_b.m4a",
+    "name": "weapon_gun_sonic_empty_b"
+   },
+   {
+    "file": "sounds/_weapons/sonic/weapon_gun_sonic_fire_a.m4a",
+    "name": "weapon_gun_sonic_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/sonic/weapon_gun_sonic_fire_b.m4a",
+    "name": "weapon_gun_sonic_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/sonic/weapon_gun_sonic_fire_c.m4a",
+    "name": "weapon_gun_sonic_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/sonic/weapon_gun_sonic_reloadfull.m4a",
+    "name": "weapon_gun_sonic_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/sonic/weapon_gun_sonic_voice.m4a",
+    "name": "weapon_gun_sonic_voice"
+   }
+  ],
+  "subplaylists": [],
+  "file": "sonic.S3DPlayListModel#0.sexp"
+ },
+ "sword": {
+  "name": "sword",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/sword/weapon_melee_sword_hit_a.m4a",
+    "name": "weapon_melee_sword_hit_a"
+   },
+   {
+    "file": "sounds/_weapons/sword/weapon_melee_sword_hit_b.m4a",
+    "name": "weapon_melee_sword_hit_b"
+   },
+   {
+    "file": "sounds/_weapons/sword/weapon_melee_sword_hit_c.m4a",
+    "name": "weapon_melee_sword_hit_c"
+   },
+   {
+    "file": "sounds/_weapons/sword/weapon_melee_sword_miss_a.m4a",
+    "name": "weapon_melee_sword_miss_a"
+   },
+   {
+    "file": "sounds/_weapons/sword/weapon_melee_sword_miss_b.m4a",
+    "name": "weapon_melee_sword_miss_b"
+   },
+   {
+    "file": "sounds/_weapons/sword/weapon_melee_sword_miss_c.m4a",
+    "name": "weapon_melee_sword_miss_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "sword.S3DPlayListModel#0.sexp"
+ },
+ "tactical": {
+  "name": "tactical",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_conti.m4a",
+    "name": "weapon_gun_tactical_conti"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_deploy.m4a",
+    "name": "weapon_gun_tactical_deploy"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_empty_a.m4a",
+    "name": "weapon_gun_tactical_empty_a"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_fire_a.m4a",
+    "name": "weapon_gun_tactical_fire_a"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_fire_b.m4a",
+    "name": "weapon_gun_tactical_fire_b"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_fire_c.m4a",
+    "name": "weapon_gun_tactical_fire_c"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_reloadfull.m4a",
+    "name": "weapon_gun_tactical_reloadfull"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_tail_a.m4a",
+    "name": "weapon_gun_tactical_tail_a"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_voice.m4a",
+    "name": "weapon_gun_tactical_voice"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_warning.m4a",
+    "name": "weapon_gun_tactical_warning"
+   },
+   {
+    "file": "sounds/_weapons/tactical/weapon_gun_tactical_warningloop.m4a",
+    "name": "weapon_gun_tactical_warningloop"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tactical.S3DPlayListModel#0.sexp"
+ },
+ "tarot": {
+  "name": "tarot",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/menu/tarot/flip_card_a.m4a",
+    "name": "flip_card_a"
+   },
+   {
+    "file": "sounds/menu/tarot/flip_card_b.m4a",
+    "name": "flip_card_b"
+   },
+   {
+    "file": "sounds/menu/tarot/flip_card_c.m4a",
+    "name": "flip_card_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tarot.S3DPlayListModel#0.sexp"
+ },
+ "tesla": {
+  "name": "tesla",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "spatialized": true,
+    "file": "sounds/roulette/tesla/roulette_tesla_SPA.m4a",
+    "name": "roulette_tesla_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tesla.S3DPlayListModel#0.sexp"
+ },
+ "tesla_powerup": {
+  "name": "tesla_powerup",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/powerup/tesla_powerup/tesla_announce.m4a",
+    "name": "tesla_announce"
+   },
+   {
+    "file": "sounds/powerup/tesla_powerup/tesla_launch.m4a",
+    "name": "tesla_launch"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/tesla_powerup/tesla_zap_a_SPA.m4a",
+    "name": "tesla_zap_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/tesla_powerup/tesla_zap_b_SPA.m4a",
+    "name": "tesla_zap_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/tesla_powerup/tesla_zap_c_SPA.m4a",
+    "name": "tesla_zap_c_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tesla_powerup.S3DPlayListModel#0.sexp"
+ },
+ "tinnitus": {
+  "name": "tinnitus",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/tinnitus/tinnitus_and_background.m4a",
+    "name": "tinnitus_and_background"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tinnitus.S3DPlayListModel#0.sexp"
+ },
+ "tornado": {
+  "name": "tornado",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/powerup/tornado/tornado_announce.m4a",
+    "name": "tornado_announce"
+   },
+   {
+    "file": "sounds/powerup/tornado/tornado_launch.m4a",
+    "name": "tornado_launch"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/tornado/tornado_wind_a_SPA.m4a",
+    "name": "tornado_wind_a_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/tornado/tornado_wind_b_SPA.m4a",
+    "name": "tornado_wind_b_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/powerup/tornado/tornado_wind_c_SPA.m4a",
+    "name": "tornado_wind_c_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tornado.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_1": {
+  "name": "tutorial_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_1/tutorial_1_Intro.m4a",
+    "name": "tutorial_1_Intro"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1/tutorial_1_Outro.m4a",
+    "name": "tutorial_1_Outro"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_10_brick_1": {
+  "name": "tutorial_10_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_10_brick_1/bastard_tutorial_10_1.m4a",
+    "name": "bastard_tutorial_10_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_10_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_10_brick_2": {
+  "name": "tutorial_10_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_10_brick_2/bastard_tutorial_10_2.m4a",
+    "name": "bastard_tutorial_10_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_10_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_10_brick_3": {
+  "name": "tutorial_10_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [],
+  "file": "tutorial_10_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_10_brick_4": {
+  "name": "tutorial_10_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_10_brick_4/bastard_tutorial_10_3.m4a",
+    "name": "bastard_tutorial_10_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_10_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_10_brick_5": {
+  "name": "tutorial_10_brick_5",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_10_brick_5/bastard_tutorial_10_4.m4a",
+    "name": "bastard_tutorial_10_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_10_brick_5.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_1_brick_1": {
+  "name": "tutorial_1_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/announcer_tutorial_aim_gyroMode.m4a",
+    "name": "announcer_tutorial_aim_gyroMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/announcer_tutorial_aim_swipeMode.m4a",
+    "name": "announcer_tutorial_aim_swipeMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/announcer_tutorial_aim_tiltMode.m4a",
+    "name": "announcer_tutorial_aim_tiltMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/announcer_tutorial_aimhelp.m4a",
+    "name": "announcer_tutorial_aimhelp"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/announcer_tutorial_aimprompt.m4a",
+    "name": "announcer_tutorial_aimprompt"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/announcer_tutorial_shoot_buttonMode.m4a",
+    "name": "announcer_tutorial_shoot_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/announcer_tutorial_shoot_gestureMode.m4a",
+    "name": "announcer_tutorial_shoot_gestureMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/bastard_tutorial_1_1.m4a",
+    "name": "bastard_tutorial_1_1"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/bastard_tutorial_1_2.m4a",
+    "name": "bastard_tutorial_1_2"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/challenges/tutorial_1_brick_1/tutorial_1_bird_1_SPA.m4a",
+    "name": "tutorial_1_bird_1_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/challenges/tutorial_1_brick_1/tutorial_1_bird_2_SPA.m4a",
+    "name": "tutorial_1_bird_2_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/challenges/tutorial_1_brick_1/tutorial_1_dog_SPA.m4a",
+    "name": "tutorial_1_dog_SPA"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_1/tutorial_fireball.m4a",
+    "name": "tutorial_fireball"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_1_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_1_brick_2": {
+  "name": "tutorial_1_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_1_brick_2/announcer_tutorial_reload_buttonMode.m4a",
+    "name": "announcer_tutorial_reload_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_2/announcer_tutorial_reload_gestureMode.m4a",
+    "name": "announcer_tutorial_reload_gestureMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_2/bastard_tutorial_1_4.m4a",
+    "name": "bastard_tutorial_1_4"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_2/bastard_tutorial_1_5.m4a",
+    "name": "bastard_tutorial_1_5"
+   },
+   {
+    "file": "sounds/challenges/tutorial_1_brick_2/bastard_tutorial_1_6.m4a",
+    "name": "bastard_tutorial_1_6"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/challenges/tutorial_1_brick_2/tutorial_1_cracker_SPA.m4a",
+    "name": "tutorial_1_cracker_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/challenges/tutorial_1_brick_2/tutorial_1_lion_SPA.m4a",
+    "name": "tutorial_1_lion_SPA"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/challenges/tutorial_1_brick_2/tutorial_1_tiger_SPA.m4a",
+    "name": "tutorial_1_tiger_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_1_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_2": {
+  "name": "tutorial_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_2/tutorial_2_Intro.m4a",
+    "name": "tutorial_2_Intro"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2/tutorial_2_Outro.m4a",
+    "name": "tutorial_2_Outro"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_2_1": {
+  "name": "tutorial_2_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/announcer_tutorial_switch_buttonMode.m4a",
+    "name": "announcer_tutorial_switch_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/announcer_tutorial_switch_gestureMode.m4a",
+    "name": "announcer_tutorial_switch_gestureMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/bastard_tutorial_2_1.m4a",
+    "name": "bastard_tutorial_2_1"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/bastard_tutorial_2_2.m4a",
+    "name": "bastard_tutorial_2_2"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/bastard_tutorial_2_3.m4a",
+    "name": "bastard_tutorial_2_3"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/bastard_tutorial_2_4.m4a",
+    "name": "bastard_tutorial_2_4"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/bastard_tutorial_2_5.m4a",
+    "name": "bastard_tutorial_2_5"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_2_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_2_brick_1": {
+  "name": "tutorial_2_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/announcer_tutorial_changeControl.m4a",
+    "name": "announcer_tutorial_changeControl"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/announcer_tutorial_switch_buttonMode.m4a",
+    "name": "announcer_tutorial_switch_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/announcer_tutorial_switch_gestureMode.m4a",
+    "name": "announcer_tutorial_switch_gestureMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/bastard_tutorial_2_1.m4a",
+    "name": "bastard_tutorial_2_1"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/bastard_tutorial_2_2.m4a",
+    "name": "bastard_tutorial_2_2"
+   },
+   {
+    "file": "sounds/challenges/tutorial_2_brick_1/silence.m4a",
+    "name": "silence"
+   },
+   {
+    "spatialized": true,
+    "file": "sounds/challenges/tutorial_2_brick_1/tutorial_elephant_SPA.m4a",
+    "name": "tutorial_elephant_SPA"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_2_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_2_brick_2": {
+  "name": "tutorial_2_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_2_brick_2/bastard_tutorial_2_3.m4a",
+    "name": "bastard_tutorial_2_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_2_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_2_brick_3": {
+  "name": "tutorial_2_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_2_brick_3/bastard_tutorial_2_4.m4a",
+    "name": "bastard_tutorial_2_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_2_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_3": {
+  "name": "tutorial_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_3/tutorial_3_Intro_buttonMode.m4a",
+    "name": "tutorial_3_Intro_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_3/tutorial_3_Intro_gestureMode.m4a",
+    "name": "tutorial_3_Intro_gestureMode"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_3.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_3_brick_1": {
+  "name": "tutorial_3_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_3_brick_1/announcer_tutorial_melee_buttonMode.m4a",
+    "name": "announcer_tutorial_melee_buttonMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_3_brick_1/announcer_tutorial_melee_gestureMode.m4a",
+    "name": "announcer_tutorial_melee_gestureMode"
+   },
+   {
+    "file": "sounds/challenges/tutorial_3_brick_1/announcer_tutorial_skip.m4a",
+    "name": "announcer_tutorial_skip"
+   },
+   {
+    "file": "sounds/challenges/tutorial_3_brick_1/bastard_tutorial_3_1.m4a",
+    "name": "bastard_tutorial_3_1"
+   },
+   {
+    "file": "sounds/challenges/tutorial_3_brick_1/bastard_tutorial_3_2.m4a",
+    "name": "bastard_tutorial_3_2"
+   },
+   {
+    "file": "sounds/challenges/tutorial_3_brick_1/silence.m4a",
+    "name": "silence"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_3_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_3_brick_2": {
+  "name": "tutorial_3_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_3_brick_2/bastard_tutorial_3_3.m4a",
+    "name": "bastard_tutorial_3_3"
+   },
+   {
+    "file": "sounds/challenges/tutorial_3_brick_2/bastard_tutorial_3_4.m4a",
+    "name": "bastard_tutorial_3_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_3_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_4_brick_1": {
+  "name": "tutorial_4_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_4_brick_1/bastard_tutorial_4_1.m4a",
+    "name": "bastard_tutorial_4_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_4_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_4_brick_3": {
+  "name": "tutorial_4_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_4_brick_3/bastard_tutorial_4_2.m4a",
+    "name": "bastard_tutorial_4_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_4_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_4_brick_5": {
+  "name": "tutorial_4_brick_5",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_4_brick_5/bastard_tutorial_4_4.m4a",
+    "name": "bastard_tutorial_4_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_4_brick_5.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_5_brick_1": {
+  "name": "tutorial_5_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_5_brick_1/bastard_tutorial_5_1.m4a",
+    "name": "bastard_tutorial_5_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_5_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_5_brick_2": {
+  "name": "tutorial_5_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_5_brick_2/bastard_tutorial_5_2.m4a",
+    "name": "bastard_tutorial_5_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_5_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_5_brick_3": {
+  "name": "tutorial_5_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_5_brick_3/bastard_tutorial_5_3.m4a",
+    "name": "bastard_tutorial_5_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_5_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_5_brick_4": {
+  "name": "tutorial_5_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_5_brick_4/bastard_tutorial_5_4.m4a",
+    "name": "bastard_tutorial_5_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_5_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_6_brick_1": {
+  "name": "tutorial_6_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_6_brick_1/bastard_tutorial_6_1.m4a",
+    "name": "bastard_tutorial_6_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_6_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_6_brick_2": {
+  "name": "tutorial_6_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_6_brick_2/bastard_tutorial_6_3.m4a",
+    "name": "bastard_tutorial_6_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_6_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_6_brick_3": {
+  "name": "tutorial_6_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_6_brick_3/bastard_tutorial_6_2.m4a",
+    "name": "bastard_tutorial_6_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_6_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_6_brick_4": {
+  "name": "tutorial_6_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_6_brick_4/bastard_tutorial_6_3.m4a",
+    "name": "bastard_tutorial_6_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_6_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_7_brick_1": {
+  "name": "tutorial_7_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_7_brick_1/bastard_tutorial_7_1.m4a",
+    "name": "bastard_tutorial_7_1"
+   },
+   {
+    "file": "sounds/challenges/tutorial_7_brick_1/bastard_tutorial_7_2.m4a",
+    "name": "bastard_tutorial_7_2"
+   },
+   {
+    "file": "sounds/challenges/tutorial_7_brick_1/bastard_tutorial_7_3.m4a",
+    "name": "bastard_tutorial_7_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_7_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_7_brick_2": {
+  "name": "tutorial_7_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_7_brick_2/bastard_tutorial_7_2.m4a",
+    "name": "bastard_tutorial_7_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_7_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_7_brick_3": {
+  "name": "tutorial_7_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_7_brick_3/bastard_tutorial_7_3.m4a",
+    "name": "bastard_tutorial_7_3"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_7_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_7_brick_4": {
+  "name": "tutorial_7_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_7_brick_4/bastard_tutorial_7_4.m4a",
+    "name": "bastard_tutorial_7_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_7_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_7_brick_5": {
+  "name": "tutorial_7_brick_5",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_7_brick_5/bastard_tutorial_7_4.m4a",
+    "name": "bastard_tutorial_7_4"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_7_brick_5.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_8_brick_1": {
+  "name": "tutorial_8_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_8_brick_1/bastard_tutorial_8_1.m4a",
+    "name": "bastard_tutorial_8_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_8_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_8_brick_2": {
+  "name": "tutorial_8_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [],
+  "file": "tutorial_8_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_8_brick_3": {
+  "name": "tutorial_8_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_8_brick_4/bastard_tutorial_8_2.m4a",
+    "name": "bastard_tutorial_8_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_8_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_9_brick_1": {
+  "name": "tutorial_9_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_9_brick_1/bastard_tutorial_9_1.m4a",
+    "name": "bastard_tutorial_9_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_9_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_9_brick_4": {
+  "name": "tutorial_9_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/tutorial_9_brick_4/bastard_tutorial_9_2.m4a",
+    "name": "bastard_tutorial_9_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "tutorial_9_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_brick_1": {
+  "name": "tutorial_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [],
+  "file": "tutorial_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "tutorial_brick_2": {
+  "name": "tutorial_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [],
+  "file": "tutorial_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "urban_10_brick_1": {
+  "name": "urban_10_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_10_brick_1/bastard_urban_10_1.m4a",
+    "name": "bastard_urban_10_1"
+   },
+   {
+    "file": "sounds/challenges/urban_10_brick_1/bastard_zombie_hulk_a.m4a",
+    "name": "bastard_zombie_hulk_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_10_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_10_brick_2": {
+  "name": "urban_10_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_10_brick_2/bastard_urban_10_2.m4a",
+    "name": "bastard_urban_10_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_10_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "urban_10_brick_4": {
+  "name": "urban_10_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_10_brick_4/bastard_city_end.m4a",
+    "name": "bastard_city_end"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_10_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "urban_1_brick_1": {
+  "name": "urban_1_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_1_brick_1/bastard_city_intro.m4a",
+    "name": "bastard_city_intro"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_1_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_1_brick_2": {
+  "name": "urban_1_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_1_brick_2/bastard_urban_1_1.m4a",
+    "name": "bastard_urban_1_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_1_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "urban_2_brick_1": {
+  "name": "urban_2_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_2_brick_1/bastard_passerby_cars_a.m4a",
+    "name": "bastard_passerby_cars_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_2_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_2_brick_3": {
+  "name": "urban_2_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_2_brick_3/bastard_urban_2_1.m4a",
+    "name": "bastard_urban_2_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_2_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "urban_3_brick_1": {
+  "name": "urban_3_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_3_brick_1/bastard_zombie_clown_a.m4a",
+    "name": "bastard_zombie_clown_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_3_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_3_brick_2": {
+  "name": "urban_3_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_3_brick_2/bastard_zombie_clown_b.m4a",
+    "name": "bastard_zombie_clown_b"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_3_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "urban_3_brick_3": {
+  "name": "urban_3_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_3_brick_3/bastard_zombie_clown_c.m4a",
+    "name": "bastard_zombie_clown_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_3_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "urban_3_brick_4": {
+  "name": "urban_3_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_3_brick_4/bastard_urban_3_1.m4a",
+    "name": "bastard_urban_3_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_3_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "urban_4_brick_1": {
+  "name": "urban_4_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_4_brick_1/bastard_urban_4_1.m4a",
+    "name": "bastard_urban_4_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_4_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_4_brick_2": {
+  "name": "urban_4_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_4_brick_2/bastard_urban_4_2.m4a",
+    "name": "bastard_urban_4_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_4_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "urban_5_brick_1": {
+  "name": "urban_5_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_5_brick_1/bastard_zombie_runner_a.m4a",
+    "name": "bastard_zombie_runner_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_5_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_5_brick_2": {
+  "name": "urban_5_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_5_brick_2/bastard_urban_5_2.m4a",
+    "name": "bastard_urban_5_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_5_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "urban_6_brick_1": {
+  "name": "urban_6_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_6_brick_1/bastard_urban_6_1.m4a",
+    "name": "bastard_urban_6_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_6_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_6_brick_2": {
+  "name": "urban_6_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_6_brick_2/bastard_urban_6_2.m4a",
+    "name": "bastard_urban_6_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_6_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "urban_7_brick_1": {
+  "name": "urban_7_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_7_brick_1/bastard_passerby_jukebox_a.m4a",
+    "name": "bastard_passerby_jukebox_a"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_7_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_7_brick_4": {
+  "name": "urban_7_brick_4",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_7_brick_4/bastard_urban_7_2.m4a",
+    "name": "bastard_urban_7_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_7_brick_4.S3DPlayListModel#0.sexp"
+ },
+ "urban_8_brick_1": {
+  "name": "urban_8_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_8_brick_1/bastard_zombie_horde_b.m4a",
+    "name": "bastard_zombie_horde_b"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_8_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_8_brick_3": {
+  "name": "urban_8_brick_3",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_8_brick_3/bastard_urban_8_1.m4a",
+    "name": "bastard_urban_8_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_8_brick_3.S3DPlayListModel#0.sexp"
+ },
+ "urban_8_brick_5": {
+  "name": "urban_8_brick_5",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_8_brick_5/bastard_urban_8_2.m4a",
+    "name": "bastard_urban_8_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_8_brick_5.S3DPlayListModel#0.sexp"
+ },
+ "urban_9_brick_1": {
+  "name": "urban_9_brick_1",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_9_brick_1/bastard_urban_9_1.m4a",
+    "name": "bastard_urban_9_1"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_9_brick_1.S3DPlayListModel#0.sexp"
+ },
+ "urban_9_brick_2": {
+  "name": "urban_9_brick_2",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/challenges/urban_9_brick_2/bastard_urban_9_2.m4a",
+    "name": "bastard_urban_9_2"
+   }
+  ],
+  "subplaylists": [],
+  "file": "urban_9_brick_2.S3DPlayListModel#0.sexp"
+ },
+ "weapons": {
+  "name": "weapons",
+  "options": {
+   "repeat": "none"
+  },
+  "sounds": [],
+  "subplaylists": [
+   "_pistol.S3DPlayListModel#0",
+   "_rifle.S3DPlayListModel#0",
+   "_shotgun.S3DPlayListModel#0",
+   "_smg.S3DPlayListModel#0"
+  ],
+  "file": "weapons.S3DPlayListModel#0.sexp"
+ },
+ "wok": {
+  "name": "wok",
+  "options": {
+   "preloaded": true,
+   "repeat": "none"
+  },
+  "sounds": [
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_hit_a.m4a",
+    "name": "weapon_melee_wok_hit_a"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_hit_b.m4a",
+    "name": "weapon_melee_wok_hit_b"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_hit_c.m4a",
+    "name": "weapon_melee_wok_hit_c"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_miss_a.m4a",
+    "name": "weapon_melee_wok_miss_a"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_miss_b.m4a",
+    "name": "weapon_melee_wok_miss_b"
+   },
+   {
+    "file": "sounds/_weapons/wok/weapon_melee_wok_miss_c.m4a",
+    "name": "weapon_melee_wok_miss_c"
+   }
+  ],
+  "subplaylists": [],
+  "file": "wok.S3DPlayListModel#0.sexp"
+ }
+}

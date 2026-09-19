@@ -1,0 +1,48 @@
+// ADArmoryViewController.nib
+TOP-LEVEL OBJECTS
+  #71 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #194 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #14 UIView  Tag=2781
+    #131 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #15 UIImageView  UserInteractionDisabled=False Image='chains_armory_top.png'
+    #117 UIImageView  UserInteractionDisabled=False Image='frame_armory.png'
+    #56 UIScrollView  
+    #24 UIView  
+      #95 UIScrollView  Tag=2782
+    #99 UIButton  
+    #39 UIButton  
+    #103 UIButton  
+    #133 UIButton  
+  #5 UIView  Tag=2782
+    #178 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #192 UIImageView  UserInteractionDisabled=False Image='chains_armory_top.png'
+    #158 UIImageView  UserInteractionDisabled=False Image='frame_armory.png'
+    #123 UIScrollView  Tag=1
+    #197 UIView  Tag=8
+      #62 UIScrollView  Tag=9
+    #50 UIButton  Tag=2
+    #172 UIButton  Tag=5
+    #43 UIButton  Tag=3
+    #96 UIButton  Tag=4
+
+CONNECTIONS
+  action  currencyButtonPressed:                    #133 UIButton --(events 0x40)--> #71 UIProxyObject
+  action  currencyButtonPressed:                    #96 UIButton --(events 0x40)--> #71 UIProxyObject
+  action  loadoutButtonPressed:                     #39 UIButton --(events 0x40)--> #71 UIProxyObject
+  action  loadoutButtonPressed:                     #172 UIButton --(events 0x40)--> #71 UIProxyObject
+  action  powerUpButtonPressed:                     #43 UIButton --(events 0x40)--> #71 UIProxyObject
+  action  powerUpButtonPressed:                     #103 UIButton --(events 0x40)--> #71 UIProxyObject
+  action  weaponsButtonPressed:                     #99 UIButton --(events 0x40)--> #71 UIProxyObject
+  action  weaponsButtonPressed:                     #50 UIButton --(events 0x40)--> #71 UIProxyObject
+  outlet  contentContainer                          #71 UIProxyObject --> #56 UIScrollView
+  outlet  currencyButton                            #71 UIProxyObject --> #133 UIButton
+  outlet  delegate                                  #62 UIScrollView --> #71 UIProxyObject
+  outlet  delegate                                  #95 UIScrollView --> #71 UIProxyObject
+  outlet  detailScroller                            #71 UIProxyObject --> #95 UIScrollView
+  outlet  detailView                                #71 UIProxyObject --> #24 UIView
+  outlet  loadOutButton                             #71 UIProxyObject --> #39 UIButton
+  outlet  powerUpButton                             #71 UIProxyObject --> #103 UIButton
+  outlet  view                                      #71 UIProxyObject --> #14 UIView
+  outlet  weaponsButton                             #71 UIProxyObject --> #99 UIButton
+
+ACCESSIBILITY CONFIGURATIONS

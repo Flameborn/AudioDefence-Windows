@@ -1,0 +1,60 @@
+// ADArmoryWeaponDescriptionViewController.nib
+TOP-LEVEL OBJECTS
+  #99 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #217 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #59 UIView  Tag=2781
+    #109 UIImageView  Image='background_grunge.png'
+    #179 UIImageView  Image='frame_popup_blank.png'
+    #143 UILabel  UserInteractionDisabled=False Text='WEAPON NAME'
+    #6 UIButton (custom class ADButtonWithFont)  
+    #104 UIButton (custom class ADButtonWithFont)  
+    #72 UIImageView  Image='smg_icon.png'
+    #75 UILabel  UserInteractionDisabled=False Text='Damages'
+    #8 UIView  Tag=1
+    #247 UILabel  UserInteractionDisabled=False Text='Capacity'
+    #134 UIView  Tag=2
+    #115 UILabel  UserInteractionDisabled=False Text='Effective angle / focus'
+    #250 UIView  Tag=3
+    #225 UIImageView  Image='badge_level1.png'
+    #136 UIButton (custom class ADButtonWithFont)  title[0]='BUY'
+    #63 UIButton (custom class ADButtonWithFont)  title[0]='Cancel'
+  #235 UIView  Tag=2782
+    #57 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #139 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+    #117 UILabel  Tag=13 UserInteractionDisabled=False Text='Weapon Name'
+    #103 UIButton (custom class ADButtonWithFont)  Tag=8
+    #129 UIButton (custom class ADButtonWithFont)  Tag=9
+    #80 UIImageView  Tag=12 UserInteractionDisabled=False Image='smg_icon.png'
+    #25 UILabel  Tag=5 UserInteractionDisabled=False Text='Damages'
+    #224 UIView  Tag=6
+    #110 UILabel  Tag=3 UserInteractionDisabled=False Text='Capacity'
+    #102 UIView  Tag=4
+    #213 UIView  Tag=11
+    #170 UIImageView  Tag=10 UserInteractionDisabled=False Image='badge_level1.png'
+    #42 UIButton (custom class ADButtonWithFont)  Tag=2 title[0]='Cancel'
+    #56 UIButton (custom class ADButtonWithFont)  Tag=1 title[0]='BUY'
+    #97 UILabel  Tag=7 UserInteractionDisabled=False Text='Effective angle / focus'
+
+CONNECTIONS
+  action  buyOrUpgradeButtonPressed:                #56 ADButtonWithFont --(events 0x40)--> #99 UIProxyObject
+  action  buyOrUpgradeButtonPressed:                #136 ADButtonWithFont --(events 0x40)--> #99 UIProxyObject
+  action  cancelBuyOrUpgradeButtonPressed:          #63 ADButtonWithFont --(events 0x40)--> #99 UIProxyObject
+  action  cancelBuyOrUpgradeButtonPressed:          #42 ADButtonWithFont --(events 0x40)--> #99 UIProxyObject
+  action  equipSlot1ButtonPressed:                  #6 ADButtonWithFont --(events 0x40)--> #99 UIProxyObject
+  action  equipSlot2ButtonPressed:                  #104 ADButtonWithFont --(events 0x40)--> #99 UIProxyObject
+  outlet  buyOrUpgradeButton                        #99 UIProxyObject --> #136 ADButtonWithFont
+  outlet  cancelBuyOrUpgradeButton                  #99 UIProxyObject --> #63 ADButtonWithFont
+  outlet  capacityLabel                             #99 UIProxyObject --> #247 UILabel Text='Capacity'
+  outlet  capacityView                              #99 UIProxyObject --> #134 UIView
+  outlet  damagesView                               #99 UIProxyObject --> #8 UIView
+  outlet  damamgesLabel                             #99 UIProxyObject --> #75 UILabel Text='Damages'
+  outlet  effectiveAngleLabel                       #99 UIProxyObject --> #115 UILabel Text='Effective angle / focus'
+  outlet  equip1Button                              #99 UIProxyObject --> #6 ADButtonWithFont
+  outlet  equip2Button                              #99 UIProxyObject --> #104 ADButtonWithFont
+  outlet  levelImage                                #99 UIProxyObject --> #225 UIImageView
+  outlet  reloadSpeedView                           #99 UIProxyObject --> #250 UIView
+  outlet  view                                      #99 UIProxyObject --> #59 UIView
+  outlet  weaponImage                               #99 UIProxyObject --> #72 UIImageView
+  outlet  weaponTitle                               #99 UIProxyObject --> #143 UILabel Text='WEAPON NAME'
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,11 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "bastard_passerby_cows_a"
+  }
+ ]
+}

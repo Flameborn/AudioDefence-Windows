@@ -1,0 +1,44 @@
+{
+ "icon_title": "24",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 80
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "title": "Cows?",
+ "objective": "A herd of cows is pasturing in the arena! They'll get in the way of shooting zombies.",
+ "tip": "Cows are harmless, but can get in the way of shooting a zombie.",
+ "bricks": [
+  "maya_4_brick_1",
+  "maya_4_brick_2",
+  "maya_4_brick_3"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "maya_4",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "maya_3"
+ ],
+ "weapons": [
+  {
+   "ammo": "30",
+   "name": "hunting"
+  },
+  {
+   "ammo": "80",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 90
+ }
+}

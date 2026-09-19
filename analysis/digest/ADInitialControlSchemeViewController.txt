@@ -1,0 +1,181 @@
+
+== -[ADInitialControlSchemeViewController initWithNibName:bundle:]   (address 0x100005fa4  size 140  kind objc)
+  005ff4  [super initWithNibName:arg1 bundle:arg2]
+  006018  return
+
+== -[ADInitialControlSchemeViewController viewDidLoad]   (address 0x100006030  size 1876  kind objc)
+  006074  [super viewDidLoad]
+  00608c  [self swipeDescription]
+  0060b4  [NSBundle mainBundle]
+  0060e8  [[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]
+  006110  [[self swipeDescription] setText:[[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]]
+  006140  [self tiltDescription]
+  006158  [NSBundle mainBundle]
+  006180  [[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]
+  00619c  [[self tiltDescription] setText:[[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]]
+  0061cc  [self gyroDescription]
+  0061e4  [NSBundle mainBundle]
+  006210  [[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]
+  00622c  [[self gyroDescription] setText:[[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]]
+  006258  [self titleLabel]
+  006278  [[self titleLabel] setupAsTitle]
+  006294  [self subTitleLabel]
+  0062a8  [[self subTitleLabel] setupAsTitle]
+  0062c8  [self recommededLabel]
+  0062e4  [[self recommededLabel] setupAsMain]
+  0062f0  UIAccessibilityIsVoiceOverRunning()
+  0062f4  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_1000065c8
+  006300  [self swipeDescription]
+  006324  [[self swipeDescription] setHidden:1]
+  006338  [self tiltDescription]
+  006350  [[self tiltDescription] setHidden:1]
+  006364  [self gyroDescription]
+  00637c  [[self gyroDescription] setHidden:1]
+  006398  [self gyroTextButton]
+  0063b0  [[self gyroTextButton] setHidden:1]
+  0063cc  [self tiltTextButton]
+  0063e4  [[self tiltTextButton] setHidden:1]
+  006400  [self swipeTextButton]
+  006418  [[self swipeTextButton] setHidden:1]
+  006434  [self gyroButton]
+  00644c  [NSBundle mainBundle]
+  006474  [[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]
+  00649c  [[self gyroButton] setAccessibilityHint:[[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]]
+  0064c8  [self swipeButton]
+  0064e0  [NSBundle mainBundle]
+  006508  [[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]
+  006524  [[self swipeButton] setAccessibilityHint:[[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]]
+  006550  [self tiltButton]
+  006568  [NSBundle mainBundle]
+  006590  [[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]
+  0065ac  [[self tiltButton] setAccessibilityHint:[[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]]
+loc_1000065c8:
+  0065d8  [self descriptionText]
+  0065f0  [NSBundle mainBundle]
+  006618  [[NSBundle mainBundle] localizedStringForKey:@"INITIAL_PAGE_TEXT" value:@"" table:0]
+  006634  [[self descriptionText] setText:[[NSBundle mainBundle] localizedStringForKey:@"INITIAL_PAGE_TEXT" value:@"" table:0]]
+  00666c  return
+
+== -[ADInitialControlSchemeViewController loadView]   (address 0x100006784  size 28  kind objc)
+  00679c  tail [self loADViewBasedOnDeviceWithNibName:@"ADInitialControlSchemeViewController" WithTagDictionary:0]
+
+== -[ADInitialControlSchemeViewController didReceiveMemoryWarning]   (address 0x1000067a0  size 60  kind objc)
+  0067cc  [super didReceiveMemoryWarning]
+  0067d8  return
+
+== -[ADInitialControlSchemeViewController tiltControl:]   (address 0x1000067dc  size 140  kind objc)
+  006800  [ADGameParameters sharedParameters]
+  006820  [[ADGameParameters sharedParameters] setControlScheme:3]
+  00683c  [self goToMainMenu]
+  006848  return
+
+== -[ADInitialControlSchemeViewController gyroControl:]   (address 0x100006868  size 140  kind objc)
+  00688c  [ADGameParameters sharedParameters]
+  0068ac  [[ADGameParameters sharedParameters] setControlScheme:1]
+  0068c8  [self goToMainMenu]
+  0068d4  return
+
+== -[ADInitialControlSchemeViewController buttonControl:]   (address 0x1000068f4  size 140  kind objc)
+  006918  [ADGameParameters sharedParameters]
+  006938  [[ADGameParameters sharedParameters] setControlScheme:2]
+  006954  [self goToMainMenu]
+  006960  return
+
+== -[ADInitialControlSchemeViewController goToMainMenu]   (address 0x100006980  size 160  kind objc)
+  0069a4  [UIApplication sharedApplication]
+  0069c0  [[UIApplication sharedApplication] delegate]
+  0069dc  [[[UIApplication sharedApplication] delegate] goToOpener]
+  0069f8  return
+
+== -[ADInitialControlSchemeViewController swipeDescription]   (address 0x100006a20  size 16  kind objc)
+  006a2c  return
+
+== -[ADInitialControlSchemeViewController setSwipeDescription:]   (address 0x100006a30  size 56  kind objc)
+  006a54  self->_swipeDescription = arg1
+  006a64  return
+
+== -[ADInitialControlSchemeViewController tiltDescription]   (address 0x100006a68  size 16  kind objc)
+  006a74  return
+
+== -[ADInitialControlSchemeViewController setTiltDescription:]   (address 0x100006a78  size 56  kind objc)
+  006a9c  self->_tiltDescription = arg1
+  006aac  return
+
+== -[ADInitialControlSchemeViewController gyroDescription]   (address 0x100006ab0  size 16  kind objc)
+  006abc  return
+
+== -[ADInitialControlSchemeViewController setGyroDescription:]   (address 0x100006ac0  size 56  kind objc)
+  006ae4  self->_gyroDescription = arg1
+  006af4  return
+
+== -[ADInitialControlSchemeViewController descriptionText]   (address 0x100006af8  size 16  kind objc)
+  006b04  return
+
+== -[ADInitialControlSchemeViewController setDescriptionText:]   (address 0x100006b08  size 56  kind objc)
+  006b2c  self->_descriptionText = arg1
+  006b3c  return
+
+== -[ADInitialControlSchemeViewController gyroButton]   (address 0x100006b40  size 16  kind objc)
+  006b4c  return
+
+== -[ADInitialControlSchemeViewController setGyroButton:]   (address 0x100006b50  size 56  kind objc)
+  006b74  self->_gyroButton = arg1
+  006b84  return
+
+== -[ADInitialControlSchemeViewController gyroTextButton]   (address 0x100006b88  size 16  kind objc)
+  006b94  return
+
+== -[ADInitialControlSchemeViewController setGyroTextButton:]   (address 0x100006b98  size 56  kind objc)
+  006bbc  self->_gyroTextButton = arg1
+  006bcc  return
+
+== -[ADInitialControlSchemeViewController tiltButton]   (address 0x100006bd0  size 16  kind objc)
+  006bdc  return
+
+== -[ADInitialControlSchemeViewController setTiltButton:]   (address 0x100006be0  size 56  kind objc)
+  006c04  self->_tiltButton = arg1
+  006c14  return
+
+== -[ADInitialControlSchemeViewController tiltTextButton]   (address 0x100006c18  size 16  kind objc)
+  006c24  return
+
+== -[ADInitialControlSchemeViewController setTiltTextButton:]   (address 0x100006c28  size 56  kind objc)
+  006c4c  self->_tiltTextButton = arg1
+  006c5c  return
+
+== -[ADInitialControlSchemeViewController swipeButton]   (address 0x100006c60  size 16  kind objc)
+  006c6c  return
+
+== -[ADInitialControlSchemeViewController setSwipeButton:]   (address 0x100006c70  size 56  kind objc)
+  006c94  self->_swipeButton = arg1
+  006ca4  return
+
+== -[ADInitialControlSchemeViewController swipeTextButton]   (address 0x100006ca8  size 16  kind objc)
+  006cb4  return
+
+== -[ADInitialControlSchemeViewController setSwipeTextButton:]   (address 0x100006cb8  size 56  kind objc)
+  006cdc  self->_swipeTextButton = arg1
+  006cec  return
+
+== -[ADInitialControlSchemeViewController titleLabel]   (address 0x100006cf0  size 16  kind objc)
+  006cfc  return
+
+== -[ADInitialControlSchemeViewController setTitleLabel:]   (address 0x100006d00  size 56  kind objc)
+  006d24  self->_titleLabel = arg1
+  006d34  return
+
+== -[ADInitialControlSchemeViewController subTitleLabel]   (address 0x100006d38  size 16  kind objc)
+  006d44  return
+
+== -[ADInitialControlSchemeViewController setSubTitleLabel:]   (address 0x100006d48  size 56  kind objc)
+  006d6c  self->_subTitleLabel = arg1
+  006d7c  return
+
+== -[ADInitialControlSchemeViewController recommededLabel]   (address 0x100006d80  size 16  kind objc)
+  006d8c  return
+
+== -[ADInitialControlSchemeViewController setRecommededLabel:]   (address 0x100006d90  size 56  kind objc)
+  006db4  self->_recommededLabel = arg1
+  006dc4  return
+
+== -[ADInitialControlSchemeViewController .cxx_destruct]   (address 0x100006dc8  size 284  kind objc)

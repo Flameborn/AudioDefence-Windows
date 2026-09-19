@@ -1,0 +1,45 @@
+{
+ "icon_title": "30",
+ "accuracy_star": {
+  "reward": 250,
+  "objective": 85
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "title": "Meet The Riot Gear Zombie!",
+ "objective": "The newest creation of Dr. Bastard comes with an invincible shield! Watch out!",
+ "tip": "If you shoot at the Riot Gear Zombie and you hear bullets ricochetting on metal, it means he's invincible at the moment. Turn to shoot other zombies and go back to him again after a few seconds.",
+ "bricks": [
+  "maya_10_brick_1",
+  "maya_10_brick_2",
+  "maya_10_brick_3",
+  "maya_10_brick_4"
+ ],
+ "mission_star": {
+  "reward": 1000
+ },
+ "challenge_id": "maya_10",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "maya_9"
+ ],
+ "weapons": [
+  {
+   "ammo": "100",
+   "name": "tactical"
+  },
+  {
+   "ammo": "30",
+   "name": "hunting"
+  },
+  {
+   "name": "banjo"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 215
+ }
+}

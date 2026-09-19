@@ -1,0 +1,167 @@
+
+== -[ADEncyclopediaItemLockedViewController initWithNibName:bundle:]   (address 0x10008b928  size 140  kind objc)
+  08b978  [super initWithNibName:arg1 bundle:arg2]
+  08b99c  return
+
+== -[ADEncyclopediaItemLockedViewController handleTapForSound:]   (address 0x10008b9b4  size 292  kind objc)
+  08b9dc  [self enemySound]
+  08b9f0  if ([self enemySound] == 0) goto loc_10008ba64
+  08b9f4  UIAccessibilityIsVoiceOverRunning()
+  08b9f8  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10008ba78
+  08ba08  dispatch_time(0, 0x3b9aca00)
+  08ba58  dispatch_after(dispatch_time(0, 0x3b9aca00), __dispatch_main_q, ^{-[ADEncyclopediaItemLockedViewController handleTapForSound:]_block_invoke captures +0x20=self})
+loc_10008ba64:
+  08ba74  return
+loc_10008ba78:
+  08ba80  [self enemySound]
+  08baa0  [[self enemySound] play:0]
+  08bab8  return
+
+== -[ADEncyclopediaItemLockedViewController handleTapForSound:]_block_invoke   (address 0x10008bad8  size 100  kind block)
+  08baf4  [self enemySound]
+  08bb14  [[self enemySound] play:0]
+  08bb24  return
+
+== sub_10008bb3c   (address 0x10008bb3c  size 8  kind sub)
+
+== sub_10008bb44   (address 0x10008bb44  size 8  kind sub)
+  08bb48  return
+
+== -[ADEncyclopediaItemLockedViewController initWithNibName:bundle:name:data:]   (address 0x10008bb4c  size 312  kind objc)
+  08bbd0  [super initWithNibName:arg1 bundle:arg2]
+  08bbd8  if (self == 0) goto loc_10008bc14
+  08bbf4  [self setEnemyName:arg3]
+  08bc10  [self setSetupData:arg4]
+loc_10008bc14:
+  08bc4c  return
+
+== -[ADEncyclopediaItemLockedViewController viewDidLoad]   (address 0x10008bc84  size 284  kind objc)
+  08bcbc  [super viewDidLoad]
+  08bcd0  [self populateViewWithData]
+  08bce4  [self applyAccessibility]
+  08bcfc  [UITapGestureRecognizer alloc]
+  08bd1c  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapForSound:)]
+  08bd34  [self audioButton]
+  08bd54  [[self audioButton] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapForSound:)]]
+  08bd78  return
+
+== -[ADEncyclopediaItemLockedViewController loadView]   (address 0x10008bda0  size 536  kind objc)
+  08bdf8  [NSNumber numberWithInt:1]
+  08be24  [NSNumber numberWithInt:2]
+  08be4c  [NSNumber numberWithInt:3]
+  08be74  [NSNumber numberWithInt:4]
+  08be9c  [NSNumber numberWithInt:5]
+  08becc  [NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x8] count:5]
+  08bf20  [self loADViewBasedOnDeviceWithNibName:@"ADEncyclopediaItemLockedViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x8] count:5]]
+  08bf50  return
+
+== -[ADEncyclopediaItemLockedViewController populateViewWithData]   (address 0x10008bfb8  size 748  kind objc)
+  08bfe8  [self setupData]
+  08c010  [[self setupData] objectForKey:@"unlockCondition"]
+  08c030  [[[self setupData] objectForKey:@"unlockCondition"] integerValue]
+  08c050  [self setupData]
+  08c06c  [[self setupData] objectForKey:@"Total Kills"]
+  08c080  [[[self setupData] objectForKey:@"Total Kills"] integerValue]
+  08c0ac  [self enemyNameLabel]
+  08c0c8  [[self enemyNameLabel] setupAsTitle]
+  08c0dc  [self enemyNameLabel]
+  08c0fc  [self enemyName]
+  08c124  [[self enemyNameLabel] setText:[self enemyName]]
+  08c14c  [self unlockConditionLabel]
+  08c168  [[self unlockConditionLabel] setupAsMain]
+  08c16c  t1 = ([[[self setupData] objectForKey:@"unlockCondition"] integerValue] - [[[self setupData] objectForKey:@"Total Kills"] integerValue])
+  08c184  &@selector(stringWithFormat:)
+  08c190  if (t1 != 1) goto loc_10008c1b0
+  08c1a4  [NSString stringWithFormat:@"Kill %d more enemy to unlock", 1]
+  08c1ac  goto loc_10008c1c4
+loc_10008c1b0:
+  08c1bc  [NSString stringWithFormat:@"Kill %d more enemies to unlock", t1]
+loc_10008c1c4:
+  08c1d4  [self unlockConditionLabel]
+  08c1ec  [[self unlockConditionLabel] setText:x2]
+  08c214  return
+
+== -[ADEncyclopediaItemLockedViewController viewDidAppear:]   (address 0x10008c2a4  size 164  kind objc)
+  08c2c4  [self enemyNameLabel]
+  08c2e0  [[self enemyNameLabel] frame]
+  08c2e4  NSStringFromCGRect()
+  08c300  NSLog(@"My frame: %@", NSStringFromCGRect())
+  08c320  return
+
+== -[ADEncyclopediaItemLockedViewController setSound:]   (address 0x10008c348  size 32  kind objc)
+  08c35c  [self setEnemySound:arg1]
+  08c364  return
+
+== -[ADEncyclopediaItemLockedViewController didReceiveMemoryWarning]   (address 0x10008c368  size 60  kind objc)
+  08c394  [super didReceiveMemoryWarning]
+  08c3a0  return
+
+== -[ADEncyclopediaItemLockedViewController applyAccessibility]   (address 0x10008c3a4  size 504  kind objc)
+  08c3d0  [self enemyNameLabel]
+  08c3f8  [self enemyName]
+  08c428  [NSString stringWithFormat:@"Zombie name: %@", [self enemyName]]
+  08c450  [[self enemyNameLabel] setAccessibilityLabel:[NSString stringWithFormat:@"Zombie name: %@", [self enemyName]]]
+  08c480  [self unlockConditionLabel]
+  08c49c  [self unlockConditionLabel]
+  08c4b8  [[self unlockConditionLabel] text]
+  08c4dc  [NSString stringWithFormat:@"Unlock condition: %@", [[self unlockConditionLabel] text]]
+  08c4f8  [[self unlockConditionLabel] setAccessibilityLabel:[NSString stringWithFormat:@"Unlock condition: %@", [[self unlockConditionLabel] text]]]
+  08c530  return
+
+== -[ADEncyclopediaItemLockedViewController closeDetailView]   (address 0x10008c59c  size 16  kind objc)
+  08c5a8  return
+
+== -[ADEncyclopediaItemLockedViewController setCloseDetailView:]   (address 0x10008c5ac  size 56  kind objc)
+  08c5d0  self->_closeDetailView = arg1
+  08c5e0  return
+
+== -[ADEncyclopediaItemLockedViewController enemyNameLabel]   (address 0x10008c5e4  size 32  kind objc)
+  08c600  return
+
+== -[ADEncyclopediaItemLockedViewController setEnemyNameLabel:]   (address 0x10008c604  size 20  kind objc)
+
+== -[ADEncyclopediaItemLockedViewController unlockConditionLabel]   (address 0x10008c618  size 32  kind objc)
+  08c634  return
+
+== -[ADEncyclopediaItemLockedViewController setUnlockConditionLabel:]   (address 0x10008c638  size 20  kind objc)
+
+== -[ADEncyclopediaItemLockedViewController rightArrow]   (address 0x10008c64c  size 16  kind objc)
+  08c658  return
+
+== -[ADEncyclopediaItemLockedViewController setRightArrow:]   (address 0x10008c65c  size 56  kind objc)
+  08c680  self->_rightArrow = arg1
+  08c690  return
+
+== -[ADEncyclopediaItemLockedViewController leftArrow]   (address 0x10008c694  size 16  kind objc)
+  08c6a0  return
+
+== -[ADEncyclopediaItemLockedViewController setLeftArrow:]   (address 0x10008c6a4  size 56  kind objc)
+  08c6c8  self->_leftArrow = arg1
+  08c6d8  return
+
+== -[ADEncyclopediaItemLockedViewController audioButton]   (address 0x10008c6dc  size 16  kind objc)
+  08c6e8  return
+
+== -[ADEncyclopediaItemLockedViewController setAudioButton:]   (address 0x10008c6ec  size 56  kind objc)
+  08c710  self->_audioButton = arg1
+  08c720  return
+
+== -[ADEncyclopediaItemLockedViewController setupData]   (address 0x10008c724  size 16  kind objc)
+  08c730  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaItemLockedViewController setSetupData:]   (address 0x10008c734  size 12  kind objc)
+  08c73c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaItemLockedViewController enemyName]   (address 0x10008c740  size 16  kind objc)
+  08c74c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaItemLockedViewController setEnemyName:]   (address 0x10008c750  size 12  kind objc)
+  08c758  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaItemLockedViewController enemySound]   (address 0x10008c75c  size 16  kind objc)
+  08c768  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaItemLockedViewController setEnemySound:]   (address 0x10008c76c  size 12  kind objc)
+  08c774  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaItemLockedViewController .cxx_destruct]   (address 0x10008c778  size 196  kind objc)

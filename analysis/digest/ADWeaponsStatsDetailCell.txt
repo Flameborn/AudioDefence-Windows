@@ -1,0 +1,95 @@
+
+== -[ADWeaponsStatsDetailCell initWithStyle:reuseIdentifier:data:]   (address 0x10007c308  size 140  kind objc)
+  07c358  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  07c37c  return
+
+== -[ADWeaponsStatsDetailCell awakeFromNib]   (address 0x10007c394  size 1160  kind objc)
+  07c3d0  [ADGameParameters sharedParameters]
+  07c3ec  [[ADGameParameters sharedParameters] isIphone]
+  07c410  [self nameLabel]
+  07c454  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  07c47c  [[self nameLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  07c498  [self nameLabel]
+  07c4c0  [UIColor whiteColor]
+  07c4e8  [[self nameLabel] setTextColor:[UIColor whiteColor]]
+  07c510  [self accuracyLabel]
+  07c534  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  07c550  [[self accuracyLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  07c56c  [self accuracyLabel]
+  07c584  [UIColor whiteColor]
+  07c5a0  [[self accuracyLabel] setTextColor:[UIColor whiteColor]]
+  07c5c4  [self accuracyValLabel]
+  07c5dc  [UIColor whiteColor]
+  07c5f8  [[self accuracyValLabel] setTextColor:[UIColor whiteColor]]
+  07c620  [self killsLabel]
+  07c644  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  07c660  [[self killsLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  07c67c  [self killsLabel]
+  07c694  [UIColor whiteColor]
+  07c6b0  [[self killsLabel] setTextColor:[UIColor whiteColor]]
+  07c6d4  [self killsValLabel]
+  07c6ec  [UIColor whiteColor]
+  07c708  [[self killsValLabel] setTextColor:[UIColor whiteColor]]
+  07c73c  [super awakeFromNib]
+  07c760  return
+
+== -[ADWeaponsStatsDetailCell setSelected:animated:]   (address 0x10007c81c  size 60  kind objc)
+  07c848  [super setSelected:arg1 animated:arg2]
+  07c854  return
+
+== -[ADWeaponsStatsDetailCell cellItemLabel]   (address 0x10007c858  size 16  kind objc)
+  07c864  return
+
+== -[ADWeaponsStatsDetailCell setCellItemLabel:]   (address 0x10007c868  size 56  kind objc)
+  07c88c  self->_cellItemLabel = arg1
+  07c89c  return
+
+== -[ADWeaponsStatsDetailCell cellItemImageView]   (address 0x10007c8a0  size 16  kind objc)
+  07c8ac  return
+
+== -[ADWeaponsStatsDetailCell setCellItemImageView:]   (address 0x10007c8b0  size 56  kind objc)
+  07c8d4  self->_cellItemImageView = arg1
+  07c8e4  return
+
+== -[ADWeaponsStatsDetailCell nameLabel]   (address 0x10007c8e8  size 16  kind objc)
+  07c8f4  return
+
+== -[ADWeaponsStatsDetailCell setNameLabel:]   (address 0x10007c8f8  size 56  kind objc)
+  07c91c  self->_nameLabel = arg1
+  07c92c  return
+
+== -[ADWeaponsStatsDetailCell accuracyLabel]   (address 0x10007c930  size 16  kind objc)
+  07c93c  return
+
+== -[ADWeaponsStatsDetailCell setAccuracyLabel:]   (address 0x10007c940  size 56  kind objc)
+  07c964  self->_accuracyLabel = arg1
+  07c974  return
+
+== -[ADWeaponsStatsDetailCell killsLabel]   (address 0x10007c978  size 16  kind objc)
+  07c984  return
+
+== -[ADWeaponsStatsDetailCell setKillsLabel:]   (address 0x10007c988  size 56  kind objc)
+  07c9ac  self->_killsLabel = arg1
+  07c9bc  return
+
+== -[ADWeaponsStatsDetailCell accuracyValLabel]   (address 0x10007c9c0  size 16  kind objc)
+  07c9cc  return
+
+== -[ADWeaponsStatsDetailCell setAccuracyValLabel:]   (address 0x10007c9d0  size 56  kind objc)
+  07c9f4  self->_accuracyValLabel = arg1
+  07ca04  return
+
+== -[ADWeaponsStatsDetailCell killsValLabel]   (address 0x10007ca08  size 16  kind objc)
+  07ca14  return
+
+== -[ADWeaponsStatsDetailCell setKillsValLabel:]   (address 0x10007ca18  size 56  kind objc)
+  07ca3c  self->_killsValLabel = arg1
+  07ca4c  return
+
+== -[ADWeaponsStatsDetailCell detailViewHierarchy]   (address 0x10007ca50  size 16  kind objc)
+  07ca5c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADWeaponsStatsDetailCell setDetailViewHierarchy:]   (address 0x10007ca60  size 12  kind objc)
+  07ca68  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADWeaponsStatsDetailCell .cxx_destruct]   (address 0x10007ca6c  size 184  kind objc)

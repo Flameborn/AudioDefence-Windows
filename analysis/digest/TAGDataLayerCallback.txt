@@ -1,0 +1,17 @@
+
+== -[TAGDataLayerCallback initWithDataLayer:]   (address 0x10015a90c  size 164  kind objc)
+  15a950  [super init]
+  15a958  if (self == 0) goto loc_10015a97c
+  15a970  self->_dataLayer = arg1
+loc_10015a97c:
+  15a998  return
+
+== -[TAGDataLayerCallback onKeyValuesLoaded:]   (address 0x10015a9b0  size 148  kind objc)
+  15a9e0  [self dataLayer]
+  15aa00  [[self dataLayer] onKeyValuesLoaded:arg1]
+  15aa1c  return
+
+== -[TAGDataLayerCallback dataLayer]   (address 0x10015aa44  size 16  kind objc)
+  15aa50  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayerCallback .cxx_destruct]   (address 0x10015aa54  size 20  kind objc)

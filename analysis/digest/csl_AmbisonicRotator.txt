@@ -1,0 +1,394 @@
+
+== csl::AmbisonicRotator::~AmbisonicRotator   (address 0x1000f7ed4  size 36  kind cxx)
+  0f7ee4  sub_1000f7de4(a0, a1, a2, a3)
+  0f7ef4  return
+
+== csl::AmbisonicRotator::~AmbisonicRotator/*deleting*/   (address 0x1000f7ef8  size 56  kind cxx)
+  0f7f08  sub_1000f7de4(a0, a1, a2, a3)
+  0f7f18  tail ZdlPv(a0)
+  0f7f24  ZdlPv()
+
+== csl::AmbisonicRotator::vfunc_5   (address 0x1000f7f30  size 1036  kind cxx)
+  0f7f5c  a0[+0xb0] = a1[+0xc]
+  0f7f70  if (a1[+0x8] >=u a0[+0x60]) goto loc_1000f8030
+  0f7f84  sub_1000e772c(2, "AmbisonicRotator needs a buffer with %d channels, found only %d\n", a2, a3)
+  0f7f8c  cxa_allocate_exception(16)
+  0f7fa4  ZNSsC1EPKcRKSaIcE(&sp[0x20], "Insufficient number of channels in buffer passed.", &sp[0x18])
+  0f7fb0  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x20])
+  0f7fc0  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f7fd8  cxa_throw(cxa_allocate_exception(16), &d_100428f80, INDIRECT_SYMBOL_LOCAL)
+  0f7fdc  goto loc_1000f82c0
+  0f7ffc  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f8024
+loc_1000f8004:
+  0f8010  if (w11 != 0) goto loc_1000f8004
+  0f8018  if (w9 > 0) goto loc_1000f8024
+  0f8020  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x28])
+loc_1000f8024:
+  0f8028  if (w19 >= 0) goto loc_1000f8304
+  0f802c  cxa_call_unexpected()
+loc_1000f8030:
+  0f8038  a0[+0xd8][+0x10][+0xc] = a1[+0xc]
+  0f803c  a0[+0xd8][+0x10][+0x2c] = 0
+  0f8050  call a0[+0xd8][+0x8][+0x0][+0x20]
+  0f8058  a0[+0xd8][+0x10][+0x2a] = 1
+  0f8060  if (a0[+0xb8] == 0) goto loc_1000f809c
+loc_1000f8068:
+  0f807c  call a1[+0x0][+0x20]
+  0f8098  if ((w8 + 1) <u a0[+0xb8]) goto loc_1000f8068
+loc_1000f809c:
+  0f809c  if (a0[+0x60] == 0) goto loc_1000f80d0
+loc_1000f80a4:
+  0f80b8  call a0[+0xd8][+0x10][+0x0][+0x20]
+  0f80cc  if ((x25 + 1) <u a0[+0x60]) goto loc_1000f80a4
+loc_1000f80d0:
+  0f80d0  if (a1[+0xc] == 0) goto loc_1000f8120
+loc_1000f80d8:
+  0f80d8  if (a0[+0x60] == 0) goto loc_1000f8114
+loc_1000f80e0:
+  0f8110  if (a0[+0x60] != (x9 + 1)) goto loc_1000f80e0
+loc_1000f8114:
+  0f811c  if ((w8 + 1) != a1[+0xc]) goto loc_1000f80d8
+loc_1000f8120:
+  0f8124  if (a0[+0xd2] == 0) goto loc_1000f81a4
+  0f8128  if (a0[+0x60] == 0) goto loc_1000f815c
+loc_1000f8130:
+  0f8144  call a1[+0x0][+0x20]
+  0f8158  if ((x21 + 1) <u a0[+0x60]) goto loc_1000f8130
+loc_1000f815c:
+  0f815c  if (a0[+0xb4] == 0) goto loc_1000f819c
+loc_1000f8168:
+  0f8178  sinf(((float)(x25 + 1) * a0[+0xe8]))
+  0f8188  cosf(((float)(x25 + 1) * a0[+0xe8]))
+  0f8198  if (a0[+0xb4] != (x25 + 1)) goto loc_1000f8168
+loc_1000f819c:
+  0f81a0  sub_1000f833c(a0)
+loc_1000f81a4:
+  0f81a8  if (a0[+0xd1] == 0) goto loc_1000f8228
+  0f81ac  if (a0[+0x60] == 0) goto loc_1000f81e0
+loc_1000f81b4:
+  0f81c8  call a1[+0x0][+0x20]
+  0f81dc  if ((x21 + 1) <u a0[+0x60]) goto loc_1000f81b4
+loc_1000f81e0:
+  0f81e0  if (a0[+0xb4] == 0) goto loc_1000f8220
+loc_1000f81ec:
+  0f81fc  sinf(((float)(x25 + 1) * a0[+0xe4]))
+  0f820c  cosf(((float)(x25 + 1) * a0[+0xe4]))
+  0f821c  if (a0[+0xb4] != (x25 + 1)) goto loc_1000f81ec
+loc_1000f8220:
+  0f8224  sub_1000f83b4(a0)
+loc_1000f8228:
+  0f822c  if (a0[+0xd0] == 0) goto loc_1000f82e4
+  0f8230  if (a0[+0x60] == 0) goto loc_1000f8264
+loc_1000f8238:
+  0f824c  call a1[+0x0][+0x20]
+  0f8260  if ((x21 + 1) <u a0[+0x60]) goto loc_1000f8238
+loc_1000f8264:
+  0f8264  if (a0[+0xb4] == 0) goto loc_1000f82a4
+loc_1000f8270:
+  0f8280  sinf(((float)(x23 + 1) * a0[+0xe0]))
+  0f8290  cosf(((float)(x23 + 1) * a0[+0xe0]))
+  0f82a0  if (a0[+0xb4] != (x23 + 1)) goto loc_1000f8270
+loc_1000f82a4:
+  0f82a8  if (a0[+0xa4] == 0) goto loc_1000f82b4
+  0f82b0  sub_1000f8430(a0)
+loc_1000f82b4:
+  0f82bc  if (a0[+0xa8] <u 2) goto loc_1000f82e4
+loc_1000f82c0:
+  0f82e0  tail sub_1000f84b8(a0)
+loc_1000f82e4:
+  0f8300  return
+  0f8334  cxa_free_exception()
+
+== sub_1000f833c   (address 0x1000f833c  size 120  kind sub)
+  0f8340  if (a0[+0xb0] == 0) goto loc_1000f83b0
+loc_1000f8350:
+  0f8378  a0[+0x100][+0x10] = (x11 + (x9 << 2))
+  0f839c  a0[+0x100][+0x18] = (x12 + (x9 << 2))
+  0f83ac  if ((x9 + 1) <u a0[+0xb0]) goto loc_1000f8350
+loc_1000f83b0:
+  0f83b0  return
+
+== sub_1000f83b4   (address 0x1000f83b4  size 124  kind sub)
+  0f83b8  if (a0[+0xb0] == 0) goto loc_1000f842c
+loc_1000f83cc:
+  0f83f4  a0[+0x100][+0x8] = (a0[+0x100][+0x8] + (x9 << 2))
+  0f8418  a0[+0x100][+0x18] = (a0[+0x100][+0x18] + (x9 << 2))
+  0f8428  if ((x9 + 1) <u a0[+0xb0]) goto loc_1000f83cc
+loc_1000f842c:
+  0f842c  return
+
+== sub_1000f8430   (address 0x1000f8430  size 136  kind sub)
+  0f8434  if (a0[+0xb0] == 0) goto loc_1000f84a4
+loc_1000f8444:
+  0f846c  a0[+0x100][+0x8] = (x11 + (x9 << 2))
+  0f8490  a0[+0x100][+0x10] = (x12 + (x9 << 2))
+  0f84a0  if ((x9 + 1) <u a0[+0xb0]) goto loc_1000f8444
+loc_1000f84a4:
+  0f84ac  if (a0[+0xa4] <u 2) goto loc_1000f84b4
+  0f84b0  tail sub_1000f8540(a0, a1, a2, a3)
+loc_1000f84b4:
+  0f84b4  return
+
+== sub_1000f84b8   (address 0x1000f84b8  size 136  kind sub)
+  0f84bc  if (a0[+0xb0] == 0) goto loc_1000f852c
+loc_1000f84cc:
+  0f84f4  a0[+0x100][+0x30] = (x11 + (x9 << 2))
+  0f8518  a0[+0x100][+0x38] = (x12 + (x9 << 2))
+  0f8528  if ((x9 + 1) <u a0[+0xb0]) goto loc_1000f84cc
+loc_1000f852c:
+  0f8534  if (a0[+0xa8] <u 3) goto loc_1000f853c
+  0f8538  tail sub_1000f8640(a0, a1, a2, a3)
+loc_1000f853c:
+  0f853c  return
+
+== sub_1000f8540   (address 0x1000f8540  size 136  kind sub)
+  0f8544  if (a0[+0xb0] == 0) goto loc_1000f85b4
+loc_1000f8554:
+  0f857c  a0[+0x100][+0x20] = (x11 + (x9 << 2))
+  0f85a0  a0[+0x100][+0x28] = (x12 + (x9 << 2))
+  0f85b0  if ((x9 + 1) <u a0[+0xb0]) goto loc_1000f8554
+loc_1000f85b4:
+  0f85bc  if (a0[+0xa4] <u 3) goto loc_1000f85c4
+  0f85c0  tail sub_1000f85c8(a0, a1, a2, a3)
+loc_1000f85c4:
+  0f85c4  return
+
+== sub_1000f85c8   (address 0x1000f85c8  size 120  kind sub)
+  0f85cc  if (a0[+0xb0] == 0) goto loc_1000f863c
+loc_1000f85dc:
+  0f8604  a0[+0x100][+0x48] = (x11 + (x9 << 2))
+  0f8628  a0[+0x100][+0x50] = (x12 + (x9 << 2))
+  0f8638  if ((x9 + 1) <u a0[+0xb0]) goto loc_1000f85dc
+loc_1000f863c:
+  0f863c  return
+
+== sub_1000f8640   (address 0x1000f8640  size 224  kind sub)
+  0f8644  if (a0[+0xb0] == 0) goto loc_1000f871c
+loc_1000f8658:
+  0f8688  a0[+0x100][+0x58] = (x11 + (x9 << 2))
+  0f86b4  a0[+0x100][+0x60] = (x12 + (x9 << 2))
+  0f86e4  a0[+0x100][+0x68] = (x13 + (x9 << 2))
+  0f8708  a0[+0x100][+0x70] = (x14 + (x9 << 2))
+  0f8718  if ((x9 + 1) <u a0[+0xb0]) goto loc_1000f8658
+loc_1000f871c:
+  0f871c  return
+
+== sub_1000f8720   (address 0x1000f8720  size 3084  kind sub)
+  0f8778  Znam((0 != (a2 *h 8) ? -1 : x8), a1, a2, a3)
+  0f8784  if (a2 < 1) goto loc_1000f9300
+loc_1000f87c0:
+  0f87e4  if (w1 >= a1) goto loc_1000f8940
+loc_1000f87e8:
+  0f8804  if (w9 != (x2 + 1)) goto loc_1000f87e8
+  0f8814  if ((d1 + fabs(s2)) == 0.0) goto loc_1000f893c
+loc_1000f8818:
+  0f8844  if (w9 != (x2 + 1)) goto loc_1000f8818
+  0f8864  t1 = (s2 >= (or unordered) 0.0 ? fabs(sqrt((d4 + ((d2 / d1) * (d2 / d1))))) : -fabs(sqrt((d4 + ((d2 / d1) * (d2 / d1))))))
+  0f887c  if (w1 == (a2 - 1)) goto loc_1000f8908
+  0f8884  if (w10 >= a2) goto loc_1000f8908
+loc_1000f8898:
+loc_1000f88a4:
+  0f88c0  if ((w5 - 1) != 0) goto loc_1000f88a4
+loc_1000f88cc:
+  0f88f8  if ((w3 + (x5 + 1)) != 0) goto loc_1000f88cc
+  0f8904  if ((x4 + 1) != a2) goto loc_1000f8898
+loc_1000f8908:
+  0f8910  goto loc_1000f891c
+loc_1000f8914:
+loc_1000f891c:
+  0f8934  if ((w3 + w4) != 0) goto loc_1000f8914
+  0f8938  goto loc_1000f8940
+loc_1000f893c:
+loc_1000f8940:
+  0f895c  if (w1 == (a2 - 1)) goto loc_1000f89e4
+  0f8960  if (((w1 >= a1) & 1)) goto loc_1000f89e4
+  0f8968  if (w10 >= a2) goto loc_1000f89e0
+loc_1000f8978:
+  0f8990  if (w12 != (x3 + 1)) goto loc_1000f8978
+  0f8998  if ((d1 + fabs(s2)) == 0.0) goto loc_1000f89ec
+  0f89a4  if (w10 >= a2) goto loc_1000f89f4
+loc_1000f89b4:
+  0f89d8  if ((w4 - 1) != 0) goto loc_1000f89b4
+  0f89dc  goto loc_1000f89f8
+loc_1000f89e0:
+loc_1000f89e4:
+  0f89e8  goto loc_1000f8b28
+loc_1000f89ec:
+  0f89f0  goto loc_1000f8b28
+loc_1000f89f4:
+loc_1000f89f8:
+  0f8a28  if (w10 >= a2) goto loc_1000f8a5c
+loc_1000f8a40:
+  0f8a58  if (w16 != (w3 + 1)) goto loc_1000f8a40
+loc_1000f8a5c:
+  0f8a60  if (w1 == (a1 - 1)) goto loc_1000f8af0
+  0f8a68  if (w10 >= a1) goto loc_1000f8af0
+loc_1000f8a74:
+  0f8a78  if (w10 >= a2) goto loc_1000f8ae4
+loc_1000f8a88:
+  0f8aa4  if (w12 != (x6 + 1)) goto loc_1000f8a88
+  0f8aac  if (w10 >= a2) goto loc_1000f8ae4
+loc_1000f8abc:
+  0f8ae0  if ((w3 + (x5 + 1)) != 0) goto loc_1000f8abc
+loc_1000f8ae4:
+  0f8aec  if ((x4 + 1) != a1) goto loc_1000f8a74
+loc_1000f8af0:
+  0f8af4  if (w10 >= a2) goto loc_1000f8b20
+loc_1000f8b00:
+  0f8b1c  if (w16 != (w3 + 1)) goto loc_1000f8b00
+loc_1000f8b20:
+loc_1000f8b28:
+  0f8b58  if (w10 != a2) goto loc_1000f87c0
+  0f8b64  store g_10042dba0 = d0
+  0f8b6c  if (a2 <= 0) goto loc_1000f9300
+loc_1000f8b78:
+  0f8b84  if ((x10 - 1) >= (a2 - 1)) goto loc_1000f8c74
+  0f8b90  if (flags >=) goto loc_1000f8c4c
+loc_1000f8ba0:
+  0f8bc8  if ((x13 + 1) < a2) goto loc_1000f8ba0
+  0f8bd0  if (w10 >= a2) goto loc_1000f8c4c
+loc_1000f8bdc:
+loc_1000f8be8:
+  0f8c08  if ((x14 + 1) < a2) goto loc_1000f8be8
+loc_1000f8c10:
+  0f8c3c  if ((x13 + 1) < a2) goto loc_1000f8c10
+  0f8c48  if ((x12 + 1) < a2) goto loc_1000f8bdc
+loc_1000f8c4c:
+  0f8c50  if (w10 >= a2) goto loc_1000f8c74
+loc_1000f8c5c:
+  0f8c70  if ((x10 + 1) < a2) goto loc_1000f8c5c
+loc_1000f8c74:
+  0f8c84  if (w9 > 0) goto loc_1000f8b78
+  0f8c8c  if (a2 < 1) goto loc_1000f9300
+loc_1000f8cb0:
+  0f8cc8  if (flags >=) goto loc_1000f8d04
+  0f8cf4  bzero((x9 + ((a2 - x14) << 2)), (((0x3fffffffc + (x14 << 2)) & 0x3fffffffc) + 4))
+loc_1000f8d04:
+  0f8d08  if (s10 == 0.0) goto loc_1000f8e00
+  0f8d1c  if ((x9 - 1) == (a2 - 1)) goto loc_1000f8dc4
+  0f8d24  if (w17 >= a2) goto loc_1000f8dc4
+loc_1000f8d30:
+  0f8d40  if (w17 >= a1) goto loc_1000f8d64
+loc_1000f8d44:
+  0f8d60  if ((w10 - 1) != 0) goto loc_1000f8d44
+loc_1000f8d64:
+  0f8d68  if (w27 >= a1) goto loc_1000f8db8
+loc_1000f8d84:
+  0f8db4  if ((w11 + 1) < a1) goto loc_1000f8d84
+loc_1000f8db8:
+  0f8dc0  if ((x9 + 1) != a2) goto loc_1000f8d30
+loc_1000f8dc4:
+  0f8dc8  if (w27 >= a1) goto loc_1000f8e24
+loc_1000f8dd4:
+  0f8df8  if ((w9 + 1) < a1) goto loc_1000f8dd4
+  0f8dfc  goto loc_1000f8e24
+loc_1000f8e00:
+  0f8e0c  if ((x9 - 1) >= a1) goto loc_1000f8e24
+loc_1000f8e10:
+  0f8e20  if ((w8 + 1) < a1) goto loc_1000f8e10
+loc_1000f8e24:
+  0f8e4c  if ((x14 + 1) != a2) goto loc_1000f8cb0
+  0f8e60  if (a2 < 1) goto loc_1000f9300
+loc_1000f8e84:
+loc_1000f8e98:
+loc_1000f8ea8:
+  0f8eb4  if ((w14 + w0) < 0) goto loc_1000f8efc
+  0f8ec8  if ((d18 + fabs(d0)) == d18) goto loc_1000f8ff8
+  0f8ef4  if ((d18 + fabs(s0)) != d18) goto loc_1000f8ea8
+loc_1000f8efc:
+  0f8f00  if ((w14 + w0) > w25) goto loc_1000f8ffc
+loc_1000f8f10:
+  0f8f24  if ((d18 + fabs((d0 * d1))) == d18) goto loc_1000f8fe8
+  0f8f40  if (fabs((d0 * d1)) <= (or unordered) fabs(s4)) goto loc_1000f8f5c
+  0f8f54  t2 = (fabs((d0 * d1)) * sqrt((((fabs(s4) / fabs((d0 * d1))) * (fabs(s4) / fabs((d0 * d1)))) + 1)))
+  0f8f58  goto loc_1000f8f80
+loc_1000f8f5c:
+  0f8f60  if (s4 == 0.0) goto loc_1000f8f7c
+  0f8f78  goto loc_1000f8f80
+loc_1000f8f7c:
+loc_1000f8f80:
+  0f8f94  if (a1 < 1) goto loc_1000f8fe8
+loc_1000f8fa4:
+  0f8fe4  if ((w3 - 1) != 0) goto loc_1000f8fa4
+loc_1000f8fe8:
+  0f8ff0  if (w2 < w25) goto loc_1000f8f10
+  0f8ff4  goto loc_1000f8ffc
+loc_1000f8ff8:
+loc_1000f8ffc:
+  0f9000  if (w0 == 0) goto loc_1000f92bc
+  0f9054  store g_10042dba8 = fabs(((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3))))
+  0f9058  store g_10042dbb0 = 0x3ff0000000000000
+  0f9060  if (fabs(((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3)))) <= (or unordered) 1) goto loc_1000f907c
+  0f9068  t3 = ((1 / fabs(((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3))))) * (1 / fabs(((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3))))))
+  0f9074  t4 = (fabs(((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3)))) * sqrt((t3 + 1)))
+  0f9078  goto loc_1000f9088
+loc_1000f907c:
+  0f907c  t5 = (fabs(((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3)))) * fabs(((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3)))))
+loc_1000f9088:
+  0f90a0  t6 = (((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3))) >= (or unordered) 0.0 ? fabs(d5) : -fabs(d5))
+  0f90ac  t7 = ((d1 / (((((d1 - d0) * (d0 + d1)) + ((d4 - d3) * (d4 + d3))) / (d1 * (d3 + d3))) + t6)) - d3)
+  0f90cc  if ((w14 + w0) > w26) goto loc_1000f9294
+loc_1000f90d0:
+  0f90f8  if (fabs(d6) <= (or unordered) fabs((d1 * d4))) goto loc_1000f9114
+  0f9110  goto loc_1000f9138
+loc_1000f9114:
+  0f9118  if ((d1 * d4) == 0.0) goto loc_1000f9134
+  0f912c  t8 = (fabs((d1 * d4)) * sqrt((((fabs(d6) / fabs((d1 * d4))) * (fabs(d6) / fabs((d1 * d4)))) + 1)))
+  0f9130  goto loc_1000f9138
+loc_1000f9134:
+loc_1000f9138:
+loc_1000f916c:
+  0f91ac  if ((w1 - 1) != 0) goto loc_1000f916c
+  0f91bc  if (fabs(d6) <= (or unordered) fabs(d7)) goto loc_1000f91d8
+  0f91d4  goto loc_1000f91f4
+loc_1000f91d8:
+  0f91dc  if (d7 == 0.0) goto loc_1000f9214
+loc_1000f91f4:
+  0f9200  if (d16 == 0.0) goto loc_1000f9218
+  0f9210  goto loc_1000f9218
+loc_1000f9214:
+loc_1000f9218:
+  0f9224  if (a1 < 1) goto loc_1000f926c
+loc_1000f9228:
+  0f9268  if ((w1 - 1) != 0) goto loc_1000f9228
+loc_1000f926c:
+  0f9288  if (w0 < w26) goto loc_1000f90d0
+  0f928c  store g_10042dba8 = d4
+  0f9290  store g_10042dbb0 = d5
+loc_1000f9294:
+  0f92b0  if ((w13 + 1) < 30) goto loc_1000f8e98
+  0f92b8  goto loc_1000f92ec
+loc_1000f92bc:
+  0f92c0  if (s0 >= (or unordered) 0.0) goto loc_1000f92ec
+loc_1000f92d4:
+  0f92e8  if ((w13 - 1) != 0) goto loc_1000f92d4
+loc_1000f92ec:
+  0f92fc  if (w25 > 0) goto loc_1000f8e84
+loc_1000f9300:
+  0f9328  tail ZdaPv(Znam((0 != (a2 *h 8) ? -1 : x8), a1, a2, a3))
+
+== sub_1000f932c   (address 0x1000f932c  size 484  kind sub)
+  0f9358  if (w22 == 0) goto loc_1000f9384
+  0f9360  cosf()
+  0f936c  d0 = sin(d0), d1 = cos(d0)
+  0f9380  goto loc_1000f9390
+loc_1000f9384:
+loc_1000f9390:
+  0f9390  if (w21 == 0) goto loc_1000f93b0
+  0f939c  sinf()
+  0f93ac  goto loc_1000f93b4
+loc_1000f93b0:
+loc_1000f93b4:
+  0f93b8  if (w22 <u 2) goto loc_1000f93e4
+  0f93e0  goto loc_1000f93ec
+loc_1000f93e4:
+loc_1000f93ec:
+  0f93f0  if (w21 <u 2) goto loc_1000f9438
+  0f9434  goto loc_1000f943c
+loc_1000f9438:
+loc_1000f943c:
+  0f9440  if (w22 <u 3) goto loc_1000f9470
+loc_1000f9470:
+  0f9474  if (w21 <u 3) goto loc_1000f94f4
+loc_1000f94f4:
+  0f950c  return

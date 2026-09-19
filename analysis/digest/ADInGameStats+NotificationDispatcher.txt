@@ -1,0 +1,134 @@
+
+== -[ADInGameStats(NotificationDispatcher) actUponNotification:]   (address 0x10005614c  size 944  kind objc)
+  056180  [arg1 userInfo]
+  0561a4  [[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]
+  0561c0  if ([[arg1 userInfo] objectForKey:@"PARAM_ARRAY"] == 0) goto loc_100056478
+  0561d8  [NSArray class]
+  0561f0  [[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"] isKindOfClass:[NSArray class]]
+  0561f4  if (([[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"] isKindOfClass:[NSArray class]] & 1)) goto loc_100056228
+  056224  [NSException raise:@"Invalid value" format:@"The paramaters' data (%p) were not passed as an array", &sp[0x8]]
+loc_100056228:
+  056238  [arg1 name]
+  056260  [[arg1 name] isEqualToString:@"TIME_ELAPSED"]
+  056264  if ([[arg1 name] isEqualToString:@"TIME_ELAPSED"] == 0) goto loc_100056280
+  05627c  [self handleUpdateTimePassed:[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]]
+loc_100056280:
+  056290  [[arg1 name] isEqualToString:@"BRICK_TIME_ELAPSED"]
+  056294  if ([[arg1 name] isEqualToString:@"BRICK_TIME_ELAPSED"] == 0) goto loc_1000562b0
+  0562ac  [self handleBrickTimePassed:[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]]
+loc_1000562b0:
+  0562c0  [[arg1 name] isEqualToString:@"UPDATE_CHALLENGE_TIME_ELAPSED"]
+  0562c4  if ([[arg1 name] isEqualToString:@"UPDATE_CHALLENGE_TIME_ELAPSED"] == 0) goto loc_1000562e0
+  0562dc  [self handleChallengeTimePassed:[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]]
+loc_1000562e0:
+  0562f0  [[arg1 name] isEqualToString:@"UPDATE_MELEE_WEAPON_DATA"]
+  0562f4  if ([[arg1 name] isEqualToString:@"UPDATE_MELEE_WEAPON_DATA"] == 0) goto loc_100056310
+  05630c  [self handleMeleeWeapon:[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]]
+loc_100056310:
+  056320  [[arg1 name] isEqualToString:@"UPDATE_WEAPON_DATA"]
+  056324  if ([[arg1 name] isEqualToString:@"UPDATE_WEAPON_DATA"] == 0) goto loc_100056340
+  05633c  [self handleWeapon:[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]]
+loc_100056340:
+  056350  [[arg1 name] isEqualToString:@"UPDATE_KILLED_ENEMY_WITH_WEAPON"]
+  056354  if ([[arg1 name] isEqualToString:@"UPDATE_KILLED_ENEMY_WITH_WEAPON"] == 0) goto loc_100056370
+  05636c  [self handleEnemyKilled:[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]]
+loc_100056370:
+  056380  [[arg1 name] isEqualToString:@"UPDATE_KILLED_ENEMY_POWERUP"]
+  056384  if ([[arg1 name] isEqualToString:@"UPDATE_KILLED_ENEMY_POWERUP"] == 0) goto loc_1000563a0
+  05639c  [self handleEnemyPowerUpKilled:[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]]
+loc_1000563a0:
+  0563b0  [[arg1 name] isEqualToString:@"SET_BRICK_NAME"]
+  0563c4  [[arg1 name] isEqualToString:@"DEFEATED_BRICK"]
+  0563d8  [[arg1 name] isEqualToString:@"PLAYER_DIED"]
+  0563dc  if ([[arg1 name] isEqualToString:@"PLAYER_DIED"] == 0) goto loc_10005643c
+  0563f4  [self setDeath:1]
+  05640c  [[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"] objectAtIndex:0]
+  056430  [self deathByEnemyWithName:[[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"] objectAtIndex:0]]
+loc_10005643c:
+  05644c  [[arg1 name] isEqualToString:@"UPDATE_DIAMONDS"]
+  056450  if ([[arg1 name] isEqualToString:@"UPDATE_DIAMONDS"] == 0) goto loc_10005646c
+  056468  [self handleUpdateDiamonds:[[arg1 userInfo] objectForKey:@"PARAM_ARRAY"]]
+loc_10005646c:
+  056474  goto loc_100056484
+loc_100056478:
+  056480  NSLog(@"Returned from the actUponNotification with data = nil")
+loc_100056484:
+  0564a8  return
+
+== -[ADInGameStats(NotificationDispatcher) handleUpdateTimePassed:]   (address 0x1000564fc  size 200  kind objc)
+  056530  [arg1 objectAtIndex:0]
+  05654c  [[arg1 objectAtIndex:0] doubleValue]
+  05656c  [self timeElapsed]
+  056584  [self setTimeElapsed:([[arg1 objectAtIndex:0] doubleValue] + [self timeElapsed])]
+  05659c  return
+
+== -[ADInGameStats(NotificationDispatcher) handleBrickTimePassed:]   (address 0x1000565c4  size 200  kind objc)
+  0565f8  [arg1 objectAtIndex:0]
+  056614  [[arg1 objectAtIndex:0] doubleValue]
+  056634  [self brickTime]
+  05664c  [self setBrickTime:([[arg1 objectAtIndex:0] doubleValue] + [self brickTime])]
+  056664  return
+
+== -[ADInGameStats(NotificationDispatcher) handleChallengeTimePassed:]   (address 0x10005668c  size 200  kind objc)
+  0566c0  [arg1 objectAtIndex:0]
+  0566dc  [[arg1 objectAtIndex:0] doubleValue]
+  0566fc  [self challengeTimeElapsed]
+  056714  [self setChallengeTimeElapsed:([[arg1 objectAtIndex:0] doubleValue] + [self challengeTimeElapsed])]
+  05672c  return
+
+== -[ADInGameStats(NotificationDispatcher) handleMeleeWeapon:]   (address 0x100056754  size 240  kind objc)
+  05678c  [arg1 objectAtIndex:0]
+  0567a8  [arg1 objectAtIndex:1]
+  0567c4  [[arg1 objectAtIndex:1] boolValue]
+  0567ec  [self updateMeleeWeaponsWithName:[arg1 objectAtIndex:0] Hit:[[arg1 objectAtIndex:1] boolValue]]
+  05680c  return
+
+== -[ADInGameStats(NotificationDispatcher) handleWeapon:]   (address 0x100056844  size 592  kind objc)
+  056888  [arg1 objectAtIndex:0]
+  0568a4  [arg1 objectAtIndex:1]
+  0568c4  [[arg1 objectAtIndex:1] boolValue]
+  0568e0  [arg1 objectAtIndex:2]
+  0568f4  [[arg1 objectAtIndex:2] boolValue]
+  056910  [arg1 objectAtIndex:3]
+  056924  [[arg1 objectAtIndex:3] boolValue]
+  056940  [arg1 objectAtIndex:4]
+  056954  [[arg1 objectAtIndex:4] boolValue]
+  056970  [arg1 objectAtIndex:5]
+  05698c  [[arg1 objectAtIndex:5] doubleValue]
+  0569a0  t1 = (([[arg1 objectAtIndex:1] boolValue] | [[arg1 objectAtIndex:2] boolValue]) | [[arg1 objectAtIndex:3] boolValue])
+  0569ac  &@selector(updateDataForWeaponWithName:FiredShot:HitFired:Killed:Critical:Time:)
+  0569b8  if ((t1 | [[arg1 objectAtIndex:4] boolValue]) != 1) goto loc_1000569e0
+  0569d8  [self updateDataForWeaponWithName:[arg1 objectAtIndex:0] FiredShot:[[arg1 objectAtIndex:1] boolValue] HitFired:[[arg1 objectAtIndex:2] boolValue] Killed:[[arg1 objectAtIndex:3] boolValue] Critical:[[arg1 objectAtIndex:4] boolValue] Time:[[arg1 objectAtIndex:5] doubleValue]]
+  0569dc  goto loc_100056a00
+loc_1000569e0:
+  0569fc  [self updateDataForWeaponWithName:[arg1 objectAtIndex:0] FiredShot:0 HitFired:0 Killed:0 Critical:0 Time:[[arg1 objectAtIndex:5] doubleValue]]
+loc_100056a00:
+  056a28  return
+
+== -[ADInGameStats(NotificationDispatcher) handleEnemyKilled:]   (address 0x100056a94  size 336  kind objc)
+  056ac8  [arg1 objectAtIndex:0]
+  056ae4  [arg1 objectAtIndex:1]
+  056b00  [[arg1 objectAtIndex:1] getType]
+  056b08  if ([[arg1 objectAtIndex:1] getType] == 1) goto loc_100056b78
+  056b34  [self updateDataForWeaponWithName:[arg1 objectAtIndex:0] FiredShot:0 HitFired:0 Killed:1 Critical:0 Time:-1]
+  056b4c  [ADInGameStats singleton]
+  056b6c  [[ADInGameStats singleton] killedEnemi:[arg1 objectAtIndex:1]]
+loc_100056b78:
+  056b98  return
+
+== -[ADInGameStats(NotificationDispatcher) handleEnemyPowerUpKilled:]   (address 0x100056be4  size 236  kind objc)
+  056c18  [arg1 objectAtIndex:0]
+  056c34  [arg1 objectAtIndex:1]
+  056c54  [[arg1 objectAtIndex:0] getType]
+  056c5c  if ([[arg1 objectAtIndex:0] getType] == 1) goto loc_100056c78
+  056c74  [self killedEnemi:[arg1 objectAtIndex:0]]
+loc_100056c78:
+  056c98  return
+
+== -[ADInGameStats(NotificationDispatcher) handleUpdateDiamonds:]   (address 0x100056cd0  size 208  kind objc)
+  056cf8  NSLog(@"Collected a diamond!")
+  056d10  [arg1 objectAtIndex:0]
+  056d2c  [[arg1 objectAtIndex:0] unsignedIntegerValue]
+  056d4c  [self diamondLoot]
+  056d64  [self setDiamondLoot:([self diamondLoot] + [[arg1 objectAtIndex:0] unsignedIntegerValue])]
+  056d78  return

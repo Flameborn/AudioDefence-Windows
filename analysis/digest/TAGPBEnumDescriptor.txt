@@ -1,0 +1,137 @@
+
+== +[TAGPBEnumDescriptor allocDescriptorForName:values:valueCount:enumVerifier:]   (address 0x100137ab8  size 324  kind objc)
+  137b00  [TAGPBMutableArray alloc]
+  137b18  [[TAGPBMutableArray alloc] initWithValueType:0 capacity:arg3]
+  137b20  if (arg3 == 0) goto loc_100137b94
+  137b30  &@selector(addObject:)
+  137b40  &@selector(release)
+loc_100137b4c:
+  137b54  [TAGPBEnumValueDescriptor alloc]
+  137b64  [[TAGPBEnumValueDescriptor alloc] initWithEnumValueDescription:x2 prefix:arg1]
+  137b78  [[[TAGPBMutableArray alloc] initWithValueType:0 capacity:arg3] addObject:[[TAGPBEnumValueDescriptor alloc] initWithEnumValueDescription:x2 prefix:arg1]]
+  137b84  [[[TAGPBEnumValueDescriptor alloc] initWithEnumValueDescription:x2 prefix:arg1] release]
+  137b90  if ((x22 - 1) != 0) goto loc_100137b4c
+loc_100137b94:
+  137ba0  [TAGPBEnumDescriptor alloc]
+  137bbc  [[TAGPBEnumDescriptor alloc] initWithName:arg1 values:[[TAGPBMutableArray alloc] initWithValueType:0 capacity:arg3] enumVerifier:arg4]
+  137bd4  [[[TAGPBMutableArray alloc] initWithValueType:0 capacity:arg3] release]
+  137bf8  return
+
+== +[TAGPBEnumDescriptor allocDescriptorForName:values:valueCount:enumVerifier:extraTextFormatInfo:]   (address 0x100137bfc  size 56  kind objc)
+  137c18  [TAGPBEnumDescriptor allocDescriptorForName:arg1 values:arg2 valueCount:arg3 enumVerifier:arg4]
+  137c24  [TAGPBEnumDescriptor allocDescriptorForName:arg1 values:arg2 valueCount:arg3 enumVerifier:arg4]->extraTextFormatInfo_ = arg5
+  137c30  return
+
+== +[TAGPBEnumDescriptor descriptorForName:]   (address 0x100137c34  size 184  kind objc)
+  137c60  strlen(arg1, _cmd, arg1)
+  137c88  memcpy((&sp[0x0] - ((strlen(arg1, _cmd, arg1) + 30) & -16)), arg1, strlen(arg1, _cmd, arg1))
+  137c98  [tconst_1002faa57] -> 0x726f747069726373
+  137c9c  ((&sp[0x0] - ((strlen(arg1, _cmd, arg1) + 30) & -16)) + strlen(arg1, _cmd, arg1))[+0x6] = 0x726f747069726373
+  137ca0  [tconst_1002faa51] -> 0x637365446d756e45
+  137ca4  ((&sp[0x0] - ((strlen(arg1, _cmd, arg1) + 30) & -16)) + strlen(arg1, _cmd, arg1))[+0x0] = 0x637365446d756e45
+  137ca8  ((&sp[0x0] - ((strlen(arg1, _cmd, arg1) + 30) & -16)) + strlen(arg1, _cmd, arg1))[+0xe] = 0
+  137cb0  objc_getClass((&sp[0x0] - ((strlen(arg1, _cmd, arg1) + 30) & -16)))
+  137cc0  [objc_getClass((&sp[0x0] - ((strlen(arg1, _cmd, arg1) + 30) & -16))) enumDescriptor]
+  137ce4  return
+
+== -[TAGPBEnumDescriptor initWithName:values:enumVerifier:]   (address 0x100137cec  size 176  kind objc)
+  137d2c  [super init]
+  137d34  if (self == 0) goto loc_100137d84
+  137d48  [arg1 copy]
+  137d54  self->name_ = [arg1 copy]
+  137d68  [arg2 retain]
+  137d74  self->values_ = [arg2 retain]
+  137d80  self->enumVerifier_ = arg3
+loc_100137d84:
+  137d98  return
+
+== -[TAGPBEnumDescriptor enumValueWithNumber:]   (address 0x100137d9c  size 324  kind objc)
+  137e0c  [self->values_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  137e18  if ([self->values_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] == 0) goto loc_100137ea8
+  137e28  &@selector(number)
+loc_100137e38:
+loc_100137e3c:
+  137e48  if (x8 == x28) goto loc_100137e54
+  137e50  objc_enumerationMutation(self->values_)
+loc_100137e54:
+  137e64  [x0 number]
+  137e6c  if ([x0 number] == arg1) goto loc_100137ea0
+  137e78  if ((x27 + 1) <u [self->values_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]) goto loc_100137e3c
+  137e90  [self->values_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  137e98  if ([self->values_ countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] != 0) goto loc_100137e38
+loc_100137ea0:
+loc_100137ea8:
+  137ed8  return
+
+== -[TAGPBEnumDescriptor enumValueWithName:]   (address 0x100137ee0  size 348  kind objc)
+  137f50  [self->values_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  137f5c  if ([self->values_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_100138004
+loc_100137f8c:
+loc_100137f90:
+  137f9c  if (x8 == x28) goto loc_100137fa8
+  137fa4  objc_enumerationMutation(self->values_)
+loc_100137fa8:
+  137fb8  [x0 name]
+  137fc4  [[x0 name] isEqualToString:arg1]
+  137fc8  if ([[x0 name] isEqualToString:arg1] != 0) goto loc_100137ffc
+  137fd4  if ((x25 + 1) <u [self->values_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_100137f90
+  137fec  [self->values_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  137ff4  if ([self->values_ countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_100137f8c
+loc_100137ffc:
+loc_100138004:
+  138034  return
+
+== -[TAGPBEnumDescriptor dealloc]   (address 0x10013803c  size 124  kind objc)
+  13806c  [self->name_ release]
+  138080  [self->values_ release]
+  1380a4  [super dealloc]
+  1380b4  return
+
+== -[TAGPBEnumDescriptor textFormatNameForEnumValue:]   (address 0x1001380b8  size 544  kind objc)
+  1380f8  [self->values_ count]
+  138104  if ([self->values_ count] == 0) goto loc_100138150
+  138118  &@selector(number)
+loc_100138120:
+  13812c  [self->values_ objectAtIndexedSubscript:x2]
+  138138  [[self->values_ objectAtIndexedSubscript:x2] number]
+  138140  if ([[self->values_ objectAtIndexedSubscript:x2] number] == arg1) goto loc_100138154
+  13814c  if ((x21 + 1) <u [self->values_ count]) goto loc_100138120
+loc_100138150:
+loc_100138154:
+  138168  [x0 name]
+  13816c  if ([x0 name] == 0) goto loc_1001382b0
+  138178  [x0 name]
+  13819c  [self->name_ length]
+  1381b4  [[x0 name] substringFromIndex:[self->name_ length]]
+  1381c8  if (self->extraTextFormatInfo_ == 0) goto loc_1001381e0
+  1381d4  sub_1001374dc(self->extraTextFormatInfo_, x1, [[x0 name] substringFromIndex:[self->name_ length]])
+  1381dc  if (sub_1001374dc(self->extraTextFormatInfo_, x1, [[x0 name] substringFromIndex:[self->name_ length]]) != 0) goto loc_1001382b4
+loc_1001381e0:
+  1381e8  [[[x0 name] substringFromIndex:[self->name_ length]] length]
+  138208  [NSMutableString stringWithCapacity:[[[x0 name] substringFromIndex:[self->name_ length]] length]]
+  138210  if ([[[x0 name] substringFromIndex:[self->name_ length]] length] == 0) goto loc_1001382b4
+  138228  &@selector(appendString:)
+  138230  &@selector(appendFormat:)
+loc_10013824c:
+  138258  [[[x0 name] substringFromIndex:[self->name_ length]] characterAtIndex:x2]
+  138260  if (x22 == 0) goto loc_100138284
+  138268  if ([[[x0 name] substringFromIndex:[self->name_ length]] characterAtIndex:x2] <u 65) goto loc_100138284
+  138270  if ([[[x0 name] substringFromIndex:[self->name_ length]] characterAtIndex:x2] >u 90) goto loc_100138284
+  138280  [[NSMutableString stringWithCapacity:[[[x0 name] substringFromIndex:[self->name_ length]] length]] appendString:@"_"]
+loc_100138284:
+  138288  toupper([[[x0 name] substringFromIndex:[self->name_ length]] characterAtIndex:x2])
+  13829c  [[NSMutableString stringWithCapacity:[[[x0 name] substringFromIndex:[self->name_ length]] length]] appendFormat:@"%c", toupper([[[x0 name] substringFromIndex:[self->name_ length]] characterAtIndex:x2…]
+  1382a8  if ([[[x0 name] substringFromIndex:[self->name_ length]] length] != (x22 + 1)) goto loc_10013824c
+  1382ac  goto loc_1001382b4
+loc_1001382b0:
+loc_1001382b4:
+  1382d4  return
+
+== -[TAGPBEnumDescriptor name]   (address 0x1001382d8  size 16  kind objc)
+  1382e4  return
+
+== -[TAGPBEnumDescriptor values]   (address 0x1001382e8  size 16  kind objc)
+  1382f4  return
+
+== -[TAGPBEnumDescriptor enumVerifier]   (address 0x1001382f8  size 16  kind objc)
+  138304  return

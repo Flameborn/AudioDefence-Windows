@@ -1,0 +1,159 @@
+
+== csl::AUIO::~AUIO   (address 0x1000e35d8  size 36  kind cxx)
+  0e35e8  sub_1000e358c(a0, a1, a2, a3)
+  0e35f8  return
+
+== csl::AUIO::~AUIO/*deleting*/   (address 0x1000e35fc  size 56  kind cxx)
+  0e360c  sub_1000e358c(a0, a1, a2, a3)
+  0e361c  tail ZdlPv(a0)
+  0e3628  ZdlPv()
+
+== sub_1000e3634   (address 0x1000e3634  size 268  kind sub)
+  0e3658  sub_1000e772c(2, "An error occured while using the AudioUnit '%s'", a2, a3)
+  0e366c  sub_1000e772c(2, "Error number: %d")
+  0e3674  cxa_allocate_exception(16)
+  0e368c  ZNSsC1EPKcRKSaIcE(&sp[0x10], "AUIO error", &sp[0x8])
+  0e3698  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x10])
+  0e36a8  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0e36c0  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0e36c4  goto loc_1000e371c
+  0e36e4  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e370c
+loc_1000e36ec:
+  0e36f8  if (w11 != 0) goto loc_1000e36ec
+  0e3700  if (w9 > 0) goto loc_1000e370c
+  0e3708  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+loc_1000e370c:
+  0e3710  if (w20 >= 0) goto loc_1000e3718
+  0e3714  cxa_call_unexpected()
+loc_1000e3718:
+loc_1000e371c:
+  0e3724  goto loc_1000e370c
+  0e3738  cxa_free_exception()
+  0e373c  goto loc_1000e370c
+
+== csl::AUIO::vfunc_3   (address 0x1000e3740  size 4  kind cxx)
+  0e3740  return
+
+== csl::AUIO::vfunc_5   (address 0x1000e3744  size 100  kind cxx)
+  0e3750  a0[+0xe8] = 0
+  0e3778  AudioUnitSetProperty(a0[+0x120], 23, 1, 0)
+  0e377c  if (AudioUnitSetProperty(a0[+0x120], 23, 1, 0) == 0) goto loc_1000e3790
+  0e378c  sub_1000e3634(AudioUnitSetProperty(a0[+0x120], 23, 1, 0), AudioUnitSetProperty(a0[+0x120], 23, 1, 0), "AudioUnitSetProperty - kAudioUnitProperty_SetRenderCallback")
+loc_1000e3790:
+  0e3798  return
+  0e379c  if (w1 >= 0) goto loc_1000e37a4
+  0e37a0  cxa_call_unexpected()
+
+== csl::AUIO::vfunc_5_block_invoke   (address 0x1000e37a8  size 1172  kind block)
+  0e37d8  if (g_10042d7c8 != 0) goto loc_1000e37f4
+  0e37e0  store g_10042d7c8 = 1
+  0e37f0  pthread_mutex_init(&g_10042d788, 0, blockarg2, blockarg3)
+loc_1000e37f4:
+  0e3800  if (g_10042d870 == 0) goto loc_1000e3810
+  0e380c  gettimeofday(&sp[0x30], 0)
+loc_1000e3810:
+  0e3818  pthread_mutex_trylock(&g_10042d788)
+  0e381c  if (pthread_mutex_trylock(&g_10042d788) != 0) goto loc_1000e38a4
+  0e3820  goto loc_1000e382c
+loc_1000e3824:
+loc_1000e382c:
+  0e383c  if (block[+0x118][+0x4] == block[+0x118][+0x0]) goto loc_1000e3898
+  0e384c  if ((block[+0x118][+0x10] + (block[+0x118][+0x0] << 3)) == 0) goto loc_1000e3898
+  0e3868  OSAtomicCompareAndSwap32(block[+0x118][+0x0], ((block[+0x118][+0x0] + 1) & block[+0x118][+0x8]), block[+0x118])
+  0e3878  if ((block[+0x118][+0x10] + (block[+0x118][+0x0] << 3))[+0x0] == 0) goto loc_1000e3824
+  0e3884  call (block[+0x118][+0x10] + (block[+0x118][+0x0] << 3))[+0x0][+0x10]
+  0e388c  (block[+0x118][+0x10] + (block[+0x118][+0x0] << 3))[+0x0] = 0
+  0e3894  goto loc_1000e3824
+loc_1000e3898:
+  0e38a0  pthread_mutex_unlock(&g_10042d788)
+loc_1000e38a4:
+  0e38a8  if (g_10042d870 == 0) goto loc_1000e38b8
+  0e38b4  gettimeofday(&sp[0x20], 0)
+loc_1000e38b8:
+  0e38bc  if (block[+0x60] == 0) goto loc_1000e3a68
+  0e38d8  sub_1000eb1a8(block, (block + 160), 0)
+  0e38e4  block[+0xe8] = (block[+0xe8] + w19)
+  0e38f8  call block[+0xa0][+0x20]
+  0e3914  if (fabs(block[+0xa0][+0x20](…)[+0x0]) <= (or unordered) 1) goto loc_1000e3938
+  0e3934  fprintf(___stderrp[+0x0], "iPhoneIO: big samp: %.2f\n", block[+0xa0][+0x20](…)[+0x0])
+loc_1000e3938:
+  0e393c  if (w24 != 1) goto loc_1000e3988
+  0e3940  if (w19 == 0) goto loc_1000e3a68
+loc_1000e3954:
+  0e395c  if (s2 <= (or unordered) 1) goto loc_1000e3968
+  0e3964  goto loc_1000e3978
+loc_1000e3968:
+loc_1000e3978:
+  0e3980  if ((w19 - 1) != 0) goto loc_1000e3954
+  0e3984  goto loc_1000e3a68
+loc_1000e3988:
+  0e3998  call (block + 160)[+0x0][+0x20]
+  0e39d0  vDSP_vclip(block[+0xa0][+0x20](…), 1, &x29[-0x44], &sp[0x48])
+  0e39f0  vDSP_vclip((block + 160)[+0x0][+0x20](…), 1, &x29[-0x44], &sp[0x48])
+  0e3a18  vDSP_vsmul(block[+0xa0][+0x20](…), 1, &sp[0x44], block[+0xa0][+0x20](…))
+  0e3a34  vDSP_vsmul((block + 160)[+0x0][+0x20](…), 1, &sp[0x44], (block + 160)[+0x0][+0x20](…))
+  0e3a4c  vDSP_vfixr16(block[+0xa0][+0x20](…), 1, x2, 2)
+  0e3a64  vDSP_vfixr16((block + 160)[+0x0][+0x20](…), 1, (x20 + 2), 2)
+loc_1000e3a68:
+  0e3a6c  if (g_10042d870 == 0) goto loc_1000e3c08
+  0e3a78  gettimeofday(&sp[0x10], 0)
+  0e3ad4  t1 = (((float)(x8 - x9) + ((float)(w8 - w10) / 1e+06)) + ((float)(x9 - x8) + ((float)(w10 - w8) / 1e+06)))
+  0e3ae0  store g_10042d898 = 0x3bbe37c6
+  0e3af8  store g_10042d874 = (((float)(x8 - x9) + ((float)(w8 - w10) / 1e+06)) / 0.00580499)
+  0e3b08  store g_10042d880 = (((float)(x9 - x8) + ((float)(w10 - w8) / 1e+06)) / 0.00580499)
+  0e3b20  store g_10042d88c = (t1 / 0.00580499)
+  0e3b3c  store g_10042d87c = (0 + (((((float)(x8 - x9) + ((float)(w8 - w10) / 1e+06)) / 0.00580499) - 0) * 0.01))
+  0e3b50  if ((((float)(x8 - x9) + ((float)(w8 - w10) / 1e+06)) / 0.00580499) > 0) goto loc_1000e3b6c
+loc_1000e3b6c:
+  0e3b6c  store g_10042d878 = s3
+  0e3b88  store g_10042d888 = (0 + (((((float)(x9 - x8) + ((float)(w10 - w8) / 1e+06)) / 0.00580499) - 0) * 0.01))
+  0e3b9c  if ((((float)(x9 - x8) + ((float)(w10 - w8) / 1e+06)) / 0.00580499) > 0) goto loc_1000e3bb8
+loc_1000e3bb8:
+  0e3bb8  store g_10042d884 = s2
+  0e3bd4  store g_10042d894 = (0 + (((t1 / 0.00580499) - 0) * 0.01))
+  0e3be8  if ((t1 / 0.00580499) > 0) goto loc_1000e3c04
+loc_1000e3c04:
+  0e3c04  store g_10042d890 = s0
+loc_1000e3c08:
+  0e3c24  return
+
+== csl::AUIO::vfunc_6   (address 0x1000e3c3c  size 88  kind cxx)
+  0e3c64  AudioUnitSetProperty(a0[+0x120], 23, 1, 0)
+  0e3c68  if (AudioUnitSetProperty(a0[+0x120], 23, 1, 0) == 0) goto loc_1000e3c7c
+  0e3c78  sub_1000e3634(AudioUnitSetProperty(a0[+0x120], 23, 1, 0), AudioUnitSetProperty(a0[+0x120], 23, 1, 0), "AudioUnitSetProperty - kAudioUnitProperty_SetRenderCallback")
+loc_1000e3c7c:
+  0e3c84  return
+  0e3c88  if (w1 >= 0) goto loc_1000e3c90
+  0e3c8c  cxa_call_unexpected()
+
+== csl::AUIO::vfunc_4   (address 0x1000e3c94  size 4  kind cxx)
+  0e3c94  return
+
+== csl::AUIO::vfunc_8   (address 0x1000e3c98  size 44  kind cxx)
+  0e3cac  call a0[+0x0][+0x48]
+  0e3cb4  return
+  0e3cb8  if (w1 >= 0) goto loc_1000e3cc0
+  0e3cbc  cxa_call_unexpected()
+
+== csl::AUIO::vfunc_9   (address 0x1000e3cc4  size 252  kind cxx)
+  0e3cd8  if (a0[+0xf4] == 0) goto loc_1000e3cfc
+  0e3ce4  a0[+0x92] = 1
+  0e3cf8  return
+  0e3d00  cxa_allocate_exception(16, a1, a2, a3)
+  0e3d18  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Can't get unopened input", &sp[0x8])
+  0e3d24  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0e3d34  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0e3d4c  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0e3d50  goto sub_1000e3dc0
+  0e3d70  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e3d98
+  0e3d84  if (w11 != 0) goto loc_1000e3d78
+  0e3d8c  if (w9 > 0) goto loc_1000e3d98
+  0e3d94  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0e3d9c  if (w20 >= 0) goto loc_1000e3da4
+  0e3da0  cxa_call_unexpected()
+  0e3db8  cxa_free_exception()
+
+== sub_1000e3dc0   (address 0x1000e3dc0  size 52  kind sub)
+  0e3dd0  sub_1000e3494(a0, a1, a2, a3)
+  0e3de0  a0[+0x0] = vtable<csl::iPhoneIO>
+  0e3df0  return

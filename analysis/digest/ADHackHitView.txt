@@ -1,0 +1,17 @@
+
+== -[ADHackHitView initWithFrame:]   (address 0x1000404ec  size 60  kind objc)
+  040518  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  040524  return
+
+== -[ADHackHitView hitTest:withEvent:]   (address 0x100040528  size 380  kind objc)
+  04058c  [super hitTest:{arg1.0, arg1.1} withEvent:arg2]
+  0405a0  if ([super hitTest:{arg1.0, arg1.1} withEvent:arg2] != self) goto loc_10004062c
+  0405b8  [self subviews]
+  0405d4  [[self subviews] count]
+  0405e4  if ([[self subviews] count] == 0) goto loc_10004062c
+  0405f0  [self subviews]
+  040610  [[self subviews] objectAtIndex:0]
+  040628  goto loc_100040638
+loc_10004062c:
+loc_100040638:
+  040664  return

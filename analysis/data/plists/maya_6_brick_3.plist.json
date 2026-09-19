@@ -1,0 +1,98 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_maya_6_2"
+  }
+ ],
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 6.5,
+    "afterStart": true,
+    "enemy": "bastard_maya_6_2"
+   },
+   "spawn_angle": 130,
+   "spawn_distance": 10
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 9.5,
+    "afterStart": true,
+    "enemy": "bastard_maya_6_2"
+   },
+   "spawn_angle": 340,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 280,
+   "spawn_distance": 10
+  },
+  "RunnerB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 100,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 10,
+   "spawn_distance": 10
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 8.5,
+    "afterStart": true,
+    "enemy": "bastard_maya_6_2"
+   },
+   "spawn_angle": 250,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7.5,
+    "afterStart": true,
+    "enemy": "bastard_maya_6_2"
+   },
+   "spawn_angle": 40,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "Zombie"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "ZombieB"
+   },
+   "spawn_angle": 190,
+   "spawn_distance": 10
+  }
+ }
+}

@@ -1,0 +1,45 @@
+// PEMetricsViewController.nib
+TOP-LEVEL OBJECTS
+  #34 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #36 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #2 UIView  
+    #6 UIView  
+    #75 UIView  
+    #88 UIView  
+    #84 UIView  
+    #26 UILabel  UserInteractionDisabled=False Text='App CPU'
+    #41 UILabel  UserInteractionDisabled=False Text='CPU'
+    #44 UILabel  UserInteractionDisabled=False Text='Loaded Snds'
+    #28 UILabel  UserInteractionDisabled=False Text='CPU'
+    #49 UILabel  UserInteractionDisabled=False Text='Mix %'
+    #17 UILabel  UserInteractionDisabled=False Text='CPU'
+    #39 UILabel  UserInteractionDisabled=False Text='Mix % (LP)'
+    #56 UILabel  UserInteractionDisabled=False Text='CPU'
+    #45 UILabel  UserInteractionDisabled=False Text='Mix % (max)'
+    #51 UILabel  UserInteractionDisabled=False Text='CPU'
+    #78 UILabel  UserInteractionDisabled=False Text='Total Active Snds'
+    #13 UILabel  UserInteractionDisabled=False Text='CPU'
+    #87 UILabel  UserInteractionDisabled=False Text='Act. Spatial'
+    #27 UILabel  UserInteractionDisabled=False Text='CPU'
+    #12 UILabel  UserInteractionDisabled=False Text='Act. Non-Spa'
+    #14 UILabel  UserInteractionDisabled=False Text='CPU'
+    #58 UILabel  UserInteractionDisabled=False Text='Audio Mem (MB)'
+    #64 UILabel  UserInteractionDisabled=False Text='PE V1_0_000_2000_01_01'
+    #66 UILabel  UserInteractionDisabled=False Text='CPU'
+    #71 UIView (custom class PECPUMeter)  
+
+CONNECTIONS
+  outlet  ctrlActNonSpatial                         #34 UIProxyObject --> #14 UILabel Text='CPU'
+  outlet  ctrlActSpatial                            #34 UIProxyObject --> #27 UILabel Text='CPU'
+  outlet  ctrlAppCPU                                #34 UIProxyObject --> #41 UILabel Text='CPU'
+  outlet  ctrlAudioMemMB                            #34 UIProxyObject --> #66 UILabel Text='CPU'
+  outlet  ctrlCPUMeter                              #34 UIProxyObject --> #71 PECPUMeter
+  outlet  ctrlLoadedSnds                            #34 UIProxyObject --> #28 UILabel Text='CPU'
+  outlet  ctrlMixPercent                            #34 UIProxyObject --> #17 UILabel Text='CPU'
+  outlet  ctrlMixPercentLP                          #34 UIProxyObject --> #56 UILabel Text='CPU'
+  outlet  ctrlMixPercentMax                         #34 UIProxyObject --> #51 UILabel Text='CPU'
+  outlet  ctrlPapaEngineVersion                     #34 UIProxyObject --> #64 UILabel Text='PE V1_0_000_2000_01_01'
+  outlet  ctrlTotalActiveSnds                       #34 UIProxyObject --> #13 UILabel Text='CPU'
+  outlet  view                                      #34 UIProxyObject --> #2 UIView
+
+ACCESSIBILITY CONFIGURATIONS

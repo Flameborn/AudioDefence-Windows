@@ -1,0 +1,60 @@
+
+== -[ADMachine initWithName:]   (address 0x10004f74c  size 176  kind objc)
+  04f798  [super initWithName:arg1]
+  04f7a0  if (self == 0) goto loc_10004f7c0
+  04f7bc  [self setUseOwnImpactSounds:1]
+loc_10004f7c0:
+  04f7dc  return
+
+== -[ADMachine update:]   (address 0x10004f7fc  size 512  kind objc)
+  04f820  [self state]
+  04f828  if ([self state] > 501) goto loc_10004f890
+  04f82c  if ([self state] == 0) goto loc_10004f8fc
+  04f834  if ([self state] != 1) goto loc_10004f948
+  04f84c  [self spawn_sound_duration]
+  04f854  if ([self spawn_sound_duration] == 0.0) goto loc_10004f930
+  04f868  [self timeInState]
+  04f878  [self spawn_sound_duration]
+  04f880  if ([self timeInState] <= (or unordered) [self spawn_sound_duration]) goto loc_10004f9c4
+  04f888  &@selector(startLoop)
+  04f88c  goto loc_10004f938
+loc_10004f890:
+  04f894  if ([self state] != 502) goto loc_10004f9c4
+  04f8a8  [self timeInState]
+  04f8bc  if ([self timeInState] <= (or unordered) self->sleepTime) goto loc_10004f9c4
+  04f8d0  [self maxLife]
+  04f8e4  [self setLife:[self maxLife]]
+  04f8ec  &@selector(setState:)
+  04f8f8  goto loc_10004f9bc
+loc_10004f8fc:
+  04f90c  [self timeInState]
+  04f924  [self spawn_time]
+  04f92c  if ([self timeInState] <= (or unordered) [self spawn_time]) goto loc_10004f9c4
+loc_10004f930:
+  04f934  &@selector(spawn)
+loc_10004f938:
+  04f940  [self spawn | startLoop]
+  04f944  goto loc_10004f9c4
+loc_10004f948:
+  04f94c  if ([self state] != 5) goto loc_10004f9c4
+  04f960  [self timeInState]
+  04f96c  if ([self timeInState] <= (or unordered) 3) goto loc_10004f9c4
+  04f970  rand()
+  04f99c  t1 = (float)((rand() - (((rand() * 0x66666667) >> 35) + ((rand() * 0x66666667) >>> 63)) * 20) + 35)
+  04f9a8  self->sleepTime = t1
+  04f9b0  &@selector(setState:)
+loc_10004f9bc:
+  04f9c0  [self setState:one of {1, 502}]
+loc_10004f9c4:
+  04f9d4  [self timeInState]
+  04f9f8  tail [self setTimeInState:([self timeInState] + arg1)]
+
+== -[ADMachine startLoop]   (address 0x10004f9fc  size 72  kind objc)
+  04fa20  [self playAnySoundContaining:@"loop"]
+  04fa40  tail [self setState:501]
+
+== -[ADMachine die]   (address 0x10004fa44  size 152  kind objc)
+  04fa78  [super die]
+  04fa8c  [self sound]
+  04faac  [[self sound] setGain:2]
+  04fac4  return

@@ -1,0 +1,129 @@
+
+== +[ADMotionManager sharedInstance]   (address 0x100005830  size 132  kind objc)
+  00584c  if (g_10042d930 != 0) goto loc_10000588c
+  005884  if (g_10042d938 != -1) goto loc_1000058a0
+loc_10000588c:
+loc_1000058a0:
+  0058a8  dispatch_once(&g_10042d938, ^{+[ADMotionManager sharedInstance]_block_invoke captures +0x20=ADMotionManager})
+  0058b0  goto loc_10000588c
+
+== +[ADMotionManager sharedInstance]_block_invoke   (address 0x1000058b4  size 108  kind block)
+  0058e8  [super allocWithZone:0]
+  0058f8  [[super allocWithZone:0] init]
+  005908  store g_10042d930 = [[super allocWithZone:0] init]
+  00591c  return
+
+== sub_100005920   (address 0x100005920  size 4  kind sub)
+  005920  return
+
+== sub_100005924   (address 0x100005924  size 4  kind sub)
+  005924  return
+
+== +[ADMotionManager allocWithZone:]   (address 0x100005928  size 36  kind objc)
+  00593c  [ADMotionManager sharedInstance]
+
+== -[ADMotionManager copyWithZone:]   (address 0x10000594c  size 4  kind objc)
+
+== -[ADMotionManager startMotionManager]   (address 0x100005950  size 176  kind objc)
+  005964  if (g_10042d780 != 0) goto loc_1000059f4
+  00597c  [CMMotionManager alloc]
+  00598c  [[CMMotionManager alloc] init]
+  005998  store g_10042d770 = [[CMMotionManager alloc] init]
+  0059b4  [g_10042d770 isDeviceMotionAvailable]
+  0059b8  if ([g_10042d770 isDeviceMotionAvailable] == 0) goto loc_1000059f4
+  0059d4  [g_10042d770 setDeviceMotionUpdateInterval:0.0142857]
+  0059e8  [g_10042d770 startDeviceMotionUpdates]
+  0059f0  store g_10042d780 = 1
+loc_1000059f4:
+  0059fc  return
+
+== -[ADMotionManager getCurrentAcceleration]   (address 0x100005a00  size 144  kind objc)
+  005a28  [g_10042d770 deviceMotion]
+  005a44  [[g_10042d770 deviceMotion] userAcceleration]
+  005a78  return
+
+== -[ADMotionManager getCurrentAttitude]   (address 0x100005a90  size 120  kind objc)
+  005ab0  [g_10042d770 deviceMotion]
+  005acc  [[g_10042d770 deviceMotion] attitude]
+  005af0  return
+
+== -[ADMotionManager getStartingAttitude]   (address 0x100005b08  size 12  kind objc)
+
+== -[ADMotionManager getInterval]   (address 0x100005b14  size 44  kind objc)
+  005b30  [g_10042d770 accelerometerUpdateInterval]
+  005b3c  return
+
+== -[ADMotionManager getStamp]   (address 0x100005b40  size 120  kind objc)
+  005b64  [g_10042d770 deviceMotion]
+  005b80  [[g_10042d770 deviceMotion] timestamp]
+  005ba0  return
+
+== -[ADMotionManager setStartingAttitude:]   (address 0x100005bb8  size 136  kind objc)
+  005bd8  [g_10042d770 deviceMotion]
+  005bf4  [[g_10042d770 deviceMotion] attitude]
+  005c08  store g_10042d778 = [[g_10042d770 deviceMotion] attitude]
+  005c20  return
+
+== -[ADMotionManager isDeviceReady]   (address 0x100005c40  size 24  kind objc)
+  005c54  tail [g_10042d770 isDeviceMotionActive]
+
+== -[ADMotionManager destroyMotionManager]   (address 0x100005c58  size 68  kind objc)
+  005c78  [g_10042d770 stopDeviceMotionUpdates]
+  005c80  store g_10042d770 = 0
+  005c8c  store g_10042d780 = 0
+  005c98  return
+
+== -[ADMotionManager getYawDifference]   (address 0x100005c9c  size 336  kind objc)
+  005cd8  [g_10042d770 deviceMotion]
+  005cec  &@selector(attitude)
+  005cf4  if (g_10042d778 == 0) goto loc_100005d64
+  005cfc  [[g_10042d770 deviceMotion] attitude]
+  005d20  if (self->lastAttitude == 0) goto loc_100005d94
+  005d38  [[[g_10042d770 deviceMotion] attitude] yaw]
+  005d48  [self->lastAttitude yaw]
+  005d60  goto loc_100005da0
+loc_100005d64:
+  005d68  [[g_10042d770 deviceMotion] attitude]
+  005d78  store g_10042d778 = [[g_10042d770 deviceMotion] attitude]
+  005d90  goto loc_100005dac
+loc_100005d94:
+loc_100005da0:
+  005da0  self->lastAttitude = [[g_10042d770 deviceMotion] attitude]
+loc_100005dac:
+  005dc4  return
+
+== -[ADMotionManager getTiltAngle]   (address 0x100005dec  size 356  kind objc)
+  005e18  [UIApplication sharedApplication]
+  005e34  [[UIApplication sharedApplication] statusBarOrientation]
+  005e5c  [g_10042d770 deviceMotion]
+  005e70  &@selector(attitude)
+  005e78  if (g_10042d778 == 0) goto loc_100005ecc
+  005e80  [[g_10042d770 deviceMotion] attitude]
+  005ea4  if (self->lastAttitude == 0) goto loc_100005efc
+  005eb4  [self->lastAttitude pitch]
+  005ec8  goto loc_100005f08
+loc_100005ecc:
+  005ed0  [[g_10042d770 deviceMotion] attitude]
+  005ee0  store g_10042d778 = [[g_10042d770 deviceMotion] attitude]
+  005ef8  goto loc_100005f14
+loc_100005efc:
+loc_100005f08:
+  005f08  self->lastAttitude = [[g_10042d770 deviceMotion] attitude]
+loc_100005f14:
+  005f24  return
+
+== -[ADMotionManager lastGyroAngle]   (address 0x100005f50  size 16  kind objc)
+  005f5c  return
+
+== -[ADMotionManager setLastGyroAngle:]   (address 0x100005f60  size 16  kind objc)
+  005f68  self->_lastGyroAngle = arg1
+  005f6c  return
+
+== -[ADMotionManager lastTiltAngle]   (address 0x100005f70  size 16  kind objc)
+  005f7c  return
+
+== -[ADMotionManager setLastTiltAngle:]   (address 0x100005f80  size 16  kind objc)
+  005f88  self->_lastTiltAngle = arg1
+  005f8c  return
+
+== -[ADMotionManager .cxx_destruct]   (address 0x100005f90  size 20  kind objc)

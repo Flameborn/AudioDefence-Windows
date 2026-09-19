@@ -1,0 +1,379 @@
+
+== -[ADMissionForTopbarViewController initWithMission:skippable:]   (address 0x10003bf9c  size 196  kind objc)
+  03bff0  [super initWithNibName:0 bundle:0]
+  03bff8  if (self == 0) goto loc_10003c024
+  03c014  [self setMission:arg1]
+  03c020  self->canSkip = arg2
+loc_10003c024:
+  03c040  return
+
+== -[ADMissionForTopbarViewController viewDidLoad]   (address 0x10003c060  size 92  kind objc)
+  03c094  [super viewDidLoad]
+  03c0a8  [self refreshAndLoad]
+  03c0b8  return
+
+== -[ADMissionForTopbarViewController awakeFromNib]   (address 0x10003c0bc  size 232  kind objc)
+  03c0e4  [self view]
+  03c100  [[self view] layoutIfNeeded]
+  03c114  [self view]
+  03c130  [[self view] frame]
+  03c134  NSStringFromCGRect()
+  03c150  NSLog(@"The mission bar frame is : %@", NSStringFromCGRect())
+  03c170  return
+
+== -[ADMissionForTopbarViewController refreshAndLoad]   (address 0x10003c1a4  size 2952  kind objc)
+  03c1dc  [self description]
+  03c200  [self mission]
+  03c214  [[self mission] description]
+  03c23c  [[self description] setText:[[self mission] description]]
+  03c26c  [self reward]
+  03c28c  [self mission]
+  03c2a0  [[self mission] reward]
+  03c2c4  [NSString stringWithFormat:@"%i", [[self mission] reward]]
+  03c2e0  [[self reward] setText:[NSString stringWithFormat:@"%i", [[self mission] reward]]]
+  03c304  [self reward]
+  03c31c  [self mission]
+  03c330  [[self mission] reward]
+  03c348  [[self reward] setValue:[[self mission] reward]]
+  03c368  [self mission]
+  03c384  [[self mission] completionToString]
+  03c3b8  [[[self mission] completionToString] isEqualToString:@""]
+  03c3c8  t1 = ([[[self mission] completionToString] isEqualToString:@""] | ([[self mission] completionToString] == 0))
+  03c3d0  &@selector(completion)
+  03c3dc  if (t1 != 1) goto loc_10003c444
+  03c3e8  [self completion]
+  03c404  [[self completion] setText:@"0/100"]
+  03c418  [self completion]
+  03c438  [[self completion] setHidden:1]
+  03c43c  goto loc_10003c468
+  03c440  goto loc_10003cd10
+loc_10003c444:
+  03c44c  [self completion]
+  03c464  [[self completion] setText:[[self mission] completionToString]]
+loc_10003c468:
+  03c484  [self skipButton]
+  03c4a4  [self mission]
+  03c4c4  [[self mission] skipCost]
+  03c4dc  [NSString stringWithFormat:@"%i", [[self mission] skipCost]]
+  03c504  [[self skipButton] setTitle:[NSString stringWithFormat:@"%i", [[self mission] skipCost]] forState:0]
+  03c528  [self skipButton]
+  03c548  [[self skipButton] setDiamonds:20]
+  03c55c  [self description]
+  03c58c  [ADGameParameters sharedParameters]
+  03c5ac  [[ADGameParameters sharedParameters] isIphone]
+  03c5dc  [UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 8 : 15)]
+  03c604  [[self description] setFont:[UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 8 : 15)]]
+  03c628  [self description]
+  03c650  [UIColor whiteColor]
+  03c678  [[self description] setTextColor:[UIColor whiteColor]]
+  03c6a0  [self rewardLabel]
+  03c6c8  [ADGameParameters sharedParameters]
+  03c6dc  [[ADGameParameters sharedParameters] isIphone]
+  03c6f8  [UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 8 : 15)]
+  03c714  [[self rewardLabel] setFont:[UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 8 : 15)]]
+  03c738  [self rewardLabel]
+  03c754  [UIColor whiteColor]
+  03c770  [[self rewardLabel] setTextColor:[UIColor whiteColor]]
+  03c798  [self skipDiamondsLabel]
+  03c7b8  [ADGameParameters sharedParameters]
+  03c7cc  [[ADGameParameters sharedParameters] isIphone]
+  03c7e8  [UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 8 : 15)]
+  03c804  [[self skipDiamondsLabel] setFont:[UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 8 : 15)]]
+  03c828  [self skipDiamondsLabel]
+  03c848  [UIColor whiteColor]
+  03c864  [[self skipDiamondsLabel] setTextColor:[UIColor whiteColor]]
+  03c880  [self reward]
+  03c8a0  [ADGameParameters sharedParameters]
+  03c8b4  [[ADGameParameters sharedParameters] isIphone]
+  03c8dc  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 40)]
+  03c8f8  [[self reward] setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 40)]]
+  03c91c  [self reward]
+  03c938  [UIColor whiteColor]
+  03c954  [[self reward] setTextColor:[UIColor whiteColor]]
+  03c970  [self completion]
+  03c990  [ADGameParameters sharedParameters]
+  03c9a4  [[ADGameParameters sharedParameters] isIphone]
+  03c9c0  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 40)]
+  03c9dc  [[self completion] setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 40)]]
+  03ca00  [self completion]
+  03ca1c  [UIColor whiteColor]
+  03ca38  [[self completion] setTextColor:[UIColor whiteColor]]
+  03ca54  [self skipButton]
+  03ca70  [[self skipButton] centerButtonTextWithDiamondsImage]
+  03ca84  [self mission]
+  03caa0  [[self mission] isMissionCompleted]
+  03cab0  if ([[self mission] isMissionCompleted] == 0) goto loc_10003cb24
+  03cabc  [self skipButton]
+  03cadc  [[self skipButton] setHidden:1]
+  03caf8  [self starImage]
+  03cb18  [[self starImage] setAlpha:1]
+loc_10003cb24:
+  03cb30  if (self->canSkip != 0) goto loc_10003cb48
+  03cb44  [self disableSkip]
+loc_10003cb48:
+  03cb6c  return
+
+== -[ADMissionForTopbarViewController viewDidAppear:]   (address 0x10003cd2c  size 552  kind objc)
+  03cd74  [super viewDidAppear:arg1]
+  03cd88  [self completionBar]
+  03cdac  [self completionBarBackground]
+  03cdcc  [[self completionBarBackground] frame]
+  03cddc  [self completionBarBackground]
+  03cdf0  [[self completionBarBackground] frame]
+  03ce00  [self completionBarBackground]
+  03ce14  [[self completionBarBackground] frame]
+  03ce2c  [self mission]
+  03ce48  [[self mission] completionToFloat]
+  03ce58  [self completionBarBackground]
+  03ce6c  [[self completionBarBackground] frame]
+  03ce7c  t1 = (float)(int)([[self completionBarBackground] frame].2 * [[self mission] completionToFloat])
+  03ce98  [[self completionBar] setFrame:{[[self completionBarBackground] frame].0, [[self completionBarBackground] frame].1, t1, [[self completionBarBackground] frame].3}]
+  03ceec  return
+
+== -[ADMissionForTopbarViewController disableSkip]   (address 0x10003cf54  size 268  kind objc)
+  03cf70  self->canSkip = 0
+  03cf80  [self skipButton]
+  03cfa0  [[self skipButton] setHidden:1]
+  03cfbc  [self mission]
+  03cfd8  [[self mission] isMissionCompleted]
+  03cfe8  if ([[self mission] isMissionCompleted] == 0) goto loc_10003d034
+  03cffc  [self starImage]
+  03d01c  [[self starImage] setAlpha:1]
+  03d030  return
+loc_10003d034:
+  03d040  return
+
+== -[ADMissionForTopbarViewController getTopViewController]   (address 0x10003d060  size 180  kind objc)
+  03d080  [self presentingViewController]
+  03d090  if ([self presentingViewController] == 0) goto loc_10003d0e8
+  03d098  &@selector(statusBarViewController)
+loc_10003d0a0:
+  03d0a8  [x0 statusBarViewController]
+  03d0bc  if ([x0 statusBarViewController] != 0) goto loc_10003d0ec
+  03d0c8  [x0 presentingViewController]
+  03d0e4  if ([x0 presentingViewController] != 0) goto loc_10003d0a0
+loc_10003d0e8:
+loc_10003d0ec:
+  03d0fc  return
+
+== -[ADMissionForTopbarViewController skipButtonTouched:]   (address 0x10003d114  size 748  kind objc)
+  03d14c  [ADInventory sharedInventory]
+  03d16c  [[ADInventory sharedInventory] diamonds]
+  03d188  [self mission]
+  03d1a8  [[self mission] skipCost]
+  03d1c4  if ([[ADInventory sharedInventory] diamonds] >= [[self mission] skipCost]) goto loc_10003d1e0
+  03d1d8  [self showNoDiamondsAlert]
+  03d1dc  goto loc_10003d35c
+loc_10003d1e0:
+  03d1f4  [ADPersistentStats persistentStats]
+  03d214  [[ADPersistentStats persistentStats] updateMissionsSkipped:1]
+  03d234  [UIApplication sharedApplication]
+  03d250  [[UIApplication sharedApplication] delegate]
+  03d26c  [[[UIApplication sharedApplication] delegate] statusBar]
+  03d284  [self mission]
+  03d298  [[self mission] skipCost]
+  03d2b0  [[[[UIApplication sharedApplication] delegate] statusBar] animateDiamonds:-[[self mission] skipCost]]
+  03d2dc  [ADInventory sharedInventory]
+  03d2f4  [self mission]
+  03d308  [[self mission] skipCost]
+  03d318  [[ADInventory sharedInventory] diamonds]
+  03d330  [[ADInventory sharedInventory] setDiamonds:([[ADInventory sharedInventory] diamonds] - [[self mission] skipCost])]
+  03d358  [self markAsCompletedAndSwapWithReward:0]
+loc_10003d35c:
+  03d374  return
+
+== -[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]   (address 0x10003d400  size 1416  kind objc)
+  03d434  if (self->canSkip == 0) goto loc_10003d844
+  03d44c  [ADMissionManager sharedMissionManager]
+  03d470  [self mission]
+  03d494  [[ADMissionManager sharedMissionManager] replaceMission:[self mission]]
+  03d4c8  [self view]
+  03d4e8  [[self view] setHidden:1]
+  03d590  [UIView animateWithDuration:0.25 animations:^{-[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]_block_invoke captures +0x20=self} completion:^{-[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]_block_invoke_2 captures +0x20=self, +0x28=[[ADMissionManager sharedMissionManager]…, +0x30=__NSConcreteStackBlock, +0x38=0xc2000000, +0x40=&-[ADMissionForTopbarViewController mark…, +0x48=&d_1003b15b0, +0x50=self}]
+  03d594  if (arg1 == 0) goto loc_10003d824
+  03d5ac  [self reward]
+  03d5c4  [self mission]
+  03d5d8  [[self mission] reward]
+  03d5f0  [[self reward] setValue:[[self mission] reward]]
+  03d60c  [self reward]
+  03d630  [UIApplication sharedApplication]
+  03d64c  [[UIApplication sharedApplication] delegate]
+  03d668  [[[UIApplication sharedApplication] delegate] window]
+  03d684  [[[[UIApplication sharedApplication] delegate] window] rootViewController]
+  03d6a8  [[self reward] setDelegate:[[[[UIApplication sharedApplication] delegate] window] rootViewController]]
+  03d6dc  [self reward]
+  03d6f4  [self view]
+  03d714  [[self view] superview]
+  03d728  [[[self view] superview] superview]
+  03d74c  [[self reward] setFromView:[[[self view] superview] superview]]
+  03d778  [self reward]
+  03d794  [[self reward] animateCoins]
+  03d7b4  [ADInventory sharedInventory]
+  03d7cc  [self mission]
+  03d7e0  [[self mission] reward]
+  03d7f8  [[ADInventory sharedInventory] coins]
+  03d810  [[ADInventory sharedInventory] setCoins:([[ADInventory sharedInventory] coins] + [[self mission] reward])]
+loc_10003d824:
+loc_10003d844:
+  03d860  return
+
+== -[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]_block_invoke   (address 0x10003d988  size 440  kind block)
+  03d9cc  [self view]
+  03d9f0  [[self view] setAlpha:0]
+  03da14  [self view]
+  03da30  [[self view] subviews]
+  03da68  [[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  03da70  if ([[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_10003dad8
+loc_10003da7c:
+loc_10003da80:
+  03da8c  if (x8 == x24) goto loc_10003da98
+  03da94  objc_enumerationMutation([[self view] subviews])
+loc_10003da98:
+  03daa8  [x0 setAlpha:0]
+  03dab4  if ((x25 + 1) <u [[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_10003da80
+  03dacc  [[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  03dad4  if ([[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10003da7c
+loc_10003dad8:
+  03db04  return
+
+== sub_10003db40   (address 0x10003db40  size 8  kind sub)
+
+== sub_10003db48   (address 0x10003db48  size 8  kind sub)
+  03db4c  return
+
+== -[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]_block_invoke_2   (address 0x10003db50  size 336  kind block)
+  03db68  if (blockarg1 == 0) goto loc_10003dc64
+  03db7c  [x0 setMission:x2]
+  03db90  [self refreshAndLoad]
+  03dba4  [self view]
+  03dbc0  [[self view] layoutIfNeeded]
+  03dc50  [UIView animateWithDuration:0.25 animations:^{-[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]_block_invoke_2_block_invoke captures +0x20=self} completion:^{-[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]_block_invoke_2_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADMissionForTopbarViewController mark…, +0x40=&d_1003b15e0, +0x48=self}]
+loc_10003dc64:
+  03dc74  return
+
+== -[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]_block_invoke_2_block_invoke   (address 0x10003dca0  size 452  kind block)
+  03dce8  [self view]
+  03dd0c  [[self view] setAlpha:1]
+  03dd30  [self view]
+  03dd4c  [[self view] subviews]
+  03dd84  [[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  03dd8c  if ([[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_10003ddf8
+loc_10003dd9c:
+loc_10003dda0:
+  03ddac  if (x8 == x24) goto loc_10003ddb8
+  03ddb4  objc_enumerationMutation([[self view] subviews])
+loc_10003ddb8:
+  03ddc8  [x0 setAlpha:1]
+  03ddd4  if ((x25 + 1) <u [[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_10003dda0
+  03ddec  [[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  03ddf4  if ([[[self view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10003dd9c
+loc_10003ddf8:
+  03de28  return
+
+== sub_10003de64   (address 0x10003de64  size 8  kind sub)
+
+== sub_10003de6c   (address 0x10003de6c  size 8  kind sub)
+  03de70  return
+
+== -[ADMissionForTopbarViewController markAsCompletedAndSwapWithReward:]_block_invoke_2_block_invoke_2   (address 0x10003de74  size 100  kind block)
+  03de90  [self view]
+  03deb0  [[self view] setHidden:0]
+  03dec0  return
+
+== sub_10003ded8   (address 0x10003ded8  size 8  kind sub)
+
+== sub_10003dee0   (address 0x10003dee0  size 8  kind sub)
+  03dee4  return
+
+== sub_10003dee8   (address 0x10003dee8  size 40  kind sub)
+
+== sub_10003df10   (address 0x10003df10  size 40  kind sub)
+  03df34  return
+
+== -[ADMissionForTopbarViewController didReceiveMemoryWarning]   (address 0x10003df38  size 60  kind objc)
+  03df64  [super didReceiveMemoryWarning]
+  03df70  return
+
+== -[ADMissionForTopbarViewController description]   (address 0x10003df74  size 16  kind objc)
+  03df80  return
+
+== -[ADMissionForTopbarViewController setDescription:]   (address 0x10003df84  size 56  kind objc)
+  03dfa8  self->description = arg1
+  03dfb8  return
+
+== -[ADMissionForTopbarViewController rewardLabel]   (address 0x10003dfbc  size 16  kind objc)
+  03dfc8  return
+
+== -[ADMissionForTopbarViewController setRewardLabel:]   (address 0x10003dfcc  size 56  kind objc)
+  03dff0  self->_rewardLabel = arg1
+  03e000  return
+
+== -[ADMissionForTopbarViewController completion]   (address 0x10003e004  size 16  kind objc)
+  03e010  return
+
+== -[ADMissionForTopbarViewController setCompletion:]   (address 0x10003e014  size 56  kind objc)
+  03e038  self->_completion = arg1
+  03e048  return
+
+== -[ADMissionForTopbarViewController reward]   (address 0x10003e04c  size 16  kind objc)
+  03e058  return
+
+== -[ADMissionForTopbarViewController setReward:]   (address 0x10003e05c  size 56  kind objc)
+  03e080  self->_reward = arg1
+  03e090  return
+
+== -[ADMissionForTopbarViewController skipButton]   (address 0x10003e094  size 16  kind objc)
+  03e0a0  return
+
+== -[ADMissionForTopbarViewController setSkipButton:]   (address 0x10003e0a4  size 56  kind objc)
+  03e0c8  self->_skipButton = arg1
+  03e0d8  return
+
+== -[ADMissionForTopbarViewController skipDiamondsLabel]   (address 0x10003e0dc  size 16  kind objc)
+  03e0e8  return
+
+== -[ADMissionForTopbarViewController setSkipDiamondsLabel:]   (address 0x10003e0ec  size 56  kind objc)
+  03e110  self->_skipDiamondsLabel = arg1
+  03e120  return
+
+== -[ADMissionForTopbarViewController mission]   (address 0x10003e124  size 16  kind objc)
+  03e130  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMissionForTopbarViewController setMission:]   (address 0x10003e134  size 12  kind objc)
+  03e13c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMissionForTopbarViewController starImage]   (address 0x10003e140  size 16  kind objc)
+  03e14c  return
+
+== -[ADMissionForTopbarViewController setStarImage:]   (address 0x10003e150  size 56  kind objc)
+  03e174  self->_starImage = arg1
+  03e184  return
+
+== -[ADMissionForTopbarViewController completionBar]   (address 0x10003e188  size 16  kind objc)
+  03e194  return
+
+== -[ADMissionForTopbarViewController setCompletionBar:]   (address 0x10003e198  size 56  kind objc)
+  03e1bc  self->_completionBar = arg1
+  03e1cc  return
+
+== -[ADMissionForTopbarViewController completionBarBackground]   (address 0x10003e1d0  size 16  kind objc)
+  03e1dc  return
+
+== -[ADMissionForTopbarViewController setCompletionBarBackground:]   (address 0x10003e1e0  size 56  kind objc)
+  03e204  self->_completionBarBackground = arg1
+  03e214  return
+
+== -[ADMissionForTopbarViewController missionBarDelegate]   (address 0x10003e218  size 16  kind objc)
+  03e224  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMissionForTopbarViewController setMissionBarDelegate:]   (address 0x10003e228  size 12  kind objc)
+  03e230  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMissionForTopbarViewController placeholderTag]   (address 0x10003e234  size 16  kind objc)
+  03e240  return
+
+== -[ADMissionForTopbarViewController setPlaceholderTag:]   (address 0x10003e244  size 16  kind objc)
+  03e24c  self->_placeholderTag = arg1
+  03e250  return
+
+== -[ADMissionForTopbarViewController .cxx_destruct]   (address 0x10003e254  size 244  kind objc)

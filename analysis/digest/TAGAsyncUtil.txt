@@ -1,0 +1,38 @@
+
+== +[TAGAsyncUtil invokeAsync:resultBlock:]   (address 0x100158998  size 232  kind objc)
+  1589d8  dispatch_get_global_queue(0, 0)
+  158a38  dispatch_async(dispatch_get_global_queue(0, 0), ^{+[TAGAsyncUtil invokeAsync:resultBlock:]_block_invoke captures +0x20=arg1, +0x28=arg2})
+  158a7c  return
+
+== +[TAGAsyncUtil invokeAsync:resultBlock:]_block_invoke   (address 0x100158a80  size 460  kind block)
+  158aa4  call arg1[+0x10]
+  158abc  if (arg2 == 0) goto loc_100158b38
+  158b1c  dispatch_async(__dispatch_main_q, ^{+[TAGAsyncUtil invokeAsync:resultBlock:]_block_invoke_block_invoke captures +0x20=0, +0x28=arg2, +0x30=arg1[+0x10](…)})
+loc_100158b38:
+  158b5c  return
+  158b6c  if (w8 != 1) goto loc_100158c44
+  158b74  objc_begin_catch()
+  158b9c  [objc_begin_catch() description]
+  158bcc  [@"Caught exception: " stringByAppendingString:[objc_begin_catch() description]]
+  158bf4  [TAGLog error:[@"Caught exception: " stringByAppendingString:[objc_begin_catch() description]]]
+  158c08  objc_end_catch()
+  158c40  objc_end_catch()
+
+== +[TAGAsyncUtil invokeAsync:resultBlock:]_block_invoke_block_invoke   (address 0x100158c4c  size 60  kind block)
+  158c68  if (0 != 0) goto loc_100158c78
+  158c74  call x8
+loc_100158c78:
+  158c84  return
+
+== sub_100158c88   (address 0x100158c88  size 60  kind sub)
+  158cb0  Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_100158cc4   (address 0x100158cc4  size 48  kind sub)
+  158cf0  return
+
+== sub_100158cf4   (address 0x100158cf4  size 60  kind sub)
+  158d14  Block_object_assign((a0 + 32), a1[+0x20], 7, a3)
+  158d2c  tail Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_100158d30   (address 0x100158d30  size 40  kind sub)
+  158d54  return

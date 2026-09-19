@@ -1,0 +1,105 @@
+
+== -[TAGPreviewManager init]   (address 0x10015481c  size 240  kind objc)
+  154854  [super init]
+  15485c  if (self == 0) goto loc_1001548cc
+  154878  [TAGPreviewManager class]
+  154888  objc_sync_enter([TAGPreviewManager class])
+  154894  if (g_10042df28 == 0) goto loc_1001548a8
+  1548a4  goto loc_1001548b8
+loc_1001548a8:
+  1548b0  store g_10042df28 = self
+loc_1001548b8:
+  1548bc  objc_sync_exit([TAGPreviewManager class])
+  1548c8  if (one of {0, 1} == 0) goto loc_1001548d8
+loc_1001548cc:
+loc_1001548d8:
+  1548f4  return
+
+== -[TAGPreviewManager generatePreviewDataForUrl:]   (address 0x10015490c  size 1176  kind objc)
+  15493c  if (arg1 == 0) goto loc_100154b40
+  154954  [arg1 absoluteString]
+  154980  [@"Preview Url = " stringByAppendingString:[arg1 absoluteString]]
+  1549b8  [TAGLog info:[@"Preview Url = " stringByAppendingString:[arg1 absoluteString]]]
+  1549e8  [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_auth=\S+&gtm_preview=\d+$"]
+  154a14  [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_preview=$"]
+  154a2c  [arg1 absoluteString]
+  154a54  [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_auth=\S+&gtm_preview=\d+$"] evaluateWithObject:[arg1 absoluteString]]
+  154a58  if ([[NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_auth=\S+&gtm_preview=\d+$"] evaluateWithObject:[arg1 absoluteString]] == 0) goto loc_100154b48
+  154a70  [self setPreviewMode:1]
+  154a84  [arg1 query]
+  154aa4  [self previewMode]
+  154aac  if ([self previewMode] != 1) goto loc_100154af0
+  154ac0  [@"/r?" stringByAppendingString:[arg1 query]]
+  154ae4  [self setCtfeUrlPath:[@"/r?" stringByAppendingString:[arg1 query]]]
+loc_100154af0:
+  154b04  [self containerIdForQuery:[arg1 query]]
+  154b28  [self setContainerId:[self containerIdForQuery:[arg1 query]]]
+  154b3c  goto loc_100154c30
+loc_100154b40:
+  154b44  goto loc_100154c98
+loc_100154b48:
+  154b54  [[NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_preview=$"] evaluateWithObject:[arg1 absoluteString]]
+  154b58  if ([[NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_preview=$"] evaluateWithObject:[arg1 absoluteString]] == 0) goto loc_100154c38
+  154b6c  [arg1 query]
+  154b94  [self containerIdForQuery:[arg1 query]]
+  154bb4  [self containerId]
+  154bd8  [[self containerIdForQuery:[arg1 query]] isEqualToString:[self containerId]]
+  154bfc  if ([[self containerIdForQuery:[arg1 query]] isEqualToString:[self containerId]] == 0) goto loc_100154c38
+  154c14  [self setPreviewMode:0]
+  154c2c  [self setCtfeUrlPath:0]
+loc_100154c30:
+  154c34  goto loc_100154c78
+loc_100154c38:
+  154c4c  [@"Not a tag manager " stringByAppendingString:[@"Preview Url = " stringByAppendingString:[arg1 absoluteString]]]
+  154c68  [TAGLog info:[@"Not a tag manager " stringByAppendingString:[@"Preview Url = " stringByAppendingString:[arg1 absoluteString]]]]
+loc_100154c78:
+loc_100154c98:
+  154cc0  return
+
+== -[TAGPreviewManager isPreviewingContainer:]   (address 0x100154da4  size 196  kind objc)
+  154dd4  [self previewMode]
+  154ddc  if ([self previewMode] != 1) goto loc_100154e24
+  154df0  [self containerId]
+  154e10  [[self containerId] isEqualToString:arg1]
+  154e20  goto loc_100154e28
+loc_100154e24:
+loc_100154e28:
+  154e40  return
+
+== -[TAGPreviewManager clear]   (address 0x100154e68  size 92  kind objc)
+  154e88  [self setPreviewMode:0]
+  154ea0  [self setCtfeUrlPath:0]
+  154ec0  tail [self setContainerId:0]
+
+== -[TAGPreviewManager containerIdForQuery:]   (address 0x100154ec4  size 256  kind objc)
+  154ef4  [arg1 componentsSeparatedByString:@"&"]
+  154f18  [[arg1 componentsSeparatedByString:@"&"] objectAtIndexedSubscript:0]
+  154f34  [[[arg1 componentsSeparatedByString:@"&"] objectAtIndexedSubscript:0] componentsSeparatedByString:@"="]
+  154f4c  [[[[arg1 componentsSeparatedByString:@"&"] objectAtIndexedSubscript:0] componentsSeparatedByString:@"="] objectAtIndexedSubscript:1]
+  154f84  return
+
+== +[TAGPreviewManager instance]   (address 0x100154fc4  size 48  kind objc)
+  154fd8  [TAGPreviewManager alloc]
+  154fe8  [[TAGPreviewManager alloc] init]
+  154ff0  return
+
+== -[TAGPreviewManager previewMode]   (address 0x100154ff4  size 16  kind objc)
+  155000  return
+
+== -[TAGPreviewManager setPreviewMode:]   (address 0x100155004  size 16  kind objc)
+  15500c  self->_previewMode = arg1
+  155010  return
+
+== -[TAGPreviewManager ctfeUrlPath]   (address 0x100155014  size 16  kind objc)
+  155020  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGPreviewManager setCtfeUrlPath:]   (address 0x100155024  size 12  kind objc)
+  15502c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGPreviewManager containerId]   (address 0x100155030  size 16  kind objc)
+  15503c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGPreviewManager setContainerId:]   (address 0x100155040  size 12  kind objc)
+  155048  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGPreviewManager .cxx_destruct]   (address 0x10015504c  size 64  kind objc)

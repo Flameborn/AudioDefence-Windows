@@ -1,0 +1,90 @@
+
+== -[GAIEcommerceProductAction init]   (address 0x10012afd4  size 140  kind objc)
+  12b004  [super init]
+  12b00c  if (self == 0) goto loc_10012b04c
+  12b028  [NSMutableDictionary dictionaryWithCapacity:0]
+  12b040  self->_parameters = [NSMutableDictionary dictionaryWithCapacity:0]
+loc_10012b04c:
+  12b05c  return
+
+== -[GAIEcommerceProductAction setString:forKey:]   (address 0x10012b060  size 304  kind objc)
+  12b094  if (arg2 == 0) goto loc_10012b100
+  12b0a8  [self parameters]
+  12b0d0  [GAIUtil valueForString:arg1]
+  12b0f8  [[self parameters] setObject:[GAIUtil valueForString:arg1] forKey:arg2]
+  12b0fc  goto loc_10012b158
+loc_10012b100:
+  12b114  [GAI sharedInstance]
+  12b130  [[GAI sharedInstance] logger]
+  12b154  [[[GAI sharedInstance] logger] warning:@"nil key not allowed in setString"]
+loc_10012b158:
+  12b18c  return
+
+== -[GAIEcommerceProductAction setNumber:forKey:]   (address 0x10012b190  size 304  kind objc)
+  12b1c4  if (arg2 == 0) goto loc_10012b230
+  12b1d8  [self parameters]
+  12b200  [GAIUtil valueForNumber:arg1]
+  12b228  [[self parameters] setObject:[GAIUtil valueForNumber:arg1] forKey:arg2]
+  12b22c  goto loc_10012b288
+loc_10012b230:
+  12b244  [GAI sharedInstance]
+  12b260  [[GAI sharedInstance] logger]
+  12b284  [[[GAI sharedInstance] logger] warning:@"nil key not allowed in setNumber"]
+loc_10012b288:
+  12b2bc  return
+
+== -[GAIEcommerceProductAction setAction:]   (address 0x10012b2c0  size 28  kind objc)
+  12b2c8  [&d_1003b7cd8] -> @"&pa"
+  12b2d8  tail [self setString:arg1 forKey:@"&pa"]
+
+== -[GAIEcommerceProductAction setTransactionId:]   (address 0x10012b2dc  size 28  kind objc)
+  12b2e4  [&d_1003b7ce0] -> @"&ti"
+  12b2f4  tail [self setString:arg1 forKey:@"&ti"]
+
+== -[GAIEcommerceProductAction setAffiliation:]   (address 0x10012b2f8  size 28  kind objc)
+  12b300  [&d_1003b7ce8] -> @"&ta"
+  12b310  tail [self setString:arg1 forKey:@"&ta"]
+
+== -[GAIEcommerceProductAction setRevenue:]   (address 0x10012b314  size 28  kind objc)
+  12b31c  [&d_1003b7cf0] -> @"&tr"
+  12b32c  tail [self setNumber:arg1 forKey:@"&tr"]
+
+== -[GAIEcommerceProductAction setTax:]   (address 0x10012b330  size 28  kind objc)
+  12b338  [&d_1003b7cf8] -> @"&tt"
+  12b348  tail [self setNumber:arg1 forKey:@"&tt"]
+
+== -[GAIEcommerceProductAction setShipping:]   (address 0x10012b34c  size 28  kind objc)
+  12b354  [&d_1003b7d00] -> @"&ts"
+  12b364  tail [self setNumber:arg1 forKey:@"&ts"]
+
+== -[GAIEcommerceProductAction setCouponCode:]   (address 0x10012b368  size 28  kind objc)
+  12b370  [&d_1003b7d08] -> @"&tcc"
+  12b380  tail [self setString:arg1 forKey:@"&tcc"]
+
+== -[GAIEcommerceProductAction setCheckoutStep:]   (address 0x10012b384  size 28  kind objc)
+  12b38c  [&d_1003b7d10] -> @"&cos"
+  12b39c  tail [self setNumber:arg1 forKey:@"&cos"]
+
+== -[GAIEcommerceProductAction setCheckoutOption:]   (address 0x10012b3a0  size 28  kind objc)
+  12b3a8  [&d_1003b7d18] -> @"&col"
+  12b3b8  tail [self setString:arg1 forKey:@"&col"]
+
+== -[GAIEcommerceProductAction setProductActionList:]   (address 0x10012b3bc  size 28  kind objc)
+  12b3c4  [&d_1003b7d20] -> @"&pal"
+  12b3d4  tail [self setString:arg1 forKey:@"&pal"]
+
+== -[GAIEcommerceProductAction setProductListSource:]   (address 0x10012b3d8  size 28  kind objc)
+  12b3e0  [&d_1003b7d28] -> @"&pls"
+  12b3f0  tail [self setString:arg1 forKey:@"&pls"]
+
+== -[GAIEcommerceProductAction build]   (address 0x10012b3f4  size 16  kind objc)
+  12b400  tail [self parameters]
+
+== -[GAIEcommerceProductAction parameters]   (address 0x10012b404  size 16  kind objc)
+  12b410  return
+
+== -[GAIEcommerceProductAction setParameters:]   (address 0x10012b414  size 56  kind objc)
+  12b438  self->_parameters = arg1
+  12b448  return
+
+== -[GAIEcommerceProductAction .cxx_destruct]   (address 0x10012b44c  size 20  kind objc)

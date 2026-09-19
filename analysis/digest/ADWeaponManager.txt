@@ -1,0 +1,688 @@
+
+== +[ADWeaponManager sharedWeaponManager]   (address 0x1000a6ee0  size 152  kind objc)
+  0a6ef4  objc_sync_enter(ADWeaponManager)
+  0a6f00  if (g_10042da30 != 0) goto loc_1000a6f3c
+  0a6f18  [ADWeaponManager alloc]
+  0a6f28  [[ADWeaponManager alloc] init]
+  0a6f30  store g_10042da30 = [[ADWeaponManager alloc] init]
+loc_1000a6f3c:
+  0a6f40  objc_sync_exit(ADWeaponManager)
+  0a6f64  objc_sync_exit()
+
+== -[ADWeaponManager getAllWeaponsArray]   (address 0x1000a6f78  size 320  kind objc)
+  0a6f9c  if (self->allWeapons != 0) goto loc_1000a7074
+  0a6fb4  [NSBundle mainBundle]
+  0a6fe0  [[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]
+  0a700c  [NSDictionary alloc]
+  0a7020  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]]
+  0a7040  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"Weapons"]
+  0a7050  self->allWeapons = [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"Weapons"]
+loc_1000a7074:
+  0a708c  goto loc_1000a70a8
+  0a7098  goto loc_1000a70ac
+loc_1000a70a8:
+loc_1000a70ac:
+
+== -[ADWeaponManager dictionaryForWeaponWithName:]   (address 0x1000a70b8  size 492  kind objc)
+  0a7118  [self getAllWeaponsArray]
+  0a7144  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0a714c  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_1000a7220
+  0a7168  &@selector(isEqualToString:)
+loc_1000a7178:
+loc_1000a717c:
+  0a7188  if (x8 == x21) goto loc_1000a7194
+  0a7190  objc_enumerationMutation([self getAllWeaponsArray])
+loc_1000a7194:
+  0a71a8  [x0 objectForKey:@"name"]
+  0a71c0  [[x0 objectForKey:@"name"] isEqualToString:arg1]
+  0a71d0  if ([[x0 objectForKey:@"name"] isEqualToString:arg1] != 0) goto loc_1000a7204
+  0a71dc  if ((x20 + 1) <u [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_1000a717c
+  0a71f0  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0a71f8  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_1000a7178
+  0a7200  goto loc_1000a7210
+loc_1000a7204:
+loc_1000a7210:
+  0a721c  goto loc_1000a7224
+loc_1000a7220:
+loc_1000a7224:
+  0a7260  return
+
+== -[ADWeaponManager isMeleeForWeaponWithName:]   (address 0x1000a72a4  size 184  kind objc)
+  0a72c0  [self dictionaryForWeaponWithName:arg1]
+  0a72e4  [[self dictionaryForWeaponWithName:arg1] objectForKey:@"melee"]
+  0a7300  [[[self dictionaryForWeaponWithName:arg1] objectForKey:@"melee"] boolValue]
+  0a7328  return
+
+== -[ADWeaponManager getAllMeleeWeapons]   (address 0x1000a735c  size 524  kind objc)
+  0a73a4  [NSMutableArray alloc]
+  0a73b4  [[NSMutableArray alloc] init]
+  0a73dc  [self getAllWeaponsArray]
+  0a7408  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0a7410  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_1000a74e4
+loc_1000a744c:
+loc_1000a7450:
+  0a745c  if (x8 == x21) goto loc_1000a7468
+  0a7464  objc_enumerationMutation([self getAllWeaponsArray])
+loc_1000a7468:
+  0a747c  [x0 objectForKey:@"name"]
+  0a7498  [self isMeleeForWeaponWithName:[x0 objectForKey:@"name"]]
+  0a74a8  if ([self isMeleeForWeaponWithName:[x0 objectForKey:@"name"]] == 0) goto loc_1000a74b8
+  0a74b4  [[[NSMutableArray alloc] init] addObject:x2]
+loc_1000a74b8:
+  0a74c0  if ((x26 + 1) <u [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_1000a7450
+  0a74d8  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0a74e0  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_1000a744c
+loc_1000a74e4:
+  0a7524  return
+
+== -[ADWeaponManager displayNameForItemWithName:]   (address 0x1000a7568  size 348  kind objc)
+  0a75a0  [self dictionaryForWeaponWithName:arg1]
+  0a75b4  if ([self dictionaryForWeaponWithName:arg1] == 0) goto loc_1000a75f4
+  0a75c4  [self dictionaryForWeaponWithName:arg1]
+  0a75e8  [[self dictionaryForWeaponWithName:arg1] objectForKey:@"displayName"]
+  0a75f0  goto loc_1000a765c
+loc_1000a75f4:
+  0a760c  [self dictionaryForPowerupWithName:arg1]
+  0a7620  if ([self dictionaryForPowerupWithName:arg1] == 0) goto loc_1000a7688
+  0a7630  [self dictionaryForPowerupWithName:arg1]
+  0a7654  [[self dictionaryForPowerupWithName:arg1] objectForKey:@"displayName"]
+loc_1000a765c:
+  0a7684  return
+
+== -[ADWeaponManager initWithWeaponsFromArmory]   (address 0x1000a76c4  size 1472  kind objc)
+  0a770c  [super init]
+  0a7714  if (self == 0) goto loc_1000a7b50
+  0a7734  [NSMutableArray alloc]
+  0a7740  [[NSMutableArray alloc] init]
+  0a7758  self->weaponsArray = [[NSMutableArray alloc] init]
+  0a776c  [NSMutableArray alloc]
+  0a7778  [[NSMutableArray alloc] init]
+  0a778c  self->projectileArray = [[NSMutableArray alloc] init]
+  0a77a4  [ADWeapon alloc]
+  0a77c8  [ADInventory sharedInventory]
+  0a77e4  [[ADInventory sharedInventory] weaponSlot1]
+  0a780c  [self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot1]]
+  0a7834  [[ADWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot1]]]
+  0a786c  [[[ADWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot1]]] setWeaponManager:self]
+  0a788c  [self->weaponsArray addObject:[[ADWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot1]]]]
+  0a7898  [ADWeapon alloc]
+  0a78ac  [ADInventory sharedInventory]
+  0a78cc  [[ADInventory sharedInventory] weaponSlot2]
+  0a78e8  [self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot2]]
+  0a7904  [[ADWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot2]]]
+  0a7930  [[[ADWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot2]]] setWeaponManager:self]
+  0a7944  [self->weaponsArray addObject:[[ADWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot2]]]]
+  0a7954  [ADMeleeWeapon alloc]
+  0a7968  [ADInventory sharedInventory]
+  0a7984  [[ADInventory sharedInventory] weaponSlotMelee]
+  0a79a0  [self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlotMelee]]
+  0a79bc  [[ADMeleeWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlotMelee]]]
+  0a79e8  [[[ADMeleeWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlotMelee]]] setWeaponManager:self]
+  0a7a04  self->meleeWeapon = [[ADMeleeWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlotMelee]]]
+  0a7a24  [self->weaponsArray objectAtIndex:0]
+  0a7a48  [self setCurrentWeapon:[self->weaponsArray objectAtIndex:0]]
+  0a7a6c  [ADTracker sharedInstance]
+  0a7a8c  [self currentWeapon]
+  0a7aa8  [[self currentWeapon] name]
+  0a7adc  [[ADTracker sharedInstance] setValue:[[self currentWeapon] name] ForDimension:@"Weapon name" AndValue:0 ForMetric:0]
+  0a7b00  [ADTracker sharedInstance]
+  0a7b2c  [[ADTracker sharedInstance] sendLoadOutEventWithWeapon1:[[ADWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot1]]] Weapon2:[[ADWeapon alloc] initWithDictionary:[self dictionaryForWeaponWithName:[[ADInventory sharedInventory] weaponSlot2]]] Melee:self->meleeWeapon]
+loc_1000a7b50:
+  0a7b70  return
+
+== -[ADWeaponManager getEquippedWeaponsList]   (address 0x1000a7c84  size 192  kind objc)
+  0a7cb0  [NSMutableArray alloc]
+  0a7cd0  [[NSMutableArray alloc] initWithArray:self->weaponsArray]
+  0a7cf0  [[[NSMutableArray alloc] initWithArray:self->weaponsArray] addObject:self->meleeWeapon]
+  0a7d00  [NSArray alloc]
+  0a7d0c  [[NSArray alloc] initWithArray:[[NSMutableArray alloc] initWithArray:self->weaponsArray]]
+  0a7d2c  return
+
+== -[ADWeaponManager initWithWeaponList:]   (address 0x1000a7d44  size 944  kind objc)
+  0a7d9c  [super init]
+  0a7da4  if (self == 0) goto loc_1000a8054
+  0a7dbc  [self getAllWeaponsArray]
+  0a7de4  [NSMutableArray alloc]
+  0a7dec  [[NSMutableArray alloc] init]
+  0a7e00  self->weaponsArray = [[NSMutableArray alloc] init]
+  0a7e14  [NSMutableArray alloc]
+  0a7e1c  [[NSMutableArray alloc] init]
+  0a7e2c  self->projectileArray = [[NSMutableArray alloc] init]
+  0a7e74  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16]
+  0a7e7c  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16] == 0) goto loc_1000a7fec
+  0a7ec8  &@selector(addObject:)
+loc_1000a7ed8:
+loc_1000a7edc:
+  0a7eec  if (x8 == x9) goto loc_1000a7ef8
+  0a7ef4  objc_enumerationMutation([self getAllWeaponsArray])
+loc_1000a7ef8:
+  0a7f10  [x0 objectForKey:@"melee"]
+  0a7f24  [[x0 objectForKey:@"melee"] boolValue]
+  0a7f34  if (!([[x0 objectForKey:@"melee"] boolValue] & 1)) goto loc_1000a7f78
+  0a7f44  [ADMeleeWeapon alloc]
+  0a7f50  [[ADMeleeWeapon alloc] initWithDictionary:x2]
+  0a7f58  self->meleeWeapon = [[ADMeleeWeapon alloc] initWithDictionary:x2]
+  0a7f70  [self->meleeWeapon setWeaponManager:self]
+  0a7f74  goto loc_1000a7fc0
+loc_1000a7f78:
+  0a7f84  [ADWeapon alloc]
+  0a7f90  [[ADWeapon alloc] initWithDictionary:x2]
+  0a7fa4  [[[ADWeapon alloc] initWithDictionary:x2] setWeaponManager:self]
+  0a7fb4  [self->weaponsArray addObject:[[ADWeapon alloc] initWithDictionary:x2]]
+loc_1000a7fc0:
+  0a7fc8  if ((x25 + 1) <u [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16]) goto loc_1000a7edc
+  0a7fe0  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16]
+  0a7fe8  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16] != 0) goto loc_1000a7ed8
+loc_1000a7fec:
+  0a8010  [self->weaponsArray objectAtIndex:0]
+  0a8040  [self setCurrentWeapon:[self->weaponsArray objectAtIndex:0]]
+loc_1000a8054:
+  0a8080  return
+
+== -[ADWeaponManager initWithChallengeWeaponArray:]   (address 0x1000a80f4  size 1496  kind objc)
+  0a815c  [super init]
+  0a8164  if (self == 0) goto loc_1000a85d8
+  0a817c  [self getAllWeaponsArray]
+  0a81a4  [NSMutableArray alloc]
+  0a81ac  [[NSMutableArray alloc] init]
+  0a81c4  self->weaponsArray = [[NSMutableArray alloc] init]
+  0a81d8  [NSMutableArray alloc]
+  0a81e0  [[NSMutableArray alloc] init]
+  0a81f4  self->projectileArray = [[NSMutableArray alloc] init]
+  0a823c  [arg1 countByEnumeratingWithState:&sp[0xe8] objects:&x29[-0xd8] count:16]
+  0a8240  if ([arg1 countByEnumeratingWithState:&sp[0xe8] objects:&x29[-0xd8] count:16] == 0) goto loc_1000a856c
+  0a8258  &@selector(boolValue)
+  0a8264  &@selector(initWithDictionary:)
+  0a82c4  &@selector(setBulletsTotal:)
+loc_1000a82e0:
+loc_1000a82e8:
+  0a82f8  if (x8 == x9) goto loc_1000a8304
+  0a8300  objc_enumerationMutation(arg1)
+loc_1000a8304:
+  0a833c  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x138] count:16]
+  0a8344  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x138] count:16] == 0) goto loc_1000a8538
+loc_1000a8350:
+loc_1000a8354:
+  0a8360  if (x8 == x20) goto loc_1000a836c
+  0a8368  objc_enumerationMutation([self getAllWeaponsArray])
+loc_1000a836c:
+  0a8380  [x0 objectForKey:@"name"]
+  0a839c  [x0 objectForKey:@"name"]
+  0a83b8  [[x0 objectForKey:@"name"] isEqualToString:[x0 objectForKey:@"name"]]
+  0a83d0  if ([[x0 objectForKey:@"name"] isEqualToString:[x0 objectForKey:@"name"]] == 0) goto loc_1000a850c
+  0a83e4  [x0 objectForKey:@"melee"]
+  0a83f8  [[x0 objectForKey:@"melee"] boolValue]
+  0a8408  if (!([[x0 objectForKey:@"melee"] boolValue] & 1)) goto loc_1000a8454
+  0a8418  [ADMeleeWeapon alloc]
+  0a8424  [[ADMeleeWeapon alloc] initWithDictionary:x2]
+  0a8434  self->meleeWeapon = [[ADMeleeWeapon alloc] initWithDictionary:x2]
+  0a844c  [self->meleeWeapon setWeaponManager:self]
+  0a8450  goto loc_1000a850c
+loc_1000a8454:
+  0a8460  [ADWeapon alloc]
+  0a846c  [[ADWeapon alloc] initWithDictionary:x2]
+  0a8488  [x0 objectForKey:@"ammo"]
+  0a849c  if ([x0 objectForKey:@"ammo"] == 0) goto loc_1000a84e0
+  0a84b0  [x0 objectForKey:@"ammo"]
+  0a84c4  [[x0 objectForKey:@"ammo"] integerValue]
+  0a84d4  [[[ADWeapon alloc] initWithDictionary:x2] setBulletsTotal:[[x0 objectForKey:@"ammo"] integerValue]]
+loc_1000a84e0:
+  0a84ec  [[[ADWeapon alloc] initWithDictionary:x2] setWeaponManager:self]
+  0a8500  [self->weaponsArray addObject:[[ADWeapon alloc] initWithDictionary:x2]]
+loc_1000a850c:
+  0a8514  if ((x27 + 1) <u [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x138] count:16]) goto loc_1000a8354
+  0a852c  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x138] count:16]
+  0a8534  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0x138] count:16] != 0) goto loc_1000a8350
+loc_1000a8538:
+  0a854c  if ((x19 + 1) <u [arg1 countByEnumeratingWithState:&sp[0xe8] objects:&x29[-0xd8] count:16]) goto loc_1000a82e8
+  0a8564  [arg1 countByEnumeratingWithState:&sp[0xe8] objects:&x29[-0xd8] count:16]
+  0a8568  if ([arg1 countByEnumeratingWithState:&sp[0xe8] objects:&x29[-0xd8] count:16] != 0) goto loc_1000a82e0
+loc_1000a856c:
+  0a8594  [self->weaponsArray objectAtIndex:0]
+  0a85c4  [self setCurrentWeapon:[self->weaponsArray objectAtIndex:0]]
+loc_1000a85d8:
+  0a860c  return
+
+== -[ADWeaponManager initWithWeaponDictionary:]   (address 0x1000a86cc  size 1388  kind objc)
+  0a8734  [super init]
+  0a873c  if (self == 0) goto loc_1000a8b2c
+  0a8754  [self getAllWeaponsArray]
+  0a877c  [NSMutableArray alloc]
+  0a8784  [[NSMutableArray alloc] init]
+  0a8798  self->weaponsArray = [[NSMutableArray alloc] init]
+  0a87ac  [NSMutableArray alloc]
+  0a87b4  [[NSMutableArray alloc] init]
+  0a87c4  self->projectileArray = [[NSMutableArray alloc] init]
+  0a880c  [arg1 countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16]
+  0a8810  if ([arg1 countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16] == 0) goto loc_1000a8ac4
+  0a881c  &@selector(objectForKey:)
+loc_1000a888c:
+loc_1000a8894:
+  0a88a4  if (x8 == x9) goto loc_1000a88b0
+  0a88ac  objc_enumerationMutation(arg1)
+loc_1000a88b0:
+  0a88ec  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x118] count:16]
+  0a88f4  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x118] count:16] == 0) goto loc_1000a8a8c
+loc_1000a8900:
+loc_1000a8904:
+  0a8910  if (x8 == x22) goto loc_1000a891c
+  0a8918  objc_enumerationMutation([self getAllWeaponsArray])
+loc_1000a891c:
+  0a8934  [x0 objectForKey:@"name"]
+  0a8954  [x0 objectForKey:@"name"]
+  0a8970  [[x0 objectForKey:@"name"] isEqualToString:[x0 objectForKey:@"name"]]
+  0a8988  if ([[x0 objectForKey:@"name"] isEqualToString:[x0 objectForKey:@"name"]] == 0) goto loc_1000a8a60
+  0a8998  [ADWeapon alloc]
+  0a89a4  [[ADWeapon alloc] initWithDictionary:x2]
+  0a89bc  [[[ADWeapon alloc] initWithDictionary:x2] setWeaponManager:self]
+  0a89d0  [x0 objectForKey:@"ammo"]
+  0a89e4  [[x0 objectForKey:@"ammo"] intValue]
+  0a89f4  if ([[x0 objectForKey:@"ammo"] intValue] == 0) goto loc_1000a8a40
+  0a8a08  [x0 objectForKey:@"ammo"]
+  0a8a20  [[x0 objectForKey:@"ammo"] intValue]
+  0a8a30  [[[ADWeapon alloc] initWithDictionary:x2] setBulletsTotal:[[x0 objectForKey:@"ammo"] intValue]]
+loc_1000a8a40:
+  0a8a50  [self->weaponsArray addObject:[[ADWeapon alloc] initWithDictionary:x2]]
+loc_1000a8a60:
+  0a8a68  if ((x27 + 1) <u [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x118] count:16]) goto loc_1000a8904
+  0a8a80  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x118] count:16]
+  0a8a88  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x118] count:16] != 0) goto loc_1000a8900
+loc_1000a8a8c:
+  0a8aa4  if ((x19 + 1) <u [arg1 countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16]) goto loc_1000a8894
+  0a8abc  [arg1 countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16]
+  0a8ac0  if ([arg1 countByEnumeratingWithState:&sp[0xc8] objects:&x29[-0xd8] count:16] != 0) goto loc_1000a888c
+loc_1000a8ac4:
+  0a8ae8  [self->weaponsArray objectAtIndex:0]
+  0a8b18  [self setCurrentWeapon:[self->weaponsArray objectAtIndex:0]]
+loc_1000a8b2c:
+  0a8b60  return
+
+== -[ADWeaponManager update:]   (address 0x1000a8c38  size 524  kind objc)
+  0a8c80  [self currentWeapon]
+  0a8ca4  [[self currentWeapon] update:arg1]
+  0a8cf0  [self->projectileArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a8cf8  if ([self->projectileArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000a8d60
+loc_1000a8d04:
+loc_1000a8d08:
+  0a8d14  if (x8 == x25) goto loc_1000a8d20
+  0a8d1c  objc_enumerationMutation(self->projectileArray)
+loc_1000a8d20:
+  0a8d30  [x0 update:arg1]
+  0a8d3c  if ((x26 + 1) <u [self->projectileArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000a8d08
+  0a8d54  [self->projectileArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0a8d5c  if ([self->projectileArray countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000a8d04
+loc_1000a8d60:
+  0a8d7c  [ADWeaponManager sharedWeaponManager]
+  0a8d98  [[ADWeaponManager sharedWeaponManager] powerUp]
+  0a8db0  [[[ADWeaponManager sharedWeaponManager] powerUp] update:arg1]
+  0a8dd8  [self->meleeWeapon update:arg1]
+  0a8e08  return
+
+== -[ADWeaponManager numberOfWeaponsAvailableForSale]   (address 0x1000a8e44  size 680  kind objc)
+  0a8e90  [self getAllWeaponsArray]
+  0a8ebc  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0a8ec8  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_1000a9048
+loc_1000a8f20:
+loc_1000a8f24:
+  0a8f34  if (x8 == x9) goto loc_1000a8f40
+  0a8f3c  objc_enumerationMutation([self getAllWeaponsArray])
+loc_1000a8f40:
+  0a8f58  [x0 objectForKey:@"price"]
+  0a8f6c  [[x0 objectForKey:@"price"] intValue]
+  0a8f80  [ADInventory sharedInventory]
+  0a8f94  [[ADInventory sharedInventory] coins]
+  0a8f9c  if ([[x0 objectForKey:@"price"] intValue] >= [[ADInventory sharedInventory] coins]) goto loc_1000a9004
+  0a8fac  [ADInventory sharedInventory]
+  0a8fcc  [x0 objectForKey:@"name"]
+  0a8fe8  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  0a9000  goto loc_1000a9008
+loc_1000a9004:
+loc_1000a9008:
+  0a9024  if ((x24 + 1) <u [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_1000a8f24
+  0a903c  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0a9044  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_1000a8f20
+loc_1000a9048:
+  0a9088  return
+
+== -[ADWeaponManager numberOfWeaponsUpgradable]   (address 0x1000a90ec  size 1044  kind objc)
+  0a9138  [self getAllWeaponsArray]
+  0a9164  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0a9170  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] == 0) goto loc_1000a9438
+  0a917c  &@selector(sharedInventory)
+  0a9184  &@selector(objectForKey:)
+loc_1000a91e8:
+loc_1000a91ec:
+  0a91f8  if (x8 == x24) goto loc_1000a9204
+  0a9200  objc_enumerationMutation([self getAllWeaponsArray])
+loc_1000a9204:
+  0a9218  [ADInventory sharedInventory]
+  0a9238  [x0 objectForKey:@"name"]
+  0a9254  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  0a926c  if ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]] == 0) goto loc_1000a940c
+  0a927c  [ADInventory sharedInventory]
+  0a929c  [x0 objectForKey:@"name"]
+  0a92b8  [[ADInventory sharedInventory] levelForWeaponWithName:[x0 objectForKey:@"name"]]
+  0a92ec  [NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForWeaponWithName:[x0 objectForKey:@"name"]…]
+  0a9308  [x0 objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForWeaponWithName:[x0 objectForKey:@"name"]…]]
+  0a9324  if ([x0 objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForWeaponWithName:[x0 objectForKey:@"name"]…]] == 0) goto loc_1000a940c
+  0a9340  [NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForWeaponWithName:[x0 objectForKey:@"name"]…]
+  0a935c  [x0 objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForWeaponWithName:[x0 objectForKey:@"name"]…]]
+  0a9378  [[x0 objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForWeaponWithName:[x0 objectForKey:@"name"]…]] objectForKey:@"cost"]
+  0a938c  [[[x0 objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForWeaponWithName:[x0 objectForKey:@"name"]…]] objectForKey:@"cost"] intValue]
+  0a93a0  [ADInventory sharedInventory]
+  0a93c8  [[ADInventory sharedInventory] coins]
+  0a93f8  t1 = ([[[x0 objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForWeaponWithName:[x0 ob… < [[ADInventory sharedInventory] coins] ? w27 + 1 : w27)
+loc_1000a940c:
+  0a9414  if ((x25 + 1) <u [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]) goto loc_1000a91ec
+  0a942c  [[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0a9434  if ([[self getAllWeaponsArray] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] != 0) goto loc_1000a91e8
+loc_1000a9438:
+  0a9478  return
+
+== -[ADWeaponManager getAllPowerUpsArray]   (address 0x1000a9500  size 320  kind objc)
+  0a9524  if (self->allPowerUps != 0) goto loc_1000a95fc
+  0a953c  [NSBundle mainBundle]
+  0a9568  [[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]
+  0a9594  [NSDictionary alloc]
+  0a95a8  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]]
+  0a95c8  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"PowerUps"]
+  0a95d8  self->allPowerUps = [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"PowerUps"]
+loc_1000a95fc:
+  0a9614  goto loc_1000a9630
+  0a9620  goto loc_1000a9634
+loc_1000a9630:
+loc_1000a9634:
+
+== -[ADWeaponManager dictionaryForPowerupWithName:]   (address 0x1000a9640  size 492  kind objc)
+  0a96a0  [self getAllPowerUpsArray]
+  0a96cc  [[self getAllPowerUpsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0a96d4  if ([[self getAllPowerUpsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_1000a97a8
+  0a96f0  &@selector(isEqualToString:)
+loc_1000a9700:
+loc_1000a9704:
+  0a9710  if (x8 == x21) goto loc_1000a971c
+  0a9718  objc_enumerationMutation([self getAllPowerUpsArray])
+loc_1000a971c:
+  0a9730  [x0 objectForKey:@"name"]
+  0a9748  [[x0 objectForKey:@"name"] isEqualToString:arg1]
+  0a9758  if ([[x0 objectForKey:@"name"] isEqualToString:arg1] != 0) goto loc_1000a978c
+  0a9764  if ((x20 + 1) <u [[self getAllPowerUpsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_1000a9704
+  0a9778  [[self getAllPowerUpsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0a9780  if ([[self getAllPowerUpsArray] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_1000a9700
+  0a9788  goto loc_1000a9798
+loc_1000a978c:
+loc_1000a9798:
+  0a97a4  goto loc_1000a97ac
+loc_1000a97a8:
+loc_1000a97ac:
+  0a97e8  return
+
+== -[ADWeaponManager initRandomPowerUp]   (address 0x1000a982c  size 72  kind objc)
+  0a983c  rand()
+  0a9870  tail [self initPowerUp:((rand() - ((rand() < 0 ? (rand() + 3) : rand()) & 0xfffffffc)) + 1)]
+
+== -[ADWeaponManager initPowerUp:]   (address 0x1000a9874  size 1124  kind objc)
+  0a9890  if ((arg1 - 1) >u 3) goto loc_1000a9be8
+  0a98a4  switch ((arg1 - 1)) { case 0: goto loc_1000a98a8; case 1: goto loc_1000a9978; case 2: goto loc_1000a9a48; case 3: goto loc_1000a9b18 }
+loc_1000a98a8:  ; case 0
+  0a98bc  [ADWeaponManager sharedWeaponManager]
+  0a98e0  [ADMinigunPowerUp alloc]
+  0a98f4  [[ADMinigunPowerUp alloc] initWithType:1]
+  0a9910  [[ADWeaponManager sharedWeaponManager] setPowerUp:[[ADMinigunPowerUp alloc] initWithType:1]]
+  0a9938  [ADTracker sharedInstance]
+  0a996c  [[ADTracker sharedInstance] setValue:@"minigun" ForDimension:@"PowerUp name" AndValue:0 ForMetric:0]
+  0a9970  goto loc_1000a9be0
+  0a9974  goto loc_1000a9cb0
+loc_1000a9978:  ; case 1
+  0a998c  [ADWeaponManager sharedWeaponManager]
+  0a99b0  [ADFireworksPowerUp alloc]
+  0a99c4  [[ADFireworksPowerUp alloc] initWithType:2]
+  0a99e0  [[ADWeaponManager sharedWeaponManager] setPowerUp:[[ADFireworksPowerUp alloc] initWithType:2]]
+  0a9a08  [ADTracker sharedInstance]
+  0a9a3c  [[ADTracker sharedInstance] setValue:@"fireworks" ForDimension:@"PowerUp name" AndValue:0 ForMetric:0]
+  0a9a40  goto loc_1000a9be0
+  0a9a44  goto loc_1000a9cb0
+loc_1000a9a48:  ; case 2
+  0a9a5c  [ADWeaponManager sharedWeaponManager]
+  0a9a80  [ADTornadoPowerUp alloc]
+  0a9a94  [[ADTornadoPowerUp alloc] initWithType:3]
+  0a9ab0  [[ADWeaponManager sharedWeaponManager] setPowerUp:[[ADTornadoPowerUp alloc] initWithType:3]]
+  0a9ad8  [ADTracker sharedInstance]
+  0a9b0c  [[ADTracker sharedInstance] setValue:@"tornado" ForDimension:@"PowerUp name" AndValue:0 ForMetric:0]
+  0a9b10  goto loc_1000a9be0
+  0a9b14  goto loc_1000a9cb0
+loc_1000a9b18:  ; case 3
+  0a9b2c  [ADWeaponManager sharedWeaponManager]
+  0a9b50  [ADTeslaPowerUp alloc]
+  0a9b64  [[ADTeslaPowerUp alloc] initWithType:4]
+  0a9b80  [[ADWeaponManager sharedWeaponManager] setPowerUp:[[ADTeslaPowerUp alloc] initWithType:4]]
+  0a9ba8  [ADTracker sharedInstance]
+  0a9bdc  [[ADTracker sharedInstance] setValue:@"tesla" ForDimension:@"PowerUp name" AndValue:0 ForMetric:0]
+loc_1000a9be0:
+loc_1000a9be8:
+  0a9bfc  [ADWeaponManager sharedWeaponManager]
+  0a9c18  [[ADWeaponManager sharedWeaponManager] powerUp]
+  0a9c34  [[[ADWeaponManager sharedWeaponManager] powerUp] preload]
+  0a9c54  return
+
+== -[ADWeaponManager usePowerUp]   (address 0x1000a9cd8  size 160  kind objc)
+  0a9cfc  [ADWeaponManager sharedWeaponManager]
+  0a9d18  [[ADWeaponManager sharedWeaponManager] powerUp]
+  0a9d34  [[[ADWeaponManager sharedWeaponManager] powerUp] activate]
+  0a9d50  return
+
+== -[ADWeaponManager weaponTouchedDown]   (address 0x1000a9d78  size 4  kind objc)
+  0a9d78  return
+
+== -[ADWeaponManager weaponTouchedUp]   (address 0x1000a9d7c  size 4  kind objc)
+  0a9d7c  return
+
+== -[ADWeaponManager weaponSingleShot]   (address 0x1000a9d80  size 132  kind objc)
+  0a9d9c  [self isWeaponReadyToShoot]
+  0a9da0  if ([self isWeaponReadyToShoot] == 0) goto loc_1000a9de4
+  0a9db4  [self currentWeapon]
+  0a9dd0  [[self currentWeapon] singleShot]
+  0a9de0  return
+loc_1000a9de4:
+  0a9dec  return
+
+== -[ADWeaponManager selectNextWeapon]   (address 0x1000a9e04  size 800  kind objc)
+  0a9e30  [self currentWeapon]
+  0a9e50  [[self currentWeapon] state]
+  0a9e58  if ([[self currentWeapon] state] != 6) goto loc_1000a9e68
+  0a9e64  goto loc_1000a9ea4
+loc_1000a9e68:
+  0a9e70  [self currentWeapon]
+  0a9e84  [[self currentWeapon] state]
+  0a9ea0  if ([[self currentWeapon] state] != 8) goto loc_1000a9ed4
+loc_1000a9ea4:
+  0a9eac  [self currentWeapon]
+  0a9ec8  [[self currentWeapon] interruptReload]
+loc_1000a9ed4:
+  0a9ee8  self->currentWeaponIndex = (self->currentWeaponIndex + 1)
+  0a9f04  [self->weaponsArray count]
+  0a9f0c  if ((self->currentWeaponIndex + 1) <u [self->weaponsArray count]) goto loc_1000a9f14
+  0a9f10  self->currentWeaponIndex = 0
+loc_1000a9f14:
+  0a9f1c  [self currentWeapon]
+  0a9f3c  [[self currentWeapon] name]
+  0a9f5c  [self currentWeapon]
+  0a9f78  [[self currentWeapon] bulletsInClip]
+  0a9f9c  [self->weaponsArray objectAtIndex:self->currentWeaponIndex]
+  0a9fc0  [self setCurrentWeapon:[self->weaponsArray objectAtIndex:self->currentWeaponIndex]]
+  0a9fe0  [ADTracker sharedInstance]
+  0a9ff8  [self currentWeapon]
+  0aa00c  [[self currentWeapon] name]
+  0aa03c  [[ADTracker sharedInstance] switchFromWeapon:[[self currentWeapon] name] ToNewWeapon:[[self currentWeapon] name] WithBulletsRemaining:[[self currentWeapon] bulletsInClip]]
+  0aa060  [self currentWeapon]
+  0aa07c  [[self currentWeapon] deploy]
+  0aa0a0  return
+
+== -[ADWeaponManager setCurrentWeapon:]   (address 0x1000aa124  size 56  kind objc)
+  0aa148  self->_currentWeapon = arg1
+  0aa158  return
+
+== -[ADWeaponManager shot]   (address 0x1000aa15c  size 272  kind objc)
+  0aa180  [self currentWeapon]
+  0aa19c  [[self currentWeapon] explosive]
+  0aa1ac  if ([[self currentWeapon] explosive] == 0) goto loc_1000aa1d0
+  0aa1cc  tail [self createProjectileForCurrentWeapon]
+loc_1000aa1d0:
+  0aa1e4  [ADBrickManager sharedBrickManager]
+  0aa1fc  [self currentWeapon]
+  0aa220  [[ADBrickManager sharedBrickManager] shotWithWeapon:[self currentWeapon]]
+  0aa23c  return
+
+== -[ADWeaponManager continuousStart]   (address 0x1000aa26c  size 132  kind objc)
+  0aa288  [self isWeaponReadyToShoot]
+  0aa28c  if ([self isWeaponReadyToShoot] == 0) goto loc_1000aa2d0
+  0aa2a0  [self currentWeapon]
+  0aa2bc  [[self currentWeapon] continuousStart]
+  0aa2cc  return
+loc_1000aa2d0:
+  0aa2d8  return
+
+== -[ADWeaponManager continuousStop]   (address 0x1000aa2f0  size 92  kind objc)
+  0aa308  [self currentWeapon]
+  0aa324  [[self currentWeapon] continuousStop]
+  0aa334  return
+
+== -[ADWeaponManager weaponDidFinishReloading]   (address 0x1000aa34c  size 4  kind objc)
+  0aa34c  return
+
+== -[ADWeaponManager isWeaponReadyToShoot]   (address 0x1000aa350  size 156  kind objc)
+  0aa378  [self->meleeWeapon state]
+  0aa380  if ([self->meleeWeapon state] != 2) goto loc_1000aa38c
+  0aa388  goto loc_1000aa3c8
+loc_1000aa38c:
+  0aa39c  [self currentWeapon]
+  0aa3b8  [[self currentWeapon] readyToShoot]
+loc_1000aa3c8:
+  0aa3d4  return
+
+== -[ADWeaponManager createProjectileForCurrentWeapon]   (address 0x1000aa3ec  size 1692  kind objc)
+  0aa42c  [ADBrickManager sharedBrickManager]
+  0aa450  [self currentWeapon]
+  0aa474  [[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]]
+  0aa4ac  [S3DEngine engine]
+  0aa4cc  [[S3DEngine engine] headOrientation]
+  0aa4d4  cos([[S3DEngine engine] headOrientation])
+  0aa4e4  [S3DEngine engine]
+  0aa4f8  [[S3DEngine engine] headOrientation]
+  0aa500  sin([[S3DEngine engine] headOrientation])
+  0aa524  [self currentWeapon]
+  0aa544  [[self currentWeapon] timeBeforeExplode]
+  0aa554  if ([[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] == 0) goto loc_1000aa770
+  0aa570  [[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] squaredDistance]
+  0aa580  [[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] squaredDistance]
+  0aa5a0  [[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] nextShotWillBeCritical]
+  0aa5a4  t1 = sqrt([[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] squaredDistance])
+  0aa5a8  if (([[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] nextShotWillBeCritical] & 1)) goto loc_1000aa5cc
+  0aa5c0  [[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] speed]
+  0aa5c4  t2 = ([[self currentWeapon] timeBeforeExplode] * [[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] speed])
+loc_1000aa5cc:
+  0aa5e0  [[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] speed]
+  0aa5f4  [self currentWeapon]
+  0aa614  [[self currentWeapon] projectileSpeed]
+  0aa630  [self currentWeapon]
+  0aa644  [[self currentWeapon] projectileSpeed]
+  0aa660  [[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] nextShotWillBeCritical]
+  0aa664  t3 = ([[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] speed] + [[self currentWeapon] projectileSpeed])
+  0aa670  if (([[[ADBrickManager sharedBrickManager] targetEnemiForExplosiveWeapon:[self currentWeapon]] nextShotWillBeCritical] & 1)) goto loc_1000aa6a4
+  0aa680  [self currentWeapon]
+  0aa694  [[self currentWeapon] timeBeforeExplode]
+loc_1000aa6a4:
+  0aa6bc  [ADProjectile alloc]
+  0aa6d0  [self currentWeapon]
+  0aa6e4  [[self currentWeapon] projectileSpeed]
+  0aa6f4  [self currentWeapon]
+  0aa710  [[self currentWeapon] name]
+  0aa718  t4 = (((s13 / t3) * [[self currentWeapon] projectileSpeed]) * ((s13 / t3) * [[self currentWeapon] projectileSpeed]))
+  0aa750  [[ADProjectile alloc] initWithSpeed:[[self currentWeapon] projectileSpeed] squaredDistanceToCover:t4 timeToLive:d2 soundsPrefix:[[self currentWeapon] name] orientation:{cos([[S3DEngine engine] headOrientation]), sin([[S3DEngine engine] headOrientation])}]
+  0aa76c  goto loc_1000aa8d0
+loc_1000aa770:
+  0aa788  [ADProjectile alloc]
+  0aa79c  [self currentWeapon]
+  0aa7b8  [[self currentWeapon] projectileSpeed]
+  0aa7c8  [self currentWeapon]
+  0aa7e8  [[self currentWeapon] range]
+  0aa7f8  [self currentWeapon]
+  0aa80c  [[self currentWeapon] range]
+  0aa81c  [self currentWeapon]
+  0aa834  [[self currentWeapon] timeBeforeExplode]
+  0aa844  [self currentWeapon]
+  0aa860  [[self currentWeapon] name]
+  0aa89c  [[ADProjectile alloc] initWithSpeed:[[self currentWeapon] projectileSpeed] squaredDistanceToCover:([[self currentWeapon] range] * [[self currentWeapon] range]) timeToLive:[[self currentWeapon] timeBeforeExplode] soundsPrefix:[[self currentWeapon] name] orientation:{cos([[S3DEngine engine] headOrientation]), sin([[S3DEngine engine] headOrientation])}]
+loc_1000aa8d0:
+  0aa8dc  [self currentWeapon]
+  0aa900  [x0 setWeapon:[self currentWeapon]]
+  0aa928  [self->projectileArray addObject:x2]
+  0aa93c  [self->projectileArray count]
+  0aa954  [x0 setTag:[self->projectileArray count]]
+  0aa988  return
+
+== -[ADWeaponManager projectiles]   (address 0x1000aaa88  size 16  kind objc)
+
+== -[ADWeaponManager shootWithMelee]   (address 0x1000aaa98  size 340  kind objc)
+  0aaac0  [self currentWeapon]
+  0aaae0  [[self currentWeapon] state]
+  0aaae8  if ([[self currentWeapon] state] != 6) goto loc_1000aaaf8
+  0aaaf4  goto loc_1000aab34
+loc_1000aaaf8:
+  0aab00  [self currentWeapon]
+  0aab14  [[self currentWeapon] state]
+  0aab30  if ([[self currentWeapon] state] != 8) goto loc_1000aab64
+loc_1000aab34:
+  0aab3c  [self currentWeapon]
+  0aab58  [[self currentWeapon] interruptReload]
+loc_1000aab64:
+  0aab74  [self isWeaponReadyToShoot]
+  0aab78  if ([self isWeaponReadyToShoot] == 0) goto loc_1000aaba8
+  0aaba4  tail [self->meleeWeapon singleShot]
+loc_1000aaba8:
+  0aabb8  return
+
+== -[ADWeaponManager didShotWithMelee]   (address 0x1000aabec  size 116  kind objc)
+  0aac10  [ADBrickManager sharedBrickManager]
+  0aac38  [[ADBrickManager sharedBrickManager] shotWithWeapon:self->meleeWeapon]
+  0aac48  return
+
+== -[ADWeaponManager meleeWeaponName]   (address 0x1000aac60  size 28  kind objc)
+  0aac78  tail [self->meleeWeapon name]
+
+== -[ADWeaponManager reloadGestureDown]   (address 0x1000aac7c  size 92  kind objc)
+  0aac94  [self currentWeapon]
+  0aacb0  [[self currentWeapon] reload]
+  0aacc0  return
+
+== -[ADWeaponManager reloadGestureUp]   (address 0x1000aacd8  size 92  kind objc)
+  0aacf0  [self currentWeapon]
+  0aad0c  [[self currentWeapon] reload]
+  0aad1c  return
+
+== -[ADWeaponManager shutDown]   (address 0x1000aad34  size 28  kind objc)
+  0aad4c  tail [self->weaponsArray removeAllObjects]
+
+== -[ADWeaponManager clean]   (address 0x1000aad50  size 272  kind objc)
+  0aad74  [self setCurrentWeapon:0]
+  0aad88  [self continuousStop]
+  0aadb4  [self->weaponsArray makeObjectsPerformSelector:@selector(clean)]
+  0aadd4  [self->projectileArray removeAllObjects]
+  0aade0  [self->weaponsArray removeAllObjects]
+  0aadf4  [self powerUp]
+  0aae08  [[self powerUp] clean]
+  0aae28  [self setPowerUp:0]
+  0aae38  self->meleeWeapon = 0
+  0aae48  return
+
+== -[ADWeaponManager currentWeapon]   (address 0x1000aae60  size 16  kind objc)
+  0aae6c  return
+
+== -[ADWeaponManager powerUp]   (address 0x1000aae70  size 16  kind objc)
+  0aae7c  return
+
+== -[ADWeaponManager setPowerUp:]   (address 0x1000aae80  size 56  kind objc)
+  0aaea4  self->_powerUp = arg1
+  0aaeb4  return
+
+== -[ADWeaponManager .cxx_destruct]   (address 0x1000aaeb8  size 164  kind objc)

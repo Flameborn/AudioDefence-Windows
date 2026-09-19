@@ -1,0 +1,48 @@
+
+== -[GAIError init]   (address 0x10011c5d8  size 128  kind objc)
+  11c60c  [super init]
+  11c614  if (self == 0) goto loc_10011c644
+  11c62c  [self doesNotRecognizeSelector:_cmd]
+  11c640  [self release]
+loc_10011c644:
+  11c654  return
+
+== +[GAIError errorWithCode:]   (address 0x10011c658  size 48  kind objc)
+  11c678  [&d_1003b7d80] -> @"com.google.analytics.error"
+  11c684  tail [NSError errorWithDomain:@"com.google.analytics.error" code:arg1 userInfo:0]
+
+== +[GAIError errorWithCode:withDescription:]   (address 0x10011c688  size 136  kind objc)
+  11c6b0  [&d_1003b7d80] -> @"com.google.analytics.error"
+  11c6dc  [NSDictionary dictionaryWithObjectsAndKeys:arg2, _NSLocalizedDescriptionKey[+0x0], nil]
+  11c70c  tail [NSError errorWithDomain:@"com.google.analytics.error" code:arg1 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:arg2, _NSLocalizedDescriptionKey[+0x0], nil]]
+
+== +[GAIError errorWithCode:withFormat:]   (address 0x10011c710  size 144  kind objc)
+  11c744  [NSString alloc]
+  11c75c  [[NSString alloc] initWithFormat:arg2 arguments:&x29[0x10]]
+  11c76c  [[[NSString alloc] initWithFormat:arg2 arguments:&x29[0x10]] autorelease]
+  11c78c  [GAIError errorWithCode:arg1 withDescription:[[[NSString alloc] initWithFormat:arg2 arguments:&x29[0x10]] autorelease]]
+  11c79c  return
+
+== +[GAIError errorWithCode:withFailedFilePath:withDescription:]   (address 0x10011c7a0  size 152  kind objc)
+  11c7c8  [&d_1003b7d80] -> @"com.google.analytics.error"
+  11c804  [NSDictionary dictionaryWithObjectsAndKeys:arg3, _NSLocalizedDescriptionKey[+0x0], arg2, _NSFilePathErrorKey[+0x0], nil]
+  11c834  tail [NSError errorWithDomain:@"com.google.analytics.error" code:arg1 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:arg3, _NSLocalizedDescriptionKey[+0x0], arg2, _NSFilePathErrorKey[+0x0], nil]]
+
+== +[GAIError errorWithCode:withFailedFilePath:withFormat:]   (address 0x10011c838  size 160  kind objc)
+  11c874  [NSString alloc]
+  11c88c  [[NSString alloc] initWithFormat:arg3 arguments:&x29[0x10]]
+  11c89c  [[[NSString alloc] initWithFormat:arg3 arguments:&x29[0x10]] autorelease]
+  11c8c0  [GAIError errorWithCode:arg1 withFailedFilePath:arg2 withDescription:[[[NSString alloc] initWithFormat:arg3 arguments:&x29[0x10]] autorelease]]
+  11c8d4  return
+
+== +[GAIError errorWithCode:withUnderlyingError:withDescription:]   (address 0x10011c8d8  size 152  kind objc)
+  11c900  [&d_1003b7d80] -> @"com.google.analytics.error"
+  11c93c  [NSDictionary dictionaryWithObjectsAndKeys:arg3, _NSLocalizedDescriptionKey[+0x0], arg2, _NSUnderlyingErrorKey[+0x0], nil]
+  11c96c  tail [NSError errorWithDomain:@"com.google.analytics.error" code:arg1 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:arg3, _NSLocalizedDescriptionKey[+0x0], arg2, _NSUnderlyingErrorKey[+0x0], nil]]
+
+== +[GAIError errorWithCode:withUnderlyingError:withFormat:]   (address 0x10011c970  size 160  kind objc)
+  11c9ac  [NSString alloc]
+  11c9c4  [[NSString alloc] initWithFormat:arg3 arguments:&x29[0x10]]
+  11c9d4  [[[NSString alloc] initWithFormat:arg3 arguments:&x29[0x10]] autorelease]
+  11c9f8  [GAIError errorWithCode:arg1 withUnderlyingError:arg2 withDescription:[[[NSString alloc] initWithFormat:arg3 arguments:&x29[0x10]] autorelease]]
+  11ca0c  return

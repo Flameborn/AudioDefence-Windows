@@ -1,0 +1,17 @@
+
+== +[TAGAppId functionId]   (address 0x1001731a8  size 44  kind objc)
+  1731d0  return
+
+== -[TAGAppId init]   (address 0x1001731d4  size 176  kind objc)
+  173200  [NSSet set]
+  17323c  [super initWithFunctionId:@"_ai" requiredKeys:[NSSet set]]
+  173260  return
+
+== -[TAGAppId isCacheable]   (address 0x100173284  size 8  kind objc)
+  173288  return
+
+== -[TAGAppId evaluate:]   (address 0x10017328c  size 204  kind objc)
+  1732b8  [NSBundle mainBundle]
+  1732d4  [[NSBundle mainBundle] bundleIdentifier]
+  1732f8  [TAGTypes objectToValue:[[NSBundle mainBundle] bundleIdentifier]]
+  173328  return

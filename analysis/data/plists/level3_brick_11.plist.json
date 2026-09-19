@@ -1,0 +1,37 @@
+{
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_angle": 60,
+   "spawn_distance": 10,
+   "spawn_time": 2
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_angle": 240,
+   "spawn_distance": 10,
+   "spawn_time": 11
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 100,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 250,
+   "spawn_distance": 10,
+   "spawn_time": 8
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 230,
+   "spawn_distance": 10,
+   "spawn_time": 12
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "5"
+ }
+}

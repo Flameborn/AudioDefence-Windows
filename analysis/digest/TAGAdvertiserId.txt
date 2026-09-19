@@ -1,0 +1,26 @@
+
+== +[TAGAdvertiserId functionId]   (address 0x100172a24  size 44  kind objc)
+  172a4c  return
+
+== -[TAGAdvertiserId init]   (address 0x100172a50  size 176  kind objc)
+  172a7c  [NSSet set]
+  172ab8  [super initWithFunctionId:@"_adi" requiredKeys:[NSSet set]]
+  172adc  return
+
+== -[TAGAdvertiserId isCacheable]   (address 0x100172b00  size 8  kind objc)
+  172b04  return
+
+== -[TAGAdvertiserId evaluate:]   (address 0x100172b08  size 192  kind objc)
+  172b20  [self rawAdvertiserId]
+  172b30  if ([self rawAdvertiserId] == 0) goto loc_100172b70
+  172b44  [[self rawAdvertiserId] length]
+  172b48  if ([[self rawAdvertiserId] length] == 0) goto loc_100172b70
+  172b64  [TAGTypes objectToValue:[self rawAdvertiserId]]
+  172b6c  goto loc_100172b8c
+loc_100172b70:
+  172b84  [TAGTypes defaultValue]
+loc_100172b8c:
+  172ba8  return
+
+== -[TAGAdvertiserId rawAdvertiserId]   (address 0x100172bc8  size 24  kind objc)
+  172bdc  tail [TAGAdIdAccess retrieveId]

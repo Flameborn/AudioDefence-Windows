@@ -1,0 +1,164 @@
+
+== csl::Fifo::Fifo(…)   (address 0x1000e42ec  size 164  kind sym)
+  0e4300  a0[+0x0] = 0
+  0e4304  a0[+0x4] = 0
+  0e430c  a0[+0x8] = (a1 - 1)
+  0e4318  if ((a0[+0x8] & a1) != 0) goto loc_1000e438c
+  0e4350  Znam((((0 != (a1 *h 8)) | (16 >=u -(a1 << 3))) != 0 ? -1 : (16 + (a1 << 3))), a1, a2, a3)
+  0e4364  bzero((Znam((((0 != (a1 *h 8)) | (16 >=u -(a1 << 3))) != 0 ? -1 : (16 + (a1 << 3))), a1, a2, a3) + 16))
+  0e4368  a0[+0x10] = (Znam((((0 != (a1 *h 8)) | (16 >=u -(a1 << 3))) != 0 ? -1 : (16 + (a1 << 3))), a1, a2, a3) + 16)
+  0e4374  bzero((Znam((((0 != (a1 *h 8)) | (16 >=u -(a1 << 3))) != 0 ? -1 : (16 + (a1 << 3))), a1, a2, a3) + 16))
+  0e4388  return
+  0e438c  abort()
+
+== sub_1000e4390   (address 0x1000e4390  size 224  kind sub)
+  0e43b0  pthread_mutex_lock(&g_10042d7e0, a1, a2, a3)
+  0e43c8  if (g_10042d7d0 == &g_10042d7d0) goto loc_1000e444c
+  0e43e0  goto loc_1000e440c
+loc_1000e43e4:
+loc_1000e43e8:
+  0e43f4  if (w11 != 0) goto loc_1000e43e8
+  0e43fc  if (w9 > 0) goto loc_1000e443c
+  0e4404  ZNSs4_Rep10_M_destroyERKSaIcE((x8 - 24), &sp[0x18])
+  0e4408  goto loc_1000e443c
+loc_1000e440c:
+  0e4418  ZNSsC1ERKSs(&sp[0x10], (x8 + 384))
+  0e4428  printf("%04i: %s\n", sp[0], sp[8])
+  0e4438  if ((x8 - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e43e4
+loc_1000e443c:
+  0e4448  if (x20 != &g_10042d7d0) goto loc_1000e440c
+loc_1000e444c:
+  0e4454  pthread_mutex_unlock(&g_10042d7e0)
+  0e446c  return
+
+== sub_1000e4470   (address 0x1000e4470  size 84  kind sub)
+  0e4488  goto loc_1000e449c
+loc_1000e448c:
+  0e4490  sub_1000e44c4(a0)
+  0e4498  usleep(0x80e8)
+loc_1000e449c:
+  0e44a0  if (a0[+0x140] == 0) goto loc_1000e448c
+  0e44a8  sub_1000f9de0(a0)
+  0e44c0  return
+
+== sub_1000e44c4   (address 0x1000e44c4  size 292  kind sub)
+  0e44dc  if (a0[+0x150] >u 6) goto loc_1000e45c0
+  0e44f0  switch (a0[+0x150]) { case 0: goto loc_1000e44f4; case 1: goto loc_1000e450c; case 2: goto loc_1000e4528; case 3: goto loc_1000e4560; case 4: goto loc_1000e4554; case 5: goto loc_1000e4588; case 6: goto loc_1000e45b0 }
+loc_1000e44f4:  ; case 0
+  0e44f8  if (a0[+0x154] == 0) goto loc_1000e45c0
+  0e44fc  a0[+0x150] = a0[+0x154]
+  0e4500  a0[+0x154] = 0
+  0e4504  a0[+0x158] = 0
+  0e4508  goto loc_1000e45c0
+loc_1000e450c:  ; case 1
+  0e451c  call a0[+0x0][+0x70]
+  0e4524  goto loc_1000e457c
+loc_1000e4528:  ; case 2
+  0e452c  a0[+0x168] = 1
+  0e4534  if (a0[+0x1b8] == 0) goto loc_1000e4554
+  0e4550  [a0[+0x1b8] performSelector:@selector(soundFileOpen)]
+loc_1000e4554:  ; case 4
+  0e4554  a0[+0x150] = 0
+  0e4558  a0[+0x158] = 0
+  0e455c  goto loc_1000e45c0
+loc_1000e4560:  ; case 3
+  0e4574  call a0[+0x0][+0x88]
+loc_1000e457c:
+  0e457c  a0[+0x150] = one of {2, 4}
+  0e4580  a0[+0x158] = 0
+  0e4584  goto loc_1000e45c0
+loc_1000e4588:  ; case 5
+  0e4594  call a0[+0x0][+0xe0]
+  0e459c  a0[+0x150] = 6
+  0e45a0  a0[+0x158] = 0
+  0e45a4  a0[+0x170] = 0
+  0e45a8  a0[+0x174] = 0
+  0e45ac  goto loc_1000e45c0
+loc_1000e45b0:  ; case 6
+  0e45b0  a0[+0x150] = 0
+  0e45b4  a0[+0x158] = 0
+  0e45bc  a0[+0x140] = 1
+loc_1000e45c0:
+  0e45c8  return
+
+== sub_1000e45e8   (address 0x1000e45e8  size 568  kind sub)
+  0e4634  sub_1000e6c64(a0, (a1 + 8), a2, a3)
+  0e4654  a0[+0x110] = 0
+  0e4658  a0[+0x118] = 0
+  0e4660  a0[+0x0] = a1[+0x0]
+  0e4668  a0[+0xa8] = a1[+0x68]
+  0e468c  a0[+0xb8] = a1[+0x78]
+  0e4694  a0[+0x120] = 0
+  0e469c  a0[+0x128] = 1024
+  0e46a4  (a0 + 300)[+0x0] = 0
+  0e46ac  Znam(0xa000)
+  0e46b0  a0[+0x138] = Znam(0xa000)
+  0e46b4  a0[+0x140] = 0
+  0e46b8  a0[+0x168] = 0
+  0e46bc  a0[+0x169] = 0
+  0e46c0  a0[+0x178] = 0
+  0e46cc  (a0 + 341)[+0x0] = 0
+  0e46d0  a0[+0x150] = 0
+  0e46dc  ZNSsC1ERKSs((a0 + 384), a2)
+  0e46e0  a0[+0x188] = 0
+  0e46e8  a0[+0x18c] = 12
+  0e46ec  a0[+0x190] = 0
+  0e46f0  a0[+0x191] = 0
+  0e46f4  a0[+0x194] = a3
+  0e46f8  a0[+0x198] = w23
+  0e4700  a0[+0x1a0] = 0x3ff0000000000000
+  0e471c  pthread_create((a0 + 328), 0, &sub_1000e4470, a0)
+  0e4720  a0[+0x170] = 0
+  0e4724  a0[+0x174] = 0
+  0e4728  a0[+0x110] = 0
+  0e4734  if (g_10042d820 != 0) goto loc_1000e4750
+  0e473c  store g_10042d820 = 1
+  0e474c  pthread_mutex_init(&g_10042d7e0, 0)
+loc_1000e4750:
+  0e4758  pthread_mutex_lock(&g_10042d7e0)
+  0e4768  Znwm(24)
+  0e476c  Znwm(24)[+0x10] = a0
+  0e4774  ZNSt15_List_node_base4hookEPS_(Znwm(24), g_10042d7d0)
+  0e4780  pthread_mutex_unlock(&g_10042d7e0)
+  0e4784  a0[+0x1b8] = x21
+  0e47a4  return
+  0e47c0  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e47f8
+  0e47d4  if (w11 != 0) goto loc_1000e47c8
+  0e47dc  if (w9 > 0) goto loc_1000e47f8
+  0e47e4  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x8])
+  0e47fc  if (x0 == 0) goto loc_1000e4804
+  0e4800  ZdaPv()
+  0e4810  call sub_1000e6d18
+  0e481c  call sub_10000b760
+
+== sub_1000e4820   (address 0x1000e4820  size 392  kind sub)
+  0e4840  a0[+0x0] = a1[+0x0]
+  0e4848  a0[+0xa8] = a1[+0x68]
+  0e485c  a0[+0xb8] = a1[+0x78]
+  0e487c  pthread_mutex_lock(&g_10042d7e0, a1, a2, a3)
+  0e4890  ZNSt4listIPN3csl14Abst_SoundFileESaIS2_EE6removeERKS2_(&g_10042d7d0, &sp[0x8])
+  0e489c  pthread_mutex_unlock(&g_10042d7e0)
+  0e48a4  if (a0[+0x120] == 0) goto loc_1000e48b8
+  0e48ac  ZN3csl17SoundFileMetadataD2Ev(a0[+0x120])
+  0e48b4  ZdlPv(a0[+0x120])
+loc_1000e48b8:
+  0e48cc  if ((a0[+0x180] - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e4904
+loc_1000e48d0:
+  0e48d4  if (a0[+0x138] == 0) goto loc_1000e48dc
+  0e48d8  ZdaPv(a0[+0x138])
+loc_1000e48dc:
+  0e48dc  a0[+0x138] = 0
+  0e48e8  sub_1000e6d18(a0, (a1 + 8))
+  0e4900  return
+  0e4914  if (w11 != 0) goto loc_1000e4908
+  0e491c  if (w9 > 0) goto loc_1000e48d0
+  0e4924  ZNSs4_Rep10_M_destroyERKSaIcE((a0[+0x180] - 24), &sp[0x10])
+  0e4940  ZdlPv()
+  0e4958  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e4980
+  0e496c  if (w11 != 0) goto loc_1000e4960
+  0e4974  if (w9 > 0) goto loc_1000e4980
+  0e497c  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0e4984  if (x0 == 0) goto loc_1000e498c
+  0e4988  ZdaPv()
+  0e4998  sub_1000e6d18(x0, (x20 + 8))
+  0e49a4  call sub_10000b760

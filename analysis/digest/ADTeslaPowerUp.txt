@@ -1,0 +1,92 @@
+
+== -[ADTeslaPowerUp preload]   (address 0x1000d7380  size 1012  kind objc)
+  0d73b4  [S3DEngine engine]
+  0d73d8  [[S3DEngine engine] playListWithName:@"tesla_powerup"]
+  0d73fc  [self setPlaylist:[[S3DEngine engine] playListWithName:@"tesla_powerup"]]
+  0d7420  [self playlist]
+  0d743c  [[self playlist] activate]
+  0d745c  [ADWeaponManager sharedWeaponManager]
+  0d7480  [[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"]
+  0d74b4  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:@"name"]
+  0d74d8  [self setName:[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:@"name"]]
+  0d74f8  [ADInventory sharedInventory]
+  0d751c  [[ADInventory sharedInventory] levelForPowerUpWithName:@"tesla"]
+  0d7540  [ADGameModifiers sharedModifiers]
+  0d755c  [[ADGameModifiers sharedModifiers] betterPowerUps]
+  0d7560  if ([[ADGameModifiers sharedModifiers] betterPowerUps] == 0) goto loc_1000d75c8
+  0d7588  [NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:@"tesla"] + 1)]
+  0d75a4  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:@"tesla"] + 1)]]
+  0d75b4  t1 = ([[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:[NSString stringWithFormat:@… != 0)
+  0d75c4  goto loc_1000d75cc
+loc_1000d75c8:
+loc_1000d75cc:
+  0d75f8  [NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"tesla"])]
+  0d7614  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:[NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"tesla"])]]
+  0d7630  [[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:[NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"tesla"])]] objectForKey:@"kills"]
+  0d764c  [[[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:[NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"tesla"])]] objectForKey:@"kills"] intValue]
+  0d7658  self->maxNumberOfKills = [[[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:[NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"tesla"])]] objectForKey:@"kills"] intValue]
+  0d7684  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:@"timeBetweenKills"]
+  0d76a0  [[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:@"timeBetweenKills"] floatValue]
+  0d76ac  self->timeBetweenKills = [[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"tesla"] objectForKey:@"timeBetweenKills"] floatValue]
+  0d76d4  return
+
+== -[ADTeslaPowerUp use]   (address 0x1000d7774  size 248  kind objc)
+  0d77ac  [super use]
+  0d77c0  [self playlist]
+  0d77e4  [[self playlist] S3DSound:@"tesla_launch"]
+  0d7810  [[[self playlist] S3DSound:@"tesla_launch"] play:0]
+  0d7820  self->active = 1
+  0d782c  self->timeSinceLastKill = 0
+  0d7848  return
+
+== -[ADTeslaPowerUp update:]   (address 0x1000d786c  size 704  kind objc)
+  0d7894  if (self->active == 0) goto loc_1000d7ab8
+  0d78a8  self->timeSinceLastKill = (self->timeSinceLastKill + arg1)
+  0d78b4  if ((self->timeSinceLastKill + arg1) <= (or unordered) 2) goto loc_1000d7ab8
+  0d78d4  if (self->currentKillCount >= self->maxNumberOfKills) goto loc_1000d7ab8
+  0d78dc  self->currentKillCount = (self->currentKillCount + 1)
+  0d78f4  [ADBrickManager sharedBrickManager]
+  0d7910  [[ADBrickManager sharedBrickManager] closestEnemy]
+  0d793c  [[[ADBrickManager sharedBrickManager] closestEnemy] setLife:0]
+  0d7940  if ([[ADBrickManager sharedBrickManager] closestEnemy] == 0) goto loc_1000d7a88
+  0d7954  [self playlist]
+  0d7978  [[self playlist] anySoundContaining:@"zap"]
+  0d79a4  [[[self playlist] anySoundContaining:@"zap"] setSpatialized:1]
+  0d79b8  [[[ADBrickManager sharedBrickManager] closestEnemy] sound]
+  0d79d4  [[[[ADBrickManager sharedBrickManager] closestEnemy] sound] planar]
+  0d79e8  [[[self playlist] anySoundContaining:@"zap"] setPlanar:{[[[[ADBrickManager sharedBrickManager] closestEnemy] sound] planar].0, [[[[ADBrickManager sharedBrickManager] closestEnemy] sound] planar].1, [[[[ADBrickManager sharedBrickManager] closestEnemy] sound] planar].2}]
+  0d7a08  [[[self playlist] anySoundContaining:@"zap"] setGain:3.5]
+  0d7a20  [[[self playlist] anySoundContaining:@"zap"] play:0]
+  0d7a70  [[[self playlist] anySoundContaining:@"zap"] add3DSoundEndCallback:^{-[ADTeslaPowerUp update:]_block_invoke captures +0x20=self, +0x28=self}]
+  0d7a84  goto loc_1000d7aac
+loc_1000d7a88:
+  0d7a94  if (self->currentKillCount < self->maxNumberOfKills) goto loc_1000d7aac
+  0d7aa8  [self clean]
+loc_1000d7aac:
+  0d7aac  self->timeSinceLastKill = 0
+loc_1000d7ab8:
+  0d7acc  return
+
+== -[ADTeslaPowerUp update:]_block_invoke   (address 0x1000d7b2c  size 72  kind block)
+  0d7b54  if (self->currentKillCount < self->maxNumberOfKills) goto loc_1000d7b6c
+  0d7b68  [self clean]
+loc_1000d7b6c:
+  0d7b70  return
+
+== sub_1000d7b74   (address 0x1000d7b74  size 8  kind sub)
+
+== sub_1000d7b7c   (address 0x1000d7b7c  size 8  kind sub)
+  0d7b80  return
+
+== -[ADTeslaPowerUp clean]   (address 0x1000d7b84  size 400  kind objc)
+  0d7ba4  self->active = 0
+  0d7bb4  [self playlist]
+  0d7bd0  [[self playlist] deactivate]
+  0d7bf0  [ADTracker sharedInstance]
+  0d7c18  [ADInGameStats singleton]
+  0d7c34  [[ADInGameStats singleton] enemyKillsWithPowerup]
+  0d7c4c  [self name]
+  0d7c74  [[ADTracker sharedInstance] numberOfEnemyKills:[[ADInGameStats singleton] enemyKillsWithPowerup] ByPowerUp:[self name]]
+  0d7c98  [ADInGameStats singleton]
+  0d7cb8  [[ADInGameStats singleton] setEnemyKillsWithPowerup:0]
+  0d7cd0  return

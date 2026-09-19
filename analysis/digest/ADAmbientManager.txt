@@ -1,0 +1,379 @@
+
+== +[ADAmbientManager sharedAmbiantManager]   (address 0x100097e64  size 152  kind objc)
+  097e78  objc_sync_enter(ADAmbientManager)
+  097e84  if (g_10042da20 != 0) goto loc_100097ec0
+  097e9c  [ADAmbientManager alloc]
+  097eac  [[ADAmbientManager alloc] init]
+  097eb4  store g_10042da20 = [[ADAmbientManager alloc] init]
+loc_100097ec0:
+  097ec4  objc_sync_exit(ADAmbientManager)
+  097ee8  objc_sync_exit()
+
+== -[ADAmbientManager startWithRandomAmbient]   (address 0x100097efc  size 264  kind objc)
+  097f48  [NSArray arrayWithObjects:@"ambient_ruins", @"ambient_ghosttown", @"ambient_foundry", nil]
+  097f58  rand()
+  097f70  [[NSArray arrayWithObjects:@"ambient_ruins", @"ambient_ghosttown", @"ambient_foundry", nil] count]
+  097f78  t1 = (rand() / [[NSArray arrayWithObjects:@"ambient_ruins", @"ambient_ghosttown", @"ambient_foundry", nil] count])
+  097f7c  t2 = (rand() - t1 * [[NSArray arrayWithObjects:@"ambient_ruins", @"ambient_ghosttown", @"ambient_foundry", nil] count])
+  097f90  [[NSArray arrayWithObjects:@"ambient_ruins", @"ambient_ghosttown", @"ambient_foundry", nil] objectAtIndex:t2]
+  097fbc  [self startWithambient:[[NSArray arrayWithObjects:@"ambient_ruins", @"ambient_ghosttown", @"ambient_foundry", nil] objectAtIndex:t2] gain:0.6]
+  097fdc  return
+
+== -[ADAmbientManager startWithambient:gain:]   (address 0x100098004  size 1188  kind objc)
+  098044  [ADGameModifiers sharedModifiers]
+  098060  [[ADGameModifiers sharedModifiers] storm]
+  098064  if (!([[ADGameModifiers sharedModifiers] storm] & 1)) goto loc_100098074
+  098070  goto loc_1000980a0
+loc_100098074:
+  09808c  [arg1 isEqualToString:@"ambient_storm"]
+  09809c  if (!([arg1 isEqualToString:@"ambient_storm"] & 1)) goto loc_1000982b0
+loc_1000980a0:
+  0980b4  [S3DEngine engine]
+  0980d8  [[S3DEngine engine] playListWithName:@"ambient_storm"]
+  0980fc  [self setStormPLaylist:[[S3DEngine engine] playListWithName:@"ambient_storm"]]
+  098124  [self stormPLaylist]
+  098140  [[self stormPLaylist] activate]
+  098154  [self stormPLaylist]
+  098178  [[self stormPLaylist] anySoundContaining:@"ambient"]
+  09819c  [self setAmbient_sound:[[self stormPLaylist] anySoundContaining:@"ambient"]]
+  0981b4  &@selector(ambient_sound)
+  0981c0  if (arg2 == 0.0) goto loc_1000981f8
+  0981cc  [self ambient_sound]
+  0981ec  [[self ambient_sound] setGain:arg2]
+  0981f0  goto loc_100098228
+  0981f4  goto loc_100098450
+loc_1000981f8:
+  098200  [self ambient_sound]
+  098224  [[self ambient_sound] setGain:0.6]
+loc_100098228:
+  098238  [self ambient_sound]
+  098258  [[self ambient_sound] setStream:1]
+  09826c  [self ambient_sound]
+  09828c  [[self ambient_sound] play:1]
+  0982a8  [self randomiseNextStormTime]
+  0982ac  goto loc_1000983c0
+loc_1000982b0:
+  0982c8  self->ambientName = arg1
+  0982e4  [S3DEngine engine]
+  098304  [[S3DEngine engine] playListWithName:arg1]
+  098328  [self setPlaylist:[[S3DEngine engine] playListWithName:arg1]]
+  09834c  [self playlist]
+  0983ac  [[self playlist] activate:^{-[ADAmbientManager startWithambient:gain:]_block_invoke captures +0x20=self, +0x28=self, +0x30=arg2}]
+loc_1000983c0:
+  0983d0  [self initEnemiesAmbiant]
+  0983d4  arc4random()
+  098404  self->scare_sound_timer = (float)((arc4random() - ((x8 * 0xcccccccd) >>> 36) * 20) + 10)
+  098424  return
+
+== -[ADAmbientManager startWithambient:gain:]_block_invoke   (address 0x1000984a8  size 608  kind block)
+  0984cc  [x0 playlist]
+  0984f0  [[x0 playlist] anySoundContaining:@"ambient"]
+  098514  [x0 setAmbient_sound:[[x0 playlist] anySoundContaining:@"ambient"]]
+  09853c  [self ambient_sound]
+  09855c  [[self ambient_sound] setSpatialized:0]
+  098574  if (arg2 == 0.0) goto loc_1000985a8
+  09857c  [self ambient_sound]
+  09859c  [[self ambient_sound] setGain:arg2]
+  0985a0  goto loc_1000985d4
+  0985a4  goto loc_1000986f4
+loc_1000985a8:
+  0985ac  [self ambient_sound]
+  0985d0  [[self ambient_sound] setGain:0.6]
+loc_1000985d4:
+  0985e4  [self ambient_sound]
+  098604  [[self ambient_sound] setStream:1]
+  098618  [self ambient_sound]
+  098638  [[self ambient_sound] play:1]
+  098658  [self gameplayViewController]
+  09866c  if ([self gameplayViewController] == 0) goto loc_1000986ac
+  098678  [self gameplayViewController]
+  098694  [[self gameplayViewController] ambiantManagerDidActivatePlaylist]
+  0986a8  return
+loc_1000986ac:
+  0986b8  return
+
+== sub_100098708   (address 0x100098708  size 8  kind sub)
+
+== sub_100098710   (address 0x100098710  size 8  kind sub)
+  098714  return
+
+== -[ADAmbientManager startBaseSound]   (address 0x100098718  size 224  kind objc)
+  098738  [self playlist]
+  09875c  [[self playlist] anySoundWihPrefix:@"BASE_"]
+  098774  self->baseSound = [[self playlist] anySoundWihPrefix:@"BASE_"]
+  0987a4  [self->baseSound setPlanar:{4, 0, 0}]
+  0987bc  [self->baseSound setSpatialized:1]
+  0987e0  tail [self->baseSound play:1]
+
+== -[ADAmbientManager randomPositionAtDistance:]   (address 0x1000987f8  size 132  kind objc)
+  098808  rand()
+  098828  t1 = (((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >> 8) + ((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >>> 31))
+  098858  d0 = sin((((float)(rand() - t1 * 360) * 3.14159) / 180)), d1 = cos((((float)(rand() - t1 * 360) * 3.14159) / 180))
+  098878  return
+
+== -[ADAmbientManager update:]   (address 0x10009887c  size 760  kind objc)
+  0988ac  self->scare_sound_timer = (self->scare_sound_timer - arg1)
+  0988c0  [self ambient_sound]
+  0988dc  [[self ambient_sound] key]
+  098900  [[[self ambient_sound] key] isEqualToString:@"storm_ambient"]
+  098904  if ([[[self ambient_sound] key] isEqualToString:@"storm_ambient"] == 0) goto loc_1000989a8
+  098910  [self ambient_sound]
+  09892c  [[self ambient_sound] playing]
+  09894c  if ([[self ambient_sound] playing] == 0) goto loc_1000989b8
+  098964  self->nextStormTime = (self->nextStormTime - arg1)
+  098968  if ((self->nextStormTime - arg1) >= (or unordered) 0.0) goto loc_100098b20
+  09897c  [self randomiseNextStormTime]
+  0989a4  tail [self playThunder]
+loc_1000989a8:
+loc_1000989b8:
+  0989c0  if (self->scare_sound_timer >= (or unordered) 0.0) goto loc_100098b20
+  0989d8  [ADBrickManager sharedBrickManager]
+  0989f4  [[ADBrickManager sharedBrickManager] numberOfActiveObjectsOnScene]
+  098a08  if ([[ADBrickManager sharedBrickManager] numberOfActiveObjectsOnScene] > 3) goto loc_100098aec
+  098a1c  [self randomPosition]
+  098a38  [self playlist]
+  098a5c  [[self playlist] anySoundContaining:@"RANDOM_"]
+  098a70  self->scare_sound = [[self playlist] anySoundContaining:@"RANDOM_"]
+  098a98  [self->scare_sound setSpatialized:1]
+  098ab8  [self->scare_sound setPlanar:{[self randomPosition].0, [self randomPosition].1, 0}]
+  098ad0  [self->scare_sound setGain:3]
+  098ae8  [self->scare_sound play:0]
+loc_100098aec:
+  098aec  rand()
+  098b18  t1 = (float)((rand() - (((rand() * 0x66666667) >> 34) + ((rand() * 0x66666667) >>> 63)) * 10) + 15)
+  098b1c  self->scare_sound_timer = t1
+loc_100098b20:
+  098b34  return
+
+== -[ADAmbientManager randomPosition]   (address 0x100098b74  size 156  kind objc)
+  098b80  arc4random()
+  098bbc  t1 = (((float)(arc4random() - (((arc4random() >>> 3) * 0x16c16c17) >>> 34) * 360) * 3.14159) / 180)
+  098bc4  arc4random()
+  098be8  t2 = (float)((arc4random() - (((x8 * 0xaaaaaaab) >>> 33) + (((x8 * 0xaaaaaaab) >>> 33) << 1))) + 3)
+  098bf0  d0 = sin(t1), d1 = cos(t1)
+  098c0c  return
+
+== -[ADAmbientManager stopAmbient]   (address 0x100098c10  size 304  kind objc)
+  098c30  [self ambient_sound]
+  098c4c  [[self ambient_sound] stop]
+  098c6c  [self stormPLaylist]
+  098c80  if ([self stormPLaylist] == 0) goto loc_100098cb4
+  098c8c  [self stormPLaylist]
+  098ca8  [[self stormPLaylist] deactivate]
+loc_100098cb4:
+  098cc4  [self stopEnemiesAmbientAndResetCount]
+  098cd8  [self playlist]
+  098cf8  [[self playlist] deactivate]
+  098d20  tail [self->enemiesPlaylist deactivate]
+  098d24  goto loc_100098d2c
+  098d28  goto loc_100098d2c
+loc_100098d2c:
+
+== -[ADAmbientManager randomiseNextStormTime]   (address 0x100098d40  size 120  kind objc)
+  098d54  rand()
+  098d74  t1 = (((((rand() * 0xffffffff88888889) >>> 32) + rand()) >> 4) + ((((rand() * 0xffffffff88888889) >>> 32) + rand()) >>> 31))
+  098d90  self->nextStormTime = (float)((rand() - t1 * 30) + 10)
+  098da4  NSLog(@"Next thunder : %f", (float)((rand() - t1 * 30) + 10))
+  098db4  return
+
+== -[ADAmbientManager playThunder]   (address 0x100098db8  size 164  kind objc)
+  098dd8  [self stormPLaylist]
+  098dfc  [[self stormPLaylist] anySoundContaining:@"thunder"]
+  098e14  self->thunderSound = [[self stormPLaylist] anySoundContaining:@"thunder"]
+  098e44  tail [self->thunderSound play]
+
+== -[ADAmbientManager initEnemiesAmbiant]   (address 0x100098e5c  size 236  kind objc)
+  098e84  [S3DEngine engine]
+  098ea8  [[S3DEngine engine] playListWithName:@"enemiesAmbiant"]
+  098ec0  self->enemiesPlaylist = [[S3DEngine engine] playListWithName:@"enemiesAmbiant"]
+  098ee4  [self->enemiesPlaylist activate]
+  098efc  [NSMutableDictionary alloc]
+  098f0c  [[NSMutableDictionary alloc] init]
+  098f1c  self->enemiesAmbiantCount = [[NSMutableDictionary alloc] init]
+  098f30  return
+
+== -[ADAmbientManager enemyWithAmbiantNameAppeared:]   (address 0x100098f48  size 32  kind objc)
+  098f5c  [self checkAmbiant]
+  098f64  return
+
+== -[ADAmbientManager enemyWithAmbiantNameKilled:]   (address 0x100098f68  size 32  kind objc)
+  098f7c  [self checkAmbiant]
+  098f84  return
+
+== -[ADAmbientManager brickWithAmbiantStarted:]   (address 0x100098f88  size 32  kind objc)
+  098f9c  [self checkAmbiant]
+  098fa4  return
+
+== -[ADAmbientManager brickWithAmbiantCleared:]   (address 0x100098fa8  size 32  kind objc)
+  098fbc  [self checkAmbiant]
+  098fc4  return
+
+== -[ADAmbientManager playEnemyAmbiantWithName:forceStop:]   (address 0x100098fc8  size 380  kind objc)
+  09900c  [self->enemyAmbiantSound playing]
+  099010  if ([self->enemyAmbiantSound playing] == 0) goto loc_100099070
+  099024  [self->enemyAmbiantSound key]
+  099044  [[self->enemyAmbiantSound key] isEqualToString:arg1]
+  099054  if (([[self->enemyAmbiantSound key] isEqualToString:arg1] & 1)) goto loc_100099104
+  099058  if (arg2 == 0) goto loc_100099070
+  09906c  [self->enemyAmbiantSound stop]
+loc_100099070:
+  09907c  NSLog(@"Play ambiant :%@", arg1)
+  09909c  [self->enemiesPlaylist S3DSound:arg1]
+  0990ac  self->enemyAmbiantSound = [self->enemiesPlaylist S3DSound:arg1]
+  0990cc  [self->enemyAmbiantSound play:1]
+  0990e4  [self->enemyAmbiantSound setStream:1]
+  099100  [self->enemyAmbiantSound setGain:0.085]
+loc_100099104:
+  09911c  return
+
+== -[ADAmbientManager stopAmbiant]   (address 0x100099144  size 28  kind objc)
+  09915c  tail [self->enemyAmbiantSound stop]
+
+== -[ADAmbientManager enemyWithCurrentAmbiantIsAlive]   (address 0x100099160  size 660  kind objc)
+  0991b8  [ADBrickManager sharedBrickManager]
+  0991d4  [[ADBrickManager sharedBrickManager] allPotentialTargets]
+  099210  [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  099218  if ([[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_10009936c
+loc_100099274:
+loc_100099278:
+  099284  if (x8 == x19) goto loc_100099290
+  09928c  objc_enumerationMutation([[ADBrickManager sharedBrickManager] allPotentialTargets])
+loc_100099290:
+  0992a0  [x0 canBeShotAt]
+  0992a4  if ([x0 canBeShotAt] == 0) goto loc_100099324
+  0992b0  [x0 getAmbiantName]
+  0992c8  [self->enemyAmbiantSound key]
+  0992e4  [[x0 getAmbiantName] isEqualToString:[self->enemyAmbiantSound key]]
+  0992e8  if ([[x0 getAmbiantName] isEqualToString:[self->enemyAmbiantSound key]] == 0) goto loc_100099314
+  0992f4  [self->enemyAmbiantSound playing]
+  09930c  if (!([self->enemyAmbiantSound playing] & 1)) goto loc_100099324
+  099310  goto loc_100099358
+loc_100099314:
+loc_100099324:
+  09932c  if ((x25 + 1) <u [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count…) goto loc_100099278
+  099344  [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  09934c  if ([[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_100099274
+  099354  goto loc_10009935c
+loc_100099358:
+loc_10009935c:
+  099368  goto loc_100099370
+loc_10009936c:
+loc_100099370:
+  0993a4  return
+
+== -[ADAmbientManager stopEnemiesAmbientAndResetCount]   (address 0x1000993f4  size 80  kind objc)
+  09940c  NSLog(@"stopEnemiesAmbientAndResetCount", _cmd)
+  099428  [self->enemyAmbiantSound stop]
+  099434  self->ambiantIsPlaying = 0
+  099440  return
+
+== -[ADAmbientManager checkAmbiant]   (address 0x100099444  size 1252  kind objc)
+  099490  [ADBrickManager sharedBrickManager]
+  0994ac  [[ADBrickManager sharedBrickManager] playerIsDead]
+  0994bc  if ([[ADBrickManager sharedBrickManager] playerIsDead] == 0) goto loc_1000994fc
+  0994f8  tail [self stopEnemiesAmbientAndResetCount]
+loc_1000994fc:
+  099504  NSLog(@"[AMBIANT] Checking ambiant")
+  099510  [ADBrickManager sharedBrickManager]
+  099530  [[ADBrickManager sharedBrickManager] currentBrick]
+  099550  [[[ADBrickManager sharedBrickManager] currentBrick] ambiantName]
+  099574  if ([[[ADBrickManager sharedBrickManager] currentBrick] ambiantName] == 0) goto loc_10009967c
+  099580  [ADBrickManager sharedBrickManager]
+  099594  [[ADBrickManager sharedBrickManager] currentBrick]
+  0995a8  [[[ADBrickManager sharedBrickManager] currentBrick] ambiantName]
+  0995c4  NSLog(@"[AMBIANT] Try to play brick ambiant : %@", [[[ADBrickManager sharedBrickManager] currentBrick] ambiantName])
+  0995e8  [ADBrickManager sharedBrickManager]
+  0995fc  [[ADBrickManager sharedBrickManager] currentBrick]
+  099610  [[[ADBrickManager sharedBrickManager] currentBrick] ambiantName]
+  099638  [self playEnemyAmbiantWithName:[[[ADBrickManager sharedBrickManager] currentBrick] ambiantName] forceStop:1]
+  099678  return
+loc_10009967c:
+  09968c  [self enemyWithCurrentAmbiantIsAlive]
+  099690  if ([self enemyWithCurrentAmbiantIsAlive] == 0) goto loc_1000996a4
+  09969c  NSLog(@"[AMBIANT]Enemy with current ambiant is alive")
+  0996a0  goto loc_10009985c
+loc_1000996a4:
+  0996bc  [ADBrickManager sharedBrickManager]
+  0996d8  [[ADBrickManager sharedBrickManager] allPotentialTargets]
+  099710  [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  099718  if ([[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_1000997bc
+  099734  &@selector(getAmbiantName)
+loc_10009973c:
+loc_100099740:
+  09974c  if (x8 == x28) goto loc_100099758
+  099754  objc_enumerationMutation([[ADBrickManager sharedBrickManager] allPotentialTargets])
+loc_100099758:
+  099768  [x0 canBeShotAt]
+  09976c  if ([x0 canBeShotAt] == 0) goto loc_100099790
+  099778  [x0 getAmbiantName]
+  09978c  if ([x0 getAmbiantName] != 0) goto loc_1000997e8
+loc_100099790:
+  099798  if ((x22 + 1) <u [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count…) goto loc_100099740
+  0997b0  [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0997b8  if ([[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10009973c
+loc_1000997bc:
+  0997cc  NSLog(@"[AMBIANT] Stop ambiant ")
+  0997e0  [self stopAmbiant]
+  0997e4  goto loc_10009985c
+loc_1000997e8:
+  0997f0  [x0 getAmbiantName]
+  09980c  NSLog(@"[AMBIANT] Try to play enemy ambiant : %@", [x0 getAmbiantName])
+  099820  [x0 getAmbiantName]
+  099848  [self playEnemyAmbiantWithName:[x0 getAmbiantName] forceStop:1]
+loc_10009985c:
+  099884  return
+
+== -[ADAmbientManager pause]   (address 0x100099928  size 192  kind objc)
+  099958  [self->enemyAmbiantSound playing]
+  09995c  if ([self->enemyAmbiantSound playing] == 0) goto loc_100099974
+  099970  [self->enemyAmbiantSound pause]
+loc_100099974:
+  099984  [self->thunderSound playing]
+  099988  if ([self->thunderSound playing] == 0) goto loc_1000999a0
+  09999c  [self->thunderSound pause]
+loc_1000999a0:
+  0999b0  [self->baseSound playing]
+  0999b4  if ([self->baseSound playing] == 0) goto loc_1000999d8
+  0999d4  tail [self->baseSound pause]
+loc_1000999d8:
+  0999e4  return
+
+== -[ADAmbientManager resume]   (address 0x1000999e8  size 132  kind objc)
+  099a04  if (self->enemyAmbiantSound == 0) goto loc_100099a18
+  099a14  [self->enemyAmbiantSound resume]
+loc_100099a18:
+  099a24  if (self->thunderSound == 0) goto loc_100099a38
+  099a34  [self->thunderSound resume]
+loc_100099a38:
+  099a44  if (self->baseSound == 0) goto loc_100099a60
+  099a5c  tail [self->baseSound resume]
+loc_100099a60:
+  099a68  return
+
+== -[ADAmbientManager gameplayViewController]   (address 0x100099a6c  size 32  kind objc)
+  099a88  return
+
+== -[ADAmbientManager setGameplayViewController:]   (address 0x100099a8c  size 20  kind objc)
+
+== -[ADAmbientManager playlist]   (address 0x100099aa0  size 16  kind objc)
+  099aac  return
+
+== -[ADAmbientManager setPlaylist:]   (address 0x100099ab0  size 56  kind objc)
+  099ad4  self->_playlist = arg1
+  099ae4  return
+
+== -[ADAmbientManager stormPLaylist]   (address 0x100099ae8  size 16  kind objc)
+  099af4  return
+
+== -[ADAmbientManager setStormPLaylist:]   (address 0x100099af8  size 56  kind objc)
+  099b1c  self->_stormPLaylist = arg1
+  099b2c  return
+
+== -[ADAmbientManager ambient_sound]   (address 0x100099b30  size 16  kind objc)
+  099b3c  return
+
+== -[ADAmbientManager setAmbient_sound:]   (address 0x100099b40  size 56  kind objc)
+  099b64  self->_ambient_sound = arg1
+  099b74  return
+
+== -[ADAmbientManager .cxx_destruct]   (address 0x100099b78  size 240  kind objc)

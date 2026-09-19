@@ -1,0 +1,73 @@
+
+== +[TAGDistinctZero initialize]   (address 0x10016f08c  size 72  kind objc)
+  16f0ac  [NSNumber numberWithInt:0]
+  16f0c4  store g_10042df60 = [NSNumber numberWithInt:0]
+  16f0d0  return
+
+== +[TAGDistinctZero distinctZero]   (address 0x10016f0d4  size 48  kind objc)
+  16f0e8  [TAGDistinctZero alloc]
+  16f0f8  [[TAGDistinctZero alloc] init]
+  16f100  return
+
+== -[TAGDistinctZero objCType]   (address 0x10016f104  size 44  kind objc)
+  16f12c  tail [g_10042df60 objCType]
+
+== -[TAGDistinctZero charValue]   (address 0x10016f130  size 28  kind objc)
+  16f148  tail [g_10042df60 charValue]
+
+== -[TAGDistinctZero unsignedCharValue]   (address 0x10016f14c  size 28  kind objc)
+  16f164  tail [g_10042df60 unsignedCharValue]
+
+== -[TAGDistinctZero shortValue]   (address 0x10016f168  size 28  kind objc)
+  16f180  tail [g_10042df60 shortValue]
+
+== -[TAGDistinctZero unsignedShortValue]   (address 0x10016f184  size 28  kind objc)
+  16f19c  tail [g_10042df60 unsignedShortValue]
+
+== -[TAGDistinctZero intValue]   (address 0x10016f1a0  size 28  kind objc)
+  16f1b8  tail [g_10042df60 intValue]
+
+== -[TAGDistinctZero unsignedIntValue]   (address 0x10016f1bc  size 28  kind objc)
+  16f1d4  tail [g_10042df60 unsignedIntValue]
+
+== -[TAGDistinctZero longValue]   (address 0x10016f1d8  size 28  kind objc)
+  16f1f0  tail [g_10042df60 longValue]
+
+== -[TAGDistinctZero unsignedLongValue]   (address 0x10016f1f4  size 28  kind objc)
+  16f20c  tail [g_10042df60 unsignedLongValue]
+
+== -[TAGDistinctZero longLongValue]   (address 0x10016f210  size 28  kind objc)
+  16f228  tail [g_10042df60 longLongValue]
+
+== -[TAGDistinctZero unsignedLongLongValue]   (address 0x10016f22c  size 28  kind objc)
+  16f244  tail [g_10042df60 unsignedLongLongValue]
+
+== -[TAGDistinctZero floatValue]   (address 0x10016f248  size 28  kind objc)
+  16f260  tail [g_10042df60 floatValue]
+
+== -[TAGDistinctZero doubleValue]   (address 0x10016f264  size 28  kind objc)
+  16f27c  tail [g_10042df60 doubleValue]
+
+== -[TAGDistinctZero boolValue]   (address 0x10016f280  size 28  kind objc)
+  16f298  tail [g_10042df60 boolValue]
+
+== -[TAGDistinctZero integerValue]   (address 0x10016f29c  size 28  kind objc)
+  16f2b4  tail [g_10042df60 integerValue]
+
+== -[TAGDistinctZero unsignedIntegerValue]   (address 0x10016f2b8  size 28  kind objc)
+  16f2d0  tail [g_10042df60 unsignedIntegerValue]
+
+== -[TAGDistinctZero stringValue]   (address 0x10016f2d4  size 28  kind objc)
+  16f2ec  tail [g_10042df60 stringValue]
+
+== -[TAGDistinctZero compare:]   (address 0x10016f2f0  size 44  kind objc)
+  16f310  [g_10042df60 compare:arg1]
+  16f318  return
+
+== -[TAGDistinctZero isEqualToNumber:]   (address 0x10016f31c  size 44  kind objc)
+  16f33c  [g_10042df60 isEqualToNumber:arg1]
+  16f344  return
+
+== -[TAGDistinctZero descriptionWithLocale:]   (address 0x10016f348  size 52  kind objc)
+  16f368  [g_10042df60 descriptionWithLocale:arg1]
+  16f378  return

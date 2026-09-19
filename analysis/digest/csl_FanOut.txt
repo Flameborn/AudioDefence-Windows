@@ -1,0 +1,96 @@
+
+== csl::FanOut::vfunc_5   (address 0x1000ea2ac  size 216  kind cxx)
+  0ea2c0  cxa_allocate_exception(16, a1, a2, a3)
+  0ea2d8  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Asking for mono nextBuffer of a FanOut", &sp[0x8])
+  0ea2e4  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0ea2f4  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0ea30c  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0ea310  goto loc_1000ea35c
+  0ea330  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000ea358
+loc_1000ea338:
+  0ea344  if (w11 != 0) goto loc_1000ea338
+  0ea34c  if (w9 > 0) goto loc_1000ea358
+  0ea354  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+loc_1000ea358:
+  0ea358  if (w20 >= 0) goto loc_1000ea364
+loc_1000ea35c:
+  0ea360  cxa_call_unexpected()
+loc_1000ea364:
+  0ea37c  cxa_free_exception()
+  0ea380  goto loc_1000ea358
+
+== csl::FanOut::vfunc_4   (address 0x1000ea384  size 336  kind cxx)
+  0ea3a8  if (a1[+0x8] != a0[+0x60]) goto loc_1000ea400
+  0ea3b4  if (w9 <u w8) goto loc_1000ea3c8
+  0ea3c0  sub_1000e9fb0(a0, a1[+0xc], a2, a3)
+  0ea3c4  a0[+0xec] = 0
+loc_1000ea3c8:
+  0ea3e0  sub_1000e86d4(a1, (a0[+0x0][+0x-18] + a0)[+0x20][+0x10])
+  0ea3ec  a0[+0xec] = (a0[+0xec] + 1)
+  0ea3fc  return
+  0ea404  cxa_allocate_exception(16, a1, a2, a3)
+  0ea41c  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Asking for wrong output ch # of a FanOut", &sp[0x8])
+  0ea428  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0ea438  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0ea450  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0ea474  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000ea49c
+  0ea488  if (w11 != 0) goto loc_1000ea47c
+  0ea490  if (w9 > 0) goto loc_1000ea49c
+  0ea498  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0ea49c  if (w20 >= 0) goto loc_1000ea4a8
+  0ea4a4  cxa_call_unexpected()
+  0ea4cc  cxa_free_exception()
+
+== csl::FanOut::vfunc_12   (address 0x1000ea4d4  size 152  kind cxx)
+  0ea508  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0ea51c  if ((a0[+0x0][+0x-18] + a0)[+0x20] == 0) goto loc_1000ea538
+  0ea530  call (a0[+0x0][+0x-18] + a0)[+0x20][+0x8][+0x0][+0x60]
+  0ea534  goto loc_1000ea548
+loc_1000ea538:
+  0ea544  printf("%sFanOut: NumInputs 0\n", &sp[0x8])
+loc_1000ea548:
+  0ea564  return
+
+== csl::FanOut::thunk_vfunc_3   (address 0x1000ea56c  size 16  kind cxx)
+  0ea578  tail csl::FanOut::vfunc_12((a0 + a0[+0x0][+0x-28]), a1, a2, a3)
+
+== sub_1000ea57c   (address 0x1000ea57c  size 212  kind sub)
+  0ea5a0  a0[+0xf0] = vtable<csl::Controllable>
+  0ea5b4  memset((a0 + 248), 0, 104, a3)
+  0ea5c4  call a1[+0x0][+0x18]
+  0ea5e0  sub_1000ea0cc(a0, &d_1003b4588, a1, a1[+0x0][+0x18](…))
+  0ea5f0  a0[+0x0] = vtable<csl::Splitter>
+  0ea5f8  a0[+0xf0] = vtable<csl::Splitter (secondary, -0xf0)>
+  0ea60c  return
+  0ea624  if (x0 == 0) goto loc_1000ea638
+  0ea630  call x8
+  0ea640  if ((x20 + 8) != 104) goto loc_1000ea620
+  0ea64c  call sub_10000b760
+
+== csl::FanOut::~FanOut(…)   (address 0x1000eb598  size 212  kind sym)
+  0eb5b8  a0[+0x0] = vtable<csl::FanOut>
+  0eb5c0  a0[+0xf0] = vtable<csl::FanOut (secondary, -0xf0)>
+  0eb5c8  sub_1000e80e0((a0 + 176), a1, a2, a3)
+  0eb5d0  sub_1000e8918(a0)
+  0eb5e0  a0[+0xf0] = vtable<csl::Controllable>
+loc_1000eb5e8:
+  0eb5ec  if (x0 == 0) goto loc_1000eb600
+  0eb5f8  call x8
+loc_1000eb600:
+  0eb608  if ((x20 + 8) != 352) goto loc_1000eb5e8
+  0eb61c  return
+  0eb640  if (x0 == 0) goto loc_1000eb654
+  0eb64c  call x8
+  0eb65c  if ((x21 + 8) != 104) goto loc_1000eb63c
+  0eb668  call sub_10000b760
+
+== csl::FanOut::~FanOut/*deleting*/(…)   (address 0x1000eb66c  size 56  kind sym)
+  0eb67c  ZN3csl6FanOutD1Ev(a0, a1, a2, a3)
+  0eb68c  tail ZdlPv(a0)
+  0eb698  ZdlPv()
+
+== csl::FanOut::thunk_vfunc_0   (address 0x1000eb6a4  size 16  kind cxx)
+  0eb6b0  tail ZN3csl6FanOutD1Ev((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::FanOut::thunk_vfunc_1   (address 0x1000eb6b4  size 16  kind cxx)
+  0eb6c0  tail ZN3csl6FanOutD0Ev((a0 + a0[+0x0][+0x-18]), a1, a2, a3)

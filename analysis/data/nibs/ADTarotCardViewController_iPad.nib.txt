@@ -1,0 +1,24 @@
+// ADTarotCardViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #33 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #50 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #65 UIView  
+    #54 UIImageView  Image='cards_front_good.png'
+    #37 UILabel  UserInteractionDisabled=False Text='Label' NumberOfLines=5
+    #55 UILabel  UserInteractionDisabled=False Text='Label' NumberOfLines=3
+    #27 UIButton (custom class ADButtonWithFont)  title[0]='Change for'
+  #40 UIView  
+    #57 UIImageView  Image='cards_back_compass.png'
+  #17 UIView  
+
+CONNECTIONS
+  action  changeCardButtonPressed:                  #27 ADButtonWithFont --(events 0x40)--> #33 UIProxyObject
+  outlet  backgroundImage                           #33 UIProxyObject --> #54 UIImageView
+  outlet  cardBack                                  #33 UIProxyObject --> #40 UIView
+  outlet  cardDescription                           #33 UIProxyObject --> #37 UILabel Text='Label'
+  outlet  cardFront                                 #33 UIProxyObject --> #65 UIView
+  outlet  cardTitle                                 #33 UIProxyObject --> #55 UILabel Text='Label'
+  outlet  changeCardButton                          #33 UIProxyObject --> #27 ADButtonWithFont
+  outlet  view                                      #33 UIProxyObject --> #17 UIView
+
+ACCESSIBILITY CONFIGURATIONS

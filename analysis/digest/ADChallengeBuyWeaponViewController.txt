@@ -1,0 +1,69 @@
+
+== -[ADChallengeBuyWeaponViewController initWithweaponName:]   (address 0x1000202b0  size 172  kind objc)
+  0202fc  [super initWithNibName:0 bundle:0]
+  020304  if (self == 0) goto loc_100020328
+  02031c  self->weaponName = arg1
+loc_100020328:
+  020344  return
+
+== -[ADChallengeBuyWeaponViewController viewDidLoad]   (address 0x10002035c  size 1052  kind objc)
+  0203a0  [super viewDidLoad]
+  0203b4  [self statusBarViewController]
+  0203d0  [[self statusBarViewController] pageTitle]
+  0203f4  [[[self statusBarViewController] pageTitle] setText:@"Challenge locked"]
+  02041c  [self coinButton]
+  020454  [[self coinButton] addTarget:self action:@selector(buttonPressed:) forControlEvents:64]
+  020478  [ADWeaponManager sharedWeaponManager]
+  0204a0  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:self->weaponName]
+  0204c4  [self setWeaponDict:[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:self->weaponName]]
+  0204ec  [self weaponButton]
+  020504  [ADWeaponManager sharedWeaponManager]
+  020524  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:self->weaponName]
+  020550  [[self weaponButton] setTitle:[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:self->weaponName] forState:0]
+  020574  [self weaponButton]
+  020594  [[self weaponButton] addTarget:self action:@selector(buttonPressed:) forControlEvents:64]
+  0205a8  [self weaponButton]
+  0205cc  [[self weaponButton] setAccessibilityHint:@"Double tap to view this item in armory"]
+  0205f0  [self weaponDict]
+  020614  [[self weaponDict] objectForKey:@"price"]
+  020640  [NSString stringWithFormat:@"%@", [[self weaponDict] objectForKey:@"price"]]
+  020668  [self coinButton]
+  020684  [[self coinButton] setTitle:[NSString stringWithFormat:@"%@", [[self weaponDict] objectForKey:@"price"]] forState:0]
+  0206b4  return
+
+== -[ADChallengeBuyWeaponViewController didReceiveMemoryWarning]   (address 0x100020778  size 60  kind objc)
+  0207a4  [super didReceiveMemoryWarning]
+  0207b0  return
+
+== -[ADChallengeBuyWeaponViewController buttonPressed:]   (address 0x1000207b4  size 128  kind objc)
+  0207d0  [self challengeLockedViewController]
+  020804  [[self challengeLockedViewController] performSelector:@selector(showWeaponInArmory:) withObject:self->weaponName]
+  020814  return
+
+== -[ADChallengeBuyWeaponViewController weaponDict]   (address 0x100020834  size 16  kind objc)
+  020840  return
+
+== -[ADChallengeBuyWeaponViewController setWeaponDict:]   (address 0x100020844  size 56  kind objc)
+  020868  self->_weaponDict = arg1
+  020878  return
+
+== -[ADChallengeBuyWeaponViewController weaponButton]   (address 0x10002087c  size 16  kind objc)
+  020888  return
+
+== -[ADChallengeBuyWeaponViewController setWeaponButton:]   (address 0x10002088c  size 56  kind objc)
+  0208b0  self->_weaponButton = arg1
+  0208c0  return
+
+== -[ADChallengeBuyWeaponViewController coinButton]   (address 0x1000208c4  size 16  kind objc)
+  0208d0  return
+
+== -[ADChallengeBuyWeaponViewController setCoinButton:]   (address 0x1000208d4  size 56  kind objc)
+  0208f8  self->_coinButton = arg1
+  020908  return
+
+== -[ADChallengeBuyWeaponViewController challengeLockedViewController]   (address 0x10002090c  size 32  kind objc)
+  020928  return
+
+== -[ADChallengeBuyWeaponViewController setChallengeLockedViewController:]   (address 0x10002092c  size 20  kind objc)
+
+== -[ADChallengeBuyWeaponViewController .cxx_destruct]   (address 0x100020940  size 120  kind objc)

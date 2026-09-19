@@ -1,0 +1,541 @@
+
+== -[TAGContainer initWithId:tagManager:resourceStorage:]   (address 0x10014e9e0  size 544  kind objc)
+  14ea54  [super init]
+  14ea5c  if (self == 0) goto loc_10014eb9c
+  14ea74  [arg1 copy]
+  14ea88  self->_containerId = [arg1 copy]
+  14eaa8  self->_tagManager = arg2
+  14eac8  [TAGPSupplementedResource alloc]
+  14ead4  [[TAGPSupplementedResource alloc] init]
+  14eae8  self->_lastLoadedSupplementedResource = [[TAGPSupplementedResource alloc] init]
+  14eb14  self->_numTokens = 30
+  14eb30  [NSMutableDictionary dictionary]
+  14eb4c  self->_functionCallMacroHandlers = [NSMutableDictionary dictionary]
+  14eb60  [NSMutableDictionary dictionary]
+  14eb7c  self->_functionCallTagHandlers = [NSMutableDictionary dictionary]
+  14eb98  [self createInitialContainer]
+loc_10014eb9c:
+  14ebd0  return
+
+== -[TAGContainer initWithId:tagManager:]   (address 0x10014ec00  size 232  kind objc)
+  14ec48  [TAGResourceStorageImpl alloc]
+  14ec5c  [[TAGResourceStorageImpl alloc] initWithContainerId:arg1]
+  14ec80  [self initWithId:arg1 tagManager:arg2 resourceStorage:[[TAGResourceStorageImpl alloc] initWithContainerId:arg1]]
+  14ecb4  return
+
+== +[TAGContainer refreshPeriodOnSuccess]   (address 0x10014ece8  size 12  kind objc)
+  14ecf0  return
+
+== +[TAGContainer refreshPeriodOnFailure]   (address 0x10014ecf4  size 12  kind objc)
+  14ecfc  return
+
+== +[TAGContainer minimumRefreshPeriod]   (address 0x10014ed00  size 12  kind objc)
+  14ed08  return
+
+== +[TAGContainer minimumRefreshPeriodInBurstMode]   (address 0x10014ed0c  size 12  kind objc)
+  14ed14  return
+
+== +[TAGContainer maximumTokenCount]   (address 0x10014ed18  size 8  kind objc)
+  14ed1c  return
+
+== -[TAGContainer booleanForKey:]   (address 0x10014ed20  size 796  kind objc)
+  14ed5c  [self runtime]
+  14ed6c  if ([self runtime] == 0) goto loc_10014ee04
+  14ed8c  [[self runtime] evaluateMacroReference:arg1]
+  14eda8  [[[self runtime] evaluateMacroReference:arg1] value]
+  14edcc  [TAGTypes valueToBoolean:[[[self runtime] evaluateMacroReference:arg1] value]]
+  14ede8  [[TAGTypes valueToBoolean:[[[self runtime] evaluateMacroReference:arg1] value]] boolValue]
+  14ee00  goto loc_10014ee5c
+loc_10014ee04:
+  14ee20  [TAGLog error:@"booleanForKey called for closed container"]
+  14ee38  [TAGTypes defaultBoolean]
+  14ee54  [[TAGTypes defaultBoolean] boolValue]
+loc_10014ee5c:
+  14ee90  return
+  14eef4  if (w25 != 1) goto loc_10014f02c
+  14eefc  objc_begin_catch()
+  14ef18  [objc_begin_catch() reason]
+  14ef60  [NSString stringWithFormat:@"%@%@%@", @"Calling booleanForKey threw an exception: ", [objc_begin_catch() reason], @" Returning default value."]
+  14ef98  [TAGLog error:[NSString stringWithFormat:@"%@%@%@", @"Calling booleanForKey threw an exception: ", [objc_begin_catch() reason], @" Returning default value."]]
+  14efb8  [TAGTypes defaultBoolean]
+  14efd8  [[TAGTypes defaultBoolean] boolValue]
+  14eff0  objc_end_catch()
+  14f028  objc_end_catch()
+
+== -[TAGContainer doubleForKey:]   (address 0x10014f03c  size 804  kind objc)
+  14f07c  [self runtime]
+  14f08c  if ([self runtime] == 0) goto loc_10014f124
+  14f0ac  [[self runtime] evaluateMacroReference:arg1]
+  14f0c8  [[[self runtime] evaluateMacroReference:arg1] value]
+  14f0ec  [TAGTypes valueToDouble:[[[self runtime] evaluateMacroReference:arg1] value]]
+  14f108  [[TAGTypes valueToDouble:[[[self runtime] evaluateMacroReference:arg1] value]] doubleValue]
+  14f120  goto loc_10014f17c
+loc_10014f124:
+  14f140  [TAGLog error:@"doubleForKey called for closed container"]
+  14f158  [TAGTypes defaultDouble]
+  14f174  [[TAGTypes defaultDouble] doubleValue]
+loc_10014f17c:
+  14f1b4  return
+  14f218  if (w25 != 1) goto loc_10014f350
+  14f220  objc_begin_catch()
+  14f23c  [objc_begin_catch() reason]
+  14f284  [NSString stringWithFormat:@"%@%@%@", @"Calling doubleForKey threw an exception: ", [objc_begin_catch() reason], @" Returning default value."]
+  14f2bc  [TAGLog error:[NSString stringWithFormat:@"%@%@%@", @"Calling doubleForKey threw an exception: ", [objc_begin_catch() reason], @" Returning default value."]]
+  14f2dc  [TAGTypes defaultDouble]
+  14f2fc  [[TAGTypes defaultDouble] doubleValue]
+  14f314  objc_end_catch()
+  14f34c  objc_end_catch()
+
+== -[TAGContainer int64ForKey:]   (address 0x10014f360  size 800  kind objc)
+  14f39c  [self runtime]
+  14f3ac  if ([self runtime] == 0) goto loc_10014f444
+  14f3cc  [[self runtime] evaluateMacroReference:arg1]
+  14f3e8  [[[self runtime] evaluateMacroReference:arg1] value]
+  14f40c  [TAGTypes valueToInt64:[[[self runtime] evaluateMacroReference:arg1] value]]
+  14f428  [[TAGTypes valueToInt64:[[[self runtime] evaluateMacroReference:arg1] value]] longLongValue]
+  14f440  goto loc_10014f49c
+loc_10014f444:
+  14f460  [TAGLog error:@"int64ForKey called for closed container"]
+  14f478  [TAGTypes defaultInt64]
+  14f494  [[TAGTypes defaultInt64] intValue]
+loc_10014f49c:
+  14f4d0  return
+  14f534  if (w25 != 1) goto loc_10014f670
+  14f53c  objc_begin_catch()
+  14f558  [objc_begin_catch() reason]
+  14f5a0  [NSString stringWithFormat:@"%@%@%@", @"Calling int64ForKey threw an exception: ", [objc_begin_catch() reason], @" Returning default value."]
+  14f5d8  [TAGLog error:[NSString stringWithFormat:@"%@%@%@", @"Calling int64ForKey threw an exception: ", [objc_begin_catch() reason], @" Returning default value."]]
+  14f5f8  [TAGTypes defaultInt64]
+  14f618  [[TAGTypes defaultInt64] intValue]
+  14f634  objc_end_catch()
+  14f66c  objc_end_catch()
+
+== -[TAGContainer stringForKey:]   (address 0x10014f680  size 668  kind objc)
+  14f6b8  [self runtime]
+  14f6c8  if ([self runtime] == 0) goto loc_10014f74c
+  14f6e8  [[self runtime] evaluateMacroReference:arg1]
+  14f704  [[[self runtime] evaluateMacroReference:arg1] value]
+  14f728  [TAGTypes valueToString:[[[self runtime] evaluateMacroReference:arg1] value]]
+  14f748  goto loc_10014f790
+loc_10014f74c:
+  14f768  [TAGLog error:@"stringForKey called for closed container"]
+  14f780  [TAGTypes defaultString]
+loc_10014f790:
+  14f7b8  return
+  14f804  if (w24 != 1) goto loc_10014f90c
+  14f80c  objc_begin_catch()
+  14f828  [objc_begin_catch() reason]
+  14f870  [NSString stringWithFormat:@"%@%@%@", @"Calling stringForKey threw an exception: ", [objc_begin_catch() reason], @" Returning default value."]
+  14f8a8  [TAGLog error:[NSString stringWithFormat:@"%@%@%@", @"Calling stringForKey threw an exception: ", [objc_begin_catch() reason], @" Returning default value."]]
+  14f8c8  [TAGTypes defaultString]
+  14f8e0  objc_end_catch()
+  14f908  objc_end_catch()
+
+== -[TAGContainer refresh]   (address 0x10014f91c  size 580  kind objc)
+  14f938  objc_sync_enter(self)
+  14f94c  [self runtime]
+  14f960  if ([self runtime] == 0) goto loc_10014f9a0
+  14f974  [self isDefaultContainerRefreshMode]
+  14f978  if ([self isDefaultContainerRefreshMode] == 0) goto loc_10014f9c4
+  14f998  [TAGLog warning:@"Container is in DEFAULT_CONTAINER mode. Refresh request is ignored."]
+  14f99c  goto loc_10014fa5c
+loc_10014f9a0:
+  14f9bc  [TAGLog warning:@"refresh called for closed container"]
+  14f9c0  goto loc_10014fa5c
+loc_10014f9c4:
+  14f9d4  [self currentTimeInMilliseconds]
+  14f9f0  [self useAvailableTokenWithCurrentTime:[self currentTimeInMilliseconds]]
+  14fa04  &@selector(verbose:)
+  14fa0c  if ([self useAvailableTokenWithCurrentTime:[self currentTimeInMilliseconds]] == 0) goto loc_10014fa50
+  14fa18  [TAGLog verbose:@"Container refresh requested."]
+  14fa30  [self loadAfterDelay:0]
+  14fa48  [self setLastRefreshMethodCalledTime:[self currentTimeInMilliseconds]]
+  14fa4c  goto loc_10014fa5c
+loc_10014fa50:
+  14fa58  [TAGLog verbose:@"Container refresh was called too often. Ignored."]
+loc_10014fa5c:
+  14fa60  objc_sync_exit(self)
+  14fa78  return
+  14fa88  if (w8 != 1) goto loc_10014fb48
+  14fa90  objc_begin_catch()
+  14faac  [objc_begin_catch() reason]
+  14fadc  [@"Calling refresh threw an exception: " stringByAppendingString:[objc_begin_catch() reason]]
+  14fb04  [TAGLog error:[@"Calling refresh threw an exception: " stringByAppendingString:[objc_begin_catch() reason]]]
+  14fb18  objc_end_catch()
+  14fb44  objc_end_catch()
+  14fb4c  objc_sync_exit()
+
+== -[TAGContainer close]   (address 0x10014fb60  size 736  kind objc)
+  14fb7c  objc_sync_enter(self)
+  14fb90  [self networkLoadScheduler]
+  14fbb0  [[self networkLoadScheduler] close]
+  14fbd0  [self setNetworkLoadScheduler:0]
+  14fbe8  [self setResourceStorage:0]
+  14fbfc  [self diskLoadCallback]
+  14fc10  [[self diskLoadCallback] close]
+  14fc30  [self setDiskLoadCallback:0]
+  14fc44  [self networkLoadCallback]
+  14fc58  [[self networkLoadCallback] close]
+  14fc78  [self setNetworkLoadCallback:0]
+  14fc90  [self setRuntime:0]
+  14fca4  [self tagManager]
+  14fcc4  [self containerId]
+  14fce8  [[self tagManager] removeContainerById:[self containerId]]
+  14fd00  objc_sync_exit(self)
+  14fd18  return
+  14fd68  if (w23 != 1) goto loc_10014fe28
+  14fd70  objc_begin_catch()
+  14fd8c  [objc_begin_catch() reason]
+  14fdbc  [@"Calling close threw an exception: " stringByAppendingString:[objc_begin_catch() reason]]
+  14fde4  [TAGLog error:[@"Calling close threw an exception: " stringByAppendingString:[objc_begin_catch() reason]]]
+  14fdf8  objc_end_catch()
+  14fe24  objc_end_catch()
+  14fe2c  objc_sync_exit()
+
+== -[TAGContainer isDefault]   (address 0x10014fe40  size 40  kind objc)
+  14fe54  [self lastRefreshTime]
+  14fe64  return
+
+== -[TAGContainer registerFunctionCallTagHandler:forTag:]   (address 0x10014fe68  size 240  kind objc)
+  14fea8  objc_sync_enter(self)
+  14febc  [self functionCallTagHandlers]
+  14fee0  [[self functionCallTagHandlers] setObject:arg1 forKey:arg2]
+  14fef0  objc_sync_exit(self)
+  14ff18  return
+  14ff34  objc_sync_exit()
+
+== -[TAGContainer registerFunctionCallMacroHandler:forMacro:]   (address 0x10014ff58  size 240  kind objc)
+  14ff98  objc_sync_enter(self)
+  14ffac  [self functionCallMacroHandlers]
+  14ffd0  [[self functionCallMacroHandlers] setObject:arg1 forKey:arg2]
+  14ffe0  objc_sync_exit(self)
+  150008  return
+  150024  objc_sync_exit()
+
+== -[TAGContainer functionCallTagHandlerForTag:]   (address 0x100150048  size 216  kind objc)
+  150074  objc_sync_enter(self)
+  150088  [self functionCallTagHandlers]
+  1500a8  [[self functionCallTagHandlers] objectForKey:arg1]
+  1500c4  objc_sync_exit(self)
+  1500e8  return
+  150104  objc_sync_exit()
+
+== -[TAGContainer functionCallMacroHandlerForMacro:]   (address 0x100150120  size 216  kind objc)
+  15014c  objc_sync_enter(self)
+  150160  [self functionCallMacroHandlers]
+  150180  [[self functionCallMacroHandlers] objectForKey:arg1]
+  15019c  objc_sync_exit(self)
+  1501c0  return
+  1501dc  objc_sync_exit()
+
+== -[TAGContainer evaluateTags:]   (address 0x1001501f8  size 148  kind objc)
+  150228  [self runtime]
+  150248  [[self runtime] evaluateTags:arg1]
+  150264  return
+
+== -[TAGContainer loadWithCallback:]   (address 0x10015028c  size 232  kind objc)
+  1502c0  [TAGResourceLoaderScheduler alloc]
+  1502d8  [self containerId]
+  1502fc  [[TAGResourceLoaderScheduler alloc] initWithContainerId:[self containerId]]
+  150324  [self loadWithCallback:arg1 resourceLoaderScheduler:[[TAGResourceLoaderScheduler alloc] initWithContainerId:[self containerId]]]
+  150340  return
+
+== -[TAGContainer loadWithCallback:resourceLoaderScheduler:]   (address 0x100150374  size 1280  kind objc)
+  1503bc  objc_sync_enter(self)
+  1503d4  [self diskLoadCallback]
+  1503e8  if ([self diskLoadCallback] != 0) goto loc_100150734
+  150404  [TAGDiskLoadCallback alloc]
+  150420  [[TAGDiskLoadCallback alloc] initWithCallback:arg1 container:self]
+  15043c  [self setDiskLoadCallback:[[TAGDiskLoadCallback alloc] initWithCallback:arg1 container:self]]
+  150458  [self isDefaultContainerRefreshMode]
+  15045c  if ([self isDefaultContainerRefreshMode] == 0) goto loc_100150484
+  15047c  [TAGLog info:@"Container is in DEFAULT_CONTAINER mode. Use default container."]
+  150480  goto loc_1001506fc
+loc_100150484:
+  150498  [self resourceStorage]
+  1504b0  [self diskLoadCallback]
+  1504d8  [[self resourceStorage] setLoadCallback:[self diskLoadCallback]]
+  1504f8  [TAGNetworkLoadCallback alloc]
+  150508  [[TAGNetworkLoadCallback alloc] initWithCallback:arg1 container:self]
+  150524  [self setNetworkLoadCallback:[[TAGNetworkLoadCallback alloc] initWithCallback:arg1 container:self]]
+  150540  [self networkLoadCallback]
+  15055c  [arg2 setLoadCallback:[self networkLoadCallback]]
+  150580  [TAGPreviewManager instance]
+  1505a0  [self containerId]
+  1505c4  [[TAGPreviewManager instance] isPreviewingContainer:[self containerId]]
+  1505dc  if ([[TAGPreviewManager instance] isPreviewingContainer:[self containerId]] == 0) goto loc_100150650
+  1505e8  [TAGPreviewManager instance]
+  150604  [[TAGPreviewManager instance] ctfeUrlPath]
+  150634  [self setCtfeUrlPathAndQuery:[[TAGPreviewManager instance] ctfeUrlPath]]
+  150644  [arg2 setCtfeUrlPathAndQuery:[[TAGPreviewManager instance] ctfeUrlPath]]
+loc_100150650:
+  150664  [self ctfeServerAddress]
+  150678  if ([self ctfeServerAddress] == 0) goto loc_1001506b4
+  150684  [self ctfeServerAddress]
+  1506a8  [arg2 setCtfeServerAddress:[self ctfeServerAddress]]
+loc_1001506b4:
+  1506c8  [self setNetworkLoadScheduler:arg2]
+  1506d4  [self resourceStorage]
+  1506f0  [[self resourceStorage] loadResourceFromDiskInBackground]
+loc_1001506fc:
+  150700  objc_sync_exit(self)
+  150730  return
+  150748  [self containerId]
+  150778  [@"Container already loaded: container Id:" stringByAppendingString:[self containerId]]
+  1507c0  [NSException exceptionWithName:@"ContainerAlreadyLoadedException" reason:[@"Container already loaded: container Id:" stringByAppendingString:[self containerId]] userInfo:0]
+  1507d0  objc_exception_throw([NSException exceptionWithName:@"ContainerAlreadyLoadedException" reason:[@"Container already loaded: container Id:" stringByAppendingString:[self containerId]] userInfo:0])
+  150850  objc_sync_exit()
+
+== -[TAGContainer loadAfterDelay:]   (address 0x100150874  size 320  kind objc)
+  150898  objc_sync_enter(self)
+  1508ac  [self isDefaultContainerRefreshMode]
+  1508b0  if (([self isDefaultContainerRefreshMode] & 1)) goto loc_100150944
+  1508c4  [self networkLoadScheduler]
+  1508e4  [self lastLoadedSupplementedResource]
+  150900  [[self lastLoadedSupplementedResource] fingerprint]
+  150928  [[self networkLoadScheduler] loadAfterDelay:arg1 withPreviousVersion:[[self lastLoadedSupplementedResource] fingerprint]]
+loc_100150944:
+  150948  objc_sync_exit(self)
+  150964  return
+  1509a0  objc_sync_exit()
+
+== -[TAGContainer setCtfeUrlPathAndQuery:]   (address 0x1001509b4  size 172  kind objc)
+  1509e4  self->_ctfeUrlPathAndQuery = arg1
+  1509fc  [self networkLoadScheduler]
+  150a1c  [[self networkLoadScheduler] setCtfeUrlPathAndQuery:arg1]
+  150a38  return
+
+== -[TAGContainer saveResourceToDisk:]   (address 0x100150a60  size 548  kind objc)
+  150a98  objc_sync_enter(self)
+  150ab8  [self lastRefreshTime]
+  150ad8  [NSString stringWithFormat:@"Saving resource to disk with timestamp of %f", [self lastRefreshTime]]
+  150b00  [TAGLog verbose:[NSString stringWithFormat:@"Saving resource to disk with timestamp of %f", [self lastRefreshTime]]]
+  150b1c  [TAGPResourceWithMetadata alloc]
+  150b30  [[TAGPResourceWithMetadata alloc] init]
+  150b40  [self lastRefreshTime]
+  150b58  [[[TAGPResourceWithMetadata alloc] init] setTimeStamp:(int)[self lastRefreshTime]]
+  150b68  [TAGPResource alloc]
+  150b70  [[TAGPResource alloc] init]
+  150b8c  [[[TAGPResourceWithMetadata alloc] init] setResource:[[TAGPResource alloc] init]]
+  150bac  [[[TAGPResourceWithMetadata alloc] init] setSupplementedResource:arg1]
+  150bc0  [self resourceStorage]
+  150be0  [[self resourceStorage] saveResourceToDiskInBackground:[[TAGPResourceWithMetadata alloc] init]]
+  150c00  objc_sync_exit(self)
+  150c28  return
+  150c68  objc_sync_exit()
+
+== -[TAGContainer setupEvaluatorsWithResource:]   (address 0x100150c84  size 452  kind objc)
+  150cc0  [TAGResourceUtil expandResource:arg1]
+  150ce4  [self setupEvaluatorsWithExpandedResource:[TAGResourceUtil expandResource:arg1]]
+  150d04  return
+  150d14  if (w8 != 1) goto loc_100150e38
+  150d1c  objc_begin_catch()
+  150d3c  [objc_begin_catch() name]
+  150d68  [[objc_begin_catch() name] isEqualToString:@"InvalidResourceException"]
+  150d78  if ([[objc_begin_catch() name] isEqualToString:@"InvalidResourceException"] == 0) goto loc_100150e0c
+  150da8  [NSString stringWithFormat:@"Not loading resource: %@ because it is invalid: %@", sp[0], objc_begin_catch()]
+  150dd8  [TAGLog error:[NSString stringWithFormat:@"Not loading resource: %@ because it is invalid: %@", sp[0], objc_begin_catch()]]
+  150dec  objc_end_catch()
+  150e14  objc_exception_throw()
+  150e34  objc_end_catch()
+
+== -[TAGContainer setSupplementals:]   (address 0x100150e48  size 148  kind objc)
+  150e78  [self runtime]
+  150e98  [[self runtime] setSupplementals:arg1]
+  150eb4  return
+
+== -[TAGContainer setupEvaluatorsWithExpandedResource:]   (address 0x100150edc  size 504  kind objc)
+  150f10  [arg1 version]
+  150f34  [self setResourceVersion:[arg1 version]]
+  150f58  [TAGFunctionCallMacroHandlerAdapter alloc]
+  150f70  [[TAGFunctionCallMacroHandlerAdapter alloc] initWithContainer:self]
+  150f84  [TAGFunctionCallTagHandlerAdapter alloc]
+  150f90  [[TAGFunctionCallTagHandlerAdapter alloc] initWithContainer:self]
+  150fb0  [self tagManager]
+  150fcc  [[self tagManager] dataLayer]
+  150ffc  [TAGRuntime runtimeWithResource:arg1 dataLayer:[[self tagManager] dataLayer] functionCallMacroEvaluator:[[TAGFunctionCallMacroHandlerAdapter alloc] initWithContainer:self] functionCallTagEvaluator:[[TAGFunctionCallTagHandlerAdapter alloc] initWithContainer:self]]
+  151020  [self setRuntime:[TAGRuntime runtimeWithResource:arg1 dataLayer:[[self tagManager] dataLayer] functionCallMacroEvaluator:[[TAGFunctionCallMacroHandlerAdapter alloc] initWithContainer:self] functionCallTagEvaluator:[[TAGFunctionCallTagHandlerAdapter alloc] initWithContainer:self]]]
+  151064  return
+
+== -[TAGContainer currentTimeInMilliseconds]   (address 0x1001510d4  size 128  kind objc)
+  1510f8  [NSDate date]
+  151114  [[NSDate date] timeIntervalSince1970]
+  15113c  return
+
+== -[TAGContainer createInitialContainer]   (address 0x100151154  size 664  kind objc)
+  151178  [self containerId]
+  15119c  [self resourceStorage]
+  1511bc  [[self resourceStorage] loadResourceFromContainerFile:[self containerId]]
+  1511d4  if ([[self resourceStorage] loadResourceFromContainerFile:[self containerId]] == 0) goto loc_1001511f4
+  1511ec  [self setupEvaluatorsWithResource:[[self resourceStorage] loadResourceFromContainerFile:[self containerId]]]
+  1511f0  goto loc_100151364
+loc_1001511f4:
+  1511fc  [self resourceStorage]
+  15121c  [[self resourceStorage] loadExpandedResourceFromPlistFile:[self containerId]]
+  151234  if ([[self resourceStorage] loadExpandedResourceFromPlistFile:[self containerId]] == 0) goto loc_100151258
+  151250  [self setupEvaluatorsWithExpandedResource:[[self resourceStorage] loadExpandedResourceFromPlistFile:[self containerId]]]
+  151254  goto loc_10015135c
+loc_100151258:
+  151264  [self resourceStorage]
+  151284  [[self resourceStorage] loadExpandedResourceFromJsonFile:[self containerId]]
+  1512a4  if ([[self resourceStorage] loadExpandedResourceFromJsonFile:[self containerId]] == 0) goto loc_1001512c8
+  1512bc  [self setupEvaluatorsWithExpandedResource:[[self resourceStorage] loadExpandedResourceFromJsonFile:[self containerId]]]
+  1512c4  goto loc_10015135c
+loc_1001512c8:
+  1512e8  [TAGLog error:@"No default container found; creating an empty container."]
+  151304  [TAGExpandedResource builder]
+  151320  [[TAGExpandedResource builder] build]
+  151344  [self setupEvaluatorsWithExpandedResource:[[TAGExpandedResource builder] build]]
+loc_10015135c:
+loc_100151364:
+  151380  return
+
+== -[TAGContainer ctfeServerAddress]   (address 0x1001513ec  size 96  kind objc)
+  151400  objc_sync_enter(self, _cmd)
+  15142c  objc_sync_exit(self)
+  151448  return
+
+== -[TAGContainer setCtfeServerAddress:]   (address 0x10015144c  size 228  kind objc)
+  151478  objc_sync_enter(self)
+  151494  self->_ctfeServerAddress = arg1
+  1514ac  [self networkLoadScheduler]
+  1514cc  [[self networkLoadScheduler] setCtfeServerAddress:arg1]
+  1514dc  objc_sync_exit(self)
+  1514f8  return
+  151514  objc_sync_exit()
+
+== -[TAGContainer isDefaultContainerRefreshMode]   (address 0x100151530  size 108  kind objc)
+  151548  [self tagManager]
+  151564  [[self tagManager] refreshMode]
+  151584  return
+
+== -[TAGContainer useAvailableTokenWithCurrentTime:]   (address 0x10015159c  size 320  kind objc)
+  1515c8  [self lastRefreshMethodCalledTime]
+  1515d0  if ([self lastRefreshMethodCalledTime] != 0.0) goto loc_100151608
+  1515d8  &@selector(numTokens)
+loc_1001515e4:
+  1515e4  [self numTokens]
+  1515fc  [self setNumTokens:([self numTokens] - 1)]
+  151604  goto loc_1001516c8
+loc_100151608:
+  151610  [self lastRefreshMethodCalledTime]
+  151624  if ((arg1 - [self lastRefreshMethodCalledTime]) < 5000) goto loc_1001516c4
+  15163c  [self numTokens]
+  151644  if ([self numTokens] >u 29) goto loc_1001516a8
+  151668  [self numTokens]
+  151674  if (([self numTokens] + (int)floor(((arg1 - [self lastRefreshMethodCalledTime]) / 900000))) <=u 30) goto loc_100151680
+  15167c  goto loc_100151694
+loc_100151680:
+  15168c  [self numTokens]
+loc_100151694:
+  1516a4  [self setNumTokens:x2]
+loc_1001516a8:
+  1516b0  [self numTokens]
+  1516b4  if ([self numTokens] == 0) goto loc_1001516c4
+  1516c0  goto loc_1001515e4
+loc_1001516c4:
+loc_1001516c8:
+  1516d8  return
+
+== -[TAGContainer containerId]   (address 0x1001516dc  size 16  kind objc)
+  1516e8  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGContainer lastRefreshTime]   (address 0x1001516ec  size 20  kind objc)
+  1516fc  return
+
+== -[TAGContainer setLastRefreshTime:]   (address 0x100151700  size 20  kind objc)
+  15170c  self->_lastRefreshTime = arg1
+  151710  return
+
+== -[TAGContainer resourceStorage]   (address 0x100151714  size 16  kind objc)
+  151720  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setResourceStorage:]   (address 0x100151724  size 12  kind objc)
+  15172c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer tagManager]   (address 0x100151730  size 16  kind objc)
+  15173c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setTagManager:]   (address 0x100151740  size 12  kind objc)
+  151748  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer ctfeUrlPathAndQuery]   (address 0x10015174c  size 16  kind objc)
+  151758  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGContainer numTokens]   (address 0x10015175c  size 16  kind objc)
+  151768  return
+
+== -[TAGContainer setNumTokens:]   (address 0x10015176c  size 16  kind objc)
+  151774  self->_numTokens = arg1
+  151778  return
+
+== -[TAGContainer lastLoadedSupplementedResource]   (address 0x10015177c  size 16  kind objc)
+  151788  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setLastLoadedSupplementedResource:]   (address 0x10015178c  size 12  kind objc)
+  151794  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer networkLoadCallback]   (address 0x100151798  size 16  kind objc)
+  1517a4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setNetworkLoadCallback:]   (address 0x1001517a8  size 12  kind objc)
+  1517b0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer diskLoadCallback]   (address 0x1001517b4  size 16  kind objc)
+  1517c0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setDiskLoadCallback:]   (address 0x1001517c4  size 12  kind objc)
+  1517cc  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer networkLoadScheduler]   (address 0x1001517d0  size 16  kind objc)
+  1517dc  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setNetworkLoadScheduler:]   (address 0x1001517e0  size 12  kind objc)
+  1517e8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer runtime]   (address 0x1001517ec  size 16  kind objc)
+  1517f8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setRuntime:]   (address 0x1001517fc  size 12  kind objc)
+  151804  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer functionCallTagHandlers]   (address 0x100151808  size 16  kind objc)
+  151814  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setFunctionCallTagHandlers:]   (address 0x100151818  size 12  kind objc)
+  151820  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer functionCallMacroHandlers]   (address 0x100151824  size 16  kind objc)
+  151830  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setFunctionCallMacroHandlers:]   (address 0x100151834  size 12  kind objc)
+  15183c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainer diskLoadFinished]   (address 0x100151840  size 20  kind objc)
+  151850  return
+
+== -[TAGContainer setDiskLoadFinished:]   (address 0x100151854  size 16  kind objc)
+  15185c  self->_diskLoadFinished = arg1
+  151860  return
+
+== -[TAGContainer resourceVersion]   (address 0x100151864  size 16  kind objc)
+  151870  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainer setResourceVersion:]   (address 0x100151874  size 12  kind objc)
+  15187c  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGContainer resourceFormatVersion]   (address 0x100151880  size 16  kind objc)
+  15188c  return
+
+== -[TAGContainer setResourceFormatVersion:]   (address 0x100151890  size 16  kind objc)
+  151898  self->_resourceFormatVersion = arg1
+  15189c  return
+
+== -[TAGContainer lastRefreshMethodCalledTime]   (address 0x1001518a0  size 20  kind objc)
+  1518b0  return
+
+== -[TAGContainer setLastRefreshMethodCalledTime:]   (address 0x1001518b4  size 20  kind objc)
+  1518c0  self->_lastRefreshMethodCalledTime = arg1
+  1518c4  return
+
+== -[TAGContainer .cxx_destruct]   (address 0x1001518c8  size 284  kind objc)

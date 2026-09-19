@@ -1,0 +1,129 @@
+
+== -[ADFireworksPowerUp preload]   (address 0x100091770  size 240  kind objc)
+  091798  [S3DEngine engine]
+  0917bc  [[S3DEngine engine] playListWithName:@"fireworks"]
+  0917e0  [self setPlaylist:[[S3DEngine engine] playListWithName:@"fireworks"]]
+  091804  [self playlist]
+  091820  [[self playlist] activate]
+  091834  return
+
+== -[ADFireworksPowerUp use]   (address 0x100091860  size 1464  kind objc)
+  091890  [self playlist]
+  0918b4  [[self playlist] S3DSound:@"fireworks_launch"]
+  0918e0  [[[self playlist] S3DSound:@"fireworks_launch"] play:0]
+  0918f8  [self setRadius:10]
+  091910  [ADWeaponManager sharedWeaponManager]
+  091934  [[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"]
+  091960  [ADInventory sharedInventory]
+  091984  [[ADInventory sharedInventory] levelForPowerUpWithName:@"fireworks"]
+  0919b0  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"] objectForKey:@"name"]
+  0919d4  [self setName:[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"] objectForKey:@"name"]]
+  0919f4  [ADGameModifiers sharedModifiers]
+  091a10  [[ADGameModifiers sharedModifiers] betterPowerUps]
+  091a14  if ([[ADGameModifiers sharedModifiers] betterPowerUps] == 0) goto loc_100091a7c
+  091a3c  [NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:@"fireworks"] + 1)]
+  091a58  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"] objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:@"fireworks"] + 1)]]
+  091a68  t1 = ([[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"] objectForKey:[NSString stringWithForm… != 0)
+  091a78  goto loc_100091a80
+loc_100091a7c:
+loc_100091a80:
+  091aac  [NSString stringWithFormat:@"level_%i", (w26 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"fireworks"])]
+  091ac8  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"] objectForKey:[NSString stringWithFormat:@"level_%i", (w26 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"fireworks"])]]
+  091ae8  [[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"] objectForKey:[NSString stringWithFormat:@"level_%i", (w26 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"fireworks"])]] objectForKey:@"damages"]
+  091b04  [[[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"] objectForKey:[NSString stringWithFormat:@"level_%i", (w26 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"fireworks"])]] objectForKey:@"damages"] intValue]
+  091b08  t2 = (float)[[[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"fireworks"] objectForKey:[NSString stringWithFormat:@"level_%i", (w26 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"fireworks"])]] objectForKey:@"damages"] intValue]
+  091b1c  [self setDamages:t2]
+  091b50  [self setDispersal:50]
+  091b64  self->timeSinceActivation = 0
+  091b6c  self->active = 1
+  091b80  [self randomizeNextExplosionTime]
+  091b98  [NSDictionary alloc]
+  091bb8  [self radius]
+  091bd0  [NSNumber numberWithFloat:[self radius]]
+  091bf4  [self damages]
+  091c04  [NSNumber numberWithFloat:([self damages] + [self damages])]
+  091c28  [self dispersal]
+  091c34  [NSNumber numberWithFloat:[self dispersal]]
+  091c74  [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithFloat:[self radius]], @"radius", [NSNumber numberWithFloat:([self damages] + [self damages])], @"damages", [NSNumber numberWithFloat:[self dispersal]], @"dispersal", nil]
+  091ca8  [ADBrickManager sharedBrickManager]
+  091ce0  [[ADBrickManager sharedBrickManager] solveExplosionWithDictionary:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithFloat:[self radius]], @"radius", [NSNumber numberWithFloat:([self damages] + [self damages])], @"damages", [NSNumber numberWithFloat:[self dispersal]], @"dispersal", nil] atPosition:{CGPointZero.x, CGPointZero.y} withWeaponName:@"fireworks" ignoreTinnitus:1]
+  091d0c  [super use]
+  091d44  return
+
+== -[ADFireworksPowerUp update:]   (address 0x100091e18  size 204  kind objc)
+  091e38  if (self->active == 0) goto loc_100091ed4
+  091e4c  self->timeSinceActivation = (self->timeSinceActivation + arg1)
+  091e58  if ((self->timeSinceActivation + arg1) <= (or unordered) 1) goto loc_100091ed4
+  091e70  self->nextExplosionTime = (self->nextExplosionTime - arg1)
+  091e74  if ((self->nextExplosionTime - arg1) >= (or unordered) 0.0) goto loc_100091ea0
+  091e88  [self randomizeNextExplosionTime]
+  091e9c  [self playRandomExplosion]
+loc_100091ea0:
+  091eac  if (self->timeSinceActivation <= (or unordered) 8) goto loc_100091ed4
+  091eb0  self->active = 0
+  091ed0  tail [self clean]
+loc_100091ed4:
+  091ee0  return
+
+== -[ADFireworksPowerUp randomizeNextExplosionTime]   (address 0x100091ee4  size 152  kind objc)
+  091ef8  rand()
+  091f2c  t1 = ((float)(rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) / 200)
+  091f30  rand()
+  091f68  self->nextExplosionTime = ((t1 * (float)((2 &~ (rand() << 1)) - 1)) + 0.571429)
+  091f78  return
+
+== -[ADFireworksPowerUp playRandomExplosion]   (address 0x100091f7c  size 840  kind objc)
+  091fac  [self playlist]
+  091fd0  [[self playlist] anySoundContaining:@"explode"]
+  091ffc  [[[self playlist] anySoundContaining:@"explode"] setSpatialized:1]
+  092000  rand()
+  092008  rand()
+  092028  t1 = (((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >> 8) + ((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >>> 31))
+  092074  t2 = ((((rand() * 0x55555556) >>> 32) + ((rand() * 0x55555556) >>> 63)) + ((((rand() * 0x55555556) >>> 32) + ((rand() * 0x55555556) >>> 63)) << 1))
+  092084  d0 = sin((((float)(rand() - t1 * 360) * 3.14159) / 180)), d1 = cos((((float)(rand() - t1 * 360) * 3.14159) / 180))
+  0920a4  [[[self playlist] anySoundContaining:@"explode"] setPlanar:{(sin((((float)(rand() - t1 * 360) * 3.14159) / 180)) * (float)((rand() - t2) + 2)), (cos((((float)(rand() - t1 * 360) * 3.14159) / 180)) * (float)((rand() - t2) + 2)), 0}]
+  0920bc  [[[self playlist] anySoundContaining:@"explode"] play:0]
+  0920d4  [NSDictionary alloc]
+  0920f4  [self radius]
+  09210c  [NSNumber numberWithFloat:[self radius]]
+  092130  [self damages]
+  09213c  [NSNumber numberWithFloat:[self damages]]
+  092160  [self dispersal]
+  09216c  [NSNumber numberWithFloat:[self dispersal]]
+  0921b4  [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithFloat:[self radius]], @"radius", [NSNumber numberWithFloat:[self damages]], @"damages", [NSNumber numberWithFloat:[self dispersal]], @"dispersal", nil]
+  0921e8  [ADBrickManager sharedBrickManager]
+  092220  [[ADBrickManager sharedBrickManager] solveExplosionWithDictionary:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithFloat:[self radius]], @"radius", [NSNumber numberWithFloat:[self damages]], @"damages", [NSNumber numberWithFloat:[self dispersal]], @"dispersal", nil] atPosition:{CGPointZero.x, CGPointZero.y} withWeaponName:@"fireworks" ignoreTinnitus:1]
+  092254  return
+
+== -[ADFireworksPowerUp clean]   (address 0x1000922c4  size 388  kind objc)
+  0922e8  [self playlist]
+  092304  [[self playlist] deactivate]
+  092324  [ADTracker sharedInstance]
+  09234c  [ADInGameStats singleton]
+  092368  [[ADInGameStats singleton] enemyKillsWithPowerup]
+  092380  [self name]
+  0923a8  [[ADTracker sharedInstance] numberOfEnemyKills:[[ADInGameStats singleton] enemyKillsWithPowerup] ByPowerUp:[self name]]
+  0923cc  [ADInGameStats singleton]
+  0923ec  [[ADInGameStats singleton] setEnemyKillsWithPowerup:0]
+  092404  return
+
+== -[ADFireworksPowerUp dispersal]   (address 0x100092448  size 20  kind objc)
+  092458  return
+
+== -[ADFireworksPowerUp setDispersal:]   (address 0x10009245c  size 20  kind objc)
+  092468  self->_dispersal = arg1
+  09246c  return
+
+== -[ADFireworksPowerUp radius]   (address 0x100092470  size 20  kind objc)
+  092480  return
+
+== -[ADFireworksPowerUp setRadius:]   (address 0x100092484  size 20  kind objc)
+  092490  self->_radius = arg1
+  092494  return
+
+== -[ADFireworksPowerUp damages]   (address 0x100092498  size 20  kind objc)
+  0924a8  return
+
+== -[ADFireworksPowerUp setDamages:]   (address 0x1000924ac  size 20  kind objc)
+  0924b8  self->_damages = arg1
+  0924bc  return

@@ -1,0 +1,16 @@
+
+== +[TAGContains functionId]   (address 0x1001785d0  size 44  kind objc)
+  1785f8  return
+
+== -[TAGContains init]   (address 0x1001785fc  size 68  kind objc)
+  178630  [super initWithFunctionId:@"_cn"]
+  17863c  return
+
+== -[TAGContains evaluateWithArg0:arg1:parameters:]   (address 0x100178640  size 172  kind objc)
+  178678  [arg2 length]
+  17867c  if ([arg2 length] == 0) goto loc_1001786a8
+  178694  [arg1 rangeOfString:arg2]
+  1786a4  goto loc_1001786ac
+loc_1001786a8:
+loc_1001786ac:
+  1786cc  return

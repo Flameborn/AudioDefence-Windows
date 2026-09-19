@@ -1,0 +1,458 @@
+
+== -[Accessible_ADChallengeCompletedViewController initWithDictionary:]   (address 0x1000670f0  size 208  kind objc)
+  067144  [super initWithNibName:@"ADChallengeCompletedViewController" bundle:0]
+  06714c  if (self == 0) goto loc_100067184
+  067168  [self setChallengeDict:arg1]
+  067180  [self checkCompletion]
+loc_100067184:
+  0671a0  return
+
+== -[Accessible_ADChallengeCompletedViewController tableView:numberOfRowsInSection:]   (address 0x1000671c0  size 32  kind objc)
+  0671c4  if (arg2 >u 2) goto loc_1000671d8
+  0671d4  return
+loc_1000671d8:
+  0671dc  return
+
+== -[Accessible_ADChallengeCompletedViewController tableView:heightForRowAtIndexPath:]   (address 0x1000671e0  size 140  kind objc)
+  067200  [ADGameParameters sharedParameters]
+  06721c  [[ADGameParameters sharedParameters] isIphone]
+  06724c  return
+
+== -[Accessible_ADChallengeCompletedViewController tableView:heightForHeaderInSection:]   (address 0x10006726c  size 140  kind objc)
+  06728c  [ADGameParameters sharedParameters]
+  0672a8  [[ADGameParameters sharedParameters] isIphone]
+  0672d8  return
+
+== -[Accessible_ADChallengeCompletedViewController tableView:viewForHeaderInSection:]   (address 0x1000672f8  size 252  kind objc)
+  06731c  [ADAccessibilityTableHeaderLabel alloc]
+  06733c  [[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  067348  if (arg2 == 2) goto loc_100067374
+  067350  if (arg2 != 1) goto loc_100067394
+  06736c  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Rewards"]
+  067370  goto loc_1000673c8
+loc_100067374:
+  06738c  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Statistics"]
+  067390  goto loc_1000673c8
+loc_100067394:
+  067394  if (arg2 != 0) goto loc_1000673c8
+  0673a8  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}])
+  0673c4  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Stars"]
+loc_1000673c8:
+  0673d4  return
+
+== -[Accessible_ADChallengeCompletedViewController viewDidLoad]   (address 0x1000673f4  size 940  kind objc)
+  06741c  [self loadStatusBar]
+  067430  [self statusBarViewController]
+  067450  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  067474  [ADInventory sharedInventory]
+  06749c  [ADInGameStats singleton]
+  0674b8  [[ADInGameStats singleton] totalCoins]
+  0674d0  [[ADInventory sharedInventory] coins]
+  0674e8  [[ADInventory sharedInventory] setCoins:([[ADInventory sharedInventory] coins] + [[ADInGameStats singleton] totalCoins])]
+  067504  [ADInventory sharedInventory]
+  06751c  [ADInGameStats singleton]
+  067538  [[ADInGameStats singleton] diamondLoot]
+  067550  [[ADInventory sharedInventory] diamonds]
+  067568  [[ADInventory sharedInventory] setDiamonds:([[ADInventory sharedInventory] diamonds] + [[ADInGameStats singleton] diamondLoot])]
+  067590  [ADChallengeData sharedChallengeData]
+  0675b0  [self challengeDict]
+  0675d4  [[self challengeDict] objectForKey:@"challenge_id"]
+  0675f8  [ADGameParameters sharedParameters]
+  067614  [[ADGameParameters sharedParameters] lastChallengeWorld]
+  06763c  [[ADChallengeData sharedChallengeData] hasChallengeAfter:[[self challengeDict] objectForKey:@"challenge_id"] inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]]
+  06766c  if (!([[ADChallengeData sharedChallengeData] hasChallengeAfter:[[self challengeDict] objectForKey:@"challenge_id"] inWorld:[[ADGameParameters sharedParameters] lastChallengeWorld]] & 1)) goto loc_100067688
+  067684  return
+loc_100067688:
+  06769c  [self nextChallengeButton]
+  0676c0  [[self nextChallengeButton] setAccessibilityLabel:@"next arena"]
+  0676d4  [self nextChallengeButton]
+  0676fc  [[self nextChallengeButton] setTitle:@"next arena" forState:0]
+  067718  return
+
+== -[Accessible_ADChallengeCompletedViewController numberOfSectionsInTableView:]   (address 0x1000677a0  size 8  kind objc)
+  0677a4  return
+
+== -[Accessible_ADChallengeCompletedViewController tableView:cellForRowAtIndexPath:]   (address 0x1000677a8  size 1124  kind objc)
+  0677e0  [arg2 section]
+  0677e4  if ([arg2 section] == 0) goto loc_100067814
+  0677ec  if ([arg2 section] != 1) goto loc_100067a5c
+  067808  [self cellForRewardsAtIndex:arg2]
+  067810  goto loc_100067a84
+loc_100067814:
+  06782c  [ADAccessibleTableCell alloc]
+  06784c  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  06786c  [arg2 row]
+  067870  if ([arg2 row] != 0) goto loc_1000678fc
+  067888  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  0678b0  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Challenge completed star"]
+  0678d0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  0678f0  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:self->missionStarStatus]
+loc_1000678fc:
+  067908  [arg2 row]
+  067910  if ([arg2 row] != 1) goto loc_10006799c
+  067928  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  067950  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Accuracy star"]
+  067970  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  067990  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:self->accuracyStarStatus]
+loc_10006799c:
+  0679a8  [arg2 row]
+  0679b0  if ([arg2 row] != 2) goto loc_100067a3c
+  0679c8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  0679f0  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Time limit star"]
+  067a10  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  067a30  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:self->timeStarStatus]
+loc_100067a3c:
+  067a54  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] setSelectionStyle:0]
+  067a58  goto loc_100067b74
+loc_100067a5c:
+  067a60  if ([arg2 section] != 2) goto loc_100067a94
+  067a7c  [self cellForStatsAtIndex:arg2]
+loc_100067a84:
+  067a90  goto loc_100067b7c
+loc_100067a94:
+  067aac  [ADAccessibleTableCell alloc]
+  067acc  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  067ae8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  067b10  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"EMPTY CELL"]
+  067b30  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  067b4c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"EMPTY CELL"]
+  067b70  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] setSelectionStyle:0]
+loc_100067b74:
+loc_100067b7c:
+  067ba4  return
+
+== -[Accessible_ADChallengeCompletedViewController cellForStatsAtIndex:]   (address 0x100067c0c  size 1128  kind objc)
+  067c4c  [ADAccessibleTableCell alloc]
+  067c68  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  067c84  [arg1 row]
+  067c88  if ([arg1 row] != 0) goto loc_100067d80
+  067c9c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  067cc4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Kills"]
+  067ce0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  067d0c  [ADInGameStats singleton]
+  067d28  [[ADInGameStats singleton] numberOfEnemyKills]
+  067d48  [NSString stringWithFormat:@"%i", [[ADInGameStats singleton] numberOfEnemyKills]]
+  067d64  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"%i", [[ADInGameStats singleton] numberOfEnemyKills]]]
+loc_100067d80:
+  067d88  [arg1 row]
+  067d90  if ([arg1 row] != 1) goto loc_100067e98
+  067da4  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  067dcc  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Accuracy"]
+  067de8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  067e14  [ADInGameStats singleton]
+  067e30  [[ADInGameStats singleton] currentAccuracy]
+  067e60  [NSString stringWithFormat:@"%.2f %%", ([[ADInGameStats singleton] currentAccuracy] * 100)]
+  067e7c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"%.2f %%", ([[ADInGameStats singleton] currentAccuracy] * 100)]]
+loc_100067e98:
+  067ea0  [arg1 row]
+  067ea8  if ([arg1 row] != 2) goto loc_100067f90
+  067ebc  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  067ee4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Survival time"]
+  067f00  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  067f24  [ADInGameStats singleton]
+  067f40  [[ADInGameStats singleton] challengeTimeElapsed]
+  067f58  [self timeStringFromSeconds:(int)[[ADInGameStats singleton] challengeTimeElapsed]]
+  067f74  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[self timeStringFromSeconds:(int)[[ADInGameStats singleton] challengeTimeElapsed]]]
+loc_100067f90:
+  067fa4  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] setSelectionStyle:0]
+  067fcc  return
+
+== -[Accessible_ADChallengeCompletedViewController checkCompletion]   (address 0x100068074  size 3824  kind objc)
+  0680b4  [ADChallengeData sharedChallengeData]
+  0680d8  [self challengeDict]
+  068100  [[self challengeDict] objectForKey:@"challenge_id"]
+  068124  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  068144  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] & 1)) goto loc_10006816c
+  068164  self->missionStarStatus = @"already unlocked"
+  068168  goto loc_1000682f8
+loc_10006816c:
+  06817c  [self challengeDict]
+  068198  [[self challengeDict] objectForKey:@"mission_star"]
+  0681b4  [[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"]
+  0681d4  [[[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"] intValue]
+  0681f4  [NSString stringWithFormat:@"Reward : %i coins", [[[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"] in…]
+  06820c  self->missionStarStatus = [NSString stringWithFormat:@"Reward : %i coins", [[[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"] in…]
+  068244  [ADInventory sharedInventory]
+  06825c  [self challengeDict]
+  068278  [[self challengeDict] objectForKey:@"mission_star"]
+  068294  [[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"]
+  0682a8  [[[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"] intValue]
+  0682c0  [[ADInventory sharedInventory] coins]
+  0682c4  t1 = ([[ADInventory sharedInventory] coins] + [[[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"] intValue])
+  0682d8  [[ADInventory sharedInventory] setCoins:t1]
+loc_1000682f8:
+  068314  [ADTracker sharedInstance]
+  068334  [[ADTracker sharedInstance] challengeCompleted:1]
+  068348  [self challengeDict]
+  068364  [[self challengeDict] objectForKey:@"accuracy_star"]
+  068380  [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"]
+  0683a4  [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"] floatValue]
+  0683c4  [ADInGameStats singleton]
+  0683e0  [[ADInGameStats singleton] currentAccuracy]
+  068414  if ([[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"] floatValue] <= ([[ADInGameStats singleton] currentAccuracy] * 100)) goto loc_1000684d8
+  068428  [self challengeDict]
+  068444  [[self challengeDict] objectForKey:@"accuracy_star"]
+  068460  [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"]
+  06847c  [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"] intValue]
+  06849c  [NSString stringWithFormat:@"objective failed. %i%% accuracy was required", [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"…, sp[8]]
+  0684b4  self->accuracyStarStatus = [NSString stringWithFormat:@"objective failed. %i%% accuracy was required", [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"…, sp[8]]
+  0684d4  goto loc_10006857c
+loc_1000684d8:
+  0684e0  [ADChallengeData sharedChallengeData]
+  0684f8  [self challengeDict]
+  068514  [[self challengeDict] objectForKey:@"challenge_id"]
+  068538  [[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  068558  if (!([[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] & 1)) goto loc_100068588
+  068578  self->accuracyStarStatus = @"already unlocked"
+loc_10006857c:
+  068584  goto loc_100068794
+loc_100068588:
+  068598  [self challengeDict]
+  0685b4  [[self challengeDict] objectForKey:@"accuracy_star"]
+  0685d0  [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"]
+  0685f0  [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"] intValue]
+  068600  [self challengeDict]
+  06861c  [[self challengeDict] objectForKey:@"accuracy_star"]
+  068638  [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"]
+  06864c  [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"] intValue]
+  06866c  [NSString stringWithFormat:@"You beat the %i%% goal -- Reward : %i coins", [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"…, [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"] i…, [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"]]
+  068684  self->accuracyStarStatus = [NSString stringWithFormat:@"You beat the %i%% goal -- Reward : %i coins", [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"…, [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"] i…, [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"]]
+  0686d4  [ADInventory sharedInventory]
+  0686ec  [self challengeDict]
+  068708  [[self challengeDict] objectForKey:@"accuracy_star"]
+  068724  [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"]
+  068738  [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"] intValue]
+  068750  [[ADInventory sharedInventory] coins]
+  068754  t2 = ([[ADInventory sharedInventory] coins] + [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"] intValue])
+  068768  [[ADInventory sharedInventory] setCoins:t2]
+loc_100068794:
+  0687a4  [ADTracker sharedInstance]
+  0687c4  [[ADTracker sharedInstance] accuracyObjectiveReached:1]
+  0687dc  [self challengeDict]
+  0687f8  [[self challengeDict] objectForKey:@"time_limit_star"]
+  068814  [[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"]
+  068828  [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"] floatValue]
+  06883c  [ADInGameStats singleton]
+  068858  [[ADInGameStats singleton] challengeTimeElapsed]
+  068888  if ([[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"] floatValue] >= [[ADInGameStats singleton] challengeTimeElapsed]) goto loc_10006898c
+  06889c  [self challengeDict]
+  0688b8  [[self challengeDict] objectForKey:@"time_limit_star"]
+  0688d4  [[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"]
+  0688f0  [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"] intValue]
+  068910  [NSString stringWithFormat:@"objective failed. Time limit was %i seconds", [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objectiv…]
+  068928  self->timeStarStatus = [NSString stringWithFormat:@"objective failed. Time limit was %i seconds", [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objectiv…]
+  068958  [ADTracker sharedInstance]
+  068978  [[ADTracker sharedInstance] timeObjectiveReached:0]
+  068988  goto loc_100068c84
+loc_10006898c:
+  068994  [ADChallengeData sharedChallengeData]
+  0689ac  [self challengeDict]
+  0689c8  [[self challengeDict] objectForKey:@"challenge_id"]
+  0689ec  [[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  068a0c  if (!([[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] & 1)) goto loc_100068a3c
+  068a2c  self->timeStarStatus = @"already unlocked"
+  068a38  goto loc_100068c4c
+loc_100068a3c:
+  068a4c  [self challengeDict]
+  068a68  [[self challengeDict] objectForKey:@"time_limit_star"]
+  068a84  [[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"]
+  068aa4  [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"] intValue]
+  068ab4  [self challengeDict]
+  068ad0  [[self challengeDict] objectForKey:@"time_limit_star"]
+  068aec  [[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"]
+  068b00  [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"] intValue]
+  068b20  [NSString stringWithFormat:@"You beat the %i seconds time limit -- Reward : %i coins", [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objectiv…, [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"]…]
+  068b38  self->timeStarStatus = [NSString stringWithFormat:@"You beat the %i seconds time limit -- Reward : %i coins", [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objectiv…, [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"]…]
+  068b88  [ADInventory sharedInventory]
+  068ba0  [self challengeDict]
+  068bbc  [[self challengeDict] objectForKey:@"time_limit_star"]
+  068be0  [[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"]
+  068bf4  [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"] intValue]
+  068c0c  [[ADInventory sharedInventory] coins]
+  068c10  t3 = ([[ADInventory sharedInventory] coins] + [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"] intValue])
+  068c24  [[ADInventory sharedInventory] setCoins:t3]
+loc_100068c4c:
+  068c58  [ADTracker sharedInstance]
+  068c78  [[ADTracker sharedInstance] timeObjectiveReached:1]
+loc_100068c84:
+  068c8c  [ADChallengeData sharedChallengeData]
+  068ca4  [self challengeDict]
+  068cc0  [[self challengeDict] objectForKey:@"challenge_id"]
+  068cec  [[ADChallengeData sharedChallengeData] playerDidCompleteChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"] accuracyUnlocked:one of {0, 1} timeLimitUnlocked:one of {0, 1}]
+  068d38  tail [self reportScoreToGameCenter]
+  068d3c  goto loc_100068f40
+  068d40  goto loc_100068f40
+  068d50  goto loc_100068e20
+  068d54  goto loc_100068f30
+  068d5c  goto loc_100068f4c
+  068d60  goto loc_100068f40
+  068d6c  goto loc_100068e24
+  068d70  goto loc_100068f30
+  068d74  goto loc_100068f30
+  068d7c  goto loc_100068f4c
+  068d8c  goto loc_100068f44
+  068d98  goto loc_100068f48
+  068d9c  goto loc_100068f30
+  068da0  goto loc_100068f30
+  068da8  goto loc_100068f4c
+  068dac  goto loc_100068df4
+  068db8  goto loc_100068f48
+  068dc0  goto loc_100068ea0
+  068dc8  goto loc_100068dd8
+loc_100068dd8:
+  068de0  goto loc_100068ea0
+  068df0  goto loc_100068f44
+loc_100068df4:
+  068e00  goto loc_100068f44
+  068e04  goto loc_100068f30
+  068e0c  goto loc_100068e28
+  068e10  goto loc_100068f30
+  068e18  goto loc_100068e28
+loc_100068e20:
+loc_100068e24:
+loc_100068e28:
+  068e2c  goto loc_100068f50
+  068e30  goto loc_100068f30
+  068e38  goto loc_100068f4c
+  068e3c  goto loc_100068f30
+  068e44  goto loc_100068f4c
+  068e48  goto loc_100068f40
+  068e50  goto loc_100068ed4
+  068e60  goto loc_100068ec4
+  068e64  goto loc_100068f30
+  068e6c  goto loc_100068f4c
+  068e70  goto loc_100068f30
+  068e74  goto loc_100068f30
+  068e7c  goto loc_100068f4c
+  068e80  goto loc_100068f40
+  068e88  goto loc_100068f18
+  068e98  goto loc_100068f08
+loc_100068ea0:
+  068ea4  goto loc_100068f58
+  068eac  goto loc_100068f28
+  068eb4  goto loc_100068f20
+  068ebc  goto loc_100068ecc
+loc_100068ec4:
+loc_100068ecc:
+loc_100068ed4:
+  068ed8  goto loc_100068f1c
+  068edc  goto loc_100068f30
+  068ee4  goto loc_100068f4c
+  068ee8  goto loc_100068f40
+  068ef0  goto loc_100068f28
+  068ef8  goto loc_100068f20
+  068f00  goto loc_100068f10
+loc_100068f08:
+loc_100068f10:
+loc_100068f18:
+loc_100068f1c:
+loc_100068f20:
+loc_100068f28:
+  068f2c  goto loc_100068f58
+loc_100068f30:
+  068f34  goto loc_100068f54
+  068f3c  goto loc_100068f4c
+loc_100068f40:
+loc_100068f44:
+loc_100068f48:
+loc_100068f4c:
+loc_100068f50:
+loc_100068f54:
+loc_100068f58:
+
+== -[Accessible_ADChallengeCompletedViewController missionSelectButtonPressed:]   (address 0x100068f64  size 164  kind objc)
+  068f84  [UIApplication sharedApplication]
+  068fa0  [[UIApplication sharedApplication] delegate]
+  068fbc  [[[UIApplication sharedApplication] delegate] goToChallengeSelector]
+  068fd4  return
+
+== -[Accessible_ADChallengeCompletedViewController nextMissionButtonPressed:]   (address 0x100069008  size 300  kind objc)
+  069030  [UIApplication sharedApplication]
+  06904c  [[UIApplication sharedApplication] delegate]
+  06906c  [self challengeDict]
+  069090  [[self challengeDict] objectForKey:@"challenge_id"]
+  0690b4  [[[UIApplication sharedApplication] delegate] goToChallengeAfter:[[self challengeDict] objectForKey:@"challenge_id"]]
+  0690e0  return
+
+== -[Accessible_ADChallengeCompletedViewController retryButtonPressed:]   (address 0x100069134  size 240  kind objc)
+  06915c  [UIApplication sharedApplication]
+  069178  [[UIApplication sharedApplication] delegate]
+  069198  [self challengeDict]
+  0691bc  [[[UIApplication sharedApplication] delegate] goToChallengeWithDict:[self challengeDict]]
+  0691e0  return
+
+== -[Accessible_ADChallengeCompletedViewController loadView]   (address 0x100069224  size 460  kind objc)
+  069258  [UIDevice currentDevice]
+  069278  [[UIDevice currentDevice] model]
+  0692a0  [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"]
+  0692a4  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] & 1)) goto loc_1000692b0
+  0692ac  goto loc_100069300
+loc_1000692b0:
+  0692b8  [UIDevice currentDevice]
+  0692cc  [[UIDevice currentDevice] model]
+  0692e8  [[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"]
+loc_100069300:
+  069324  [NSBundle mainBundle]
+  069338  &@selector(loadNibNamed:owner:options:)
+  069340  if (w22 == 0) goto loc_100069364
+  069358  [[NSBundle mainBundle] loadNibNamed:@"Accessible_ADChallengeCompletedViewController" owner:self options:0]
+  069360  goto loc_100069380
+loc_100069364:
+  069378  [[NSBundle mainBundle] loadNibNamed:@"Accessible_ADChallengeCompletedViewController_iPad" owner:self options:0]
+loc_100069380:
+  0693a0  return
+
+== -[Accessible_ADChallengeCompletedViewController reportScoreToGameCenter]   (address 0x1000693f0  size 852  kind objc)
+  069430  [UIDevice currentDevice]
+  06944c  [[UIDevice currentDevice] systemVersion]
+  069474  [[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64]
+  069490  if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64] == -1) goto loc_1000696c0
+  0694ac  [GKLocalPlayer localPlayer]
+  0694cc  [[GKLocalPlayer localPlayer] isAuthenticated]
+  0694dc  if ([[GKLocalPlayer localPlayer] isAuthenticated] == 0) goto loc_1000695b8
+  0694f4  [GKScore alloc]
+  06950c  [[GKScore alloc] initWithLeaderboardIdentifier:@"TotalStarsUnlocked"]
+  069528  [ADChallengeData sharedChallengeData]
+  069544  [[ADChallengeData sharedChallengeData] computeTotalChallengesWon]
+  06955c  [[[GKScore alloc] initWithLeaderboardIdentifier:@"TotalStarsUnlocked"] setValue:[[ADChallengeData sharedChallengeData] computeTotalChallengesWon]]
+  06958c  [NSArray arrayWithObjects:&sp[0x10] count:1]
+  0695ac  [GKScore reportScores:[NSArray arrayWithObjects:&sp[0x10] count:1] withCompletionHandler:^{-[Accessible_ADChallengeCompletedViewController reportScoreToGameCenter]_block_invoke}]
+loc_1000695b8:
+  0695c0  [GKLocalPlayer localPlayer]
+  0695d4  [[GKLocalPlayer localPlayer] isAuthenticated]
+  0695e4  if ([[GKLocalPlayer localPlayer] isAuthenticated] == 0) goto loc_1000696c0
+  0695fc  [GKScore alloc]
+  069614  [[GKScore alloc] initWithLeaderboardIdentifier:@"TotalZombiesKilled"]
+  069630  [ADPersistentStats persistentStats]
+  06964c  [[ADPersistentStats persistentStats] computeTotalEnemyKillCount]
+  069664  [[[GKScore alloc] initWithLeaderboardIdentifier:@"TotalZombiesKilled"] setValue:[[ADPersistentStats persistentStats] computeTotalEnemyKillCount]]
+  069694  [NSArray arrayWithObjects:&sp[0x8] count:1]
+  0696b4  [GKScore reportScores:[NSArray arrayWithObjects:&sp[0x8] count:1] withCompletionHandler:^{-[Accessible_ADChallengeCompletedViewController reportScoreToGameCenter]_block_invoke_2}]
+loc_1000696c0:
+  0696e4  return
+
+== -[Accessible_ADChallengeCompletedViewController reportScoreToGameCenter]_block_invoke   (address 0x100069744  size 4  kind block)
+  069744  return
+
+== -[Accessible_ADChallengeCompletedViewController reportScoreToGameCenter]_block_invoke_2   (address 0x100069748  size 4  kind block)
+  069748  return
+
+== -[Accessible_ADChallengeCompletedViewController accessibilityPerformMagicTap]   (address 0x10006974c  size 40  kind objc)
+  069764  [self nextMissionButtonPressed:0]
+  069770  return
+
+== -[Accessible_ADChallengeCompletedViewController challengeDict]   (address 0x100069774  size 16  kind objc)
+  069780  return
+
+== -[Accessible_ADChallengeCompletedViewController setChallengeDict:]   (address 0x100069784  size 56  kind objc)
+  0697a8  self->_challengeDict = arg1
+  0697b8  return
+
+== -[Accessible_ADChallengeCompletedViewController nextChallengeButton]   (address 0x1000697bc  size 16  kind objc)
+  0697c8  return
+
+== -[Accessible_ADChallengeCompletedViewController setNextChallengeButton:]   (address 0x1000697cc  size 56  kind objc)
+  0697f0  self->_nextChallengeButton = arg1
+  069800  return
+
+== -[Accessible_ADChallengeCompletedViewController .cxx_destruct]   (address 0x100069804  size 124  kind objc)

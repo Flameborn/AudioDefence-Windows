@@ -1,0 +1,720 @@
+
+== -[ADWeapon initWithDictionary:]   (address 0x100013f94  size 3320  kind objc)
+  013fec  [super init]
+  013ff4  if (self == 0) goto loc_100014b58
+  014018  [arg1 objectForKey:@"name"]
+  01403c  [self setName:[arg1 objectForKey:@"name"]]
+  01405c  [arg1 objectForKey:@"range"]
+  01407c  [[arg1 objectForKey:@"range"] floatValue]
+  014090  [self setRange:[[arg1 objectForKey:@"range"] floatValue]]
+  0140b0  [arg1 objectForKey:@"multihit"]
+  0140d0  [[arg1 objectForKey:@"multihit"] boolValue]
+  0140e8  [self setMultihit:[[arg1 objectForKey:@"multihit"] boolValue]]
+  014108  [arg1 objectForKey:@"continuousFire"]
+  01411c  [[arg1 objectForKey:@"continuousFire"] boolValue]
+  014134  [self setContinuousFire:[[arg1 objectForKey:@"continuousFire"] boolValue]]
+  014154  [arg1 objectForKey:@"explosive"]
+  014168  [[arg1 objectForKey:@"explosive"] boolValue]
+  014180  [self setExplosive:[[arg1 objectForKey:@"explosive"] boolValue]]
+  0141a4  [ADInventory sharedInventory]
+  0141c8  [self name]
+  0141ec  [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]
+  01422c  [NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]
+  014248  [arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]]
+  014270  [self self]
+  014290  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"fireRate"]
+  0142a4  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"fireRate"] floatValue]
+  0142b8  [[self self] setFireRate:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"fireRate"] floatValue]]
+  0142dc  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"damages"]
+  0142f0  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"damages"] floatValue]
+  014304  [self setDamages:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"damages"] floatValue]]
+  014320  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"spread"]
+  014334  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"spread"] floatValue]
+  01434c  [self setSpread:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"spread"] floatValue]]
+  01436c  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalSpread"]
+  014380  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalSpread"] floatValue]
+  014394  [self setCriticalSpread:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalSpread"] floatValue]]
+  0143b0  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalChance"]
+  0143c4  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalChance"] floatValue]
+  0143dc  [self setCriticalChance:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalChance"] floatValue]]
+  0143f8  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalMultiplier"]
+  01440c  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalMultiplier"] floatValue]
+  014420  [self setCriticalMultiplier:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"criticalMultiplier"] floatValue]]
+  01443c  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"continuous_spread"]
+  014450  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"continuous_spread"] floatValue]
+  014468  [self setContinuous_spread:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"continuous_spread"] floatValue]]
+  014484  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"dispersal"]
+  014498  if ([[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"dispersal"] == 0) goto loc_1000144e4
+  0144ac  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"dispersal"]
+  0144c0  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"dispersal"] floatValue]
+  0144d4  [self setDispersal:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"dispersal"] floatValue]]
+  0144e0  goto loc_100014500
+loc_1000144e4:
+  0144fc  [self setDispersal:100]
+loc_100014500:
+  014510  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"explosionRadius"]
+  014524  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"explosionRadius"] floatValue]
+  014538  [self setExplosionRadius:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"explosionRadius"] floatValue]]
+  014554  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"projectileSpeed"]
+  014568  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"projectileSpeed"] floatValue]
+  01457c  [self setProjectileSpeed:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"projectileSpeed"] floatValue]]
+  014598  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"reloadTime"]
+  0145ac  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"reloadTime"] floatValue]
+  0145c0  [self setReloadTime:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"reloadTime"] floatValue]]
+  0145dc  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"timeBeforeExplode"]
+  0145f0  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"timeBeforeExplode"] floatValue]
+  014604  [self setTimeBeforeExplode:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"timeBeforeExplode"] floatValue]]
+  014620  [[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"capacity"]
+  01463c  [[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"capacity"] intValue]
+  014658  [self setCapacity:[[[arg1 objectForKey:[NSString stringWithFormat:@"level_%i", [[ADInventory sharedInventory] levelForWeaponWithName:[self name]]]] objectForKey:@"capacity"] intValue]]
+  014678  [self setSwitchingTime:1]
+  014690  [self capacity]
+  0146ac  [self setBulletsInClip:[self capacity]]
+  0146c4  [self setBulletsTotal:0x7fffffff]
+  0146d0  self->timeSinceLastShot = 0
+  0146e4  [self name]
+  014708  [NSString stringWithFormat:@"weapon_gun_%@_fire", [self name]]
+  014720  self->fireSoundPrefix = [NSString stringWithFormat:@"weapon_gun_%@_fire", [self name]]
+  014744  [self name]
+  014768  [NSString stringWithFormat:@"weapon_gun_%@_empty", [self name]]
+  014780  self->clickSoundPrefix = [NSString stringWithFormat:@"weapon_gun_%@_empty", [self name]]
+  0147a8  [S3DEngine engine]
+  0147c0  [self name]
+  0147e4  [[S3DEngine engine] playListWithName:[self name]]
+  014808  [self setPlaylist:[[S3DEngine engine] playListWithName:[self name]]]
+  014834  [self playlist]
+  014850  [[self playlist] activate]
+  014870  [self setState:0]
+  01488c  [ADGameModifiers sharedModifiers]
+  0148a8  [[ADGameModifiers sharedModifiers] goldenBullet]
+  0148b8  if ([[ADGameModifiers sharedModifiers] goldenBullet] == 0) goto loc_100014930
+  0148c4  [self capacity]
+  0148dc  [self capacity]
+  0148fc  t1 = (((([self capacity] * 0x66666667) >> 34) + (([self capacity] * 0x66666667) >>> 63)) < 1 ? 1 : ((([self capacity] * 0x66666667) >> 34) + (([self capacity] * 0x66666667) >>> 63)))
+  01490c  [self setCapacity:([self capacity] + t1)]
+  014918  [self capacity]
+  014928  [self setBulletsInClip:[self capacity]]
+  01492c  goto loc_1000149f8
+loc_100014930:
+  014938  [ADGameModifiers sharedModifiers]
+  014954  [[ADGameModifiers sharedModifiers] lessBullets]
+  014964  if ([[ADGameModifiers sharedModifiers] lessBullets] == 0) goto loc_1000149f8
+  014970  [self capacity]
+  014988  [self capacity]
+  0149a8  t2 = (((([self capacity] * 0x66666667) >> 34) + (([self capacity] * 0x66666667) >>> 63)) < 1 ? 1 : ((([self capacity] * 0x66666667) >> 34) + (([self capacity] * 0x66666667) >>> 63)))
+  0149b8  [self setCapacity:([self capacity] - t2)]
+  0149c4  [self capacity]
+  0149c8  if ([self capacity] != 0) goto loc_1000149dc
+  0149d8  [self setCapacity:1]
+loc_1000149dc:
+  0149e4  [self capacity]
+  0149f4  [self setBulletsInClip:[self capacity]]
+loc_1000149f8:
+  014a00  [ADGameModifiers sharedModifiers]
+  014a20  [[ADGameModifiers sharedModifiers] spreadModifier]
+  014a34  if ([[ADGameModifiers sharedModifiers] spreadModifier] == 0.0) goto loc_100014ad8
+  014a40  [ADGameModifiers sharedModifiers]
+  014a54  [[ADGameModifiers sharedModifiers] spreadModifier]
+  014a6c  [self continuous_spread]
+  014a7c  [self setContinuous_spread:([[ADGameModifiers sharedModifiers] spreadModifier] + [self continuous_spread])]
+  014a90  [ADGameModifiers sharedModifiers]
+  014aa4  [[ADGameModifiers sharedModifiers] spreadModifier]
+  014abc  [self spread]
+  014acc  [self setSpread:([[ADGameModifiers sharedModifiers] spreadModifier] + [self spread])]
+loc_100014ad8:
+  014ae4  self->lastAnnouncerSpeech = 0x40a00000
+  014af0  [ADGameModifiers sharedModifiers]
+  014b0c  [[ADGameModifiers sharedModifiers] headShotModifier]
+  014b24  [self criticalChance]
+  014b34  [self setCriticalChance:([[ADGameModifiers sharedModifiers] headShotModifier] * [self criticalChance])]
+  014b40  CACurrentMediaTime()
+  014b4c  self->previousTickTime = d0
+loc_100014b58:
+  014b84  return
+
+== -[ADWeapon update:]   (address 0x100014c8c  size 1212  kind objc)
+  014cac  CACurrentMediaTime()
+  014cc0  CACurrentMediaTime()
+  014cc4  self->previousTickTime = d0
+  014cd8  [self state]
+  014ce0  if ([self state] >u 8) goto loc_1000150a8
+  014cf8  switch ([self state]) { case 0: goto loc_100014cfc; case 1: goto loc_100014d30; case 2: goto loc_100014d54; case 3: goto loc_100014d94; case 4: goto loc_100014e68; case 5: goto loc_100014ef8; case 6: goto loc_100014f5c; case 7: goto loc_1000150a8; case 8: goto loc_100014fb8 }
+loc_100014cfc:  ; case 0
+  014d14  [self->continuousSound playing]
+  014d18  if ([self->continuousSound playing] == 0) goto loc_1000150a8
+  014d24  &@selector(stop)
+  014d2c  goto loc_100014f54
+loc_100014d30:  ; case 1
+  014d40  [self timeInState]
+  014d4c  &@selector(switchingTime)
+  014d50  goto loc_100014d74
+loc_100014d54:  ; case 2
+  014d64  [self timeInState]
+  014d70  &@selector(fireRate)
+loc_100014d74:
+  014d7c  [self fireRate | switchingTime]
+  014d84  if ([self timeInState] <= (or unordered) s0) goto loc_1000150a8
+  014d8c  &@selector(setState:)
+  014d90  goto loc_100014fa4
+loc_100014d94:  ; case 3
+  014db0  [self fireRate]
+  014db8  if (self->fireRateTimer <= (or unordered) [self fireRate]) goto loc_100014e38
+  014dbc  self->fireRateTimer = 0
+  014dd0  [self resolveShoot]
+  014dd4  if (([self resolveShoot] & 1)) goto loc_100014e38
+  014de8  [self playClickSound]
+  014e08  [self->continuousSound stop]
+  014e1c  [self->continuousWarning stop]
+  014e34  [self setState:5]
+loc_100014e38:
+  014e40  self->fireRateTimer = (self->fireRateTimer + arg1)
+  014e54  [self timeInState]
+  014e60  self->timeInContinous = [self timeInState]
+  014e64  goto loc_1000150a8
+loc_100014e68:  ; case 4
+  014e78  [self timeInState]
+  014e9c  if (([self timeInState] + self->timeInContinous) <= (or unordered) 0.2) goto loc_1000150a8
+  014ebc  [self->continuousSound stop]
+  014ed0  [self->continuousWarning stop]
+  014ee8  [self changeState:0]
+  014ef0  &@selector(playContinuousTail)
+  014ef4  goto loc_100014f4c
+loc_100014ef8:  ; case 5
+  014f08  [self timeInState]
+  014f20  [self fireRate]
+  014f28  if ([self timeInState] <= (or unordered) [self fireRate]) goto loc_1000150a8
+  014f40  [self setTimeInState:0]
+  014f48  &@selector(playClickSound)
+loc_100014f4c:
+loc_100014f54:
+  014f54  [x0 <sel x1>]
+  014f58  goto loc_1000150a8
+loc_100014f5c:  ; case 6
+  014f6c  [self timeInState]
+  014f80  if ([self timeInState] <= (or unordered) 0.1) goto loc_1000150a8
+  014f98  [self setState:7]
+  014fa0  &@selector(setBulletsInClip:)
+loc_100014fa4:
+  014fb0  [self setBulletsInClip:0  | setState:x3]
+  014fb4  goto loc_1000150a8
+loc_100014fb8:  ; case 8
+  014fc8  [self timeInState]
+  014fe0  [self reloadTime]
+  014fe8  if ([self timeInState] <= (or unordered) [self reloadTime]) goto loc_1000150a8
+  015000  [self setState:0]
+  015018  [self bulletsTotal]
+  015034  [self capacity]
+  01503c  if ([self bulletsTotal] >= [self capacity]) goto loc_10001504c
+  015048  goto loc_100015054
+loc_10001504c:
+loc_100015054:
+  015054  [self <sel x1>]
+  01506c  [self setBulletsInClip:[self <sel x1>]]
+  015080  [self weaponManager]
+  01509c  [[self weaponManager] weaponDidFinishReloading]
+loc_1000150a8:  ; case 7
+  0150c4  self->lastAnnouncerSpeech = ((d8 - self->previousTickTime) + self->lastAnnouncerSpeech)
+  0150d8  [self timeInState]
+  01510c  tail [self setTimeInState:((d8 - self->previousTickTime) + [self timeInState])]
+
+== -[ADWeapon changeState:]   (address 0x100015148  size 200  kind objc)
+  015170  [self state]
+  015178  if ([self state] != arg1) goto loc_100015184
+  015180  goto loc_100015200
+loc_100015184:
+  01518c  [self state]
+  015198  if (arg1 != 2) goto loc_1000151cc
+  0151ac  [self readyToShoot]
+  0151b0  if ([self readyToShoot] == 0) goto loc_1000151e4
+  0151b8  &@selector(setState:)
+  0151c8  goto loc_1000151e0
+loc_1000151cc:
+  0151d0  &@selector(setState:)
+loc_1000151e0:
+  0151e0  [self setState:x2]
+loc_1000151e4:
+  0151f4  [self state]
+loc_100015200:
+  01520c  return
+
+== -[ADWeapon setState:]   (address 0x100015210  size 48  kind objc)
+  015220  if (self->_state != arg1) goto loc_100015228
+  015224  return
+  015228  self->_state = arg1
+  01523c  tail [self setTimeInState:0]
+
+== -[ADWeapon stateToString]   (address 0x100015240  size 316  kind objc)
+  015268  [self state]
+  015270  if ([self state] <=u 8) goto loc_1000152b8
+  015284  [self state]
+  0152a4  [NSString stringWithFormat:@"Default : %i", [self state]]
+  0152b4  goto loc_100015340
+loc_1000152b8:
+  0152cc  switch (?) { case 0: goto loc_1000152d0; case 1: goto loc_1000152dc; case 2: goto loc_1000152e8; case 3: goto loc_1000152f4; case 4: goto loc_100015300; case 5: goto loc_10001530c; case 6: goto loc_100015318; case 7: goto loc_100015324; case 8: goto loc_100015330 }
+loc_1000152d0:  ; case 0
+  0152d8  goto loc_100015338
+loc_1000152dc:  ; case 1
+  0152e4  goto loc_100015338
+loc_1000152e8:  ; case 2
+  0152f0  goto loc_100015338
+loc_1000152f4:  ; case 3
+  0152fc  goto loc_100015338
+loc_100015300:  ; case 4
+  015308  goto loc_100015338
+loc_10001530c:  ; case 5
+  015314  goto loc_100015338
+loc_100015318:  ; case 6
+  015320  goto loc_100015338
+loc_100015324:  ; case 7
+  01532c  goto loc_100015338
+loc_100015330:  ; case 8
+loc_100015338:
+loc_100015340:
+  015354  return
+
+== -[ADWeapon readyToShoot]   (address 0x10001537c  size 144  kind objc)
+  01539c  [self state]
+  0153a4  if ([self state] == 6) goto loc_1000153e4
+  0153b0  [self state]
+  0153b8  if ([self state] == 8) goto loc_1000153e4
+  0153c4  [self state]
+  0153cc  if ([self state] == 1) goto loc_1000153e4
+  0153d8  [self state]
+  0153e0  if ([self state] != 2) goto loc_1000153f4
+loc_1000153e4:
+  0153f0  return
+  0153fc  [self state]
+
+== -[ADWeapon singleShot]   (address 0x10001540c  size 152  kind objc)
+  015428  [self readyToShoot]
+  01542c  if ([self readyToShoot] == 0) goto loc_10001547c
+  015440  [self resolveShoot]
+  015444  if ([self resolveShoot] == 0) goto loc_100015488
+  015458  [self playSingleShootSound]
+  015478  tail [self changeState:2]
+loc_10001547c:
+  015484  return
+  0154a0  tail [self playClickSound]
+
+== -[ADWeapon continuousStart]   (address 0x1000154a4  size 852  kind objc)
+  0154d4  [self continuousFire]
+  0154d8  if (!([self continuousFire] & 1)) goto loc_100015720
+  0154ec  [self readyToShoot]
+  0154f0  if ([self readyToShoot] == 0) goto loc_100015750
+  015504  [self resolveShoot]
+  01550c  &@selector(changeState:)
+  015514  if ([self resolveShoot] == 0) goto loc_100015770
+  015520  [self changeState:3]
+  015538  [self playlist]
+  015564  [self name]
+  015594  [NSString stringWithFormat:@"weapon_gun_%@_conti", [self name]]
+  0155bc  [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_conti", [self name]]]
+  0155d4  self->continuousSound = [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_conti", [self name]]]
+  015610  [self->continuousSound setSpatialized:0]
+  015630  [self->continuousSound setGain:0.6]
+  01564c  [self->continuousSound play:1]
+  015658  [self playlist]
+  015674  [self name]
+  015698  [NSString stringWithFormat:@"weapon_gun_%@_warningloop", [self name]]
+  0156b4  [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_warningloop", [self name]]]
+  0156cc  self->continuousWarning = [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_warningloop", [self name]]]
+  0156fc  [self->continuousWarning setSpatialized:0]
+  01570c  [self->continuousWarning setGain:0]
+  01571c  goto loc_100015778
+loc_100015720:
+  01574c  tail [self singleShot]
+loc_100015750:
+  01576c  return
+  015794  tail [x0 <sel x1>]
+
+== -[ADWeapon continuousStop]   (address 0x1000157f8  size 184  kind objc)
+  015824  [self->continuousSound stop]
+  015838  [self->continuousWarning stop]
+  015850  [self state]
+  015858  if ([self state] != 3) goto loc_100015870
+  015860  &@selector(changeState:)
+  01586c  goto loc_100015894
+loc_100015870:
+  015878  [self state]
+  015880  if ([self state] != 5) goto loc_1000158a4
+  01588c  &@selector(changeState:)
+loc_100015894:
+  0158a0  tail [self changeState:one of {0, 4}]
+loc_1000158a4:
+  0158ac  return
+
+== -[ADWeapon playContinuousTail]   (address 0x1000158b0  size 364  kind objc)
+  0158d4  [self playlist]
+  0158fc  [self name]
+  015928  [NSString stringWithFormat:@"weapon_gun_%@_tail", [self name]]
+  01594c  [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_tail", [self name]]]
+  015988  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_tail", [self name]]] setSpatialized:0]
+  0159a4  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_tail", [self name]]] setGain:0.6]
+  0159bc  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_tail", [self name]]] play:0]
+  0159d4  return
+
+== -[ADWeapon resolveShoot]   (address 0x100015a1c  size 612  kind objc)
+  015a4c  [self bulletsInClip]
+  015a54  if ([self bulletsInClip] < 1) goto loc_100015bf4
+  015a6c  [self bulletsTotal]
+  015a74  if ([self bulletsTotal] < 1) goto loc_100015bf4
+  015a88  [self numShotsFired]
+  015aa0  [self setNumShotsFired:([self numShotsFired] + 1)]
+  015aac  [self bulletsInClip]
+  015ac8  [self setBulletsInClip:([self bulletsInClip] - 1)]
+  015ad4  [self bulletsTotal]
+  015aec  [self setBulletsTotal:([self bulletsTotal] - 1)]
+  015b04  [ADGameModifiers sharedModifiers]
+  015b20  [[ADGameModifiers sharedModifiers] rustyWeapons]
+  015b30  if ([[ADGameModifiers sharedModifiers] rustyWeapons] == 0) goto loc_100015b74
+  015b34  rand()
+  015b60  if ((rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) != 1) goto loc_100015b74
+  015b70  [self setBulletsInClip:0]
+loc_100015b74:
+  015b7c  [self bulletsInClip]
+  015b94  [self capacity]
+  015bd0  [self->continuousSound setGain:0.6]
+  015be4  if ((float)[self bulletsInClip] <= (or unordered) ((float)[self capacity] * 0.2)) goto loc_100015bfc
+  015bf0  goto loc_100015c04
+loc_100015bf4:
+  015bf8  goto loc_100015c44
+loc_100015bfc:
+loc_100015c04:
+  015c04  [self->continuousWarning setGain:d0]
+  015c18  [self weaponManager]
+  015c34  [[self weaponManager] shot]
+loc_100015c44:
+  015c5c  return
+
+== -[ADWeapon playSingleShootSound]   (address 0x100015c80  size 652  kind objc)
+  015d0c  goto loc_100015d38
+loc_100015d10:
+loc_100015d38:
+  015d38  if (x20 == 0) goto loc_100015d4c
+  015d44  [x0 playing]
+  015d48  if ([x0 playing] == 0) goto loc_100015e04
+loc_100015d4c:
+  015d54  [self playlist]
+  015d6c  [[self playlist] anySoundContaining:@"_fire_"]
+  015d98  [self bulletsInClip]
+  015dac  [self capacity]
+  015dc4  if ((float)[self bulletsInClip] > (or unordered) ((float)[self capacity] * 0.2)) goto loc_100015d38
+  015dd0  [self playlist]
+  015dec  [[self playlist] anySoundWihSuffix:@"_warning"]
+  015df0  goto loc_100015d10
+  015e00  goto loc_100015f04
+loc_100015e04:
+  015e20  [x0 setSpatialized:0]
+  015e44  [x0 setGain:0.6]
+  015e60  [x0 play:0]
+  015e64  if (x19 == 0) goto loc_100015e98
+  015e74  [x0 setSpatialized:0]
+  015e84  [x0 setGain:0.6]
+  015e94  [x0 play:0]
+loc_100015e98:
+  015ec4  return
+
+== -[ADWeapon playClickSound]   (address 0x100015f0c  size 628  kind objc)
+  015f2c  [self playlist]
+  015f54  [[self playlist] anySoundWihPrefix:self->clickSoundPrefix]
+  015f80  [[[self playlist] anySoundWihPrefix:self->clickSoundPrefix] setSpatialized:0]
+  015f98  [[[self playlist] anySoundWihPrefix:self->clickSoundPrefix] play:0]
+  015fb0  [ADGameParameters sharedParameters]
+  015fcc  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  015fdc  if ([[ADGameParameters sharedParameters] lastAnnouncerValue] == 0) goto loc_100016114
+  015ff4  if (self->lastAnnouncerSpeech <= (or unordered) 5) goto loc_100016114
+  015ff8  self->lastAnnouncerSpeech = 0
+  016010  [self bulletsTotal]
+  016024  &@selector(engine)
+  016030  if ([self bulletsTotal] < 1) goto loc_10001608c
+  016038  [S3DEngine engine]
+  01605c  [[S3DEngine engine] playListWithName:@"announcer"]
+  016080  [[[S3DEngine engine] playListWithName:@"announcer"] anySoundContaining:@"reload"]
+  016088  goto loc_1000160e0
+loc_10001608c:
+  016090  [S3DEngine engine]
+  0160b4  [[S3DEngine engine] playListWithName:@"announcer"]
+  0160d8  [[[S3DEngine engine] playListWithName:@"announcer"] anySoundContaining:@"outofammo"]
+loc_1000160e0:
+  016108  [x0 play]
+loc_100016114:
+  016124  return
+
+== -[ADWeapon spread]   (address 0x100016180  size 76  kind objc)
+  01619c  [self state]
+  0161c8  return
+
+== -[ADWeapon reload]   (address 0x1000161cc  size 864  kind objc)
+  0161f4  [self bulletsTotal]
+  0161f8  if ([self bulletsTotal] == 0) goto loc_1000163a0
+  01620c  [self isReloading]
+  016210  if (([self isReloading] & 1)) goto loc_1000164ac
+  016228  [ADTracker sharedInstance]
+  016248  [self bulletsInClip]
+  016264  [self name]
+  016280  [[ADTracker sharedInstance] reloadWeaponWithRemainingBullets:[self bulletsInClip] InWeapon:[self name]]
+  01629c  [self playlist]
+  0162bc  [self name]
+  0162e8  [NSString stringWithFormat:@"weapon_gun_%@_reloadfull", [self name]]
+  01630c  [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_reloadfull", [self name]]]
+  016348  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_reloadfull", [self name]]] setSpatialized:0]
+  016364  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_reloadfull", [self name]]] setGain:0.6]
+  01637c  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_reloadfull", [self name]]] play:0]
+  016394  [self changeState:8]
+  01639c  goto loc_100016494
+loc_1000163a0:
+  0163b4  [ADGameParameters sharedParameters]
+  0163d0  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  0163e0  if ([[ADGameParameters sharedParameters] lastAnnouncerValue] == 0) goto loc_1000164ac
+  0163f8  if (self->lastAnnouncerSpeech <= (or unordered) 5) goto loc_1000164ac
+  0163fc  self->lastAnnouncerSpeech = 0
+  016414  [S3DEngine engine]
+  016438  [[S3DEngine engine] playListWithName:@"announcer"]
+  01645c  [[[S3DEngine engine] playListWithName:@"announcer"] anySoundContaining:@"outofammo"]
+  01648c  [[[[S3DEngine engine] playListWithName:@"announcer"] anySoundContaining:@"outofammo"] play]
+loc_100016494:
+  0164a8  return
+loc_1000164ac:
+  0164c0  return
+
+== -[ADWeapon interruptReload]   (address 0x10001652c  size 336  kind objc)
+  016554  [self playlist]
+  01657c  [self name]
+  0165a8  [NSString stringWithFormat:@"weapon_gun_%@_reloadfull", [self name]]
+  0165cc  [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_reloadfull", [self name]]]
+  016604  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_reloadfull", [self name]]] stop]
+  01661c  [self setState:0]
+  016638  return
+
+== -[ADWeapon isReloading]   (address 0x10001667c  size 104  kind objc)
+  01669c  [self state]
+  0166a4  if ([self state] == 8) goto loc_1000166bc
+  0166b0  [self state]
+  0166b8  if ([self state] != 7) goto loc_1000166c4
+loc_1000166bc:
+  0166c0  goto loc_1000166d8
+loc_1000166c4:
+  0166cc  [self state]
+loc_1000166d8:
+  0166e0  return
+
+== -[ADWeapon deploy]   (address 0x1000166e4  size 840  kind objc)
+  01671c  [self changeState:1]
+  016730  [self fireRate]
+  01673c  self->timeSinceLastShot = [self fireRate]
+  016754  [self playlist]
+  016780  [self name]
+  0167b0  [NSString stringWithFormat:@"weapon_gun_%@_deploy", [self name]]
+  0167d8  [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_deploy", [self name]]]
+  01681c  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_deploy", [self name]]] setSpatialized:0]
+  016840  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_deploy", [self name]]] setGain:0.6]
+  01685c  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_deploy", [self name]]] play:0]
+  016874  [ADGameParameters sharedParameters]
+  016890  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  0168a0  if ([[ADGameParameters sharedParameters] lastAnnouncerValue] == 0) goto loc_100016970
+  0168ac  [self playlist]
+  0168cc  [self name]
+  0168f4  [NSString stringWithFormat:@"weapon_gun_%@_voice", [self name]]
+  016910  [[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_voice", [self name]]]
+  016944  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_voice", [self name]]] setSpatialized:0]
+  016954  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_voice", [self name]]] setGain:0.6]
+  016964  [[[self playlist] anySoundWihPrefix:[NSString stringWithFormat:@"weapon_gun_%@_voice", [self name]]] play:0]
+loc_100016970:
+  016994  return
+
+== -[ADWeapon clean]   (address 0x100016a2c  size 76  kind objc)
+  016a58  [self->continuousSound stop]
+  016a74  tail [self->continuousWarning stop]
+
+== -[ADWeapon dealloc]   (address 0x100016a78  size 212  kind objc)
+  016a94  NSLog(@"Dealloc weapon", _cmd)
+  016aa8  [self playlist]
+  016ac4  [[self playlist] deactivate]
+  016af0  [super dealloc]
+  016b00  return
+  016b3c  [super dealloc]
+  016b48  call sub_10000b760
+
+== -[ADWeapon playlist]   (address 0x100016b4c  size 16  kind objc)
+  016b58  return
+
+== -[ADWeapon setPlaylist:]   (address 0x100016b5c  size 56  kind objc)
+  016b80  self->_playlist = arg1
+  016b90  return
+
+== -[ADWeapon weaponManager]   (address 0x100016b94  size 16  kind objc)
+  016ba0  return
+
+== -[ADWeapon setWeaponManager:]   (address 0x100016ba4  size 56  kind objc)
+  016bc8  self->_weaponManager = arg1
+  016bd8  return
+
+== -[ADWeapon setSpread:]   (address 0x100016bdc  size 16  kind objc)
+  016be4  self->_spread = arg1
+  016be8  return
+
+== -[ADWeapon criticalSpread]   (address 0x100016bec  size 16  kind objc)
+  016bf8  return
+
+== -[ADWeapon setCriticalSpread:]   (address 0x100016bfc  size 16  kind objc)
+  016c04  self->_criticalSpread = arg1
+  016c08  return
+
+== -[ADWeapon criticalChance]   (address 0x100016c0c  size 16  kind objc)
+  016c18  return
+
+== -[ADWeapon setCriticalChance:]   (address 0x100016c1c  size 16  kind objc)
+  016c24  self->_criticalChance = arg1
+  016c28  return
+
+== -[ADWeapon criticalMultiplier]   (address 0x100016c2c  size 16  kind objc)
+  016c38  return
+
+== -[ADWeapon setCriticalMultiplier:]   (address 0x100016c3c  size 16  kind objc)
+  016c44  self->_criticalMultiplier = arg1
+  016c48  return
+
+== -[ADWeapon continuous_spread]   (address 0x100016c4c  size 16  kind objc)
+  016c58  return
+
+== -[ADWeapon setContinuous_spread:]   (address 0x100016c5c  size 16  kind objc)
+  016c64  self->_continuous_spread = arg1
+  016c68  return
+
+== -[ADWeapon damages]   (address 0x100016c6c  size 16  kind objc)
+  016c78  return
+
+== -[ADWeapon setDamages:]   (address 0x100016c7c  size 16  kind objc)
+  016c84  self->_damages = arg1
+  016c88  return
+
+== -[ADWeapon range]   (address 0x100016c8c  size 16  kind objc)
+  016c98  return
+
+== -[ADWeapon setRange:]   (address 0x100016c9c  size 16  kind objc)
+  016ca4  self->_range = arg1
+  016ca8  return
+
+== -[ADWeapon dispersal]   (address 0x100016cac  size 16  kind objc)
+  016cb8  return
+
+== -[ADWeapon setDispersal:]   (address 0x100016cbc  size 16  kind objc)
+  016cc4  self->_dispersal = arg1
+  016cc8  return
+
+== -[ADWeapon reloadTime]   (address 0x100016ccc  size 16  kind objc)
+  016cd8  return
+
+== -[ADWeapon setReloadTime:]   (address 0x100016cdc  size 16  kind objc)
+  016ce4  self->_reloadTime = arg1
+  016ce8  return
+
+== -[ADWeapon switchingTime]   (address 0x100016cec  size 16  kind objc)
+  016cf8  return
+
+== -[ADWeapon setSwitchingTime:]   (address 0x100016cfc  size 16  kind objc)
+  016d04  self->_switchingTime = arg1
+  016d08  return
+
+== -[ADWeapon bulletsInClip]   (address 0x100016d0c  size 16  kind objc)
+  016d18  return
+
+== -[ADWeapon setBulletsInClip:]   (address 0x100016d1c  size 16  kind objc)
+  016d24  self->_bulletsInClip = arg1
+  016d28  return
+
+== -[ADWeapon bulletsTotal]   (address 0x100016d2c  size 16  kind objc)
+  016d38  return
+
+== -[ADWeapon setBulletsTotal:]   (address 0x100016d3c  size 16  kind objc)
+  016d44  self->_bulletsTotal = arg1
+  016d48  return
+
+== -[ADWeapon continuousFire]   (address 0x100016d4c  size 16  kind objc)
+  016d58  return
+
+== -[ADWeapon setContinuousFire:]   (address 0x100016d5c  size 16  kind objc)
+  016d64  self->_continuousFire = arg1
+  016d68  return
+
+== -[ADWeapon droppedMagasine]   (address 0x100016d6c  size 16  kind objc)
+  016d78  return
+
+== -[ADWeapon setDroppedMagasine:]   (address 0x100016d7c  size 16  kind objc)
+  016d84  self->_droppedMagasine = arg1
+  016d88  return
+
+== -[ADWeapon name]   (address 0x100016d8c  size 16  kind objc)
+  016d98  return
+
+== -[ADWeapon setName:]   (address 0x100016d9c  size 56  kind objc)
+  016dc0  self->_name = arg1
+  016dd0  return
+
+== -[ADWeapon state]   (address 0x100016dd4  size 16  kind objc)
+  016de0  return
+
+== -[ADWeapon multihit]   (address 0x100016de4  size 16  kind objc)
+  016df0  return
+
+== -[ADWeapon setMultihit:]   (address 0x100016df4  size 16  kind objc)
+  016dfc  self->_multihit = arg1
+  016e00  return
+
+== -[ADWeapon capacity]   (address 0x100016e04  size 16  kind objc)
+  016e10  return
+
+== -[ADWeapon setCapacity:]   (address 0x100016e14  size 16  kind objc)
+  016e1c  self->_capacity = arg1
+  016e20  return
+
+== -[ADWeapon explosionRadius]   (address 0x100016e24  size 16  kind objc)
+  016e30  return
+
+== -[ADWeapon setExplosionRadius:]   (address 0x100016e34  size 16  kind objc)
+  016e3c  self->_explosionRadius = arg1
+  016e40  return
+
+== -[ADWeapon explosive]   (address 0x100016e44  size 16  kind objc)
+  016e50  return
+
+== -[ADWeapon setExplosive:]   (address 0x100016e54  size 16  kind objc)
+  016e5c  self->_explosive = arg1
+  016e60  return
+
+== -[ADWeapon timeBeforeExplode]   (address 0x100016e64  size 16  kind objc)
+  016e70  return
+
+== -[ADWeapon setTimeBeforeExplode:]   (address 0x100016e74  size 16  kind objc)
+  016e7c  self->_timeBeforeExplode = arg1
+  016e80  return
+
+== -[ADWeapon timeInState]   (address 0x100016e84  size 16  kind objc)
+  016e90  return
+
+== -[ADWeapon setTimeInState:]   (address 0x100016e94  size 16  kind objc)
+  016e9c  self->_timeInState = arg1
+  016ea0  return
+
+== -[ADWeapon fireRate]   (address 0x100016ea4  size 16  kind objc)
+  016eb0  return
+
+== -[ADWeapon setFireRate:]   (address 0x100016eb4  size 16  kind objc)
+  016ebc  self->_fireRate = arg1
+  016ec0  return
+
+== -[ADWeapon projectileSpeed]   (address 0x100016ec4  size 16  kind objc)
+  016ed0  return
+
+== -[ADWeapon setProjectileSpeed:]   (address 0x100016ed4  size 16  kind objc)
+  016edc  self->_projectileSpeed = arg1
+  016ee0  return
+
+== -[ADWeapon numShotsFired]   (address 0x100016ee4  size 16  kind objc)
+  016ef0  return
+
+== -[ADWeapon setNumShotsFired:]   (address 0x100016ef4  size 16  kind objc)
+  016efc  self->_numShotsFired = arg1
+  016f00  return
+
+== -[ADWeapon .cxx_destruct]   (address 0x100016f04  size 164  kind objc)

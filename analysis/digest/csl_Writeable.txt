@@ -1,0 +1,19 @@
+
+== csl::Writeable::vfunc_3   (address 0x1000eadc8  size 4  kind cxx)
+  0eadc8  return
+
+== csl::Writeable::~Writeable   (address 0x1000eadcc  size 100  kind cxx)
+  0eade8  if (a1[+0x8] == 0) goto loc_1000eae14
+loc_1000eadf0:
+  0eae04  call a0[+0x0][+0x18]
+  0eae10  if ((w21 + 1) <u a1[+0x8]) goto loc_1000eadf0
+loc_1000eae14:
+  0eae20  return
+  0eae24  if (w1 >= 0) goto loc_1000eae2c
+  0eae28  cxa_call_unexpected()
+
+== csl::Writeable::~Writeable/*deleting*/   (address 0x1000eb7cc  size 4  kind cxx)
+  0eb7cc  return
+
+== csl::Writeable::vfunc_2   (address 0x1000eb7d0  size 4  kind cxx)
+  0eb7d0  tail ZdlPv(a0, a1, a2, a3)

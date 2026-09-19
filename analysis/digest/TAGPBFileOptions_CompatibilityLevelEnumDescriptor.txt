@@ -1,0 +1,10 @@
+
+== +[TAGPBFileOptions_CompatibilityLevelEnumDescriptor enumDescriptor]_block_invoke   (address 0x10012c620  size 32  kind block)
+  12c63c  return
+
+== +[TAGPBFileOptions_CompatibilityLevelEnumDescriptor enumDescriptor]   (address 0x10012c640  size 96  kind objc)
+  12c658  if (g_10042dd70 != 0) goto loc_10012c694
+  12c68c  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBFileOptions_CompatibilityLevel" values:&d_10042a6c0 valueCount:3 enumVerifier:&+[TAGPBFileOptions_CompatibilityLevelEnumDescriptor enumDescriptor]_block_invoke]
+  12c690  store g_10042dd70 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBFileOptions_CompatibilityLevel" values:&d_10042a6c0 valueCount:3 enumVerifier:&+[TAGPBFileOptions_CompatibilityLevelEnumDescriptor enumDescriptor]_block_invoke]
+loc_10012c694:
+  12c69c  return

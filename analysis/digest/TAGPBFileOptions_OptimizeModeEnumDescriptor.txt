@@ -1,0 +1,10 @@
+
+== +[TAGPBFileOptions_OptimizeModeEnumDescriptor enumDescriptor]_block_invoke   (address 0x10012c6a0  size 16  kind block)
+  12c6ac  return
+
+== +[TAGPBFileOptions_OptimizeModeEnumDescriptor enumDescriptor]   (address 0x10012c6b0  size 96  kind objc)
+  12c6c8  if (g_10042dd78 != 0) goto loc_10012c704
+  12c6fc  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBFileOptions_OptimizeMode" values:&d_10042a6f0 valueCount:3 enumVerifier:&+[TAGPBFileOptions_OptimizeModeEnumDescriptor enumDescriptor]_block_invoke]
+  12c700  store g_10042dd78 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBFileOptions_OptimizeMode" values:&d_10042a6f0 valueCount:3 enumVerifier:&+[TAGPBFileOptions_OptimizeModeEnumDescriptor enumDescriptor]_block_invoke]
+loc_10012c704:
+  12c70c  return

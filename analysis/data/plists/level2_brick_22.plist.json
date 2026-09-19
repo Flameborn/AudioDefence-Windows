@@ -1,0 +1,34 @@
+{
+ "Enemies": {
+  "Shield": {
+   "spawn_sound": "",
+   "spawn_angle": 200,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "Chainsaw - 2"
+   },
+   "spawn_angle": 80,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_angle": 250,
+   "spawn_distance": 10,
+   "spawn_time": 7
+  },
+  "Chainsaw - 2": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "Chainsaw"
+   },
+   "spawn_angle": 130,
+   "spawn_distance": 10
+  }
+ }
+}

@@ -1,0 +1,160 @@
+
+== csl::AmbisonicMixer::~AmbisonicMixer   (address 0x1000f7814  size 36  kind cxx)
+  0f7824  sub_1000f77d0(a0, a1, a2, a3)
+  0f7834  return
+
+== csl::AmbisonicMixer::~AmbisonicMixer/*deleting*/   (address 0x1000f7838  size 56  kind cxx)
+  0f7848  sub_1000f77d0(a0, a1, a2, a3)
+  0f7858  tail ZdlPv(a0)
+  0f7864  ZdlPv()
+
+== sub_1000f7870   (address 0x1000f7870  size 128  kind sub)
+  0f7894  if (flags <u) goto loc_1000f78c8
+  0f78a4  ZNSt6vectorIPN3csl13UnitGeneratorESaIS2_EE9push_backERKS2_((a0 + 176), &x29[-0x18], a2, a3)
+  0f78c0  a0[+0xd0] = (1 / (float)((x9 - x8) >> 3))
+  0f78c4  goto loc_1000f78e0
+loc_1000f78c8:
+  0f78dc  sub_1000e772c(2, "AmbisonicMixer: cannot add input of %ix%i order to a mixer of %ix%i order.\n", a2, a3)
+loc_1000f78e0:
+  0f78ec  return
+
+== csl::AmbisonicMixer::vfunc_5   (address 0x1000f78f0  size 408  kind cxx)
+  0f7920  a0[+0xc8][+0xc] = a1[+0xc]
+  0f7928  sub_1000e8310(a1, a1, a2, a3)
+  0f7934  if (((x22 - x21) >>> 3) == 0) goto loc_1000f7a54
+  0f7944  if (a1[+0x8] >=u a0[+0x60]) goto loc_1000f795c
+  0f7958  sub_1000e772c(2, "AmbisonicMixer requires %d output channels, found only %d ???\n")
+loc_1000f795c:
+loc_1000f7960:
+  0f7974  call x8
+  0f7978  if (x8(…) == 0) goto loc_1000f79f8
+  0f798c  call x8
+  0f7994  if (a0[+0x60] == 0) goto loc_1000f79f8
+loc_1000f799c:
+  0f79ac  call a1[+0x0][+0x20]
+  0f79c4  call a0[+0xc8][+0x0][+0x20]
+  0f79c8  if (a1[+0xc] == 0) goto loc_1000f79e8
+loc_1000f79d0:
+  0f79e4  if ((w8 - 1) != 0) goto loc_1000f79d0
+loc_1000f79e8:
+  0f79f4  if ((w21 + 1) <u a0[+0x60]) goto loc_1000f799c
+loc_1000f79f8:
+  0f7a00  if ((x25 + 1) <u ((x22 - x21) >>> 3)) goto loc_1000f7960
+  0f7a08  if (a0[+0x60] == 0) goto loc_1000f7a54
+loc_1000f7a10:
+  0f7a20  call a1[+0x0][+0x20]
+  0f7a28  if (a1[+0xc] == 0) goto loc_1000f7a44
+loc_1000f7a2c:
+  0f7a40  if ((w8 - 1) != 0) goto loc_1000f7a2c
+loc_1000f7a44:
+  0f7a50  if ((w21 + 1) <u a0[+0x60]) goto loc_1000f7a10
+loc_1000f7a54:
+  0f7a6c  return
+  0f7a70  if (w1 >= 0) goto loc_1000f7a78
+  0f7a74  cxa_call_unexpected()
+
+== sub_1000f7a88   (address 0x1000f7a88  size 128  kind sub)
+  0f7ab4  sub_1000f5e8c(a0, &sp[0x0], a2, a3)
+  0f7ac4  a0[+0x0] = vtable<csl::AmbisonicRotator>
+  0f7ad0  sub_1000f7b08(a0, a1)
+  0f7ae4  return
+  0f7af8  call sub_1000f5f38
+  0f7b04  call sub_10000b760
+
+== sub_1000f7b08   (address 0x1000f7b08  size 696  kind sub)
+  0f7b28  Znwm(48, a1, a2, a3)
+  0f7b34  sub_1000e9060(Znwm(48, a1, a2, a3), a1)
+  0f7b38  a0[+0xd8] = Znwm(48, a1, a2, a3)
+  0f7b44  sub_1000e89bc(a1, a0)
+  0f7b64  sub_1000f5fb8(a0, &x29[-0x30])
+  0f7b78  call a1[+0x0][+0x18]
+  0f7b80  if (sub_1000f5fb8(a0, &x29[-0x30]) <=u a1[+0x0][+0x18](…)) goto loc_1000f7c48
+  0f7b84  goto loc_1000f7b90
+loc_1000f7b88:
+  0f7b8c  a0[+0x0] = (w8 - 1)
+loc_1000f7b90:
+  0f7ba8  sub_1000f5fb8(a0, &x29[-0x40])
+  0f7bbc  call a1[+0x0][+0x18]
+  0f7bc4  if (sub_1000f5fb8(a0, &x29[-0x40]) <=u a1[+0x0][+0x18](…)) goto loc_1000f7c1c
+  0f7bd0  if (w9 <u w8) goto loc_1000f7b88
+  0f7bd8  a0[+0xa8] = (w9 - 1)
+  0f7bf4  sub_1000f5fb8(a0, &sp[0x40])
+  0f7c08  call a1[+0x0][+0x18]
+  0f7c10  if (sub_1000f5fb8(a0, &sp[0x40]) <=u a1[+0x0][+0x18](…)) goto loc_1000f7c1c
+  0f7c18  goto loc_1000f7b88
+loc_1000f7c1c:
+  0f7c28  call a1[+0x0][+0x18]
+  0f7c44  sub_1000e772c(1, "Reducing decoding order because encoded input does not contain enough channels for specifi…")
+loc_1000f7c48:
+  0f7c60  sub_1000f5ff0(a0, &sp[0x30])
+  0f7c64  a0[+0xb4] = sub_1000f5ff0(a0, &sp[0x30])
+  0f7c74  a0[+0xac] = (w8 == w9)
+  0f7c90  sub_1000f5fb8(a0, &sp[0x20])
+  0f7c94  a0[+0x60] = sub_1000f5fb8(a0, &sp[0x20])
+  0f7ca0  sub_1000f6000(a0, a0[+0xb4])
+  0f7ca4  a0[+0xb8] = sub_1000f6000(a0, a0[+0xb4])
+  0f7cb0  Znam((x8 << 2))
+  0f7cb8  a0[+0xc8] = Znam((x8 << 2))
+  0f7cc4  sub_1000f601c(a0, Znam((x8 << 2)))
+  0f7cd0  Znam((a0[+0xb8] << 2))
+  0f7cd8  a0[+0xc0] = Znam((a0[+0xb8] << 2))
+  0f7ce4  sub_1000f601c(a0, Znam((a0[+0xb8] << 2)))
+  0f7ce8  a0[+0xd2] = 0
+  0f7cec  a0[+0xd0] = 0
+  0f7cfc  malloc((a0[+0x60] << 3))
+  0f7d04  a0[+0x100] = malloc((a0[+0x60] << 3))
+  0f7d0c  malloc((a0[+0x60] << 3))
+  0f7d10  a0[+0x108] = malloc((a0[+0x60] << 3))
+  0f7d14  if (a0[+0x60] == 0) goto loc_1000f7d50
+  0f7d1c  goto loc_1000f7d28
+loc_1000f7d20:
+loc_1000f7d28:
+  0f7d2c  Znwm(4)
+  0f7d38  Znwm(4)
+  0f7d4c  if ((w21 + 1) <u a0[+0x60]) goto loc_1000f7d20
+loc_1000f7d50:
+  0f7d5c  Znam((a0[+0xb4] << 2))
+  0f7d60  a0[+0xf0] = Znam((a0[+0xb4] << 2))
+  0f7d68  Znam((a0[+0xb4] << 2))
+  0f7d6c  a0[+0xf8] = Znam((a0[+0xb4] << 2))
+  0f7d80  return
+  0f7da4  ZdlPv()
+
+== sub_1000f7dc0   (address 0x1000f7dc0  size 36  kind sub)
+  0f7dd0  sub_1000f7a88(a0, a1, a2, a3)
+  0f7de0  return
+
+== sub_1000f7de4   (address 0x1000f7de4  size 240  kind sub)
+  0f7e00  a0[+0x0] = vtable<csl::AmbisonicRotator>
+  0f7e10  sub_1000e8af8(a0[+0xd8][+0x8], a0, a2, a3)
+  0f7e18  if (a0[+0xd8] == 0) goto loc_1000f7e28
+  0f7e24  call a0[+0xd8][+0x0][+0x8]
+loc_1000f7e28:
+  0f7e2c  if (a0[+0xf0] == 0) goto loc_1000f7e34
+  0f7e30  ZdaPv(a0[+0xf0])
+loc_1000f7e34:
+  0f7e38  if (a0[+0xf8] == 0) goto loc_1000f7e40
+  0f7e3c  ZdaPv(a0[+0xf8])
+loc_1000f7e40:
+  0f7e44  if (a0[+0xc8] == 0) goto loc_1000f7e4c
+  0f7e48  ZdaPv(a0[+0xc8])
+loc_1000f7e4c:
+  0f7e50  if (a0[+0xc0] == 0) goto loc_1000f7e58
+  0f7e54  ZdaPv(a0[+0xc0])
+loc_1000f7e58:
+  0f7e5c  if (a0[+0x60] == 0) goto loc_1000f7e94
+loc_1000f7e64:
+  0f7e6c  if (x0 == 0) goto loc_1000f7e74
+  0f7e70  ZdlPv()
+loc_1000f7e74:
+  0f7e7c  if (x0 == 0) goto loc_1000f7e84
+  0f7e80  ZdlPv()
+loc_1000f7e84:
+  0f7e90  if ((x20 + 1) <u a0[+0x60]) goto loc_1000f7e64
+loc_1000f7e94:
+  0f7e98  free(a0[+0x100])
+  0f7ea0  free(a0[+0x108])
+  0f7ea8  sub_1000f5f38(a0)
+  0f7eb8  return
+  0f7ec4  call sub_1000f5f38
+  0f7ed0  call sub_10000b760

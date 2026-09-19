@@ -1,0 +1,278 @@
+
+== -[Accessible_ADChallengeOverviewViewController initWithNibName:bundle:]   (address 0x10003e8f4  size 140  kind objc)
+  03e944  [super initWithNibName:arg1 bundle:arg2]
+  03e968  return
+
+== -[Accessible_ADChallengeOverviewViewController viewWillAppear:]   (address 0x10003e980  size 1260  kind objc)
+  03e9d4  [super viewWillAppear:arg1]
+  03e9ec  [self playButton]
+  03ea10  [[self playButton] setEnabled:1]
+  03ea24  [self playButton]
+  03ea50  [[self playButton] setTitle:@"Play" forState:0]
+  03ea64  [self playButton]
+  03ea8c  [[self playButton] setAccessibilityHint:@""]
+  03eab8  [self challengeDict]
+  03eae0  [[self challengeDict] objectForKey:@"weapons"]
+  03eb24  [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16]
+  03eb30  if ([[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16] == 0) goto loc_10003ec08
+  03eb4c  &@selector(hasUnlockedWeaponWithName:)
+loc_10003eb54:
+loc_10003eb58:
+  03eb64  if (x8 == x22) goto loc_10003eb70
+  03eb6c  objc_enumerationMutation([[self challengeDict] objectForKey:@"weapons"])
+loc_10003eb70:
+  03eb84  [ADInventory sharedInventory]
+  03eba4  [x0 objectForKey:@"name"]
+  03ebc0  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  03ebd8  if (!([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]] & 1)) goto loc_10003ec98
+  03ebe4  if ((x23 + 1) <u [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16]) goto loc_10003eb58
+  03ebfc  [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16]
+  03ec04  if ([[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x98] count:16] != 0) goto loc_10003eb54
+loc_10003ec08:
+  03ec28  [self statusBarViewController]
+  03ec48  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  03ec5c  [self statusBarViewController]
+  03ec7c  [[self statusBarViewController] setCurrenciesVisibility:0]
+  03ec94  goto loc_10003edb4
+loc_10003ec98:
+  03eca8  [x0 objectForKey:@"name"]
+  03ecc4  self->requiredWeapon = [x0 objectForKey:@"name"]
+  03ecd8  [self playButton]
+  03ed0c  [NSString stringWithFormat:@"You need to purchase a %@ in the armory to play this challenge", self->requiredWeapon]
+  03ed30  [[self playButton] setTitle:[NSString stringWithFormat:@"You need to purchase a %@ in the armory to play this challenge", self->requiredWeapon] forState:0]
+  03ed4c  [self playButton]
+  03ed68  [[self playButton] setAccessibilityHint:@"Use the armory button to purchase weapons"]
+  03ed7c  [self playButton]
+  03ed94  [[self playButton] setEnabled:0]
+loc_10003edb4:
+  03eddc  return
+
+== -[Accessible_ADChallengeOverviewViewController didReceiveMemoryWarning]   (address 0x10003ee6c  size 60  kind objc)
+  03ee98  [super didReceiveMemoryWarning]
+  03eea4  return
+
+== -[Accessible_ADChallengeOverviewViewController tableView:numberOfRowsInSection:]   (address 0x10003eea8  size 32  kind objc)
+  03eeac  if (arg2 >u 2) goto loc_10003eec0
+  03eebc  return
+loc_10003eec0:
+  03eec4  return
+
+== -[Accessible_ADChallengeOverviewViewController numberOfSectionsInTableView:]   (address 0x10003eec8  size 8  kind objc)
+  03eecc  return
+
+== -[Accessible_ADChallengeOverviewViewController tableView:heightForRowAtIndexPath:]   (address 0x10003eed0  size 140  kind objc)
+  03eef0  [ADGameParameters sharedParameters]
+  03ef0c  [[ADGameParameters sharedParameters] isIphone]
+  03ef3c  return
+
+== -[Accessible_ADChallengeOverviewViewController tableView:heightForHeaderInSection:]   (address 0x10003ef5c  size 140  kind objc)
+  03ef7c  [ADGameParameters sharedParameters]
+  03ef98  [[ADGameParameters sharedParameters] isIphone]
+  03efc8  return
+
+== -[Accessible_ADChallengeOverviewViewController tableView:viewForHeaderInSection:]   (address 0x10003efe8  size 584  kind objc)
+  03f010  [ADAccessibilityTableHeaderLabel alloc]
+  03f030  [[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  03f038  if (arg2 == 0) goto loc_10003f064
+  03f040  if (arg2 != 1) goto loc_10003f084
+  03f05c  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Loadout"]
+  03f060  goto loc_10003f0a8
+loc_10003f064:
+  03f07c  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Challenge Info"]
+  03f080  goto loc_10003f0a8
+loc_10003f084:
+  03f088  if (arg2 != 2) goto loc_10003f0a8
+  03f0a4  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Stars"]
+loc_10003f0a8:
+  03f0bc  [ADGameParameters sharedParameters]
+  03f0d8  [[ADGameParameters sharedParameters] isIphone]
+  03f118  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 35)]
+  03f13c  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 35)]]
+  03f15c  [UIColor blackColor]
+  03f180  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setTextColor:[UIColor blackColor]]
+  03f19c  [UIColor whiteColor]
+  03f1c0  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setBackgroundColor:[UIColor whiteColor]]
+  03f1cc  if (arg2 != 0) goto loc_10003f1e4
+  03f1e0  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}])
+loc_10003f1e4:
+  03f1f4  return
+
+== -[Accessible_ADChallengeOverviewViewController tableView:cellForRowAtIndexPath:]   (address 0x10003f230  size 4428  kind objc)
+  03f270  [arg2 section]
+  03f278  if ([arg2 section] == 0) goto loc_10003f50c
+  03f280  if ([arg2 section] != 1) goto loc_10003f730
+  03f298  [ADAccessibleTableCell alloc]
+  03f2b8  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  03f2d4  [self challengeDict]
+  03f2fc  [[self challengeDict] objectForKey:@"weapons"]
+  03f324  [arg2 row]
+  03f33c  [[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]]
+  03f360  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  03f388  [ADWeaponManager sharedWeaponManager]
+  03f3ac  [[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  03f3d0  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  03f3f8  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"name"]]]
+  03f430  [[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"ammo"]
+  03f450  [[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"ammo"] intValue]
+  03f464  if ([[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"ammo"] intValue] < 1) goto loc_10003f9a0
+  03f478  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03f4a0  [[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"ammo"]
+  03f4b4  [[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"ammo"] intValue]
+  03f4d4  [NSString stringWithFormat:@"%i bullets", [[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] obje…]
+  03f4f0  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"%i bullets", [[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] obje…]]
+  03f508  goto loc_10003fa68
+loc_10003f50c:
+  03f520  [ADAccessibleTableCell alloc]
+  03f540  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  03f560  [arg2 row]
+  03f564  if ([arg2 row] != 0) goto loc_10003f640
+  03f57c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  03f59c  [self challengeDict]
+  03f5c0  [[self challengeDict] objectForKey:@"title"]
+  03f5e8  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:[[self challengeDict] objectForKey:@"title"]]
+  03f618  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03f634  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"Title"]
+loc_10003f640:
+  03f64c  [arg2 row]
+  03f654  if ([arg2 row] != 1) goto loc_100040020
+  03f66c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  03f68c  [self challengeDict]
+  03f6b0  [[self challengeDict] objectForKey:@"objective"]
+  03f6d8  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:[[self challengeDict] objectForKey:@"objective"]]
+  03f708  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03f724  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"Objective"]
+  03f72c  goto loc_10004001c
+loc_10003f730:
+  03f734  if ([arg2 section] != 2) goto loc_10003f8b4
+  03f74c  [ADAccessibleTableCell alloc]
+  03f76c  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  03f78c  [self challengeDict]
+  03f7b8  [[self challengeDict] objectForKey:@"challenge_id"]
+  03f7e4  [arg2 row]
+  03f7e8  if ([arg2 row] != 0) goto loc_10003fb68
+  03f7fc  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  03f824  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Challenge completed star"]
+  03f844  [ADChallengeData sharedChallengeData]
+  03f864  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  03f878  &@selector(detailTextLabel)
+  03f880  if ([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] == 0) goto loc_10003fa7c
+  03f888  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03f8a4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"already unlocked"]
+  03f8b0  goto loc_10003fb68
+loc_10003f8b4:
+  03f8c8  [ADAccessibleTableCell alloc]
+  03f8e8  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  03f904  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  03f92c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"EMPTY CELL"]
+  03f94c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03f968  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"EMPTY CELL"]
+  03f98c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] setSelectionStyle:0]
+  03f990  goto loc_100040020
+  03f99c  goto loc_100040304
+loc_10003f9a0:
+  03f9a8  [ADWeaponManager sharedWeaponManager]
+  03f9c8  [[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  03f9ec  [[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  03fa08  &@selector(detailTextLabel)
+  03fa10  if ([[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[[[[self challengeDict] objectForKey:@"weapons"] objectAtIndex:[arg2 row]] objectForKey:@"name"]] == 0) goto loc_10003fa40
+  03fa18  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03fa34  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"melee weapon"]
+  03fa38  goto loc_10003fa64
+  03fa3c  goto loc_1000400d4
+loc_10003fa40:
+  03fa44  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03fa60  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"empty"]
+loc_10003fa64:
+loc_10003fa68:
+  03fa78  goto loc_10004001c
+loc_10003fa7c:
+  03fa80  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03faa0  [self challengeDict]
+  03fac0  [[self challengeDict] objectForKey:@"mission_star"]
+  03fadc  [[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"]
+  03faf8  [[[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"] intValue]
+  03fb18  [NSString stringWithFormat:@"finish challenge to get %i coins", [[[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"] in…]
+  03fb38  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"finish challenge to get %i coins", [[[[self challengeDict] objectForKey:@"mission_star"] objectForKey:@"reward"] in…]]
+loc_10003fb68:
+  03fb70  [arg2 row]
+  03fb78  if ([arg2 row] != 1) goto loc_10003fdc4
+  03fb8c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  03fbb4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Accuracy star"]
+  03fbd4  [ADChallengeData sharedChallengeData]
+  03fbf4  [[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  03fc08  &@selector(detailTextLabel)
+  03fc10  if ([[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] == 0) goto loc_10003fc44
+  03fc18  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03fc34  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"already unlocked"]
+  03fc40  goto loc_10003fdc4
+loc_10003fc44:
+  03fc48  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03fc70  [self challengeDict]
+  03fc8c  [[self challengeDict] objectForKey:@"accuracy_star"]
+  03fcb0  [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"]
+  03fcd0  [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"] intValue]
+  03fce0  [self challengeDict]
+  03fd00  [[self challengeDict] objectForKey:@"accuracy_star"]
+  03fd20  [[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"]
+  03fd38  [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"] intValue]
+  03fd58  [NSString stringWithFormat:@"Accuracy goal : %i%% -- Reward : %i coins", [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"…, [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"] i…]
+  03fd7c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"Accuracy goal : %i%% -- Reward : %i coins", [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"objective"…, [[[[self challengeDict] objectForKey:@"accuracy_star"] objectForKey:@"reward"] i…]]
+loc_10003fdc4:
+  03fdcc  [arg2 row]
+  03fdd4  if ([arg2 row] != 2) goto loc_100040018
+  03fde8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  03fe10  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Time limit star"]
+  03fe30  [ADChallengeData sharedChallengeData]
+  03fe50  [[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  03fe64  &@selector(detailTextLabel)
+  03fe6c  if ([[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] == 0) goto loc_10003fea0
+  03fe74  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03fe90  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"already unlocked"]
+  03fe9c  goto loc_100040018
+loc_10003fea0:
+  03fea4  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  03fec8  [self challengeDict]
+  03fee8  [[self challengeDict] objectForKey:@"time_limit_star"]
+  03ff0c  [[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"]
+  03ff30  [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objective"] intValue]
+  03ff40  [self challengeDict]
+  03ff5c  [[self challengeDict] objectForKey:@"time_limit_star"]
+  03ff78  [[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"]
+  03ff8c  [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"] intValue]
+  03ffac  [NSString stringWithFormat:@"Time goal : %i seconds -- Reward : %i coins", [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objectiv…, [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"]…]
+  03ffcc  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"Time goal : %i seconds -- Reward : %i coins", [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"objectiv…, [[[[self challengeDict] objectForKey:@"time_limit_star"] objectForKey:@"reward"]…]]
+loc_100040018:
+loc_10004001c:
+loc_100040020:
+  040058  return
+
+== -[Accessible_ADChallengeOverviewViewController loadEquipment]   (address 0x10004037c  size 4  kind objc)
+  04037c  return
+
+== -[Accessible_ADChallengeOverviewViewController missionsButtonPressed:]   (address 0x100040380  size 4  kind objc)
+  040380  return
+
+== -[Accessible_ADChallengeOverviewViewController viewWillLayoutSubviews]   (address 0x100040384  size 92  kind objc)
+  04039c  [self tableView]
+  0403b8  [[self tableView] reloadData]
+  0403c8  return
+
+== -[Accessible_ADChallengeOverviewViewController accessibilityPerformMagicTap]   (address 0x1000403e0  size 40  kind objc)
+  0403f8  [self playButtonPressed:0]
+  040404  return
+
+== -[Accessible_ADChallengeOverviewViewController tableView]   (address 0x100040408  size 16  kind objc)
+  040414  return
+
+== -[Accessible_ADChallengeOverviewViewController setTableView:]   (address 0x100040418  size 56  kind objc)
+  04043c  self->_tableView = arg1
+  04044c  return
+
+== -[Accessible_ADChallengeOverviewViewController playButton]   (address 0x100040450  size 16  kind objc)
+  04045c  return
+
+== -[Accessible_ADChallengeOverviewViewController setPlayButton:]   (address 0x100040460  size 56  kind objc)
+  040484  self->_playButton = arg1
+  040494  return
+
+== -[Accessible_ADChallengeOverviewViewController .cxx_destruct]   (address 0x100040498  size 84  kind objc)

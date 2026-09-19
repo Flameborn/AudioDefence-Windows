@@ -1,0 +1,28 @@
+{
+ "Enemies": {
+  "Colossus": {
+   "spawn_sound": "",
+   "spawn_angle": 240,
+   "spawn_distance": 10,
+   "spawn_time": 5
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_angle": 280,
+   "spawn_distance": 10,
+   "spawn_time": 9
+  },
+  "RunnerC": {
+   "spawn_sound": "",
+   "spawn_angle": 80,
+   "spawn_distance": 10,
+   "spawn_time": 19
+  },
+  "RunnerB": {
+   "spawn_sound": "",
+   "spawn_angle": 180,
+   "spawn_distance": 10,
+   "spawn_time": 15
+  }
+ }
+}

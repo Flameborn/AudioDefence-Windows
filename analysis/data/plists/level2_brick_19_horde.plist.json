@@ -1,0 +1,50 @@
+{
+ "Ambiant": "Horde_ambiant",
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "WeakZombieC"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_angle": 210,
+   "spawn_distance": 10,
+   "spawn_time": 1
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_angle": 250,
+   "spawn_distance": 10,
+   "spawn_time": 5.8
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_angle": 140,
+   "spawn_distance": 10,
+   "spawn_time": 4.2
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 280,
+   "spawn_distance": 10,
+   "spawn_time": 2.7
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "WeakZombieD"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "5"
+ }
+}

@@ -1,0 +1,94 @@
+
+== -[ADViewController viewDidLoad]   (address 0x100072248  size 424  kind objc)
+  072280  [super viewDidLoad]
+  072298  [UIDevice currentDevice]
+  0722b4  [[UIDevice currentDevice] systemVersion]
+  0722dc  [[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64]
+  0722f8  if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64] == -1) goto loc_100072338
+  07230c  [self background]
+  072320  if ([self background] == 0) goto loc_100072338
+  072334  [self addParticles]
+loc_100072338:
+  072348  [self loadStatusBar]
+  072360  [self firstAccessibleElement]
+  072374  if ([self firstAccessibleElement] == 0) goto loc_1000723b0
+  07238c  [self firstAccessibleElement]
+  0723a4  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [self firstAccessibleElement])
+loc_1000723b0:
+  0723c0  return
+
+== -[ADViewController dealloc]   (address 0x1000723f0  size 148  kind objc)
+  072414  [self setView:0]
+  072438  [super dealloc]
+  072448  return
+  072474  [super dealloc]
+  072480  call sub_10000b760
+
+== -[ADViewController addParticles]   (address 0x100072484  size 1120  kind objc)
+  0724a4  UIAccessibilityIsVoiceOverRunning()
+  0724a8  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_1000724c8
+  0724c4  return
+loc_1000724c8:
+  0724dc  [SKView alloc]
+  0724f8  [self background]
+  072514  [[self background] frame]
+  072528  [[SKView alloc] initWithFrame:{[[self background] frame].0, [[self background] frame].1, [[self background] frame].2, [[self background] frame].3}]
+  072544  [self setSkView:[[SKView alloc] initWithFrame:{[[self background] frame].0, [[self background] frame].1, [[self background] frame].2, [[self background] frame].3}]]
+  07256c  [self skView]
+  07258c  [[self skView] setShowsFPS:0]
+  0725a0  [self skView]
+  0725c0  [[self skView] setShowsNodeCount:0]
+  0725d4  [self skView]
+  0725fc  [UIColor clearColor]
+  072624  [[self skView] setBackgroundColor:[UIColor clearColor]]
+  072640  [self background]
+  07265c  [[self background] superview]
+  072674  [self skView]
+  072698  [[[self background] superview] addSubview:[self skView]]
+  0726bc  [self background]
+  0726d8  [[self background] removeFromSuperview]
+  0726ec  [self skView]
+  072704  [self background]
+  072720  [[self background] center]
+  072734  [[self skView] setCenter:{[[self background] center].0, [[self background] center].1}]
+  072758  [self background]
+  072774  [[self background] bounds]
+  072790  [ADParticleScene sceneWithSize:{[[self background] bounds].2, [[self background] bounds].3}]
+  0727bc  [[ADParticleScene sceneWithSize:{[[self background] bounds].2, [[self background] bounds].3}] setScaleMode:1]
+  0727c8  [UIColor clearColor]
+  0727e4  [[ADParticleScene sceneWithSize:{[[self background] bounds].2, [[self background] bounds].3}] setBackgroundColor:[UIColor clearColor]]
+  0727f8  [self skView]
+  072818  [[self skView] presentScene:[ADParticleScene sceneWithSize:{[[self background] bounds].2, [[self background] bounds].3}]]
+  072840  return
+
+== -[ADViewController accessibilityPerformEscape]   (address 0x1000728e4  size 92  kind objc)
+  072910  [self respondsToSelector:@selector(backButtonPressed)]
+  072914  if ([self respondsToSelector:@selector(backButtonPressed)] == 0) goto loc_100072930
+  07292c  [self performSelector:@selector(backButtonPressed)]
+loc_100072930:
+  07293c  return
+
+== -[ADViewController accessibilityPerformMagicTap]   (address 0x100072940  size 44  kind objc)
+  07295c  UIAccessibilityPostNotification(_UIAccessibilityAnnouncementNotification[+0x0], @"No magic tap available on this screen")
+  072968  return
+
+== -[ADViewController background]   (address 0x10007296c  size 16  kind objc)
+  072978  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADViewController setBackground:]   (address 0x10007297c  size 12  kind objc)
+  072984  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADViewController firstAccessibleElement]   (address 0x100072988  size 16  kind objc)
+  072994  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADViewController setFirstAccessibleElement:]   (address 0x100072998  size 12  kind objc)
+  0729a0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADViewController skView]   (address 0x1000729a4  size 16  kind objc)
+  0729b0  return
+
+== -[ADViewController setSkView:]   (address 0x1000729b4  size 56  kind objc)
+  0729d8  self->_skView = arg1
+  0729e8  return
+
+== -[ADViewController .cxx_destruct]   (address 0x1000729ec  size 84  kind objc)

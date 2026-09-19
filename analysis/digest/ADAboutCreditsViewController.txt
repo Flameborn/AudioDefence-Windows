@@ -1,0 +1,68 @@
+
+== -[ADAboutCreditsViewController initWithNibName:bundle:]   (address 0x1000209b8  size 140  kind objc)
+  020a08  [super initWithNibName:arg1 bundle:arg2]
+  020a2c  return
+
+== -[ADAboutCreditsViewController viewDidLoad]   (address 0x100020a44  size 1120  kind objc)
+  020a8c  [super viewDidLoad]
+  020aa4  [self statusBarViewController]
+  020ac4  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  020ad8  [self statusBarViewController]
+  020af8  [[self statusBarViewController] setCurrenciesVisibility:0]
+  020b0c  [self statusBarViewController]
+  020b2c  [[self statusBarViewController] setDiamonsdsVisibility:0]
+  020b40  [self statusBarViewController]
+  020b5c  [[self statusBarViewController] pageTitle]
+  020b80  [[[self statusBarViewController] pageTitle] setText:@"Credits"]
+  020ba8  [self aboutTextView]
+  020bd0  [UIColor whiteColor]
+  020bf8  [[self aboutTextView] setTextColor:[UIColor whiteColor]]
+  020c14  [self aboutTextView]
+  020c44  [ADGameParameters sharedParameters]
+  020c68  [[ADGameParameters sharedParameters] isIphone]
+  020c98  [UIFont fontWithName:@"Chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 20)]
+  020cc0  [[self aboutTextView] setFont:[UIFont fontWithName:@"Chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 20)]]
+  020cf0  [self creditsTextView]
+  020d08  [UIColor whiteColor]
+  020d24  [[self creditsTextView] setTextColor:[UIColor whiteColor]]
+  020d40  [self creditsTextView]
+  020d64  [ADGameParameters sharedParameters]
+  020d78  [[ADGameParameters sharedParameters] isIphone]
+  020d94  [UIFont fontWithName:@"Chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 20)]
+  020db0  [[self creditsTextView] setFont:[UIFont fontWithName:@"Chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 20)]]
+  020dec  return
+
+== -[ADAboutCreditsViewController loadView]   (address 0x100020ea4  size 332  kind objc)
+  020ef8  [NSNumber numberWithInt:1]
+  020f20  [NSNumber numberWithInt:2]
+  020f50  [NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]
+  020f8c  [self loADViewBasedOnDeviceWithNibName:@"ADAboutCreditsViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]]
+  020fb8  return
+
+== -[ADAboutCreditsViewController backButtonPressed]   (address 0x100020ff0  size 104  kind objc)
+  021024  [super backButtonPressed]
+  021044  [self dismissViewControllerAnimated:0 completion:^{-[ADAboutCreditsViewController backButtonPressed]_block_invoke}]
+  021054  return
+
+== -[ADAboutCreditsViewController backButtonPressed]_block_invoke   (address 0x100021058  size 4  kind block)
+  021058  return
+
+== -[ADAboutCreditsViewController didReceiveMemoryWarning]   (address 0x10002105c  size 60  kind objc)
+  021088  [super didReceiveMemoryWarning]
+  021094  return
+
+== -[ADAboutCreditsViewController aboutTextView]   (address 0x100021098  size 16  kind objc)
+  0210a4  return
+
+== -[ADAboutCreditsViewController setAboutTextView:]   (address 0x1000210a8  size 56  kind objc)
+  0210cc  self->_aboutTextView = arg1
+  0210dc  return
+
+== -[ADAboutCreditsViewController creditsTextView]   (address 0x1000210e0  size 16  kind objc)
+  0210ec  return
+
+== -[ADAboutCreditsViewController setCreditsTextView:]   (address 0x1000210f0  size 56  kind objc)
+  021114  self->_creditsTextView = arg1
+  021124  return
+
+== -[ADAboutCreditsViewController .cxx_destruct]   (address 0x100021128  size 64  kind objc)

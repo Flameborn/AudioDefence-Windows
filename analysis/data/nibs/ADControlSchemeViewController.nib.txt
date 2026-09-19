@@ -1,0 +1,81 @@
+// ADControlSchemeViewController.nib
+TOP-LEVEL OBJECTS
+  #161 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #255 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #334 UIView  Tag=2781
+    #43 UIButton (custom class ADButtonWithFont)  
+    #40 UIButton (custom class ADButtonWithFont)  
+    #366 UIScrollView  
+    #95 UIButton (custom class ADButtonWithFont)  
+  #38 UIView  Tag=3000
+    #218 UIView  
+      #46 UIButton (custom class ADButtonWithFont)  
+      #431 UIButton (custom class ADButtonWithFont)  
+      #330 UIButton (custom class ADButtonWithFont)  
+      #359 UILabel  UserInteractionDisabled=False Text='SENSIVITY :'
+      #457 UIImageView  UserInteractionDisabled=False Image='slider_back.png'
+      #158 UISlider  Value=2.0
+      #254 UITextView  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut '
+    #136 UIView  
+      #197 UIButton (custom class ADButtonWithFont)  
+      #75 UIButton (custom class ADButtonWithFont)  
+      #221 UITextView  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #80 UIView  
+      #228 UILabel  UserInteractionDisabled=False Text='ANNOUNCER :'
+      #146 UISwitch  
+      #115 UITextView  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+      #185 UIButton (custom class ADButtonWithFont)  Tag=12 title[0]='Test Headphones'
+  #116 UIView  Tag=2782
+    #205 UIButton (custom class ADButtonWithFont)  Tag=10
+    #362 UIButton (custom class ADButtonWithFont)  Tag=18
+    #179 UIScrollView  Tag=8
+    #16 UIButton (custom class ADButtonWithFont)  Tag=1
+  #49 UIView  Tag=3001
+    #64 UIView  
+      #154 UIButton (custom class ADButtonWithFont)  Tag=13
+      #292 UIButton (custom class ADButtonWithFont)  Tag=19
+      #437 UIButton (custom class ADButtonWithFont)  Tag=20
+      #368 UILabel  Tag=16 UserInteractionDisabled=False Text='SENSIVITY :'
+      #361 UIImageView  Tag=15 UserInteractionDisabled=False Image='slider_back.png'
+      #260 UITextView  Tag=2 Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut '
+      #313 UISlider  Tag=17 Value=2.0
+    #246 UIView  
+      #365 UITextView  Tag=11 Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+      #107 UIButton (custom class ADButtonWithFont)  Tag=7
+      #199 UIButton (custom class ADButtonWithFont)  Tag=12
+    #370 UIView  
+      #165 UILabel  UserInteractionDisabled=False Text='ANNOUNCER :'
+      #184 UISwitch  Tag=4
+      #190 UITextView  Tag=21 Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+      #138 UIButton (custom class ADButtonWithFont)  Tag=12 title[0]='Test Headphones'
+
+CONNECTIONS
+  action  TestHeadphonesButtonPressed:              #138 ADButtonWithFont --(events 0x40)--> #161 UIProxyObject
+  action  TestHeadphonesButtonPressed:              #185 ADButtonWithFont --(events 0x40)--> #161 UIProxyObject
+  action  announcerValueChanged:                    #146 UISwitch --(events 0x1000)--> #161 UIProxyObject
+  action  announcerValueChanged:                    #184 UISwitch --(events 0x1000)--> #161 UIProxyObject
+  action  sensivityValueChanged:                    #313 UISlider --(events 0x1000)--> #161 UIProxyObject
+  action  sensivityValueChanged:                    #158 UISlider --(events 0x1000)--> #161 UIProxyObject
+  outlet  aimingButton                              #161 UIProxyObject --> #95 ADButtonWithFont
+  outlet  aimingText                                #161 UIProxyObject --> #254 UITextView Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut '
+  outlet  announcerSwitch                           #161 UIProxyObject --> #146 UISwitch
+  outlet  buttonsButton                             #161 UIProxyObject --> #197 ADButtonWithFont
+  outlet  contentScrollView                         #161 UIProxyObject --> #366 UIScrollView
+  outlet  contentView                               #161 UIProxyObject --> #38 UIView
+  outlet  controlsButton                            #161 UIProxyObject --> #43 ADButtonWithFont
+  outlet  controlsText                              #161 UIProxyObject --> #221 UITextView Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  gestureButton                             #161 UIProxyObject --> #75 ADButtonWithFont
+  outlet  gyroButton                                #161 UIProxyObject --> #46 ADButtonWithFont
+  outlet  sensitivitySliderBack                     #161 UIProxyObject --> #457 UIImageView
+  outlet  sensivityLabel                            #161 UIProxyObject --> #359 UILabel Text='SENSIVITY :'
+  outlet  sensivitySlider                           #161 UIProxyObject --> #158 UISlider
+  outlet  soundButton                               #161 UIProxyObject --> #40 ADButtonWithFont
+  outlet  swipeButton                               #161 UIProxyObject --> #431 ADButtonWithFont
+  outlet  tiltButton                                #161 UIProxyObject --> #330 ADButtonWithFont
+  outlet  view                                      #161 UIProxyObject --> #334 UIView
+  outlet  volumeText                                #161 UIProxyObject --> #115 UITextView Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#43 ADButtonWithFont' UIAccessibilityLabel='Controls'
+  UIAccessibileObject='#40 ADButtonWithFont' UIAccessibilityLabel='Sound'
+  UIAccessibileObject='#95 ADButtonWithFont' UIAccessibilityLabel='Aiming'

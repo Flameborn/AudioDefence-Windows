@@ -1,0 +1,31 @@
+
+== +[S3DAbstractModel decode:]   (address 0x100107624  size 236  kind objc)
+  107650  [S3DEngine engine]
+  107670  [S3DAbstractModel class]
+  107674  NSStringFromClass([S3DAbstractModel class])
+  1076a4  [[S3DEngine engine] quietLog:0 format:@"%@ should override `(id<S3DEncodable>) (SExp *) decode: (SExp *)`"]
+  1076cc  [S3DAbstractModel new]
+  1076e0  return
+
+== -[S3DAbstractModel encode]   (address 0x100107710  size 232  kind objc)
+  10773c  [S3DEngine engine]
+  10775c  [self class]
+  107760  NSStringFromClass([self class])
+  107790  [[S3DEngine engine] quietLog:0 format:@"%@ should override `(SExp *) encode`"]
+  1077d0  tail [SExp sexp:@"Cannot ship without proper serialisation support!"]
+  1077d8  goto loc_1001077e8
+loc_1001077e8:
+
+== -[S3DAbstractModel description]   (address 0x1001077f8  size 112  kind objc)
+  107810  [self encode]
+  10782c  [[self encode] description]
+  107850  return
+
+== -[S3DAbstractModel xId]   (address 0x100107868  size 16  kind objc)
+  107874  return
+
+== -[S3DAbstractModel setXId:]   (address 0x100107878  size 56  kind objc)
+  10789c  self->xId = arg1
+  1078ac  return
+
+== -[S3DAbstractModel .cxx_destruct]   (address 0x1001078b0  size 20  kind objc)

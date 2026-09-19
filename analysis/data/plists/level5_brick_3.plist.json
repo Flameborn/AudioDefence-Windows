@@ -1,0 +1,46 @@
+{
+ "Enemies": {
+  "Shield": {
+   "spawn_sound": "",
+   "spawn_angle": 350,
+   "spawn_distance": 10,
+   "spawn_time": 11
+  },
+  "FartyB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "Farty"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "Clown"
+   },
+   "spawn_angle": 240,
+   "spawn_distance": 10
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_angle": 210,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_angle": 110,
+   "spawn_distance": 10,
+   "spawn_time": 8
+  },
+  "QuietZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 50,
+   "spawn_distance": 10,
+   "spawn_time": 21
+  }
+ }
+}

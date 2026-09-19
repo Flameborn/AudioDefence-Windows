@@ -1,0 +1,14 @@
+
+== -[UIGestureRecognizer(OBDragDrop) ovum]   (address 0x100006ee4  size 12  kind objc)
+  006eec  tail objc_getAssociatedObject(self, @"OBGestureRecognizerOvum")
+
+== -[UIGestureRecognizer(OBDragDrop) setOvum:]   (address 0x100006ef0  size 32  kind objc)
+  006f04  objc_setAssociatedObject(self, @"OBGestureRecognizerOvum", arg1, 769)
+  006f0c  return
+
+== -[UIGestureRecognizer(OBDragDrop) ovumSource]   (address 0x100006f10  size 12  kind objc)
+  006f18  tail objc_getAssociatedObject(self, @"OBGestureRecognizerOvumSource")
+
+== -[UIGestureRecognizer(OBDragDrop) setOvumSource:]   (address 0x100006f1c  size 32  kind objc)
+  006f30  objc_setAssociatedObject(self, @"OBGestureRecognizerOvumSource", arg1, 0)
+  006f38  return

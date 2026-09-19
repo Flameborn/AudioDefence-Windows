@@ -1,0 +1,13 @@
+
+== -[TAGFutureNotifier containerAvailable:]   (address 0x1001520dc  size 148  kind objc)
+  15210c  [self future]
+  15212c  [[self future] setContainer:arg1]
+  152148  return
+
+== -[TAGFutureNotifier future]   (address 0x100152170  size 16  kind objc)
+  15217c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGFutureNotifier setFuture:]   (address 0x100152180  size 12  kind objc)
+  152188  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGFutureNotifier .cxx_destruct]   (address 0x10015218c  size 20  kind objc)

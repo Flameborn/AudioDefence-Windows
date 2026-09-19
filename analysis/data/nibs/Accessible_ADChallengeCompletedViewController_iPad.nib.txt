@@ -1,0 +1,21 @@
+// Accessible_ADChallengeCompletedViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #2 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #6 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #29 UIView  
+    #61 UITableView  
+    #13 UIButton (custom class ADButtonWithFont)  title[0]='Next challenge'
+    #4 UIButton (custom class ADButtonWithFont)  title[0]='Challenge selection'
+    #49 UIButton (custom class ADButtonWithFont)  title[0]='Retry'
+
+CONNECTIONS
+  action  missionSelectButtonPressed:               #4 ADButtonWithFont --(events 0x40)--> #2 UIProxyObject
+  action  nextMissionButtonPressed:                 #13 ADButtonWithFont --(events 0x40)--> #2 UIProxyObject
+  action  retryButtonPressed:                       #49 ADButtonWithFont --(events 0x40)--> #2 UIProxyObject
+  outlet  dataSource                                #61 UITableView --> #2 UIProxyObject
+  outlet  delegate                                  #61 UITableView --> #2 UIProxyObject
+  outlet  nextChallengeButton                       #2 UIProxyObject --> #13 ADButtonWithFont
+  outlet  tableView                                 #2 UIProxyObject --> #61 UITableView
+  outlet  view                                      #2 UIProxyObject --> #29 UIView
+
+ACCESSIBILITY CONFIGURATIONS

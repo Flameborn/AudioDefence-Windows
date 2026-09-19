@@ -1,0 +1,47 @@
+{
+ "bricks": [
+  "level4_brick_1",
+  "level4_brick_2",
+  "level4_brick_4",
+  "level4_brick_5",
+  "level4_brick_6",
+  "level4_brick_7",
+  "level4_brick_8_horde",
+  "level4_brick_9_runningHorde",
+  "level4_brick_10",
+  "level4_brick_11"
+ ],
+ "time_limit_star": {
+  "reward": 100,
+  "objective": 90
+ },
+ "challenge_id": "01_04",
+ "title": "04",
+ "weapons": [
+  {
+   "ammo": "999",
+   "name": "pistol"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "icon_title": "04",
+ "mission_star": {
+  "reward": 500
+ },
+ "objective": "Defeat all Level 4 bricks!",
+ "ambient": {
+  "gain": 0.3,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "icon": "Challenge_icon_04",
+ "accuracy_star": {
+  "reward": 100,
+  "objective": 90
+ }
+}

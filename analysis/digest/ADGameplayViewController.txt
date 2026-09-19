@@ -1,0 +1,1113 @@
+
+== -[ADGameplayViewController initWithNibName:bundle:]   (address 0x100056da0  size 140  kind objc)
+  056df0  [super initWithNibName:arg1 bundle:arg2]
+  056e14  return
+
+== -[ADGameplayViewController initDebugMap]   (address 0x100056e2c  size 468  kind objc)
+  056e58  [ADGameParameters sharedParameters]
+  056e74  [[ADGameParameters sharedParameters] debugMapVisible]
+  056e84  if ([[ADGameParameters sharedParameters] debugMapVisible] == 0) goto loc_100056fac
+  056e9c  [ADDebugMapViewController alloc]
+  056eb8  [[ADDebugMapViewController alloc] initWithNibName:@"ADDebugMapViewController" bundle:0]
+  056ec8  self->debugMap = [[ADDebugMapViewController alloc] initWithNibName:@"ADDebugMapViewController" bundle:0]
+  056ee8  [self view]
+  056f00  [self->debugMap view]
+  056f24  [[self view] addSubview:[self->debugMap view]]
+  056f40  [self->debugMap view]
+  056f58  [self view]
+  056f74  [[self view] center]
+  056f88  [[self->debugMap view] setCenter:{[[self view] center].0, [[self view] center].1}]
+  056fa8  return
+loc_100056fac:
+  056fbc  return
+
+== -[ADGameplayViewController initAmbiantManager]   (address 0x100057000  size 296  kind objc)
+  057024  [ADAmbientManager sharedAmbiantManager]
+  057040  [[ADAmbientManager sharedAmbiantManager] startWithRandomAmbient]
+  057064  [S3DEngine engine]
+  057084  [[S3DEngine engine] setReverbRoomSize:1.5]
+  057098  [S3DEngine engine]
+  0570bc  [[S3DEngine engine] setReverbDampening:50]
+  0570d0  [S3DEngine engine]
+  0570f0  [[S3DEngine engine] setReverbVolume:1]
+  057104  return
+
+== -[ADGameplayViewController ambiantManagerDidActivatePlaylist]   (address 0x100057128  size 4  kind objc)
+  057128  return
+
+== -[ADGameplayViewController initBrickManager]   (address 0x10005712c  size 424  kind objc)
+  057148  self->nbRevives = 0
+  057164  [ADBrickManager sharedBrickManager]
+  057184  [[ADBrickManager sharedBrickManager] setMode:1]
+  0571a4  [ADMissionManager sharedMissionManager]
+  0571c0  [[ADMissionManager sharedMissionManager] startGameplay]
+  0571d4  [ADBrickManager sharedBrickManager]
+  0571f0  [[ADBrickManager sharedBrickManager] reset]
+  057204  [ADBrickManager sharedBrickManager]
+  057224  [[ADBrickManager sharedBrickManager] setGameplayViewController:self]
+  057238  [ADBrickManager sharedBrickManager]
+  05725c  [[ADBrickManager sharedBrickManager] loadBrickChancePlist:@"brick_chance"]
+  057270  [ADBrickManager sharedBrickManager]
+  05728c  [[ADBrickManager sharedBrickManager] loadNextBrick]
+  0572a0  return
+
+== -[ADGameplayViewController initStats]   (address 0x1000572d4  size 276  kind objc)
+  0572fc  [ADInGameStats singleton]
+  057320  [[ADInGameStats singleton] startNewLevel:@"ENDLESS"]
+  05733c  [self scoreLabel]
+  05736c  [NSString stringWithFormat:@"%i", 0]
+  057390  [[self scoreLabel] setText:[NSString stringWithFormat:@"%i", 0]]
+  0573ac  return
+
+== -[ADGameplayViewController initGATrackerStats]   (address 0x1000573e8  size 1828  kind objc)
+  057424  [GAI sharedInstance]
+  057440  [[GAI sharedInstance] defaultTracker]
+  057470  [ADInGameStats singleton]
+  057490  [[ADInGameStats singleton] gameMode]
+  0574b8  [[[ADInGameStats singleton] gameMode] isEqualToString:@"ENDLESS"]
+  0574d0  if ([[[ADInGameStats singleton] gameMode] isEqualToString:@"ENDLESS"] == 0) goto loc_100057500
+  0574dc  [&d_1003b83b0] -> @"&cd"
+  0574f8  [[[GAI sharedInstance] defaultTracker] set:@"&cd" value:@"Endless mode game"]
+  0574fc  goto loc_10005757c
+loc_100057500:
+  057508  [ADInGameStats singleton]
+  05751c  [[ADInGameStats singleton] gameMode]
+  057538  [[[ADInGameStats singleton] gameMode] isEqualToString:@"CHALLENGE"]
+  057550  if ([[[ADInGameStats singleton] gameMode] isEqualToString:@"CHALLENGE"] == 0) goto loc_10005757c
+  05755c  [&d_1003b83b0] -> @"&cd"
+  057578  [[[GAI sharedInstance] defaultTracker] set:@"&cd" value:@"Challenge mode game"]
+loc_10005757c:
+  057590  [GAIDictionaryBuilder createAppView]
+  0575ac  [[GAIDictionaryBuilder createAppView] build]
+  0575d0  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]]
+  0575f4  [self setGameModeDimension]
+  057610  [ADGameParameters sharedParameters]
+  05762c  [[ADGameParameters sharedParameters] buttonMode]
+  057644  if ([[ADGameParameters sharedParameters] buttonMode] == 0) goto loc_10005767c
+  05764c  [ADTracker sharedInstance]
+  057670  [[ADTracker sharedInstance] setButtonMode:@"button"]
+  057674  goto loc_1000576a8
+  057678  goto loc_100057acc
+loc_10005767c:
+  057680  [ADTracker sharedInstance]
+  0576a4  [[ADTracker sharedInstance] setButtonMode:@"gesture"]
+loc_1000576a8:
+  0576b8  [ADGameParameters sharedParameters]
+  0576d4  [[ADGameParameters sharedParameters] controlScheme]
+  0576e8  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_100057724
+  0576f4  [ADTracker sharedInstance]
+  057718  [[ADTracker sharedInstance] setControlMode:@"swipe"]
+  05771c  goto loc_1000577d0
+  057720  goto loc_100057af0
+loc_100057724:
+  057728  if ([[ADGameParameters sharedParameters] controlScheme] != 1) goto loc_100057764
+  057734  [ADTracker sharedInstance]
+  057758  [[ADTracker sharedInstance] setControlMode:@"gyro"]
+  05775c  goto loc_1000577d0
+  057760  goto loc_100057af0
+loc_100057764:
+  05776c  if ([[ADGameParameters sharedParameters] controlScheme] != 3) goto loc_1000577a4
+  057774  [ADTracker sharedInstance]
+  057798  [[ADTracker sharedInstance] setControlMode:@"tilt"]
+  05779c  goto loc_1000577d0
+  0577a0  goto loc_100057af0
+loc_1000577a4:
+  0577a8  [ADTracker sharedInstance]
+  0577cc  [[ADTracker sharedInstance] setControlMode:@"undefined"]
+loc_1000577d0:
+  0577ec  [ADChallengeGameplayViewController class]
+  057804  [self isKindOfClass:[ADChallengeGameplayViewController class]]
+  057808  if ([self isKindOfClass:[ADChallengeGameplayViewController class]] == 0) goto loc_1000578a8
+  05781c  [self getChallengeID]
+  057834  [ADTracker sharedInstance]
+  057864  [[ADTracker sharedInstance] setValue:[self getChallengeID] ForDimension:@"Challenge name" AndValue:0 ForMetric:0]
+  057878  [ADTracker sharedInstance]
+  057894  [[ADTracker sharedInstance] challengeStarted]
+loc_1000578a8:
+  0578bc  [ADInventory sharedInventory]
+  0578d8  [[ADInventory sharedInventory] getNumberOfWeaponsUnlocked]
+  0578f0  [ADTracker sharedInstance]
+  057924  [NSString stringWithFormat:@"%d", [[ADInventory sharedInventory] getNumberOfWeaponsUnlocked]]
+  05795c  [[ADTracker sharedInstance] setValue:[NSString stringWithFormat:@"%d", [[ADInventory sharedInventory] getNumberOfWeaponsUnlocked]] ForDimension:@"Number of unlocked weapons" AndValue:0 ForMetric:0]
+  057984  [ADPersistentStats persistentStats]
+  0579a0  [[ADPersistentStats persistentStats] getNumberOfZombiesUnlocked]
+  0579b8  [ADTracker sharedInstance]
+  0579dc  [NSString stringWithFormat:@"%d", [[ADPersistentStats persistentStats] getNumberOfZombiesUnlocked]]
+  057a08  [[ADTracker sharedInstance] setValue:[NSString stringWithFormat:@"%d", [[ADPersistentStats persistentStats] getNumberOfZombiesUnlocked]] ForDimension:@"Number of unlocked zombies" AndValue:0 ForMetric:0]
+  057a3c  return
+
+== -[ADGameplayViewController initAnnouncer]   (address 0x100057b0c  size 252  kind objc)
+  057b2c  [ADGameParameters sharedParameters]
+  057b48  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  057b58  if ([[ADGameParameters sharedParameters] lastAnnouncerValue] == 0) goto loc_100057bcc
+  057b70  [S3DEngine engine]
+  057b94  [[S3DEngine engine] playListWithName:@"announcer"]
+  057bb0  [[[S3DEngine engine] playListWithName:@"announcer"] activate]
+  057bc8  return
+loc_100057bcc:
+  057bd4  return
+
+== -[ADGameplayViewController viewDidLoad]   (address 0x100057c08  size 2688  kind objc)
+  057c60  [super viewDidLoad]
+  057c74  [self initWeaponManager]
+  057c88  [self initAmbiantManager]
+  057c9c  [self initBrickManager]
+  057cb0  [self initDebugMap]
+  057cc4  [self startUpdateTimers]
+  057cd8  [self initButtonMode]
+  057cf0  [self comboMeter]
+  057d08  [self comboMeter]
+  057d28  [[self comboMeter] frame]
+  057d38  [self comboMeter]
+  057d4c  [[self comboMeter] frame]
+  057d5c  [self comboMeter]
+  057d70  [[self comboMeter] frame]
+  057d90  [[self comboMeter] setFrame:{[[self comboMeter] frame].0, [[self comboMeter] frame].1, 1, [[self comboMeter] frame].3}]
+  057dcc  [ADPlayer alloc]
+  057ddc  [[ADPlayer alloc] init]
+  057df8  [self setPlayer:[[ADPlayer alloc] init]]
+  057e28  [self infiniteScrollViews]
+  057e54  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x68] objects:&x29[-0xe8] count:16]
+  057e5c  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x68] objects:&x29[-0xe8] count:16] == 0) goto loc_100057ef0
+  057e78  &@selector(setUserInteractionEnabled:)
+loc_100057e80:
+loc_100057e84:
+  057e90  if (x8 == x19) goto loc_100057e9c
+  057e98  objc_enumerationMutation([self infiniteScrollViews])
+loc_100057e9c:
+  057eb0  [x0 setScrollEnabled:0]
+  057ec0  [x0 setUserInteractionEnabled:0]
+  057ecc  if ((x20 + 1) <u [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x68] objects:&x29[-0xe8] count:16]) goto loc_100057e84
+  057ee4  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x68] objects:&x29[-0xe8] count:16]
+  057eec  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x68] objects:&x29[-0xe8] count:16] != 0) goto loc_100057e80
+loc_100057ef0:
+  057f0c  [self skipButton]
+  057f30  [[self skipButton] setHidden:1]
+  057f4c  [self timerView]
+  057f64  [[self timerView] setHidden:1]
+  057f94  [ADOpenerGameplayViewController class]
+  057fb0  [self isKindOfClass:[ADOpenerGameplayViewController class]]
+  057fb4  if (([self isKindOfClass:[ADOpenerGameplayViewController class]] & 1)) goto loc_100057fe0
+  057fc8  [self initStats]
+  057fdc  [self initGATrackerStats]
+loc_100057fe0:
+  057ff4  [self updateScoreViewWithAnimation:0]
+  057ff8  UIAccessibilityIsVoiceOverRunning()
+  057ffc  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_1000582fc
+  05800c  [ADAccessibleGameView alloc]
+  058028  [self view]
+  05803c  [[self view] frame]
+  058050  [[ADAccessibleGameView alloc] initWithFrame:{[[self view] frame].0, [[self view] frame].1, [[self view] frame].2, [[self view] frame].3}]
+  058060  self->accessibleGameView = [[ADAccessibleGameView alloc] initWithFrame:{[[self view] frame].0, [[self view] frame].1, [[self view] frame].2, [[self view] frame].3}]
+  05807c  [self view]
+  05809c  [[self view] addSubview:self->accessibleGameView]
+  0580bc  [self weaponManager]
+  0580e0  [self->accessibleGameView setWeaponManager:[self weaponManager]]
+  058100  [self->accessibleGameView setGameplayViewController:self]
+  058124  [self buttonsView]
+  058140  [[self buttonsView] subviews]
+  058170  [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16]
+  058178  if ([[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16] == 0) goto loc_10005824c
+  058190  &@selector(setEnabled:)
+  0581a0  &@selector(setIsAccessibilityElement:)
+loc_1000581ac:
+loc_1000581b0:
+  0581bc  if (x8 == x19) goto loc_1000581c8
+  0581c4  objc_enumerationMutation([[self buttonsView] subviews])
+loc_1000581c8:
+  0581d8  [ADButtonWithSwipe class]
+  0581e8  [x0 isKindOfClass:[ADButtonWithSwipe class]]
+  0581ec  if ([x0 isKindOfClass:[ADButtonWithSwipe class]] == 0) goto loc_100058220
+  0581fc  [x0 setUserInteractionEnabled:0]
+  05820c  [x0 setEnabled:0]
+  05821c  [x0 setIsAccessibilityElement:0]
+loc_100058220:
+  058228  if ((x22 + 1) <u [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16]) goto loc_1000581b0
+  058240  [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16]
+  058248  if ([[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16] != 0) goto loc_1000581ac
+loc_10005824c:
+  058268  [ADGameParameters sharedParameters]
+  058284  [[ADGameParameters sharedParameters] buttonMode]
+  0582b0  if (!([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_1000582c8
+  0582c0  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], self->accessibleGameView)
+  0582c4  goto loc_1000582fc
+loc_1000582c8:
+  0582d8  [self weaponTouchArea]
+  0582f0  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [self weaponTouchArea])
+loc_1000582fc:
+  05830c  [self view]
+  05832c  [self pauseButton]
+  058350  [[self view] bringSubviewToFront:[self pauseButton]]
+  058378  [self scoreTitle]
+  0583ac  [UIFont fontWithName:@"Monstro" size:30]
+  0583d4  [[self scoreTitle] setFont:[UIFont fontWithName:@"Monstro" size:30]]
+  0583f0  [self scoreTitle]
+  058418  [UIColor whiteColor]
+  058440  [[self scoreTitle] setTextColor:[UIColor whiteColor]]
+  058468  [self comboTitle]
+  05848c  [UIFont fontWithName:@"Monstro" size:30]
+  0584a8  [[self comboTitle] setFont:[UIFont fontWithName:@"Monstro" size:30]]
+  0584c4  [self comboTitle]
+  0584dc  [UIColor whiteColor]
+  0584f8  [[self comboTitle] setTextColor:[UIColor whiteColor]]
+  058520  [UIApplication sharedApplication]
+  058540  [[UIApplication sharedApplication] setIdleTimerDisabled:1]
+  058578  return
+
+== -[ADGameplayViewController loadView]   (address 0x100058688  size 1624  kind objc)
+  0586e4  [NSNumber numberWithInt:1]
+  058710  [NSNumber numberWithInt:2]
+  058738  [NSNumber numberWithInt:3]
+  058760  [NSNumber numberWithInt:4]
+  058788  [NSNumber numberWithInt:5]
+  0587b0  [NSNumber numberWithInt:6]
+  0587d8  [NSNumber numberWithInt:7]
+  058800  [NSNumber numberWithInt:8]
+  058828  [NSNumber numberWithInt:9]
+  058850  [NSNumber numberWithInt:10]
+  058878  [NSNumber numberWithInt:11]
+  0588a0  [NSNumber numberWithInt:12]
+  0588c8  [NSNumber numberWithInt:13]
+  0588f8  [NSDictionary dictionaryWithObjects:&sp[0xc0] forKeys:&sp[0x58] count:13]
+  058990  [self loADViewBasedOnDeviceWithNibName:@"ADGameplayViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0xc0] forKeys:&sp[0x58] count:13]]
+  0589a8  [self view]
+  0589c4  [[self view] tag]
+  0589d8  if ([[self view] tag] != 2782) goto loc_100058b30
+  0589e4  [self view]
+  058a08  [[self view] viewWithTag:20]
+  058a24  [self view]
+  058a3c  [[self view] viewWithTag:21]
+  058a58  [self view]
+  058a70  [[self view] viewWithTag:22]
+  058a8c  [self view]
+  058aa4  [[self view] viewWithTag:23]
+  058ad4  [NSArray arrayWithObjects:&sp[0x38] count:4]
+  058aec  [self setInfiniteScrollViews:[NSArray arrayWithObjects:&sp[0x38] count:4]]
+loc_100058b30:
+  058b6c  return
+
+== -[ADGameplayViewController viewWillDisappear:]   (address 0x100058ce0  size 4  kind objc)
+  058ce0  return
+
+== -[ADGameplayViewController setGameModeDimension]   (address 0x100058ce4  size 124  kind objc)
+  058d04  [ADTracker sharedInstance]
+  058d38  [[ADTracker sharedInstance] setValue:@"Endless mode" ForDimension:@"Game mode" AndValue:0 ForMetric:0]
+  058d48  return
+
+== -[ADGameplayViewController goToChallengeFailedScreen]   (address 0x100058d60  size 4  kind objc)
+  058d60  return
+
+== -[ADGameplayViewController viewWillAppear:]   (address 0x100058d64  size 956  kind objc)
+  058da0  [super viewWillAppear:arg1]
+  058db4  [self meleeButton]
+  058de4  [self weaponManager]
+  058e00  [[self weaponManager] meleeWeaponName]
+  058e2c  [NSString stringWithFormat:@"%@_icon_game", [[self weaponManager] meleeWeaponName]]
+  058e50  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon_game", [[self weaponManager] meleeWeaponName]]]
+  058e78  [[self meleeButton] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon_game", [[self weaponManager] meleeWeaponName]]] forState:0]
+  058eb8  [ADGameParameters sharedParameters]
+  058ed4  [[ADGameParameters sharedParameters] buttonMode]
+  058ef8  [self buttonsView]
+  058f0c  &@selector(setHidden:)
+  058f14  if ([[ADGameParameters sharedParameters] buttonMode] == 0) goto loc_100058fcc
+  058f24  [[self buttonsView] setHidden:0]
+  058f38  [self buttonsView]
+  058f58  [[self buttonsView] setUserInteractionEnabled:1]
+  058f74  [self scoreTitle]
+  058f8c  [[self scoreTitle] setHidden:0]
+  058fa8  [self comboTitle]
+  058fc0  [[self comboTitle] setHidden:0]
+  058fc4  goto loc_100059078
+  058fc8  goto loc_10005910c
+loc_100058fcc:
+  058fd8  [[self buttonsView] setHidden:1]
+  058fec  [self buttonsView]
+  05900c  [[self buttonsView] setUserInteractionEnabled:0]
+  059028  [self scoreTitle]
+  059040  [[self scoreTitle] setHidden:1]
+  05905c  [self comboTitle]
+  059074  [[self comboTitle] setHidden:1]
+loc_100059078:
+  059094  return
+
+== -[ADGameplayViewController handleLongPress:]   (address 0x100059120  size 172  kind objc)
+  05914c  [arg1 view]
+  059168  [[arg1 view] tag]
+  05917c  if ([[arg1 view] tag] != 3000) goto loc_100059194
+  059190  [self goToScoreScreen]
+loc_100059194:
+  0591a4  return
+
+== -[ADGameplayViewController initWeaponManager]   (address 0x1000591cc  size 704  kind objc)
+  059200  [ADWeaponManager alloc]
+  059210  [[ADWeaponManager alloc] initWithWeaponsFromArmory]
+  059230  [self setWeaponManager:[[ADWeaponManager alloc] initWithWeaponsFromArmory]]
+  059250  [self weaponTouchArea]
+  059274  [self weaponManager]
+  059290  [[self weaponTouchArea] setWeaponManager:[self weaponManager]]
+  0592ac  [self weaponTouchArea]
+  0592d0  [[self weaponTouchArea] setGameplayViewController:self]
+  0592f0  [self weaponButton]
+  059308  [self weaponManager]
+  059324  [[self weaponButton] setWeaponManager:[self weaponManager]]
+  059340  [self weaponButton]
+  059358  [[self weaponButton] setGameplayViewController:self]
+  059370  [ADShakeDetector alloc]
+  059380  [[ADShakeDetector alloc] init]
+  05939c  [self setShakeDetector:[[ADShakeDetector alloc] init]]
+  0593b8  [self shakeDetector]
+  0593d0  [self weaponManager]
+  0593ec  [[self shakeDetector] setWeaponManager:[self weaponManager]]
+  059410  return
+
+== -[ADGameplayViewController startUpdateTimers]   (address 0x10005948c  size 580  kind objc)
+  0594b4  if (self->updateTimer == 0) goto loc_1000594c8
+  0594c4  [self->updateTimer invalidate]
+loc_1000594c8:
+  0594d4  if (self->weaponUpdateTimer == 0) goto loc_1000594e8
+  0594e4  [self->weaponUpdateTimer invalidate]
+loc_1000594e8:
+  0594f4  if (self->statsUpdateTimer == 0) goto loc_100059508
+  059504  [self->statsUpdateTimer invalidate]
+loc_100059508:
+  059540  [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(update) userInfo:0 repeats:1]
+  059550  self->updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(update) userInfo:0 repeats:1]
+  059584  [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateWeapons) userInfo:0 repeats:1]
+  059594  self->weaponUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateWeapons) userInfo:0 repeats:1]
+  0595c4  [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(updateStats) userInfo:0 repeats:1]
+  0595d4  self->statsUpdateTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(updateStats) userInfo:0 repeats:1]
+  0595f8  [NSRunLoop mainRunLoop]
+  05962c  [[NSRunLoop mainRunLoop] addTimer:self->updateTimer forMode:_NSRunLoopCommonModes[+0x0]]
+  059640  [NSRunLoop mainRunLoop]
+  05965c  [[NSRunLoop mainRunLoop] addTimer:self->weaponUpdateTimer forMode:_NSRunLoopCommonModes[+0x0]]
+  059670  [NSRunLoop mainRunLoop]
+  05968c  [[NSRunLoop mainRunLoop] addTimer:self->statsUpdateTimer forMode:_NSRunLoopCommonModes[+0x0]]
+  0596a8  return
+
+== -[ADGameplayViewController updateStats]   (address 0x1000596d0  size 888  kind objc)
+  059708  [ADOpenerGameplayViewController class]
+  059720  [self isKindOfClass:[ADOpenerGameplayViewController class]]
+  059724  if (([self isKindOfClass:[ADOpenerGameplayViewController class]] & 1)) goto loc_100059784
+  059738  [self paused]
+  05973c  if (([self paused] & 1)) goto loc_100059784
+  059754  [ADBrickManager sharedBrickManager]
+  059770  [[ADBrickManager sharedBrickManager] hasSkippableSoundsPlaying]
+  059780  if (!([[ADBrickManager sharedBrickManager] hasSkippableSoundsPlaying] & 1)) goto loc_1000597a4
+loc_100059784:
+  0597a0  return
+loc_1000597a4:
+  0597c0  [NSNumber numberWithDouble:0.25]
+  0597f4  [self notifyStatsSystemWithNotificationWithName:@"TIME_ELAPSED" AndData:[NSNumber numberWithDouble:0.25]]
+  05980c  [NSNumber numberWithDouble:0.25]
+  059834  [self notifyStatsSystemWithNotificationWithName:@"BRICK_TIME_ELAPSED" AndData:[NSNumber numberWithDouble:0.25]]
+  059850  [self weaponManager]
+  05986c  [[self weaponManager] currentWeapon]
+  059888  [[[self weaponManager] currentWeapon] name]
+  0598b0  [NSNumber numberWithBool:0]
+  0598cc  [NSNumber numberWithBool:0]
+  0598e8  [NSNumber numberWithBool:0]
+  059904  [NSNumber numberWithBool:0]
+  059920  [NSNumber numberWithDouble:0.25]
+  059950  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_WEAPON_DATA" AndData:[[[self weaponManager] currentWeapon] name]]
+  0599ac  return
+
+== -[ADGameplayViewController updateWeapons]   (address 0x100059a48  size 264  kind objc)
+  059a6c  [self weaponTouchArea]
+  059a98  [[self weaponTouchArea] update:0.01]
+  059ab4  [self weaponManager]
+  059acc  [[self weaponManager] update:0.01]
+  059ae8  [self weaponButton]
+  059b00  [[self weaponButton] update:0.01]
+  059b30  tail [self updateScoreViewWithAnimation:1]
+  059b34  goto loc_100059b3c
+  059b38  goto loc_100059b3c
+loc_100059b3c:
+
+== -[ADGameplayViewController update]   (address 0x100059b50  size 1464  kind objc)
+  059b9c  [ADOpenerGameplayViewController class]
+  059bb4  [self isKindOfClass:[ADOpenerGameplayViewController class]]
+  059bb8  if (([self isKindOfClass:[ADOpenerGameplayViewController class]] & 1)) goto loc_100059c00
+  059bd0  [ADAmbientManager sharedAmbiantManager]
+  059bf4  [[ADAmbientManager sharedAmbiantManager] update:0.05]
+loc_100059c00:
+  059c18  [ADGameParameters sharedParameters]
+  059c38  [[ADGameParameters sharedParameters] controlScheme]
+  059c4c  if ([[ADGameParameters sharedParameters] controlScheme] != 1) goto loc_100059cc8
+  059c68  [ADMotionManager sharedInstance]
+  059c84  [[ADMotionManager sharedInstance] getYawDifference]
+  059c9c  [ADMotionManager sharedInstance]
+  059cbc  [[ADMotionManager sharedInstance] setLastGyroAngle:[[ADMotionManager sharedInstance] getYawDifference]]
+  059cc0  goto loc_100059d6c
+  059cc4  goto loc_10005a084
+loc_100059cc8:
+  059cd0  [ADGameParameters sharedParameters]
+  059ce4  [[ADGameParameters sharedParameters] controlScheme]
+  059cf8  if ([[ADGameParameters sharedParameters] controlScheme] != 3) goto loc_100059d74
+  059d14  [ADMotionManager sharedInstance]
+  059d30  [[ADMotionManager sharedInstance] getTiltAngle]
+  059d48  [ADMotionManager sharedInstance]
+  059d68  [[ADMotionManager sharedInstance] setLastTiltAngle:[[ADMotionManager sharedInstance] getTiltAngle]]
+loc_100059d6c:
+loc_100059d74:
+  059d94  [self infiniteScrollViews]
+  059dc0  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  059dc8  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100059e38
+  059dd8  &@selector(update)
+loc_100059de0:
+loc_100059de4:
+  059df0  if (x8 == x27) goto loc_100059dfc
+  059df8  objc_enumerationMutation([self infiniteScrollViews])
+loc_100059dfc:
+  059e08  [x0 update]
+  059e14  if ((x28 + 1) <u [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100059de4
+  059e2c  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  059e34  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_100059de0
+loc_100059e38:
+  059e54  [ADBrickManager sharedBrickManager]
+  059e80  [[ADBrickManager sharedBrickManager] update:0.05]
+  059e9c  [self player]
+  059eb4  [[self player] update:0.05]
+  059ecc  if (self->accessibleGameView == 0) goto loc_100059edc
+  059ed8  [self->accessibleGameView update:0.05]
+loc_100059edc:
+  059ee4  [ADGameParameters sharedParameters]
+  059f00  [[ADGameParameters sharedParameters] debugMapVisible]
+  059f10  if ([[ADGameParameters sharedParameters] debugMapVisible] == 0) goto loc_10005a038
+  059f2c  [self->debugMap update]
+  059f48  [self weaponManager]
+  059f64  [[self weaponManager] currentWeapon]
+  059f88  [S3DEngine engine]
+  059fa4  [[S3DEngine engine] headOrientation]
+  059fbc  [self->debugMap updateWeaponRange:[[self weaponManager] currentWeapon] angle:[[S3DEngine engine] headOrientation]]
+  059fe4  [self weaponManager]
+  05a000  [[self weaponManager] projectiles]
+  05a024  [self->debugMap updateProjectiles:[[self weaponManager] projectiles]]
+loc_10005a038:
+  05a04c  [self updateScoreViewWithAnimation:1]
+  05a07c  return
+
+== -[ADGameplayViewController motionEnded:withEvent:]   (address 0x10005a108  size 244  kind objc)
+  05a13c  [ADGameParameters sharedParameters]
+  05a158  [[ADGameParameters sharedParameters] buttonMode]
+  05a168  if (([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_10005a1c0
+  05a17c  [arg2 type]
+  05a184  if ([arg2 type] != 1) goto loc_10005a1c0
+  05a198  [self weaponManager]
+  05a1b4  [[self weaponManager] shootWithMelee]
+loc_10005a1c0:
+  05a1d0  return
+
+== -[ADGameplayViewController canBecomeFirstResponder]   (address 0x10005a1fc  size 8  kind objc)
+  05a200  return
+
+== -[ADGameplayViewController viewDidAppear:]   (address 0x10005a204  size 16  kind objc)
+  05a210  tail [self becomeFirstResponder]
+
+== -[ADGameplayViewController initButtonMode]   (address 0x10005a214  size 460  kind objc)
+  05a264  [self buttonsView]
+  05a280  [[self buttonsView] subviews]
+  05a2b8  [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  05a2c0  if ([[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_10005a374
+  05a2d8  &@selector(isKindOfClass:)
+  05a2e8  &@selector(setGameplayViewController:)
+loc_10005a2f4:
+loc_10005a2f8:
+  05a304  if (x8 == x28) goto loc_10005a310
+  05a30c  objc_enumerationMutation([[self buttonsView] subviews])
+loc_10005a310:
+  05a320  [ADButtonWithSwipe class]
+  05a330  [x0 isKindOfClass:[ADButtonWithSwipe class]]
+  05a334  if ([x0 isKindOfClass:[ADButtonWithSwipe class]] == 0) goto loc_10005a348
+  05a344  [x0 setGameplayViewController:self]
+loc_10005a348:
+  05a350  if ((x21 + 1) <u [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_10005a2f8
+  05a368  [[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  05a370  if ([[[self buttonsView] subviews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_10005a2f4
+loc_10005a374:
+  05a3b0  return
+
+== -[ADGameplayViewController touchesMoveDetected:justStarted:]   (address 0x10005a3e0  size 872  kind objc)
+  05a43c  [self buttonsView]
+  05a458  [[self buttonsView] superview]
+  05a478  [[[self buttonsView] superview] subviews]
+  05a4bc  [[[[self buttonsView] superview] subviews] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xe8] count:16]
+  05a4c4  if ([[[[self buttonsView] superview] subviews] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xe8] count:16] == 0) goto loc_10005a57c
+  05a4dc  &@selector(isKindOfClass:)
+  05a4ec  &@selector(setHighlighted:)
+loc_10005a4f8:
+loc_10005a4fc:
+  05a508  if (x8 == x28) goto loc_10005a514
+  05a510  objc_enumerationMutation([[[self buttonsView] superview] subviews])
+loc_10005a514:
+  05a524  [UIButton class]
+  05a534  [x0 isKindOfClass:[UIButton class]]
+  05a538  if ([x0 isKindOfClass:[UIButton class]] == 0) goto loc_10005a54c
+  05a548  [x0 setHighlighted:0]
+loc_10005a54c:
+  05a554  if ((x20 + 1) <u [[[[self buttonsView] superview] subviews] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xe8] count:16]) goto loc_10005a4fc
+  05a570  [[[[self buttonsView] superview] subviews] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xe8] count:16]
+  05a578  if ([[[[self buttonsView] superview] subviews] countByEnumeratingWithState:&sp[0x58] objects:&x29[-0xe8] count:16] != 0) goto loc_10005a4f8
+loc_10005a57c:
+  05a588  if (arg2 == 0) goto loc_10005a598
+  05a594  self->movementOnLastFrame = 0
+loc_10005a598:
+  05a5ac  [ADGameParameters sharedParameters]
+  05a5c8  [[ADGameParameters sharedParameters] sensivity]
+  05a5f8  [self infiniteScrollViews]
+  05a618  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16]
+  05a624  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16] == 0) goto loc_10005a6a4
+  05a63c  &@selector(playerSwiped:)
+loc_10005a644:
+loc_10005a648:
+  05a654  if (x8 == x24) goto loc_10005a660
+  05a65c  objc_enumerationMutation([self infiniteScrollViews])
+loc_10005a660:
+  05a674  [x0 playerSwiped:(-([[ADGameParameters sharedParameters] sensivity] * arg1) - self->movementOnLastFrame)]
+  05a680  if ((x20 + 1) <u [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16]) goto loc_10005a648
+  05a698  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16]
+  05a6a0  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x98] count:16] != 0) goto loc_10005a644
+loc_10005a6a4:
+  05a6b4  self->movementOnLastFrame = -([[ADGameParameters sharedParameters] sensivity] * arg1)
+  05a6f0  return
+
+== -[ADGameplayViewController panDetected:]   (address 0x10005a748  size 292  kind objc)
+  05a780  [ADGameParameters sharedParameters]
+  05a79c  [[ADGameParameters sharedParameters] controlScheme]
+  05a7b0  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_10005a82c
+  05a7c4  [self view]
+  05a7e8  [arg1 translationInView:[self view]]
+  05a800  [arg1 state]
+  05a820  [self touchesMoveDetected:[arg1 translationInView:[self view]].0 justStarted:([arg1 state] == 1)]
+loc_10005a82c:
+  05a840  return
+
+== -[ADGameplayViewController switchWeaponButtonPressed:]   (address 0x10005a86c  size 100  kind objc)
+  05a884  [self weaponManager]
+  05a8a0  [[self weaponManager] selectNextWeapon]
+  05a8b0  return
+
+== -[ADGameplayViewController reloadButtonPressed:]   (address 0x10005a8d0  size 100  kind objc)
+  05a8e8  [self weaponManager]
+  05a904  [[self weaponManager] reloadGestureDown]
+  05a914  return
+
+== -[ADGameplayViewController meleeButtonPressed:]   (address 0x10005a934  size 100  kind objc)
+  05a94c  [self weaponManager]
+  05a968  [[self weaponManager] shootWithMelee]
+  05a978  return
+
+== -[ADGameplayViewController powerUpButtonPressed:]   (address 0x10005a998  size 100  kind objc)
+  05a9b0  [self weaponManager]
+  05a9cc  [[self weaponManager] usePowerUp]
+  05a9dc  return
+
+== -[ADGameplayViewController playerKilledEnemy:withCombo:]   (address 0x10005a9fc  size 4  kind objc)
+  05a9fc  return
+
+== -[ADGameplayViewController playerDidACriticalHit]   (address 0x10005aa00  size 4  kind objc)
+  05aa00  return
+
+== -[ADGameplayViewController updateScoreViewWithAnimation:]   (address 0x10005aa04  size 2628  kind objc)
+  05aa40  [self comboLabel]
+  05aa70  [ADInGameStats singleton]
+  05aa90  [[ADInGameStats singleton] combo]
+  05aab0  [NSString stringWithFormat:@"x %i", [[ADInGameStats singleton] combo]]
+  05aad8  [[self comboLabel] setText:[NSString stringWithFormat:@"x %i", [[ADInGameStats singleton] combo]]]
+  05ab08  [self scoreLabel]
+  05ab24  [[self scoreLabel] text]
+  05ab40  [[[self scoreLabel] text] intValue]
+  05ab60  [ADInGameStats singleton]
+  05ab80  [[ADInGameStats singleton] gameScore]
+  05ab94  if ([[ADInGameStats singleton] gameScore] == [[[self scoreLabel] text] intValue]) goto loc_10005aff0
+  05ab9c  if (arg1 == 0) goto loc_10005ae9c
+  05abb4  [ADInGameStats singleton]
+  05abc8  [[ADInGameStats singleton] gameScore]
+  05abec  if ([[ADInGameStats singleton] gameScore] <=u [[[self scoreLabel] text] intValue]) goto loc_10005af20
+  05abf8  [ADInGameStats singleton]
+  05ac0c  [[ADInGameStats singleton] gameScore]
+  05ac28  if (([[ADInGameStats singleton] gameScore] - [[[self scoreLabel] text] intValue]) <u 1001) goto loc_10005ac88
+  05ac34  [self scoreLabel]
+  05ac58  [self formattedScoreFromInt:([[[self scoreLabel] text] intValue] + 1000)]
+  05ac74  [[self scoreLabel] setText:[self formattedScoreFromInt:([[[self scoreLabel] text] intValue] + 1000)]]
+loc_10005ac88:
+  05ac90  [ADInGameStats singleton]
+  05aca4  [[ADInGameStats singleton] gameScore]
+  05acc4  t1 = ((([[ADInGameStats singleton] gameScore] - [[[self scoreLabel] text] intValue]) >>> 3) *h 0x20c49ba5e353f7cf)
+  05acd0  t2 = (([[ADInGameStats singleton] gameScore] - [[[self scoreLabel] text] intValue]) - (t1 >>> 4) * 1000)
+  05ace0  if (t2 <u 101) goto loc_10005ad40
+  05acec  [self scoreLabel]
+  05ad10  [self formattedScoreFromInt:([[[self scoreLabel] text] intValue] + 100)]
+  05ad2c  [[self scoreLabel] setText:[self formattedScoreFromInt:([[[self scoreLabel] text] intValue] + 100)]]
+loc_10005ad40:
+  05ad48  [ADInGameStats singleton]
+  05ad5c  [[ADInGameStats singleton] gameScore]
+  05ad7c  t3 = ((([[ADInGameStats singleton] gameScore] - [[[self scoreLabel] text] intValue]) >>> 2) *h 0x28f5c28f5c28f5c3)
+  05ad88  t4 = (([[ADInGameStats singleton] gameScore] - [[[self scoreLabel] text] intValue]) - (t3 >>> 2) * 100)
+  05ad98  if (t4 <u 11) goto loc_10005adf8
+  05ada4  [self scoreLabel]
+  05adc8  [self formattedScoreFromInt:([[[self scoreLabel] text] intValue] + 10)]
+  05ade4  [[self scoreLabel] setText:[self formattedScoreFromInt:([[[self scoreLabel] text] intValue] + 10)]]
+loc_10005adf8:
+  05ae00  [ADInGameStats singleton]
+  05ae14  [[ADInGameStats singleton] gameScore]
+  05ae28  t5 = (([[ADInGameStats singleton] gameScore] - [[[self scoreLabel] text] intValue]) *h 0xcccccccccccccccd)
+  05ae34  t6 = (([[ADInGameStats singleton] gameScore] - [[[self scoreLabel] text] intValue]) - (t5 >>> 3) * 10)
+  05ae40  if (t6 == 0) goto loc_10005af20
+  05ae4c  [self scoreLabel]
+  05ae70  [self formattedScoreFromInt:([[[self scoreLabel] text] intValue] + 1)]
+  05ae8c  [[self scoreLabel] setText:[self formattedScoreFromInt:([[[self scoreLabel] text] intValue] + 1)]]
+  05ae90  goto loc_10005af10
+  05ae98  goto loc_10005b368
+loc_10005ae9c:
+  05aea4  [self scoreLabel]
+  05aebc  [ADInGameStats singleton]
+  05aed0  [[ADInGameStats singleton] gameScore]
+  05aee8  [self formattedScoreFromInt:[[ADInGameStats singleton] gameScore]]
+  05af04  [[self scoreLabel] setText:[self formattedScoreFromInt:[[ADInGameStats singleton] gameScore]]]
+loc_10005af10:
+loc_10005af20:
+  05af30  [self scoreView]
+  05af50  [[self scoreView] frame]
+  05af60  [ADInGameStats singleton]
+  05af74  [[ADInGameStats singleton] combo]
+  05afb4  [self comboMeter]
+  05afc8  if (arg1 == 0) goto loc_10005b018
+  05afd4  [[self comboMeter] frame]
+  05afec  if ((int)([[self scoreView] frame].2 * ((float)[[ADInGameStats singleton] combo] / 200)) != (int)[[self comboMeter] frame].2) goto loc_10005b0c0
+loc_10005aff0:
+  05b014  return
+loc_10005b018:
+  05b020  [self comboMeter]
+  05b034  [[self comboMeter] frame]
+  05b044  [self comboMeter]
+  05b058  [[self comboMeter] frame]
+  05b068  [self comboMeter]
+  05b07c  [[self comboMeter] frame]
+  05b09c  [[self comboMeter] setFrame:{[[self comboMeter] frame].0, [[self comboMeter] frame].1, ([[self scoreView] frame].2 * ((float)[[ADInGameStats singleton] combo] / 200)), [[self comboMeter] frame].3}]
+  05b0bc  goto loc_10005b2a4
+loc_10005b0c0:
+  05b0c8  [self comboMeter]
+  05b0dc  [[self comboMeter] frame]
+  05b0f8  [self comboMeter]
+  05b10c  if (([[self scoreView] frame].2 * ((float)[[ADInGameStats singleton] combo] / 200)) <= (or unordered) [[self comboMeter] frame].2) goto loc_10005b1cc
+  05b118  [self comboMeter]
+  05b12c  [[self comboMeter] frame]
+  05b13c  [self comboMeter]
+  05b150  [[self comboMeter] frame]
+  05b160  [self comboMeter]
+  05b174  [[self comboMeter] frame]
+  05b184  [self comboMeter]
+  05b198  [[self comboMeter] frame]
+  05b1c0  [[self comboMeter] setFrame:{[[self comboMeter] frame].0, [[self comboMeter] frame].1, ([[self comboMeter] frame].2 + 0.4), [[self comboMeter] frame].3}]
+  05b1c4  goto loc_10005b280
+  05b1c8  goto loc_10005b3d0
+loc_10005b1cc:
+  05b1d4  [self comboMeter]
+  05b1e8  [[self comboMeter] frame]
+  05b1f8  [self comboMeter]
+  05b20c  [[self comboMeter] frame]
+  05b21c  [self comboMeter]
+  05b230  [[self comboMeter] frame]
+  05b240  [self comboMeter]
+  05b254  [[self comboMeter] frame]
+  05b27c  [[self comboMeter] setFrame:{[[self comboMeter] frame].0, [[self comboMeter] frame].1, ([[self comboMeter] frame].2 + -0.4), [[self comboMeter] frame].3}]
+loc_10005b280:
+loc_10005b2a4:
+  05b2c8  return
+
+== -[ADGameplayViewController formattedScoreFromInt:]   (address 0x10005b448  size 60  kind objc)
+  05b474  [NSString stringWithFormat:@"%i", arg1]
+  05b480  return
+
+== -[ADGameplayViewController pauseButtonTouched:]   (address 0x10005b484  size 180  kind objc)
+  05b4a8  [ADPauseViewController alloc]
+  05b4c4  [[ADPauseViewController alloc] initWithNibName:@"ADPauseViewController" bundle:0]
+  05b4d4  self->pauseView = [[ADPauseViewController alloc] initWithNibName:@"ADPauseViewController" bundle:0]
+  05b4f4  [self->pauseView setGameplayViewController:self]
+  05b508  [self pauseGame]
+  05b528  [self presentViewController:self->pauseView animated:0 completion:0]
+  05b534  return
+
+== -[ADGameplayViewController skipButtonPressed:]   (address 0x10005b538  size 4  kind objc)
+  05b538  return
+
+== -[ADGameplayViewController quitGameplayWithFail]   (address 0x10005b53c  size 16  kind objc)
+  05b548  tail [self goToScoreScreen]
+
+== -[ADGameplayViewController goToScoreScreen]   (address 0x10005b54c  size 176  kind objc)
+  05b568  [self killGameplay]
+  05b580  [UIApplication sharedApplication]
+  05b59c  [[UIApplication sharedApplication] delegate]
+  05b5b8  [[[UIApplication sharedApplication] delegate] goToGameOverEndless]
+  05b5d4  return
+
+== -[ADGameplayViewController pauseGame]   (address 0x10005b5fc  size 284  kind objc)
+  05b618  [self stopTimers]
+  05b630  [ADBrickManager sharedBrickManager]
+  05b64c  [[ADBrickManager sharedBrickManager] pauseAllBricks]
+  05b66c  [ADAmbientManager sharedAmbiantManager]
+  05b688  [[ADAmbientManager sharedAmbiantManager] pause]
+  05b6a8  [self setPaused:1]
+  05b6c0  [ADGameParameters sharedParameters]
+  05b6dc  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  05b6e8  self->announcerValueOnEnteringPause = [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  05b6f8  return
+
+== -[ADGameplayViewController resumeGame]   (address 0x10005b718  size 612  kind objc)
+  05b73c  [self startUpdateTimers]
+  05b754  [ADBrickManager sharedBrickManager]
+  05b770  [[ADBrickManager sharedBrickManager] resumeAllBricks]
+  05b790  [ADAmbientManager sharedAmbiantManager]
+  05b7ac  [[ADAmbientManager sharedAmbiantManager] resume]
+  05b7c4  self->pauseView = 0
+  05b7e0  [self setPaused:0]
+  05b808  [ADGameParameters sharedParameters]
+  05b828  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  05b83c  if (self->announcerValueOnEnteringPause != [[ADGameParameters sharedParameters] lastAnnouncerValue]) goto loc_10005b854
+  05b850  return
+loc_10005b854:
+  05b85c  [ADGameParameters sharedParameters]
+  05b870  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  05b894  [S3DEngine engine]
+  05b8a8  &@selector(playListWithName:)
+  05b8b0  if ([[ADGameParameters sharedParameters] lastAnnouncerValue] == 0) goto loc_10005b8e8
+  05b8c0  [[S3DEngine engine] playListWithName:@"announcer"]
+  05b8dc  [[[S3DEngine engine] playListWithName:@"announcer"] activate]
+  05b8e0  goto loc_10005b914
+  05b8e4  goto loc_10005b960
+loc_10005b8e8:
+  05b8f4  [[S3DEngine engine] playListWithName:@"announcer"]
+  05b910  [[[S3DEngine engine] playListWithName:@"announcer"] deactivate]
+loc_10005b914:
+  05b930  return
+
+== -[ADGameplayViewController showDeathOverlay]   (address 0x10005b97c  size 252  kind objc)
+  05b99c  [self view]
+  05b9c0  [self deathOverlay]
+  05b9e4  [[self view] bringSubviewToFront:[self deathOverlay]]
+  05ba00  [self deathOverlay]
+  05ba20  [[self deathOverlay] setUserInteractionEnabled:1]
+  05ba4c  tail [self setPaused:1]
+  05ba50  goto loc_10005ba64
+  05ba60  goto loc_10005ba68
+loc_10005ba64:
+loc_10005ba68:
+
+== -[ADGameplayViewController showReviveView]   (address 0x10005ba78  size 968  kind objc)
+  05baa8  [ADAmbientManager sharedAmbiantManager]
+  05bac4  [[ADAmbientManager sharedAmbiantManager] stopAmbient]
+  05bae4  [ADGameModifiers sharedModifiers]
+  05bb00  [[ADGameModifiers sharedModifiers] freeRevive]
+  05bb24  [ADReviveViewController alloc]
+  05bb40  ldexp(1)
+  05bb58  [[ADReviveViewController alloc] initWithCost:(int)ldexp(1)]
+  05bb68  self->reviveViewController = [[ADReviveViewController alloc] initWithCost:(int)ldexp(1)]
+  05bb88  [self->reviveViewController setGameplayViewController:self]
+  05bba0  [self view]
+  05bbb8  [self->reviveViewController view]
+  05bbdc  [[self view] addSubview:[self->reviveViewController view]]
+  05bbf8  [self->reviveViewController view]
+  05bc18  [self deathOverlay]
+  05bc34  [[self deathOverlay] center]
+  05bc48  [[self->reviveViewController view] setCenter:{[[self deathOverlay] center].0, [[self deathOverlay] center].1}]
+  05bc64  [self view]
+  05bc7c  [self->reviveViewController view]
+  05bca0  [[self view] bringSubviewToFront:[self->reviveViewController view]]
+  05bcbc  [self->reviveViewController view]
+  05bcdc  [[self->reviveViewController view] setAccessibilityViewIsModal:1]
+  05bcfc  [self->reviveViewController view]
+  05bd14  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [self->reviveViewController view])
+  05bd20  UIAccessibilityIsVoiceOverRunning()
+  05bd24  if ((UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_10005bdc0
+  05bd30  [self->reviveViewController view]
+  05bd50  [[self->reviveViewController view] setAlpha:0]
+  05bdb4  [UIView animateWithDuration:1 animations:^{-[ADGameplayViewController showReviveView]_block_invoke captures +0x20=self}]
+loc_10005bdc0:
+  05bdc8  self->nbRevives = (self->nbRevives + 1)
+  05bde0  return
+
+== -[ADGameplayViewController showReviveView]_block_invoke   (address 0x10005be40  size 112  kind block)
+  05be68  [self->reviveViewController view]
+  05be88  [[self->reviveViewController view] setAlpha:1]
+  05be98  return
+
+== sub_10005beb0   (address 0x10005beb0  size 8  kind sub)
+
+== sub_10005beb8   (address 0x10005beb8  size 8  kind sub)
+  05bebc  return
+
+== -[ADGameplayViewController revive]   (address 0x10005bec0  size 588  kind objc)
+  05beec  [ADInGameStats singleton]
+  05bf0c  [[ADInGameStats singleton] setCombo:10]
+  05bf2c  [self updateScoreViewWithAnimation:0]
+  05bf44  [self deathOverlay]
+  05bf64  [[self deathOverlay] setAccessibilityViewIsModal:0]
+  05bf84  [self view]
+  05bf9c  [self deathOverlay]
+  05bfc0  [[self view] sendSubviewToBack:[self deathOverlay]]
+  05bfdc  [self deathOverlay]
+  05bffc  [[self deathOverlay] setUserInteractionEnabled:0]
+  05c018  [self->reviveViewController view]
+  05c034  [[self->reviveViewController view] removeFromSuperview]
+  05c044  self->reviveViewController = 0
+  05c060  [self setPaused:0]
+  05c078  [ADBrickManager sharedBrickManager]
+  05c094  [[ADBrickManager sharedBrickManager] revive]
+  05c0c0  tail [self initAmbiantManager]
+  05c0c4  goto loc_10005c0f8
+  05c0c8  goto loc_10005c0f8
+  05c0d0  goto loc_10005c0e0
+loc_10005c0e0:
+  05c0e4  goto loc_10005c100
+  05c0f0  goto loc_10005c100
+  05c0f4  goto loc_10005c0f8
+loc_10005c0f8:
+loc_10005c100:
+
+== -[ADGameplayViewController gameOver]   (address 0x10005c10c  size 100  kind objc)
+  05c12c  [ADBrickManager sharedBrickManager]
+  05c148  [[ADBrickManager sharedBrickManager] gameOver]
+  05c158  return
+
+== -[ADGameplayViewController killGameplay]   (address 0x10005c170  size 1536  kind objc)
+  05c1b0  [self stopTimers]
+  05c1c8  [ADAmbientManager sharedAmbiantManager]
+  05c1e4  [[ADAmbientManager sharedAmbiantManager] stopAmbient]
+  05c1fc  dispatch_time(0, 0x5f5e100)
+  05c250  dispatch_after(dispatch_time(0, 0x5f5e100), __dispatch_main_q, ^{-[ADGameplayViewController killGameplay]_block_invoke captures +0x20=self, +0x28=self})
+  05c264  [self weaponTouchArea]
+  05c288  [[self weaponTouchArea] setGameplayViewController:0]
+  05c2a4  [self weaponButton]
+  05c2bc  [[self weaponButton] setGameplayViewController:0]
+  05c2dc  [self setPlayer:0]
+  05c2f4  [ADBrickManager sharedBrickManager]
+  05c30c  [[ADBrickManager sharedBrickManager] setGameplayViewController:0]
+  05c330  [self->panArray removeAllObjects]
+  05c354  [self infiniteScrollViews]
+  05c380  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x78] count:16]
+  05c388  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x78] count:16] == 0) goto loc_10005c3f8
+  05c398  &@selector(removeFromSuperview)
+loc_10005c3a0:
+loc_10005c3a4:
+  05c3b0  if (x8 == x25) goto loc_10005c3bc
+  05c3b8  objc_enumerationMutation([self infiniteScrollViews])
+loc_10005c3bc:
+  05c3c8  [x0 removeFromSuperview]
+  05c3d4  if ((x26 + 1) <u [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x78] count:16]) goto loc_10005c3a4
+  05c3ec  [[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x78] count:16]
+  05c3f4  if ([[self infiniteScrollViews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x78] count:16] != 0) goto loc_10005c3a0
+loc_10005c3f8:
+  05c414  [UIApplication sharedApplication]
+  05c434  [[UIApplication sharedApplication] setIdleTimerDisabled:0]
+  05c454  [ADGameParameters sharedParameters]
+  05c470  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  05c480  if ([[ADGameParameters sharedParameters] lastAnnouncerValue] == 0) goto loc_10005c4ec
+  05c498  [S3DEngine engine]
+  05c4bc  [[S3DEngine engine] playListWithName:@"announcer"]
+  05c4d8  [[[S3DEngine engine] playListWithName:@"announcer"] deactivate]
+loc_10005c4ec:
+  05c500  [ADOpenerGameplayViewController class]
+  05c518  [self isKindOfClass:[ADOpenerGameplayViewController class]]
+  05c51c  if (([self isKindOfClass:[ADOpenerGameplayViewController class]] & 1)) goto loc_10005c6b0
+  05c538  [ADInGameStats singleton]
+  05c554  [[ADInGameStats singleton] endLevel]
+  05c568  [ADInGameStats singleton]
+  05c584  [[ADInGameStats singleton] saveStats]
+  05c5a4  [ADPersistentStats persistentStats]
+  05c5bc  [ADInGameStats singleton]
+  05c5d8  [[ADInGameStats singleton] gameScore]
+  05c5f0  [[ADPersistentStats persistentStats] saveScore:[[ADInGameStats singleton] gameScore]]
+  05c61c  [ADTracker sharedInstance]
+  05c638  [[ADTracker sharedInstance] recordEndOfGameData]
+  05c650  [GAI sharedInstance]
+  05c66c  [[GAI sharedInstance] defaultTracker]
+  05c68c  [&d_1003b83b0] -> @"&cd"
+  05c6a4  [[[GAI sharedInstance] defaultTracker] set:@"&cd" value:0]
+loc_10005c6b0:
+  05c6e0  return
+
+== -[ADGameplayViewController killGameplay]_block_invoke   (address 0x10005c770  size 328  kind block)
+  05c798  [ADAmbientManager sharedAmbiantManager]
+  05c7b4  [[ADAmbientManager sharedAmbiantManager] stopAmbient]
+  05c7d0  [self weaponManager]
+  05c7f0  [[self weaponManager] clean]
+  05c810  [ADBrickManager sharedBrickManager]
+  05c824  [[ADBrickManager sharedBrickManager] clean]
+  05c84c  [self->debugMap view]
+  05c868  [[self->debugMap view] removeFromSuperview]
+  05c87c  self->debugMap = 0
+  05c88c  return
+
+== sub_10005c8b8   (address 0x10005c8b8  size 8  kind sub)
+
+== sub_10005c8c0   (address 0x10005c8c0  size 8  kind sub)
+  05c8c4  return
+
+== -[ADGameplayViewController didReceiveMemoryWarning]   (address 0x10005c8c8  size 60  kind objc)
+  05c8f4  [super didReceiveMemoryWarning]
+  05c900  return
+
+== -[ADGameplayViewController stopTimers]   (address 0x10005c904  size 148  kind objc)
+  05c938  [self->updateTimer invalidate]
+  05c94c  [self->weaponUpdateTimer invalidate]
+  05c960  [self->statsUpdateTimer invalidate]
+  05c968  self->updateTimer = 0
+  05c974  self->weaponUpdateTimer = 0
+  05c980  self->statsUpdateTimer = 0
+  05c994  return
+
+== -[ADGameplayViewController dealloc]   (address 0x10005c998  size 140  kind objc)
+  05c9b4  NSLog(@"Dealloc gameplay VC", _cmd)
+  05c9d8  [super dealloc]
+  05c9e8  return
+  05ca14  [super dealloc]
+  05ca20  call sub_10000b760
+
+== -[ADGameplayViewController deathOverlay]   (address 0x10005ca24  size 16  kind objc)
+  05ca30  return
+
+== -[ADGameplayViewController setDeathOverlay:]   (address 0x10005ca34  size 56  kind objc)
+  05ca58  self->_deathOverlay = arg1
+  05ca68  return
+
+== -[ADGameplayViewController buttonsView]   (address 0x10005ca6c  size 16  kind objc)
+  05ca78  return
+
+== -[ADGameplayViewController setButtonsView:]   (address 0x10005ca7c  size 56  kind objc)
+  05caa0  self->_buttonsView = arg1
+  05cab0  return
+
+== -[ADGameplayViewController weaponTouchArea]   (address 0x10005cab4  size 16  kind objc)
+  05cac0  return
+
+== -[ADGameplayViewController setWeaponTouchArea:]   (address 0x10005cac4  size 56  kind objc)
+  05cae8  self->_weaponTouchArea = arg1
+  05caf8  return
+
+== -[ADGameplayViewController weaponButton]   (address 0x10005cafc  size 16  kind objc)
+  05cb08  return
+
+== -[ADGameplayViewController setWeaponButton:]   (address 0x10005cb0c  size 56  kind objc)
+  05cb30  self->_weaponButton = arg1
+  05cb40  return
+
+== -[ADGameplayViewController infiniteScrollViews]   (address 0x10005cb44  size 16  kind objc)
+  05cb50  return
+
+== -[ADGameplayViewController setInfiniteScrollViews:]   (address 0x10005cb54  size 56  kind objc)
+  05cb78  self->_infiniteScrollViews = arg1
+  05cb88  return
+
+== -[ADGameplayViewController weaponManager]   (address 0x10005cb8c  size 16  kind objc)
+  05cb98  return
+
+== -[ADGameplayViewController setWeaponManager:]   (address 0x10005cb9c  size 56  kind objc)
+  05cbc0  self->_weaponManager = arg1
+  05cbd0  return
+
+== -[ADGameplayViewController shakeDetector]   (address 0x10005cbd4  size 16  kind objc)
+  05cbe0  return
+
+== -[ADGameplayViewController setShakeDetector:]   (address 0x10005cbe4  size 56  kind objc)
+  05cc08  self->_shakeDetector = arg1
+  05cc18  return
+
+== -[ADGameplayViewController player]   (address 0x10005cc1c  size 16  kind objc)
+  05cc28  return
+
+== -[ADGameplayViewController setPlayer:]   (address 0x10005cc2c  size 56  kind objc)
+  05cc50  self->_player = arg1
+  05cc60  return
+
+== -[ADGameplayViewController meleeButton]   (address 0x10005cc64  size 16  kind objc)
+  05cc70  return
+
+== -[ADGameplayViewController setMeleeButton:]   (address 0x10005cc74  size 56  kind objc)
+  05cc98  self->_meleeButton = arg1
+  05cca8  return
+
+== -[ADGameplayViewController switchWeaponButton]   (address 0x10005ccac  size 16  kind objc)
+  05ccb8  return
+
+== -[ADGameplayViewController setSwitchWeaponButton:]   (address 0x10005ccbc  size 56  kind objc)
+  05cce0  self->_switchWeaponButton = arg1
+  05ccf0  return
+
+== -[ADGameplayViewController scoreView]   (address 0x10005ccf4  size 16  kind objc)
+  05cd00  return
+
+== -[ADGameplayViewController setScoreView:]   (address 0x10005cd04  size 56  kind objc)
+  05cd28  self->_scoreView = arg1
+  05cd38  return
+
+== -[ADGameplayViewController comboLabel]   (address 0x10005cd3c  size 16  kind objc)
+  05cd48  return
+
+== -[ADGameplayViewController setComboLabel:]   (address 0x10005cd4c  size 56  kind objc)
+  05cd70  self->_comboLabel = arg1
+  05cd80  return
+
+== -[ADGameplayViewController scoreLabel]   (address 0x10005cd84  size 16  kind objc)
+  05cd90  return
+
+== -[ADGameplayViewController setScoreLabel:]   (address 0x10005cd94  size 56  kind objc)
+  05cdb8  self->_scoreLabel = arg1
+  05cdc8  return
+
+== -[ADGameplayViewController comboMeter]   (address 0x10005cdcc  size 16  kind objc)
+  05cdd8  return
+
+== -[ADGameplayViewController setComboMeter:]   (address 0x10005cddc  size 56  kind objc)
+  05ce00  self->_comboMeter = arg1
+  05ce10  return
+
+== -[ADGameplayViewController timerView]   (address 0x10005ce14  size 16  kind objc)
+  05ce20  return
+
+== -[ADGameplayViewController setTimerView:]   (address 0x10005ce24  size 56  kind objc)
+  05ce48  self->_timerView = arg1
+  05ce58  return
+
+== -[ADGameplayViewController timerLabel]   (address 0x10005ce5c  size 16  kind objc)
+  05ce68  return
+
+== -[ADGameplayViewController setTimerLabel:]   (address 0x10005ce6c  size 56  kind objc)
+  05ce90  self->_timerLabel = arg1
+  05cea0  return
+
+== -[ADGameplayViewController skipButton]   (address 0x10005cea4  size 16  kind objc)
+  05ceb0  return
+
+== -[ADGameplayViewController setSkipButton:]   (address 0x10005ceb4  size 56  kind objc)
+  05ced8  self->_skipButton = arg1
+  05cee8  return
+
+== -[ADGameplayViewController pauseButton]   (address 0x10005ceec  size 16  kind objc)
+  05cef8  return
+
+== -[ADGameplayViewController setPauseButton:]   (address 0x10005cefc  size 56  kind objc)
+  05cf20  self->_pauseButton = arg1
+  05cf30  return
+
+== -[ADGameplayViewController paused]   (address 0x10005cf34  size 16  kind objc)
+  05cf40  return
+
+== -[ADGameplayViewController setPaused:]   (address 0x10005cf44  size 16  kind objc)
+  05cf4c  self->_paused = arg1
+  05cf50  return
+
+== -[ADGameplayViewController scoreTitle]   (address 0x10005cf54  size 16  kind objc)
+  05cf60  return
+
+== -[ADGameplayViewController setScoreTitle:]   (address 0x10005cf64  size 56  kind objc)
+  05cf88  self->_scoreTitle = arg1
+  05cf98  return
+
+== -[ADGameplayViewController comboTitle]   (address 0x10005cf9c  size 16  kind objc)
+  05cfa8  return
+
+== -[ADGameplayViewController setComboTitle:]   (address 0x10005cfac  size 56  kind objc)
+  05cfd0  self->_comboTitle = arg1
+  05cfe0  return
+
+== -[ADGameplayViewController .cxx_destruct]   (address 0x10005cfe4  size 584  kind objc)

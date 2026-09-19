@@ -1,0 +1,23 @@
+// ADChallengeIconViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #4 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #76 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #65 UIView  
+    #37 UIImageView  UserInteractionDisabled=False Image='button_square.png'
+    #7 UILabel  UserInteractionDisabled=False Text='01'
+    #26 UIImageView  UserInteractionDisabled=False Image='icon_lock blank.png'
+    #5 UIImageView  Hidden=False UserInteractionDisabled=False Image='icon_warning.png'
+    #57 UIImageView  UserInteractionDisabled=False Image='icon_star_small.png'
+    #40 UIImageView  UserInteractionDisabled=False Image='icon_star_small.png'
+    #17 UIImageView  UserInteractionDisabled=False Image='icon_star_small.png'
+
+CONNECTIONS
+  outlet  challengeLock                             #4 UIProxyObject --> #26 UIImageView
+  outlet  challengeTitle                            #4 UIProxyObject --> #7 UILabel Text='01'
+  outlet  star_1                                    #4 UIProxyObject --> #57 UIImageView
+  outlet  star_2                                    #4 UIProxyObject --> #40 UIImageView
+  outlet  star_3                                    #4 UIProxyObject --> #17 UIImageView
+  outlet  view                                      #4 UIProxyObject --> #65 UIView
+  outlet  warning_icon                              #4 UIProxyObject --> #5 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

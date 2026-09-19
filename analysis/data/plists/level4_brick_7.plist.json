@@ -1,0 +1,16 @@
+{
+ "Enemies": {
+  "DodgeB": {
+   "spawn_sound": "",
+   "spawn_angle": 240,
+   "spawn_distance": 10,
+   "spawn_time": 10
+  },
+  "Dodge": {
+   "spawn_sound": "",
+   "spawn_angle": 300,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  }
+ }
+}

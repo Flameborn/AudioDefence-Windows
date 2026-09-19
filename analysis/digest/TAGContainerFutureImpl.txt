@@ -1,0 +1,27 @@
+
+== -[TAGContainerFutureImpl get]   (address 0x100151f2c  size 320  kind objc)
+  151f60  [self container]
+  151f74  if ([self container] != 0) goto loc_100152020
+  151f90  &@selector(runUntilDate:)
+loc_100151fac:
+  151fb4  [NSRunLoop currentRunLoop]
+  151fd0  [NSDate dateWithTimeIntervalSinceNow:0.1]
+  151fec  [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]]
+  152008  [self container]
+  15201c  if ([self container] == 0) goto loc_100151fac
+loc_100152020:
+  152044  tail [self container]
+  15204c  goto loc_10015205c
+loc_10015205c:
+
+== -[TAGContainerFutureImpl isDone]   (address 0x10015206c  size 64  kind objc)
+  152084  [self container]
+  1520a8  return
+
+== -[TAGContainerFutureImpl container]   (address 0x1001520ac  size 16  kind objc)
+  1520b8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGContainerFutureImpl setContainer:]   (address 0x1001520bc  size 12  kind objc)
+  1520c4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGContainerFutureImpl .cxx_destruct]   (address 0x1001520c8  size 20  kind objc)

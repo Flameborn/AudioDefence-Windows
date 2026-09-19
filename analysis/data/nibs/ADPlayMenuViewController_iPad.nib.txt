@@ -1,0 +1,37 @@
+// ADPlayMenuViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #99 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #13 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #31 UIView  
+    #96 UIView (custom class ViewWithParalax)  
+      #7 UIImageView  Image='background_main.png'
+    #21 UIView (custom class ADSlidingView)  
+      #97 UIImageView  UserInteractionDisabled=False Image='chains_play_menu.png'
+      #10 UIButton (custom class ADButtonWithFont)  
+      #109 UIButton (custom class ADButtonWithFont)  
+      #3 UIView  
+        #90 UIImageView  Image='frame_locked.png'
+        #58 UIImageView  Image='icon_locked_wide.png'
+        #30 UILabel  UserInteractionDisabled=False Text='Finish challenge 5 \nto unlock this mode' NumberOfLines=2
+      #51 UIButton  
+      #74 UIButton  
+
+CONNECTIONS
+  action  challengeButtonTouched:                   #10 ADButtonWithFont --(events 0x40)--> #99 UIProxyObject
+  action  challengeInfoButtonPressed:               #74 UIButton --(events 0x40)--> #99 UIProxyObject
+  action  endlessInfoButtonPressed:                 #51 UIButton --(events 0x40)--> #99 UIProxyObject
+  action  endlessModeButtonTouched:                 #109 ADButtonWithFont --(events 0x40)--> #99 UIProxyObject
+  outlet  background                                #99 UIProxyObject --> #7 UIImageView
+  outlet  challengeInfoButton                       #99 UIProxyObject --> #74 UIButton
+  outlet  endlessInfoButton                         #99 UIProxyObject --> #51 UIButton
+  outlet  endlessModeButton                         #99 UIProxyObject --> #109 ADButtonWithFont
+  outlet  endlessModeLockView                       #99 UIProxyObject --> #3 UIView
+  outlet  firstAccessibleElement                    #99 UIProxyObject --> #10 ADButtonWithFont
+  outlet  slidingView                               #99 UIProxyObject --> #21 ADSlidingView
+  outlet  view                                      #99 UIProxyObject --> #31 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#10 ADButtonWithFont' UIAccessibilityLabel='Challenge mode'
+  UIAccessibileObject='#109 ADButtonWithFont' UIAccessibilityLabel='Endless Mode'
+  UIAccessibileObject='#51 UIButton' UIAccessibilityLabel='About endless mode'
+  UIAccessibileObject='#74 UIButton' UIAccessibilityLabel='About challenge mode'

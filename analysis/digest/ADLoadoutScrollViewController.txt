@@ -1,0 +1,198 @@
+
+== -[ADLoadoutScrollViewController initWithNibName:bundle:]   (address 0x100016ff8  size 244  kind objc)
+  017030  [ADGameParameters sharedParameters]
+  01704c  [[ADGameParameters sharedParameters] isIphone]
+  017064  t1 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"ADLoadoutScrollViewController" : @"ADLoadoutScrollViewController_iPad")
+  017090  [super initWithNibName:t1 bundle:arg2]
+  0170bc  return
+
+== -[ADLoadoutScrollViewController viewDidLoad]   (address 0x1000170ec  size 1900  kind objc)
+  01714c  [super viewDidLoad]
+  017164  [OBDragDropManager sharedManager]
+  017198  [ADInventory sharedInventory]
+  0171b4  [[ADInventory sharedInventory] weapons]
+  0171f0  [[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x138] count:16]
+  0171f8  if ([[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x138] count:16] == 0) goto loc_100017688
+  01725c  &@selector(view)
+  017264  &@selector(addGestureRecognizer:)
+loc_100017348:
+loc_10001735c:
+  01736c  if (x8 == x9) goto loc_100017378
+  017374  objc_enumerationMutation([[ADInventory sharedInventory] weapons])
+loc_100017378:
+  01738c  [ADDraggableArmoryItemViewController alloc]
+  0173a4  [x0 objectForKey:@"name"]
+  0173cc  [[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]]
+  0173e8  [UITapGestureRecognizer alloc]
+  0173f4  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleItemTap:)]
+  01740c  [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleItemTap:)] setNumberOfTapsRequired:1]
+  017418  [[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] isLocked]
+  01741c  if (([[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] isLocked] & 1)) goto loc_100017488
+  017428  [[OBDragDropManager sharedManager] createLongPressDragDropGestureRecognizerWithSource:[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]]]
+  017440  [[[OBDragDropManager sharedManager] createLongPressDragDropGestureRecognizerWithSource:[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]]] setMinimumPressDuration:0.05]
+  017450  [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleItemTap:)] requireGestureRecognizerToFail:[[OBDragDropManager sharedManager] createLongPressDragDropGestureRecognizerWithSource:[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]]]]
+  01745c  [[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view]
+  017474  [[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view] addGestureRecognizer:[[OBDragDropManager sharedManager] createLongPressDragDropGestureRecognizerWithSource:[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]]]]
+loc_100017488:
+  017490  [[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view]
+  0174a8  [[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleItemTap:)]]
+  0174bc  [[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view]
+  0174dc  [[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view] setTag:(x8 + x23)]
+  0174f4  [self addChildViewController:[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]]]
+  017500  [self scrollView]
+  017518  [[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view]
+  017534  [[self scrollView] addSubview:[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view]]
+  017550  [[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view]
+  017564  [[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view] frame]
+  01757c  [[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view]
+  017594  [self view]
+  0175a8  [[self view] frame]
+  0175b8  t1 = ([[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view] frame].2 * 0.5)
+  0175c0  t2 = ([[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view] frame].2 + 10)
+  0175e0  [[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view] setCenter:{(t1 + ((float)(x8 + x23) * t2)), ([[self view] frame].3 * 0.5)}]
+  0175fc  [[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view]
+  017610  [[[[ADDraggableArmoryItemViewController alloc] initWithNibName:@"ADDraggableArmoryItemViewController" bundle:0 itemName:[x0 objectForKey:@"name"]] view] center]
+  01763c  if ((x23 + 1) <u [[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x138] count:16]) goto loc_10001735c
+  017654  [[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x138] count:16]
+  01766c  if ([[[ADInventory sharedInventory] weapons] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x138] count:16] != 0) goto loc_100017348
+  017684  goto loc_100017698
+loc_100017688:
+loc_100017698:
+  0176b4  [self scrollView]
+  0176cc  [self scrollView]
+  0176e8  [[self scrollView] frame]
+  017710  [[self scrollView] setContentSize:{(s1 + s0), [[self scrollView] frame].3}]
+  01772c  [self scrollView]
+  01774c  [[self scrollView] setPagingEnabled:0]
+  017794  return
+
+== -[ADLoadoutScrollViewController loadView]   (address 0x100017858  size 260  kind objc)
+  0178a4  [NSNumber numberWithInt:1]
+  0178d8  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  01790c  [self loADViewBasedOnDeviceWithNibName:@"ADLoadoutScrollViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  017934  return
+
+== -[ADLoadoutScrollViewController refresh]   (address 0x10001795c  size 1320  kind objc)
+  0179a8  [OBDragDropManager sharedManager]
+  0179d8  [self childViewControllers]
+  017a04  [[self childViewControllers] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16]
+  017a0c  if ([[self childViewControllers] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16] == 0) goto loc_100017d74
+  017a20  &@selector(lockedView)
+  017a28  &@selector(setHidden:)
+  017a30  &@selector(view)
+  017a38  &@selector(gestureRecognizers)
+  017a40  &@selector(count)
+  017aa8  &@selector(requireGestureRecognizerToFail:)
+loc_100017ad4:
+loc_100017ad8:
+  017ae4  if (x8 == x28) goto loc_100017af0
+  017aec  objc_enumerationMutation([self childViewControllers])
+loc_100017af0:
+  017b00  [x0 isLocked]
+  017b04  if (([x0 isLocked] & 1)) goto loc_100017d48
+  017b10  [x0 lockedView]
+  017b28  [[x0 lockedView] setHidden:1]
+  017b3c  [x0 view]
+  017b50  [[x0 view] gestureRecognizers]
+  017b64  [[[x0 view] gestureRecognizers] count]
+  017b68  if ([[[x0 view] gestureRecognizers] count] == 0) goto loc_100017d1c
+  017b74  [x0 view]
+  017b88  [[x0 view] gestureRecognizers]
+  017bb8  [[[x0 view] gestureRecognizers] count]
+  017bf8  if ([[[x0 view] gestureRecognizers] count] >u 2) goto loc_100017d2c
+  017c08  [x0 view]
+  017c1c  [[x0 view] gestureRecognizers]
+  017c30  [[[x0 view] gestureRecognizers] count]
+  017c4c  if ([[[x0 view] gestureRecognizers] count] >u 1) goto loc_100017d48
+  017c58  [x0 view]
+  017c6c  [[x0 view] gestureRecognizers]
+  017c84  [[[x0 view] gestureRecognizers] objectAtIndex:0]
+  017cb0  [[OBDragDropManager sharedManager] createLongPressDragDropGestureRecognizerWithSource:x2]
+  017cc8  [[[OBDragDropManager sharedManager] createLongPressDragDropGestureRecognizerWithSource:x2] setMinimumPressDuration:0.05]
+  017cd8  [[[[x0 view] gestureRecognizers] objectAtIndex:0] requireGestureRecognizerToFail:[[OBDragDropManager sharedManager] createLongPressDragDropGestureRecognizerWithSource:x2]]
+  017ce4  [x0 view]
+  017cfc  [[x0 view] addGestureRecognizer:[[OBDragDropManager sharedManager] createLongPressDragDropGestureRecognizerWithSource:x2]]
+  017d18  goto loc_100017d48
+loc_100017d1c:
+loc_100017d2c:
+  017d44  [NSException raise:@"An item in the loadout scroller should have at least one gesture recogniser and at most tw…" format:0]
+loc_100017d48:
+  017d50  if ((x23 + 1) <u [[self childViewControllers] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16]) goto loc_100017ad8
+  017d68  [[self childViewControllers] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16]
+  017d70  if ([[self childViewControllers] countByEnumeratingWithState:&sp[0x78] objects:&sp[0xb8] count:16] != 0) goto loc_100017ad4
+loc_100017d74:
+  017dbc  return
+
+== -[ADLoadoutScrollViewController handleItemTap:]   (address 0x100017e84  size 636  kind objc)
+  017ee8  [self childViewControllers]
+  017f14  [[self childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  017f1c  if ([[self childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_100018018
+  017f3c  &@selector(tag)
+loc_100017f44:
+loc_100017f48:
+  017f54  if (x8 == x20) goto loc_100017f60
+  017f5c  objc_enumerationMutation([self childViewControllers])
+loc_100017f60:
+  017f70  [x0 view]
+  017f84  [[x0 view] tag]
+  017f94  [arg1 view]
+  017fa8  [[arg1 view] tag]
+  017fc4  if ([[x0 view] tag] == [[arg1 view] tag]) goto loc_100017ff8
+  017fd0  if ((x19 + 1) <u [[self childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_100017f48
+  017fe4  [[self childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  017fec  if ([[self childViewControllers] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_100017f44
+  017ff4  goto loc_100018004
+loc_100017ff8:
+loc_100018004:
+  018014  goto loc_10001801c
+loc_100018018:
+loc_10001801c:
+  018034  [self itemDelegate]
+  018054  [[self itemDelegate] handleItemTap:x2]
+  018098  return
+
+== -[ADLoadoutScrollViewController didReceiveMemoryWarning]   (address 0x100018100  size 60  kind objc)
+  01812c  [super didReceiveMemoryWarning]
+  018138  return
+
+== -[ADLoadoutScrollViewController dealloc]   (address 0x10001813c  size 464  kind objc)
+  01818c  [self scrollView]
+  0181a8  [[self scrollView] subviews]
+  0181e0  [[[self scrollView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0181e8  if ([[[self scrollView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_100018258
+  0181f8  &@selector(removeFromSuperview)
+loc_100018200:
+loc_100018204:
+  018210  if (x8 == x25) goto loc_10001821c
+  018218  objc_enumerationMutation([[self scrollView] subviews])
+loc_10001821c:
+  018228  [x0 removeFromSuperview]
+  018234  if ((x26 + 1) <u [[[self scrollView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_100018204
+  01824c  [[[self scrollView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  018254  if ([[[self scrollView] subviews] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_100018200
+loc_100018258:
+  018280  [super dealloc]
+  0182ac  return
+  0182e0  [super dealloc]
+  0182ec  call sub_10000b760
+
+== -[ADLoadoutScrollViewController scrollView]   (address 0x10001830c  size 16  kind objc)
+  018318  return
+
+== -[ADLoadoutScrollViewController setScrollView:]   (address 0x10001831c  size 56  kind objc)
+  018340  self->_scrollView = arg1
+  018350  return
+
+== -[ADLoadoutScrollViewController itemDelegate]   (address 0x100018354  size 16  kind objc)
+  018360  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADLoadoutScrollViewController setItemDelegate:]   (address 0x100018364  size 12  kind objc)
+  01836c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADLoadoutScrollViewController ovumSource]   (address 0x100018370  size 16  kind objc)
+  01837c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADLoadoutScrollViewController setOvumSource:]   (address 0x100018380  size 12  kind objc)
+  018388  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADLoadoutScrollViewController .cxx_destruct]   (address 0x10001838c  size 84  kind objc)

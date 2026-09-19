@@ -1,0 +1,71 @@
+
+== csl::Port::~Port   (address 0x1000e90d4  size 36  kind cxx)
+  0e90e4  sub_1000e9084(a0, a1, a2, a3)
+  0e90f4  return
+
+== csl::Port::~Port/*deleting*/   (address 0x1000e90f8  size 56  kind cxx)
+  0e9108  sub_1000e9084(a0, a1, a2, a3)
+  0e9118  tail ZdlPv(a0)
+  0e9124  ZdlPv()
+
+== sub_1000e9130   (address 0x1000e9130  size 360  kind sub)
+  0e9148  if (a0[+0x10] == 0) goto loc_1000e91c4
+  0e9160  call a0[+0x8][+0x0][+0x18]
+  0e9168  if (a0[+0x10][+0x8] != a0[+0x8][+0x0][+0x18](…)) goto loc_1000e9178
+  0e9174  if (a0[+0x10][+0xc] != 1) goto loc_1000e91b0
+loc_1000e9178:
+  0e917c  sub_1000e8130(a0[+0x10])
+  0e918c  call a0[+0x8][+0x0][+0x18]
+  0e9194  sub_1000e735c(a0[+0x8][+0x0][+0x18](…))
+  0e91a4  sub_1000e7fac(a0[+0x10], a0[+0x8][+0x0][+0x18](…), sub_1000e735c(a0[+0x8][+0x0][+0x18](…)))
+  0e91ac  sub_1000e8220(a0[+0x10])
+loc_1000e91b0:
+  0e91c0  return
+  0e91c8  cxa_allocate_exception(16, a1, a2, a3)
+  0e91e0  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Checking an unassigned buffer", &sp[0x8])
+  0e91ec  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0e91fc  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0e9214  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0e9238  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e9260
+  0e924c  if (w11 != 0) goto loc_1000e9240
+  0e9254  if (w9 > 0) goto loc_1000e9260
+  0e925c  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0e9260  if (w20 >= 0) goto loc_1000e926c
+  0e9268  cxa_call_unexpected()
+  0e9290  cxa_free_exception()
+
+== sub_1000e9298   (address 0x1000e9298  size 64  kind sub)
+  0e92ac  if (a0[+0x28] == 0) goto loc_1000e92cc
+  0e92c0  call a0[+0x10][+0x0][+0x20]
+  0e92c8  a0[+0x20] = (a0[+0x10][+0x0][+0x20](…) - 4)
+loc_1000e92cc:
+  0e92d4  return
+
+== csl::Port::vfunc_2   (address 0x1000e92d8  size 44  kind cxx)
+  0e92e4  if (a0[+0x8] == 0) goto loc_1000e92f8
+  0e92f0  call a0[+0x8][+0x0][+0x38]
+  0e92f4  goto loc_1000e92fc
+loc_1000e92f8:
+loc_1000e92fc:
+  0e9300  return
+
+== sub_1000e9304   (address 0x1000e9304  size 132  kind sub)
+  0e933c  sub_1000e75a0("a Port with UGen = %x, value = %g, incr = %d", a1, a2, a3)
+  0e9344  if (a0[+0x8] == 0) goto loc_1000e9378
+  0e9358  fputc(9, ___stderrp[+0x0])
+loc_1000e9378:
+  0e9384  return
+
+== sub_1000e9388   (address 0x1000e9388  size 88  kind sub)
+  0e93a4  a0[+0x0] = vtable<csl::Controllable>
+loc_1000e93ac:
+  0e93b0  if (x0 == 0) goto loc_1000e93c4
+  0e93bc  call x8
+loc_1000e93c4:
+  0e93cc  if ((x20 + 8) != 112) goto loc_1000e93ac
+  0e93dc  return
+
+== csl::Port::vfunc_3   (address 0x1000eb7d4  size 24  kind cxx)
+  0eb7d8  if (a0[+0x8] == 0) goto loc_1000eb7e8
+loc_1000eb7e8:
+  0eb7e8  return

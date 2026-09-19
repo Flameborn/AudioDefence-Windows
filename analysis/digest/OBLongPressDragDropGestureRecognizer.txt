@@ -1,0 +1,23 @@
+
+== -[OBLongPressDragDropGestureRecognizer dealloc]   (address 0x10008b348  size 148  kind objc)
+  08b36c  [self setOvumSource:0]
+  08b390  [super dealloc]
+  08b3a0  return
+  08b3cc  [super dealloc]
+  08b3d8  call sub_10000b760
+
+== -[OBLongPressDragDropGestureRecognizer ovum]   (address 0x10008b3dc  size 16  kind objc)
+  08b3e8  return
+
+== -[OBLongPressDragDropGestureRecognizer setOvum:]   (address 0x10008b3ec  size 56  kind objc)
+  08b410  self->ovum = arg1
+  08b420  return
+
+== -[OBLongPressDragDropGestureRecognizer ovumSource]   (address 0x10008b424  size 16  kind objc)
+  08b430  return
+
+== -[OBLongPressDragDropGestureRecognizer setOvumSource:]   (address 0x10008b434  size 16  kind objc)
+  08b43c  self->ovumSource = arg1
+  08b440  return
+
+== -[OBLongPressDragDropGestureRecognizer .cxx_destruct]   (address 0x10008b444  size 20  kind objc)

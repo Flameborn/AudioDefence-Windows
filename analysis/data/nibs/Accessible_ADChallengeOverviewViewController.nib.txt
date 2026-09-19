@@ -1,0 +1,17 @@
+// Accessible_ADChallengeOverviewViewController.nib
+TOP-LEVEL OBJECTS
+  #3 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #24 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #35 UIView  
+    #27 UITableView  
+    #47 UIButton  title[0]='PLAY'
+
+CONNECTIONS
+  action  playButtonPressed:                        #47 UIButton --(events 0x40)--> #3 UIProxyObject
+  outlet  dataSource                                #27 UITableView --> #3 UIProxyObject
+  outlet  delegate                                  #27 UITableView --> #3 UIProxyObject
+  outlet  playButton                                #3 UIProxyObject --> #47 UIButton
+  outlet  tableView                                 #3 UIProxyObject --> #27 UITableView
+  outlet  view                                      #3 UIProxyObject --> #35 UIView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,119 @@
+
+== -[UIViewController(ADIPhoneLoader) loADViewBasedOnDeviceWithNibName:WithTagDictionary:]   (address 0x10005d22c  size 1504  kind objc)
+  05d288  [UIDevice currentDevice]
+  05d2a8  [[UIDevice currentDevice] model]
+  05d2d0  [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"]
+  05d2d4  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] & 1)) goto loc_10005d2ec
+  05d2e8  goto loc_10005d350
+loc_10005d2ec:
+  05d2f4  [UIDevice currentDevice]
+  05d308  [[UIDevice currentDevice] model]
+  05d324  [[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"]
+  05d34c  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"] & 1)) goto loc_10005d5b0
+loc_10005d350:
+  05d350  UIAccessibilityIsVoiceOverRunning()
+  05d364  &@selector(mainBundle)
+  05d36c  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10005d46c
+  05d374  [NSBundle mainBundle]
+  05d3a8  [NSString stringWithFormat:@"Accessible_%@", arg1]
+  05d3d4  [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Accessible_%@", arg1] ofType:@"nib"]
+  05d3fc  if ([[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Accessible_%@", arg1] ofType:@"nib"] == 0) goto loc_10005d46c
+  05d404  [NSBundle mainBundle]
+  05d428  [NSString stringWithFormat:@"Accessible_%@", arg1]
+  05d454  [[NSBundle mainBundle] loadNibNamed:[NSString stringWithFormat:@"Accessible_%@", arg1] owner:self options:0]
+  05d468  goto loc_10005d6e4
+loc_10005d46c:
+  05d470  [NSBundle mainBundle]
+  05d498  [[NSBundle mainBundle] loadNibNamed:arg1 owner:self options:0]
+  05d4c8  [UIScreen mainScreen]
+  05d4f4  [[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]
+  05d504  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] == 0) goto loc_10005d558
+  05d50c  [UIScreen mainScreen]
+  05d520  [[UIScreen mainScreen] nativeBounds]
+  05d540  if (fabs(([[UIScreen mainScreen] nativeBounds].3 + -1704)) >= (or unordered) 2.22045e-16) goto loc_10005d5d4
+  05d554  goto loc_10005d624
+loc_10005d558:
+  05d55c  [UIScreen mainScreen]
+  05d578  [[UIScreen mainScreen] bounds]
+  05d5a8  if (fabs(([[UIScreen mainScreen] bounds].3 + -568)) < 2.22045e-16) goto loc_10005d624
+  05d5ac  goto loc_10005d678
+loc_10005d5b0:
+  05d5c4  [self loADIPadNib:arg1]
+  05d5c8  goto loc_10005d6f0
+  05d5d0  goto loc_10005d7f4
+loc_10005d5d4:
+  05d5dc  [UIScreen mainScreen]
+  05d5f0  [[UIScreen mainScreen] nativeBounds]
+  05d620  if (fabs(([[UIScreen mainScreen] nativeBounds].3 + -1136)) >= (or unordered) 2.22045e-16) goto loc_10005d678
+loc_10005d624:
+  05d66c  [[[NSBundle mainBundle] loadNibNamed:arg1 owner:self options:0] enumerateObjectsUsingBlock:^{-[UIViewController(ADIPhoneLoader) loADViewBasedOnDeviceWithNibName:WithTagDictionary:]_block_invoke captures +0x20=self}]
+  05d674  goto loc_10005d6e4
+loc_10005d678:
+  05d6c4  [[[NSBundle mainBundle] loadNibNamed:arg1 owner:self options:0] enumerateObjectsUsingBlock:^{-[UIViewController(ADIPhoneLoader) loADViewBasedOnDeviceWithNibName:WithTagDictionary:]_block_invoke_2 captures +0x20=self}]
+  05d6dc  [self setUpOutletsFromTags:arg2]
+loc_10005d6e4:
+loc_10005d6f0:
+  05d720  return
+
+== -[UIViewController(ADIPhoneLoader) loADViewBasedOnDeviceWithNibName:WithTagDictionary:]_block_invoke   (address 0x10005d80c  size 140  kind block)
+  05d838  [blockarg1 tag]
+  05d840  if ([blockarg1 tag] != 2781) goto loc_10005d864
+  05d860  [self setValue:blockarg1 forKeyPath:@"view"]
+loc_10005d864:
+  05d878  return
+
+== sub_10005d898   (address 0x10005d898  size 8  kind sub)
+
+== sub_10005d8a0   (address 0x10005d8a0  size 8  kind sub)
+  05d8a4  return
+
+== -[UIViewController(ADIPhoneLoader) loADViewBasedOnDeviceWithNibName:WithTagDictionary:]_block_invoke_2   (address 0x10005d8a8  size 140  kind block)
+  05d8d4  [blockarg1 tag]
+  05d8dc  if ([blockarg1 tag] != 2782) goto loc_10005d900
+  05d8fc  [self setValue:blockarg1 forKeyPath:@"view"]
+loc_10005d900:
+  05d914  return
+
+== sub_10005d934   (address 0x10005d934  size 8  kind sub)
+
+== sub_10005d93c   (address 0x10005d93c  size 8  kind sub)
+  05d940  return
+
+== -[UIViewController(ADIPhoneLoader) setUpOutletsFromTags:]   (address 0x10005d944  size 588  kind objc)
+  05d9b4  [arg1 countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  05d9bc  if ([arg1 countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_10005daec
+  05da0c  &@selector(setValue:forKeyPath:)
+loc_10005da14:
+loc_10005da18:
+  05da28  if (x8 == x9) goto loc_10005da34
+  05da30  objc_enumerationMutation(arg1)
+loc_10005da34:
+  05da44  [self view]
+  05da60  [arg1 objectForKey:x2]
+  05da74  [[arg1 objectForKey:x2] integerValue]
+  05da84  [[self view] viewWithTag:[[arg1 objectForKey:x2] integerValue]]
+  05dab4  [self setValue:[[self view] viewWithTag:[[arg1 objectForKey:x2] integerValue]] forKeyPath:x3]
+  05dac8  if ((x24 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_10005da18
+  05dae0  [arg1 countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  05dae8  if ([arg1 countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_10005da14
+loc_10005daec:
+  05db34  return
+
+== -[UIViewController(ADIPhoneLoader) loADIPadNib:]   (address 0x10005db90  size 580  kind objc)
+  05dbc0  UIAccessibilityIsVoiceOverRunning()
+  05dbd4  &@selector(mainBundle)
+  05dbdc  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10005dcd0
+  05dbe4  [NSBundle mainBundle]
+  05dc18  [NSString stringWithFormat:@"Accessible_%@_iPad", arg1]
+  05dc44  [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Accessible_%@_iPad", arg1] ofType:@"nib"]
+  05dc6c  if ([[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Accessible_%@_iPad", arg1] ofType:@"nib"] == 0) goto loc_10005dcd0
+  05dc74  [NSBundle mainBundle]
+  05dc98  [NSString stringWithFormat:@"Accessible_%@_iPad", arg1]
+  05dcc4  [[NSBundle mainBundle] loadNibNamed:[NSString stringWithFormat:@"Accessible_%@_iPad", arg1] owner:self options:0]
+  05dccc  goto loc_10005dd38
+loc_10005dcd0:
+  05dcd4  [NSBundle mainBundle]
+  05dd04  [NSString stringWithFormat:@"%@_iPad", arg1]
+  05dd30  [[NSBundle mainBundle] loadNibNamed:[NSString stringWithFormat:@"%@_iPad", arg1] owner:self options:0]
+loc_10005dd38:
+  05dd70  return

@@ -1,0 +1,61 @@
+// ADGameplayViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #8 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #156 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #229 UIView  
+    #47 UIView  
+    #52 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_background.png'
+    #113 UIScrollView (custom class ADInfiniteScrollView)  
+    #281 UIScrollView (custom class ADInfiniteScrollView)  
+    #16 UIButton (custom class ADWeaponTouchArea)  
+    #286 UIView  
+      #202 UIImageView  Image='normal_gameplay_background.png'
+      #198 UIScrollView (custom class ADInfiniteScrollView)  
+      #148 UIScrollView (custom class ADInfiniteScrollView)  
+      #141 UIButton (custom class ADButtonWithSwipe)  
+      #284 UIButton (custom class ADButtonWithSwipe)  Tag=3000
+      #111 UIButton (custom class ADButtonWithSwipe)  Tag=2782
+      #32 UIButton (custom class ADButtonWithSwipe)  
+      #247 UIImageView  UserInteractionDisabled=False Image='normal_gameplay_foreground.png'
+    #67 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_foreground.png'
+    #238 UIButton (custom class ADButtonWithFont)  
+    #22 UIView  UserInteractionDisabled=False
+      #160 UIImageView  UserInteractionDisabled=False Image='stat_back_time.png'
+      #136 UILabel  UserInteractionDisabled=False Text='0:00'
+    #258 UIView  UserInteractionDisabled=False
+      #25 UILabel  UserInteractionDisabled=False Text='9999'
+      #51 UIImageView  Image='combo_light.png'
+    #36 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  meleeButtonPressed:                       #141 ADButtonWithSwipe --(events 0x1)--> #8 UIProxyObject
+  action  pauseButtonTouched:                       #36 ADButtonWithFont --(events 0x40)--> #8 UIProxyObject
+  action  reloadButtonPressed:                      #284 ADButtonWithSwipe --(events 0x1)--> #8 UIProxyObject
+  action  skipButtonPressed:                        #238 ADButtonWithFont --(events 0x40)--> #8 UIProxyObject
+  action  switchWeaponButtonPressed:                #111 ADButtonWithSwipe --(events 0x1)--> #8 UIProxyObject
+  outlet  infiniteScrollViews                       #8 UIProxyObject --> #48 NSMutableArray
+  outlet  buttonsView                               #8 UIProxyObject --> #286 UIView
+  outlet  comboMeter                                #8 UIProxyObject --> #51 UIImageView
+  outlet  deathOverlay                              #8 UIProxyObject --> #47 UIView
+  outlet  meleeButton                               #8 UIProxyObject --> #141 ADButtonWithSwipe
+  outlet  pauseButton                               #8 UIProxyObject --> #36 ADButtonWithFont
+  outlet  scoreLabel                                #8 UIProxyObject --> #25 UILabel Text='9999'
+  outlet  scoreView                                 #8 UIProxyObject --> #258 UIView
+  outlet  skipButton                                #8 UIProxyObject --> #238 ADButtonWithFont
+  outlet  switchWeaponButton                        #8 UIProxyObject --> #111 ADButtonWithSwipe
+  outlet  timerLabel                                #8 UIProxyObject --> #136 UILabel Text='0:00'
+  outlet  timerView                                 #8 UIProxyObject --> #22 UIView
+  outlet  view                                      #8 UIProxyObject --> #229 UIView
+  outlet  weaponButton                              #8 UIProxyObject --> #32 ADButtonWithSwipe
+  outlet  weaponTouchArea                           #8 UIProxyObject --> #16 ADWeaponTouchArea
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#47 UIView' UIIsAccessibilityElement=1
+  UIAccessibileObject='#16 ADWeaponTouchArea' UIAccessibilityLabel='Game view'
+  UIAccessibileObject='#141 ADButtonWithSwipe' UIAccessibilityHint='' UIAccessibilityTraits=256 UIIsAccessibilityElement=0
+  UIAccessibileObject='#284 ADButtonWithSwipe' UIAccessibilityTraits=256 UIIsAccessibilityElement=0
+  UIAccessibileObject='#111 ADButtonWithSwipe' UIAccessibilityTraits=256 UIIsAccessibilityElement=0
+  UIAccessibileObject='#32 ADButtonWithSwipe' UIAccessibilityTraits=256 UIIsAccessibilityElement=0
+  UIAccessibileObject='#238 ADButtonWithFont' UIAccessibilityLabel='Skip instructions'
+  UIAccessibileObject="#136 UILabel Text='0:00'" UIAccessibilityHint='Challenge timer'
+  UIAccessibileObject='#36 ADButtonWithFont' UIAccessibilityLabel='Pause'

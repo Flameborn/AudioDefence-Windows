@@ -1,0 +1,71 @@
+
+== -[TAGExpandedResourceBuilder init]   (address 0x100164fe0  size 276  kind objc)
+  16501c  [super init]
+  165024  if (self == 0) goto loc_1001650c8
+  165044  [NSMutableArray alloc]
+  165050  [[NSMutableArray alloc] init]
+  165064  self->_rules = [[NSMutableArray alloc] init]
+  16507c  [NSMutableDictionary alloc]
+  165088  [[NSMutableDictionary alloc] init]
+  165098  self->_macros = [[NSMutableDictionary alloc] init]
+  1650c0  self->_version = @""
+loc_1001650c8:
+  1650dc  return
+
+== -[TAGExpandedResourceBuilder addRule:]   (address 0x1001650f4  size 148  kind objc)
+  165124  [self rules]
+  165144  [[self rules] addObject:arg1]
+  165160  return
+
+== -[TAGExpandedResourceBuilder addMacro:]   (address 0x100165188  size 564  kind objc)
+  1651bc  [arg1 properties]
+  1651e0  [TAGExpandedFunctionCall instanceNameKey]
+  165208  [[arg1 properties] valueForKey:[TAGExpandedFunctionCall instanceNameKey]]
+  165240  [TAGTypes valueToString:[[arg1 properties] valueForKey:[TAGExpandedFunctionCall instanceNameKey]]]
+  165264  [self macros]
+  16527c  [[self macros] valueForKey:[TAGTypes valueToString:[[arg1 properties] valueForKey:[TAGExpandedFunctionCall instanceNameKey]]]]
+  165294  if ([[self macros] valueForKey:[TAGTypes valueToString:[[arg1 properties] valueForKey:[TAGExpandedFunctionCall instanceNameKey]]]] != 0) goto loc_1001652f4
+  1652ac  [NSMutableArray array]
+  1652c4  [self macros]
+  1652e8  [[self macros] setObject:[NSMutableArray array] forKey:[TAGTypes valueToString:[[arg1 properties] valueForKey:[TAGExpandedFunctionCall instanceNameKey]]]]
+loc_1001652f4:
+  165308  [x0 addObject:arg1]
+  16533c  return
+
+== -[TAGExpandedResourceBuilder build]   (address 0x1001653bc  size 308  kind objc)
+  1653e8  [TAGExpandedResource alloc]
+  165400  [self rules]
+  165420  [self macros]
+  165440  [self version]
+  165460  [self resourceFormatVersion]
+  165484  [[TAGExpandedResource alloc] initWithRules:[self rules] macros:[self macros] version:[self version] resourceFormatVersion:[self resourceFormatVersion]]
+  1654b8  return
+
+== -[TAGExpandedResourceBuilder version]   (address 0x1001654f0  size 16  kind objc)
+  1654fc  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGExpandedResourceBuilder setVersion:]   (address 0x100165500  size 12  kind objc)
+  165508  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGExpandedResourceBuilder resourceFormatVersion]   (address 0x10016550c  size 16  kind objc)
+  165518  return
+
+== -[TAGExpandedResourceBuilder setResourceFormatVersion:]   (address 0x10016551c  size 16  kind objc)
+  165524  self->_resourceFormatVersion = arg1
+  165528  return
+
+== -[TAGExpandedResourceBuilder rules]   (address 0x10016552c  size 16  kind objc)
+  165538  return
+
+== -[TAGExpandedResourceBuilder setRules:]   (address 0x10016553c  size 56  kind objc)
+  165560  self->_rules = arg1
+  165570  return
+
+== -[TAGExpandedResourceBuilder macros]   (address 0x100165574  size 16  kind objc)
+  165580  return
+
+== -[TAGExpandedResourceBuilder setMacros:]   (address 0x100165584  size 56  kind objc)
+  1655a8  self->_macros = arg1
+  1655b8  return
+
+== -[TAGExpandedResourceBuilder .cxx_destruct]   (address 0x1001655bc  size 84  kind objc)

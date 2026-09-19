@@ -1,0 +1,18 @@
+// ADMoreGamesViewController.nib
+TOP-LEVEL OBJECTS
+  #58 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #46 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #2 UIView  
+    #25 UIView (custom class ViewWithParalax)  
+      #15 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #32 UIImageView  UserInteractionDisabled=False Image='Frame_scroller_blank.png'
+    #41 UIWebView  
+    #34 UIImageView  UserInteractionDisabled=False Image='list_subhead.png'
+    #8 UILabel  UserInteractionDisabled=False Text='More Games'
+
+CONNECTIONS
+  outlet  delegate                                  #41 UIWebView --> #58 UIProxyObject
+  outlet  view                                      #58 UIProxyObject --> #2 UIView
+  outlet  webView                                   #58 UIProxyObject --> #41 UIWebView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,182 @@
+
+== -[ADNoBarViewController initWithNibName:bundle:]   (address 0x100018a88  size 236  kind objc)
+  018ad0  [self getNibName:arg1]
+  018b14  [super initWithNibName:[self getNibName:arg1] bundle:arg2]
+  018b40  return
+
+== -[ADNoBarViewController getNibName:]   (address 0x100018b74  size 624  kind objc)
+  018ba0  if (arg1 != 0) goto loc_100018bfc
+  018bc0  [self class]
+  018be4  [NSString stringWithFormat:@"%@", [self class]]
+loc_100018bfc:
+  018bfc  UIAccessibilityIsVoiceOverRunning()
+  018c00  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100018cd0
+  018c18  [NSBundle mainBundle]
+  018c4c  [NSString stringWithFormat:@"Accessible_%@", sp[0]]
+  018c78  [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Accessible_%@", sp[0]] ofType:@"nib"]
+  018c9c  if ([[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Accessible_%@", sp[0]] ofType:@"nib"] == 0) goto loc_100018cd0
+  018cb4  [NSString stringWithFormat:@"Accessible_%@", sp[0]]
+loc_100018cd0:
+  018ce8  [UIDevice currentDevice]
+  018d04  [[UIDevice currentDevice] userInterfaceIdiom]
+  018d20  &@selector(stringWithFormat:)
+  018d2c  if ([[UIDevice currentDevice] userInterfaceIdiom] != 1) goto loc_100018d4c
+  018d40  [NSString stringWithFormat:@"%@_iPad", sp[0]]
+  018d48  goto loc_100018d64
+loc_100018d4c:
+  018d5c  [NSString stringWithFormat:@"%@", sp[0]]
+loc_100018d64:
+  018d78  NSLog(@"Loading %@", sp[0])
+  018da4  return
+
+== -[ADNoBarViewController loadMissionOverlay]   (address 0x100018de4  size 364  kind objc)
+  018e0c  [ADPauseViewController class]
+  018e24  [self isKindOfClass:[ADPauseViewController class]]
+  018e40  [ADMissionTopbarViewController alloc]
+  018e54  [[ADMissionTopbarViewController alloc] initWithSkip:([self isKindOfClass:[ADPauseViewController class]] ^ 1)]
+  018e70  [self setMissionTopbarViewController:[[ADMissionTopbarViewController alloc] initWithSkip:([self isKindOfClass:[ADPauseViewController class]] ^ 1)]]
+  018e90  [self view]
+  018eb0  [self missionTopbarViewController]
+  018ec4  [[self missionTopbarViewController] view]
+  018ee8  [[self view] addSubview:[[self missionTopbarViewController] view]]
+  018f0c  return
+
+== -[ADNoBarViewController loadStatusBar]   (address 0x100018f50  size 1320  kind objc)
+  018f88  [ADStatusBarViewController alloc]
+  018fa0  [[ADStatusBarViewController alloc] initWithNibName:0 bundle:0]
+  018fbc  [self setStatusBarViewController:[[ADStatusBarViewController alloc] initWithNibName:0 bundle:0]]
+  018fdc  [self statusBarViewController]
+  018ffc  [[self statusBarViewController] view]
+  019014  [self statusBarViewController]
+  019028  [[self statusBarViewController] view]
+  019048  [[[self statusBarViewController] view] frame]
+  019058  [self statusBarViewController]
+  01906c  [[self statusBarViewController] view]
+  019080  [[[self statusBarViewController] view] frame]
+  0190a0  [[[self statusBarViewController] view] setFrame:{0, 0, [[[self statusBarViewController] view] frame].2, [[[self statusBarViewController] view] frame].3}]
+  0190dc  [self statusBarViewController]
+  0190f0  [[self statusBarViewController] view]
+  01910c  [[[self statusBarViewController] view] setNeedsLayout]
+  019128  [self view]
+  019140  [self statusBarViewController]
+  019154  [[self statusBarViewController] view]
+  019178  [[self view] addSubview:[[self statusBarViewController] view]]
+  01919c  [self statusBarViewController]
+  0191b8  [[self statusBarViewController] backButton]
+  0191e8  [[[self statusBarViewController] backButton] addTarget:self action:@selector(backButtonPressed) forControlEvents:64]
+  019204  [self statusBarViewController]
+  019224  [[self statusBarViewController] setDelegate:self]
+  019244  [UIApplication sharedApplication]
+  019260  [[UIApplication sharedApplication] delegate]
+  019278  [self statusBarViewController]
+  01929c  [[[UIApplication sharedApplication] delegate] setStatusBar:[self statusBarViewController]]
+  0192cc  [ADArmoryViewController class]
+  0192e4  [self isKindOfClass:[ADArmoryViewController class]]
+  0192e8  if ([self isKindOfClass:[ADArmoryViewController class]] == 0) goto loc_100019364
+  0192f4  [self statusBarViewController]
+  019310  [[self statusBarViewController] armoryButton]
+  019334  [[[self statusBarViewController] armoryButton] setAccessibilityLabel:@"Close armory"]
+  019360  return
+loc_100019364:
+  019380  return
+
+== -[ADNoBarViewController dealloc]   (address 0x100019478  size 368  kind objc)
+  0194a0  [self statusBarViewController]
+  0194b4  if ([self statusBarViewController] == 0) goto loc_10001950c
+  0194c0  [self statusBarViewController]
+  0194dc  [[self statusBarViewController] view]
+  0194f8  [[[self statusBarViewController] view] removeFromSuperview]
+loc_10001950c:
+  019514  [self statusBarViewController]
+  019534  [[self statusBarViewController] setDelegate:0]
+  019554  [self setStatusBarViewController:0]
+  019578  [super dealloc]
+  01958c  return
+  0195d8  [super dealloc]
+  0195e4  call sub_10000b760
+
+== -[ADNoBarViewController backButtonPressed]   (address 0x1000195e8  size 28  kind objc)
+  0195f8  NSLog(@"Back button", _cmd)
+  019600  return
+
+== -[ADNoBarViewController viewDidLayoutSubviews]   (address 0x100019604  size 472  kind objc)
+  019648  [super viewDidLayoutSubviews]
+  019660  [self statusBarViewController]
+  019680  [[self statusBarViewController] view]
+  019698  [self statusBarViewController]
+  0196ac  [[self statusBarViewController] view]
+  0196cc  [[[self statusBarViewController] view] frame]
+  0196dc  [self statusBarViewController]
+  0196f0  [[self statusBarViewController] view]
+  019704  [[[self statusBarViewController] view] frame]
+  019724  [[[self statusBarViewController] view] setFrame:{0, 0, [[[self statusBarViewController] view] frame].2, [[[self statusBarViewController] view] frame].3}]
+  019774  return
+
+== -[ADNoBarViewController toggleArmory]   (address 0x1000197dc  size 436  kind objc)
+  01980c  [ADArmoryViewController class]
+  019828  [self isKindOfClass:[ADArmoryViewController class]]
+  01982c  if ([self isKindOfClass:[ADArmoryViewController class]] == 0) goto loc_100019854
+  019850  tail [self backButtonPressed]
+loc_100019854:
+  019858  UIAccessibilityIsVoiceOverRunning()
+  01985c  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_1000198a0
+  019878  [Accessible_ADArmoryViewController alloc]
+  019898  [[Accessible_ADArmoryViewController alloc] initWithNibName:@"Accessible_ADArmoryViewController" bundle:0]
+  01989c  goto loc_100019940
+loc_1000198a0:
+  0198b0  [ADTarotViewController class]
+  0198c4  [self isKindOfClass:[ADTarotViewController class]]
+  0198d4  &@selector(alloc)
+  0198dc  if ([self isKindOfClass:[ADTarotViewController class]] == 0) goto loc_100019918
+  0198e4  [ADArmoryViewController alloc]
+  019910  [[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0 tab:@"loadout" loadoutEnabled:1]
+  019914  goto loc_100019940
+loc_100019918:
+  01991c  [ADArmoryViewController alloc]
+  01993c  [[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0]
+loc_100019940:
+  019960  [self presentViewController:x2 animated:0 completion:0]
+  019978  return
+
+== -[ADNoBarViewController showNoDiamondsAlert]   (address 0x100019990  size 480  kind objc)
+  0199c4  [UIAlertView alloc]
+  0199e4  [NSBundle mainBundle]
+  019a18  [[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_TITLE" value:@"" table:0]
+  019a30  [NSBundle mainBundle]
+  019a58  [[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_CONTENT" value:@"" table:0]
+  019a94  [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:0 otherButtonTitles:@"OK"]
+  019ad0  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:0 otherButtonTitles:@"OK"] setDelegate:self]
+  019ae8  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:0 otherButtonTitles:@"OK"] setCancelButtonIndex:-1]
+  019afc  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"DIAMONDS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:0 otherButtonTitles:@"OK"] show]
+  019b1c  return
+
+== -[ADNoBarViewController application:supportedInterfaceOrientationsForWindow:]   (address 0x100019b70  size 8  kind objc)
+  019b74  return
+
+== -[ADNoBarViewController shouldAutorotateToInterfaceOrientation:]   (address 0x100019b78  size 16  kind objc)
+  019b84  return
+
+== -[ADNoBarViewController supportedInterfaceOrientations]   (address 0x100019b88  size 8  kind objc)
+  019b8c  return
+
+== -[ADNoBarViewController prefersStatusBarHidden]   (address 0x100019b90  size 8  kind objc)
+  019b94  return
+
+== -[ADNoBarViewController shouldAutorotate]   (address 0x100019b98  size 8  kind objc)
+  019b9c  return
+
+== -[ADNoBarViewController missionTopbarViewController]   (address 0x100019ba0  size 16  kind objc)
+  019bac  return
+
+== -[ADNoBarViewController setMissionTopbarViewController:]   (address 0x100019bb0  size 56  kind objc)
+  019bd4  self->_missionTopbarViewController = arg1
+  019be4  return
+
+== -[ADNoBarViewController statusBarViewController]   (address 0x100019be8  size 16  kind objc)
+  019bf4  return
+
+== -[ADNoBarViewController setStatusBarViewController:]   (address 0x100019bf8  size 56  kind objc)
+  019c1c  self->_statusBarViewController = arg1
+  019c2c  return
+
+== -[ADNoBarViewController .cxx_destruct]   (address 0x100019c30  size 64  kind objc)

@@ -1,0 +1,18 @@
+// ADCreditsTableCell.nib
+TOP-LEVEL OBJECTS
+  #17 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #44 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #48 UITableViewCell (custom class ADCreditsTableCell)  
+    #42 UITableViewCellContentView  
+      #2 UIView  
+        #15 UILabel  UserInteractionDisabled=False Text='ROLE'
+        #46 UILabel  UserInteractionDisabled=False Text='NAME'
+    #5 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #42)
+
+CONNECTIONS
+  outlet  nameLabel                                 #48 ADCreditsTableCell --> #46 UILabel Text='NAME'
+  outlet  roleLabel                                 #48 ADCreditsTableCell --> #15 UILabel Text='ROLE'
+
+ACCESSIBILITY CONFIGURATIONS

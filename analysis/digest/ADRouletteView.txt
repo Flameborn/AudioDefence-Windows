@@ -1,0 +1,200 @@
+
+== -[ADRouletteView initWithFrame:]   (address 0x10001ad4c  size 60  kind objc)
+  01ad78  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  01ad84  return
+
+== -[ADRouletteView awakeFromNib]   (address 0x10001ad88  size 132  kind objc)
+  01adcc  [NSTimer scheduledTimerWithTimeInterval:0.0166667 target:self selector:@selector(update) userInfo:0 repeats:1]
+  01ade4  self->rouletteTimer = [NSTimer scheduledTimerWithTimeInterval:0.0166667 target:self selector:@selector(update) userInfo:0 repeats:1]
+  01ae08  tail [self resetSelectedItem]
+
+== -[ADRouletteView initItemsWithArray:]   (address 0x10001ae0c  size 1332  kind objc)
+  01ae70  [ADGameParameters sharedParameters]
+  01ae8c  [[ADGameParameters sharedParameters] isIphone]
+  01aeac  [arg1 count]
+  01aebc  self->numberOfItems = [arg1 count]
+  01aedc  self->rouletteItems = arg1
+  01af1c  [arg1 countByEnumeratingWithState:&sp[0x118] objects:&sp[0x158] count:16]
+  01af20  if ([arg1 countByEnumeratingWithState:&sp[0x118] objects:&sp[0x158] count:16] == 0) goto loc_10001b278
+  01af6c  &@selector(setTransform:)
+  01af8c  &@selector(frame)
+  01af94  &@selector(setCenter:)
+  01af9c  &@selector(setContentMode:)
+  01afb4  &@selector(addSubview:)
+loc_10001b030:
+loc_10001b034:
+  01b048  if (x8 == x9) goto loc_10001b054
+  01b050  objc_enumerationMutation(arg1)
+loc_10001b054:
+  01b068  [UIImageView alloc]
+  01b088  [x0 objectForKey:@"icon"]
+  01b0a4  [UIImage imageNamed:[x0 objectForKey:@"icon"]]
+  01b0c0  [[UIImageView alloc] initWithImage:[UIImage imageNamed:[x0 objectForKey:@"icon"]]]
+  01b0dc  if ([[ADGameParameters sharedParameters] isIphone] == 0) goto loc_10001b100
+  01b0f8  [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[x0 objectForKey:@"icon"]]] setFrame:{0, 0, 43, 43}]
+  01b0fc  goto loc_10001b11c
+loc_10001b100:
+  01b118  [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[x0 objectForKey:@"icon"]]] setFrame:{0, 0, 110, 110}]
+loc_10001b11c:
+  01b130  CGAffineTransformMakeRotation()
+  01b15c  [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[x0 objectForKey:@"icon"]]] setTransform:&sp[0xb0]]
+  01b164  cos()
+  01b174  [self revert]
+  01b180  sin()
+  01b190  t1 = ([self revert] != 0 ? ([[ADGameParameters sharedParameters] isIphone] != 0 ? 132 : 420) : -([[ADGameParameters sharedParameters] isIphone] != 0 ? 132 : 420))
+  01b19c  [self revert]
+  01b1a8  t2 = ([self revert] != 0 ? -([[ADGameParameters sharedParameters] isIphone] != 0 ? 132 : 420) : ([[ADGameParameters sharedParameters] isIphone] != 0 ? 132 : 420))
+  01b1b4  [self frame]
+  01b1c4  [self frame]
+  01b200  [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[x0 objectForKey:@"icon"]]] setCenter:{((cos() * t2) + ([self frame].2 * 0.5)), ((sin() * t1) + ([self frame].3 * 0.5))}]
+  01b210  [[[UIImageView alloc] initWithImage:[UIImage imageNamed:[x0 objectForKey:@"icon"]]] setContentMode:1]
+  01b228  [self addSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:[x0 objectForKey:@"icon"]]]]
+  01b258  if ((x23 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x118] objects:&sp[0x158] count:16]) goto loc_10001b034
+  01b270  [arg1 countByEnumeratingWithState:&sp[0x118] objects:&sp[0x158] count:16]
+  01b274  if ([arg1 countByEnumeratingWithState:&sp[0x118] objects:&sp[0x158] count:16] != 0) goto loc_10001b030
+loc_10001b278:
+  01b2d0  return
+
+== -[ADRouletteView update]   (address 0x10001b340  size 16  kind objc)
+  01b34c  tail [self rotateWheel]
+
+== -[ADRouletteView rotateWheel]   (address 0x10001b350  size 420  kind objc)
+  01b374  if (self->launched == 0) goto loc_10001b4e0
+  01b38c  [self speed]
+  01b3a0  if ([self speed] <= (or unordered) 0.1) goto loc_10001b3c4
+  01b3a4  if (self == 0) goto loc_10001b3e8
+  01b3bc  [self transform]
+  01b3c0  goto loc_10001b3f4
+loc_10001b3c4:
+  01b3e4  tail [self centerBadRouletteOnClosestItem]
+loc_10001b3e8:
+loc_10001b3f4:
+  01b3fc  [self speed]
+  01b424  CGAffineTransformRotate(&sp[0x30])
+  01b454  [self setTransform:&sp[0x0]]
+  01b460  [self speed]
+  01b470  [self speed]
+  01b480  if ([self speed] <= (or unordered) 10) goto loc_10001b494
+  01b490  goto loc_10001b4c4
+loc_10001b494:
+  01b49c  [self speed]
+  01b4ac  if ([self speed] <= (or unordered) 5) goto loc_10001b4bc
+  01b4b8  goto loc_10001b4c4
+loc_10001b4bc:
+loc_10001b4c4:
+  01b4dc  [self setSpeed:([self speed] * d1)]
+loc_10001b4e0:
+  01b4f0  return
+
+== -[ADRouletteView centerBadRouletteOnClosestItem]   (address 0x10001b4f4  size 648  kind objc)
+  01b51c  if (self->adjusted != 0) goto loc_10001b748
+  01b524  self->adjusted = 1
+  01b53c  [self setSpeed:0]
+  01b558  [self transform]
+  01b570  [self transform]
+  01b580  atan2f()
+  01b5a0  t1 = (self->numberOfItems - ((self->numberOfItems < 0 ? self->numberOfItems + 1 : self->numberOfItems) & 0xfffffffe))
+  01b5a8  if (t1 != 1) goto loc_10001b5d8
+  01b5d4  if (((360 / (float)self->numberOfItems) * 0.5) >= (or unordered) 360) goto loc_10001b650
+loc_10001b5d8:
+loc_10001b608:
+  01b634  t2 = (fabs((-s17 - (atan2f() * 57.2958))) < fabs((fabs((s17 - (atan2f() * 57.2958))) < fabs(s3) ? (s17 - (atan2f() * 57.2958)) : s3)) ? -s17 : (fabs((s17 - (atan2f() * 57.2958))) < fabs(s3) ? s17 : s8))
+  01b638  t3 = (fabs((-s17 - (atan2f() * 57.2958))) < fabs((fabs((s17 - (atan2f() * 57.2958))) < fabs(s3) ? (s17 - (atan2f() * 57.2958)) : s3)) ? (-s17 - (atan2f() * 57.2958)) : (fabs((s17 - (atan2f() * 57.2958))) < fabs(s3) ? (s17 - (atan2f() * 57.2958)) : s3))
+  01b64c  if ((d4 + (360 / (float)self->numberOfItems)) < 360) goto loc_10001b608
+loc_10001b650:
+  01b678  self->selectedItemIndex = (int)((s8 + -180) / (float)(360 / self->numberOfItems))
+  01b67c  if ((int)((s8 + -180) / (float)(360 / self->numberOfItems)) >= 0) goto loc_10001b68c
+  01b688  self->selectedItemIndex = (self->numberOfItems + (int)((s8 + -180) / (float)(360 / self->numberOfItems)))
+loc_10001b68c:
+  01b69c  NSLog(@"wanted angle : %f", sp[0])
+  01b734  [UIView animateWithDuration:0.3 delay:0 options:0 animations:^{-[ADRouletteView centerBadRouletteOnClosestItem]_block_invoke captures +0x20=self} completion:^{-[ADRouletteView centerBadRouletteOnClosestItem]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADRouletteView centerBadRouletteOnClo…, +0x40=&d_1003b10e0, +0x48=self}]
+loc_10001b748:
+  01b75c  return
+
+== -[ADRouletteView centerBadRouletteOnClosestItem]_block_invoke   (address 0x10001b77c  size 124  kind block)
+  01b7b4  CGAffineTransformMakeRotation(block, blockarg1, blockarg2, blockarg3)
+  01b7e4  [self setTransform:&sp[0x0]]
+  01b7f4  return
+
+== sub_10001b7f8   (address 0x10001b7f8  size 8  kind sub)
+
+== sub_10001b800   (address 0x10001b800  size 8  kind sub)
+  01b804  return
+
+== -[ADRouletteView centerBadRouletteOnClosestItem]_block_invoke_2   (address 0x10001b808  size 104  kind block)
+  01b828  [self scenarioViewController]
+  01b848  [[self scenarioViewController] rouletteDidStop:self]
+  01b858  return
+
+== sub_10001b870   (address 0x10001b870  size 8  kind sub)
+
+== sub_10001b878   (address 0x10001b878  size 8  kind sub)
+  01b87c  return
+
+== -[ADRouletteView selectedItemDictionary]   (address 0x10001b880  size 80  kind objc)
+  01b898  if (self->selectedItemIndex == -1) goto loc_10001b8c4
+  01b8b4  [self->rouletteItems objectAtIndex:self->selectedItemIndex]
+  01b8c0  goto loc_10001b8c8
+loc_10001b8c4:
+loc_10001b8c8:
+  01b8cc  return
+
+== -[ADRouletteView resetSelectedItem]   (address 0x10001b8d0  size 20  kind objc)
+  01b8dc  self->selectedItemIndex = 0xffffffff
+  01b8e0  return
+
+== -[ADRouletteView launchRoulette]   (address 0x10001b8e4  size 132  kind objc)
+  01b8fc  self->adjusted = 0
+  01b90c  self->launched = 1
+  01b910  arc4random()
+  01b948  [self setSpeed:(float)((arc4random() - ((x8 * 0x51eb851f) >>> 38) * 200) + 100)]
+  01b964  tail [self resetSelectedItem]
+
+== -[ADRouletteView isStopped]   (address 0x10001b968  size 52  kind objc)
+  01b980  if (self->launched == 0) goto loc_10001b998
+  01b990  if (self->adjusted == 0) goto loc_10001b998
+loc_10001b998:
+  01b998  return
+
+== -[ADRouletteView deactivate]   (address 0x10001b99c  size 216  kind objc)
+  01b9b8  [self layer]
+  01b9d4  [[self layer] removeAllAnimations]
+  01b9f0  [self subviews]
+  01ba18  [[self subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)]
+  01ba30  self->rouletteItems = 0
+  01ba58  tail [self->rouletteTimer invalidate]
+  01ba5c  goto loc_10001ba60
+loc_10001ba60:
+
+== -[ADRouletteView layoutSubviews]   (address 0x10001ba74  size 160  kind objc)
+  01baa8  [super layoutSubviews]
+  01bacc  if (flags !=) goto loc_10001baf0
+  01bae0  [self center]
+  01bae4  store g_10042d970 = [self center].0
+  01bae8  store g_10042d978 = [self center].1
+  01baec  goto loc_10001bb04
+loc_10001baf0:
+  01bb00  [self setCenter:{d0, d1}]
+loc_10001bb04:
+  01bb10  return
+
+== -[ADRouletteView speed]   (address 0x10001bb14  size 20  kind objc)
+  01bb24  return
+
+== -[ADRouletteView setSpeed:]   (address 0x10001bb28  size 20  kind objc)
+  01bb34  self->_speed = arg1
+  01bb38  return
+
+== -[ADRouletteView revert]   (address 0x10001bb3c  size 20  kind objc)
+  01bb4c  return
+
+== -[ADRouletteView setRevert:]   (address 0x10001bb50  size 16  kind objc)
+  01bb58  self->_revert = arg1
+  01bb5c  return
+
+== -[ADRouletteView scenarioViewController]   (address 0x10001bb60  size 32  kind objc)
+  01bb7c  return
+
+== -[ADRouletteView setScenarioViewController:]   (address 0x10001bb80  size 20  kind objc)
+
+== -[ADRouletteView .cxx_destruct]   (address 0x10001bb94  size 80  kind objc)

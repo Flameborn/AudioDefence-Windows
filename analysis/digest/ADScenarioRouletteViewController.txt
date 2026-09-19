@@ -1,0 +1,406 @@
+
+== -[ADScenarioRouletteViewController playButtonTouched:]   (address 0x1000abf34  size 408  kind objc)
+  0abf5c  [ADGameModifiers sharedModifiers]
+  0abf78  [[ADGameModifiers sharedModifiers] resetModifiers]
+  0abf94  [self applyBothModifiers]
+  0abfac  [GAI sharedInstance]
+  0abfc8  [[GAI sharedInstance] defaultTracker]
+  0abfe8  [&d_1003b8398] -> @"&sc"
+  0ac004  [[[GAI sharedInstance] defaultTracker] set:@"&sc" value:@"start"]
+  0ac01c  [UIApplication sharedApplication]
+  0ac038  [[UIApplication sharedApplication] delegate]
+  0ac054  [[[UIApplication sharedApplication] delegate] goToGameplay]
+  0ac078  return
+
+== -[ADScenarioRouletteViewController applyBothModifiers]   (address 0x1000ac0cc  size 572  kind objc)
+  0ac0f4  [self badRoulette]
+  0ac114  [[self badRoulette] selectedItemDictionary]
+  0ac130  if ([[self badRoulette] selectedItemDictionary] == 0) goto loc_1000ac1b4
+  0ac13c  [self badRoulette]
+  0ac150  [[self badRoulette] selectedItemDictionary]
+  0ac174  [[[self badRoulette] selectedItemDictionary] objectForKey:@"selector"]
+  0ac198  [self applyRouletteModifier:[[[self badRoulette] selectedItemDictionary] objectForKey:@"selector"]]
+loc_1000ac1b4:
+  0ac1c8  [self goodRoulette]
+  0ac1dc  [[self goodRoulette] selectedItemDictionary]
+  0ac1f8  if ([[self goodRoulette] selectedItemDictionary] == 0) goto loc_1000ac28c
+  0ac204  [self goodRoulette]
+  0ac218  [[self goodRoulette] selectedItemDictionary]
+  0ac23c  [[[self goodRoulette] selectedItemDictionary] objectForKey:@"selector"]
+  0ac260  [self applyRouletteModifier:[[[self goodRoulette] selectedItemDictionary] objectForKey:@"selector"]]
+  0ac288  return
+loc_1000ac28c:
+  0ac29c  return
+
+== -[ADScenarioRouletteViewController applyRouletteModifier:]   (address 0x1000ac308  size 724  kind objc)
+  0ac348  [NSMutableDictionary alloc]
+  0ac358  [[NSMutableDictionary alloc] init]
+  0ac374  [arg1 substringToIndex:1]
+  0ac390  [[arg1 substringToIndex:1] uppercaseString]
+  0ac3bc  [arg1 stringByReplacingCharactersInRange:0 withString:1]
+  0ac400  [NSString stringWithFormat:@"set%@:", [arg1 stringByReplacingCharactersInRange:0 withString:1]]
+  0ac420  NSSelectorFromString([NSString stringWithFormat:@"set%@:", [arg1 stringByReplacingCharactersInRange:0 withString:1]])
+  0ac440  [ADGameModifiers sharedModifiers]
+  0ac460  [[ADGameModifiers sharedModifiers] respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"set%@:", [arg1 stringByReplacingCharactersInRange:0 withString:1]])]
+  0ac470  if ([[ADGameModifiers sharedModifiers] respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"set%@:", [arg1 stringByReplacingCharactersInRange:0 withString:1]])] == 0) goto loc_1000ac4c0
+  0ac48c  [NSNumber numberWithBool:1]
+  0ac4b4  [[[NSMutableDictionary alloc] init] setObject:[NSNumber numberWithBool:1] forKey:arg1]
+  0ac4b8  goto loc_1000ac4fc
+  0ac4bc  goto loc_1000ac5b0
+loc_1000ac4c0:
+  0ac4dc  [NSString stringWithFormat:@"Cannot find %@ on %@", arg1, @"ADGameModifiers"]
+  0ac4f8  NSLog(@"%@", [NSString stringWithFormat:@"Cannot find %@ on %@", arg1, @"ADGameModifiers"])
+loc_1000ac4fc:
+  0ac50c  [ADGameModifiers sharedModifiers]
+  0ac52c  [[ADGameModifiers sharedModifiers] setValuesForKeysWithDictionary:[[NSMutableDictionary alloc] init]]
+  0ac568  return
+
+== -[ADScenarioRouletteViewController rerollBadNews:]   (address 0x1000ac5dc  size 456  kind objc)
+  0ac600  [self badNewsTitle]
+  0ac628  [[self badNewsTitle] setText:@"BAD NEWS"]
+  0ac644  [self badNewsLabel]
+  0ac660  [[self badNewsLabel] setText:@"No bad news for this game"]
+  0ac67c  [self removeBadNews]
+  0ac69c  [[self removeBadNews] setEnabled:0]
+  0ac704  [UIView animateWithDuration:1.5 animations:^{-[ADScenarioRouletteViewController rerollBadNews:]_block_invoke captures +0x20=self}]
+  0ac718  [self badRoulette]
+  0ac734  [[self badRoulette] resetSelectedItem]
+  0ac758  return
+
+== -[ADScenarioRouletteViewController rerollBadNews:]_block_invoke   (address 0x1000ac7a4  size 396  kind block)
+  0ac7d4  [self badRoulette]
+  0ac7ec  [self badRoulette]
+  0ac80c  [[self badRoulette] center]
+  0ac81c  [self badRoulette]
+  0ac838  [[self badRoulette] frame]
+  0ac848  [self badRoulette]
+  0ac85c  [[self badRoulette] center]
+  0ac874  [[self badRoulette] setCenter:{([[self badRoulette] center].0 + [[self badRoulette] frame].2), [[self badRoulette] center].1}]
+  0ac8a8  [self removeBadNews]
+  0ac8c8  [[self removeBadNews] setAlpha:0]
+  0ac8e4  return
+
+== sub_1000ac930   (address 0x1000ac930  size 8  kind sub)
+
+== sub_1000ac938   (address 0x1000ac938  size 8  kind sub)
+  0ac93c  return
+
+== -[ADScenarioRouletteViewController rerollGoodNews:]   (address 0x1000ac940  size 768  kind objc)
+  0ac96c  self->goodNewsRolled = 1
+  0ac97c  [self goodNewsTitle]
+  0ac9a4  [[self goodNewsTitle] setText:@""]
+  0ac9c0  [self goodNewsLabel]
+  0ac9dc  [[self goodNewsLabel] setText:@""]
+  0ac9f8  [self goodRoulette]
+  0aca14  [[self goodRoulette] launchRoulette]
+  0aca80  [UIView animateWithDuration:0.5 animations:^{-[ADScenarioRouletteViewController rerollGoodNews:]_block_invoke captures +0x20=self}]
+  0acacc  [UIView animateWithDuration:0.2 animations:^{-[ADScenarioRouletteViewController rerollGoodNews:]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADScenarioRouletteViewController rero…, +0x40=&d_1003b2430, +0x48=self}]
+  0acae8  [ADGameParameters sharedParameters]
+  0acb04  [[ADGameParameters sharedParameters] timeSinceLastGoodNews]
+  0acb20  if ([[ADGameParameters sharedParameters] timeSinceLastGoodNews] <= (or unordered) 600) goto loc_1000acb88
+  0acb2c  [ADGameParameters sharedParameters]
+  0acb50  [NSDate date]
+  0acb74  [[ADGameParameters sharedParameters] setLastGoodNews:[NSDate date]]
+loc_1000acb88:
+  0acb98  [self checkPlayButton]
+  0acbc4  return
+
+== -[ADScenarioRouletteViewController rerollGoodNews:]_block_invoke   (address 0x1000acc40  size 196  kind block)
+  0acc68  [self goodRoulette]
+  0acc98  [[self goodRoulette] setCenter:{self->goodRouletteCenter.x, self->goodRouletteCenter.y}]
+  0accac  [self goodRoulette]
+  0acccc  [[self goodRoulette] setAlpha:1]
+  0acce0  return
+
+== sub_1000acd04   (address 0x1000acd04  size 8  kind sub)
+
+== sub_1000acd0c   (address 0x1000acd0c  size 8  kind sub)
+  0acd10  return
+
+== -[ADScenarioRouletteViewController rerollGoodNews:]_block_invoke_2   (address 0x1000acd14  size 180  kind block)
+  0acd38  [self goodNewsLabel]
+  0acd5c  [[self goodNewsLabel] setAlpha:0]
+  0acd78  [self rerollGoodNewsButton]
+  0acd90  [[self rerollGoodNewsButton] setAlpha:0]
+  0acda4  return
+
+== sub_1000acdc8   (address 0x1000acdc8  size 8  kind sub)
+
+== sub_1000acdd0   (address 0x1000acdd0  size 8  kind sub)
+  0acdd4  return
+
+== -[ADScenarioRouletteViewController rouletteDidStop:]   (address 0x1000acdd8  size 1628  kind objc)
+  0ace1c  [self badRoulette]
+  0ace44  [arg1 isEqual:[self badRoulette]]
+  0ace54  if ([arg1 isEqual:[self badRoulette]] == 0) goto loc_1000ad044
+  0ace6c  [self badNewsLabel]
+  0ace94  [[self badNewsLabel] setText:@"Bad roulette stopped"]
+  0acea8  [self badNewsLabel]
+  0acec0  [self badRoulette]
+  0acee0  [[self badRoulette] selectedItemDictionary]
+  0acf08  [[[self badRoulette] selectedItemDictionary] objectForKey:@"description"]
+  0acf24  [[self badNewsLabel] setText:[[[self badRoulette] selectedItemDictionary] objectForKey:@"description"]]
+  0acf58  [self badNewsTitle]
+  0acf74  [self badRoulette]
+  0acf88  [[self badRoulette] selectedItemDictionary]
+  0acfa4  [[[self badRoulette] selectedItemDictionary] objectForKey:@"title"]
+  0acfc0  [[self badNewsTitle] setText:[[[self badRoulette] selectedItemDictionary] objectForKey:@"title"]]
+  0ad038  [UIView animateWithDuration:0.5 animations:^{-[ADScenarioRouletteViewController rouletteDidStop:]_block_invoke captures +0x20=self}]
+  0ad040  goto loc_1000ad2b8
+loc_1000ad044:
+  0ad058  [self goodRoulette]
+  0ad074  [arg1 isEqual:[self goodRoulette]]
+  0ad084  if ([arg1 isEqual:[self goodRoulette]] == 0) goto loc_1000ad2bc
+  0ad09c  [self rerollGoodNewsButton]
+  0ad0c4  [[self rerollGoodNewsButton] setTitle:@"REROLL FOR 1" forState:0]
+  0ad0d8  [self rerollGoodNewsButton]
+  0ad0f8  [[self rerollGoodNewsButton] setDiamonds:30]
+  0ad114  [self goodNewsLabel]
+  0ad12c  [self goodRoulette]
+  0ad14c  [[self goodRoulette] selectedItemDictionary]
+  0ad174  [[[self goodRoulette] selectedItemDictionary] objectForKey:@"description"]
+  0ad19c  [[self goodNewsLabel] setText:[[[self goodRoulette] selectedItemDictionary] objectForKey:@"description"]]
+  0ad1d0  [self goodNewsTitle]
+  0ad1ec  [self goodRoulette]
+  0ad200  [[self goodRoulette] selectedItemDictionary]
+  0ad21c  [[[self goodRoulette] selectedItemDictionary] objectForKey:@"title"]
+  0ad238  [[self goodNewsTitle] setText:[[[self goodRoulette] selectedItemDictionary] objectForKey:@"title"]]
+  0ad2b0  [UIView animateWithDuration:0.5 animations:^{-[ADScenarioRouletteViewController rouletteDidStop:]_block_invoke_2 captures +0x20=self}]
+loc_1000ad2b8:
+loc_1000ad2bc:
+  0ad2cc  [self checkPlayButton]
+  0ad2f4  return
+
+== -[ADScenarioRouletteViewController rouletteDidStop:]_block_invoke   (address 0x1000ad434  size 180  kind block)
+  0ad458  [self badNewsLabel]
+  0ad47c  [[self badNewsLabel] setAlpha:1]
+  0ad498  [self removeBadNews]
+  0ad4b0  [[self removeBadNews] setAlpha:1]
+  0ad4c4  return
+
+== sub_1000ad4e8   (address 0x1000ad4e8  size 8  kind sub)
+
+== sub_1000ad4f0   (address 0x1000ad4f0  size 8  kind sub)
+  0ad4f4  return
+
+== -[ADScenarioRouletteViewController rouletteDidStop:]_block_invoke_2   (address 0x1000ad4f8  size 180  kind block)
+  0ad51c  [self goodNewsLabel]
+  0ad540  [[self goodNewsLabel] setAlpha:1]
+  0ad55c  [self rerollGoodNewsButton]
+  0ad574  [[self rerollGoodNewsButton] setAlpha:1]
+  0ad588  return
+
+== sub_1000ad5ac   (address 0x1000ad5ac  size 8  kind sub)
+
+== sub_1000ad5b4   (address 0x1000ad5b4  size 8  kind sub)
+  0ad5b8  return
+
+== -[ADScenarioRouletteViewController viewDidLoad]   (address 0x1000ad5bc  size 2112  kind objc)
+  0ad604  [super viewDidLoad]
+  0ad618  [self statusBarViewController]
+  0ad634  [[self statusBarViewController] pageTitle]
+  0ad65c  [[[self statusBarViewController] pageTitle] setText:@"DR BASTARD'S ROULETTE"]
+  0ad684  [NSBundle mainBundle]
+  0ad6b0  [[NSBundle mainBundle] URLForResource:@"Roulette" withExtension:@"plist"]
+  0ad6dc  [NSDictionary alloc]
+  0ad6f0  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Roulette" withExtension:@"plist"]]
+  0ad70c  [self badRoulette]
+  0ad730  [[self badRoulette] setScenarioViewController:self]
+  0ad744  [self badRoulette]
+  0ad770  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Roulette" withExtension:@"plist"]] objectForKey:@"BadRoulette"]
+  0ad798  [[self badRoulette] initItemsWithArray:[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Roulette" withExtension:@"plist"]] objectForKey:@"BadRoulette"]]
+  0ad7c0  [self goodRoulette]
+  0ad7d8  [[self goodRoulette] setScenarioViewController:self]
+  0ad7ec  [self goodRoulette]
+  0ad80c  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Roulette" withExtension:@"plist"]] objectForKey:@"GoodRoulette"]
+  0ad828  [[self goodRoulette] initItemsWithArray:[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Roulette" withExtension:@"plist"]] objectForKey:@"GoodRoulette"]]
+  0ad84c  [self badNewsLabel]
+  0ad870  [[self badNewsLabel] setAlpha:0]
+  0ad88c  [self removeBadNews]
+  0ad8a4  [[self removeBadNews] setAlpha:0]
+  0ad8b8  [self badRoulette]
+  0ad8d4  [[self badRoulette] launchRoulette]
+  0ad8f0  [self checkPlayButton]
+  0ad8fc  [self goodRoulette]
+  0ad918  [[self goodRoulette] center]
+  0ad93c  [self goodRoulette]
+  0ad954  [[self goodRoulette] setAlpha:0]
+  0ad978  [ADGameParameters sharedParameters]
+  0ad998  [[ADGameParameters sharedParameters] timeSinceLastGoodNews]
+  0ad9b4  if ([[ADGameParameters sharedParameters] timeSinceLastGoodNews] >= (or unordered) 600) goto loc_1000adb54
+  0ad9ec  [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(update) userInfo:0 repeats:1]
+  0ada04  self->goodNewsTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(update) userInfo:0 repeats:1]
+  0ada20  [self goodNewsTitle]
+  0ada3c  [[self goodNewsTitle] setText:@"NEXT FREE ROLL :"]
+  0ada58  [self goodNewsLabel]
+  0ada70  [ADGameParameters sharedParameters]
+  0ada84  [[ADGameParameters sharedParameters] timeSinceLastGoodNews]
+  0adaa0  [self timeStringFromSeconds:(int)(600 - [[ADGameParameters sharedParameters] timeSinceLastGoodNews])]
+  0adabc  [[self goodNewsLabel] setText:[self timeStringFromSeconds:(int)(600 - [[ADGameParameters sharedParameters] timeSinceLastGoodNews])]]
+  0adaec  [self rerollGoodNewsButton]
+  0adb14  [[self rerollGoodNewsButton] setTitle:@"ROLL FOR 1" forState:0]
+  0adb28  [self rerollGoodNewsButton]
+  0adb48  [[self rerollGoodNewsButton] setDiamonds:30]
+  0adb4c  goto loc_1000adbc8
+  0adb50  goto loc_1000addd8
+loc_1000adb54:
+  0adb68  [self rerollGoodNewsButton]
+  0adb90  [[self rerollGoodNewsButton] setTitle:@"FREE ROLL" forState:0]
+  0adba4  [self rerollGoodNewsButton]
+  0adbc4  [[self rerollGoodNewsButton] setDiamonds:0]
+loc_1000adbc8:
+  0adbe4  [GAI sharedInstance]
+  0adc00  [[GAI sharedInstance] defaultTracker]
+  0adc20  [&d_1003b83b0] -> @"&cd"
+  0adc3c  [[[GAI sharedInstance] defaultTracker] set:@"&cd" value:@"Endless mode scenario roulette screen"]
+  0adc54  [GAIDictionaryBuilder createAppView]
+  0adc70  [[GAIDictionaryBuilder createAppView] build]
+  0adc94  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]]
+  0adce0  return
+
+== -[ADScenarioRouletteViewController update]   (address 0x1000addfc  size 548  kind objc)
+  0ade30  [ADGameParameters sharedParameters]
+  0ade50  [[ADGameParameters sharedParameters] timeSinceLastGoodNews]
+  0ade6c  if ([[ADGameParameters sharedParameters] timeSinceLastGoodNews] >= (or unordered) 600) goto loc_1000ade98
+  0ade7c  if (self->goodNewsRolled == 0) goto loc_1000adf30
+  0ade94  return
+loc_1000ade98:
+  0adeb0  [self->goodNewsTimer invalidate]
+  0adec8  [self rerollGoodNewsButton]
+  0adef0  [[self rerollGoodNewsButton] setTitle:@"FREE ROLL" forState:0]
+  0adf04  [self rerollGoodNewsButton]
+  0adf24  [[self rerollGoodNewsButton] setDiamonds:0]
+  0adf28  goto loc_1000adfc0
+  0adf2c  goto loc_1000adff4
+loc_1000adf30:
+  0adf40  [self goodNewsLabel]
+  0adf58  [ADGameParameters sharedParameters]
+  0adf6c  [[ADGameParameters sharedParameters] timeSinceLastGoodNews]
+  0adf88  [self timeStringFromSeconds:(int)(600 - [[ADGameParameters sharedParameters] timeSinceLastGoodNews])]
+  0adfac  [[self goodNewsLabel] setText:[self timeStringFromSeconds:(int)(600 - [[ADGameParameters sharedParameters] timeSinceLastGoodNews])]]
+loc_1000adfc0:
+  0adfd8  return
+
+== -[ADScenarioRouletteViewController checkPlayButton]   (address 0x1000ae020  size 440  kind objc)
+  0ae048  [self goodRoulette]
+  0ae068  [[self goodRoulette] isStopped]
+  0ae070  if (!([[self goodRoulette] isStopped] & 1)) goto loc_1000ae118
+  0ae084  [self badRoulette]
+  0ae098  [[self badRoulette] isStopped]
+  0ae0b0  if ([[self badRoulette] isStopped] == 0) goto loc_1000ae120
+  0ae10c  [UIView animateWithDuration:0.2 animations:^{-[ADScenarioRouletteViewController checkPlayButton]_block_invoke captures +0x20=self}]
+  0ae114  goto loc_1000ae180
+loc_1000ae118:
+loc_1000ae120:
+  0ae178  [UIView animateWithDuration:0.2 animations:^{-[ADScenarioRouletteViewController checkPlayButton]_block_invoke_2 captures +0x20=self}]
+loc_1000ae180:
+  0ae198  return
+
+== -[ADScenarioRouletteViewController checkPlayButton]_block_invoke   (address 0x1000ae1d8  size 100  kind block)
+  0ae1f4  [self playButton]
+  0ae214  [[self playButton] setAlpha:1]
+  0ae224  return
+
+== sub_1000ae23c   (address 0x1000ae23c  size 8  kind sub)
+
+== sub_1000ae244   (address 0x1000ae244  size 8  kind sub)
+  0ae248  return
+
+== -[ADScenarioRouletteViewController checkPlayButton]_block_invoke_2   (address 0x1000ae24c  size 100  kind block)
+  0ae268  [self playButton]
+  0ae288  [[self playButton] setAlpha:0]
+  0ae298  return
+
+== sub_1000ae2b0   (address 0x1000ae2b0  size 8  kind sub)
+
+== sub_1000ae2b8   (address 0x1000ae2b8  size 8  kind sub)
+  0ae2bc  return
+
+== -[ADScenarioRouletteViewController timeStringFromSeconds:]   (address 0x1000ae2c0  size 224  kind objc)
+  0ae2f0  t1 = (((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >> 5) + ((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >>> 31))
+  0ae338  [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 - t1 * 60)]
+  0ae35c  [NSString stringWithFormat:@"%i:%@", t1, [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 …]
+  0ae388  return
+
+== -[ADScenarioRouletteViewController dealloc]   (address 0x1000ae3a0  size 428  kind objc)
+  0ae3c0  NSLog(@"Dealloc roulette", _cmd)
+  0ae3d4  [self view]
+  0ae3f0  [[self view] layer]
+  0ae40c  [[[self view] layer] removeAllAnimations]
+  0ae430  [self goodRoulette]
+  0ae450  [[self goodRoulette] deactivate]
+  0ae46c  [self badRoulette]
+  0ae480  [[self badRoulette] deactivate]
+  0ae4a4  [self->goodNewsTimer invalidate]
+  0ae4c8  [super dealloc]
+  0ae4dc  return
+  0ae53c  [super dealloc]
+  0ae548  call sub_10000b760
+
+== -[ADScenarioRouletteViewController goodRoulette]   (address 0x1000ae54c  size 16  kind objc)
+  0ae558  return
+
+== -[ADScenarioRouletteViewController setGoodRoulette:]   (address 0x1000ae55c  size 56  kind objc)
+  0ae580  self->_goodRoulette = arg1
+  0ae590  return
+
+== -[ADScenarioRouletteViewController badRoulette]   (address 0x1000ae594  size 16  kind objc)
+  0ae5a0  return
+
+== -[ADScenarioRouletteViewController setBadRoulette:]   (address 0x1000ae5a4  size 56  kind objc)
+  0ae5c8  self->_badRoulette = arg1
+  0ae5d8  return
+
+== -[ADScenarioRouletteViewController badNewsLabel]   (address 0x1000ae5dc  size 16  kind objc)
+  0ae5e8  return
+
+== -[ADScenarioRouletteViewController setBadNewsLabel:]   (address 0x1000ae5ec  size 56  kind objc)
+  0ae610  self->_badNewsLabel = arg1
+  0ae620  return
+
+== -[ADScenarioRouletteViewController goodNewsLabel]   (address 0x1000ae624  size 16  kind objc)
+  0ae630  return
+
+== -[ADScenarioRouletteViewController setGoodNewsLabel:]   (address 0x1000ae634  size 56  kind objc)
+  0ae658  self->_goodNewsLabel = arg1
+  0ae668  return
+
+== -[ADScenarioRouletteViewController playButton]   (address 0x1000ae66c  size 16  kind objc)
+  0ae678  return
+
+== -[ADScenarioRouletteViewController setPlayButton:]   (address 0x1000ae67c  size 56  kind objc)
+  0ae6a0  self->_playButton = arg1
+  0ae6b0  return
+
+== -[ADScenarioRouletteViewController rerollGoodNewsButton]   (address 0x1000ae6b4  size 16  kind objc)
+  0ae6c0  return
+
+== -[ADScenarioRouletteViewController setRerollGoodNewsButton:]   (address 0x1000ae6c4  size 56  kind objc)
+  0ae6e8  self->_rerollGoodNewsButton = arg1
+  0ae6f8  return
+
+== -[ADScenarioRouletteViewController removeBadNews]   (address 0x1000ae6fc  size 16  kind objc)
+  0ae708  return
+
+== -[ADScenarioRouletteViewController setRemoveBadNews:]   (address 0x1000ae70c  size 56  kind objc)
+  0ae730  self->_removeBadNews = arg1
+  0ae740  return
+
+== -[ADScenarioRouletteViewController goodNewsTitle]   (address 0x1000ae744  size 16  kind objc)
+  0ae750  return
+
+== -[ADScenarioRouletteViewController setGoodNewsTitle:]   (address 0x1000ae754  size 56  kind objc)
+  0ae778  self->_goodNewsTitle = arg1
+  0ae788  return
+
+== -[ADScenarioRouletteViewController badNewsTitle]   (address 0x1000ae78c  size 16  kind objc)
+  0ae798  return
+
+== -[ADScenarioRouletteViewController setBadNewsTitle:]   (address 0x1000ae79c  size 56  kind objc)
+  0ae7c0  self->_badNewsTitle = arg1
+  0ae7d0  return
+
+== -[ADScenarioRouletteViewController .cxx_destruct]   (address 0x1000ae7d4  size 224  kind objc)
+
+== -[ADScenarioRouletteViewController .cxx_construct]   (address 0x1000ae8b4  size 4  kind objc)
+  0ae8b4  return

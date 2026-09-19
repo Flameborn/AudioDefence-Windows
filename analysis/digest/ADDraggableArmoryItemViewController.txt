@@ -1,0 +1,214 @@
+
+== -[ADDraggableArmoryItemViewController initWithNibName:bundle:itemName:]   (address 0x10006dd94  size 252  kind objc)
+  06de08  [super initWithNibName:arg1 bundle:arg2]
+  06de10  if (self == 0) goto loc_10006de30
+  06de2c  [self setItemName:arg3]
+loc_10006de30:
+  06de60  return
+
+== -[ADDraggableArmoryItemViewController initType]   (address 0x10006de90  size 580  kind objc)
+  06dec4  [ADWeaponManager sharedWeaponManager]
+  06dee8  [self itemName]
+  06df10  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[self itemName]]
+  06df3c  [ADWeaponManager sharedWeaponManager]
+  06df4c  if ([[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[self itemName]] == 0) goto loc_10006dfdc
+  06df58  [self itemName]
+  06df74  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[self itemName]]
+  06df98  [[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[self itemName]] objectForKey:@"melee"]
+  06dfc8  &@selector(setType:)
+  06dfd0  if ([[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[self itemName]] objectForKey:@"melee"] == 0) goto loc_10006e044
+  06dfd8  goto loc_10006e048
+loc_10006dfdc:
+  06dfe4  [self itemName]
+  06e008  [[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:[self itemName]]
+  06e02c  if ([[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:[self itemName]] == 0) goto loc_10006e064
+  06e034  &@selector(setType:)
+  06e040  goto loc_10006e048
+loc_10006e044:
+loc_10006e048:
+  06e060  tail [self setType:one of {1, 2, 3}]
+loc_10006e064:
+  06e078  return
+
+== -[ADDraggableArmoryItemViewController viewDidLoad]   (address 0x10006e0d4  size 408  kind objc)
+  06e10c  [super viewDidLoad]
+  06e120  [self checkLock]
+  06e134  [self setQuantity]
+  06e148  [self weaponImage]
+  06e178  [self itemName]
+  06e1a4  [NSString stringWithFormat:@"%@_icon", [self itemName]]
+  06e1c8  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [self itemName]]]
+  06e1ec  [[self weaponImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [self itemName]]]]
+  06e220  return
+
+== -[ADDraggableArmoryItemViewController setItemName:]   (address 0x10006e26c  size 136  kind objc)
+  06e29c  self->_itemName = arg1
+  06e2b4  [self initType]
+  06e2c8  [self checkLock]
+  06e2dc  return
+
+== -[ADDraggableArmoryItemViewController setQuantity]   (address 0x10006e2f4  size 516  kind objc)
+  06e318  [self type]
+  06e320  if ([self type] == 1) goto loc_10006e410
+  06e328  if ([self type] != 3) goto loc_10006e44c
+  06e340  [ADInventory sharedInventory]
+  06e360  [self itemName]
+  06e384  [[ADInventory sharedInventory] quantityForPowerUpWithName:[self itemName]]
+  06e3ac  [self quantityLabel]
+  06e3dc  [NSString stringWithFormat:@"x %i", [[ADInventory sharedInventory] quantityForPowerUpWithName:[self itemName]]]
+  06e400  [[self quantityLabel] setText:[NSString stringWithFormat:@"x %i", [[ADInventory sharedInventory] quantityForPowerUpWithName:[self itemName]]]]
+  06e40c  goto loc_10006e488
+loc_10006e410:
+  06e420  [self quantityLabel]
+  06e440  [[self quantityLabel] setHidden:1]
+  06e444  goto loc_10006e488
+  06e448  goto loc_10006e4e4
+loc_10006e44c:
+  06e450  if ([self type] != 2) goto loc_10006e4a0
+  06e464  [self quantityLabel]
+  06e484  [[self quantityLabel] setHidden:1]
+loc_10006e488:
+  06e49c  return
+loc_10006e4a0:
+  06e4b0  return
+
+== -[ADDraggableArmoryItemViewController checkLock]   (address 0x10006e4f8  size 380  kind objc)
+  06e51c  [self type]
+  06e524  if ([self type] == 2) goto loc_10006e53c
+  06e530  [self type]
+  06e538  if ([self type] != 1) goto loc_10006e604
+loc_10006e53c:
+  06e550  [ADInventory sharedInventory]
+  06e570  [self itemName]
+  06e594  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self itemName]]
+  06e5bc  [self lockedView]
+  06e5d0  &@selector(setHidden:)
+  06e5d8  if ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self itemName]] == 0) goto loc_10006e5f0
+  06e5e4  [[self lockedView] setHidden:1]
+  06e5e8  goto loc_10006e638
+  06e5ec  goto loc_10006e660
+loc_10006e5f0:
+  06e5f8  [[self lockedView] setHidden:0]
+  06e5fc  goto loc_10006e638
+  06e600  goto loc_10006e660
+loc_10006e604:
+  06e614  [self lockedView]
+  06e634  [[self lockedView] setHidden:1]
+loc_10006e638:
+  06e648  return
+
+== -[ADDraggableArmoryItemViewController isLocked]   (address 0x10006e674  size 188  kind objc)
+  06e69c  [ADInventory sharedInventory]
+  06e6bc  [self itemName]
+  06e6e0  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self itemName]]
+  06e708  return
+
+== -[ADDraggableArmoryItemViewController createOvumFromView:]   (address 0x10006e730  size 320  kind objc)
+  06e75c  [OBOvum alloc]
+  06e770  [[OBOvum alloc] init]
+  06e784  [ADOvumDataObject alloc]
+  06e78c  [[ADOvumDataObject alloc] init]
+  06e7a4  [self itemName]
+  06e7c8  [[[ADOvumDataObject alloc] init] setObjName:[self itemName]]
+  06e7e4  [self type]
+  06e7fc  [[[ADOvumDataObject alloc] init] setObjTag:[self type]]
+  06e814  [[[OBOvum alloc] init] setDataObject:[[ADOvumDataObject alloc] init]]
+  06e830  return
+
+== -[ADDraggableArmoryItemViewController createDragRepresentationOfSourceView:inWindow:]   (address 0x10006e870  size 928  kind objc)
+  06e8bc  [arg1 bounds]
+  06e8e4  [arg1 window]
+  06e90c  [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]]
+  06e928  [arg1 window]
+  06e950  [arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].3} fromWindow:[arg1 window]]
+  06e978  [UIImageView alloc]
+  06e998  [[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].…
+  06e9b0  [self weaponImage]
+  06e9cc  [[self weaponImage] image]
+  06e9f0  [[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]]…
+  06ea14  [arg1 backgroundColor]
+  06ea38  [[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]]…
+  06ea58  [[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 co…
+  06ea78  [[[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 co… setCornerRadius:5]
+  06ea8c  [[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 co…
+  06eab8  [UIColor colorWithWhite:0 alpha:1]
+  06ead8  [[UIColor colorWithWhite:0 alpha:1] CGColor]
+  06eaf0  [[[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 co… setBorderColor:[[UIColor colorWithWhite:0 alpha:1] CGColor]]
+  06eb0c  [[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 co…
+  06eb2c  [[[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 co… setBorderWidth:1]
+  06eb40  [[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 co…
+  06eb60  [[[[UIImageView alloc] initWithFrame:{[arg2 convertRect:{[arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].0, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].1, [arg1 convertRect:{[arg1 bounds].0, [arg1 bounds].1, [arg1 bounds].2, [arg1 bounds].3} toView:[arg1 window]].2, [arg1 co… setMasksToBounds:1]
+  06eb98  return
+
+== -[ADDraggableArmoryItemViewController dragViewWillAppear:inWindow:atLocation:]   (address 0x10006ec10  size 304  kind objc)
+  06ec44  NSLog(@"The drag view will appear now")
+  06ec74  [arg1 setTransform:&sp[0x40]]
+  06ec8c  [arg1 setAlpha:0]
+  06ecf0  [UIView animateWithDuration:0.25 animations:^{-[ADDraggableArmoryItemViewController dragViewWillAppear:inWindow:atLocation:]_block_invoke captures +0x20=arg1, +0x28=arg3.0, +0x30=arg3.1, +0x38=CGAffineTransformIdentity.0, +0x40=CGAffineTransformIdentity.1, +0x58=_CGAffineTransformIdentity[+0x20]}]
+  06ed18  return
+
+== -[ADDraggableArmoryItemViewController dragViewWillAppear:inWindow:atLocation:]_block_invoke   (address 0x10006ed40  size 156  kind block)
+  06ed68  [arg1 setCenter:{d0, d1}]
+  06ed80  CGAffineTransformMakeScale([arg1 setCenter:{d0, d1}])
+  06edb0  [arg1 setTransform:&sp[0x0]]
+  06edc8  [arg1 setAlpha:0.75]
+  06edd8  return
+
+== sub_10006eddc   (address 0x10006eddc  size 8  kind sub)
+
+== sub_10006ede4   (address 0x10006ede4  size 8  kind sub)
+  06ede8  return
+
+== -[ADDraggableArmoryItemViewController itemName]   (address 0x10006edec  size 16  kind objc)
+  06edf8  return
+
+== -[ADDraggableArmoryItemViewController weaponImage]   (address 0x10006edfc  size 16  kind objc)
+  06ee08  return
+
+== -[ADDraggableArmoryItemViewController setWeaponImage:]   (address 0x10006ee0c  size 56  kind objc)
+  06ee30  self->_weaponImage = arg1
+  06ee40  return
+
+== -[ADDraggableArmoryItemViewController titleLabel]   (address 0x10006ee44  size 16  kind objc)
+  06ee50  return
+
+== -[ADDraggableArmoryItemViewController setTitleLabel:]   (address 0x10006ee54  size 56  kind objc)
+  06ee78  self->_titleLabel = arg1
+  06ee88  return
+
+== -[ADDraggableArmoryItemViewController quantityLabel]   (address 0x10006ee8c  size 16  kind objc)
+  06ee98  return
+
+== -[ADDraggableArmoryItemViewController setQuantityLabel:]   (address 0x10006ee9c  size 56  kind objc)
+  06eec0  self->_quantityLabel = arg1
+  06eed0  return
+
+== -[ADDraggableArmoryItemViewController lockedView]   (address 0x10006eed4  size 16  kind objc)
+  06eee0  return
+
+== -[ADDraggableArmoryItemViewController setLockedView:]   (address 0x10006eee4  size 56  kind objc)
+  06ef08  self->_lockedView = arg1
+  06ef18  return
+
+== -[ADDraggableArmoryItemViewController armoryIndex]   (address 0x10006ef1c  size 16  kind objc)
+  06ef28  return
+
+== -[ADDraggableArmoryItemViewController setArmoryIndex:]   (address 0x10006ef2c  size 16  kind objc)
+  06ef34  self->_armoryIndex = arg1
+  06ef38  return
+
+== -[ADDraggableArmoryItemViewController type]   (address 0x10006ef3c  size 16  kind objc)
+  06ef48  return
+
+== -[ADDraggableArmoryItemViewController setType:]   (address 0x10006ef4c  size 16  kind objc)
+  06ef54  self->_type = arg1
+  06ef58  return
+
+== -[ADDraggableArmoryItemViewController previousOffset]   (address 0x10006ef5c  size 20  kind objc)
+  06ef6c  return
+
+== -[ADDraggableArmoryItemViewController setPreviousOffset:]   (address 0x10006ef70  size 20  kind objc)
+  06ef7c  self->_previousOffset = arg1
+  06ef80  return
+
+== -[ADDraggableArmoryItemViewController .cxx_destruct]   (address 0x10006ef84  size 124  kind objc)

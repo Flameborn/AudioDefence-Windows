@@ -1,0 +1,82 @@
+
+== csl::IO::~IO/*base*/(…)   (address 0x1000e4280  size 108  kind sym)
+  0e42a0  csl::Buffer::~Buffer(a0, a1, a2, a3)
+  0e42a8  csl::Buffer::~Buffer((a0 + 104))
+  0e42b0  ZN3csl5ModelD2Ev(a0)
+  0e42c0  return
+  0e42cc  csl::Buffer::~Buffer((x19 + 104))
+  0e42dc  ZN3csl5ModelD2Ev()
+  0e42e8  call sub_10000b760
+
+== csl::IO::vfunc_8   (address 0x1000eb2c0  size 44  kind cxx)
+  0eb2d4  call a0[+0x0][+0x48]
+  0eb2dc  return
+  0eb2e0  if (w1 >= 0) goto loc_1000eb2e8
+  0eb2e4  cxa_call_unexpected()
+
+== csl::IO::vfunc_9   (address 0x1000eb2ec  size 308  kind cxx)
+  0eb30c  if (a0[+0xf4] == 0) goto loc_1000eb34c
+  0eb318  if (a0[+0x108] == 0) goto loc_1000eb338
+  0eb32c  sub_1000eaf3c(a0, (a0 + 104), a0[+0xd8], a1)
+  0eb334  a0[+0x92] = 1
+loc_1000eb338:
+  0eb348  return
+  0eb350  cxa_allocate_exception(16, a1, a2, a3)
+  0eb368  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Can't get unopened input", &sp[0x8])
+  0eb374  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0eb384  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0eb39c  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0eb3c0  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000eb3e8
+  0eb3d4  if (w11 != 0) goto loc_1000eb3c8
+  0eb3dc  if (w9 > 0) goto loc_1000eb3e8
+  0eb3e4  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0eb3e8  if (w20 >= 0) goto loc_1000eb3f4
+  0eb3f0  cxa_call_unexpected()
+  0eb418  cxa_free_exception()
+
+== sub_1000eb420   (address 0x1000eb420  size 36  kind sub)
+  0eb430  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0eb440  return
+
+== csl::IO::~IO   (address 0x1000eb920  size 76  kind cxx)
+  0eb948  sub_1000e80e0((a0 + 160), a1, a2, a3)
+  0eb950  sub_1000e80e0(a0)
+  0eb958  ZN3csl5ModelD2Ev(a0)
+  0eb968  return
+
+== csl::IO::~IO/*deleting*/   (address 0x1000eb96c  size 96  kind cxx)
+  0eb994  sub_1000e80e0((a0 + 160), a1, a2, a3)
+  0eb99c  sub_1000e80e0(a0)
+  0eb9a4  ZN3csl5ModelD2Ev(a0)
+  0eb9b4  tail ZdlPv(a0)
+  0eb9c0  ZdlPv()
+
+== csl::IO::vfunc_3   (address 0x1000eb9cc  size 12  kind cxx)
+  0eb9d0  a0[+0x104] = 2
+  0eb9d4  return
+
+== csl::IO::vfunc_4   (address 0x1000eb9d8  size 12  kind cxx)
+  0eb9dc  a0[+0x104] = 4
+  0eb9e0  return
+
+== csl::IO::vfunc_5   (address 0x1000eb9e4  size 12  kind cxx)
+  0eb9e8  a0[+0x104] = 3
+  0eb9ec  return
+
+== csl::IO::vfunc_6   (address 0x1000eb9f0  size 12  kind cxx)
+  0eb9f4  a0[+0x104] = 2
+  0eb9f8  return
+
+== csl::IO::vfunc_7   (address 0x1000eb9fc  size 4  kind cxx)
+  0eb9fc  return
+
+== csl::IO::vfunc_10   (address 0x1000eba00  size 4  kind cxx)
+  0eba00  return
+
+== sub_1000eba04   (address 0x1000eba04  size 36  kind sub)
+  0eba14  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0eba24  tail ZdlPv(a0)
+
+== sub_1000eba28   (address 0x1000eba28  size 40  kind sub)
+  0eba40  store g_10042d8b0 = 0
+  0eba4c  tail cxa_atexit(INDIRECT_SYMBOL_LOCAL, &g_10042d8b0, 0x100000000, a3)

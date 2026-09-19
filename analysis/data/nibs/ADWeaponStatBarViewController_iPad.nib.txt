@@ -1,0 +1,19 @@
+// ADWeaponStatBarViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #2 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #17 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #13 UIView  
+    #60 UIImageView  Image='popup_bar_foreground.png'
+    #18 UIImageView  Image='popup_bar_background.png'
+    #65 UIImageView  Image='popup_bar_green_b.png'
+    #49 UIImageView  Image='popup_bar_green.png'
+    #44 UILabel  UserInteractionDisabled=False Text='200'
+
+CONNECTIONS
+  outlet  currentValueBar                           #2 UIProxyObject --> #49 UIImageView
+  outlet  currentValueLabel                         #2 UIProxyObject --> #44 UILabel Text='200'
+  outlet  maxValueBar                               #2 UIProxyObject --> #18 UIImageView
+  outlet  nextLevelValueBar                         #2 UIProxyObject --> #65 UIImageView
+  outlet  view                                      #2 UIProxyObject --> #13 UIView
+
+ACCESSIBILITY CONFIGURATIONS

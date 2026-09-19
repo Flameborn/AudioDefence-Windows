@@ -1,0 +1,43 @@
+{
+ "icon_title": "14",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 75
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "title": "The Mixed Bag",
+ "objective": "It's time to pit you against Chainsaws, Clowns and Farties... all together!",
+ "tip": "Switch to the Sawn-off Shotgun if you feel overwhelmed. And remeber to use your melee weapon!",
+ "bricks": [
+  "urban_4_brick_1",
+  "urban_4_brick_2"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "urban_4",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "urban_3"
+ ],
+ "weapons": [
+  {
+   "ammo": "100",
+   "name": "microsmg"
+  },
+  {
+   "ammo": "10",
+   "name": "sawnoff"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 90
+ }
+}

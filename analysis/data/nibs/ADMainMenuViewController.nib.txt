@@ -1,0 +1,54 @@
+// ADMainMenuViewController.nib
+TOP-LEVEL OBJECTS
+  #67 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #139 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #65 UIView  Tag=2781
+    #100 UIView (custom class ViewWithParalax)  
+      #75 UIImageView  Image='background_main.png'
+    #161 UIView (custom class ADSlidingView)  
+      #92 UIImageView  Image='chains_main.png'
+      #57 UIImageView  Image='frame_headphones.png'
+      #154 UIButton (custom class ADButtonWithFont)  
+    #185 UIButton (custom class ADButtonWithFont)  
+    #24 UIButton (custom class ADButtonWithFont)  
+    #79 UIButton (custom class ADButtonWithFont)  
+    #148 UIButton (custom class ADButtonWithFont)  title[0]='CHEAT'
+  #109 UIView  Tag=2782
+    #48 UIView (custom class ViewWithParalax)  
+      #77 UIImageView  Image='background_main.png'
+    #83 UIView (custom class ADSlidingView)  Tag=3
+      #162 UIImageView  Image='chains_main.png'
+      #41 UIImageView  Tag=2 Image='frame_headphones.png'
+      #13 UIButton (custom class ADButtonWithFont)  
+    #43 UIButton (custom class ADButtonWithFont)  
+    #131 UIButton (custom class ADButtonWithFont)  
+    #89 UIButton  
+    #192 UIButton (custom class ADButtonWithFont)  Tag=1 title[0]='CHEAT'
+
+CONNECTIONS
+  action  cheatButtonPressed:                       #148 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  action  cheatButtonPressed:                       #192 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  action  leaderboardsButtonPressed:                #185 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  action  leaderboardsButtonPressed:                #43 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  action  moveToEncyclopedia:                       #131 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  action  moveToEncyclopedia:                       #24 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  action  playButtonPressed:                        #154 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  action  playButtonPressed:                        #13 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  action  settingsButtonTouched:                    #89 UIButton --(events 0x40)--> #67 UIProxyObject
+  action  settingsButtonTouched:                    #79 ADButtonWithFont --(events 0x40)--> #67 UIProxyObject
+  outlet  background                                #67 UIProxyObject --> #75 UIImageView
+  outlet  cheatMenu                                 #67 UIProxyObject --> #148 ADButtonWithFont
+  outlet  firstAccessibleElement                    #67 UIProxyObject --> #154 ADButtonWithFont
+  outlet  slidingView                               #67 UIProxyObject --> #161 ADSlidingView
+  outlet  useHeadphones                             #67 UIProxyObject --> #57 UIImageView
+  outlet  view                                      #67 UIProxyObject --> #65 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#154 ADButtonWithFont' UIAccessibilityLabel='Play'
+  UIAccessibileObject='#185 ADButtonWithFont' UIAccessibilityLabel='Game Center'
+  UIAccessibileObject='#24 ADButtonWithFont' UIAccessibilityLabel='Info'
+  UIAccessibileObject='#79 ADButtonWithFont' UIAccessibilityLabel='Settings'
+  UIAccessibileObject='#13 ADButtonWithFont' UIAccessibilityLabel='Play'
+  UIAccessibileObject='#43 ADButtonWithFont' UIAccessibilityLabel='Game Center'
+  UIAccessibileObject='#131 ADButtonWithFont' UIAccessibilityLabel='Info'
+  UIAccessibileObject='#89 UIButton' UIAccessibilityLabel='Settings'

@@ -1,0 +1,29 @@
+
+== +[TAGEventMacro functionId]   (address 0x1001749ec  size 44  kind objc)
+  174a14  return
+
+== -[TAGEventMacro initWithRuntime:]   (address 0x100174a18  size 228  kind objc)
+  174a50  [NSSet set]
+  174a8c  [super initWithFunctionId:@"_e" requiredKeys:[NSSet set]]
+  174a9c  if (self == 0) goto loc_100174ab4
+loc_100174ab4:
+  174ad0  return
+
+== -[TAGEventMacro isCacheable]   (address 0x100174afc  size 8  kind objc)
+  174b00  return
+
+== -[TAGEventMacro evaluate:]   (address 0x100174b04  size 228  kind objc)
+  174b20  [self runtime]
+  174b3c  [[self runtime] currentEventName]
+  174b5c  if ([[self runtime] currentEventName] == 0) goto loc_100174b7c
+  174b70  [TAGTypes objectToValue:[[self runtime] currentEventName]]
+  174b78  goto loc_100174b90
+loc_100174b7c:
+  174b88  [TAGTypes defaultValue]
+loc_100174b90:
+  174bb8  return
+
+== -[TAGEventMacro runtime]   (address 0x100174be8  size 32  kind objc)
+  174c04  return
+
+== -[TAGEventMacro .cxx_destruct]   (address 0x100174c08  size 16  kind objc)

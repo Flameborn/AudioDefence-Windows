@@ -1,0 +1,20 @@
+
+== -[GlowingImage initWithFrame:]   (address 0x1000cbd34  size 60  kind objc)
+  0cbd60  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  0cbd6c  return
+
+== -[GlowingImage awakeFromNib]   (address 0x1000cbd70  size 168  kind objc)
+  0cbde8  [UIView animateWithDuration:0.7 delay:0 options:26 animations:^{-[GlowingImage awakeFromNib]_block_invoke captures +0x20=self} completion:^{-[GlowingImage awakeFromNib]_block_invoke_2}]
+  0cbe00  return
+
+== -[GlowingImage awakeFromNib]_block_invoke   (address 0x1000cbe18  size 84  kind block)
+  0cbe44  [UIView setAnimationRepeatCount:blockarg2]
+  0cbe68  tail [self setAlpha:0.2]
+
+== sub_1000cbe6c   (address 0x1000cbe6c  size 8  kind sub)
+
+== sub_1000cbe74   (address 0x1000cbe74  size 8  kind sub)
+  0cbe78  return
+
+== -[GlowingImage awakeFromNib]_block_invoke_2   (address 0x1000cbe7c  size 4  kind block)
+  0cbe7c  return

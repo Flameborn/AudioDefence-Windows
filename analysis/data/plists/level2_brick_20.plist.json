@@ -1,0 +1,79 @@
+{
+ "Enemies": {
+  "WeakZombieD - 2": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3.8,
+    "enemy": "WeakZombieD"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3.5,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 6,
+    "enemy": "Farty"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4.5,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 110,
+   "spawn_distance": 10
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_angle": 0,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  },
+  "WeakZombie - 2": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3.8,
+    "enemy": "WeakZombie"
+   },
+   "spawn_angle": 100,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 90,
+   "spawn_distance": 10,
+   "spawn_time": 0.8
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 120,
+   "spawn_distance": 10,
+   "spawn_time": 2
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "3"
+ }
+}

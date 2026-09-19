@@ -1,0 +1,45 @@
+{
+ "icon_title": "08",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 70
+ },
+ "title": "Upgrade your weapons!",
+ "weapons": [
+  {
+   "ammo": "10",
+   "name": "sawnoff"
+  },
+  {
+   "ammo": "36",
+   "name": "pistol"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "tip": "Farties will deafen you for a few seconds if they blow up close to you.",
+ "mission_star": {
+  "reward": 200
+ },
+ "bricks": [
+  "tutorial_8_brick_1",
+  "tutorial_8_brick_2",
+  "tutorial_8_brick_3",
+  "tutorial_8_brick_4"
+ ],
+ "objective": "Dr. Bastard will give you life-changing advice about upgrading your weapons.",
+ "challenge_id": "tutorial_8",
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_7"
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 60
+ }
+}

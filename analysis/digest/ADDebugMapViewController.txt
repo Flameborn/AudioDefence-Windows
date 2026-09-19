@@ -1,0 +1,208 @@
+
+== -[ADDebugMapViewController initWithNibName:bundle:]   (address 0x1000d8f2c  size 140  kind objc)
+  0d8f7c  [super initWithNibName:arg1 bundle:arg2]
+  0d8fa0  return
+
+== -[ADDebugMapViewController viewDidLoad]   (address 0x1000d8fb8  size 560  kind objc)
+  0d8ffc  [super viewDidLoad]
+  0d9014  [UIView alloc]
+  0d9034  [[UIView alloc] initWithFrame:{0, 0, 8, 8}]
+  0d9044  self->playerView = [[UIView alloc] initWithFrame:{0, 0, 8, 8}]
+  0d9068  [self view]
+  0d9088  [[self view] center]
+  0d9098  [self view]
+  0d90ac  [[self view] center]
+  0d90c4  [self->playerView setCenter:{[[self view] center].0, [[self view] center].1}]
+  0d90f0  [UIColor greenColor]
+  0d9114  [self->playerView setBackgroundColor:[UIColor greenColor]]
+  0d9130  [self->playerView layer]
+  0d9150  [[self->playerView layer] setCornerRadius:4]
+  0d9164  [self view]
+  0d9184  [[self view] addSubview:self->playerView]
+  0d91ac  return
+
+== -[ADDebugMapViewController didReceiveMemoryWarning]   (address 0x1000d91e8  size 60  kind objc)
+  0d9214  [super didReceiveMemoryWarning]
+  0d9220  return
+
+== -[ADDebugMapViewController update]   (address 0x1000d9224  size 2184  kind objc)
+  0d9280  [ADBrickManager sharedBrickManager]
+  0d929c  [[ADBrickManager sharedBrickManager] allPotentialTargets]
+  0d92c4  [self brickName]
+  0d92dc  [ADBrickManager sharedBrickManager]
+  0d92f8  [[ADBrickManager sharedBrickManager] currentBrickName]
+  0d931c  [[self brickName] setText:[[ADBrickManager sharedBrickManager] currentBrickName]]
+  0d9374  [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16]
+  0d937c  if ([[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16] == 0) goto loc_1000d9968
+  0d93a4  &@selector(position)
+  0d93ac  &@selector(view)
+  0d93f0  &@selector(initWithFrame:)
+loc_1000d9528:
+loc_1000d952c:
+  0d953c  if (x8 == x9) goto loc_1000d9548
+  0d9544  objc_enumerationMutation([[ADBrickManager sharedBrickManager] allPotentialTargets])
+loc_1000d9548:
+  0d9560  [self->playerView center]
+  0d9574  [x0 position]
+  0d9588  [self->playerView center]
+  0d959c  [x0 position]
+  0d95b0  [self view]
+  0d95c8  [x0 tag]
+  0d95d8  [[self view] viewWithTag:[x0 tag]]
+  0d95f4  if ([[self view] viewWithTag:[x0 tag]] != 0) goto loc_1000d96b8
+  0d9608  [UIView alloc]
+  0d9624  [[UIView alloc] initWithFrame:{0, 0, 4, 4}]
+  0d9640  [[[UIView alloc] initWithFrame:{0, 0, 4, 4}] layer]
+  0d9658  [[[[UIView alloc] initWithFrame:{0, 0, 4, 4}] layer] setCornerRadius:2]
+  0d9670  [self view]
+  0d9688  [[self view] addSubview:[[UIView alloc] initWithFrame:{0, 0, 4, 4}]]
+  0d96a0  [x0 tag]
+  0d96b4  [[[UIView alloc] initWithFrame:{0, 0, 4, 4}] setTag:[x0 tag]]
+loc_1000d96b8:
+  0d96c0  [x0 state]
+  0d96d8  if ([x0 state] > 998) goto loc_1000d973c
+  0d96e0  if ([x0 state] > 200) goto loc_1000d9774
+  0d96e8  if ([x0 state] > 100) goto loc_1000d97ac
+  0d96f4  if (([x0 state] + 1) >u 6) goto loc_1000d97e8
+  0d9708  switch (([x0 state] + 1)) { case 0: goto loc_1000d970c; case 1: goto loc_1000d9818; case 2: goto loc_1000d9848; case 3: goto loc_1000d9894; case 4: goto loc_1000d98c4; case 5: goto loc_1000d97e8; case 6: goto loc_1000d98f4 }
+loc_1000d970c:  ; case 0
+  0d9718  [UIColor clearColor]
+  0d9734  [x0 setBackgroundColor:[UIColor clearColor]]
+  0d9738  goto loc_1000d97e0
+loc_1000d973c:
+  0d9740  if ([x0 state] != 999) goto loc_1000d97e8
+  0d9750  [UIColor brownColor]
+  0d976c  [x0 setBackgroundColor:[UIColor brownColor]]
+  0d9770  goto loc_1000d97e0
+loc_1000d9774:
+  0d9778  if ([x0 state] != 201) goto loc_1000d97e8
+  0d9788  [UIColor purpleColor]
+  0d97a4  [x0 setBackgroundColor:[UIColor purpleColor]]
+  0d97a8  goto loc_1000d97e0
+loc_1000d97ac:
+  0d97b0  if ([x0 state] != 101) goto loc_1000d97e8
+  0d97c0  [UIColor yellowColor]
+  0d97dc  [x0 setBackgroundColor:[UIColor yellowColor]]
+loc_1000d97e0:
+loc_1000d97e8:  ; case 5
+  0d97f8  [x0 setCenter:{([self->playerView center].0 + ([x0 position].0 * 10)), ([self->playerView center].1 + ([x0 position].1 * -10))}]
+  0d9810  if ((x26 + 1) <u [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] coun…) goto loc_1000d952c
+  0d9814  goto loc_1000d9948
+loc_1000d9818:  ; case 1
+  0d9824  [UIColor blackColor]
+  0d9840  [x0 setBackgroundColor:[UIColor blackColor]]
+  0d9844  goto loc_1000d97e0
+loc_1000d9848:  ; case 2
+  0d9860  [x0 setFrame:{0, 0, 4, 4}]
+  0d9870  [UIColor grayColor]
+  0d988c  [x0 setBackgroundColor:[UIColor grayColor]]
+  0d9890  goto loc_1000d97e0
+loc_1000d9894:  ; case 3
+  0d98a0  [UIColor orangeColor]
+  0d98bc  [x0 setBackgroundColor:[UIColor orangeColor]]
+  0d98c0  goto loc_1000d97e0
+loc_1000d98c4:  ; case 4
+  0d98d0  [UIColor redColor]
+  0d98ec  [x0 setBackgroundColor:[UIColor redColor]]
+  0d98f0  goto loc_1000d97e0
+loc_1000d98f4:  ; case 6
+  0d990c  [x0 setFrame:{0, 0, 30, 30}]
+  0d991c  [x0 setAlpha:0.3]
+  0d9928  [x0 layer]
+  0d9940  [[x0 layer] setCornerRadius:10]
+  0d9944  goto loc_1000d97e0
+loc_1000d9948:
+  0d995c  [[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16]
+  0d9964  if ([[[ADBrickManager sharedBrickManager] allPotentialTargets] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x138] count:16] != 0) goto loc_1000d9528
+loc_1000d9968:
+  0d99c0  return
+
+== -[ADDebugMapViewController updateProjectiles:]   (address 0x1000d9aac  size 1492  kind objc)
+  0d9b2c  [arg1 countByEnumeratingWithState:&sp[0xb8] objects:&sp[0xf8] count:16]
+  0d9b34  if ([arg1 countByEnumeratingWithState:&sp[0xb8] objects:&sp[0xf8] count:16] == 0) goto loc_1000d9fb0
+  0d9b64  &@selector(viewWithTag:)
+  0d9b98  &@selector(setCornerRadius:)
+  0d9c38  &@selector(setFrame:)
+  0d9c40  &@selector(setAlpha:)
+loc_1000d9c90:
+loc_1000d9c94:
+  0d9ca4  if (x8 == x9) goto loc_1000d9cb0
+  0d9cac  objc_enumerationMutation(arg1)
+loc_1000d9cb0:
+  0d9cc8  [self->playerView center]
+  0d9cdc  [x0 position]
+  0d9cf0  [self->playerView center]
+  0d9d04  [x0 position]
+  0d9d18  [self view]
+  0d9d30  [x0 tag]
+  0d9d4c  [[self view] viewWithTag:([x0 tag] + 0x186a0)]
+  0d9d68  if ([[self view] viewWithTag:([x0 tag] + 0x186a0)] != 0) goto loc_1000d9e38
+  0d9d7c  [UIView alloc]
+  0d9d98  [[UIView alloc] initWithFrame:{0, 0, 4, 4}]
+  0d9db4  [[[UIView alloc] initWithFrame:{0, 0, 4, 4}] layer]
+  0d9dcc  [[[[UIView alloc] initWithFrame:{0, 0, 4, 4}] layer] setCornerRadius:2]
+  0d9de4  [self view]
+  0d9dfc  [[self view] addSubview:[[UIView alloc] initWithFrame:{0, 0, 4, 4}]]
+  0d9e14  [x0 tag]
+  0d9e34  [[[UIView alloc] initWithFrame:{0, 0, 4, 4}] setTag:([x0 tag] + 0x186a0)]
+loc_1000d9e38:
+  0d9e40  [x0 state]
+  0d9e58  if ([x0 state] == -1) goto loc_1000d9e94
+  0d9e60  if ([x0 state] != 1) goto loc_1000d9ec4
+  0d9e70  [UIColor yellowColor]
+  0d9e8c  [x0 setBackgroundColor:[UIColor yellowColor]]
+  0d9e90  goto loc_1000d9f5c
+loc_1000d9e94:
+  0d9ea0  [UIColor clearColor]
+  0d9ebc  [x0 setBackgroundColor:[UIColor clearColor]]
+  0d9ec0  goto loc_1000d9f5c
+loc_1000d9ec4:
+  0d9ec8  if ([x0 state] != 3) goto loc_1000d9f64
+  0d9ed4  [x0 explosionRadius]
+  0d9ee4  [x0 explosionRadius]
+  0d9f08  [x0 setFrame:{0, 0, ([x0 explosionRadius] * 10), ([x0 explosionRadius] * 10)}]
+  0d9f18  [x0 setAlpha:0.3]
+  0d9f24  [x0 layer]
+  0d9f3c  [x0 explosionRadius]
+  0d9f58  [[x0 layer] setCornerRadius:(([x0 explosionRadius] * 0.5) * 10)]
+loc_1000d9f5c:
+loc_1000d9f64:
+  0d9f74  [x0 setCenter:{([self->playerView center].0 + ([x0 position].0 * 10)), ([self->playerView center].1 + ([x0 position].1 * -10))}]
+  0d9f8c  if ((x25 + 1) <u [arg1 countByEnumeratingWithState:&sp[0xb8] objects:&sp[0xf8] count:16]) goto loc_1000d9c94
+  0d9fa4  [arg1 countByEnumeratingWithState:&sp[0xb8] objects:&sp[0xf8] count:16]
+  0d9fac  if ([arg1 countByEnumeratingWithState:&sp[0xb8] objects:&sp[0xf8] count:16] != 0) goto loc_1000d9c90
+loc_1000d9fb0:
+  0da008  return
+
+== -[ADDebugMapViewController updateWeaponRange:angle:]   (address 0x1000da080  size 404  kind objc)
+  0da0bc  self->weapon = arg1
+  0da0d0  self->angle = -arg2
+  0da0e8  [self debugMapView]
+  0da108  [[self debugMapView] setWeapon:arg1]
+  0da11c  [self debugMapView]
+  0da13c  [[self debugMapView] setAngle:self->angle]
+  0da150  [self debugMapView]
+  0da170  [self->weapon range]
+  0da184  [[self debugMapView] setRange:[self->weapon range]]
+  0da198  [self debugMapView]
+  0da1b4  [[self debugMapView] setNeedsDisplay]
+  0da1d8  return
+
+== -[ADDebugMapViewController viewDidUnload]   (address 0x1000da214  size 92  kind objc)
+  0da238  [self setDebugMapView:0]
+  0da25c  [super viewDidUnload]
+  0da26c  return
+
+== -[ADDebugMapViewController debugMapView]   (address 0x1000da270  size 32  kind objc)
+  0da28c  return
+
+== -[ADDebugMapViewController setDebugMapView:]   (address 0x1000da290  size 20  kind objc)
+
+== -[ADDebugMapViewController brickName]   (address 0x1000da2a4  size 16  kind objc)
+  0da2b0  return
+
+== -[ADDebugMapViewController setBrickName:]   (address 0x1000da2b4  size 56  kind objc)
+  0da2d8  self->_brickName = arg1
+  0da2e8  return
+
+== -[ADDebugMapViewController .cxx_destruct]   (address 0x1000da2ec  size 100  kind objc)

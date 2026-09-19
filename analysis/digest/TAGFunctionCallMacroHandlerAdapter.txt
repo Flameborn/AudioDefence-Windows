@@ -1,0 +1,21 @@
+
+== -[TAGFunctionCallMacroHandlerAdapter initWithContainer:]   (address 0x10014ccbc  size 164  kind objc)
+  14cd00  [super init]
+  14cd08  if (self == 0) goto loc_10014cd2c
+  14cd20  self->_container = arg1
+loc_10014cd2c:
+  14cd48  return
+
+== -[TAGFunctionCallMacroHandlerAdapter evaluate:parameters:]   (address 0x10014cd60  size 268  kind objc)
+  14cda4  [self container]
+  14cdc4  [[self container] functionCallMacroHandlerForMacro:arg1]
+  14cdf4  [[[self container] functionCallMacroHandlerForMacro:arg1] valueForMacro:arg1 parameters:arg2]
+  14ce30  return
+
+== -[TAGFunctionCallMacroHandlerAdapter container]   (address 0x10014ce6c  size 16  kind objc)
+  14ce78  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGFunctionCallMacroHandlerAdapter setContainer:]   (address 0x10014ce7c  size 12  kind objc)
+  14ce84  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGFunctionCallMacroHandlerAdapter .cxx_destruct]   (address 0x10014ce88  size 20  kind objc)

@@ -1,0 +1,59 @@
+
+== csl::DistanceSimulator::~DistanceSimulator   (address 0x1000ef460  size 116  kind cxx)
+  0ef47c  sub_1000ef3c0(a0, &d_1003b5f00, a2, a3)
+  0ef488  sub_1000e9c44((a0 + 208), &d_1003b5f30)
+  0ef490  sub_1000e9388((a0 + 216))
+  0ef4a0  return
+  0ef4b4  sub_1000e9c44((x19 + 208), (x8 + 48))
+  0ef4c4  sub_1000e9388((x19 + 216))
+  0ef4d0  call sub_10000b760
+
+== csl::DistanceSimulator::thunk_vfunc_0   (address 0x1000ef4d4  size 16  kind cxx)
+  0ef4e0  tail csl::DistanceSimulator::~DistanceSimulator((a0 + a0[+0x0][+0x-20]), a1, a2, a3)
+
+== csl::DistanceSimulator::thunk_vfunc_0   (address 0x1000ef4e4  size 16  kind cxx)
+  0ef4f0  tail csl::DistanceSimulator::~DistanceSimulator((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::DistanceSimulator::~DistanceSimulator/*deleting*/   (address 0x1000ef4f4  size 56  kind cxx)
+  0ef504  csl::DistanceSimulator::~DistanceSimulator(a0, a1, a2, a3)
+  0ef514  tail ZdlPv(a0)
+  0ef520  ZdlPv()
+
+== csl::DistanceSimulator::thunk_vfunc_1   (address 0x1000ef52c  size 16  kind cxx)
+  0ef538  tail csl::DistanceSimulator::~DistanceSimulator/*deleting*/((a0 + a0[+0x0][+0x-20]), a1, a2, a3)
+
+== csl::DistanceSimulator::thunk_vfunc_1   (address 0x1000ef53c  size 16  kind cxx)
+  0ef548  tail csl::DistanceSimulator::~DistanceSimulator/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::DistanceSimulator::vfunc_19   (address 0x1000ef54c  size 32  kind cxx)
+
+== csl::DistanceSimulator::vfunc_5   (address 0x1000ef56c  size 252  kind cxx)
+  0ef5b8  call (a0[+0x0][+0x-20] + a0)[+0x20][+0x8][+0x0][+0x20]
+  0ef5e4  call a0[+0xb8][+0x0][+0x10]
+  0ef5f8  call a0[+0xb8][+0x0][+0x18]
+  0ef604  if (sqrt((((s9 * s9) + (s10 * s10)) + (a0[+0xa8][+0xc] * a0[+0xa8][+0xc]))) <= (or unordered) 10) goto loc_1000ef630
+  0ef618  call a0[+0xc0][+0x0][+0x10]
+  0ef62c  call a0[+0xc0][+0x0][+0x18]
+loc_1000ef630:
+  0ef63c  call (a0[+0x0][+0x-20] + a0)[+0x20][+0x8][+0x0][+0x98]
+  0ef640  a0[+0xb1] = (a0[+0x0][+0x-20] + a0)[+0x20][+0x8][+0x0][+0x98](…)
+  0ef658  return
+  0ef65c  if (w1 >= 0) goto loc_1000ef664
+  0ef660  cxa_call_unexpected()
+
+== csl::DistanceSimulator::vfunc_12   (address 0x1000ef668  size 124  kind cxx)
+  0ef698  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0ef6bc  call (a0[+0x0][+0x-20] + a0)[+0x20][+0x8][+0x0][+0x60]
+  0ef6dc  return
+
+== csl::DistanceSimulator::thunk_vfunc_3   (address 0x1000ef6e4  size 136  kind cxx)
+  0ef71c  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0ef744  call ((a0[+0x0][+0x-28] + x8) + a0)[+0x20][+0x8][+0x0][+0x60]
+  0ef764  return
+
+== sub_1000ef76c   (address 0x1000ef76c  size 20  kind sub)
+  0ef76c  a0[+0xc8] = s0
+  0ef774  if (a0[+0xb8] == 0) goto loc_1000ef77c
+  0ef778  a0[+0xb8][+0xc] = s0
+loc_1000ef77c:
+  0ef77c  return

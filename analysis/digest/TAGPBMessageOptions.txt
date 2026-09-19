@@ -1,0 +1,9 @@
+
+== +[TAGPBMessageOptions descriptor]   (address 0x10012c710  size 200  kind objc)
+  12c730  if (g_10042dd80 != 0) goto loc_10012c7c4
+  12c754  [TAGPBMessageOptions class]
+  12c768  [TAGPBDescriptorRoot class]
+  12c7bc  [TAGPBDescriptor allocDescriptorForClass:[TAGPBMessageOptions class] rootClass:[TAGPBDescriptorRoot class] fields:&d_10042a720 fieldCount:7 enums:0 enumCount:0 ranges:&d_10042baa8 rangeCount:x9 storageSize:x10 wireFormat:x11]
+  12c7c0  store g_10042dd80 = [TAGPBDescriptor allocDescriptorForClass:[TAGPBMessageOptions class] rootClass:[TAGPBDescriptorRoot class] fields:&d_10042a720 fieldCount:7 enums:0 enumCount:0 ranges:&d_10042baa8 rangeCount:x9 storageSize:x10 wireFormat:x11]
+loc_10012c7c4:
+  12c7d4  return

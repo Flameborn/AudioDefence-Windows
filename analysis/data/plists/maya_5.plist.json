@@ -1,0 +1,47 @@
+{
+ "icon_title": "25",
+ "New item": "",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 80
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "title": "Meet the Whisperer",
+ "objective": "Listen very carefully! The Whisperer moves very quietly!",
+ "mission_star": {
+  "reward": 200
+ },
+ "bricks": [
+  "maya_5_brick_1",
+  "maya_5_brick_2",
+  "maya_5_brick_3",
+  "maya_5_brick_4",
+  "maya_5_brick_5"
+ ],
+ "icon": "Challenge_icon_01",
+ "challenge_id": "maya_5",
+ "challenges_requirement": [
+  "maya_4"
+ ],
+ "tip": "Whisperers scream when they get in your melee weapon's range. It's your last chance to kill them!",
+ "weapons": [
+  {
+   "ammo": "20",
+   "name": "hunting"
+  },
+  {
+   "ammo": "36",
+   "name": "pistol"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 75
+ }
+}

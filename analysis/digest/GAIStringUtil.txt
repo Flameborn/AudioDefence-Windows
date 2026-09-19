@@ -1,0 +1,126 @@
+
+== +[GAIStringUtil urlParams:]   (address 0x10011f014  size 136  kind objc)
+  11f03c  [arg1 rangeOfString:@"?"]
+  11f054  [arg1 length]
+  11f068  if (flags !=) goto loc_10011f080
+  11f07c  return
+  11f098  tail [arg1 substringFromIndex:([arg1 rangeOfString:@"?"] + 1)]
+
+== -[GAIStringUtil init]   (address 0x10011f09c  size 128  kind objc)
+  11f0d0  [super init]
+  11f0d8  if (self == 0) goto loc_10011f108
+  11f0f0  [self doesNotRecognizeSelector:_cmd]
+  11f104  [self release]
+loc_10011f108:
+  11f118  return
+
+== +[GAIStringUtil trim:]   (address 0x10011f11c  size 72  kind objc)
+  11f140  [NSCharacterSet whitespaceAndNewlineCharacterSet]
+  11f160  tail [arg1 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+
+== +[GAIStringUtil intString:]   (address 0x10011f164  size 60  kind objc)
+  11f190  [NSString stringWithFormat:@"%lld", arg1]
+  11f19c  return
+
+== +[GAIStringUtil uintString:]   (address 0x10011f1a0  size 60  kind objc)
+  11f1cc  [NSString stringWithFormat:@"%llu", arg1]
+  11f1d8  return
+
+== +[GAIStringUtil decimalString:decimals:]   (address 0x10011f1dc  size 264  kind objc)
+  11f214  [NSString stringWithFormat:@"%.*f", arg2]
+  11f234  [[NSString stringWithFormat:@"%.*f", arg2] rangeOfString:@"." options:4]
+  11f244  if ([[NSString stringWithFormat:@"%.*f", arg2] rangeOfString:@"." options:4] != 0x7fffffffffffffff) goto loc_10011f260
+  11f25c  return
+  11f270  [[NSString stringWithFormat:@"%.*f", arg2] length]
+  11f290  if ((x22 + 1) <=u [[NSString stringWithFormat:@"%.*f", arg2] rangeOfString:@"." options:4]) goto loc_10011f2b0
+  11f2a0  [[NSString stringWithFormat:@"%.*f", arg2] characterAtIndex:x2]
+  11f2ac  if ([[NSString stringWithFormat:@"%.*f", arg2] characterAtIndex:x2] == 48) goto loc_10011f284
+  11f2e0  tail [[NSString stringWithFormat:@"%.*f", arg2] substringToIndex:((x22 - ([[NSString stringWithFormat:@"%.*f", arg2] rangeOfString:@"." options:4] == x22)) + 1)]
+
+== +[GAIStringUtil currencyMicrosString:]   (address 0x10011f2e4  size 424  kind objc)
+  11f328  t1 = (((((arg1 - 0) <0 ? -arg1 : arg1) *h 0x431bde82d7b634db) >> 18) + ((((arg1 - 0) <0 ? -arg1 : arg1) *h 0x431bde82d7b634db) >>> 63))
+  11f340  if ((((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240) == 0) goto loc_10011f420
+  11f360  [NSString stringWithFormat:@"%06d", (((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240)]
+  11f374  [[NSString stringWithFormat:@"%06d", (((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240)] length]
+  11f380  if ([[NSString stringWithFormat:@"%06d", (((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240)] length] == 0) goto loc_10011f3bc
+  11f38c  &@selector(characterAtIndex:)
+loc_10011f394:
+  11f3a0  [[NSString stringWithFormat:@"%06d", (((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240)] characterAtIndex:x2]
+  11f3a8  if ([[NSString stringWithFormat:@"%06d", (((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240)] characterAtIndex:x2] != 48) goto loc_10011f3bc
+  11f3b8  if ([[NSString stringWithFormat:@"%06d", (((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240)] length] >u (x28 + 1)) goto loc_10011f394
+loc_10011f3bc:
+  11f3e4  t2 = ([[NSString stringWithFormat:@"%06d", (((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240)] length] - x28)
+  11f3f8  [[NSString stringWithFormat:@"%06d", (((arg1 - 0) <0 ? -arg1 : arg1) - t1 * 0xf4240)] substringToIndex:t2]
+  11f408  if ((((arg1 - 0) <0 ? -arg1 : arg1) + 0xf423f) <u 0x1e847f) goto loc_10011f454
+  11f41c  goto loc_10011f460
+loc_10011f420:
+  11f43c  &@selector(stringWithFormat:)
+  11f450  goto loc_10011f468
+loc_10011f454:
+loc_10011f460:
+loc_10011f468:
+  11f468  [NSString stringWithFormat:one of {@"%s%lld.%@", @"%s.%@", @"%s%lld"}]
+  11f488  return
+
+== +[GAIStringUtil percentEncode:]   (address 0x10011f48c  size 120  kind objc)
+  11f4c4  CFURLCreateStringByAddingPercentEscapes(_kCFAllocatorSystemDefault[+0x0], arg1, @" ", @":/?#[]@!$&’()*+,;=")
+  11f4e4  [CFURLCreateStringByAddingPercentEscapes(_kCFAllocatorSystemDefault[+0x0], arg1, @" ", @":/?#[]@!$&’()*+,;=") stringByReplacingOccurrencesOfString:@" " withString:@"+"]
+  11f4f0  CFRelease(CFURLCreateStringByAddingPercentEscapes(_kCFAllocatorSystemDefault[+0x0], arg1, @" ", @":/?#[]@!$&’()*+,;="))
+  11f500  return
+
+== +[GAIStringUtil percentDecode:]   (address 0x10011f504  size 72  kind objc)
+  11f530  [arg1 stringByReplacingOccurrencesOfString:@"+" withString:@" "]
+  11f548  tail [[arg1 stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:4]
+
+== +[GAIStringUtil decodeParametersFromQuery:]   (address 0x10011f54c  size 604  kind objc)
+  11f59c  [arg1 componentsSeparatedByString:@"&"]
+  11f5bc  [[arg1 componentsSeparatedByString:@"&"] count]
+  11f5d4  [NSMutableDictionary dictionaryWithCapacity:[[arg1 componentsSeparatedByString:@"&"] count]]
+  11f60c  [[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  11f614  if ([[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_10011f768
+  11f644  &@selector(substringToIndex:)
+loc_10011f674:
+loc_10011f678:
+  11f684  if (x8 == x22) goto loc_10011f690
+  11f68c  objc_enumerationMutation([arg1 componentsSeparatedByString:@"&"])
+loc_10011f690:
+  11f6a8  [x0 rangeOfString:@"="]
+  11f6b8  if ([x0 rangeOfString:@"="] != 0x7fffffffffffffff) goto loc_10011f6e4
+  11f6c8  [GAIStringUtil percentDecode:x2]
+  11f6e0  goto loc_10011f73c
+loc_10011f6e4:
+  11f6f0  [x0 substringToIndex:[x0 rangeOfString:@"="]]
+  11f704  [x0 substringFromIndex:([x0 rangeOfString:@"="] + 1)]
+  11f714  [GAIStringUtil percentDecode:[x0 substringFromIndex:([x0 rangeOfString:@"="] + 1)]]
+  11f728  [GAIStringUtil percentDecode:[x0 substringToIndex:[x0 rangeOfString:@"="]]]
+loc_10011f73c:
+  11f73c  [[NSMutableDictionary dictionaryWithCapacity:[[arg1 componentsSeparatedByString:@"&"] count]] setObject:x2 forKey:x3]
+  11f748  if ((x21 + 1) <u [[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10011f678
+  11f75c  [[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  11f764  if ([[arg1 componentsSeparatedByString:@"&"] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10011f674
+loc_10011f768:
+  11f7a0  return
+
+== +[GAIStringUtil decodeParametersFromUrl:]   (address 0x10011f7a8  size 208  kind objc)
+  11f7d0  [NSURL URLWithString:arg1]
+  11f7d8  if ([NSURL URLWithString:arg1] == 0) goto loc_10011f864
+  11f7f0  [[NSURL URLWithString:arg1] query]
+  11f7f4  if ([[NSURL URLWithString:arg1] query] == 0) goto loc_10011f848
+  11f800  [[NSURL URLWithString:arg1] query]
+  11f810  [[[NSURL URLWithString:arg1] query] length]
+  11f814  if ([[[NSURL URLWithString:arg1] query] length] == 0) goto loc_10011f848
+  11f820  [[NSURL URLWithString:arg1] query]
+  11f844  tail [GAIStringUtil decodeParametersFromQuery:[[NSURL URLWithString:arg1] query]]
+loc_10011f848:
+  11f85c  [NSDictionary dictionary]
+  11f860  goto loc_10011f868
+loc_10011f864:
+loc_10011f868:
+  11f874  return
+
+== +[GAIStringUtil stripLeadingAmpersand:]   (address 0x10011f878  size 96  kind objc)
+  11f8a0  [arg1 hasPrefix:@"&"]
+  11f8a4  if ([arg1 hasPrefix:@"&"] == 0) goto loc_10011f8c8
+  11f8c4  tail [arg1 substringFromIndex:1]
+loc_10011f8c8:
+  11f8d4  return

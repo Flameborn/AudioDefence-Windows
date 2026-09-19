@@ -1,0 +1,80 @@
+
+== csl::Panner::~Panner   (address 0x1000ee744  size 76  kind cxx)
+  0ee75c  sub_1000ee6f8(a0, &d_1003b5ad0, a2, a3)
+  0ee764  sub_1000e9388((a0 + 184))
+  0ee774  return
+  0ee780  sub_1000e9388((x19 + 184))
+  0ee78c  call sub_10000b760
+
+== csl::Panner::thunk_vfunc_0   (address 0x1000ee790  size 8  kind cxx)
+  0ee794  tail csl::Panner::~Panner((a0 - 176), a1, a2, a3)
+
+== csl::Panner::thunk_vfunc_0   (address 0x1000ee798  size 16  kind cxx)
+  0ee7a4  tail csl::Panner::~Panner((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Panner::~Panner/*deleting*/   (address 0x1000ee7a8  size 56  kind cxx)
+  0ee7b8  csl::Panner::~Panner(a0, a1, a2, a3)
+  0ee7c8  tail ZdlPv(a0)
+  0ee7d4  ZdlPv()
+
+== csl::Panner::thunk_vfunc_1   (address 0x1000ee7e0  size 8  kind cxx)
+  0ee7e4  tail csl::Panner::~Panner/*deleting*/((a0 - 176), a1, a2, a3)
+
+== csl::Panner::thunk_vfunc_1   (address 0x1000ee7e8  size 16  kind cxx)
+  0ee7f4  tail csl::Panner::~Panner/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== sub_1000ee7f8   (address 0x1000ee7f8  size 20  kind sub)
+  0ee808  tail sub_1000e9714((a0 + a0[+0x0][+0x-18]), 7, a2, a3)
+
+== csl::Panner::vfunc_4   (address 0x1000ee80c  size 512  kind cxx)
+  0ee840  if (a1[+0x8] == 2) goto loc_1000ee858
+  0ee854  sub_1000e772c(2, "Panner output ch = %d", a2, a3)
+loc_1000ee858:
+  0ee868  call a1[+0x0][+0x20]
+  0ee880  call a1[+0x0][+0x20]
+  0ee894  sub_1000e8c6c(a0, a1)
+  0ee898  if ((sub_1000e8c6c(a0, a1) & 1)) goto loc_1000ee9dc
+  0ee8ac  if (x24 == 0) goto loc_1000ee8d8
+  0ee8bc  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), x1, a1[+0xc])
+  0ee8d4  goto loc_1000ee8dc
+loc_1000ee8d8:
+loc_1000ee8dc:
+  0ee8dc  if (x25 == 0) goto loc_1000ee908
+  0ee8f4  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), x1, a1[+0xc])
+loc_1000ee908:
+  0ee910  sub_1000e9fb0(a0, a1[+0xc])
+  0ee930  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), (a0 + a0[+0x0][+0x-18])[+0x40], a1[+0xc])
+  0ee940  (a0 + a0[+0x0][+0x-18])[+0x40][+0x20] = ((a0 + a0[+0x0][+0x-18])[+0x40][+0x20] + ((a0 + a0[+0x0][+0x-18])[+0x40][+0x28] << 2))
+  0ee944  if (a1[+0xc] == 0) goto loc_1000ee9d0
+loc_1000ee958:
+  0ee95c  t1 = (((a0 + a0[+0x0][+0x-18])[+0x40][+0x20] + ((a0 + a0[+0x0][+0x-18])[+0x40][+0x28] << 2))[+0x0] * 0.5)
+  0ee9c4  (a0 + a0[+0x0][+0x-18])[+0x40][+0x20] = ((a0 + a0[+0x0][+0x-18])[+0x40][+0x20] + ((a0 + a0[+0x0][+0x-18])[+0x40][+0x28] << 2))
+  0ee9cc  if ((w23 - 1) != 0) goto loc_1000ee958
+loc_1000ee9d0:
+  0ee9d8  sub_1000e8cc0(a0, a1)
+loc_1000ee9dc:
+  0ee9fc  return
+  0eea00  if (w1 >= 0) goto loc_1000eea08
+  0eea04  cxa_call_unexpected()
+
+== std::vector<…><…>(…)   (address 0x1000eea0c  size 60  kind sym)
+  0eea18  if (x1 == x9) goto loc_1000eea30
+  0eea1c  if (x1 == 0) goto loc_1000eea38
+  0eea2c  goto loc_1000eea3c
+loc_1000eea30:
+  0eea34  tail ZNSt6vectorIPN3csl13UnitGeneratorESaIS2_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS2_S4_EERKS2_(a0, x1, a1, a3)
+loc_1000eea38:
+loc_1000eea3c:
+  0eea40  a0[+0x8] = (x8 + 8)
+  0eea44  return
+
+== std::vector<…>::push_back(…)   (address 0x1000eea48  size 48  kind sym)
+  0eea54  if (x1 == x9) goto loc_1000eea70
+  0eea58  if (x1 == 0) goto loc_1000eea64
+loc_1000eea64:
+  0eea68  a0[+0x8] = (x1 + 4)
+  0eea6c  return
+  0eea74  tail ZNSt6vectorIfSaIfEE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPfS1_EERKf(a0, x1, a1, a3)
+
+== csl::Panner::vfunc_14   (address 0x1000eea78  size 8  kind cxx)
+  0eea7c  return

@@ -1,0 +1,71 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1.5,
+   "name": "bastard_maya_8_2"
+  }
+ ],
+ "Enemies": {
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 19.5,
+    "afterStart": true,
+    "enemy": "bastard_maya_8_2"
+   },
+   "spawn_angle": 105,
+   "spawn_distance": 10
+  },
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "WeakZombie"
+   },
+   "spawn_angle": 150,
+   "spawn_distance": 10
+  },
+  "Berserk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 13.5,
+    "afterStart": true,
+    "enemy": "bastard_maya_8_2"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 7
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3.5,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 9.5,
+    "afterStart": true,
+    "enemy": "bastard_maya_8_2"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 11.5,
+    "afterStart": true,
+    "enemy": "bastard_maya_8_2"
+   },
+   "spawn_angle": 130,
+   "spawn_distance": 10
+  }
+ }
+}

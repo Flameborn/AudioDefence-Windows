@@ -1,0 +1,265 @@
+
+== -[ADStarUnlockViewController initWithtype:dictionary:challenge_id:orientation:]   (address 0x1000bdcfc  size 276  kind objc)
+  0bdd64  [super initWithNibName:0 bundle:0]
+  0bdd6c  if (self == 0) goto loc_1000bddc8
+  0bdd84  self->starDictionary = arg2
+  0bdda4  self->challenge_id = arg3
+  0bddb8  self->type = arg1
+  0bddc4  self->horzVert = arg4
+loc_1000bddc8:
+  0bddf0  return
+
+== -[ADStarUnlockViewController loadView]   (address 0x1000bde10  size 920  kind objc)
+  0bde58  [ADGameParameters sharedParameters]
+  0bde74  [[ADGameParameters sharedParameters] isIphone]
+  0bde90  &@selector(mainBundle)
+  0bde98  if ([[ADGameParameters sharedParameters] isIphone] == 0) goto loc_1000bdfd8
+  0bdea0  [NSBundle mainBundle]
+  0bdecc  [[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0]
+  0bdef0  if (self->horzVert != 0) goto loc_1000be028
+  0bdf2c  [[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16]
+  0bdf34  if ([[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16] == 0) goto loc_1000bdfcc
+  0bdf50  &@selector(setView:)
+loc_1000bdf58:
+loc_1000bdf5c:
+  0bdf68  if (x8 == x27) goto loc_1000bdf74
+  0bdf70  objc_enumerationMutation([[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0])
+loc_1000bdf74:
+  0bdf84  [x0 tag]
+  0bdf8c  if ([x0 tag] != 2781) goto loc_1000bdfa0
+  0bdf9c  [self setView:x2]
+loc_1000bdfa0:
+  0bdfa8  if ((x28 + 1) <u [[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp…) goto loc_1000bdf5c
+  0bdfc0  [[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16]
+  0bdfc8  if ([[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp[0x48] objects:&x29[-0xd8] count:16] != 0) goto loc_1000bdf58
+loc_1000bdfcc:
+  0bdfd4  goto loc_1000be124
+loc_1000bdfd8:
+  0bdfdc  [NSBundle mainBundle]
+  0be008  [[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController_iPad" owner:self options:0]
+  0be024  goto loc_1000be124
+loc_1000be028:
+  0be02c  if (self->horzVert != 1) goto loc_1000be124
+  0be068  [[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]
+  0be070  if ([[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16] == 0) goto loc_1000be108
+  0be08c  &@selector(setView:)
+loc_1000be094:
+loc_1000be098:
+  0be0a4  if (x8 == x27) goto loc_1000be0b0
+  0be0ac  objc_enumerationMutation([[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0])
+loc_1000be0b0:
+  0be0c0  [x0 tag]
+  0be0c8  if ([x0 tag] != 2782) goto loc_1000be0dc
+  0be0d8  [self setView:x2]
+loc_1000be0dc:
+  0be0e4  if ((x28 + 1) <u [[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp…) goto loc_1000be098
+  0be0fc  [[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16]
+  0be104  if ([[[NSBundle mainBundle] loadNibNamed:@"ADStarUnlockViewController" owner:self options:0] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x88] count:16] != 0) goto loc_1000be094
+loc_1000be108:
+  0be120  [self setUpOutlets]
+loc_1000be124:
+  0be154  return
+
+== -[ADStarUnlockViewController setUpOutlets]   (address 0x1000be1a8  size 520  kind objc)
+  0be1d0  [self view]
+  0be1f4  [[self view] viewWithTag:1]
+  0be224  [self setValue:[[self view] viewWithTag:1] forKeyPath:@"rewardLabel"]
+  0be240  [self view]
+  0be258  [[self view] viewWithTag:2]
+  0be27c  [self setValue:[[self view] viewWithTag:2] forKeyPath:@"lockedDescription"]
+  0be298  [self view]
+  0be2b0  [[self view] viewWithTag:3]
+  0be2d4  [self setValue:[[self view] viewWithTag:3] forKeyPath:@"starImage"]
+  0be2f0  [self view]
+  0be308  [[self view] viewWithTag:4]
+  0be334  [self setValue:[[self view] viewWithTag:4] forKey:@"completedImage"]
+  0be354  return
+
+== -[ADStarUnlockViewController viewDidLoad]   (address 0x1000be3b0  size 228  kind objc)
+  0be3e4  [super viewDidLoad]
+  0be3f8  [self lockedDescription]
+  0be414  [[self lockedDescription] setupAsInfo]
+  0be430  [self rewardLabel]
+  0be44c  [[self rewardLabel] setupAsMain]
+  0be468  [self initStarContent]
+  0be478  return
+
+== -[ADStarUnlockViewController initStarContent]   (address 0x1000be494  size 1392  kind objc)
+  0be4c0  [self rewardLabel]
+  0be4e4  [[self rewardLabel] setHidden:0]
+  0be504  [self starImage]
+  0be51c  [[self starImage] setHidden:1]
+  0be53c  [self completedImage]
+  0be554  [[self completedImage] setHidden:1]
+  0be568  [self completedImage]
+  0be588  [[self completedImage] setAlpha:0]
+  0be5a4  if (self->type == 1) goto loc_1000be71c
+  0be5ac  if (self->type != 2) goto loc_1000be7d8
+  0be5c0  [self lockedDescription]
+  0be5f8  [self->starDictionary objectForKey:@"objective"]
+  0be614  [[self->starDictionary objectForKey:@"objective"] integerValue]
+  0be62c  [self timeStringFromSeconds:[[self->starDictionary objectForKey:@"objective"] integerValue]]
+  0be658  [NSString stringWithFormat:@"TIME GOAL: %@", [self timeStringFromSeconds:[[self->starDictionary objectForKey:@"objective"] in…]
+  0be67c  [[self lockedDescription] setText:[NSString stringWithFormat:@"TIME GOAL: %@", [self timeStringFromSeconds:[[self->starDictionary objectForKey:@"objective"] in…]]
+  0be6b4  [ADChallengeData sharedChallengeData]
+  0be6dc  [[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:self->challenge_id]
+  0be6ec  if ([[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:self->challenge_id] != 0) goto loc_1000be8f4
+  0be6f8  [self starImage]
+  0be710  [[self starImage] setHidden:1]
+  0be714  goto loc_1000be940
+  0be718  goto loc_1000be974
+loc_1000be71c:
+  0be72c  [self lockedDescription]
+  0be750  [[self lockedDescription] setText:@"SURVIVE!"]
+  0be770  [ADChallengeData sharedChallengeData]
+  0be798  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:self->challenge_id]
+  0be7a8  if ([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:self->challenge_id] != 0) goto loc_1000be8f4
+  0be7b4  [self starImage]
+  0be7cc  [[self starImage] setHidden:1]
+  0be7d0  goto loc_1000be940
+  0be7d4  goto loc_1000be974
+loc_1000be7d8:
+  0be7dc  if (self->type != 3) goto loc_1000be900
+  0be7f0  [self lockedDescription]
+  0be828  [self->starDictionary objectForKey:@"objective"]
+  0be844  [[self->starDictionary objectForKey:@"objective"] integerValue]
+  0be864  [NSString stringWithFormat:@"ACCURACY GOAL: %i%%", [[self->starDictionary objectForKey:@"objective"] integerValue]]
+  0be888  [[self lockedDescription] setText:[NSString stringWithFormat:@"ACCURACY GOAL: %i%%", [[self->starDictionary objectForKey:@"objective"] integerValue]]]
+  0be8b8  [ADChallengeData sharedChallengeData]
+  0be8e0  [[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:self->challenge_id]
+  0be8f0  if ([[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:self->challenge_id] == 0) goto loc_1000be91c
+loc_1000be8f4:
+  0be8f8  &@selector(unlockStar)
+  0be8fc  goto loc_1000be950
+loc_1000be900:
+  0be918  return
+  0be924  [self starImage]
+  0be93c  [[self starImage] setHidden:1]
+  0be94c  &@selector(showReward)
+  0be970  tail [self showReward | unlockStar]
+
+== -[ADStarUnlockViewController setRewardToCompleted]   (address 0x1000bea04  size 348  kind objc)
+  0bea28  [self rewardLabel]
+  0bea60  [self->starDictionary objectForKey:@"reward"]
+  0bea7c  [[self->starDictionary objectForKey:@"reward"] intValue]
+  0bea9c  [NSString stringWithFormat:@"%i", [[self->starDictionary objectForKey:@"reward"] intValue]]
+  0beac0  [[self rewardLabel] setText:[NSString stringWithFormat:@"%i", [[self->starDictionary objectForKey:@"reward"] intValue]]]
+  0beaec  [self coinsImage]
+  0beb0c  [[self coinsImage] setHidden:1]
+  0beb24  return
+
+== -[ADStarUnlockViewController unlockStar]   (address 0x1000beb60  size 264  kind objc)
+  0beb80  [self starImage]
+  0beba4  [[self starImage] setHidden:0]
+  0bebc4  [self completedImage]
+  0bebdc  [[self completedImage] setHidden:0]
+  0bebf0  [self completedImage]
+  0bec10  [[self completedImage] setAlpha:1]
+  0bec38  tail [self setRewardToCompleted]
+  0bec44  goto loc_1000bec5c
+  0bec50  goto loc_1000bec5c
+loc_1000bec5c:
+
+== -[ADStarUnlockViewController glow]   (address 0x1000bec68  size 300  kind objc)
+  0bec8c  [self completedImage]
+  0becac  [[self completedImage] setHidden:0]
+  0bed44  [UIView animateWithDuration:0.5 delay:0 options:0 animations:^{-[ADStarUnlockViewController glow]_block_invoke captures +0x20=self} completion:^{-[ADStarUnlockViewController glow]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADStarUnlockViewController glow]_bloc…, +0x40=&d_1003b2650, +0x48=self}]
+  0bed68  return
+
+== -[ADStarUnlockViewController glow]_block_invoke   (address 0x1000bed94  size 100  kind block)
+  0bedb0  [self completedImage]
+  0bedd0  [[self completedImage] setAlpha:1]
+  0bede0  return
+
+== sub_1000bedf8   (address 0x1000bedf8  size 8  kind sub)
+
+== sub_1000bee00   (address 0x1000bee00  size 8  kind sub)
+  0bee04  return
+
+== -[ADStarUnlockViewController glow]_block_invoke_2   (address 0x1000bee08  size 100  kind block)
+  0bee24  [self starImage]
+  0bee44  [[self starImage] setHidden:0]
+  0bee54  return
+
+== sub_1000bee6c   (address 0x1000bee6c  size 8  kind sub)
+
+== sub_1000bee74   (address 0x1000bee74  size 8  kind sub)
+  0bee78  return
+
+== -[ADStarUnlockViewController showReward]   (address 0x1000bee7c  size 412  kind objc)
+  0beea4  [self rewardLabel]
+  0beec8  [[self rewardLabel] setHidden:0]
+  0beee4  [self coinsImage]
+  0beefc  [[self coinsImage] setHidden:0]
+  0bef10  [self rewardLabel]
+  0bef48  [self->starDictionary objectForKey:@"reward"]
+  0bef64  [[self->starDictionary objectForKey:@"reward"] intValue]
+  0bef84  [NSString stringWithFormat:@"%i", [[self->starDictionary objectForKey:@"reward"] intValue]]
+  0befa8  [[self rewardLabel] setText:[NSString stringWithFormat:@"%i", [[self->starDictionary objectForKey:@"reward"] intValue]]]
+  0befd0  return
+
+== -[ADStarUnlockViewController rewardValue]   (address 0x1000bf018  size 124  kind objc)
+  0bf044  [self->starDictionary objectForKey:@"reward"]
+  0bf060  [[self->starDictionary objectForKey:@"reward"] intValue]
+  0bf07c  return
+
+== -[ADStarUnlockViewController timeStringFromSeconds:]   (address 0x1000bf094  size 224  kind objc)
+  0bf0c4  t1 = (((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >> 5) + ((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >>> 31))
+  0bf10c  [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 - t1 * 60)]
+  0bf130  [NSString stringWithFormat:@"%i:%@", t1, [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 …]
+  0bf15c  return
+
+== -[ADStarUnlockViewController didReceiveMemoryWarning]   (address 0x1000bf174  size 60  kind objc)
+  0bf1a0  [super didReceiveMemoryWarning]
+  0bf1ac  return
+
+== -[ADStarUnlockViewController starDescription]   (address 0x1000bf1b0  size 16  kind objc)
+  0bf1bc  return
+
+== -[ADStarUnlockViewController setStarDescription:]   (address 0x1000bf1c0  size 56  kind objc)
+  0bf1e4  self->_starDescription = arg1
+  0bf1f4  return
+
+== -[ADStarUnlockViewController starImage]   (address 0x1000bf1f8  size 16  kind objc)
+  0bf204  return
+
+== -[ADStarUnlockViewController setStarImage:]   (address 0x1000bf208  size 56  kind objc)
+  0bf22c  self->_starImage = arg1
+  0bf23c  return
+
+== -[ADStarUnlockViewController lockedDescription]   (address 0x1000bf240  size 16  kind objc)
+  0bf24c  return
+
+== -[ADStarUnlockViewController setLockedDescription:]   (address 0x1000bf250  size 56  kind objc)
+  0bf274  self->_lockedDescription = arg1
+  0bf284  return
+
+== -[ADStarUnlockViewController blurImage]   (address 0x1000bf288  size 16  kind objc)
+  0bf294  return
+
+== -[ADStarUnlockViewController setBlurImage:]   (address 0x1000bf298  size 56  kind objc)
+  0bf2bc  self->_blurImage = arg1
+  0bf2cc  return
+
+== -[ADStarUnlockViewController rewardLabel]   (address 0x1000bf2d0  size 16  kind objc)
+  0bf2dc  return
+
+== -[ADStarUnlockViewController setRewardLabel:]   (address 0x1000bf2e0  size 56  kind objc)
+  0bf304  self->_rewardLabel = arg1
+  0bf314  return
+
+== -[ADStarUnlockViewController coinsImage]   (address 0x1000bf318  size 16  kind objc)
+  0bf324  return
+
+== -[ADStarUnlockViewController setCoinsImage:]   (address 0x1000bf328  size 56  kind objc)
+  0bf34c  self->_coinsImage = arg1
+  0bf35c  return
+
+== -[ADStarUnlockViewController completedImage]   (address 0x1000bf360  size 16  kind objc)
+  0bf36c  return
+
+== -[ADStarUnlockViewController setCompletedImage:]   (address 0x1000bf370  size 56  kind objc)
+  0bf394  self->_completedImage = arg1
+  0bf3a4  return
+
+== -[ADStarUnlockViewController .cxx_destruct]   (address 0x1000bf3a8  size 204  kind objc)

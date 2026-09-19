@@ -1,0 +1,191 @@
+
+== -[Accessible_ADArmoryLoadoutViewController viewDidLoad]   (address 0x100049410  size 348  kind objc)
+  049448  [super viewDidLoad]
+  049460  [self tableView]
+  049480  [[self tableView] setDataSource:self]
+  049494  [self tableView]
+  0494b4  [[self tableView] setDelegate:self]
+  0494c8  [self tableView]
+  0494ec  [UIColor blackColor]
+  049510  [[self tableView] setBackgroundColor:[UIColor blackColor]]
+  049534  return
+
+== -[Accessible_ADArmoryLoadoutViewController tableView:heightForRowAtIndexPath:]   (address 0x10004956c  size 140  kind objc)
+  04958c  [ADGameParameters sharedParameters]
+  0495a8  [[ADGameParameters sharedParameters] isIphone]
+  0495d8  return
+
+== -[Accessible_ADArmoryLoadoutViewController tableView:heightForHeaderInSection:]   (address 0x1000495f8  size 140  kind objc)
+  049618  [ADGameParameters sharedParameters]
+  049634  [[ADGameParameters sharedParameters] isIphone]
+  049664  return
+
+== -[Accessible_ADArmoryLoadoutViewController tableView:numberOfRowsInSection:]   (address 0x100049684  size 480  kind objc)
+  0496b0  if (arg2 != 1) goto loc_100049714
+  0496c8  [ADWeaponManager sharedWeaponManager]
+  0496e4  [[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons]
+  049700  [[[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons] count]
+  049708  goto loc_1000497c4
+  049710  goto loc_100049844
+loc_100049714:
+  049714  if (arg2 != 0) goto loc_1000497d8
+  049730  [ADWeaponManager sharedWeaponManager]
+  04974c  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  04976c  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count]
+  04977c  [ADWeaponManager sharedWeaponManager]
+  049798  [[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons]
+  0497ac  [[[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons] count]
+  0497b0  t1 = ([[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count] - [[[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons] count])
+loc_1000497c4:
+  0497d4  goto loc_1000497dc
+loc_1000497d8:
+loc_1000497dc:
+  0497fc  return
+
+== -[Accessible_ADArmoryLoadoutViewController tableView:viewForHeaderInSection:]   (address 0x100049864  size 544  kind objc)
+  04988c  [ADAccessibilityTableHeaderLabel alloc]
+  0498ac  [[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  0498b4  if (arg2 != 0) goto loc_1000498d8
+  0498d0  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Range weapons"]
+  0498d4  goto loc_1000498fc
+loc_1000498d8:
+  0498dc  if (arg2 != 1) goto loc_1000498fc
+  0498f8  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Melee weapons"]
+loc_1000498fc:
+  049910  [ADGameParameters sharedParameters]
+  04992c  [[ADGameParameters sharedParameters] isIphone]
+  04996c  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 35)]
+  049990  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 35)]]
+  0499b0  [UIColor blackColor]
+  0499d4  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setTextColor:[UIColor blackColor]]
+  0499f0  [UIColor whiteColor]
+  049a14  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setBackgroundColor:[UIColor whiteColor]]
+  049a20  if (arg2 != 0) goto loc_100049a38
+  049a34  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}])
+loc_100049a38:
+  049a48  return
+
+== -[Accessible_ADArmoryLoadoutViewController numberOfSectionsInTableView:]   (address 0x100049a84  size 8  kind objc)
+  049a88  return
+
+== -[Accessible_ADArmoryLoadoutViewController weaponName:]   (address 0x100049a8c  size 400  kind objc)
+  049aa8  if (arg1 < 0) goto loc_100049bac
+  049ac4  [ADWeaponManager sharedWeaponManager]
+  049ae4  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  049b00  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count]
+  049b1c  if ([[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count] <=u arg1) goto loc_100049bac
+  049b28  [ADWeaponManager sharedWeaponManager]
+  049b3c  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  049b5c  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1]
+  049b80  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1] objectForKey:@"displayName"]
+  049ba8  goto loc_100049bb0
+loc_100049bac:
+loc_100049bb0:
+  049bc8  return
+
+== -[Accessible_ADArmoryLoadoutViewController weaponStatus:]   (address 0x100049c1c  size 764  kind objc)
+  049c58  [ADWeaponManager sharedWeaponManager]
+  049c78  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  049c9c  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1]
+  049cc4  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1] objectForKey:@"name"]
+  049d04  [ADInventory sharedInventory]
+  049d24  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1] objectForKey:@"name"]]
+  049d34  if ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1] objectForKey:@"name"]] == 0) goto loc_100049d88
+  049d40  [ADInventory sharedInventory]
+  049d60  [[ADInventory sharedInventory] isWeaponEquipped:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1] objectForKey:@"name"]]
+  049d70  if ([[ADInventory sharedInventory] isWeaponEquipped:[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1] objectForKey:@"name"]] == 0) goto loc_100049e50
+  049d84  goto loc_100049e54
+loc_100049d88:
+  049d98  [ADWeaponManager sharedWeaponManager]
+  049dac  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  049dc4  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1]
+  049de0  [[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1] objectForKey:@"price"]
+  049dfc  [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1] objectForKey:@"price"] intValue]
+  049e1c  [NSString stringWithFormat:@"Locked, costs : %i coins", [[[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:arg1…]
+  049e4c  goto loc_100049e54
+loc_100049e50:
+loc_100049e54:
+  049e7c  return
+
+== -[Accessible_ADArmoryLoadoutViewController tableView:cellForRowAtIndexPath:]   (address 0x100049f18  size 844  kind objc)
+  049f64  [arg2 row]
+  049f7c  [arg2 section]
+  049f84  if ([arg2 section] != 1) goto loc_10004a048
+  049fa0  [ADWeaponManager sharedWeaponManager]
+  049fbc  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  049fdc  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count]
+  049fec  [ADWeaponManager sharedWeaponManager]
+  04a008  [[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons]
+  04a01c  [[[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons] count]
+  04a024  t1 = (([[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count] + [arg2 row]) - [[[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons] count])
+loc_10004a048:
+  04a060  [arg1 dequeueReusableCellWithIdentifier:@"AccessibleAllLevelsCell"]
+  04a070  if ([arg1 dequeueReusableCellWithIdentifier:@"AccessibleAllLevelsCell"] != 0) goto loc_10004a0ac
+  04a088  [ADAccessibleTableCell alloc]
+  04a0a4  [[ADAccessibleTableCell alloc] initWithStyle:0 reuseIdentifier:@"AccessibleAllLevelsCell"]
+loc_10004a0ac:
+  04a0c4  [self weaponName:x2]
+  04a0e8  [self weaponStatus:x2]
+  04a0f8  if ([self weaponStatus:x2] == 0) goto loc_10004a130
+  04a120  [NSString stringWithFormat:@"%@ : %@", [self weaponName:x2], [self weaponStatus:x2]]
+  04a12c  goto loc_10004a138
+loc_10004a130:
+loc_10004a138:
+  04a14c  [x0 textLabel]
+  04a16c  [[x0 textLabel] setText:x2]
+  04a1c0  return
+
+== -[Accessible_ADArmoryLoadoutViewController tableView:didSelectRowAtIndexPath:]   (address 0x10004a264  size 1156  kind objc)
+  04a29c  [arg2 row]
+  04a2b4  [arg2 section]
+  04a2bc  if ([arg2 section] != 1) goto loc_10004a380
+  04a2d8  [ADWeaponManager sharedWeaponManager]
+  04a2f4  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  04a314  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count]
+  04a324  [ADWeaponManager sharedWeaponManager]
+  04a340  [[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons]
+  04a354  [[[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons] count]
+  04a35c  t1 = (([[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count] + [arg2 row]) - [[[ADWeaponManager sharedWeaponManager] getAllMeleeWeapons] count])
+loc_10004a380:
+  04a394  [self tableView]
+  04a3b4  [[self tableView] setAccessibilityElementsHidden:1]
+  04a3d4  [Accessible_ADWeaponDescriptionViewController alloc]
+  04a3f0  [ADWeaponManager sharedWeaponManager]
+  04a40c  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  04a42c  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:x2]
+  04a450  [[Accessible_ADWeaponDescriptionViewController alloc] initWithWeaponDictionary:[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:x2]]
+  04a460  self->detailView = [[Accessible_ADWeaponDescriptionViewController alloc] initWithWeaponDictionary:[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] objectAtIndex:x2]]
+  04a498  [self->detailView setHideButtons:0]
+  04a4b0  [self armoryViewController]
+  04a4d4  [self->detailView setArmoryViewController:[self armoryViewController]]
+  04a4ec  [self tableView]
+  04a510  [self->detailView setParentTableView:[self tableView]]
+  04a530  [self view]
+  04a548  [self->detailView view]
+  04a56c  [[self view] addSubview:[self->detailView view]]
+  04a588  [self->detailView view]
+  04a5a0  [self tableView]
+  04a5bc  [[self tableView] center]
+  04a5d0  [[self->detailView view] setCenter:{[[self tableView] center].0, [[self tableView] center].1}]
+  04a5ec  [self->detailView view]
+  04a60c  [[self->detailView view] setAccessibilityViewIsModal:1]
+  04a634  return
+
+== -[Accessible_ADArmoryLoadoutViewController viewWillLayoutSubviews]   (address 0x10004a6e8  size 92  kind objc)
+  04a700  [self tableView]
+  04a71c  [[self tableView] reloadData]
+  04a72c  return
+
+== -[Accessible_ADArmoryLoadoutViewController tableView]   (address 0x10004a744  size 16  kind objc)
+  04a750  return
+
+== -[Accessible_ADArmoryLoadoutViewController setTableView:]   (address 0x10004a754  size 56  kind objc)
+  04a778  self->_tableView = arg1
+  04a788  return
+
+== -[Accessible_ADArmoryLoadoutViewController armoryViewController]   (address 0x10004a78c  size 32  kind objc)
+  04a7a8  return
+
+== -[Accessible_ADArmoryLoadoutViewController setArmoryViewController:]   (address 0x10004a7ac  size 20  kind objc)
+
+== -[Accessible_ADArmoryLoadoutViewController .cxx_destruct]   (address 0x10004a7c0  size 80  kind objc)

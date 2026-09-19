@@ -1,0 +1,201 @@
+
+== csl::BinauralPanner::~BinauralPanner   (address 0x1000f2fd8  size 36  kind cxx)
+  0f2fe8  sub_1000f2ee8(a0, a1, a2, a3)
+  0f2ff8  return
+
+== csl::BinauralPanner::thunk_vfunc_0   (address 0x1000f2ffc  size 8  kind cxx)
+  0f3000  tail sub_1000f2ee8((a0 - 168), a1, a2, a3)
+
+== csl::BinauralPanner::~BinauralPanner/*deleting*/   (address 0x1000f3004  size 56  kind cxx)
+  0f3014  sub_1000f2ee8(a0, a1, a2, a3)
+  0f3024  tail ZdlPv(a0)
+  0f3030  ZdlPv()
+
+== csl::BinauralPanner::thunk_vfunc_1   (address 0x1000f303c  size 8  kind cxx)
+  0f3040  tail csl::BinauralPanner::~BinauralPanner/*deleting*/((a0 - 168), a1, a2, a3)
+
+== csl::BinauralPanner::vfunc_17   (address 0x1000f3044  size 72  kind cxx)
+  0f3058  Znwm(48, a1, a2, a3)
+  0f3064  sub_1000f36e0(Znwm(48, a1, a2, a3), a0)
+  0f3074  return
+  0f3080  ZdlPv()
+
+== csl::BinauralPanner::vfunc_4   (address 0x1000f308c  size 1620  kind cxx)
+  0f30c0  sub_1000f4808(a0, a1, a2, a3)
+  0f30d4  sub_1000f5828(sub_1000f4808(a0, a1, a2, a3))
+  0f30e0  sub_1000f5820(sub_1000f4808(a0, a1, a2, a3))
+  0f30f0  if (a1[+0xc] != a0[+0x130]) goto loc_1000f3670
+  0f30fc  if (a1[+0x8] != 2) goto loc_1000f3688
+  0f3104  sub_1000e8310(a1)
+  0f311c  if (((x9 - x8) >>> 3) == 0) goto loc_1000f35a8
+  0f3184  goto loc_1000f318c
+loc_1000f3188:
+loc_1000f318c:
+  0f319c  call x8
+  0f31a0  if (x8(…) == 0) goto loc_1000f359c
+  0f31ac  sub_1000f18f0(x0, 0)
+  0f31bc  sub_1000ef23c(&x29[-0x90])
+  0f31e0  if (s1 <= (or unordered) 0.0) goto loc_1000f3210
+  0f31f8  sinf(((((0 - s0) + 0.5) * 180) * 0.0174533))
+loc_1000f3210:
+  0f321c  vDSP_vclr(a0[+0x260], 1, (sub_1000f5828(sub_1000f4808(a0, a1, a2, a3)) << 1))
+  0f322c  vDSP_vclr(a0[+0x268], 1, (sub_1000f5828(sub_1000f4808(a0, a1, a2, a3)) << 1))
+  0f3234  a0[+0x1c4] = sub_1000f5820(sub_1000f4808(a0, a1, a2, a3))
+  0f323c  sub_1000e8310((a0 + 440))
+  0f3244  a0[+0x1c4] = a1[+0xc]
+  0f3254  call x8
+  0f3268  call x8
+  0f3284  a0[+0x220][+0x0] = x8
+  0f328c  a0[+0x1c4] = sub_1000f5820(sub_1000f4808(a0, a1, a2, a3))
+  0f3298  csl::ACCFFT_Wrapper::vfunc_2((a0 + 312), (a0 + 440), (a0 + 496))
+  0f32a4  sub_1000f18f0(x0, 0)
+  0f32b8  sub_1000f586c(sub_1000f4808(a0, a1, a2, a3), &x29[-0xb0])
+  0f32c4  sub_1000f5810(sub_1000f4808(a0, a1, a2, a3))
+  0f32d0  if (a0[+0x134] < 0) goto loc_1000f3340
+  0f32dc  t1 = (sub_1000f5810(sub_1000f4808(a0, a1, a2, a3)) < 0 ? sub_1000f5810(sub_1000f4808(a0, a1, a2, a3)) + 1 : sub_1000f5810(sub_1000f4808(a0, a1, a2, a3)))
+  0f32e8  t2 = ((sub_1000f586c(sub_1000f4808(a0, a1, a2, a3), &x29[-0xb0]) - a0[+0x134]) < -(t1 >> 1) ? sub_1000f5810(sub_1000f4808(a0, a1, a2, a3)) : 0)
+  0f32f4  t3 = ((t2 + (sub_1000f586c(sub_1000f4808(a0, a1, a2, a3), &x29[-0xb0]) - a0[+0x134])) > (t1 >> 1) ? sub_1000f5810(sub_1000f4808(a0, a1, a2, a3)) : 0)
+  0f3300  if (((t2 + (sub_1000f586c(sub_1000f4808(a0, a1, a2, a3), &x29[-0xb0]) - a0[+0x134])) - t3) <= 0) goto loc_1000f3314
+  0f3308  if (((t2 + (sub_1000f586c(sub_1000f4808(a0, a1, a2, a3), &x29[-0xb0]) - a0[+0x134])) - t3) < 2) goto loc_1000f3328
+  0f3310  goto loc_1000f332c
+loc_1000f3314:
+  0f3314  if (((t2 + (sub_1000f586c(sub_1000f4808(a0, a1, a2, a3), &x29[-0xb0]) - a0[+0x134])) - t3) >= 0) goto loc_1000f332c
+  0f331c  if (((t2 + (sub_1000f586c(sub_1000f4808(a0, a1, a2, a3), &x29[-0xb0]) - a0[+0x134])) - t3) > -2) goto loc_1000f3328
+  0f3324  goto loc_1000f332c
+loc_1000f3328:
+  0f3328  t4 = (((t2 + (sub_1000f586c(sub_1000f4808(a0, a1, a2, a3), &x29[-0xb0]) - a0[+0x134])) - t3) + a0[+0x134])
+loc_1000f332c:
+  0f3338  t5 = (((sub_1000f5810(sub_1000f4808(a0, a1, a2, a3)) & (w24 >> 31)) + w24) < sub_1000f5810(sub_1000f4808(a0, a1, a2, a3)) ? 0 : sub_1000f5810(sub_1000f4808(a0, a1, a2, a3)))
+loc_1000f3340:
+  0f3344  a0[+0x134] = w24
+  0f3378  goto loc_1000f338c
+loc_1000f337c:
+loc_1000f338c:
+  0f3394  sub_1000f5830(sub_1000f4808(a0, a1, a2, a3))
+  0f3404  vDSP_zvmul(&sp[0x90], 2, &sp[0xa0], 2)
+  0f3428  vDSP_zvmul(&sp[0x80], 2, &sp[0xa0], 2)
+  0f3444  if (((w24 + 1) >=u a0[+0x12c] ? 0 : w24 + 1) != a0[+0x280]) goto loc_1000f337c
+  0f344c  a0[+0x1fc] = sub_1000f5820(sub_1000f4808(a0, a1, a2, a3))
+  0f3458  a0[+0x220][+0x0] = a0[+0x260]
+  0f3464  a0[+0x258][+0x0] = a0[+0x270]
+  0f3470  csl::ACCFFT_Wrapper::vfunc_2((a0 + 376), (a0 + 496), (a0 + 552))
+  0f347c  a0[+0x220][+0x0] = a0[+0x268]
+  0f3488  a0[+0x258][+0x0] = a0[+0x278]
+  0f3494  csl::ACCFFT_Wrapper::vfunc_2((a0 + 376), (a0 + 496), (a0 + 552))
+  0f34ac  call a1[+0x0][+0x20]
+  0f34c4  call a1[+0x0][+0x20]
+  0f34f8  vDSP_vasm(a0[+0x270], 1, x2, 1)
+  0f351c  vDSP_vasm(a0[+0x278], 1, x2, 1)
+  0f3540  vDSP_vasm(a0[+0x270], 1, a1[+0x0][+0x20](…), 1)
+  0f3564  vDSP_vasm(a0[+0x278], 1, a1[+0x0][+0x20](…), 1)
+  0f3580  memcpy(x0, (a0[+0x270] + (a1[+0xc] << 2)), (a1[+0xc] << 2))
+  0f3594  memcpy(x0, (a0[+0x278] + (a1[+0xc] << 2)), (a1[+0xc] << 2))
+loc_1000f359c:
+  0f35a4  if ((x21 + 1) <u ((x9 - x8) >>> 3)) goto loc_1000f3188
+loc_1000f35a8:
+  0f35cc  call a1[+0x0][+0x20]
+  0f35e4  call a1[+0x0][+0x20]
+  0f3604  vDSP_vclip(a1[+0x0][+0x20](…), 1, &sp[0x74], &sp[0x78])
+  0f3618  call a1[+0x0][+0x20]
+  0f3630  call a1[+0x0][+0x20]
+  0f3650  vDSP_vclip(a1[+0x0][+0x20](…), 1, &sp[0x74], &sp[0x78])
+  0f3658  if (a0[+0x280] != 0) goto loc_1000f3664
+  0f3660  a0[+0x280] = a0[+0x12c]
+loc_1000f3664:
+  0f3668  a0[+0x280] = (w8 - 1)
+  0f366c  goto loc_1000f3698
+loc_1000f3670:
+  0f3680  sub_1000e772c(2, "BinauralPanner::nextBuffer # frames %d wrong for HRTF size %d (use a block resizer).")
+  0f3684  goto loc_1000f3698
+loc_1000f3688:
+  0f3694  sub_1000e772c(2, "BinauralPanner needs a stereo output buffer")
+loc_1000f3698:
+  0f36c0  return
+  0f36c4  if (w1 >= 0) goto loc_1000f36cc
+  0f36c8  cxa_call_unexpected()
+
+== sub_1000f36e0   (address 0x1000f36e0  size 1000  kind sub)
+  0f3708  a0[+0x0] = vtable<csl::BinauralSourceCache>
+  0f3710  a0[+0x28] = a1[+0x128]
+  0f3718  sub_1000f4808(a0, a1, a2, a3)
+  0f371c  sub_1000f5828(sub_1000f4808(a0, a1, a2, a3))
+  0f372c  calloc(4, a1[+0x130])
+  0f3730  a0[+0x10] = calloc(4, a1[+0x130])
+  0f3734  if (calloc(4, a1[+0x130]) == 0) goto loc_1000f37d0
+  0f3740  calloc(4, a1[+0x130])
+  0f3744  a0[+0x18] = calloc(4, a1[+0x130])
+  0f3748  if (calloc(4, a1[+0x130]) == 0) goto loc_1000f385c
+  0f3758  calloc(4, a0[+0x28])
+  0f375c  a0[+0x20] = calloc(4, a0[+0x28])
+  0f3760  if (calloc(4, a0[+0x28]) == 0) goto loc_1000f38e8
+  0f376c  calloc(8, a0[+0x28])
+  0f3774  a0[+0x8] = calloc(8, a0[+0x28])
+  0f3778  if (calloc(8, a0[+0x28]) == 0) goto loc_1000f3974
+  0f377c  if (a0[+0x28] == 0) goto loc_1000f37b4
+loc_1000f378c:
+  0f3794  calloc(8)
+  0f37a4  if (x8 == 0) goto loc_1000f3a00
+  0f37b0  if ((x23 + 1) <u a0[+0x28]) goto loc_1000f378c
+loc_1000f37b4:
+  0f37cc  return
+  0f37d4  cxa_allocate_exception(16)
+  0f37ec  ZNSsC1EPKcRKSaIcE(&x29[-0x40], "can't allocate buffer", &sp[0x48])
+  0f37f8  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &x29[-0x40])
+  0f3808  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f3820  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f3840  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3a98
+  0f3854  if (w11 != 0) goto loc_1000f3848
+  0f3860  cxa_allocate_exception(16)
+  0f3878  ZNSsC1EPKcRKSaIcE(&sp[0x40], "can't allocate buffer", &sp[0x38])
+  0f3884  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x40])
+  0f3894  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f38ac  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f38cc  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3a98
+  0f38e0  if (w11 != 0) goto loc_1000f38d4
+  0f38ec  cxa_allocate_exception(16)
+  0f3904  ZNSsC1EPKcRKSaIcE(&sp[0x30], "can't allocate buffer", &sp[0x28])
+  0f3910  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x30])
+  0f3920  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f3938  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f3958  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3a98
+  0f396c  if (w11 != 0) goto loc_1000f3960
+  0f3978  cxa_allocate_exception(16)
+  0f3990  ZNSsC1EPKcRKSaIcE(&sp[0x20], "can't allocate buffer", &sp[0x18])
+  0f399c  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x20])
+  0f39ac  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f39c4  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f39e4  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3a98
+  0f39f8  if (w11 != 0) goto loc_1000f39ec
+  0f3a04  cxa_allocate_exception(16)
+  0f3a1c  ZNSsC1EPKcRKSaIcE(&sp[0x10], "can't allocate buffer", &sp[0x8])
+  0f3a28  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x10])
+  0f3a38  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f3a50  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f3a70  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3a98
+  0f3a84  if (w11 != 0) goto loc_1000f3a78
+  0f3a8c  if (w9 > 0) goto loc_1000f3a98
+  0f3a94  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x38])
+  0f3ac0  cxa_free_exception()
+
+== sub_1000f3ac8   (address 0x1000f3ac8  size 140  kind sub)
+  0f3ae4  a0[+0x0] = vtable<csl::BinauralSourceCache>
+  0f3aec  if (a0[+0x28] == 0) goto loc_1000f3b14
+loc_1000f3af4:
+  0f3afc  if (x0 == 0) goto loc_1000f3b08
+  0f3b00  free()
+loc_1000f3b08:
+  0f3b10  if ((w20 + 1) <u a0[+0x28]) goto loc_1000f3af4
+loc_1000f3b14:
+  0f3b18  if (a0[+0x8] == 0) goto loc_1000f3b20
+  0f3b1c  free(a0[+0x8])
+loc_1000f3b20:
+  0f3b24  if (a0[+0x10] == 0) goto loc_1000f3b2c
+  0f3b28  free(a0[+0x10])
+loc_1000f3b2c:
+  0f3b30  if (a0[+0x18] == 0) goto loc_1000f3b38
+  0f3b34  free(a0[+0x18])
+loc_1000f3b38:
+  0f3b3c  if (a0[+0x20] == 0) goto loc_1000f3b44
+  0f3b40  free(a0[+0x20])
+loc_1000f3b44:
+  0f3b50  return

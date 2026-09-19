@@ -1,0 +1,9 @@
+
+== +[TAGPBEnumDescriptorProto descriptor]   (address 0x10012c1d8  size 180  kind objc)
+  12c1f8  if (g_10042dd40 != 0) goto loc_10012c278
+  12c21c  [TAGPBEnumDescriptorProto class]
+  12c230  [TAGPBDescriptorRoot class]
+  12c270  [TAGPBDescriptor allocDescriptorForClass:[TAGPBEnumDescriptorProto class] rootClass:[TAGPBDescriptorRoot class] fields:&d_100429c40 fieldCount:3 enums:0 enumCount:0 ranges:32 rangeCount:x9 storageSize:x10 wireFormat:x11]
+  12c274  store g_10042dd40 = [TAGPBDescriptor allocDescriptorForClass:[TAGPBEnumDescriptorProto class] rootClass:[TAGPBDescriptorRoot class] fields:&d_100429c40 fieldCount:3 enums:0 enumCount:0 ranges:32 rangeCount:x9 storageSize:x10 wireFormat:x11]
+loc_10012c278:
+  12c288  return

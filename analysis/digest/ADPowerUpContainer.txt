@@ -1,0 +1,96 @@
+
+== -[ADPowerUpContainer update:]   (address 0x100069880  size 528  kind objc)
+  0698a8  [self state]
+  0698b0  if ([self state] > 600) goto loc_1000698f0
+  0698b4  if ([self state] != 0) goto loc_100069924
+  0698c8  [self timeInState]
+  0698e0  [self spawn_time]
+  0698e8  if ([self timeInState] <= (or unordered) [self spawn_time]) goto loc_100069a40
+  0698ec  goto loc_10006994c
+loc_1000698f0:
+  0698f4  if ([self state] != 601) goto loc_100069964
+  069908  [self timeInState]
+  069914  if ([self timeInState] <= (or unordered) 15) goto loc_100069a40
+  06991c  &@selector(removePowerUp)
+  069920  goto loc_100069954
+loc_100069924:
+  069928  if ([self state] != 1) goto loc_100069a40
+  069940  [self spawn_sound_duration]
+  069948  if ([self spawn_sound_duration] != 0.0) goto loc_100069a08
+loc_10006994c:
+  069950  &@selector(spawn)
+loc_100069954:
+  06995c  [self removePowerUp | spawn | startBeeping]
+  069960  goto loc_100069a40
+loc_100069964:
+  069968  if ([self state] != 999) goto loc_100069a40
+  069980  [self timeInState]
+  069994  if ([self timeInState] <= (or unordered) 0.1) goto loc_100069a40
+  0699a0  [self timeInState]
+  0699b8  [self sound]
+  0699d4  [[self sound] duration]
+  0699e8  if ([self timeInState] <= (or unordered) [[self sound] duration]) goto loc_100069a40
+  069a00  [self setState:0xffffffff]
+  069a04  goto loc_100069a40
+loc_100069a08:
+  069a18  [self timeInState]
+  069a28  [self spawn_sound_duration]
+  069a30  if ([self timeInState] <= (or unordered) [self spawn_sound_duration]) goto loc_100069a40
+  069a38  &@selector(startBeeping)
+  069a3c  goto loc_100069954
+loc_100069a40:
+  069a50  [self timeInState]
+  069a78  tail [self setTimeInState:([self timeInState] + arg1)]
+
+== -[ADPowerUpContainer spawn]   (address 0x100069a90  size 240  kind objc)
+  069ac8  [super spawn]
+  069ae0  [self powerUpType]
+  069afc  [ADWeaponManager sharedWeaponManager]
+  069b0c  if ([self powerUpType] == 0) goto loc_100069b3c
+  069b18  [self powerUpType]
+  069b30  [[ADWeaponManager sharedWeaponManager] initPowerUp:[self powerUpType]]
+  069b34  goto loc_100069b50
+  069b38  goto loc_100069b6c
+loc_100069b3c:
+  069b4c  [[ADWeaponManager sharedWeaponManager] initRandomPowerUp]
+loc_100069b50:
+  069b68  return
+
+== -[ADPowerUpContainer die]   (address 0x100069b80  size 148  kind objc)
+  069bb0  [super die]
+  069bc8  [ADWeaponManager sharedWeaponManager]
+  069be4  [[ADWeaponManager sharedWeaponManager] usePowerUp]
+  069bfc  return
+
+== -[ADPowerUpContainer canBeShotAt]   (address 0x100069c14  size 104  kind objc)
+  069c34  [self state]
+  069c3c  if ([self state] != 1) goto loc_100069c48
+  069c44  goto loc_100069c6c
+loc_100069c48:
+  069c68  [super canBeShotAt]
+loc_100069c6c:
+  069c78  return
+
+== -[ADPowerUpContainer startBeeping]   (address 0x100069c7c  size 72  kind objc)
+  069c9c  [self setState:601]
+  069cc0  tail [self playAnySoundContaining:@"_alerting_"]
+
+== -[ADPowerUpContainer removePowerUp]   (address 0x100069cc4  size 204  kind objc)
+  069ce4  [self setState:0xffffffff]
+  069cf8  [self setLifeToZero]
+  069d0c  [self sound]
+  069d28  [[self sound] stop]
+  069d48  [ADTracker sharedInstance]
+  069d64  [[ADTracker sharedInstance] powerUpMissed]
+  069d74  return
+
+== -[ADPowerUpContainer getType]   (address 0x100069d90  size 60  kind objc)
+  069dbc  [super getType]
+  069dc8  return
+
+== -[ADPowerUpContainer powerUpType]   (address 0x100069dcc  size 16  kind objc)
+  069dd8  return
+
+== -[ADPowerUpContainer setPowerUpType:]   (address 0x100069ddc  size 16  kind objc)
+  069de4  self->_powerUpType = arg1
+  069de8  return

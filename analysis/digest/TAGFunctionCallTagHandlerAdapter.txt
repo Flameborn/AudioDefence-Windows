@@ -1,0 +1,22 @@
+
+== -[TAGFunctionCallTagHandlerAdapter initWithContainer:]   (address 0x10014cac4  size 164  kind objc)
+  14cb08  [super init]
+  14cb10  if (self == 0) goto loc_10014cb34
+  14cb28  self->_container = arg1
+loc_10014cb34:
+  14cb50  return
+
+== -[TAGFunctionCallTagHandlerAdapter evaluate:parameters:]   (address 0x10014cb68  size 292  kind objc)
+  14cbac  [self container]
+  14cbcc  [[self container] functionCallTagHandlerForTag:arg1]
+  14cbfc  [[[self container] functionCallTagHandlerForTag:arg1] execute:arg1 parameters:arg2]
+  14cc14  [TAGTypes defaultString]
+  14cc50  return
+
+== -[TAGFunctionCallTagHandlerAdapter container]   (address 0x10014cc8c  size 16  kind objc)
+  14cc98  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGFunctionCallTagHandlerAdapter setContainer:]   (address 0x10014cc9c  size 12  kind objc)
+  14cca4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGFunctionCallTagHandlerAdapter .cxx_destruct]   (address 0x10014cca8  size 20  kind objc)

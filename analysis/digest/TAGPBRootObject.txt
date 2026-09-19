@@ -1,0 +1,74 @@
+
+== +[TAGPBRootObject initialize]   (address 0x100146d80  size 116  kind objc)
+  146d9c  if (g_10042de40 != 0) goto loc_100146de4
+  146da8  [&d_1003b8b10] -> &sub_100146e20
+  146db0  [&d_1003b8b00] -> &sub_100146dfc
+  146db8  [&d_1003b8af0] -> 0x0
+  146ddc  CFDictionaryCreateMutable(_kCFAllocatorDefault[+0x0], 0, ^{sub_100146dfc captures +0x20=&sub_100146e20}, _kCFTypeDictionaryValueCallBacks)
+  146de0  store g_10042de40 = CFDictionaryCreateMutable(_kCFAllocatorDefault[+0x0], 0, ^{sub_100146dfc captures +0x20=&sub_100146e20}, _kCFTypeDictionaryValueCallBacks)
+loc_100146de4:
+  146df0  return
+
+== sub_100146df4   (address 0x100146df4  size 8  kind sub)
+  146df8  return
+
+== sub_100146dfc   (address 0x100146dfc  size 4  kind sub)
+  146dfc  return
+
+== sub_100146e00   (address 0x100146e00  size 32  kind sub)
+  146e1c  tail CFStringCreateWithCString(_kCFAllocatorDefault[+0x0], a0, 0x8000100, a3)
+
+== sub_100146e20   (address 0x100146e20  size 28  kind sub)
+  146e28  strcmp(a0, a1, a2, a3)
+  146e38  return
+
+== sub_100146e3c   (address 0x100146e3c  size 56  kind sub)
+  146e44  if (a0[+0x0] == 0) goto loc_100146e68
+loc_100146e4c:
+  146e60  if (w10 != 0) goto loc_100146e4c
+  146e64  t1 = ((((w8 + w10) + ((w8 + w10) << 10)) ^ (((w8 + w10) + ((w8 + w10) << 10)) >>> 6)) + ((((w8 + w10) + ((w8 + w10) << 10)) ^ (((w8 + w10) + ((w8 + w10) << 10)) >>> 6)) << 3))
+loc_100146e68:
+  146e70  return
+
+== +[TAGPBRootObject extensionRegistry]   (address 0x100146e74  size 8  kind objc)
+  146e78  return
+
+== +[TAGPBRootObject globallyRegisterExtension:]   (address 0x100146e7c  size 84  kind objc)
+  146e9c  [arg1 descriptor]
+  146eac  [[arg1 descriptor] singletonNameC]
+  146ecc  tail CFDictionarySetValue(g_10042de40, [[arg1 descriptor] singletonNameC], arg1)
+
+== +[TAGPBRootObject resolveClassMethod:]   (address 0x100146ed0  size 240  kind objc)
+  146ef0  sub_100146fc0(TAGPBRootObject, arg1, arg1)
+  146ef8  if (sub_100146fc0(TAGPBRootObject, arg1, arg1) == 0) goto loc_100146f84
+  146f10  objc_getProtocol("TAGPBMessageSignatureProtocol")
+  146f20  protocol_getMethodDescription(objc_getProtocol("TAGPBMessageSignatureProtocol"), @selector(getClassValue), 0, 0)
+  146f2c  class_getName(TAGPBRootObject)
+  146f30  objc_getMetaClass(class_getName(TAGPBRootObject))
+  146f68  imp_implementationWithBlock(^{+[TAGPBRootObject resolveClassMethod:]_block_invoke captures +0x20=sub_100146fc0(TAGPBRootObject, arg1, arg…})
+  146f7c  class_addMethod(objc_getMetaClass(class_getName(TAGPBRootObject)), arg1, imp_implementationWithBlock(^{+[TAGPBRootObject resolveClassMethod:]_block_invoke captures +0x20=sub_100146fc0(TAGPBRootObject, arg1, arg…}))
+  146f80  goto loc_100146fac
+loc_100146f84:
+  146fa8  [super resolveClassMethod:arg1]
+loc_100146fac:
+  146fbc  return
+
+== sub_100146fc0   (address 0x100146fc0  size 228  kind sub)
+  146fec  class_getName(a0, a1, a2, a3)
+  146ff8  sel_getName(a1)
+  147004  strlen(class_getName(a0, a1, a2, a3))
+  147010  strlen(sel_getName(a1))
+  147028  t1 = (&sp[0x0] - (((strlen(class_getName(a0, a1, a2, a3)) + strlen(sel_getName(a1))) + 17) & -16))
+  14703c  memcpy(t1, class_getName(a0, a1, a2, a3), strlen(class_getName(a0, a1, a2, a3)))
+  147058  memcpy((t1 + (strlen(class_getName(a0, a1, a2, a3)) + 1)), sel_getName(a1), strlen(sel_getName(a1)))
+  147074  CFDictionaryGetValue(g_10042de40, t1)
+  14709c  return
+
+== +[TAGPBRootObject resolveClassMethod:]_block_invoke   (address 0x1001470a4  size 8  kind block)
+  1470a8  return
+
+== sub_1001470ac   (address 0x1001470ac  size 16  kind sub)
+  1470b8  tail Block_object_assign((a0 + 32), a1[+0x20], 3, a3)
+
+== sub_1001470bc   (address 0x1001470bc  size 12  kind sub)
+  1470c4  tail Block_object_dispose(a0[+0x20], 3, a2, a3)

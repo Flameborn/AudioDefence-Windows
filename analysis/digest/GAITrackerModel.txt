@@ -1,0 +1,342 @@
+
+== -[GAITrackerModel buildDictionary]   (address 0x100125130  size 596  kind objc)
+  125154  [self requiredParameters]
+  125178  [self dictionaryWithValuesForKeys:[self requiredParameters]]
+  125194  [[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy]
+  1251bc  [self parameters]
+  1251e4  [[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] addEntriesFromDictionary:[self parameters]]
+  125200  [self forcedParameters]
+  12521c  [[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] addEntriesFromDictionary:[self forcedParameters]]
+  125230  [&d_1003b8380] -> @"&cid"
+  125248  [[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] objectForKeyedSubscript:@"&cid"]
+  125270  [NSString class]
+  12528c  [[[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] objectForKeyedSubscript:@"&cid"] isKindOfClass:[NSString class]]
+  125290  if ([[[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] objectForKeyedSubscript:@"&cid"] isKindOfClass:[NSString class]] == 0) goto loc_1001252ac
+  1252a4  [[[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] objectForKeyedSubscript:@"&cid"] length]
+  1252a8  if ([[[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] objectForKeyedSubscript:@"&cid"] length] == 0) goto loc_1001252d0
+loc_1001252ac:
+  1252b8  [NSNull class]
+  1252c8  [[[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] objectForKeyedSubscript:@"&cid"] isKindOfClass:[NSNull class]]
+  1252cc  if ([[[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] objectForKeyedSubscript:@"&cid"] isKindOfClass:[NSNull class]] == 0) goto loc_100125314
+loc_1001252d0:
+  1252e0  [self clientId]
+  125308  [[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] setObject:[self clientId] forKeyedSubscript:@"&cid"]
+loc_100125314:
+  12531c  [&d_1003b8500] -> @"&z"
+  125330  [self cacheBuster]
+  125358  [[[self dictionaryWithValuesForKeys:[self requiredParameters]] mutableCopy] setObject:[self cacheBuster] forKeyedSubscript:@"&z"]
+  125380  return
+
+== -[GAITrackerModel willSendScreenView]   (address 0x100125384  size 36  kind objc)
+  1253a0  store g_10042dc90 = ((g_10042dc90 + 1) < 0 ? 1 : g_10042dc90 + 1)
+  1253a4  return
+
+== +[GAITrackerModel initialize]   (address 0x1001253a8  size 1832  kind objc)
+  1253f0  [GAITrackerModel class]
+  125408  if (flags !=) goto loc_100125a9c
+  125420  [NSMutableDictionary dictionary]
+  125448  [NSBundle mainBundle]
+  125464  [[NSBundle mainBundle] infoDictionary]
+  12549c  [[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:_kCFBundleNameKey[+0x0]]
+  1254ac  if ([[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:_kCFBundleNameKey[+0x0]] == 0) goto loc_1001254c8
+  1254c0  [[[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:_kCFBundleNameKey[+0x0]] length]
+  1254c4  if ([[[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:_kCFBundleNameKey[+0x0]] length] != 0) goto loc_1001254fc
+loc_1001254c8:
+  1254dc  [[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:_kCFBundleIdentifierKey[+0x0]]
+  1254f8  if ([[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:_kCFBundleIdentifierKey[+0x0]] == 0) goto loc_100125544
+loc_1001254fc:
+  12550c  [x0 length]
+  125510  if ([x0 length] == 0) goto loc_10012553c
+  12551c  [&d_1003b83c0] -> @"&an"
+  125534  [[NSMutableDictionary dictionary] setObject:x2 forKeyedSubscript:@"&an"]
+  125538  goto loc_100125628
+loc_10012553c:
+  125540  goto loc_10012554c
+loc_100125544:
+loc_10012554c:
+  125560  [GAI sharedLogger]
+  125580  [&d_1003b7d70] -> @"GoogleAnalytics"
+  12558c  [&d_1003b7d78] -> @"3.09"
+  1255a4  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  1255e4  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): could not load application name or identifier.", @"GoogleAnalytics", @"3.09", "+[GAITrackerModel initialize]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 69]
+  125608  [[GAI sharedLogger] warning:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): could not load application name or identifier.", @"GoogleAnalytics", @"3.09", "+[GAITrackerModel initialize]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 69]]
+loc_100125628:
+  125638  [[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:@"CFBundleShortVersionString"]
+  125648  if ([[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:@"CFBundleShortVersionString"] == 0) goto loc_100125670
+  125654  [&d_1003b83c8] -> @"&av"
+  12566c  [[NSMutableDictionary dictionary] setObject:[[[NSBundle mainBundle] infoDictionary] objectForKeyedSubscript:@"CFBundleShortVersionString"] forKeyedSubscript:@"&av"]
+loc_100125670:
+  12567c  [NSBundle mainBundle]
+  125698  [[NSBundle mainBundle] bundleIdentifier]
+  1256b0  if ([[NSBundle mainBundle] bundleIdentifier] == 0) goto loc_1001256d8
+  1256bc  [&d_1003b83d0] -> @"&aid"
+  1256d4  [[NSMutableDictionary dictionary] setObject:[[NSBundle mainBundle] bundleIdentifier] forKeyedSubscript:@"&aid"]
+loc_1001256d8:
+  1256e0  [&d_1003b8210] -> @"gaiVersion"
+  1256ec  [&d_1003b7d78] -> @"3.09"
+  125700  [[NSMutableDictionary dictionary] setObject:@"3.09" forKeyedSubscript:@"gaiVersion"]
+  125708  arc4random_uniform(0x7ffffffe)
+  125710  store g_10042dc90 = (arc4random_uniform(0x7ffffffe) + 1)
+  12571c  NSClassFromString(@"TAGActualAdIdAccess")
+  125720  store g_10042dca0 = NSClassFromString(@"TAGActualAdIdAccess")
+  125740  [NSClassFromString(@"TAGActualAdIdAccess") respondsToSelector:@selector(retrieveId)]
+  12574c  if ([NSClassFromString(@"TAGActualAdIdAccess") respondsToSelector:@selector(retrieveId)] == 0) goto loc_10012576c
+  125764  [g_10042dca0 respondsToSelector:@selector(retrieveTrackingFlag)]
+  125768  if (([g_10042dca0 respondsToSelector:@selector(retrieveTrackingFlag)] & 1)) goto loc_10012577c
+loc_10012576c:
+  125774  NSLog(@"idfa class missing, won't collect idfa")
+  125778  store g_10042dca0 = 0
+loc_10012577c:
+  12578c  [[NSMutableDictionary dictionary] copy]
+  125794  store g_10042dca8 = [[NSMutableDictionary dictionary] copy]
+  1257b0  [&d_1003b8388] -> @"&_v"
+  1257c0  [&d_1003b81b8] -> @"mi3.0.9"
+  1257d0  [&d_1003b8370] -> @"&v"
+  1257d4  [&d_1003b81b0] -> @"1"
+  125800  [NSDictionary dictionaryWithObjects:&sp[0x48] forKeys:&sp[0x38] count:2]
+  125810  store g_10042dc98 = [NSDictionary dictionaryWithObjects:&sp[0x48] forKeys:&sp[0x38] count:2]
+  125834  [NSMutableDictionary alloc]
+  12584c  [[NSMutableDictionary alloc] initWithCapacity:7]
+  125854  store g_10042dcb0 = [[NSMutableDictionary alloc] initWithCapacity:7]
+  12586c  [NSMutableArray alloc]
+  125878  [[NSMutableArray alloc] initWithCapacity:7]
+  125880  store g_10042dcb8 = [[NSMutableArray alloc] initWithCapacity:7]
+  125898  [&d_1003b83a8] -> @"&ul"
+  1258b8  [g_10042dcb0 setObject:@"language" forKey:@"&ul"]
+  1258d4  [g_10042dcb8 addObject:@"&ul"]
+  1258dc  if (g_10042dca0 == 0) goto loc_100125948
+  1258ec  [&d_1003b84e8] -> @"&idfa"
+  125900  [g_10042dcb0 setObject:@"idfa" forKey:@"&idfa"]
+  125910  [g_10042dcb8 addObject:@"&idfa"]
+  125920  [&d_1003b84f0] -> @"&ate"
+  125934  [g_10042dcb0 setObject:@"adTargetingEnabled" forKey:@"&ate"]
+  125944  [g_10042dcb8 addObject:@"&ate"]
+loc_100125948:
+  125954  [&d_1003b83a0] -> @"&sr"
+  125968  [g_10042dcb0 setObject:@"screenResolution" forKey:@"&sr"]
+  125978  [g_10042dcb8 addObject:@"&sr"]
+  125988  [&d_1003b83b8] -> @"&a"
+  12599c  [g_10042dcb0 setObject:@"admobId" forKey:@"&a"]
+  1259ac  [g_10042dcb8 addObject:@"&a"]
+  1259bc  [&d_1003b8520] -> @"&_crc"
+  1259d0  [g_10042dcb0 setObject:@"crc" forKey:@"&_crc"]
+  1259e0  [g_10042dcb8 addObject:@"&_crc"]
+  1259f0  [&d_1003b8380] -> @"&cid"
+  125a04  [g_10042dcb0 setObject:@"clientId" forKey:@"&cid"]
+  125a14  [g_10042dcb8 addObject:@"&cid"]
+  125a2c  [g_10042dca8 allKeys]
+  125a50  [g_10042dcb8 arrayByAddingObjectsFromArray:[g_10042dca8 allKeys]]
+  125a60  store g_10042dcc0 = [g_10042dcb8 arrayByAddingObjectsFromArray:[g_10042dca8 allKeys]]
+loc_100125a9c:
+  125ac8  return
+
+== -[GAITrackerModel forcedParameters]   (address 0x100125ad0  size 16  kind objc)
+
+== -[GAITrackerModel requiredParameters]   (address 0x100125ae0  size 16  kind objc)
+
+== -[GAITrackerModel methodsForKeys]   (address 0x100125af0  size 16  kind objc)
+
+== -[GAITrackerModel defaultParameters]   (address 0x100125b00  size 16  kind objc)
+
+== -[GAITrackerModel crc]   (address 0x100125b10  size 456  kind objc)
+  125b48  [self->_dataStore lastChangeTimeStamp]
+  125b64  [[self->_dataStore lastChangeTimeStamp] doubleValue]
+  125b88  [NSDate date]
+  125ba4  [[NSDate date] timeIntervalSince1970]
+  125bb4  t1 = ([[NSDate date] timeIntervalSince1970] - [[self->_dataStore lastChangeTimeStamp] doubleValue])
+  125bc4  if (t1 <= (or unordered) 86400) goto loc_100125c5c
+  125be4  [NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]
+  125c08  [self->_dataStore setLastChangeTimeStamp:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]]]
+  125c2c  [NSNumber numberWithInt:0]
+  125c50  [self->_dataStore setIdfaChangeCount:[NSNumber numberWithInt:0]]
+loc_100125c5c:
+  125c74  [self->_dataStore idfaChangeCount]
+  125ca0  [NSString stringWithFormat:@"%@", [self->_dataStore idfaChangeCount]]
+  125cd4  return
+
+== -[GAITrackerModel clientId]   (address 0x100125cd8  size 28  kind objc)
+  125cf0  tail [self->_dataStore clientId]
+
+== -[GAITrackerModel screenResolution]   (address 0x100125cf4  size 24  kind objc)
+  125d08  tail [GAIHitUtil systemScreenResolution]
+
+== -[GAITrackerModel language]   (address 0x100125d0c  size 24  kind objc)
+  125d20  tail [GAIHitUtil systemLanguage]
+
+== -[GAITrackerModel cacheBuster]   (address 0x100125d24  size 96  kind objc)
+  125d40  if (g_10042dcc8 != -1) goto loc_100125d70
+loc_100125d44:
+  125d54  store g_10042dcd0 = (g_10042dcd0 + 1)
+  125d6c  tail [GAIStringUtil uintString:g_10042dcd0]
+loc_100125d70:
+  125d7c  dispatch_once(&g_10042dcc8, ^{-[GAITrackerModel cacheBuster]_block_invoke})
+  125d80  goto loc_100125d44
+
+== -[GAITrackerModel cacheBuster]_block_invoke   (address 0x100125d84  size 56  kind block)
+  125d90  arc4random()
+  125d98  arc4random()
+  125dac  store g_10042dcd0 = (x8 | (arc4random() << 32))
+  125db8  return
+
+== -[GAITrackerModel idfa]   (address 0x100125dbc  size 760  kind objc)
+  125de8  [self allowIDFACollection]
+  125dec  if ([self allowIDFACollection] == 0) goto loc_100125f04
+  125e14  [g_10042dca0 performSelector:@selector(retrieveId)]
+  125e24  if ([g_10042dca0 performSelector:@selector(retrieveId)] == 0) goto loc_100125f0c
+  125e44  [self clientId]
+  125e70  [GAIHitUtil hashIdfa:[g_10042dca0 performSelector:@selector(retrieveId)] clientId:[self clientId]]
+  125ea4  [self->_dataStore hashedIdfa]
+  125eb4  if ([self->_dataStore hashedIdfa] == 0) goto loc_100125f14
+  125ec0  [self->_dataStore hashedIdfa]
+  125ee4  [[GAIHitUtil hashIdfa:[g_10042dca0 performSelector:@selector(retrieveId)] clientId:[self clientId]] compare:[self->_dataStore hashedIdfa]]
+  125efc  if ([[GAIHitUtil hashIdfa:[g_10042dca0 performSelector:@selector(retrieveId)] clientId:[self clientId]] compare:[self->_dataStore hashedIdfa]] != 0) goto loc_100125f1c
+  125f00  goto loc_100126078
+loc_100125f04:
+  125f08  goto loc_100126094
+loc_100125f0c:
+  125f10  goto loc_10012608c
+loc_100125f14:
+loc_100125f1c:
+  125f24  [self->_dataStore hashedIdfa]
+  125f38  if ([self->_dataStore hashedIdfa] == 0) goto loc_100125fc4
+  125f58  [self->_dataStore idfaChangeCount]
+  125f74  [[self->_dataStore idfaChangeCount] integerValue]
+  125f8c  [NSNumber numberWithInteger:([[self->_dataStore idfaChangeCount] integerValue] + 1)]
+  125fb0  [self->_dataStore setIdfaChangeCount:[NSNumber numberWithInteger:([[self->_dataStore idfaChangeCount] integerValue] + 1)]]
+loc_100125fc4:
+  125fe0  [GAIHitUtil generateClientId]
+  126004  [self->_dataStore setClientId:[GAIHitUtil generateClientId]]
+  126020  [self clientId]
+  126040  [GAIHitUtil hashIdfa:[g_10042dca0 performSelector:@selector(retrieveId)] clientId:[self clientId]]
+  126064  [self->_dataStore setHashedIdfa:[GAIHitUtil hashIdfa:[g_10042dca0 performSelector:@selector(retrieveId)] clientId:[self clientId]]]
+loc_100126078:
+loc_10012608c:
+loc_100126094:
+  1260b0  return
+
+== -[GAITrackerModel adTargetingEnabled]   (address 0x1001260b4  size 140  kind objc)
+  1260cc  [self allowIDFACollection]
+  1260e8  if (flags !=) goto loc_1001260f4
+  1260f0  goto loc_100126130
+loc_1001260f4:
+  12610c  [g_10042dca0 performSelector:@selector(retrieveTrackingFlag)]
+  126110  if ([g_10042dca0 performSelector:@selector(retrieveTrackingFlag)] == 0) goto loc_100126120
+  12611c  goto loc_100126128
+loc_100126120:
+loc_100126128:
+loc_100126130:
+  12613c  return
+
+== -[GAITrackerModel admobId]   (address 0x100126140  size 72  kind objc)
+  126178  [NSString stringWithFormat:@"%u", g_10042dc90]
+  126184  return
+
+== -[GAITrackerModel copyWithZone:]   (address 0x100126188  size 176  kind objc)
+  1261ac  [self class]
+  1261c0  [[self class] allocWithZone:arg1]
+  1261dc  [[[self class] allocWithZone:arg1] initWithDataStore:self->_dataStore]
+  1261e4  if ([[[self class] allocWithZone:arg1] initWithDataStore:self->_dataStore] == 0) goto loc_100126224
+  126200  [self->_parameters mutableCopy]
+  126208  [[[self class] allocWithZone:arg1] initWithDataStore:self->_dataStore]->_parameters = [self->_parameters mutableCopy]
+  126220  [[[self class] allocWithZone:arg1] initWithDataStore:self->_dataStore]->_allowIDFACollection = self->_allowIDFACollection
+loc_100126224:
+  126234  return
+
+== -[GAITrackerModel copyWithOverride:]   (address 0x100126238  size 412  kind objc)
+  126288  [self copy]
+  1262c8  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  1262d0  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_100126384
+loc_100126300:
+loc_100126304:
+  126310  if (x8 == x21) goto loc_10012631c
+  126318  objc_enumerationMutation(arg1)
+loc_10012631c:
+  126330  [arg1 objectForKeyedSubscript:x2]
+  126350  [[self copy] setObject:[arg1 objectForKeyedSubscript:x2] forKeyedSubscript:x3]
+  126364  if ((x25 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_100126304
+  126378  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  126380  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_100126300
+loc_100126384:
+  1263cc  return
+
+== -[GAITrackerModel init]   (address 0x1001263d4  size 20  kind objc)
+  1263e4  tail [self initWithDataStore:0]
+
+== -[GAITrackerModel initWithDataStore:]   (address 0x1001263e8  size 524  kind objc)
+  126434  [super init]
+  12643c  if (self == 0) goto loc_1001265cc
+  126450  [self defaultParameters]
+  12646c  [[self defaultParameters] mutableCopy]
+  12647c  self->_parameters = [[self defaultParameters] mutableCopy]
+  126498  self->_allowIDFACollection = 0
+  12649c  if (arg1 == 0) goto loc_1001264bc
+  1264b4  self->_dataStore = arg1
+  1264b8  goto loc_1001265c4
+loc_1001264bc:
+  1264d0  [GAI sharedLogger]
+  1264f0  [&d_1003b7d70] -> @"GoogleAnalytics"
+  1264fc  [&d_1003b7d78] -> @"3.09"
+  126514  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  126554  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): nil dataStore, new dataStore instance being created for testing.", @"GoogleAnalytics", @"3.09", "-[GAITrackerModel initWithDataStore:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 251]
+  126578  [[GAI sharedLogger] warning:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): nil dataStore, new dataStore instance being created for testing.", @"GoogleAnalytics", @"3.09", "-[GAITrackerModel initWithDataStore:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 251]]
+  1265a8  [GAIDataStore dataStore]
+  1265c0  self->_dataStore = [GAIDataStore dataStore]
+loc_1001265c4:
+loc_1001265cc:
+  1265f0  return
+
+== -[GAITrackerModel objectForKeyedSubscript:]   (address 0x1001265f4  size 292  kind objc)
+  12661c  if (arg1 == 0) goto loc_1001266f0
+  126630  [self parameters]
+  126654  [[self parameters] objectForKeyedSubscript:arg1]
+  12666c  if ([[self parameters] objectForKeyedSubscript:arg1] != 0) goto loc_1001266f4
+  126680  [self methodsForKeys]
+  126698  [[self methodsForKeys] objectForKeyedSubscript:arg1]
+  1266cc  [super valueForKey:[[self methodsForKeys] objectForKeyedSubscript:arg1]]
+  1266ec  goto loc_1001266f4
+loc_1001266f0:
+loc_1001266f4:
+  126714  return
+
+== -[GAITrackerModel setObject:forKeyedSubscript:]   (address 0x100126718  size 184  kind objc)
+  126748  if (arg2 == 0) goto loc_1001267b4
+  12674c  if (arg1 != 0) goto loc_100126774
+  126764  [NSNull null]
+loc_100126774:
+  126784  [self parameters]
+  1267a8  [[self parameters] setObject:x2 forKeyedSubscript:arg2]
+loc_1001267b4:
+  1267cc  return
+
+== -[GAITrackerModel valueForKey:]   (address 0x1001267d0  size 16  kind objc)
+  1267dc  tail [self objectForKeyedSubscript:arg1]
+
+== -[GAITrackerModel valueForUndefinedKey:]   (address 0x1001267e0  size 8  kind objc)
+  1267e4  return
+
+== -[GAITrackerModel setValue:forKey:]   (address 0x1001267e8  size 84  kind objc)
+  126824  [self setObject:arg1 forKeyedSubscript:arg2]
+  126838  return
+
+== -[GAITrackerModel allowIDFACollection]   (address 0x10012683c  size 16  kind objc)
+  126848  return
+
+== -[GAITrackerModel setAllowIDFACollection:]   (address 0x10012684c  size 16  kind objc)
+  126854  self->_allowIDFACollection = arg1
+  126858  return
+
+== -[GAITrackerModel parameters]   (address 0x10012685c  size 16  kind objc)
+  126868  return
+
+== -[GAITrackerModel setParameters:]   (address 0x10012686c  size 56  kind objc)
+  126890  self->_parameters = arg1
+  1268a0  return
+
+== -[GAITrackerModel dataStore]   (address 0x1001268a4  size 16  kind objc)
+  1268b0  return
+
+== -[GAITrackerModel setDataStore:]   (address 0x1001268b4  size 56  kind objc)
+  1268d8  self->_dataStore = arg1
+  1268e8  return
+
+== -[GAITrackerModel .cxx_destruct]   (address 0x1001268ec  size 64  kind objc)

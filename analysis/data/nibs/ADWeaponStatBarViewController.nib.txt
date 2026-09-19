@@ -1,0 +1,23 @@
+// ADWeaponStatBarViewController.nib
+TOP-LEVEL OBJECTS
+  #30 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #26 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #17 UIView  Tag=2781
+    #42 UILabel  UserInteractionDisabled=False Text='200'
+    #11 UIView  
+    #2 UIView  
+    #36 UIView  
+  #40 UIView  Tag=2782
+    #41 UILabel  Tag=2 UserInteractionDisabled=False Text='200'
+    #33 UIView  Tag=3
+    #13 UIView  Tag=4
+    #22 UIView  Tag=1
+
+CONNECTIONS
+  outlet  currentValueBar                           #30 UIProxyObject --> #36 UIView
+  outlet  currentValueLabel                         #30 UIProxyObject --> #42 UILabel Text='200'
+  outlet  maxValueBar                               #30 UIProxyObject --> #11 UIView
+  outlet  nextLevelValueBar                         #30 UIProxyObject --> #2 UIView
+  outlet  view                                      #30 UIProxyObject --> #17 UIView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,38 @@
+{
+ "icon_title": "T1",
+ "accuracy_star": {
+  "reward": 200,
+  "objective": 10
+ },
+ "title": "Opener",
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "tip": "Opener tip",
+ "mission_star": {
+  "reward": 500
+ },
+ "bricks": [
+  "opener"
+ ],
+ "icon": "Challenge_icon_01",
+ "challenge_id": "OPENER",
+ "objective": "Opener objective",
+ "weapons": [
+  {
+   "ammo": "999"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 120
+ }
+}

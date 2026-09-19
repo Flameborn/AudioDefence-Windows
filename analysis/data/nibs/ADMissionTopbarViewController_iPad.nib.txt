@@ -1,0 +1,16 @@
+// ADMissionTopbarViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #37 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #26 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #14 UIView  
+    #40 UIImageView  Image='Frame_basic_plusheader.png'
+    #36 UILabel  UserInteractionDisabled=False Text='MISSIONS'
+    #1 UIButton  
+    #41 UIView  
+
+CONNECTIONS
+  action  backButtonTouched:                        #1 UIButton --(events 0x40)--> #37 UIProxyObject
+  outlet  containerView                             #37 UIProxyObject --> #41 UIView
+  outlet  view                                      #37 UIProxyObject --> #14 UIView
+
+ACCESSIBILITY CONFIGURATIONS

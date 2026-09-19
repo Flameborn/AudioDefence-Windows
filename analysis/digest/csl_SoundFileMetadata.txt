@@ -1,0 +1,123 @@
+
+== csl::SoundFileMetadata::~SoundFileMetadata/*base*/(…)   (address 0x1000e5974  size 328  kind sym)
+  0e599c  if ((a0[+0x30] - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e59f4
+loc_1000e59a0:
+  0e59ac  if ((a0[+0x20] - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5a1c
+loc_1000e59b0:
+  0e59bc  if ((a0[+0x10] - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5a44
+loc_1000e59c0:
+  0e59cc  if ((a0[+0x8] - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5a6c
+loc_1000e59d0:
+  0e59dc  if ((a0[+0x0] - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5a94
+loc_1000e59e0:
+  0e59f0  return
+  0e5a04  if (w11 != 0) goto loc_1000e59f8
+  0e5a0c  if (w9 > 0) goto loc_1000e59a0
+  0e5a14  ZNSs4_Rep10_M_destroyERKSaIcE((a0[+0x30] - 24), &sp[0x8], a2, a3)
+  0e5a2c  if (w11 != 0) goto loc_1000e5a20
+  0e5a34  if (w9 > 0) goto loc_1000e59b0
+  0e5a3c  ZNSs4_Rep10_M_destroyERKSaIcE((a0[+0x20] - 24), &sp[0x10])
+  0e5a54  if (w11 != 0) goto loc_1000e5a48
+  0e5a5c  if (w9 > 0) goto loc_1000e59c0
+  0e5a64  ZNSs4_Rep10_M_destroyERKSaIcE((a0[+0x10] - 24), &sp[0x18])
+  0e5a7c  if (w11 != 0) goto loc_1000e5a70
+  0e5a84  if (w9 > 0) goto loc_1000e59d0
+  0e5a8c  ZNSs4_Rep10_M_destroyERKSaIcE((a0[+0x8] - 24), &sp[0x20])
+  0e5aa4  if (w11 != 0) goto loc_1000e5a98
+  0e5aac  if (w9 > 0) goto loc_1000e59e0
+  0e5ab4  ZNSs4_Rep10_M_destroyERKSaIcE((a0[+0x0] - 24), &x29[-0x18])
+
+== sub_1000e5abc   (address 0x1000e5abc  size 76  kind sub)
+  0e5ae0  store g_10042d7d0 = q0
+  0e5af4  cxa_atexit(INDIRECT_SYMBOL_LOCAL, &g_10042d7d0, 0x100000000)
+  0e5b04  return
+
+== sub_1000e5b08   (address 0x1000e5b08  size 536  kind sub)
+  0e5b4c  sub_1000e9560((a0 + 472), a1, a2, a3)
+  0e5b58  ZNSsC1ERKSs(&sp[0x8], a1)
+  0e5b7c  sub_1000e45e8(a0, &d_1003b3638, &sp[0x8], a2)
+  0e5b94  if ((x8 - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5c6c
+loc_1000e5b98:
+  0e5ba4  a0[+0x0] = vtable<csl::CASoundFile>
+  0e5bac  a0[+0xa8] = vtable<csl::CASoundFile (secondary, -0xa8)>
+  0e5bb4  a0[+0x1d8] = vtable<csl::CASoundFile (secondary, -0x1d8)>
+  0e5bbc  a0[+0xb8] = vtable<csl::CASoundFile (secondary, -0xb8)>
+  0e5bcc  a0[+0x1c0] = 0
+  0e5bd8  if (a1[+0x0][+0x-18] == 0) goto loc_1000e5c00
+  0e5be4  CFStringCreateWithCString(0, a1[+0x0], 0)
+  0e5bf8  CFURLCreateWithFileSystemPath(0, CFStringCreateWithCString(0, a1[+0x0], 0), 0, 0)
+  0e5bfc  a0[+0x1c0] = CFURLCreateWithFileSystemPath(0, CFStringCreateWithCString(0, a1[+0x0], 0), 0, 0)
+loc_1000e5c00:
+  0e5c08  if (g_10042d828 != 0) goto loc_1000e5c24
+  0e5c18  pthread_mutex_init(&g_10042d830, 0)
+  0e5c20  store g_10042d828 = 1
+loc_1000e5c24:
+  0e5c24  if (w22 == 0) goto loc_1000e5c30
+  0e5c2c  sub_1000e4b5c(a0)
+loc_1000e5c30:
+  0e5c30  if (w21 == 0) goto loc_1000e5c48
+  0e5c38  a0[+0x15c] = 1
+  0e5c44  sub_1000e4c58(a0, 1)
+loc_1000e5c48:
+  0e5c68  return
+  0e5c7c  if (w11 != 0) goto loc_1000e5c70
+  0e5c84  if (w9 > 0) goto loc_1000e5b98
+  0e5c8c  ZNSs4_Rep10_M_destroyERKSaIcE((x8 - 24), &sp[0x10])
+  0e5cb4  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5d0c
+  0e5cc8  if (w11 != 0) goto loc_1000e5cbc
+  0e5cd0  if (w9 > 0) goto loc_1000e5d0c
+  0e5cd8  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+  0e5ce8  if (w1 != 1) goto loc_1000e5d00
+  0e5cf0  cxa_begin_catch()
+  0e5cf4  cxa_end_catch(cxa_begin_catch())
+  0e5d08  sub_1000e4820(x0, (x27 + 8))
+  0e5d10  call sub_1000e9388
+  0e5d1c  call sub_10000b760
+
+== sub_1000e5d20   (address 0x1000e5d20  size 684  kind sub)
+  0e5d6c  sub_1000e9560((a0 + 472), a1, a2, a3)
+  0e5d80  ZNSsC1EPKcRKSaIcE(&sp[0x18], "", &sp[0x10])
+  0e5da4  sub_1000e45e8(a0, &d_1003b3638, &sp[0x18], 0xffffffff)
+  0e5dbc  if ((x8 - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5eb0
+loc_1000e5dc0:
+  0e5dcc  a0[+0x0] = vtable<csl::CASoundFile>
+  0e5dd4  a0[+0xa8] = vtable<csl::CASoundFile (secondary, -0xa8)>
+  0e5de0  a0[+0x1d8] = vtable<csl::CASoundFile (secondary, -0x1d8)>
+  0e5de4  a0[+0xb8] = vtable<csl::CASoundFile (secondary, -0xb8)>
+  0e5df4  a0[+0x1c0] = a1
+  0e5dfc  CFURLGetString(a1)
+  0e5e0c  CFStringGetCString(CFURLGetString(a1), &sp[0x28], 256, 0)
+  0e5e1c  ZNSsC1EPKcRKSaIcE(&sp[0x8], &sp[0x28], &sp[0x0])
+  0e5e28  ZNSs6assignERKSs((a0 + 384), &sp[0x8])
+  0e5e38  if ((x8 - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5ed8
+loc_1000e5e3c:
+  0e5e44  if (g_10042d828 != 0) goto loc_1000e5e60
+  0e5e54  pthread_mutex_init(&g_10042d830, 0)
+  0e5e5c  store g_10042d828 = 1
+loc_1000e5e60:
+  0e5e60  if (a3 == 0) goto loc_1000e5e6c
+  0e5e68  sub_1000e4b5c(a0)
+loc_1000e5e6c:
+  0e5e6c  a0[+0x15c] = a2
+  0e5e78  sub_1000e4c58(a0, 1)
+  0e5ea8  return
+  0e5ec0  if (w11 != 0) goto loc_1000e5eb4
+  0e5ec8  if (w9 > 0) goto loc_1000e5dc0
+  0e5ed0  ZNSs4_Rep10_M_destroyERKSaIcE((x8 - 24), &sp[0x20])
+  0e5ee8  if (w11 != 0) goto loc_1000e5edc
+  0e5ef0  if (w9 > 0) goto loc_1000e5e3c
+  0e5ef8  ZNSs4_Rep10_M_destroyERKSaIcE((x8 - 24), &sp[0x20])
+  0e5f20  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5fb8
+  0e5f34  if (w11 != 0) goto loc_1000e5f28
+  0e5f3c  if (w9 > 0) goto loc_1000e5fb8
+  0e5f44  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x20])
+  0e5f60  if ((x8 - 24) == x24) goto loc_1000e5fac
+  0e5f74  if (w11 != 0) goto loc_1000e5f68
+  0e5f7c  if (w9 > 0) goto loc_1000e5fac
+  0e5f84  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x20])
+  0e5f94  if (w1 != 1) goto loc_1000e5fac
+  0e5f9c  cxa_begin_catch()
+  0e5fa0  cxa_end_catch(cxa_begin_catch())
+  0e5fb4  sub_1000e4820(x0, (x25 + 8))
+  0e5fbc  call sub_1000e9388
+  0e5fc8  call sub_10000b760

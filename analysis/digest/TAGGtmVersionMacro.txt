@@ -1,0 +1,16 @@
+
+== +[TAGGtmVersionMacro functionId]   (address 0x100174c18  size 44  kind objc)
+  174c40  return
+
+== -[TAGGtmVersionMacro init]   (address 0x100174c44  size 176  kind objc)
+  174c70  [NSSet set]
+  174cac  [super initWithFunctionId:@"_gtmv" requiredKeys:[NSSet set]]
+  174cd0  return
+
+== -[TAGGtmVersionMacro isCacheable]   (address 0x100174cf4  size 8  kind objc)
+  174cf8  return
+
+== -[TAGGtmVersionMacro evaluate:]   (address 0x100174cfc  size 60  kind objc)
+  174d14  [&d_1003b9780] -> @"3.09"
+  174d24  [TAGTypes objectToValue:@"3.09"]
+  174d34  return

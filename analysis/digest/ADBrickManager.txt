@@ -1,0 +1,1289 @@
+
+== +[ADBrickManager sharedBrickManager]   (address 0x1000c0fac  size 152  kind objc)
+  0c0fc0  objc_sync_enter(ADBrickManager)
+  0c0fcc  if (g_10042da50 != 0) goto loc_1000c1008
+  0c0fe4  [ADBrickManager alloc]
+  0c0ff4  [[ADBrickManager alloc] init]
+  0c0ffc  store g_10042da50 = [[ADBrickManager alloc] init]
+loc_1000c1008:
+  0c100c  objc_sync_exit(ADBrickManager)
+  0c1030  objc_sync_exit()
+
+== -[ADBrickManager init]   (address 0x1000c1044  size 1424  kind objc)
+  0c109c  [super init]
+  0c10a4  if (self == 0) goto loc_1000c14c8
+  0c10c4  [NSBundle mainBundle]
+  0c10f4  [[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]
+  0c1124  [NSDictionary alloc]
+  0c113c  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]
+  0c114c  self->enemyDictionary = [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]
+  0c1164  [NSMutableArray alloc]
+  0c116c  [[NSMutableArray alloc] init]
+  0c117c  self->bricks = [[NSMutableArray alloc] init]
+  0c1190  [NSMutableArray alloc]
+  0c1198  [[NSMutableArray alloc] init]
+  0c11a8  self->diamonds = [[NSMutableArray alloc] init]
+  0c11c0  [ADPasserByManager alloc]
+  0c11c8  [[ADPasserByManager alloc] init]
+  0c11d8  self->passerByManager = [[ADPasserByManager alloc] init]
+  0c11f0  [ADPowerUpManager alloc]
+  0c11f8  [[ADPowerUpManager alloc] init]
+  0c1208  self->powerUpManager = [[ADPowerUpManager alloc] init]
+  0c121c  self->currentWave = 0
+  0c122c  [NSMutableSet alloc]
+  0c1234  [[NSMutableSet alloc] init]
+  0c1244  self->deactivationList = [[NSMutableSet alloc] init]
+  0c1258  [NSMutableArray alloc]
+  0c1260  [[NSMutableArray alloc] init]
+  0c1274  self->powerupList = [[NSMutableArray alloc] init]
+  0c128c  [NSDictionary alloc]
+  0c129c  [NSBundle mainBundle]
+  0c12c0  [[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]
+  0c12dc  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]]
+  0c1304  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"PowerUps"]
+  0c1368  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"PowerUps"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x78] count:16]
+  0c1370  if ([[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"PowerUps"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x78] count:16] == 0) goto loc_1000c145c
+  0c1398  &@selector(addObject:)
+loc_1000c13a0:
+loc_1000c13a8:
+  0c13b4  if (x8 == x19) goto loc_1000c13c0
+  0c13bc  objc_enumerationMutation([[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"PowerUps"])
+loc_1000c13c0:
+  0c13d4  [NSDictionary class]
+  0c13e4  [x0 isKindOfClass:[NSDictionary class]]
+  0c13e8  if ([x0 isKindOfClass:[NSDictionary class]] == 0) goto loc_1000c142c
+  0c1404  [x0 objectForKey:@"name"]
+  0c1420  [self->powerupList addObject:[x0 objectForKey:@"name"]]
+loc_1000c142c:
+  0c1434  if ((x28 + 1) <u [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] …) goto loc_1000c13a8
+  0c1450  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"PowerUps"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x78] count:16]
+  0c1458  if ([[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Weapons" withExtension:@"plist"]] objectForKey:@"PowerUps"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x78] count:16] != 0) goto loc_1000c13a0
+loc_1000c145c:
+  0c1478  [ADTracker sharedInstance]
+  0c14a0  [[ADTracker sharedInstance] setBrickCounter:0]
+loc_1000c14c8:
+  0c14f4  return
+
+== -[ADBrickManager loadBrickChancePlist:]   (address 0x1000c15d4  size 408  kind objc)
+  0c1608  [NSBundle mainBundle]
+  0c1630  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  0c1654  self->brickScenario = 0
+  0c1670  [NSDictionary alloc]
+  0c1684  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  0c1694  self->brickDictionary = [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  0c16b8  [self->brickDictionary objectForKey:@"brick_chance"]
+  0c16d0  self->brickChanceDictionary = [self->brickDictionary objectForKey:@"brick_chance"]
+  0c16ec  [self randomizeNextDiamondTime]
+  0c1708  [self->passerByManager startTimers]
+  0c171c  [self loadImpactPlaylist]
+  0c1738  return
+
+== -[ADBrickManager loadBrickScenarioPlist:]   (address 0x1000c176c  size 296  kind objc)
+  0c17a0  [NSBundle mainBundle]
+  0c17c8  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  0c17f4  [NSArray alloc]
+  0c1808  [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  0c1818  self->brickScenario = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  0c1830  self->loopBrickScenario = 1
+  0c1844  [self loadImpactPlaylist]
+  0c1860  return
+
+== -[ADBrickManager loadBrickChallengeArray:]   (address 0x1000c1894  size 252  kind objc)
+  0c18bc  self->brickChanceDictionary = 0
+  0c18d8  [NSArray alloc]
+  0c18ec  [[NSArray alloc] initWithArray:arg1]
+  0c18fc  self->brickScenario = [[NSArray alloc] initWithArray:arg1]
+  0c1910  self->loopBrickScenario = 0
+  0c1924  [self loadImpactPlaylist]
+  0c1928  rand()
+  0c1948  t1 = (((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >> 8) + ((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >>> 31))
+  0c1968  [self setCurrentRandomAngle:(float)(rand() - t1 * 360)]
+  0c1978  return
+
+== -[ADBrickManager loadImpactPlaylist]   (address 0x1000c1990  size 168  kind objc)
+  0c19b4  [S3DEngine engine]
+  0c19d8  [[S3DEngine engine] playListWithName:@"impact"]
+  0c1a00  [[[S3DEngine engine] playListWithName:@"impact"] activate]
+  0c1a14  return
+
+== -[ADBrickManager reset]   (address 0x1000c1a38  size 92  kind objc)
+  0c1a60  [self->bricks removeAllObjects]
+  0c1a74  self->currentWave = 0
+  0c1a78  self->timeElapsed = 0
+  0c1a84  self->startedMainMenuMusic = 0
+  0c1a90  return
+
+== -[ADBrickManager runSanityCheck]   (address 0x1000c1a94  size 560  kind objc)
+  0c1ad4  &@selector(stringWithFormat:)
+  0c1adc  &@selector(objectForKey:)
+  0c1b0c  &@selector(isBrickWithNameSane:)
+loc_1000c1b20:
+  0c1b40  [NSString stringWithFormat:@"level_%i_bricks", sp[0]]
+  0c1b5c  [self->brickDictionary objectForKey:[NSString stringWithFormat:@"level_%i_bricks", sp[0]]]
+  0c1ba0  [[self->brickDictionary objectForKey:[NSString stringWithFormat:@"level_%i_bricks", sp[0]]] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0c1bac  if ([[self->brickDictionary objectForKey:[NSString stringWithFormat:@"level_%i_bricks", sp[0]]] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_1000c1c2c
+loc_1000c1bb8:
+loc_1000c1bbc:
+  0c1bc8  if (x8 == x21) goto loc_1000c1bd4
+  0c1bd0  objc_enumerationMutation()
+loc_1000c1bd4:
+  0c1be4  [self isBrickWithNameSane:x2]
+  0c1be8  if (!([self isBrickWithNameSane:x2] & 1)) goto loc_1000c1bf4
+  0c1bf0  goto loc_1000c1c00
+loc_1000c1bf4:
+  0c1bf8  NSLog(@"Brick isn't sane")
+loc_1000c1c00:
+  0c1c08  if ((x20 + 1) <u x27) goto loc_1000c1bbc
+  0c1c20  [x0 countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0c1c28  if ([x0 countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_1000c1bb8
+loc_1000c1c2c:
+  0c1c48  if ((w20 + 1) < 6) goto loc_1000c1b20
+  0c1c58  NSLog(@"\n*****\nSanity check over. \n Sane bricks : %i \n Broken bricks : %i\n*****", sp[0], sp[8])
+  0c1c90  return
+
+== -[ADBrickManager isBrickWithNameSane:]   (address 0x1000c1cc4  size 1044  kind objc)
+  0c1d14  [NSBundle mainBundle]
+  0c1d3c  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  0c1d68  [NSDictionary alloc]
+  0c1d7c  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  0c1da0  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"]
+  0c1de0  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0c1de8  if ([[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] == 0) goto loc_1000c1fb8
+  0c1e0c  &@selector(containsObject:)
+loc_1000c1e30:
+loc_1000c1e34:
+  0c1e44  if (x8 == x9) goto loc_1000c1e50
+  0c1e4c  objc_enumerationMutation([[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"])
+loc_1000c1e50:
+  0c1e60  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] objectForKey:x2]
+  0c1e78  [[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"]
+  0c1e90  [[[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"] objectForKey:@"enemy"]
+  0c1eac  if ([[[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"] objectForKey:@"enemy"] == 0) goto loc_1000c1f38
+  0c1ebc  [[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"]
+  0c1ed8  [[[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"] objectForKey:@"enemy"]
+  0c1efc  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys]
+  0c1f14  [[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys] containsObject:[[[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"] objectForKey:@"enemy"]]
+  0c1f24  if ([[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys] containsObject:[[[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] objectForKey:x2] objectForKey:@"spawn_after"] objectForKey:@"enemy"]] == 0) goto loc_1000c1f78
+loc_1000c1f38:
+  0c1f48  if ((x20 + 1) <u [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] object…) goto loc_1000c1e34
+  0c1f60  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0c1f68  if ([[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] != 0) goto loc_1000c1e30
+  0c1f74  goto loc_1000c1fa4
+loc_1000c1f78:
+  0c1f8c  NSLog(@"Brick %@ doesn't have an enemy named %@", arg1, [[[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForRes…)
+loc_1000c1fa4:
+  0c1fb4  goto loc_1000c1fbc
+loc_1000c1fb8:
+loc_1000c1fbc:
+  0c2010  return
+
+== -[ADBrickManager currentBrick]   (address 0x1000c20d8  size 28  kind objc)
+  0c20f0  tail [self->bricks lastObject]
+
+== -[ADBrickManager randomItemInBrickDictionary:]   (address 0x1000c20f4  size 176  kind objc)
+  0c2118  [self->brickDictionary objectForKey:arg1]
+  0c2128  rand()
+  0c2140  [[self->brickDictionary objectForKey:arg1] count]
+  0c214c  t1 = (rand() - (rand() / [[self->brickDictionary objectForKey:arg1] count]) * [[self->brickDictionary objectForKey:arg1] count])
+  0c2160  [[self->brickDictionary objectForKey:arg1] objectAtIndex:t1]
+  0c2184  return
+
+== -[ADBrickManager brickNameForWaveNumber:]   (address 0x1000c21a4  size 1016  kind objc)
+  0c220c  [NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]
+  0c2234  [self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]]
+  0c225c  [[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_1"]
+  0c227c  [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_1"] floatValue]
+  0c229c  [[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_2"]
+  0c22b0  [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_2"] floatValue]
+  0c22d0  [[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_3"]
+  0c22e4  [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_3"] floatValue]
+  0c2304  [[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_4"]
+  0c2318  [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_4"] floatValue]
+  0c2338  [[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_5"]
+  0c234c  [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_5"] floatValue]
+  0c235c  t1 = ([[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_1"] floatValue] + [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_2"] floatValue])
+  0c2360  t2 = (t1 + [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_3"] floatValue])
+  0c2364  t3 = (t2 + [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_4"] floatValue])
+  0c2368  t4 = (t3 + [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"level_5"] floatValue])
+  0c2378  if (t4 == 100) goto loc_1000c238c
+  0c2388  NSLog(@"SUM OF BRICK %i != 100", (arg1 > 11 ? 11 : arg1))
+loc_1000c238c:
+  0c238c  rand()
+  0c23c8  &@selector(randomItemInBrickDictionary:)
+  0c23d0  &@selector(canUseBrickWithName:)
+  0c23f4  goto loc_1000c2410
+loc_1000c23f8:
+loc_1000c2410:
+  0c2414  if (x21 == 0) goto loc_1000c242c
+  0c2424  [self canUseBrickWithName:x2]
+  0c2428  if (([self canUseBrickWithName:x2] & 1)) goto loc_1000c2524
+loc_1000c242c:
+  0c2430  if ((float)(rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) >= (or unordered) [[[self->brickChanceDictionary objectForKey:[NSString stringWithFormat:@"%i", (arg1 > 11 ? 11 : arg1)]] objectForKey:@"l…) goto loc_1000c244c
+  0c2440  [self randomItemInBrickDictionary:@"level_1_bricks"]
+  0c2448  goto loc_1000c24d0
+loc_1000c244c:
+  0c2450  if ((float)(rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) >= (or unordered) t1) goto loc_1000c246c
+  0c2460  [self randomItemInBrickDictionary:@"level_2_bricks"]
+  0c2468  goto loc_1000c24d0
+loc_1000c246c:
+  0c2470  if ((float)(rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) >= (or unordered) t2) goto loc_1000c248c
+  0c2480  [self randomItemInBrickDictionary:@"level_3_bricks"]
+  0c2488  goto loc_1000c24d0
+loc_1000c248c:
+  0c2490  if ((float)(rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) >= (or unordered) t3) goto loc_1000c24b0
+  0c24a4  [self randomItemInBrickDictionary:@"level_4_bricks"]
+  0c24ac  goto loc_1000c24d0
+loc_1000c24b0:
+  0c24b4  if ((float)(rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) >= (or unordered) t4) goto loc_1000c24e4
+  0c24c8  [self randomItemInBrickDictionary:@"level_5_bricks"]
+loc_1000c24d0:
+loc_1000c24e4:
+  0c24ec  if (w19 < 10) goto loc_1000c2410
+  0c24fc  [self randomItemInBrickDictionary:@"level_1_bricks"]
+  0c2500  goto loc_1000c23f8
+loc_1000c2524:
+  0c2558  return
+
+== -[ADBrickManager canUseBrickWithName:]   (address 0x1000c259c  size 828  kind objc)
+  0c25ec  [NSBundle mainBundle]
+  0c2614  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  0c2640  [NSDictionary alloc]
+  0c2654  [[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  0c2674  [[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"]
+  0c26a0  [[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys]
+  0c26cc  [[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0c26d4  if ([[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] == 0) goto loc_1000c27dc
+  0c26e8  &@selector(persistentStats)
+  0c26f8  &@selector(getKillRequirementForEnemyWithName:)
+loc_1000c2704:
+loc_1000c2708:
+  0c2714  if (x8 == x21) goto loc_1000c2720
+  0c271c  objc_enumerationMutation([[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys])
+loc_1000c2720:
+  0c2730  [ADPersistentStats persistentStats]
+  0c2748  [[ADPersistentStats persistentStats] getKillRequirementForEnemyWithName:x2]
+  0c275c  if ([[ADPersistentStats persistentStats] getKillRequirementForEnemyWithName:x2] >= 1) goto loc_1000c27a8
+  0c2768  if ((x24 + 1) <u [[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objec…) goto loc_1000c2708
+  0c2780  [[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0c2788  if ([[[[[NSDictionary alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"Enemies"] allKeys] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] != 0) goto loc_1000c2704
+  0c27a4  goto loc_1000c27e0
+loc_1000c27a8:
+  0c27c4  NSLog(@"Cannot use brick %@ because it contains %@", arg1, sp[8])
+  0c27d8  goto loc_1000c27e0
+loc_1000c27dc:
+loc_1000c27e0:
+  0c2834  return
+
+== -[ADBrickManager scenarioBrickNameForWaveNumber:]   (address 0x1000c28d8  size 88  kind objc)
+  0c2908  [self->brickScenario count]
+  0c292c  tail [self->brickScenario objectAtIndex:((arg1 - 1) - ((arg1 - 1) / [self->brickScenario count]) * [self->brickScenario count])]
+
+== -[ADBrickManager loadBrickWithName:]   (address 0x1000c2930  size 1144  kind objc)
+  0c296c  [self currentBrick]
+  0c2988  [[self currentBrick] stopAllSounds]
+  0c29a0  [ADBrick alloc]
+  0c29b4  [[ADBrick alloc] initBrickWithName:arg1]
+  0c29dc  [[[ADBrick alloc] initBrickWithName:arg1] setTag:(self->currentWave + 1)]
+  0c29fc  [self->bricks addObject:[[ADBrick alloc] initBrickWithName:arg1]]
+  0c2a14  [self->bricks count]
+  0c2a1c  if ([self->bricks count] != 1) goto loc_1000c2a38
+  0c2a30  [[[ADBrick alloc] initBrickWithName:arg1] activateAllPlaylists]
+  0c2a34  goto loc_1000c2b28
+loc_1000c2a38:
+  0c2a40  [self->bricks count]
+  0c2a48  if ([self->bricks count] <u 2) goto loc_1000c2b28
+  0c2a58  [self->bricks count]
+  0c2a70  [self->bricks objectAtIndex:([self->bricks count] - 2)]
+  0c2a9c  [self->bricks lastObject]
+  0c2abc  [[self->bricks objectAtIndex:([self->bricks count] - 2)] playlists]
+  0c2ae0  [[self->bricks lastObject] activatePLaylistsNotInSet:[[self->bricks objectAtIndex:([self->bricks count] - 2)] playlists]]
+  0c2b04  [self->deactivationList unionSet:[[self->bricks lastObject] activatePLaylistsNotInSet:[[self->bricks objectAtIndex:([self->bricks count] - 2)] playlists]]]
+loc_1000c2b28:
+  0c2b40  [ADTracker sharedInstance]
+  0c2b58  [ADTracker sharedInstance]
+  0c2b78  [[ADTracker sharedInstance] getBrickCounter]
+  0c2b94  [[ADTracker sharedInstance] loadBrick:arg1 WithBrickNumber:[[ADTracker sharedInstance] getBrickCounter]]
+  0c2bb0  [ADTracker sharedInstance]
+  0c2bc4  [[ADTracker sharedInstance] getBrickCounter]
+  0c2bdc  [[ADTracker sharedInstance] setBrickCounter:([[ADTracker sharedInstance] getBrickCounter] + 1)]
+  0c2c04  [self notifyStatsSystemWithNotificationWithName:@"RESET_BRICK_TIME" AndData:0]
+  0c2c1c  [[self currentBrick] ambiantName]
+  0c2c30  if ([[self currentBrick] ambiantName] == 0) goto loc_1000c2c48
+  0c2c44  [[self currentBrick] stopBrickAmbiant]
+loc_1000c2c48:
+  0c2c50  [[[ADBrick alloc] initBrickWithName:arg1] ambiantName]
+  0c2c64  if ([[[ADBrick alloc] initBrickWithName:arg1] ambiantName] == 0) goto loc_1000c2ccc
+  0c2c7c  [ADAmbientManager sharedAmbiantManager]
+  0c2c94  [[[ADBrick alloc] initBrickWithName:arg1] ambiantName]
+  0c2cb8  [[ADAmbientManager sharedAmbiantManager] brickWithAmbiantStarted:[[[ADBrick alloc] initBrickWithName:arg1] ambiantName]]
+loc_1000c2ccc:
+  0c2cf8  return
+
+== -[ADBrickManager checkPlaylistDeactivation]   (address 0x1000c2da8  size 380  kind objc)
+  0c2dcc  if (self->deactivationList == 0) goto loc_1000c2ed4
+  0c2ddc  [self->deactivationList count]
+  0c2de0  if ([self->deactivationList count] == 0) goto loc_1000c2ed4
+  0c2df4  [self->deactivationList anyObject]
+  0c2e18  [self->deactivationList removeObject:[self->deactivationList anyObject]]
+  0c2e30  [S3DEngine engine]
+  0c2e50  [[S3DEngine engine] playListWithName:[self->deactivationList anyObject]]
+  0c2eb8  [[[S3DEngine engine] playListWithName:[self->deactivationList anyObject]] deactivate:^{-[ADBrickManager checkPlaylistDeactivation]_block_invoke captures +0x20=[self->deactivationList anyObject]}]
+loc_1000c2ed4:
+  0c2ee4  return
+
+== -[ADBrickManager checkPlaylistDeactivation]_block_invoke   (address 0x1000c2f24  size 108  kind block)
+  0c2f44  [ADBrickManager sharedBrickManager]
+  0c2f60  [[ADBrickManager sharedBrickManager] checkPlaylistDeactivation]
+  0c2f70  return
+
+== sub_1000c2f90   (address 0x1000c2f90  size 8  kind sub)
+
+== sub_1000c2f98   (address 0x1000c2f98  size 8  kind sub)
+  0c2f9c  return
+
+== -[ADBrickManager currentBrickName]   (address 0x1000c2fa0  size 124  kind objc)
+  0c2fc4  [self->bricks lastObject]
+  0c2fe0  [[self->bricks lastObject] name]
+  0c3004  return
+
+== -[ADBrickManager mode]   (address 0x1000c301c  size 60  kind objc)
+  0c3028  if (self->brickScenario == 0) goto loc_1000c3048
+  0c3044  return
+loc_1000c3048:
+  0c3054  return
+
+== -[ADBrickManager loadNextBrick]   (address 0x1000c3058  size 780  kind objc)
+  0c3084  [self setPlayerIsDead:0]
+  0c3098  self->currentWave = (self->currentWave + 1)
+  0c30ac  [self mode]
+  0c30b4  if ([self mode] != 1) goto loc_1000c314c
+  0c30cc  [ADTracker sharedInstance]
+  0c30fc  [[ADTracker sharedInstance] setValue:0 ForDimension:@"Challenge name" AndValue:0 ForMetric:0]
+  0c3108  rand()
+  0c3128  t1 = (((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >> 8) + ((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >>> 31))
+  0c3148  [self setCurrentRandomAngle:(float)(rand() - t1 * 360)]
+loc_1000c314c:
+  0c3158  if (self->brickChanceDictionary == 0) goto loc_1000c3280
+  0c3174  [self brickNameForWaveNumber:self->currentWave]
+  0c318c  if (self->currentWave > 11) goto loc_1000c31d4
+  0c31a4  [ADGameModifiers sharedModifiers]
+  0c31c0  [[ADGameModifiers sharedModifiers] enragedHorde]
+  0c31d0  if ([[ADGameModifiers sharedModifiers] enragedHorde] == 0) goto loc_1000c32c0
+loc_1000c31d4:
+  0c31ec  [ADGameModifiers sharedModifiers]
+  0c320c  [[ADGameModifiers sharedModifiers] difficultyModifier]
+  0c3234  [[ADGameModifiers sharedModifiers] setDifficultyModifier:([[ADGameModifiers sharedModifiers] difficultyModifier] + 0.14)]
+  0c3248  [ADGameModifiers sharedModifiers]
+  0c325c  [[ADGameModifiers sharedModifiers] difficultyModifier]
+  0c3270  NSLog(@"Difficulty ramped to %f", [[ADGameModifiers sharedModifiers] difficultyModifier])
+  0c327c  goto loc_1000c32c0
+loc_1000c3280:
+  0c328c  if (self->brickScenario == 0) goto loc_1000c32bc
+  0c32a8  [self scenarioBrickNameForWaveNumber:self->currentWave]
+  0c32b8  goto loc_1000c32c0
+loc_1000c32bc:
+loc_1000c32c0:
+  0c32e0  [self notifyStatsSystemWithNotificationWithName:@"SET_BRICK_NAME" AndData:x3]
+  0c32f0  NSLog(@"LOADING NEXT WAVE : %@", sp[0])
+  0c3308  [self loadBrickWithName:x2]
+  0c3324  return
+
+== -[ADBrickManager clearCurrentBrick]   (address 0x1000c3364  size 92  kind objc)
+  0c337c  [self currentBrick]
+  0c3398  [[self currentBrick] clearEnemies]
+  0c33a8  return
+
+== -[ADBrickManager enemiesList]   (address 0x1000c33c0  size 16  kind objc)
+
+== -[ADBrickManager displayNameForEnemyWithName:]   (address 0x1000c33d0  size 136  kind objc)
+  0c33f8  [self->enemyDictionary objectForKey:arg1]
+  0c3414  [[self->enemyDictionary objectForKey:arg1] objectForKey:@"displayName"]
+  0c3438  return
+
+== -[ADBrickManager dictionaryForEnemyName:]   (address 0x1000c3458  size 52  kind objc)
+  0c3478  [self->enemyDictionary objectForKey:arg1]
+  0c3488  return
+
+== -[ADBrickManager allPotentialTargets]   (address 0x1000c348c  size 344  kind objc)
+  0c34b4  [NSMutableArray alloc]
+  0c34d4  [self->bricks lastObject]
+  0c34f0  [[self->bricks lastObject] enemies]
+  0c3514  [[NSMutableArray alloc] initWithArray:[[self->bricks lastObject] enemies]]
+  0c354c  [[[NSMutableArray alloc] initWithArray:[[self->bricks lastObject] enemies]] addObjectsFromArray:self->diamonds]
+  0c3568  [self->passerByManager allPasserBy]
+  0c3584  [[[NSMutableArray alloc] initWithArray:[[self->bricks lastObject] enemies]] addObjectsFromArray:[self->passerByManager allPasserBy]]
+  0c35a0  return
+
+== -[ADBrickManager numberOfActiveObjectsOnScene]   (address 0x1000c35e4  size 336  kind objc)
+  0c3630  [self allPotentialTargets]
+  0c365c  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0c3668  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000c36dc
+  0c3678  &@selector(canBeShotAt)
+loc_1000c3680:
+loc_1000c3684:
+  0c3690  if (x8 == x25) goto loc_1000c369c
+  0c3698  objc_enumerationMutation([self allPotentialTargets])
+loc_1000c369c:
+  0c36a8  [x0 canBeShotAt]
+  0c36b8  if ((x26 + 1) <u [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000c3684
+  0c36d0  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0c36d8  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000c3680
+loc_1000c36dc:
+  0c3710  return
+
+== -[ADBrickManager enemiesFromCurrentBrick]   (address 0x1000c3734  size 124  kind objc)
+  0c3758  [self->bricks lastObject]
+  0c3774  [[self->bricks lastObject] enemies]
+  0c3798  return
+
+== -[ADBrickManager update:]   (address 0x1000c37b0  size 1552  kind objc)
+  0c37fc  [self playerIsDead]
+  0c3800  if (([self playerIsDead] & 1)) goto loc_1000c3d2c
+  0c3818  self->timeElapsed = (self->timeElapsed + arg1)
+  0c385c  [self->bricks countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xe8] count:16]
+  0c3864  if ([self->bricks countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xe8] count:16] == 0) goto loc_1000c38d8
+  0c3874  &@selector(update:)
+loc_1000c387c:
+loc_1000c3880:
+  0c388c  if (x8 == x26) goto loc_1000c3898
+  0c3894  objc_enumerationMutation(self->bricks)
+loc_1000c3898:
+  0c38a8  [x0 update:arg1]
+  0c38b4  if ((x27 + 1) <u [self->bricks countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xe8] count:16]) goto loc_1000c3880
+  0c38cc  [self->bricks countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xe8] count:16]
+  0c38d4  if ([self->bricks countByEnumeratingWithState:&sp[0xd8] objects:&x29[-0xe8] count:16] != 0) goto loc_1000c387c
+loc_1000c38d8:
+  0c3914  [self->diamonds countByEnumeratingWithState:&sp[0x98] objects:&sp[0x218] count:16]
+  0c391c  if ([self->diamonds countByEnumeratingWithState:&sp[0x98] objects:&sp[0x218] count:16] == 0) goto loc_1000c3990
+  0c392c  &@selector(update:)
+loc_1000c3934:
+loc_1000c3938:
+  0c3944  if (x8 == x26) goto loc_1000c3950
+  0c394c  objc_enumerationMutation(self->diamonds)
+loc_1000c3950:
+  0c3960  [x0 update:arg1]
+  0c396c  if ((x27 + 1) <u [self->diamonds countByEnumeratingWithState:&sp[0x98] objects:&sp[0x218] count:16]) goto loc_1000c3938
+  0c3984  [self->diamonds countByEnumeratingWithState:&sp[0x98] objects:&sp[0x218] count:16]
+  0c398c  if ([self->diamonds countByEnumeratingWithState:&sp[0x98] objects:&sp[0x218] count:16] != 0) goto loc_1000c3934
+loc_1000c3990:
+  0c39b8  [self->passerByManager update:arg1]
+  0c39d0  [self mode]
+  0c39d8  if ([self mode] != 1) goto loc_1000c3a50
+  0c39f0  [self->powerUpManager update:arg1]
+  0c3a04  if (self->nextDiamondTime >= (or unordered) 0.0) goto loc_1000c3a34
+  0c3a18  [self randomizeNextDiamondTime]
+  0c3a2c  [self addDiamond]
+  0c3a30  goto loc_1000c3a50
+loc_1000c3a34:
+  0c3a3c  [self playerIsDead]
+  0c3a40  if (([self playerIsDead] & 1)) goto loc_1000c3a50
+  0c3a4c  self->nextDiamondTime = (self->nextDiamondTime - arg1)
+loc_1000c3a50:
+  0c3a5c  self->minimumSquaredDistance = 0x7f800000
+  0c3a80  [self->bricks lastObject]
+  0c3a9c  [[self->bricks lastObject] enemies]
+  0c3ac8  [[[self->bricks lastObject] enemies] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x198] count:16]
+  0c3ad4  if ([[[self->bricks lastObject] enemies] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x198] count:16] == 0) goto loc_1000c3b80
+  0c3af0  &@selector(squaredDistance)
+loc_1000c3af8:
+loc_1000c3afc:
+  0c3b08  if (x8 == x28) goto loc_1000c3b14
+  0c3b10  objc_enumerationMutation([[self->bricks lastObject] enemies])
+loc_1000c3b14:
+  0c3b24  [x0 canBeShotAt]
+  0c3b28  if ([x0 canBeShotAt] == 0) goto loc_1000c3b54
+  0c3b34  [x0 squaredDistance]
+  0c3b40  if ([x0 squaredDistance] >= (or unordered) self->minimumSquaredDistance) goto loc_1000c3b54
+  0c3b4c  [x0 squaredDistance]
+  0c3b50  self->minimumSquaredDistance = [x0 squaredDistance]
+loc_1000c3b54:
+  0c3b5c  if ((x21 + 1) <u [[[self->bricks lastObject] enemies] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x198] count:16]) goto loc_1000c3afc
+  0c3b74  [[[self->bricks lastObject] enemies] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x198] count:16]
+  0c3b7c  if ([[[self->bricks lastObject] enemies] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x198] count:16] != 0) goto loc_1000c3af8
+loc_1000c3b80:
+  0c3b94  if (self->challengeIsOver == 0) goto loc_1000c3cd0
+  0c3bb8  [self allPotentialTargets]
+  0c3bd8  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x118] count:16]
+  0c3be0  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x118] count:16] == 0) goto loc_1000c3c8c
+  0c3bf0  &@selector(state)
+loc_1000c3bfc:
+loc_1000c3c00:
+  0c3c0c  if (x8 == x27) goto loc_1000c3c18
+  0c3c14  objc_enumerationMutation([self allPotentialTargets])
+loc_1000c3c18:
+  0c3c28  [x0 state]
+  0c3c30  if ([x0 state] == 5) goto loc_1000c3c48
+  0c3c3c  [x0 state]
+  0c3c44  if ([x0 state] != 999) goto loc_1000c3c4c
+loc_1000c3c48:
+loc_1000c3c4c:
+  0c3c54  if ((x21 + 1) <u [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x118] count:16]) goto loc_1000c3c00
+  0c3c6c  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x118] count:16]
+  0c3c74  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x118] count:16] != 0) goto loc_1000c3bfc
+  0c3c84  if (((one of {0, 1} & 1) & 1)) goto loc_1000c3c94
+  0c3c88  goto loc_1000c3cd0
+loc_1000c3c8c:
+loc_1000c3c94:
+  0c3ca4  [self gameplayViewController]
+  0c3cc0  [[self gameplayViewController] goToScoreScreen]
+  0c3ccc  self->challengeIsOver = 0
+loc_1000c3cd0:
+  0c3cd8  [self mode]
+  0c3cec  if ([self mode] != 4) goto loc_1000c3d2c
+  0c3d04  if (self->timeElapsed <= (or unordered) 52) goto loc_1000c3d2c
+  0c3d14  if (self->startedMainMenuMusic != 0) goto loc_1000c3d2c
+  0c3d28  [self startMainMenuMusic]
+loc_1000c3d2c:
+  0c3d58  return
+
+== -[ADBrickManager startMainMenuMusic]   (address 0x1000c3dc0  size 184  kind objc)
+  0c3ddc  self->startedMainMenuMusic = 1
+  0c3df4  [UIApplication sharedApplication]
+  0c3e10  [[UIApplication sharedApplication] delegate]
+  0c3e34  [[[UIApplication sharedApplication] delegate] startMenuMusic:@"main_menu_theme"]
+  0c3e50  return
+
+== -[ADBrickManager minimumSquaredDistance]   (address 0x1000c3e78  size 16  kind objc)
+  0c3e84  return
+
+== -[ADBrickManager blowEnemiesAway:]   (address 0x1000c3e88  size 372  kind objc)
+  0c3edc  [self allPotentialTargets]
+  0c3f08  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0c3f10  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000c3fa4
+  0c3f2c  &@selector(blowAway:)
+loc_1000c3f34:
+loc_1000c3f38:
+  0c3f44  if (x8 == x26) goto loc_1000c3f50
+  0c3f4c  objc_enumerationMutation([self allPotentialTargets])
+loc_1000c3f50:
+  0c3f60  [x0 canBeShotAt]
+  0c3f64  if ([x0 canBeShotAt] == 0) goto loc_1000c3f78
+  0c3f74  [x0 blowAway:arg1]
+loc_1000c3f78:
+  0c3f80  if ((x27 + 1) <u [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000c3f38
+  0c3f98  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0c3fa0  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000c3f34
+loc_1000c3fa4:
+  0c3fd8  return
+
+== -[ADBrickManager closestEnemy]   (address 0x1000c3ffc  size 456  kind objc)
+  0c404c  [self allPotentialTargets]
+  0c4078  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0c4084  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000c414c
+loc_1000c40b0:
+loc_1000c40b4:
+  0c40c0  if (x8 == x27) goto loc_1000c40cc
+  0c40c8  objc_enumerationMutation([self allPotentialTargets])
+loc_1000c40cc:
+  0c40dc  [x0 canBeShotAt]
+  0c40e0  if ([x0 canBeShotAt] == 0) goto loc_1000c4120
+  0c40ec  [x0 squaredDistance]
+  0c40f4  if ([x0 squaredDistance] >= (or unordered) s8) goto loc_1000c4120
+  0c4100  [x0 squaredDistance]
+loc_1000c4120:
+  0c4128  if ((x28 + 1) <u [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000c40b4
+  0c4140  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0c4148  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000c40b0
+loc_1000c414c:
+  0c4184  return
+
+== -[ADBrickManager calculateHitEnemiesWithWeapon:FromAngle:]   (address 0x1000c41c4  size 2420  kind objc)
+  0c422c  [NSMutableArray alloc]
+  0c423c  [[NSMutableArray alloc] init]
+  0c4268  [self allPotentialTargets]
+  0c4298  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x188] count:16]
+  0c42a0  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x188] count:16] == 0) goto loc_1000c4a00
+  0c42e8  &@selector(canBeShotAt)
+  0c42f0  &@selector(setMultiHitFactor:)
+  0c42f8  &@selector(setNextShotWillBeCritical:)
+  0c4300  &@selector(setNextShotWillBePrecise:)
+  0c4308  &@selector(angleFromPlayer)
+  0c4310  &@selector(spread)
+  0c4318  &@selector(squaredDistance)
+  0c4320  &@selector(range)
+  0c4328  &@selector(criticalSpread)
+  0c4330  &@selector(criticalChance)
+  0c4338  &@selector(sharedModifiers)
+  0c4340  &@selector(noCritical)
+  0c4348  &@selector(gameplayViewController)
+  0c4350  &@selector(playerDidACriticalHit)
+  0c4358  &@selector(name)
+  0c4360  &@selector(numberWithBool:)
+  0c4368  &@selector(numberWithDouble:)
+  0c4378  &@selector(numberWithInt:)
+  0c4380  &@selector(luckyShots)
+  0c4388  &@selector(multihit)
+  0c4398  t1 = ((((int)(((arg2 + 3.14159) * 180) / 3.14159) * 0xffffffffb60b60b7) >>> 32) + (int)(((arg2 + 3.14159) * 180) / 3.14159))
+  0c43a8  &@selector(objectAtIndex:)
+  0c43b8  t2 = (((int)(((arg2 + 3.14159) * 180) / 3.14159) - ((t1 >> 8) + (t1 >>> 31)) * 360) < 0 ? (((int)(((arg2 + 3.14159) * 180) / 3.14159) - ((t1 >> 8) + (t1 >>> 31)) * 360) + 360) : ((int)(((arg2 + 3.14159) * 180) / 3.14159) - ((t1 >> 8) + (t1 >>> 31)) * 360))
+loc_1000c44ac:
+loc_1000c44b4:
+  0c44c0  if (x8 == x21) goto loc_1000c44cc
+  0c44c8  objc_enumerationMutation([self allPotentialTargets])
+loc_1000c44cc:
+  0c44dc  [x0 canBeShotAt]
+  0c44e0  if ([x0 canBeShotAt] == 0) goto loc_1000c49d4
+  0c44f0  [x0 setMultiHitFactor:0]
+  0c4500  [x0 setNextShotWillBeCritical:0]
+  0c4510  [x0 setNextShotWillBePrecise:0]
+  0c451c  [x0 angleFromPlayer]
+  0c4548  t3 = ((((int)((([x0 angleFromPlayer] + 3.14159) * 180) / 3.14159) * 0xffffffffb60b60b7) >>> 32) + (int)((([x0 angleFromPlayer] + 3.14159) * 180) / 3.14159))
+  0c4558  t4 = ((int)((([x0 angleFromPlayer] + 3.14159) * 180) / 3.14159) - ((t3 >> 8) + (t3 >>> 31)) * 360)
+  0c4570  [arg1 spread]
+  0c458c  if (fabs((float)(t2 - (t4 < 0 ? (t4 + 360) : t4))) < [arg1 spread]) goto loc_1000c45bc
+  0c4598  [arg1 spread]
+  0c45b8  if (fabs((float)((t4 < 0 ? (t4 + 360) : t4) - t2)) <= (or unordered) (360 - [arg1 spread])) goto loc_1000c49d4
+loc_1000c45bc:
+  0c45c4  [x0 squaredDistance]
+  0c45d4  [arg1 range]
+  0c45e4  [arg1 range]
+  0c45f0  if ([x0 squaredDistance] > (or unordered) ([arg1 range] * [arg1 range])) goto loc_1000c49d4
+  0c45fc  [arg1 criticalSpread]
+  0c4608  if (fabs((float)(t2 - (t4 < 0 ? (t4 + 360) : t4))) < [arg1 criticalSpread]) goto loc_1000c4638
+  0c4614  [arg1 criticalSpread]
+  0c4634  if (fabs((float)((t4 < 0 ? (t4 + 360) : t4) - t2)) <= (or unordered) (360 - [arg1 criticalSpread])) goto loc_1000c4868
+loc_1000c4638:
+  0c4638  random()
+  0c4648  [arg1 criticalChance]
+  0c466c  t5 = ((((random() *h 0xa3d70a3d70a3d70b) + random()) >>> 6) + (((random() *h 0xa3d70a3d70a3d70b) + random()) >>> 63))
+  0c4680  if ((float)(random() - t5 * 100) >= (or unordered) [arg1 criticalChance]) goto loc_1000c46b8
+  0c4690  [ADGameModifiers sharedModifiers]
+  0c46a4  [[ADGameModifiers sharedModifiers] noCritical]
+  0c46b4  if (!([[ADGameModifiers sharedModifiers] noCritical] & 1)) goto loc_1000c46cc
+loc_1000c46b8:
+  0c46c4  [x0 setNextShotWillBePrecise:1]
+  0c46c8  goto loc_1000c4868
+loc_1000c46cc:
+  0c46d8  [x0 setNextShotWillBeCritical:1]
+  0c46e4  [self gameplayViewController]
+  0c46f8  [[self gameplayViewController] playerDidACriticalHit]
+  0c470c  [arg1 name]
+  0c4730  [NSNumber numberWithBool:0]
+  0c474c  [NSNumber numberWithBool:0]
+  0c476c  [NSNumber numberWithBool:0]
+  0c478c  [NSNumber numberWithBool:1]
+  0c47ac  [NSNumber numberWithDouble:-1]
+  0c47e0  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_WEAPON_DATA" AndData:[arg1 name]]
+  0c4828  [NSNumber numberWithInt:1]
+  0c485c  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_CRITICAL_HITS" AndData:[NSNumber numberWithInt:1]]
+loc_1000c4868:
+  0c4874  [ADGameModifiers sharedModifiers]
+  0c4888  [[ADGameModifiers sharedModifiers] luckyShots]
+  0c4898  if ([[ADGameModifiers sharedModifiers] luckyShots] == 0) goto loc_1000c48e0
+  0c489c  random()
+  0c48bc  t6 = ((((random() *h 0xa3d70a3d70a3d70b) + random()) >> 6) + (((random() *h 0xa3d70a3d70a3d70b) + random()) >>> 63))
+  0c48cc  if ((random() - t6 * 100) != 1) goto loc_1000c48e0
+  0c48dc  [x0 setNextShotWillBeCritical:1]
+loc_1000c48e0:
+  0c48e8  [x0 nextShotWillBeCritical]
+  0c48ec  if ([x0 nextShotWillBeCritical] == 0) goto loc_1000c4918
+  0c48f8  [self gameplayViewController]
+  0c490c  [[self gameplayViewController] playerDidACriticalHit]
+loc_1000c4918:
+  0c4920  [arg1 multihit]
+  0c4924  if ([arg1 multihit] == 0) goto loc_1000c493c
+  0c4934  [[[NSMutableArray alloc] init] addObject:x2]
+  0c4938  goto loc_1000c49d4
+loc_1000c493c:
+  0c4944  if (fabs((float)(t2 - (t4 < 0 ? (t4 + 360) : t4))) >= (or unordered) d0) goto loc_1000c496c
+  0c4950  [[[NSMutableArray alloc] init] removeAllObjects]
+  0c4960  [[[NSMutableArray alloc] init] addObject:x2]
+  0c4968  goto loc_1000c49d4
+loc_1000c496c:
+  0c496c  if (flags !=) goto loc_1000c49d4
+  0c4978  [x0 squaredDistance]
+  0c498c  [[[NSMutableArray alloc] init] objectAtIndex:0]
+  0c49a0  [[[[NSMutableArray alloc] init] objectAtIndex:0] squaredDistance]
+  0c49b4  if ([x0 squaredDistance] >= (or unordered) [[[[NSMutableArray alloc] init] objectAtIndex:0] squaredDistance]) goto loc_1000c49d4
+  0c49c0  [[[NSMutableArray alloc] init] removeAllObjects]
+  0c49d0  [[[NSMutableArray alloc] init] addObject:x2]
+loc_1000c49d4:
+  0c49dc  if ((x22 + 1) <u [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x188] count:16]) goto loc_1000c44b4
+  0c49f4  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x188] count:16]
+  0c49fc  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x188] count:16] != 0) goto loc_1000c44ac
+loc_1000c4a00:
+  0c4a58  return
+
+== -[ADBrickManager shotWithSpecialWeapon:]   (address 0x1000c4b38  size 708  kind objc)
+  0c4b90  [S3DEngine engine]
+  0c4bac  [[S3DEngine engine] headOrientation]
+  0c4bd4  [self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]]
+  0c4bf4  [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] count]
+  0c4c34  [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0c4c3c  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_1000c4cb0
+  0c4c4c  &@selector(hitByWeapon:)
+loc_1000c4c54:
+loc_1000c4c58:
+  0c4c64  if (x8 == x28) goto loc_1000c4c70
+  0c4c6c  objc_enumerationMutation([self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]])
+loc_1000c4c70:
+  0c4c80  [x0 hitByWeapon:arg1]
+  0c4c8c  if ((x27 + 1) <u [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&s…) goto loc_1000c4c58
+  0c4ca4  [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0c4cac  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_1000c4c54
+loc_1000c4cb0:
+  0c4ccc  [ADMeleeWeapon class]
+  0c4ce4  [arg1 isKindOfClass:[ADMeleeWeapon class]]
+  0c4ce8  if ([arg1 isKindOfClass:[ADMeleeWeapon class]] == 0) goto loc_1000c4d08
+  0c4cec  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] count] == 0) goto loc_1000c4d54
+  0c4d00  [arg1 playHitSound]
+  0c4d04  goto loc_1000c4d0c
+loc_1000c4d08:
+  0c4d08  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] count] == 0) goto loc_1000c4d68
+loc_1000c4d0c:
+  0c4d1c  [arg1 name]
+  0c4d44  [self checkDeathsForHitEnemies:[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] withWeaponName:[arg1 name]]
+  0c4d50  goto loc_1000c4d68
+loc_1000c4d54:
+  0c4d64  [arg1 playMissSound]
+loc_1000c4d68:
+  0c4da4  return
+
+== -[ADBrickManager shotWithWeapon:]   (address 0x1000c4dfc  size 2492  kind objc)
+  0c4e58  [S3DEngine engine]
+  0c4e74  [[S3DEngine engine] headOrientation]
+  0c4e9c  [self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]]
+  0c4ebc  [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] count]
+  0c4ed8  [arg1 multihit]
+  0c4edc  if ([arg1 multihit] == 0) goto loc_1000c4ef8
+  0c4ee8  [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] count]
+  0c4ef4  goto loc_1000c4f00
+loc_1000c4ef8:
+loc_1000c4f00:
+  0c4f3c  [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xe8] count:16]
+  0c4f44  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xe8] count:16] == 0) goto loc_1000c5204
+  0c4f58  &@selector(hitByWeapon:)
+  0c4f60  &@selector(class)
+  0c4fac  &@selector(notifyStatsSystemWithNotificationWithName:AndData:)
+loc_1000c4fd0:
+loc_1000c4fd4:
+  0c4fe0  if (x8 == x24) goto loc_1000c4fec
+  0c4fe8  objc_enumerationMutation([self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]])
+loc_1000c4fec:
+  0c4ffc  [arg1 multihit]
+  0c5000  if ([arg1 multihit] == 0) goto loc_1000c5018
+  0c5010  [x0 setMultiHitFactor:x2]
+loc_1000c5018:
+  0c5024  [x0 hitByWeapon:arg1]
+  0c5034  [ADMeleeWeapon class]
+  0c5044  [arg1 isKindOfClass:[ADMeleeWeapon class]]
+  0c5048  if ([arg1 isKindOfClass:[ADMeleeWeapon class]] == 0) goto loc_1000c50bc
+  0c5054  [arg1 name]
+  0c5074  [NSNumber numberWithBool:1]
+  0c50a4  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_MELEE_WEAPON_DATA" AndData:[arg1 name]]
+  0c50b8  goto loc_1000c51d0
+loc_1000c50bc:
+  0c50c4  [arg1 name]
+  0c50e4  [NSNumber numberWithBool:1]
+  0c5100  [NSNumber numberWithBool:1]
+  0c511c  [NSNumber numberWithBool:0]
+  0c513c  [NSNumber numberWithBool:0]
+  0c515c  [NSNumber numberWithDouble:-1]
+  0c5190  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_WEAPON_DATA" AndData:[arg1 name]]
+loc_1000c51d0:
+  0c51e0  if ((x25 + 1) <u [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&s…) goto loc_1000c4fd4
+  0c51f8  [[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xe8] count:16]
+  0c5200  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] countByEnumeratingWithState:&sp[0xb8] objects:&x29[-0xe8] count:16] != 0) goto loc_1000c4fd0
+loc_1000c5204:
+  0c5210  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] count] == 0) goto loc_1000c528c
+  0c522c  [ADTracker sharedInstance]
+  0c524c  [arg1 name]
+  0c5274  [[ADTracker sharedInstance] shootWeaponWithName:[arg1 name] didHit:1]
+  0c5288  goto loc_1000c54e8
+loc_1000c528c:
+  0c52b0  [self notifyStatsSystemWithNotificationWithName:@"DECREMENT_COMBO" AndData:0]
+  0c52c8  [ADTracker sharedInstance]
+  0c52f4  [arg1 name]
+  0c531c  [[ADTracker sharedInstance] shootWeaponWithName:[arg1 name] didHit:0]
+  0c5348  [ADMeleeWeapon class]
+  0c5360  [arg1 isKindOfClass:[ADMeleeWeapon class]]
+  0c5364  if ([arg1 isKindOfClass:[ADMeleeWeapon class]] == 0) goto loc_1000c53d0
+  0c5370  [arg1 name]
+  0c539c  [NSNumber numberWithBool:0]
+  0c53c4  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_MELEE_WEAPON_DATA" AndData:[arg1 name]]
+  0c53c8  goto loc_1000c54d4
+  0c53cc  goto loc_1000c5758
+loc_1000c53d0:
+  0c53d8  [arg1 name]
+  0c5408  [NSNumber numberWithBool:1]
+  0c5424  [NSNumber numberWithBool:0]
+  0c5440  [NSNumber numberWithBool:0]
+  0c545c  [NSNumber numberWithBool:0]
+  0c5480  [NSNumber numberWithDouble:-1]
+  0c54b0  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_WEAPON_DATA" AndData:[arg1 name]]
+loc_1000c54d4:
+loc_1000c54e8:
+  0c54fc  [ADMeleeWeapon class]
+  0c5514  [arg1 isKindOfClass:[ADMeleeWeapon class]]
+  0c5518  if ([arg1 isKindOfClass:[ADMeleeWeapon class]] == 0) goto loc_1000c5538
+  0c551c  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] count] == 0) goto loc_1000c5584
+  0c5530  [arg1 playHitSound]
+  0c5534  goto loc_1000c553c
+loc_1000c5538:
+  0c5538  if ([[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] count] == 0) goto loc_1000c5598
+loc_1000c553c:
+  0c554c  [arg1 name]
+  0c5574  [self checkDeathsForHitEnemies:[self calculateHitEnemiesWithWeapon:arg1 FromAngle:[[S3DEngine engine] headOrientation]] withWeaponName:[arg1 name]]
+  0c5580  goto loc_1000c5598
+loc_1000c5584:
+  0c5594  [arg1 playMissSound]
+loc_1000c5598:
+  0c55e0  return
+
+== -[ADBrickManager targetEnemiForExplosiveWeapon:]   (address 0x1000c57b8  size 1160  kind objc)
+  0c5818  [S3DEngine engine]
+  0c5834  [[S3DEngine engine] headOrientation]
+  0c5868  [self allPotentialTargets]
+  0c5894  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0c589c  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] == 0) goto loc_1000c5b90
+  0c58ec  t1 = ((int)((([[S3DEngine engine] headOrientation] + 3.14159) * 180) / 3.14159) * 0xffffffffb60b60b7)
+  0c58f8  t2 = (((t1 >>> 32) + (int)((([[S3DEngine engine] headOrientation] + 3.14159) * 180) / 3.14159)) >> 8)
+  0c58fc  t3 = (t2 + (((t1 >>> 32) + (int)((([[S3DEngine engine] headOrientation] + 3.14159) * 180) / 3.14159)) >>> 31))
+  0c590c  &@selector(spread)
+  0c5914  &@selector(squaredDistance)
+  0c591c  &@selector(range)
+  0c5948  t4 = (((int)((([[S3DEngine engine] headOrientation] + 3.14159) * 180) / 3.14159) - t3 * 360) < 0 ? (((int)((([[S3DEngine engine] headOrientation] + 3.14159) * 180) / 3.14159) - t3 * 360) + 360) : ((int)((([[S3DEngine engine] headOrientation] + 3.14159) * 180) / 3.14159) - t3 * 360))
+loc_1000c596c:
+loc_1000c5970:
+  0c597c  if (x8 == x27) goto loc_1000c598c
+  0c5988  objc_enumerationMutation([self allPotentialTargets])
+loc_1000c598c:
+  0c59a0  [x0 canBeShotAt]
+  0c59a4  if ([x0 canBeShotAt] == 0) goto loc_1000c5b28
+  0c59b4  [x0 angleFromPlayer]
+  0c59e4  t5 = ((((int)((([x0 angleFromPlayer] + 3.14159) * 180) / 3.14159) * 0xffffffffb60b60b7) >>> 32) + (int)((([x0 angleFromPlayer] + 3.14159) * 180) / 3.14159))
+  0c59f4  t6 = ((int)((([x0 angleFromPlayer] + 3.14159) * 180) / 3.14159) - ((t5 >> 8) + (t5 >>> 31)) * 360)
+  0c5a0c  [arg1 spread]
+  0c5a28  if (fabs((float)(t4 - (t6 < 0 ? (t6 + 360) : t6))) >= (or unordered) [arg1 spread]) goto loc_1000c5b28
+  0c5a38  [x0 squaredDistance]
+  0c5a4c  [arg1 range]
+  0c5a60  [arg1 range]
+  0c5a6c  if ([x0 squaredDistance] >= (or unordered) ([arg1 range] * [arg1 range])) goto loc_1000c5b28
+  0c5a7c  [arg1 criticalSpread]
+  0c5a88  if (fabs((float)(t4 - (t6 < 0 ? (t6 + 360) : t6))) >= (or unordered) [arg1 criticalSpread]) goto loc_1000c5ad4
+  0c5a98  [x0 squaredDistance]
+  0c5aa0  if ([x0 squaredDistance] >= (or unordered) s8) goto loc_1000c5b28
+  0c5ac0  [x0 squaredDistance]
+  0c5ad0  goto loc_1000c5b24
+loc_1000c5ad4:
+  0c5ae0  [x0 squaredDistance]
+  0c5af8  if ((((([x0 squaredDistance] >= (or unordered) s8) | w9) & 1) & 1)) goto loc_1000c5b28
+  0c5b18  [x0 squaredDistance]
+loc_1000c5b24:
+loc_1000c5b28:
+  0c5b30  if ((x25 + 1) <u [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]) goto loc_1000c5970
+  0c5b48  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16]
+  0c5b50  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x48] objects:&sp[0x88] count:16] != 0) goto loc_1000c596c
+  0c5b60  if (!(w8 & 1)) goto loc_1000c5ba0
+  0c5b78  [x0 setNextShotWillBeCritical:1]
+  0c5b88  goto loc_1000c5bac
+  0c5b8c  goto loc_1000c5c2c
+loc_1000c5b90:
+  0c5b9c  goto loc_1000c5bac
+loc_1000c5ba0:
+loc_1000c5bac:
+  0c5bec  return
+
+== -[ADBrickManager solveExplosionWithDictionary:atPosition:withWeaponName:ignoreTinnitus:]   (address 0x1000c5c40  size 1824  kind objc)
+  0c5cc0  [NSMutableArray alloc]
+  0c5cd0  [[NSMutableArray alloc] init]
+  0c5ce8  [self allPotentialTargets]
+  0c5d38  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16]
+  0c5d40  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16] == 0) goto loc_1000c5fc8
+loc_1000c5da4:
+loc_1000c5da8:
+  0c5db4  if (x8 == x26) goto loc_1000c5dc0
+  0c5dbc  objc_enumerationMutation([self allPotentialTargets])
+loc_1000c5dc0:
+  0c5dd0  [x0 canBeShotAt]
+  0c5dd4  if ([x0 canBeShotAt] == 0) goto loc_1000c5f9c
+  0c5de0  [x0 position]
+  0c5df0  [x0 position]
+  0c5e00  [x0 position]
+  0c5e10  [x0 position]
+  0c5e28  [arg1 objectForKey:@"radius"]
+  0c5e3c  [[arg1 objectForKey:@"radius"] floatValue]
+  0c5e54  [arg1 objectForKey:@"radius"]
+  0c5e70  [[arg1 objectForKey:@"radius"] floatValue]
+  0c5e8c  t1 = (((arg2.0 - [x0 position].0) * (arg2.0 - [x0 position].0)) + ((arg2.1 - [x0 position].1) * (arg2.1 - [x0 position].1)))
+  0c5eb4  if (t1 >= (or unordered) ([[arg1 objectForKey:@"radius"] floatValue] * [[arg1 objectForKey:@"radius"] floatValue])) goto loc_1000c5f9c
+  0c5ec8  [arg1 objectForKey:@"damages"]
+  0c5ee0  [[arg1 objectForKey:@"damages"] floatValue]
+  0c5ef8  [arg1 objectForKey:@"dispersal"]
+  0c5f0c  [[arg1 objectForKey:@"dispersal"] floatValue]
+  0c5f24  [arg1 objectForKey:@"radius"]
+  0c5f40  [[arg1 objectForKey:@"radius"] floatValue]
+  0c5f64  [x0 hitByExplosionAtPosition:{arg2.0, arg2.1} withDamages:[[arg1 objectForKey:@"damages"] floatValue] dispersal:[[arg1 objectForKey:@"dispersal"] floatValue] radius:[[arg1 objectForKey:@"radius"] floatValue] powerupname:arg3]
+  0c5f90  [[[NSMutableArray alloc] init] addObject:x2]
+loc_1000c5f9c:
+  0c5fa4  if ((x21 + 1) <u [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16]) goto loc_1000c5da8
+  0c5fbc  [[self allPotentialTargets] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16]
+  0c5fc4  if ([[self allPotentialTargets] countByEnumeratingWithState:&sp[0x98] objects:&sp[0xd8] count:16] != 0) goto loc_1000c5da4
+loc_1000c5fc8:
+  0c5fe0  if ((arg4 & 1)) goto loc_1000c6074
+  0c5ffc  if (((arg2.0 * arg2.0) + (arg2.1 * arg2.1)) >= (or unordered) 25) goto loc_1000c6074
+  0c6010  [self gameplayViewController]
+  0c602c  [[self gameplayViewController] player]
+  0c6060  [[[self gameplayViewController] player] startTinitusWithIntensity:((((arg2.0 * arg2.0) + (arg2.1 * arg2.1)) / -25) + 1)]
+loc_1000c6074:
+  0c6090  [NSNumber numberWithBool:1]
+  0c60b8  [[[NSMutableArray alloc] init] count]
+  0c60cc  [NSNumber numberWithBool:([[[NSMutableArray alloc] init] count] != 0)]
+  0c60e8  [NSNumber numberWithBool:0]
+  0c6104  [NSNumber numberWithBool:0]
+  0c6128  [NSNumber numberWithDouble:-1]
+  0c6164  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_WEAPON_DATA" AndData:arg3]
+  0c61a8  [self checkDeathsForHitEnemies:[[NSMutableArray alloc] init] withWeaponName:arg3]
+  0c61b4  [[[NSMutableArray alloc] init] count]
+  0c6228  return
+
+== -[ADBrickManager solveExplosionOfProjectile:]   (address 0x1000c6360  size 836  kind objc)
+  0c63b0  [arg1 explosionRadius]
+  0c63c8  [NSNumber numberWithFloat:[arg1 explosionRadius]]
+  0c63f4  [arg1 weapon]
+  0c6410  [[arg1 weapon] damages]
+  0c641c  [NSNumber numberWithFloat:[[arg1 weapon] damages]]
+  0c6438  [arg1 weapon]
+  0c6454  [[arg1 weapon] dispersal]
+  0c6460  [NSNumber numberWithFloat:[[arg1 weapon] dispersal]]
+  0c6490  [NSArray arrayWithObjects:[NSNumber numberWithFloat:[arg1 explosionRadius]], [NSNumber numberWithFloat:[[arg1 weapon] damages]], [NSNumber numberWithFloat:[[arg1 weapon] dispersal]], nil]
+  0c64f0  [NSArray arrayWithObjects:@"radius", @"damages", @"dispersal", nil]
+  0c651c  [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:[arg1 explosionRadius]], [NSNumber numberWithFloat:[[arg1 weapon] damages]], [NSNumber numberWithFloat:[[arg1 weapon] dispersal]], nil] forKeys:[NSArray arrayWithObjects:@"radius", @"damages", @"dispersal", nil]]
+  0c653c  [arg1 position]
+  0c6550  [arg1 weapon]
+  0c656c  [[arg1 weapon] name]
+  0c65a0  [self solveExplosionWithDictionary:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:[arg1 explosionRadius]], [NSNumber numberWithFloat:[[arg1 weapon] damages]], [NSNumber numberWithFloat:[[arg1 weapon] dispersal]], nil] forKeys:[NSArray arrayWithObjects:@"radius", @"damages", @"dispersal", nil]] atPosition:{[arg1 position].0, [arg1 position].1} withWeaponName:[[arg1 weapon] name] ignoreTinnitus:0]
+  0c65f0  return
+
+== -[ADBrickManager checkDeathsForHitEnemies:withWeaponName:]   (address 0x1000c66a4  size 1256  kind objc)
+  0c6704  [arg1 count]
+  0c6748  [arg1 countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  0c6750  if ([arg1 countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] == 0) goto loc_1000c6a3c
+  0c677c  &@selector(playerKilledEnemy:withCombo:)
+  0c67ac  &@selector(enemiKilled:withWeapon:)
+  0c67b4  &@selector(containsObject:)
+  0c6824  &@selector(killEnemy:DisplayName:Weapon:)
+loc_1000c6840:
+loc_1000c6844:
+  0c6850  if (x8 == x23) goto loc_1000c685c
+  0c6858  objc_enumerationMutation(arg1)
+loc_1000c685c:
+  0c686c  [x0 life]
+  0c6874  if ([x0 life] > (or unordered) 0.0) goto loc_1000c6a10
+  0c6880  [self gameplayViewController]
+  0c689c  [ADInGameStats singleton]
+  0c68b0  [[ADInGameStats singleton] combo]
+  0c68c4  [[self gameplayViewController] playerKilledEnemy:x2 withCombo:[[ADInGameStats singleton] combo]]
+  0c68e4  [ADMissionManager sharedMissionManager]
+  0c68fc  [x0 displayName]
+  0c691c  [[ADMissionManager sharedMissionManager] enemiKilled:[x0 displayName] withWeapon:arg2]
+  0c693c  [self->powerupList containsObject:arg2]
+  0c6940  if ([self->powerupList containsObject:arg2] == 0) goto loc_1000c6964
+  0c695c  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_KILLED_ENEMY_POWERUP" AndData:x3]
+  0c6960  goto loc_1000c6980
+loc_1000c6964:
+  0c697c  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_KILLED_ENEMY_WITH_WEAPON" AndData:arg2]
+loc_1000c6980:
+  0c6988  [x0 getType]
+  0c6990  if ([x0 getType] == 1) goto loc_1000c6a10
+  0c69a0  [ADTracker sharedInstance]
+  0c69b8  [x0 name]
+  0c69d0  [x0 displayName]
+  0c69f4  [[ADTracker sharedInstance] killEnemy:[x0 name] DisplayName:[x0 displayName] Weapon:arg2]
+loc_1000c6a10:
+  0c6a18  if ((x19 + 1) <u [arg1 countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]) goto loc_1000c6844
+  0c6a30  [arg1 countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16]
+  0c6a38  if ([arg1 countByEnumeratingWithState:&sp[0xa8] objects:&x29[-0xd8] count:16] != 0) goto loc_1000c6840
+loc_1000c6a3c:
+  0c6a5c  [ADMissionManager sharedMissionManager]
+  0c6a8c  [[ADMissionManager sharedMissionManager] playerShotWithWeapon:arg2 hitEnemi:([arg1 count] != 0)]
+  0c6adc  return
+
+== -[ADBrickManager soundOrEnemyWithNameWasDeactivated:]   (address 0x1000c6b8c  size 36  kind objc)
+  0c6ba4  [self soundOrEnemyWithNameWasDeactivated:arg1 withSkip:0]
+  0c6bac  return
+
+== -[ADBrickManager soundOrEnemyWithNameWasDeactivated:withSkip:]   (address 0x1000c6bb0  size 240  kind objc)
+  0c6be8  [self currentBrick]
+  0c6c04  [[self currentBrick] brickIsCleared]
+  0c6c14  if ([[self currentBrick] brickIsCleared] == 0) goto loc_1000c6c3c
+  0c6c20  NSLog(@"Brick is cleared")
+  0c6c34  [self currentBrickIsCleared]
+  0c6c38  goto loc_1000c6c64
+loc_1000c6c3c:
+  0c6c44  NSLog(@"More enemies or blocker sounds")
+  0c6c60  [self checkEnemiesSpawnAfterKill:arg1 skipped:arg2]
+loc_1000c6c64:
+  0c6c78  return
+
+== -[ADBrickManager currentBrickIsCleared]   (address 0x1000c6ca0  size 536  kind objc)
+  0c6ccc  [ADInGameStats singleton]
+  0c6ce8  [[ADInGameStats singleton] brickTime]
+  0c6d14  [self notifyStatsSystemWithNotificationWithName:@"DEFEATED_BRICK" AndData:0]
+  0c6d2c  [ADTracker sharedInstance]
+  0c6d4c  [self currentBrickName]
+  0c6d74  [[ADTracker sharedInstance] defeatBrick:[self currentBrickName] InTime:[[ADInGameStats singleton] brickTime]]
+  0c6d98  [self mode]
+  0c6da4  if (([self mode] - 1) >u 3) goto loc_1000c6dfc
+  0c6db8  switch (([self mode] - 1)) { case 0,2: goto loc_1000c6e10; case 1: goto loc_1000c6dbc; case 3: goto loc_1000c6e34 }
+loc_1000c6dbc:  ; case 1
+  0c6de0  [self->brickScenario count]
+  0c6de8  if (self->currentWave != [self->brickScenario count]) goto loc_1000c6e10
+  0c6df8  self->challengeIsOver = 1
+loc_1000c6dfc:
+  0c6e0c  return
+loc_1000c6e10:  ; case 0, 2
+  0c6e30  tail [self loadNextBrick]
+loc_1000c6e34:  ; case 3
+  0c6e44  [self gameplayViewController]
+  0c6e60  [[self gameplayViewController] goToScoreScreen]
+  0c6e78  return
+
+== -[ADBrickManager enemiesAliveOrReadyToSpawn]   (address 0x1000c6eb8  size 460  kind objc)
+  0c6f04  [self enemiesFromCurrentBrick]
+  0c6f30  [[self enemiesFromCurrentBrick] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0c6f3c  if ([[self enemiesFromCurrentBrick] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_1000c7010
+  0c6f58  &@selector(name)
+loc_1000c6f68:
+loc_1000c6f6c:
+  0c6f78  if (x8 == x28) goto loc_1000c6f84
+  0c6f80  objc_enumerationMutation([self enemiesFromCurrentBrick])
+loc_1000c6f84:
+  0c6f94  [x0 life]
+  0c6f9c  if ([x0 life] <= (or unordered) 0.0) goto loc_1000c6fe4
+  0c6fa8  [x0 name]
+  0c6fc0  [x0 life]
+  0c6fd4  NSLog(@"%@ still alive, life = %f", [x0 name], [x0 life])
+loc_1000c6fe4:
+  0c6fec  if ((x20 + 1) <u [[self enemiesFromCurrentBrick] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_1000c6f6c
+  0c7004  [[self enemiesFromCurrentBrick] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0c700c  if ([[self enemiesFromCurrentBrick] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_1000c6f68
+loc_1000c7010:
+  0c7050  return
+
+== -[ADBrickManager checkSpawnOnStart:]   (address 0x1000c7084  size 148  kind objc)
+  0c70b4  [self currentBrick]
+  0c70d4  [[self currentBrick] checkSpawnOnStart:arg1]
+  0c70f0  return
+
+== -[ADBrickManager checkEnemiesSpawnAfterKill:skipped:]   (address 0x1000c7118  size 156  kind objc)
+  0c714c  [self currentBrick]
+  0c7170  [[self currentBrick] checkSpawnAfterKill:arg1 skipped:arg2]
+  0c718c  return
+
+== -[ADBrickManager stopAllEnemiesAfterPlayerDeathByEnemyWithName:]   (address 0x1000c71b4  size 840  kind objc)
+  0c71f4  [self cleanPassersBy]
+  0c7208  [self gameplayViewController]
+  0c7224  [[self gameplayViewController] showDeathOverlay]
+  0c7244  [self setPlayerIsDead:1]
+  0c7288  [self->bricks countByEnumeratingWithState:&sp[0x88] objects:&x29[-0xd8] count:16]
+  0c7290  if ([self->bricks countByEnumeratingWithState:&sp[0x88] objects:&x29[-0xd8] count:16] == 0) goto loc_1000c7300
+  0c72a0  &@selector(stopAllEnemiesAfterPlayerDeath)
+loc_1000c72a8:
+loc_1000c72ac:
+  0c72b8  if (x8 == x25) goto loc_1000c72c4
+  0c72c0  objc_enumerationMutation(self->bricks)
+loc_1000c72c4:
+  0c72d0  [x0 stopAllEnemiesAfterPlayerDeath]
+  0c72dc  if ((x26 + 1) <u [self->bricks countByEnumeratingWithState:&sp[0x88] objects:&x29[-0xd8] count:16]) goto loc_1000c72ac
+  0c72f4  [self->bricks countByEnumeratingWithState:&sp[0x88] objects:&x29[-0xd8] count:16]
+  0c72fc  if ([self->bricks countByEnumeratingWithState:&sp[0x88] objects:&x29[-0xd8] count:16] != 0) goto loc_1000c72a8
+loc_1000c7300:
+  0c733c  [self->diamonds countByEnumeratingWithState:&sp[0x48] objects:&sp[0x148] count:16]
+  0c7344  if ([self->diamonds countByEnumeratingWithState:&sp[0x48] objects:&sp[0x148] count:16] == 0) goto loc_1000c73b4
+  0c7354  &@selector(stopAfterPlayerWasKilled)
+loc_1000c735c:
+loc_1000c7360:
+  0c736c  if (x8 == x25) goto loc_1000c7378
+  0c7374  objc_enumerationMutation(self->diamonds)
+loc_1000c7378:
+  0c7384  [x0 stopAfterPlayerWasKilled]
+  0c7390  if ((x26 + 1) <u [self->diamonds countByEnumeratingWithState:&sp[0x48] objects:&sp[0x148] count:16]) goto loc_1000c7360
+  0c73a8  [self->diamonds countByEnumeratingWithState:&sp[0x48] objects:&sp[0x148] count:16]
+  0c73b0  if ([self->diamonds countByEnumeratingWithState:&sp[0x48] objects:&sp[0x148] count:16] != 0) goto loc_1000c735c
+loc_1000c73b4:
+  0c73e4  [self->passerByManager allPasserBy]
+  0c7404  [[self->passerByManager allPasserBy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0xc8] count:16]
+  0c740c  if ([[self->passerByManager allPasserBy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0xc8] count:16] == 0) goto loc_1000c747c
+  0c741c  &@selector(stopAfterPlayerWasKilled)
+loc_1000c7424:
+loc_1000c7428:
+  0c7434  if (x8 == x23) goto loc_1000c7440
+  0c743c  objc_enumerationMutation([self->passerByManager allPasserBy])
+loc_1000c7440:
+  0c744c  [x0 stopAfterPlayerWasKilled]
+  0c7458  if ((x25 + 1) <u [[self->passerByManager allPasserBy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0xc8] count:16]) goto loc_1000c7428
+  0c7470  [[self->passerByManager allPasserBy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0xc8] count:16]
+  0c7478  if ([[self->passerByManager allPasserBy] countByEnumeratingWithState:&sp[0x8] objects:&sp[0xc8] count:16] != 0) goto loc_1000c7424
+loc_1000c747c:
+  0c74ac  return
+
+== -[ADBrickManager showReviveView]   (address 0x1000c74fc  size 92  kind objc)
+  0c7514  [self gameplayViewController]
+  0c7530  [[self gameplayViewController] showReviveView]
+  0c7540  return
+
+== -[ADBrickManager revive]   (address 0x1000c7558  size 88  kind objc)
+  0c7574  [self clearCurrentBrick]
+  0c7588  [self loadNextBrick]
+  0c75a0  self->nextDiamondTime = (self->nextDiamondTime + 10)
+  0c75ac  return
+
+== -[ADBrickManager gameOver]   (address 0x1000c75b0  size 408  kind objc)
+  0c75dc  [ADMissionManager sharedMissionManager]
+  0c75f8  [[ADMissionManager sharedMissionManager] playerDied]
+  0c760c  [ADMissionManager sharedMissionManager]
+  0c7628  [[ADMissionManager sharedMissionManager] endGameplay]
+  0c7644  [self mode]
+  0c764c  if ([self mode] == 1) goto loc_1000c7690
+  0c7654  if ([self mode] != 2) goto loc_1000c76c8
+  0c7668  [self gameplayViewController]
+  0c7684  [[self gameplayViewController] goToChallengeFailedScreen]
+  0c7688  goto loc_1000c7700
+  0c768c  goto loc_1000c7730
+loc_1000c7690:
+  0c76a0  [self gameplayViewController]
+  0c76bc  [[self gameplayViewController] quitGameplayWithFail]
+  0c76c0  goto loc_1000c7700
+  0c76c4  goto loc_1000c7730
+loc_1000c76c8:
+  0c76cc  if ([self mode] != 3) goto loc_1000c7714
+  0c76e0  [self gameplayViewController]
+  0c76fc  [[self gameplayViewController] quitGameplayWithFail]
+loc_1000c7700:
+  0c7710  return
+loc_1000c7714:
+  0c7720  return
+
+== -[ADBrickManager addDiamond]   (address 0x1000c7748  size 420  kind objc)
+  0c7770  [ADDiamondDropper alloc]
+  0c7788  [[ADDiamondDropper alloc] initWithName:@"Diamond"]
+  0c7790  rand()
+  0c77b0  t1 = (((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >> 8) + ((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >>> 31))
+  0c77e4  d0 = sin((((float)(rand() - t1 * 360) * 3.14159) / 180)), d1 = cos((((float)(rand() - t1 * 360) * 3.14159) / 180))
+  0c7814  [[[ADDiamondDropper alloc] initWithName:@"Diamond"] setPosition:{(cos((((float)(rand() - t1 * 360) * 3.14159) / 180)) * 9), (sin((((float)(rand() - t1 * 360) * 3.14159) / 180)) * 9)}]
+  0c7830  [self->diamonds count]
+  0c7850  [[[ADDiamondDropper alloc] initWithName:@"Diamond"] setTag:([self->diamonds count] + 0x493e0)]
+  0c7864  [[[ADDiamondDropper alloc] initWithName:@"Diamond"] initSounds]
+  0c787c  [[[ADDiamondDropper alloc] initWithName:@"Diamond"] setState:0]
+  0c7894  [[[ADDiamondDropper alloc] initWithName:@"Diamond"] setSpawn_time:2]
+  0c78a8  [[[ADDiamondDropper alloc] initWithName:@"Diamond"] updateOrientation]
+  0c78c0  [self->diamonds addObject:[[ADDiamondDropper alloc] initWithName:@"Diamond"]]
+  0c78d4  return
+
+== -[ADBrickManager randomizeNextDiamondTime]   (address 0x1000c78ec  size 92  kind objc)
+  0c78fc  rand()
+  0c791c  t1 = (((((rand() * 0xffffffff88888889) >>> 32) + rand()) >> 4) + ((((rand() * 0xffffffff88888889) >>> 32) + rand()) >>> 31))
+  0c7938  self->nextDiamondTime = (float)((rand() - t1 * 30) + 40)
+  0c7944  return
+
+== -[ADBrickManager cleanDiamonds]   (address 0x1000c7948  size 40  kind objc)
+  0c796c  tail [self->diamonds makeObjectsPerformSelector:@selector(deactivatePlaylist)]
+
+== -[ADBrickManager stopAllSoundsInCurrentBrick]   (address 0x1000c7970  size 92  kind objc)
+  0c7988  [self currentBrick]
+  0c79a4  [[self currentBrick] stopAllSounds]
+  0c79b4  return
+
+== -[ADBrickManager hasSkippableSoundsPlaying]   (address 0x1000c79cc  size 104  kind objc)
+  0c79e4  [self currentBrick]
+  0c7a00  [[self currentBrick] hasSkippableSoundsPlaying]
+  0c7a1c  return
+
+== -[ADBrickManager skipSkippableSounds]   (address 0x1000c7a34  size 92  kind objc)
+  0c7a4c  [self currentBrick]
+  0c7a68  [[self currentBrick] skipAllSkippableSounds]
+  0c7a78  return
+
+== -[ADBrickManager addPasserBy:]   (address 0x1000c7a90  size 44  kind objc)
+  0c7ab0  [self->passerByManager addPasserBy:arg1]
+  0c7ab8  return
+
+== -[ADBrickManager passersByCount]   (address 0x1000c7abc  size 116  kind objc)
+  0c7ae0  [self->passerByManager allPasserBy]
+  0c7afc  [[self->passerByManager allPasserBy] count]
+  0c7b18  return
+
+== -[ADBrickManager cleanPassersBy]   (address 0x1000c7b30  size 28  kind objc)
+  0c7b48  tail [self->passerByManager clean]
+
+== -[ADBrickManager tryToPopPowerUpContainer]   (address 0x1000c7b4c  size 28  kind objc)
+  0c7b64  tail [self->powerUpManager tryToPopPowerUp]
+
+== -[ADBrickManager forceToPopPowerUpContainerWithType:]   (address 0x1000c7b68  size 516  kind objc)
+  0c7b9c  [arg1 uppercaseString]
+  0c7bc4  [[arg1 uppercaseString] isEqualToString:@"FIREWORKS"]
+  0c7bd4  if ([[arg1 uppercaseString] isEqualToString:@"FIREWORKS"] == 0) goto loc_1000c7bfc
+  0c7bf4  [self->powerUpManager popPowerUpWithType:2]
+  0c7bf8  goto loc_1000c7d18
+loc_1000c7bfc:
+  0c7c04  [arg1 uppercaseString]
+  0c7c20  [[arg1 uppercaseString] isEqualToString:@"MINIGUN"]
+  0c7c30  if ([[arg1 uppercaseString] isEqualToString:@"MINIGUN"] == 0) goto loc_1000c7c58
+  0c7c50  [self->powerUpManager popPowerUpWithType:1]
+  0c7c54  goto loc_1000c7d18
+loc_1000c7c58:
+  0c7c60  [arg1 uppercaseString]
+  0c7c7c  [[arg1 uppercaseString] isEqualToString:@"TESLA"]
+  0c7c8c  if ([[arg1 uppercaseString] isEqualToString:@"TESLA"] == 0) goto loc_1000c7cb4
+  0c7cac  [self->powerUpManager popPowerUpWithType:4]
+  0c7cb0  goto loc_1000c7d18
+loc_1000c7cb4:
+  0c7cbc  [arg1 uppercaseString]
+  0c7cd8  [[arg1 uppercaseString] isEqualToString:@"TORNADO"]
+  0c7cf8  &@selector(popPowerUpWithType:)
+  0c7d00  if ([[arg1 uppercaseString] isEqualToString:@"TORNADO"] == 0) goto loc_1000c7d10
+  0c7d08  [self->powerUpManager popPowerUpWithType:3]
+  0c7d0c  goto loc_1000c7d18
+loc_1000c7d10:
+  0c7d14  [self->powerUpManager popPowerUpWithType:0]
+loc_1000c7d18:
+  0c7d2c  return
+
+== -[ADBrickManager pauseAllBricks]   (address 0x1000c7d6c  size 124  kind objc)
+  0c7dac  [self->bricks makeObjectsPerformSelector:@selector(pause)]
+  0c7dc0  [self->passerByManager pause]
+  0c7de4  tail [self->diamonds makeObjectsPerformSelector:@selector(pause)]
+
+== -[ADBrickManager resumeAllBricks]   (address 0x1000c7de8  size 124  kind objc)
+  0c7e28  [self->bricks makeObjectsPerformSelector:@selector(resume)]
+  0c7e40  [self->diamonds makeObjectsPerformSelector:@selector(resume)]
+  0c7e60  tail [self->passerByManager resume]
+
+== -[ADBrickManager clean]   (address 0x1000c7e64  size 336  kind objc)
+  0c7e80  NSLog(@"CLEAN BRICKMANAGER", _cmd)
+  0c7e94  [self cleanPassersBy]
+  0c7eb0  [self->passerByManager removeAllPassersBy]
+  0c7ec4  [self cleanDiamonds]
+  0c7ee4  [self->diamonds removeAllObjects]
+  0c7f0c  [self->bricks makeObjectsPerformSelector:@selector(clean)]
+  0c7f18  [self->bricks removeAllObjects]
+  0c7f30  [S3DEngine engine]
+  0c7f54  [[S3DEngine engine] playListWithName:@"impact"]
+  0c7f7c  [[[S3DEngine engine] playListWithName:@"impact"] deactivate]
+  0c7f90  return
+
+== -[ADBrickManager gameplayViewController]   (address 0x1000c7fb4  size 32  kind objc)
+  0c7fd0  return
+
+== -[ADBrickManager setGameplayViewController:]   (address 0x1000c7fd4  size 20  kind objc)
+
+== -[ADBrickManager setMode:]   (address 0x1000c7fe8  size 16  kind objc)
+  0c7ff0  self->_mode = arg1
+  0c7ff4  return
+
+== -[ADBrickManager playerIsDead]   (address 0x1000c7ff8  size 20  kind objc)
+  0c8008  return
+
+== -[ADBrickManager setPlayerIsDead:]   (address 0x1000c800c  size 16  kind objc)
+  0c8014  self->_playerIsDead = arg1
+  0c8018  return
+
+== -[ADBrickManager currentRandomAngle]   (address 0x1000c801c  size 20  kind objc)
+  0c802c  return
+
+== -[ADBrickManager setCurrentRandomAngle:]   (address 0x1000c8030  size 20  kind objc)
+  0c803c  self->_currentRandomAngle = arg1
+  0c8040  return
+
+== -[ADBrickManager .cxx_destruct]   (address 0x1000c8044  size 240  kind objc)

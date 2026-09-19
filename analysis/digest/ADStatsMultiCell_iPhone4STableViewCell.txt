@@ -1,0 +1,75 @@
+
+== -[ADStatsMultiCell_iPhone4STableViewCell awakeFromNib]   (address 0x10008b458  size 4  kind objc)
+  08b458  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell populateWithSubtitleString:Values:]   (address 0x10008b45c  size 648  kind objc)
+  08b4a4  [self subTitleLabel]
+  08b4c8  [[self subTitleLabel] setText:arg1]
+  08b4e4  [self killsValueLabel]
+  08b50c  [arg2 objectAtIndex:0]
+  08b528  [[self killsValueLabel] setText:[arg2 objectAtIndex:0]]
+  08b54c  [self accuracyValueLabel]
+  08b568  [arg2 objectAtIndex:1]
+  08b584  [[self accuracyValueLabel] setText:[arg2 objectAtIndex:1]]
+  08b5a8  [self killsLabel]
+  08b5c4  [[self killsLabel] setText:@"Kills"]
+  08b5e0  [self isEnemyCell]
+  08b5e8  &@selector(accuracyLabel)
+  08b5f0  if ([self isEnemyCell] == 0) goto loc_10008b620
+  08b5f8  [self accuracyLabel]
+  08b614  [[self accuracyLabel] setText:@"Casualties"]
+  08b618  goto loc_10008b644
+  08b61c  goto loc_10008b6c0
+loc_10008b620:
+  08b624  [self accuracyLabel]
+  08b640  [[self accuracyLabel] setText:@"Accuracy"]
+loc_10008b644:
+  08b66c  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell setSelected:animated:]   (address 0x10008b6e4  size 60  kind objc)
+  08b710  [super setSelected:arg1 animated:arg2]
+  08b71c  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell killsLabel]   (address 0x10008b720  size 16  kind objc)
+  08b72c  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell setKillsLabel:]   (address 0x10008b730  size 56  kind objc)
+  08b754  self->_killsLabel = arg1
+  08b764  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell accuracyLabel]   (address 0x10008b768  size 16  kind objc)
+  08b774  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell setAccuracyLabel:]   (address 0x10008b778  size 56  kind objc)
+  08b79c  self->_accuracyLabel = arg1
+  08b7ac  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell killsValueLabel]   (address 0x10008b7b0  size 16  kind objc)
+  08b7bc  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell setKillsValueLabel:]   (address 0x10008b7c0  size 56  kind objc)
+  08b7e4  self->_killsValueLabel = arg1
+  08b7f4  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell accuracyValueLabel]   (address 0x10008b7f8  size 16  kind objc)
+  08b804  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell setAccuracyValueLabel:]   (address 0x10008b808  size 56  kind objc)
+  08b82c  self->_accuracyValueLabel = arg1
+  08b83c  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell subTitleLabel]   (address 0x10008b840  size 16  kind objc)
+  08b84c  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell setSubTitleLabel:]   (address 0x10008b850  size 56  kind objc)
+  08b874  self->_subTitleLabel = arg1
+  08b884  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell isEnemyCell]   (address 0x10008b888  size 20  kind objc)
+  08b898  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell setIsEnemyCell:]   (address 0x10008b89c  size 16  kind objc)
+  08b8a4  self->_isEnemyCell = arg1
+  08b8a8  return
+
+== -[ADStatsMultiCell_iPhone4STableViewCell .cxx_destruct]   (address 0x10008b8ac  size 124  kind objc)

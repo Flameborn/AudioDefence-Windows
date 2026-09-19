@@ -1,0 +1,31 @@
+// ADArmoryLoadoutViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #33 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #48 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #23 UIView  
+    #41 UIImageView  Image='header_loadout.png'
+    #27 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #56 UIScrollView  
+    #81 UIImageView  UserInteractionDisabled=False Image='darken_loadout.png'
+    #83 UIImageView  
+    #36 UIImageView  
+    #51 UIImageView  
+  #71 UITapGestureRecognizer  
+  #8 UITapGestureRecognizer  
+  #94 UITapGestureRecognizer  
+
+CONNECTIONS
+  action  slotOneTapped:                            #71 UITapGestureRecognizer --(events 0x0)--> #33 UIProxyObject
+  action  slotThreeTapped:                          #94 UITapGestureRecognizer --(events 0x0)--> #33 UIProxyObject
+  action  slotTwoTapped:                            #8 UITapGestureRecognizer --(events 0x0)--> #33 UIProxyObject
+  outlet  gestureRecognizers                        #83 UIImageView --> #87 NSMutableArray
+  outlet  gestureRecognizers                        #36 UIImageView --> #11 NSMutableArray
+  outlet  gestureRecognizers                        #51 UIImageView --> #96 NSMutableArray
+  outlet  loadoutInfoTextView                       #33 UIProxyObject --> #27 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  meleeSlot                                 #33 UIProxyObject --> #51 UIImageView
+  outlet  view                                      #33 UIProxyObject --> #23 UIView
+  outlet  weaponScroller                            #33 UIProxyObject --> #56 UIScrollView
+  outlet  weaponSlot1                               #33 UIProxyObject --> #83 UIImageView
+  outlet  weaponSlot2                               #33 UIProxyObject --> #36 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

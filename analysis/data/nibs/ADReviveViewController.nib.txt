@@ -1,0 +1,24 @@
+// ADReviveViewController.nib
+TOP-LEVEL OBJECTS
+  #41 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #34 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #113 UIView  
+    #85 UIImageView  Image='background_dead.png'
+    #18 UIImageView  Image='frame_dead.png'
+    #15 UIView  
+      #44 UIView  
+        #8 UIButton (custom class ADButtonWithFont)  title[0]='REVIVE FOR 1'
+        #80 UIButton (custom class ADButtonWithFont)  
+        #25 UITextView (custom class ADChallengeDescription)  UserInteractionDisabled=False Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+        #64 UIImageView  Image='text_dead.png'
+
+CONNECTIONS
+  action  gameOverButtonPressed:                    #80 ADButtonWithFont --(events 0x40)--> #41 UIProxyObject
+  action  reviveButtonPressed:                      #8 ADButtonWithFont --(events 0x40)--> #41 UIProxyObject
+  outlet  gameOverButton                            #41 UIProxyObject --> #80 ADButtonWithFont
+  outlet  reviveButton                              #41 UIProxyObject --> #8 ADButtonWithFont
+  outlet  tipTextView                               #41 UIProxyObject --> #25 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  view                                      #41 UIProxyObject --> #113 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#80 ADButtonWithFont' UIAccessibilityLabel='Game Over'

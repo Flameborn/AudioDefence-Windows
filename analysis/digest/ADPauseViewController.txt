@@ -1,0 +1,75 @@
+
+== -[ADPauseViewController initWithNibName:bundle:]   (address 0x1000555c4  size 140  kind objc)
+  055614  [super initWithNibName:arg1 bundle:arg2]
+  055638  return
+
+== -[ADPauseViewController viewDidLoad]   (address 0x100055650  size 436  kind objc)
+  055688  [super viewDidLoad]
+  0556a0  [self statusBarViewController]
+  0556bc  [[self statusBarViewController] backButton]
+  0556e4  [[[self statusBarViewController] backButton] setTitle:@"Resume" forState:0]
+  055700  [self statusBarViewController]
+  055720  [[self statusBarViewController] setCurrenciesVisibility:0]
+  05573c  [self loadMissionOverlay]
+  055754  [S3DEngine engine]
+  055778  [[S3DEngine engine] playListWithName:@"headphonesTest"]
+  055794  [[[S3DEngine engine] playListWithName:@"headphonesTest"] activate]
+  0557b8  return
+
+== -[ADPauseViewController loadView]   (address 0x100055804  size 332  kind objc)
+  055858  [NSNumber numberWithInt:1]
+  055880  [NSNumber numberWithInt:1]
+  0558b0  [NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]
+  0558ec  [self loADViewBasedOnDeviceWithNibName:@"ADPauseViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]]
+  055918  return
+
+== -[ADPauseViewController viewWillAppear:]   (address 0x100055950  size 92  kind objc)
+  055968  [self view]
+  055984  [[self view] setNeedsLayout]
+  055994  return
+
+== -[ADPauseViewController backButtonPressed]   (address 0x1000559ac  size 20  kind objc)
+  0559bc  tail [self validateButtonPressed:0]
+
+== -[ADPauseViewController quitButtonTouched:]   (address 0x1000559c0  size 368  kind objc)
+  0559e8  [ADMissionManager sharedMissionManager]
+  055a04  [[ADMissionManager sharedMissionManager] endGameplay]
+  055a5c  [self dismissViewControllerAnimated:0 completion:^{-[ADPauseViewController quitButtonTouched:]_block_invoke captures +0x20=self}]
+  055a74  [S3DEngine engine]
+  055a98  [[S3DEngine engine] playListWithName:@"headphonesTest"]
+  055ab4  [[[S3DEngine engine] playListWithName:@"headphonesTest"] deactivate]
+  055adc  return
+
+== -[ADPauseViewController quitButtonTouched:]_block_invoke   (address 0x100055b30  size 124  kind block)
+  055b50  [self gameplayViewController]
+  055b6c  [[self gameplayViewController] quitGameplayWithFail]
+  055b94  tail [self setGameplayViewController:0]
+
+== sub_100055bac   (address 0x100055bac  size 8  kind sub)
+
+== sub_100055bb4   (address 0x100055bb4  size 8  kind sub)
+  055bb8  return
+
+== -[ADPauseViewController validateButtonPressed:]   (address 0x100055bbc  size 276  kind objc)
+  055c14  [self dismissViewControllerAnimated:0 completion:^{-[ADPauseViewController validateButtonPressed:]_block_invoke captures +0x20=self}]
+  055c2c  [S3DEngine engine]
+  055c50  [[S3DEngine engine] playListWithName:@"headphonesTest"]
+  055c6c  [[[S3DEngine engine] playListWithName:@"headphonesTest"] deactivate]
+  055c94  return
+
+== -[ADPauseViewController validateButtonPressed:]_block_invoke   (address 0x100055cd0  size 96  kind block)
+  055cec  [self gameplayViewController]
+  055d08  [[self gameplayViewController] resumeGame]
+  055d18  return
+
+== sub_100055d30   (address 0x100055d30  size 8  kind sub)
+
+== sub_100055d38   (address 0x100055d38  size 8  kind sub)
+  055d3c  return
+
+== -[ADPauseViewController gameplayViewController]   (address 0x100055d40  size 32  kind objc)
+  055d5c  return
+
+== -[ADPauseViewController setGameplayViewController:]   (address 0x100055d60  size 20  kind objc)
+
+== -[ADPauseViewController .cxx_destruct]   (address 0x100055d74  size 16  kind objc)

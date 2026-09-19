@@ -1,0 +1,215 @@
+
+== -[Accessible_ADChallengeSelectorViewController initWithNibName:bundle:loadChallenge:worldName:]   (address 0x100053f18  size 644  kind objc)
+  053fa4  [super initWithNibName:arg1 bundle:arg2]
+  053fac  if (self == 0) goto loc_1000540cc
+  053fc8  self->challengeToLoad = arg3
+  053fe8  [NSBundle mainBundle]
+  054014  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  054044  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  054068  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg4]
+  054084  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg4] objectForKey:@"challenges"]
+  0540a8  [self setChallengeFiles:[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg4] objectForKey:@"challenges"]]
+loc_1000540cc:
+  05410c  return
+
+== -[Accessible_ADChallengeSelectorViewController viewDidLoad]   (address 0x10005419c  size 360  kind objc)
+  0541d4  [super viewDidLoad]
+  0541e4  if (self->challengeToLoad == 0) goto loc_100054250
+  0541f4  dispatch_time(0, 0xbebc200)
+  054244  dispatch_after(dispatch_time(0, 0xbebc200), __dispatch_main_q, ^{-[Accessible_ADChallengeSelectorViewController viewDidLoad]_block_invoke captures +0x20=self, +0x28=self, +0x30=Accessible_ADChallengeSelectorViewContro…})
+loc_100054250:
+  054264  [self statusBarViewController]
+  054284  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  054298  [self statusBarViewController]
+  0542b8  [[self statusBarViewController] setCurrenciesVisibility:0]
+  0542c8  if (self->challengeToLoad != 0) goto loc_1000542d0
+  0542cc  self->challengeToLoad = 0
+loc_1000542d0:
+  0542e0  return
+
+== -[Accessible_ADChallengeSelectorViewController viewDidLoad]_block_invoke   (address 0x100054304  size 244  kind block)
+  05432c  [UIApplication sharedApplication]
+  054348  [[UIApplication sharedApplication] delegate]
+  054374  [self dictionaryForChallengeWithName:self->challengeToLoad]
+  054398  [[[UIApplication sharedApplication] delegate] goToAccessibleChallengeOverviewWithDictionary:[self dictionaryForChallengeWithName:self->challengeToLoad]]
+  0543bc  return
+
+== sub_1000543f8   (address 0x1000543f8  size 8  kind sub)
+
+== sub_100054400   (address 0x100054400  size 8  kind sub)
+  054404  return
+
+== -[Accessible_ADChallengeSelectorViewController didReceiveMemoryWarning]   (address 0x100054408  size 60  kind objc)
+  054434  [super didReceiveMemoryWarning]
+  054440  return
+
+== -[Accessible_ADChallengeSelectorViewController tableView:heightForRowAtIndexPath:]   (address 0x100054444  size 140  kind objc)
+  054464  [ADGameParameters sharedParameters]
+  054480  [[ADGameParameters sharedParameters] isIphone]
+  0544b0  return
+
+== -[Accessible_ADChallengeSelectorViewController tableView:numberOfRowsInSection:]   (address 0x1000544d0  size 136  kind objc)
+  0544e8  if (self->challengeToLoad == 0) goto loc_1000544f4
+  0544f0  goto loc_10005452c
+loc_1000544f4:
+  054500  [self challengeFiles]
+  05451c  [[self challengeFiles] count]
+loc_10005452c:
+  054538  return
+
+== -[Accessible_ADChallengeSelectorViewController numberOfSectionsInTableView:]   (address 0x100054558  size 24  kind objc)
+  05456c  return
+
+== -[Accessible_ADChallengeSelectorViewController tableView:cellForRowAtIndexPath:]   (address 0x100054570  size 1008  kind objc)
+  0545c4  [arg1 dequeueReusableCellWithIdentifier:@"AccessibleAllLevelsCell"]
+  0545e0  if ([arg1 dequeueReusableCellWithIdentifier:@"AccessibleAllLevelsCell"] != 0) goto loc_10005461c
+  0545f8  [ADAccessibleTableCell alloc]
+  054614  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleAllLevelsCell"]
+loc_10005461c:
+  05462c  [self challengeFiles]
+  05464c  [arg2 row]
+  054664  [[self challengeFiles] objectAtIndex:[arg2 row]]
+  054690  [self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]]
+  0546b0  [x0 textLabel]
+  0546d8  [[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"title"]
+  054700  [[x0 textLabel] setText:[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"title"]]
+  054728  [x0 detailTextLabel]
+  05474c  [self statusForChallengeWithDict:[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]]]
+  054768  [[x0 detailTextLabel] setText:[self statusForChallengeWithDict:[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]]]]
+  054784  [x0 detailTextLabel]
+  0547a0  [[x0 detailTextLabel] text]
+  0547c4  [[[x0 detailTextLabel] text] isEqualToString:@"locked"]
+  0547dc  if (!([[[x0 detailTextLabel] text] isEqualToString:@"locked"] & 1)) goto loc_100054848
+  0547e8  [x0 detailTextLabel]
+  05480c  [UIColor redColor]
+  054830  [[x0 detailTextLabel] setHighlightedTextColor:[UIColor redColor]]
+  054844  goto loc_100054864
+loc_100054848:
+  054860  [x0 setAccessibilityHint:@"double tap to play this challenge"]
+loc_100054864:
+  054894  return
+
+== -[Accessible_ADChallengeSelectorViewController statusForChallengeWithDict:]   (address 0x100054960  size 1580  kind objc)
+  0549c4  [arg1 objectForKey:@"weapons"]
+  0549f4  [[arg1 objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16]
+  0549fc  if ([[arg1 objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16] == 0) goto loc_100054ad8
+  054a18  &@selector(hasUnlockedWeaponWithName:)
+loc_100054a28:
+loc_100054a2c:
+  054a38  if (x8 == x21) goto loc_100054a44
+  054a40  objc_enumerationMutation([arg1 objectForKey:@"weapons"])
+loc_100054a44:
+  054a58  [ADInventory sharedInventory]
+  054a74  [x0 objectForKey:@"name"]
+  054a90  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  054aa8  if (!([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]] & 1)) goto loc_100054d84
+  054ab4  if ((x20 + 1) <u [[arg1 objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16]) goto loc_100054a2c
+  054acc  [[arg1 objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16]
+  054ad4  if ([[arg1 objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16] != 0) goto loc_100054a28
+loc_100054ad8:
+  054b04  [arg1 objectForKey:@"challenges_requirement"]
+  054b24  [[arg1 objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16]
+  054b2c  if ([[arg1 objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16] == 0) goto loc_100054bd8
+  054b38  &@selector(sharedChallengeData)
+  054b48  &@selector(hasCompletedChallengeWithName:)
+loc_100054b54:
+loc_100054b58:
+  054b64  if (x8 == x20) goto loc_100054b70
+  054b6c  objc_enumerationMutation([arg1 objectForKey:@"challenges_requirement"])
+loc_100054b70:
+  054b80  [ADChallengeData sharedChallengeData]
+  054b98  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:x2]
+  054ba8  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:x2] & 1)) goto loc_100054e48
+  054bb4  if ((x28 + 1) <u [[arg1 objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16]) goto loc_100054b58
+  054bcc  [[arg1 objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16]
+  054bd4  if ([[arg1 objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16] != 0) goto loc_100054b54
+loc_100054bd8:
+  054bfc  [ADChallengeData sharedChallengeData]
+  054c1c  [arg1 objectForKey:@"challenge_id"]
+  054c40  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[arg1 objectForKey:@"challenge_id"]]
+  054c60  [ADChallengeData sharedChallengeData]
+  054c80  [arg1 objectForKey:@"challenge_id"]
+  054ca4  [[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[arg1 objectForKey:@"challenge_id"]]
+  054cc4  t1 = ([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[arg1 objectForKey:@"challenge_id"]] != 0 ? 1 + 1 : 1)
+  054ccc  t2 = ([[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[arg1 objectForKey:@"challenge_id"]] != 0 ? t1 : [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[arg1 objectForKey:@"challenge_id"]])
+  054cd8  [ADChallengeData sharedChallengeData]
+  054cf8  [arg1 objectForKey:@"challenge_id"]
+  054d1c  [[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[arg1 objectForKey:@"challenge_id"]]
+  054d34  t3 = ([[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[arg1 objectForKey:@"challenge_id"]] + t2)
+  054d70  [NSString stringWithFormat:@"%i star%@ unlocked", t3, (t3 > 1 ? @"s" : @"")]
+  054d80  goto loc_100054e64
+loc_100054d84:
+  054da0  [ADWeaponManager sharedWeaponManager]
+  054dc0  [x0 objectForKey:@"name"]
+  054de8  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[x0 objectForKey:@"name"]]
+  054e14  [NSString stringWithFormat:@"%@ required, double tap to go to armory", [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[x0 objectForK…]
+  054e44  goto loc_100054e64
+loc_100054e48:
+loc_100054e64:
+  054ea4  return
+
+== -[Accessible_ADChallengeSelectorViewController tableView:didSelectRowAtIndexPath:]   (address 0x100054f8c  size 1364  kind objc)
+  054fdc  [self challengeFiles]
+  054ffc  [arg2 row]
+  055014  [[self challengeFiles] objectAtIndex:[arg2 row]]
+  055048  [self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]]
+  055080  [[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"weapons"]
+  0550b4  [[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16]
+  0550bc  if ([[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16] == 0) goto loc_100055194
+  0550d8  &@selector(hasUnlockedWeaponWithName:)
+loc_1000550e8:
+loc_1000550ec:
+  0550f8  if (x8 == x22) goto loc_100055104
+  055100  objc_enumerationMutation([[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"weapons"])
+loc_100055104:
+  055118  [ADInventory sharedInventory]
+  055134  [x0 objectForKey:@"name"]
+  055150  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  055168  if (!([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]] & 1)) goto loc_100055314
+  055174  if ((x24 + 1) <u [[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"weapons"] countB…) goto loc_1000550ec
+  055188  [[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16]
+  055190  if ([[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16] != 0) goto loc_1000550e8
+loc_100055194:
+  0551c0  [[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"challenges_requirement"]
+  0551e0  [[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16]
+  0551e8  if ([[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16] == 0) goto loc_100055294
+  0551f4  &@selector(sharedChallengeData)
+  055204  &@selector(hasCompletedChallengeWithName:)
+loc_100055210:
+loc_100055214:
+  055220  if (x8 == x23) goto loc_10005522c
+  055228  objc_enumerationMutation([[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"challenges_requirement"])
+loc_10005522c:
+  05523c  [ADChallengeData sharedChallengeData]
+  055254  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:x2]
+  055264  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:x2] & 1)) goto loc_1000553a0
+  055270  if ((x27 + 1) <u [[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"challenges_requi…) goto loc_100055214
+  055288  [[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16]
+  055290  if ([[[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16] != 0) goto loc_100055210
+loc_100055294:
+  0552b0  [UIApplication sharedApplication]
+  0552cc  [[UIApplication sharedApplication] delegate]
+  0552fc  [[[UIApplication sharedApplication] delegate] goToAccessibleChallengeOverviewWithDictionary:[self dictionaryForChallengeWithName:[[self challengeFiles] objectAtIndex:[arg2 row]]]]
+  055310  goto loc_1000553b8
+loc_100055314:
+  055328  [UIApplication sharedApplication]
+  055348  [[UIApplication sharedApplication] delegate]
+  055374  [[[UIApplication sharedApplication] delegate] goToArmoryFromVC:self EnableLoadOut:0]
+  05539c  goto loc_1000553b8
+loc_1000553a0:
+loc_1000553b8:
+  0553f8  return
+
+== -[Accessible_ADChallengeSelectorViewController viewWillLayoutSubviews]   (address 0x1000554e0  size 92  kind objc)
+  0554f8  [self tableView]
+  055514  [[self tableView] reloadData]
+  055524  return
+
+== -[Accessible_ADChallengeSelectorViewController tableView]   (address 0x10005553c  size 16  kind objc)
+  055548  return
+
+== -[Accessible_ADChallengeSelectorViewController setTableView:]   (address 0x10005554c  size 56  kind objc)
+  055570  self->_tableView = arg1
+  055580  return
+
+== -[Accessible_ADChallengeSelectorViewController .cxx_destruct]   (address 0x100055584  size 64  kind objc)

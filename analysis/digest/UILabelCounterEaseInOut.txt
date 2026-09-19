@@ -1,0 +1,13 @@
+
+== -[UILabelCounterEaseInOut update:]   (address 0x10007cbcc  size 196  kind objc)
+  07cbf8  [self rate]
+  07cc08  if ((arg1 + arg1) >= (or unordered) 1) goto loc_10007cc30
+  07cc14  [self rate]
+  07cc20  powf((arg1 + arg1), [self rate])
+  07cc2c  goto loc_10007cc7c
+loc_10007cc30:
+  07cc5c  [self rate]
+  07cc68  powf(((arg1 + arg1) + -2), [self rate])
+  07cc74  t1 = ((float)(((((int)[self rate] << 1) & 2) - 1) << 1) + powf(((arg1 + arg1) + -2), [self rate]))
+loc_10007cc7c:
+  07cc8c  return

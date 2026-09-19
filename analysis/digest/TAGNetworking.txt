@@ -1,0 +1,69 @@
+
+== -[TAGNetworking init]   (address 0x1001142c0  size 440  kind objc)
+  1142f8  [super init]
+  114300  if (self == 0) goto loc_100114428
+  11431c  [self setMaxConcurrentOperationCount:1]
+  114330  self->_isReachable = 1
+  114348  [TAGNetReachability alloc]
+  114364  [[TAGNetReachability alloc] initWithHostName:@"google.com"]
+  114374  self->_reachability = [[TAGNetReachability alloc] initWithHostName:@"google.com"]
+  1143fc  [self->_reachability setStatusChange:^{-[TAGNetworking init]_block_invoke_3 captures +0x38=0x42000000, +0x40=&-[TAGNetworking init]_block_invoke, +0x48=&-[TAGNetworking init]_block_invoke_2}]
+  114410  [self->_reachability start]
+  11441c  Block_object_dispose(&sp[0x30], 8)
+loc_100114428:
+  11443c  return
+  114458  Block_object_dispose(&sp[0x30], 8)
+
+== -[TAGNetworking init]_block_invoke   (address 0x100114478  size 12  kind block)
+  114480  tail objc_moveWeak((block + 40), (blockarg1 + 40), blockarg2, blockarg3)
+
+== -[TAGNetworking init]_block_invoke_2   (address 0x100114484  size 8  kind block)
+
+== -[TAGNetworking init]_block_invoke_3   (address 0x10011448c  size 96  kind block)
+  1144c4  [objc_loadWeakRetained((block[+0x20][+0x8] + 40), blockarg1, blockarg2, blockarg3) setIsReachable:(blockarg1 != 1)]
+  1144d4  return
+
+== sub_1001144ec   (address 0x1001144ec  size 16  kind sub)
+  1144f8  tail Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+
+== sub_1001144fc   (address 0x1001144fc  size 12  kind sub)
+  114504  tail Block_object_dispose(a0[+0x20], 8, a2, a3)
+
+== -[TAGNetworking dealloc]   (address 0x100114508  size 208  kind objc)
+  11452c  [self reachability]
+  114548  [[self reachability] stop]
+  114574  [super dealloc]
+  114588  return
+  1145c8  [super dealloc]
+  1145d4  objc_terminate()
+
+== -[TAGNetworking sendURL:completion:]   (address 0x1001145d8  size 260  kind objc)
+  11461c  [self requestWithURL:arg1]
+  114654  [TAGNetOperation operationWithRequest:[self requestWithURL:arg1] andCompletion:arg2]
+  114678  [self addOperation:[TAGNetOperation operationWithRequest:[self requestWithURL:arg1] andCompletion:arg2]]
+  1146a4  return
+
+== -[TAGNetworking requestWithURL:]   (address 0x1001146dc  size 284  kind objc)
+  11470c  [NSMutableURLRequest alloc]
+  114720  [[NSMutableURLRequest alloc] initWithURL:arg1]
+  114740  [[[NSMutableURLRequest alloc] initWithURL:arg1] setHTTPMethod:@"GET"]
+  114758  [[[NSMutableURLRequest alloc] initWithURL:arg1] setCachePolicy:4]
+  114770  [TAGDispatchUtil userAgentString]
+  11479c  [[[NSMutableURLRequest alloc] initWithURL:arg1] setValue:[TAGDispatchUtil userAgentString] forHTTPHeaderField:@"User-Agent"]
+  1147c0  return
+
+== -[TAGNetworking isReachable]   (address 0x1001147f8  size 16  kind objc)
+  114804  return
+
+== -[TAGNetworking setIsReachable:]   (address 0x100114808  size 16  kind objc)
+  114810  self->_isReachable = arg1
+  114814  return
+
+== -[TAGNetworking reachability]   (address 0x100114818  size 16  kind objc)
+  114824  return
+
+== -[TAGNetworking setReachability:]   (address 0x100114828  size 56  kind objc)
+  11484c  self->_reachability = arg1
+  11485c  return
+
+== -[TAGNetworking .cxx_destruct]   (address 0x100114860  size 20  kind objc)

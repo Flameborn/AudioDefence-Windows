@@ -1,0 +1,25 @@
+// ADStatusBarViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #88 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #55 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #71 UIView  
+    #57 UIImageView  UserInteractionDisabled=False Image='darken.png'
+    #12 UIView (custom class ADSlidingView)  
+      #32 UIImageView  UserInteractionDisabled=False Image='topmenu_centre.png'
+      #108 UIImageView  UserInteractionDisabled=False Image='icon_currency_small.png'
+      #86 UILabel  UserInteractionDisabled=False Text='Label'
+      #20 UIImageView  UserInteractionDisabled=False Image='icon_diamond_small.png'
+      #69 UILabel  UserInteractionDisabled=False Text='Label'
+    #100 UIButton (custom class ADButtonWithFont)  title[0]='BACK'
+    #85 UIButton (custom class ADButtonWithFont)  title[0]='ARMORY'
+
+CONNECTIONS
+  action  armoryButtonPressed:                      #85 ADButtonWithFont --(events 0x40)--> #88 UIProxyObject
+  outlet  armoryButton                              #88 UIProxyObject --> #85 ADButtonWithFont
+  outlet  backButton                                #88 UIProxyObject --> #100 ADButtonWithFont
+  outlet  coinsLabel                                #88 UIProxyObject --> #86 UILabel Text='Label'
+  outlet  currenciesView                            #88 UIProxyObject --> #12 ADSlidingView
+  outlet  diamondsLabel                             #88 UIProxyObject --> #69 UILabel Text='Label'
+  outlet  view                                      #88 UIProxyObject --> #71 UIView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,18 @@
+// Accessible_ADChallengeOverviewViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #10 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #31 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #35 UIView  
+    #3 UITableView  
+    #14 UIButton (custom class ADButtonWithFont)  title[0]='PLAY'
+
+CONNECTIONS
+  action  playButtonPressed:                        #14 ADButtonWithFont --(events 0x40)--> #10 UIProxyObject
+  outlet  dataSource                                #3 UITableView --> #10 UIProxyObject
+  outlet  delegate                                  #3 UITableView --> #10 UIProxyObject
+  outlet  firstAccessibleElement                    #10 UIProxyObject --> #3 UITableView
+  outlet  playButton                                #10 UIProxyObject --> #14 ADButtonWithFont
+  outlet  tableView                                 #10 UIProxyObject --> #3 UITableView
+  outlet  view                                      #10 UIProxyObject --> #35 UIView
+
+ACCESSIBILITY CONFIGURATIONS

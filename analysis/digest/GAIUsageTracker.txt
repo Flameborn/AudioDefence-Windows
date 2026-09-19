@@ -1,0 +1,75 @@
+
+== +[GAIUsageTracker initialize]   (address 0x10012a7a4  size 916  kind objc)
+  12a7d0  [GAIUsageTracker class]
+  12a7d8  if ([GAIUsageTracker class] != GAIUsageTracker) goto loc_10012ab24
+  12a7f0  [NSMutableString string]
+  12a808  store g_10042dce0 = [NSMutableString string]
+  12a828  NSStringFromSelector(@selector(createTransactionWithId:affiliation:revenue:tax:shipping:currencyCode:))
+  12a844  NSStringFromSelector(@selector(createItemWithTransactionId:name:sku:category:price:quantity:currencyCode:))
+  12aad4  [NSDictionary dictionaryWithObjectsAndKeys:@"A", @"set:forKey:", @"B", @"setAll:", @"C", @"dictionaryGet:", @"D", @"setCampaignParametersFromUrl:", @"J", @"get:", @"K", @"set:value:", @"L", @"send:", @"e", @"setTrackUncaughtExceptions:", @"f", @"trackUncaughtExceptions", @"g", NSStringFromSelector(@selector(createTransactionWithId:affil…, @"h", @"createExceptionWithDescription:withFatal:", @"j", @"createTimingWithCategory:interval:name:label:", @"k"]
+  12aae4  store g_10042dce8 = [NSDictionary dictionaryWithObjectsAndKeys:@"A", @"set:forKey:", @"B", @"setAll:", @"C", @"dictionaryGet:", @"D", @"setCampaignParametersFromUrl:", @"J", @"get:", @"K", @"set:value:", @"L", @"send:", @"e", @"setTrackUncaughtExceptions:", @"f", @"trackUncaughtExceptions", @"g", NSStringFromSelector(@selector(createTransactionWithId:affil…, @"h", @"createExceptionWithDescription:withFatal:", @"j", @"createTimingWithCategory:interval:name:label:", @"k"]
+  12ab1c  CFDictionaryCreateMutable(_kCFAllocatorDefault[+0x0], 0, 0, _kCFTypeDictionaryValueCallBacks)
+  12ab20  store g_10042dcf0 = CFDictionaryCreateMutable(_kCFAllocatorDefault[+0x0], 0, 0, _kCFTypeDictionaryValueCallBacks)
+loc_10012ab24:
+  12ab34  return
+
+== -[GAIUsageTracker dealloc]   (address 0x10012ab38  size 92  kind objc)
+  12ab5c  CFDictionaryRemoveValue(g_10042dcf0, self)
+  12ab80  [super dealloc]
+  12ab90  return
+
+== +[GAIUsageTracker trackTarget:action:]   (address 0x10012ab94  size 284  kind objc)
+  12abc8  NSStringFromSelector(arg2)
+  12abec  [g_10042dce8 objectForKeyedSubscript:NSStringFromSelector(arg2)]
+  12ac04  if ([g_10042dce8 objectForKeyedSubscript:NSStringFromSelector(arg2)] == 0) goto loc_10012ac90
+  12ac10  CFDictionaryGetValue(g_10042dcf0, arg1)
+  12ac20  if (CFDictionaryGetValue(g_10042dcf0, arg1) != 0) goto loc_10012ac58
+  12ac38  [NSMutableSet set]
+  12ac54  CFDictionarySetValue(g_10042dcf0, arg1, [NSMutableSet set])
+loc_10012ac58:
+  12ac6c  [x0 addObject:[g_10042dce8 objectForKeyedSubscript:NSStringFromSelector(arg2)]]
+  12ac84  [g_10042dce0 appendString:[g_10042dce8 objectForKeyedSubscript:NSStringFromSelector(arg2)]]
+loc_10012ac90:
+  12acac  return
+
+== +[GAIUsageTracker getUsageClearingTarget:]   (address 0x10012acb0  size 440  kind objc)
+  12ace4  CFDictionaryGetValue(g_10042dcf0, arg1)
+  12acf8  [CFDictionaryGetValue(g_10042dcf0, arg1) allObjects]
+  12ad10  CFDictionaryRemoveValue(g_10042dcf0, arg1)
+  12ad14  if ([CFDictionaryGetValue(g_10042dcf0, arg1) allObjects] != 0) goto loc_10012ad48
+  12ad2c  [NSArray array]
+loc_10012ad48:
+  12ad4c  if (arg1 == GAIUsageTracker) goto loc_10012ade8
+  12ad58  CFDictionaryGetValue(g_10042dcf0, GAIUsageTracker)
+  12ad60  [CFDictionaryGetValue(g_10042dcf0, GAIUsageTracker) allObjects]
+  12ad78  CFDictionaryRemoveValue(g_10042dcf0, GAIUsageTracker)
+  12ad7c  if ([CFDictionaryGetValue(g_10042dcf0, GAIUsageTracker) allObjects] != 0) goto loc_10012adb0
+  12ad94  [NSArray array]
+loc_10012adb0:
+  12adc4  [x0 arrayByAddingObjectsFromArray:x2]
+loc_10012ade8:
+  12ae04  [x0 sortedArrayUsingSelector:@selector(compare:)]
+  12ae28  [[x0 sortedArrayUsingSelector:@selector(compare:)] componentsJoinedByString:@""]
+  12ae64  return
+
+== +[GAIUsageTracker trackAction:]   (address 0x10012ae68  size 28  kind objc)
+  12ae80  tail [GAIUsageTracker trackTarget:GAIUsageTracker action:arg1]
+
+== +[GAIUsageTracker getUsageSequence]   (address 0x10012ae84  size 208  kind objc)
+  12aebc  [NSMutableString string]
+  12aecc  store g_10042dce0 = [NSMutableString string]
+  12aee8  [g_10042dce0 length]
+  12aeec  if ([g_10042dce0 length] == 0) goto loc_10012af20
+  12af08  [@"." stringByAppendingString:g_10042dce0]
+  12af1c  goto loc_10012af30
+loc_10012af20:
+loc_10012af30:
+  12af50  return
+
+== -[GAIUsageTracker getUsage]   (address 0x10012af54  size 60  kind objc)
+  12af70  [self class]
+  12af8c  tail [[self class] getUsageClearingTarget:self]
+
+== -[GAIUsageTracker trackAction:]   (address 0x10012af90  size 68  kind objc)
+  12afb0  [self class]
+  12afd0  tail [[self class] trackTarget:self action:arg1]

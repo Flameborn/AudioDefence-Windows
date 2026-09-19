@@ -1,0 +1,395 @@
+[
+ {
+  "reward": 50,
+  "singleLife": true,
+  "description": "Kill 3 Zombies in one game.",
+  "objective": 3,
+  "type": "kill",
+  "skipCost": 1
+ },
+ {
+  "reward": 50,
+  "weapon": "wok",
+  "singleLife": true,
+  "description": "Kill 1 Zombie with the Wok.",
+  "objective": 1,
+  "type": "kill",
+  "skipCost": 1
+ },
+ {
+  "reward": 150,
+  "description": "Survive a total of 5 minutes.",
+  "objective": 300,
+  "type": "survive",
+  "skipCost": 1
+ },
+ {
+  "reward": 100,
+  "singleLife": true,
+  "description": "Kill 5 Zombies.",
+  "objective": 5,
+  "type": "kill",
+  "skipCost": 1
+ },
+ {
+  "reward": 100,
+  "description": "Upgrade a weapon at the Armory.",
+  "objective": 1,
+  "type": "upgrade",
+  "skipCost": 5
+ },
+ {
+  "reward": 50,
+  "weapon": "microsmg",
+  "description": "Kill 25 Zombies with the Micro SMG.",
+  "objective": 25,
+  "type": "kill",
+  "skipCost": 3
+ },
+ {
+  "reward": 10,
+  "skipCost": 1,
+  "singleLife": true,
+  "description": "Kill 5 Zombies in a game with 50% accuracy or more.",
+  "objective": 50,
+  "type": "accuracy",
+  "objective_Zombie": 5
+ },
+ {
+  "reward": 25,
+  "description": "Shoot 100 bullets.",
+  "objective": 100,
+  "type": "shoot",
+  "skipCost": 1
+ },
+ {
+  "reward": 50,
+  "description": "Die 3 times.",
+  "objective": 3,
+  "type": "die",
+  "skipCost": 1
+ },
+ {
+  "reward": 10,
+  "singleLife": true,
+  "description": "Survive 60 seconds or more in one game.",
+  "objective": 60,
+  "type": "survive",
+  "skipCost": 1
+ },
+ {
+  "reward": 20,
+  "singleLife": true,
+  "description": "Kill 10 Zombies in one game.",
+  "objective": 10,
+  "type": "kill",
+  "skipCost": 5
+ },
+ {
+  "reward": 25,
+  "weapon": "sawnoff",
+  "description": "Kill 15 Zombies with the Sawn-off Shotgun.",
+  "objective": 15,
+  "type": "kill",
+  "skipCost": 3
+ },
+ {
+  "reward": 50,
+  "skipCost": 3,
+  "description": "Kill 5 Chainsaws.",
+  "objective": 5,
+  "type": "kill",
+  "enemy": "Chainsaw"
+ },
+ {
+  "reward": 50,
+  "weapon": "wok",
+  "description": "Kill 5 Zombies with the Wok.",
+  "objective": 5,
+  "type": "kill",
+  "skipCost": 3
+ },
+ {
+  "reward": 20,
+  "description": "Kill 100 Zombies.",
+  "objective": 100,
+  "type": "kill",
+  "skipCost": 5
+ },
+ {
+  "reward": 100,
+  "description": "Upgrade a weapon at the Armory.",
+  "objective": 1,
+  "type": "upgrade",
+  "skipCost": 5
+ },
+ {
+  "reward": 10,
+  "singleLife": true,
+  "description": "Survive 90 seconds or more in one game.",
+  "objective": 90,
+  "type": "survive",
+  "skipCost": 1
+ },
+ {
+  "reward": 100,
+  "skipCost": 3,
+  "description": "Kill 10 Farties.",
+  "objective": 10,
+  "type": "kill",
+  "enemy": "Farty"
+ },
+ {
+  "reward": 10,
+  "singleLife": true,
+  "description": "Kill 25 Zombies in one game.",
+  "objective": 25,
+  "type": "kill",
+  "skipCost": 1
+ },
+ {
+  "reward": 100,
+  "weapon": "sawnoff",
+  "singleLife": true,
+  "description": "Kill 5 Zombies with the Sawn-off Shotgun in a single game.",
+  "objective": 5,
+  "type": "kill",
+  "skipCost": 5
+ },
+ {
+  "reward": 100,
+  "skipCost": 3,
+  "weapon": "wok",
+  "singleLife": true,
+  "description": "Kill 1 Chainsaw with the Wok.",
+  "objective": 1,
+  "type": "kill",
+  "enemy": "Chainsaw"
+ },
+ {
+  "reward": 50,
+  "weapon": "microsmg",
+  "description": "Kill 50 Zombies with the Micro SMG.",
+  "objective": 50,
+  "type": "kill",
+  "skipCost": 3
+ },
+ {
+  "reward": 50,
+  "skipCost": 3,
+  "singleLife": true,
+  "description": "Kill 5 Clowns.",
+  "objective": 1,
+  "type": "kill",
+  "enemy": "Clown"
+ },
+ {
+  "reward": 150,
+  "description": "Shoot 250 bullets.",
+  "objective": 250,
+  "type": "shoot",
+  "skipCost": 3
+ },
+ {
+  "reward": 150,
+  "skipCost": 3,
+  "weapon": "wok",
+  "singleLife": true,
+  "description": "Kill 1 Snufflehog with the Wok.",
+  "objective": 1,
+  "type": "kill",
+  "enemy": "Snufflehog"
+ },
+ {
+  "reward": 100,
+  "description": "Die 10 times.",
+  "objective": 10,
+  "type": "die",
+  "skipCost": 5
+ },
+ {
+  "reward": 100,
+  "skipCost": 3,
+  "singleLife": true,
+  "description": "Kill 50 Rejects.",
+  "objective": 50,
+  "type": "kill",
+  "enemy": "Reject"
+ },
+ {
+  "reward": 250,
+  "description": "Survive a total of 10 minutes.",
+  "objective": 600,
+  "type": "survive",
+  "skipCost": 1
+ },
+ {
+  "reward": 100,
+  "weapon": "hunting",
+  "description": "Kill 25 Zombies with the Hunting Rifle.",
+  "objective": 25,
+  "type": "kill",
+  "skipCost": 3
+ },
+ {
+  "reward": 100,
+  "skipCost": 5,
+  "description": "Kill 10 Snufflehogs.",
+  "objective": 10,
+  "type": "kill",
+  "enemy": "Snufflehog"
+ },
+ {
+  "reward": 50,
+  "singleLife": true,
+  "description": "Survive 2 minutes or more in one game.",
+  "objective": 120,
+  "type": "survive",
+  "skipCost": 3
+ },
+ {
+  "reward": 20,
+  "description": "Upgrade a weapon at the Armory.",
+  "objective": 1,
+  "type": "upgrade",
+  "skipCost": 1
+ },
+ {
+  "reward": 100,
+  "skipCost": 5,
+  "description": "Kill 5 Hulks.",
+  "objective": 5,
+  "type": "kill",
+  "enemy": "Hulk"
+ },
+ {
+  "reward": 150,
+  "weapon": "sawnoff",
+  "description": "Kill 50 Zombies with the Sawn-off Shotgun.",
+  "objective": 50,
+  "type": "kill",
+  "skipCost": 5
+ },
+ {
+  "reward": 20,
+  "description": "Kill 250 Zombies.",
+  "objective": 250,
+  "type": "kill",
+  "skipCost": 5
+ },
+ {
+  "reward": 1000,
+  "description": "Survive a total of 15 minutes.",
+  "objective": 900,
+  "type": "survive",
+  "skipCost": 5
+ },
+ {
+  "reward": 20,
+  "singleLife": true,
+  "description": "Kill 50 Zombies in one game.",
+  "objective": 50,
+  "type": "kill",
+  "skipCost": 5
+ },
+ {
+  "reward": 250,
+  "description": "Shoot 500 bullets.",
+  "objective": 500,
+  "type": "shoot",
+  "skipCost": 5
+ },
+ {
+  "reward": 25,
+  "weapon": "wok",
+  "description": "Kill 25 Zombies with the wok.",
+  "objective": 25,
+  "type": "kill",
+  "skipCost": 5
+ },
+ {
+  "reward": 200,
+  "skipCost": 3,
+  "weapon": "wok",
+  "description": "Kill 1 Hulk with the Wok.",
+  "objective": 1,
+  "type": "kill",
+  "enemy": "Hulk"
+ },
+ {
+  "reward": 100,
+  "weapon": "tactical",
+  "description": "Kill 50 Zombies with the Tactical Rifle.",
+  "objective": 50,
+  "type": "kill",
+  "skipCost": 3
+ },
+ {
+  "reward": 50,
+  "skipCost": 1,
+  "description": "Kill 1 Berserk.",
+  "objective": 1,
+  "type": "kill",
+  "enemy": "Berserk"
+ },
+ {
+  "reward": 150,
+  "description": "Die 15 times.",
+  "objective": 15,
+  "type": "die",
+  "skipCost": 5
+ },
+ {
+  "reward": 100,
+  "skipCost": 3,
+  "description": "Kill 5 Whisperers.",
+  "objective": 5,
+  "type": "kill",
+  "enemy": "QuietZombie"
+ },
+ {
+  "reward": 20,
+  "description": "Upgrade a weapon at the Armory.",
+  "objective": 1,
+  "type": "upgrade",
+  "skipCost": 1
+ },
+ {
+  "reward": 15,
+  "weapon": "banjo",
+  "description": "Kill 15 Zombies with the Banjo.",
+  "objective": 15,
+  "type": "kill",
+  "skipCost": 1
+ },
+ {
+  "reward": 200,
+  "skipCost": 3,
+  "weapon": "bajo",
+  "description": "Kill 1 Whisperer with the Banjo.",
+  "objective": 1,
+  "type": "kill",
+  "enemy": "QuietZombie"
+ },
+ {
+  "reward": 2500,
+  "description": "Survive a total of 30 minutes.",
+  "objective": 3000,
+  "type": "survive",
+  "skipCost": 10
+ },
+ {
+  "reward": 2500,
+  "description": "Kill 1000 Zombies.",
+  "objective": 1000,
+  "type": "kill",
+  "skipCost": 10
+ },
+ {
+  "reward": 2500.0,
+  "description": "Shoot 10,000 bullets.",
+  "objective": 10000.0,
+  "type": "shoot",
+  "skipCost": 10
+ }
+]

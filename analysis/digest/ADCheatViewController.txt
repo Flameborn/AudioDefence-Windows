@@ -1,0 +1,152 @@
+
+== -[ADCheatViewController initWithNibName:bundle:]   (address 0x1000c8134  size 140  kind objc)
+  0c8184  [super initWithNibName:arg1 bundle:arg2]
+  0c81a8  return
+
+== -[ADCheatViewController viewDidLoad]   (address 0x1000c81c0  size 856  kind objc)
+  0c8200  [super viewDidLoad]
+  0c8214  [self killsLabel]
+  0c823c  [self killsSlider]
+  0c825c  [[self killsSlider] value]
+  0c8284  [NSString stringWithFormat:@"%i", (int)s0]
+  0c82ac  [[self killsLabel] setText:[NSString stringWithFormat:@"%i", (int)s0]]
+  0c82d8  [self coinsLabel]
+  0c82fc  [self coinsSlider]
+  0c8310  [[self coinsSlider] value]
+  0c832c  [NSString stringWithFormat:@"%i", (int)s0]
+  0c8348  [[self coinsLabel] setText:[NSString stringWithFormat:@"%i", (int)s0]]
+  0c8374  [self diamondsLabel]
+  0c8398  [self diamondsSlider]
+  0c83ac  [[self diamondsSlider] value]
+  0c83c8  [NSString stringWithFormat:@"%i", (int)s0]
+  0c83e4  [[self diamondsLabel] setText:[NSString stringWithFormat:@"%i", (int)s0]]
+  0c8410  [self debugMapSwitch]
+  0c8434  [ADGameParameters sharedParameters]
+  0c8450  [[ADGameParameters sharedParameters] debugMapVisible]
+  0c8468  [[self debugMapSwitch] setOn:[[ADGameParameters sharedParameters] debugMapVisible]]
+  0c8494  return
+
+== -[ADCheatViewController didReceiveMemoryWarning]   (address 0x1000c8518  size 60  kind objc)
+  0c8544  [super didReceiveMemoryWarning]
+  0c8550  return
+
+== -[ADCheatViewController killsSliderValueChanged:]   (address 0x1000c8554  size 284  kind objc)
+  0c8578  [self killsLabel]
+  0c85a0  [self killsSlider]
+  0c85bc  [[self killsSlider] value]
+  0c85e0  [NSString stringWithFormat:@"%i", (int)s0]
+  0c8604  [[self killsLabel] setText:[NSString stringWithFormat:@"%i", (int)s0]]
+  0c862c  return
+
+== -[ADCheatViewController coinsSliderValueChanged:]   (address 0x1000c8670  size 284  kind objc)
+  0c8694  [self coinsLabel]
+  0c86bc  [self coinsSlider]
+  0c86d8  [[self coinsSlider] value]
+  0c86fc  [NSString stringWithFormat:@"%i", (int)s0]
+  0c8720  [[self coinsLabel] setText:[NSString stringWithFormat:@"%i", (int)s0]]
+  0c8748  return
+
+== -[ADCheatViewController diamondsSliderValueChanged:]   (address 0x1000c878c  size 284  kind objc)
+  0c87b0  [self diamondsLabel]
+  0c87d8  [self diamondsSlider]
+  0c87f4  [[self diamondsSlider] value]
+  0c8818  [NSString stringWithFormat:@"%i", (int)s0]
+  0c883c  [[self diamondsLabel] setText:[NSString stringWithFormat:@"%i", (int)s0]]
+  0c8864  return
+
+== -[ADCheatViewController killsButtonTouched:]   (address 0x1000c88a8  size 256  kind objc)
+  0c88d4  [ADInGameStats singleton]
+  0c88f4  [self killsSlider]
+  0c8910  [[self killsSlider] value]
+  0c8928  [[ADInGameStats singleton] cheatKillCount:(int)s0]
+  0c8944  [ADInGameStats singleton]
+  0c8960  [[ADInGameStats singleton] endLevel]
+  0c8974  return
+
+== -[ADCheatViewController coinsButtonTouched:]   (address 0x1000c89a8  size 376  kind objc)
+  0c89d8  [ADInventory sharedInventory]
+  0c89fc  [self coinsSlider]
+  0c8a1c  [[self coinsSlider] value]
+  0c8a34  [[ADInventory sharedInventory] coins]
+  0c8a50  [[ADInventory sharedInventory] setCoins:([[ADInventory sharedInventory] coins] + (int)s8)]
+  0c8a74  [self statusBarViewController]
+  0c8a8c  [self coinsSlider]
+  0c8aa0  [[self coinsSlider] value]
+  0c8ab8  [[self statusBarViewController] animateCoins:(int)s0]
+  0c8adc  return
+
+== -[ADCheatViewController diamondsButtonTouched:]   (address 0x1000c8b20  size 376  kind objc)
+  0c8b50  [ADInventory sharedInventory]
+  0c8b74  [self diamondsSlider]
+  0c8b94  [[self diamondsSlider] value]
+  0c8bac  [[ADInventory sharedInventory] diamonds]
+  0c8bc8  [[ADInventory sharedInventory] setDiamonds:([[ADInventory sharedInventory] diamonds] + (int)s8)]
+  0c8bec  [self statusBarViewController]
+  0c8c04  [self diamondsSlider]
+  0c8c18  [[self diamondsSlider] value]
+  0c8c30  [[self statusBarViewController] animateDiamonds:(int)s0]
+  0c8c54  return
+
+== -[ADCheatViewController backButtonTouched:]   (address 0x1000c8c98  size 44  kind objc)
+  0c8cb8  [self dismissViewControllerAnimated:0 completion:^{-[ADCheatViewController backButtonTouched:]_block_invoke}]
+  0c8cc0  return
+
+== -[ADCheatViewController backButtonTouched:]_block_invoke   (address 0x1000c8cc4  size 4  kind block)
+  0c8cc4  return
+
+== -[ADCheatViewController debugMapValueChanged:]   (address 0x1000c8cc8  size 172  kind objc)
+  0c8cf8  [ADGameParameters sharedParameters]
+  0c8d18  [arg1 isOn]
+  0c8d30  [[ADGameParameters sharedParameters] setDebugMapVisible:[arg1 isOn]]
+  0c8d4c  return
+
+== -[ADCheatViewController debugMapSwitch]   (address 0x1000c8d74  size 16  kind objc)
+  0c8d80  return
+
+== -[ADCheatViewController setDebugMapSwitch:]   (address 0x1000c8d84  size 56  kind objc)
+  0c8da8  self->_debugMapSwitch = arg1
+  0c8db8  return
+
+== -[ADCheatViewController killsSlider]   (address 0x1000c8dbc  size 16  kind objc)
+  0c8dc8  return
+
+== -[ADCheatViewController setKillsSlider:]   (address 0x1000c8dcc  size 56  kind objc)
+  0c8df0  self->_killsSlider = arg1
+  0c8e00  return
+
+== -[ADCheatViewController coinsSlider]   (address 0x1000c8e04  size 16  kind objc)
+  0c8e10  return
+
+== -[ADCheatViewController setCoinsSlider:]   (address 0x1000c8e14  size 56  kind objc)
+  0c8e38  self->_coinsSlider = arg1
+  0c8e48  return
+
+== -[ADCheatViewController diamondsSlider]   (address 0x1000c8e4c  size 16  kind objc)
+  0c8e58  return
+
+== -[ADCheatViewController setDiamondsSlider:]   (address 0x1000c8e5c  size 56  kind objc)
+  0c8e80  self->_diamondsSlider = arg1
+  0c8e90  return
+
+== -[ADCheatViewController killsLabel]   (address 0x1000c8e94  size 16  kind objc)
+  0c8ea0  return
+
+== -[ADCheatViewController setKillsLabel:]   (address 0x1000c8ea4  size 56  kind objc)
+  0c8ec8  self->_killsLabel = arg1
+  0c8ed8  return
+
+== -[ADCheatViewController coinsLabel]   (address 0x1000c8edc  size 16  kind objc)
+  0c8ee8  return
+
+== -[ADCheatViewController setCoinsLabel:]   (address 0x1000c8eec  size 56  kind objc)
+  0c8f10  self->_coinsLabel = arg1
+  0c8f20  return
+
+== -[ADCheatViewController diamondsLabel]   (address 0x1000c8f24  size 16  kind objc)
+  0c8f30  return
+
+== -[ADCheatViewController setDiamondsLabel:]   (address 0x1000c8f34  size 56  kind objc)
+  0c8f58  self->_diamondsLabel = arg1
+  0c8f68  return
+
+== -[ADCheatViewController .cxx_destruct]   (address 0x1000c8f6c  size 164  kind objc)

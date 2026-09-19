@@ -1,0 +1,41 @@
+{
+ "icon_title": "21",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 80
+ },
+ "title": "No Time for Tourism!",
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "tip": "In the the Mayan Ruin Arena, zombies can appear from any direction!",
+ "mission_star": {
+  "reward": 200
+ },
+ "bricks": [
+  "maya_1_brick_1",
+  "maya_1_brick_2",
+  "maya_1_brick_3"
+ ],
+ "icon": "Challenge_icon_01",
+ "challenge_id": "maya_1",
+ "objective": "Survive your first night in this Mayan Ruin in the heart of the jungle.",
+ "weapons": [
+  {
+   "ammo": "30",
+   "name": "hunting"
+  },
+  {
+   "ammo": "80",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 75
+ }
+}

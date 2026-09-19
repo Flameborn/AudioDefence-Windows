@@ -1,0 +1,49 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_tutorial_10_3"
+  }
+ ],
+ "Enemies": {
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "bastard_tutorial_10_3"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 205,
+   "spawn_distance": 6
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "bastard_tutorial_10_3"
+   },
+   "spawn_angle": 189,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4.5,
+    "enemy": "bastard_tutorial_10_3"
+   },
+   "spawn_angle": 175,
+   "spawn_distance": 10
+  }
+ }
+}

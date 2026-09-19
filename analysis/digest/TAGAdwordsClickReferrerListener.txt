@@ -1,0 +1,27 @@
+
+== -[TAGAdwordsClickReferrerListener changed:]   (address 0x100158720  size 632  kind objc)
+  15875c  [arg1 objectForKey:@"gtm.url"]
+  15876c  if ([arg1 objectForKey:@"gtm.url"] != 0) goto loc_1001587f8
+  158784  [arg1 objectForKey:@"gtm"]
+  158794  if ([arg1 objectForKey:@"gtm"] == 0) goto loc_1001588fc
+  1587ac  [NSDictionary class]
+  1587c4  [[arg1 objectForKey:@"gtm"] isKindOfClass:[NSDictionary class]]
+  1587c8  if ([[arg1 objectForKey:@"gtm"] isKindOfClass:[NSDictionary class]] == 0) goto loc_1001588fc
+  1587dc  [[arg1 objectForKey:@"gtm"] objectForKey:@"url"]
+  1587f4  if ([[arg1 objectForKey:@"gtm"] objectForKey:@"url"] == 0) goto loc_100158904
+loc_1001587f8:
+  15880c  [NSString class]
+  158824  [x0 isKindOfClass:[NSString class]]
+  158828  if ([x0 isKindOfClass:[NSString class]] == 0) goto loc_100158908
+  158844  [NSURL URLWithString:x2]
+  158868  [[NSURL URLWithString:x2] query]
+  15888c  [TAGClickReferrerUtil parseComponentsFromQueryParameters:[[NSURL URLWithString:x2] query]]
+  1588b4  [[TAGClickReferrerUtil parseComponentsFromQueryParameters:[[NSURL URLWithString:x2] query]] objectForKey:@"referrer"]
+  1588c4  if ([[TAGClickReferrerUtil parseComponentsFromQueryParameters:[[NSURL URLWithString:x2] query]] objectForKey:@"referrer"] == 0) goto loc_1001588e0
+  1588dc  [TAGClickReferrerUtil addClickReferrer:[[TAGClickReferrerUtil parseComponentsFromQueryParameters:[[NSURL URLWithString:x2] query]] objectForKey:@"referrer"]]
+loc_1001588e0:
+  1588f8  goto loc_100158908
+loc_1001588fc:
+loc_100158904:
+loc_100158908:
+  158928  return

@@ -1,0 +1,234 @@
+
+== csl::Stereoverb::~Stereoverb   (address 0x1000ed370  size 76  kind cxx)
+  0ed388  sub_1000ed2cc(a0, &d_1003b55f0, a2, a3)
+  0ed390  sub_1000e9388((a0 + 216))
+  0ed3a0  return
+  0ed3ac  sub_1000e9388((x19 + 216))
+  0ed3b8  call sub_10000b760
+
+== csl::Stereoverb::thunk_vfunc_0   (address 0x1000ed3bc  size 16  kind cxx)
+  0ed3c8  tail csl::Stereoverb::~Stereoverb((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Stereoverb::~Stereoverb/*deleting*/   (address 0x1000ed3cc  size 56  kind cxx)
+  0ed3dc  csl::Stereoverb::~Stereoverb(a0, a1, a2, a3)
+  0ed3ec  tail ZdlPv(a0)
+  0ed3f8  ZdlPv()
+
+== csl::Stereoverb::thunk_vfunc_1   (address 0x1000ed404  size 16  kind cxx)
+  0ed410  tail csl::Stereoverb::~Stereoverb/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Stereoverb::vfunc_7   (address 0x1000ed414  size 48  kind cxx)
+  0ed420  if (a0[+0xd0] == 0) goto loc_1000ed42c
+  0ed428  goto loc_1000ed43c
+loc_1000ed42c:
+  0ed438  call a0[+0xc0][+0x0][+0x38]
+loc_1000ed43c:
+  0ed440  return
+
+== sub_1000ed444   (address 0x1000ed444  size 8  kind sub)
+  0ed444  a0[+0xd0] = a1
+  0ed448  return
+
+== csl::Stereoverb::vfunc_12   (address 0x1000ed44c  size 140  kind cxx)
+  0ed47c  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0ed494  sub_1000e9784((a0[+0xc0] + a0[+0xc0][+0x0][+0x-18]), 3)
+  0ed498  if (sub_1000e9784((a0[+0xc0] + a0[+0xc0][+0x0][+0x-18]), 3) == 0) goto loc_1000ed4b4
+  0ed4a0  if (sub_1000e9784((a0[+0xc0] + a0[+0xc0][+0x0][+0x-18]), 3)[+0x8] == 0) goto loc_1000ed4b4
+  0ed4b0  call sub_1000e9784((a0[+0xc0] + a0[+0xc0][+0x0][+0x-18]), 3)[+0x8][+0x0][+0x60]
+loc_1000ed4b4:
+  0ed4d0  return
+
+== csl::Stereoverb::thunk_vfunc_3   (address 0x1000ed4d8  size 16  kind cxx)
+  0ed4e4  tail csl::Stereoverb::vfunc_12((a0 + a0[+0x0][+0x-28]), a1, a2, a3)
+
+== sub_1000ed4e8   (address 0x1000ed4e8  size 140  kind sub)
+  0ed504  a0[+0xb0][+0xb8] = ((s0 * 0.28) + 0.3)
+  0ed510  if (x8 == x9) goto loc_1000ed538
+loc_1000ed520:
+  0ed534  if (x9 != x8) goto loc_1000ed520
+loc_1000ed538:
+  0ed53c  a0[+0xb8][+0xb8] = ((s0 * 0.28) + 0.3)
+  0ed548  if (x8 == x9) goto loc_1000ed570
+loc_1000ed558:
+  0ed56c  if (x9 != x8) goto loc_1000ed558
+loc_1000ed570:
+  0ed570  return
+
+== sub_1000ed574   (address 0x1000ed574  size 140  kind sub)
+  0ed590  a0[+0xb0][+0xbc] = ((s0 * 0.01) * 0.4)
+  0ed59c  if (x8 == x9) goto loc_1000ed5c4
+loc_1000ed5ac:
+  0ed5c0  if (x9 != x8) goto loc_1000ed5ac
+loc_1000ed5c4:
+  0ed5c8  a0[+0xb8][+0xbc] = ((s0 * 0.01) * 0.4)
+  0ed5d4  if (x8 == x9) goto loc_1000ed5fc
+loc_1000ed5e4:
+  0ed5f8  if (x9 != x8) goto loc_1000ed5e4
+loc_1000ed5fc:
+  0ed5fc  return
+
+== sub_1000ed600   (address 0x1000ed600  size 116  kind sub)
+  0ed604  a0[+0xb0][+0xc0] = s0
+  0ed610  if (x8 == x9) goto loc_1000ed638
+loc_1000ed620:
+  0ed634  if (x9 != x8) goto loc_1000ed620
+loc_1000ed638:
+  0ed63c  a0[+0xb8][+0xc0] = s0
+  0ed648  if (x8 == x9) goto loc_1000ed670
+loc_1000ed658:
+  0ed66c  if (x9 != x8) goto loc_1000ed658
+loc_1000ed670:
+  0ed670  return
+
+== sub_1000ed674   (address 0x1000ed674  size 20  kind sub)
+  0ed678  a0[+0xb0][+0xc4] = s0
+  0ed680  a0[+0xb8][+0xc4] = s0
+  0ed684  return
+
+== csl::Stereoverb::vfunc_4   (address 0x1000ed688  size 44  kind cxx)
+  0ed69c  call a0[+0xc8][+0x0][+0x20]
+  0ed6a4  return
+  0ed6a8  if (w1 >= 0) goto loc_1000ed6b0
+  0ed6ac  cxa_call_unexpected()
+
+== std::vector<…><…>(…)   (address 0x1000ed6b4  size 60  kind sym)
+  0ed6c0  if (x1 == x9) goto loc_1000ed6d8
+  0ed6c4  if (x1 == 0) goto loc_1000ed6e0
+  0ed6d4  goto loc_1000ed6e4
+loc_1000ed6d8:
+  0ed6dc  tail ZNSt6vectorIPN3csl4CombESaIS2_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS2_S4_EERKS2_(a0, x1, a1, a3)
+loc_1000ed6e0:
+loc_1000ed6e4:
+  0ed6e8  a0[+0x8] = (x8 + 8)
+  0ed6ec  return
+
+== std::vector<…><…>(…)   (address 0x1000ed6f0  size 60  kind sym)
+  0ed6fc  if (x1 == x9) goto loc_1000ed714
+  0ed700  if (x1 == 0) goto loc_1000ed71c
+  0ed710  goto loc_1000ed720
+loc_1000ed714:
+  0ed718  tail ZNSt6vectorIPN3csl8FAllpassESaIS2_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS2_S4_EERKS2_(a0, x1, a1, a3)
+loc_1000ed71c:
+loc_1000ed720:
+  0ed724  a0[+0x8] = (x8 + 8)
+  0ed728  return
+
+== csl::Stereoverb::vfunc_3   (address 0x1000ed7c8  size 8  kind cxx)
+  0ed7cc  return
+
+== std::vector<…><…>(…)   (address 0x1000ed7d0  size 336  kind sym)
+  0ed7fc  if (x8 == x9) goto loc_1000ed814
+  0ed800  if (x8 == 0) goto loc_1000ed838
+  0ed810  goto loc_1000ed83c
+loc_1000ed814:
+  0ed824  if (((x8 - a0[+0x0]) >> 3) != 0) goto loc_1000ed8fc
+  0ed82c  if (x25 >=u ((x8 - a0[+0x0]) >> 3)) goto loc_1000ed868
+  0ed834  goto loc_1000ed870
+loc_1000ed838:
+loc_1000ed83c:
+  0ed840  a0[+0x8] = (x8 + 8)
+  0ed85c  memmove((x8 - (((x8 - 8) - a1) & -8)), a1, ((x8 - 8) - a1), a3)
+  0ed860  a1[+0x0] = a2[+0x0]
+  0ed864  goto loc_1000ed8e4
+loc_1000ed868:
+  0ed86c  if ((x25 >>> 61) != 0) goto loc_1000ed910
+loc_1000ed870:
+  0ed874  Znwm((x25 << 3), a1, a2, a3)
+  0ed890  memmove(Znwm((x25 << 3), a1, a2, a3), a0[+0x0], (a1 - a0[+0x0]))
+  0ed89c  if ((Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8)) == 0) goto loc_1000ed8a8
+  0ed8a4  (Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8))[+0x0] = a2[+0x0]
+loc_1000ed8a8:
+  0ed8c0  memmove((Znwm((x25 << 3), a1, a2, a3) + ((((a1 - a0[+0x0]) >> 3) + 1) << 3)), a1, (a0[+0x8] - a1))
+  0ed8c8  t1 = (Znwm((x25 << 3), a1, a2, a3) + (((((a1 - a0[+0x0]) >> 3) + 1) + ((a0[+0x8] - a1) >>> 3)) << 3))
+  0ed8cc  if (a0[+0x0] == 0) goto loc_1000ed8d8
+  0ed8d4  ZdlPv(a0[+0x0])
+loc_1000ed8d8:
+  0ed8e0  a0[+0x10] = (Znwm((x25 << 3), a1, a2, a3) + (x25 << 3))
+loc_1000ed8e4:
+  0ed8f8  return
+  0ed904  if (((x8 - a0[+0x0]) >> 3) == 0x1fffffffffffffff) goto loc_1000ed914
+  0ed910  ZSt17__throw_bad_allocv(a0, a1, a2, a3)
+  0ed91c  ZSt20__throw_length_errorPKc("vector::_M_insert_aux")
+
+== std::vector<…><…>(…)   (address 0x1000ed920  size 336  kind sym)
+  0ed94c  if (x8 == x9) goto loc_1000ed964
+  0ed950  if (x8 == 0) goto loc_1000ed988
+  0ed960  goto loc_1000ed98c
+loc_1000ed964:
+  0ed974  if (((x8 - a0[+0x0]) >> 3) != 0) goto loc_1000eda4c
+  0ed97c  if (x25 >=u ((x8 - a0[+0x0]) >> 3)) goto loc_1000ed9b8
+  0ed984  goto loc_1000ed9c0
+loc_1000ed988:
+loc_1000ed98c:
+  0ed990  a0[+0x8] = (x8 + 8)
+  0ed9ac  memmove((x8 - (((x8 - 8) - a1) & -8)), a1, ((x8 - 8) - a1), a3)
+  0ed9b0  a1[+0x0] = a2[+0x0]
+  0ed9b4  goto loc_1000eda34
+loc_1000ed9b8:
+  0ed9bc  if ((x25 >>> 61) != 0) goto loc_1000eda60
+loc_1000ed9c0:
+  0ed9c4  Znwm((x25 << 3), a1, a2, a3)
+  0ed9e0  memmove(Znwm((x25 << 3), a1, a2, a3), a0[+0x0], (a1 - a0[+0x0]))
+  0ed9ec  if ((Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8)) == 0) goto loc_1000ed9f8
+  0ed9f4  (Znwm((x25 << 3), a1, a2, a3) + ((a1 - a0[+0x0]) & -8))[+0x0] = a2[+0x0]
+loc_1000ed9f8:
+  0eda10  memmove((Znwm((x25 << 3), a1, a2, a3) + ((((a1 - a0[+0x0]) >> 3) + 1) << 3)), a1, (a0[+0x8] - a1))
+  0eda18  t1 = (Znwm((x25 << 3), a1, a2, a3) + (((((a1 - a0[+0x0]) >> 3) + 1) + ((a0[+0x8] - a1) >>> 3)) << 3))
+  0eda1c  if (a0[+0x0] == 0) goto loc_1000eda28
+  0eda24  ZdlPv(a0[+0x0])
+loc_1000eda28:
+  0eda30  a0[+0x10] = (Znwm((x25 << 3), a1, a2, a3) + (x25 << 3))
+loc_1000eda34:
+  0eda48  return
+  0eda54  if (((x8 - a0[+0x0]) >> 3) == 0x1fffffffffffffff) goto loc_1000eda64
+  0eda60  ZSt17__throw_bad_allocv(a0, a1, a2, a3)
+  0eda6c  ZSt20__throw_length_errorPKc("vector::_M_insert_aux")
+
+== sub_1000eda70   (address 0x1000eda70  size 332  kind sub)
+  0eda98  sub_1000e9560((a0 + 288), a1, a2, a3)
+  0eda9c  sub_1000e732c(sub_1000e9560((a0 + 288), a1, a2, a3))
+  0edaac  sub_1000e886c(a0, sub_1000e732c(sub_1000e9560((a0 + 288), a1, a2, a3)), 1)
+  0edacc  sub_1000e9bd8((a0 + 168), &d_1003b5998)
+  0edadc  a0[+0x0] = vtable<csl::Mixer>
+  0edae4  a0[+0xa8] = vtable<csl::Mixer (secondary, -0xa8)>
+  0edaec  a0[+0x120] = vtable<csl::Mixer (secondary, -0x120)>
+  0edaf4  a0[+0xb0] = 0
+  0edb04  a0[+0x8] = 0
+  0edb18  sub_1000e8084((a0 + 48), 1, 256, 4)
+  0edb1c  a0[+0x60] = a1
+  0edb20  sub_1000e735c(sub_1000e8084((a0 + 48), 1, 256, 4))
+  0edb30  sub_1000e7fac((a0 + 48), a1, sub_1000e735c(sub_1000e8084((a0 + 48), 1, 256, 4)))
+  0edb38  sub_1000e8220((a0 + 48))
+  0edb54  return
+  0edb60  call csl::Buffer::~Buffer
+  0edb80  if (x0 == 0) goto loc_1000edb88
+  0edb84  ZdlPv()
+  0edb8c  if (x0 == 0) goto loc_1000edb94
+  0edb90  ZdlPv()
+  0edb9c  sub_1000e9c44(x0, (x24 + 8))
+  0edba4  call sub_1000e8918
+  0edbac  call sub_1000e9388
+  0edbb8  call sub_10000b760
+
+== sub_1000edbbc   (address 0x1000edbbc  size 228  kind sub)
+  0edbd8  a0[+0x0] = a1[+0x0]
+  0edbe4  a0[+0xa8] = a1[+0x18]
+  0edbfc  sub_1000e8130((a0 + 224), a1, a2, a3)
+  0edc04  csl::Buffer::~Buffer((a0 + 224))
+  0edc0c  if (a0[+0xc8] == 0) goto loc_1000edc14
+  0edc10  ZdlPv(a0[+0xc8])
+loc_1000edc14:
+  0edc18  if (a0[+0xb0] == 0) goto loc_1000edc20
+  0edc1c  ZdlPv(a0[+0xb0])
+loc_1000edc20:
+  0edc28  sub_1000e9c44((a0 + 168), (a1 + 8))
+  0edc30  sub_1000e8918(a0)
+  0edc44  return
+  0edc54  call csl::Buffer::~Buffer
+  0edc64  if (x0 == 0) goto loc_1000edc6c
+  0edc68  ZdlPv()
+  0edc70  if (x0 == 0) goto loc_1000edc78
+  0edc74  ZdlPv()
+  0edc80  sub_1000e9c44(x0, (x21 + 8))
+  0edc90  call sub_1000e8918
+  0edc9c  call sub_10000b760

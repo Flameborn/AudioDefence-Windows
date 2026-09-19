@@ -1,0 +1,60 @@
+
+== -[GAIExceptionParser init]   (address 0x100121c18  size 128  kind objc)
+  121c4c  [super init]
+  121c54  if (self == 0) goto loc_100121c84
+  121c6c  [self doesNotRecognizeSelector:_cmd]
+  121c80  [self release]
+loc_100121c84:
+  121c94  return
+
+== +[GAIExceptionParser symbolFromStackFrame:]   (address 0x100121c98  size 352  kind objc)
+  121cc8  [NSPredicate predicateWithFormat:@"SELF != ''"]
+  121ce4  [NSCharacterSet whitespaceCharacterSet]
+  121cfc  [arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+  121d10  [[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]]
+  121d24  [[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] count]
+  121d2c  if ([[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPre… <u 4) goto loc_100121d6c
+  121d48  [[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] objectAtIndex:3]
+  121d64  [[[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] objectAtIndex:3] isEqualToString:@"+[NSException"]
+  121d68  if (!([[[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] objectAtIndex:3] isEqualToString:@"+[NSException"] & 1)) goto loc_100121d80
+loc_100121d6c:
+  121d7c  return
+  121d8c  [[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] objectAtIndex:4]
+  121d9c  [[[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] objectAtIndex:4] isEqualToString:@"+"]
+  121da0  if ([[[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] objectAtIndex:4] isEqualToString:@"+"] == 0) goto loc_100121db8
+  121db0  [[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] objectAtIndex:3]
+  121dd0  [[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] subarrayWithRange:3]
+  121df4  tail [[[[arg1 componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]] subarrayWithRange:3] componentsJoinedByString:@" "]
+
+== +[GAIExceptionParser exceptionDescription:withMaxLength:]   (address 0x100121df8  size 492  kind objc)
+  121e34  [arg1 name]
+  121e44  [[arg1 name] mutableCopy]
+  121e54  [[[arg1 name] mutableCopy] autorelease]
+  121e6c  [arg1 callStackSymbols]
+  121e84  [[arg1 callStackSymbols] count]
+  121e8c  if ([[arg1 callStackSymbols] count] <u 3) goto loc_100121f70
+  121e98  [[arg1 callStackSymbols] count]
+  121ea0  if ([[arg1 callStackSymbols] count] <u 3) goto loc_100121f70
+loc_100121ee0:
+  121eec  [[arg1 callStackSymbols] objectAtIndex:x2]
+  121efc  [GAIExceptionParser symbolFromStackFrame:[[arg1 callStackSymbols] objectAtIndex:x2]]
+  121f04  if ([GAIExceptionParser symbolFromStackFrame:[[arg1 callStackSymbols] objectAtIndex:x2]] == 0) goto loc_100121f58
+  121f0c  if (((one of {0, 1} & 1) & 1)) goto loc_100121f24
+  121f20  [[[[arg1 name] mutableCopy] autorelease] appendFormat:@"\nTrace:"]
+loc_100121f24:
+  121f38  [[[[arg1 name] mutableCopy] autorelease] appendFormat:@"\n%@", [GAIExceptionParser symbolFromStackFrame:[[arg1 callStackSymbols] objectAtIndex:…]
+  121f3c  if (arg2 == 0) goto loc_100121f54
+  121f48  [[[[arg1 name] mutableCopy] autorelease] length]
+  121f50  if ([[[[arg1 name] mutableCopy] autorelease] length] >=u arg2) goto loc_100121f70
+loc_100121f54:
+loc_100121f58:
+  121f64  [[arg1 callStackSymbols] count]
+  121f6c  if ((x28 + 1) <u [[arg1 callStackSymbols] count]) goto loc_100121ee0
+loc_100121f70:
+  121f74  if (arg2 == 0) goto loc_100121fc0
+  121f8c  [[[[arg1 name] mutableCopy] autorelease] length]
+  121f94  if ([[[[arg1 name] mutableCopy] autorelease] length] <=u arg2) goto loc_100121fc0
+  121fa0  [[[[arg1 name] mutableCopy] autorelease] length]
+  121fbc  [[[[arg1 name] mutableCopy] autorelease] deleteCharactersInRange:arg2]
+loc_100121fc0:
+  121fe0  return

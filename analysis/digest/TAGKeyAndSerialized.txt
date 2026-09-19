@@ -1,0 +1,23 @@
+
+== -[TAGKeyAndSerialized initWithKey:serialized:]   (address 0x10015e384  size 228  kind objc)
+  15e3d8  [super init]
+  15e3e0  if (self == 0) goto loc_10015e424
+  15e3f8  self->_key = arg1
+  15e418  self->_serialized = arg2
+loc_10015e424:
+  15e448  return
+
+== -[TAGKeyAndSerialized description]   (address 0x10015e468  size 228  kind objc)
+  15e494  [self key]
+  15e4b4  [self serialized]
+  15e4d0  [[self serialized] hash]
+  15e4f0  [NSString stringWithFormat:@"KeyAndSerialized: key = %@ serialized hash = %lu", [self key], [[self serialized] hash]]
+  15e524  return
+
+== -[TAGKeyAndSerialized key]   (address 0x10015e54c  size 16  kind objc)
+  15e558  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGKeyAndSerialized serialized]   (address 0x10015e55c  size 16  kind objc)
+  15e568  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGKeyAndSerialized .cxx_destruct]   (address 0x10015e56c  size 64  kind objc)

@@ -1,0 +1,102 @@
+
+== csl::Splitter::vfunc_5   (address 0x1000ea650  size 216  kind cxx)
+  0ea664  cxa_allocate_exception(16, a1, a2, a3)
+  0ea67c  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Asking for mono nextBuffer of a Splitter", &sp[0x8])
+  0ea688  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0ea698  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0ea6b0  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0ea6b4  goto loc_1000ea700
+  0ea6d4  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000ea6fc
+loc_1000ea6dc:
+  0ea6e8  if (w11 != 0) goto loc_1000ea6dc
+  0ea6f0  if (w9 > 0) goto loc_1000ea6fc
+  0ea6f8  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+loc_1000ea6fc:
+  0ea6fc  if (w20 >= 0) goto loc_1000ea708
+loc_1000ea700:
+  0ea704  cxa_call_unexpected()
+loc_1000ea708:
+  0ea720  cxa_free_exception()
+  0ea724  goto loc_1000ea6fc
+
+== csl::Splitter::vfunc_4   (address 0x1000ea728  size 548  kind cxx)
+  0ea74c  if (a1[+0x8] != 1) goto loc_1000ea7e4
+  0ea758  if (w9 <u w8) goto loc_1000ea76c
+  0ea764  sub_1000e9fb0(a0, a1[+0xc], a2, a3)
+  0ea768  a0[+0xec] = 0
+loc_1000ea76c:
+  0ea780  if ((a0[+0x0][+0x-18] + a0)[+0x20][+0x10] == 0) goto loc_1000ea874
+  0ea798  call a1[+0x0][+0x20]
+  0ea7b0  call (a0[+0x0][+0x-18] + a0)[+0x20][+0x10][+0x0][+0x20]
+  0ea7c0  memcpy(a1[+0x0][+0x20](…), (a0[+0x0][+0x-18] + a0)[+0x20][+0x10][+0x0][+0x20](…), a1[+0x14])
+  0ea7cc  a0[+0xec] = (a0[+0xec] + 1)
+  0ea7e0  return
+  0ea7e8  cxa_allocate_exception(16, a1, a2, a3)
+  0ea800  ZNSsC1EPKcRKSaIcE(&sp[0x20], "Asking for a stereo output of a channel splitter", &sp[0x18])
+  0ea80c  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x20])
+  0ea81c  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0ea834  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0ea858  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000ea910
+  0ea86c  if (w11 != 0) goto loc_1000ea860
+  0ea878  cxa_allocate_exception(16)
+  0ea890  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Missing buffer in channel splitter", &sp[0x8])
+  0ea89c  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x10])
+  0ea8ac  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0ea8c4  cxa_throw(cxa_allocate_exception(16), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0ea8e8  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000ea910
+  0ea8fc  if (w11 != 0) goto loc_1000ea8f0
+  0ea904  if (w9 > 0) goto loc_1000ea910
+  0ea90c  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x28])
+  0ea910  if (w20 >= 0) goto loc_1000ea91c
+  0ea918  cxa_call_unexpected()
+  0ea944  cxa_free_exception()
+
+== sub_1000ea94c   (address 0x1000ea94c  size 264  kind sub)
+  0ea974  a0[+0xb0] = vtable<csl::Controllable>
+  0ea984  memset((a0 + 184), 0, 104, a3)
+  0ea988  sub_1000e732c(memset((a0 + 184), 0, 104, a3))
+  0ea998  sub_1000e886c(a0, sub_1000e732c(memset((a0 + 184), 0, 104, a3)), 1)
+  0ea99c  a0[+0xa4] = 0
+  0ea9ac  a0[+0x0] = vtable<csl::Joiner>
+  0ea9b8  a0[+0xb0] = vtable<csl::Joiner (secondary, -0xb0)>
+  0ea9c4  sub_1000e969c(a0, 0, a1)
+  0ea9dc  sub_1000e969c((a0 + a0[+0x0][+0x-18]), 1, a2)
+  0ea9e4  a0[+0x60] = 2
+  0ea9f8  return
+  0eaa0c  call sub_1000e8918
+  0eaa24  if (x0 == 0) goto loc_1000eaa38
+  0eaa30  call x8
+  0eaa40  if ((x21 + 8) != 104) goto loc_1000eaa20
+  0eaa4c  call sub_10000b760
+  0eaa50  sub_10000b760(sub_10000b760())
+
+== csl::Splitter::~Splitter(…)   (address 0x1000eb7ec  size 212  kind sym)
+  0eb80c  a0[+0x0] = vtable<csl::FanOut>
+  0eb814  a0[+0xf0] = vtable<csl::FanOut (secondary, -0xf0)>
+  0eb81c  sub_1000e80e0((a0 + 176), a1, a2, a3)
+  0eb824  sub_1000e8918(a0)
+  0eb834  a0[+0xf0] = vtable<csl::Controllable>
+loc_1000eb83c:
+  0eb840  if (x0 == 0) goto loc_1000eb854
+  0eb84c  call x8
+loc_1000eb854:
+  0eb85c  if ((x20 + 8) != 352) goto loc_1000eb83c
+  0eb870  return
+  0eb894  if (x0 == 0) goto loc_1000eb8a8
+  0eb8a0  call x8
+  0eb8b0  if ((x21 + 8) != 104) goto loc_1000eb890
+  0eb8bc  call sub_10000b760
+
+== csl::Splitter::~Splitter/*deleting*/(…)   (address 0x1000eb8c0  size 56  kind sym)
+  0eb8d0  ZN3csl8SplitterD1Ev(a0, a1, a2, a3)
+  0eb8e0  tail ZdlPv(a0)
+  0eb8ec  ZdlPv()
+
+== csl::Splitter::vfunc_3   (address 0x1000eb8f8  size 8  kind cxx)
+  0eb8fc  return
+
+== csl::Splitter::thunk_vfunc_0   (address 0x1000eb900  size 16  kind cxx)
+  0eb90c  tail ZN3csl8SplitterD1Ev((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Splitter::thunk_vfunc_1   (address 0x1000eb910  size 16  kind cxx)
+  0eb91c  tail ZN3csl8SplitterD0Ev((a0 + a0[+0x0][+0x-18]), a1, a2, a3)

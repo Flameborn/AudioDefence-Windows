@@ -1,0 +1,272 @@
+
+== csl::CASoundFile::~CASoundFile   (address 0x1000e5fcc  size 80  kind cxx)
+  0e5fe8  sub_1000e4820(a0, &d_1003b3638, a2, a3)
+  0e5ff0  sub_1000e9388((a0 + 472))
+  0e6000  return
+  0e600c  sub_1000e9388((x19 + 472))
+  0e6018  call sub_10000b760
+
+== csl::CASoundFile::thunk_vfunc_0   (address 0x1000e601c  size 8  kind cxx)
+  0e6020  tail csl::CASoundFile::~CASoundFile((a0 - 168), a1, a2, a3)
+
+== csl::CASoundFile::thunk_vfunc_0   (address 0x1000e6024  size 8  kind cxx)
+  0e6028  tail csl::CASoundFile::~CASoundFile((a0 - 184), a1, a2, a3)
+
+== csl::CASoundFile::thunk_vfunc_1   (address 0x1000e602c  size 8  kind cxx)
+  0e6030  tail csl::CASoundFile::~CASoundFile((a0 - 256), a1, a2, a3)
+
+== csl::CASoundFile::thunk_vfunc_0   (address 0x1000e6034  size 8  kind cxx)
+  0e6038  tail csl::CASoundFile::~CASoundFile((a0 - 264), a1, a2, a3)
+
+== csl::CASoundFile::thunk_vfunc_0   (address 0x1000e603c  size 16  kind cxx)
+  0e6048  tail csl::CASoundFile::~CASoundFile((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::CASoundFile::~CASoundFile/*deleting*/   (address 0x1000e604c  size 56  kind cxx)
+  0e605c  csl::CASoundFile::~CASoundFile(a0, a1, a2, a3)
+  0e606c  tail ZdlPv(a0)
+  0e6078  ZdlPv()
+
+== csl::CASoundFile::thunk_vfunc_1   (address 0x1000e6084  size 8  kind cxx)
+  0e6088  tail csl::CASoundFile::~CASoundFile/*deleting*/((a0 - 168), a1, a2, a3)
+
+== csl::CASoundFile::thunk_vfunc_1   (address 0x1000e608c  size 8  kind cxx)
+  0e6090  tail csl::CASoundFile::~CASoundFile/*deleting*/((a0 - 184), a1, a2, a3)
+
+== csl::CASoundFile::thunk_vfunc_2   (address 0x1000e6094  size 8  kind cxx)
+  0e6098  tail csl::CASoundFile::~CASoundFile/*deleting*/((a0 - 256), a1, a2, a3)
+
+== csl::CASoundFile::thunk_vfunc_1   (address 0x1000e609c  size 8  kind cxx)
+  0e60a0  tail csl::CASoundFile::~CASoundFile/*deleting*/((a0 - 264), a1, a2, a3)
+
+== csl::CASoundFile::thunk_vfunc_1   (address 0x1000e60a4  size 16  kind cxx)
+  0e60b0  tail csl::CASoundFile::~CASoundFile/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::CASoundFile::vfunc_28   (address 0x1000e60b4  size 56  kind cxx)
+  0e60c8  if (a0[+0x1c8] == 0) goto loc_1000e60d4
+  0e60cc  ExtAudioFileDispose(a0[+0x1c8], a1, a2, a3)
+  0e60d0  a0[+0x1c8] = 0
+loc_1000e60d4:
+
+== csl::CASoundFile::vfunc_26   (address 0x1000e60ec  size 104  kind cxx)
+  0e6108  a0[+0x190] = (a0[+0x5c] != 0)
+  0e610c  if (a0[+0x5c] == 0) goto loc_1000e6148
+  0e6118  if (a0[+0x194] < 1) goto loc_1000e6134
+  0e612c  call a0[+0x0][+0x80]
+  0e6130  goto loc_1000e6138
+loc_1000e6134:
+  0e6134  a0[+0x194] = 0
+loc_1000e6138:
+  0e613c  if (a0[+0x198] >= 0) goto loc_1000e6148
+  0e6144  a0[+0x198] = a0[+0x1a8]
+loc_1000e6148:
+  0e6150  return
+
+== csl::CASoundFile::vfunc_14   (address 0x1000e6154  size 724  kind cxx)
+  0e6174  a0[+0x188] = 1
+  0e617c  (a0 + 364)[+0x0] = 0
+  0e6180  a0[+0x174] = 0
+  0e6188  basename(a0[+0x180], a1, a2, a3)
+  0e6194  if (a0[+0x1c0] != 0) goto loc_1000e61b0
+  0e61a8  CFURLCreateFromFileSystemRepresentation(0, a0[+0x180], a0[+0x180][+0x-18], 0)
+  0e61ac  a0[+0x1c0] = CFURLCreateFromFileSystemRepresentation(0, a0[+0x180], a0[+0x180][+0x-18], 0)
+loc_1000e61b0:
+  0e61b8  ExtAudioFileOpenURL(x0, (a0 + 456))
+  0e61bc  if (ExtAudioFileOpenURL(x0, (a0 + 456)) == 0) goto loc_1000e61dc
+  0e61d4  printf("ExtAudioFileOpenURL %s: err %d (file: '%s')\n", basename(a0[+0x180], a1, a2, a3), ExtAudioFileOpenURL(x0, (a0 + 456)), a0[+0x180])
+  0e61d8  goto loc_1000e6408
+loc_1000e61dc:
+  0e61f8  ExtAudioFileGetProperty((a0 + 456)[+0x0], 0x2366726d, &x29[-0x24], &x29[-0x30])
+  0e61fc  if (ExtAudioFileGetProperty((a0 + 456)[+0x0], 0x2366726d, &x29[-0x24], &x29[-0x30]) == 0) goto loc_1000e6218
+  0e6210  printf("ExtAudioFileGetProperty FileLengthFrames: err %d (file: '%s')\n", ExtAudioFileGetProperty((a0 + 456)[+0x0], 0x2366726d, &x29[-0x24], &x29[-0x30]), a0[+0x180])
+  0e6214  goto loc_1000e6408
+loc_1000e6218:
+  0e6234  ExtAudioFileGetProperty((a0 + 456)[+0x0], 0x66666d74, &x29[-0x24], &sp[0x48])
+  0e6238  if (ExtAudioFileGetProperty((a0 + 456)[+0x0], 0x66666d74, &x29[-0x24], &sp[0x48]) == 0) goto loc_1000e6254
+  0e624c  printf("ExtAudioFileGetProperty FileDataFormat: err %d (file: '%s')\n", ExtAudioFileGetProperty((a0 + 456)[+0x0], 0x66666d74, &x29[-0x24], &sp[0x48]), a0[+0x180])
+  0e6250  goto loc_1000e6408
+loc_1000e6254:
+  0e625c  a0[+0x5c] = (uint)d0
+  0e6274  a0[+0x60] = (a0[+0x169] == 0 ? w9 : 1)
+  0e6280  if ((uint)d0 == 0xac44) goto loc_1000e62a0
+  0e6298  sub_1000e772c(1, "Source sample for file %s is %dHz - It should be 44100Hz")
+loc_1000e62a0:
+  0e62bc  a0[+0x1a8] = (uint)((float)d1 * (44100 / d0))
+  0e62c0  a0[+0x5c] = 0xac44
+  0e62c4  a0[+0x1d0] = 0
+  0e62dc  a0[+0x1ac] = ((w8 >>> 3) == 0 ? 2 : (w8 >>> 3))
+  0e62ec  call a0[+0x0][+0xd0]
+  0e62f4  if (a0[+0x190] == 0) goto loc_1000e638c
+  0e6314  ExtAudioFileGetProperty((a0 + 456)[+0x0], 0x66666d74, &sp[0x1c], &sp[0x20])
+  0e6370  ExtAudioFileSetProperty(a0[+0x1c8], 0x63666d74, 40, &sp[0x20])
+  0e6374  if (ExtAudioFileSetProperty(a0[+0x1c8], 0x63666d74, 40, &sp[0x20]) == 0) goto loc_1000e63a8
+  0e6384  printf("ExtAudioFileSetProperty failed: %ld\n", ExtAudioFileSetProperty(a0[+0x1c8], 0x63666d74, 40, &sp[0x20]))
+  0e6388  goto loc_1000e6408
+loc_1000e638c:
+  0e63a0  sub_1000e772c(2, "Cannot open sound file \"%s\"\n")
+  0e63a4  goto loc_1000e6408
+loc_1000e63a8:
+  0e63a8  if (a1 == 0) goto loc_1000e63c8
+  0e63c0  call a0[+0x0][+0x88]
+  0e63c4  goto loc_1000e6400
+loc_1000e63c8:
+  0e63c8  sub_1000e734c(ExtAudioFileSetProperty(a0[+0x1c8], 0x63666d74, 40, &sp[0x20]))
+  0e63d8  if (a0[+0x1a8] >=u sub_1000e734c(ExtAudioFileSetProperty(a0[+0x1c8], 0x63666d74, 40, &sp[0x20]))) goto loc_1000e63e8
+  0e63e0  a0[+0x15c] = 1
+loc_1000e63e8:
+  0e63fc  call a0[+0x0][+0x88]
+loc_1000e6400:
+  0e6404  a0[+0x110] = a0[+0x194]
+loc_1000e6408:
+  0e6418  return
+  0e641c  if (w1 >= 0) goto loc_1000e6424
+  0e6420  cxa_call_unexpected()
+
+== csl::CASoundFile::vfunc_15   (address 0x1000e6428  size 40  kind cxx)
+  0e6438  sub_1000e75a0("Error: CASoundFile::openForWrite unsupported", a1, a2, a3)
+  0e6440  return
+  0e6444  if (w1 >= 0) goto loc_1000e644c
+  0e6448  cxa_call_unexpected()
+
+== csl::CASoundFile::vfunc_17   (address 0x1000e6450  size 756  kind cxx)
+  0e6480  if (a0[+0x178] == 0) goto loc_1000e6494
+  0e6488  if (a2 == 0) goto loc_1000e6544
+  0e648c  a0[+0x174] = a0[+0x16c]
+  0e6490  goto loc_1000e6548
+loc_1000e6494:
+  0e64a8  sub_1000e8210((a0 + 200), 2, a2, a3)
+  0e64bc  call a0[+0x0][+0xd8]
+  0e64c8  if (a0[+0x110] <u a0[+0x198]) goto loc_1000e64d4
+  0e64d0  if (a0[+0x191] == 0) goto loc_1000e65a0
+loc_1000e64d4:
+  0e64e8  csl::Buffer::vfunc_4((a0 + 200), 0)
+  0e6524  ExtAudioFileRead(a0[+0x1c8], &sp[0x24], &sp[0x28])
+  0e6528  if (ExtAudioFileRead(a0[+0x1c8], &sp[0x24], &sp[0x28]) == 0) goto loc_1000e6570
+  0e653c  printf("\nCASoundFile::openForRead: AudioFileReadPackets Error = %x\nFile: \"%s\"\n\n", ExtAudioFileRead(a0[+0x1c8], &sp[0x24], &sp[0x28]), a0[+0x180])
+  0e6540  goto loc_1000e6550
+loc_1000e6544:
+  0e6544  a0[+0x170] = a0[+0x16c]
+loc_1000e6548:
+  0e654c  a0[+0x16c] = (a0[+0x16c] + a1)
+loc_1000e6550:
+  0e656c  return
+  0e6578  if (a1 != a1) goto loc_1000e65d8
+  0e6580  if (a2 != 0) goto loc_1000e66a0
+  0e6584  a0[+0x170] = a0[+0x16c]
+  0e6590  if (a0[+0xd4] != a1) goto loc_1000e66a4
+  0e6598  a0[+0x174] = (a1 >>> 1)
+  0e65a4  if (a0[+0x60] == 0) goto loc_1000e6550
+  0e65b4  csl::Buffer::vfunc_4((a0 + 200))
+  0e65c0  bzero(csl::Buffer::vfunc_4((a0 + 200)), (a0[+0xe4] * a1))
+  0e65d0  if ((w22 + 1) <u a0[+0x60]) goto loc_1000e65ac
+  0e65e0  if (a0[+0x191] == 0) goto loc_1000e665c
+  0e65f4  ExtAudioFileSeek(a0[+0x1c8], 0)
+  0e6600  a0[+0x16c] = 0
+  0e6614  t1 = (csl::Buffer::vfunc_4((a0 + 200), 0) + (((a0[+0x60] * a2) * a0[+0x1ac]) + ((a1 * a0[+0x60]) * a0[+0x1ac])))
+  0e6638  ExtAudioFileRead(a0[+0x1c8], &sp[0x24], &sp[0x28])
+  0e6648  if ((a1 - a1) != (a1 - a1)) goto loc_1000e66c0
+  0e664c  if (a2 == 0) goto loc_1000e66ac
+  0e6654  a0[+0x174] = a0[+0x16c]
+  0e6670  t2 = (csl::Buffer::vfunc_4((a0 + 200), 0) + (((a0[+0x60] * a2) * a0[+0x1ac]) + ((a1 * a0[+0x60]) * a0[+0x1ac])))
+  0e6674  bzero(t2, (((a0[+0x60] * a1) * a0[+0x1ac]) - ((a1 * a0[+0x60]) * a0[+0x1ac])))
+  0e667c  if (a0[+0x15c] == 0) goto loc_1000e6690
+  0e6688  a0[+0x198] = (a1 + a2)
+  0e6694  a0[+0x178] = 1
+  0e669c  if (a2 == 0) goto loc_1000e673c
+  0e66a0  a0[+0x174] = a0[+0x16c]
+  0e66b0  a0[+0x170] = a0[+0x16c]
+  0e66bc  a0[+0x16c] = w8
+  0e66cc  if ((a0[+0x110] + a1) <=u a0[+0x198]) goto loc_1000e6550
+  0e66d4  if (a0[+0x191] == 0) goto loc_1000e6700
+  0e66e0  if ((a1 - ((a0[+0x110] + a1) - a0[+0x198])) >=u a1) goto loc_1000e6550
+  0e66f8  call a0[+0x0][+0x80]
+  0e6704  if (a0[+0x60] == 0) goto loc_1000e6550
+  0e671c  csl::Buffer::vfunc_4((a0 + 200))
+  0e6724  bzero(csl::Buffer::vfunc_4((a0 + 200)), (a0[+0x1ac] * ((a0[+0x110] + a1) - a0[+0x198])))
+  0e6734  if ((w21 + 1) <u a0[+0x60]) goto loc_1000e6714
+  0e673c  a0[+0x170] = a0[+0x16c]
+
+== csl::CASoundFile::vfunc_16   (address 0x1000e6744  size 184  kind cxx)
+  0e6768  call a0[+0x0][+0xb8]
+  0e676c  if (a0[+0x0][+0xb8](…) != 0) goto loc_1000e67d8
+  0e6774  if (a2 == 2) goto loc_1000e6794
+  0e677c  if (a2 != 1) goto loc_1000e67b4
+  0e678c  a0[+0x110] = (a0[+0x110] - a1)
+  0e6790  goto loc_1000e67dc
+loc_1000e6794:
+  0e67a0  call a0[+0x0][+0xa0]
+  0e67ac  a0[+0x110] = (a0[+0x0][+0xa0](…) - a1)
+  0e67b0  goto loc_1000e67dc
+loc_1000e67b4:
+  0e67b4  if (a2 != 0) goto loc_1000e67c4
+  0e67bc  a0[+0x110] = a1
+  0e67c0  goto loc_1000e67dc
+loc_1000e67c4:
+  0e67c8  a0[+0x110] = 1
+  0e67d4  sub_1000e75a0("Error: Invalid position seek flag. Used kPositionCurrent.")
+loc_1000e67d8:
+loc_1000e67dc:
+  0e67ec  return
+  0e67f0  if (w1 >= 0) goto loc_1000e67f8
+  0e67f4  cxa_call_unexpected()
+
+== csl::CASoundFile::thunk_vfunc_2   (address 0x1000e67fc  size 8  kind cxx)
+  0e6800  tail csl::CASoundFile::vfunc_16((a0 - 264), a1, a2, a3)
+
+== csl::CASoundFile::vfunc_18   (address 0x1000e6804  size 40  kind cxx)
+  0e6814  sub_1000e75a0("Error: CASoundFile::writeBuffer unsupported", a1, a2, a3)
+  0e681c  return
+  0e6820  if (w1 >= 0) goto loc_1000e6828
+  0e6824  cxa_call_unexpected()
+
+== csl::CASoundFile::thunk_vfunc_0   (address 0x1000e682c  size 4  kind cxx)
+  0e682c  tail csl::CASoundFile::vfunc_18(a0, a1, a2, a3)
+
+== csl::CASoundFile::vfunc_12   (address 0x1000e6830  size 72  kind cxx)
+  0e6854  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0e6870  return
+
+== csl::CASoundFile::thunk_vfunc_3   (address 0x1000e6878  size 72  kind cxx)
+  0e689c  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0e68b8  return
+
+== csl::CASoundFile::vfunc_11   (address 0x1000e68c0  size 260  kind cxx)
+  0e68e4  ZNSsC1ERKSs(&sp[0x30], (a0 + 384), a2, a3)
+  0e68fc  if ((x19 - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e699c
+loc_1000e6900:
+  0e6904  strlen()
+  0e6914  sub_1000e4a94(a0)
+  0e6920  sub_1000e4aac(a0)
+  0e6948  if (strlen() <u 51) goto loc_1000e6968
+  0e6964  goto loc_1000e6980
+loc_1000e6968:
+loc_1000e6980:
+  0e6980  sub_1000e75a0(one of {"SndFile \"%s\"\n		%d Hz, %d ch, %5.3f sec %s", "SndFile \"%s\" - %d Hz, %d ch, %5.3f sec %s"})
+  0e6998  return
+  0e69ac  if (w11 != 0) goto loc_1000e69a0
+  0e69b4  if (w9 > 0) goto loc_1000e6900
+  0e69bc  ZNSs4_Rep10_M_destroyERKSaIcE((x19 - 24), &sp[0x38])
+
+== csl::CASoundFile::thunk_vfunc_2   (address 0x1000e69c4  size 16  kind cxx)
+  0e69d0  tail csl::CASoundFile::vfunc_11((a0 + a0[+0x0][+0x-20]), a1, a2, a3)
+
+== sub_1000e69d4   (address 0x1000e69d4  size 224  kind sub)
+  0e6a04  sub_1000e732c(a0, a1, a2, a3)
+  0e6a14  sub_1000e886c(a0, sub_1000e732c(a0, a1, a2, a3), 1)
+  0e6a30  sub_1000e99b8((a0 + 168), (a1 + 8))
+  0e6a44  sub_1000e9bd8((a0 + 184), (a1 + 24))
+  0e6a4c  a0[+0x0] = a1[+0x0]
+  0e6a54  a0[+0xa8] = a1[+0x28]
+  0e6a68  a0[+0xb8] = a1[+0x38]
+  0e6a84  return
+  0e6a9c  call sub_1000e9a04
+  0e6aa4  call sub_1000e8918
+  0e6ab0  call sub_10000b760
+
+== sub_1000e6ab4   (address 0x1000e6ab4  size 116  kind sub)
+  0e6ad0  sub_1000e9c44((a0 + 184), (a1 + 24), a2, a3)
+  0e6adc  sub_1000e9a04((a0 + 168), (a1 + 8))
+  0e6ae4  sub_1000e8918(a0)
+  0e6af4  return
+  0e6b08  sub_1000e9a04((x19 + 168), (x8 + 8))
+  0e6b18  call sub_1000e8918
+  0e6b24  call sub_10000b760

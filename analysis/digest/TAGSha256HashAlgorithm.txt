@@ -1,0 +1,8 @@
+
+== -[TAGSha256HashAlgorithm hashData:]   (address 0x100174ec0  size 196  kind objc)
+  174ee0  malloc(32)
+  174ef8  [arg1 length]
+  174f18  [arg1 bytes]
+  174f24  CC_SHA256([arg1 bytes], [arg1 length], malloc(32))
+  174f44  [NSData dataWithBytesNoCopy:malloc(32) length:32]
+  174f6c  return

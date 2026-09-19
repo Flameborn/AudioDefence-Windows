@@ -1,0 +1,28 @@
+
+== csl::CException::~CException/*base*/(…)   (address 0x1000e5840  size 128  kind sym)
+  0e5860  a0[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0e5878  if ((a0[+0x8] - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e5898
+loc_1000e587c:
+  0e5880  ZNSt9exceptionD2Ev(a0)
+  0e5894  return
+  0e58a8  if (w11 != 0) goto loc_1000e589c
+  0e58b0  if (w9 > 0) goto loc_1000e587c
+  0e58b8  ZNSs4_Rep10_M_destroyERKSaIcE((a0[+0x8] - 24), &sp[0x8], a2, a3)
+
+== sub_1000e58c0   (address 0x1000e58c0  size 36  kind sub)
+  0e58d0  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0e58e0  return
+
+== sub_1000e58e4   (address 0x1000e58e4  size 36  kind sub)
+  0e58f4  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0e5904  tail ZdlPv(a0)
+
+== csl::CException::CException(…)   (address 0x1000e5908  size 72  kind sym)
+  0e5928  ZNSsC1ERKSs(a0, a1, a2, a3)
+  0e5938  return
+  0e5944  ZNSt9exceptionD2Ev()
+  0e594c  cxa_call_unexpected()
+
+== sub_1000e5950   (address 0x1000e5950  size 36  kind sub)
+  0e5960  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0e5970  tail ZdlPv(a0)

@@ -1,0 +1,10 @@
+
+== +[TAGPBStreamOptions_TokenUnitEnumDescriptor enumDescriptor]_block_invoke   (address 0x10012d024  size 12  kind block)
+  12d02c  return
+
+== +[TAGPBStreamOptions_TokenUnitEnumDescriptor enumDescriptor]   (address 0x10012d030  size 96  kind objc)
+  12d048  if (g_10042ddf8 != 0) goto loc_10012d084
+  12d07c  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBStreamOptions_TokenUnit" values:&d_10042b680 valueCount:2 enumVerifier:&+[TAGPBStreamOptions_TokenUnitEnumDescriptor enumDescriptor]_block_invoke]
+  12d080  store g_10042ddf8 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBStreamOptions_TokenUnit" values:&d_10042b680 valueCount:2 enumVerifier:&+[TAGPBStreamOptions_TokenUnitEnumDescriptor enumDescriptor]_block_invoke]
+loc_10012d084:
+  12d08c  return

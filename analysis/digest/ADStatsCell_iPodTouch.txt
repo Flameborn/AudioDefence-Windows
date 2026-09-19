@@ -1,0 +1,23 @@
+
+== -[ADStatsCell_iPodTouch awakeFromNib]   (address 0x10009e6c4  size 4  kind objc)
+  09e6c4  return
+
+== -[ADStatsCell_iPodTouch setSelected:animated:]   (address 0x10009e6c8  size 60  kind objc)
+  09e6f4  [super setSelected:arg1 animated:arg2]
+  09e700  return
+
+== -[ADStatsCell_iPodTouch placeholderKey]   (address 0x10009e704  size 16  kind objc)
+  09e710  return
+
+== -[ADStatsCell_iPodTouch setPlaceholderKey:]   (address 0x10009e714  size 56  kind objc)
+  09e738  self->_placeholderKey = arg1
+  09e748  return
+
+== -[ADStatsCell_iPodTouch placeholderValue]   (address 0x10009e74c  size 16  kind objc)
+  09e758  return
+
+== -[ADStatsCell_iPodTouch setPlaceholderValue:]   (address 0x10009e75c  size 56  kind objc)
+  09e780  self->_placeholderValue = arg1
+  09e790  return
+
+== -[ADStatsCell_iPodTouch .cxx_destruct]   (address 0x10009e794  size 64  kind objc)

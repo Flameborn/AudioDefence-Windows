@@ -1,0 +1,218 @@
+{
+ "level_3": [
+  {
+   "selector": "moreDamages",
+   "title": "Military Grade Weapons",
+   "goodbad": "good",
+   "description": "Your guns deal 10% more damage.",
+   "icon": "Roulette_icon_target"
+  },
+  {
+   "selector": "goldenBullet",
+   "title": "Golden Bullet",
+   "goodbad": "good",
+   "description": "All your weapons carry 10% more bullets (minimum 1 extra bullet!)",
+   "icon": "Roulette_icon_tripleshot"
+  },
+  {
+   "selector": "moreHeadshots",
+   "title": "Head-Seeking Bullets",
+   "goodbad": "good",
+   "description": "Increases your chance of a critical hit by 50%.",
+   "icon": "Roulette_icon_headshot"
+  },
+  {
+   "selector": "widerSpread",
+   "title": "Zen Focus",
+   "goodbad": "good",
+   "description": "Hitting enemies will be easier.",
+   "icon": "Roulette_icon_zen"
+  },
+  {
+   "selector": "moreMeleeDamages",
+   "title": "Barbarian's Serum",
+   "goodbad": "good",
+   "description": "You deal 25% more damage with your Melee weapon.",
+   "icon": "Roulette_icon_inject"
+  },
+  {
+   "selector": "luckyShots",
+   "title": "Lucky Shot",
+   "goodbad": "good",
+   "description": "All shots have a 1% chance of dealing critical damage.",
+   "icon": "Roulette_icon_luck"
+  },
+  {
+   "selector": "narrowedSpread",
+   "title": "Rigged Guns",
+   "goodbad": "bad",
+   "description": "Your accuracy is slightly reduced. You’ll have to aim more carefully!",
+   "icon": "Roulette_icon_luck"
+  },
+  {
+   "selector": "lessMeleeDamages",
+   "title": "Toy Sword",
+   "goodbad": "bad",
+   "description": "Your Melee weapon deals 25% less damage.",
+   "icon": "Roulette_icon_glue"
+  },
+  {
+   "selector": "rustyWeapons",
+   "title": "Rusty Weapons",
+   "goodbad": "bad",
+   "description": "Your weapons have a chance of jamming, forcing you to reload.",
+   "icon": "Roulette_icon_poison"
+  },
+  {
+   "selector": "lessDamages",
+   "title": "Joke Guns",
+   "goodbad": "bad",
+   "description": "Your guns deal 10% less damage.",
+   "icon": "Roulette_icon_poison"
+  },
+  {
+   "selector": "lessBullets",
+   "title": "Ammo Rationing",
+   "goodbad": "bad",
+   "description": "Your guns have 10% less bullet capacity.",
+   "icon": "Roulette_icon_poison"
+  },
+  {
+   "selector": "noCritical",
+   "title": "Black Cat",
+   "goodbad": "bad",
+   "description": "Your weapons will land no critical hits.",
+   "icon": "Roulette_icon_poison"
+  }
+ ],
+ "level_2": [
+  {
+   "selector": "lessHeadshots",
+   "title": "Zombies With Helmets!",
+   "goodbad": "bad",
+   "description": "Landing critical hits is twice as hard.",
+   "icon": "Roulette_icon_threezombies"
+  },
+  {
+   "selector": "moreHeadshots",
+   "title": "Bobblehead Zombies",
+   "goodbad": "good",
+   "description": "Zombies will have huge heads! Landing criticals is way easier!",
+   "icon": "Roulette_icon_threezombies"
+  },
+  {
+   "selector": "fasterEnemies",
+   "title": "Overexcited Zombies",
+   "goodbad": "bad",
+   "description": "Zombies move 20% faster.",
+   "icon": "Roulette_icon_inject"
+  },
+  {
+   "selector": "enragedHorde",
+   "title": "Enraged Horde",
+   "goodbad": "bad",
+   "description": "Get ready! Zombies will get increasingly faster and tougher!",
+   "icon": "Roulette_icon_increase"
+  },
+  {
+   "selector": "strongerEnemies",
+   "title": "Thick Skin",
+   "goodbad": "bad",
+   "description": "Uh-oh, Zombies have 20% more hit points!",
+   "icon": "Roulette_icon_target"
+  },
+  {
+   "selector": "weakerEnemies",
+   "title": "Failed Experiments",
+   "goodbad": "good",
+   "description": "Yay! Zombies have 10% less hit points!",
+   "icon": "Roulette_icon_poison"
+  },
+  {
+   "selector": "slowerEnemies",
+   "title": "Glue Barrels",
+   "goodbad": "good",
+   "description": "Enemies are 10% slower.",
+   "icon": "Roulette_icon_glue"
+  }
+ ],
+ "level_1": [
+  {
+   "selector": "tesla",
+   "title": "Electric Shield",
+   "goodbad": "good",
+   "description": "Kills the first Zombie who gets too close.",
+   "icon": "Roulette_icon_tesla"
+  },
+  {
+   "selector": "metalDetector",
+   "title": "Metal Detector",
+   "goodbad": "good",
+   "description": "Earn 15% more Coins!",
+   "icon": "Roulette_icon_sonar"
+  },
+  {
+   "selector": "freeRevive",
+   "title": "Free Revive",
+   "goodbad": "good",
+   "description": "You can revive for free on your first death.",
+   "icon": "Roulette_icon_threezombies"
+  },
+  {
+   "selector": "cows",
+   "title": "Herd of Cows",
+   "goodbad": "bad",
+   "description": "Dr. Bastard releases annoying cows in the arena.",
+   "icon": "Roulette_icon_cow"
+  },
+  {
+   "selector": "cars",
+   "title": "Car Symphony",
+   "goodbad": "bad",
+   "description": "Car alarms will go off around you. Shoot the cars to blow them up!",
+   "icon": "Roulette_icon_car"
+  },
+  {
+   "selector": "jukebox",
+   "title": "Jukebox",
+   "goodbad": "bad",
+   "description": "An old jukebox keeps playing anticlimatic music. Shoot it to turn it off.",
+   "icon": "Roulette_icon_music"
+  },
+  {
+   "selector": "storm",
+   "title": "Thunder storm",
+   "goodbad": "bad",
+   "description": "A strong storm will hinder your hearing.",
+   "icon": "Roulette_icon_storm"
+  },
+  {
+   "selector": "machine",
+   "title": "Generator Malfunction",
+   "goodbad": "bad",
+   "description": "A loud generator is running in the arena. Shoot it stop it for a while.",
+   "icon": "Roulette_icon_cogs"
+  },
+  {
+   "selector": "baseComboBonus",
+   "title": "SUPER COMBO",
+   "goodbad": "good",
+   "description": "You start the game with double Combo. Score more, and get more coins!",
+   "icon": "Roulette_icon_cogs"
+  },
+  {
+   "selector": "morePowerUps",
+   "title": "More Power Ups!",
+   "goodbad": "good",
+   "description": "Power Ups are delivered more often.",
+   "icon": "Roulette_icon_cogs"
+  },
+  {
+   "selector": "betterPowerUps",
+   "title": "Powered Power Ups",
+   "goodbad": "good",
+   "description": "All Power Ups are fully levelled up for this game.",
+   "icon": "Roulette_icon_cogs"
+  }
+ ]
+}

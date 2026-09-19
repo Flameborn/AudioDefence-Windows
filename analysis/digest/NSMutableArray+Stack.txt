@@ -1,0 +1,19 @@
+
+== +[NSMutableArray(Stack) stack]   (address 0x1000dfb38  size 28  kind objc)
+  0dfb50  tail [NSMutableArray arrayWithCapacity:10]
+
+== -[NSMutableArray(Stack) push:]   (address 0x1000dfb54  size 32  kind objc)
+  0dfb68  [self addObject:arg1]
+  0dfb70  return
+
+== -[NSMutableArray(Stack) pop]   (address 0x1000dfb74  size 100  kind objc)
+  0dfb90  [self peek]
+  0dfbb0  [self removeLastObject]
+  0dfbc0  return
+
+== -[NSMutableArray(Stack) peek]   (address 0x1000dfbd8  size 16  kind objc)
+  0dfbe4  tail [self lastObject]
+
+== -[NSMutableArray(Stack) empty]   (address 0x1000dfbe8  size 40  kind objc)
+  0dfbfc  [self count]
+  0dfc0c  return

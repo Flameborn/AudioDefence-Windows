@@ -1,0 +1,87 @@
+
+== -[TAGExpandedFunctionCall initWithPropertiesMap:pushAfterEvaluate:]   (address 0x1001632d0  size 256  kind objc)
+  163328  [super init]
+  163330  if (self == 0) goto loc_100163384
+  163348  [arg1 mutableCopy]
+  163358  self->_propertiesMap = [arg1 mutableCopy]
+  163378  self->_pushAfterEvaluate = arg2
+loc_100163384:
+  1633a8  return
+
+== +[TAGExpandedFunctionCall builder]   (address 0x1001633d0  size 56  kind objc)
+  1633ec  [TAGExpandedFunctionCallBuilder alloc]
+  1633fc  [[TAGExpandedFunctionCallBuilder alloc] init]
+  163404  return
+
+== +[TAGExpandedFunctionCall instanceNameKey]   (address 0x100163408  size 44  kind objc)
+  163430  return
+
+== +[TAGExpandedFunctionCall functionKey]   (address 0x100163434  size 44  kind objc)
+  16345c  return
+
+== +[TAGExpandedFunctionCall notDefaultMacroKey]   (address 0x100163460  size 44  kind objc)
+  163488  return
+
+== -[TAGExpandedFunctionCall approximateByteSize]   (address 0x10016348c  size 552  kind objc)
+  1634e0  [self propertiesMap]
+  16350c  [[self propertiesMap] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  163514  if ([[self propertiesMap] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_100163620
+loc_100163558:
+loc_10016355c:
+  163568  if (x8 == x20) goto loc_100163574
+  163570  objc_enumerationMutation([self propertiesMap])
+loc_100163574:
+  163584  [x0 length]
+  163590  [self propertiesMap]
+  1635a8  [[self propertiesMap] objectForKey:x2]
+  1635c8  [[[self propertiesMap] objectForKey:x2] data]
+  1635dc  [[[[self propertiesMap] objectForKey:x2] data] length]
+  163600  if ((x21 + 1) <u [[self propertiesMap] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]) goto loc_10016355c
+  163610  [[self propertiesMap] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  163618  if ([[self propertiesMap] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_100163558
+  16361c  goto loc_100163624
+loc_100163620:
+loc_100163624:
+  163664  return
+
+== -[TAGExpandedFunctionCall propertyForKey:]   (address 0x1001636b4  size 168  kind objc)
+  1636e4  [self propertiesMap]
+  163704  [[self propertiesMap] valueForKey:arg1]
+  163734  return
+
+== -[TAGExpandedFunctionCall updateCacheablePropertyWithValue:forKey:]   (address 0x10016375c  size 184  kind objc)
+  16379c  [self propertiesMap]
+  1637c0  [[self propertiesMap] setObject:arg1 forKey:arg2]
+  1637e4  return
+
+== -[TAGExpandedFunctionCall properties]   (address 0x100163814  size 16  kind objc)
+  163820  tail [self propertiesMap]
+
+== -[TAGExpandedFunctionCall description]   (address 0x100163824  size 212  kind objc)
+  163850  [self propertiesMap]
+  163870  [self pushAfterEvaluate]
+  16389c  [NSString stringWithFormat:@"Properties: %@ pushAfterEvaluate: %@", [self propertiesMap], [self pushAfterEvaluate]]
+  1638d0  return
+
+== -[TAGExpandedFunctionCall copyWithZone:]   (address 0x1001638f8  size 216  kind objc)
+  163920  [TAGExpandedFunctionCall allocWithZone:arg1]
+  163938  [self propertiesMap]
+  163958  [self pushAfterEvaluate]
+  163980  [[TAGExpandedFunctionCall allocWithZone:arg1] initWithPropertiesMap:[self propertiesMap] pushAfterEvaluate:[self pushAfterEvaluate]]
+  1639a8  return
+
+== -[TAGExpandedFunctionCall pushAfterEvaluate]   (address 0x1001639d0  size 16  kind objc)
+  1639dc  return
+
+== -[TAGExpandedFunctionCall setPushAfterEvaluate:]   (address 0x1001639e0  size 56  kind objc)
+  163a04  self->_pushAfterEvaluate = arg1
+  163a14  return
+
+== -[TAGExpandedFunctionCall propertiesMap]   (address 0x100163a18  size 16  kind objc)
+  163a24  return
+
+== -[TAGExpandedFunctionCall setPropertiesMap:]   (address 0x100163a28  size 56  kind objc)
+  163a4c  self->_propertiesMap = arg1
+  163a5c  return
+
+== -[TAGExpandedFunctionCall .cxx_destruct]   (address 0x100163a60  size 64  kind objc)

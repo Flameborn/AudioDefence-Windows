@@ -1,0 +1,14 @@
+// Accessible_ADControlSchemeViewController.nib
+TOP-LEVEL OBJECTS
+  #4 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #1 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #21 UIView  
+    #13 UITableView  
+
+CONNECTIONS
+  outlet  dataSource                                #13 UITableView --> #4 UIProxyObject
+  outlet  delegate                                  #13 UITableView --> #4 UIProxyObject
+  outlet  tableView                                 #4 UIProxyObject --> #13 UITableView
+  outlet  view                                      #4 UIProxyObject --> #21 UIView
+
+ACCESSIBILITY CONFIGURATIONS

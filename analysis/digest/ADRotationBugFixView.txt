@@ -1,0 +1,24 @@
+
+== -[ADRotationBugFixView layoutSubviews]   (address 0x10006dc38  size 256  kind objc)
+  06dc70  [super layoutSubviews]
+  06dc90  if (0 != _CGPointZero[+0x0]) goto loc_10006dca8
+  06dca4  goto loc_10006dcac
+loc_10006dca8:
+loc_10006dcac:
+  06dcbc  [self rouletteImageView]
+  06dccc  if (w21 == 0) goto loc_10006dcec
+  06dce0  [[self rouletteImageView] center]
+  06dce8  goto loc_10006dd04
+loc_10006dcec:
+  06dd00  [[self rouletteImageView] setCenter:{d0, d1}]
+loc_10006dd04:
+  06dd1c  return
+
+== -[ADRotationBugFixView rouletteImageView]   (address 0x10006dd38  size 16  kind objc)
+  06dd44  return
+
+== -[ADRotationBugFixView setRouletteImageView:]   (address 0x10006dd48  size 56  kind objc)
+  06dd6c  self->_rouletteImageView = arg1
+  06dd7c  return
+
+== -[ADRotationBugFixView .cxx_destruct]   (address 0x10006dd80  size 20  kind objc)

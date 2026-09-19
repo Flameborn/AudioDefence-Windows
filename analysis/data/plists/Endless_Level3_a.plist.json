@@ -1,0 +1,60 @@
+{
+ "icon_title": "03",
+ "accuracy_star": {
+  "reward": 100,
+  "objective": 90
+ },
+ "title": "TRAINING GROUNDS 03",
+ "ambient": {
+  "gain": 0.3,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "tip": "The Zombies become more aggresive when they're close. That should remind you that they're in range of your melee weapon!",
+ "mission_star": {
+  "reward": 500
+ },
+ "bricks": [
+  "level3_brick_1",
+  "level3_brick_2",
+  "level3_brick_3",
+  "level3_brick_4",
+  "level3_brick_5_horde",
+  "level3_brick_6",
+  "level3_brick_7",
+  "level3_brick_8",
+  "level3_brick_9",
+  "level3_brick_10",
+  "level3_brick_11",
+  "level3_brick_12",
+  "level3_brick_13_runningHorde",
+  "level3_brick_14_horde",
+  "level3_brick_15",
+  "level3_brick_16",
+  "level3_brick_17",
+  "level3_brick_18",
+  "level3_brick_19",
+  "level3_brick_20",
+  "level3_brick_21",
+  "level3_brick_22"
+ ],
+ "icon": "Challenge_icon_03",
+ "challenge_id": "01_03",
+ "objective": "Defeat all Level 3 bricks!",
+ "weapons": [
+  {
+   "ammo": "999",
+   "name": "pistol"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 100,
+  "objective": 90
+ }
+}

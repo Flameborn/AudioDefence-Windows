@@ -1,0 +1,46 @@
+
+== -[ADEnemyStatsCell initWithStyle:reuseIdentifier:]   (address 0x10007bf2c  size 60  kind objc)
+  07bf58  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  07bf64  return
+
+== -[ADEnemyStatsCell awakeFromNib]   (address 0x10007bf68  size 568  kind objc)
+  07bf98  [ADGameParameters sharedParameters]
+  07bfb4  [[ADGameParameters sharedParameters] isIphone]
+  07bfd8  [self enemyNameLabel]
+  07c014  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  07c038  [[self enemyNameLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  07c054  [self enemyNameLabel]
+  07c07c  [UIColor whiteColor]
+  07c0a4  [[self enemyNameLabel] setTextColor:[UIColor whiteColor]]
+  07c0c8  [self coinsAmountLabel]
+  07c0e0  [UIColor whiteColor]
+  07c0fc  [[self coinsAmountLabel] setTextColor:[UIColor whiteColor]]
+  07c130  [super awakeFromNib]
+  07c148  return
+
+== -[ADEnemyStatsCell setSelected:animated:]   (address 0x10007c1a0  size 60  kind objc)
+  07c1cc  [super setSelected:arg1 animated:arg2]
+  07c1d8  return
+
+== -[ADEnemyStatsCell customView]   (address 0x10007c1dc  size 16  kind objc)
+  07c1e8  return
+
+== -[ADEnemyStatsCell setCustomView:]   (address 0x10007c1ec  size 56  kind objc)
+  07c210  self->_customView = arg1
+  07c220  return
+
+== -[ADEnemyStatsCell enemyNameLabel]   (address 0x10007c224  size 16  kind objc)
+  07c230  return
+
+== -[ADEnemyStatsCell setEnemyNameLabel:]   (address 0x10007c234  size 56  kind objc)
+  07c258  self->_enemyNameLabel = arg1
+  07c268  return
+
+== -[ADEnemyStatsCell coinsAmountLabel]   (address 0x10007c26c  size 16  kind objc)
+  07c278  return
+
+== -[ADEnemyStatsCell setCoinsAmountLabel:]   (address 0x10007c27c  size 56  kind objc)
+  07c2a0  self->_coinsAmountLabel = arg1
+  07c2b0  return
+
+== -[ADEnemyStatsCell .cxx_destruct]   (address 0x10007c2b4  size 84  kind objc)

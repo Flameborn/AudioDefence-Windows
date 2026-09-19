@@ -1,0 +1,240 @@
+
+== csl::SpatialSource::~SpatialSource   (address 0x1000f1748  size 116  kind cxx)
+  0f1764  sub_1000f16e4(a0, &d_1003b6620, a2, a3)
+  0f1770  sub_1000e9c44((a0 + 184), &d_1003b6638)
+  0f1778  sub_1000e9388((a0 + 192))
+  0f1788  return
+  0f179c  sub_1000e9c44((x19 + 184), (x8 + 24))
+  0f17ac  sub_1000e9388((x19 + 192))
+  0f17b8  call sub_10000b760
+
+== csl::SpatialSource::thunk_vfunc_0   (address 0x1000f17bc  size 16  kind cxx)
+  0f17c8  tail csl::SpatialSource::~SpatialSource((a0 + a0[+0x0][+0x-20]), a1, a2, a3)
+
+== csl::SpatialSource::thunk_vfunc_0   (address 0x1000f17cc  size 16  kind cxx)
+  0f17d8  tail csl::SpatialSource::~SpatialSource((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::SpatialSource::~SpatialSource/*deleting*/   (address 0x1000f17dc  size 56  kind cxx)
+  0f17ec  csl::SpatialSource::~SpatialSource(a0, a1, a2, a3)
+  0f17fc  tail ZdlPv(a0)
+  0f1808  ZdlPv()
+
+== csl::SpatialSource::thunk_vfunc_1   (address 0x1000f1814  size 16  kind cxx)
+  0f1820  tail csl::SpatialSource::~SpatialSource/*deleting*/((a0 + a0[+0x0][+0x-20]), a1, a2, a3)
+
+== csl::SpatialSource::thunk_vfunc_1   (address 0x1000f1824  size 16  kind cxx)
+  0f1830  tail csl::SpatialSource::~SpatialSource/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== sub_1000f1834   (address 0x1000f1834  size 120  kind sub)
+  0f185c  if (a0[+0xa8] == 0) goto loc_1000f1874
+  0f1864  if (a0[+0xb0] == 0) goto loc_1000f1874
+  0f1868  ZdlPv(a0[+0xa8], a1, a2, a3)
+  0f186c  a0[+0xa8] = 0
+  0f1870  a0[+0xb0] = 0
+loc_1000f1874:
+  0f1878  Znwm(16)
+  0f1880  Znwm(16)[+0x0] = 3
+  0f1888  Znwm(16)[+0xc] = s8
+  0f188c  a0[+0xa8] = Znwm(16)
+  0f1894  a0[+0xb0] = 1
+  0f18a8  return
+
+== sub_1000f18ac   (address 0x1000f18ac  size 68  kind sub)
+  0f18c4  if (a0[+0xa8] == 0) goto loc_1000f18dc
+  0f18cc  if (a0[+0xb0] == 0) goto loc_1000f18dc
+  0f18d0  ZdlPv(a0[+0xa8], a1, a2, a3)
+  0f18d4  a0[+0xa8] = 0
+  0f18d8  a0[+0xb0] = 0
+loc_1000f18dc:
+  0f18dc  a0[+0xa8] = a1
+  0f18e0  a0[+0xb0] = 0
+  0f18ec  return
+
+== sub_1000f18f0   (address 0x1000f18f0  size 60  kind sub)
+  0f1904  if (a0[+0xa8] != 0) goto loc_1000f1920
+  0f1918  sub_1000f1834(a0, a1, a2, a3)
+loc_1000f1920:
+  0f1928  return
+
+== csl::SpatialSource::vfunc_14   (address 0x1000f192c  size 8  kind cxx)
+  0f192c  a0[+0xa8] = a1
+  0f1930  return
+
+== csl::SpatialSource::vfunc_15   (address 0x1000f1934  size 44  kind cxx)
+  0f1938  if (a0[+0xa8] == 0) goto loc_1000f195c
+  0f1940  a0[+0xa8][+0x0] = 3
+  0f1944  a0[+0xa8][+0x4] = s0
+  0f1948  a0[+0xa8][+0x8] = s1
+  0f194c  a0[+0xa8][+0xc] = s2
+  0f1954  a0[+0xb1] = 1
+  0f1958  return
+  0f195c  tail sub_1000f1834(a0, a1, a2, a3)
+
+== csl::SpatialSource::vfunc_16   (address 0x1000f1960  size 68  kind cxx)
+  0f1964  if (a0[+0xa8] == 0) goto loc_1000f1994
+  0f1970  a0[+0xa8][+0x0] = 3
+  0f1974  a0[+0xa8][+0x4] = s0
+  0f197c  a0[+0xa8][+0x8] = s0
+  0f1984  a0[+0xa8][+0xc] = s0
+  0f198c  a0[+0xb1] = 1
+  0f1990  return
+  0f19a0  tail sub_1000f1834(a0, a1, a2, a3)
+
+== csl::SpatialSource::vfunc_17   (address 0x1000f19a4  size 124  kind cxx)
+  0f19dc  if (a0[+0xa8] == 0) goto loc_1000f1a04
+  0f19f0  sub_1000ef0dc(a0[+0xa8], 1, a2, a3)
+  0f19f4  a0[+0xb1] = 1
+  0f1a00  return
+  0f1a1c  tail sub_1000f1440(a0, 1, a2, a3)
+
+== csl::SpatialSource::vfunc_18   (address 0x1000f1a20  size 124  kind cxx)
+  0f1a68  if (a0[+0xa8] == 0) goto loc_1000f1a88
+  0f1a74  sub_1000ef0dc(a0[+0xa8], 1, a2, a3)
+  0f1a78  a0[+0xb1] = 1
+  0f1a84  return
+  0f1a98  tail sub_1000f1440(a0, 1, a2, a3)
+
+== csl::SpatialSource::vfunc_11   (address 0x1000f1a9c  size 128  kind cxx)
+  0f1ab8  sub_1000ef15c(a0[+0xa8], a1, a2, a3)
+  0f1ac4  sub_1000ef1fc(a0[+0xa8])
+  0f1b04  printf("	az: %5.2f  el: %5.2f  dist: %4.2f\n", sp[0], sp[8], sqrt((((s1 * s1) + (s2 * s2)) + (a0[+0xa8][+0xc] * a0[+0xa8][+0xc]))))
+  0f1b18  return
+
+== csl::SpatialSource::thunk_vfunc_2   (address 0x1000f1b1c  size 16  kind cxx)
+  0f1b28  tail csl::SpatialSource::vfunc_11((a0 + a0[+0x0][+0x-20]), a1, a2, a3)
+
+== csl::SpatialSource::vfunc_12   (address 0x1000f1b2c  size 124  kind cxx)
+  0f1b5c  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0f1b80  call (a0[+0x0][+0x-20] + a0)[+0x20][+0x8][+0x0][+0x60]
+  0f1ba0  return
+
+== csl::SpatialSource::thunk_vfunc_3   (address 0x1000f1ba8  size 136  kind cxx)
+  0f1be0  sub_1000e8c00(&sp[0x8], a1, a2, a3)
+  0f1c08  call ((a0[+0x0][+0x-28] + x8) + a0)[+0x20][+0x8][+0x0][+0x60]
+  0f1c28  return
+
+== csl::SpatialSource::vfunc_5   (address 0x1000f1c30  size 76  kind cxx)
+  0f1c5c  call (a0[+0x0][+0x-20] + a0)[+0x20][+0x8][+0x0][+0x20]
+  0f1c60  a0[+0xb1] = 0
+  0f1c6c  return
+  0f1c70  if (w1 >= 0) goto loc_1000f1c78
+  0f1c74  cxa_call_unexpected()
+
+== csl::SpatialSource::vfunc_4   (address 0x1000f1c7c  size 44  kind cxx)
+  0f1c90  call a0[+0x0][+0x28]
+  0f1c98  return
+  0f1c9c  if (w1 >= 0) goto loc_1000f1ca4
+  0f1ca0  cxa_call_unexpected()
+
+== csl::SpatialSource::vfunc_19   (address 0x1000f1ca8  size 8  kind cxx)
+  0f1cac  return
+
+== sub_1000f1cb0   (address 0x1000f1cb0  size 60  kind sub)
+  0f1cc8  ZNSt8ios_base4InitC1Ev(&g_10042db98, a1, a2, a3)
+  0f1ce8  tail cxa_atexit(__ZNSt8ios_base4InitD1Ev, &g_10042db98, 0x100000000)
+
+== sub_1000f1cec   (address 0x1000f1cec  size 80  kind sub)
+  0f1d00  if (g_10042d8c8 != 0) goto loc_1000f1d18
+  0f1d08  Znwm(136, a1, a2, a3)
+  0f1d10  sub_1000f26a0(Znwm(136, a1, a2, a3))
+  0f1d14  store g_10042d8c8 = Znwm(136, a1, a2, a3)
+loc_1000f1d18:
+  0f1d24  return
+  0f1d30  ZdlPv()
+
+== sub_1000f1d3c   (address 0x1000f1d3c  size 152  kind sub)
+  0f1d50  a0[+0x8] = 0
+  0f1d60  a0[+0x28] = 0
+  0f1d68  a0[+0x50] = 0
+  0f1d6c  a0[+0x51] = 0
+  0f1d80  a0[+0x0] = vtable<csl::SpeakerLayout>
+  0f1d88  a0[+0x60] = 0
+  0f1d94  a0[+0x78] = 2
+  0f1d98  sub_1000f1dd4(a0, a1, a2, a3)
+  0f1da8  return
+  0f1db8  if (x0 == 0) goto loc_1000f1dc0
+  0f1dbc  ZdlPv()
+  0f1dc4  ZN3csl5ModelD2Ev()
+  0f1dd0  call sub_10000b760
+
+== sub_1000f1dd4   (address 0x1000f1dd4  size 744  kind sub)
+  0f1e10  if (a1 == 0) goto loc_1000f2050
+  0f1e18  strlen(a1, a1, a2, a3)
+  0f1e1c  malloc(strlen(a1, a1, a2, a3))
+  0f1e28  strcpy(malloc(strlen(a1, a1, a2, a3)), a1)
+  0f1e58  ZNSt14basic_ifstreamIcSt11char_traitsIcEEC1EPKcSt13_Ios_Openmode(&sp[0x40], malloc(strlen(a1, a1, a2, a3)), 8)
+  0f1e78  if (((x8 + &sp[0x40])[+0x20] & 5) != 0) goto loc_1000f2094
+  0f1eac  goto loc_1000f1ecc
+loc_1000f1eb0:
+  0f1ebc  strcmp(&sp[0x3c8], "WITH-NORMAL")
+loc_1000f1ecc:
+  0f1ed0  ZNSi4peekEv(&sp[0x40])
+  0f1edc  if (ZNSi4peekEv(&sp[0x40]) > 46) goto loc_1000f1f04
+  0f1ee8  if ((ZNSi4peekEv(&sp[0x40]) - 9) <u 2) goto loc_1000f1ef4
+  0f1ef0  if (ZNSi4peekEv(&sp[0x40]) != 32) goto loc_1000f1f38
+loc_1000f1ef4:
+  0f1efc  ZNSi6ignoreEl(&sp[0x40], 1)
+  0f1f00  goto loc_1000f1ecc
+loc_1000f1f04:
+  0f1f08  if (ZNSi4peekEv(&sp[0x40]) != 47) goto loc_1000f1f40
+  0f1f1c  ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc((&sp[0x40] + x8), 10)
+  0f1f30  ZNSi7getlineEPclc(&sp[0x40], &sp[0x3c8], 1023, ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc((&sp[0x40] + x8), 10))
+  0f1f34  goto loc_1000f1ecc
+loc_1000f1f38:
+  0f1f3c  if (ZNSi4peekEv(&sp[0x40]) == -1) goto loc_1000f2028
+loc_1000f1f40:
+  0f1f44  if (ZNSi4peekEv(&sp[0x40]) <=u 255) goto loc_1000f1f50
+  0f1f4c  goto loc_1000f1f5c
+loc_1000f1f50:
+loc_1000f1f5c:
+  0f1f5c  if ((w9 & 1)) goto loc_1000f1f68
+  0f1f64  if (ZNSi4peekEv(&sp[0x40]) != 45) goto loc_1000f1ff8
+loc_1000f1f68:
+  0f1f68  if (!(w28 & 1)) goto loc_1000f1fc8
+  0f1f74  ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4))
+  0f1f7c  ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4)), (&sp[0x30] + 8))
+  0f1f84  ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4)), (&sp[0x30] + 8)), (&sp[0x30] + 12))
+  0f1f8c  ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4)), (&sp[0x30] + 8)), (&sp[0x30] + 12)), (&sp[0x20] | 4))
+  0f1f94  ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4)), (&sp[0x30] + 8)), (&sp[0x30] + 12)), (&sp[0x20] | 4)), (&sp[0x20] + 8))
+  0f1f9c  ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4)), (&sp[0x30] + 8)), (&sp[0x30] + 12)), (&sp[0x20] | 4)), (&sp[0x20] + 8)), (&sp[0x20] + 12))
+  0f1fa4  ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4)), (&sp[0x30] + 8)), (&sp[0x30] + 12)), (&sp[0x20] | 4)), (&sp[0x20] + 8)), (&sp[0x20] + 12)), &sp[0x1c])
+  0f1fc0  sub_1000f219c(a0)
+  0f1fc4  goto loc_1000f1ecc
+loc_1000f1fc8:
+  0f1fd0  ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4))
+  0f1fd8  ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4)), (&sp[0x30] + 8))
+  0f1fe0  ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(ZNSi10_M_extractIfEERSiRT_(&sp[0x40], (&sp[0x30] | 4)), (&sp[0x30] + 8)), (&sp[0x30] + 12))
+  0f1ff0  sub_1000f233c(a0)
+  0f1ff4  goto loc_1000f1ecc
+loc_1000f1ff8:
+  0f2008  ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc((&sp[0x40] + x8), 10)
+  0f201c  ZNSi3getEPclc(&sp[0x40], &sp[0x3c8], 32, ZNKSt9basic_iosIcSt11char_traitsIcEE5widenEc((&sp[0x40] + x8), 10))
+  0f2020  goto loc_1000f1eb0
+  0f2024  goto loc_1000f2080
+loc_1000f2028:
+  0f202c  sub_1000f2428(a0)
+  0f2034  free(malloc(strlen(a1, a1, a2, a3)))
+  0f203c  ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(&sp[0x40])
+loc_1000f2050:
+  0f2078  return
+  0f2088  ZNSt14basic_ifstreamIcSt11char_traitsIcEED1Ev(&sp[0x40])
+  0f2090  call sub_10000b760
+  0f20a0  sub_1000e772c(2, "SpeakerLayout unable to open file\n")
+  0f20a8  exit(1)
+
+== sub_1000f20bc   (address 0x1000f20bc  size 132  kind sub)
+  0f20d8  a0[+0x0] = vtable<csl::SpeakerLayout>
+  0f20e4  if (x9 == x0) goto loc_1000f211c
+loc_1000f20f0:
+  0f20f4  if (x8 == 0) goto loc_1000f2104
+  0f20fc  ZdlPv()
+loc_1000f2104:
+  0f2114  if (x8 <u ((x9 - x0) >> 3)) goto loc_1000f20f0
+  0f2118  goto loc_1000f2120
+loc_1000f211c:
+loc_1000f2120:
+  0f2120  if (x0 == 0) goto loc_1000f2128
+  0f2124  ZdlPv()
+loc_1000f2128:
+  0f212c  ZN3csl5ModelD2Ev(a0)
+  0f213c  return

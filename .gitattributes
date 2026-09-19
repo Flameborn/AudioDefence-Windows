@@ -1,0 +1,10 @@
+# Text files are stored with LF, whatever the machine that commits them uses.
+* text=auto eol=lf
+
+# The original game, the vendored DLLs and everything pulled out of the binary are kept byte for byte:
+# no line-ending conversion, no diffing.
+game/** binary
+vendor/** binary
+analysis/bin/** binary
+analysis/data/embedded_hrtf.dat binary
+assets/hrtf/*.mhr binary

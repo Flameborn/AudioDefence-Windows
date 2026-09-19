@@ -1,0 +1,98 @@
+
+== +[ADTracker sharedInstance]   (address 0x1000dd7cc  size 68  kind objc)
+  0dd7e8  if (g_10042da60 != -1) goto loc_1000dd7fc
+loc_1000dd7ec:
+loc_1000dd7fc:
+  0dd808  dispatch_once(&g_10042da60, ^{+[ADTracker sharedInstance]_block_invoke})
+  0dd80c  goto loc_1000dd7ec
+
+== +[ADTracker sharedInstance]_block_invoke   (address 0x1000dd810  size 264  kind block)
+  0dd83c  [ADTracker alloc]
+  0dd850  [[ADTracker alloc] init]
+  0dd860  store g_10042da58 = [[ADTracker alloc] init]
+  0dd87c  [NSMutableDictionary alloc]
+  0dd884  [[NSMutableDictionary alloc] init]
+  0dd8a0  [g_10042da58 setDimensionDictionary:[[NSMutableDictionary alloc] init]]
+  0dd8b8  [NSMutableDictionary alloc]
+  0dd8c0  [[NSMutableDictionary alloc] init]
+  0dd8dc  [g_10042da58 setMetricDictionary:[[NSMutableDictionary alloc] init]]
+  0dd8f4  return
+
+== +[ADTracker printDimensionTable]   (address 0x1000dd918  size 4  kind objc)
+  0dd918  return
+
+== +[ADTracker printMetricTable]   (address 0x1000dd91c  size 4  kind objc)
+  0dd91c  return
+
+== +[ADTracker indexForDimensionName:]   (address 0x1000dd920  size 276  kind objc)
+  0dd954  [ADTracker sharedInstance]
+  0dd970  [[ADTracker sharedInstance] dimensionDictionary]
+  0dd990  [[[ADTracker sharedInstance] dimensionDictionary] objectForKey:arg1]
+  0dd9ac  [[[[ADTracker sharedInstance] dimensionDictionary] objectForKey:arg1] unsignedIntegerValue]
+  0dd9e8  return
+
+== +[ADTracker indexForMetricName:]   (address 0x1000dda34  size 276  kind objc)
+  0dda68  [ADTracker sharedInstance]
+  0dda84  [[ADTracker sharedInstance] metricDictionary]
+  0ddaa4  [[[ADTracker sharedInstance] metricDictionary] objectForKey:arg1]
+  0ddac0  [[[[ADTracker sharedInstance] metricDictionary] objectForKey:arg1] unsignedIntegerValue]
+  0ddafc  return
+
+== -[ADTracker setValue:ForDimension:AndValue:ForMetric:]   (address 0x1000ddb48  size 528  kind objc)
+  0ddbb4  [ADTracker indexForDimensionName:arg2]
+  0ddbd0  [ADTracker indexForMetricName:arg4]
+  0ddbec  [GAI sharedInstance]
+  0ddc08  [[GAI sharedInstance] defaultTracker]
+  0ddc20  if ([ADTracker indexForDimensionName:arg2] < 0) goto loc_1000ddc70
+  0ddc3c  [GAIFields customDimensionForIndex:[ADTracker indexForDimensionName:arg2]]
+  0ddc64  [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:[ADTracker indexForDimensionName:arg2]] value:arg1]
+loc_1000ddc70:
+  0ddc70  if ([ADTracker indexForMetricName:arg4] < 0) goto loc_1000ddcc0
+  0ddc8c  [GAIFields customMetricForIndex:[ADTracker indexForMetricName:arg4]]
+  0ddcb4  [[[GAI sharedInstance] defaultTracker] set:[GAIFields customMetricForIndex:[ADTracker indexForMetricName:arg4]] value:arg3]
+loc_1000ddcc0:
+  0ddcf8  return
+
+== -[ADTracker removeValueForDimension:AndRemoveValueForMetric:]   (address 0x1000ddd58  size 744  kind objc)
+  0ddda8  [ADTracker sharedInstance]
+  0dddc4  [[ADTracker sharedInstance] dimensionDictionary]
+  0ddde8  [[[ADTracker sharedInstance] dimensionDictionary] objectForKey:arg1]
+  0dde08  [[[[ADTracker sharedInstance] dimensionDictionary] objectForKey:arg1] unsignedIntegerValue]
+  0dde30  [ADTracker sharedInstance]
+  0dde4c  [[ADTracker sharedInstance] metricDictionary]
+  0dde64  [[[ADTracker sharedInstance] metricDictionary] objectForKey:arg2]
+  0dde78  [[[[ADTracker sharedInstance] metricDictionary] objectForKey:arg2] unsignedIntegerValue]
+  0ddea4  [GAI sharedInstance]
+  0ddec0  [[GAI sharedInstance] defaultTracker]
+  0ddef0  [GAIFields customDimensionForIndex:[[[[ADTracker sharedInstance] dimensionDictionary] objectForKey:arg1] unsignedIntegerValue]]
+  0ddf1c  [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:[[[[ADTracker sharedInstance] dimensionDictionary] objectForKey:arg1] unsignedIntegerValue]] value:0]
+  0ddf3c  [GAIFields customMetricForIndex:[[[[ADTracker sharedInstance] metricDictionary] objectForKey:arg2] unsignedIntegerValue]]
+  0ddf5c  [[[GAI sharedInstance] defaultTracker] set:[GAIFields customMetricForIndex:[[[[ADTracker sharedInstance] metricDictionary] objectForKey:arg2] unsignedIntegerValue]] value:0]
+  0ddf94  return
+
+== -[ADTracker dimensionDictionary]   (address 0x1000de040  size 16  kind objc)
+  0de04c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADTracker setDimensionDictionary:]   (address 0x1000de050  size 12  kind objc)
+  0de058  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADTracker metricDictionary]   (address 0x1000de05c  size 16  kind objc)
+  0de068  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADTracker setMetricDictionary:]   (address 0x1000de06c  size 12  kind objc)
+  0de074  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADTracker configured]   (address 0x1000de078  size 20  kind objc)
+  0de088  return
+
+== -[ADTracker setConfigured:]   (address 0x1000de08c  size 16  kind objc)
+  0de094  self->_configured = arg1
+  0de098  return
+
+== -[ADTracker trackerInventory]   (address 0x1000de09c  size 16  kind objc)
+  0de0a8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADTracker setTrackerInventory:]   (address 0x1000de0ac  size 12  kind objc)
+  0de0b4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADTracker .cxx_destruct]   (address 0x1000de0b8  size 84  kind objc)

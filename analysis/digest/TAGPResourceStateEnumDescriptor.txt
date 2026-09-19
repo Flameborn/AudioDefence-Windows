@@ -1,0 +1,10 @@
+
+== +[TAGPResourceStateEnumDescriptor enumDescriptor]_block_invoke   (address 0x10014becc  size 16  kind block)
+  14bed8  return
+
+== +[TAGPResourceStateEnumDescriptor enumDescriptor]   (address 0x10014bedc  size 96  kind objc)
+  14bef4  if (g_10042de90 != 0) goto loc_10014bf30
+  14bf28  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPResourceState" values:&d_10042c1a8 valueCount:2 enumVerifier:&+[TAGPResourceStateEnumDescriptor enumDescriptor]_block_invoke]
+  14bf2c  store g_10042de90 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPResourceState" values:&d_10042c1a8 valueCount:2 enumVerifier:&+[TAGPResourceStateEnumDescriptor enumDescriptor]_block_invoke]
+loc_10014bf30:
+  14bf38  return

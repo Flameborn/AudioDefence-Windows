@@ -1,0 +1,11 @@
+
+== +[ADSingleEnemyBrickLoader loadBrickWithSingleEnemyName:]   (address 0x10009e7d4  size 684  kind objc)
+  09e824  [NSString alloc]
+  09e840  [[NSString alloc] initWithFormat:@"Test brick with a single enemy, namely: %@", arg1]
+  09e8b0  [NSNumber numberWithInt:1]
+  09e8d8  [NSNumber numberWithInt:330]
+  09e90c  [NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x18] count:4]
+  09e930  [NSDictionary dictionaryWithObjects:&sp[0x60] forKeys:&sp[0x58] count:1]
+  09e96c  [NSArray arrayWithObjects:&sp[0x10] count:1]
+  09e990  [NSDictionary dictionaryWithObjects:&x29[-0x68] forKeys:&sp[0x68] count:2]
+  09ea04  return

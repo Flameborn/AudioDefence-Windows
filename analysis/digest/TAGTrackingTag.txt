@@ -1,0 +1,12 @@
+
+== -[TAGTrackingTag isCacheable]   (address 0x10017ae5c  size 8  kind objc)
+  17ae60  return
+
+== -[TAGTrackingTag evaluate:]   (address 0x10017ae64  size 132  kind objc)
+  17ae94  [self evaluateTrackingTag:arg1]
+  17aeac  [TAGTypes defaultValue]
+  17aed0  return
+
+== -[TAGTrackingTag evaluateTrackingTag:]   (address 0x10017aee8  size 40  kind objc)
+  17af04  [self doesNotRecognizeSelector:_cmd]
+  17af0c  return

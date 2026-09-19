@@ -1,0 +1,165 @@
+
+== -[ADPlayMenuViewController initWithNibName:bundle:]   (address 0x1000aaf5c  size 140  kind objc)
+  0aafac  [super initWithNibName:arg1 bundle:arg2]
+  0aafd0  return
+
+== -[ADPlayMenuViewController initWithNibName:bundle:shouldAnimate:]   (address 0x1000aafe8  size 220  kind objc)
+  0ab050  [super initWithNibName:arg1 bundle:arg2]
+  0ab070  [self setAnimateCheck:arg3]
+  0ab09c  return
+
+== -[ADPlayMenuViewController viewDidLoad]   (address 0x1000ab0c4  size 920  kind objc)
+  0ab0fc  [super viewDidLoad]
+  0ab114  [self statusBarViewController]
+  0ab130  [[self statusBarViewController] pageTitle]
+  0ab154  [[[self statusBarViewController] pageTitle] setText:@"PLAY"]
+  0ab170  [self statusBarViewController]
+  0ab190  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  0ab1a4  [self statusBarViewController]
+  0ab1c4  [[self statusBarViewController] setCurrenciesVisibility:0]
+  0ab1d8  [self statusBarViewController]
+  0ab1f4  [[self statusBarViewController] backButton]
+  0ab21c  [[[self statusBarViewController] backButton] setTitle:@"Main Menu" forState:0]
+  0ab244  [ADChallengeData sharedChallengeData]
+  0ab268  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  0ab278  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_1000ab2b8
+  0ab28c  [self endlessModeLockView]
+  0ab2ac  [[self endlessModeLockView] setHidden:1]
+  0ab2b4  goto loc_1000ab3d8
+loc_1000ab2b8:
+  0ab2cc  [self endlessModeButton]
+  0ab2ec  [[self endlessModeButton] setEnabled:0]
+  0ab308  [self endlessModeLockView]
+  0ab32c  [[self endlessModeLockView] setHidden:0]
+  0ab340  [self endlessModeButton]
+  0ab364  [[self endlessModeButton] setAccessibilityHint:@"Finish the tutorial to unlock"]
+  0ab378  [self endlessModeButton]
+  0ab39c  [[self endlessModeButton] setAccessibilityLabel:@"Endless mode is locked"]
+  0ab3b8  [self endlessInfoButton]
+  0ab3d0  [[self endlessInfoButton] setHidden:1]
+loc_1000ab3d8:
+  0ab3ec  return
+
+== -[ADPlayMenuViewController loadView]   (address 0x1000ab45c  size 536  kind objc)
+  0ab4b4  [NSNumber numberWithInt:1]
+  0ab4e0  [NSNumber numberWithInt:2]
+  0ab508  [NSNumber numberWithInt:3]
+  0ab530  [NSNumber numberWithInt:4]
+  0ab558  [NSNumber numberWithInt:5]
+  0ab588  [NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x8] count:5]
+  0ab5dc  [self loADViewBasedOnDeviceWithNibName:@"ADPlayMenuViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x8] count:5]]
+  0ab60c  return
+
+== -[ADPlayMenuViewController viewDidAppear:]   (address 0x1000ab674  size 148  kind objc)
+  0ab6a8  [super viewDidAppear:arg1]
+  0ab6bc  [self slidingView]
+  0ab6d8  [[self slidingView] slide]
+  0ab6f0  return
+
+== -[ADPlayMenuViewController didReceiveMemoryWarning]   (address 0x1000ab708  size 60  kind objc)
+  0ab734  [super didReceiveMemoryWarning]
+  0ab740  return
+
+== -[ADPlayMenuViewController endlessModeButtonTouched:]   (address 0x1000ab744  size 388  kind objc)
+  0ab774  [ADPersistentStats persistentStats]
+  0ab790  [[ADPersistentStats persistentStats] highScore]
+  0ab7a4  if ([[ADPersistentStats persistentStats] highScore] < 1) goto loc_1000ab818
+  0ab7bc  [UIApplication sharedApplication]
+  0ab7d8  [[UIApplication sharedApplication] delegate]
+  0ab7f4  [[[UIApplication sharedApplication] delegate] goToTarot]
+  0ab814  return
+loc_1000ab818:
+  0ab820  [ADPersistentStats persistentStats]
+  0ab840  [[ADPersistentStats persistentStats] saveScore:1]
+  0ab860  [self endlessInfoButtonPressed:0]
+  0ab874  return
+
+== -[ADPlayMenuViewController challengeButtonTouched:]   (address 0x1000ab8c8  size 164  kind objc)
+  0ab8e8  [UIApplication sharedApplication]
+  0ab904  [[UIApplication sharedApplication] delegate]
+  0ab920  [[[UIApplication sharedApplication] delegate] goToWorldSelector]
+  0ab938  return
+
+== -[ADPlayMenuViewController backButtonPressed]   (address 0x1000ab96c  size 160  kind objc)
+  0ab990  [UIApplication sharedApplication]
+  0ab9ac  [[UIApplication sharedApplication] delegate]
+  0ab9c8  [[[UIApplication sharedApplication] delegate] goToMainMenu]
+  0ab9e4  return
+
+== -[ADPlayMenuViewController playSound]   (address 0x1000aba0c  size 252  kind objc)
+  0aba30  [S3DEngine engine]
+  0aba54  [[S3DEngine engine] playListWithName:@"buttons"]
+  0aba78  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  0abaac  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  0abac0  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  0abad4  return
+
+== -[ADPlayMenuViewController challengeInfoButtonPressed:]   (address 0x1000abb08  size 188  kind objc)
+  0abb20  [self playSound]
+  0abb38  [UIApplication sharedApplication]
+  0abb54  [[UIApplication sharedApplication] delegate]
+  0abb78  [[[UIApplication sharedApplication] delegate] goToInfoScreen:@"challenge"]
+  0abb90  return
+
+== -[ADPlayMenuViewController endlessInfoButtonPressed:]   (address 0x1000abbc4  size 188  kind objc)
+  0abbdc  [self playSound]
+  0abbf4  [UIApplication sharedApplication]
+  0abc10  [[UIApplication sharedApplication] delegate]
+  0abc34  [[[UIApplication sharedApplication] delegate] goToInfoScreen:@"endless"]
+  0abc4c  return
+
+== -[ADPlayMenuViewController accessibilityPerformMagicTap]   (address 0x1000abc80  size 172  kind objc)
+  0abca8  [ADChallengeData sharedChallengeData]
+  0abccc  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  0abcdc  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_1000abcec
+  0abce4  &@selector(endlessModeButtonTouched:)
+  0abce8  goto loc_1000abcf4
+loc_1000abcec:
+  0abcf0  &@selector(challengeButtonTouched:)
+loc_1000abcf4:
+  0abd00  [self challengeButtonTouched:0  | endlessModeButtonTouched:x3]
+  0abd14  return
+
+== -[ADPlayMenuViewController endlessModeLockView]   (address 0x1000abd2c  size 16  kind objc)
+  0abd38  return
+
+== -[ADPlayMenuViewController setEndlessModeLockView:]   (address 0x1000abd3c  size 56  kind objc)
+  0abd60  self->_endlessModeLockView = arg1
+  0abd70  return
+
+== -[ADPlayMenuViewController endlessModeButton]   (address 0x1000abd74  size 16  kind objc)
+  0abd80  return
+
+== -[ADPlayMenuViewController setEndlessModeButton:]   (address 0x1000abd84  size 56  kind objc)
+  0abda8  self->_endlessModeButton = arg1
+  0abdb8  return
+
+== -[ADPlayMenuViewController challengeInfoButton]   (address 0x1000abdbc  size 16  kind objc)
+  0abdc8  return
+
+== -[ADPlayMenuViewController setChallengeInfoButton:]   (address 0x1000abdcc  size 56  kind objc)
+  0abdf0  self->_challengeInfoButton = arg1
+  0abe00  return
+
+== -[ADPlayMenuViewController endlessInfoButton]   (address 0x1000abe04  size 16  kind objc)
+  0abe10  return
+
+== -[ADPlayMenuViewController setEndlessInfoButton:]   (address 0x1000abe14  size 56  kind objc)
+  0abe38  self->_endlessInfoButton = arg1
+  0abe48  return
+
+== -[ADPlayMenuViewController slidingView]   (address 0x1000abe4c  size 16  kind objc)
+  0abe58  return
+
+== -[ADPlayMenuViewController setSlidingView:]   (address 0x1000abe5c  size 56  kind objc)
+  0abe80  self->_slidingView = arg1
+  0abe90  return
+
+== -[ADPlayMenuViewController animateCheck]   (address 0x1000abe94  size 20  kind objc)
+  0abea4  return
+
+== -[ADPlayMenuViewController setAnimateCheck:]   (address 0x1000abea8  size 16  kind objc)
+  0abeb0  self->_animateCheck = arg1
+  0abeb4  return
+
+== -[ADPlayMenuViewController .cxx_destruct]   (address 0x1000abeb8  size 124  kind objc)

@@ -1,0 +1,164 @@
+
+== -[MBBarProgressView init]   (address 0x1000339f4  size 52  kind objc)
+  033a1c  [self initWithFrame:{0, 0, 120, 20}]
+  033a24  return
+
+== -[MBBarProgressView initWithFrame:]   (address 0x100033a28  size 428  kind objc)
+  033a60  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  033a68  if (self == 0) goto loc_100033b94
+  033a74  self->_progress = 0
+  033a94  [UIColor whiteColor]
+  033ab0  self->_lineColor = [UIColor whiteColor]
+  033ac4  [UIColor whiteColor]
+  033ae0  self->_progressColor = [UIColor whiteColor]
+  033b00  [UIColor clearColor]
+  033b1c  self->_progressRemainingColor = [UIColor clearColor]
+  033b30  [UIColor clearColor]
+  033b54  [self setBackgroundColor:[UIColor clearColor]]
+  033b78  [self setOpaque:0]
+  033b90  [self registerForKVO]
+loc_100033b94:
+  033ba8  return
+
+== -[MBBarProgressView dealloc]   (address 0x100033bd4  size 144  kind objc)
+  033bf4  [self unregisterFromKVO]
+  033c18  [super dealloc]
+  033c28  return
+  033c54  [super dealloc]
+  033c60  call sub_10000b760
+
+== -[MBBarProgressView drawRect:]   (address 0x100033c64  size 1356  kind objc)
+  033c98  UIGraphicsGetCurrentContext(self, _cmd)
+  033ca8  CGContextSetLineWidth(UIGraphicsGetCurrentContext(self, _cmd))
+  033cc8  [self->_lineColor CGColor]
+  033cd4  CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(self, _cmd), [self->_lineColor CGColor])
+  033ce8  [self->_progressRemainingColor CGColor]
+  033cf4  CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(self, _cmd), [self->_progressRemainingColor CGColor])
+  033d1c  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033d48  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033d60  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033d80  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033da4  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033db4  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033dd0  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033dd8  CGContextFillPath(UIGraphicsGetCurrentContext(self, _cmd))
+  033de8  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033e04  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033e14  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033e30  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033e50  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033e60  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033e7c  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033e84  CGContextStrokePath(UIGraphicsGetCurrentContext(self, _cmd))
+  033e98  [self->_progressColor CGColor]
+  033ea4  CGContextSetFillColorWithColor(UIGraphicsGetCurrentContext(self, _cmd), [self->_progressColor CGColor])
+  033ec4  [self progress]
+  033efc  if (flags <=u) goto loc_100034028
+  033f04  if (([self progress] * arg1.2) <= (or unordered) ((((arg1.3 * 0.5) + -2) + -2) + 4)) goto loc_1000340d0
+  033f20  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033f40  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033f50  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033f54  t1 = ((([self progress] * arg1.2) - ((arg1.2 - (((arg1.3 * 0.5) + -2) + -2)) + -4)) / (((arg1.3 * 0.5) + -2) + -2))
+  033f5c  acos(t1)
+  033f9c  CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 0)
+  033fac  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033fbc  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033fe4  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  033ff4  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  034018  CGContextAddArc(UIGraphicsGetCurrentContext(self, _cmd), 1)
+  034024  goto loc_10003415c
+loc_100034028:
+  034038  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  034058  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  034068  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  034078  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  034088  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  0340ac  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  0340bc  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  0340cc  goto loc_100034160
+loc_1000340d0:
+  0340d0  if (flags >=0) goto loc_10003418c
+  0340d8  if (([self progress] * arg1.2) <= (or unordered) 0.0) goto loc_10003418c
+  0340ec  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  03410c  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  03411c  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  03412c  CGContextMoveToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  034150  CGContextAddArcToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+loc_10003415c:
+loc_100034160:
+  034160  CGContextAddLineToPoint(UIGraphicsGetCurrentContext(self, _cmd))
+  034188  tail CGContextFillPath(UIGraphicsGetCurrentContext(self, _cmd))
+loc_10003418c:
+  0341ac  return
+
+== -[MBBarProgressView registerForKVO]   (address 0x1000341b0  size 344  kind objc)
+  034200  [self observableKeypaths]
+  03422c  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  034234  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000342b4
+  034244  &@selector(addObserver:forKeyPath:options:context:)
+loc_10003424c:
+loc_100034250:
+  03425c  if (x8 == x25) goto loc_100034268
+  034264  objc_enumerationMutation([self observableKeypaths])
+loc_100034268:
+  034284  [self addObserver:self forKeyPath:x3 options:1 context:0]
+  034290  if ((x26 + 1) <u [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100034250
+  0342a8  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0342b0  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10003424c
+loc_1000342b4:
+  0342e4  return
+
+== -[MBBarProgressView unregisterFromKVO]   (address 0x100034308  size 336  kind objc)
+  034358  [self observableKeypaths]
+  034384  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  03438c  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100034404
+  03439c  &@selector(removeObserver:forKeyPath:)
+loc_1000343a4:
+loc_1000343a8:
+  0343b4  if (x8 == x25) goto loc_1000343c0
+  0343bc  objc_enumerationMutation([self observableKeypaths])
+loc_1000343c0:
+  0343d4  [self removeObserver:self forKeyPath:x3]
+  0343e0  if ((x26 + 1) <u [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000343a8
+  0343f8  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  034400  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000343a4
+loc_100034404:
+  034434  return
+
+== -[MBBarProgressView observableKeypaths]   (address 0x100034458  size 88  kind objc)
+  0344a0  [NSArray arrayWithObjects:@"lineColor", @"progressRemainingColor", @"progressColor", @"progress", nil]
+  0344ac  return
+
+== -[MBBarProgressView observeValueForKeyPath:ofObject:change:context:]   (address 0x1000344b0  size 32  kind objc)
+  0344c4  [self setNeedsDisplay]
+  0344cc  return
+
+== -[MBBarProgressView progress]   (address 0x1000344d0  size 16  kind objc)
+  0344dc  return
+
+== -[MBBarProgressView setProgress:]   (address 0x1000344e0  size 16  kind objc)
+  0344e8  self->_progress = arg1
+  0344ec  return
+
+== -[MBBarProgressView lineColor]   (address 0x1000344f0  size 16  kind objc)
+  0344fc  return
+
+== -[MBBarProgressView setLineColor:]   (address 0x100034500  size 56  kind objc)
+  034524  self->_lineColor = arg1
+  034534  return
+
+== -[MBBarProgressView progressRemainingColor]   (address 0x100034538  size 16  kind objc)
+  034544  return
+
+== -[MBBarProgressView setProgressRemainingColor:]   (address 0x100034548  size 56  kind objc)
+  03456c  self->_progressRemainingColor = arg1
+  03457c  return
+
+== -[MBBarProgressView progressColor]   (address 0x100034580  size 16  kind objc)
+  03458c  return
+
+== -[MBBarProgressView setProgressColor:]   (address 0x100034590  size 56  kind objc)
+  0345b4  self->_progressColor = arg1
+  0345c4  return
+
+== -[MBBarProgressView .cxx_destruct]   (address 0x1000345c8  size 84  kind objc)

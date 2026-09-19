@@ -1,0 +1,205 @@
+
+== -[ADChallengeGameplayViewController initWithNibName:bundle:challengeDictionary:]   (address 0x1000da350  size 208  kind objc)
+  0da3b0  [super initWithNibName:@"ADGameplayViewController" bundle:arg2]
+  0da3c0  if (self == 0) goto loc_1000da3e4
+  0da3d8  self->challengeDictionary = arg3
+loc_1000da3e4:
+  0da400  return
+
+== -[ADChallengeGameplayViewController viewDidLoad]   (address 0x1000da420  size 532  kind objc)
+  0da45c  [super viewDidLoad]
+  0da470  [self scoreView]
+  0da494  [[self scoreView] setHidden:1]
+  0da4b0  [self timerView]
+  0da4c8  [[self timerView] setHidden:0]
+  0da4e8  [self timerLabel]
+  0da514  [ADGameParameters sharedParameters]
+  0da530  [[ADGameParameters sharedParameters] isIphone]
+  0da55c  [UIFont fontWithName:@"scoreboard" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 20 : 30)]
+  0da580  [[self timerLabel] setFont:[UIFont fontWithName:@"scoreboard" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 20 : 30)]]
+  0da5a4  [self timerLabel]
+  0da5c8  [[self timerLabel] setText:@"00:00"]
+  0da5e8  return
+
+== -[ADChallengeGameplayViewController viewWillAppear:]   (address 0x1000da634  size 60  kind objc)
+  0da660  [super viewWillAppear:arg1]
+  0da66c  return
+
+== -[ADChallengeGameplayViewController viewWillDisappear:]   (address 0x1000da670  size 60  kind objc)
+  0da69c  [super viewWillDisappear:arg1]
+  0da6a8  return
+
+== -[ADChallengeGameplayViewController setGameModeDimension]   (address 0x1000da6ac  size 124  kind objc)
+  0da6cc  [ADTracker sharedInstance]
+  0da700  [[ADTracker sharedInstance] setValue:@"Challenge mode" ForDimension:@"Game mode" AndValue:0 ForMetric:0]
+  0da710  return
+
+== -[ADChallengeGameplayViewController skipButtonPressed:]   (address 0x1000da728  size 108  kind objc)
+  0da748  [ADBrickManager sharedBrickManager]
+  0da764  [[ADBrickManager sharedBrickManager] skipSkippableSounds]
+  0da774  return
+
+== -[ADChallengeGameplayViewController update]   (address 0x1000da794  size 724  kind objc)
+  0da7bc  self->checkSkipButtonCounter = (self->checkSkipButtonCounter + 1)
+  0da7c4  if ((self->checkSkipButtonCounter + 1) != 20) goto loc_1000da8e0
+  0da7c8  self->checkSkipButtonCounter = 0
+  0da7e0  [ADBrickManager sharedBrickManager]
+  0da7fc  [[ADBrickManager sharedBrickManager] hasSkippableSoundsPlaying]
+  0da820  [self skipButton]
+  0da834  &@selector(setHidden:)
+  0da83c  if ([[ADBrickManager sharedBrickManager] hasSkippableSoundsPlaying] == 0) goto loc_1000da8cc
+  0da848  [[self skipButton] setHidden:0]
+  0da864  [self view]
+  0da87c  [self skipButton]
+  0da8a0  [[self view] bringSubviewToFront:[self skipButton]]
+  0da8c4  UIAccessibilityPostNotification(_UIAccessibilityLayoutChangedNotification[+0x0], 0)
+  0da8c8  goto loc_1000da8e0
+loc_1000da8cc:
+  0da8d4  [[self skipButton] setHidden:1]
+loc_1000da8e0:
+  0da8f0  [self paused]
+  0da8f4  if (([self paused] & 1)) goto loc_1000da9e4
+  0da90c  [ADBrickManager sharedBrickManager]
+  0da928  [[ADBrickManager sharedBrickManager] hasSkippableSoundsPlaying]
+  0da938  if (([[ADBrickManager sharedBrickManager] hasSkippableSoundsPlaying] & 1)) goto loc_1000da9e4
+  0da94c  [self timerLabel]
+  0da970  [ADInGameStats singleton]
+  0da98c  [[ADInGameStats singleton] challengeTimeElapsed]
+  0da9a4  [self timeStringFromSeconds:(int)[[ADInGameStats singleton] challengeTimeElapsed]]
+  0da9c8  [[self timerLabel] setText:[self timeStringFromSeconds:(int)[[ADInGameStats singleton] challengeTimeElapsed]]]
+loc_1000da9e4:
+  0daa04  [super update]
+  0daa18  return
+
+== -[ADChallengeGameplayViewController updateStats]   (address 0x1000daa68  size 280  kind objc)
+  0daaa0  [super updateStats]
+  0daab4  [self paused]
+  0daab8  if (([self paused] & 1)) goto loc_1000dab54
+  0daad0  [ADBrickManager sharedBrickManager]
+  0daaec  [[ADBrickManager sharedBrickManager] hasSkippableSoundsPlaying]
+  0daafc  if (([[ADBrickManager sharedBrickManager] hasSkippableSoundsPlaying] & 1)) goto loc_1000dab54
+  0dab18  [NSNumber numberWithDouble:0.25]
+  0dab48  [self notifyStatsSystemWithNotificationWithName:@"UPDATE_CHALLENGE_TIME_ELAPSED" AndData:[NSNumber numberWithDouble:0.25]]
+loc_1000dab54:
+  0dab64  return
+
+== -[ADChallengeGameplayViewController timeStringFromSeconds:]   (address 0x1000dab80  size 224  kind objc)
+  0dabb0  t1 = (((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >> 5) + ((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >>> 31))
+  0dabf8  [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 - t1 * 60)]
+  0dac1c  [NSString stringWithFormat:@"%i:%@", t1, [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 …]
+  0dac48  return
+
+== -[ADChallengeGameplayViewController initWeaponManager]   (address 0x1000dac60  size 788  kind objc)
+  0dac94  [ADWeaponManager alloc]
+  0dacbc  [self->challengeDictionary objectForKey:@"weapons"]
+  0dace0  [[ADWeaponManager alloc] initWithChallengeWeaponArray:[self->challengeDictionary objectForKey:@"weapons"]]
+  0dad00  [self setWeaponManager:[[ADWeaponManager alloc] initWithChallengeWeaponArray:[self->challengeDictionary objectForKey:@"weapons"]]]
+  0dad28  [self weaponTouchArea]
+  0dad4c  [self weaponManager]
+  0dad68  [[self weaponTouchArea] setWeaponManager:[self weaponManager]]
+  0dad84  [self weaponTouchArea]
+  0dada8  [[self weaponTouchArea] setGameplayViewController:self]
+  0dadc8  [self weaponButton]
+  0dade0  [self weaponManager]
+  0dadfc  [[self weaponButton] setWeaponManager:[self weaponManager]]
+  0dae18  [self weaponButton]
+  0dae30  [[self weaponButton] setGameplayViewController:self]
+  0dae48  [ADShakeDetector alloc]
+  0dae58  [[ADShakeDetector alloc] init]
+  0dae74  [self setShakeDetector:[[ADShakeDetector alloc] init]]
+  0dae90  [self shakeDetector]
+  0daea8  [self weaponManager]
+  0daec4  [[self shakeDetector] setWeaponManager:[self weaponManager]]
+  0daee8  return
+
+== -[ADChallengeGameplayViewController initBrickManager]   (address 0x1000daf74  size 484  kind objc)
+  0dafa0  [ADBrickManager sharedBrickManager]
+  0dafbc  [[ADBrickManager sharedBrickManager] reset]
+  0dafd0  [ADBrickManager sharedBrickManager]
+  0daff0  [[ADBrickManager sharedBrickManager] setMode:2]
+  0db004  [ADBrickManager sharedBrickManager]
+  0db024  [[ADBrickManager sharedBrickManager] setGameplayViewController:self]
+  0db038  [ADBrickManager sharedBrickManager]
+  0db068  [self->challengeDictionary objectForKey:@"bricks"]
+  0db08c  [[ADBrickManager sharedBrickManager] loadBrickChallengeArray:[self->challengeDictionary objectForKey:@"bricks"]]
+  0db0a8  [ADBrickManager sharedBrickManager]
+  0db0c4  [[ADBrickManager sharedBrickManager] loadNextBrick]
+  0db0e4  [ADMissionManager sharedMissionManager]
+  0db100  [[ADMissionManager sharedMissionManager] startGameplay]
+  0db114  return
+
+== -[ADChallengeGameplayViewController initAmbiantManager]   (address 0x1000db158  size 656  kind objc)
+  0db18c  [ADAmbientManager sharedAmbiantManager]
+  0db1c0  [self->challengeDictionary objectForKey:@"ambient"]
+  0db1dc  [[self->challengeDictionary objectForKey:@"ambient"] objectForKey:@"ambientPlaylist"]
+  0db1fc  [self->challengeDictionary objectForKey:@"ambient"]
+  0db218  [[self->challengeDictionary objectForKey:@"ambient"] objectForKey:@"gain"]
+  0db234  [[[self->challengeDictionary objectForKey:@"ambient"] objectForKey:@"gain"] floatValue]
+  0db24c  [[ADAmbientManager sharedAmbiantManager] startWithambient:[[self->challengeDictionary objectForKey:@"ambient"] objectForKey:@"ambientPlaylist"] gain:[[[self->challengeDictionary objectForKey:@"ambient"] objectForKey:@"gain"] floatValue]]
+  0db290  [S3DEngine engine]
+  0db2b0  [[S3DEngine engine] setReverbRoomSize:1.5]
+  0db2c4  [S3DEngine engine]
+  0db2e8  [[S3DEngine engine] setReverbDampening:50]
+  0db2fc  [S3DEngine engine]
+  0db31c  [[S3DEngine engine] setReverbVolume:1]
+  0db330  [ADAmbientManager sharedAmbiantManager]
+  0db350  [[ADAmbientManager sharedAmbiantManager] setGameplayViewController:self]
+  0db36c  return
+
+== -[ADChallengeGameplayViewController ambiantManagerDidActivatePlaylist]   (address 0x1000db3e8  size 100  kind objc)
+  0db408  [ADAmbientManager sharedAmbiantManager]
+  0db424  [[ADAmbientManager sharedAmbiantManager] startBaseSound]
+  0db434  return
+
+== -[ADChallengeGameplayViewController initStats]   (address 0x1000db44c  size 108  kind objc)
+  0db46c  [ADInGameStats singleton]
+  0db490  [[ADInGameStats singleton] startNewLevel:@"CHALLENGE"]
+  0db4a0  return
+
+== -[ADChallengeGameplayViewController quitGameplayWithFail]   (address 0x1000db4b8  size 16  kind objc)
+  0db4c4  tail [self goToChallengeFailedScreen]
+
+== -[ADChallengeGameplayViewController goToChallengeFailedScreen]   (address 0x1000db4c8  size 192  kind objc)
+  0db4e8  [self killGameplay]
+  0db500  [UIApplication sharedApplication]
+  0db51c  [[UIApplication sharedApplication] delegate]
+  0db544  [[[UIApplication sharedApplication] delegate] goToChallengeFailedWithDictionary:self->challengeDictionary]
+  0db560  return
+
+== -[ADChallengeGameplayViewController goToScoreScreen]   (address 0x1000db588  size 124  kind objc)
+  0db5ac  [ADInGameStats singleton]
+  0db5c8  [[ADInGameStats singleton] forceCompleteAccuracy]
+  0db5ec  tail [self goToChallengeCompletedScreen]
+
+== -[ADChallengeGameplayViewController getChallengeID]   (address 0x1000db604  size 36  kind objc)
+  0db624  tail [self->challengeDictionary objectForKey:@"challenge_id"]
+
+== -[ADChallengeGameplayViewController goToChallengeCompletedScreen]   (address 0x1000db628  size 156  kind objc)
+  0db648  [self killGameplay]
+  0db658  dispatch_time(0, 0x5f5e100)
+  0db6a8  dispatch_after(dispatch_time(0, 0x5f5e100), __dispatch_main_q, ^{-[ADChallengeGameplayViewController goToChallengeCompletedScreen]_block_invoke captures +0x20=self})
+  0db6c0  return
+
+== -[ADChallengeGameplayViewController goToChallengeCompletedScreen]_block_invoke   (address 0x1000db6c4  size 180  kind block)
+  0db6ec  [UIApplication sharedApplication]
+  0db708  [[UIApplication sharedApplication] delegate]
+  0db734  [[[UIApplication sharedApplication] delegate] goToChallengeCompletedWithDictionary:self->challengeDictionary]
+  0db750  return
+
+== sub_1000db778   (address 0x1000db778  size 8  kind sub)
+
+== sub_1000db780   (address 0x1000db780  size 8  kind sub)
+  0db784  return
+
+== -[ADChallengeGameplayViewController showDeathOverlay]   (address 0x1000db788  size 356  kind objc)
+  0db7b0  [UIApplication sharedApplication]
+  0db7cc  [[UIApplication sharedApplication] delegate]
+  0db7f0  [[[UIApplication sharedApplication] delegate] startMenuMusic:@"game_over_theme"]
+  0db814  [self view]
+  0db838  [self deathOverlay]
+  0db85c  [[self view] bringSubviewToFront:[self deathOverlay]]
+  0db878  [self deathOverlay]
+  0db898  [[self deathOverlay] setUserInteractionEnabled:1]
+  0db8ac  return
+
+== -[ADChallengeGameplayViewController .cxx_destruct]   (address 0x1000db8ec  size 20  kind objc)

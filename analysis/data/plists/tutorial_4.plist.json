@@ -1,0 +1,46 @@
+{
+ "icon_title": "04",
+ "accuracy_star": {
+  "reward": 200,
+  "objective": 10
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "title": "Spicing Things Up",
+ "objective": "Use a Power Up to clear the area of zombies.\n",
+ "tip": "You have only a few seconds to shoot a Slot Machine.",
+ "bricks": [
+  "tutorial_4_brick_1",
+  "tutorial_4_brick_2",
+  "tutorial_4_brick_3",
+  "tutorial_4_brick_4",
+  "tutorial_4_brick_5"
+ ],
+ "mission_star": {
+  "reward": 500
+ },
+ "challenge_id": "tutorial_4",
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_3"
+ ],
+ "weapons": [
+  {
+   "ammo": "12",
+   "name": "pistol"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 120
+ }
+}

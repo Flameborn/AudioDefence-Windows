@@ -1,0 +1,19 @@
+// ADEncycVertCell.nib
+TOP-LEVEL OBJECTS
+  #1 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #21 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #16 UITableViewCell (custom class ADEncycVertCell)  
+    #20 UITableViewCellContentView  
+      #28 UIImageView  UserInteractionDisabled=False Image='BUTTON-_zombipedia.png'
+      #47 UIButton (custom class ADButtonWithFont)  Tag=99 title[0]='Button'
+    #43 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #20)
+
+CONNECTIONS
+  action  zombieNameButtonPressed:                  #47 ADButtonWithFont --(events 0x40)--> #16 ADEncycVertCell
+  outlet  zombieNameButton                          #16 ADEncycVertCell --> #47 ADButtonWithFont
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#28 UIImageView' UIAccessibilityTraits=256 UIIsAccessibilityElement=0
+  UIAccessibileObject='#47 ADButtonWithFont' UIAccessibilityTraits=256 UIIsAccessibilityElement=0

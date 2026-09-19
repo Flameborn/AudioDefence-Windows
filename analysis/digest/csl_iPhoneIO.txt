@@ -1,0 +1,99 @@
+
+== csl::iPhoneIO::~iPhoneIO   (address 0x1000e3df4  size 36  kind cxx)
+  0e3e04  sub_1000e358c(a0, a1, a2, a3)
+  0e3e14  return
+
+== csl::iPhoneIO::~iPhoneIO/*deleting*/   (address 0x1000e3e18  size 56  kind cxx)
+  0e3e28  sub_1000e358c(a0, a1, a2, a3)
+  0e3e38  tail ZdlPv(a0)
+  0e3e44  ZdlPv()
+
+== sub_1000e3e50   (address 0x1000e3e50  size 64  kind sub)
+  0e3e68  AudioUnitUninitialize(a0[+0x120], a1, a2, a3)
+  0e3e74  sub_1000e3634(AudioUnitUninitialize(a0[+0x120], a1, a2, a3), a1, a2)
+  0e3e80  return
+  0e3e84  if (w1 >= 0) goto loc_1000e3e8c
+  0e3e88  cxa_call_unexpected()
+
+== csl::iPhoneIO::vfunc_3_block_invoke   (address 0x1000e3e90  size 164  kind block)
+  0e3ea0  if (blockarg1 != 0) goto loc_1000e3eec
+  0e3ebc  [NSThread sleepForTimeInterval:1]
+  0e3ec0  if (block == 0) goto loc_1000e3ee4
+  0e3ed0  call block[+0x0][+0x18]
+  0e3ee0  call block[+0x0][+0x28]
+loc_1000e3ee4:
+  0e3ee8  goto loc_1000e3f1c
+loc_1000e3eec:
+  0e3ef0  if (blockarg1 != 1) goto loc_1000e3f28
+  0e3ef4  if (block == 0) goto loc_1000e3f18
+  0e3f04  call block[+0x0][+0x30]
+  0e3f14  call block[+0x0][+0x20]
+loc_1000e3f18:
+loc_1000e3f1c:
+  0e3f24  tail AudioSessionSetActive(one of {0, 1})
+loc_1000e3f28:
+  0e3f30  return
+
+== csl::iPhoneIO::vfunc_3   (address 0x1000e3f34  size 648  kind cxx)
+  0e3f78  AudioComponentFindNext(0, &x29[-0x30], a2, a3)
+  0e3f7c  if (AudioComponentFindNext(0, &x29[-0x30], a2, a3) == 0) goto loc_1000e40dc
+  0e3f88  AudioComponentInstanceNew(AudioComponentFindNext(0, &x29[-0x30], a2, a3), (a0 + 288))
+  0e3f90  if (AudioComponentInstanceNew(AudioComponentFindNext(0, &x29[-0x30], a2, a3), (a0 + 288)) == 0) goto loc_1000e3fa8
+  0e3fa4  sub_1000e3e50(a0, AudioComponentInstanceNew(AudioComponentFindNext(0, &x29[-0x30], a2, a3), (a0 + 288)), "AudioComponentInstanceNew")
+loc_1000e3fa8:
+  0e3ffc  AudioUnitSetProperty((a0 + 288)[+0x0], 8, 1, 0)
+  0e4004  if (AudioUnitSetProperty((a0 + 288)[+0x0], 8, 1, 0) == 0) goto loc_1000e401c
+  0e4018  sub_1000e3e50(a0, AudioUnitSetProperty((a0 + 288)[+0x0], 8, 1, 0), "AudioUnitSetProperty - kAudioUnitProperty_StreamFormat.")
+loc_1000e401c:
+  0e4020  AudioUnitInitialize((a0 + 288)[+0x0])
+  0e4028  if (AudioUnitInitialize((a0 + 288)[+0x0]) == 0) goto loc_1000e4040
+  0e403c  sub_1000e3e50(a0, AudioUnitInitialize((a0 + 288)[+0x0]), "AudioUnitInitialize")
+loc_1000e4040:
+  0e4054  AudioSessionInitialize(0, 0, &csl::iPhoneIO::vfunc_3_block_invoke, a0)
+  0e4078  AudioSessionSetProperty(0x61636174, 4, &sp[0x14])
+  0e4090  AudioSessionGetProperty(0x61636174, &sp[0x10], &sp[0x10])
+  0e4094  sub_1000e735c(AudioSessionGetProperty(0x61636174, &sp[0x10], &sp[0x10]))
+  0e409c  sub_1000e732c(sub_1000e735c(AudioSessionGetProperty(0x61636174, &sp[0x10], &sp[0x10])))
+  0e40a4  t1 = (float)sub_1000e732c(sub_1000e735c(AudioSessionGetProperty(0x61636174, &sp[0x10], &sp[0x10])))
+  0e40c0  AudioSessionSetProperty(0x696f6264, 4, &sp[0xc])
+  0e40c8  AudioSessionSetActive(1)
+  0e40d8  return
+  0e40e8  sub_1000e772c(2, "An error occured while finding the AudioUnit default output\n")
+  0e40f0  cxa_allocate_exception(16)
+  0e4108  ZNSsC1EPKcRKSaIcE(&x29[-0x38], "CoreAudio error in AudioComponentFindNext", &sp[0x40])
+  0e4114  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &x29[-0x38])
+  0e4124  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0e413c  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0e4160  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e4188
+  0e4174  if (w11 != 0) goto loc_1000e4168
+  0e417c  if (w9 > 0) goto loc_1000e4188
+  0e4184  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x18])
+  0e418c  if (w20 >= 0) goto loc_1000e4194
+  0e4190  cxa_call_unexpected()
+  0e41b4  cxa_free_exception()
+
+== csl::iPhoneIO::vfunc_5   (address 0x1000e41bc  size 80  kind cxx)
+  0e41cc  csl::AUIO::vfunc_5(a0, a1, a2, a3)
+  0e41d4  AudioOutputUnitStart(a0[+0x120])
+  0e41dc  if (AudioOutputUnitStart(a0[+0x120]) == 0) goto loc_1000e41f4
+  0e41f0  sub_1000e3e50(a0, AudioOutputUnitStart(a0[+0x120]), "AudioOutputUnitStart")
+loc_1000e41f4:
+  0e41fc  return
+  0e4200  if (w1 >= 0) goto loc_1000e4208
+  0e4204  cxa_call_unexpected()
+
+== csl::iPhoneIO::vfunc_6   (address 0x1000e420c  size 80  kind cxx)
+  0e421c  csl::AUIO::vfunc_6(a0, a1, a2, a3)
+  0e4224  AudioOutputUnitStop(a0[+0x120])
+  0e422c  if (AudioOutputUnitStop(a0[+0x120]) == 0) goto loc_1000e4244
+  0e4240  sub_1000e3e50(a0, AudioOutputUnitStop(a0[+0x120]), "AudioOutputUnitStop")
+loc_1000e4244:
+  0e424c  return
+  0e4250  if (w1 >= 0) goto loc_1000e4258
+  0e4254  cxa_call_unexpected()
+
+== csl::iPhoneIO::vfunc_4   (address 0x1000e425c  size 36  kind cxx)
+  0e4268  AudioUnitUninitialize(a0[+0x120], a1, a2, a3)
+  0e4270  return
+  0e4274  if (w1 >= 0) goto loc_1000e427c
+  0e4278  cxa_call_unexpected()

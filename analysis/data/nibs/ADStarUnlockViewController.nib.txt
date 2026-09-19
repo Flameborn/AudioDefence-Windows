@@ -1,0 +1,28 @@
+// ADStarUnlockViewController.nib
+TOP-LEVEL OBJECTS
+  #20 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #26 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #15 UIView  Tag=2782
+    #33 UIImageView  UserInteractionDisabled=False Image='icon_plus.png'
+    #95 UIImageView  UserInteractionDisabled=False Image='icon_currency_small.png'
+    #50 UILabel (custom class ADLabelWithCoins)  Tag=1 UserInteractionDisabled=False Text='Label'
+    #40 UILabel  Tag=2 UserInteractionDisabled=False Text='Title'
+    #77 UIImageView  UserInteractionDisabled=False Image='icon_star_off_small.png'
+    #49 UIImageView  Tag=3 UserInteractionDisabled=False Image='icon_star_on_small.png'
+    #107 UIImageView  Tag=4 UserInteractionDisabled=False Image='icon_completed.png'
+  #34 UIView  Tag=2781
+    #62 UIImageView  UserInteractionDisabled=False Image='icon_plus.png'
+    #82 UIImageView  UserInteractionDisabled=False Image='icon_currency_small.png'
+    #2 UILabel  UserInteractionDisabled=False Text='Title'
+    #58 UILabel (custom class ADLabelWithCoins)  UserInteractionDisabled=False Text='Label'
+    #35 UIImageView  UserInteractionDisabled=False Image='icon_star_off_small.png'
+    #100 UIImageView  Image='icon_star_on_small.png'
+    #54 UIImageView  UserInteractionDisabled=False Image='icon_completed.png'
+
+CONNECTIONS
+  outlet  completedImage                            #20 UIProxyObject --> #54 UIImageView
+  outlet  lockedDescription                         #20 UIProxyObject --> #2 UILabel Text='Title'
+  outlet  rewardLabel                               #20 UIProxyObject --> #58 ADLabelWithCoins Text='Label'
+  outlet  starImage                                 #20 UIProxyObject --> #100 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

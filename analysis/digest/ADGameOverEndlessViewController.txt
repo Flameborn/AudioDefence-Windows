@@ -1,0 +1,386 @@
+
+== -[ADGameOverEndlessViewController initWithNibName:bundle:]   (address 0x1000d2fe0  size 140  kind objc)
+  0d3030  [super initWithNibName:arg1 bundle:arg2]
+  0d3054  return
+
+== -[ADGameOverEndlessViewController viewDidLoad]   (address 0x1000d306c  size 3476  kind objc)
+  0d30c4  [super viewDidLoad]
+  0d30dc  [self statusBarViewController]
+  0d3100  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  0d3114  [self statusBarViewController]
+  0d3134  [[self statusBarViewController] setCurrenciesVisibility:1]
+  0d3148  [self statusBarViewController]
+  0d3168  [[self statusBarViewController] setDiamonsdsVisibility:1]
+  0d317c  [self statusBarViewController]
+  0d3198  [[self statusBarViewController] pageTitle]
+  0d31c0  [[[self statusBarViewController] pageTitle] setText:@"GAME OVER"]
+  0d31dc  [self statusBarViewController]
+  0d31f4  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  0d3214  [ADGameModifiers sharedModifiers]
+  0d3230  [[ADGameModifiers sharedModifiers] metalDetector]
+  0d3250  [self extraMoneyImage]
+  0d3264  &@selector(setHidden:)
+  0d326c  if ([[ADGameModifiers sharedModifiers] metalDetector] == 0) goto loc_1000d3288
+  0d327c  [[self extraMoneyImage] setHidden:0]
+  0d3280  goto loc_1000d3298
+  0d3284  goto loc_1000d3d90
+loc_1000d3288:
+  0d3294  [[self extraMoneyImage] setHidden:1]
+loc_1000d3298:
+  0d32b4  [self setDisplayingMissions:0]
+  0d32c8  [self challengeTitle]
+  0d32e8  [[self challengeTitle] setupAsTitle]
+  0d3304  [self missionsTitle]
+  0d3318  [[self missionsTitle] setupAsTitle]
+  0d3338  [self highScoreLabel]
+  0d3354  [[self highScoreLabel] setupAsInfo]
+  0d3370  [self accuracyLabel]
+  0d3390  [[self accuracyLabel] setupAsMain]
+  0d33ac  [self killsLabel]
+  0d33c0  [[self killsLabel] setupAsMain]
+  0d33dc  [self timeLabel]
+  0d33f0  [[self timeLabel] setupAsMain]
+  0d340c  [self comboLabel]
+  0d3420  [[self comboLabel] setupAsMain]
+  0d343c  [self coinsTotal]
+  0d3450  [[self coinsTotal] setupAsTitle]
+  0d346c  [self diamondsTotal]
+  0d3480  [[self diamondsTotal] setupAsTitle]
+  0d349c  [self diamondsLoot]
+  0d34b0  [[self diamondsLoot] setupAsTitle]
+  0d34cc  [self scoreLabel]
+  0d34e0  [[self scoreLabel] setupAsMain]
+  0d34f4  [self statusBarViewController]
+  0d3510  [[self statusBarViewController] backButton]
+  0d353c  [[[self statusBarViewController] backButton] setTitle:@"Main Menu" forState:0]
+  0d356c  [ADInGameStats singleton]
+  0d358c  [[ADInGameStats singleton] gameScore]
+  0d35ac  [ADPersistentStats persistentStats]
+  0d35cc  [[ADPersistentStats persistentStats] highScore]
+  0d35e8  if ([[ADInGameStats singleton] gameScore] <=u [[ADPersistentStats persistentStats] highScore]) goto loc_1000d3620
+  0d35f4  [self highScoreLabel]
+  0d3614  [[self highScoreLabel] setText:@"NEW HIGH SCORE!"]
+  0d361c  goto loc_1000d3774
+loc_1000d3620:
+  0d3628  [ADInGameStats singleton]
+  0d363c  [[ADInGameStats singleton] gameScore]
+  0d3640  if ([[ADInGameStats singleton] gameScore] == 0) goto loc_1000d364c
+  0d3648  goto loc_1000d3680
+loc_1000d364c:
+  0d3658  [ADPersistentStats persistentStats]
+  0d366c  [[ADPersistentStats persistentStats] highScore]
+loc_1000d3680:
+  0d3694  [self highScoreLabel]
+  0d36a4  if (w20 == 0) goto loc_1000d36c8
+  0d36b4  [[self highScoreLabel] setHidden:1]
+  0d36c4  goto loc_1000d3778
+loc_1000d36c8:
+  0d36dc  [ADPersistentStats persistentStats]
+  0d36f0  [[ADPersistentStats persistentStats] highScore]
+  0d3708  [self formattedScoreFromInt:[[ADPersistentStats persistentStats] highScore]]
+  0d3734  [NSString stringWithFormat:@"HIGH SCORE : %@", [self formattedScoreFromInt:[[ADPersistentStats persistentStats] highScore]]]
+  0d3754  [[self highScoreLabel] setText:[NSString stringWithFormat:@"HIGH SCORE : %@", [self formattedScoreFromInt:[[ADPersistentStats persistentStats] highScore]]]]
+loc_1000d3774:
+loc_1000d3778:
+  0d378c  [UIApplication sharedApplication]
+  0d37a8  [[UIApplication sharedApplication] delegate]
+  0d37cc  [[[UIApplication sharedApplication] delegate] startMenuMusic:@"game_over_theme"]
+  0d37f0  [self resetCardsModifiersIfNeeded]
+  0d3808  [ADWeaponManager sharedWeaponManager]
+  0d3824  [[ADWeaponManager sharedWeaponManager] numberOfWeaponsAvailableForSale]
+  0d3844  [self unlockableWeaponsLabel]
+  0d3854  if ([[ADWeaponManager sharedWeaponManager] numberOfWeaponsAvailableForSale] == 0) goto loc_1000d38a4
+  0d3878  [NSString stringWithFormat:@"%i", [[ADWeaponManager sharedWeaponManager] numberOfWeaponsAvailableForSale]]
+  0d3894  [[self unlockableWeaponsLabel] setText:[NSString stringWithFormat:@"%i", [[ADWeaponManager sharedWeaponManager] numberOfWeaponsAvailableForSale]]]
+  0d38a0  goto loc_1000d38b4
+loc_1000d38a4:
+  0d38b0  [[self unlockableWeaponsLabel] setHidden:1]
+loc_1000d38b4:
+  0d38d0  [self contentScrollView]
+  0d38e8  [self contentScrollView]
+  0d3904  [[self contentScrollView] frame]
+  0d3928  [[self contentScrollView] setContentOffset:{[[self contentScrollView] frame].2, 0} animated:1]
+  0d3950  [UIDevice currentDevice]
+  0d396c  [[UIDevice currentDevice] systemVersion]
+  0d3988  [[[UIDevice currentDevice] systemVersion] floatValue]
+  0d39a8  if ([[[UIDevice currentDevice] systemVersion] floatValue] < (or unordered) 7) goto loc_1000d39c0
+  0d39bc  [self reportScoreToGameCenter]
+loc_1000d39c0:
+  0d39d4  [GAI sharedInstance]
+  0d39f0  [[GAI sharedInstance] defaultTracker]
+  0d3a10  [&d_1003b8398] -> @"&sc"
+  0d3a2c  [[[GAI sharedInstance] defaultTracker] set:@"&sc" value:@"end"]
+  0d3a50  [self missionView]
+  0d3a70  [[self missionView] subviews]
+  0d3aac  [[[self missionView] subviews] countByEnumeratingWithState:&sp[0x88] objects:&sp[0xd8] count:16]
+  0d3ab4  if ([[[self missionView] subviews] countByEnumeratingWithState:&sp[0x88] objects:&sp[0xd8] count:16] == 0) goto loc_1000d3b34
+  0d3ac4  &@selector(setTag:)
+loc_1000d3ad0:
+loc_1000d3ad8:
+  0d3ae4  if (x8 == x20) goto loc_1000d3af0
+  0d3aec  objc_enumerationMutation([[self missionView] subviews])
+loc_1000d3af0:
+  0d3b00  [x0 setTag:(x28 + x27)]
+  0d3b0c  if ((x27 + 1) <u [[[self missionView] subviews] countByEnumeratingWithState:&sp[0x88] objects:&sp[0xd8] count:16]) goto loc_1000d3ad8
+  0d3b24  [[[self missionView] subviews] countByEnumeratingWithState:&sp[0x88] objects:&sp[0xd8] count:16]
+  0d3b30  if ([[[self missionView] subviews] countByEnumeratingWithState:&sp[0x88] objects:&sp[0xd8] count:16] != 0) goto loc_1000d3ad0
+loc_1000d3b34:
+  0d3b4c  [self statusBarViewController]
+  0d3b68  [[self statusBarViewController] deactivateButtons]
+  0d3b7c  [self statusBarViewController]
+  0d3bc8  [[self statusBarViewController] setSlideViewCallBack:^{-[ADGameOverEndlessViewController viewDidLoad]_block_invoke captures +0x20=self, +0x68=self, +0x70=ADGameOverEndlessViewController}]
+  0d3be0  dispatch_time(0, 0x4d7c6d01)
+  0d3c28  dispatch_after(dispatch_time(0, 0x4d7c6d01), __dispatch_main_q, ^{-[ADGameOverEndlessViewController viewDidLoad]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc0000000, +0x38=&-[ADGameOverEndlessViewController viewD…, +0x40=&d_1003b2990, +0x48=self})
+  0d3c74  return
+
+== -[ADGameOverEndlessViewController viewDidLoad]_block_invoke   (address 0x1000d3e00  size 20  kind block)
+  0d3e10  tail [self animateCoinsAndDiamonds]
+
+== -[ADGameOverEndlessViewController viewDidLoad]_block_invoke_2   (address 0x1000d3e14  size 96  kind block)
+  0d3e30  [self statusBarViewController]
+  0d3e4c  [[self statusBarViewController] activateButtons]
+  0d3e5c  return
+
+== sub_1000d3e74   (address 0x1000d3e74  size 8  kind sub)
+
+== sub_1000d3e7c   (address 0x1000d3e7c  size 8  kind sub)
+  0d3e80  return
+
+== -[ADGameOverEndlessViewController loadView]   (address 0x1000d3e84  size 876  kind objc)
+  0d3ebc  [UIDevice currentDevice]
+  0d3edc  [[UIDevice currentDevice] model]
+  0d3f04  [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"]
+  0d3f08  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] & 1)) goto loc_1000d3f20
+  0d3f1c  goto loc_1000d3f84
+loc_1000d3f20:
+  0d3f28  [UIDevice currentDevice]
+  0d3f3c  [[UIDevice currentDevice] model]
+  0d3f58  [[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"]
+  0d3f80  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"] & 1)) goto loc_1000d4064
+loc_1000d3f84:
+  0d3f9c  [UIScreen mainScreen]
+  0d3fc8  [[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]
+  0d3fd4  if ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)] == 0) goto loc_1000d401c
+  0d3fdc  [UIScreen mainScreen]
+  0d3ff0  [[UIScreen mainScreen] nativeBounds]
+  0d4010  if (fabs(([[UIScreen mainScreen] nativeBounds].3 + -1704)) >= (or unordered) 2.22045e-16) goto loc_1000d4098
+  0d4018  goto loc_1000d40d8
+loc_1000d401c:
+  0d4020  [UIScreen mainScreen]
+  0d403c  [[UIScreen mainScreen] bounds]
+  0d4060  goto loc_1000d40d8
+loc_1000d4064:
+  0d4094  tail [self loADIPadNib:@"ADGameOverEndlessViewController"]
+loc_1000d4098:
+  0d40a0  [UIScreen mainScreen]
+  0d40b4  [[UIScreen mainScreen] nativeBounds]
+loc_1000d40d8:
+  0d40fc  [NSBundle mainBundle]
+  0d4110  &@selector(loadNibNamed:owner:options:)
+  0d4118  if (w23 == 0) goto loc_1000d413c
+  0d4130  [[NSBundle mainBundle] loadNibNamed:@"ADGameOverEndlessViewController_iPhone5" owner:self options:0]
+  0d4138  goto loc_1000d4158
+loc_1000d413c:
+  0d4150  [[NSBundle mainBundle] loadNibNamed:@"ADGameOverEndlessViewController_iPhone4S" owner:self options:0]
+loc_1000d4158:
+  0d417c  return
+
+== -[ADGameOverEndlessViewController viewDidAppear:]   (address 0x1000d41f0  size 92  kind objc)
+  0d4224  [super viewDidAppear:arg1]
+  0d4238  [self positionView]
+  0d4248  return
+
+== -[ADGameOverEndlessViewController viewWillAppear:]   (address 0x1000d424c  size 92  kind objc)
+  0d4280  [super viewWillAppear:arg1]
+  0d4294  [self positionView]
+  0d42a4  return
+
+== -[ADGameOverEndlessViewController resetCardsModifiersIfNeeded]   (address 0x1000d42a8  size 392  kind objc)
+  0d42dc  [ADInGameStats singleton]
+  0d42f8  [[ADInGameStats singleton] timeElapsed]
+  0d4314  if ([[ADInGameStats singleton] timeElapsed] <= (or unordered) 60) goto loc_1000d43e4
+  0d432c  [NSUserDefaults standardUserDefaults]
+  0d4340  &@selector(stringWithFormat:)
+  0d4348  &@selector(setValue:forKey:)
+loc_1000d4364:
+  0d4374  [NSString stringWithFormat:@"tarotCard%i", sp[0]]
+  0d4394  [[NSUserDefaults standardUserDefaults] setValue:0 forKey:[NSString stringWithFormat:@"tarotCard%i", sp[0]]]
+  0d43a8  if ((w24 + 1) < 4) goto loc_1000d4364
+  0d43bc  [[NSUserDefaults standardUserDefaults] synchronize]
+  0d43e0  return
+loc_1000d43e4:
+  0d4400  return
+
+== -[ADGameOverEndlessViewController backButtonPressed]   (address 0x1000d4430  size 160  kind objc)
+  0d4454  [UIApplication sharedApplication]
+  0d4470  [[UIApplication sharedApplication] delegate]
+  0d448c  [[[UIApplication sharedApplication] delegate] goToMainMenu]
+  0d44a8  return
+
+== -[ADGameOverEndlessViewController playAgainButtonPressed:]   (address 0x1000d44d0  size 164  kind objc)
+  0d44f0  [UIApplication sharedApplication]
+  0d450c  [[UIApplication sharedApplication] delegate]
+  0d4528  [[[UIApplication sharedApplication] delegate] goToTarot]
+  0d4540  return
+
+== -[ADGameOverEndlessViewController showGameStatistics:]   (address 0x1000d4574  size 172  kind objc)
+  0d4598  [ADGameOverEndlessStatsViewController alloc]
+  0d45b4  [[ADGameOverEndlessStatsViewController alloc] initWithNibName:@"ADGameOverEndlessStatsViewController" bundle:0]
+  0d45d0  [[[ADGameOverEndlessStatsViewController alloc] initWithNibName:@"ADGameOverEndlessStatsViewController" bundle:0] setDelegate:self]
+  0d45f0  [self presentViewController:[[ADGameOverEndlessStatsViewController alloc] initWithNibName:@"ADGameOverEndlessStatsViewController" bundle:0] animated:0 completion:0]
+  0d4600  return
+
+== -[ADGameOverEndlessViewController positionView]   (address 0x1000d4620  size 204  kind objc)
+  0d463c  NSLog(@"About to check the missions", _cmd)
+  0d4654  [self contentScrollView]
+  0d466c  [self contentScrollView]
+  0d4688  [[self contentScrollView] frame]
+  0d46a8  [[self contentScrollView] setContentOffset:{[[self contentScrollView] frame].2, 0} animated:0]
+  0d46c4  return
+
+== -[ADGameOverEndlessViewController swipeLeft]   (address 0x1000d46ec  size 4  kind objc)
+  0d46ec  return
+
+== -[ADGameOverEndlessViewController swipeRight]   (address 0x1000d46f0  size 4  kind objc)
+  0d46f0  return
+
+== -[ADGameOverEndlessViewController reportScoreToGameCenter]   (address 0x1000d46f4  size 852  kind objc)
+  0d4734  [UIDevice currentDevice]
+  0d4750  [[UIDevice currentDevice] systemVersion]
+  0d4778  [[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64]
+  0d4794  if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0.0" options:64] == -1) goto loc_1000d49c4
+  0d47b0  [GKLocalPlayer localPlayer]
+  0d47d0  [[GKLocalPlayer localPlayer] isAuthenticated]
+  0d47e0  if ([[GKLocalPlayer localPlayer] isAuthenticated] == 0) goto loc_1000d48bc
+  0d47f8  [GKScore alloc]
+  0d4810  [[GKScore alloc] initWithLeaderboardIdentifier:@"EndlessModeScoreLeaderboard"]
+  0d482c  [ADInGameStats singleton]
+  0d4848  [[ADInGameStats singleton] gameScore]
+  0d4860  [[[GKScore alloc] initWithLeaderboardIdentifier:@"EndlessModeScoreLeaderboard"] setValue:[[ADInGameStats singleton] gameScore]]
+  0d4890  [NSArray arrayWithObjects:&sp[0x10] count:1]
+  0d48b0  [GKScore reportScores:[NSArray arrayWithObjects:&sp[0x10] count:1] withCompletionHandler:^{-[ADGameOverEndlessViewController reportScoreToGameCenter]_block_invoke}]
+loc_1000d48bc:
+  0d48c4  [GKLocalPlayer localPlayer]
+  0d48d8  [[GKLocalPlayer localPlayer] isAuthenticated]
+  0d48e8  if ([[GKLocalPlayer localPlayer] isAuthenticated] == 0) goto loc_1000d49c4
+  0d4900  [GKScore alloc]
+  0d4918  [[GKScore alloc] initWithLeaderboardIdentifier:@"TotalZombiesKilled"]
+  0d4934  [ADPersistentStats persistentStats]
+  0d4950  [[ADPersistentStats persistentStats] computeTotalEnemyKillCount]
+  0d4968  [[[GKScore alloc] initWithLeaderboardIdentifier:@"TotalZombiesKilled"] setValue:[[ADPersistentStats persistentStats] computeTotalEnemyKillCount]]
+  0d4998  [NSArray arrayWithObjects:&sp[0x8] count:1]
+  0d49b8  [GKScore reportScores:[NSArray arrayWithObjects:&sp[0x8] count:1] withCompletionHandler:^{-[ADGameOverEndlessViewController reportScoreToGameCenter]_block_invoke_2}]
+loc_1000d49c4:
+  0d49e8  return
+
+== -[ADGameOverEndlessViewController reportScoreToGameCenter]_block_invoke   (address 0x1000d4a48  size 4  kind block)
+  0d4a48  return
+
+== -[ADGameOverEndlessViewController reportScoreToGameCenter]_block_invoke_2   (address 0x1000d4a4c  size 4  kind block)
+  0d4a4c  return
+
+== -[ADGameOverEndlessViewController twitterScreenshotButtonPressed:]   (address 0x1000d4a50  size 904  kind objc)
+  0d4a84  [self viewForTwitterScreenshot]
+  0d4aa0  [[self viewForTwitterScreenshot] bounds]
+  0d4ac4  UIGraphicsBeginImageContextWithOptions(1)
+  0d4ac8  UIGraphicsGetCurrentContext(UIGraphicsBeginImageContextWithOptions(1))
+  0d4ad8  [self viewForTwitterScreenshot]
+  0d4af4  [[self viewForTwitterScreenshot] layer]
+  0d4b14  [[[self viewForTwitterScreenshot] layer] renderInContext:UIGraphicsGetCurrentContext(UIGraphicsBeginImageContextWithOptions(1))]
+  0d4b28  UIGraphicsGetImageFromCurrentImageContext()
+  0d4b38  UIGraphicsEndImageContext(UIGraphicsGetImageFromCurrentImageContext())
+  0d4b60  [SLComposeViewController isAvailableForServiceType:_SLServiceTypeTwitter[+0x0]]
+  0d4b64  if ([SLComposeViewController isAvailableForServiceType:_SLServiceTypeTwitter[+0x0]] == 0) goto loc_1000d4cc0
+  0d4b7c  [SLComposeViewController composeViewControllerForServiceType:_SLServiceTypeTwitter[+0x0]]
+  0d4ba8  [NSBundle mainBundle]
+  0d4bd8  [[NSBundle mainBundle] localizedStringForKey:@"TWITTER_SHARE" value:@"" table:0]
+  0d4bfc  [ADInGameStats singleton]
+  0d4c18  [[ADInGameStats singleton] gameScore]
+  0d4c34  [NSString stringWithFormat:[[NSBundle mainBundle] localizedStringForKey:@"TWITTER_SHARE" value:@"" table:0]]
+  0d4c58  [[SLComposeViewController composeViewControllerForServiceType:_SLServiceTypeTwitter[+0x0]] setInitialText:[NSString stringWithFormat:[[NSBundle mainBundle] localizedStringForKey:@"TWITTER_SHARE" value:@"" table:0]]]
+  0d4c90  [[SLComposeViewController composeViewControllerForServiceType:_SLServiceTypeTwitter[+0x0]] addImage:UIGraphicsGetImageFromCurrentImageContext()]
+  0d4cb0  [self presentViewController:[SLComposeViewController composeViewControllerForServiceType:_SLServiceTypeTwitter[+0x0]] animated:1 completion:0]
+  0d4cb4  goto loc_1000d4d20
+  0d4cbc  goto loc_1000d4dc0
+loc_1000d4cc0:
+  0d4cd4  [UIAlertView alloc]
+  0d4d04  [[UIAlertView alloc] initWithTitle:@"Twitter Sign-In" message:@"Please sign into Twitter in your device's setting menu" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:0]
+  0d4d1c  [[[UIAlertView alloc] initWithTitle:@"Twitter Sign-In" message:@"Please sign into Twitter in your device's setting menu" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:0] show]
+loc_1000d4d20:
+  0d4d48  return
+
+== -[ADGameOverEndlessViewController scoreReported:]   (address 0x1000d4dd8  size 4  kind objc)
+  0d4dd8  return
+
+== -[ADGameOverEndlessViewController didReceiveMemoryWarning]   (address 0x1000d4ddc  size 60  kind objc)
+  0d4e08  [super didReceiveMemoryWarning]
+  0d4e14  return
+
+== -[ADGameOverEndlessViewController dealloc]   (address 0x1000d4e18  size 284  kind objc)
+  0d4e38  NSLog(@"Dealloc game over", _cmd)
+  0d4e50  [S3DEngine engine]
+  0d4e74  [[S3DEngine engine] playListWithName:@"revive"]
+  0d4e90  [[[S3DEngine engine] playListWithName:@"revive"] deactivate]
+  0d4ec4  [super dealloc]
+  0d4ed8  return
+  0d4f24  [super dealloc]
+  0d4f30  call sub_10000b760
+
+== -[ADGameOverEndlessViewController refreshMission:WithTag:]   (address 0x1000d4f34  size 632  kind objc)
+  0d4f7c  [ADMissionForTopbarViewController alloc]
+  0d4f94  [[ADMissionForTopbarViewController alloc] initWithMission:arg1 skippable:1]
+  0d4fb0  [self missionView]
+  0d4fd4  [[self missionView] viewWithTag:arg2]
+  0d4ff0  [[[self missionView] viewWithTag:arg2] frame]
+  0d501c  [self missionView]
+  0d5034  [[self missionView] viewWithTag:arg2]
+  0d5050  [[[self missionView] viewWithTag:arg2] removeFromSuperview]
+  0d506c  [self missionView]
+  0d5090  [[[ADMissionForTopbarViewController alloc] initWithMission:arg1 skippable:1] view]
+  0d50b4  [[self missionView] addSubview:[[[ADMissionForTopbarViewController alloc] initWithMission:arg1 skippable:1] view]]
+  0d50d0  [[[ADMissionForTopbarViewController alloc] initWithMission:arg1 skippable:1] view]
+  0d50fc  [[[[ADMissionForTopbarViewController alloc] initWithMission:arg1 skippable:1] view] setFrame:{[[[self missionView] viewWithTag:arg2] frame].0, [[[self missionView] viewWithTag:arg2] frame].1, [[[self missionView] viewWithTag:arg2] frame].2, [[[self missionView] viewWithTag:arg2] frame].3}]
+  0d5130  return
+
+== -[ADGameOverEndlessViewController statisticsButton]   (address 0x1000d51ac  size 16  kind objc)
+  0d51b8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADGameOverEndlessViewController setStatisticsButton:]   (address 0x1000d51bc  size 12  kind objc)
+  0d51c4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADGameOverEndlessViewController extraMoneyImage]   (address 0x1000d51c8  size 16  kind objc)
+  0d51d4  return
+
+== -[ADGameOverEndlessViewController setExtraMoneyImage:]   (address 0x1000d51d8  size 56  kind objc)
+  0d51fc  self->_extraMoneyImage = arg1
+  0d520c  return
+
+== -[ADGameOverEndlessViewController highScoreLabel]   (address 0x1000d5210  size 16  kind objc)
+  0d521c  return
+
+== -[ADGameOverEndlessViewController setHighScoreLabel:]   (address 0x1000d5220  size 56  kind objc)
+  0d5244  self->_highScoreLabel = arg1
+  0d5254  return
+
+== -[ADGameOverEndlessViewController unlockableWeaponsLabel]   (address 0x1000d5258  size 16  kind objc)
+  0d5264  return
+
+== -[ADGameOverEndlessViewController setUnlockableWeaponsLabel:]   (address 0x1000d5268  size 56  kind objc)
+  0d528c  self->_unlockableWeaponsLabel = arg1
+  0d529c  return
+
+== -[ADGameOverEndlessViewController viewForTwitterScreenshot]   (address 0x1000d52a0  size 16  kind objc)
+  0d52ac  return
+
+== -[ADGameOverEndlessViewController setViewForTwitterScreenshot:]   (address 0x1000d52b0  size 56  kind objc)
+  0d52d4  self->_viewForTwitterScreenshot = arg1
+  0d52e4  return
+
+== -[ADGameOverEndlessViewController displayingMissions]   (address 0x1000d52e8  size 20  kind objc)
+  0d52f8  return
+
+== -[ADGameOverEndlessViewController setDisplayingMissions:]   (address 0x1000d52fc  size 16  kind objc)
+  0d5304  self->_displayingMissions = arg1
+  0d5308  return
+
+== -[ADGameOverEndlessViewController .cxx_destruct]   (address 0x1000d530c  size 124  kind objc)

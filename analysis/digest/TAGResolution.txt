@@ -1,0 +1,20 @@
+
+== +[TAGResolution functionId]   (address 0x100177e20  size 44  kind objc)
+  177e48  return
+
+== -[TAGResolution init]   (address 0x100177e4c  size 176  kind objc)
+  177e78  [NSSet set]
+  177eb4  [super initWithFunctionId:@"_rs" requiredKeys:[NSSet set]]
+  177ed8  return
+
+== -[TAGResolution isCacheable]   (address 0x100177efc  size 8  kind objc)
+  177f00  return
+
+== -[TAGResolution evaluate:]   (address 0x100177f04  size 368  kind objc)
+  177f38  [UIScreen mainScreen]
+  177f54  [[UIScreen mainScreen] bounds]
+  177f70  [UIScreen mainScreen]
+  177f8c  [[UIScreen mainScreen] scale]
+  177fec  [NSString stringWithFormat:@"%dx%d", (int)ceil(([[UIScreen mainScreen] bounds].2 * [[UIScreen mainScreen] scale])), (int)ceil(([[UIScreen mainScreen] bounds].3 * [[UIScreen mainScreen] scale]))]
+  178010  [TAGTypes objectToValue:[NSString stringWithFormat:@"%dx%d", (int)ceil(([[UIScreen mainScreen] bounds].2 * [[UIScreen mainScreen] scale])), (int)ceil(([[UIScreen mainScreen] bounds].3 * [[UIScreen mainScreen] scale]))]]
+  178044  return

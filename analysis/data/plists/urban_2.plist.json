@@ -1,0 +1,44 @@
+{
+ "icon_title": "12",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 50
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "title": "Under Pressure",
+ "objective": "Shoot the cars to shut down the alarms!",
+ "tip": "Remember to visit the Armory regularly to upgrade your weapons.",
+ "bricks": [
+  "urban_2_brick_1",
+  "urban_2_brick_2",
+  "urban_2_brick_3"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "urban_2",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "urban_1"
+ ],
+ "weapons": [
+  {
+   "ammo": "35",
+   "name": "pistol"
+  },
+  {
+   "ammo": "160",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 60
+ }
+}

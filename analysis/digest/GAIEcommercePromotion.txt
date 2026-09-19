@@ -1,0 +1,66 @@
+
+== -[GAIEcommercePromotion init]   (address 0x10012692c  size 140  kind objc)
+  12695c  [super init]
+  126964  if (self == 0) goto loc_1001269a4
+  126980  [NSMutableDictionary dictionaryWithCapacity:0]
+  126998  self->_parameters = [NSMutableDictionary dictionaryWithCapacity:0]
+loc_1001269a4:
+  1269b4  return
+
+== -[GAIEcommercePromotion setString:forKey:]   (address 0x1001269b8  size 304  kind objc)
+  1269ec  if (arg2 == 0) goto loc_100126a58
+  126a00  [self parameters]
+  126a28  [GAIUtil valueForString:arg1]
+  126a50  [[self parameters] setObject:[GAIUtil valueForString:arg1] forKey:arg2]
+  126a54  goto loc_100126ab0
+loc_100126a58:
+  126a6c  [GAI sharedInstance]
+  126a88  [[GAI sharedInstance] logger]
+  126aac  [[[GAI sharedInstance] logger] warning:@"nil key not allowed in setString"]
+loc_100126ab0:
+  126ae4  return
+
+== -[GAIEcommercePromotion setId:]   (address 0x100126ae8  size 28  kind objc)
+  126af0  [&d_1003b7d38] -> @"id"
+  126b00  tail [self setString:arg1 forKey:@"id"]
+
+== -[GAIEcommercePromotion setName:]   (address 0x100126b04  size 28  kind objc)
+  126b0c  [&d_1003b7d40] -> @"nm"
+  126b1c  tail [self setString:arg1 forKey:@"nm"]
+
+== -[GAIEcommercePromotion setCreative:]   (address 0x100126b20  size 28  kind objc)
+  126b28  [&d_1003b7d48] -> @"cr"
+  126b38  tail [self setString:arg1 forKey:@"cr"]
+
+== -[GAIEcommercePromotion setPosition:]   (address 0x100126b3c  size 28  kind objc)
+  126b44  [&d_1003b7d50] -> @"ps"
+  126b54  tail [self setString:x2 forKey:@"ps"]
+
+== -[GAIEcommercePromotion buildWithIndex:]   (address 0x100126b58  size 540  kind objc)
+  126b98  [self parameters]
+  126bb4  [[self parameters] count]
+  126bd0  [NSMutableDictionary dictionaryWithCapacity:[[self parameters] count]]
+  126bf0  [self parameters]
+  126c0c  [[self parameters] keyEnumerator]
+  126c38  [[[self parameters] keyEnumerator] nextObject]
+  126c48  if ([[[self parameters] keyEnumerator] nextObject] == 0) goto loc_100126d48
+  126c58  &@selector(promotionForIndex:suffix:)
+  126c70  &@selector(setObject:forKey:)
+loc_100126c78:
+  126c80  [self parameters]
+  126c98  [[self parameters] objectForKey:[[[self parameters] keyEnumerator] nextObject]]
+  126cc4  [GAIEcommerceFields promotionForIndex:arg1 suffix:[[[self parameters] keyEnumerator] nextObject]]
+  126cf0  [[NSMutableDictionary dictionaryWithCapacity:[[self parameters] count]] setObject:[[self parameters] objectForKey:[[[self parameters] keyEnumerator] nextObject]] forKey:[GAIEcommerceFields promotionForIndex:arg1 suffix:[[[self parameters] keyEnumerator] nextObject]]]
+  126d28  [[[self parameters] keyEnumerator] nextObject]
+  126d44  if ([[[self parameters] keyEnumerator] nextObject] != 0) goto loc_100126c78
+loc_100126d48:
+  126d70  return
+
+== -[GAIEcommercePromotion parameters]   (address 0x100126d74  size 16  kind objc)
+  126d80  return
+
+== -[GAIEcommercePromotion setParameters:]   (address 0x100126d84  size 56  kind objc)
+  126da8  self->_parameters = arg1
+  126db8  return
+
+== -[GAIEcommercePromotion .cxx_destruct]   (address 0x100126dbc  size 20  kind objc)

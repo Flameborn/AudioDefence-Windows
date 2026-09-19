@@ -1,0 +1,209 @@
+
+== csl::Buffer::vfunc_5   (address 0x1000e580c  size 8  kind cxx)
+  0e5810  return
+
+== csl::Buffer::vfunc_6   (address 0x1000e5814  size 8  kind cxx)
+  0e5814  a0[+0x30] = a1
+  0e5818  return
+
+== sub_1000e581c   (address 0x1000e581c  size 36  kind sub)
+  0e582c  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0e583c  return
+
+== csl::Buffer::~Buffer   (address 0x1000e81a8  size 36  kind cxx)
+  0e81b8  sub_1000e80e0(a0, a1, a2, a3)
+  0e81c8  return
+
+== csl::Buffer::~Buffer/*deleting*/   (address 0x1000e81cc  size 36  kind cxx)
+  0e81dc  sub_1000e80e0(a0, a1, a2, a3)
+  0e81ec  tail ZdlPv(a0)
+
+== csl::Buffer::vfunc_4   (address 0x1000e81f0  size 32  kind cxx)
+  0e81f8  if (a0[+0x8] <=u a1) goto loc_1000e8208
+  0e8204  return
+loc_1000e8208:
+  0e820c  return
+
+== sub_1000e8210   (address 0x1000e8210  size 16  kind sub)
+  0e8214  if (a0[+0x28] != 0) goto loc_1000e821c
+  0e8218  a0[+0x1c] = a1
+loc_1000e821c:
+  0e821c  return
+
+== sub_1000e8220   (address 0x1000e8220  size 240  kind sub)
+  0e8248  calloc(x0, (a0[+0x1c] * w23), a2, a3)
+  0e8250  if (calloc(x0, (a0[+0x1c] * w23), a2, a3) == 0) goto loc_1000e8298
+  0e8264  store g_10042d89c = (g_10042d89c + (w23 * w21) * a0[+0x1c])
+  0e8270  if (a0[+0x8] != 2) goto loc_1000e82b4
+  0e8278  a0[+0x30][+0x0] = calloc(x0, (a0[+0x1c] * w23), a2, a3)
+  0e8290  a0[+0x30][+0x8] = (calloc(x0, (a0[+0x1c] * w23), a2, a3) + (a0[+0x1c] * a0[+0xc]))
+  0e8294  goto loc_1000e82c8
+loc_1000e8298:
+  0e82b0  tail puts("Failed to allocate buffer in Buffer::allocateBuffers()")
+loc_1000e82b4:
+  0e82b8  if (a0[+0x8] != 1) goto loc_1000e82ec
+  0e82c0  a0[+0x30][+0x0] = calloc(x0, (a0[+0x1c] * w23), a2, a3)
+loc_1000e82c8:
+  0e82cc  a0[+0x28] = 1
+  0e82d0  a0[+0x29] = 1
+  0e82d4  a0[+0x10] = a0[+0xc]
+  0e82e8  return
+  0e82f4  puts("Too many channels. Only 1 or 2 are supported at present")
+  0e830c  tail free(calloc(x0, (a0[+0x1c] * w23), a2, a3))
+
+== sub_1000e8310   (address 0x1000e8310  size 132  kind sub)
+  0e8324  if (a0[+0x28] == 0) goto loc_1000e8388
+  0e832c  if (a0[+0x8] == 0) goto loc_1000e8380
+loc_1000e8334:
+  0e833c  if (a0[+0x1c] != 2) goto loc_1000e8354
+  0e834c  bzero(x0, a0[+0x14])
+  0e8350  goto loc_1000e8370
+loc_1000e8354:
+  0e8358  if (a0[+0x1c] != 4) goto loc_1000e8370
+  0e836c  vDSP_vclr(x0, 1, a0[+0xc])
+loc_1000e8370:
+  0e837c  if ((w20 + 1) <u a0[+0x8]) goto loc_1000e8334
+loc_1000e8380:
+  0e8384  a0[+0x2b] = 1
+loc_1000e8388:
+  0e8390  return
+
+== csl::Buffer::vfunc_2   (address 0x1000e8394  size 16  kind cxx)
+  0e83a0  return
+
+== csl::Buffer::vfunc_3   (address 0x1000e83a4  size 40  kind cxx)
+  0e83b0  if (a0[+0x10] >=u (a3 + a2)) goto loc_1000e83bc
+  0e83b8  return
+loc_1000e83bc:
+  0e83c8  return
+
+== sub_1000e83cc   (address 0x1000e83cc  size 344  kind sub)
+  0e83e8  if (a1[+0x8] <=u a0[+0x8]) goto loc_1000e83f8
+  0e83f4  goto loc_1000e8408
+loc_1000e83f8:
+  0e8404  if (a1[+0xc] <=u a0[+0x10]) goto loc_1000e84cc
+loc_1000e8408:
+  0e8418  sub_1000e75a0("Buffer::copyHeaderFrom(ch %d %d, fr %d %d)", a1, a2, a3)
+  0e8420  cxa_allocate_exception(16)
+  0e8438  ZNSsC1EPKcRKSaIcE(&x29[-0x20], "Can't reallocate buffers at run-time", &sp[0x28])
+  0e8444  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &x29[-0x20])
+  0e8454  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0e846c  cxa_throw(cxa_allocate_exception(16), &d_100428f80, INDIRECT_SYMBOL_LOCAL)
+  0e8470  goto loc_1000e8500
+  0e8490  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e84b8
+loc_1000e8498:
+  0e84a4  if (w11 != 0) goto loc_1000e8498
+  0e84ac  if (w9 > 0) goto loc_1000e84b8
+  0e84b4  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x18])
+loc_1000e84b8:
+  0e84b8  if (w20 >= 0) goto loc_1000e84c4
+  0e84c0  cxa_call_unexpected()
+loc_1000e84c4:
+loc_1000e84cc:
+  0e84d4  a0[+0x14] = a1[+0x14]
+  0e84dc  a0[+0x18] = a1[+0x18]
+  0e84e4  a0[+0x2c] = a1[+0x2c]
+  0e84ec  a0[+0x1c] = a1[+0x1c]
+  0e84fc  return
+  0e851c  cxa_free_exception()
+
+== sub_1000e8524   (address 0x1000e8524  size 432  kind sub)
+  0e854c  if (a1[+0x8] <=u a0[+0x8]) goto loc_1000e855c
+  0e8558  goto loc_1000e856c
+loc_1000e855c:
+  0e8568  if (a1[+0xc] <=u a0[+0x10]) goto loc_1000e8630
+loc_1000e856c:
+  0e857c  sub_1000e75a0("Buffer::copySamplesFrom(ch %d %d, fr %d %d)", a1, a2, a3)
+  0e8584  cxa_allocate_exception(16)
+  0e859c  ZNSsC1EPKcRKSaIcE(&sp[0x30], "Can't reallocate buffers at run-time", &sp[0x28])
+  0e85a8  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x30])
+  0e85b8  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0e85d0  cxa_throw(cxa_allocate_exception(16), &d_100428f80, INDIRECT_SYMBOL_LOCAL)
+  0e85d4  goto sub_1000e86d4
+  0e85f4  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e861c
+loc_1000e85fc:
+  0e8608  if (w11 != 0) goto loc_1000e85fc
+  0e8610  if (w9 > 0) goto loc_1000e861c
+  0e8618  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x28])
+loc_1000e861c:
+  0e861c  if (w20 >= 0) goto loc_1000e8628
+  0e8624  cxa_call_unexpected()
+loc_1000e8628:
+loc_1000e8630:
+  0e8638  a0[+0x14] = a1[+0x14]
+  0e8640  a0[+0x1c] = a1[+0x1c]
+  0e8644  if (a1[+0x8] == 0) goto loc_1000e8694
+loc_1000e864c:
+  0e8670  call a1[+0x0][+0x20]
+  0e8680  memcpy(x0, a1[+0x0][+0x20](…), a0[+0x14])
+  0e8690  if ((w22 + 1) <u a0[+0x8]) goto loc_1000e864c
+loc_1000e8694:
+  0e8694  a0[+0x2b] = 0
+  0e86a8  return
+  0e86cc  cxa_free_exception()
+
+== sub_1000e86d4   (address 0x1000e86d4  size 408  kind sub)
+  0e86fc  if (a1[+0x8] != a0[+0x8]) goto loc_1000e8778
+  0e870c  if (a1[+0xc] != a0[+0xc]) goto loc_1000e8780
+  0e8710  if (a1[+0x8] == 0) goto loc_1000e8764
+  0e8718  goto loc_1000e8720
+loc_1000e871c:
+loc_1000e8720:
+  0e8740  call a1[+0x0][+0x20]
+  0e8750  memcpy(x0, a1[+0x0][+0x20](…), a0[+0x14])
+  0e8760  if ((w22 + 1) <u a0[+0x8]) goto loc_1000e871c
+loc_1000e8764:
+  0e8774  return
+  0e8790  sub_1000e75a0("Buffer::copyOnlySamplesFrom(ch %d %d, fr %d %d)", a1, a2, a3)
+  0e8798  cxa_allocate_exception(16)
+  0e87b0  ZNSsC1EPKcRKSaIcE(&sp[0x30], "Can't reallocate buffers at run-time", &sp[0x28])
+  0e87bc  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x30])
+  0e87cc  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0e87e4  cxa_throw(cxa_allocate_exception(16), &d_100428f80, INDIRECT_SYMBOL_LOCAL)
+  0e87e8  goto sub_1000e886c
+  0e8808  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000e8830
+  0e881c  if (w11 != 0) goto loc_1000e8810
+  0e8824  if (w9 > 0) goto loc_1000e8830
+  0e882c  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x28])
+  0e8830  if (w20 >= 0) goto loc_1000e883c
+  0e8838  cxa_call_unexpected()
+  0e8864  cxa_free_exception()
+
+== sub_1000e886c   (address 0x1000e886c  size 172  kind sub)
+  0e8880  a0[+0x8] = 0
+  0e8890  a0[+0x28] = 0
+  0e8898  a0[+0x50] = 0
+  0e889c  a0[+0x51] = 0
+  0e88b0  a0[+0x0] = vtable<csl::UnitGenerator>
+  0e88b8  a0[+0x64] = 0
+  0e88c8  a0[+0x80] = (a0 + 136)
+  0e88d0  Znam(1024, a1, a2, a3)
+  0e88d4  a0[+0x78] = Znam(1024, a1, a2, a3)
+  0e88e0  memset(Znam(1024, a1, a2, a3), 255, 128)
+  0e88e4  a0[+0x90] = 0
+  0e88e8  a0[+0x98] = 0
+  0e88ec  a0[+0xa0] = 0
+  0e88fc  return
+  0e8908  ZN3csl5ModelD2Ev()
+  0e8914  call sub_10000b760
+
+== sub_1000e8918   (address 0x1000e8918  size 72  kind sub)
+  0e8934  a0[+0x0] = vtable<csl::UnitGenerator>
+  0e893c  if (a0[+0x78] == 0) goto loc_1000e8948
+  0e8940  ZdaPv(a0[+0x78], a1, a2, a3)
+  0e8944  a0[+0x78] = 0
+loc_1000e8948:
+  0e894c  ZN3csl5ModelD2Ev(a0)
+  0e895c  return
+
+== csl::Buffer::vfunc_7   (address 0x1000eb548  size 12  kind cxx)
+  0eb550  return
+
+== sub_1000eb554   (address 0x1000eb554  size 44  kind sub)
+  0eb568  if (a0[+0x0] == 0) goto loc_1000eb570
+  0eb56c  ZdlPv(a0[+0x0], a1, a2, a3)
+loc_1000eb570:
+  0eb57c  return
+
+== csl::Buffer::vfunc_8   (address 0x1000eb580  size 16  kind cxx)
+  0eb58c  return

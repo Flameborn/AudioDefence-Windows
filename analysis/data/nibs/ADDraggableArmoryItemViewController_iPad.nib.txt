@@ -1,0 +1,15 @@
+// ADDraggableArmoryItemViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #25 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #32 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #27 UIView  Tag=90
+    #14 UIImageView  UserInteractionDisabled=False Image='banjo_icon.png'
+    #11 UIView  
+      #9 UIImageView  Image='icon_lock blank.png'
+
+CONNECTIONS
+  outlet  lockedView                                #25 UIProxyObject --> #11 UIView
+  outlet  view                                      #25 UIProxyObject --> #27 UIView
+  outlet  weaponImage                               #25 UIProxyObject --> #14 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

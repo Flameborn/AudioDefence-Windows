@@ -1,0 +1,33 @@
+
+== +[TAGLog initialize]   (address 0x1001625c0  size 72  kind objc)
+  1625dc  [TAGDefaultLogger alloc]
+  1625ec  [[TAGDefaultLogger alloc] init]
+  1625f8  store g_10042df48 = [[TAGDefaultLogger alloc] init]
+  162604  return
+
+== +[TAGLog error:]   (address 0x100162608  size 40  kind objc)
+  162624  [g_10042df48 error:arg1]
+  16262c  return
+
+== +[TAGLog warning:]   (address 0x100162630  size 40  kind objc)
+  16264c  [g_10042df48 warning:arg1]
+  162654  return
+
+== +[TAGLog info:]   (address 0x100162658  size 40  kind objc)
+  162674  [g_10042df48 info:arg1]
+  16267c  return
+
+== +[TAGLog debug:]   (address 0x100162680  size 40  kind objc)
+  16269c  [g_10042df48 debug:arg1]
+  1626a4  return
+
+== +[TAGLog verbose:]   (address 0x1001626a8  size 40  kind objc)
+  1626c4  [g_10042df48 verbose:arg1]
+  1626cc  return
+
+== +[TAGLog setLogger:]   (address 0x1001626d0  size 16  kind objc)
+
+== +[TAGLog logger]   (address 0x1001626e0  size 12  kind objc)
+
+== +[TAGLog logLevel]   (address 0x1001626ec  size 24  kind objc)
+  162700  tail [g_10042df48 logLevel]

@@ -1,0 +1,105 @@
+
+== +[TAGEncode functionId]   (address 0x100174110  size 44  kind objc)
+  174138  return
+
+== +[TAGEncode arg0Key]   (address 0x10017413c  size 44  kind objc)
+  174164  return
+
+== +[TAGEncode noPaddingKey]   (address 0x100174168  size 44  kind objc)
+  174190  return
+
+== +[TAGEncode inputFormatKey]   (address 0x100174194  size 44  kind objc)
+  1741bc  return
+
+== +[TAGEncode outputFormatKey]   (address 0x1001741c0  size 44  kind objc)
+  1741e8  return
+
+== -[TAGEncode init]   (address 0x1001741ec  size 184  kind objc)
+  174220  [NSSet setWithObject:@"arg0"]
+  17425c  [super initWithFunctionId:@"_enc" requiredKeys:[NSSet setWithObject:@"arg0"]]
+  174280  return
+
+== -[TAGEncode isCacheable]   (address 0x1001742a4  size 8  kind objc)
+  1742a8  return
+
+== -[TAGEncode evaluate:]   (address 0x1001742ac  size 1856  kind objc)
+  1742f0  [arg1 objectForKey:@"arg0"]
+  174308  if ([arg1 objectForKey:@"arg0"] == 0) goto loc_100174388
+  174320  [TAGTypes valueToString:[arg1 objectForKey:@"arg0"]]
+  17433c  [[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]] length]
+  174340  if ([[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]] length] == 0) goto loc_1001743a8
+  174354  [arg1 objectForKey:@"input_format"]
+  174364  if ([arg1 objectForKey:@"input_format"] == 0) goto loc_1001743cc
+  174374  [TAGTypes valueToString:[arg1 objectForKey:@"input_format"]]
+  174384  goto loc_1001743dc
+loc_100174388:
+  174394  [TAGTypes defaultValue]
+  1743a4  goto loc_100174700
+loc_1001743a8:
+  1743b8  [TAGTypes defaultValue]
+  1743c8  goto loc_1001746f8
+loc_1001743cc:
+loc_1001743dc:
+  1743ec  [arg1 objectForKey:@"output_format"]
+  1743fc  if ([arg1 objectForKey:@"output_format"] == 0) goto loc_100174420
+  17440c  [TAGTypes valueToString:[arg1 objectForKey:@"output_format"]]
+  17441c  goto loc_100174430
+loc_100174420:
+loc_100174430:
+  174444  [arg1 objectForKey:@"no_padding"]
+  174454  if ([arg1 objectForKey:@"no_padding"] == 0) goto loc_1001744a0
+  174470  [TAGTypes valueToBoolean:[arg1 objectForKey:@"no_padding"]]
+  17448c  [[TAGTypes valueToBoolean:[arg1 objectForKey:@"no_padding"]] boolValue]
+  17449c  goto loc_1001744a8
+loc_1001744a0:
+loc_1001744a8:
+  1744c4  [x0 isEqual:@"text"]
+  1744c8  if ([x0 isEqual:@"text"] == 0) goto loc_1001744f0
+  1744e0  [[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]] dataUsingEncoding:4]
+  1744ec  goto loc_1001745b4
+loc_1001744f0:
+  174500  [x0 isEqual:@"base16"]
+  174504  if ([x0 isEqual:@"base16"] == 0) goto loc_100174530
+  174520  [TAGBase16 decode:[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]]]
+  17452c  goto loc_1001745b4
+loc_100174530:
+  174540  [x0 isEqual:@"base64"]
+  174544  if ([x0 isEqual:@"base64"] == 0) goto loc_100174574
+  174564  [TAGBase64Encoder decode:[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]] noPadding:x3]
+  174570  goto loc_1001745b4
+loc_100174574:
+  174584  [x0 isEqual:@"base64url"]
+  174588  if ([x0 isEqual:@"base64url"] == 0) goto loc_1001747b8
+  1745a8  [TAGBase64Encoder decodeWebSafe:[TAGTypes valueToString:[arg1 objectForKey:@"arg0"]] noPadding:x3]
+loc_1001745b4:
+  1745d0  [x0 isEqual:@"base16"]
+  1745d4  if ([x0 isEqual:@"base16"] == 0) goto loc_100174600
+  1745f4  [TAGBase16 encode:x2]
+  1745fc  goto loc_10017468c
+loc_100174600:
+  174614  [x0 isEqual:@"base64"]
+  174618  if ([x0 isEqual:@"base64"] == 0) goto loc_100174648
+  17463c  [TAGBase64Encoder encode:x2 noPadding:x3]
+  174644  goto loc_10017468c
+loc_100174648:
+  17465c  [x0 isEqual:@"base64url"]
+  174660  if ([x0 isEqual:@"base64url"] == 0) goto loc_100174734
+  174684  [TAGBase64Encoder encodeWebSafe:x2 noPadding:x3]
+loc_10017468c:
+  1746a8  [TAGTypes objectToValue:x2]
+loc_1001746f8:
+loc_100174700:
+  174730  return
+  174760  [NSString stringWithFormat:@"Encode: unknown output format: %@", sp[0]]
+  174784  [TAGLog error:[NSString stringWithFormat:@"Encode: unknown output format: %@", sp[0]]]
+  1747a4  [TAGTypes defaultValue]
+  1747e0  [NSString stringWithFormat:@"Encode: unknown input format: %@", sp[0]]
+  174804  [TAGLog error:[NSString stringWithFormat:@"Encode: unknown input format: %@", sp[0]]]
+  174820  [TAGTypes defaultValue]
+  1748e8  if (w22 != 1) goto loc_1001749a4
+  1748f0  objc_begin_catch()
+  174928  [NSString stringWithFormat:@"Encode: invalid input: %@", sp[0]]
+  174950  [TAGLog error:[NSString stringWithFormat:@"Encode: invalid input: %@", sp[0]]]
+  174974  [x0 defaultValue]
+  174984  objc_end_catch([x0 defaultValue])
+  1749a0  objc_end_catch()

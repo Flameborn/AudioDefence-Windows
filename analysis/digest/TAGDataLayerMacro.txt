@@ -1,0 +1,49 @@
+
+== +[TAGDataLayerMacro functionId]   (address 0x100173ba4  size 44  kind objc)
+  173bcc  return
+
+== -[TAGDataLayerMacro initWithDataLayer:]   (address 0x100173bd0  size 248  kind objc)
+  173c10  [NSSet setWithObject:@"name"]
+  173c4c  [super initWithFunctionId:@"_v" requiredKeys:[NSSet setWithObject:@"name"]]
+  173c5c  if (self == 0) goto loc_100173c80
+  173c74  self->_dataLayer = arg1
+loc_100173c80:
+  173c9c  return
+
+== +[TAGDataLayerMacro nameKey]   (address 0x100173cc8  size 44  kind objc)
+  173cf0  return
+
+== +[TAGDataLayerMacro defaultValueKey]   (address 0x100173cf4  size 44  kind objc)
+  173d1c  return
+
+== -[TAGDataLayerMacro isCacheable]   (address 0x100173d20  size 8  kind objc)
+  173d24  return
+
+== -[TAGDataLayerMacro evaluate:]   (address 0x100173d28  size 532  kind objc)
+  173d6c  [arg1 objectForKey:@"name"]
+  173d90  [TAGTypes valueToString:[arg1 objectForKey:@"name"]]
+  173db8  [self dataLayer]
+  173dd8  [[self dataLayer] get:[TAGTypes valueToString:[arg1 objectForKey:@"name"]]]
+  173df0  if ([[self dataLayer] get:[TAGTypes valueToString:[arg1 objectForKey:@"name"]]] == 0) goto loc_100173e44
+  173e08  [NSNull null]
+  173e24  if ([[self dataLayer] get:[TAGTypes valueToString:[arg1 objectForKey:@"name"]]] == [NSNull null]) goto loc_100173e74
+  173e38  [TAGTypes objectToValue:[[self dataLayer] get:[TAGTypes valueToString:[arg1 objectForKey:@"name"]]]]
+  173e40  goto loc_100173e88
+loc_100173e44:
+  173e54  [arg1 objectForKey:@"default_value"]
+  173e64  if ([arg1 objectForKey:@"default_value"] == 0) goto loc_100173e94
+  173e70  goto loc_100173eb0
+loc_100173e74:
+  173e80  [TAGTypes defaultValue]
+loc_100173e88:
+  173e90  goto loc_100173ebc
+loc_100173e94:
+  173ea4  [TAGTypes defaultValue]
+loc_100173eb0:
+loc_100173ebc:
+  173ee8  return
+
+== -[TAGDataLayerMacro dataLayer]   (address 0x100173f3c  size 16  kind objc)
+  173f48  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayerMacro .cxx_destruct]   (address 0x100173f4c  size 20  kind objc)

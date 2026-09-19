@@ -1,0 +1,28 @@
+{
+ "Enemies": {
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "Clown"
+   },
+   "spawn_angle": 190,
+   "spawn_distance": 10
+  },
+  "Berserk": {
+   "spawn_sound": "",
+   "spawn_angle": 200,
+   "spawn_distance": 8,
+   "spawn_time": 6
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_angle": 260,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "2"
+ }
+}

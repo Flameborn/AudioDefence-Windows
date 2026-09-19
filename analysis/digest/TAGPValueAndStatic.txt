@@ -1,0 +1,12 @@
+
+== -[TAGPValueAndStatic initWithValue:isStatic:]   (address 0x100162960  size 60  kind objc)
+  16298c  [super initWithObject:arg1 isStatic:arg2]
+  162998  return
+
+== -[TAGPValueAndStatic value]   (address 0x10016299c  size 16  kind objc)
+  1629a8  tail [self object]
+
+== +[TAGPValueAndStatic valueWithValue:isStatic:]   (address 0x1001629ac  size 124  kind objc)
+  1629dc  [TAGPValueAndStatic alloc]
+  1629f4  [[TAGPValueAndStatic alloc] initWithValue:arg1 isStatic:arg2]
+  162a10  return

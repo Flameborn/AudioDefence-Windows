@@ -1,0 +1,45 @@
+{
+ "icon_title": "05",
+ "accuracy_star": {
+  "reward": 200,
+  "objective": 10
+ },
+ "title": "Money Shot",
+ "weapons": [
+  {
+   "ammo": "6",
+   "name": "pistol"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "tip": "Diamond zombies disappear after a while. Shoot them as fast as you can to collect their diamonds!",
+ "mission_star": {
+  "reward": 500
+ },
+ "bricks": [
+  "tutorial_5_brick_1",
+  "tutorial_5_brick_2",
+  "tutorial_5_brick_3",
+  "tutorial_5_brick_4"
+ ],
+ "objective": "Learn how to make money!",
+ "challenge_id": "tutorial_5",
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_4"
+ ],
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 90
+ }
+}

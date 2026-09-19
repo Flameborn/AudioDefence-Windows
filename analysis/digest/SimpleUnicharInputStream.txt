@@ -1,0 +1,48 @@
+
+== +[SimpleUnicharInputStream simpleStreamWithString:]   (address 0x1000e2e14  size 116  kind objc)
+  0e2e40  [SimpleUnicharInputStream alloc]
+  0e2e54  [[SimpleUnicharInputStream alloc] initWithString:arg1]
+  0e2e70  return
+
+== -[SimpleUnicharInputStream initWithString:]   (address 0x1000e2e88  size 224  kind objc)
+  0e2ed0  [super init]
+  0e2ed8  if (self == 0) goto loc_1000e2f2c
+  0e2ef4  self->backingStore = arg1
+  0e2f08  self->current = 0
+  0e2f1c  [self->backingStore length]
+  0e2f28  self->limit = [self->backingStore length]
+loc_1000e2f2c:
+  0e2f48  return
+
+== -[SimpleUnicharInputStream hasNext]   (address 0x1000e2f68  size 36  kind objc)
+  0e2f88  return
+
+== -[SimpleUnicharInputStream back]   (address 0x1000e2f8c  size 164  kind objc)
+  0e2fa8  self->current = (self->current - 1)
+  0e2fb0  if (self->current <= 0) goto loc_1000e2fc0
+  0e2fbc  return
+loc_1000e2fc0:
+  0e2fec  [NSException exceptionWithName:_NSRangeException[+0x0] reason:@"Bug in production code: stream back call results in negative position" userInfo:0]
+  0e3008  [[NSException exceptionWithName:_NSRangeException[+0x0] reason:@"Bug in production code: stream back call results in negative position" userInfo:0] raise]
+  0e3018  return
+
+== -[SimpleUnicharInputStream next]   (address 0x1000e3030  size 212  kind objc)
+  0e3060  if (self->current < self->limit) goto loc_1000e30c0
+  0e3090  [NSException exceptionWithName:_NSRangeException[+0x0] reason:@"Bug in production code: stream next call results in beyond limit position" userInfo:0]
+  0e30ac  [[NSException exceptionWithName:_NSRangeException[+0x0] reason:@"Bug in production code: stream next call results in beyond limit position" userInfo:0] raise]
+loc_1000e30c0:
+  0e30d0  self->current = (self->current + 1)
+  0e30ec  tail [self->backingStore characterAtIndex:self->current]
+
+== -[SimpleUnicharInputStream mark]   (address 0x1000e3104  size 16  kind objc)
+  0e3110  return
+
+== -[SimpleUnicharInputStream chunk:]   (address 0x1000e3114  size 28  kind objc)
+  0e312c  tail [self->backingStore substringWithRange:arg1]
+
+== -[SimpleUnicharInputStream dealloc]   (address 0x1000e3130  size 92  kind objc)
+  0e3150  self->backingStore = 0
+  0e3178  [super dealloc]
+  0e3188  return
+
+== -[SimpleUnicharInputStream .cxx_destruct]   (address 0x1000e318c  size 20  kind objc)

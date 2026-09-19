@@ -1,0 +1,21 @@
+
+== -[TAGTypeOrFailure initWithType:]   (address 0x1001585f8  size 156  kind objc)
+  158640  [super init]
+  158648  if (self == 0) goto loc_100158660
+loc_100158660:
+  15867c  return
+
+== -[TAGTypeOrFailure initWithFailure:]   (address 0x100158694  size 88  kind objc)
+  1586c8  [super init]
+  1586cc  if (self == 0) goto loc_1001586dc
+  1586d8  self->_failure = arg1
+loc_1001586dc:
+  1586e8  return
+
+== -[TAGTypeOrFailure type]   (address 0x1001586ec  size 16  kind objc)
+  1586f8  return
+
+== -[TAGTypeOrFailure failure]   (address 0x1001586fc  size 16  kind objc)
+  158708  return
+
+== -[TAGTypeOrFailure .cxx_destruct]   (address 0x10015870c  size 20  kind objc)

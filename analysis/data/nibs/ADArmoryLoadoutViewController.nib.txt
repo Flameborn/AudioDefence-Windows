@@ -1,0 +1,30 @@
+// ADArmoryLoadoutViewController.nib
+TOP-LEVEL OBJECTS
+  #47 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #15 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #73 UIView  Tag=2781
+    #58 UIImageView  Image='header_loadout.png'
+    #36 UIImageView  UserInteractionDisabled=False Image='darken_loadout.png'
+    #56 UIScrollView  
+    #54 UIImageView  UserInteractionDisabled=False Image='smg_icon.png'
+    #26 UIImageView  UserInteractionDisabled=False Image='pistol_icon.png'
+    #119 UIImageView  UserInteractionDisabled=False Image='wok_icon.png'
+    #126 UITextView (custom class ADChallengeDescription)  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  #53 UIView  Tag=2782
+    #121 UIImageView  Image='header_loadout.png'
+    #27 UIImageView  UserInteractionDisabled=False Image='darken_loadout.png'
+    #97 UIScrollView  Tag=3
+    #110 UIImageView  Tag=4 UserInteractionDisabled=False Image='smg_icon.png'
+    #95 UIImageView  Tag=5 UserInteractionDisabled=False Image='pistol_icon.png'
+    #63 UIImageView  Tag=2 UserInteractionDisabled=False Image='wok_icon.png'
+    #115 UITextView (custom class ADChallengeDescription)  Tag=1 Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+
+CONNECTIONS
+  outlet  loadoutInfoTextView                       #47 UIProxyObject --> #126 ADChallengeDescription Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  meleeSlot                                 #47 UIProxyObject --> #119 UIImageView
+  outlet  view                                      #47 UIProxyObject --> #73 UIView
+  outlet  weaponScroller                            #47 UIProxyObject --> #56 UIScrollView
+  outlet  weaponSlot1                               #47 UIProxyObject --> #54 UIImageView
+  outlet  weaponSlot2                               #47 UIProxyObject --> #26 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,24 @@
+// ADDetailWeaponView.nib
+TOP-LEVEL OBJECTS
+  #22 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #63 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #43 UITableViewCell (custom class ADWeaponsStatsDetailCell)  
+    #23 UITableViewCellContentView  
+      #59 UIView  Tag=99 UserInteractionDisabled=False
+        #21 UILabel  UserInteractionDisabled=False Text='NULL'
+        #32 UILabel  UserInteractionDisabled=False Text='NULL'
+        #58 UILabel  UserInteractionDisabled=False Text='Accuracy'
+        #17 UILabel  UserInteractionDisabled=False Text='Name'
+        #26 UILabel  UserInteractionDisabled=False Text='Kills'
+    #44 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #23)
+
+CONNECTIONS
+  outlet  accuracyLabel                             #43 ADWeaponsStatsDetailCell --> #58 UILabel Text='Accuracy'
+  outlet  accuracyValLabel                          #43 ADWeaponsStatsDetailCell --> #32 UILabel Text='NULL'
+  outlet  killsLabel                                #43 ADWeaponsStatsDetailCell --> #26 UILabel Text='Kills'
+  outlet  killsValLabel                             #43 ADWeaponsStatsDetailCell --> #21 UILabel Text='NULL'
+  outlet  nameLabel                                 #43 ADWeaponsStatsDetailCell --> #17 UILabel Text='Name'
+
+ACCESSIBILITY CONFIGURATIONS

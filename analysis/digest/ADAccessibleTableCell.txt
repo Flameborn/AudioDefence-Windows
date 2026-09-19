@@ -1,0 +1,22 @@
+
+== -[ADAccessibleTableCell initWithStyle:reuseIdentifier:]   (address 0x1000a4834  size 928  kind objc)
+  0a4894  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  0a489c  if (self == 0) goto loc_1000a4b00
+  0a48b8  [UIColor blackColor]
+  0a48dc  [self setBackgroundColor:[UIColor blackColor]]
+  0a4900  [self textLabel]
+  0a4928  [UIColor whiteColor]
+  0a4950  [[self textLabel] setTextColor:[UIColor whiteColor]]
+  0a497c  [ADGameParameters sharedParameters]
+  0a4998  [[ADGameParameters sharedParameters] isIphone]
+  0a49b4  [self textLabel]
+  0a49f4  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 25)]
+  0a4a1c  [[self textLabel] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 25)]]
+  0a4a48  [self detailTextLabel]
+  0a4a64  [UIColor whiteColor]
+  0a4a80  [[self detailTextLabel] setTextColor:[UIColor whiteColor]]
+  0a4aa0  [self detailTextLabel]
+  0a4ad0  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 14 : 22)]
+  0a4aec  [[self detailTextLabel] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 14 : 22)]]
+loc_1000a4b00:
+  0a4b28  return

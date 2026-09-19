@@ -1,0 +1,83 @@
+
+== -[UIScrollView(DAAutoScroll) startScrolling]   (address 0x1000bd38c  size 444  kind objc)
+  0bd3b0  [self stopScrolling]
+  0bd3c8  [self window]
+  0bd3d8  if ([self window] == 0) goto loc_1000bd430
+  0bd3e4  [self window]
+  0bd400  [[self window] screen]
+  0bd41c  [[[self window] screen] scale]
+  0bd42c  goto loc_1000bd468
+loc_1000bd430:
+  0bd444  [UIScreen mainScreen]
+  0bd460  [[UIScreen mainScreen] scale]
+loc_1000bd468:
+  0bd488  [self scrollPointsPerSecond]
+  0bd4c4  [NSTimer scheduledTimerWithTimeInterval:(1 / (d8 * [self scrollPointsPerSecond])) target:self selector:@selector(scrollTick) userInfo:0 repeats:1]
+  0bd4e8  [self setAutoScrollTimer:[NSTimer scheduledTimerWithTimeInterval:(1 / (d8 * [self scrollPointsPerSecond])) target:self selector:@selector(scrollTick) userInfo:0 repeats:1]]
+  0bd500  return
+
+== -[UIScrollView(DAAutoScroll) stopScrolling]   (address 0x1000bd548  size 120  kind objc)
+  0bd564  [self autoScrollTimer]
+  0bd580  [[self autoScrollTimer] invalidate]
+  0bd5a8  tail [self setAutoScrollTimer:0]
+
+== -[UIScrollView(DAAutoScroll) scrollTick]   (address 0x1000bd5c0  size 480  kind objc)
+  0bd5e8  [self window]
+  0bd5fc  if ([self window] != 0) goto loc_1000bd614
+  0bd610  [self stopScrolling]
+loc_1000bd614:
+  0bd624  [self autoScrollTimer]
+  0bd640  [[self autoScrollTimer] timeInterval]
+  0bd660  [self scrollPointsPerSecond]
+  0bd67c  [self contentOffset]
+  0bd68c  [self contentOffset]
+  0bd690  t1 = (([[self autoScrollTimer] timeInterval] * [self scrollPointsPerSecond]) + [self contentOffset].1)
+  0bd6a4  [self contentSize]
+  0bd6bc  [self bounds]
+  0bd6c8  if (t1 <= (or unordered) ([self contentSize].1 - [self bounds].3)) goto loc_1000bd6f4
+  0bd6f0  tail [self stopScrolling]
+loc_1000bd6f4:
+  0bd75c  [UIView animateWithDuration:[[self autoScrollTimer] timeInterval] delay:0 options:2 animations:^{-[UIScrollView(DAAutoScroll) scrollTick]_block_invoke captures +0x20=self, +0x28=[self contentOffset].0, +0x30=t1} completion:0]
+  0bd77c  return
+
+== -[UIScrollView(DAAutoScroll) scrollTick]_block_invoke   (address 0x1000bd7a0  size 28  kind block)
+  0bd7b8  tail [self setContentOffset:{d0, d1}]
+
+== sub_1000bd7bc   (address 0x1000bd7bc  size 8  kind sub)
+
+== sub_1000bd7c4   (address 0x1000bd7c4  size 8  kind sub)
+  0bd7c8  return
+
+== -[UIScrollView(DAAutoScroll) setScrolling:]   (address 0x1000bd7cc  size 36  kind objc)
+  0bd7cc  if (arg1 == 0) goto loc_1000bd7e0
+  0bd7dc  tail [self startScrolling]
+loc_1000bd7e0:
+  0bd7ec  tail [self stopScrolling]
+
+== -[UIScrollView(DAAutoScroll) isScrolling]   (address 0x1000bd7f0  size 64  kind objc)
+  0bd808  [self autoScrollTimer]
+  0bd82c  return
+
+== -[UIScrollView(DAAutoScroll) scrollPointsPerSecond]   (address 0x1000bd830  size 124  kind objc)
+  0bd848  objc_getAssociatedObject(self, &g_10042da48)
+  0bd858  if (objc_getAssociatedObject(self, &g_10042da48) == 0) goto loc_1000bd878
+  0bd86c  [objc_getAssociatedObject(self, &g_10042da48) floatValue]
+  0bd874  goto loc_1000bd87c
+loc_1000bd878:
+loc_1000bd87c:
+  0bd894  return
+
+== -[UIScrollView(DAAutoScroll) setScrollPointsPerSecond:]   (address 0x1000bd8ac  size 180  kind objc)
+  0bd8d8  [self willChangeValueForKey:@"scrollPointsPerSecond"]
+  0bd8f4  [NSNumber numberWithFloat:arg1]
+  0bd918  objc_setAssociatedObject(self, &g_10042da48, [NSNumber numberWithFloat:arg1], 1)
+  0bd948  tail [self didChangeValueForKey:@"scrollPointsPerSecond"]
+
+== -[UIScrollView(DAAutoScroll) autoScrollTimer]   (address 0x1000bd960  size 16  kind objc)
+  0bd96c  tail objc_getAssociatedObject(self, &g_10042da49)
+
+== -[UIScrollView(DAAutoScroll) setAutoScrollTimer:]   (address 0x1000bd970  size 148  kind objc)
+  0bd9a4  [self willChangeValueForKey:@"autoScrollTimer"]
+  0bd9c0  objc_setAssociatedObject(self, &g_10042da49, arg1, 0)
+  0bd9dc  [self didChangeValueForKey:@"autoScrollTimer"]
+  0bd9ec  return

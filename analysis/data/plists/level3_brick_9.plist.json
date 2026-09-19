@@ -1,0 +1,22 @@
+{
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_angle": 130,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  },
+  "Dodge": {
+   "spawn_sound": "",
+   "spawn_angle": 110,
+   "spawn_distance": 10,
+   "spawn_time": 2
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 40,
+   "spawn_distance": 10,
+   "spawn_time": 8
+  }
+ }
+}

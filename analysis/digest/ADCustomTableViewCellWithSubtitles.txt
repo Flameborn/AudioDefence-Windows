@@ -1,0 +1,55 @@
+
+== -[ADCustomTableViewCellWithSubtitles initWithStyle:reuseIdentifier:]   (address 0x100089b88  size 60  kind objc)
+  089bb4  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  089bc0  return
+
+== -[ADCustomTableViewCellWithSubtitles awakeFromNib]   (address 0x100089bc4  size 172  kind objc)
+  089be4  [self titleLabel]
+  089c00  [[self titleLabel] setupAsMain]
+  089c1c  [self detailLabel]
+  089c38  [[self detailLabel] setupAsInfo]
+  089c4c  return
+
+== -[ADCustomTableViewCellWithSubtitles detailLabel]   (address 0x100089c70  size 16  kind objc)
+  089c7c  return
+
+== -[ADCustomTableViewCellWithSubtitles setDetailLabel:]   (address 0x100089c80  size 56  kind objc)
+  089ca4  self->_detailLabel = arg1
+  089cb4  return
+
+== -[ADCustomTableViewCellWithSubtitles titleLabel]   (address 0x100089cb8  size 16  kind objc)
+  089cc4  return
+
+== -[ADCustomTableViewCellWithSubtitles setTitleLabel:]   (address 0x100089cc8  size 56  kind objc)
+  089cec  self->_titleLabel = arg1
+  089cfc  return
+
+== -[ADCustomTableViewCellWithSubtitles image]   (address 0x100089d00  size 16  kind objc)
+  089d0c  return
+
+== -[ADCustomTableViewCellWithSubtitles setImage:]   (address 0x100089d10  size 56  kind objc)
+  089d34  self->_image = arg1
+  089d44  return
+
+== -[ADCustomTableViewCellWithSubtitles statusLevel]   (address 0x100089d48  size 16  kind objc)
+  089d54  return
+
+== -[ADCustomTableViewCellWithSubtitles setStatusLevel:]   (address 0x100089d58  size 56  kind objc)
+  089d7c  self->_statusLevel = arg1
+  089d8c  return
+
+== -[ADCustomTableViewCellWithSubtitles lockIcon]   (address 0x100089d90  size 16  kind objc)
+  089d9c  return
+
+== -[ADCustomTableViewCellWithSubtitles setLockIcon:]   (address 0x100089da0  size 56  kind objc)
+  089dc4  self->_lockIcon = arg1
+  089dd4  return
+
+== -[ADCustomTableViewCellWithSubtitles buyUpgradeButton]   (address 0x100089dd8  size 16  kind objc)
+  089de4  return
+
+== -[ADCustomTableViewCellWithSubtitles setBuyUpgradeButton:]   (address 0x100089de8  size 56  kind objc)
+  089e0c  self->_buyUpgradeButton = arg1
+  089e1c  return
+
+== -[ADCustomTableViewCellWithSubtitles .cxx_destruct]   (address 0x100089e20  size 144  kind objc)

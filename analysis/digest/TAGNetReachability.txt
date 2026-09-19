@@ -1,0 +1,90 @@
+
+== -[TAGNetReachability setReachabilityStatus:]   (address 0x100113e58  size 184  kind objc)
+  113e80  if (self->_reachabilityStatus == arg1) goto loc_100113eec
+  113e84  self->_reachabilityStatus = arg1
+  113e9c  [self statusChange]
+  113eb0  if ([self statusChange] == 0) goto loc_100113eec
+  113ebc  [self statusChange]
+  113ed4  call [self statusChange][+0x10]
+  113ee8  return
+loc_100113eec:
+  113ef8  return
+
+== -[TAGNetReachability start]   (address 0x100113f10  size 220  kind objc)
+  113f40  if (self->_reachability != 0) goto loc_100113fd4
+  113f68  [self->_host UTF8String]
+  113f74  SCNetworkReachabilityCreateWithName(_kCFAllocatorDefault[+0x0], [self->_host UTF8String])
+  113f78  self->_reachability = SCNetworkReachabilityCreateWithName(_kCFAllocatorDefault[+0x0], [self->_host UTF8String])
+  113f7c  if (SCNetworkReachabilityCreateWithName(_kCFAllocatorDefault[+0x0], [self->_host UTF8String]) == 0) goto loc_100113fd4
+  113f8c  SCNetworkReachabilitySetCallback(SCNetworkReachabilityCreateWithName(_kCFAllocatorDefault[+0x0], [self->_host UTF8String]), &-[TAGNetReachability start]_block_invoke, &sp[0x8])
+  113f90  if (SCNetworkReachabilitySetCallback(SCNetworkReachabilityCreateWithName(_kCFAllocatorDefault[+0x0], [self->_host UTF8String]), &-[TAGNetReachability start]_block_invoke, &sp[0x8]) == 0) goto loc_100113fc0
+  113f98  CFRunLoopGetMain(SCNetworkReachabilitySetCallback(SCNetworkReachabilityCreateWithName(_kCFAllocatorDefault[+0x0], [self->_host UTF8String]), &-[TAGNetReachability start]_block_invoke, &sp[0x8]))
+  113fb0  SCNetworkReachabilityScheduleWithRunLoop(self->_reachability, CFRunLoopGetMain(SCNetworkReachabilitySetCallback(SCNetworkReachabilityCreateWithName(_kCFAllocatorDefault[+0x0], [self->_host UTF8String]), &-[TAGNetReachability start]_block_invoke, &sp[0x8])), _kCFRunLoopCommonModes[+0x0])
+  113fb4  if (SCNetworkReachabilityScheduleWithRunLoop(self->_reachability, CFRunLoopGetMain(SCNetworkReachabilitySetCallback(SCNetworkReachabilityCreateWithName(_kCFAllocatorDefault[+0x0], [self->_host UTF8String]), &-[TAGNetReachability start]_block_invoke, &sp[0x8])), _kCFRunLoopCommonModes[+0x0]) == 0) goto loc_100113fc0
+  113fbc  goto loc_100113fd8
+loc_100113fc0:
+  113fd0  [self stop]
+loc_100113fd4:
+loc_100113fd8:
+  113fe8  return
+
+== -[TAGNetReachability start]_block_invoke   (address 0x100113fec  size 60  kind block)
+  114000  sub_1001141e8(blockarg1, blockarg1, blockarg2, blockarg3)
+  114018  [blockarg2 setReachabilityStatus:sub_1001141e8(blockarg1, blockarg1, blockarg2, blockarg3)]
+  114024  return
+
+== -[TAGNetReachability stop]   (address 0x100114028  size 108  kind objc)
+  114048  if (self->_reachability == 0) goto loc_100114084
+  11404c  CFRunLoopGetMain(self, _cmd)
+  114064  SCNetworkReachabilityUnscheduleFromRunLoop(self->_reachability, CFRunLoopGetMain(self, _cmd), _kCFRunLoopCommonModes[+0x0])
+  114074  SCNetworkReachabilitySetCallback(self->_reachability, 0, 0)
+  11407c  CFRelease(self->_reachability)
+  114080  self->_reachability = 0
+loc_100114084:
+  114090  return
+
+== -[TAGNetReachability initWithHostName:]   (address 0x100114094  size 192  kind objc)
+  1140dc  [super init]
+  1140e4  if (self == 0) goto loc_100114118
+  1140fc  [arg1 copy]
+  11410c  self->_host = [arg1 copy]
+loc_100114118:
+  114134  return
+
+== -[TAGNetReachability dealloc]   (address 0x100114154  size 148  kind objc)
+  114174  [self stop]
+  114198  [super dealloc]
+  1141a8  return
+  1141d8  [super dealloc]
+  1141e4  objc_terminate()
+
+== sub_1001141e8   (address 0x1001141e8  size 60  kind sub)
+  1141e8  if (!(a0 & (1<<1))) goto loc_100114218
+  1141f0  if ((~a0 & (1<<2))) goto loc_10011420c
+  114200  if ((a0 & 40) == 0) goto loc_10011421c
+  114208  if ((~a0 & 16) == 0) goto loc_10011421c
+loc_10011420c:
+  114214  goto loc_10011421c
+loc_100114218:
+loc_10011421c:
+  114220  return
+
+== -[TAGNetReachability status]   (address 0x100114224  size 16  kind objc)
+  114230  return
+
+== -[TAGNetReachability host]   (address 0x100114234  size 16  kind objc)
+  114240  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGNetReachability isExecuting]   (address 0x100114244  size 16  kind objc)
+  114250  return
+
+== -[TAGNetReachability statusChange]   (address 0x100114254  size 16  kind objc)
+  114260  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGNetReachability setStatusChange:]   (address 0x100114264  size 12  kind objc)
+  11426c  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGNetReachability reachabilityStatus]   (address 0x100114270  size 16  kind objc)
+  11427c  return
+
+== -[TAGNetReachability .cxx_destruct]   (address 0x100114280  size 64  kind objc)

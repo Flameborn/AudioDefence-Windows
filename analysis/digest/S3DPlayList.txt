@@ -1,0 +1,725 @@
+
+== -[S3DPlayList isActive]   (address 0x1000fceac  size 16  kind objc)
+  0fceb8  return
+
+== -[S3DPlayList name]   (address 0x1000fcebc  size 264  kind objc)
+  0fcee8  [self->model xId]
+  0fcf0c  [[self->model xId] componentsSeparatedByString:@"."]
+  0fcf1c  if ([[self->model xId] componentsSeparatedByString:@"."] == 0) goto loc_1000fcf5c
+  0fcf30  [[[self->model xId] componentsSeparatedByString:@"."] count]
+  0fcf38  if ([[[self->model xId] componentsSeparatedByString:@"."] count] <u 2) goto loc_1000fcf5c
+  0fcf50  [[[self->model xId] componentsSeparatedByString:@"."] objectAtIndex:0]
+  0fcf58  goto loc_1000fcf74
+loc_1000fcf5c:
+  0fcf6c  [self->model name]
+loc_1000fcf74:
+  0fcf9c  return
+
+== -[S3DPlayList range]   (address 0x1000fcfc4  size 20  kind objc)
+  0fcfd4  return
+
+== -[S3DPlayList subPlayListWithRange:]   (address 0x1000fcfd8  size 372  kind objc)
+  0fd008  [self range]
+  0fd018  [self range]
+  0fd048  [S3DPlayList alloc]
+  0fd058  [[S3DPlayList alloc] init]
+  0fd070  [self agentCache]
+  0fd094  [[[S3DPlayList alloc] init] setAgentCache:[self agentCache]]
+  0fd0b0  [self model]
+  0fd0d4  [[[S3DPlayList alloc] init] setModel:[self model]]
+  0fd0f4  [[[S3DPlayList alloc] init] setFirstHasPlayed:0]
+  0fd120  return
+
+== -[S3DPlayList init]   (address 0x1000fd14c  size 336  kind objc)
+  0fd184  [super init]
+  0fd18c  if (self == 0) goto loc_1000fd25c
+  0fd1a8  [self setPrimed:0]
+  0fd1c4  [self setPlayListRepeatPolicy:0]
+  0fd1e4  [NSMutableDictionary dictionaryWithCapacity:5]
+  0fd208  [self setAgentCache:[NSMutableDictionary dictionaryWithCapacity:5]]
+  0fd22c  [self setFirstHasPlayed:0]
+  0fd24c  self->active = 0
+  0fd258  self->cycleIndex = 0
+loc_1000fd25c:
+  0fd270  return
+
+== -[S3DPlayList playListRepeatPolicy]   (address 0x1000fd29c  size 168  kind objc)
+  0fd2c0  [self model]
+  0fd2d4  if ([self model] == 0) goto loc_1000fd310
+  0fd2e0  [self model]
+  0fd2fc  [[self model] playListRepeatPolicy]
+  0fd30c  goto loc_1000fd31c
+loc_1000fd310:
+loc_1000fd31c:
+  0fd32c  return
+
+== -[S3DPlayList setPlayListRepeatPolicy:]   (address 0x1000fd344  size 176  kind objc)
+  0fd364  self->playListRepeatPolicy = arg1
+  0fd378  [self model]
+  0fd38c  if ([self model] == 0) goto loc_1000fd3d0
+  0fd398  [self model]
+  0fd3b8  [[self model] setPlayListRepeatPolicy:arg1]
+  0fd3cc  return
+loc_1000fd3d0:
+  0fd3dc  return
+
+== -[S3DPlayList anySoundMatchingPredicate:]   (address 0x1000fd3f4  size 544  kind objc)
+  0fd434  [self range]
+  0fd444  [self range]
+  0fd454  [self range]
+  0fd474  [NSMutableArray arrayWithCapacity:5]
+  0fd510  [self each:^{-[S3DPlayList anySoundMatchingPredicate:]_block_invoke captures +0x20=arg1, +0x28=[NSMutableArray arrayWithCapacity:5], +0x38=(x24 + x23), +0x48=0, +0x58=0x20000000, +0x60=0xffffffff}]
+  0fd524  [[NSMutableArray arrayWithCapacity:5] count]
+  0fd52c  if ([[NSMutableArray arrayWithCapacity:5] count] == 0) goto loc_1000fd584
+  0fd530  arc4random()
+  0fd540  [self range]
+  0fd554  if ((x8 - (x8 / x1) * x1) <u [[NSMutableArray arrayWithCapacity:5] count]) goto loc_1000fd560
+  0fd55c  t1 = ((x8 - (x8 / x1) * x1) - ((x8 - (x8 / x1) * x1) / [[NSMutableArray arrayWithCapacity:5] count]) * [[NSMutableArray arrayWithCapacity:5] count])
+loc_1000fd560:
+  0fd570  [[NSMutableArray arrayWithCapacity:5] objectAtIndex:x2]
+  0fd580  goto loc_1000fd588
+loc_1000fd584:
+loc_1000fd588:
+  0fd5a0  Block_object_dispose(&sp[0x50], 8)
+  0fd5d0  return
+  0fd5f8  Block_object_dispose(&sp[0x50], 8)
+
+== -[S3DPlayList anySoundMatchingPredicate:]_block_invoke   (address 0x1000fd614  size 212  kind block)
+  0fd648  block[+0x30][+0x8][+0x18] = (block[+0x30][+0x8][+0x18] + 1)
+  0fd65c  if (x8 >=u x9) goto loc_1000fd6b8
+  0fd668  if (x8 <u block[+0x40]) goto loc_1000fd6c0
+  0fd680  [blockarg1 key]
+  0fd690  call arg1[+0x10]
+  0fd694  if (arg1[+0x10](…) == 0) goto loc_1000fd6c0
+  0fd6ac  [[NSMutableArray arrayWithCapacity:5] addObject:blockarg1]
+  0fd6b0  goto loc_1000fd6c0
+  0fd6b4  goto loc_1000fd6d4
+loc_1000fd6b8:
+  0fd6bc  blockarg2[+0x0] = 1
+loc_1000fd6c0:
+  0fd6d0  return
+
+== sub_1000fd6e8   (address 0x1000fd6e8  size 68  kind sub)
+  0fd708  Block_object_assign((a0 + 48), a1[+0x30], 8, a3)
+  0fd718  Block_object_assign((a0 + 32), a1[+0x20], 7)
+
+== sub_1000fd72c   (address 0x1000fd72c  size 52  kind sub)
+  0fd744  Block_object_dispose(a0[+0x30], 8, a2, a3)
+  0fd75c  return
+
+== -[S3DPlayList soundsMatchingPredicate:]   (address 0x1000fd760  size 464  kind objc)
+  0fd79c  [self range]
+  0fd7ac  [self range]
+  0fd7bc  [self range]
+  0fd7dc  [NSMutableArray arrayWithCapacity:5]
+  0fd878  [self each:^{-[S3DPlayList soundsMatchingPredicate:]_block_invoke captures +0x20=arg1, +0x28=[NSMutableArray arrayWithCapacity:5], +0x38=(x23 + x22), +0x48=0, +0x58=0x20000000, +0x60=0xffffffff}]
+  0fd88c  [[NSMutableArray arrayWithCapacity:5] count]
+  0fd890  if ([[NSMutableArray arrayWithCapacity:5] count] == 0) goto loc_1000fd8a4
+  0fd8a0  goto loc_1000fd8a8
+loc_1000fd8a4:
+loc_1000fd8a8:
+  0fd8c0  Block_object_dispose(&sp[0x50], 8)
+  0fd8ec  return
+  0fd914  Block_object_dispose(&sp[0x50], 8)
+
+== -[S3DPlayList soundsMatchingPredicate:]_block_invoke   (address 0x1000fd930  size 212  kind block)
+  0fd964  block[+0x30][+0x8][+0x18] = (block[+0x30][+0x8][+0x18] + 1)
+  0fd978  if (x8 >=u x9) goto loc_1000fd9d4
+  0fd984  if (x8 <u block[+0x40]) goto loc_1000fd9dc
+  0fd99c  [blockarg1 key]
+  0fd9ac  call arg1[+0x10]
+  0fd9b0  if (arg1[+0x10](…) == 0) goto loc_1000fd9dc
+  0fd9c8  [[NSMutableArray arrayWithCapacity:5] addObject:blockarg1]
+  0fd9cc  goto loc_1000fd9dc
+  0fd9d0  goto loc_1000fd9f0
+loc_1000fd9d4:
+  0fd9d8  blockarg2[+0x0] = 1
+loc_1000fd9dc:
+  0fd9ec  return
+
+== sub_1000fda04   (address 0x1000fda04  size 68  kind sub)
+  0fda24  Block_object_assign((a0 + 48), a1[+0x30], 8, a3)
+  0fda34  Block_object_assign((a0 + 32), a1[+0x20], 7)
+
+== sub_1000fda48   (address 0x1000fda48  size 52  kind sub)
+  0fda60  Block_object_dispose(a0[+0x30], 8, a2, a3)
+  0fda78  return
+
+== -[S3DPlayList anySound]   (address 0x1000fda7c  size 24  kind objc)
+  0fda90  tail [self anySoundMatchingPredicate:^{-[S3DPlayList anySound]_block_invoke}]
+
+== -[S3DPlayList anySound]_block_invoke   (address 0x1000fda94  size 8  kind block)
+  0fda98  return
+
+== -[S3DPlayList anySoundWihPrefix:]   (address 0x1000fda9c  size 192  kind objc)
+  0fdb08  [self anySoundMatchingPredicate:^{-[S3DPlayList anySoundWihPrefix:]_block_invoke captures +0x20=arg1}]
+  0fdb3c  return
+
+== -[S3DPlayList anySoundWihPrefix:]_block_invoke   (address 0x1000fdb5c  size 44  kind block)
+  0fdb7c  [blockarg1 hasPrefix:arg1]
+  0fdb84  return
+
+== sub_1000fdb88   (address 0x1000fdb88  size 8  kind sub)
+
+== sub_1000fdb90   (address 0x1000fdb90  size 8  kind sub)
+  0fdb94  return
+
+== -[S3DPlayList anySoundWihSuffix:]   (address 0x1000fdb98  size 192  kind objc)
+  0fdc04  [self anySoundMatchingPredicate:^{-[S3DPlayList anySoundWihSuffix:]_block_invoke captures +0x20=arg1}]
+  0fdc38  return
+
+== -[S3DPlayList anySoundWihSuffix:]_block_invoke   (address 0x1000fdc58  size 44  kind block)
+  0fdc78  [blockarg1 hasSuffix:arg1]
+  0fdc80  return
+
+== sub_1000fdc84   (address 0x1000fdc84  size 8  kind sub)
+
+== sub_1000fdc8c   (address 0x1000fdc8c  size 8  kind sub)
+  0fdc90  return
+
+== -[S3DPlayList anySoundContaining:]   (address 0x1000fdc94  size 192  kind objc)
+  0fdd00  [self anySoundMatchingPredicate:^{-[S3DPlayList anySoundContaining:]_block_invoke captures +0x20=arg1}]
+  0fdd34  return
+
+== -[S3DPlayList anySoundContaining:]_block_invoke   (address 0x1000fdd54  size 56  kind block)
+  0fdd74  [blockarg1 rangeOfString:arg1]
+  0fdd88  return
+
+== sub_1000fdd8c   (address 0x1000fdd8c  size 8  kind sub)
+
+== sub_1000fdd94   (address 0x1000fdd94  size 8  kind sub)
+  0fdd98  return
+
+== -[S3DPlayList cycleSound]   (address 0x1000fdd9c  size 424  kind objc)
+  0fddc8  self->cycleIndex = (self->cycleIndex + 1)
+  0fdde8  t1 = ((self->cycleIndex + 1) - (((self->cycleIndex + 1) / self->range[+0x8]) * self->range[+0x8]))
+  0fddec  self->cycleIndex = t1
+  0fde00  [self range]
+  0fde10  [self range]
+  0fde20  [self range]
+  0fdec8  [self each:^{-[S3DPlayList cycleSound]_block_invoke_3 captures +0x30=(x1 + x22), +0x40=(w21 + self->cycleIndex), +0x48=0, +0x58=0x20000000, +0x60=0xffffffff}]
+  0fdee4  Block_object_dispose(&sp[0x50], 8)
+  0fdef0  Block_object_dispose(&x29[-0x60], 8)
+  0fdf14  return
+  0fdf24  Block_object_dispose(&sp[0x50], 8)
+  0fdf30  Block_object_dispose(&x29[-0x60], 8)
+
+== -[S3DPlayList cycleSound]_block_invoke   (address 0x1000fdf44  size 16  kind block)
+  0fdf48  block[+0x28] = blockarg1[+0x28]
+  0fdf4c  blockarg1[+0x28] = 0
+  0fdf50  return
+
+== -[S3DPlayList cycleSound]_block_invoke_2   (address 0x1000fdf54  size 8  kind block)
+  0fdf58  return
+
+== -[S3DPlayList cycleSound]_block_invoke_3   (address 0x1000fdf5c  size 164  kind block)
+  0fdf90  block[+0x20][+0x8][+0x18] = (block[+0x20][+0x8][+0x18] + 1)
+  0fdfa8  if (block[+0x20][+0x8][+0x18] >=u (x1 + x22)) goto loc_1000fdfe4
+  0fdfb4  if (block[+0x20][+0x8][+0x18] <u block[+0x38]) goto loc_1000fdfec
+  0fdfc0  if (block[+0x20][+0x8][+0x18] != (w21 + self->cycleIndex)) goto loc_1000fdfec
+  0fdfd8  block[+0x28][+0x8][+0x28] = blockarg1
+loc_1000fdfe4:
+  0fdfe8  blockarg2[+0x0] = 1
+loc_1000fdfec:
+  0fdffc  return
+
+== sub_1000fe000   (address 0x1000fe000  size 60  kind sub)
+  0fe020  Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+  0fe038  tail Block_object_assign((a0 + 40), a1[+0x28], 8)
+
+== sub_1000fe03c   (address 0x1000fe03c  size 48  kind sub)
+  0fe054  Block_object_dispose(a0[+0x20], 8, a2, a3)
+  0fe068  tail Block_object_dispose(a0[+0x28], 8)
+
+== -[S3DPlayList deactivate]   (address 0x1000fe06c  size 164  kind objc)
+  0fe0d8  [self deactivate:^{-[S3DPlayList deactivate]_block_invoke captures +0x28=0, +0x38=0x20000000, +0x40=0}]
+  0fe0e4  Block_object_dispose(&sp[0x30], 8)
+  0fe0f4  return
+  0fe104  Block_object_dispose(&sp[0x30], 8)
+
+== -[S3DPlayList deactivate]_block_invoke   (address 0x1000fe110  size 20  kind block)
+  0fe11c  block[+0x20][+0x8][+0x18] = 1
+  0fe120  return
+
+== sub_1000fe124   (address 0x1000fe124  size 16  kind sub)
+  0fe130  tail Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+
+== sub_1000fe134   (address 0x1000fe134  size 12  kind sub)
+  0fe13c  tail Block_object_dispose(a0[+0x20], 8, a2, a3)
+
+== -[S3DPlayList deactivate:]   (address 0x1000fe140  size 440  kind objc)
+  0fe178  [self active]
+  0fe17c  if (!([self active] & 1)) goto loc_1000fe290
+  0fe194  [self setActive:0]
+  0fe1b0  [S3DEngine engine]
+  0fe1dc  [[S3DEngine engine] quietLog:2 format:@"### S3DPlayList: %@ -- deactivate"]
+  0fe200  [self each:^{-[S3DPlayList deactivate:]_block_invoke}]
+  0fe20c  [S3DEngine engine]
+  0fe274  [[S3DEngine engine] dispatch:^{-[S3DPlayList deactivate:]_block_invoke_2 captures +0x20=self, +0x28=arg1}]
+loc_1000fe290:
+  0fe2ac  return
+
+== -[S3DPlayList deactivate:]_block_invoke   (address 0x1000fe2f8  size 188  kind block)
+  0fe32c  [S3DEngine engine]
+  0fe358  [[S3DEngine engine] quietLog:2 format:@"Playlist is deactivating sound %@\n"]
+  0fe374  [blockarg1 deactivate]
+  0fe38c  return
+
+== -[S3DPlayList deactivate:]_block_invoke_2   (address 0x1000fe3b4  size 28  kind block)
+  0fe3bc  if (arg1 == 0) goto loc_1000fe3cc
+loc_1000fe3cc:
+  0fe3cc  return
+
+== sub_1000fe3d0   (address 0x1000fe3d0  size 52  kind sub)
+  0fe400  tail Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_1000fe404   (address 0x1000fe404  size 40  kind sub)
+  0fe428  return
+
+== -[S3DPlayList transferActivationTo:]   (address 0x1000fe42c  size 36  kind objc)
+  0fe444  [self transferActivationTo:arg1 completion:0]
+  0fe44c  return
+
+== -[S3DPlayList transferActivationTo:completion:]   (address 0x1000fe450  size 908  kind objc)
+  0fe4a0  if (arg1 == 0) goto loc_1000fe6c8
+  0fe4bc  [NSMutableSet setWithCapacity:10]
+  0fe518  [self each:^{-[S3DPlayList transferActivationTo:completion:]_block_invoke captures +0x20=[NSMutableSet setWithCapacity:10]}]
+  0fe558  [arg1 each:^{-[S3DPlayList transferActivationTo:completion:]_block_invoke_2 captures +0x20=[NSMutableSet setWithCapacity:10], +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[S3DPlayList transferActivationTo:comp…, +0x40=&d_1003b70c0, +0x48=[NSMutableSet setWithCapacity:10]}]
+  0fe598  [[NSMutableSet setWithCapacity:10] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16]
+  0fe5a0  if ([[NSMutableSet setWithCapacity:10] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16] == 0) goto loc_1000fe63c
+  0fe5bc  &@selector(deactivate)
+loc_1000fe5c4:
+loc_1000fe5c8:
+  0fe5d4  if (x8 == x20) goto loc_1000fe5e0
+  0fe5dc  objc_enumerationMutation([NSMutableSet setWithCapacity:10])
+loc_1000fe5e0:
+  0fe5f0  [self S3DSound:x2]
+  0fe604  [[self S3DSound:x2] deactivate]
+  0fe618  if ((x21 + 1) <u [[NSMutableSet setWithCapacity:10] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16]) goto loc_1000fe5c8
+  0fe630  [[NSMutableSet setWithCapacity:10] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16]
+  0fe638  if ([[NSMutableSet setWithCapacity:10] countByEnumeratingWithState:&sp[0x28] objects:&sp[0xb8] count:16] != 0) goto loc_1000fe5c4
+loc_1000fe63c:
+  0fe65c  [S3DEngineDispatcher dispatcher]
+  0fe67c  [[S3DEngineDispatcher dispatcher] stopTrackingPlayList:self]
+  0fe69c  [arg1 activate:arg2]
+  0fe6c4  goto loc_1000fe714
+loc_1000fe6c8:
+  0fe6dc  [S3DEngine engine]
+  0fe708  [[S3DEngine engine] quietLog:1 format:@"### attempting to transfer to a nil playlist from: %@... aborting transfer."]
+loc_1000fe714:
+  0fe74c  return
+
+== -[S3DPlayList transferActivationTo:completion:]_block_invoke   (address 0x1000fe7dc  size 120  kind block)
+  0fe800  [blockarg1 key]
+  0fe824  [[NSMutableSet setWithCapacity:10] addObject:[blockarg1 key]]
+  0fe834  return
+
+== sub_1000fe854   (address 0x1000fe854  size 8  kind sub)
+
+== sub_1000fe85c   (address 0x1000fe85c  size 8  kind sub)
+  0fe860  return
+
+== -[S3DPlayList transferActivationTo:completion:]_block_invoke_2   (address 0x1000fe864  size 120  kind block)
+  0fe888  [blockarg1 key]
+  0fe8ac  [[NSMutableSet setWithCapacity:10] removeObject:[blockarg1 key]]
+  0fe8bc  return
+
+== sub_1000fe8dc   (address 0x1000fe8dc  size 8  kind sub)
+
+== sub_1000fe8e4   (address 0x1000fe8e4  size 8  kind sub)
+  0fe8e8  return
+
+== -[S3DPlayList activate]   (address 0x1000fe8ec  size 164  kind objc)
+  0fe958  [self activate:^{-[S3DPlayList activate]_block_invoke captures +0x28=0, +0x38=0x20000000, +0x40=0}]
+  0fe964  Block_object_dispose(&sp[0x30], 8)
+  0fe974  return
+  0fe984  Block_object_dispose(&sp[0x30], 8)
+
+== -[S3DPlayList activate]_block_invoke   (address 0x1000fe990  size 20  kind block)
+  0fe99c  block[+0x20][+0x8][+0x18] = 1
+  0fe9a0  return
+
+== sub_1000fe9a4   (address 0x1000fe9a4  size 16  kind sub)
+  0fe9b0  tail Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+
+== sub_1000fe9b4   (address 0x1000fe9b4  size 12  kind sub)
+  0fe9bc  tail Block_object_dispose(a0[+0x20], 8, a2, a3)
+
+== -[S3DPlayList activate:]   (address 0x1000fe9c0  size 896  kind objc)
+  0fea00  if (self == 0) goto loc_1000feb00
+  0fea10  if (self->activating != 0) goto loc_1000fec74
+  0fea18  self->activating = 1
+  0fea3c  [S3DEngine engine]
+  0fead0  [[S3DEngine engine] dispatch:^{-[S3DPlayList activate:]_block_invoke captures +0x20=arg1, +0x28=self}]
+  0feafc  goto loc_1000fec74
+loc_1000feb00:
+  0feb14  [NSThread callStackSymbols]
+  0feb3c  [S3DEngine engine]
+  0feb68  [[S3DEngine engine] quietLog:1 format:@"### attempting to activate a nil playlist."]
+  0febb4  [[NSThread callStackSymbols] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16]
+  0febbc  if ([[NSThread callStackSymbols] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16] == 0) goto loc_1000fec54
+loc_1000febd0:
+loc_1000febd4:
+  0febe0  if (x8 == x28) goto loc_1000febec
+  0febe8  objc_enumerationMutation([NSThread callStackSymbols])
+loc_1000febec:
+  0febfc  [S3DEngine engine]
+  0fec1c  [[S3DEngine engine] quietLog:1 format:@"### @:%@"]
+  0fec30  if ((x19 + 1) <u [[NSThread callStackSymbols] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16]) goto loc_1000febd4
+  0fec48  [[NSThread callStackSymbols] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16]
+  0fec50  if ([[NSThread callStackSymbols] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16] != 0) goto loc_1000febd0
+loc_1000fec54:
+loc_1000fec74:
+  0feca4  return
+
+== -[S3DPlayList activate:]_block_invoke   (address 0x1000fed40  size 1364  kind block)
+  0fed78  if (objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) == 0) goto loc_1000feeb0
+  0fed8c  [objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) active]
+  0fed90  if ([objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) active] == 0) goto loc_1000feeb0
+  0fedac  [S3DEngine engine]
+  0fede8  [[S3DEngine engine] quietLog:2 format:@"### S3DPlayList: %@ -- ALREADY active, skipping ..."]
+  0fee00  if (arg1 == 0) goto loc_1000ff1c0
+  0fee0c  [S3DEngine engine]
+  0fee90  [[S3DEngine engine] dispatch:^{-[S3DPlayList activate:]_block_invoke_block_invoke captures +0x20=arg1}]
+  0feeac  goto loc_1000ff198
+loc_1000feeb0:
+  0feec4  [objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) setActive:1]
+  0feee0  [S3DEngine engine]
+  0fef10  [[S3DEngine engine] quietLog:2 format:@"### S3DPlayList: %@ -- activated"]
+  0fef30  [S3DEngineDispatcher dispatcher]
+  0fef50  [[S3DEngineDispatcher dispatcher] startTrackingPlayList:self]
+  0fefcc  [objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) each:^{-[S3DPlayList activate:]_block_invoke_block_invoke_2 captures +0x28=0, +0x38=0x32000000, +0x40=&-[S3DPlayList cycleSound]_block_invoke, +0x48=&-[S3DPlayList cycleSound]_block_invoke_…, +0x50=0}]
+  0fefe4  [objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) setFirstHasPlayed:0]
+  0feffc  [objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) primed]
+  0ff010  if ([objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) primed] == 0) goto loc_1000ff044
+  0ff01c  [objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) primed]
+  0ff038  [[objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) primed] activate]
+loc_1000ff044:
+  0ff04c  if (x8 == 0) goto loc_1000ff0ec
+  0ff060  [self playListRepeatPolicy]
+  0ff064  if ([self playListRepeatPolicy] == 0) goto loc_1000ff0ec
+  0ff070  [S3DEngine engine]
+  0ff094  [x0 key]
+  0ff0bc  [[S3DEngine engine] quietLog:3 format:@"### S3DPlayList: %@ playing first sound: %@"]
+  0ff0e8  [x0 play:0]
+loc_1000ff0ec:
+  0ff0f0  if (arg1 == 0) goto loc_1000ff178
+  0ff0fc  [S3DEngine engine]
+  0ff158  [[S3DEngine engine] dispatch:^{-[S3DPlayList activate:]_block_invoke_block_invoke_3 captures +0x20=objc_loadWeakRetained((block + 48), bloc…, +0x28=arg1, +0x30=__NSConcreteStackBlock, +0x38=0xc2000000, +0x40=&-[S3DPlayList activate:]_block_invoke_b…, +0x48=&d_1003b7180, +0x58=0, +0x68=0x32000000, +0x70=&-[S3DPlayList cycleSound]_block_invoke, +0x78=&-[S3DPlayList cycleSound]_block_invoke_…}]
+  0ff174  goto loc_1000ff184
+loc_1000ff178:
+  0ff180  objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3)->activating = 0
+loc_1000ff184:
+  0ff18c  Block_object_dispose(&sp[0x70], 8)
+loc_1000ff198:
+  0ff1bc  return
+  0ff1c8  objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3)->activating = 0
+  0ff250  Block_object_dispose(&sp[0x70], 8)
+
+== -[S3DPlayList activate:]_block_invoke_block_invoke   (address 0x1000ff294  size 192  kind block)
+  0ff2cc  [S3DEngine engine]
+  0ff2f8  [[S3DEngine engine] quietLog:3 format:@"### S3DPlayList: calling completion block for: %@"]
+  0ff304  if (objc_loadWeakRetained((block + 40), blockarg1, blockarg2, blockarg3) == 0) goto loc_1000ff318
+  0ff314  call arg1[+0x10]
+loc_1000ff318:
+  0ff32c  return
+
+== sub_1000ff354   (address 0x1000ff354  size 56  kind sub)
+  0ff370  objc_copyWeak((a0 + 40), (a1 + 40), a2, a3)
+  0ff388  tail Block_object_assign((a0 + 32), a1[+0x20], 7)
+
+== sub_1000ff38c   (address 0x1000ff38c  size 40  kind sub)
+  0ff3b0  return
+
+== -[S3DPlayList activate:]_block_invoke_block_invoke_2   (address 0x1000ff3b4  size 132  kind block)
+  0ff3dc  [blockarg1 preload]
+  0ff3e0  if ([blockarg1 preload] == 0) goto loc_1000ff3f8
+  0ff3f4  [blockarg1 activate]
+loc_1000ff3f8:
+  0ff404  if (block[+0x20][+0x8][+0x28] != 0) goto loc_1000ff414
+  0ff410  block[+0x20][+0x8][+0x28] = blockarg1
+loc_1000ff414:
+  0ff420  return
+
+== sub_1000ff438   (address 0x1000ff438  size 16  kind sub)
+  0ff444  tail Block_object_assign((a0 + 32), a1[+0x20], 8, a3)
+
+== sub_1000ff448   (address 0x1000ff448  size 12  kind sub)
+  0ff450  tail Block_object_dispose(a0[+0x20], 8, a2, a3)
+
+== -[S3DPlayList activate:]_block_invoke_block_invoke_3   (address 0x1000ff454  size 172  kind block)
+  0ff47c  [S3DEngine engine]
+  0ff4ac  [[S3DEngine engine] quietLog:3 format:@"### S3DPlayList: calling completion block for: %@"]
+  0ff4bc  if (objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3) == 0) goto loc_1000ff4dc
+  0ff4c8  call arg1[+0x10]
+  0ff4d8  objc_loadWeakRetained((block + 48), blockarg1, blockarg2, blockarg3)->activating = 0
+loc_1000ff4dc:
+  0ff4e8  return
+
+== sub_1000ff500   (address 0x1000ff500  size 52  kind sub)
+  0ff530  tail Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_1000ff534   (address 0x1000ff534  size 40  kind sub)
+  0ff558  return
+
+== sub_1000ff55c   (address 0x1000ff55c  size 64  kind sub)
+  0ff578  objc_copyWeak((a0 + 48), (a1 + 48), a2, a3)
+  0ff588  Block_object_assign((a0 + 32), a1[+0x20], 7)
+
+== sub_1000ff59c   (address 0x1000ff59c  size 48  kind sub)
+  0ff5c8  return
+
+== -[S3DPlayList logit:]   (address 0x1000ff5cc  size 156  kind objc)
+  0ff5fc  [NSNotificationCenter defaultCenter]
+  0ff624  [[NSNotificationCenter defaultCenter] postNotificationName:@"cout.log" object:arg1]
+  0ff640  return
+
+== -[S3DPlayList applyRepeatPolicyTo:]   (address 0x1000ff668  size 1384  kind objc)
+  0ff76c  [self each:^{-[S3DPlayList applyRepeatPolicyTo:]_block_invoke captures +0x20=arg1, +0x60=0x20000000, +0x68=0xffffffff}]
+  0ff788  [self playListRepeatPolicy]
+  0ff790  if ([self playListRepeatPolicy] != 1) goto loc_1000ff858
+  0ff7b8  [NSString stringWithFormat:@"PlayList %@ in repeat last mode", self]
+  0ff7e0  [self logit:[NSString stringWithFormat:@"PlayList %@ in repeat last mode", self]]
+  0ff7f0  if (x24 == arg1) goto loc_1000ff978
+  0ff800  if (x8 == 0) goto loc_1000ff9d0
+  0ff814  [NSString stringWithFormat:@"PlayList %@ : next", self]
+  0ff830  [self logit:[NSString stringWithFormat:@"PlayList %@ : next", self]]
+  0ff850  [x0 play]
+  0ff854  goto loc_1000ffa9c
+loc_1000ff858:
+  0ff85c  if ([self playListRepeatPolicy] != 2) goto loc_1000ff924
+  0ff884  [NSString stringWithFormat:@"PlayList %@ in repeat start mode", self]
+  0ff8ac  [self logit:[NSString stringWithFormat:@"PlayList %@ in repeat start mode", self]]
+  0ff8bc  if (x24 == arg1) goto loc_1000ffa08
+  0ff8cc  if (x8 == 0) goto loc_1000ffa64
+  0ff8e0  [NSString stringWithFormat:@"PlayList %@ : next", self]
+  0ff8fc  [self logit:[NSString stringWithFormat:@"PlayList %@ : next", self]]
+  0ff91c  [x0 play]
+  0ff920  goto loc_1000ffa9c
+loc_1000ff924:
+  0ff944  [NSString stringWithFormat:@"PlayList %@ in no repeat mode %@", self, arg1]
+  0ff968  [self logit:[NSString stringWithFormat:@"PlayList %@ in no repeat mode %@", self, arg1]]
+  0ff974  goto loc_1000ffa9c
+loc_1000ff978:
+  0ff98c  [NSString stringWithFormat:@"PlayList %@ : last", self]
+  0ff9a8  [self logit:[NSString stringWithFormat:@"PlayList %@ : last", self]]
+  0ff9c8  [arg1 play:1]
+  0ff9cc  goto loc_1000ffa9c
+loc_1000ff9d0:
+  0ff9e0  [NSString stringWithFormat:@"PlayList %@ : no next/no last", self]
+  0ff9fc  [self logit:[NSString stringWithFormat:@"PlayList %@ : no next/no last", self]]
+  0ffa00  goto loc_1000ffa94
+  0ffa04  goto loc_1000ffbc0
+loc_1000ffa08:
+  0ffa1c  [NSString stringWithFormat:@"PlayList %@ : last", self]
+  0ffa38  [self logit:[NSString stringWithFormat:@"PlayList %@ : last", self]]
+  0ffa5c  [x0 play:0]
+  0ffa60  goto loc_1000ffa9c
+loc_1000ffa64:
+  0ffa74  [NSString stringWithFormat:@"PlayList %@ : no next/no last", self]
+  0ffa90  [self logit:[NSString stringWithFormat:@"PlayList %@ : no next/no last", self]]
+loc_1000ffa94:
+loc_1000ffa9c:
+  0ffaac  Block_object_dispose(&sp[0x60], 8)
+  0ffab8  Block_object_dispose(&sp[0x80], 8)
+  0ffacc  Block_object_dispose(&sp[0xb0], 8)
+  0ffae0  Block_object_dispose(&x29[-0x90], 8)
+  0ffaf4  Block_object_dispose(&x29[-0x60], 8)
+  0ffb18  return
+  0ffb30  Block_object_dispose(&sp[0x60], 8)
+  0ffb3c  Block_object_dispose(&sp[0x80], 8)
+  0ffb50  Block_object_dispose(&sp[0xb0], 8)
+  0ffb64  Block_object_dispose(&x29[-0x90], 8)
+  0ffb78  Block_object_dispose(&x29[-0x60], 8)
+
+== -[S3DPlayList applyRepeatPolicyTo:]_block_invoke   (address 0x1000ffbd0  size 212  kind block)
+  0ffc00  block[+0x28][+0x8][+0x18] = (block[+0x28][+0x8][+0x18] + 1)
+  0ffc10  if (block[+0x30][+0x8][+0x28] != 0) goto loc_1000ffc20
+  0ffc1c  block[+0x30][+0x8][+0x28] = blockarg1
+loc_1000ffc20:
+  0ffc28  if (arg1 == blockarg1) goto loc_1000ffc64
+  0ffc3c  if (arg1 != block[+0x40][+0x8][+0x28]) goto loc_1000ffc84
+  0ffc54  block[+0x48][+0x8][+0x28] = blockarg1
+  0ffc60  goto loc_1000ffc84
+loc_1000ffc64:
+  0ffc70  if (block[+0x28][+0x8][+0x18] != 0) goto loc_1000ffc84
+  0ffc80  block[+0x38][+0x8][+0x18] = 1
+loc_1000ffc84:
+  0ffc90  block[+0x40][+0x8][+0x28] = blockarg1
+  0ffca0  return
+
+== sub_1000ffca4   (address 0x1000ffca4  size 116  kind sub)
+  0ffcc4  Block_object_assign((a0 + 40), a1[+0x28], 8, a3)
+  0ffcd4  Block_object_assign((a0 + 48), a1[+0x30], 8)
+  0ffcec  Block_object_assign((a0 + 56), a1[+0x38], 8)
+  0ffcfc  Block_object_assign((a0 + 64), a1[+0x40], 8)
+  0ffd14  tail Block_object_assign((a0 + 72), a1[+0x48], 8)
+
+== sub_1000ffd18   (address 0x1000ffd18  size 92  kind sub)
+  0ffd30  Block_object_dispose(a0[+0x28], 8, a2, a3)
+  0ffd3c  Block_object_dispose(a0[+0x30], 8)
+  0ffd50  Block_object_dispose(a0[+0x38], 8)
+  0ffd5c  Block_object_dispose(a0[+0x40], 8)
+  0ffd70  tail Block_object_dispose(a0[+0x48], 8)
+
+== -[S3DPlayList keyFromDict:]   (address 0x1000ffd74  size 324  kind objc)
+  0ffdb8  [arg1 objectForKey:@"path"]
+  0ffdd8  [arg1 objectForKey:@"name"]
+  0ffdf8  [arg1 objectForKey:@"extension"]
+  0ffe28  [NSString stringWithFormat:@"%@/%@.%@", [arg1 objectForKey:@"path"], [arg1 objectForKey:@"name"], [arg1 objectForKey:@"extension"]]
+  0ffe70  return
+
+== -[S3DPlayList each:]   (address 0x1000ffeb8  size 1100  kind objc)
+  0fff10  [self range]
+  0fff18  if ((x1 ^ 0x7fffffffffffffff) != 0) goto loc_1000fff98
+  0fff24  [self range]
+  0fff3c  [self model]
+  0fff58  [[self model] playList]
+  0fff74  [[[self model] playList] count]
+loc_1000fff98:
+  0fffb8  [self model]
+  0fffd4  [[self model] playList]
+  100010  [[[self model] playList] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16]
+  100018  if ([[[self model] playList] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16] == 0) goto loc_100100228
+loc_10010007c:
+loc_100100088:
+  100098  if (x8 == x9) goto loc_1001000a4
+  1000a0  objc_enumerationMutation([[self model] playList])
+loc_1001000a4:
+  1000b8  [self keyFromDict:x2]
+  1000d0  [self agentCache]
+  1000e8  [[self agentCache] objectForKey:[self keyFromDict:x2]]
+  100100  if ([[self agentCache] objectForKey:[self keyFromDict:x2]] != 0) goto loc_100100154
+  100114  [S3DSound agentWithDictionary:x2]
+  10012c  [self agentCache]
+  100148  [[self agentCache] setObject:[S3DSound agentWithDictionary:x2] forKey:[self keyFromDict:x2]]
+loc_100100154:
+  10015c  [self range]
+  10016c  if (((x27 + x25) + 1) >=u x0) goto loc_100100184
+  100180  goto loc_1001001dc
+loc_100100184:
+  10018c  [self range]
+  10019c  [self range]
+  1001a8  if (((x27 + x25) + 1) >=u (x1 + x19)) goto loc_100100218
+  1001c0  call arg1[+0x10]
+  1001d8  if (0 != 0) goto loc_100100228
+loc_1001001dc:
+  1001e4  if ((x25 + 1) <u [[[self model] playList] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16]) goto loc_100100088
+  1001fc  [[[self model] playList] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16]
+  100210  if ([[[self model] playList] countByEnumeratingWithState:&sp[0x68] objects:&sp[0xa8] count:16] != 0) goto loc_10010007c
+  100214  goto loc_100100228
+loc_100100218:
+loc_100100228:
+  100270  return
+
+== -[S3DPlayList S3DSound:]   (address 0x100100304  size 676  kind objc)
+  10035c  [self each:^{-[S3DPlayList S3DSound:]_block_invoke}]
+  100380  [self agentCache]
+  10039c  [[self agentCache] allValues]
+  1003d4  [[[self agentCache] allValues] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  1003dc  if ([[[self agentCache] allValues] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_100100484
+  1003f8  &@selector(compare:)
+loc_100100400:
+loc_100100404:
+  100410  if (x8 == x28) goto loc_10010041c
+  100418  objc_enumerationMutation([[self agentCache] allValues])
+loc_10010041c:
+  10042c  [x0 key]
+  100444  [[x0 key] compare:arg1]
+  100454  if ([[x0 key] compare:arg1] == 0) goto loc_1001004fc
+  100460  if ((x21 + 1) <u [[[self agentCache] allValues] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_100100404
+  100478  [[[self agentCache] allValues] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  100480  if ([[[self agentCache] allValues] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_100100400
+loc_100100484:
+  1004a0  [S3DEngine engine]
+  1004e8  [[S3DEngine engine] quietLog:0 format:@"*** [S3DPlayList S3DSound:\"%@\"] sound not found! at %s:%d"]
+  1004f8  goto loc_10010051c
+loc_1001004fc:
+loc_10010051c:
+  100550  return
+
+== -[S3DPlayList S3DSound:]_block_invoke   (address 0x1001005a8  size 4  kind block)
+  1005a8  return
+
+== -[S3DPlayList prime:]   (address 0x1001005ac  size 32  kind objc)
+  1005c0  [self setPrimed:arg1]
+  1005c8  return
+
+== -[S3DPlayList stopAll]   (address 0x1001005cc  size 24  kind objc)
+  1005e0  tail [self each:^{-[S3DPlayList stopAll]_block_invoke}]
+
+== -[S3DPlayList stopAll]_block_invoke   (address 0x1001005e4  size 108  kind block)
+  1005fc  if (blockarg1 == 0) goto loc_10010062c
+  100610  [blockarg1 playing]
+  100614  if ([blockarg1 playing] == 0) goto loc_10010062c
+  100628  [blockarg1 stop]
+loc_10010062c:
+  100638  return
+
+== -[S3DPlayList description]   (address 0x100100650  size 28  kind objc)
+  100668  tail [self->model name]
+
+== -[S3DPlayList model]   (address 0x10010066c  size 16  kind objc)
+  100678  return
+
+== -[S3DPlayList setModel:]   (address 0x10010067c  size 56  kind objc)
+  1006a0  self->model = arg1
+  1006b0  return
+
+== -[S3DPlayList setName:]   (address 0x1001006b4  size 56  kind objc)
+  1006d8  self->name = arg1
+  1006e8  return
+
+== -[S3DPlayList active]   (address 0x1001006ec  size 16  kind objc)
+  1006f8  return
+
+== -[S3DPlayList setActive:]   (address 0x1001006fc  size 16  kind objc)
+  100704  self->active = arg1
+  100708  return
+
+== -[S3DPlayList agentCache]   (address 0x10010070c  size 16  kind objc)
+  100718  return
+
+== -[S3DPlayList setAgentCache:]   (address 0x10010071c  size 56  kind objc)
+  100740  self->agentCache = arg1
+  100750  return
+
+== -[S3DPlayList firstHasPlayed]   (address 0x100100754  size 16  kind objc)
+  100760  return
+
+== -[S3DPlayList setFirstHasPlayed:]   (address 0x100100764  size 16  kind objc)
+  10076c  self->firstHasPlayed = arg1
+  100770  return
+
+== -[S3DPlayList primed]   (address 0x100100774  size 16  kind objc)
+  100780  return
+
+== -[S3DPlayList setPrimed:]   (address 0x100100784  size 56  kind objc)
+  1007a8  self->primed = arg1
+  1007b8  return
+
+== -[S3DPlayList cycleIndex]   (address 0x1001007bc  size 16  kind objc)
+  1007c8  return
+
+== -[S3DPlayList setCycleIndex:]   (address 0x1001007cc  size 16  kind objc)
+  1007d4  self->cycleIndex = arg1
+  1007d8  return
+
+== -[S3DPlayList activating]   (address 0x1001007dc  size 16  kind objc)
+  1007e8  return
+
+== -[S3DPlayList setActivating:]   (address 0x1001007ec  size 16  kind objc)
+  1007f4  self->activating = arg1
+  1007f8  return
+
+== -[S3DPlayList deactivating]   (address 0x1001007fc  size 16  kind objc)
+  100808  return
+
+== -[S3DPlayList setDeactivating:]   (address 0x10010080c  size 16  kind objc)
+  100814  self->deactivating = arg1
+  100818  return
+
+== -[S3DPlayList .cxx_destruct]   (address 0x10010081c  size 104  kind objc)
+
+== -[S3DPlayList .cxx_construct]   (address 0x100100884  size 4  kind objc)
+  100884  return

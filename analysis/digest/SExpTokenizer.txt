@@ -1,0 +1,150 @@
+
+== +[SExpTokenizer simpleSExpTokenizer:]   (address 0x1000dfc10  size 116  kind objc)
+  0dfc3c  [SExpTokenizer alloc]
+  0dfc50  [[SExpTokenizer alloc] initWithInputStream:arg1]
+  0dfc6c  return
+
+== -[SExpTokenizer initWithInputStream:]   (address 0x1000dfc84  size 420  kind objc)
+  0dfcc8  [super init]
+  0dfcd0  if (self == 0) goto loc_1000dfdf4
+  0dfce8  self->inStream = arg1
+  0dfd00  if (g_10042daf2 != 0) goto loc_1000dfdf4
+loc_1000dfd20:
+  0dfd44  if ((x11 + 2) != 91) goto loc_1000dfd20
+loc_1000dfd4c:
+  0dfd70  if ((x9 + 2) != 123) goto loc_1000dfd4c
+  0dfd78  store g_10042dab2 = 33
+loc_1000dfd84:
+  0dfd90  if ((x10 + 1) != 40) goto loc_1000dfd84
+loc_1000dfd98:
+  0dfda4  if ((x9 + 1) != 48) goto loc_1000dfd98
+loc_1000dfdac:
+  0dfdb8  if ((x10 + 1) != 58) goto loc_1000dfdac
+loc_1000dfdc0:
+  0dfdcc  if ((x9 + 1) != 64) goto loc_1000dfdc0
+loc_1000dfdd4:
+  0dfde0  if ((x10 + 1) != 96) goto loc_1000dfdd4
+loc_1000dfde4:
+  0dfdf0  if ((x9 + 1) != 127) goto loc_1000dfde4
+loc_1000dfdf4:
+  0dfe10  return
+
+== -[SExpTokenizer nextToken]   (address 0x1000dfe28  size 72  kind objc)
+  0dfe50  [self nextTokenInternal]
+  0dfe6c  return
+
+== -[SExpTokenizer nextTokenInternal]   (address 0x1000dfe70  size 1504  kind objc)
+  0dfeac  [NSMutableString stringWithCapacity:128]
+  0dfefc  &@selector(back)
+  0dff0c  goto loc_1000dff18
+loc_1000dff10:
+loc_1000dff18:
+  0dff20  [self inStream]
+  0dff34  [[self inStream] hasNext]
+  0dff44  if ([[self inStream] hasNext] == 0) goto loc_1000e0358
+  0dff50  [self inStream]
+  0dff64  [[self inStream] next]
+  0dff78  if (!(one of {0, 1} & 1)) goto loc_1000e00f4
+  0dff80  if ([[self inStream] next] != 92) goto loc_1000e00b4
+  0dff8c  [self inStream]
+  0dffa0  [[self inStream] hasNext]
+  0dffb0  if ([[self inStream] hasNext] == 0) goto loc_1000e0358
+  0dffbc  [self inStream]
+  0dffd0  [[self inStream] next]
+  0dffec  if (([[self inStream] next] - 34) >u 58) goto loc_1000e0040
+  0e0004  if (((1 << ([[self inStream] next] - 34)) & 0x4000000000000c1) == 0) goto loc_1000e0040
+  0e001c  [NSString stringWithCharacters:&sp[0xc] length:1]
+  0e0038  [[NSMutableString stringWithCapacity:128] appendString:[NSString stringWithCharacters:&sp[0xc] length:1]]
+  0e003c  goto loc_1000dff10
+loc_1000e0040:
+  0e0054  [NSString stringWithCharacters:&sp[0xe] length:1]
+  0e0070  [[NSMutableString stringWithCapacity:128] appendString:[NSString stringWithCharacters:&sp[0xe] length:1]]
+  0e0090  [NSString stringWithCharacters:&sp[0xc] length:1]
+  0e00ac  [[NSMutableString stringWithCapacity:128] appendString:[NSString stringWithCharacters:&sp[0xc] length:1]]
+  0e00b0  goto loc_1000dff10
+loc_1000e00b4:
+  0e00b8  if ([[self inStream] next] == 34) goto loc_1000e021c
+  0e00d0  [NSString stringWithCharacters:&sp[0xe] length:1]
+  0e00ec  [[NSMutableString stringWithCapacity:128] appendString:[NSString stringWithCharacters:&sp[0xe] length:1]]
+  0e00f0  goto loc_1000dff10
+loc_1000e00f4:
+  0e00f8  if ([[self inStream] next] >u 32) goto loc_1000e018c
+loc_1000e00fc:
+  0e0104  [self inStream]
+  0e0118  [[self inStream] hasNext]
+  0e0128  if ([[self inStream] hasNext] == 0) goto loc_1000e0358
+  0e0134  [self inStream]
+  0e0148  [[self inStream] next]
+  0e015c  if ([[self inStream] next] <u 33) goto loc_1000e00fc
+  0e0168  [self inStream]
+  0e017c  [[self inStream] back]
+  0e0188  goto loc_1000e0214
+loc_1000e018c:
+  0e0194  if ([[self inStream] next] > 58) goto loc_1000e01a8
+  0e01a0  if ([[self inStream] next] == 34) goto loc_1000dff18
+  0e01a4  goto loc_1000e023c
+loc_1000e01a8:
+  0e01ac  if ([[self inStream] next] != 59) goto loc_1000e0258
+loc_1000e01b0:
+  0e01b8  [self inStream]
+  0e01cc  [[self inStream] hasNext]
+  0e01dc  if ([[self inStream] hasNext] == 0) goto loc_1000e0358
+  0e01e8  [self inStream]
+  0e01fc  [[self inStream] next]
+  0e0210  if ([[self inStream] next] != 10) goto loc_1000e01b0
+loc_1000e0214:
+  0e0218  goto loc_1000dff18
+loc_1000e021c:
+  0e0234  [self setStringValue:[NSMutableString stringWithCapacity:128]]
+  0e0238  goto loc_1000e035c
+loc_1000e023c:
+  0e0240  if ([[self inStream] next] != 40) goto loc_1000e024c
+  0e0248  goto loc_1000e035c
+loc_1000e024c:
+  0e0254  if ([[self inStream] next] == 41) goto loc_1000e035c
+loc_1000e0258:
+  0e026c  [NSString stringWithCharacters:&sp[0xe] length:1]
+  0e0288  [[NSMutableString stringWithCapacity:128] appendString:[NSString stringWithCharacters:&sp[0xe] length:1]]
+  0e029c  goto loc_1000e02a8
+loc_1000e02a0:
+loc_1000e02a8:
+  0e02b0  [self inStream]
+  0e02c4  [[self inStream] hasNext]
+  0e02d4  if ([[self inStream] hasNext] == 0) goto loc_1000e0358
+  0e02e0  [self inStream]
+  0e02f4  [[self inStream] next]
+  0e030c  if ([[self inStream] next] >u 127) goto loc_1000e031c
+  0e0318  if (w8 == 0) goto loc_1000e0388
+loc_1000e031c:
+  0e0330  [NSString stringWithCharacters:&sp[0xa] length:1]
+  0e034c  [[NSMutableString stringWithCapacity:128] appendString:[NSString stringWithCharacters:&sp[0xa] length:1]]
+  0e0350  goto loc_1000e02a0
+  0e0354  goto loc_1000e0418
+loc_1000e0358:
+loc_1000e035c:
+  0e0384  return
+  0e0390  [self inStream]
+  0e03a4  [[self inStream] back]
+  0e03c8  [self setStringValue:[NSMutableString stringWithCapacity:128]]
+
+== -[SExpTokenizer dealloc]   (address 0x1000e0450  size 112  kind objc)
+  0e0470  self->stringValue = 0
+  0e0484  self->inStream = 0
+  0e04ac  [super dealloc]
+  0e04bc  return
+
+== -[SExpTokenizer inStream]   (address 0x1000e04c0  size 16  kind objc)
+  0e04cc  return
+
+== -[SExpTokenizer setInStream:]   (address 0x1000e04d0  size 56  kind objc)
+  0e04f4  self->inStream = arg1
+  0e0504  return
+
+== -[SExpTokenizer stringValue]   (address 0x1000e0508  size 16  kind objc)
+  0e0514  return
+
+== -[SExpTokenizer setStringValue:]   (address 0x1000e0518  size 56  kind objc)
+  0e053c  self->stringValue = arg1
+  0e054c  return
+
+== -[SExpTokenizer .cxx_destruct]   (address 0x1000e0550  size 64  kind objc)

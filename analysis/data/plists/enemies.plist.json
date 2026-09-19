@@ -1,0 +1,461 @@
+{
+ "Berserk": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Berserk",
+  "grab": true,
+  "life": 225,
+  "score": 800,
+  "speed": 0.15,
+  "comboBonus": 5,
+  "coinsReward": 20,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 250,
+   "Sound name": "Berserk",
+   "Bio": "A formidable zombie you don't want to mess with. The Berserk is a blind zombie who looks for his prey by sniffing around. If you don't shoot him, he will go away in a few seconds. A single bullet that hits him will cause him to go into a frenzy and charge towards you very fast, and be warned: he can take a lot of bullets!"
+  },
+  "berserk": {
+   "disappearAfter": 15,
+   "berserkSpeed": 1
+  }
+ },
+ "WeakZombie": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Reject",
+  "grab": true,
+  "life": 20,
+  "score": 100,
+  "speed": 0.5,
+  "comboBonus": 3,
+  "coinsReward": 10
+ },
+ "Cow2": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Cow",
+  "life": 1,
+  "score": 0,
+  "speed": 0.5,
+  "comboBonus": 0,
+  "coinsReward": 0
+ },
+ "Runner": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Snufflehog",
+  "grab": true,
+  "life": 40,
+  "score": 500,
+  "speed": 1.3,
+  "comboBonus": 5,
+  "coinsReward": 25,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 0,
+   "Sound name": "Runner",
+   "Bio": "Dr. Bastard made a deal with Papa Sangre to snatch these creatures from the underworld and unleash them on his show. Snufflehogs are made of the tissue of nightmares and run as fast as a chill down your spine. They're the fastest creature you'll find in the arena. They're fairly easy to take down, but only if your aim is quick!"
+  }
+ },
+ "Shield": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Riot Gear Zombie",
+  "life": 150,
+  "score": 700,
+  "shield": {
+   "walkTime": 2,
+   "shieldTime": "5"
+  },
+  "speed": 0.5,
+  "comboBonus": 5,
+  "coinsReward": 30,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 350,
+   "Sound name": "Shield",
+   "Bio": "Riot Gear Zombies are, well, dressed in full riot gear, complete with a thick metal shield. Shoot them once and they will stop and hide behind their shield for a few seconds. They'll be invincible while they're hiding behind the shield, so you'd better use that time to kill other zombies in the area before turning you attention to the Riot Gear Zombie again!"
+  }
+ },
+ "Ted": {
+  "Killed": 0,
+  "displayName": "Reject",
+  "life": 10,
+  "grab": true,
+  "score": 0,
+  "speed": 0,
+  "comboBonus": 0,
+  "coinsReward": 10
+ },
+ "DodgeB": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Dodger",
+  "life": 80,
+  "score": 750,
+  "speed": 0.9,
+  "ambiant": "Dodger_ambiant",
+  "coinsReward": 35,
+  "comboBonus": 3,
+  "dodge": {
+   "dodgeTime": 0.7,
+   "dodgeSpeed": "5"
+  }
+ },
+ "Cow3": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Cow",
+  "life": 1,
+  "score": 0,
+  "speed": 0.5,
+  "comboBonus": 0,
+  "coinsReward": 0
+ },
+ "Farty": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Farty",
+  "life": 50,
+  "score": 250,
+  "speed": 0.5,
+  "comboBonus": 10,
+  "coinsReward": 20,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 0,
+   "Sound name": "Farty",
+   "Bio": "As a fan of old action movies, Dr. Bastard likes explosions on his show. So he filled some of his zombies with obnoxious amounts of methane gas, to the point that these zombies are inflated like ballons. Unfortunately, there's no way to keep al the gas inside their bodies, and so they leak it out in the form of burps and farts. Which is why Dr. Bastard thought it would be HILARIOUS to call them 'Farties'. When a farty gets shot a few times, the gas will ignite and generate a huge explosion, which can take down nearby zombies. If it explodes near you, however, it will deafen you for a few seconds, so watch out!"
+  },
+  "explosion": {
+   "radius": "3",
+   "damages": 50,
+   "dispersal": "75"
+  }
+ },
+ "Bob": {
+  "Killed": 0,
+  "displayName": "Reject",
+  "life": 1,
+  "grab": true,
+  "score": 0,
+  "speed": 0,
+  "comboBonus": 0,
+  "coinsReward": 10
+ },
+ "PowerUpContainer": {
+  "life": 1,
+  "speed": 0
+ },
+ "Machine": {
+  "life": 130,
+  "speed": 0,
+  "explosion": {
+   "radius": "3",
+   "damages": 30,
+   "dispersal": "50"
+  }
+ },
+ "FartyB": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Farty",
+  "life": 50,
+  "score": 250,
+  "speed": 0.5,
+  "comboBonus": 10,
+  "coinsReward": 20,
+  "explosion": {
+   "radius": "3",
+   "damages": 30,
+   "dispersal": "50"
+  }
+ },
+ "WeakZombieD": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Reject",
+  "grab": true,
+  "life": 20,
+  "score": 100,
+  "speed": 0.5,
+  "comboBonus": 5,
+  "coinsReward": 10
+ },
+ "Cow": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Cow",
+  "life": 1,
+  "score": 0,
+  "speed": 0.5,
+  "comboBonus": 0,
+  "coinsReward": 0
+ },
+ "QuietZombie": {
+  "speed": 0.5,
+  "grab": true,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 150,
+   "Sound name": "QuietZombie",
+   "Bio": "Whisperers are very quiet zombies. You'll need to be alert to their serpentine whispers or, when it's too late, they will be too close to you, and will let out a chilling scream as they reach for your neck. One well placed melee hit will take them out faster than bullets at this point, but you have to face them first!"
+  },
+  "life": 35,
+  "Casualty": 0,
+  "agressiveSpeed": "0.75",
+  "ambiant": "Whisperer_ambiant",
+  "comboBonus": 3,
+  "Killed": 0,
+  "coinsReward": 25,
+  "score": 400,
+  "displayName": "Whisperer"
+ },
+ "Jukebox": {
+  "life": 100000000.0,
+  "pauseTime": 10
+ },
+ "ZombieC": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Zombie",
+  "grab": true,
+  "life": 35,
+  "score": 150,
+  "speed": 0.5,
+  "comboBonus": 3,
+  "coinsReward": 15
+ },
+ "WeakZombieC": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Reject",
+  "grab": true,
+  "life": 20,
+  "score": 100,
+  "speed": 0.5,
+  "comboBonus": 3,
+  "coinsReward": 10
+ },
+ "Jim": {
+  "Killed": 0,
+  "displayName": "Reject",
+  "life": 10,
+  "grab": true,
+  "score": 0,
+  "speed": 0,
+  "comboBonus": 0,
+  "coinsReward": 10
+ },
+ "HulkB": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Hulk",
+  "grab": true,
+  "life": 100,
+  "score": 600,
+  "speed": 0.75,
+  "ambiant": "Hulk_ambiant",
+  "coinsReward": 30,
+  "comboBonus": 10
+ },
+ "ZombieB": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Zombie",
+  "grab": true,
+  "life": 35,
+  "score": 150,
+  "speed": 0.5,
+  "comboBonus": 3,
+  "coinsReward": 15
+ },
+ "RunnerC": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Runner",
+  "grab": true,
+  "life": 40,
+  "score": 500,
+  "speed": 1.3,
+  "comboBonus": 5,
+  "coinsReward": 25
+ },
+ "Diamond": {
+  "life": 1,
+  "score": 0,
+  "grab": true,
+  "speed": 0,
+  "comboBonus": 0,
+  "coinsReward": 0
+ },
+ "Car2": {
+  "life": 50,
+  "speed": 0,
+  "explosion": {
+   "radius": "3",
+   "damages": 30,
+   "dispersal": "50"
+  }
+ },
+ "WeakZombieB": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Reject",
+  "grab": true,
+  "life": 20,
+  "score": 100,
+  "speed": 0.5,
+  "comboBonus": 3,
+  "coinsReward": 10,
+  "bestiary": {
+   "Unlock requirement": 0,
+   "Sound name": "WeakZombie",
+   "Bio": "Dr. Bastard is always trying to create the ultimate super-zombie. Thank goodness that hasn't happened yet. Instead, most of Dr. Bastard's experiments end up being a poor mess of undead flesh barely held together. Once it's clear the experiment is a failure, these Rejects end up as cannon fodder for the next show. They're slow and stupid, but usually come in great numbers and can overwhelm even the most proficient zombie fighter."
+  }
+ },
+ "Car": {
+  "life": 35,
+  "speed": 0,
+  "explosion": {
+   "radius": "3",
+   "damages": 30,
+   "dispersal": "50"
+  }
+ },
+ "Chainsaw": {
+  "speed": 1.45,
+  "grab": true,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 0,
+   "Chainsaw": "Chainsaw",
+   "Bio": "The crowd's favourite. This crazy undead is smart enough not only to wield a chainsaw, but also to run at you moving sideways. You want to keep your ears on him, ready to notice which direction he's turning, to make sure your bullets keep hitting him!"
+  },
+  "life": 70,
+  "Casualty": 0,
+  "circling": {
+   "circlingFactor": 0.5
+  },
+  "ambiant": "Chainsaw_ambiant",
+  "comboBonus": 3,
+  "Killed": 0,
+  "coinsReward": 20,
+  "score": 300,
+  "displayName": "Chainsaw"
+ },
+ "Zombie": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Zombie",
+  "grab": true,
+  "life": 35,
+  "score": 150,
+  "speed": 0.5,
+  "comboBonus": 3,
+  "coinsReward": 15,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 0,
+   "Sound name": "Zombie",
+   "Bio": "The show is called 'Dr. Bastard's Zombie Arena', so he has to deliver some classic Zombies. That means the slow, feet-shuffling kind. They can take a couple of bullets more than a Reject, but are easily beaten if they come alone."
+  }
+ },
+ "Colossus": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Colossus",
+  "grab": true,
+  "life": 500,
+  "score": 1000,
+  "speed": 0.25,
+  "comboBonus": 10,
+  "coinsReward": 50,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 450,
+   "Sound name": "Colossus",
+   "Bio": "Dr. Bastard's masterpiece, a gigantic zombie so big its tiny brain can only handle two motor skills: walking towards the closest human and smashing the closest human with a massive club it carries. The Colossus is the toughest zombie you'll ever meet. If you don't focus on it the moment it appears, you won't have enough time to sink enough bullets into it to down it."
+  }
+ },
+ "RunnerB": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Runner",
+  "grab": true,
+  "life": 40,
+  "score": 500,
+  "speed": 1.3,
+  "comboBonus": 5,
+  "coinsReward": 25
+ },
+ "Dodge": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Zombie Dog",
+  "life": 80,
+  "score": 750,
+  "speed": 0.9,
+  "ambiant": "Dodger_ambiant",
+  "coinsReward": 35,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 400,
+   "Sound name": "Dodge",
+   "Bio": "The Zombie Dog isn't as fast as the snufflehog, but it's smarter and tougher.  It will charge towards you until you shoot it. Then it will side-step before continuing its approach. Listen carefully to the direction it moves and keep your aim on it!"
+  },
+  "comboBonus": 5,
+  "dodge": {
+   "dodgeTime": 0.7,
+   "dodgeSpeed": "5"
+  }
+ },
+ "Clown": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Clown",
+  "circling": {
+   "circlingFactor": 0.9
+  },
+  "agressiveSpeed": "0.7",
+  "life": 70,
+  "score": 200,
+  "comboBonus": 3,
+  "coinsReward": 15,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 0,
+   "Sound name": "Clown",
+   "Bio": "Dr. Bastard likes to dress his craziest zombies as clowns. He likes to give them rusty knives, too. The Clown's main mission is to annoy the Blind Warrior running in circles around you, but don't let that fool you. Clowns slowly close in and will eventually attack if left alive for too long!"
+  },
+  "speed": 2
+ },
+ "Car3": {
+  "life": 80,
+  "speed": 0,
+  "explosion": {
+   "radius": "3",
+   "damages": 30,
+   "dispersal": "50"
+  }
+ },
+ "Hulk": {
+  "Killed": 0,
+  "Casualty": 0,
+  "displayName": "Hulk",
+  "grab": true,
+  "life": 100,
+  "score": 600,
+  "speed": 0.75,
+  "ambiant": "Hulk_ambiant",
+  "coinsReward": 30,
+  "bestiary": {
+   "Strength": 0,
+   "Unlock requirement": 0,
+   "Sound name": "Hulk",
+   "Bio": "The Hulk is a regular zombie injected with an overdose of adrenaline, testosterone and quinoa. It's fast and it can take a beating."
+  },
+  "comboBonus": 10
+ }
+}

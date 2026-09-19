@@ -1,0 +1,40 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1.2",
+   "skippable": true,
+   "spawn_time": 1.5,
+   "name": "bastard_maya_5_2"
+  }
+ ],
+ "Enemies": {
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "bastard_maya_5_2"
+   },
+   "spawn_angle": 140,
+   "spawn_distance": 10
+  },
+  "WeakZombieB ": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5.1,
+    "enemy": "bastard_maya_5_2"
+   },
+   "spawn_angle": 10,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3.3,
+    "enemy": "bastard_maya_5_2"
+   },
+   "spawn_angle": 75,
+   "spawn_distance": 10
+  }
+ }
+}

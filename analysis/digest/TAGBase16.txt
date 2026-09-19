@@ -1,0 +1,53 @@
+
+== +[TAGBase16 encode:]   (address 0x100158d58  size 436  kind objc)
+  158d9c  [arg1 length]
+  158db4  [NSMutableString stringWithCapacity:([arg1 length] << 1)]
+  158de4  &@selector(stringWithFormat:)
+  158df8  goto loc_100158e08
+loc_100158dfc:
+loc_100158e08:
+  158e10  [arg1 length]
+  158e18  if (x28 >=u [arg1 length]) goto loc_100158e90
+  158e28  [arg1 bytes]
+  158e34  if ((w27 & 240) != 0) goto loc_100158e4c
+  158e48  [[NSMutableString stringWithCapacity:([arg1 length] << 1)] appendString:@"0"]
+loc_100158e4c:
+  158e5c  [NSString stringWithFormat:@"%x", sp[0]]
+  158e78  [[NSMutableString stringWithCapacity:([arg1 length] << 1)] appendString:[NSString stringWithFormat:@"%x", sp[0]]]
+  158e7c  goto loc_100158dfc
+  158e8c  goto loc_100158ef4
+loc_100158e90:
+  158ea0  [[NSMutableString stringWithCapacity:([arg1 length] << 1)] uppercaseString]
+  158ee0  return
+
+== +[TAGBase16 decode:]   (address 0x100158f0c  size 412  kind objc)
+  158f48  [arg1 length]
+  158f50  if (([arg1 length] & 1)) goto loc_100159044
+  158f5c  malloc(([arg1 length] >>> 1))
+  158f64  if ([arg1 length] == 0) goto loc_100158fec
+  158f7c  &@selector(byteFromChar:)
+loc_100158f84:
+  158f90  [arg1 characterAtIndex:x2]
+  158fa8  [arg1 characterAtIndex:(x25 + 1)]
+  158fbc  [TAGBase16 byteFromChar:[arg1 characterAtIndex:x2]]
+  158fd0  [TAGBase16 byteFromChar:[arg1 characterAtIndex:(x25 + 1)]]
+  158fd4  t1 = ([TAGBase16 byteFromChar:[arg1 characterAtIndex:(x25 + 1)]] + ([TAGBase16 byteFromChar:[arg1 characterAtIndex:x2]] << 4))
+  158fe8  if (((x25 + 1) + 1) <u [arg1 length]) goto loc_100158f84
+loc_100158fec:
+  159008  [NSData dataWithBytesNoCopy:malloc(([arg1 length] >>> 1)) length:([arg1 length] >>> 1)]
+  159040  return
+  15907c  [NSException exceptionWithName:@"IllegalArgumentException" reason:@"Purported base16 string has odd number of characters" userInfo:0]
+  15908c  objc_exception_throw([NSException exceptionWithName:@"IllegalArgumentException" reason:@"Purported base16 string has odd number of characters" userInfo:0])
+
+== +[TAGBase16 byteFromChar:]   (address 0x1001590a8  size 164  kind objc)
+  1590bc  if (((arg1 - 48) & 255) >u 9) goto loc_1001590c8
+  1590c4  goto loc_1001590f4
+loc_1001590c8:
+  1590d4  if (((arg1 - 65) & 255) >u 5) goto loc_1001590e0
+  1590dc  goto loc_1001590f4
+loc_1001590e0:
+  1590ec  if (((arg1 - 97) & 255) >u 5) goto loc_100159100
+loc_1001590f4:
+  1590fc  return
+  159138  [NSException exceptionWithName:@"IllegalArgumentException" reason:@"Purported base16 string has illegal char" userInfo:0]
+  159148  objc_exception_throw([NSException exceptionWithName:@"IllegalArgumentException" reason:@"Purported base16 string has illegal char" userInfo:0])

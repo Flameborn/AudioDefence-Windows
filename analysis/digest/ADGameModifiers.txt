@@ -1,0 +1,404 @@
+
+== +[ADGameModifiers sharedModifiers]   (address 0x1000de10c  size 228  kind objc)
+  0de124  objc_sync_enter(ADGameModifiers)
+  0de130  if (g_10042da68 != 0) goto loc_1000de1b0
+  0de148  [ADGameModifiers alloc]
+  0de158  [[ADGameModifiers alloc] init]
+  0de160  store g_10042da68 = [[ADGameModifiers alloc] init]
+  0de180  [g_10042da68 checkFullMoon]
+  0de198  [g_10042da68 setFullMoon:[g_10042da68 checkFullMoon]]
+  0de1ac  [g_10042da68 resetModifiers]
+loc_1000de1b0:
+  0de1b4  objc_sync_exit(ADGameModifiers)
+  0de1dc  objc_sync_exit()
+
+== -[ADGameModifiers resetModifiers]   (address 0x1000de1f0  size 812  kind objc)
+  0de210  [self setSlowerEnemies:0]
+  0de228  [self setWeakerEnemies:0]
+  0de240  [self setMoreDamages:0]
+  0de258  [self setMoreMeleeDamages:0]
+  0de270  [self setMoreBullets:0]
+  0de288  [self setFreeRevive:0]
+  0de2a0  [self setLuckyShots:0]
+  0de2b8  [self setMetalDetector:0]
+  0de2d0  [self setTesla:0]
+  0de2e8  [self setGoldenBullet:0]
+  0de300  [self setWiderSpread:0]
+  0de318  [self setMoreHeadshots:0]
+  0de330  [self setBaseComboBonus:0]
+  0de348  [self setMorePowerUps:0]
+  0de360  [self setBetterPowerUps:0]
+  0de378  [self setJukebox:0]
+  0de390  [self setStrongerEnemies:0]
+  0de3a8  [self setCows:0]
+  0de3c0  [self setStorm:0]
+  0de3d8  [self setLessMeleeDamages:0]
+  0de3f0  [self setLessHeadshots:0]
+  0de408  [self setRustyWeapons:0]
+  0de420  [self setCars:0]
+  0de438  [self setEnragedHorde:0]
+  0de450  [self setNarrowedSpread:0]
+  0de468  [self setMachine:0]
+  0de480  [self setLessDamages:0]
+  0de498  [self setLessBullets:0]
+  0de4b0  [self setNoCritical:0]
+  0de4c8  [self setFasterReloadTime:0]
+  0de4e0  [self setSlowerReloadTime:0]
+  0de4f8  [self setFasterEnemies:0]
+  0de518  tail [self setDifficultyModifier:1]
+
+== -[ADGameModifiers headShotModifier]   (address 0x1000de51c  size 104  kind objc)
+  0de53c  [self moreHeadshots]
+  0de560  [self lessHeadshots]
+  0de570  t1 = ([self lessHeadshots] == 0 ? ([self moreHeadshots] != 0 ? 1.5 : 1) : (([self moreHeadshots] != 0 ? 1.5 : 1) + -0.5))
+  0de580  return
+
+== -[ADGameModifiers enemiLifeModifier]   (address 0x1000de584  size 140  kind objc)
+  0de5a4  [self weakerEnemies]
+  0de5cc  [self strongerEnemies]
+  0de5d0  if ([self strongerEnemies] == 0) goto loc_1000de5e8
+loc_1000de5e8:
+  0de5f8  [self difficultyModifier]
+  0de60c  return
+
+== -[ADGameModifiers enemiSpeedModifier]   (address 0x1000de610  size 140  kind objc)
+  0de630  [self fasterEnemies]
+  0de658  [self slowerEnemies]
+  0de65c  if ([self slowerEnemies] == 0) goto loc_1000de674
+loc_1000de674:
+  0de684  [self difficultyModifier]
+  0de698  return
+
+== -[ADGameModifiers gunDamagesModifier]   (address 0x1000de69c  size 120  kind objc)
+  0de6bc  [self moreDamages]
+  0de6e4  [self lessDamages]
+  0de6e8  if ([self lessDamages] == 0) goto loc_1000de700
+loc_1000de700:
+  0de710  return
+
+== -[ADGameModifiers meleeDamagesModifier]   (address 0x1000de714  size 104  kind objc)
+  0de734  [self moreMeleeDamages]
+  0de758  [self lessMeleeDamages]
+  0de768  t1 = ([self lessMeleeDamages] == 0 ? ([self moreMeleeDamages] != 0 ? 1.25 : 1) : (([self moreMeleeDamages] != 0 ? 1.25 : 1) + -0.25))
+  0de778  return
+
+== -[ADGameModifiers reloadTimeModifier]   (address 0x1000de77c  size 120  kind objc)
+  0de79c  [self fasterReloadTime]
+  0de7c4  [self slowerReloadTime]
+  0de7c8  if ([self slowerReloadTime] == 0) goto loc_1000de7e0
+loc_1000de7e0:
+  0de7f0  return
+
+== -[ADGameModifiers spreadModifier]   (address 0x1000de7f4  size 104  kind objc)
+  0de814  [self narrowedSpread]
+  0de838  [self widerSpread]
+  0de848  t1 = ([self widerSpread] == 0 ? ([self narrowedSpread] != 0 ? -5 : 0) : (([self narrowedSpread] != 0 ? -5 : 0) + 5))
+  0de858  return
+
+== -[ADGameModifiers logModifiers]   (address 0x1000de85c  size 168  kind objc)
+  0de878  NSLog(@"**** MODIFIERS *****", _cmd)
+  0de88c  [self enemiLifeModifier]
+  0de8a0  NSLog(@"Enemies life : %f", [self enemiLifeModifier])
+  0de8b4  [self enemiSpeedModifier]
+  0de8c8  NSLog(@"Enemies speed : %f", [self enemiSpeedModifier])
+  0de8dc  [self reloadTimeModifier]
+  0de8f0  NSLog(@"Reload time : %f", [self reloadTimeModifier])
+  0de900  return
+
+== -[ADGameModifiers setTesla:]   (address 0x1000de904  size 220  kind objc)
+  0de928  if (self->_tesla != arg1) goto loc_1000de93c
+  0de938  return
+loc_1000de93c:
+  0de93c  self->_tesla = arg1
+  0de954  [S3DEngine engine]
+  0de978  [[S3DEngine engine] playListWithName:@"tesla"]
+  0de994  if (self->_tesla == 0) goto loc_1000de9ac
+  0de9a8  [[[S3DEngine engine] playListWithName:@"tesla"] activate]
+loc_1000de9ac:
+  0de9bc  return
+
+== -[ADGameModifiers isTodayNewMoon]   (address 0x1000de9e0  size 8  kind objc)
+  0de9e4  return
+
+== -[ADGameModifiers checkFullMoon]   (address 0x1000de9e8  size 652  kind objc)
+  0dea14  [NSDate date]
+  0dea38  [NSCalendar currentCalendar]
+  0dea5c  [[NSCalendar currentCalendar] components:96 fromDate:[NSDate date]]
+  0dea80  [NSDateComponents alloc]
+  0dea90  [[NSDateComponents alloc] init]
+  0deaa8  [[[NSCalendar currentCalendar] components:96 fromDate:[NSDate date]] minute]
+  0deac0  [[[NSDateComponents alloc] init] setMinute:[[[NSCalendar currentCalendar] components:96 fromDate:[NSDate date]] minute]]
+  0dead4  [[[NSCalendar currentCalendar] components:96 fromDate:[NSDate date]] hour]
+  0deaec  [[[NSDateComponents alloc] init] setHour:[[[NSCalendar currentCalendar] components:96 fromDate:[NSDate date]] hour]]
+  0deb04  [[[NSDateComponents alloc] init] setDay:7]
+  0deb1c  [[[NSDateComponents alloc] init] setMonth:1]
+  0deb34  [[[NSDateComponents alloc] init] setYear:1970]
+  0deb4c  [[NSCalendar currentCalendar] dateFromComponents:[[NSDateComponents alloc] init]]
+  0deb70  [[NSDate date] timeIntervalSinceDate:[[NSCalendar currentCalendar] dateFromComponents:[[NSDateComponents alloc] init]]]
+  0deb74  t1 = (int)[[NSDate date] timeIntervalSinceDate:[[NSCalendar currentCalendar] dateFromComponents:[[NSDateComponents alloc] init]]]
+  0debac  t2 = ((t1 - (((t1 * 0x1a4d64af) >>> 63) + (((t1 * 0x1a4d64af) >>> 32) >> 18)) * 0x26ee93) * 0xffffffffc22e4507)
+  0debb4  t3 = ((t2 >>> 32) + (t1 - (((t1 * 0x1a4d64af) >>> 63) + (((t1 * 0x1a4d64af) >>> 32) >> 18)) * 0x26ee93))
+  0debd0  NSLog(@"Moon phase : %i", (((t3 >> 16) + (t3 >>> 31)) + 1))
+  0dec1c  return
+
+== -[ADGameModifiers slowerEnemies]   (address 0x1000dec74  size 20  kind objc)
+  0dec84  return
+
+== -[ADGameModifiers setSlowerEnemies:]   (address 0x1000dec88  size 16  kind objc)
+  0dec90  self->_slowerEnemies = arg1
+  0dec94  return
+
+== -[ADGameModifiers weakerEnemies]   (address 0x1000dec98  size 20  kind objc)
+  0deca8  return
+
+== -[ADGameModifiers setWeakerEnemies:]   (address 0x1000decac  size 16  kind objc)
+  0decb4  self->_weakerEnemies = arg1
+  0decb8  return
+
+== -[ADGameModifiers moreMeleeDamages]   (address 0x1000decbc  size 20  kind objc)
+  0deccc  return
+
+== -[ADGameModifiers setMoreMeleeDamages:]   (address 0x1000decd0  size 16  kind objc)
+  0decd8  self->_moreMeleeDamages = arg1
+  0decdc  return
+
+== -[ADGameModifiers moreDamages]   (address 0x1000dece0  size 20  kind objc)
+  0decf0  return
+
+== -[ADGameModifiers setMoreDamages:]   (address 0x1000decf4  size 16  kind objc)
+  0decfc  self->_moreDamages = arg1
+  0ded00  return
+
+== -[ADGameModifiers moreBullets]   (address 0x1000ded04  size 20  kind objc)
+  0ded14  return
+
+== -[ADGameModifiers setMoreBullets:]   (address 0x1000ded18  size 16  kind objc)
+  0ded20  self->_moreBullets = arg1
+  0ded24  return
+
+== -[ADGameModifiers freeRevive]   (address 0x1000ded28  size 20  kind objc)
+  0ded38  return
+
+== -[ADGameModifiers setFreeRevive:]   (address 0x1000ded3c  size 16  kind objc)
+  0ded44  self->_freeRevive = arg1
+  0ded48  return
+
+== -[ADGameModifiers luckyShots]   (address 0x1000ded4c  size 20  kind objc)
+  0ded5c  return
+
+== -[ADGameModifiers setLuckyShots:]   (address 0x1000ded60  size 16  kind objc)
+  0ded68  self->_luckyShots = arg1
+  0ded6c  return
+
+== -[ADGameModifiers metalDetector]   (address 0x1000ded70  size 20  kind objc)
+  0ded80  return
+
+== -[ADGameModifiers setMetalDetector:]   (address 0x1000ded84  size 16  kind objc)
+  0ded8c  self->_metalDetector = arg1
+  0ded90  return
+
+== -[ADGameModifiers tesla]   (address 0x1000ded94  size 16  kind objc)
+  0deda0  return
+
+== -[ADGameModifiers goldenBullet]   (address 0x1000deda4  size 20  kind objc)
+  0dedb4  return
+
+== -[ADGameModifiers setGoldenBullet:]   (address 0x1000dedb8  size 16  kind objc)
+  0dedc0  self->_goldenBullet = arg1
+  0dedc4  return
+
+== -[ADGameModifiers widerSpread]   (address 0x1000dedc8  size 20  kind objc)
+  0dedd8  return
+
+== -[ADGameModifiers setWiderSpread:]   (address 0x1000deddc  size 16  kind objc)
+  0dede4  self->_widerSpread = arg1
+  0dede8  return
+
+== -[ADGameModifiers moreHeadshots]   (address 0x1000dedec  size 20  kind objc)
+  0dedfc  return
+
+== -[ADGameModifiers setMoreHeadshots:]   (address 0x1000dee00  size 16  kind objc)
+  0dee08  self->_moreHeadshots = arg1
+  0dee0c  return
+
+== -[ADGameModifiers baseComboBonus]   (address 0x1000dee10  size 20  kind objc)
+  0dee20  return
+
+== -[ADGameModifiers setBaseComboBonus:]   (address 0x1000dee24  size 16  kind objc)
+  0dee2c  self->_baseComboBonus = arg1
+  0dee30  return
+
+== -[ADGameModifiers morePowerUps]   (address 0x1000dee34  size 20  kind objc)
+  0dee44  return
+
+== -[ADGameModifiers setMorePowerUps:]   (address 0x1000dee48  size 16  kind objc)
+  0dee50  self->_morePowerUps = arg1
+  0dee54  return
+
+== -[ADGameModifiers betterPowerUps]   (address 0x1000dee58  size 20  kind objc)
+  0dee68  return
+
+== -[ADGameModifiers setBetterPowerUps:]   (address 0x1000dee6c  size 16  kind objc)
+  0dee74  self->_betterPowerUps = arg1
+  0dee78  return
+
+== -[ADGameModifiers lessHeadshots]   (address 0x1000dee7c  size 20  kind objc)
+  0dee8c  return
+
+== -[ADGameModifiers setLessHeadshots:]   (address 0x1000dee90  size 16  kind objc)
+  0dee98  self->_lessHeadshots = arg1
+  0dee9c  return
+
+== -[ADGameModifiers strongerEnemies]   (address 0x1000deea0  size 20  kind objc)
+  0deeb0  return
+
+== -[ADGameModifiers setStrongerEnemies:]   (address 0x1000deeb4  size 16  kind objc)
+  0deebc  self->_strongerEnemies = arg1
+  0deec0  return
+
+== -[ADGameModifiers rustyWeapons]   (address 0x1000deec4  size 20  kind objc)
+  0deed4  return
+
+== -[ADGameModifiers setRustyWeapons:]   (address 0x1000deed8  size 16  kind objc)
+  0deee0  self->_rustyWeapons = arg1
+  0deee4  return
+
+== -[ADGameModifiers enragedHorde]   (address 0x1000deee8  size 20  kind objc)
+  0deef8  return
+
+== -[ADGameModifiers setEnragedHorde:]   (address 0x1000deefc  size 16  kind objc)
+  0def04  self->_enragedHorde = arg1
+  0def08  return
+
+== -[ADGameModifiers narrowedSpread]   (address 0x1000def0c  size 20  kind objc)
+  0def1c  return
+
+== -[ADGameModifiers setNarrowedSpread:]   (address 0x1000def20  size 16  kind objc)
+  0def28  self->_narrowedSpread = arg1
+  0def2c  return
+
+== -[ADGameModifiers cows]   (address 0x1000def30  size 20  kind objc)
+  0def40  return
+
+== -[ADGameModifiers setCows:]   (address 0x1000def44  size 16  kind objc)
+  0def4c  self->_cows = arg1
+  0def50  return
+
+== -[ADGameModifiers cars]   (address 0x1000def54  size 20  kind objc)
+  0def64  return
+
+== -[ADGameModifiers setCars:]   (address 0x1000def68  size 16  kind objc)
+  0def70  self->_cars = arg1
+  0def74  return
+
+== -[ADGameModifiers storm]   (address 0x1000def78  size 20  kind objc)
+  0def88  return
+
+== -[ADGameModifiers setStorm:]   (address 0x1000def8c  size 16  kind objc)
+  0def94  self->_storm = arg1
+  0def98  return
+
+== -[ADGameModifiers jukebox]   (address 0x1000def9c  size 20  kind objc)
+  0defac  return
+
+== -[ADGameModifiers setJukebox:]   (address 0x1000defb0  size 16  kind objc)
+  0defb8  self->_jukebox = arg1
+  0defbc  return
+
+== -[ADGameModifiers machine]   (address 0x1000defc0  size 20  kind objc)
+  0defd0  return
+
+== -[ADGameModifiers setMachine:]   (address 0x1000defd4  size 16  kind objc)
+  0defdc  self->_machine = arg1
+  0defe0  return
+
+== -[ADGameModifiers noCritical]   (address 0x1000defe4  size 20  kind objc)
+  0deff4  return
+
+== -[ADGameModifiers setNoCritical:]   (address 0x1000deff8  size 16  kind objc)
+  0df000  self->_noCritical = arg1
+  0df004  return
+
+== -[ADGameModifiers fullMoon]   (address 0x1000df008  size 20  kind objc)
+  0df018  return
+
+== -[ADGameModifiers setFullMoon:]   (address 0x1000df01c  size 16  kind objc)
+  0df024  self->_fullMoon = arg1
+  0df028  return
+
+== -[ADGameModifiers bullshit]   (address 0x1000df02c  size 20  kind objc)
+  0df03c  return
+
+== -[ADGameModifiers setBullshit:]   (address 0x1000df040  size 16  kind objc)
+  0df048  self->_bullshit = arg1
+  0df04c  return
+
+== -[ADGameModifiers fasterReloadTime]   (address 0x1000df050  size 20  kind objc)
+  0df060  return
+
+== -[ADGameModifiers setFasterReloadTime:]   (address 0x1000df064  size 16  kind objc)
+  0df06c  self->_fasterReloadTime = arg1
+  0df070  return
+
+== -[ADGameModifiers slowerReloadTime]   (address 0x1000df074  size 20  kind objc)
+  0df084  return
+
+== -[ADGameModifiers setSlowerReloadTime:]   (address 0x1000df088  size 16  kind objc)
+  0df090  self->_slowerReloadTime = arg1
+  0df094  return
+
+== -[ADGameModifiers fasterEnemies]   (address 0x1000df098  size 20  kind objc)
+  0df0a8  return
+
+== -[ADGameModifiers setFasterEnemies:]   (address 0x1000df0ac  size 16  kind objc)
+  0df0b4  self->_fasterEnemies = arg1
+  0df0b8  return
+
+== -[ADGameModifiers lessDamages]   (address 0x1000df0bc  size 20  kind objc)
+  0df0cc  return
+
+== -[ADGameModifiers setLessDamages:]   (address 0x1000df0d0  size 16  kind objc)
+  0df0d8  self->_lessDamages = arg1
+  0df0dc  return
+
+== -[ADGameModifiers lessMeleeDamages]   (address 0x1000df0e0  size 20  kind objc)
+  0df0f0  return
+
+== -[ADGameModifiers setLessMeleeDamages:]   (address 0x1000df0f4  size 16  kind objc)
+  0df0fc  self->_lessMeleeDamages = arg1
+  0df100  return
+
+== -[ADGameModifiers lessBullets]   (address 0x1000df104  size 20  kind objc)
+  0df114  return
+
+== -[ADGameModifiers setLessBullets:]   (address 0x1000df118  size 16  kind objc)
+  0df120  self->_lessBullets = arg1
+  0df124  return
+
+== -[ADGameModifiers difficultyModifier]   (address 0x1000df128  size 20  kind objc)
+  0df138  return
+
+== -[ADGameModifiers setDifficultyModifier:]   (address 0x1000df13c  size 20  kind objc)
+  0df148  self->_difficultyModifier = arg1
+  0df14c  return
+
+== sub_1000df150   (address 0x1000df150  size 340  kind sub)
+  0df194  [NSString class]
+  0df1ac  [a0 isKindOfClass:[NSString class]]
+  0df1b0  if ([a0 isKindOfClass:[NSString class]] == 0) goto loc_1000df1c0
+  0df1bc  goto loc_1000df25c
+loc_1000df1c0:
+  0df1e4  [a0 respondsToSelector:@selector(descriptionWithLocale:indent:)]
+  0df1e8  if ([a0 respondsToSelector:@selector(descriptionWithLocale:indent:)] == 0) goto loc_1000df208
+  0df1fc  [a0 descriptionWithLocale:a1 indent:a2]
+  0df204  goto loc_1000df258
+loc_1000df208:
+  0df220  [a0 respondsToSelector:@selector(descriptionWithLocale:)]
+  0df224  if ([a0 respondsToSelector:@selector(descriptionWithLocale:)] == 0) goto loc_1000df240
+  0df234  [a0 descriptionWithLocale:a1]
+  0df23c  goto loc_1000df258
+loc_1000df240:
+  0df250  [a0 description]
+loc_1000df258:
+loc_1000df25c:
+  0df284  return

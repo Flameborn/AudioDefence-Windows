@@ -1,0 +1,131 @@
+
+== csl::Filter::~Filter   (address 0x1000ebd18  size 76  kind cxx)
+  0ebd30  sub_1000ebc5c(a0, &d_1003b4ca0, a2, a3)
+  0ebd38  sub_1000e9388((a0 + 352))
+  0ebd48  return
+  0ebd54  sub_1000e9388((x19 + 352))
+  0ebd60  call sub_10000b760
+
+== csl::Filter::thunk_vfunc_0   (address 0x1000ebd64  size 8  kind cxx)
+  0ebd68  tail csl::Filter::~Filter((a0 - 176), a1, a2, a3)
+
+== csl::Filter::thunk_vfunc_0   (address 0x1000ebd6c  size 8  kind cxx)
+  0ebd70  tail csl::Filter::~Filter((a0 - 184), a1, a2, a3)
+
+== csl::Filter::thunk_vfunc_0   (address 0x1000ebd74  size 16  kind cxx)
+  0ebd80  tail csl::Filter::~Filter((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Filter::~Filter/*deleting*/   (address 0x1000ebd84  size 56  kind cxx)
+  0ebd94  csl::Filter::~Filter(a0, a1, a2, a3)
+  0ebda4  tail ZdlPv(a0)
+  0ebdb0  ZdlPv()
+
+== csl::Filter::thunk_vfunc_1   (address 0x1000ebdbc  size 8  kind cxx)
+  0ebdc0  tail csl::Filter::~Filter/*deleting*/((a0 - 176), a1, a2, a3)
+
+== csl::Filter::thunk_vfunc_1   (address 0x1000ebdc4  size 8  kind cxx)
+  0ebdc8  tail csl::Filter::~Filter/*deleting*/((a0 - 184), a1, a2, a3)
+
+== csl::Filter::thunk_vfunc_1   (address 0x1000ebdcc  size 16  kind cxx)
+  0ebdd8  tail csl::Filter::~Filter/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Filter::vfunc_5   (address 0x1000ebddc  size 716  kind cxx)
+  0ebe18  call a1[+0x0][+0x20]
+  0ebe34  call a0[+0x150][+0x0][+0x20]
+  0ebe4c  call a0[+0x148][+0x0][+0x20]
+  0ebe68  if (x24 == 0) goto loc_1000ebe94
+  0ebe78  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), x1, a1[+0xc])
+  0ebe90  goto loc_1000ebe98
+loc_1000ebe94:
+loc_1000ebe98:
+  0ebe98  if (x25 == 0) goto loc_1000ebecc
+  0ebeb0  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), x1, a1[+0xc])
+  0ebec8  goto loc_1000ebed0
+loc_1000ebecc:
+loc_1000ebed0:
+  0ebed4  if (x27 == 0) goto loc_1000ebef0
+  0ebeec  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), x1, a1[+0xc])
+loc_1000ebef0:
+  0ebef0  if (x26 == 0) goto loc_1000ebf0c
+  0ebf08  sub_1000e94a4((a0 + a0[+0x0][+0x-18]), x1, a1[+0xc])
+loc_1000ebf0c:
+  0ebf0c  if (x27 == 0) goto loc_1000ebf18
+  0ebf14  if (w8 != 0) goto loc_1000ebf24
+loc_1000ebf18:
+  0ebf18  if (x26 == 0) goto loc_1000ebf2c
+  0ebf20  if (w8 == 0) goto loc_1000ebf2c
+loc_1000ebf24:
+  0ebf28  goto loc_1000ebf30
+loc_1000ebf2c:
+loc_1000ebf30:
+  0ebf3c  if (a0[+0xa4] != 0) goto loc_1000ebf54
+  0ebf48  sub_1000e9fb0(a0, a1[+0xc])
+loc_1000ebf54:
+  0ebf54  if (a1[+0xc] == 0) goto loc_1000ec074
+loc_1000ebf5c:
+  0ebf5c  if (one of {0, 1} == 0) goto loc_1000ebf78
+  0ebf70  call a0[+0x0][+0x70]
+loc_1000ebf78:
+  0ebf78  a0[+0x150][+0x0][+0x20](…)[+0x0] = 0
+  0ebf88  a0[+0x148][+0x0][+0x20](…)[+0x0] = (s3 + (s8 * s0))
+  0ebf94  if ((a0[+0x140] - 1) == 0) goto loc_1000ebfd4
+loc_1000ebfa4:
+  0ebfbc  a0[+0x150][+0x0][+0x20](…)[+0x0] = (a0[+0x150][+0x0][+0x20](…)[+0x0] + ((a0 + (x8 << 2))[+0xc0] * s1))
+  0ebfcc  if ((x8 - 1) != 0) goto loc_1000ebfa4
+loc_1000ebfd4:
+  0ebfe4  a0[+0x150][+0x0][+0x20](…)[+0x0] = (a0[+0x150][+0x0][+0x20](…)[+0x0] + (a0[+0xc0] * s0))
+  0ebff0  if (a0[+0x144] == 1) goto loc_1000ec034
+  0ebffc  goto loc_1000ec00c
+loc_1000ec000:
+loc_1000ec00c:
+  0ec020  a0[+0x150][+0x0][+0x20](…)[+0x0] = (s0 - ((a0 + x9)[+0x100] * s2))
+  0ec02c  if (w8 != 0) goto loc_1000ec000
+loc_1000ec034:
+  0ec070  if ((w28 + 1) <u a1[+0xc]) goto loc_1000ebf5c
+loc_1000ec074:
+  0ec094  return
+  0ec09c  if (w1 >= 0) goto loc_1000ec0a4
+  0ec0a0  cxa_call_unexpected()
+
+== csl::Filter::vfunc_11   (address 0x1000ec0a8  size 304  kind cxx)
+  0ec0c8  sub_1000e75a0("a Filter", a1, a2, a3)
+  0ec0dc  csl::Controllable::vfunc_2((a0 + a0[+0xb0][+0x-18]))
+  0ec0e4  csl::UnitGenerator::vfunc_11(a0)
+  0ec104  fwrite("A coefficients ", 15, 1, ___stderrp[+0x0])
+  0ec110  if (a0[+0x144] == 0) goto loc_1000ec150
+loc_1000ec120:
+  0ec138  fprintf(___stderrp[+0x0], "%.2f, ", (a0 + (w22 << 2))[+0x100])
+  0ec14c  if ((w22 + 1) <u a0[+0x144]) goto loc_1000ec120
+loc_1000ec150:
+  0ec158  fputc(10, ___stderrp[+0x0])
+  0ec170  fwrite("B coefficients ", 15, 1, ___stderrp[+0x0])
+  0ec17c  if (a0[+0x140] == 0) goto loc_1000ec1bc
+loc_1000ec18c:
+  0ec1a4  fprintf(___stderrp[+0x0], "%.2f, ", (a0 + (w22 << 2))[+0xc0])
+  0ec1b8  if ((w22 + 1) <u a0[+0x140]) goto loc_1000ec18c
+loc_1000ec1bc:
+  0ec1d4  tail fputc(10, ___stderrp[+0x0])
+
+== csl::Filter::thunk_vfunc_2   (address 0x1000ec1d8  size 16  kind cxx)
+  0ec1e4  tail csl::Filter::vfunc_11((a0 + a0[+0x0][+0x-20]), a1, a2, a3)
+
+== sub_1000ec1e8   (address 0x1000ec1e8  size 280  kind sub)
+  0ec218  sub_1000e9560((a0 + 352), a1, a2, a3)
+  0ec238  sub_1000ebb84(a0, &d_1003b4e28, a1, 3)
+  0ec248  a0[+0x0] = vtable<csl::Butter>
+  0ec250  a0[+0x160] = vtable<csl::Butter (secondary, -0x160)>
+  0ec258  a0[+0xb0] = vtable<csl::Butter (secondary, -0xb0)>
+  0ec264  a0[+0xb8] = vtable<csl::Butter (secondary, -0xb8)>
+  0ec268  a0[+0xa4] = a2
+  0ec278  sub_1000e9714((a0 + 352), 10)
+  0ec294  sub_1000e9714((a0 + a0[+0x0][+0x-18]), 11)
+  0ec2a4  call a0[+0x0][+0x70]
+  0ec2ac  sub_1000e8310(a0[+0x148])
+  0ec2b4  sub_1000e8310(a0[+0x150])
+  0ec2d0  return
+  0ec2e0  sub_1000ebc5c(x0, (x23 + 8))
+  0ec2f0  call sub_1000e9388
+  0ec2fc  call sub_10000b760
+
+== csl::Filter::vfunc_14   (address 0x1000ec55c  size 4  kind cxx)
+  0ec55c  return

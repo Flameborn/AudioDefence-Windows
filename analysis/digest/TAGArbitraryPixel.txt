@@ -1,0 +1,143 @@
+
+== +[TAGArbitraryPixel functionId]   (address 0x100179920  size 44  kind objc)
+  179948  return
+
+== +[TAGArbitraryPixel urlKey]   (address 0x10017994c  size 44  kind objc)
+  179974  return
+
+== -[TAGArbitraryPixel init]   (address 0x100179978  size 184  kind objc)
+  1799ac  [NSSet setWithObject:@"url"]
+  1799e8  [super initWithFunctionId:@"_img" requiredKeys:[NSSet setWithObject:@"url"]]
+  179a0c  return
+
+== -[TAGArbitraryPixel evaluateTrackingTag:]   (address 0x100179a30  size 1884  kind objc)
+  179a88  [arg1 objectForKey:@"unrepeatable"]
+  179a98  if ([arg1 objectForKey:@"unrepeatable"] == 0) goto loc_100179b24
+  179ab4  [arg1 objectForKey:@"unrepeatable"]
+  179ad8  [TAGTypes valueToString:[arg1 objectForKey:@"unrepeatable"]]
+  179af8  if ([TAGTypes valueToString:[arg1 objectForKey:@"unrepeatable"]] == 0) goto loc_100179b24
+  179b10  [self idProcessed:[TAGTypes valueToString:[arg1 objectForKey:@"unrepeatable"]]]
+  179b14  if (([self idProcessed:[TAGTypes valueToString:[arg1 objectForKey:@"unrepeatable"]]] & 1)) goto loc_100179fc0
+  179b20  goto loc_100179b30
+loc_100179b24:
+loc_100179b30:
+  179b40  [arg1 objectForKey:@"url"]
+  179b68  [TAGTypes valueToString:[arg1 objectForKey:@"url"]]
+  179b8c  [arg1 objectForKey:@"additional_params"]
+  179b9c  if ([arg1 objectForKey:@"additional_params"] == 0) goto loc_100179efc
+  179bb4  [TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]]
+  179bdc  [NSArray class]
+  179bf8  [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] isKindOfClass:[NSArray class]]
+  179bfc  if (!([[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] isKindOfClass:[NSArray class]] & 1)) goto loc_100179d64
+  179c1c  [[TAGTypes valueToString:[arg1 objectForKey:@"url"]] rangeOfString:@"?"]
+  179c3c  t1 = ([[TAGTypes valueToString:[arg1 objectForKey:@"url"]] rangeOfString:@"?"] == 0x7fffffffffffffff ? @"?" : @"&")
+  179c54  [NSMutableArray array]
+  179ca0  [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16]
+  179cac  if ([[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16] == 0) goto loc_100179e38
+loc_100179ce0:
+loc_100179ce4:
+  179cf0  if (x8 == x26) goto loc_100179cfc
+  179cf8  objc_enumerationMutation([TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]])
+loc_100179cfc:
+  179d0c  [NSDictionary class]
+  179d1c  [x0 isKindOfClass:[NSDictionary class]]
+  179d20  if (!([x0 isKindOfClass:[NSDictionary class]] & 1)) goto loc_100179dc0
+  179d34  [self addDictionary:x2 toArray:[NSMutableArray array]]
+  179d40  if ((x24 + 1) <u [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0…) goto loc_100179ce4
+  179d54  [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16]
+  179d5c  if ([[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16] != 0) goto loc_100179ce0
+  179d60  goto loc_100179e40
+loc_100179d64:
+  179d84  [NSString stringWithFormat:@"ArbitraryPixel: additional params not a list: not sending partial hit: %@", [TAGTypes valueToString:[arg1 objectForKey:@"url"]]]
+  179dac  [TAGLog warning:[NSString stringWithFormat:@"ArbitraryPixel: additional params not a list: not sending partial hit: %@", [TAGTypes valueToString:[arg1 objectForKey:@"url"]]]]
+  179dbc  goto loc_100179fa4
+loc_100179dc0:
+  179dec  [NSString stringWithFormat:@"ArbitraryPixel: additional params contains non-map: not sending partial hit: %@", [TAGTypes valueToString:[arg1 objectForKey:@"url"]]]
+  179e1c  [TAGLog warning:[NSString stringWithFormat:@"ArbitraryPixel: additional params contains non-map: not sending partial hit: %@", [TAGTypes valueToString:[arg1 objectForKey:@"url"]]]]
+  179e34  goto loc_100179ed4
+loc_100179e38:
+loc_100179e40:
+  179e68  [self getQueryParametersStringFromArray:[NSMutableArray array]]
+  179eac  [NSString stringWithFormat:@"%@%@%@", [TAGTypes valueToString:[arg1 objectForKey:@"url"]], t1, [self getQueryParametersStringFromArray:[NSMutableArray array]]]
+loc_100179ed4:
+  179ef8  if (!(one of {0, 1} & 1)) goto loc_100179fa8
+loc_100179efc:
+  179f0c  [self getHitSender]
+  179f2c  [[self getHitSender] sendHitToUrl:x2]
+  179f34  if (one of {0, 1} == 0) goto loc_100179fa0
+  179f48  objc_sync_enter(self)
+  179f60  [self cacheUnrepeatableId:x2]
+  179f88  [TAGPropertyListUtil writePropertyListAsync:@"gtm_img_unrepeatable" withData:g_10042dfb0]
+  179f90  objc_sync_exit(self)
+loc_100179fa0:
+loc_100179fa4:
+loc_100179fa8:
+loc_100179fc0:
+  179ffc  return
+  17a148  objc_sync_exit()
+
+== -[TAGArbitraryPixel addDictionary:toArray:]   (address 0x10017a18c  size 836  kind objc)
+  17a210  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  17a214  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] == 0) goto loc_10017a3ec
+  17a250  &@selector(stringWithFormat:)
+loc_10017a284:
+loc_10017a288:
+  17a29c  if (x8 == x9) goto loc_10017a2a8
+  17a2a4  objc_enumerationMutation(arg1)
+loc_10017a2a8:
+  17a2bc  [arg1 objectForKey:x2]
+  17a2e8  [TAGTypes objectToString:x2]
+  17a304  [TAGValueEscapeUtil urlEncode:[TAGTypes objectToString:x2]]
+  17a330  [TAGTypes objectToString:[arg1 objectForKey:x2]]
+  17a34c  [TAGValueEscapeUtil urlEncode:[TAGTypes objectToString:[arg1 objectForKey:x2]]]
+  17a370  [NSString stringWithFormat:@"%@=%@", [TAGValueEscapeUtil urlEncode:[TAGTypes objectToString:x2]], [TAGValueEscapeUtil urlEncode:[TAGTypes objectToString:[arg1 objectForKey:x2]]]]
+  17a3ac  [arg2 addObject:[NSString stringWithFormat:@"%@=%@", [TAGValueEscapeUtil urlEncode:[TAGTypes objectToString:x2]], [TAGValueEscapeUtil urlEncode:[TAGTypes objectToString:[arg1 objectForKey:x2]]]]]
+  17a3d0  if ((x27 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]) goto loc_10017a288
+  17a3e4  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  17a3e8  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] != 0) goto loc_10017a284
+loc_10017a3ec:
+  17a43c  return
+
+== -[TAGArbitraryPixel getQueryParametersStringFromArray:]   (address 0x10017a4d0  size 56  kind objc)
+  17a4f4  [arg1 componentsJoinedByString:@"&"]
+  17a504  return
+
+== -[TAGArbitraryPixel getHitSender]   (address 0x10017a508  size 24  kind objc)
+  17a51c  tail [TAGDispatcher instance]
+
+== -[TAGArbitraryPixel idProcessed:]   (address 0x10017a520  size 220  kind objc)
+  17a54c  objc_sync_enter(self)
+  17a564  [self idInCache:arg1]
+  17a568  if (([self idInCache:arg1] & 1)) goto loc_10017a5a0
+  17a580  [self idInPlist:arg1]
+  17a584  if ([self idInPlist:arg1] == 0) goto loc_10017a5a8
+  17a59c  [self cacheUnrepeatableId:arg1]
+loc_10017a5a0:
+  17a5a4  goto loc_10017a5ac
+loc_10017a5a8:
+loc_10017a5ac:
+  17a5b0  objc_sync_exit(self)
+  17a5d4  return
+  17a5e0  objc_sync_exit()
+
+== -[TAGArbitraryPixel cacheUnrepeatableId:]   (address 0x10017a5fc  size 164  kind objc)
+  17a61c  if (g_10042dfb0 == 0) goto loc_10017a640
+  17a638  [g_10042dfb0 setObject:@"true" forKey:arg1]
+  17a63c  goto loc_10017a67c
+loc_10017a640:
+  17a660  [NSMutableDictionary dictionaryWithObject:@"true" forKey:arg1]
+  17a670  store g_10042dfb0 = [NSMutableDictionary dictionaryWithObject:@"true" forKey:arg1]
+loc_10017a67c:
+  17a688  return
+
+== -[TAGArbitraryPixel idInPlist:]   (address 0x10017a6a0  size 184  kind objc)
+  17a6d8  [TAGPropertyListUtil readPropertyList:@"gtm_img_unrepeatable"]
+  17a6f8  [[TAGPropertyListUtil readPropertyList:@"gtm_img_unrepeatable"] valueForKey:arg1]
+  17a730  return
+
+== -[TAGArbitraryPixel clearCache]   (address 0x10017a758  size 24  kind objc)
+  17a76c  tail [g_10042dfb0 removeAllObjects]
+
+== -[TAGArbitraryPixel idInCache:]   (address 0x10017a770  size 72  kind objc)
+  17a790  [g_10042dfb0 objectForKey:arg1]
+  17a7b4  return

@@ -1,0 +1,727 @@
+
+== -[S3DEngine auto_wrapper:]   (address 0x1000f9ea0  size 124  kind objc)
+  0f9f18  return
+
+== -[S3DEngine auto_wrapper:]_block_invoke   (address 0x1000f9f1c  size 52  kind block)
+  0f9f3c  call block[+0x20][+0x10]
+  0f9f4c  return
+
+== sub_1000f9f50   (address 0x1000f9f50  size 16  kind sub)
+  0f9f5c  tail Block_object_assign((a0 + 32), a1[+0x20], 7, a3)
+
+== sub_1000f9f60   (address 0x1000f9f60  size 8  kind sub)
+  0f9f64  return
+
+== -[S3DEngine dispatch:]   (address 0x1000f9f68  size 152  kind objc)
+  0f9f98  [self actionQueue]
+  0f9fb4  [self auto_wrapper:arg1]
+  0f9fcc  dispatch_async([self actionQueue], [self auto_wrapper:arg1])
+  0f9fe8  return
+
+== -[S3DEngine dispatch_after:block:]   (address 0x1000fa000  size 160  kind objc)
+  0fa034  [self actionQueue]
+  0fa050  [self auto_wrapper:arg2]
+  0fa06c  dispatch_after(arg1, [self actionQueue], [self auto_wrapper:arg2])
+  0fa088  return
+
+== -[S3DEngine AU_preSerialize:]   (address 0x1000fa0a0  size 292  kind objc)
+  0fa0c8  if (g_10042d8dc != 0) goto loc_1000fa0e4
+  0fa0d8  pthread_mutex_init(&g_10042d8e0, 0)
+  0fa0e0  store g_10042d8dc = 1
+loc_1000fa0e4:
+  0fa0ec  pthread_mutex_lock(&g_10042d8e0)
+  0fa104  [self fifo]
+  0fa120  if ((([self fifo][+0x4] + 1) & [self fifo][+0x8]) == [self fifo][+0x0]) goto loc_1000fa190
+  0fa130  if (([self fifo][+0x10] + ([self fifo][+0x4] << 3)) == 0) goto loc_1000fa190
+  0fa148  [self auto_wrapper:arg1]
+  0fa158  ([self fifo][+0x10] + ([self fifo][+0x4] << 3))[+0x0] = [self auto_wrapper:arg1]
+  0fa16c  [self fifo]
+  0fa18c  OSAtomicCompareAndSwap32([self fifo][+0x4], (([self fifo][+0x0] + 1) & [self fifo][+0x4]), [self fifo])
+loc_1000fa190:
+  0fa198  pthread_mutex_unlock(&g_10042d8e0)
+  0fa1ac  return
+
+== -[S3DEngine quietLog:format:]   (address 0x1000fa1c4  size 360  kind objc)
+  0fa1f0  if (arg1 != 5) goto loc_1000fa248
+  0fa210  [NSString alloc]
+  0fa228  [[NSString alloc] initWithFormat:arg2 arguments:&x29[0x10]]
+  0fa23c  NSLog(@"S3D:ALERT %@", [[NSString alloc] initWithFormat:arg2 arguments:&x29[0x10]])
+  0fa240  goto loc_1000fa2e4
+  0fa244  goto loc_1000fa310
+loc_1000fa248:
+  0fa258  [self traceLevel]
+  0fa264  if (flags >=u) goto loc_1000fa2ec
+  0fa284  [NSString alloc]
+  0fa29c  [[NSString alloc] initWithFormat:arg2 arguments:&x29[0x10]]
+  0fa2cc  [[[NSString alloc] initWithFormat:arg2 arguments:&x29[0x10]] UTF8String]
+  0fa2e0  fprintf(___stderrp[+0x0], "S3D:%s %s\n", sp[0], [[[NSString alloc] initWithFormat:arg2 arguments:&x29[0x10]] UTF8String])
+loc_1000fa2e4:
+loc_1000fa2ec:
+  0fa304  return
+
+== -[S3DEngine fifo]   (address 0x1000fa32c  size 20  kind objc)
+  0fa33c  return
+
+== -[S3DEngine setHeadPosition:]   (address 0x1000fa340  size 288  kind objc)
+  0fa358  if (arg1.0 == -inf) goto loc_1000fa408
+  0fa360  if (arg1.1 == -inf) goto loc_1000fa408
+  0fa368  if (arg1.2 == -inf) goto loc_1000fa408
+  0fa370  if (arg1.0 unordered arg1.1) goto loc_1000fa424
+  0fa378  if (arg1.2 unordered arg1.2) goto loc_1000fa424
+  0fa390  if (self->headPosition != arg1.0) goto loc_1000fa3b0
+  0fa39c  if (s3 != arg1.1) goto loc_1000fa3b0
+  0fa3ac  if (self->headPosition[+0x8] == arg1.2) goto loc_1000fa440
+loc_1000fa3b0:
+  0fa3b4  self->headPosition = arg1.0
+  0fa3bc  self->headPosition[+0x8] = arg1.2
+  0fa3d4  [S3DEngineDispatcher dispatcher]
+  0fa3f4  [[S3DEngineDispatcher dispatcher] setNeedsPositionUpdate:1]
+  0fa404  return
+loc_1000fa408:
+  0fa40c  &@selector(quietLog:format:)
+  0fa420  goto loc_1000fa43c
+loc_1000fa424:
+  0fa428  &@selector(quietLog:format:)
+loc_1000fa43c:
+  0fa43c  [self quietLog:0 format:one of {@"FAILED TO SET HEAD POSITION BECAUSE OF -INFINITY VALUE", @"FAILED TO SET HEAD POSITION BECAUSE OF NaN VALUE"}]
+loc_1000fa440:
+  0fa448  return
+
+== -[S3DEngine setDistanceScale:]   (address 0x1000fa460  size 116  kind objc)
+  0fa474  self->distanceScale = arg1
+  0fa48c  [S3DEngineDispatcher dispatcher]
+  0fa4ac  [[S3DEngineDispatcher dispatcher] setNeedsPositionUpdate:1]
+  0fa4bc  return
+
+== -[S3DEngine setHeadOrientation:]   (address 0x1000fa4d4  size 192  kind objc)
+  0fa4f0  if (self->headOrientation != arg1) goto loc_1000fa500
+  0fa4fc  return
+loc_1000fa500:
+  0fa50c  if (arg1 <= (or unordered) 6.28319) goto loc_1000fa52c
+loc_1000fa518:
+  0fa520  if ((s0 + -6.28319) > 6.28319) goto loc_1000fa518
+  0fa524  goto loc_1000fa52c
+loc_1000fa528:
+loc_1000fa52c:
+  0fa530  if (s0 < 0.0) goto loc_1000fa528
+  0fa534  self->headOrientation = s0
+  0fa54c  [S3DEngineDispatcher dispatcher]
+  0fa56c  [[S3DEngineDispatcher dispatcher] setNeedsPositionUpdate:1]
+  0fa57c  return
+
+== -[S3DEngine disableReverb]   (address 0x1000fa594  size 20  kind objc)
+  0fa5a0  store g_10042dbc0 = 1
+  0fa5a4  return
+
+== -[S3DEngine normalizeToHeadPosition:]   (address 0x1000fa5a8  size 320  kind objc)
+  0fa5e4  [self headPosition]
+  0fa5f4  [self headPosition]
+  0fa604  [self headPosition]
+  0fa614  t1 = (((arg1.0 - [self headPosition].0) * (arg1.0 - [self headPosition].0)) + ((arg1.1 - [self headPosition].1) * (arg1.1 - [self headPosition].1)))
+  0fa634  [self headOrientation]
+  0fa640  d0 = sin(-[self headOrientation]), d1 = cos(-[self headOrientation])
+  0fa66c  t2 = (sqrt((t1 + ((arg1.2 - [self headPosition].2) * (arg1.2 - [self headPosition].2)))) < 0.01 ? 0.05 : (arg1.1 - [self headPosition].1))
+  0fa674  t3 = (((arg1.0 - [self headPosition].0) * cos(-[self headOrientation])) - (t2 * sin(-[self headOrientation])))
+  0fa68c  [self distanceScale]
+  0fa6a4  t4 = ((t2 * cos(-[self headOrientation])) + ((arg1.0 - [self headPosition].0) * sin(-[self headOrientation])))
+  0fa6b0  [self distanceScale]
+  0fa6e4  return
+
+== +[S3DEngine setPlayListMetaPath:]   (address 0x1000fa6e8  size 44  kind objc)
+  0fa704  store g_10042dbc8 = arg1
+  0fa710  return
+
+== +[S3DEngine setHRTFPath:]   (address 0x1000fa714  size 44  kind objc)
+  0fa730  store g_10042dbd0 = arg1
+  0fa73c  return
+
+== +[S3DEngine setProductName:]   (address 0x1000fa740  size 44  kind objc)
+  0fa75c  store g_10042dbd8 = arg1
+  0fa768  return
+
+== -[S3DEngine setMasterGain:]   (address 0x1000fa76c  size 32  kind objc)
+  0fa774  store g_1004291b0 = arg1
+  0fa788  tail sub_1000e9d78((self->masterMixer + 168), _cmd)
+
+== +[S3DEngine setMasterSpatialisedGain:]   (address 0x1000fa78c  size 16  kind objc)
+  0fa794  store g_1004291b4 = arg1
+  0fa798  return
+
+== +[S3DEngine getMasterSpatialisedGain]   (address 0x1000fa79c  size 16  kind objc)
+  0fa7a8  return
+
+== -[S3DEngine getEngineVersionString]   (address 0x1000fa7ac  size 44  kind objc)
+  0fa7d4  return
+
+== +[S3DEngine disableReverb]   (address 0x1000fa7d8  size 20  kind objc)
+  0fa7e4  store g_10042dbc0 = 1
+  0fa7e8  return
+
+== -[S3DEngine dealloc]   (address 0x1000fa7ec  size 412  kind objc)
+  0fa810  [self io]
+  0fa814  if ([self io] == 0) goto loc_1000fa88c
+  0fa820  [self io]
+  0fa82c  call [self io][+0x0][+0x30]
+  0fa838  [self io]
+  0fa844  call [self io][+0x0][+0x20]
+  0fa850  [self io]
+  0fa854  if ([self io] == 0) goto loc_1000fa874
+  0fa868  call [self io][+0x0][+0x0]
+  0fa870  ZdlPv(([self io] + [self io][+0x0][+0x-10]))
+loc_1000fa874:
+  0fa888  [self setIo:0]
+loc_1000fa88c:
+  0fa8a0  [self masterMixer]
+  0fa8a4  if ([self masterMixer] == 0) goto loc_1000fa8fc
+  0fa8b0  [self masterMixer]
+  0fa8b4  sub_1000ee048([self masterMixer])
+  0fa8c0  [self masterMixer]
+  0fa8c4  if ([self masterMixer] == 0) goto loc_1000fa8e4
+  0fa8d8  call [self masterMixer][+0x0][+0x0]
+  0fa8e0  ZdlPv(([self masterMixer] + [self masterMixer][+0x0][+0x-10]))
+loc_1000fa8e4:
+  0fa8f8  [self setMasterMixer:0]
+loc_1000fa8fc:
+  0fa904  NSLog(@"S3DEngine.dealloc'd")
+  0fa928  [super dealloc]
+  0fa938  return
+  0fa960  [super dealloc]
+  0fa96c  call sub_10000b760
+  0fa980  ZdlPv()
+
+== -[S3DEngine setupCSL]   (address 0x1000fa988  size 216  kind objc)
+  0fa9a8  if (g_10042dbd0 != 0) goto loc_1000faa38
+  0fa9cc  [self quietLog:2 format:@"You can specify your own HRTF file by calling S3DEngine's"]
+  0fa9e4  [self quietLog:2 format:@"+ (void) setHRTFPath:(NSString *) path"]
+  0fa9fc  [self quietLog:2 format:@"prior to the very first call to"]
+  0faa14  [self quietLog:2 format:@"[S3DEngine engine]"]
+  0faa2c  [self quietLog:2 format:@"Using the builtin, embedded default HRTF instead."]
+  0faa34  if (g_10042dbd0 == 0) goto loc_1000faa58
+loc_1000faa38:
+  0faa44  [g_10042dbd0 UTF8String]
+loc_1000faa48:
+  0faa54  goto sub_1000f490c
+loc_1000faa58:
+  0faa5c  goto loc_1000faa48
+
+== -[S3DEngine init]   (address 0x1000faa60  size 2160  kind objc)
+  0faa8c  puts("\n**************************************************", _cmd)
+  0faa98  puts("Somethin' Else Papa Engine")
+  0faaa4  puts("(c)2012-2014 Somethin' Else Sound Directions Limited")
+  0faab0  puts("Version: 1_1_013_2014_07_22_R")
+  0faabc  puts("**************************************************\n")
+  0faac8  puts("*** PRODUCTION SOFTWARE RELEASE ***\n")
+  0faad4  puts("Licensed to SE")
+  0faaec  [NSUserDefaults standardUserDefaults]
+  0fab10  [[NSUserDefaults standardUserDefaults] objectForKey:@"peuid"]
+  0fab20  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"peuid"] != 0) goto loc_1000fab78
+  0fab28  CFUUIDCreate(0)
+  0fab34  CFUUIDCreateString(0, CFUUIDCreate(0))
+  0fab5c  [[NSUserDefaults standardUserDefaults] setObject:CFUUIDCreateString(0, CFUUIDCreate(0)) forKey:@"peuid"]
+  0fab74  [[NSUserDefaults standardUserDefaults] synchronize]
+loc_1000fab78:
+  0fab8c  if (g_10042dbd8 != 0) goto loc_1000fabac
+loc_1000fabac:
+  0fabc4  [NSString alloc]
+  0fabe0  [[NSString alloc] initWithFormat:@"http://licensing.papaengine.com/validate?license=SE&version=1_1_013_2014_07_22_R&ident=%@&…", sp[0], sp[8]]
+  0fac00  [NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://licensing.papaengine.com/validate?license=SE&version=1_1_013_2014_07_22_R&ident=%@&…", sp[0], sp[8]]]
+  0fac30  [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://licensing.papaengine.com/validate?license=SE&version=1_1_013_2014_07_22_R&ident=%@&…", sp[0], sp[8]]] cachePolicy:1 timeoutInterval:20]
+  0fac4c  [NSURLConnection alloc]
+  0fac64  [[NSURLConnection alloc] initWithRequest:[NSMutableURLRequest requestWithURL:[NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://licensing.papaengine.com/validate?license=SE&version=1_1_013_2014_07_22_R&ident=%@&…", sp[0], sp[8]]] cachePolicy:1 timeoutInterval:20] delegate:self]
+  0fac90  [super init]
+  0fac98  if (self == 0) goto loc_1000fb194
+  0facac  dispatch_queue_create("com.somethinelse.S3DSounds.actions", 0)
+  0facc4  [self setActionQueue:dispatch_queue_create("com.somethinelse.S3DSounds.actions", 0)]
+  0facd8  dispatch_queue_create("com.somethinelse.S3DSounds.callbacks", 0)
+  0facf0  [self setCallbackQueue:dispatch_queue_create("com.somethinelse.S3DSounds.callbacks", 0)]
+  0facf8  if (g_10042dbc8 != 0) goto loc_1000fad0c
+  0fad08  store g_10042dbc8 = g_100429188
+loc_1000fad0c:
+  0fad20  [self setupCSL]
+  0fad3c  [self setTraceLevel:0]
+  0fad60  [self setHeadPosition:{0, 0, 0}]
+  0fad80  [self setHeadOrientation:0]
+  0fada0  [self setMaxSpatialGain:100]
+  0fadf4  [self dispatch:^{-[S3DEngine init]_block_invoke captures +0x20=self, +0x28=self, +0x30=S3DEngine}]
+  0fadfc  Znwm(400)
+  0fae0c  sub_1000eda70(Znwm(400), 2)
+  0fae24  [self setMasterMixer:Znwm(400)]
+  0fae2c  Znwm(400)
+  0fae3c  sub_1000eda70(Znwm(400), 2)
+  0fae54  [self setDryMixer:Znwm(400)]
+  0fae5c  Znwm(400)
+  0fae6c  sub_1000eda70(Znwm(400), 2)
+  0fae84  [self setWetMixer:Znwm(400)]
+  0fae8c  if (!(g_10042dbc0 & 1)) goto loc_1000faf00
+  0faea4  [self masterMixer]
+  0faebc  [self dryMixer]
+  0faec8  sub_1000edd54([self masterMixer], [self dryMixer])
+  0faed4  [self masterMixer]
+  0faeec  [self wetMixer]
+  0faef8  sub_1000edd54([self masterMixer], [self wetMixer])
+  0faefc  goto loc_1000fb01c
+loc_1000faf00:
+  0faf04  Znwm(328)
+  0faf1c  [self wetMixer]
+  0faf28  sub_1000ed088(Znwm(328), [self wetMixer])
+  0faf40  [self setReverb:Znwm(328)]
+  0faf58  [self reverb]
+  0faf64  sub_1000ed4e8([self reverb])
+  0faf70  [self reverb]
+  0faf78  sub_1000ed574([self reverb])
+  0faf84  [self reverb]
+  0faf8c  sub_1000ed600([self reverb])
+  0faf98  [self reverb]
+  0fafa0  sub_1000ed674([self reverb])
+  0fafac  [self reverb]
+  0fafb4  sub_1000ed444([self reverb], 1)
+  0fafcc  [self masterMixer]
+  0fafe4  [self dryMixer]
+  0faff0  sub_1000edd54([self masterMixer], [self dryMixer])
+  0faffc  [self masterMixer]
+  0fb00c  [self reverb]
+  0fb018  sub_1000edd54([self masterMixer], [self reverb])
+loc_1000fb01c:
+  0fb020  Znwm(296)
+  0fb02c  sub_1000e3dc0(Znwm(296))
+  0fb044  [self setIo:Znwm(296)]
+  0fb05c  [self io]
+  0fb074  [self masterMixer]
+  0fb080  sub_1000eb178([self io], [self masterMixer])
+  0fb08c  [self io]
+  0fb098  call [self io][+0x0][+0x18]
+  0fb0a4  [self io]
+  0fb0b0  call [self io][+0x0][+0x28]
+  0fb0cc  [NSMutableDictionary dictionaryWithCapacity:5]
+  0fb0f0  [self setPlayListCache:[NSMutableDictionary dictionaryWithCapacity:5]]
+  0fb110  [self setReverbRoomSize:1.5]
+  0fb128  [self setReverbVolume:1]
+  0fb144  [self setReverbDampening:50]
+  0fb164  [self quietLog:2 format:@"S3DEngine initialized."]
+  0fb184  [self setMasterGain:1]
+loc_1000fb194:
+  0fb1f8  return
+  0fb2a8  ZdlPv()
+  0fb2b8  ZdlPv()
+
+== -[S3DEngine init]_block_invoke   (address 0x1000fb2d0  size 140  kind block)
+  0fb2f4  [self setDistanceScale:1]
+  0fb310  [S3DEngineDispatcher dispatcher]
+  0fb334  [self setDispatcher:[S3DEngineDispatcher dispatcher]]
+  0fb344  return
+
+== sub_1000fb35c   (address 0x1000fb35c  size 8  kind sub)
+
+== sub_1000fb364   (address 0x1000fb364  size 8  kind sub)
+  0fb368  return
+
+== +[S3DEngine engine]   (address 0x1000fb36c  size 68  kind objc)
+  0fb388  if (g_10042dbe8 != -1) goto loc_1000fb39c
+loc_1000fb38c:
+loc_1000fb39c:
+  0fb3a8  dispatch_once(&g_10042dbe8, ^{+[S3DEngine engine]_block_invoke})
+  0fb3ac  goto loc_1000fb38c
+
+== +[S3DEngine engine]_block_invoke   (address 0x1000fb3b0  size 76  kind block)
+  0fb3cc  [S3DEngine alloc]
+  0fb3dc  [[S3DEngine alloc] init]
+  0fb3ec  store g_10042dbe0 = [[S3DEngine alloc] init]
+  0fb3f8  return
+
+== -[S3DEngine staticPlayLists]   (address 0x1000fb3fc  size 1948  kind objc)
+  0fb448  [self quietLog:2 format:@"retreiving [S3DEngine staticPlayLists]"]
+  0fb46c  [S3DRepo repoForBundlePath:g_10042dbc8]
+  0fb490  [S3DPlayListModel class]
+  0fb500  [[S3DRepo repoForBundlePath:g_10042dbc8] each:[S3DPlayListModel class] block:^{-[S3DEngine staticPlayLists]_block_invoke captures +0x20=[S3DRepo repoForBundlePath:g_10042dbc8], +0x28=self}]
+  0fb528  [self playListCache]
+  0fb54c  [[self playListCache] allValues]
+  0fb588  [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xd8] count:16]
+  0fb58c  if ([[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xd8] count:16] == 0) goto loc_1000fb9dc
+  0fb5fc  &@selector(addObject:)
+loc_1000fb604:
+loc_1000fb614:
+  0fb624  if (x8 == x9) goto loc_1000fb630
+  0fb62c  objc_enumerationMutation([[self playListCache] allValues])
+loc_1000fb630:
+  0fb644  [x0 model]
+  0fb658  [[x0 model] nested_xIds]
+  0fb66c  [[[x0 model] nested_xIds] count]
+  0fb684  if ([[[x0 model] nested_xIds] count] == 0) goto loc_1000fb998
+  0fb6a0  [x0 model]
+  0fb6b4  [[x0 model] nested_xIds]
+  0fb6e4  [[[x0 model] nested_xIds] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x2f8] count:16]
+  0fb6e8  if ([[[x0 model] nested_xIds] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x2f8] count:16] == 0) goto loc_1000fb990
+loc_1000fb6f8:
+loc_1000fb700:
+  0fb710  if (x8 == x9) goto loc_1000fb71c
+  0fb718  objc_enumerationMutation([[x0 model] nested_xIds])
+loc_1000fb71c:
+  0fb73c  [self playListCache]
+  0fb754  [[self playListCache] allValues]
+  0fb784  [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x108] objects:&sp[0x278] count:16]
+  0fb788  if ([[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x108] objects:&sp[0x278] count:16] == 0) goto loc_1000fb958
+loc_1000fb798:
+loc_1000fb7a0:
+  0fb7b0  if (x8 == x9) goto loc_1000fb7bc
+  0fb7b8  objc_enumerationMutation([[self playListCache] allValues])
+loc_1000fb7bc:
+  0fb7cc  [x0 model]
+  0fb7e0  [[x0 model] xId]
+  0fb7fc  [[[x0 model] xId] compare:x2]
+  0fb814  if ([[[x0 model] xId] compare:x2] != 0) goto loc_1000fb92c
+  0fb830  [x0 model]
+  0fb844  [[x0 model] playList]
+  0fb870  [[[x0 model] playList] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1f8] count:16]
+  0fb878  if ([[[x0 model] playList] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1f8] count:16] == 0) goto loc_1000fb920
+loc_1000fb884:
+loc_1000fb888:
+  0fb894  if (x8 == x25) goto loc_1000fb8a0
+  0fb89c  objc_enumerationMutation([[x0 model] playList])
+loc_1000fb8a0:
+  0fb8b0  [x0 model]
+  0fb8c4  [[x0 model] playList]
+  0fb8e8  [[[x0 model] playList] addObject:x2]
+  0fb8fc  if ((x27 + 1) <u [[[x0 model] playList] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1f8] count:16]) goto loc_1000fb888
+  0fb914  [[[x0 model] playList] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1f8] count:16]
+  0fb91c  if ([[[x0 model] playList] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x1f8] count:16] != 0) goto loc_1000fb884
+loc_1000fb920:
+loc_1000fb92c:
+  0fb938  if ((x21 + 1) <u [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x108] objects:&sp[0x278] count:16]) goto loc_1000fb7a0
+  0fb950  [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x108] objects:&sp[0x278] count:16]
+  0fb954  if ([[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x108] objects:&sp[0x278] count:16] != 0) goto loc_1000fb798
+loc_1000fb958:
+  0fb970  if ((x19 + 1) <u [[[x0 model] nested_xIds] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x2f8] count:16]) goto loc_1000fb700
+  0fb988  [[[x0 model] nested_xIds] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x2f8] count:16]
+  0fb98c  if ([[[x0 model] nested_xIds] countByEnumeratingWithState:&sp[0x148] objects:&sp[0x2f8] count:16] != 0) goto loc_1000fb6f8
+loc_1000fb990:
+loc_1000fb998:
+  0fb9ac  if ((x9 + 1) <u [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xd8] count:16]) goto loc_1000fb614
+  0fb9c4  [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xd8] count:16]
+  0fb9d8  if ([[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xd8] count:16] != 0) goto loc_1000fb604
+loc_1000fb9dc:
+  0fb9e8  [self playListCache]
+  0fb9fc  [[self playListCache] allValues]
+  0fba58  return
+
+== -[S3DEngine staticPlayLists]_block_invoke   (address 0x1000fbb98  size 1076  kind block)
+  0fbbdc  [S3DPlayList alloc]
+  0fbbec  [[S3DPlayList alloc] init]
+  0fbc08  [[S3DRepo repoForBundlePath:g_10042dbc8] load:blockarg1]
+  0fbc2c  [[[S3DPlayList alloc] init] setModel:[[S3DRepo repoForBundlePath:g_10042dbc8] load:blockarg1]]
+  0fbc4c  [[[S3DPlayList alloc] init] model]
+  0fbc6c  [[[[S3DPlayList alloc] init] model] setXId:blockarg1]
+  0fbca0  [[[S3DPlayList alloc] init] name]
+  0fbcd0  [NSString stringWithFormat:@"%@/%@", g_10042dbc8, [[[S3DPlayList alloc] init] name]]
+  0fbd0c  [self quietLog:3 format:@"caching playlist with global key %@"]
+  0fbd20  [self playListCache]
+  0fbd44  [[self playListCache] setObject:[[S3DPlayList alloc] init] forKey:[NSString stringWithFormat:@"%@/%@", g_10042dbc8, [[[S3DPlayList alloc] init] name]]]
+  0fbd58  [[[S3DPlayList alloc] init] model]
+  0fbd78  [[[[S3DPlayList alloc] init] model] xId]
+  0fbd90  [[[S3DPlayList alloc] init] model]
+  0fbdac  [[[[S3DPlayList alloc] init] model] name]
+  0fbdd0  [[[[[S3DPlayList alloc] init] model] xId] hasPrefix:[[[[S3DPlayList alloc] init] model] name]]
+  0fbdfc  if (([[[[[S3DPlayList alloc] init] model] xId] hasPrefix:[[[[S3DPlayList alloc] init] model] name]] & 1)) goto loc_1000fbe9c
+  0fbe0c  [[[S3DPlayList alloc] init] model]
+  0fbe24  [[[[S3DPlayList alloc] init] model] xId]
+  0fbe3c  [[[S3DPlayList alloc] init] model]
+  0fbe50  [[[[S3DPlayList alloc] init] model] name]
+  0fbe78  [self quietLog:1 format:@"PlayList %@ has an inconsistent internal name: %@"]
+loc_1000fbe9c:
+  0fbecc  return
+
+== sub_1000fbfcc   (address 0x1000fbfcc  size 40  kind sub)
+
+== sub_1000fbff4   (address 0x1000fbff4  size 40  kind sub)
+  0fc018  return
+
+== -[S3DEngine playListWithName:]   (address 0x1000fc01c  size 52  kind objc)
+  0fc03c  [self playListWithName:arg1 atBundlePath:g_10042dbc8]
+  0fc04c  return
+
+== -[S3DEngine playListWithName:atBundlePath:]   (address 0x1000fc050  size 816  kind objc)
+  0fc090  if (arg2 == 0) goto loc_1000fc09c
+  0fc098  goto loc_1000fc0bc
+loc_1000fc09c:
+  0fc0b0  if (g_10042dbc8 != 0) goto loc_1000fc0c4
+loc_1000fc0bc:
+loc_1000fc0c4:
+  0fc0e8  [NSString stringWithFormat:@"%@/%@", sp[0], arg1]
+  0fc110  [self playListCache]
+  0fc134  [[self playListCache] objectForKey:[NSString stringWithFormat:@"%@/%@", sp[0], arg1]]
+  0fc14c  if ([[self playListCache] objectForKey:[NSString stringWithFormat:@"%@/%@", sp[0], arg1]] != 0) goto loc_1000fc290
+  0fc178  store g_10042dbc8 = x0
+  0fc194  [self staticPlayLists]
+  0fc1b8  store g_10042dbc8 = g_10042dbc8
+  0fc1d8  [NSString stringWithFormat:@"%@/%@", g_10042dbc8, arg1]
+  0fc1f8  [self playListCache]
+  0fc210  [[self playListCache] objectForKey:[NSString stringWithFormat:@"%@/%@", g_10042dbc8, arg1]]
+  0fc234  if ([[self playListCache] objectForKey:[NSString stringWithFormat:@"%@/%@", g_10042dbc8, arg1]] != 0) goto loc_1000fc288
+  0fc24c  [S3DEngine engine]
+  0fc278  [[S3DEngine engine] quietLog:1 format:@"playlist for %@ not found, returning nil."]
+loc_1000fc288:
+loc_1000fc290:
+  0fc2d4  return
+
+== -[S3DEngine getListOfPlaylists]   (address 0x1000fc380  size 252  kind objc)
+  0fc3b0  [self->playListCache count]
+  0fc3cc  [NSMutableArray alloc]
+  0fc3e0  [[NSMutableArray alloc] initWithCapacity:[self->playListCache count]]
+  0fc434  [self->playListCache enumerateKeysAndObjectsUsingBlock:^{-[S3DEngine getListOfPlaylists]_block_invoke captures +0x20=[[NSMutableArray alloc] initWithCapacity…}]
+  0fc45c  return
+
+== -[S3DEngine getListOfPlaylists]_block_invoke   (address 0x1000fc47c  size 36  kind block)
+  0fc494  [[[NSMutableArray alloc] initWithCapacity:[self->playListCache count]] addObject:blockarg2]
+  0fc49c  return
+
+== sub_1000fc4a0   (address 0x1000fc4a0  size 8  kind sub)
+
+== sub_1000fc4a8   (address 0x1000fc4a8  size 8  kind sub)
+  0fc4ac  return
+
+== -[S3DEngine getListOfActivePlaylists]   (address 0x1000fc4b0  size 252  kind objc)
+  0fc4e0  [self->playListCache count]
+  0fc4fc  [NSMutableArray alloc]
+  0fc510  [[NSMutableArray alloc] initWithCapacity:[self->playListCache count]]
+  0fc564  [self->playListCache enumerateKeysAndObjectsUsingBlock:^{-[S3DEngine getListOfActivePlaylists]_block_invoke captures +0x20=[[NSMutableArray alloc] initWithCapacity…}]
+  0fc58c  return
+
+== -[S3DEngine getListOfActivePlaylists]_block_invoke   (address 0x1000fc5ac  size 108  kind block)
+  0fc5d4  [blockarg2 isActive]
+  0fc5d8  if ([blockarg2 isActive] == 0) goto loc_1000fc5f4
+  0fc5f0  [[[NSMutableArray alloc] initWithCapacity:[self->playListCache count]] addObject:blockarg2]
+loc_1000fc5f4:
+  0fc600  return
+
+== sub_1000fc618   (address 0x1000fc618  size 8  kind sub)
+
+== sub_1000fc620   (address 0x1000fc620  size 8  kind sub)
+  0fc624  return
+
+== -[S3DEngine stopAll]   (address 0x1000fc628  size 372  kind objc)
+  0fc670  [self playListCache]
+  0fc68c  [[self playListCache] allValues]
+  0fc6c4  [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0fc6cc  if ([[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000fc740
+  0fc6dc  &@selector(stopAll)
+loc_1000fc6e4:
+loc_1000fc6e8:
+  0fc6f4  if (x8 == x24) goto loc_1000fc700
+  0fc6fc  objc_enumerationMutation([[self playListCache] allValues])
+loc_1000fc700:
+  0fc708  if (x0 == 0) goto loc_1000fc714
+  0fc710  [x0 stopAll]
+loc_1000fc714:
+  0fc71c  if ((x25 + 1) <u [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000fc6e8
+  0fc734  [[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0fc73c  if ([[[self playListCache] allValues] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000fc6e4
+loc_1000fc740:
+  0fc76c  return
+
+== -[S3DEngine setReverbRoomSize:]   (address 0x1000fc79c  size 124  kind objc)
+  0fc7d0  [self reverb]
+  0fc7d4  if ([self reverb] == 0) goto loc_1000fc808
+  0fc7f0  [self reverb]
+  0fc804  tail sub_1000ed4e8([self reverb])
+loc_1000fc808:
+  0fc814  return
+
+== -[S3DEngine setReverbDampening:]   (address 0x1000fc818  size 120  kind objc)
+  0fc848  [self reverb]
+  0fc84c  if ([self reverb] == 0) goto loc_1000fc880
+  0fc868  [self reverb]
+  0fc87c  tail sub_1000ed574([self reverb])
+loc_1000fc880:
+  0fc88c  return
+
+== -[S3DEngine setReverbVolume:]   (address 0x1000fc890  size 116  kind objc)
+  0fc8c0  [self reverb]
+  0fc8c4  if ([self reverb] == 0) goto loc_1000fc8f4
+  0fc8dc  [self reverb]
+  0fc8f0  tail sub_1000ed600([self reverb])
+loc_1000fc8f4:
+  0fc900  return
+
+== -[S3DEngine fadeAllBut:]   (address 0x1000fc904  size 148  kind objc)
+  0fc934  [S3DEngineDispatcher dispatcher]
+  0fc954  [[S3DEngineDispatcher dispatcher] fadeAllBut:arg1]
+  0fc970  return
+
+== +[S3DEngine dumpSoundFileList]   (address 0x1000fc998  size 4  kind objc)
+  0fc998  tail sub_1000e4390(S3DEngine, _cmd)
+
+== +[S3DEngine metric_Enable:]   (address 0x1000fc99c  size 16  kind objc)
+  0fc9a4  store g_10042d870 = arg1
+  0fc9a8  return
+
+== +[S3DEngine metric_MixPercent]   (address 0x1000fc9ac  size 16  kind objc)
+  0fc9b8  return
+
+== +[S3DEngine metric_MixPercentLP]   (address 0x1000fc9bc  size 16  kind objc)
+  0fc9c8  return
+
+== +[S3DEngine metric_MixPercentMax]   (address 0x1000fc9cc  size 16  kind objc)
+  0fc9d8  return
+
+== +[S3DEngine metric_OpsPercent]   (address 0x1000fc9dc  size 16  kind objc)
+  0fc9e8  return
+
+== +[S3DEngine metric_OpsPercentLP]   (address 0x1000fc9ec  size 16  kind objc)
+  0fc9f8  return
+
+== +[S3DEngine metric_OpsPercentMax]   (address 0x1000fc9fc  size 16  kind objc)
+  0fca08  return
+
+== +[S3DEngine metric_TotalPercent]   (address 0x1000fca0c  size 16  kind objc)
+  0fca18  return
+
+== +[S3DEngine metric_TotalPercentLP]   (address 0x1000fca1c  size 16  kind objc)
+  0fca28  return
+
+== +[S3DEngine metric_TotalPercentMax]   (address 0x1000fca2c  size 16  kind objc)
+  0fca38  return
+
+== +[S3DEngine metric_NumSoundsLoaded]   (address 0x1000fca3c  size 16  kind objc)
+  0fca48  return
+
+== +[S3DEngine metric_NumActiveSpatialSounds]   (address 0x1000fca4c  size 16  kind objc)
+  0fca58  return
+
+== +[S3DEngine metric_NumActiveNonSpatialSounds]   (address 0x1000fca5c  size 16  kind objc)
+  0fca68  return
+
+== +[S3DEngine metric_NumActiveSounds]   (address 0x1000fca6c  size 16  kind objc)
+  0fca78  return
+
+== +[S3DEngine metric_BufferBytesAllocated]   (address 0x1000fca7c  size 16  kind objc)
+  0fca88  return
+
+== +[S3DEngine metric_MaxMixTimeSeconds]   (address 0x1000fca8c  size 16  kind objc)
+  0fca98  return
+
+== +[S3DEngine metric_app_cpu_usage]   (address 0x1000fca9c  size 392  kind objc)
+  0fcaf4  task_info(_mach_task_self_[+0x0], 18, (&sp[0x1000] + 40), &sp[0x24])
+  0fcaf8  if (task_info(_mach_task_self_[+0x0], 18, (&sp[0x1000] + 40), &sp[0x24]) == 0) goto loc_1000fcb04
+  0fcb00  goto loc_1000fcbd0
+loc_1000fcb04:
+  0fcb10  task_threads(_mach_task_self_[+0x0], &sp[0x18], &sp[0x14])
+  0fcb18  if (task_threads(_mach_task_self_[+0x0], &sp[0x18], &sp[0x14]) != 0) goto loc_1000fcbd0
+  0fcb20  if (w8 == 0) goto loc_1000fcbac
+loc_1000fcb44:
+  0fcb5c  thread_info(x0, 3, &sp[0x28], &sp[0x10])
+  0fcb60  if (thread_info(x0, 3, &sp[0x28], &sp[0x10]) != 0) goto loc_1000fcbd0
+  0fcb6c  if ((w8 & (1<<1))) goto loc_1000fcb90
+loc_1000fcb90:
+  0fcba0  if ((x21 + 1) <u w8) goto loc_1000fcb44
+  0fcba8  goto loc_1000fcbb8
+loc_1000fcbac:
+loc_1000fcbb8:
+  0fcbc0  vm_deallocate(_mach_task_self_[+0x0])
+  0fcbcc  if (vm_deallocate(_mach_task_self_[+0x0]) != 0) goto loc_1000fcc04
+loc_1000fcbd0:
+  0fcbfc  return
+  0fcc20  assert_rtn("+[S3DEngine metric_app_cpu_usage]", "/Users/antoinepastor/Documents/Dev_iPhone/Papa Sangre/s3dapi/source/S3D/S3DEngine.mm", 1113, "kr == KERN_SUCCESS")
+
+== +[S3DEngine engineVersion]   (address 0x1000fcc24  size 44  kind objc)
+  0fcc4c  return
+
+== -[S3DEngine headPosition]   (address 0x1000fcc50  size 24  kind objc)
+  0fcc64  return
+
+== -[S3DEngine headOrientation]   (address 0x1000fcc68  size 16  kind objc)
+  0fcc74  return
+
+== -[S3DEngine distanceScale]   (address 0x1000fcc78  size 16  kind objc)
+  0fcc84  return
+
+== -[S3DEngine maxSpatialGain]   (address 0x1000fcc88  size 16  kind objc)
+  0fcc94  return
+
+== -[S3DEngine setMaxSpatialGain:]   (address 0x1000fcc98  size 16  kind objc)
+  0fcca0  self->maxSpatialGain = arg1
+  0fcca4  return
+
+== -[S3DEngine playListCache]   (address 0x1000fcca8  size 16  kind objc)
+  0fccb4  return
+
+== -[S3DEngine setPlayListCache:]   (address 0x1000fccb8  size 56  kind objc)
+  0fccdc  self->playListCache = arg1
+  0fccec  return
+
+== -[S3DEngine traceLevel]   (address 0x1000fccf0  size 16  kind objc)
+  0fccfc  return
+
+== -[S3DEngine setTraceLevel:]   (address 0x1000fcd00  size 16  kind objc)
+  0fcd08  self->traceLevel = arg1
+  0fcd0c  return
+
+== -[S3DEngine dispatcher]   (address 0x1000fcd10  size 16  kind objc)
+  0fcd1c  return
+
+== -[S3DEngine setDispatcher:]   (address 0x1000fcd20  size 56  kind objc)
+  0fcd44  self->dispatcher = arg1
+  0fcd54  return
+
+== -[S3DEngine setFifo:]   (address 0x1000fcd58  size 16  kind objc)
+  0fcd60  self->fifo = arg1
+  0fcd64  return
+
+== -[S3DEngine masterMixer]   (address 0x1000fcd68  size 16  kind objc)
+  0fcd74  return
+
+== -[S3DEngine setMasterMixer:]   (address 0x1000fcd78  size 16  kind objc)
+  0fcd80  self->masterMixer = arg1
+  0fcd84  return
+
+== -[S3DEngine io]   (address 0x1000fcd88  size 16  kind objc)
+  0fcd94  return
+
+== -[S3DEngine setIo:]   (address 0x1000fcd98  size 16  kind objc)
+  0fcda0  self->io = arg1
+  0fcda4  return
+
+== -[S3DEngine dryMixer]   (address 0x1000fcda8  size 16  kind objc)
+  0fcdb4  return
+
+== -[S3DEngine setDryMixer:]   (address 0x1000fcdb8  size 16  kind objc)
+  0fcdc0  self->dryMixer = arg1
+  0fcdc4  return
+
+== -[S3DEngine wetMixer]   (address 0x1000fcdc8  size 16  kind objc)
+  0fcdd4  return
+
+== -[S3DEngine setWetMixer:]   (address 0x1000fcdd8  size 16  kind objc)
+  0fcde0  self->wetMixer = arg1
+  0fcde4  return
+
+== -[S3DEngine reverb]   (address 0x1000fcde8  size 16  kind objc)
+  0fcdf4  return
+
+== -[S3DEngine setReverb:]   (address 0x1000fcdf8  size 16  kind objc)
+  0fce00  self->reverb = arg1
+  0fce04  return
+
+== -[S3DEngine actionQueue]   (address 0x1000fce08  size 16  kind objc)
+  0fce14  return
+
+== -[S3DEngine setActionQueue:]   (address 0x1000fce18  size 16  kind objc)
+  0fce20  self->actionQueue = arg1
+  0fce24  return
+
+== -[S3DEngine callbackQueue]   (address 0x1000fce28  size 16  kind objc)
+  0fce34  return
+
+== -[S3DEngine setCallbackQueue:]   (address 0x1000fce38  size 16  kind objc)
+  0fce40  self->callbackQueue = arg1
+  0fce44  return
+
+== -[S3DEngine receivedData]   (address 0x1000fce48  size 16  kind objc)
+  0fce54  return
+
+== -[S3DEngine setReceivedData:]   (address 0x1000fce58  size 16  kind objc)
+  0fce60  self->receivedData = arg1
+  0fce64  return
+
+== -[S3DEngine .cxx_destruct]   (address 0x1000fce68  size 64  kind objc)
+
+== -[S3DEngine .cxx_construct]   (address 0x1000fcea8  size 4  kind objc)
+  0fcea8  return

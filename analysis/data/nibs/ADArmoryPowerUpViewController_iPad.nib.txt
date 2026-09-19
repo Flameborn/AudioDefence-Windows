@@ -1,0 +1,12 @@
+// ADArmoryPowerUpViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #19 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #10 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #7 UIView  
+    #1 UITableView  
+
+CONNECTIONS
+  outlet  tableView                                 #19 UIProxyObject --> #1 UITableView
+  outlet  view                                      #19 UIProxyObject --> #7 UIView
+
+ACCESSIBILITY CONFIGURATIONS

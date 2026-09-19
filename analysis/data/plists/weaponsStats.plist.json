@@ -1,0 +1,12 @@
+{
+ "pistol": {
+  "shotsHit": 0,
+  "shotsFired": 0,
+  "kills": 0
+ },
+ "microsmg": {
+  "shotsHit": 0,
+  "shotsFired": 0,
+  "kills": 0
+ }
+}

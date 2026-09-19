@@ -1,0 +1,242 @@
+
+== -[ADArmoryPowerUpViewController viewDidLoad]   (address 0x10003a3cc  size 732  kind objc)
+  03a404  [super viewDidLoad]
+  03a41c  [self tableView]
+  03a43c  [[self tableView] setDataSource:self]
+  03a450  [self tableView]
+  03a470  [[self tableView] setDelegate:self]
+  03a484  [self tableView]
+  03a4a8  [UIColor clearColor]
+  03a4cc  [[self tableView] setBackgroundColor:[UIColor clearColor]]
+  03a4f4  [ADGameParameters sharedParameters]
+  03a510  [[ADGameParameters sharedParameters] isIphone]
+  03a528  [self tableView]
+  03a544  &@selector(nibWithNibName:bundle:)
+  03a54c  if ([[ADGameParameters sharedParameters] isIphone] == 0) goto loc_10003a594
+  03a55c  [UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles" bundle:0]
+  03a588  [[self tableView] registerNib:[UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles" bundle:0] forCellReuseIdentifier:@"powerupcell"]
+  03a58c  goto loc_10003a5d0
+  03a590  goto loc_10003a68c
+loc_10003a594:
+  03a5a0  [UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles_iPad" bundle:0]
+  03a5cc  [[self tableView] registerNib:[UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles_iPad" bundle:0] forCellReuseIdentifier:@"powerupcell"]
+loc_10003a5d0:
+  03a5f4  [NSNotificationCenter defaultCenter]
+  03a62c  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePowerUpUpgrade:) name:@"POWERUP_UPGRADE_EVENT" object:0]
+  03a648  return
+
+== -[ADArmoryPowerUpViewController loadView]   (address 0x10003a6a8  size 260  kind objc)
+  03a6f4  [NSNumber numberWithInt:1]
+  03a728  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  03a75c  [self loADViewBasedOnDeviceWithNibName:@"ADArmoryPowerUpViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  03a784  return
+
+== -[ADArmoryPowerUpViewController handleBackActionFromStatusBar]   (address 0x10003a7ac  size 16  kind objc)
+  03a7b8  tail [self removeDetailView]
+
+== -[ADArmoryPowerUpViewController handlePowerUpUpgrade:]   (address 0x10003a7bc  size 100  kind objc)
+  03a7d4  [self tableView]
+  03a7f0  [[self tableView] reloadData]
+  03a800  return
+
+== -[ADArmoryPowerUpViewController tableView:heightForRowAtIndexPath:]   (address 0x10003a820  size 140  kind objc)
+  03a840  [ADGameParameters sharedParameters]
+  03a85c  [[ADGameParameters sharedParameters] isIphone]
+  03a88c  return
+
+== -[ADArmoryPowerUpViewController numberOfSectionsInTableView:]   (address 0x10003a8ac  size 8  kind objc)
+  03a8b0  return
+
+== -[ADArmoryPowerUpViewController tableView:numberOfRowsInSection:]   (address 0x10003a8b4  size 184  kind objc)
+  03a8d8  [ADWeaponManager sharedWeaponManager]
+  03a8f4  [[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray]
+  03a910  [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] count]
+  03a938  return
+
+== -[ADArmoryPowerUpViewController tableView:cellForRowAtIndexPath:]   (address 0x10003a96c  size 2692  kind objc)
+  03a9c4  [arg1 dequeueReusableCellWithIdentifier:@"powerupcell"]
+  03a9f0  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton]
+  03aa2c  [UIColor colorWithRed:0.046875 green:0.1875 blue:0.382812 alpha:1]
+  03aa54  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton] setBackgroundColor:[UIColor colorWithRed:0.046875 green:0.1875 blue:0.382812 alpha:1]]
+  03aa70  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton]
+  03aa94  [UIColor whiteColor]
+  03aabc  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton] setTitleColor:[UIColor whiteColor] forState:0]
+  03aae0  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] image]
+  03ab1c  [ADWeaponManager sharedWeaponManager]
+  03ab3c  [[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray]
+  03ab60  [arg2 row]
+  03ab7c  [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]]
+  03aba4  [[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  03abd4  [NSString stringWithFormat:@"%@_icon", [[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg…]
+  03abfc  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg…]]
+  03ac24  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] image] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg…]]]
+  03ac78  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel]
+  03ac94  [ADWeaponManager sharedWeaponManager]
+  03aca8  [[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray]
+  03acc0  [arg2 row]
+  03acd0  [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]]
+  03acec  [[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]] objectForKey:@"upgradeText"]
+  03ad14  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] setText:[[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]] objectForKey:@"upgradeText"]]
+  03ad54  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] titleLabel]
+  03ad70  [ADWeaponManager sharedWeaponManager]
+  03ad84  [[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray]
+  03ad9c  [arg2 row]
+  03adac  [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]]
+  03adc8  [[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]] objectForKey:@"displayName"]
+  03ade4  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] titleLabel] setText:[[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]] objectForKey:@"displayName"]]
+  03ae28  [ADInventory sharedInventory]
+  03ae44  [ADWeaponManager sharedWeaponManager]
+  03ae58  [[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray]
+  03ae70  [arg2 row]
+  03ae80  [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]]
+  03ae9c  [[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]
+  03aec0  [[ADInventory sharedInventory] levelForPowerUpWithName:[[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]] objectForKey:@"name"]]
+  03aef4  if ([[ADInventory sharedInventory] levelForPowerUpWithName:[[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] obj… < 4) goto loc_10003af34
+  03af00  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton]
+  03af28  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton] setTitle:@"VIEW" forState:0]
+  03af2c  goto loc_10003af68
+  03af30  goto loc_10003b378
+loc_10003af34:
+  03af3c  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton]
+  03af64  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton] setTitle:@"UPGRADE" forState:0]
+loc_10003af68:
+  03af70  UIAccessibilityIsVoiceOverRunning()
+  03af74  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10003b0fc
+  03af80  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton]
+  03afa0  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] buyUpgradeButton] setHidden:1]
+  03afb0  if ([[ADInventory sharedInventory] levelForPowerUpWithName:[[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] obj… < 4) goto loc_10003b04c
+  03afbc  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel]
+  03afdc  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel]
+  03aff8  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] text]
+  03b024  [NSString stringWithFormat:@"%@ %@", [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] text], @"double tap to view"]
+  03b040  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] setText:[NSString stringWithFormat:@"%@ %@", [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] text], @"double tap to view"]]
+  03b044  goto loc_10003b0dc
+  03b048  goto loc_10003b3b4
+loc_10003b04c:
+  03b054  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel]
+  03b074  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel]
+  03b090  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] text]
+  03b0bc  [NSString stringWithFormat:@"%@ %@", [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] text], @"double tap to upgrade"]
+  03b0d8  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] setText:[NSString stringWithFormat:@"%@ %@", [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] detailLabel] text], @"double tap to upgrade"]]
+loc_10003b0dc:
+loc_10003b0fc:
+  03b10c  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] statusLevel]
+  03b13c  [NSString stringWithFormat:@"badge_level%d.png", [[ADInventory sharedInventory] levelForPowerUpWithName:[[[[ADWeaponManager share…]
+  03b158  [UIImage imageNamed:[NSString stringWithFormat:@"badge_level%d.png", [[ADInventory sharedInventory] levelForPowerUpWithName:[[[[ADWeaponManager share…]]
+  03b174  [[[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] statusLevel] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"badge_level%d.png", [[ADInventory sharedInventory] levelForPowerUpWithName:[[[[ADWeaponManager share…]]]
+  03b1a4  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] setSelectionStyle:0]
+  03b1bc  [UIColor clearColor]
+  03b1d8  [[arg1 dequeueReusableCellWithIdentifier:@"powerupcell"] setBackgroundColor:[UIColor clearColor]]
+  03b20c  return
+
+== -[ADArmoryPowerUpViewController playSound]   (address 0x10003b3f0  size 252  kind objc)
+  03b414  [S3DEngine engine]
+  03b438  [[S3DEngine engine] playListWithName:@"buttons"]
+  03b45c  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  03b490  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  03b4a4  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  03b4b8  return
+
+== -[ADArmoryPowerUpViewController tableView:didSelectRowAtIndexPath:]   (address 0x10003b4ec  size 1308  kind objc)
+  03b524  [arg2 row]
+  03b53c  [self playSound]
+  03b554  [ADArmoryPowerUpUpgraderViewController alloc]
+  03b570  [ADWeaponManager sharedWeaponManager]
+  03b58c  [[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray]
+  03b5ac  [[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]]
+  03b5d0  [[ADArmoryPowerUpUpgraderViewController alloc] initWithPowerupDictionary:[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]]]
+  03b5e0  self->detailView = [[ADArmoryPowerUpUpgraderViewController alloc] initWithPowerupDictionary:[[[ADWeaponManager sharedWeaponManager] getAllPowerUpsArray] objectAtIndex:[arg2 row]]]
+  03b618  [self->detailView setAlertViewDelegate:self]
+  03b630  [self armoryViewController]
+  03b650  [[self armoryViewController] view]
+  03b668  [self->detailView view]
+  03b68c  [[[self armoryViewController] view] addSubview:[self->detailView view]]
+  03b6a8  UIAccessibilityIsVoiceOverRunning()
+  03b6ac  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10003b6e4
+  03b6b8  [self->detailView view]
+  03b6d8  [[self->detailView view] setAccessibilityViewIsModal:1]
+loc_10003b6e4:
+  03b6ec  [self->detailView view]
+  03b70c  [[self->detailView view] setUserInteractionEnabled:1]
+  03b720  [self->detailView view]
+  03b740  [[self->detailView view] setTag:99]
+  03b758  [self armoryViewController]
+  03b77c  [self->detailView setArmoryViewController:[self armoryViewController]]
+  03b790  [self armoryViewController]
+  03b7a4  [[self armoryViewController] view]
+  03b7bc  [self->detailView view]
+  03b7e4  [[[self armoryViewController] view] bringSubviewToFront:[self->detailView view]]
+  03b808  [self armoryViewController]
+  03b81c  [[self armoryViewController] view]
+  03b834  [self armoryViewController]
+  03b854  [[self armoryViewController] statusBarViewController]
+  03b868  [[[self armoryViewController] statusBarViewController] view]
+  03b884  [[[self armoryViewController] view] bringSubviewToFront:[[[self armoryViewController] statusBarViewController] view]]
+  03b8b8  [self armoryViewController]
+  03b8cc  [[self armoryViewController] statusBarViewController]
+  03b8ec  [[[self armoryViewController] statusBarViewController] setBackButtonDelegate:self]
+  03b91c  return
+
+== -[ADArmoryPowerUpViewController alertView:willDismissWithButtonIndex:]   (address 0x10003ba08  size 476  kind objc)
+  03ba34  [arg1 buttonTitleAtIndex:arg2]
+  03ba58  [NSBundle mainBundle]
+  03ba88  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]
+  03baac  [[arg1 buttonTitleAtIndex:arg2] isEqualToString:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]]
+  03bac4  if ([[arg1 buttonTitleAtIndex:arg2] isEqualToString:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]] == 0) goto loc_10003bb74
+  03badc  [self armoryViewController]
+  03bafc  [[self armoryViewController] currencyButtonPressed:0]
+  03bb18  [self removeDetailView]
+  03bb24  [self armoryViewController]
+  03bb40  [[self armoryViewController] statusBarViewController]
+  03bb60  [[[self armoryViewController] statusBarViewController] setBackButtonDelegate:0]
+loc_10003bb74:
+  03bb88  return
+
+== -[ADArmoryPowerUpViewController viewWillLayoutSubviews]   (address 0x10003bbe4  size 172  kind objc)
+  03bc08  [self tableView]
+  03bc24  [[self tableView] reloadData]
+  03bc38  [self tableView]
+  03bc58  [[self tableView] setAlpha:1]
+  03bc6c  return
+
+== -[ADArmoryPowerUpViewController removeDetailView]   (address 0x10003bc90  size 552  kind objc)
+  03bce0  [self armoryViewController]
+  03bcfc  [[self armoryViewController] view]
+  03bd18  [[[self armoryViewController] view] subviews]
+  03bd58  [[[[self armoryViewController] view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  03bd60  if ([[[[self armoryViewController] view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_10003be20
+  03bd74  &@selector(tag)
+loc_10003bd7c:
+loc_10003bd80:
+  03bd8c  if (x8 == x26) goto loc_10003bd98
+  03bd94  objc_enumerationMutation([[[self armoryViewController] view] subviews])
+loc_10003bd98:
+  03bda8  [x0 tag]
+  03bdb0  if ([x0 tag] != 99) goto loc_10003bdcc
+loc_10003bdcc:
+  03bdd4  if ((x27 + 1) <u [[[[self armoryViewController] view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_10003bd80
+  03bdec  [[[[self armoryViewController] view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  03bdf4  if ([[[[self armoryViewController] view] subviews] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10003bd7c
+  03be00  if (x19 == 0) goto loc_10003be28
+  03be14  [x0 removeFromSuperview]
+  03be1c  goto loc_10003be30
+loc_10003be20:
+loc_10003be28:
+loc_10003be30:
+  03be64  return
+
+== -[ADArmoryPowerUpViewController tableView]   (address 0x10003beb8  size 16  kind objc)
+  03bec4  return
+
+== -[ADArmoryPowerUpViewController setTableView:]   (address 0x10003bec8  size 56  kind objc)
+  03beec  self->_tableView = arg1
+  03befc  return
+
+== -[ADArmoryPowerUpViewController armoryViewController]   (address 0x10003bf00  size 16  kind objc)
+  03bf0c  return
+
+== -[ADArmoryPowerUpViewController setArmoryViewController:]   (address 0x10003bf10  size 56  kind objc)
+  03bf34  self->_armoryViewController = arg1
+  03bf44  return
+
+== -[ADArmoryPowerUpViewController .cxx_destruct]   (address 0x10003bf48  size 84  kind objc)

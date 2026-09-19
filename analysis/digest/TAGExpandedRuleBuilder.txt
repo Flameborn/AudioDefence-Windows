@@ -1,0 +1,109 @@
+
+== -[TAGExpandedRuleBuilder init]   (address 0x1001642a0  size 452  kind objc)
+  1642e0  [super init]
+  1642e8  if (self == 0) goto loc_100164434
+  164308  [NSMutableArray alloc]
+  164314  [[NSMutableArray alloc] init]
+  164328  self->_positivePredicates = [[NSMutableArray alloc] init]
+  16433c  [NSMutableArray alloc]
+  164348  [[NSMutableArray alloc] init]
+  16435c  self->_negativePredicates = [[NSMutableArray alloc] init]
+  164370  [NSMutableArray alloc]
+  16437c  [[NSMutableArray alloc] init]
+  164390  self->_addTags = [[NSMutableArray alloc] init]
+  1643a4  [NSMutableArray alloc]
+  1643b0  [[NSMutableArray alloc] init]
+  1643c4  self->_removeTags = [[NSMutableArray alloc] init]
+  1643d8  [NSMutableArray alloc]
+  1643e4  [[NSMutableArray alloc] init]
+  1643f8  self->_addMacros = [[NSMutableArray alloc] init]
+  16440c  [NSMutableArray alloc]
+  164418  [[NSMutableArray alloc] init]
+  164428  self->_removeMacros = [[NSMutableArray alloc] init]
+loc_100164434:
+  16444c  return
+
+== -[TAGExpandedRuleBuilder addPositivePredicate:]   (address 0x100164464  size 148  kind objc)
+  164494  [self positivePredicates]
+  1644b4  [[self positivePredicates] addObject:arg1]
+  1644d0  return
+
+== -[TAGExpandedRuleBuilder addNegativePredicate:]   (address 0x1001644f8  size 148  kind objc)
+  164528  [self negativePredicates]
+  164548  [[self negativePredicates] addObject:arg1]
+  164564  return
+
+== -[TAGExpandedRuleBuilder addAddTag:]   (address 0x10016458c  size 148  kind objc)
+  1645bc  [self addTags]
+  1645dc  [[self addTags] addObject:arg1]
+  1645f8  return
+
+== -[TAGExpandedRuleBuilder addRemoveTag:]   (address 0x100164620  size 148  kind objc)
+  164650  [self removeTags]
+  164670  [[self removeTags] addObject:arg1]
+  16468c  return
+
+== -[TAGExpandedRuleBuilder addAddMacro:]   (address 0x1001646b4  size 148  kind objc)
+  1646e4  [self addMacros]
+  164704  [[self addMacros] addObject:arg1]
+  164720  return
+
+== -[TAGExpandedRuleBuilder addRemoveMacro:]   (address 0x100164748  size 148  kind objc)
+  164778  [self removeMacros]
+  164798  [[self removeMacros] addObject:arg1]
+  1647b4  return
+
+== -[TAGExpandedRuleBuilder build]   (address 0x1001647dc  size 472  kind objc)
+  16480c  [TAGExpandedRule alloc]
+  164824  [self positivePredicates]
+  164844  [self negativePredicates]
+  164864  [self addTags]
+  164884  [self removeTags]
+  1648a4  [self addMacros]
+  1648c4  [self removeMacros]
+  1648fc  [[TAGExpandedRule alloc] initWithPositivePredicates:[self positivePredicates] negativePredicates:[self negativePredicates] addTags:[self addTags] removeTags:[self removeTags] addMacros:[self addMacros] removeMacros:[self removeMacros]]
+  16494c  return
+
+== -[TAGExpandedRuleBuilder positivePredicates]   (address 0x1001649b4  size 16  kind objc)
+  1649c0  return
+
+== -[TAGExpandedRuleBuilder setPositivePredicates:]   (address 0x1001649c4  size 56  kind objc)
+  1649e8  self->_positivePredicates = arg1
+  1649f8  return
+
+== -[TAGExpandedRuleBuilder negativePredicates]   (address 0x1001649fc  size 16  kind objc)
+  164a08  return
+
+== -[TAGExpandedRuleBuilder setNegativePredicates:]   (address 0x100164a0c  size 56  kind objc)
+  164a30  self->_negativePredicates = arg1
+  164a40  return
+
+== -[TAGExpandedRuleBuilder addTags]   (address 0x100164a44  size 16  kind objc)
+  164a50  return
+
+== -[TAGExpandedRuleBuilder setAddTags:]   (address 0x100164a54  size 56  kind objc)
+  164a78  self->_addTags = arg1
+  164a88  return
+
+== -[TAGExpandedRuleBuilder removeTags]   (address 0x100164a8c  size 16  kind objc)
+  164a98  return
+
+== -[TAGExpandedRuleBuilder setRemoveTags:]   (address 0x100164a9c  size 56  kind objc)
+  164ac0  self->_removeTags = arg1
+  164ad0  return
+
+== -[TAGExpandedRuleBuilder addMacros]   (address 0x100164ad4  size 16  kind objc)
+  164ae0  return
+
+== -[TAGExpandedRuleBuilder setAddMacros:]   (address 0x100164ae4  size 56  kind objc)
+  164b08  self->_addMacros = arg1
+  164b18  return
+
+== -[TAGExpandedRuleBuilder removeMacros]   (address 0x100164b1c  size 16  kind objc)
+  164b28  return
+
+== -[TAGExpandedRuleBuilder setRemoveMacros:]   (address 0x100164b2c  size 56  kind objc)
+  164b50  self->_removeMacros = arg1
+  164b60  return
+
+== -[TAGExpandedRuleBuilder .cxx_destruct]   (address 0x100164b64  size 144  kind objc)

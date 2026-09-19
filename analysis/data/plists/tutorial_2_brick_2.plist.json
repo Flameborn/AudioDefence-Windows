@@ -1,0 +1,32 @@
+{
+ "Sounds": [
+  {
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_tutorial_2_3"
+  }
+ ],
+ "Enemies": {
+  "Jim": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 19.5,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_2_3"
+   },
+   "spawn_angle": 210,
+   "spawn_distance": 5.0
+  },
+  "Bob": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 18.4,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_2_3"
+   },
+   "spawn_angle": 115,
+   "spawn_distance": 6
+  }
+ }
+}

@@ -1,0 +1,548 @@
+
+== +[TAGTypes initialize]   (address 0x10016f37c  size 408  kind objc)
+  16f3a8  [TAGDistinctZero distinctZero]
+  16f3c0  store g_10042df68 = [TAGDistinctZero distinctZero]
+  16f3d4  [TAGDistinctZero distinctZero]
+  16f3e4  store g_10042df70 = [TAGDistinctZero distinctZero]
+  16f3f8  [TAGDistinctZero distinctZero]
+  16f408  store g_10042df78 = [TAGDistinctZero distinctZero]
+  16f42c  [NSString alloc]
+  16f440  [[NSString alloc] init]
+  16f448  store g_10042df80 = [[NSString alloc] init]
+  16f460  [NSArray alloc]
+  16f468  [[NSArray alloc] init]
+  16f470  store g_10042df88 = [[NSArray alloc] init]
+  16f488  [NSDictionary alloc]
+  16f490  [[NSDictionary alloc] init]
+  16f498  store g_10042df90 = [[NSDictionary alloc] init]
+  16f4b8  [TAGTypes objectToValue:g_10042df80]
+  16f4c8  store g_10042df98 = [TAGTypes objectToValue:g_10042df80]
+  16f4ec  [TAGBoolean booleanWithBool:0]
+  16f4fc  store g_10042dfa0 = [TAGBoolean booleanWithBool:0]
+  16f510  return
+
+== +[TAGTypes defaultObject]   (address 0x10016f514  size 8  kind objc)
+  16f518  return
+
+== +[TAGTypes defaultInt64]   (address 0x10016f51c  size 16  kind objc)
+
+== +[TAGTypes defaultDouble]   (address 0x10016f52c  size 16  kind objc)
+
+== +[TAGTypes defaultNumber]   (address 0x10016f53c  size 16  kind objc)
+
+== +[TAGTypes defaultString]   (address 0x10016f54c  size 16  kind objc)
+
+== +[TAGTypes defaultBoolean]   (address 0x10016f55c  size 16  kind objc)
+
+== +[TAGTypes defaultList]   (address 0x10016f56c  size 16  kind objc)
+
+== +[TAGTypes defaultMap]   (address 0x10016f57c  size 16  kind objc)
+
+== +[TAGTypes defaultValue]   (address 0x10016f58c  size 16  kind objc)
+
+== +[TAGTypes objectToString:]   (address 0x10016f59c  size 1700  kind objc)
+  16f5dc  if (arg1 == 0) goto loc_10016f7e4
+  16f5f8  [NSArray class]
+  16f614  [arg1 isKindOfClass:[NSArray class]]
+  16f618  if ([arg1 isKindOfClass:[NSArray class]] == 0) goto loc_10016f7f8
+  16f63c  [arg1 count]
+  16f654  [NSMutableArray arrayWithCapacity:[arg1 count]]
+  16f6a4  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x128] count:16]
+  16f6ac  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x128] count:16] == 0) goto loc_10016f758
+loc_10016f6dc:
+loc_10016f6e0:
+  16f6ec  if (x8 == x19) goto loc_10016f6f8
+  16f6f4  objc_enumerationMutation(arg1)
+loc_10016f6f8:
+  16f708  [TAGTypes objectToString:x2]
+  16f724  [[NSMutableArray arrayWithCapacity:[arg1 count]] addObject:[TAGTypes objectToString:x2]]
+  16f738  if ((x27 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x128] count:16]) goto loc_10016f6e0
+  16f74c  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x128] count:16]
+  16f754  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x128] count:16] != 0) goto loc_10016f6dc
+loc_10016f758:
+  16f780  [[NSMutableArray arrayWithCapacity:[arg1 count]] componentsJoinedByString:@", "]
+  16f7ac  [NSString stringWithFormat:@"[%@]", [[NSMutableArray arrayWithCapacity:[arg1 count]] componentsJoinedByString:@", "]]
+  16f7e0  goto loc_10016faf8
+loc_10016f7e4:
+  16f7f4  goto loc_10016faf4
+loc_10016f7f8:
+  16f804  [NSDictionary class]
+  16f814  [arg1 isKindOfClass:[NSDictionary class]]
+  16f818  if ([arg1 isKindOfClass:[NSDictionary class]] == 0) goto loc_10016fa98
+  16f83c  [arg1 count]
+  16f854  [NSMutableArray arrayWithCapacity:[arg1 count]]
+  16f884  [arg1 keyEnumerator]
+  16f8b4  [[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x68] count:16]
+  16f8bc  if ([[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x68] count:16] == 0) goto loc_10016fa0c
+loc_10016f910:
+loc_10016f914:
+  16f924  if (x8 == x9) goto loc_10016f930
+  16f92c  objc_enumerationMutation([arg1 keyEnumerator])
+loc_10016f930:
+  16f94c  [TAGTypes objectToString:x2]
+  16f968  [arg1 objectForKey:x2]
+  16f984  [TAGTypes objectToString:[arg1 objectForKey:x2]]
+  16f9a8  [NSString stringWithFormat:@"%@=%@", [TAGTypes objectToString:x2], [TAGTypes objectToString:[arg1 objectForKey:x2]]]
+  16f9c4  [[NSMutableArray arrayWithCapacity:[arg1 count]] addObject:[NSString stringWithFormat:@"%@=%@", [TAGTypes objectToString:x2], [TAGTypes objectToString:[arg1 objectForKey:x2]]]]
+  16f9f0  if ((x27 + 1) <u [[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x68] count:16]) goto loc_10016f914
+  16fa00  [[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x68] count:16]
+  16fa08  if ([[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xe8] objects:&sp[0x68] count:16] != 0) goto loc_10016f910
+loc_10016fa0c:
+  16fa38  [[NSMutableArray arrayWithCapacity:[arg1 count]] componentsJoinedByString:@", "]
+  16fa64  [NSString stringWithFormat:@"{%@}", [[NSMutableArray arrayWithCapacity:[arg1 count]] componentsJoinedByString:@", "]]
+  16fa94  goto loc_10016faf8
+loc_10016fa98:
+  16faa4  [NSNumber class]
+  16fab4  [arg1 isKindOfClass:[NSNumber class]]
+  16fab8  if ([arg1 isKindOfClass:[NSNumber class]] == 0) goto loc_10016fad8
+  16facc  [arg1 stringValue]
+  16fad4  goto loc_10016faf0
+loc_10016fad8:
+  16fae8  [arg1 description]
+loc_10016faf0:
+loc_10016faf4:
+loc_10016faf8:
+  16fb30  return
+
+== +[TAGTypes objectToNumber:]   (address 0x10016fc40  size 428  kind objc)
+  16fc74  [NSNumber class]
+  16fc8c  [arg1 isKindOfClass:[NSNumber class]]
+  16fc90  if ([arg1 isKindOfClass:[NSNumber class]] == 0) goto loc_10016fca4
+  16fca0  goto loc_10016fdac
+loc_10016fca4:
+  16fcb8  [TAGTypes isInt64ableNumber:arg1]
+  16fcbc  if ([TAGTypes isInt64ableNumber:arg1] == 0) goto loc_10016fcfc
+  16fcd8  [TAGTypes getInt64:arg1]
+  16fcf0  [NSNumber numberWithLongLong:[TAGTypes getInt64:arg1]]
+  16fcf8  goto loc_10016fd4c
+loc_10016fcfc:
+  16fd10  [TAGTypes isDoubleableNumber:arg1]
+  16fd14  if ([TAGTypes isDoubleableNumber:arg1] == 0) goto loc_10016fd58
+  16fd30  [TAGTypes getDouble:arg1]
+  16fd44  [NSNumber numberWithDouble:[TAGTypes getDouble:arg1]]
+loc_10016fd4c:
+  16fd54  goto loc_10016fdac
+loc_10016fd58:
+  16fd70  [TAGTypes objectToString:arg1]
+  16fd94  [TAGTypes parseNumber:[TAGTypes objectToString:arg1]]
+loc_10016fdac:
+  16fdc4  return
+
+== +[TAGTypes objectToInt64:]   (address 0x10016fdec  size 296  kind objc)
+  16fe20  [TAGTypes isInt64ableNumber:arg1]
+  16fe24  if ([TAGTypes isInt64ableNumber:arg1] == 0) goto loc_10016fe70
+  16fe44  [TAGTypes getInt64:arg1]
+  16fe5c  [NSNumber numberWithLongLong:[TAGTypes getInt64:arg1]]
+  16fe6c  goto loc_10016fec4
+loc_10016fe70:
+  16fe88  [TAGTypes objectToString:arg1]
+  16feac  [TAGTypes parseInt64:[TAGTypes objectToString:arg1]]
+loc_10016fec4:
+  16fee4  return
+
+== +[TAGTypes objectToDouble:]   (address 0x10016ff14  size 292  kind objc)
+  16ff48  [TAGTypes isDoubleableNumber:arg1]
+  16ff4c  if ([TAGTypes isDoubleableNumber:arg1] == 0) goto loc_10016ff94
+  16ff6c  [TAGTypes getDouble:arg1]
+  16ff80  [NSNumber numberWithDouble:[TAGTypes getDouble:arg1]]
+  16ff90  goto loc_10016ffe8
+loc_10016ff94:
+  16ffac  [TAGTypes objectToString:arg1]
+  16ffd0  [TAGTypes parseDouble:[TAGTypes objectToString:arg1]]
+loc_10016ffe8:
+  170008  return
+
+== +[TAGTypes objectToBoolean:]   (address 0x100170038  size 264  kind objc)
+  170068  [TAGBoolean class]
+  170080  [arg1 isKindOfClass:[TAGBoolean class]]
+  170084  if (!([arg1 isKindOfClass:[TAGBoolean class]] & 1)) goto loc_10017009c
+  170098  goto loc_1001700f8
+loc_10017009c:
+  1700b8  [TAGTypes objectToString:arg1]
+  1700dc  [TAGTypes parseBoolean:[TAGTypes objectToString:arg1]]
+loc_1001700f8:
+  170118  return
+
+== +[TAGTypes valueToString:]   (address 0x100170140  size 132  kind objc)
+  17015c  [TAGTypes valueToObject:arg1]
+  170180  [TAGTypes objectToString:[TAGTypes valueToObject:arg1]]
+  1701a4  return
+
+== +[TAGTypes valueToNumber:]   (address 0x1001701c4  size 132  kind objc)
+  1701e0  [TAGTypes valueToObject:arg1]
+  170204  [TAGTypes objectToNumber:[TAGTypes valueToObject:arg1]]
+  170228  return
+
+== +[TAGTypes valueToInt64:]   (address 0x100170248  size 132  kind objc)
+  170264  [TAGTypes valueToObject:arg1]
+  170288  [TAGTypes objectToInt64:[TAGTypes valueToObject:arg1]]
+  1702ac  return
+
+== +[TAGTypes valueToDouble:]   (address 0x1001702cc  size 132  kind objc)
+  1702e8  [TAGTypes valueToObject:arg1]
+  17030c  [TAGTypes objectToDouble:[TAGTypes valueToObject:arg1]]
+  170330  return
+
+== +[TAGTypes valueToBoolean:]   (address 0x100170350  size 132  kind objc)
+  17036c  [TAGTypes valueToObject:arg1]
+  170390  [TAGTypes objectToBoolean:[TAGTypes valueToObject:arg1]]
+  1703b4  return
+
+== +[TAGTypes objectToValue:]   (address 0x1001703d4  size 2600  kind objc)
+  170428  [TAGPValue alloc]
+  170438  [[TAGPValue alloc] init]
+  170454  [TAGPValue class]
+  170470  [arg1 isKindOfClass:[TAGPValue class]]
+  170474  if ([arg1 isKindOfClass:[TAGPValue class]] == 0) goto loc_100170480
+  17047c  goto loc_100170b44
+loc_100170480:
+  17048c  [NSString class]
+  17049c  [arg1 isKindOfClass:[NSString class]]
+  1704a0  if ([arg1 isKindOfClass:[NSString class]] == 0) goto loc_1001704d8
+  1704b8  [[[TAGPValue alloc] init] setType:1]
+  1704d0  [[[TAGPValue alloc] init] setString:arg1]
+  1704d4  goto loc_100170b40
+loc_1001704d8:
+  1704e4  [NSArray class]
+  1704f4  [arg1 isKindOfClass:[NSArray class]]
+  1704f8  if ([arg1 isKindOfClass:[NSArray class]] == 0) goto loc_1001706e4
+  17051c  [arg1 count]
+  170538  [TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]]
+  17055c  [[[TAGPValue alloc] init] setType:2]
+  17059c  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x138] count:16]
+  1705b4  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x138] count:16] == 0) goto loc_1001706b0
+  1705d8  &@selector(addObject:)
+loc_100170600:
+loc_100170604:
+  170610  if (x8 == x19) goto loc_10017061c
+  170618  objc_enumerationMutation(arg1)
+loc_10017061c:
+  17062c  [TAGTypes objectToValue:x2]
+  170644  if ([TAGTypes objectToValue:x2] == g_10042df98) goto loc_100170998
+  17064c  if ((w24 & 255) != 0) goto loc_100170664
+  170658  [[TAGTypes objectToValue:x2] containsReferences]
+  170660  goto loc_100170668
+loc_100170664:
+loc_100170668:
+  170674  [[TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]] addObject:[TAGTypes objectToValue:x2]]
+  170688  if ((x21 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x138] count:16]) goto loc_100170604
+  1706a0  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x138] count:16]
+  1706ac  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x138] count:16] != 0) goto loc_100170600
+loc_1001706b0:
+  1706d8  [[[TAGPValue alloc] init] setListItemArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]]]
+  1706e0  goto loc_1001709ac
+loc_1001706e4:
+  1706f0  [NSDictionary class]
+  170700  [arg1 isKindOfClass:[NSDictionary class]]
+  170704  if ([arg1 isKindOfClass:[NSDictionary class]] == 0) goto loc_1001709cc
+  17072c  [arg1 count]
+  17074c  [TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]]
+  170768  [arg1 count]
+  17077c  [TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]]
+  1707a0  [[[TAGPValue alloc] init] setType:3]
+  1707c4  [arg1 keyEnumerator]
+  1707f4  [[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16]
+  170804  if ([[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16] == 0) goto loc_100170ac0
+  17083c  &@selector(addObject:)
+loc_10017085c:
+loc_100170860:
+  170870  if (x8 == x9) goto loc_10017087c
+  170878  objc_enumerationMutation([arg1 keyEnumerator])
+loc_10017087c:
+  170890  [TAGTypes objectToValue:x2]
+  1708ac  [arg1 objectForKey:x2]
+  1708c8  [TAGTypes objectToValue:[arg1 objectForKey:x2]]
+  1708f4  if (flags !=) goto loc_100170908
+  170904  goto loc_100170958
+loc_100170908:
+  170908  if ((w24 & 1)) goto loc_10017091c
+  170914  [[TAGTypes objectToValue:x2] containsReferences]
+  170918  if (!([[TAGTypes objectToValue:x2] containsReferences] & 1)) goto loc_100170924
+loc_10017091c:
+  170920  goto loc_100170934
+loc_100170924:
+  17092c  [[TAGTypes objectToValue:[arg1 objectForKey:x2]] containsReferences]
+loc_100170934:
+  170940  [[TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]] addObject:[TAGTypes objectToValue:x2]]
+  170950  [[TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]] addObject:[TAGTypes objectToValue:[arg1 objectForKey:x2]]]
+loc_100170958:
+  170968  if (!(one of {0, 1} & 1)) goto loc_100170a44
+  170974  if ((x25 + 1) <u [[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16]) goto loc_100170860
+  170988  [[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16]
+  170990  if ([[arg1 keyEnumerator] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16] != 0) goto loc_10017085c
+  170994  goto loc_100170ac0
+loc_100170998:
+loc_1001709ac:
+  1709c4  if ((one of {0, 1} & 1)) goto loc_100170b24
+  1709c8  goto loc_100170b4c
+loc_1001709cc:
+  1709e0  [TAGTypes isDoubleableNumber:arg1]
+  1709e4  if ([TAGTypes isDoubleableNumber:arg1] == 0) goto loc_100170a58
+  1709fc  [[[TAGPValue alloc] init] setType:1]
+  170a10  [arg1 stringValue]
+  170a34  [[[TAGPValue alloc] init] setString:[arg1 stringValue]]
+  170a40  goto loc_100170b40
+loc_100170a44:
+  170a54  goto loc_100170b00
+loc_100170a58:
+  170a6c  [TAGTypes isInt64ableNumber:arg1]
+  170a70  if ([TAGTypes isInt64ableNumber:arg1] == 0) goto loc_100170b94
+  170a88  [[[TAGPValue alloc] init] setType:6]
+  170aa0  [TAGTypes getInt64:arg1]
+  170ab8  [[[TAGPValue alloc] init] setInteger:[TAGTypes getInt64:arg1]]
+  170abc  goto loc_100170b40
+loc_100170ac0:
+  170ae0  [[[TAGPValue alloc] init] setMapKeyArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]]]
+  170af8  [[[TAGPValue alloc] init] setMapValueArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[arg1 count]]]
+loc_100170b00:
+  170b20  if (!(one of {0, 1} & 1)) goto loc_100170b4c
+loc_100170b24:
+  170b24  if (!(w24 & 1)) goto loc_100170b40
+  170b3c  [[[TAGPValue alloc] init] setContainsReferences:1]
+loc_100170b40:
+loc_100170b44:
+loc_100170b4c:
+  170b8c  return
+  170ba0  [TAGBoolean class]
+  170bb0  [arg1 isKindOfClass:[TAGBoolean class]]
+  170bb4  if ([arg1 isKindOfClass:[TAGBoolean class]] == 0) goto loc_100170c00
+  170bcc  [[[TAGPValue alloc] init] setType:8]
+  170be0  [arg1 boolValue]
+  170bf8  [[[TAGPValue alloc] init] setBoolean:[arg1 boolValue]]
+  170c0c  if (arg1 == 0) goto loc_100170c34
+  170c18  [arg1 class]
+  170c1c  NSStringFromClass([arg1 class])
+  170c5c  [NSString stringWithFormat:@"Converting to Value from unknown object type: %@", sp[0]]
+  170c80  [TAGLog error:[NSString stringWithFormat:@"Converting to Value from unknown object type: %@", sp[0]]]
+  170c8c  if (one of {0, 1} == 0) goto loc_100170c98
+  170dd8  if (w22 == 0) goto loc_100170de4
+
+== +[TAGTypes functionIdToValue:]   (address 0x100170dfc  size 184  kind objc)
+  170e2c  [TAGPValue alloc]
+  170e3c  [[TAGPValue alloc] init]
+  170e58  [[[TAGPValue alloc] init] setType:5]
+  170e70  [[[TAGPValue alloc] init] setFunctionId:arg1]
+  170e8c  return
+
+== +[TAGTypes macroReferenceToValue:]   (address 0x100170eb4  size 52  kind objc)
+  170ed4  [TAGTypes macroReferenceToValue:arg1 escapings:0]
+  170ee4  return
+
+== +[TAGTypes macroReferenceToValue:escapings:]   (address 0x100170ee8  size 420  kind objc)
+  170f30  [TAGPValue alloc]
+  170f40  [[TAGPValue alloc] init]
+  170f5c  [[[TAGPValue alloc] init] setType:4]
+  170f74  [[[TAGPValue alloc] init] setMacroReference:arg1]
+  170f8c  [[[TAGPValue alloc] init] setContainsReferences:1]
+  170f9c  [TAGPBMutableArray alloc]
+  170fb4  [arg2 valueType]
+  170fcc  [arg2 count]
+  170fe8  [[TAGPBMutableArray alloc] initWithValueType:[arg2 valueType] capacity:[arg2 count]]
+  171004  [[[TAGPBMutableArray alloc] initWithValueType:[arg2 valueType] capacity:[arg2 count]] setArray:arg2]
+  17101c  [[[TAGPValue alloc] init] setEscapingArray:[[TAGPBMutableArray alloc] initWithValueType:[arg2 valueType] capacity:[arg2 count]]]
+  17104c  return
+
+== +[TAGTypes templateToValue:]   (address 0x10017108c  size 460  kind objc)
+  1710d0  [TAGPValue alloc]
+  1710e0  [[TAGPValue alloc] init]
+  1710fc  [[[TAGPValue alloc] init] setType:7]
+  171118  [TAGPBMutableArray arrayWithObject:arg1]
+  17113c  [arg1 containsReferences]
+  171148  &@selector(addObject:)
+loc_100171150:
+  171170  if (x22 == 0) goto loc_1001711b8
+  171180  [[TAGPBMutableArray arrayWithObject:arg1] addObject:x2]
+  171190  if (((w24 & 1) & 1)) goto loc_100171150
+  17119c  [x0 containsReferences]
+  1711a8  goto loc_100171150
+  1711b4  goto loc_100171238
+loc_1001711b8:
+  1711d0  [[[TAGPValue alloc] init] setTemplateTokenArray:[TAGPBMutableArray arrayWithObject:arg1]]
+  1711d4  if (!(w24 & 1)) goto loc_1001711f4
+  1711f0  [[[TAGPValue alloc] init] setContainsReferences:1]
+loc_1001711f4:
+  171220  return
+
+== +[TAGTypes isDoubleableNumber:]   (address 0x100171258  size 164  kind objc)
+  171284  [NSNumber class]
+  17129c  [arg1 isKindOfClass:[NSNumber class]]
+  1712a0  if ([arg1 isKindOfClass:[NSNumber class]] == 0) goto loc_1001712cc
+  1712a8  CFNumberGetType(arg1)
+  1712c4  t1 = ((CFNumberGetType(arg1) - 5) <u 12 ? ((2435 >>> ((CFNumberGetType(arg1) - 5) & 4095)) & 1) : 0)
+  1712c8  goto loc_1001712d0
+loc_1001712cc:
+loc_1001712d0:
+  1712e4  return
+
+== +[TAGTypes getDouble:]   (address 0x1001712fc  size 192  kind objc)
+  17132c  [NSNumber class]
+  171344  [arg1 isKindOfClass:[NSNumber class]]
+  171348  if ([arg1 isKindOfClass:[NSNumber class]] == 0) goto loc_100171364
+  17135c  [arg1 doubleValue]
+  171360  goto loc_100171388
+loc_100171364:
+  171380  [TAGLog error:@"getDouble did not receive NSNumber"]
+loc_100171388:
+  1713a4  return
+
+== +[TAGTypes isInt64ableNumber:]   (address 0x1001713bc  size 164  kind objc)
+  1713e8  [NSNumber class]
+  171400  [arg1 isKindOfClass:[NSNumber class]]
+  171404  if ([arg1 isKindOfClass:[NSNumber class]] == 0) goto loc_100171430
+  17140c  CFNumberGetType(arg1)
+  171428  t1 = ((CFNumberGetType(arg1) - 1) <u 15 ? ((0x47cf >>> ((CFNumberGetType(arg1) - 1) & 0x7fff)) & 1) : 0)
+  17142c  goto loc_100171434
+loc_100171430:
+loc_100171434:
+  171448  return
+
+== +[TAGTypes getInt64:]   (address 0x100171460  size 184  kind objc)
+  17148c  [NSNumber class]
+  1714a4  [arg1 isKindOfClass:[NSNumber class]]
+  1714a8  if ([arg1 isKindOfClass:[NSNumber class]] == 0) goto loc_1001714c8
+  1714bc  [arg1 longLongValue]
+  1714c4  goto loc_1001714ec
+loc_1001714c8:
+  1714e4  [TAGLog error:@"getInt64 did not receive NSNumber"]
+loc_1001714ec:
+  171500  return
+
+== +[TAGTypes parseNumber:]   (address 0x100171518  size 284  kind objc)
+  171550  [TAGTypes numberWithString:arg1]
+  171560  if ([TAGTypes numberWithString:arg1] == 0) goto loc_10017156c
+  171568  goto loc_1001715d0
+loc_10017156c:
+  171594  [NSString stringWithFormat:@"Failed to convert %@ to a number.", arg1]
+  1715b8  [TAGLog error:[NSString stringWithFormat:@"Failed to convert %@ to a number.", arg1]]
+loc_1001715d0:
+  1715fc  return
+
+== +[TAGTypes parseInt64:]   (address 0x100171634  size 196  kind objc)
+  17164c  [TAGTypes parseNumber:arg1]
+  17166c  if ([TAGTypes parseNumber:arg1] == g_10042df78) goto loc_1001716b0
+  171688  [[TAGTypes parseNumber:arg1] longLongValue]
+  1716a0  [NSNumber numberWithLongLong:[[TAGTypes parseNumber:arg1] longLongValue]]
+  1716ac  goto loc_1001716b8
+loc_1001716b0:
+loc_1001716b8:
+  1716d8  return
+
+== +[TAGTypes parseDouble:]   (address 0x1001716f8  size 192  kind objc)
+  171710  [TAGTypes parseNumber:arg1]
+  171730  if ([TAGTypes parseNumber:arg1] == g_10042df78) goto loc_100171770
+  17174c  [[TAGTypes parseNumber:arg1] doubleValue]
+  171760  [NSNumber numberWithDouble:[[TAGTypes parseNumber:arg1] doubleValue]]
+  17176c  goto loc_100171778
+loc_100171770:
+loc_100171778:
+  171798  return
+
+== +[TAGTypes parseBoolean:]   (address 0x1001717b8  size 284  kind objc)
+  1717f0  [TAGBoolean booleanWithString:arg1]
+  171800  if ([TAGBoolean booleanWithString:arg1] == 0) goto loc_10017180c
+  171808  goto loc_100171870
+loc_10017180c:
+  171834  [NSString stringWithFormat:@"Failed to parse an invalid boolean: %@", arg1]
+  171858  [TAGLog error:[NSString stringWithFormat:@"Failed to parse an invalid boolean: %@", arg1]]
+loc_100171870:
+  17189c  return
+
+== +[TAGTypes numberWithString:]   (address 0x1001718d4  size 428  kind objc)
+  171904  [arg1 length]
+  171908  if ([arg1 length] == 0) goto loc_1001719e0
+  171924  [NSScanner scannerWithString:arg1]
+  171944  [[NSScanner scannerWithString:arg1] scanLongLong:&sp[0x8]]
+  171948  if ([[NSScanner scannerWithString:arg1] scanLongLong:&sp[0x8]] == 0) goto loc_100171978
+  17195c  [[NSScanner scannerWithString:arg1] scanLocation]
+  17196c  [arg1 length]
+  171974  if ([[NSScanner scannerWithString:arg1] scanLocation] >=u [arg1 length]) goto loc_1001719e8
+loc_100171978:
+  17198c  [[NSScanner scannerWithString:arg1] setScanLocation:0]
+  1719a4  [[NSScanner scannerWithString:arg1] scanDouble:&sp[0x0]]
+  1719a8  if ([[NSScanner scannerWithString:arg1] scanDouble:&sp[0x0]] == 0) goto loc_1001719d8
+  1719bc  [[NSScanner scannerWithString:arg1] scanLocation]
+  1719cc  [arg1 length]
+  1719d4  if ([[NSScanner scannerWithString:arg1] scanLocation] >=u [arg1 length]) goto loc_100171a0c
+loc_1001719d8:
+  1719dc  goto loc_100171a34
+loc_1001719e0:
+  1719e4  goto loc_100171a3c
+loc_1001719e8:
+  171a00  [NSNumber numberWithLongLong:x2]
+  171a08  goto loc_100171a2c
+loc_100171a0c:
+  171a24  [NSNumber numberWithDouble:d0]
+loc_100171a2c:
+loc_100171a34:
+loc_100171a3c:
+  171a58  return
+
+== +[TAGTypes valueToObject:]   (address 0x100171a80  size 2460  kind objc)
+  171ac0  if (arg1 == 0) goto loc_100171b50
+  171ad8  [arg1 type]
+  171ae4  if (([arg1 type] - 1) <=u 7) goto loc_100171b94
+  171b00  [arg1 type]
+  171b20  [NSString stringWithFormat:@"Failed to convert a value of type: %ld", [arg1 type]]
+  171b44  [TAGLog error:[NSString stringWithFormat:@"Failed to convert a value of type: %ld", [arg1 type]]]
+loc_100171b50:
+  171b8c  return
+  171ba4  switch (?) { case 0: goto loc_100171ba8; case 1: goto loc_100171bc4; case 2: goto loc_100171d44; case 3: goto loc_100171f94; case 4: goto loc_100171fb8; case 5: goto loc_100171fdc; case 6: goto loc_100172018; case 7: goto loc_1001721c8 }
+  171bb8  [arg1 string]
+  171be0  [arg1 listItemArray]
+  171bfc  [[arg1 listItemArray] count]
+  171c14  [NSMutableArray arrayWithCapacity:[[arg1 listItemArray] count]]
+  171c44  [arg1 listItemArray]
+  171c70  [[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16]
+  171c78  if ([[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16] == 0) goto loc_100171d2c
+  171cbc  if (x8 == x28) goto loc_100171cc8
+  171cc4  objc_enumerationMutation([arg1 listItemArray])
+  171cd8  [TAGTypes valueToObject:x2]
+  171ce8  if ([TAGTypes valueToObject:x2] == 0) goto loc_10017220c
+  171cf8  [[NSMutableArray arrayWithCapacity:[[arg1 listItemArray] count]] addObject:[TAGTypes valueToObject:x2]]
+  171d0c  if ((x23 + 1) <u [[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16]) goto loc_100171cb0
+  171d20  [[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16]
+  171d28  if ([[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16] != 0) goto loc_100171cac
+  171d58  [arg1 mapKeyArray]
+  171d78  [[arg1 mapKeyArray] count]
+  171d94  [arg1 mapValueArray]
+  171da8  [[arg1 mapValueArray] count]
+  171dc4  if ([[arg1 mapKeyArray] count] != [[arg1 mapValueArray] count]) goto loc_100172250
+  171de0  [arg1 listItemArray]
+  171df4  [[arg1 listItemArray] count]
+  171e0c  [NSMutableDictionary dictionaryWithCapacity:[[arg1 listItemArray] count]]
+  171e7c  [arg1 mapKeyArray]
+  171e90  [[arg1 mapKeyArray] count]
+  171ea4  if (x25 >=u [[arg1 mapKeyArray] count]) goto loc_1001722d0
+  171eb0  [arg1 mapKeyArray]
+  171ed0  [[arg1 mapKeyArray] objectAtIndex:x2]
+  171eec  [TAGTypes valueToObject:[[arg1 mapKeyArray] objectAtIndex:x2]]
+  171f14  [arg1 mapValueArray]
+  171f2c  [[arg1 mapValueArray] objectAtIndex:x2]
+  171f48  [TAGTypes valueToObject:[[arg1 mapValueArray] objectAtIndex:x2]]
+  171f68  if ([TAGTypes valueToObject:[[arg1 mapKeyArray] objectAtIndex:x2]] == 0) goto loc_1001722a8
+  171f6c  if ([TAGTypes valueToObject:[[arg1 mapValueArray] objectAtIndex:x2]] == 0) goto loc_1001722a8
+  171f7c  [[NSMutableDictionary dictionaryWithCapacity:[[arg1 listItemArray] count]] setObject:[TAGTypes valueToObject:[[arg1 mapValueArray] objectAtIndex:x2]] forKey:[TAGTypes valueToObject:[[arg1 mapKeyArray] objectAtIndex:x2]]]
+  171fb0  [TAGLog error:@"Trying to convert a macro reference to object"]
+  171fd4  [TAGLog error:@"Trying to convert a function ID to object"]
+  171ff4  [arg1 integer]
+  17200c  [NSNumber numberWithLongLong:[arg1 integer]]
+  172034  [arg1 templateTokenArray]
+  172050  [[arg1 templateTokenArray] count]
+  172068  [NSMutableArray arrayWithCapacity:[[arg1 templateTokenArray] count]]
+  172098  [arg1 templateTokenArray]
+  1720c4  [[arg1 templateTokenArray] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16]
+  1720cc  if ([[arg1 templateTokenArray] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16] == 0) goto loc_10017218c
+  1720e4  &@selector(addObject:)
+  172118  if (x8 == x28) goto loc_100172124
+  172120  objc_enumerationMutation([arg1 templateTokenArray])
+  172134  [TAGTypes valueToString:x2]
+  17214c  if ([TAGTypes valueToString:x2] == g_10042df80) goto loc_100172228
+  17215c  [[NSMutableArray arrayWithCapacity:[[arg1 templateTokenArray] count]] addObject:[TAGTypes valueToString:x2]]
+  172170  if ((x22 + 1) <u [[arg1 templateTokenArray] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16]) goto loc_10017210c
+  172180  [[arg1 templateTokenArray] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16]
+  172188  if ([[arg1 templateTokenArray] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16] != 0) goto loc_100172108
+  1721ac  [[NSMutableArray arrayWithCapacity:[[arg1 templateTokenArray] count]] componentsJoinedByString:@""]
+  1721e0  [arg1 boolean]
+  1721f8  [TAGBoolean booleanWithBool:[arg1 boolean]]
+  172278  [NSString stringWithFormat:@"Converting an invalid value to object: %@", arg1]
+  17229c  [TAGLog error:[NSString stringWithFormat:@"Converting an invalid value to object: %@", arg1]]

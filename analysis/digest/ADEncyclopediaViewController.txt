@@ -1,0 +1,626 @@
+
+== -[ADEncyclopediaViewController initWithNibName:bundle:]   (address 0x100078348  size 1008  kind objc)
+  0783b0  [super initWithNibName:arg1 bundle:arg2]
+  0783b8  if (self == 0) goto loc_100078678
+  0783dc  [NSBundle mainBundle]
+  078408  [[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]
+  07842c  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]
+  078450  [self setEnemiesPlist:[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"enemies" withExtension:@"plist"]]]
+  078480  [self getDisplayNameToUnlockRequirement]
+  0784a4  [self setDisplayNameToUnlockRequirement:[self getDisplayNameToUnlockRequirement]]
+  0784c8  [ADPersistentStats persistentStats]
+  0784e4  [[ADPersistentStats persistentStats] getEnemyStatData]
+  078508  [self setEnemyPersistentData:[[ADPersistentStats persistentStats] getEnemyStatData]]
+  078530  [self mapDisplayNameToName]
+  078554  [self setDisplayNameToNameMap:[self mapDisplayNameToName]]
+  078574  [self sortZombieNames]
+  078598  [self setSortedZombieNames:[self sortZombieNames]]
+  0785bc  [S3DEngine engine]
+  0785e0  [[S3DEngine engine] playListWithName:@"encyclopedia"]
+  0785fc  self->encyclopediaPlaylist = [[S3DEngine engine] playListWithName:@"encyclopedia"]
+  078624  [self->encyclopediaPlaylist setPlayListRepeatPolicy:0]
+  07863c  [self->encyclopediaPlaylist activate]
+  078658  [self setCurrentEnemyBeingShown:0]
+  078674  [self setDisplayingDetailView:0]
+loc_100078678:
+  0786a4  return
+
+== -[ADEncyclopediaViewController getDisplayNameToUnlockRequirement]   (address 0x100078738  size 1116  kind objc)
+  078784  [NSMutableDictionary alloc]
+  078794  [[NSMutableDictionary alloc] init]
+  0787c0  [self enemiesPlist]
+  0787f0  [[self enemiesPlist] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  0787f8  if ([[self enemiesPlist] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] == 0) goto loc_100078a6c
+  078820  &@selector(numberWithInteger:)
+loc_100078844:
+loc_100078848:
+  078858  if (x8 == x9) goto loc_100078864
+  078860  objc_enumerationMutation([self enemiesPlist])
+loc_100078864:
+  078874  [self enemiesPlist]
+  07888c  [[self enemiesPlist] objectForKey:x2]
+  0788a8  [[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"]
+  0788cc  if ([[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"] == 0) goto loc_100078a40
+  0788d8  [self enemiesPlist]
+  0788f0  [[self enemiesPlist] objectForKey:x2]
+  07890c  [[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"]
+  078940  [[[NSMutableDictionary alloc] init] objectForKey:[[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"]]
+  07894c  if ([[[NSMutableDictionary alloc] init] objectForKey:[[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"]] != 0) goto loc_100078a2c
+  078950  if ([[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"] == 0) goto loc_100078a30
+  07895c  [self enemiesPlist]
+  078974  [[self enemiesPlist] objectForKey:x2]
+  078990  [[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"]
+  0789b4  [[[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"]
+  0789c8  [[[[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"] integerValue]
+  078a00  [NSNumber numberWithInteger:[[[[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"] integerValue]]
+  078a24  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInteger:[[[[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"] objectForKey:@"Unlock requirement"] integerValue]] forKey:[[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"]]
+loc_100078a2c:
+loc_100078a30:
+loc_100078a40:
+  078a48  if ((x25 + 1) <u [[self enemiesPlist] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]) goto loc_100078848
+  078a60  [[self enemiesPlist] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  078a68  if ([[self enemiesPlist] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] != 0) goto loc_100078844
+loc_100078a6c:
+  078a80  [NSDictionary alloc]
+  078a98  [[NSDictionary alloc] initWithDictionary:[[NSMutableDictionary alloc] init] copyItems:1]
+  078ae0  return
+
+== -[ADEncyclopediaViewController mapDisplayNameToName]   (address 0x100078b94  size 804  kind objc)
+  078be0  [NSMutableDictionary alloc]
+  078bf0  [[NSMutableDictionary alloc] init]
+  078c1c  [self enemiesPlist]
+  078c4c  [[self enemiesPlist] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  078c54  if ([[self enemiesPlist] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_100078dd0
+  078c6c  &@selector(setValue:forKey:)
+loc_100078c7c:
+loc_100078c80:
+  078c8c  if (x8 == x19) goto loc_100078c98
+  078c94  objc_enumerationMutation([self enemiesPlist])
+loc_100078c98:
+  078ca8  [self enemiesPlist]
+  078cc0  [[self enemiesPlist] objectForKey:x2]
+  078cdc  [[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"]
+  078d00  if ([[[self enemiesPlist] objectForKey:x2] objectForKey:@"bestiary"] == 0) goto loc_100078da4
+  078d0c  [self enemiesPlist]
+  078d24  [[self enemiesPlist] objectForKey:x2]
+  078d40  [[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"]
+  078d6c  [[[NSMutableDictionary alloc] init] objectForKey:[[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"]]
+  078d78  if ([[[NSMutableDictionary alloc] init] objectForKey:[[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"]] == 0) goto loc_100078d84
+  078d80  goto loc_100078d9c
+loc_100078d84:
+  078d84  if ([[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"] == 0) goto loc_100078d9c
+  078d98  [[[NSMutableDictionary alloc] init] setValue:x2 forKey:[[[self enemiesPlist] objectForKey:x2] objectForKey:@"displayName"]]
+loc_100078d9c:
+loc_100078da4:
+  078dac  if ((x28 + 1) <u [[self enemiesPlist] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_100078c80
+  078dc4  [[self enemiesPlist] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  078dcc  if ([[self enemiesPlist] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_100078c7c
+loc_100078dd0:
+  078de4  [NSDictionary alloc]
+  078dfc  [[NSDictionary alloc] initWithDictionary:[[NSMutableDictionary alloc] init] copyItems:1]
+  078e44  return
+
+== -[ADEncyclopediaViewController viewDidLoad]   (address 0x100078eb8  size 792  kind objc)
+  078ef4  [super viewDidLoad]
+  078f0c  [self statusBarViewController]
+  078f2c  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  078f40  [self statusBarViewController]
+  078f60  [[self statusBarViewController] setCurrenciesVisibility:0]
+  078f74  [self statusBarViewController]
+  078f94  [[self statusBarViewController] setDiamonsdsVisibility:0]
+  078fa8  [self statusBarViewController]
+  078fc4  [[self statusBarViewController] pageTitle]
+  078fe8  [[[self statusBarViewController] pageTitle] setText:@"ZOMBIPEDIA"]
+  079010  [self zombieNameVerticalTable]
+  07903c  [NSBundle mainBundle]
+  079068  [UINib nibWithNibName:@"ADEncycVertCell" bundle:[NSBundle mainBundle]]
+  079094  [[self zombieNameVerticalTable] registerNib:[UINib nibWithNibName:@"ADEncycVertCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"vertIdentifier"]
+  0790b8  [self zombieNameVerticalTable]
+  0790dc  [UIColor clearColor]
+  079100  [[self zombieNameVerticalTable] setBackgroundColor:[UIColor clearColor]]
+  07911c  [self zombieNameVerticalTable]
+  079140  [self setFirstAccessibleElement:[self zombieNameVerticalTable]]
+  079160  return
+
+== -[ADEncyclopediaViewController loadView]   (address 0x1000791d0  size 424  kind objc)
+  079224  [NSNumber numberWithInt:1]
+  079250  [NSNumber numberWithInt:3]
+  079278  [NSNumber numberWithInt:4]
+  0792a8  [NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]
+  0792ec  [self loADViewBasedOnDeviceWithNibName:@"ADEncyclopediaViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x20] forKeys:&sp[0x8] count:3]]
+  079304  [self setFirstAccessibleElement:0]
+  079330  return
+
+== -[ADEncyclopediaViewController viewWillAppear:]   (address 0x100079378  size 300  kind objc)
+  0793a4  [self view]
+  0793cc  [MBProgressHUD showHUDAddedTo:[self view] animated:1]
+  0793fc  [[MBProgressHUD showHUDAddedTo:[self view] animated:1] setLabelText:@"Loading"]
+  07940c  dispatch_time(0, 0x989680)
+  07945c  dispatch_after(dispatch_time(0, 0x989680), __dispatch_main_q, ^{-[ADEncyclopediaViewController viewWillAppear:]_block_invoke captures +0x20=self})
+  079480  return
+
+== -[ADEncyclopediaViewController viewWillAppear:]_block_invoke   (address 0x1000794a4  size 296  kind block)
+  0794d0  [NSMutableArray alloc]
+  0794e0  [[NSMutableArray alloc] init]
+  0794fc  [self setItemViewControllers:[[NSMutableArray alloc] init]]
+  079518  [self addDetailViewControllersToHorizontalScroller]
+  07952c  [self zombieDetailHorizontalScrollTable]
+  07954c  [[self zombieDetailHorizontalScrollTable] setHidden:1]
+  079570  [self view]
+  079598  [MBProgressHUD hideHUDForView:[self view] animated:1]
+  0795ac  return
+
+== sub_1000795cc   (address 0x1000795cc  size 8  kind sub)
+
+== sub_1000795d4   (address 0x1000795d4  size 8  kind sub)
+  0795d8  return
+
+== -[ADEncyclopediaViewController getSoundForName:]   (address 0x1000795dc  size 52  kind objc)
+  0795fc  [self->encyclopediaPlaylist S3DSound:arg1]
+  07960c  return
+
+== -[ADEncyclopediaViewController sortZombieNames]   (address 0x100079610  size 128  kind objc)
+  079628  [self displayNameToUnlockRequirement]
+  07964c  [[self displayNameToUnlockRequirement] keysSortedByValueUsingComparator:^{-[ADEncyclopediaViewController sortZombieNames]_block_invoke}]
+  079670  return
+
+== -[ADEncyclopediaViewController sortZombieNames]_block_invoke   (address 0x100079690  size 204  kind block)
+  0796d4  [blockarg1 integerValue]
+  0796e4  [blockarg2 integerValue]
+  0796f0  if ([blockarg1 integerValue] > [blockarg2 integerValue]) goto loc_100079718
+  0796fc  [blockarg1 integerValue]
+  07970c  [blockarg2 integerValue]
+loc_100079718:
+  07973c  return
+
+== -[ADEncyclopediaViewController addDetailViewControllersToHorizontalScroller]   (address 0x10007975c  size 3748  kind objc)
+  0797b0  [NSMutableArray alloc]
+  0797c4  [[NSMutableArray alloc] init]
+  0797e0  [self setItemViewControllers:[[NSMutableArray alloc] init]]
+  079800  [ADPersistentStats persistentStats]
+  07981c  [[ADPersistentStats persistentStats] computeTotalEnemyKillCount]
+  079834  [NSMutableArray alloc]
+  07983c  [[NSMutableArray alloc] init]
+  07984c  [NSMutableArray alloc]
+  079854  [[NSMutableArray alloc] init]
+  079870  [self setEncVCList:[[NSMutableArray alloc] init]]
+  07989c  [self sortedZombieNames]
+  0798cc  [[self sortedZombieNames] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xf8] count:16]
+  0798d0  if ([[self sortedZombieNames] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xf8] count:16] == 0) goto loc_10007a2a8
+  079900  &@selector(displayNameToNameMap)
+  079908  &@selector(enemyPersistentData)
+  079910  &@selector(setValue:forKey:)
+  079918  &@selector(numberWithInteger:)
+  079920  &@selector(initWithNibName:bundle:name:data:)
+  079928  &@selector(stringWithFormat:)
+  079938  &@selector(setSound:)
+  079940  &@selector(itemViewControllers)
+  079948  &@selector(addObject:)
+  079950  &@selector(view)
+  079958  &@selector(frame)
+  079960  &@selector(zombieDetailHorizontalScrollTable)
+  079968  &@selector(addSubview:)
+  079970  &@selector(closeDetail)
+  079978  &@selector(initWithTarget:action:)
+  079980  &@selector(closeDetailView)
+  079988  &@selector(addGestureRecognizer:)
+  079998  &@selector(previousButtonPressed:)
+  0799a0  &@selector(rightArrow)
+  0799a8  &@selector(leftArrow)
+  0799b0  &@selector(setCenter:)
+  0799b8  &@selector(encVCList)
+loc_100079ab4:
+loc_100079abc:
+  079acc  if (x8 == x9) goto loc_100079ad8
+  079ad4  objc_enumerationMutation([self sortedZombieNames])
+loc_100079ad8:
+  079af0  [self displayNameToUnlockRequirement]
+  079b14  [[self displayNameToUnlockRequirement] objectForKey:x2]
+  079b28  [[[self displayNameToUnlockRequirement] objectForKey:x2] integerValue]
+  079b48  [self enemiesPlist]
+  079b60  [self displayNameToNameMap]
+  079b78  [[self displayNameToNameMap] objectForKey:x2]
+  079b94  [[self enemiesPlist] objectForKey:[[self displayNameToNameMap] objectForKey:x2]]
+  079bb0  [[[self enemiesPlist] objectForKey:[[self displayNameToNameMap] objectForKey:x2]] objectForKey:@"bestiary"]
+  079bec  [self enemyPersistentData]
+  079c04  [[self enemyPersistentData] objectForKey:x2]
+  079c20  [[[self enemyPersistentData] objectForKey:x2] objectForKey:@"Killed"]
+  079c34  [[[[self enemyPersistentData] objectForKey:x2] objectForKey:@"Killed"] integerValue]
+  079c5c  [self enemyPersistentData]
+  079c74  [[self enemyPersistentData] objectForKey:x2]
+  079c90  [[[self enemyPersistentData] objectForKey:x2] objectForKey:@"Casualty"]
+  079ca4  [[[[self enemyPersistentData] objectForKey:x2] objectForKey:@"Casualty"] integerValue]
+  079cd4  [[[[self enemiesPlist] objectForKey:[[self displayNameToNameMap] objectForKey:x2]] objectForKey:@"bestiary"] objectForKey:@"Bio"]
+  079cf0  [NSMutableDictionary alloc]
+  079cf8  [[NSMutableDictionary alloc] init]
+  079d1c  [[[NSMutableDictionary alloc] init] setValue:[[[[self enemiesPlist] objectForKey:[[self displayNameToNameMap] objectForKey:x2]] objectForKey:@"bestiary"] objectForKey:@"Bio"] forKey:@"Bio"]
+  079d38  [NSNumber numberWithInteger:[[[[self enemyPersistentData] objectForKey:x2] objectForKey:@"Killed"] integerValue]]
+  079d5c  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInteger:[[[[self enemyPersistentData] objectForKey:x2] objectForKey:@"Killed"] integerValue]] forKey:@"Killed"]
+  079d78  [NSNumber numberWithInteger:[[[[self enemyPersistentData] objectForKey:x2] objectForKey:@"Casualty"] integerValue]]
+  079d9c  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInteger:[[[[self enemyPersistentData] objectForKey:x2] objectForKey:@"Casualty"] integerValue]] forKey:@"Casualty"]
+  079db8  [NSNumber numberWithInteger:[[ADPersistentStats persistentStats] computeTotalEnemyKillCount]]
+  079ddc  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInteger:[[ADPersistentStats persistentStats] computeTotalEnemyKillCount]] forKey:@"Total Kills"]
+  079dec  if ([[[self displayNameToUnlockRequirement] objectForKey:x2] integerValue] <= [[ADPersistentStats persistentStats] computeTotalEnemyKillCount]) goto loc_100079f04
+  079e00  [NSNumber numberWithInteger:[[[self displayNameToUnlockRequirement] objectForKey:x2] integerValue]]
+  079e24  [[[NSMutableDictionary alloc] init] setValue:[NSNumber numberWithInteger:[[[self displayNameToUnlockRequirement] objectForKey:x2] integerValue]] forKey:@"unlockCondition"]
+  079e40  [ADEncyclopediaItemLockedViewController alloc]
+  079e5c  [[ADEncyclopediaItemLockedViewController alloc] initWithNibName:@"ADEncyclopediaItemLockedViewController" bundle:0 name:x4 data:[[NSMutableDictionary alloc] init]]
+  079e78  [self displayNameToNameMap]
+  079e90  [[self displayNameToNameMap] objectForKey:x2]
+  079eb4  [NSString stringWithFormat:@"locked_%@", [[self displayNameToNameMap] objectForKey:x2]]
+  079ee0  [self getSoundForName:[NSString stringWithFormat:@"locked_%@", [[self displayNameToNameMap] objectForKey:x2]]]
+  079efc  [[[ADEncyclopediaItemLockedViewController alloc] initWithNibName:@"ADEncyclopediaItemLockedViewController" bundle:0 name:x4 data:[[NSMutableDictionary alloc] init]] setSound:[self getSoundForName:[NSString stringWithFormat:@"locked_%@", [[self displayNameToNameMap] objectForKey:x2]]]]
+  079f00  goto loc_100079fa0
+loc_100079f04:
+  079f14  [ADEncyclopediaItemViewController alloc]
+  079f30  [[ADEncyclopediaItemViewController alloc] initWithNibName:@"ADEncyclopediaItemViewController" bundle:0 name:x4 data:[[NSMutableDictionary alloc] init]]
+  079f44  [self displayNameToNameMap]
+  079f5c  [[self displayNameToNameMap] objectForKey:x2]
+  079f78  [self getSoundForName:[[self displayNameToNameMap] objectForKey:x2]]
+  079f94  [[[ADEncyclopediaItemViewController alloc] initWithNibName:@"ADEncyclopediaItemViewController" bundle:0 name:x4 data:[[NSMutableDictionary alloc] init]] setSound:[self getSoundForName:[[self displayNameToNameMap] objectForKey:x2]]]
+loc_100079fa0:
+  079fbc  [self itemViewControllers]
+  079fd4  [[self itemViewControllers] addObject:x2]
+  079fe8  [x0 view]
+  079ffc  [[x0 view] frame]
+  07a014  [self zombieDetailHorizontalScrollTable]
+  07a02c  [x0 view]
+  07a048  [[self zombieDetailHorizontalScrollTable] addSubview:[x0 view]]
+  07a068  [UITapGestureRecognizer alloc]
+  07a078  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeDetail)]
+  07a088  [x0 closeDetailView]
+  07a0a4  [[x0 closeDetailView] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeDetail)]]
+  07a0bc  [UITapGestureRecognizer alloc]
+  07a0cc  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nextButtonPressed:)]
+  07a0e0  [UITapGestureRecognizer alloc]
+  07a0f0  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousButtonPressed:)]
+  07a108  [x0 rightArrow]
+  07a120  [[x0 rightArrow] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nextButtonPressed:)]]
+  07a134  [x0 leftArrow]
+  07a14c  [[x0 leftArrow] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousButtonPressed:)]]
+  07a160  [x0 view]
+  07a178  [x0 view]
+  07a18c  [[x0 view] frame]
+  07a19c  [x0 view]
+  07a1b0  [[x0 view] frame]
+  07a1e4  [[x0 view] setCenter:{((d0 + [[x0 view] frame].2) + ([[x0 view] frame].2 * -0.5)), ([[x0 view] frame].3 * 0.5)}]
+  07a208  [self encVCList]
+  07a224  [[self encVCList] addObject:x2]
+  07a23c  [[[NSMutableArray alloc] init] addObject:x2]
+  07a284  if ((x25 + 1) <u [[self sortedZombieNames] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xf8] count:16]) goto loc_100079abc
+  07a29c  [[self sortedZombieNames] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xf8] count:16]
+  07a2a0  if ([[self sortedZombieNames] countByEnumeratingWithState:&sp[0x188] objects:&x29[-0xf8] count:16] != 0) goto loc_100079ab4
+  07a2a4  goto loc_10007a2b0
+loc_10007a2a8:
+loc_10007a2b0:
+  07a2d0  [self zombieDetailHorizontalScrollTable]
+  07a2f4  [self zombieDetailHorizontalScrollTable]
+  07a310  [[self zombieDetailHorizontalScrollTable] contentSize]
+  07a328  [[self zombieDetailHorizontalScrollTable] setContentSize:{d0, [[self zombieDetailHorizontalScrollTable] contentSize].1}]
+  07a344  [self zombieDetailHorizontalScrollTable]
+  07a364  [[self zombieDetailHorizontalScrollTable] setPagingEnabled:1]
+  07a3a8  return
+
+== -[ADEncyclopediaViewController closeDetail]   (address 0x10007a600  size 484  kind objc)
+  07a62c  [S3DEngine engine]
+  07a650  [[S3DEngine engine] playListWithName:@"buttons"]
+  07a674  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  07a6a8  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  07a6bc  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  07a6d0  [self view]
+  07a6f4  [self zombieDetailHorizontalScrollTable]
+  07a718  [[self view] sendSubviewToBack:[self zombieDetailHorizontalScrollTable]]
+  07a734  [self zombieDetailHorizontalScrollTable]
+  07a754  [[self zombieDetailHorizontalScrollTable] setHidden:1]
+  07a774  [self setDisplayingDetailView:0]
+  07a78c  return
+
+== -[ADEncyclopediaViewController tableView:numberOfRowsInSection:]   (address 0x10007a7e4  size 112  kind objc)
+  07a7fc  [self sortedZombieNames]
+  07a818  [[self sortedZombieNames] count]
+  07a834  return
+
+== -[ADEncyclopediaViewController tableView:heightForRowAtIndexPath:]   (address 0x10007a854  size 140  kind objc)
+  07a874  [ADGameParameters sharedParameters]
+  07a890  [[ADGameParameters sharedParameters] isIphone]
+  07a8c0  return
+
+== -[ADEncyclopediaViewController tableView:cellForRowAtIndexPath:]   (address 0x10007a8e0  size 596  kind objc)
+  07a930  [arg1 dequeueReusableCellWithIdentifier:@"vertIdentifier"]
+  07a95c  [self sortedZombieNames]
+  07a97c  [arg2 row]
+  07a994  [[self sortedZombieNames] objectAtIndex:[arg2 row]]
+  07a9c0  [[arg1 dequeueReusableCellWithIdentifier:@"vertIdentifier"] setCellName:[[self sortedZombieNames] objectAtIndex:[arg2 row]]]
+  07a9d8  [[arg1 dequeueReusableCellWithIdentifier:@"vertIdentifier"] zombieNameButton]
+  07a9fc  [[[arg1 dequeueReusableCellWithIdentifier:@"vertIdentifier"] zombieNameButton] setTitle:[[self sortedZombieNames] objectAtIndex:[arg2 row]] forState:0]
+  07aa10  [[arg1 dequeueReusableCellWithIdentifier:@"vertIdentifier"] zombieNameButton]
+  07aa34  [UIColor whiteColor]
+  07aa5c  [[[arg1 dequeueReusableCellWithIdentifier:@"vertIdentifier"] zombieNameButton] setTitleColor:[UIColor whiteColor] forState:0]
+  07aa84  [[arg1 dequeueReusableCellWithIdentifier:@"vertIdentifier"] setDelegate:self]
+  07aa9c  [[arg1 dequeueReusableCellWithIdentifier:@"vertIdentifier"] setSelectionStyle:0]
+  07aac4  return
+
+== -[ADEncyclopediaViewController tableView:willDisplayCell:forRowAtIndexPath:]   (address 0x10007ab34  size 152  kind objc)
+  07ab64  [UIColor clearColor]
+  07ab88  [arg2 setBackgroundColor:[UIColor clearColor]]
+  07aba4  return
+
+== -[ADEncyclopediaViewController cellSelectedWithZombieName:]   (address 0x10007abcc  size 1252  kind objc)
+  07ac14  [self view]
+  07ac38  [self zombieDetailHorizontalScrollTable]
+  07ac60  [[self view] bringSubviewToFront:[self zombieDetailHorizontalScrollTable]]
+  07ac7c  [self zombieDetailHorizontalScrollTable]
+  07aca0  [[self zombieDetailHorizontalScrollTable] setHidden:0]
+  07acb4  [self view]
+  07acd4  [self statusBarViewController]
+  07ace8  [[self statusBarViewController] view]
+  07ad04  [[self view] bringSubviewToFront:[[self statusBarViewController] view]]
+  07ad34  [self setDisplayingDetailView:1]
+  07ad74  &@selector(isEqualToString:)
+  07ad7c  goto loc_10007ad8c
+loc_10007ad80:
+loc_10007ad8c:
+  07ad94  [self encVCList]
+  07ada8  [[self encVCList] count]
+  07adbc  if (x25 >=u [[self encVCList] count]) goto loc_10007af8c
+  07adc8  [self encVCList]
+  07ade0  [[self encVCList] objectAtIndex:x2]
+  07ae00  [[[self encVCList] objectAtIndex:x2] enemyName]
+  07ae18  [[[[self encVCList] objectAtIndex:x2] enemyName] isEqualToString:arg1]
+  07ae28  if ([[[[self encVCList] objectAtIndex:x2] enemyName] isEqualToString:arg1] == 0) goto loc_10007ad80
+  07ae38  [[[self encVCList] objectAtIndex:x2] view]
+  07ae58  [[[[self encVCList] objectAtIndex:x2] view] frame]
+  07ae70  [[[self encVCList] objectAtIndex:x2] view]
+  07ae8c  [[[[self encVCList] objectAtIndex:x2] view] center]
+  07aea4  [self zombieDetailHorizontalScrollTable]
+  07aeb0  t1 = ([[[[self encVCList] objectAtIndex:x2] view] center].0 + ([[[[self encVCList] objectAtIndex:x2] view] frame].2 * -0.5))
+  07aec8  [[self zombieDetailHorizontalScrollTable] setContentOffset:{t1, 0} animated:0]
+  07aee0  [self setCurrentEnemyBeingShown:x2]
+  07aee4  if (w25 != 0) goto loc_10007af1c
+  07aef8  [[[self encVCList] objectAtIndex:x2] leftArrow]
+  07af10  [[[[self encVCList] objectAtIndex:x2] leftArrow] setHidden:1]
+loc_10007af1c:
+  07af24  [self encVCList]
+  07af38  [[self encVCList] count]
+  07af4c  if ((x25 - [[self encVCList] count]) != -1) goto loc_10007af84
+  07af60  [[[self encVCList] objectAtIndex:x2] rightArrow]
+  07af78  [[[[self encVCList] objectAtIndex:x2] rightArrow] setHidden:1]
+loc_10007af84:
+loc_10007af8c:
+  07af8c  UIAccessibilityIsVoiceOverRunning()
+  07af90  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10007afc8
+  07afa4  [self zombieNameVerticalTable]
+  07afbc  [[self zombieNameVerticalTable] setHidden:1]
+loc_10007afc8:
+  07afec  return
+
+== -[ADEncyclopediaViewController didReceiveMemoryWarning]   (address 0x10007b0b0  size 60  kind objc)
+  07b0dc  [super didReceiveMemoryWarning]
+  07b0e8  return
+
+== -[ADEncyclopediaViewController dealloc]   (address 0x10007b0ec  size 180  kind objc)
+  07b10c  if (self->encyclopediaPlaylist == 0) goto loc_10007b12c
+  07b11c  [self->encyclopediaPlaylist deactivate]
+  07b128  goto loc_10007b130
+loc_10007b12c:
+loc_10007b130:
+  07b130  self->encyclopediaPlaylist = 0
+  07b158  [super dealloc]
+  07b168  return
+  07b190  [super dealloc]
+  07b19c  call sub_10000b760
+
+== -[ADEncyclopediaViewController backButtonPressed]   (address 0x10007b1a0  size 272  kind objc)
+  07b1bc  [self displayingDetailView]
+  07b1c0  if ([self displayingDetailView] == 0) goto loc_10007b21c
+  07b1d4  [self closeDetail]
+  07b1d8  UIAccessibilityIsVoiceOverRunning()
+  07b1dc  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_10007b290
+  07b1f0  [self zombieNameVerticalTable]
+  07b210  [[self zombieNameVerticalTable] setHidden:0]
+  07b214  goto loc_10007b280
+  07b218  goto loc_10007b29c
+loc_10007b21c:
+  07b234  [self->encyclopediaPlaylist deactivate]
+  07b23c  self->encyclopediaPlaylist = 0
+  07b254  [self presentingViewController]
+  07b27c  [[self presentingViewController] dismissViewControllerAnimated:0 completion:^{-[ADEncyclopediaViewController backButtonPressed]_block_invoke}]
+loc_10007b280:
+  07b28c  return
+loc_10007b290:
+  07b298  return
+
+== -[ADEncyclopediaViewController backButtonPressed]_block_invoke   (address 0x10007b2b0  size 4  kind block)
+  07b2b0  return
+
+== -[ADEncyclopediaViewController nextButtonPressed:]   (address 0x10007b2b4  size 884  kind objc)
+  07b2dc  NSLog(@"Next button was pressed", _cmd, arg1)
+  07b2f4  [self currentEnemyBeingShown]
+  07b30c  [self setCurrentEnemyBeingShown:([self currentEnemyBeingShown] + 1)]
+  07b324  [self encVCList]
+  07b33c  [self currentEnemyBeingShown]
+  07b354  [[self encVCList] objectAtIndex:[self currentEnemyBeingShown]]
+  07b380  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view]
+  07b39c  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view] frame]
+  07b3b4  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view]
+  07b3d0  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view] center]
+  07b3f0  [self zombieDetailHorizontalScrollTable]
+  07b3fc  t1 = ([[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view] center].0 + ([[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view] frame].2 * -0.5))
+  07b414  [[self zombieDetailHorizontalScrollTable] setContentOffset:{t1, 0} animated:0]
+  07b42c  [S3DEngine engine]
+  07b450  [[S3DEngine engine] playListWithName:@"buttons"]
+  07b474  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  07b4a8  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  07b4bc  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  07b4c8  [self currentEnemyBeingShown]
+  07b4d8  [self encVCList]
+  07b4f4  [[self encVCList] count]
+  07b508  &@selector(rightArrow)
+  07b514  if ([self currentEnemyBeingShown] >=u ([[self encVCList] count] - 1)) goto loc_10007b548
+  07b51c  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] rightArrow]
+  07b53c  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] rightArrow] setHidden:0]
+  07b540  goto loc_10007b570
+  07b544  goto loc_10007b618
+loc_10007b548:
+  07b54c  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] rightArrow]
+  07b56c  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] rightArrow] setHidden:1]
+loc_10007b570:
+  07b59c  return
+
+== -[ADEncyclopediaViewController previousButtonPressed:]   (address 0x10007b628  size 800  kind objc)
+  07b64c  NSLog(@"Previous button was pressed", _cmd, arg1)
+  07b664  [self currentEnemyBeingShown]
+  07b67c  [self setCurrentEnemyBeingShown:([self currentEnemyBeingShown] - 1)]
+  07b690  [self encVCList]
+  07b6a8  [self currentEnemyBeingShown]
+  07b6c0  [[self encVCList] objectAtIndex:[self currentEnemyBeingShown]]
+  07b6ec  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view]
+  07b708  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view] frame]
+  07b720  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view]
+  07b73c  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view] center]
+  07b75c  [self zombieDetailHorizontalScrollTable]
+  07b768  t1 = ([[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view] center].0 + ([[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] view] frame].2 * -0.5))
+  07b780  [[self zombieDetailHorizontalScrollTable] setContentOffset:{t1, 0} animated:0]
+  07b798  [S3DEngine engine]
+  07b7bc  [[S3DEngine engine] playListWithName:@"buttons"]
+  07b7e0  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  07b814  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  07b828  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  07b834  [self currentEnemyBeingShown]
+  07b83c  &@selector(leftArrow)
+  07b848  if ([self currentEnemyBeingShown] <= 0) goto loc_10007b87c
+  07b850  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] leftArrow]
+  07b870  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] leftArrow] setHidden:0]
+  07b874  goto loc_10007b8a4
+  07b878  goto loc_10007b924
+loc_10007b87c:
+  07b880  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] leftArrow]
+  07b8a0  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] leftArrow] setHidden:1]
+loc_10007b8a4:
+  07b8cc  return
+
+== -[ADEncyclopediaViewController scrollViewDidEndDecelerating:]   (address 0x10007b948  size 800  kind objc)
+  07b984  [arg1 contentOffset]
+  07b98c  if ([arg1 contentOffset].0 < (or unordered) 0.0) goto loc_10007bbe0
+  07b998  [arg1 contentOffset]
+  07b9b4  [arg1 contentSize]
+  07b9bc  if ([arg1 contentOffset].0 > (or unordered) [arg1 contentSize].0) goto loc_10007bbe0
+  07b9d0  [self sortedZombieNames]
+  07b9f0  [[self sortedZombieNames] count]
+  07ba08  [arg1 contentSize]
+  07ba18  [arg1 contentOffset]
+  07ba24  t1 = ([arg1 contentOffset].0 / ([arg1 contentSize].0 / (float)[[self sortedZombieNames] count]))
+  07ba3c  [self setCurrentEnemyBeingShown:(int)t1]
+  07ba54  [self encVCList]
+  07ba78  [self currentEnemyBeingShown]
+  07ba90  [[self encVCList] objectAtIndex:[self currentEnemyBeingShown]]
+  07bab0  [self currentEnemyBeingShown]
+  07bab8  &@selector(leftArrow)
+  07bac4  if ([self currentEnemyBeingShown] <= 0) goto loc_10007baf8
+  07bacc  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] leftArrow]
+  07baec  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] leftArrow] setHidden:0]
+  07baf0  goto loc_10007bb20
+  07baf4  goto loc_10007bc44
+loc_10007baf8:
+  07bafc  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] leftArrow]
+  07bb1c  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] leftArrow] setHidden:1]
+loc_10007bb20:
+  07bb30  [self currentEnemyBeingShown]
+  07bb40  [self encVCList]
+  07bb54  [[self encVCList] count]
+  07bb68  &@selector(rightArrow)
+  07bb74  if ([self currentEnemyBeingShown] >=u ([[self encVCList] count] - 1)) goto loc_10007bba8
+  07bb7c  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] rightArrow]
+  07bb9c  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] rightArrow] setHidden:0]
+  07bba0  goto loc_10007bbd0
+  07bba4  goto loc_10007bc34
+loc_10007bba8:
+  07bbac  [[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] rightArrow]
+  07bbcc  [[[[self encVCList] objectAtIndex:[self currentEnemyBeingShown]] rightArrow] setHidden:1]
+loc_10007bbd0:
+loc_10007bbe0:
+  07bbfc  return
+
+== -[ADEncyclopediaViewController encyclopediaPlaylist]   (address 0x10007bc68  size 16  kind objc)
+  07bc74  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setEncyclopediaPlaylist:]   (address 0x10007bc78  size 12  kind objc)
+  07bc80  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController zombieDetailHorizontalScrollTable]   (address 0x10007bc84  size 16  kind objc)
+  07bc90  return
+
+== -[ADEncyclopediaViewController setZombieDetailHorizontalScrollTable:]   (address 0x10007bc94  size 56  kind objc)
+  07bcb8  self->_zombieDetailHorizontalScrollTable = arg1
+  07bcc8  return
+
+== -[ADEncyclopediaViewController zombieNameVerticalTable]   (address 0x10007bccc  size 16  kind objc)
+  07bcd8  return
+
+== -[ADEncyclopediaViewController setZombieNameVerticalTable:]   (address 0x10007bcdc  size 56  kind objc)
+  07bd00  self->_zombieNameVerticalTable = arg1
+  07bd10  return
+
+== -[ADEncyclopediaViewController zombieEnemies]   (address 0x10007bd14  size 16  kind objc)
+  07bd20  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setZombieEnemies:]   (address 0x10007bd24  size 12  kind objc)
+  07bd2c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController itemViewControllers]   (address 0x10007bd30  size 16  kind objc)
+  07bd3c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setItemViewControllers:]   (address 0x10007bd40  size 12  kind objc)
+  07bd48  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController enemiesPlist]   (address 0x10007bd4c  size 16  kind objc)
+  07bd58  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setEnemiesPlist:]   (address 0x10007bd5c  size 12  kind objc)
+  07bd64  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController displayNameToNameMap]   (address 0x10007bd68  size 16  kind objc)
+  07bd74  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setDisplayNameToNameMap:]   (address 0x10007bd78  size 12  kind objc)
+  07bd80  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController displayNameToUnlockRequirement]   (address 0x10007bd84  size 16  kind objc)
+  07bd90  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setDisplayNameToUnlockRequirement:]   (address 0x10007bd94  size 12  kind objc)
+  07bd9c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController enemyPersistentData]   (address 0x10007bda0  size 16  kind objc)
+  07bdac  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setEnemyPersistentData:]   (address 0x10007bdb0  size 12  kind objc)
+  07bdb8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController sortedZombieNames]   (address 0x10007bdbc  size 16  kind objc)
+  07bdc8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setSortedZombieNames:]   (address 0x10007bdcc  size 12  kind objc)
+  07bdd4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController encVCList]   (address 0x10007bdd8  size 16  kind objc)
+  07bde4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADEncyclopediaViewController setEncVCList:]   (address 0x10007bde8  size 12  kind objc)
+  07bdf0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADEncyclopediaViewController currentEnemyBeingShown]   (address 0x10007bdf4  size 16  kind objc)
+  07be00  return
+
+== -[ADEncyclopediaViewController setCurrentEnemyBeingShown:]   (address 0x10007be04  size 16  kind objc)
+  07be0c  self->_currentEnemyBeingShown = arg1
+  07be10  return
+
+== -[ADEncyclopediaViewController displayingDetailView]   (address 0x10007be14  size 20  kind objc)
+  07be24  return
+
+== -[ADEncyclopediaViewController setDisplayingDetailView:]   (address 0x10007be28  size 16  kind objc)
+  07be30  self->_displayingDetailView = arg1
+  07be34  return
+
+== -[ADEncyclopediaViewController .cxx_destruct]   (address 0x10007be38  size 244  kind objc)

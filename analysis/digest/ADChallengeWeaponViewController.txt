@@ -1,0 +1,64 @@
+
+== -[ADChallengeWeaponViewController initWithWeaponName:ammo:]   (address 0x1000d6874  size 188  kind objc)
+  0d68c4  [super initWithNibName:0 bundle:0]
+  0d68cc  if (self == 0) goto loc_1000d68fc
+  0d68e4  self->weaponName = arg1
+  0d68f8  self->ammo = arg2
+loc_1000d68fc:
+  0d6918  return
+
+== -[ADChallengeWeaponViewController viewDidLoad]   (address 0x1000d6930  size 916  kind objc)
+  0d6974  [super viewDidLoad]
+  0d6988  [self weaponLabel]
+  0d69b0  [ADWeaponManager sharedWeaponManager]
+  0d69d8  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:self->weaponName]
+  0d69fc  [[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:self->weaponName] objectForKey:@"displayName"]
+  0d6a24  [[self weaponLabel] setText:[[[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:self->weaponName] objectForKey:@"displayName"]]
+  0d6a58  [self weaponImage]
+  0d6a98  [NSString stringWithFormat:@"%@_icon", self->weaponName]
+  0d6abc  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", self->weaponName]]
+  0d6ae0  [[self weaponImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", self->weaponName]]]
+  0d6b04  [ADWeaponManager sharedWeaponManager]
+  0d6b24  [[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:self->weaponName]
+  0d6b34  if (!([[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:self->weaponName] & 1)) goto loc_1000d6b74
+  0d6b48  [self ammoLabel]
+  0d6b68  [[self ammoLabel] setHidden:1]
+  0d6b70  goto loc_1000d6c00
+loc_1000d6b74:
+  0d6b90  [self ammoLabel]
+  0d6ba0  if (self->ammo == 0) goto loc_1000d6be8
+  0d6bbc  [NSString stringWithFormat:@"%i", self->ammo]
+  0d6bd8  [[self ammoLabel] setText:[NSString stringWithFormat:@"%i", self->ammo]]
+  0d6be4  goto loc_1000d6bfc
+loc_1000d6be8:
+  0d6bf8  [[self ammoLabel] setText:@"empty"]
+loc_1000d6bfc:
+loc_1000d6c00:
+  0d6c20  return
+
+== -[ADChallengeWeaponViewController didReceiveMemoryWarning]   (address 0x1000d6cc4  size 60  kind objc)
+  0d6cf0  [super didReceiveMemoryWarning]
+  0d6cfc  return
+
+== -[ADChallengeWeaponViewController weaponImage]   (address 0x1000d6d00  size 16  kind objc)
+  0d6d0c  return
+
+== -[ADChallengeWeaponViewController setWeaponImage:]   (address 0x1000d6d10  size 56  kind objc)
+  0d6d34  self->_weaponImage = arg1
+  0d6d44  return
+
+== -[ADChallengeWeaponViewController weaponLabel]   (address 0x1000d6d48  size 16  kind objc)
+  0d6d54  return
+
+== -[ADChallengeWeaponViewController setWeaponLabel:]   (address 0x1000d6d58  size 56  kind objc)
+  0d6d7c  self->_weaponLabel = arg1
+  0d6d8c  return
+
+== -[ADChallengeWeaponViewController ammoLabel]   (address 0x1000d6d90  size 16  kind objc)
+  0d6d9c  return
+
+== -[ADChallengeWeaponViewController setAmmoLabel:]   (address 0x1000d6da0  size 56  kind objc)
+  0d6dc4  self->_ammoLabel = arg1
+  0d6dd4  return
+
+== -[ADChallengeWeaponViewController .cxx_destruct]   (address 0x1000d6dd8  size 104  kind objc)

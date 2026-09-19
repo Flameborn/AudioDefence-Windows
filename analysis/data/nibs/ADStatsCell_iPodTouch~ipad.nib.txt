@@ -1,0 +1,19 @@
+// ADStatsCell_iPodTouch~ipad.nib
+TOP-LEVEL OBJECTS
+  #21 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #41 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #10 UITableViewCell (custom class ADStatsCell_iPodTouch)  
+    #53 UITableViewCellContentView  
+      #36 UIImageView  UserInteractionDisabled=False Image='list_single_left.png'
+      #55 UIImageView  UserInteractionDisabled=False Image='list_single_right.png'
+      #15 UILabel  UserInteractionDisabled=False Text='Label'
+      #30 UILabel  UserInteractionDisabled=False Text='Label'
+    #20 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #53)
+
+CONNECTIONS
+  outlet  placeholderKey                            #10 ADStatsCell_iPodTouch --> #15 UILabel Text='Label'
+  outlet  placeholderValue                          #10 ADStatsCell_iPodTouch --> #30 UILabel Text='Label'
+
+ACCESSIBILITY CONFIGURATIONS

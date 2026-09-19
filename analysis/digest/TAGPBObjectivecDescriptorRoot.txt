@@ -1,0 +1,21 @@
+
+== +[TAGPBObjectivecDescriptorRoot extensionRegistry]   (address 0x10012d360  size 300  kind objc)
+  12d388  if (g_10042de20 != 0) goto loc_10012d474
+  12d3a4  [TAGPBExtensionRegistry alloc]
+  12d3b4  [[TAGPBExtensionRegistry alloc] init]
+  12d3b8  store g_10042de20 = [[TAGPBExtensionRegistry alloc] init]
+  12d3f8  [TAGPBExtensionField alloc]
+  12d408  [[TAGPBExtensionField alloc] initWithDescription:&d_10042b9b0]
+  12d41c  [g_10042de20 addExtension:[[TAGPBExtensionField alloc] initWithDescription:&d_10042b9b0]]
+  12d42c  [TAGPBObjectivecDescriptorRoot globallyRegisterExtension:[[TAGPBExtensionField alloc] initWithDescription:&d_10042b9b0]]
+  12d438  [[[TAGPBExtensionField alloc] initWithDescription:&d_10042b9b0] release]
+  12d454  [TAGPBDescriptorRoot extensionRegistry]
+  12d46c  [g_10042de20 addExtensions:[TAGPBDescriptorRoot extensionRegistry]]
+loc_10012d474:
+  12d488  return
+
+== +[TAGPBObjectivecDescriptorRoot load]   (address 0x10012d48c  size 108  kind objc)
+  12d4b0  [NSAutoreleasePool alloc]
+  12d4c0  [[NSAutoreleasePool alloc] init]
+  12d4d8  [TAGPBObjectivecDescriptorRoot extensionRegistry]
+  12d4f4  tail [[[NSAutoreleasePool alloc] init] drain]

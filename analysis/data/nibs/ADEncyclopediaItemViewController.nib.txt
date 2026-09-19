@@ -1,0 +1,54 @@
+// ADEncyclopediaItemViewController.nib
+TOP-LEVEL OBJECTS
+  #89 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #162 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #128 UIView  Tag=2781
+    #80 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #54 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+    #43 UILabel  UserInteractionDisabled=False Text='KILLS'
+    #29 UILabel  UserInteractionDisabled=False Text='KV'
+    #178 UILabel  UserInteractionDisabled=False Text='KILLED BY'
+    #189 UILabel  UserInteractionDisabled=False Text='KBV'
+    #18 UITextView  Text='This is the bio'
+    #74 UIImageView  Image='arrow_large_right.png'
+    #108 UIImageView  Image='arrow_large_left.png'
+    #170 UIImageView  Image='button_audio_large.png'
+    #139 UILabel  UserInteractionDisabled=False Text='NAME'
+  #175 UIView  Tag=2782
+    #155 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #114 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+    #121 UILabel  Tag=5 UserInteractionDisabled=False Text='KILLS'
+    #193 UILabel  Tag=6 UserInteractionDisabled=False Text='KV'
+    #99 UILabel  Tag=3 UserInteractionDisabled=False Text='KILLED BY'
+    #39 UILabel  Tag=4 UserInteractionDisabled=False Text='KBV'
+    #95 UITextView  Tag=1 Text='This is the bio'
+    #205 UIImageView  Tag=8 Image='arrow_large_right.png'
+    #206 UIImageView  Tag=7 Image='arrow_large_left.png'
+    #188 UIImageView  Tag=9 Image='button_audio_large.png'
+    #41 UILabel  Tag=2 UserInteractionDisabled=False Text='NAME'
+
+CONNECTIONS
+  outlet  audioButton                               #89 UIProxyObject --> #170 UIImageView
+  outlet  bioView                                   #89 UIProxyObject --> #18 UITextView Text='This is the bio'
+  outlet  enemyNameLabel                            #89 UIProxyObject --> #139 UILabel Text='NAME'
+  outlet  killedByLabel                             #89 UIProxyObject --> #178 UILabel Text='KILLED BY'
+  outlet  killedByValueLabel                        #89 UIProxyObject --> #189 UILabel Text='KBV'
+  outlet  killsLabel                                #89 UIProxyObject --> #43 UILabel Text='KILLS'
+  outlet  killsValueLabel                           #89 UIProxyObject --> #29 UILabel Text='KV'
+  outlet  leftArrow                                 #89 UIProxyObject --> #108 UIImageView
+  outlet  rightArrow                                #89 UIProxyObject --> #74 UIImageView
+  outlet  view                                      #89 UIProxyObject --> #128 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject="#43 UILabel Text='KILLS'" UIAccessibilityHint='' UIAccessibilityLabel=''
+  UIAccessibileObject="#29 UILabel Text='KV'" UIIsAccessibilityElement=0
+  UIAccessibileObject="#178 UILabel Text='KILLED BY'" UIAccessibilityLabel='Killed by'
+  UIAccessibileObject="#189 UILabel Text='KBV'" UIIsAccessibilityElement=0
+  UIAccessibileObject='#74 UIImageView' UIAccessibilityHint="Click to view the next enemy's description. This button will be unavailable if you are at the end of the list" UIAccessibilityLabel='Next button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject='#108 UIImageView' UIAccessibilityHint="Click to view the previous enemy's description. This button will be unavailable if you are at the beginning of the list" UIAccessibilityLabel='Previous button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject="#121 UILabel Text='KILLS'" UIAccessibilityHint='' UIAccessibilityLabel=''
+  UIAccessibileObject="#193 UILabel Text='KV'" UIIsAccessibilityElement=0
+  UIAccessibileObject="#99 UILabel Text='KILLED BY'" UIAccessibilityLabel='Killed by'
+  UIAccessibileObject="#39 UILabel Text='KBV'" UIIsAccessibilityElement=0
+  UIAccessibileObject='#205 UIImageView' UIAccessibilityHint="Click to view the next enemy's description. This button will be unavailable if you are at the end of the list" UIAccessibilityLabel='Next button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject='#206 UIImageView' UIAccessibilityHint="Click to view the previous enemy's description. This button will be unavailable if you are at the beginning of the list" UIAccessibilityLabel='Previous button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1

@@ -1,0 +1,38 @@
+
+== +[AUFactory defaultACD]   (address 0x1000e31a0  size 20  kind objc)
+  0e31b0  return
+
+== +[AUFactory remoteIO]   (address 0x1000e31b4  size 84  kind objc)
+  0e31c4  if (AUFactory == 0) goto loc_1000e31e0
+  0e31d8  [AUFactory defaultACD]
+  0e31dc  goto loc_1000e31e8
+loc_1000e31e0:
+loc_1000e31e8:
+  0e3204  return
+
+== +[AUFactory mixer]   (address 0x1000e3208  size 84  kind objc)
+  0e3218  if (AUFactory == 0) goto loc_1000e3234
+  0e322c  [AUFactory defaultACD]
+  0e3230  goto loc_1000e323c
+loc_1000e3234:
+loc_1000e323c:
+  0e3258  return
+
+== +[AUFactory mixer3d]   (address 0x1000e325c  size 84  kind objc)
+  0e326c  if (AUFactory == 0) goto loc_1000e3288
+  0e3280  [AUFactory defaultACD]
+  0e3284  goto loc_1000e3290
+loc_1000e3288:
+loc_1000e3290:
+  0e32ac  return
+
+== +[AUFactory sampler]   (address 0x1000e32b0  size 84  kind objc)
+  0e32c0  if (AUFactory == 0) goto loc_1000e32dc
+  0e32d4  [AUFactory defaultACD]
+  0e32d8  goto loc_1000e32e4
+loc_1000e32dc:
+loc_1000e32e4:
+  0e3300  return
+
+== +[AUFactory audioComponent:]   (address 0x1000e3304  size 12  kind objc)
+  0e330c  tail AudioComponentFindNext(0, arg1, arg1)

@@ -1,0 +1,10 @@
+
+== +[TAGPBMethodOptions_ProtocolEnumDescriptor enumDescriptor]_block_invoke   (address 0x10012cdb0  size 12  kind block)
+  12cdb8  return
+
+== +[TAGPBMethodOptions_ProtocolEnumDescriptor enumDescriptor]   (address 0x10012cdbc  size 96  kind objc)
+  12cdd4  if (g_10042ddd0 != 0) goto loc_10012ce10
+  12ce08  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBMethodOptions_Protocol" values:&d_10042b2d8 valueCount:2 enumVerifier:&+[TAGPBMethodOptions_ProtocolEnumDescriptor enumDescriptor]_block_invoke]
+  12ce0c  store g_10042ddd0 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBMethodOptions_Protocol" values:&d_10042b2d8 valueCount:2 enumVerifier:&+[TAGPBMethodOptions_ProtocolEnumDescriptor enumDescriptor]_block_invoke]
+loc_10012ce10:
+  12ce18  return

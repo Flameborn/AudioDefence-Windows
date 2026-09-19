@@ -1,0 +1,75 @@
+
+== -[ADButtonWithFont(ImageWithTitle) centerButtonTextWithCoinsImage]   (address 0x1000076e8  size 556  kind objc)
+  007728  [self titleForState:0]
+  007758  [self titleLabel]
+  007774  [[self titleLabel] font]
+  0077a8  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  0077c0  [[self titleForState:0] sizeWithAttributes:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  0077f4  [ADButtonWithFont sharedCoinsImage]
+  00781c  [self setImage:[ADButtonWithFont sharedCoinsImage] forState:0]
+  007830  [self imageView]
+  00784c  [[self imageView] image]
+  007868  [[[self imageView] image] size]
+  007880  [self setEdgeInsetsWithSpacingTextSpacing:[[[self imageView] image] size].0 WithImageSpacing:[[self titleForState:0] sizeWithAttributes:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]].0]
+  0078c0  return
+
+== -[ADButtonWithFont(ImageWithTitle) centerButtonTextWithDiamondsImage]   (address 0x100007914  size 556  kind objc)
+  007954  [self titleForState:0]
+  007984  [self titleLabel]
+  0079a0  [[self titleLabel] font]
+  0079d4  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  0079ec  [[self titleForState:0] sizeWithAttributes:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  007a20  [ADButtonWithFont sharedDiamondImage]
+  007a48  [self setImage:[ADButtonWithFont sharedDiamondImage] forState:0]
+  007a5c  [self imageView]
+  007a78  [[self imageView] image]
+  007a94  [[[self imageView] image] size]
+  007aac  [self setEdgeInsetsWithSpacingTextSpacing:[[[self imageView] image] size].0 WithImageSpacing:[[self titleForState:0] sizeWithAttributes:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]].0]
+  007aec  return
+
+== -[ADButtonWithFont(ImageWithTitle) centerButtonWithoutImage]   (address 0x100007b40  size 76  kind objc)
+  007b64  [self setImage:0 forState:0]
+  007b88  tail [self setEdgeInsetsWithSpacingTextSpacing:0 WithImageSpacing:0]
+
+== -[ADButtonWithFont(ImageWithTitle) setFontByDeviceType]   (address 0x100007b8c  size 340  kind objc)
+  007bb4  [ADGameParameters sharedParameters]
+  007bd0  [[ADGameParameters sharedParameters] isIphone]
+  007bf0  [self titleLabel]
+  007c0c  &@selector(fontWithName:size:)
+  007c14  if ([[ADGameParameters sharedParameters] isIphone] == 0) goto loc_100007c54
+  007c24  [UIFont fontWithName:@"AxeHandel" size:25]
+  007c48  [[self titleLabel] setFont:[UIFont fontWithName:@"AxeHandel" size:25]]
+  007c4c  goto loc_100007c8c
+  007c50  goto loc_100007cc4
+loc_100007c54:
+  007c64  [UIFont fontWithName:@"AxeHandel" size:50]
+  007c88  [[self titleLabel] setFont:[UIFont fontWithName:@"AxeHandel" size:50]]
+loc_100007c8c:
+  007ca4  return
+
+== -[ADButtonWithFont(ImageWithTitle) setEdgeInsetsWithSpacingTextSpacing:WithImageSpacing:]   (address 0x100007ce0  size 104  kind objc)
+  007d10  [self setImageEdgeInsets:{0, arg2, 0, -arg2}]
+  007d44  tail [self setTitleEdgeInsets:{0, -(arg1 + 5), 0, (arg1 + 5)}]
+
+== +[ADButtonWithFont(ImageWithTitle) sharedDiamondImage]   (address 0x100007d48  size 68  kind objc)
+  007d64  if (g_10042d948 != -1) goto loc_100007d78
+loc_100007d68:
+loc_100007d78:
+  007d84  dispatch_once(&g_10042d948, ^{+[ADButtonWithFont(ImageWithTitle) sharedDiamondImage]_block_invoke})
+  007d88  goto loc_100007d68
+
+== +[ADButtonWithFont(ImageWithTitle) sharedDiamondImage]_block_invoke   (address 0x100007d8c  size 152  kind block)
+  007db4  [UIImage imageNamed:@"icon_diamond_small"]
+  007ddc  [ADButtonWithFont cropDiamondsImage:[UIImage imageNamed:@"icon_diamond_small"]]
+  007df4  store g_10042d940 = [ADButtonWithFont cropDiamondsImage:[UIImage imageNamed:@"icon_diamond_small"]]
+  007e0c  return
+
+== +[ADButtonWithFont(ImageWithTitle) cropDiamondsImage:]   (address 0x100007e24  size 168  kind objc)
+  007e50  UIGraphicsBeginImageContextWithOptions(0)
+  007e74  [arg1 drawInRect:{0, 0, 20, 20}]
+  007e78  UIGraphicsGetImageFromCurrentImageContext([arg1 drawInRect:{0, 0, 20, 20}])
+  007e88  UIGraphicsEndImageContext(UIGraphicsGetImageFromCurrentImageContext([arg1 drawInRect:{0, 0, 20, 20}]))
+  007ea4  return
+
+== +[ADButtonWithFont(ImageWithTitle) sharedCoinsImage]   (address 0x100007ecc  size 32  kind objc)
+  007ee8  tail [UIImage imageNamed:@"icon_currency_small"]

@@ -1,0 +1,20 @@
+// ADPauseViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #66 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #50 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #51 UIView  
+    #9 UIImageView  Image='gesture_gameplay_background.png'
+    #76 UIImageView  Image='frame_settings.png'
+    #11 UIView  
+    #61 UIButton (custom class ADButtonWithFont)  
+    #23 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  quitButtonTouched:                        #61 ADButtonWithFont --(events 0x40)--> #66 UIProxyObject
+  action  validateButtonPressed:                    #23 ADButtonWithFont --(events 0x40)--> #66 UIProxyObject
+  outlet  controlSchemeView                         #66 UIProxyObject --> #11 UIView
+  outlet  view                                      #66 UIProxyObject --> #51 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#61 ADButtonWithFont' UIAccessibilityLabel='End Game'
+  UIAccessibileObject='#23 ADButtonWithFont' UIAccessibilityLabel='Resume'

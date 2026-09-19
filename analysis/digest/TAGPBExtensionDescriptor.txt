@@ -1,0 +1,43 @@
+
+== -[TAGPBExtensionDescriptor initWithExtensionDescription:]   (address 0x100138408  size 88  kind objc)
+  13843c  [super init]
+  138440  if (self == 0) goto loc_100138450
+  13844c  self->description_ = arg1
+loc_100138450:
+  13845c  return
+
+== -[TAGPBExtensionDescriptor singletonName]   (address 0x100138460  size 44  kind objc)
+  138488  tail [NSString stringWithUTF8String:self->description_[+0x0]]
+
+== -[TAGPBExtensionDescriptor singletonNameC]   (address 0x10013848c  size 20  kind objc)
+  13849c  return
+
+== -[TAGPBExtensionDescriptor fieldNumber]   (address 0x1001384a0  size 20  kind objc)
+  1384b0  return
+
+== -[TAGPBExtensionDescriptor type]   (address 0x1001384b4  size 20  kind objc)
+  1384c4  return
+
+== -[TAGPBExtensionDescriptor isRepeated]   (address 0x1001384c8  size 24  kind objc)
+  1384dc  return
+
+== -[TAGPBExtensionDescriptor isPackable]   (address 0x1001384e0  size 24  kind objc)
+  1384f4  return
+
+== -[TAGPBExtensionDescriptor isMessage]   (address 0x1001384f8  size 32  kind objc)
+  138514  return
+
+== -[TAGPBExtensionDescriptor msgClass]   (address 0x100138518  size 20  kind objc)
+  138528  tail objc_getClass(self->description_[+0x28], _cmd)
+
+== -[TAGPBExtensionDescriptor enumDescriptor]   (address 0x10013852c  size 244  kind objc)
+  138560  if (self->description_[+0x8] != 17) goto loc_100138600
+  13857c  [TAGPBEnumDescriptor descriptorForName:self->description_[+0x38]]
+  138584  if ([TAGPBEnumDescriptor descriptorForName:self->description_[+0x38]] != 0) goto loc_100138604
+  13859c  [NSAssertionHandler currentHandler]
+  1385c0  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  1385f8  [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:self file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:807 description:@"Unable to find enum descriptor %s"]
+  1385fc  goto loc_100138604
+loc_100138600:
+loc_100138604:
+  13861c  return

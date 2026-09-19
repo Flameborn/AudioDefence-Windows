@@ -1,0 +1,15 @@
+
+== -[ADAccessibilityTableHeaderLabel initWithFrame:]   (address 0x10009e4d0  size 500  kind objc)
+  09e50c  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  09e514  if (self == 0) goto loc_10009e668
+  09e530  [UIColor blackColor]
+  09e554  [self setBackgroundColor:[UIColor blackColor]]
+  09e578  [self setTextAlignment:1]
+  09e594  [ADGameParameters sharedParameters]
+  09e5b0  [[ADGameParameters sharedParameters] isIphone]
+  09e5f4  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 35)]
+  09e618  [self setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 35)]]
+  09e638  [UIColor whiteColor]
+  09e65c  [self setTextColor:[UIColor whiteColor]]
+loc_10009e668:
+  09e680  return

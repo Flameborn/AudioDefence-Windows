@@ -1,0 +1,26 @@
+// ADStatsPortalViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #1 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #40 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #9 UIView  
+    #42 UIView (custom class ViewWithParalax)  
+      #30 UIImageView  Image='background_main.png'
+    #23 UIImageView  UserInteractionDisabled=False Image='chains_info.png'
+    #69 UIButton (custom class ADButtonWithFont)  Tag=1
+    #67 UIButton (custom class ADButtonWithFont)  Tag=2
+    #25 UIButton (custom class ADButtonWithFont)  Tag=3
+    #59 UIButton (custom class ADButtonWithFont)  Tag=4
+
+CONNECTIONS
+  action  buttonPressed:                            #25 ADButtonWithFont --(events 0x40)--> #1 UIProxyObject
+  action  buttonPressed:                            #59 ADButtonWithFont --(events 0x40)--> #1 UIProxyObject
+  action  buttonPressed:                            #67 ADButtonWithFont --(events 0x40)--> #1 UIProxyObject
+  action  buttonPressed:                            #69 ADButtonWithFont --(events 0x40)--> #1 UIProxyObject
+  outlet  background                                #1 UIProxyObject --> #30 UIImageView
+  outlet  view                                      #1 UIProxyObject --> #9 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#69 ADButtonWithFont' UIAccessibilityLabel='Zombiepedia'
+  UIAccessibileObject='#67 ADButtonWithFont' UIAccessibilityLabel='Stats'
+  UIAccessibileObject='#25 ADButtonWithFont' UIAccessibilityLabel='More games'
+  UIAccessibileObject='#59 ADButtonWithFont' UIAccessibilityLabel='Credits'

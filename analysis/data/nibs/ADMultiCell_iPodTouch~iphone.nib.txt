@@ -1,0 +1,28 @@
+// ADMultiCell_iPodTouch~iphone.nib
+TOP-LEVEL OBJECTS
+  #87 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #32 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #29 UITableViewCell (custom class ADMultiCell_iPodTouch)  
+    #53 UITableViewCellContentView  
+      #33 UIImageView  UserInteractionDisabled=False Image='list_oneline_subhead.png'
+      #25 UIImageView  UserInteractionDisabled=False Image='list_single_left.png'
+      #27 UIImageView  UserInteractionDisabled=False Image='list_single_right.png'
+      #9 UIImageView  UserInteractionDisabled=False Image='list_single_right.png'
+      #13 UIImageView  UserInteractionDisabled=False Image='list_single_left.png'
+      #70 UILabel  UserInteractionDisabled=False Text='Label'
+      #50 UILabel  UserInteractionDisabled=False Text='Label'
+      #37 UILabel  UserInteractionDisabled=False Text='Label'
+      #61 UILabel  UserInteractionDisabled=False Text='Label'
+      #31 UILabel  UserInteractionDisabled=False Text='Subtitle'
+    #34 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #53)
+
+CONNECTIONS
+  outlet  accuracyLabel                             #29 ADMultiCell_iPodTouch --> #70 UILabel Text='Label'
+  outlet  accuracyValueLabel                        #29 ADMultiCell_iPodTouch --> #37 UILabel Text='Label'
+  outlet  killsLabel                                #29 ADMultiCell_iPodTouch --> #50 UILabel Text='Label'
+  outlet  killsValueLabel                           #29 ADMultiCell_iPodTouch --> #61 UILabel Text='Label'
+  outlet  subTitleLabel                             #29 ADMultiCell_iPodTouch --> #31 UILabel Text='Subtitle'
+
+ACCESSIBILITY CONFIGURATIONS

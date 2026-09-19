@@ -1,0 +1,20 @@
+// ADChallengeLockedViewController.nib
+TOP-LEVEL OBJECTS
+  #80 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #27 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #70 UIView  
+    #29 UIImageView  Image='background_main.png'
+    #63 UIImageView  Image='frame_popup_blank.png'
+    #39 UIImageView  UserInteractionDisabled=False Image='header_popup_centred.png'
+    #24 UILabel  UserInteractionDisabled=False Text='CHALLENGE LOCKED' NumberOfLines=3
+    #49 UIImageView  UserInteractionDisabled=False Image='microsmg_icon.png'
+    #65 UIButton  title[0]='VIEW IN ARMORY'
+
+CONNECTIONS
+  action  armoryButtonTouched:                      #65 UIButton --(events 0x40)--> #80 UIProxyObject
+  outlet  armoryButton                              #80 UIProxyObject --> #65 UIButton
+  outlet  mainText                                  #80 UIProxyObject --> #24 UILabel Text='CHALLENGE LOCKED'
+  outlet  view                                      #80 UIProxyObject --> #70 UIView
+  outlet  weaponIcon                                #80 UIProxyObject --> #49 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

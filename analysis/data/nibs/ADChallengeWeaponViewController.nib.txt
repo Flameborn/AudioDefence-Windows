@@ -1,0 +1,14 @@
+// ADChallengeWeaponViewController.nib
+TOP-LEVEL OBJECTS
+  #9 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #45 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #34 UIView  
+    #11 UILabel  UserInteractionDisabled=False Text='PISTOL'
+    #47 UILabel  UserInteractionDisabled=False Text='10'
+
+CONNECTIONS
+  outlet  ammoLabel                                 #9 UIProxyObject --> #47 UILabel Text='10'
+  outlet  view                                      #9 UIProxyObject --> #34 UIView
+  outlet  weaponLabel                               #9 UIProxyObject --> #11 UILabel Text='PISTOL'
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,333 @@
+
+== -[GAI defaultTracker]   (address 0x100115f40  size 108  kind objc)
+  115f54  objc_sync_enter(self, _cmd)
+  115f70  [GAIUsageTracker trackAction:_cmd]
+  115f84  objc_sync_exit(self)
+  115f94  return
+  115fa0  objc_sync_exit()
+
+== -[GAI setDefaultTracker:]   (address 0x100115fac  size 112  kind objc)
+  115fc8  objc_sync_enter(self, _cmd, arg1)
+  115fe4  [GAIUsageTracker trackAction:_cmd]
+  115ff0  self->defaultTracker_ = arg1
+  116004  tail objc_sync_exit(self)
+  116010  objc_sync_exit()
+
+== -[GAI clientId]   (address 0x10011601c  size 136  kind objc)
+  116030  objc_sync_enter(self, _cmd)
+  11604c  [GAIUsageTracker trackAction:_cmd]
+  116060  [self dispatcher]
+  116070  [[self dispatcher] clientId]
+  11607c  objc_sync_exit(self)
+  11608c  return
+  116098  objc_sync_exit()
+
+== -[GAI dispatchInterval]   (address 0x1001160a4  size 144  kind objc)
+  1160bc  objc_sync_enter(self, _cmd)
+  1160d8  [GAIUsageTracker trackAction:_cmd]
+  1160ec  [self dispatcher]
+  1160fc  [[self dispatcher] dispatchInterval]
+  116108  objc_sync_exit(self)
+  11611c  return
+  116128  objc_sync_exit()
+
+== -[GAI setDispatchInterval:]   (address 0x100116134  size 140  kind objc)
+  116150  objc_sync_enter(self, _cmd)
+  11616c  [GAIUsageTracker trackAction:_cmd]
+  116180  [self dispatcher]
+  116194  [[self dispatcher] setDispatchInterval:arg1]
+  1161a8  tail objc_sync_exit(self)
+  1161b4  objc_sync_exit()
+
+== -[GAI trackUncaughtExceptions]   (address 0x1001161c0  size 108  kind objc)
+  1161d4  objc_sync_enter(self, _cmd)
+  1161f0  [GAIUsageTracker trackAction:_cmd]
+  116204  objc_sync_exit(self)
+  116214  return
+  116220  objc_sync_exit()
+
+== -[GAI setTrackUncaughtExceptions:]   (address 0x10011622c  size 128  kind objc)
+  116248  objc_sync_enter(self, _cmd, arg1)
+  116264  [GAIUsageTracker trackAction:_cmd]
+  116268  if (arg1 == 0) goto loc_100116274
+  11626c  sub_100120c44([GAIUsageTracker trackAction:_cmd])
+  116270  goto loc_100116278
+loc_100116274:
+  116274  sub_100121040([GAIUsageTracker trackAction:_cmd])
+loc_100116278:
+  116280  self->trackUncaughtExceptions_ = arg1
+  116294  tail objc_sync_exit(self)
+  1162a0  objc_sync_exit()
+
+== -[GAI createDispatcher:]   (address 0x1001162ac  size 168  kind objc)
+  1162cc  if (self->dispatcher_ != 0) goto loc_10011633c
+  1162e4  [GAIBatchingDispatcher dispatcher]
+  1162f4  [[GAIBatchingDispatcher dispatcher] retain]
+  116300  self->dispatcher_ = [[GAIBatchingDispatcher dispatcher] retain]
+  116318  [GAIURLConnection class]
+  116330  [[[GAIBatchingDispatcher dispatcher] retain] setUrlConnectionClass:[GAIURLConnection class]]
+loc_10011633c:
+  116350  return
+
+== -[GAI init]   (address 0x100116354  size 420  kind objc)
+  11638c  [super init]
+  116394  if (self == 0) goto loc_1001164e0
+  1163b0  [GAITrackerImpl class]
+  1163bc  self->trackerImplClass_ = [GAITrackerImpl class]
+  1163cc  [GAIURLConnection class]
+  1163d8  self->_urlConnectionClass = [GAIURLConnection class]
+  1163f4  [NSMutableDictionary alloc]
+  1163fc  [[NSMutableDictionary alloc] init]
+  116408  self->trackers_ = [[NSMutableDictionary alloc] init]
+  116418  [GAIDefaultLogger alloc]
+  116420  [[GAIDefaultLogger alloc] init]
+  11642c  self->logger_ = [[GAIDefaultLogger alloc] init]
+  116440  [self dispatcher]
+  116444  if ([self dispatcher] != 0) goto loc_1001164e0
+  11645c  [GAI sharedLogger]
+  116480  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  1164c4  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Dispatcher initialization failed: %@", @"GoogleAnalytics", @"3.09", "-[GAI init]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 129, sp[40]]
+  1164dc  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Dispatcher initialization failed: %@", @"GoogleAnalytics", @"3.09", "-[GAI init]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 129, sp[40]]]
+loc_1001164e0:
+  1164f4  return
+
+== +[GAI sharedInstance]   (address 0x1001164f8  size 120  kind objc)
+  116508  objc_sync_enter(GAI, _cmd)
+  116518  if (g_10042dc50 != 0) goto loc_100116544
+  11652c  [GAI alloc]
+  11653c  [[GAI alloc] init]
+  116540  store g_10042dc50 = [[GAI alloc] init]
+loc_100116544:
+  116548  objc_sync_exit(GAI)
+  116558  return
+  116564  objc_sync_exit()
+
+== +[GAI allocWithZone:]   (address 0x100116570  size 156  kind objc)
+  11658c  objc_sync_enter(GAI, _cmd, arg1)
+  11659c  if (g_10042dc50 == 0) goto loc_1001165a8
+  1165a4  goto loc_1001165d8
+loc_1001165a8:
+  1165cc  [super allocWithZone:arg1]
+  1165d4  store g_10042dc50 = [super allocWithZone:arg1]
+loc_1001165d8:
+  1165dc  objc_sync_exit(GAI)
+  1165f4  return
+  116600  objc_sync_exit()
+
+== -[GAI retain]   (address 0x10011660c  size 4  kind objc)
+  11660c  return
+
+== -[GAI retainCount]   (address 0x100116610  size 8  kind objc)
+  116614  return
+
+== -[GAI release]   (address 0x100116618  size 4  kind objc)
+  116618  return
+
+== -[GAI autorelease]   (address 0x10011661c  size 4  kind objc)
+  11661c  return
+
+== -[GAI copyWithZone:]   (address 0x100116620  size 4  kind objc)
+  116620  return
+
+== -[GAI trackerWithName:trackingId:]   (address 0x100116624  size 568  kind objc)
+  11665c  [GAIStringUtil trim:arg1]
+  116664  if ([GAIStringUtil trim:arg1] == 0) goto loc_100116790
+  116678  [[GAIStringUtil trim:arg1] length]
+  11667c  if ([[GAIStringUtil trim:arg1] length] == 0) goto loc_100116790
+  116684  objc_sync_enter(self)
+  1166a0  [GAIUsageTracker trackAction:_cmd]
+  1166b8  [self trackers]
+  1166cc  [[self trackers] objectForKeyedSubscript:[GAIStringUtil trim:arg1]]
+  1166d4  if ([[self trackers] objectForKeyedSubscript:[GAIStringUtil trim:arg1]] != 0) goto loc_100116784
+  1166e8  [self trackerImplClass]
+  116700  [self dispatcher]
+  11671c  [[self trackerImplClass] trackerWithDispatcher:[self dispatcher] name:[GAIStringUtil trim:arg1]]
+  116724  if ([[self trackerImplClass] trackerWithDispatcher:[self dispatcher] name:[GAIStringUtil trim:arg1]] == 0) goto loc_100116784
+  116730  [&d_1003b8378] -> @"&tid"
+  116748  [[[self trackerImplClass] trackerWithDispatcher:[self dispatcher] name:[GAIStringUtil trim:arg1]] gai_set:@"&tid" value:arg2]
+  116754  [self trackers]
+  11676c  [[self trackers] setObject:[[self trackerImplClass] trackerWithDispatcher:[self dispatcher] name:[GAIStringUtil trim:arg1]] forKeyedSubscript:[GAIStringUtil trim:arg1]]
+  11677c  if (self->defaultTracker_ != 0) goto loc_100116784
+  116780  self->defaultTracker_ = [[self trackerImplClass] trackerWithDispatcher:[self dispatcher] name:[GAIStringUtil trim:arg1]]
+loc_100116784:
+  116788  objc_sync_exit(self)
+  11678c  goto loc_10011682c
+loc_100116790:
+  1167a4  [GAI sharedLogger]
+  1167c8  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  11680c  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Nil or empty name supplied. Cannot create tracker.", @"GoogleAnalytics", @"3.09", "-[GAI trackerWithName:trackingId:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 143]
+  116824  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Nil or empty name supplied. Cannot create tracker.", @"GoogleAnalytics", @"3.09", "-[GAI trackerWithName:trackingId:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 143]]
+loc_10011682c:
+  116844  return
+  116850  objc_sync_exit()
+
+== -[GAI trackerWithTrackingId:]   (address 0x10011685c  size 20  kind objc)
+  11686c  tail [self trackerWithName:arg1 trackingId:arg1]
+
+== +[GAI sharedLogger]   (address 0x100116870  size 52  kind objc)
+  11688c  [GAI sharedInstance]
+  1168a0  tail [[GAI sharedInstance] logger]
+
+== -[GAI dispatch]   (address 0x1001168a4  size 124  kind objc)
+  1168b8  objc_sync_enter(self, _cmd)
+  1168d4  [GAIUsageTracker trackAction:_cmd]
+  1168e8  [self dispatcher]
+  1168f8  [[self dispatcher] dispatch]
+  116908  tail objc_sync_exit(self)
+  116914  objc_sync_exit()
+
+== -[GAI dispatchWithCompletionHandler:]   (address 0x100116920  size 140  kind objc)
+  11693c  objc_sync_enter(self, _cmd, arg1)
+  116958  [GAIUsageTracker trackAction:_cmd]
+  11696c  [self dispatcher]
+  116980  [[self dispatcher] dispatchWithCompletionHandler:arg1]
+  116994  tail objc_sync_exit(self)
+  1169a0  objc_sync_exit()
+
+== -[GAI dispatcher]   (address 0x1001169ac  size 292  kind objc)
+  1169c4  objc_sync_enter(self, _cmd)
+  1169d8  if (self->dispatcher_ != 0) goto loc_100116a98
+  1169f0  [self createDispatcher:&x29[-0x28]]
+  1169f4  if (([self createDispatcher:&x29[-0x28]] & 1)) goto loc_100116a98
+  116a0c  [GAI sharedLogger]
+  116a30  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  116a7c  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Cannot initiate dispatcher: %@", @"GoogleAnalytics", @"3.09", "-[GAI dispatcher]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 192, 0]
+  116a94  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Cannot initiate dispatcher: %@", @"GoogleAnalytics", @"3.09", "-[GAI dispatcher]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 192, 0]]
+loc_100116a98:
+  116aa0  objc_sync_exit(self)
+  116ab8  return
+  116ac4  objc_sync_exit()
+
+== -[GAI removeTrackerByName:]   (address 0x100116ad0  size 212  kind objc)
+  116aec  objc_sync_enter(self, _cmd, arg1)
+  116b08  [GAIUsageTracker trackAction:_cmd]
+  116b28  [self->trackers_ objectForKey:arg1]
+  116b30  if ([self->trackers_ objectForKey:arg1] == 0) goto loc_100116b64
+  116b48  [[self->trackers_ objectForKey:arg1] name]
+  116b60  [self->trackers_ removeObjectForKey:[[self->trackers_ objectForKey:arg1] name]]
+loc_100116b64:
+  116b74  if (self->defaultTracker_ != [self->trackers_ objectForKey:arg1]) goto loc_100116b7c
+  116b78  self->defaultTracker_ = 0
+loc_100116b7c:
+  116b8c  tail objc_sync_exit(self)
+  116b98  objc_sync_exit()
+
+== +[GAI threadMain:]   (address 0x100116ba4  size 84  kind objc)
+  116bc4  &@selector(run)
+loc_100116bd0:
+  116be0  [NSRunLoop currentRunLoop]
+  116be8  [[NSRunLoop currentRunLoop] run]
+  116bf4  goto loc_100116bd0
+
+== +[GAI thread]   (address 0x100116bf8  size 116  kind objc)
+  116c44  if (g_10042dc60 != -1) goto loc_100116c5c
+  116c58  return
+  116c64  dispatch_once(&g_10042dc60, ^{+[GAI thread]_block_invoke captures +0x20=GAI})
+
+== +[GAI thread]_block_invoke   (address 0x100116c6c  size 140  kind block)
+  116c90  [NSThread alloc]
+  116cb4  [[NSThread alloc] initWithTarget:GAI selector:@selector(threadMain:) object:0]
+  116cc0  store g_10042dc58 = [[NSThread alloc] initWithTarget:GAI selector:@selector(threadMain:) object:0]
+  116cd8  [[[NSThread alloc] initWithTarget:GAI selector:@selector(threadMain:) object:0] setName:@"GAIThread"]
+  116cf4  tail [g_10042dc58 start]
+
+== sub_100116cf8   (address 0x100116cf8  size 16  kind sub)
+  116d04  tail Block_object_assign((a0 + 32), a1[+0x20], 3, a3)
+
+== sub_100116d08   (address 0x100116d08  size 12  kind sub)
+  116d10  tail Block_object_dispose(a0[+0x20], 3, a2, a3)
+
+== -[GAI setDryRun:]   (address 0x100116d14  size 152  kind objc)
+  116d30  objc_sync_enter(self, _cmd, arg1)
+  116d4c  [GAIUsageTracker trackAction:_cmd]
+  116d58  self->_dryRun = arg1
+  116d6c  [self urlConnectionClass]
+  116d80  [[self urlConnectionClass] setDryRun:arg1]
+  116d94  tail objc_sync_exit(self)
+  116da0  objc_sync_exit()
+
+== -[GAI dryRun]   (address 0x100116dac  size 108  kind objc)
+  116dc0  objc_sync_enter(self, _cmd)
+  116ddc  [GAIUsageTracker trackAction:_cmd]
+  116df0  objc_sync_exit(self)
+  116e00  return
+  116e0c  objc_sync_exit()
+
+== -[GAI optOut]   (address 0x100116e18  size 108  kind objc)
+  116e2c  objc_sync_enter(self, _cmd)
+  116e48  [GAIUsageTracker trackAction:_cmd]
+  116e5c  objc_sync_exit(self)
+  116e6c  return
+  116e78  objc_sync_exit()
+
+== -[GAI setOptOut:]   (address 0x100116e84  size 112  kind objc)
+  116ea0  objc_sync_enter(self, _cmd, arg1)
+  116ebc  [GAIUsageTracker trackAction:_cmd]
+  116ec8  self->_optOut = arg1
+  116edc  tail objc_sync_exit(self)
+  116ee8  objc_sync_exit()
+
+== -[GAI setUrlConnectionClass:]   (address 0x100116ef4  size 76  kind objc)
+  116f0c  self->_urlConnectionClass = arg1
+  116f1c  [self dryRun]
+  116f3c  tail [arg1 setDryRun:[self dryRun]]
+
+== -[GAI logger]   (address 0x100116f40  size 108  kind objc)
+  116f54  objc_sync_enter(self, _cmd)
+  116f70  [GAIUsageTracker trackAction:_cmd]
+  116f84  objc_sync_exit(self)
+  116f94  return
+  116fa0  objc_sync_exit()
+
+== -[GAI setLogger:]   (address 0x100116fac  size 164  kind objc)
+  116fc8  objc_sync_enter(self, _cmd, arg1)
+  116fdc  if (self->logger_ == arg1) goto loc_100117028
+  116ff8  [GAIUsageTracker trackAction:_cmd]
+  11700c  [self->logger_ release]
+  117020  [arg1 retain]
+  117024  self->logger_ = [arg1 retain]
+loc_100117028:
+  117038  tail objc_sync_exit(self)
+  117044  objc_sync_exit()
+
+== -[GAI reset]   (address 0x100117050  size 476  kind objc)
+  117068  objc_sync_enter(self, _cmd)
+  117080  [self setDispatchInterval:-1]
+  1170a0  [self->trackers_ release]
+  1170bc  [NSMutableDictionary dictionaryWithCapacity:0]
+  1170cc  [[NSMutableDictionary dictionaryWithCapacity:0] retain]
+  1170d0  self->trackers_ = [[NSMutableDictionary dictionaryWithCapacity:0] retain]
+  1170dc  self->defaultTracker_ = 0
+  1170f0  [self->dispatcher_ release]
+  1170f4  self->dispatcher_ = 0
+  1170fc  objc_sync_exit(self)
+  117118  [NSNumber numberWithBool:1]
+  11713c  [self class]
+  11714c  [[self class] thread]
+  117170  [[NSNumber numberWithBool:1] performSelector:@selector(description) onThread:[[self class] thread] withObject:0 waitUntilDone:1]
+  117194  [GAIDataStore databaseFullPath:@"googleanalytics-v2.sql"]
+  1171b4  [NSFileManager defaultManager]
+  1171d0  [[NSFileManager defaultManager] removeItemAtPath:[GAIDataStore databaseFullPath:@"googleanalytics-v2.sql"] error:0]
+  1171e4  [GAIDataStore databaseFullPath:@"googleanalytics-v3.sql"]
+  1171f4  [NSFileManager defaultManager]
+  117214  tail [[NSFileManager defaultManager] removeItemAtPath:[GAIDataStore databaseFullPath:@"googleanalytics-v3.sql"] error:0]
+  117220  objc_sync_exit()
+
+== -[GAI setDispatcher:]   (address 0x10011722c  size 28  kind objc)
+  117244  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAI trackers]   (address 0x100117248  size 16  kind objc)
+  117254  return
+
+== -[GAI setTrackers:]   (address 0x100117258  size 28  kind objc)
+  117270  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAI trackerImplClass]   (address 0x100117274  size 16  kind objc)
+  117280  return
+
+== -[GAI setTrackerImplClass:]   (address 0x100117284  size 16  kind objc)
+  11728c  self->trackerImplClass_ = arg1
+  117290  return
+
+== -[GAI urlConnectionClass]   (address 0x100117294  size 16  kind objc)
+  1172a0  return

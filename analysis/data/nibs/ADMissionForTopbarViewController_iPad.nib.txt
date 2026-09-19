@@ -1,0 +1,29 @@
+// ADMissionForTopbarViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #12 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #109 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #96 UIView  
+    #110 UILabel  UserInteractionDisabled=False Text='Description' NumberOfLines=2
+    #29 UIButton (custom class ADButtonWithFont)  title[0]='100'
+    #108 UILabel (custom class ADLabelWithCoins)  UserInteractionDisabled=False Text='500'
+    #69 UILabel  UserInteractionDisabled=False Text='10/50'
+    #25 UILabel  UserInteractionDisabled=False Text='Skip for :' NumberOfLines=2
+    #76 UIImageView  UserInteractionDisabled=False Image='icon_currency_small.png'
+    #97 UILabel  UserInteractionDisabled=False Text='Reward:'
+    #98 UIImageView  Image='completionbar_back.png'
+    #15 UIView  
+      #41 UIImageView  UserInteractionDisabled=False Image='completionbar_front.png'
+
+CONNECTIONS
+  action  skipButtonTouched:                        #29 ADButtonWithFont --(events 0x40)--> #12 UIProxyObject
+  outlet  completion                                #12 UIProxyObject --> #69 UILabel Text='10/50'
+  outlet  completionBar                             #12 UIProxyObject --> #15 UIView
+  outlet  completionBarBackground                   #12 UIProxyObject --> #98 UIImageView
+  outlet  description                               #12 UIProxyObject --> #110 UILabel Text='Description'
+  outlet  reward                                    #12 UIProxyObject --> #108 ADLabelWithCoins Text='500'
+  outlet  rewardLabel                               #12 UIProxyObject --> #97 UILabel Text='Reward:'
+  outlet  skipButton                                #12 UIProxyObject --> #29 ADButtonWithFont
+  outlet  skipDiamondsLabel                         #12 UIProxyObject --> #25 UILabel Text='Skip for :'
+  outlet  view                                      #12 UIProxyObject --> #96 UIView
+
+ACCESSIBILITY CONFIGURATIONS

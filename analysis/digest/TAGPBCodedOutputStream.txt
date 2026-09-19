@@ -1,0 +1,812 @@
+
+== -[TAGPBCodedOutputStream dealloc]   (address 0x10013303c  size 164  kind objc)
+  13305c  [self flush]
+  13307c  [self->state_[+0x18] close]
+  133094  [self->state_[+0x18] release]
+  1330a8  [self->buffer_ release]
+  1330cc  [super dealloc]
+  1330dc  return
+
+== -[TAGPBCodedOutputStream initWithOutputStream:]   (address 0x1001330e0  size 84  kind objc)
+  13310c  [NSMutableData dataWithLength:0x4000]
+  133130  tail [self initWithOutputStream:arg1 data:[NSMutableData dataWithLength:0x4000]]
+
+== -[TAGPBCodedOutputStream initWithData:]   (address 0x100133134  size 28  kind objc)
+  13314c  tail [self initWithOutputStream:0 data:arg1]
+
+== -[TAGPBCodedOutputStream initWithOutputStream:bufferSize:]   (address 0x100133150  size 84  kind objc)
+  13317c  [NSMutableData dataWithLength:arg2]
+  1331a0  tail [self initWithOutputStream:arg1 data:[NSMutableData dataWithLength:arg2]]
+
+== -[TAGPBCodedOutputStream initWithOutputStream:data:]   (address 0x1001331a4  size 236  kind objc)
+  1331e4  [super init]
+  1331ec  if (self == 0) goto loc_100133274
+  133204  [arg2 retain]
+  133210  self->buffer_ = [arg2 retain]
+  133224  [arg1 open]
+  133238  [arg2 mutableBytes]
+  133244  self->state_ = [arg2 mutableBytes]
+  133258  [arg2 length]
+  133260  self->state_[+0x8] = [arg2 length]
+  13326c  [arg1 retain]
+  133270  self->state_[+0x18] = [arg1 retain]
+loc_100133274:
+  13328c  return
+
+== +[TAGPBCodedOutputStream streamWithOutputStream:bufferSize:]   (address 0x100133290  size 92  kind objc)
+  1332b8  [TAGPBCodedOutputStream alloc]
+  1332d0  [[TAGPBCodedOutputStream alloc] initWithOutputStream:arg1 bufferSize:arg2]
+  1332e8  tail [[[TAGPBCodedOutputStream alloc] initWithOutputStream:arg1 bufferSize:arg2] autorelease]
+
+== +[TAGPBCodedOutputStream streamWithOutputStream:]   (address 0x1001332ec  size 88  kind objc)
+  133310  [TAGPBCodedOutputStream alloc]
+  133328  [[TAGPBCodedOutputStream alloc] initWithOutputStream:arg1 bufferSize:0x4000]
+  133340  tail [[[TAGPBCodedOutputStream alloc] initWithOutputStream:arg1 bufferSize:0x4000] autorelease]
+
+== +[TAGPBCodedOutputStream streamWithData:]   (address 0x100133344  size 84  kind objc)
+  133368  [TAGPBCodedOutputStream alloc]
+  13337c  [[TAGPBCodedOutputStream alloc] initWithData:arg1]
+  133394  tail [[[TAGPBCodedOutputStream alloc] initWithData:arg1] autorelease]
+
+== -[TAGPBCodedOutputStream writeDoubleNoTag:]   (address 0x100133398  size 20  kind objc)
+  1333a8  tail sub_1001333ac(x0, arg1)
+
+== sub_1001333ac   (address 0x1001333ac  size 132  kind sub)
+  1333c4  sub_100133734(a0, (a1 & 255), a2, a3)
+  1333d0  sub_100133734(a0)
+  1333dc  sub_100133734(a0)
+  1333e8  sub_100133734(a0, (a1 >>> 24))
+  1333f8  sub_100133734(a0, ((a1 >>> 32) & 255))
+  133408  sub_100133734(a0, ((a1 >>> 40) & 255))
+  133418  sub_100133734(a0, ((a1 >>> 48) & 255))
+  13342c  tail sub_100133734(a0, (a1 >>> 56))
+
+== -[TAGPBCodedOutputStream writeDouble:value:]   (address 0x100133430  size 72  kind objc)
+  13345c  sub_100133a60(x0, ((arg1 << 3) | 1), arg1)
+  133474  tail sub_1001333ac(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeFloatNoTag:]   (address 0x100133478  size 20  kind objc)
+  133488  tail sub_10013348c(x0, arg1)
+
+== sub_10013348c   (address 0x10013348c  size 72  kind sub)
+  1334a4  sub_100133734(a0, (a1 & 255), a2, a3)
+  1334b0  sub_100133734(a0)
+  1334bc  sub_100133734(a0)
+  1334d0  tail sub_100133734(a0, (a1 >>> 24))
+
+== -[TAGPBCodedOutputStream writeFloat:value:]   (address 0x1001334d4  size 72  kind objc)
+  133500  sub_100133a60(x0, (5 | (arg1 << 3)), arg1)
+  133518  tail sub_10013348c(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeUInt64NoTag:]   (address 0x10013351c  size 20  kind objc)
+  13352c  tail sub_100133530(x0, arg1, arg1)
+
+== sub_100133530   (address 0x100133530  size 88  kind sub)
+  133548  if (a1 >u 127) goto loc_100133554
+  133550  goto loc_100133574
+loc_100133554:
+  133560  sub_100133734(a0, ((w20 | 128) & 255))
+  133570  if (x20 >=u 0x4000) goto loc_100133554
+loc_100133574:
+  133584  tail sub_100133734(a0, (w8 & 255))
+
+== -[TAGPBCodedOutputStream writeUInt64:value:]   (address 0x100133588  size 60  kind objc)
+  1335ac  sub_100133a60(x0, (arg1 << 3), arg1, arg2)
+  1335c0  tail sub_100133530(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeInt64NoTag:]   (address 0x1001335c4  size 20  kind objc)
+  1335d4  tail sub_100133530(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeInt64:value:]   (address 0x1001335d8  size 60  kind objc)
+  1335fc  sub_100133a60(x0, (arg1 << 3), arg1, arg2)
+  133610  tail sub_100133530(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeInt32NoTag:]   (address 0x100133614  size 20  kind objc)
+  133624  tail sub_100133628(x0, arg1, arg1)
+
+== sub_100133628   (address 0x100133628  size 20  kind sub)
+  13362c  if (a1 < 0) goto loc_100133634
+  133630  tail sub_100133a60(a0, a1, a2, a3)
+loc_100133634:
+  133638  tail sub_100133530(a0, a1, a2, a3)
+
+== -[TAGPBCodedOutputStream writeInt32:value:]   (address 0x10013363c  size 60  kind objc)
+  133660  sub_100133a60(x0, (arg1 << 3), arg1, arg2)
+  133674  tail sub_100133628(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeFixed64NoTag:]   (address 0x100133678  size 20  kind objc)
+  133688  tail sub_1001333ac(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeFixed64:value:]   (address 0x10013368c  size 64  kind objc)
+  1336b4  sub_100133a60(x0, ((arg1 << 3) | 1), arg1, arg2)
+  1336c8  tail sub_1001333ac(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeFixed32NoTag:]   (address 0x1001336cc  size 20  kind objc)
+  1336dc  tail sub_10013348c(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeFixed32:value:]   (address 0x1001336e0  size 64  kind objc)
+  133708  sub_100133a60(x0, (5 | (arg1 << 3)), arg1, arg2)
+  13371c  tail sub_10013348c(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeBoolNoTag:]   (address 0x100133720  size 20  kind objc)
+  133730  tail sub_100133734(x0, arg1, arg1)
+
+== sub_100133734   (address 0x100133734  size 72  kind sub)
+  133750  if (x8 != x9) goto loc_100133760
+  133758  sub_10013513c(a0, a1, a2, a3)
+loc_100133760:
+  133764  a0[+0x10] = (x8 + 1)
+  133778  return
+
+== -[TAGPBCodedOutputStream writeBool:value:]   (address 0x10013377c  size 60  kind objc)
+  1337a0  sub_100133a60(x0, (arg1 << 3), arg1, arg2)
+  1337b4  tail sub_100133734(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeStringNoTag:]   (address 0x1001337b8  size 680  kind objc)
+  1337ec  CFStringGetCStringPtr(arg1, 0x8000100, arg1)
+  1337f4  if (CFStringGetCStringPtr(arg1, 0x8000100, arg1) == 0) goto loc_100133804
+  1337fc  strlen(CFStringGetCStringPtr(arg1, 0x8000100, arg1))
+  133800  goto loc_10013381c
+loc_100133804:
+  133818  [arg1 lengthOfBytesUsingEncoding:4]
+loc_10013381c:
+  133830  sub_100133a60(x0)
+  133834  if (x21 == 0) goto loc_100133a44
+  133848  if ((self->state_[+0x8] - self->state_[+0x10]) >=u x21) goto loc_100133874
+  13384c  if (CFStringGetCStringPtr(arg1, 0x8000100, arg1) == 0) goto loc_1001338a8
+  13386c  [self writeRawPtr:CFStringGetCStringPtr(arg1, 0x8000100, arg1) offset:0 length:x4]
+  133870  goto loc_100133a44
+loc_100133874:
+  133880  if (CFStringGetCStringPtr(arg1, 0x8000100, arg1) == 0) goto loc_100133978
+  133890  memcpy((self->state_ + self->state_[+0x10]), CFStringGetCStringPtr(arg1, 0x8000100, arg1))
+loc_100133898:
+  1338a0  self->state_[+0x10] = (self->state_[+0x10] + x21)
+  1338a4  goto loc_100133a44
+loc_1001338a8:
+  1338bc  [arg1 dataUsingEncoding:4]
+  1338d4  [[arg1 dataUsingEncoding:4] length]
+  1338dc  if ([[arg1 dataUsingEncoding:4] length] == x21) goto loc_10013395c
+  1338f4  [NSAssertionHandler currentHandler]
+  133918  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  133928  [[arg1 dataUsingEncoding:4] length]
+  133958  [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:self file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:327 description:@"Strings UTF8 length was wrong? %tu vs %zd"]
+loc_10013395c:
+  133970  [self writeRawData:[arg1 dataUsingEncoding:4]]
+  133974  goto loc_100133a44
+loc_100133978:
+  133988  [arg1 length]
+  1339b8  [arg1 getBytes:(self->state_ + self->state_[+0x10]) maxLength:(self->state_[+0x8] - self->state_[+0x10]) usedLength:&sp[0x18] encoding:4 options:0 range:x7 remainingRange:&@selector(currentContext)]
+  1339bc  if ([arg1 getBytes:(self->state_ + self->state_[+0x10]) maxLength:(self->state_[+0x8] - self->state_[+0x10]) usedLength:&sp[0x18] encoding:4 options:0 range:x7 remainingRange:&@selector(currentContext)] == 0) goto loc_100133a44
+  1339c8  if (0 == x21) goto loc_100133898
+  1339e0  [NSAssertionHandler currentHandler]
+  133a04  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  133a38  [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:self file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:316 description:@"Our UTF8 calc was wrong? %tu vs %zd"]
+  133a40  goto loc_100133898
+loc_100133a44:
+  133a5c  return
+
+== sub_100133a60   (address 0x100133a60  size 88  kind sub)
+  133a78  if (a1 >u 127) goto loc_100133a84
+  133a80  goto loc_100133aa4
+loc_100133a84:
+  133a90  sub_100133734(a0, ((w20 | 128) & 255))
+  133aa0  if (w20 >=u 0x4000) goto loc_100133a84
+loc_100133aa4:
+  133ab4  tail sub_100133734(a0, (w8 & 255))
+
+== -[TAGPBCodedOutputStream writeString:value:]   (address 0x100133ab8  size 76  kind objc)
+  133ae0  sub_100133a60(x0, ((arg1 << 3) | 2), arg1, arg2)
+  133b00  tail [self writeStringNoTag:arg2]
+
+== -[TAGPBCodedOutputStream writeGroupNoTag:value:]   (address 0x100133b04  size 76  kind objc)
+  133b2c  [arg2 writeToCodedOutputStream:self]
+  133b4c  tail sub_100133a60(x0, ((arg1 << 3) | 4))
+
+== -[TAGPBCodedOutputStream writeGroup:value:]   (address 0x100133b50  size 92  kind objc)
+  133b80  sub_100133a60(x0, ((arg1 << 3) | 3), arg1, arg2)
+  133ba8  tail [self writeGroupNoTag:arg1 value:arg2]
+
+== -[TAGPBCodedOutputStream writeUnknownGroupNoTag:value:]   (address 0x100133bac  size 76  kind objc)
+  133bd4  [arg2 writeToCodedOutputStream:self]
+  133bf4  tail sub_100133a60(x0, ((arg1 << 3) | 4))
+
+== -[TAGPBCodedOutputStream writeUnknownGroup:value:]   (address 0x100133bf8  size 92  kind objc)
+  133c28  sub_100133a60(x0, ((arg1 << 3) | 3), arg1, arg2)
+  133c50  tail [self writeUnknownGroupNoTag:arg1 value:arg2]
+
+== -[TAGPBCodedOutputStream writeMessageNoTag:]   (address 0x100133c54  size 104  kind objc)
+  133c88  [arg1 serializedSize]
+  133c94  sub_100133a60(x0, [arg1 serializedSize])
+  133cb8  tail [arg1 writeToCodedOutputStream:self]
+
+== -[TAGPBCodedOutputStream writeMessage:value:]   (address 0x100133cbc  size 76  kind objc)
+  133ce4  sub_100133a60(x0, ((arg1 << 3) | 2), arg1, arg2)
+  133d04  tail [self writeMessageNoTag:arg2]
+
+== -[TAGPBCodedOutputStream writeDataNoTag:]   (address 0x100133d08  size 104  kind objc)
+  133d3c  [arg1 length]
+  133d48  sub_100133a60(x0, [arg1 length])
+  133d6c  tail [self writeRawData:arg1]
+
+== -[TAGPBCodedOutputStream writeData:value:]   (address 0x100133d70  size 76  kind objc)
+  133d98  sub_100133a60(x0, ((arg1 << 3) | 2), arg1, arg2)
+  133db8  tail [self writeDataNoTag:arg2]
+
+== -[TAGPBCodedOutputStream writeUInt32NoTag:]   (address 0x100133dbc  size 20  kind objc)
+  133dcc  tail sub_100133a60(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeUInt32:value:]   (address 0x100133dd0  size 60  kind objc)
+  133df4  sub_100133a60(x0, (arg1 << 3), arg1, arg2)
+  133e08  tail sub_100133a60(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeEnumNoTag:]   (address 0x100133e0c  size 20  kind objc)
+  133e1c  tail sub_100133a60(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeEnum:value:]   (address 0x100133e20  size 60  kind objc)
+  133e44  sub_100133a60(x0, (arg1 << 3), arg1, arg2)
+  133e58  tail sub_100133a60(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeSFixed32NoTag:]   (address 0x100133e5c  size 20  kind objc)
+  133e6c  tail sub_10013348c(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeSFixed32:value:]   (address 0x100133e70  size 64  kind objc)
+  133e98  sub_100133a60(x0, (5 | (arg1 << 3)), arg1, arg2)
+  133eac  tail sub_10013348c(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeSFixed64NoTag:]   (address 0x100133eb0  size 20  kind objc)
+  133ec0  tail sub_1001333ac(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeSFixed64:value:]   (address 0x100133ec4  size 64  kind objc)
+  133eec  sub_100133a60(x0, ((arg1 << 3) | 1), arg1, arg2)
+  133f00  tail sub_1001333ac(x0, arg2)
+
+== -[TAGPBCodedOutputStream writeSInt32NoTag:]   (address 0x100133f04  size 24  kind objc)
+  133f18  tail sub_100133a60(x0, ((arg1 << 1) ^ (arg1 >> 31)), arg1)
+
+== -[TAGPBCodedOutputStream writeSInt32:value:]   (address 0x100133f1c  size 64  kind objc)
+  133f40  sub_100133a60(x0, (arg1 << 3), arg1, arg2)
+  133f58  tail sub_100133a60(x0, ((arg2 << 1) ^ (arg2 >> 31)))
+
+== -[TAGPBCodedOutputStream writeSInt64NoTag:]   (address 0x100133f5c  size 24  kind objc)
+  133f70  tail sub_100133530(x0, ((arg1 << 1) ^ (arg1 >> 63)), arg1)
+
+== -[TAGPBCodedOutputStream writeSInt64:value:]   (address 0x100133f74  size 64  kind objc)
+  133f98  sub_100133a60(x0, (arg1 << 3), arg1, arg2)
+  133fb0  tail sub_100133530(x0, ((arg2 << 1) ^ (arg2 >> 63)))
+
+== -[TAGPBCodedOutputStream writeDoubles:values:tag:]   (address 0x100133fb4  size 220  kind objc)
+  133ff0  [arg2 data]
+  133ff8  if (arg3 == 0) goto loc_100134050
+  133ffc  if (arg2->_count == 0) goto loc_10013407c
+  134018  sub_100133a60(x0, arg3)
+  134024  sub_100133a60(x0, (arg2->_count << 3))
+  13402c  &@selector(writeDoubleNoTag:)
+loc_100134034:
+  134040  [self writeDoubleNoTag:d0]
+  134048  if ((x24 - 1) != 0) goto loc_100134034
+  13404c  goto loc_10013407c
+loc_100134050:
+  134050  if (arg2->_count == 0) goto loc_10013407c
+  134058  &@selector(writeDouble:value:)
+loc_100134060:
+  134070  [self writeDouble:arg1 value:d0]
+  134078  if ((x24 - 1) != 0) goto loc_100134060
+loc_10013407c:
+  13408c  return
+
+== -[TAGPBCodedOutputStream writeFloats:values:tag:]   (address 0x100134090  size 220  kind objc)
+  1340cc  [arg2 data]
+  1340d4  if (arg3 == 0) goto loc_10013412c
+  1340d8  if (arg2->_count == 0) goto loc_100134158
+  1340f4  sub_100133a60(x0, arg3)
+  134100  sub_100133a60(x0, (arg2->_count << 2))
+  134108  &@selector(writeFloatNoTag:)
+loc_100134110:
+  13411c  [self writeFloatNoTag:d0]
+  134124  if ((x24 - 1) != 0) goto loc_100134110
+  134128  goto loc_100134158
+loc_10013412c:
+  13412c  if (arg2->_count == 0) goto loc_100134158
+  134134  &@selector(writeFloat:value:)
+loc_10013413c:
+  13414c  [self writeFloat:arg1 value:d0]
+  134154  if ((x24 - 1) != 0) goto loc_10013413c
+loc_100134158:
+  134168  return
+
+== -[TAGPBCodedOutputStream writeUInt64s:values:tag:]   (address 0x10013416c  size 256  kind objc)
+  1341ac  [arg2 data]
+  1341b4  if (arg3 == 0) goto loc_100134228
+  1341b8  if (arg2->_count == 0) goto loc_100134254
+loc_1001341c8:
+  1341cc  call sub_1001353e0
+  1341d8  if ((x23 - 1) != 0) goto loc_1001341c8
+  1341f0  sub_100133a60(x0, arg3)
+  1341fc  sub_100133a60(x0, (sub_1001353e0() + x22))
+  134204  &@selector(writeUInt64NoTag:)
+loc_10013420c:
+  134218  [self writeUInt64NoTag:x2]
+  134220  if ((x24 - 1) != 0) goto loc_10013420c
+  134224  goto loc_100134254
+loc_100134228:
+  134228  if (arg2->_count == 0) goto loc_100134254
+  134230  &@selector(writeUInt64:value:)
+loc_100134238:
+  134248  [self writeUInt64:arg1 value:x3]
+  134250  if ((x24 - 1) != 0) goto loc_100134238
+loc_100134254:
+  134268  return
+
+== -[TAGPBCodedOutputStream writeInt64s:values:tag:]   (address 0x10013426c  size 256  kind objc)
+  1342ac  [arg2 data]
+  1342b4  if (arg3 == 0) goto loc_100134328
+  1342b8  if (arg2->_count == 0) goto loc_100134354
+loc_1001342c8:
+  1342cc  call sub_1001353e0
+  1342d8  if ((x23 - 1) != 0) goto loc_1001342c8
+  1342f0  sub_100133a60(x0, arg3)
+  1342fc  sub_100133a60(x0, (sub_1001353e0() + x22))
+  134304  &@selector(writeInt64NoTag:)
+loc_10013430c:
+  134318  [self writeInt64NoTag:x2]
+  134320  if ((x24 - 1) != 0) goto loc_10013430c
+  134324  goto loc_100134354
+loc_100134328:
+  134328  if (arg2->_count == 0) goto loc_100134354
+  134330  &@selector(writeInt64:value:)
+loc_100134338:
+  134348  [self writeInt64:arg1 value:x3]
+  134350  if ((x24 - 1) != 0) goto loc_100134338
+loc_100134354:
+  134368  return
+
+== -[TAGPBCodedOutputStream writeInt32s:values:tag:]   (address 0x10013436c  size 320  kind objc)
+  1343a8  [arg2 data]
+  1343b0  if (arg3 == 0) goto loc_10013446c
+  1343b4  if (arg2->_count == 0) goto loc_100134498
+loc_1001343d0:
+  1343d8  if (w13 < 0) goto loc_1001343ec
+  1343e0  if (w13 >=u 128) goto loc_1001343f4
+  1343e8  goto loc_100134410
+loc_1001343ec:
+  1343f0  goto loc_100134410
+loc_1001343f4:
+loc_100134410:
+  13441c  if ((x11 - 1) != 0) goto loc_1001343d0
+  134434  sub_100133a60(x0, arg3)
+  134440  sub_100133a60(x0, (x13 + x22))
+  134448  &@selector(writeInt32NoTag:)
+loc_100134450:
+  13445c  [self writeInt32NoTag:x2]
+  134464  if ((x24 - 1) != 0) goto loc_100134450
+  134468  goto loc_100134498
+loc_10013446c:
+  13446c  if (arg2->_count == 0) goto loc_100134498
+  134474  &@selector(writeInt32:value:)
+loc_10013447c:
+  13448c  [self writeInt32:arg1 value:x3]
+  134494  if ((x24 - 1) != 0) goto loc_10013447c
+loc_100134498:
+  1344a8  return
+
+== -[TAGPBCodedOutputStream writeUInt32s:values:tag:]   (address 0x1001344ac  size 304  kind objc)
+  1344e8  [arg2 data]
+  1344f0  if (arg3 == 0) goto loc_10013459c
+  1344f4  if (arg2->_count == 0) goto loc_1001345c8
+loc_100134510:
+  134518  if (w13 >=u 128) goto loc_100134524
+  134520  goto loc_100134540
+loc_100134524:
+loc_100134540:
+  13454c  if ((x11 - 1) != 0) goto loc_100134510
+  134564  sub_100133a60(x0, arg3)
+  134570  sub_100133a60(x0, (x13 + x22))
+  134578  &@selector(writeUInt32NoTag:)
+loc_100134580:
+  13458c  [self writeUInt32NoTag:x2]
+  134594  if ((x24 - 1) != 0) goto loc_100134580
+  134598  goto loc_1001345c8
+loc_10013459c:
+  13459c  if (arg2->_count == 0) goto loc_1001345c8
+  1345a4  &@selector(writeUInt32:value:)
+loc_1001345ac:
+  1345bc  [self writeUInt32:arg1 value:x3]
+  1345c4  if ((x24 - 1) != 0) goto loc_1001345ac
+loc_1001345c8:
+  1345d8  return
+
+== -[TAGPBCodedOutputStream writeFixed64s:values:tag:]   (address 0x1001345dc  size 220  kind objc)
+  134618  [arg2 data]
+  134620  if (arg3 == 0) goto loc_100134678
+  134624  if (arg2->_count == 0) goto loc_1001346a4
+  134640  sub_100133a60(x0, arg3)
+  13464c  sub_100133a60(x0, (arg2->_count << 3))
+  134654  &@selector(writeFixed64NoTag:)
+loc_10013465c:
+  134668  [self writeFixed64NoTag:x2]
+  134670  if ((x24 - 1) != 0) goto loc_10013465c
+  134674  goto loc_1001346a4
+loc_100134678:
+  134678  if (arg2->_count == 0) goto loc_1001346a4
+  134680  &@selector(writeFixed64:value:)
+loc_100134688:
+  134698  [self writeFixed64:arg1 value:x3]
+  1346a0  if ((x24 - 1) != 0) goto loc_100134688
+loc_1001346a4:
+  1346b4  return
+
+== -[TAGPBCodedOutputStream writeFixed32s:values:tag:]   (address 0x1001346b8  size 220  kind objc)
+  1346f4  [arg2 data]
+  1346fc  if (arg3 == 0) goto loc_100134754
+  134700  if (arg2->_count == 0) goto loc_100134780
+  13471c  sub_100133a60(x0, arg3)
+  134728  sub_100133a60(x0, (arg2->_count << 2))
+  134730  &@selector(writeFixed32NoTag:)
+loc_100134738:
+  134744  [self writeFixed32NoTag:x2]
+  13474c  if ((x24 - 1) != 0) goto loc_100134738
+  134750  goto loc_100134780
+loc_100134754:
+  134754  if (arg2->_count == 0) goto loc_100134780
+  13475c  &@selector(writeFixed32:value:)
+loc_100134764:
+  134774  [self writeFixed32:arg1 value:x3]
+  13477c  if ((x24 - 1) != 0) goto loc_100134764
+loc_100134780:
+  134790  return
+
+== -[TAGPBCodedOutputStream writeSInt32s:values:tag:]   (address 0x100134794  size 320  kind objc)
+  1347d0  [arg2 data]
+  1347d8  if (arg3 == 0) goto loc_100134894
+  1347dc  if (arg2->_count == 0) goto loc_1001348c0
+loc_1001347f0:
+  134800  if (((w11 << 1) ^ (w11 >> 31)) >=u 128) goto loc_10013480c
+  134808  goto loc_100134838
+loc_10013480c:
+  134810  if (((w11 << 1) ^ (w11 >> 31)) >=u 0x4000) goto loc_10013481c
+  134818  goto loc_100134838
+loc_10013481c:
+  134820  if (((w11 << 1) ^ (w11 >> 31)) >=u 0x200000) goto loc_10013482c
+  134828  goto loc_100134838
+loc_10013482c:
+loc_100134838:
+  134844  if ((x9 - 1) != 0) goto loc_1001347f0
+  13485c  sub_100133a60(x0, arg3)
+  134868  sub_100133a60(x0, (x11 + x22))
+  134870  &@selector(writeSInt32NoTag:)
+loc_100134878:
+  134884  [self writeSInt32NoTag:x2]
+  13488c  if ((x24 - 1) != 0) goto loc_100134878
+  134890  goto loc_1001348c0
+loc_100134894:
+  134894  if (arg2->_count == 0) goto loc_1001348c0
+  13489c  &@selector(writeSInt32:value:)
+loc_1001348a4:
+  1348b4  [self writeSInt32:arg1 value:x3]
+  1348bc  if ((x24 - 1) != 0) goto loc_1001348a4
+loc_1001348c0:
+  1348d0  return
+
+== -[TAGPBCodedOutputStream writeSInt64s:values:tag:]   (address 0x1001348d4  size 264  kind objc)
+  134914  [arg2 data]
+  13491c  if (arg3 == 0) goto loc_100134998
+  134920  if (arg2->_count == 0) goto loc_1001349c4
+loc_100134930:
+  13493c  sub_1001353e0(((x8 << 1) ^ (x8 >> 63)))
+  134948  if ((x23 - 1) != 0) goto loc_100134930
+  134960  sub_100133a60(x0, arg3)
+  13496c  sub_100133a60(x0, (sub_1001353e0(((x8 << 1) ^ (x8 >> 63))) + x22))
+  134974  &@selector(writeSInt64NoTag:)
+loc_10013497c:
+  134988  [self writeSInt64NoTag:x2]
+  134990  if ((x24 - 1) != 0) goto loc_10013497c
+  134994  goto loc_1001349c4
+loc_100134998:
+  134998  if (arg2->_count == 0) goto loc_1001349c4
+  1349a0  &@selector(writeSInt64:value:)
+loc_1001349a8:
+  1349b8  [self writeSInt64:arg1 value:x3]
+  1349c0  if ((x24 - 1) != 0) goto loc_1001349a8
+loc_1001349c4:
+  1349d8  return
+
+== -[TAGPBCodedOutputStream writeSFixed64s:values:tag:]   (address 0x1001349dc  size 220  kind objc)
+  134a18  [arg2 data]
+  134a20  if (arg3 == 0) goto loc_100134a78
+  134a24  if (arg2->_count == 0) goto loc_100134aa4
+  134a40  sub_100133a60(x0, arg3)
+  134a4c  sub_100133a60(x0, (arg2->_count << 3))
+  134a54  &@selector(writeSFixed64NoTag:)
+loc_100134a5c:
+  134a68  [self writeSFixed64NoTag:x2]
+  134a70  if ((x24 - 1) != 0) goto loc_100134a5c
+  134a74  goto loc_100134aa4
+loc_100134a78:
+  134a78  if (arg2->_count == 0) goto loc_100134aa4
+  134a80  &@selector(writeSFixed64:value:)
+loc_100134a88:
+  134a98  [self writeSFixed64:arg1 value:x3]
+  134aa0  if ((x24 - 1) != 0) goto loc_100134a88
+loc_100134aa4:
+  134ab4  return
+
+== -[TAGPBCodedOutputStream writeSFixed32s:values:tag:]   (address 0x100134ab8  size 220  kind objc)
+  134af4  [arg2 data]
+  134afc  if (arg3 == 0) goto loc_100134b54
+  134b00  if (arg2->_count == 0) goto loc_100134b80
+  134b1c  sub_100133a60(x0, arg3)
+  134b28  sub_100133a60(x0, (arg2->_count << 2))
+  134b30  &@selector(writeSFixed32NoTag:)
+loc_100134b38:
+  134b44  [self writeSFixed32NoTag:x2]
+  134b4c  if ((x24 - 1) != 0) goto loc_100134b38
+  134b50  goto loc_100134b80
+loc_100134b54:
+  134b54  if (arg2->_count == 0) goto loc_100134b80
+  134b5c  &@selector(writeSFixed32:value:)
+loc_100134b64:
+  134b74  [self writeSFixed32:arg1 value:x3]
+  134b7c  if ((x24 - 1) != 0) goto loc_100134b64
+loc_100134b80:
+  134b90  return
+
+== -[TAGPBCodedOutputStream writeBools:values:tag:]   (address 0x100134b94  size 216  kind objc)
+  134bd0  [arg2 data]
+  134bd8  if (arg3 == 0) goto loc_100134c2c
+  134bdc  if (arg2->_count == 0) goto loc_100134c58
+  134bf4  sub_100133a60(x0, arg3)
+  134c00  sub_100133a60(x0, arg2->_count)
+  134c08  &@selector(writeBoolNoTag:)
+loc_100134c10:
+  134c1c  [self writeBoolNoTag:x2]
+  134c24  if ((x20 - 1) != 0) goto loc_100134c10
+  134c28  goto loc_100134c58
+loc_100134c2c:
+  134c2c  if (arg2->_count == 0) goto loc_100134c58
+  134c34  &@selector(writeBool:value:)
+loc_100134c3c:
+  134c4c  [self writeBool:arg1 value:x3]
+  134c54  if ((x20 - 1) != 0) goto loc_100134c3c
+loc_100134c58:
+  134c68  return
+
+== -[TAGPBCodedOutputStream writeEnums:values:tag:]   (address 0x100134c6c  size 304  kind objc)
+  134ca8  [arg2 data]
+  134cb0  if (arg3 == 0) goto loc_100134d5c
+  134cb4  if (arg2->_count == 0) goto loc_100134d88
+loc_100134cd0:
+  134cd8  if (w13 >=u 128) goto loc_100134ce4
+  134ce0  goto loc_100134d00
+loc_100134ce4:
+loc_100134d00:
+  134d0c  if ((x11 - 1) != 0) goto loc_100134cd0
+  134d24  sub_100133a60(x0, arg3)
+  134d30  sub_100133a60(x0, (x13 + x22))
+  134d38  &@selector(writeEnumNoTag:)
+loc_100134d40:
+  134d4c  [self writeEnumNoTag:x2]
+  134d54  if ((x24 - 1) != 0) goto loc_100134d40
+  134d58  goto loc_100134d88
+loc_100134d5c:
+  134d5c  if (arg2->_count == 0) goto loc_100134d88
+  134d64  &@selector(writeEnum:value:)
+loc_100134d6c:
+  134d7c  [self writeEnum:arg1 value:x3]
+  134d84  if ((x24 - 1) != 0) goto loc_100134d6c
+loc_100134d88:
+  134d98  return
+
+== -[TAGPBCodedOutputStream writeStrings:values:]   (address 0x100134d9c  size 128  kind objc)
+  134dd4  [arg2 data]
+  134ddc  if (arg2->_count == 0) goto loc_100134e08
+  134de4  &@selector(writeString:value:)
+loc_100134dec:
+  134dfc  [self writeString:arg1 value:x3]
+  134e04  if ((x23 - 1) != 0) goto loc_100134dec
+loc_100134e08:
+  134e18  return
+
+== -[TAGPBCodedOutputStream writeMessages:values:]   (address 0x100134e1c  size 128  kind objc)
+  134e54  [arg2 data]
+  134e5c  if (arg2->_count == 0) goto loc_100134e88
+  134e64  &@selector(writeMessage:value:)
+loc_100134e6c:
+  134e7c  [self writeMessage:arg1 value:x3]
+  134e84  if ((x23 - 1) != 0) goto loc_100134e6c
+loc_100134e88:
+  134e98  return
+
+== -[TAGPBCodedOutputStream writeDatas:values:]   (address 0x100134e9c  size 128  kind objc)
+  134ed4  [arg2 data]
+  134edc  if (arg2->_count == 0) goto loc_100134f08
+  134ee4  &@selector(writeData:value:)
+loc_100134eec:
+  134efc  [self writeData:arg1 value:x3]
+  134f04  if ((x23 - 1) != 0) goto loc_100134eec
+loc_100134f08:
+  134f18  return
+
+== -[TAGPBCodedOutputStream writeGroups:values:]   (address 0x100134f1c  size 128  kind objc)
+  134f54  [arg2 data]
+  134f5c  if (arg2->_count == 0) goto loc_100134f88
+  134f64  &@selector(writeGroup:value:)
+loc_100134f6c:
+  134f7c  [self writeGroup:arg1 value:x3]
+  134f84  if ((x23 - 1) != 0) goto loc_100134f6c
+loc_100134f88:
+  134f98  return
+
+== -[TAGPBCodedOutputStream writeUnknownGroups:values:]   (address 0x100134f9c  size 128  kind objc)
+  134fd4  [arg2 data]
+  134fdc  if (arg2->_count == 0) goto loc_100135008
+  134fe4  &@selector(writeUnknownGroup:value:)
+loc_100134fec:
+  134ffc  [self writeUnknownGroup:arg1 value:x3]
+  135004  if ((x23 - 1) != 0) goto loc_100134fec
+loc_100135008:
+  135018  return
+
+== -[TAGPBCodedOutputStream writeMessageSetExtension:value:]   (address 0x10013501c  size 128  kind objc)
+  13504c  sub_100133734(x0, 11, arg1, arg2)
+  135058  sub_100133734(x0, 16)
+  135064  sub_100133a60(x0, arg1)
+  135080  [self writeMessage:3 value:arg2]
+  135098  tail sub_100133734(x0, 12)
+
+== -[TAGPBCodedOutputStream writeRawMessageSetExtension:value:]   (address 0x10013509c  size 128  kind objc)
+  1350cc  sub_100133734(x0, 11, arg1, arg2)
+  1350d8  sub_100133734(x0, 16)
+  1350e4  sub_100133a60(x0, arg1)
+  135100  [self writeData:3 value:arg2]
+  135118  tail sub_100133734(x0, 12)
+
+== -[TAGPBCodedOutputStream flush]   (address 0x10013511c  size 32  kind objc)
+  13512c  if (self->state_[+0x18] == 0) goto loc_100135138
+  135134  tail sub_10013513c(x0, _cmd)
+loc_100135138:
+  135138  return
+
+== sub_10013513c   (address 0x10013513c  size 164  kind sub)
+  135150  if (a0[+0x18] != 0) goto loc_10013517c
+  135178  [NSException raise:@"OutOfSpace" format:@""]
+loc_10013517c:
+  135180  if (a0[+0x10] == 0) goto loc_1001351d4
+  135198  [a0[+0x18] write:a0[+0x0] maxLength:a0[+0x10]]
+  1351a4  if ([a0[+0x18] write:a0[+0x0] maxLength:a0[+0x10]] == a0[+0x10]) goto loc_1001351d0
+  1351cc  [NSException raise:@"WriteFailed" format:@""]
+loc_1001351d0:
+  1351d0  a0[+0x10] = 0
+loc_1001351d4:
+  1351dc  return
+
+== -[TAGPBCodedOutputStream writeRawByte:]   (address 0x1001351e0  size 20  kind objc)
+  1351f0  tail sub_100133734(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeRawData:]   (address 0x1001351f4  size 112  kind objc)
+  13521c  [arg1 bytes]
+  135234  [arg1 length]
+  135260  tail [self writeRawPtr:[arg1 bytes] offset:0 length:[arg1 length]]
+
+== -[TAGPBCodedOutputStream writeRawPtr:offset:length:]   (address 0x100135264  size 260  kind objc)
+  13528c  if (arg1 == 0) goto loc_100135350
+  135290  if (arg3 == 0) goto loc_100135350
+  1352b8  if ((self->state_[+0x8] - self->state_[+0x10]) >=u arg3) goto loc_100135320
+  1352c0  memcpy((self->state_ + self->state_[+0x10]), (arg1 + arg2), (self->state_[+0x8] - self->state_[+0x10]), arg2)
+  1352cc  self->state_[+0x10] = self->state_[+0x8]
+  1352d0  sub_10013513c(x0)
+  1352e8  if ((arg3 - (self->state_[+0x8] - self->state_[+0x10])) <=u self->state_[+0x8]) goto loc_10013533c
+  13531c  tail [self->state_[+0x18] write:(arg1 + ((self->state_[+0x8] - self->state_[+0x10]) + arg2)) maxLength:(arg3 - (self->state_[+0x8] - self->state_[+0x10]))]
+loc_100135320:
+  135324  memcpy((self->state_ + self->state_[+0x10]), (arg1 + arg2), arg3, arg2)
+  135334  self->state_[+0x10] = (self->state_[+0x10] + arg3)
+  135338  goto loc_100135350
+loc_10013533c:
+  135348  memcpy(self->state_, (arg1 + ((self->state_[+0x8] - self->state_[+0x10]) + arg2)), (arg3 - (self->state_[+0x8] - self->state_[+0x10])))
+  13534c  self->state_[+0x10] = (arg3 - (self->state_[+0x8] - self->state_[+0x10]))
+loc_100135350:
+  135364  return
+
+== -[TAGPBCodedOutputStream writeTag:format:]   (address 0x100135368  size 20  kind objc)
+  135378  tail sub_100133a60(x0, (arg2 | (arg1 << 3)), arg1, arg2)
+
+== -[TAGPBCodedOutputStream writeRawVarint32:]   (address 0x10013537c  size 20  kind objc)
+  13538c  tail sub_100133a60(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeRawVarintSizeTAs32:]   (address 0x100135390  size 20  kind objc)
+  1353a0  tail sub_100133a60(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeRawVarint64:]   (address 0x1001353a4  size 20  kind objc)
+  1353b4  tail sub_100133530(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeRawLittleEndian32:]   (address 0x1001353b8  size 20  kind objc)
+  1353c8  tail sub_10013348c(x0, arg1, arg1)
+
+== -[TAGPBCodedOutputStream writeRawLittleEndian64:]   (address 0x1001353cc  size 20  kind objc)
+  1353dc  tail sub_1001333ac(x0, arg1, arg1)
+
+== sub_1001353e0   (address 0x1001353e0  size 136  kind sub)
+  1353e4  if (a0 >=u 128) goto loc_1001353f0
+  1353ec  return
+loc_1001353f0:
+  1353f4  if (a0 >=u 0x4000) goto loc_100135400
+  1353fc  return
+loc_100135400:
+  135448  t1 = ((a0 >>> 42) == 0 ? 6 : ((a0 >>> 49) == 0 ? 7 : ((a0 >>> 56) == 0 ? 8 : ((a0 >>> 63) + 9))))
+  135464  return
+
+== sub_100135468   (address 0x100135468  size 132  kind sub)
+  135480  CFStringGetCStringPtr(a0, 0x8000100, a2, a3)
+  135484  if (CFStringGetCStringPtr(a0, 0x8000100, a2, a3) == 0) goto loc_100135490
+  135488  strlen(CFStringGetCStringPtr(a0, 0x8000100, a2, a3))
+  13548c  goto loc_1001354a8
+loc_100135490:
+  1354a4  [a0 lengthOfBytesUsingEncoding:4]
+loc_1001354a8:
+  1354d8  t1 = (w0 <u 128 ? 1 : (w0 <u 0x4000 ? 2 : (w0 <u 0x200000 ? 3 : ((w0 >>> 28) != 0 ? 4 + 1 : 4))))
+  1354e8  return
+
+== sub_1001354ec   (address 0x1001354ec  size 92  kind sub)
+  135524  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  135534  sub_1001353e0(a1, a1, a2, a3)
+  135544  return
+
+== sub_100135548   (address 0x100135548  size 92  kind sub)
+  135580  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  135590  sub_1001353e0(a1, a1, a2, a3)
+  1355a0  return
+
+== sub_1001355a4   (address 0x1001355a4  size 124  kind sub)
+  1355d0  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  13560c  t2 = (a1 <u 128 ? 1 : (a1 <u 0x4000 ? 2 : (a1 <u 0x200000 ? 3 : ((a1 >>> 28) != 0 ? 4 + 1 : 4))))
+  13561c  return
+
+== sub_100135620   (address 0x100135620  size 92  kind sub)
+  135658  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  135668  sub_100135468(a1, a1, a2, a3)
+  135678  return
+
+== sub_10013567c   (address 0x10013567c  size 160  kind sub)
+  1356b4  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  1356d4  [a1 serializedSize]
+  1356fc  t2 = ([a1 serializedSize] <u 0x4000 ? 2 : ([a1 serializedSize] <u 0x200000 ? 3 : (([a1 serializedSize] >>> 28) != 0 ? 4 + 1 : 4)))
+  13570c  t3 = (([a1 serializedSize] + ((a0 << 3) <u 128 ? 1 : t1)) + ([a1 serializedSize] <u 128 ? 1 : t2))
+  135718  return
+
+== sub_10013571c   (address 0x10013571c  size 160  kind sub)
+  135754  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  135774  [a1 length]
+  13579c  t2 = ([a1 length] <u 0x4000 ? 2 : ([a1 length] <u 0x200000 ? 3 : (([a1 length] >>> 28) != 0 ? 4 + 1 : 4)))
+  1357b8  return
+
+== sub_1001357bc   (address 0x1001357bc  size 112  kind sub)
+  1357e8  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  135820  t2 = (a1 <u 128 ? 1 : (a1 <u 0x4000 ? 2 : (a1 <u 0x200000 ? 3 : ((a1 >>> 28) != 0 ? 4 + 1 : 4))))
+  135828  return
+
+== sub_10013582c   (address 0x10013582c  size 112  kind sub)
+  135858  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  135890  t2 = (a1 <u 128 ? 1 : (a1 <u 0x4000 ? 2 : (a1 <u 0x200000 ? 3 : ((a1 >>> 28) != 0 ? 4 + 1 : 4))))
+  135898  return
+
+== sub_10013589c   (address 0x10013589c  size 120  kind sub)
+  1358c8  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  1358f8  t2 = (((a1 << 1) ^ (a1 >> 31)) <u 0x200000 ? 3 : ((((a1 << 1) ^ (a1 >> 31)) >>> 28) != 0 ? 4 + 1 : 4))
+  13590c  t3 = ((((a1 << 1) ^ (a1 >> 31)) <u 128 ? 1 : (((a1 << 1) ^ (a1 >> 31)) <u 0x4000 ? 2 : t2)) + ((a0 << 3) <u 128 ? 1 : t1))
+  135910  return
+
+== sub_100135914   (address 0x100135914  size 96  kind sub)
+  13594c  t1 = ((a0 << 3) <u 0x4000 ? 2 : ((a0 << 3) <u 0x200000 ? 3 : (((a0 << 3) >>> 28) != 0 ? 4 + 1 : 4)))
+  135960  sub_1001353e0(((a1 << 1) ^ (a1 >> 63)), a1, a2, a3)
+  135970  return
+
+== sub_100135974   (address 0x100135974  size 160  kind sub)
+  1359b0  t1 = (a0 <u 128 ? 5 : (a0 <u 0x4000 ? 6 : (a0 <u 0x200000 ? 7 : ((a0 >>> 28) != 0 ? 8 + 1 : 8))))
+  1359c8  [a1 serializedSize]
+  1359f4  t2 = ([a1 serializedSize] <u 0x4000 ? 2 : ([a1 serializedSize] <u 0x200000 ? 3 : (([a1 serializedSize] >>> 28) != 0 ? 4 + 1 : 4)))
+  135a10  return
+
+== sub_100135a14   (address 0x100135a14  size 160  kind sub)
+  135a50  t1 = (a0 <u 128 ? 5 : (a0 <u 0x4000 ? 6 : (a0 <u 0x200000 ? 7 : ((a0 >>> 28) != 0 ? 8 + 1 : 8))))
+  135a68  [a1 length]
+  135a94  t2 = ([a1 length] <u 0x4000 ? 2 : ([a1 length] <u 0x200000 ? 3 : (([a1 length] >>> 28) != 0 ? 4 + 1 : 4)))
+  135ab0  return

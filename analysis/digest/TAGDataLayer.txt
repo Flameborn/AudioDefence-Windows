@@ -1,0 +1,576 @@
+
+== +[TAGDataLayer initialize]   (address 0x10015aa68  size 72  kind objc)
+  15aa84  [NSObject alloc]
+  15aa94  [[NSObject alloc] init]
+  15aaa0  store g_10042d920 = [[NSObject alloc] init]
+  15aaac  return
+
+== -[TAGDataLayer initWithPersistentStore:]   (address 0x10015aab0  size 704  kind objc)
+  15ab04  [super init]
+  15ab0c  if (self == 0) goto loc_10015ad1c
+  15ab28  [NSMutableSet set]
+  15ab44  self->_listeners = [NSMutableSet set]
+  15ab64  [NSMutableDictionary dictionary]
+  15ab80  self->_model = [NSMutableDictionary dictionary]
+  15aba0  [NSMutableArray array]
+  15abbc  self->_updateQueue = [NSMutableArray array]
+  15abe0  [NSRecursiveLock alloc]
+  15abec  [[NSRecursiveLock alloc] init]
+  15ac00  self->_pushLock = [[NSRecursiveLock alloc] init]
+  15ac2c  [NSCondition alloc]
+  15ac38  [[NSCondition alloc] init]
+  15ac4c  self->_persistentStoreLoadingCondition = [[NSCondition alloc] init]
+  15ac60  self->_persistentStoreLoaded = 0
+  15ac80  [@"gtm.lifetime" componentsSeparatedByString:@"."]
+  15ac98  self->_lifetimeKeyComponents = [@"gtm.lifetime" componentsSeparatedByString:@"."]
+  15acd0  [NSRegularExpression regularExpressionWithPattern:@"^(\d+)\s*([smhd]?)$" options:0 error:&sp[0x8]]
+  15acf8  self->_lifetimePattern = [NSRegularExpression regularExpressionWithPattern:@"^(\d+)\s*([smhd]?)$" options:0 error:&sp[0x8]]
+  15ad10  [self loadSavedMaps]
+loc_10015ad1c:
+  15ad3c  return
+
+== -[TAGDataLayer init]   (address 0x10015ad70  size 152  kind objc)
+  15ad98  [TAGNoopDataLayerPersistentStore alloc]
+  15ada8  [[TAGNoopDataLayerPersistentStore alloc] init]
+  15adc4  [self initWithPersistentStore:[[TAGNoopDataLayerPersistentStore alloc] init]]
+  15ade4  return
+
+== -[TAGDataLayer loadSavedMaps]   (address 0x10015ae08  size 184  kind objc)
+  15ae28  [self persistentStore]
+  15ae4c  [TAGDataLayerCallback alloc]
+  15ae60  [[TAGDataLayerCallback alloc] initWithDataLayer:self]
+  15ae7c  [[self persistentStore] loadSaved:[[TAGDataLayerCallback alloc] initWithDataLayer:self]]
+  15ae98  return
+
+== -[TAGDataLayer onKeyValuesLoaded:]   (address 0x10015aec0  size 820  kind objc)
+  15af34  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  15af3c  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_10015b064
+loc_10015af90:
+loc_10015af94:
+  15afa4  if (x8 == x9) goto loc_10015afb0
+  15afac  objc_enumerationMutation(arg1)
+loc_10015afb0:
+  15afc4  [x0 key]
+  15afdc  [x0 value]
+  15affc  [self expandKey:[x0 key] value:[x0 value]]
+  15b018  [self pushWithoutWaitingForSaved:[self expandKey:[x0 key] value:[x0 value]]]
+  15b044  if ((x23 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]) goto loc_10015af94
+  15b058  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  15b060  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_10015af90
+loc_10015b064:
+  15b080  [self persistentStoreLoadingCondition]
+  15b09c  [[self persistentStoreLoadingCondition] lock]
+  15b0bc  [self setPersistentStoreLoaded:1]
+  15b0c8  [self persistentStoreLoadingCondition]
+  15b0e4  [[self persistentStoreLoadingCondition] broadcast]
+  15b0f8  [self persistentStoreLoadingCondition]
+  15b114  [[self persistentStoreLoadingCondition] unlock]
+  15b15c  return
+
+== -[TAGDataLayer pushValue:forKey:]   (address 0x10015b1f4  size 156  kind objc)
+  15b230  [self expandKey:arg2 value:arg1]
+  15b260  [self push:[self expandKey:arg2 value:arg1]]
+  15b274  return
+
+== -[TAGDataLayer get:]   (address 0x10015b290  size 940  kind objc)
+  15b2e8  [self model]
+  15b2fc  objc_sync_enter([self model])
+  15b308  [self model]
+  15b330  [arg1 componentsSeparatedByString:@"."]
+  15b374  [[arg1 componentsSeparatedByString:@"."] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  15b37c  if ([[arg1 componentsSeparatedByString:@"."] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_10015b500
+  15b3b0  &@selector(null)
+loc_10015b3d0:
+loc_10015b3d4:
+  15b3e4  if (x8 == x9) goto loc_10015b3f0
+  15b3ec  objc_enumerationMutation([arg1 componentsSeparatedByString:@"."])
+loc_10015b3f0:
+  15b404  [NSDictionary class]
+  15b414  [x0 isKindOfClass:[NSDictionary class]]
+  15b418  if (!([x0 isKindOfClass:[NSDictionary class]] & 1)) goto loc_10015b51c
+  15b430  [x0 objectForKey:x2]
+  15b44c  [NSNull null]
+  15b464  if ([x0 objectForKey:x2] != [NSNull null]) goto loc_10015b490
+  15b474  [NSNull null]
+  15b48c  goto loc_10015b4bc
+loc_10015b490:
+  15b490  if ([x0 objectForKey:x2] != 0) goto loc_10015b4a4
+  15b4a0  goto loc_10015b4bc
+loc_10015b4a4:
+loc_10015b4bc:
+  15b4cc  if (one of {0, 1} == 0) goto loc_10015b528
+  15b4d8  if ((x25 + 1) <u [[arg1 componentsSeparatedByString:@"."] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10015b3d4
+  15b4f0  [[arg1 componentsSeparatedByString:@"."] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  15b4fc  if ([[arg1 componentsSeparatedByString:@"."] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10015b3d0
+loc_10015b500:
+  15b518  goto loc_10015b538
+loc_10015b51c:
+  15b524  goto loc_10015b52c
+loc_10015b528:
+loc_10015b52c:
+loc_10015b538:
+  15b554  objc_sync_exit([self model])
+  15b598  return
+  15b620  objc_sync_exit()
+
+== -[TAGDataLayer push:]   (address 0x10015b63c  size 360  kind objc)
+  15b674  [self persistentStoreLoaded]
+  15b678  if (([self persistentStoreLoaded] & 1)) goto loc_10015b740
+  15b690  [self persistentStoreLoadingCondition]
+  15b6ac  [[self persistentStoreLoadingCondition] lock]
+  15b6bc  &@selector(wait)
+  15b6c4  goto loc_10015b6d0
+loc_10015b6c8:
+loc_10015b6d0:
+  15b6d8  [self persistentStoreLoaded]
+  15b6dc  if (([self persistentStoreLoaded] & 1)) goto loc_10015b710
+  15b6e8  [self persistentStoreLoadingCondition]
+  15b6fc  [[self persistentStoreLoadingCondition] wait]
+  15b700  goto loc_10015b6c8
+  15b70c  goto loc_10015b788
+loc_10015b710:
+  15b718  [self persistentStoreLoadingCondition]
+  15b734  [[self persistentStoreLoadingCondition] unlock]
+loc_10015b740:
+  15b754  [self pushWithoutWaitingForSaved:arg1]
+  15b76c  return
+
+== -[TAGDataLayer pushWithoutWaitingForSaved:]   (address 0x10015b7a4  size 496  kind objc)
+  15b7dc  [self pushLock]
+  15b7f8  [[self pushLock] lock]
+  15b814  [self updateQueue]
+  15b838  [[self updateQueue] insertObject:arg1 atIndex:0]
+  15b854  [self pushDepth]
+  15b870  [self setPushDepth:([self pushDepth] + 1)]
+  15b874  if ([self pushDepth] != 0) goto loc_10015b88c
+  15b888  [self processQueuedUpdates]
+loc_10015b88c:
+  15b8a0  [self savePersistentlyIfNeeded:arg1]
+  15b8b8  [self pushDepth]
+  15b8d0  [self setPushDepth:([self pushDepth] - 1)]
+  15b8dc  [self pushLock]
+  15b8f8  [[self pushLock] unlock]
+  15b904  if (0 != 0) goto loc_10015b96c
+  15b91c  return
+  15b950  objc_begin_catch()
+  15b96c  objc_exception_rethrow()
+  15b978  if (w22 == 0) goto loc_10015b980
+  15b97c  objc_end_catch()
+  15b990  objc_terminate()
+
+== -[TAGDataLayer processQueuedUpdates]   (address 0x10015b994  size 528  kind objc)
+  15b9ec  &@selector(processUpdate:)
+  15b9f4  goto loc_10015ba00
+loc_10015b9f8:
+loc_10015ba00:
+  15ba08  [self updateQueue]
+  15ba1c  [[self updateQueue] count]
+  15ba2c  if ([[self updateQueue] count] == 0) goto loc_10015bb34
+  15ba38  [self updateQueue]
+  15ba4c  [[self updateQueue] lastObject]
+  15ba6c  [self updateQueue]
+  15ba80  [[self updateQueue] removeLastObject]
+  15ba98  [self processUpdate:[[self updateQueue] lastObject]]
+  15baa4  if ((w27 + 1) < 501) goto loc_10015b9f8
+  15bab0  [self updateQueue]
+  15bad0  [[self updateQueue] removeAllObjects]
+  15bb1c  [NSException exceptionWithName:@"TAGListenerPushLoop" reason:@"Seems like an infinite loop of pushing to the data layer?" userInfo:0]
+  15bb2c  objc_exception_throw([NSException exceptionWithName:@"TAGListenerPushLoop" reason:@"Seems like an infinite loop of pushing to the data layer?" userInfo:0])
+  15bb30  goto loc_10015bb6c
+loc_10015bb34:
+  15bb4c  return
+
+== -[TAGDataLayer savePersistentlyIfNeeded:]   (address 0x10015bba4  size 308  kind objc)
+  15bbdc  [self getLifetimeValue:arg1]
+  15bbec  if ([self getLifetimeValue:arg1] == 0) goto loc_10015bc74
+  15bc04  [self flattenMap:arg1]
+  15bc24  [self persistentStore]
+  15bc44  [[self getLifetimeValue:arg1] longLongValue]
+  15bc60  [[self persistentStore] saveKeyValues:[self flattenMap:arg1] lifetimeInMillis:[[self getLifetimeValue:arg1] longLongValue]]
+loc_10015bc74:
+  15bc90  return
+
+== -[TAGDataLayer clearPersistentKeysWithPrefix:]   (address 0x10015bcd8  size 324  kind objc)
+  15bd24  [NSNull null]
+  15bd58  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  15bd70  [self push:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  15bd8c  [self persistentStore]
+  15bdac  [[self persistentStore] clearKeysWithPrefix:arg1]
+  15bde0  return
+
+== -[TAGDataLayer flattenMap:]   (address 0x10015be1c  size 176  kind objc)
+  15be50  [NSMutableArray array]
+  15be80  [self flattenMapHelper:arg1 keyPrefix:@"" accum:[NSMutableArray array]]
+  15bea4  return
+
+== -[TAGDataLayer flattenMapHelper:keyPrefix:accum:]   (address 0x10015becc  size 920  kind objc)
+  15bf3c  [arg2 length]
+  15bf40  if ([arg2 length] == 0) goto loc_10015bf78
+  15bf5c  [arg2 stringByAppendingString:@"."]
+loc_10015bf78:
+  15bfb0  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16]
+  15bfb8  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16] == 0) goto loc_10015c190
+  15bfd0  &@selector(objectForKey:)
+  15bfd8  &@selector(class)
+loc_10015c060:
+loc_10015c064:
+  15c074  if (x8 == x9) goto loc_10015c080
+  15c07c  objc_enumerationMutation(arg1)
+loc_10015c080:
+  15c094  [x0 stringByAppendingString:x2]
+  15c0b0  [arg1 objectForKey:x2]
+  15c0d0  [NSDictionary class]
+  15c0e0  [[arg1 objectForKey:x2] isKindOfClass:[NSDictionary class]]
+  15c0e4  if ([[arg1 objectForKey:x2] isKindOfClass:[NSDictionary class]] == 0) goto loc_10015c100
+  15c0f8  [self flattenMapHelper:[arg1 objectForKey:x2] keyPrefix:[x0 stringByAppendingString:x2] accum:arg3]
+  15c0fc  goto loc_10015c154
+loc_10015c100:
+  15c110  [@"gtm.lifetime" isEqualToString:[x0 stringByAppendingString:x2]]
+  15c114  if (([@"gtm.lifetime" isEqualToString:[x0 stringByAppendingString:x2]] & 1)) goto loc_10015c154
+  15c124  [TAGKeyValue alloc]
+  15c134  [[TAGKeyValue alloc] initWithKey:[x0 stringByAppendingString:x2] value:[arg1 objectForKey:x2]]
+  15c148  [arg3 addObject:[[TAGKeyValue alloc] initWithKey:[x0 stringByAppendingString:x2] value:[arg1 objectForKey:x2]]]
+loc_10015c154:
+  15c170  if ((x19 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16]) goto loc_10015c064
+  15c184  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16]
+  15c18c  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x78] count:16] != 0) goto loc_10015c060
+loc_10015c190:
+  15c1e4  return
+
+== -[TAGDataLayer getLifetimeValue:]   (address 0x10015c264  size 208  kind objc)
+  15c284  [self getLifetimeObject:arg1]
+  15c294  if ([self getLifetimeObject:arg1] == 0) goto loc_10015c2e8
+  15c2a8  [[self getLifetimeObject:arg1] description]
+  15c2cc  [self parseLifetime:[[self getLifetimeObject:arg1] description]]
+  15c2e4  goto loc_10015c2ec
+loc_10015c2e8:
+loc_10015c2ec:
+  15c304  return
+
+== -[TAGDataLayer getLifetimeObject:]   (address 0x10015c334  size 616  kind objc)
+  15c39c  [self lifetimeKeyComponents]
+  15c3c8  [[self lifetimeKeyComponents] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  15c3d4  if ([[self lifetimeKeyComponents] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_10015c4c0
+  15c3f8  &@selector(objectForKey:)
+loc_10015c41c:
+loc_10015c420:
+  15c42c  if (x8 == x19) goto loc_10015c438
+  15c434  objc_enumerationMutation([self lifetimeKeyComponents])
+loc_10015c438:
+  15c448  [NSDictionary class]
+  15c458  [x0 isKindOfClass:[NSDictionary class]]
+  15c45c  if (!([x0 isKindOfClass:[NSDictionary class]] & 1)) goto loc_10015c4dc
+  15c474  [x0 objectForKey:x2]
+  15c49c  if ((x20 + 1) <u [[self lifetimeKeyComponents] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]) goto loc_10015c420
+  15c4b0  [[self lifetimeKeyComponents] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  15c4bc  if ([[self lifetimeKeyComponents] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_10015c41c
+loc_10015c4c0:
+  15c4d8  goto loc_10015c4ec
+loc_10015c4dc:
+loc_10015c4ec:
+  15c534  return
+
+== -[TAGDataLayer parseLifetime:]   (address 0x10015c59c  size 1124  kind objc)
+  15c5d4  [arg1 length]
+  15c5ec  [self lifetimePattern]
+  15c618  [[self lifetimePattern] firstMatchInString:arg1 options:0 range:0]
+  15c640  [[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] range]
+  15c64c  if (x0 == 0x7fffffffffffffff) goto loc_10015c66c
+  15c660  [[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] numberOfRanges]
+  15c668  if ([[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] numberOfRanges] >u 2) goto loc_10015c6c4
+loc_10015c66c:
+  15c68c  [@"unknown lifetime: " stringByAppendingString:arg1]
+  15c6b0  [TAGLog info:[@"unknown lifetime: " stringByAppendingString:arg1]]
+  15c6c0  goto loc_10015c950
+loc_10015c6c4:
+  15c6dc  [[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:1]
+  15c704  [arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:1]]
+  15c728  [TAGTypes numberWithString:[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:1]]]
+  15c740  if ([TAGTypes numberWithString:[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:1]]] == 0) goto loc_10015c7ec
+  15c758  [[TAGTypes numberWithString:[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:1]]] longLongValue]
+  15c760  if ([[TAGTypes numberWithString:[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0]… <= 0) goto loc_10015c83c
+  15c76c  [[TAGTypes numberWithString:[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:1]]] longLongValue]
+  15c780  [[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]
+  15c794  [arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]]
+  15c7a8  [[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]] length]
+  15c7ac  if ([[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]] length] == 0) goto loc_10015c8c0
+  15c7c4  [[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]] characterAtIndex:0]
+  15c7cc  if ([[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]] character… > 114) goto loc_10015c894
+  15c7d4  if ([[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]] character… == 100) goto loc_10015c8a4
+  15c7dc  if ([[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]] character… != 104) goto loc_10015c8b0
+  15c7e8  goto loc_10015c8bc
+loc_10015c7ec:
+  15c80c  [@"illegal number in lifetime value: " stringByAppendingString:arg1]
+  15c830  [TAGLog warning:[@"illegal number in lifetime value: " stringByAppendingString:arg1]]
+  15c834  goto loc_10015c884
+  15c838  goto loc_10015c9c4
+loc_10015c83c:
+  15c85c  [@"non-positive lifetime: " stringByAppendingString:arg1]
+  15c880  [TAGLog warning:[@"non-positive lifetime: " stringByAppendingString:arg1]]
+loc_10015c884:
+  15c890  goto loc_10015c948
+loc_10015c894:
+  15c898  if ([[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]] character… != 115) goto loc_10015c8ec
+  15c8a0  goto loc_10015c8bc
+loc_10015c8a4:
+  15c8ac  goto loc_10015c8bc
+loc_10015c8b0:
+  15c8b4  if ([[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:2]] character… != 109) goto loc_10015c8ec
+loc_10015c8bc:
+  15c8bc  t1 = ([[TAGTypes numberWithString:[arg1 substringWithRange:[[[self lifetimePattern] firstMatchInString:arg1 options:0 range:0] rangeAtIndex:1]]] longLongValue] * one of {1000, 0xea60, 0x36ee80, 0x5265c00})
+loc_10015c8c0:
+  15c8d8  [NSNumber numberWithLongLong:x2]
+  15c8e8  goto loc_10015c940
+loc_10015c8ec:
+  15c90c  [@"unkown units in lifetime: " stringByAppendingString:arg1]
+  15c930  [TAGLog warning:[@"unkown units in lifetime: " stringByAppendingString:arg1]]
+loc_10015c940:
+loc_10015c948:
+loc_10015c950:
+  15c978  return
+
+== -[TAGDataLayer processUpdate:]   (address 0x10015ca00  size 720  kind objc)
+  15ca54  [self model]
+  15ca64  objc_sync_enter([self model])
+  15ca88  [arg1 allKeys]
+  15cab8  [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  15cac0  if ([[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_10015cbd8
+loc_10015cb04:
+loc_10015cb08:
+  15cb18  if (x8 == x9) goto loc_10015cb24
+  15cb20  objc_enumerationMutation([arg1 allKeys])
+loc_10015cb24:
+  15cb38  [arg1 objectForKey:x2]
+  15cb58  [self expandKey:x2 value:[arg1 objectForKey:x2]]
+  15cb70  [self model]
+  15cb94  [self mergeMap:[self expandKey:x2 value:[arg1 objectForKey:x2]] intoMap:[self model]]
+  15cbbc  if ((x23 + 1) <u [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10015cb08
+  15cbcc  [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  15cbd4  if ([[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10015cb04
+loc_10015cbd8:
+  15cbe8  objc_sync_exit([self model])
+  15cc08  [self notifyListeners:arg1]
+  15cc48  return
+  15cc9c  objc_sync_exit()
+
+== -[TAGDataLayer registerListener:]   (address 0x10015ccd0  size 220  kind objc)
+  15cd04  [self listeners]
+  15cd14  objc_sync_enter([self listeners])
+  15cd20  [self listeners]
+  15cd40  [[self listeners] addObject:arg1]
+  15cd50  objc_sync_exit([self listeners])
+  15cd6c  return
+  15cd90  objc_sync_exit()
+
+== -[TAGDataLayer unregisterListener:]   (address 0x10015cdac  size 220  kind objc)
+  15cde0  [self listeners]
+  15cdf0  objc_sync_enter([self listeners])
+  15cdfc  [self listeners]
+  15ce1c  [[self listeners] removeObject:arg1]
+  15ce2c  objc_sync_exit([self listeners])
+  15ce48  return
+  15ce6c  objc_sync_exit()
+
+== -[TAGDataLayer notifyListeners:]   (address 0x10015ce88  size 544  kind objc)
+  15cedc  [self listeners]
+  15ceec  objc_sync_enter([self listeners])
+  15cf00  [self listeners]
+  15cf24  [NSSet setWithSet:[self listeners]]
+  15cf40  objc_sync_exit([self listeners])
+  15cf84  [[NSSet setWithSet:[self listeners]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  15cf8c  if ([[NSSet setWithSet:[self listeners]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] == 0) goto loc_10015d008
+  15cf9c  &@selector(changed:)
+loc_10015cfac:
+loc_10015cfb0:
+  15cfbc  if (x8 == x27) goto loc_10015cfc8
+  15cfc4  objc_enumerationMutation([NSSet setWithSet:[self listeners]])
+loc_10015cfc8:
+  15cfd8  [x0 changed:arg1]
+  15cfe4  if ((x28 + 1) <u [[NSSet setWithSet:[self listeners]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]) goto loc_10015cfb0
+  15cffc  [[NSSet setWithSet:[self listeners]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  15d004  if ([[NSSet setWithSet:[self listeners]] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] != 0) goto loc_10015cfac
+loc_10015d008:
+  15d04c  return
+  15d098  objc_sync_exit()
+
+== -[TAGDataLayer mergeMap:intoMap:]   (address 0x10015d0a8  size 1184  kind objc)
+  15d11c  [arg1 allKeys]
+  15d148  [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  15d150  if ([[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] == 0) goto loc_10015d45c
+  15d164  &@selector(class)
+loc_10015d1e4:
+loc_10015d1e8:
+  15d1f8  if (x8 == x9) goto loc_10015d204
+  15d200  objc_enumerationMutation([arg1 allKeys])
+loc_10015d204:
+  15d220  [arg1 objectForKey:x2]
+  15d23c  [NSArray class]
+  15d24c  [[arg1 objectForKey:x2] isKindOfClass:[NSArray class]]
+  15d250  if ([[arg1 objectForKey:x2] isKindOfClass:[NSArray class]] == 0) goto loc_10015d318
+  15d260  [arg2 objectForKey:x2]
+  15d27c  [NSMutableArray class]
+  15d28c  [[arg2 objectForKey:x2] isKindOfClass:[NSMutableArray class]]
+  15d29c  if (([[arg2 objectForKey:x2] isKindOfClass:[NSMutableArray class]] & 1)) goto loc_10015d2d8
+  15d2ac  [NSMutableArray array]
+  15d2cc  [arg2 setObject:[NSMutableArray array] forKey:x3]
+loc_10015d2d8:
+  15d2f0  [arg2 objectForKey:x2]
+  15d310  [self mergeList:[arg1 objectForKey:x2] intoList:[arg2 objectForKey:x2]]
+  15d314  goto loc_10015d3fc
+loc_10015d318:
+  15d324  [NSDictionary class]
+  15d334  [[arg1 objectForKey:x2] isKindOfClass:[NSDictionary class]]
+  15d338  if ([[arg1 objectForKey:x2] isKindOfClass:[NSDictionary class]] == 0) goto loc_10015d410
+  15d348  [arg2 objectForKey:x2]
+  15d364  [NSMutableDictionary class]
+  15d374  [[arg2 objectForKey:x2] isKindOfClass:[NSMutableDictionary class]]
+  15d384  if (([[arg2 objectForKey:x2] isKindOfClass:[NSMutableDictionary class]] & 1)) goto loc_10015d3c0
+  15d394  [NSMutableDictionary dictionary]
+  15d3b4  [arg2 setObject:[NSMutableDictionary dictionary] forKey:x3]
+loc_10015d3c0:
+  15d3d8  [arg2 objectForKey:x2]
+  15d3f8  [self mergeMap:[arg1 objectForKey:x2] intoMap:[arg2 objectForKey:x2]]
+loc_10015d3fc:
+  15d40c  goto loc_10015d424
+loc_10015d410:
+  15d420  [arg2 setObject:[arg1 objectForKey:x2] forKey:x3]
+loc_10015d424:
+  15d43c  if ((x19 + 1) <u [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]) goto loc_10015d1e8
+  15d450  [[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  15d458  if ([[arg1 allKeys] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] != 0) goto loc_10015d1e4
+loc_10015d45c:
+  15d4a8  return
+
+== -[TAGDataLayer mergeList:intoList:]   (address 0x10015d548  size 1068  kind objc)
+  15d594  &@selector(null)
+  15d5a4  &@selector(addObject:)
+  15d5b0  goto loc_10015d5bc
+loc_10015d5b4:
+loc_10015d5bc:
+  15d5c4  [arg2 count]
+  15d5d4  [arg1 count]
+  15d5dc  if ([arg2 count] >=u [arg1 count]) goto loc_10015d618
+  15d5e8  [NSNull null]
+  15d604  [arg2 addObject:[NSNull null]]
+  15d608  goto loc_10015d5b4
+  15d614  goto loc_10015d958
+loc_10015d618:
+  15d628  &@selector(class)
+  15d690  goto loc_10015d6a0
+loc_10015d694:
+loc_10015d6a0:
+  15d6a8  [arg1 count]
+  15d6b0  if (x24 >=u [arg1 count]) goto loc_10015d8dc
+  15d6c0  [arg1 objectAtIndex:x2]
+  15d6dc  [NSArray class]
+  15d6ec  [[arg1 objectAtIndex:x2] isKindOfClass:[NSArray class]]
+  15d6f0  if ([[arg1 objectAtIndex:x2] isKindOfClass:[NSArray class]] == 0) goto loc_10015d7b4
+  15d700  [arg2 objectAtIndex:x2]
+  15d71c  [NSMutableArray class]
+  15d72c  [[arg2 objectAtIndex:x2] isKindOfClass:[NSMutableArray class]]
+  15d73c  if (([[arg2 objectAtIndex:x2] isKindOfClass:[NSMutableArray class]] & 1)) goto loc_10015d778
+  15d74c  [NSMutableArray array]
+  15d76c  [arg2 setObject:[NSMutableArray array] atIndexedSubscript:x3]
+loc_10015d778:
+  15d790  [arg2 objectAtIndex:x2]
+  15d7ac  [self mergeList:[arg1 objectAtIndex:x2] intoList:[arg2 objectAtIndex:x2]]
+  15d7b0  goto loc_10015d898
+loc_10015d7b4:
+  15d7c0  [NSDictionary class]
+  15d7d0  [[arg1 objectAtIndex:x2] isKindOfClass:[NSDictionary class]]
+  15d7d4  if ([[arg1 objectAtIndex:x2] isKindOfClass:[NSDictionary class]] == 0) goto loc_10015d8ac
+  15d7e4  [arg2 objectAtIndex:x2]
+  15d800  [NSMutableDictionary class]
+  15d810  [[arg2 objectAtIndex:x2] isKindOfClass:[NSMutableDictionary class]]
+  15d820  if (([[arg2 objectAtIndex:x2] isKindOfClass:[NSMutableDictionary class]] & 1)) goto loc_10015d85c
+  15d830  [NSMutableDictionary dictionary]
+  15d850  [arg2 setObject:[NSMutableDictionary dictionary] atIndexedSubscript:x3]
+loc_10015d85c:
+  15d874  [arg2 objectAtIndex:x2]
+  15d894  [self mergeMap:[arg1 objectAtIndex:x2] intoMap:[arg2 objectAtIndex:x2]]
+loc_10015d898:
+  15d8a8  goto loc_10015d694
+loc_10015d8ac:
+  15d8b8  if ([arg1 objectAtIndex:x2] == g_10042d920) goto loc_10015d694
+  15d8cc  [arg2 setObject:[arg1 objectAtIndex:x2] atIndexedSubscript:x3]
+  15d8d0  goto loc_10015d694
+  15d8d8  goto loc_10015d954
+loc_10015d8dc:
+  15d904  return
+
+== -[TAGDataLayer expandKey:value:]   (address 0x10015d974  size 668  kind objc)
+  15d9c8  [NSMutableDictionary dictionaryWithCapacity:1]
+  15d9ec  [arg1 description]
+  15da14  [[arg1 description] componentsSeparatedByString:@"."]
+  15da48  &@selector(objectAtIndex:)
+  15da58  &@selector(setObject:forKey:)
+  15da64  goto loc_10015da80
+loc_10015da68:
+loc_10015da80:
+  15da88  [[[arg1 description] componentsSeparatedByString:@"."] count]
+  15da94  if (x27 >=u ([[[arg1 description] componentsSeparatedByString:@"."] count] - 1)) goto loc_10015daf4
+  15daa0  [NSMutableDictionary dictionary]
+  15dabc  [[[arg1 description] componentsSeparatedByString:@"."] objectAtIndex:x2]
+  15dadc  [x0 setObject:[NSMutableDictionary dictionary] forKey:[[[arg1 description] componentsSeparatedByString:@"."] objectAtIndex:x2]]
+  15dae0  goto loc_10015da68
+  15daf0  goto loc_10015dbd8
+loc_10015daf4:
+  15dafc  [[[arg1 description] componentsSeparatedByString:@"."] count]
+  15db0c  [[[arg1 description] componentsSeparatedByString:@"."] objectAtIndex:([[[arg1 description] componentsSeparatedByString:@"."] count] - 1)]
+  15db30  [x0 setObject:arg2 forKey:[[[arg1 description] componentsSeparatedByString:@"."] objectAtIndex:([[[arg1 description] componentsSeparatedByString:@"."] count] - 1)]]
+  15db90  return
+
+== -[TAGDataLayer dataLayer]   (address 0x10015dc10  size 16  kind objc)
+  15dc1c  return
+
+== -[TAGDataLayer listeners]   (address 0x10015dc20  size 16  kind objc)
+  15dc2c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayer setListeners:]   (address 0x10015dc30  size 12  kind objc)
+  15dc38  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGDataLayer model]   (address 0x10015dc3c  size 16  kind objc)
+  15dc48  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayer setModel:]   (address 0x10015dc4c  size 12  kind objc)
+  15dc54  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGDataLayer pushLock]   (address 0x10015dc58  size 16  kind objc)
+  15dc64  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayer setPushLock:]   (address 0x10015dc68  size 12  kind objc)
+  15dc70  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGDataLayer updateQueue]   (address 0x10015dc74  size 16  kind objc)
+  15dc80  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayer setUpdateQueue:]   (address 0x10015dc84  size 12  kind objc)
+  15dc8c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGDataLayer pushDepth]   (address 0x10015dc90  size 16  kind objc)
+  15dc9c  return
+
+== -[TAGDataLayer setPushDepth:]   (address 0x10015dca0  size 16  kind objc)
+  15dca8  self->_pushDepth = arg1
+  15dcac  return
+
+== -[TAGDataLayer persistentStore]   (address 0x10015dcb0  size 16  kind objc)
+  15dcbc  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayer persistentStoreLoadingCondition]   (address 0x10015dcc0  size 16  kind objc)
+  15dccc  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayer persistentStoreLoaded]   (address 0x10015dcd0  size 20  kind objc)
+  15dce0  return
+
+== -[TAGDataLayer setPersistentStoreLoaded:]   (address 0x10015dce4  size 16  kind objc)
+  15dcec  self->_persistentStoreLoaded = arg1
+  15dcf0  return
+
+== -[TAGDataLayer lifetimeKeyComponents]   (address 0x10015dcf4  size 16  kind objc)
+  15dd00  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayer lifetimePattern]   (address 0x10015dd04  size 16  kind objc)
+  15dd10  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDataLayer .cxx_destruct]   (address 0x10015dd14  size 204  kind objc)

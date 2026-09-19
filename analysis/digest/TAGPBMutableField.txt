@@ -1,0 +1,123 @@
+
+== -[TAGPBMutableField initWithNumber:]   (address 0x10013b4c4  size 88  kind objc)
+  13b4f8  [super init]
+  13b4fc  if (self == 0) goto loc_10013b50c
+  13b508  self->number_ = arg1
+loc_10013b50c:
+  13b518  return
+
+== -[TAGPBMutableField mergeFromField:]   (address 0x10013b51c  size 588  kind objc)
+  13b544  [arg1 varintList]
+  13b54c  if ([arg1 varintList] == 0) goto loc_10013b5a0
+  13b55c  if ([arg1 varintList]->_count == 0) goto loc_10013b5a0
+  13b56c  if (self->mutableVarintList_ == 0) goto loc_10013b588
+  13b580  [self->mutableVarintList_ appendArray:[arg1 varintList]]
+  13b584  goto loc_10013b5a0
+loc_10013b588:
+  13b598  [[arg1 varintList] mutableCopy]
+  13b59c  self->mutableVarintList_ = [[arg1 varintList] mutableCopy]
+loc_10013b5a0:
+  13b5b0  [arg1 fixed32List]
+  13b5b8  if ([arg1 fixed32List] == 0) goto loc_10013b60c
+  13b5c8  if ([arg1 fixed32List]->_count == 0) goto loc_10013b60c
+  13b5d8  if (self->mutableFixed32List_ == 0) goto loc_10013b5f4
+  13b5ec  [self->mutableFixed32List_ appendArray:[arg1 fixed32List]]
+  13b5f0  goto loc_10013b60c
+loc_10013b5f4:
+  13b604  [[arg1 fixed32List] mutableCopy]
+  13b608  self->mutableFixed32List_ = [[arg1 fixed32List] mutableCopy]
+loc_10013b60c:
+  13b61c  [arg1 fixed64List]
+  13b624  if ([arg1 fixed64List] == 0) goto loc_10013b678
+  13b634  if ([arg1 fixed64List]->_count == 0) goto loc_10013b678
+  13b644  if (self->mutableFixed64List_ == 0) goto loc_10013b660
+  13b658  [self->mutableFixed64List_ appendArray:[arg1 fixed64List]]
+  13b65c  goto loc_10013b678
+loc_10013b660:
+  13b670  [[arg1 fixed64List] mutableCopy]
+  13b674  self->mutableFixed64List_ = [[arg1 fixed64List] mutableCopy]
+loc_10013b678:
+  13b688  [arg1 lengthDelimitedList]
+  13b690  if ([arg1 lengthDelimitedList] == 0) goto loc_10013b6e4
+  13b6a0  if ([arg1 lengthDelimitedList]->_count == 0) goto loc_10013b6e4
+  13b6b0  if (self->mutableLengthDelimitedList_ == 0) goto loc_10013b6cc
+  13b6c4  [self->mutableLengthDelimitedList_ appendArray:[arg1 lengthDelimitedList]]
+  13b6c8  goto loc_10013b6e4
+loc_10013b6cc:
+  13b6dc  [[arg1 lengthDelimitedList] mutableCopy]
+  13b6e0  self->mutableLengthDelimitedList_ = [[arg1 lengthDelimitedList] mutableCopy]
+loc_10013b6e4:
+  13b6f4  [arg1 groupList]
+  13b6fc  if ([arg1 groupList] == 0) goto loc_10013b758
+  13b70c  if ([arg1 groupList]->_count == 0) goto loc_10013b758
+  13b71c  if (self->mutableGroupList_ == 0) goto loc_10013b740
+  13b73c  tail [self->mutableGroupList_ appendArray:[arg1 groupList]]
+loc_10013b740:
+  13b750  [[arg1 groupList] mutableCopy]
+  13b754  self->mutableGroupList_ = [[arg1 groupList] mutableCopy]
+loc_10013b758:
+  13b764  return
+
+== -[TAGPBMutableField addVarint:]   (address 0x10013b768  size 132  kind objc)
+  13b78c  if (self->mutableVarintList_ == 0) goto loc_10013b7a4
+  13b79c  [self->mutableVarintList_ addUInt64:arg1]
+  13b7a0  goto loc_10013b7dc
+loc_10013b7a4:
+  13b7b8  [TAGPBMutableArray alloc]
+  13b7d4  [[TAGPBMutableArray alloc] initWithValues:&sp[0x8] count:1 valueType:5]
+  13b7d8  self->mutableVarintList_ = [[TAGPBMutableArray alloc] initWithValues:&sp[0x8] count:1 valueType:5]
+loc_10013b7dc:
+  13b7e8  return
+
+== -[TAGPBMutableField addFixed32:]   (address 0x10013b7ec  size 132  kind objc)
+  13b810  if (self->mutableFixed32List_ == 0) goto loc_10013b828
+  13b820  [self->mutableFixed32List_ addUInt32:arg1]
+  13b824  goto loc_10013b860
+loc_10013b828:
+  13b83c  [TAGPBMutableArray alloc]
+  13b858  [[TAGPBMutableArray alloc] initWithValues:&sp[0xc] count:1 valueType:3]
+  13b85c  self->mutableFixed32List_ = [[TAGPBMutableArray alloc] initWithValues:&sp[0xc] count:1 valueType:3]
+loc_10013b860:
+  13b86c  return
+
+== -[TAGPBMutableField addFixed64:]   (address 0x10013b870  size 132  kind objc)
+  13b894  if (self->mutableFixed64List_ == 0) goto loc_10013b8ac
+  13b8a4  [self->mutableFixed64List_ addUInt64:arg1]
+  13b8a8  goto loc_10013b8e4
+loc_10013b8ac:
+  13b8c0  [TAGPBMutableArray alloc]
+  13b8dc  [[TAGPBMutableArray alloc] initWithValues:&sp[0x8] count:1 valueType:5]
+  13b8e0  self->mutableFixed64List_ = [[TAGPBMutableArray alloc] initWithValues:&sp[0x8] count:1 valueType:5]
+loc_10013b8e4:
+  13b8f0  return
+
+== -[TAGPBMutableField addLengthDelimited:]   (address 0x10013b8f4  size 132  kind objc)
+  13b918  if (self->mutableLengthDelimitedList_ == 0) goto loc_10013b930
+  13b928  [self->mutableLengthDelimitedList_ addObject:arg1]
+  13b92c  goto loc_10013b968
+loc_10013b930:
+  13b944  [TAGPBMutableArray alloc]
+  13b960  [[TAGPBMutableArray alloc] initWithValues:&sp[0x8] count:1 valueType:0]
+  13b964  self->mutableLengthDelimitedList_ = [[TAGPBMutableArray alloc] initWithValues:&sp[0x8] count:1 valueType:0]
+loc_10013b968:
+  13b974  return
+
+== -[TAGPBMutableField addGroup:]   (address 0x10013b978  size 132  kind objc)
+  13b99c  if (self->mutableGroupList_ == 0) goto loc_10013b9b4
+  13b9ac  [self->mutableGroupList_ addObject:arg1]
+  13b9b0  goto loc_10013b9ec
+loc_10013b9b4:
+  13b9c8  [TAGPBMutableArray alloc]
+  13b9e4  [[TAGPBMutableArray alloc] initWithValues:&sp[0x8] count:1 valueType:0]
+  13b9e8  self->mutableGroupList_ = [[TAGPBMutableArray alloc] initWithValues:&sp[0x8] count:1 valueType:0]
+loc_10013b9ec:
+  13b9f8  return
+
+== sub_10013b9fc   (address 0x10013b9fc  size 148  kind sub)
+  13ba18  if (a0->autocreator_ == 0) goto loc_10013ba58
+  13ba28  if (a0->autocreatorField_ == 0) goto loc_10013ba64
+  13ba3c  [a0 retain]
+  13ba54  tail sub_1001486ec(a0->autocreator_, a0->autocreatorField_, [a0 retain])
+loc_10013ba58:
+  13ba60  return
+  13ba8c  tail [a0->autocreator_ setExtension:a0->autocreatorExtension_ value:a0]

@@ -1,0 +1,370 @@
+
+== -[TAGPBUnknownFieldSet initWithFields:]   (address 0x1001470c8  size 120  kind objc)
+  1470fc  [super init]
+  14710c  if (flags ==) goto loc_10014712c
+  14711c  CFDictionaryCreateMutableCopy(0, 0, arg1)
+  147128  self->fields_ = CFDictionaryCreateMutableCopy(0, 0, arg1)
+loc_10014712c:
+  14713c  return
+
+== -[TAGPBUnknownFieldSet copyWithZone:]   (address 0x100147140  size 16  kind objc)
+  14714c  tail [self mutableCopyWithZone:arg1]
+
+== -[TAGPBUnknownFieldSet mutableCopyWithZone:]   (address 0x100147150  size 92  kind objc)
+  147170  [self class]
+  147184  [[self class] allocWithZone:arg1]
+  1471a8  tail [[[self class] allocWithZone:arg1] initWithFields:self->fields_]
+
+== -[TAGPBUnknownFieldSet dealloc]   (address 0x1001471ac  size 92  kind objc)
+  1471cc  if (self->fields_ == 0) goto loc_1001471d4
+  1471d0  CFRelease(self->fields_, _cmd)
+loc_1001471d4:
+  1471f4  [super dealloc]
+  147204  return
+
+== -[TAGPBUnknownFieldSet isEqual:]   (address 0x100147208  size 148  kind objc)
+  147230  [TAGPBUnknownFieldSet class]
+  147248  [arg1 isKindOfClass:[TAGPBUnknownFieldSet class]]
+  14724c  if ([arg1 isKindOfClass:[TAGPBUnknownFieldSet class]] == 0) goto loc_100147288
+  147274  if (flags ==) goto loc_10014728c
+  147278  CFEqual(self->fields_, arg1->fields_)
+  147284  goto loc_10014728c
+loc_100147288:
+loc_10014728c:
+  147298  return
+
+== -[TAGPBUnknownFieldSet hasField:]   (address 0x10014729c  size 60  kind objc)
+  1472b0  if (self->fields_ == 0) goto loc_1001472c8
+  1472b8  CFDictionaryGetValue(self->fields_, arg1, arg1)
+  1472c4  goto loc_1001472cc
+loc_1001472c8:
+loc_1001472cc:
+  1472d4  return
+
+== -[TAGPBUnknownFieldSet getField:]   (address 0x1001472d8  size 48  kind objc)
+  1472ec  if (self->fields_ == 0) goto loc_1001472fc
+  1472f4  CFDictionaryGetValue(self->fields_, arg1, arg1)
+  1472f8  goto loc_100147300
+loc_1001472fc:
+loc_100147300:
+  147304  return
+
+== -[TAGPBUnknownFieldSet countOfFields]   (address 0x100147308  size 28  kind objc)
+  147314  if (self->fields_ == 0) goto loc_10014731c
+  147318  tail CFDictionaryGetCount(self->fields_, _cmd)
+loc_10014731c:
+  147320  return
+
+== -[TAGPBUnknownFieldSet writeToCodedOutputStream:]   (address 0x100147324  size 340  kind objc)
+  147364  if (self->fields_ == 0) goto loc_100147448
+  147368  CFDictionaryGetCount(self->fields_, _cmd, arg1)
+  1473a4  CFDictionaryGetKeysAndValues(self->fields_, (&sp[0x0] - (((CFDictionaryGetCount(self->fields_, _cmd, arg1) << 3) + 15) & -16)), (&sp[0x0] - (((CFDictionaryGetCount(self->fields_, _cmd, arg1) << 3) + 15) & -16)))
+  1473ac  if (CFDictionaryGetCount(self->fields_, _cmd, arg1) <u 2) goto loc_10014742c
+loc_1001473c8:
+  1473cc  ((&sp[0x0] - (CFDictionaryGetCount(self->fields_, _cmd, arg1) << 4)) + 8)[+0x-8] = x10
+  1473e0  if (CFDictionaryGetCount(self->fields_, _cmd, arg1) != (x8 + 1)) goto loc_1001473c8
+  1473f8  qsort_b((&sp[0x0] - (CFDictionaryGetCount(self->fields_, _cmd, arg1) << 4)), CFDictionaryGetCount(self->fields_, _cmd, arg1), 16, ^{-[TAGPBUnknownFieldSet writeToCodedOutputStream:]_block_invoke})
+  147400  &@selector(writeToOutput:)
+loc_10014740c:
+  147418  [x0 writeToOutput:arg1]
+  147420  if ((x20 - 1) != 0) goto loc_10014740c
+  147428  goto loc_100147444
+loc_10014742c:
+  147440  [(&sp[0x0] - (((CFDictionaryGetCount(self->fields_, _cmd, arg1) << 3) + 15) & -16))[+0x0] writeToOutput:arg1]
+loc_100147444:
+loc_100147448:
+  147470  return
+
+== -[TAGPBUnknownFieldSet writeToCodedOutputStream:]_block_invoke   (address 0x100147478  size 28  kind block)
+  147490  return
+
+== -[TAGPBUnknownFieldSet description]   (address 0x100147494  size 164  kind objc)
+  1474bc  [self class]
+  1474dc  [NSMutableString stringWithFormat:@"<%@ %p>: TextFormat: {\n", [self class], self]
+  1474f0  sub_100147538(self, @"  ")
+  14750c  [[NSMutableString stringWithFormat:@"<%@ %p>: TextFormat: {\n", [self class], self] appendString:sub_100147538(self, @"  ")]
+  147520  [[NSMutableString stringWithFormat:@"<%@ %p>: TextFormat: {\n", [self class], self] appendString:@"}"]
+  147534  return
+
+== sub_100147538   (address 0x100147538  size 1288  kind sub)
+  14756c  if (a0 == 0) goto loc_100147a04
+  147594  [NSMutableString string]
+  1475bc  [a0 sortedFields]
+  1475e0  [[a0 sortedFields] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xc8] count:16]
+  1475e8  if ([[a0 sortedFields] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xc8] count:16] == 0) goto loc_1001479f8
+  14761c  &@selector(groupList)
+  147654  &@selector(objectAtIndex:)
+  14765c  &@selector(appendString:)
+  147698  &@selector(uint32AtIndex:)
+loc_1001476bc:
+loc_1001476c0:
+  1476d0  if (x8 == x9) goto loc_1001476dc
+  1476d8  objc_enumerationMutation([a0 sortedFields])
+loc_1001476dc:
+  1476f0  [x0 number]
+  147700  [x0 varintList]
+  147710  if ([x0 varintList] == 0) goto loc_10014775c
+  147720  if ([x0 varintList]->_count == 0) goto loc_10014775c
+loc_100147728:
+  147734  [[x0 varintList] uint64AtIndex:x2]
+  14774c  [[NSMutableString string] appendFormat:@"%@%d: %llu\n", (a1 == 0 ? @"" : a1), [x0 number], [[x0 varintList] uint64AtIndex:x2]]
+  147758  if ([x0 varintList]->_count != (x22 + 1)) goto loc_100147728
+loc_10014775c:
+  147768  [x0 fixed32List]
+  14777c  if ([x0 fixed32List] == 0) goto loc_1001477c8
+  14778c  if ([x0 fixed32List]->_count == 0) goto loc_1001477c8
+loc_100147794:
+  1477a0  [[x0 fixed32List] uint32AtIndex:x2]
+  1477b8  [[NSMutableString string] appendFormat:@"%@%d: 0x%X\n", (a1 == 0 ? @"" : a1), [x0 number], [[x0 fixed32List] uint32AtIndex:x2]]
+  1477c4  if ([x0 fixed32List]->_count != (x22 + 1)) goto loc_100147794
+loc_1001477c8:
+  1477d4  [x0 fixed64List]
+  1477e8  if ([x0 fixed64List] == 0) goto loc_100147834
+  1477f8  if ([x0 fixed64List]->_count == 0) goto loc_100147834
+loc_100147800:
+  14780c  [[x0 fixed64List] uint64AtIndex:x2]
+  147824  [[NSMutableString string] appendFormat:@"%@%d: 0x%llX\n", (a1 == 0 ? @"" : a1), [x0 number], [[x0 fixed64List] uint64AtIndex:x2]]
+  147830  if ([x0 fixed64List]->_count != (x22 + 1)) goto loc_100147800
+loc_100147834:
+  147840  [x0 lengthDelimitedList]
+  14785c  if ([x0 lengthDelimitedList] == 0) goto loc_1001478bc
+  14786c  if ([x0 lengthDelimitedList]->_count == 0) goto loc_1001478bc
+loc_100147874:
+  147884  [[NSMutableString string] appendFormat:@"%@%d: ", (a1 == 0 ? @"" : a1), [x0 number]]
+  147894  [[x0 lengthDelimitedList] objectAtIndex:x2]
+  14789c  sub_100149c54([[x0 lengthDelimitedList] objectAtIndex:x2], [NSMutableString string])
+  1478ac  [[NSMutableString string] appendString:@"\n"]
+  1478b8  if ([x0 lengthDelimitedList]->_count != (x22 + 1)) goto loc_100147874
+loc_1001478bc:
+  1478c4  [x0 groupList]
+  1478fc  if ([x0 groupList] == 0) goto loc_1001479b8
+  147910  if ([x0 groupList]->_count == 0) goto loc_1001479b8
+loc_100147918:
+  14792c  [[NSMutableString string] appendFormat:@"%@%d: {\n", (a1 == 0 ? @"" : a1), [x0 number]]
+  14793c  [(a1 == 0 ? @"" : a1) stringByAppendingString:@"  "]
+  147964  [[x0 groupList] objectAtIndex:x2]
+  147984  sub_100147538([[x0 groupList] objectAtIndex:x2], [(a1 == 0 ? @"" : a1) stringByAppendingString:@"  "])
+  147994  [[NSMutableString string] appendString:sub_100147538([[x0 groupList] objectAtIndex:x2], [(a1 == 0 ? @"" : a1) stringByAppendingString:@"  "])]
+  1479a8  [[NSMutableString string] appendFormat:@"%@}\n", (a1 == 0 ? @"" : a1)]
+  1479b4  if ([x0 groupList]->_count != (x24 + 1)) goto loc_100147918
+loc_1001479b8:
+  1479d8  if ((x22 + 1) <u [[a0 sortedFields] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xc8] count:16]) goto loc_1001476c0
+  1479ec  [[a0 sortedFields] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xc8] count:16]
+  1479f4  if ([[a0 sortedFields] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xc8] count:16] != 0) goto loc_1001476bc
+loc_1001479f8:
+  147a00  goto loc_100147a08
+loc_100147a04:
+loc_100147a08:
+  147a38  return
+
+== -[TAGPBUnknownFieldSet serializedSize]   (address 0x100147a40  size 76  kind objc)
+  147a64  if (self->fields_ == 0) goto loc_100147a80
+  147a78  CFDictionaryApplyFunction(self->fields_, &-[TAGPBUnknownFieldSet serializedSize]_block_invoke, &sp[0x8])
+loc_100147a80:
+  147a88  return
+
+== -[TAGPBUnknownFieldSet serializedSize]_block_invoke   (address 0x100147a8c  size 64  kind block)
+  147ab0  [blockarg1 serializedSize]
+  147abc  blockarg2[+0x0] = (blockarg2[+0x0] + [blockarg1 serializedSize])
+  147ac8  return
+
+== -[TAGPBUnknownFieldSet writeAsMessageSetTo:]   (address 0x100147acc  size 32  kind objc)
+  147ad8  if (self->fields_ == 0) goto loc_100147ae8
+  147ae4  tail CFDictionaryApplyFunction(self->fields_, &-[TAGPBUnknownFieldSet writeAsMessageSetTo:]_block_invoke, arg1)
+loc_100147ae8:
+  147ae8  return
+
+== -[TAGPBUnknownFieldSet writeAsMessageSetTo:]_block_invoke   (address 0x100147aec  size 24  kind block)
+  147b00  tail [blockarg1 writeAsMessageSetExtensionToOutput:blockarg2]
+
+== -[TAGPBUnknownFieldSet serializedSizeAsMessageSet]   (address 0x100147b04  size 76  kind objc)
+  147b28  if (self->fields_ == 0) goto loc_100147b44
+  147b3c  CFDictionaryApplyFunction(self->fields_, &-[TAGPBUnknownFieldSet serializedSizeAsMessageSet]_block_invoke, &sp[0x8])
+loc_100147b44:
+  147b4c  return
+
+== -[TAGPBUnknownFieldSet serializedSizeAsMessageSet]_block_invoke   (address 0x100147b50  size 64  kind block)
+  147b74  [blockarg1 serializedSizeAsMessageSetExtension]
+  147b80  blockarg2[+0x0] = (blockarg2[+0x0] + [blockarg1 serializedSizeAsMessageSetExtension])
+  147b8c  return
+
+== -[TAGPBUnknownFieldSet data]   (address 0x100147b90  size 184  kind objc)
+  147bb8  [self serializedSize]
+  147bd0  [NSMutableData dataWithLength:[self serializedSize]]
+  147bec  [TAGPBCodedOutputStream alloc]
+  147c00  [[TAGPBCodedOutputStream alloc] initWithData:[NSMutableData dataWithLength:[self serializedSize]]]
+  147c1c  [self writeToCodedOutputStream:[[TAGPBCodedOutputStream alloc] initWithData:[NSMutableData dataWithLength:[self serializedSize]]]]
+  147c30  [[[TAGPBCodedOutputStream alloc] initWithData:[NSMutableData dataWithLength:[self serializedSize]]] release]
+  147c44  return
+
+== +[TAGPBUnknownFieldSet isFieldTag:]   (address 0x100147c48  size 16  kind objc)
+  147c54  return
+
+== -[TAGPBUnknownFieldSet addField:]   (address 0x100147c58  size 216  kind objc)
+  147c84  [arg1 number]
+  147c8c  if ([arg1 number] != 0) goto loc_100147cbc
+  147cb8  [NSException raise:_NSInvalidArgumentException[+0x0] format:@"Zero is not a valid field number."]
+loc_100147cbc:
+  147cc8  if (self->fields_ != 0) goto loc_100147d10
+  147cd4  [&d_1003b8bb0] -> &sub_100147d78
+  147cdc  [&d_1003b8ba0] -> &sub_100147d38
+  147ce4  [&d_1003b8b90] -> 0x0
+  147d08  CFDictionaryCreateMutable(_kCFAllocatorDefault[+0x0], 0, ^{sub_100147d38 captures +0x20=&sub_100147d78}, _kCFTypeDictionaryValueCallBacks)
+  147d0c  self->fields_ = CFDictionaryCreateMutable(_kCFAllocatorDefault[+0x0], 0, ^{sub_100147d38 captures +0x20=&sub_100147d78}, _kCFTypeDictionaryValueCallBacks)
+loc_100147d10:
+  147d18  CFDictionarySetValue(x0, [arg1 number], arg1)
+  147d2c  return
+
+== sub_100147d30   (address 0x100147d30  size 8  kind sub)
+  147d34  return
+
+== sub_100147d38   (address 0x100147d38  size 4  kind sub)
+  147d38  return
+
+== sub_100147d3c   (address 0x100147d3c  size 60  kind sub)
+  147d68  CFStringCreateWithFormat(_kCFAllocatorDefault[+0x0], 0, @"%d", a3)
+  147d74  return
+
+== sub_100147d78   (address 0x100147d78  size 12  kind sub)
+  147d80  return
+
+== sub_100147d84   (address 0x100147d84  size 4  kind sub)
+  147d84  return
+
+== -[TAGPBUnknownFieldSet getFieldBuilder:create:]   (address 0x100147d88  size 188  kind objc)
+  147db0  if (self->fields_ == 0) goto loc_100147dc4
+  147db8  CFDictionaryGetValue(self->fields_, arg1, arg1, arg2)
+  147dc0  goto loc_100147dc8
+loc_100147dc4:
+loc_100147dc8:
+  147dc8  if (x21 != 0) goto loc_100147e30
+  147dd0  if (((arg2 ^ 1) & 1)) goto loc_100147e30
+  147de8  [TAGPBMutableField alloc]
+  147dfc  [[TAGPBMutableField alloc] initWithNumber:arg1]
+  147e18  [self addField:[[TAGPBMutableField alloc] initWithNumber:arg1]]
+  147e2c  [[[TAGPBMutableField alloc] initWithNumber:arg1] release]
+loc_100147e30:
+  147e40  return
+
+== -[TAGPBUnknownFieldSet mergeField:]   (address 0x100147e44  size 180  kind objc)
+  147e6c  [arg1 number]
+  147e74  if ([arg1 number] != 0) goto loc_100147ea4
+  147ea0  [NSException raise:_NSInvalidArgumentException[+0x0] format:@"Zero is not a valid field number."]
+loc_100147ea4:
+  147ebc  [self getFieldBuilder:[arg1 number] create:0]
+  147ec0  if ([self getFieldBuilder:[arg1 number] create:0] == 0) goto loc_100147ed4
+  147ec8  &@selector(mergeFromField:)
+  147ed0  goto loc_100147ee4
+loc_100147ed4:
+  147ed8  &@selector(addField:)
+loc_100147ee4:
+  147ef4  tail [x0 <sel x1>]
+
+== -[TAGPBUnknownFieldSet mergeUnknownFields:]   (address 0x100147ef8  size 44  kind objc)
+  147efc  if (arg1 == 0) goto loc_100147f20
+  147f0c  if (arg1->fields_ == 0) goto loc_100147f20
+  147f1c  tail CFDictionaryApplyFunction(arg1->fields_, &-[TAGPBUnknownFieldSet mergeUnknownFields:]_block_invoke, self)
+loc_100147f20:
+  147f20  return
+
+== -[TAGPBUnknownFieldSet mergeUnknownFields:]_block_invoke   (address 0x100147f24  size 28  kind block)
+  147f3c  tail [blockarg2 mergeField:blockarg1]
+
+== -[TAGPBUnknownFieldSet mergeFromData:]   (address 0x100147f40  size 144  kind objc)
+  147f68  [TAGPBCodedInputStream alloc]
+  147f7c  [[TAGPBCodedInputStream alloc] initWithData:arg1]
+  147f98  [self mergeFromCodedInputStream:[[TAGPBCodedInputStream alloc] initWithData:arg1]]
+  147fb0  [[[TAGPBCodedInputStream alloc] initWithData:arg1] checkLastTagWas:0]
+  147fcc  tail [[[TAGPBCodedInputStream alloc] initWithData:arg1] release]
+
+== -[TAGPBUnknownFieldSet mergeVarintField:value:]   (address 0x100147fd0  size 136  kind objc)
+  147fec  if (arg1 != 0) goto loc_10014801c
+  148018  [NSException raise:_NSInvalidArgumentException[+0x0] format:@"Zero is not a valid field number."]
+loc_10014801c:
+  148034  [self getFieldBuilder:arg1 create:1]
+  148054  tail [[self getFieldBuilder:arg1 create:1] addVarint:arg2]
+
+== -[TAGPBUnknownFieldSet mergeFieldFrom:input:]   (address 0x100148058  size 572  kind objc)
+  148080  if ((arg1 & 7) >u 5) goto loc_100148264
+  148098  switch ((arg1 & 7)) { case 0: goto loc_10014809c; case 1: goto loc_1001480e4; case 2: goto loc_10014812c; case 3: goto loc_100148180; case 4: goto loc_100148264; case 5: goto loc_100148214 }
+loc_10014809c:  ; case 0
+  1480b8  [self getFieldBuilder:(arg1 >>> 3) create:1]
+  1480d0  [arg2 readInt64]
+  1480dc  &@selector(addVarint:)
+  1480e0  goto loc_100148170
+loc_1001480e4:  ; case 1
+  148100  [self getFieldBuilder:(arg1 >>> 3) create:1]
+  148118  [arg2 readFixed64]
+  148124  &@selector(addFixed64:)
+  148128  goto loc_100148170
+loc_10014812c:  ; case 2
+  148148  [self getFieldBuilder:(arg1 >>> 3) create:1]
+  148160  [arg2 readData]
+  14816c  &@selector(addLengthDelimited:)
+loc_100148170:
+  148178  [[self getFieldBuilder:(arg1 >>> 3) create:1] addFixed64:x2  | addLengthDelimited:x3  | addVarint:x4]
+  14817c  goto loc_100148264
+loc_100148180:  ; case 3
+  148194  [TAGPBUnknownFieldSet alloc]
+  1481a4  [[TAGPBUnknownFieldSet alloc] init]
+  1481c4  [arg2 readUnknownGroup:(arg1 >>> 3) builder:[[TAGPBUnknownFieldSet alloc] init]]
+  1481e4  [self getFieldBuilder:(arg1 >>> 3) create:1]
+  1481f8  [[self getFieldBuilder:(arg1 >>> 3) create:1] addGroup:[[TAGPBUnknownFieldSet alloc] init]]
+  14820c  [[[TAGPBUnknownFieldSet alloc] init] release]
+  148210  goto loc_100148264
+loc_100148214:  ; case 5
+  148230  [self getFieldBuilder:(arg1 >>> 3) create:1]
+  148248  [arg2 readFixed32]
+  148260  [[self getFieldBuilder:(arg1 >>> 3) create:1] addFixed32:[arg2 readFixed32]]
+loc_100148264:  ; case 4
+  148278  return
+
+== -[TAGPBUnknownFieldSet mergeMessageSetMessage:data:]   (address 0x100148294  size 64  kind objc)
+  1482b4  [self getFieldBuilder:arg1 create:1]
+  1482d0  tail [[self getFieldBuilder:arg1 create:1] addLengthDelimited:arg2]
+
+== -[TAGPBUnknownFieldSet mergeFromCodedInputStream:]   (address 0x1001482d4  size 92  kind objc)
+  1482f0  &@selector(mergeFieldFrom:input:)
+loc_1001482f8:
+  1482fc  sub_100130f90(arg1)
+  148304  if (sub_100130f90(arg1) == 0) goto loc_100148320
+  148318  [self mergeFieldFrom:sub_100130f90(arg1) input:arg1]
+  14831c  if (([self mergeFieldFrom:sub_100130f90(arg1) input:arg1] & 1)) goto loc_1001482f8
+loc_100148320:
+  14832c  return
+
+== -[TAGPBUnknownFieldSet sortedFields]   (address 0x100148330  size 348  kind objc)
+  14836c  if (self->fields_ == 0) goto loc_10014841c
+  148370  CFDictionaryGetCount(self->fields_, _cmd)
+  1483ac  CFDictionaryGetKeysAndValues(self->fields_, (&sp[0x0] - (((CFDictionaryGetCount(self->fields_, _cmd) << 3) + 15) & -16)), (&sp[0x0] - (((CFDictionaryGetCount(self->fields_, _cmd) << 3) + 15) & -16)))
+  1483bc  if (CFDictionaryGetCount(self->fields_, _cmd) == 0) goto loc_100148424
+loc_1001483cc:
+  1483d0  ((&sp[0x0] - (CFDictionaryGetCount(self->fields_, _cmd) << 4)) + 8)[+0x-8] = x10
+  1483e4  if (CFDictionaryGetCount(self->fields_, _cmd) != (x8 + 1)) goto loc_1001483cc
+  1483f8  qsort_b((&sp[0x0] - (CFDictionaryGetCount(self->fields_, _cmd) << 4)), CFDictionaryGetCount(self->fields_, _cmd), 16, ^{-[TAGPBUnknownFieldSet sortedFields]_block_invoke})
+  1483fc  if (CFDictionaryGetCount(self->fields_, _cmd) == 0) goto loc_100148438
+loc_100148408:
+  148414  if ((x8 - 1) != 0) goto loc_100148408
+  148418  goto loc_100148438
+loc_10014841c:
+  148420  goto loc_10014845c
+loc_100148424:
+  148434  qsort_b((&sp[0x0] - (CFDictionaryGetCount(self->fields_, _cmd) << 4)), CFDictionaryGetCount(self->fields_, _cmd), 16, ^{-[TAGPBUnknownFieldSet sortedFields]_block_invoke})
+loc_100148438:
+  148454  [NSArray arrayWithObjects:(&sp[0x0] - (((CFDictionaryGetCount(self->fields_, _cmd) << 3) + 15) & -16)) count:CFDictionaryGetCount(self->fields_, _cmd)]
+loc_10014845c:
+  148484  return
+
+== -[TAGPBUnknownFieldSet sortedFields]_block_invoke   (address 0x10014848c  size 28  kind block)
+  1484a4  return
+
+== -[TAGPBUnknownFieldSet getTags:]   (address 0x1001484a8  size 192  kind objc)
+  1484e8  if (self->fields_ == 0) goto loc_100148538
+  1484ec  CFDictionaryGetCount(self->fields_, _cmd, arg1)
+  14851c  CFDictionaryGetKeysAndValues(self->fields_, (&sp[0x0] - (((CFDictionaryGetCount(self->fields_, _cmd, arg1) << 3) + 15) & -16)), 0)
+  148520  if (CFDictionaryGetCount(self->fields_, _cmd, arg1) == 0) goto loc_100148534
+loc_100148524:
+  148530  if ((x20 - 1) != 0) goto loc_100148524
+loc_100148534:
+loc_100148538:
+  148560  return

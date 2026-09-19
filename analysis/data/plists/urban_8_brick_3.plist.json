@@ -1,0 +1,98 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_urban_8_1"
+  }
+ ],
+ "Ambiant": "Horde_ambiant",
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "bastard_urban_8_1"
+   },
+   "spawn_angle": 270,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "Zombie"
+   },
+   "spawn_angle": 100,
+   "spawn_distance": 10
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.1,
+    "enemy": "bastard_urban_8_1"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "bastard_urban_8_1"
+   },
+   "spawn_angle": 265,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "bastard_urban_8_1"
+   },
+   "spawn_angle": 280,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "ZombieB"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 80,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 110,
+   "spawn_distance": 10
+  }
+ },
+ "PowerUp": {
+  "force_spawn_time": "10"
+ }
+}

@@ -1,0 +1,48 @@
+// ADChallengeCompletedViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #80 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #148 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #87 UIView  
+    #117 UIView (custom class ViewWithParalax)  
+      #111 UIImageView  Image='background_main.png'
+    #106 UIScrollView  
+    #71 UIView  
+      #155 UIButton (custom class ADButtonWithFont)  
+      #55 UIButton (custom class ADButtonWithFont)  
+      #20 UIButton (custom class ADButtonWithFont)  
+  #75 UIView  
+    #163 UIImageView  Image='frame_completed.png'
+    #66 UILabel  UserInteractionDisabled=False Text='SCORE'
+    #176 UILabel  UserInteractionDisabled=False Text='KILLS'
+    #38 UILabel  UserInteractionDisabled=False Text='10,000'
+    #147 UILabel  UserInteractionDisabled=False Text='YOUR TIME:'
+    #4 UILabel  UserInteractionDisabled=False Text='10,000'
+    #15 UIView  
+      #7 UIView  
+      #143 UIView  
+      #63 UIView  
+    #65 UILabel  UserInteractionDisabled=False Text='YOUR ACCURACY'
+    #193 UILabel  UserInteractionDisabled=False Text='10,000'
+
+CONNECTIONS
+  action  missionSelectButtonPressed:               #55 ADButtonWithFont --(events 0x40)--> #80 UIProxyObject
+  action  nextMissionButtonPressed:                 #155 ADButtonWithFont --(events 0x40)--> #80 UIProxyObject
+  action  retryButtonPressed:                       #20 ADButtonWithFont --(events 0x40)--> #80 UIProxyObject
+  outlet  accuracyLabel                             #80 UIProxyObject --> #193 UILabel Text='10,000'
+  outlet  accuracyTitleLabel                        #80 UIProxyObject --> #65 UILabel Text='YOUR ACCURACY'
+  outlet  background                                #80 UIProxyObject --> #111 UIImageView
+  outlet  buttonsView                               #80 UIProxyObject --> #71 UIView
+  outlet  challengeTitle                            #80 UIProxyObject --> #66 UILabel Text='SCORE'
+  outlet  contentScrollView                         #80 UIProxyObject --> #106 UIScrollView
+  outlet  contentView                               #80 UIProxyObject --> #75 UIView
+  outlet  killsLabel                                #80 UIProxyObject --> #38 UILabel Text='10,000'
+  outlet  killsTitleLabel                           #80 UIProxyObject --> #176 UILabel Text='KILLS'
+  outlet  starPlaceholder1                          #80 UIProxyObject --> #7 UIView
+  outlet  starPlaceholder2                          #80 UIProxyObject --> #143 UIView
+  outlet  starPlaceholder3                          #80 UIProxyObject --> #63 UIView
+  outlet  starUnlockArea                            #80 UIProxyObject --> #15 UIView
+  outlet  timeLabel                                 #80 UIProxyObject --> #4 UILabel Text='10,000'
+  outlet  timeTitleLabel                            #80 UIProxyObject --> #147 UILabel Text='YOUR TIME:'
+  outlet  view                                      #80 UIProxyObject --> #87 UIView
+
+ACCESSIBILITY CONFIGURATIONS

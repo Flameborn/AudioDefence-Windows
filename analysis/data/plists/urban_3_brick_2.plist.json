@@ -1,0 +1,49 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1.5,
+   "name": "bastard_zombie_clown_b"
+  }
+ ],
+ "Enemies": {
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.1,
+    "enemy": "bastard_zombie_clown_b"
+   },
+   "spawn_angle": 180,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 8,
+    "enemy": "bastard_zombie_clown_b"
+   },
+   "spawn_angle": 270,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "bastard_zombie_clown_b"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 16,
+    "enemy": "bastard_zombie_clown_b"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  }
+ }
+}

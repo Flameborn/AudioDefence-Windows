@@ -1,0 +1,128 @@
+
+== -[ADPasserBy update:]   (address 0x10000b770  size 1036  kind objc)
+  00b7a0  [self state]
+  00b7a8  if ([self state] > 998) goto loc_10000b810
+  00b7ac  if ([self state] == 0) goto loc_10000b89c
+  00b7b4  if ([self state] != 1) goto loc_10000b8e8
+  00b7cc  [self spawn_sound_duration]
+  00b7d4  if ([self spawn_sound_duration] == 0.0) goto loc_10000b8d0
+  00b7e8  [self timeInState]
+  00b7f8  [self spawn_sound_duration]
+  00b800  if ([self timeInState] <= (or unordered) [self spawn_sound_duration]) goto loc_10000ba8c
+  00b808  &@selector(passBy)
+  00b80c  goto loc_10000b8d8
+loc_10000b810:
+  00b814  if ([self state] != 999) goto loc_10000ba8c
+  00b82c  [self timeInState]
+  00b840  if ([self timeInState] <= (or unordered) 0.1) goto loc_10000ba8c
+  00b84c  [self timeInState]
+  00b864  [self sound]
+  00b880  [[self sound] duration]
+  00b894  if ([self timeInState] > [[self sound] duration]) goto loc_10000ba60
+  00b898  goto loc_10000ba8c
+loc_10000b89c:
+  00b8ac  [self timeInState]
+  00b8c4  [self spawn_time]
+  00b8cc  if ([self timeInState] <= (or unordered) [self spawn_time]) goto loc_10000ba8c
+loc_10000b8d0:
+  00b8d4  &@selector(spawn)
+loc_10000b8d8:
+  00b8e0  [self passBy | spawn]
+  00b8e4  goto loc_10000ba8c
+loc_10000b8e8:
+  00b8ec  if ([self state] != 201) goto loc_10000ba8c
+  00b904  [self position]
+  00b920  [self getOrientation]
+  00b93c  [self speed]
+  00b95c  [self position]
+  00b96c  [self getOrientation]
+  00b97c  [self speed]
+  00b9a4  [self setPosition:{([self position].0 + (arg1 * ([self getOrientation].0 * [self speed]))), ([self position].1 + (arg1 * ([self getOrientation].1 * [self speed])))}]
+  00b9b0  [self position]
+  00b9c0  [self position]
+  00b9d0  [self position]
+  00b9e0  [self position]
+  00b9fc  [self position]
+  00ba04  t1 = ([self position].1 / sqrt((([self position].0 * [self position].0) + ([self position].1 * [self position].1))))
+  00ba14  [self position]
+  00ba18  t2 = ([self position].0 / sqrt((([self position].0 * [self position].0) + ([self position].1 * [self position].1))))
+  00ba24  atan2f(t1, t2)
+  00ba38  [self setAngleFromPlayer:atan2f(t1, t2)]
+  00ba4c  [self squaredDistance]
+  00ba5c  if ([self squaredDistance] <= (or unordered) 225) goto loc_10000ba8c
+loc_10000ba60:
+  00ba70  [self deactivatePlaylist]
+  00ba88  [self setState:0xffffffff]
+loc_10000ba8c:
+  00baa0  [self sound]
+  00bab4  if ([self sound] == 0) goto loc_10000bb20
+  00bac0  [self sound]
+  00bae4  [self position]
+  00baf4  [self position]
+  00bb14  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+loc_10000bb20:
+  00bb30  [self timeInState]
+  00bb60  tail [self setTimeInState:([self timeInState] + arg1)]
+loc_10000bb64:
+  00bb78  goto loc_10000bb64
+
+== -[ADPasserBy setPositionFromDictionary:]   (address 0x10000bb7c  size 948  kind objc)
+  00bbc0  [arg1 objectForKey:@"spawn_angle"]
+  00bbe0  [[arg1 objectForKey:@"spawn_angle"] floatValue]
+  00bc00  [arg1 objectForKey:@"spawn_distance"]
+  00bc14  [[arg1 objectForKey:@"spawn_distance"] floatValue]
+  00bc48  d0 = sin((([[arg1 objectForKey:@"spawn_angle"] floatValue] * 3.14159) / 180)), d1 = cos((([[arg1 objectForKey:@"spawn_angle"] floatValue] * 3.14159) / 180))
+  00bc4c  t1 = ([[arg1 objectForKey:@"spawn_distance"] floatValue] * sin((([[arg1 objectForKey:@"spawn_angle"] floatValue] * 3.14159) / 180)))
+  00bc54  t2 = ([[arg1 objectForKey:@"spawn_distance"] floatValue] * cos((([[arg1 objectForKey:@"spawn_angle"] floatValue] * 3.14159) / 180)))
+  00bc6c  [self setPosition:{t1, t2}]
+  00bc80  [arg1 objectForKey:@"orientation"]
+  00bc94  if ([arg1 objectForKey:@"orientation"] == 0) goto loc_10000bd84
+  00bca8  [arg1 objectForKey:@"orientation"]
+  00bcc8  [[arg1 objectForKey:@"orientation"] uppercaseString]
+  00bcf0  [[[arg1 objectForKey:@"orientation"] uppercaseString] rangeOfString:@"N"]
+  00bd10  if ([[[arg1 objectForKey:@"orientation"] uppercaseString] rangeOfString:@"N"] != 0x7fffffffffffffff) goto loc_10000bd9c
+  00bd24  [arg1 objectForKey:@"orientation"]
+  00bd38  [[arg1 objectForKey:@"orientation"] uppercaseString]
+  00bd54  [[[arg1 objectForKey:@"orientation"] uppercaseString] rangeOfString:@"S"]
+  00bd7c  t3 = ([[[arg1 objectForKey:@"orientation"] uppercaseString] rangeOfString:@"S"] == 0x7fffffffffffffff ? 0 : -1)
+  00bd80  goto loc_10000bda0
+loc_10000bd84:
+  00bd94  [self updateOrientation]
+  00bd98  goto loc_10000be90
+loc_10000bd9c:
+loc_10000bda0:
+  00bdb0  [arg1 objectForKey:@"orientation"]
+  00bdc4  [[arg1 objectForKey:@"orientation"] uppercaseString]
+  00bde0  [[[arg1 objectForKey:@"orientation"] uppercaseString] rangeOfString:@"E"]
+  00be00  if ([[[arg1 objectForKey:@"orientation"] uppercaseString] rangeOfString:@"E"] != 0x7fffffffffffffff) goto loc_10000be74
+  00be14  [arg1 objectForKey:@"orientation"]
+  00be28  [[arg1 objectForKey:@"orientation"] uppercaseString]
+  00be44  [[[arg1 objectForKey:@"orientation"] uppercaseString] rangeOfString:@"W"]
+  00be6c  t4 = ([[[arg1 objectForKey:@"orientation"] uppercaseString] rangeOfString:@"W"] == 0x7fffffffffffffff ? 0 : -1)
+  00be70  goto loc_10000be78
+loc_10000be74:
+loc_10000be78:
+  00be8c  [self setOrientationWithX:d0 andY:d1]
+loc_10000be90:
+  00beac  return
+
+== -[ADPasserBy setRandomPositionAtDistance:]   (address 0x10000bf30  size 172  kind objc)
+  00bf44  rand()
+  00bf64  t1 = (((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >> 8) + ((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >>> 31))
+  00bf94  d0 = sin((((float)(rand() - t1 * 360) * 3.14159) / 180)), d1 = cos((((float)(rand() - t1 * 360) * 3.14159) / 180))
+  00bfbc  [self setPosition:{((float)arg1 * sin((((float)(rand() - t1 * 360) * 3.14159) / 180))), ((float)arg1 * cos((((float)(rand() - t1 * 360) * 3.14159) / 180)))}]
+  00bfd8  tail [self updateOrientation]
+
+== -[ADPasserBy setRandomPosition]   (address 0x10000bfdc  size 128  kind objc)
+  00bfec  rand()
+  00bffc  rand()
+  00c018  t1 = (((rand() - ((rand() < 0 ? (rand() + 3) : rand()) & 0xfffffffc)) + 4) * (((rand() << 1) & 2) - 1))
+  00c034  [self setPosition:{8, (float)t1}]
+  00c058  tail [self setOrientationWithX:-1 andY:0]
+
+== -[ADPasserBy passBy]   (address 0x10000c05c  size 72  kind objc)
+  00c07c  [self setState:201]
+  00c0a0  tail [self playAnySoundContaining:@"_moving_"]
+
+== -[ADPasserBy getType]   (address 0x10000c0a4  size 8  kind objc)
+  00c0a8  return

@@ -1,0 +1,479 @@
+
+== -[TAGPBExtensionField init]   (address 0x100138744  size 100  kind objc)
+  138778  [super init]
+  13877c  if (self == 0) goto loc_100138798
+  138790  [self doesNotRecognizeSelector:_cmd]
+loc_100138798:
+  1387a4  return
+
+== -[TAGPBExtensionField initWithDescription:]   (address 0x1001387a8  size 620  kind objc)
+  1387ec  [super init]
+  1387f4  if (self == 0) goto loc_1001389f4
+  138800  self->description_ = arg1
+  138808  if (arg1[+0x10] == 0) goto loc_1001388a8
+  13880c  objc_lookUpClass(arg1[+0x10])
+  138814  if (objc_lookUpClass(arg1[+0x10]) != 0) goto loc_100138888
+  13882c  [NSAssertionHandler currentHandler]
+  138850  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  138884  [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:self file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:170 description:@"Class %s not defined"]
+loc_100138888:
+  138898  [objc_lookUpClass(arg1[+0x10]) descriptor]
+  1388a4  self->containingType_ = [objc_lookUpClass(arg1[+0x10]) descriptor]
+loc_1001388a8:
+  1388ac  if (arg1[+0x28] == 0) goto loc_100138938
+  1388b4  objc_lookUpClass(arg1[+0x28])
+  1388bc  if (objc_lookUpClass(arg1[+0x28]) != 0) goto loc_10013892c
+  1388d4  [NSAssertionHandler currentHandler]
+  1388f8  [NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"]
+  138928  [[NSAssertionHandler currentHandler] handleFailureInMethod:_cmd object:self file:[NSString stringWithUTF8String:"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…"] lineNumber:176 description:@"Class %s not defined"]
+loc_10013892c:
+  138934  self->messageOrGroupClass_ = objc_lookUpClass(arg1[+0x28])
+loc_100138938:
+  138944  if (self->description_[+0x8] != 13) goto loc_100138998
+  13894c  if (arg1[+0x20] == 0) goto loc_1001389bc
+  13896c  [NSData alloc]
+  138984  [[NSData alloc] initWithBytes:arg1[+0x20] length:x3]
+  138990  self->defaultTAGPBValue_ = [[NSData alloc] initWithBytes:arg1[+0x20] length:x3]
+  138994  goto loc_1001389bc
+loc_100138998:
+  1389a8  if ((self->description_[+0x8] - 15) >u 1) goto loc_1001389b4
+  1389ac  self->defaultTAGPBValue_ = 0
+  1389b0  goto loc_1001389bc
+loc_1001389b4:
+  1389b8  self->defaultTAGPBValue_ = arg1[+0x20]
+loc_1001389bc:
+  1389d0  [TAGPBExtensionDescriptor alloc]
+  1389e4  [[TAGPBExtensionDescriptor alloc] initWithExtensionDescription:arg1]
+  1389f0  self->descriptor_ = [[TAGPBExtensionDescriptor alloc] initWithExtensionDescription:arg1]
+loc_1001389f4:
+  138a10  return
+
+== -[TAGPBExtensionField dealloc]   (address 0x100138a14  size 164  kind objc)
+  138a40  if ((self->description_[+0x8] - 13) <u 4) goto loc_100138a4c
+  138a48  if (!(self->description_[+0x30] & (1<<2))) goto loc_100138a68
+loc_100138a4c:
+  138a64  [self->defaultTAGPBValue_ release]
+loc_100138a68:
+  138a80  [self->descriptor_ release]
+  138aa4  [super dealloc]
+  138ab4  return
+
+== -[TAGPBExtensionField isRepeated]   (address 0x100138ab8  size 24  kind objc)
+  138acc  return
+
+== -[TAGPBExtensionField fieldNumber]   (address 0x100138ad0  size 20  kind objc)
+  138ae0  return
+
+== -[TAGPBExtensionField wireType]   (address 0x100138ae4  size 48  kind objc)
+  138af4  if (!(self->description_[+0x30] & (1<<3))) goto loc_100138b00
+  138afc  return
+loc_100138b00:
+  138b10  return
+
+== -[TAGPBExtensionField writeTAGPBValue:includingTagToCodedOutputStream:]   (address 0x100138b14  size 496  kind objc)
+  138b2c  if (self->description_[+0x8] <=u 17) goto loc_100138b34
+  138b30  return
+  138b44  switch (?) { case 0: goto loc_100138b48; case 1: goto loc_100138b68; case 2: goto loc_100138b78; case 3: goto loc_100138b88; case 4: goto loc_100138ba4; case 5: goto loc_100138bb4; case 6: goto loc_100138bc4; case 7: goto loc_100138be0; case 8: goto loc_100138bf0; case 9: goto loc_100138c00; case 10: goto loc_100138c10; case 11: goto loc_100138c20; case 12: goto loc_100138c30; case 13: goto loc_100138c40; case 14: goto loc_100138c50; case 15: goto loc_100138c60; case 16: goto loc_100138c78; case 17: goto loc_100138c88 }
+  138b64  tail [arg2 writeBool:self->description_[+0x18] value:(arg1 & 1)]
+  138b70  &@selector(writeFixed32:value:)
+  138b80  &@selector(writeSFixed32:value:)
+  138ba0  tail [arg2 writeFloat:self->description_[+0x18] value:arg1]
+  138bac  &@selector(writeFixed64:value:)
+  138bbc  &@selector(writeSFixed64:value:)
+  138bdc  tail [arg2 writeDouble:self->description_[+0x18] value:arg1]
+  138be8  &@selector(writeInt32:value:)
+  138bf8  &@selector(writeInt64:value:)
+  138c08  &@selector(writeSInt32:value:)
+  138c18  &@selector(writeSInt64:value:)
+  138c28  &@selector(writeUInt32:value:)
+  138c38  &@selector(writeUInt64:value:)
+  138c48  &@selector(writeData:value:)
+  138c58  &@selector(writeString:value:)
+  138c68  if (!(self->description_[+0x30] & (1<<4))) goto loc_100138ca4
+  138c70  &@selector(writeMessageSetExtension:value:)
+  138c80  &@selector(writeGroup:value:)
+  138c90  &@selector(writeEnum:value:)
+  138ca0  tail [arg2 writeEnum:self->description_[+0x18] value:arg1  | writeFixed32:x4 value:x5  | writeInt32:x6 value:x7  | writeSFixed32:arg1 value:one of {&@selector(writeInt32:value:), &@selector(writeUInt32:value:), &@selector(writeFixed32:value:), &@selector(writeSInt32:value:), &@selector(writeSFixed32:value:), &@selector(writeEnum:value:)}  | writeSInt32:(x10 + 0x100138cbc) value:0x100138cbc  | writeUInt32:x12 value:x13]
+  138ca8  &@selector(writeMessage:value:)
+  138cb8  tail [arg2 writeData:self->description_[+0x18] value:arg1  | writeFixed64:x4 value:x5  | writeGroup:x6 value:x7  | writeInt64:arg1 value:one of {&@selector(writeUInt64:value:), &@selector(writeInt64:value:), &@selector(writeFixed64:value:), &@selector(writeSInt64:value:), &@selector(writeSFixed64:value:), &@selector(writeString:value:), &@selector(writeMessage:value:), &@selector(writeData:value:), &@selector(writeGroup:value:), &@selector(writeMessageSetExtension:value:)}  | writeMessage:(x10 + 0x10…
+
+== -[TAGPBExtensionField writeTAGPBValue:noTagToCodedOutputStream:]   (address 0x100138d04  size 416  kind objc)
+  138d1c  if (self->description_[+0x8] <=u 17) goto loc_100138d24
+  138d20  return
+  138d34  switch (?) { case 0: goto loc_100138d38; case 1: goto loc_100138d50; case 2: goto loc_100138d5c; case 3: goto loc_100138d68; case 4: goto loc_100138d80; case 5: goto loc_100138d8c; case 6: goto loc_100138d98; case 7: goto loc_100138db0; case 8: goto loc_100138dbc; case 9: goto loc_100138dc8; case 10: goto loc_100138dd4; case 11: goto loc_100138de0; case 12: goto loc_100138dec; case 13: goto loc_100138df8; case 14: goto loc_100138e04; case 15: goto loc_100138e10; case 16: goto loc_100138e28; case 17: goto loc_100138e44 }
+  138d4c  tail [arg2 writeBoolNoTag:(arg1 & 1)]
+  138d54  &@selector(writeFixed32NoTag:)
+  138d60  &@selector(writeSFixed32NoTag:)
+  138d7c  tail [arg2 writeFloatNoTag:arg1]
+  138d84  &@selector(writeFixed64NoTag:)
+  138d90  &@selector(writeSFixed64NoTag:)
+  138dac  tail [arg2 writeDoubleNoTag:arg1]
+  138db4  &@selector(writeInt32NoTag:)
+  138dc0  &@selector(writeInt64NoTag:)
+  138dcc  &@selector(writeSInt32NoTag:)
+  138dd8  &@selector(writeSInt64NoTag:)
+  138de4  &@selector(writeUInt32NoTag:)
+  138df0  &@selector(writeUInt64NoTag:)
+  138dfc  &@selector(writeDataNoTag:)
+  138e08  &@selector(writeStringNoTag:)
+  138e14  &@selector(writeMessageNoTag:)
+  138e24  tail [arg2 writeDataNoTag:arg1  | writeFixed64NoTag:arg2  | writeInt64NoTag:x4  | writeMessageNoTag:x5  | writeSFixed64NoTag:x6  | writeSInt64NoTag:x7  | writeStringNoTag:arg1  | writeUInt64NoTag:one of {&@selector(writeStringNoTag:), &@selector(writeMessageNoTag:), &@selector(writeDataNoTag:), &@selector(writeUInt64NoTag:), &@selector(writeInt64NoTag:), &@selector(writeFixed64NoTag:), &@selector(writeSInt64NoTag:), &@selector(writeSFixed64NoTag:)}]
+  138e40  tail [arg2 writeGroupNoTag:self->description_[+0x18] value:arg1]
+  138e48  &@selector(writeEnumNoTag:)
+  138e58  tail [arg2 writeEnumNoTag:arg1  | writeFixed32NoTag:arg2  | writeInt32NoTag:x4  | writeSFixed32NoTag:x5  | writeSInt32NoTag:x6  | writeUInt32NoTag:x7]
+
+== -[TAGPBExtensionField computeTAGPBSerializedSizeNoTag:]   (address 0x100138ea4  size 500  kind objc)
+  138ec0  if (self->description_[+0x8] <=u 17) goto loc_100138ed0
+loc_100138ec8:  ; case 0
+  138ecc  return
+  138ee4  switch (?) { case 0: goto loc_100138ec8; case 1,2,3: goto loc_100138ee8; case 4,5,6: goto loc_100138ef0; case 7: goto loc_100138f3c; case 8,12: goto loc_100138ef8; case 9: goto loc_100138f80; case 10: goto loc_100138fc0; case 11,17: goto loc_100138f04; case 13: goto loc_100138fd0; case 14: goto loc_100138fdc; case 15: goto loc_100138fe8; case 16: goto loc_100139038 }
+  138f00  tail sub_1001353e0(arg1, _cmd, arg1)
+  138f34  t1 = (arg1 <u 128 ? 1 : (arg1 <u 0x4000 ? 2 : (arg1 <u 0x200000 ? 3 : ((arg1 >>> 28) != 0 ? 4 + 1 : 4))))
+  138f70  t2 = (arg1 <u 128 ? 1 : (arg1 <u 0x4000 ? 2 : (arg1 <u 0x200000 ? 3 : ((arg1 >>> 28) != 0 ? 4 + 1 : 4))))
+  138fa8  t3 = (((arg1 << 1) ^ (arg1 >> 31)) <u 0x200000 ? 3 : ((((arg1 << 1) ^ (arg1 >> 31)) >>> 28) != 0 ? 4 + 1 : 4))
+  138fb8  t4 = (((arg1 << 1) ^ (arg1 >> 31)) <u 128 ? 1 : (((arg1 << 1) ^ (arg1 >> 31)) <u 0x4000 ? 2 : t3))
+  138fcc  tail sub_1001353e0(((arg1 << 1) ^ (arg1 >> 63)), _cmd, arg1)
+  138fd4  &@selector(length)
+  138fe4  tail sub_100135468(arg1, _cmd, arg1)
+  138fec  &@selector(serializedSize)
+  138ff8  [arg1 length | serializedSize]
+  13901c  t5 = ([arg1 length | serializedSize] <u 0x200000 ? 3 : (([arg1 length | serializedSize] >>> 28) != 0 ? 4 + 1 : 4))
+  13902c  t6 = ([arg1 length | serializedSize] <u 128 ? 1 : ([arg1 length | serializedSize] <u 0x4000 ? 2 : t5))
+  13904c  tail [arg1 serializedSize]
+
+== -[TAGPBExtensionField computeTAGPBSerializedSizeIncludingTag:]   (address 0x100139098  size 692  kind objc)
+  1390b8  if (self->description_[+0x8] <=u 17) goto loc_1001390cc
+  1390c8  return
+  1390dc  switch (?) { case 0: goto loc_100139130; case 1,2,3: goto loc_1001390e0; case 4,5,6: goto loc_1001390f8; case 7: goto loc_100139148; case 8: goto loc_10013915c; case 9: goto loc_100139170; case 10: goto loc_100139184; case 11: goto loc_100139198; case 12: goto loc_1001391ac; case 13: goto loc_1001391c0; case 14: goto loc_1001391d4; case 15: goto loc_1001391e8; case 16: goto loc_100139204; case 17: goto loc_10013921c }
+  1390ec  if ((self->description_[+0x18] << 3) >=u 128) goto loc_100139110
+  139104  if ((self->description_[+0x18] << 3) >=u 128) goto loc_100139120
+  139114  if ((self->description_[+0x18] << 3) >=u 0x4000) goto loc_100139230
+  139124  if ((self->description_[+0x18] << 3) >=u 0x4000) goto loc_100139240
+  13913c  if ((self->description_[+0x18] << 3) >=u 128) goto loc_100139250
+  139158  tail sub_1001355a4(self->description_[+0x18], arg1, arg1)
+  13916c  tail sub_100135548(self->description_[+0x18], arg1, arg1)
+  139180  tail sub_10013589c(self->description_[+0x18], arg1, arg1)
+  139194  tail sub_100135914(self->description_[+0x18], arg1, arg1)
+  1391a8  tail sub_1001357bc(self->description_[+0x18], arg1, arg1)
+  1391bc  tail sub_1001354ec(self->description_[+0x18], arg1, arg1)
+  1391d0  tail sub_10013571c(self->description_[+0x18], arg1, arg1)
+  1391e4  tail sub_100135620(self->description_[+0x18], arg1, arg1)
+  1391f0  if (!(self->description_[+0x30] & (1<<4))) goto loc_100139270
+  139200  tail sub_100135974(self->description_[+0x18], arg1, arg1)
+  139210  if ((self->description_[+0x18] << 3) >=u 128) goto loc_100139260
+  13922c  tail sub_10013582c(self->description_[+0x18], arg1, arg1)
+  139234  if ((self->description_[+0x18] << 3) >=u 0x200000) goto loc_100139280
+  139244  if ((self->description_[+0x18] << 3) >=u 0x200000) goto loc_100139290
+  139254  if ((self->description_[+0x18] << 3) >=u 0x4000) goto loc_1001392a0
+  139264  if ((self->description_[+0x18] << 3) >=u 0x4000) goto loc_1001392b0
+  13927c  tail sub_10013567c(self->description_[+0x18], arg1, arg1)
+  1392a4  if ((self->description_[+0x18] << 3) >=u 0x200000) goto loc_1001392c0
+  1392b4  if ((self->description_[+0x18] << 3) >=u 0x200000) goto loc_1001392d4
+  1392f8  [arg1 serializedSize]
+
+== -[TAGPBExtensionField defaultValue]   (address 0x10013934c  size 512  kind objc)
+  139364  if (!(self->description_[+0x30] & (1<<2))) goto loc_100139388
+  139380  [self->defaultTAGPBValue_ array]
+  139384  goto loc_100139480
+loc_100139388:
+  139390  if (self->description_[+0x8] >u 17) goto loc_10013947c
+  1393a4  switch (self->description_[+0x8]) { case 0: goto loc_100139488; case 1,11: goto loc_1001393e8; case 2,7,9,17: goto loc_1001393a8; case 3: goto loc_1001394ac; case 4,12: goto loc_100139414; case 5,8,10: goto loc_1001393c8; case 6: goto loc_1001394d8; case 13,14: goto loc_100139440; case 15,16: goto loc_100139450 }
+loc_1001393a8:  ; case 2, 7, 9, 17
+  1393c0  &@selector(numberWithInt:)
+  1393c4  goto loc_100139404
+loc_1001393c8:  ; case 5, 8, 10
+  1393e0  &@selector(numberWithLongLong:)
+  1393e4  goto loc_100139430
+loc_1001393e8:  ; case 1, 11
+  139400  &@selector(numberWithUnsignedInt:)
+loc_100139404:
+  13940c  [NSNumber <sel x1>]
+  139410  goto loc_100139480
+loc_100139414:  ; case 4, 12
+  13942c  &@selector(numberWithUnsignedLongLong:)
+loc_100139430:
+  139438  [NSNumber numberWithLongLong:self->defaultTAGPBValue_  | numberWithUnsignedLongLong:x3]
+  13943c  goto loc_100139480
+loc_100139440:  ; case 13, 14
+  13944c  goto loc_100139480
+loc_100139450:  ; case 15, 16
+  139478  [NSException raise:_NSInternalInconsistencyException[+0x0] format:@"-defaultValue called for a message extension"]
+loc_10013947c:
+loc_100139480:
+  139484  return
+  13949c  &@selector(numberWithBool:)
+  1394d0  [NSNumber numberWithFloat:self->defaultTAGPBValue_]
+  1394fc  [NSNumber numberWithDouble:self->defaultTAGPBValue_]
+
+== -[TAGPBExtensionField writeTAGPBValues:includingTagsToCodedOutputStream:]   (address 0x10013954c  size 484  kind objc)
+  139570  if (arg1 == 0) goto loc_100139584
+  139580  goto loc_100139588
+loc_100139584:
+loc_100139588:
+  139598  if (!(self->description_[+0x30] & (1<<3))) goto loc_1001395dc
+  1395b4  [arg2 writeTag:self->description_[+0x18] format:2]
+  1395c4  if (self->description_[+0x8] >=u 7) goto loc_100139630
+  1395d8  goto loc_100139684
+loc_1001395dc:
+  1395dc  if (x26 == 0) goto loc_1001396ec
+  1395f4  &@selector(writeTAGPBValue:includingTagToCodedOutputStream:)
+loc_1001395fc:
+  139608  [arg1 valueAtIndex:x2]
+  13961c  [self writeTAGPBValue:[arg1 valueAtIndex:x2] includingTagToCodedOutputStream:arg2]
+  139628  if (x26 != (x22 + 1)) goto loc_1001395fc
+  13962c  goto loc_1001396ec
+loc_100139630:
+  139630  if (x26 == 0) goto loc_100139704
+  13964c  &@selector(computeTAGPBSerializedSizeNoTag:)
+loc_100139654:
+  139660  [arg1 valueAtIndex:x2]
+  139670  [self computeTAGPBSerializedSizeNoTag:[arg1 valueAtIndex:x2]]
+  139680  if (x26 != (x23 + 1)) goto loc_100139654
+loc_100139684:
+  139698  [arg2 writeRawVarintSizeTAs32:x2]
+  13969c  if (x26 == 0) goto loc_1001396ec
+  1396b4  &@selector(writeTAGPBValue:noTagToCodedOutputStream:)
+loc_1001396bc:
+  1396c8  [arg1 valueAtIndex:x2]
+  1396dc  [self writeTAGPBValue:[arg1 valueAtIndex:x2] noTagToCodedOutputStream:arg2]
+  1396e8  if (x26 != (x22 + 1)) goto loc_1001396bc
+loc_1001396ec:
+  139700  return
+  13972c  tail [arg2 writeRawVarintSizeTAs32:0]
+
+== -[TAGPBExtensionField writeValue:includingTagToCodedOutputStream:]   (address 0x100139730  size 116  kind objc)
+  139768  sub_1001397a4(arg1, self->description_[+0x8], x2, arg2)
+  139770  if (!(self->description_[+0x30] & (1<<2))) goto loc_100139780
+  139778  &@selector(writeTAGPBValues:includingTagsToCodedOutputStream:)
+  13977c  goto loc_100139788
+loc_100139780:
+  139784  &@selector(writeTAGPBValue:includingTagToCodedOutputStream:)
+loc_100139788:
+  1397a0  tail [self writeTAGPBValue:sub_1001397a4(arg1, self->description_[+0x8], x2, arg2) includingTagToCodedOutputStream:arg2  | writeTAGPBValues:x4 includingTagsToCodedOutputStream:x5]
+
+== sub_1001397a4   (address 0x1001397a4  size 432  kind sub)
+  1397b4  if (a2 == 0) goto loc_100139814
+  1397d8  [TAGPBArray alloc]
+  1397f0  [[TAGPBArray alloc] initWithArray:a0 valueType:x3]
+  1397f8  &@selector(autorelease)
+  139800  [x0 <sel x1>]
+loc_100139808:  ; case 13, 14, 15, 16
+  139810  goto loc_10013987c
+loc_100139814:
+  139818  if (a1 <=u 17) goto loc_10013982c
+  139828  goto loc_10013987c
+loc_10013982c:
+  139840  switch (?) { case 0: goto loc_1001398a8; case 1,11: goto loc_10013985c; case 2,7,9,17: goto loc_100139844; case 3: goto loc_1001398cc; case 4,12: goto loc_100139894; case 5,8,10: goto loc_100139850; case 6: goto loc_1001398f0; case 13,14,15,16: goto loc_100139808 }
+loc_100139844:  ; case 2, 7, 9, 17
+  139848  &@selector(intValue)
+  13984c  goto loc_100139864
+loc_100139850:  ; case 5, 8, 10
+  139854  &@selector(longLongValue)
+  139858  goto loc_10013989c
+loc_10013985c:  ; case 1, 11
+  139860  &@selector(unsignedIntValue)
+loc_100139864:
+  13986c  [a0 intValue | unsignedIntValue]
+loc_10013987c:
+  139890  return
+  139898  &@selector(unsignedLongLongValue)
+  1398b8  [a0 boolValue]
+  1398dc  [a0 floatValue]
+  139900  [a0 doubleValue]
+
+== -[TAGPBExtensionField computeTAGPBSerializedSizesIncludingTags:]   (address 0x100139954  size 484  kind objc)
+  139984  if (!(self->description_[+0x30] & (1<<3))) goto loc_1001399a4
+  139990  if (self->description_[+0x8] >u 6) goto loc_100139a0c
+  1399a0  goto loc_100139a10
+loc_1001399a4:
+  1399a4  if (arg1 == 0) goto loc_100139ab8
+  1399b4  if (arg1->_count == 0) goto loc_100139ab8
+  1399d0  &@selector(computeTAGPBSerializedSizeIncludingTag:)
+loc_1001399d8:
+  1399e4  [arg1 valueAtIndex:x2]
+  1399f4  [self computeTAGPBSerializedSizeIncludingTag:[arg1 valueAtIndex:x2]]
+  139a04  if (arg1->_count != (x22 + 1)) goto loc_1001399d8
+  139a08  goto loc_100139b1c
+loc_100139a0c:
+loc_100139a10:
+  139a10  if (arg1 == 0) goto loc_100139a24
+  139a20  goto loc_100139a28
+loc_100139a24:
+loc_100139a28:
+  139a28  if (x9 == 0) goto loc_100139a34
+  139a30  goto loc_100139a90
+loc_100139a34:
+  139a38  if (x26 == 0) goto loc_100139a90
+  139a50  &@selector(computeTAGPBSerializedSizeNoTag:)
+loc_100139a58:
+  139a64  [arg1 valueAtIndex:x2]
+  139a74  [self computeTAGPBSerializedSizeNoTag:[arg1 valueAtIndex:x2]]
+  139a84  if (x26 != (x21 + 1)) goto loc_100139a58
+loc_100139a90:
+  139a9c  if ((self->description_[+0x18] << 3) >=u 128) goto loc_100139aa8
+  139aa4  goto loc_100139ae0
+loc_100139aa8:
+  139aac  if ((self->description_[+0x18] << 3) >=u 0x4000) goto loc_100139ac0
+  139ab4  goto loc_100139ae0
+loc_100139ab8:
+  139abc  goto loc_100139b1c
+loc_100139ac0:
+  139ac4  if ((self->description_[+0x18] << 3) >=u 0x200000) goto loc_100139ad0
+  139acc  goto loc_100139ae0
+loc_100139ad0:
+loc_100139ae0:
+  139b14  t1 = (w24 <u 128 ? 1 : (w24 <u 0x4000 ? 2 : (w24 <u 0x200000 ? 3 : ((w24 >>> 28) != 0 ? 4 + 1 : 4))))
+loc_100139b1c:
+  139b34  return
+
+== -[TAGPBExtensionField computeSerializedSizeIncludingTag:]   (address 0x100139b38  size 100  kind objc)
+  139b68  sub_1001397a4(arg1, self->description_[+0x8])
+  139b70  if (!(self->description_[+0x30] & (1<<2))) goto loc_100139b80
+  139b78  &@selector(computeTAGPBSerializedSizesIncludingTags:)
+  139b7c  goto loc_100139b88
+loc_100139b80:
+  139b84  &@selector(computeTAGPBSerializedSizeIncludingTag:)
+loc_100139b88:
+  139b98  tail [self computeTAGPBSerializedSizeIncludingTag:sub_1001397a4(arg1, self->description_[+0x8])  | computeTAGPBSerializedSizesIncludingTags:x3]
+
+== -[TAGPBExtensionField description]   (address 0x100139b9c  size 152  kind objc)
+  139bc8  [self class]
+  139be0  [self fieldNumber]
+  139bf8  [self containingType]
+  139c1c  [NSString stringWithFormat:@"<%@ %p> FieldNumber:%d ContainingType:%@", [self class], self, [self fieldNumber], [self containingType]]
+  139c30  return
+
+== -[TAGPBExtensionField readSingleValueFromCodedInputStream:extensionRegistry:existingValue:]   (address 0x100139c34  size 980  kind objc)
+  139c68  if (self->description_[+0x8] <=u 17) goto loc_100139c74
+  139c70  goto loc_100139ec0
+loc_100139c74:
+  139c84  switch (?) { case 0: goto loc_100139c88; case 1: goto loc_100139cb4; case 2: goto loc_100139cc8; case 3: goto loc_100139cdc; case 4: goto loc_100139d10; case 5: goto loc_100139d24; case 6: goto loc_100139d38; case 7: goto loc_100139d6c; case 8: goto loc_100139d80; case 9: goto loc_100139d94; case 10: goto loc_100139da8; case 11: goto loc_100139dd4; case 12: goto loc_100139e00; case 13: goto loc_100139e38; case 14: goto loc_100139e44; case 15: goto loc_100139e5c; case 16: goto loc_100139e74; case 17: goto loc_100139e8c }
+loc_100139c88:  ; case 0
+  139ca0  [arg1 readBool]
+  139cac  &@selector(numberWithBool:)
+  139cb0  goto loc_100139eb4
+loc_100139cb4:  ; case 1
+  139cc0  &@selector(readFixed32)
+  139cc4  goto loc_100139de4
+loc_100139cc8:  ; case 2
+  139cd4  &@selector(readSFixed32)
+  139cd8  goto loc_100139e9c
+loc_100139cdc:  ; case 3
+  139cf4  [arg1 readFloat]
+  139d08  [NSNumber numberWithFloat:[arg1 readFloat]]
+  139d0c  goto loc_100139ec0
+loc_100139d10:  ; case 4
+  139d1c  &@selector(readFixed64)
+  139d20  goto loc_100139e10
+loc_100139d24:  ; case 5
+  139d30  &@selector(readSFixed64)
+  139d34  goto loc_100139db8
+loc_100139d38:  ; case 6
+  139d50  [arg1 readDouble]
+  139d64  [NSNumber numberWithDouble:[arg1 readDouble]]
+  139d68  goto loc_100139ec0
+loc_100139d6c:  ; case 7
+  139d78  &@selector(readInt32)
+  139d7c  goto loc_100139e9c
+loc_100139d80:  ; case 8
+  139d8c  &@selector(readInt64)
+  139d90  goto loc_100139db8
+loc_100139d94:  ; case 9
+  139da0  &@selector(readSInt32)
+  139da4  goto loc_100139e9c
+loc_100139da8:  ; case 10
+  139db4  &@selector(readSInt64)
+loc_100139db8:
+  139dc0  [arg1 readInt64 | readSFixed64 | readSInt64]
+  139dcc  &@selector(numberWithLongLong:)
+  139dd0  goto loc_100139e28
+loc_100139dd4:  ; case 11
+  139de0  &@selector(readUInt32)
+loc_100139de4:
+  139dec  [arg1 readFixed32 | readUInt32]
+  139df8  &@selector(numberWithUnsignedInt:)
+  139dfc  goto loc_100139eb4
+loc_100139e00:  ; case 12
+  139e0c  &@selector(readUInt64)
+loc_100139e10:
+  139e18  [arg1 readFixed64 | readUInt64]
+  139e24  &@selector(numberWithUnsignedLongLong:)
+loc_100139e28:
+  139e30  [NSNumber numberWithLongLong:x2  | numberWithUnsignedLongLong:x3]
+  139e34  goto loc_100139ec0
+loc_100139e38:  ; case 13
+  139e3c  &@selector(readData)
+  139e40  goto loc_100139e4c
+loc_100139e44:  ; case 14
+  139e48  &@selector(readString)
+loc_100139e4c:
+  139e54  [arg1 readData | readString]
+  139e58  goto loc_100139ec0
+loc_100139e5c:  ; case 15
+  139e5c  if (arg3 == 0) goto loc_100139ed4
+  139e64  &@selector(mutableCopy)
+  139e70  goto loc_100139efc
+loc_100139e74:  ; case 16
+  139e74  if (arg3 == 0) goto loc_100139f28
+  139e7c  &@selector(mutableCopy)
+  139e88  goto loc_100139f50
+loc_100139e8c:  ; case 17
+  139e98  &@selector(readEnum)
+loc_100139e9c:
+  139ea4  [arg1 readEnum | readInt32 | readSFixed32 | readSInt32]
+  139eb0  &@selector(numberWithInt:)
+loc_100139eb4:
+  139ebc  [NSNumber numberWithBool:x2  | numberWithInt:x3  | numberWithUnsignedInt:x4]
+loc_100139ec0:
+  139ed0  return
+  139eec  [self->messageOrGroupClass_ alloc]
+  139ef4  &@selector(init)
+  139efc  [x0 <sel x1>]
+  139f0c  if (!(self->description_[+0x30] & (1<<4))) goto loc_100139f80
+  139f14  &@selector(mergeFromCodedInputStream:extensionRegistry:)
+  139f40  [self->messageOrGroupClass_ alloc]
+  139f48  &@selector(init)
+  139f50  [x0 <sel x1>]
+  139f78  [arg1 readGroup:self->description_[+0x18] builder:[x0 <sel x1>] extensionRegistry:arg2]
+  139f84  &@selector(readMessage:extensionRegistry:)
+  139f98  [x0 <sel x1>]
+  139fbc  tail [[x0 <sel x1>] autorelease]
+
+== -[TAGPBExtensionField mergeFromCodedInputStream:extensionRegistry:builder:]   (address 0x10013a008  size 404  kind objc)
+  13a040  if (!(self->description_[+0x30] & (1<<3))) goto loc_10013a100
+  13a054  [arg1 readInt32]
+  13a060  sub_100131850(arg1, [arg1 readInt32])
+  13a07c  [arg1 bytesUntilLimit]
+  13a080  if ([arg1 bytesUntilLimit] == 0) goto loc_10013a0d8
+  13a094  &@selector(addExtension:value:)
+loc_10013a09c:
+  13a0b0  [self readSingleValueFromCodedInputStream:arg1 extensionRegistry:arg2 existingValue:0]
+  13a0c4  [arg3 addExtension:self value:[self readSingleValueFromCodedInputStream:arg1 extensionRegistry:arg2 existingValue:0]]
+  13a0d0  [arg1 bytesUntilLimit]
+  13a0d4  if ([arg1 bytesUntilLimit] != 0) goto loc_10013a09c
+loc_10013a0d8:
+  13a0e4  arg1->state_[+0x18] = sub_100131850(arg1, [arg1 readInt32])
+  13a0fc  return
+  13a100  if ((self->description_[+0x30] & (1<<2))) goto loc_10013a134
+  13a110  if ((self->description_[+0x8] - 15) >u 1) goto loc_10013a134
+  13a128  [arg3 getExistingExtension:self]
+  13a150  [self readSingleValueFromCodedInputStream:arg1 extensionRegistry:arg2 existingValue:x4]
+  13a160  if (!(self->description_[+0x30] & (1<<2))) goto loc_10013a170
+  13a168  &@selector(addExtension:value:)
+  13a174  &@selector(setExtension:value:)
+  13a198  tail [arg3 addExtension:self value:[self readSingleValueFromCodedInputStream:arg1 extensionRegistry:arg2 existingValue:x4]  | setExtension:x4 value:x5]
+
+== -[TAGPBExtensionField compareByFieldNumber:]   (address 0x10013a19c  size 48  kind objc)
+  13a1b8  if (self->description_[+0x18] >= arg1->description_[+0x18]) goto loc_10013a1c4
+  13a1c0  return
+loc_10013a1c4:
+  13a1c8  return
+
+== -[TAGPBExtensionField copyWithZone:]   (address 0x10013a1cc  size 16  kind objc)
+  13a1d8  tail [self retain]
+
+== -[TAGPBExtensionField containingType]   (address 0x10013a1dc  size 16  kind objc)
+  13a1e8  return
+
+== -[TAGPBExtensionField descriptor]   (address 0x10013a1ec  size 16  kind objc)
+  13a1f8  return

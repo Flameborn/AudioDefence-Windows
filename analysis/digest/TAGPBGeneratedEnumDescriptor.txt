@@ -1,0 +1,11 @@
+
+== +[TAGPBGeneratedEnumDescriptor enumDescriptor]   (address 0x100138308  size 84  kind objc)
+  138320  if (g_10042de30 != 0) goto loc_100138350
+  138348  [TAGPBEnumDescriptor allocDescriptorForName:0 values:0 valueCount:0 enumVerifier:0]
+  13834c  store g_10042de30 = [TAGPBEnumDescriptor allocDescriptorForName:0 values:0 valueCount:0 enumVerifier:0]
+loc_100138350:
+  138358  return
+
+== -[TAGPBGeneratedEnumDescriptor enumDescriptor]   (address 0x10013835c  size 44  kind objc)
+  138370  [self class]
+  138384  tail [[self class] enumDescriptor]

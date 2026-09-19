@@ -1,0 +1,20 @@
+// ADSettingsViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #26 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #53 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #47 UIView  
+    #16 UIImageView  Image='background_main.png'
+    #1 UIImageView  Image='chains_settings_top.png'
+    #32 UIImageView  Image='chains_settings_mid.png'
+    #4 UIImageView  Image='chains_settings_bottom.png'
+    #33 UIImageView  Image='frame_settings.png'
+    #49 UIView  
+    #37 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  validateButtonPressed:                    #37 ADButtonWithFont --(events 0x40)--> #26 UIProxyObject
+  outlet  controlSchemeView                         #26 UIProxyObject --> #49 UIView
+  outlet  view                                      #26 UIProxyObject --> #47 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#37 ADButtonWithFont' UIAccessibilityLabel='OK'

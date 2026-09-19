@@ -1,0 +1,22 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "bastard_zombie_clown_a"
+  }
+ ],
+ "Enemies": {
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1,
+    "enemy": "bastard_zombie_clown_a"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  }
+ }
+}

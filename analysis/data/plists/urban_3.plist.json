@@ -1,0 +1,45 @@
+{
+ "icon_title": "13",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 50
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "title": "Meet the Clown",
+ "objective": "Dr. Bastard has a new zombie for you. This one's dressed as a clown!",
+ "tip": "Clowns move around you in large circles and take ages to get to you. Always focus on other zombies first.",
+ "bricks": [
+  "urban_3_brick_1",
+  "urban_3_brick_2",
+  "urban_3_brick_3",
+  "urban_3_brick_4"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "urban_3",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "urban_2"
+ ],
+ "weapons": [
+  {
+   "ammo": "80",
+   "name": "microsmg"
+  },
+  {
+   "ammo": "28",
+   "name": "pistol"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 80
+ }
+}

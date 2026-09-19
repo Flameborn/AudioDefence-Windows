@@ -1,0 +1,52 @@
+
+== -[UIButton(ADMainButton) setupAsMain]   (address 0x1000cbe80  size 740  kind objc)
+  0cbeac  [ADGameParameters sharedParameters]
+  0cbec8  [[ADGameParameters sharedParameters] isIphone]
+  0cbed8  UIAccessibilityIsVoiceOverRunning()
+  0cbee8  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_1000cbffc
+  0cbef8  [UIColor whiteColor]
+  0cbf20  [self setTitleColor:[UIColor whiteColor] forState:0]
+  0cbf40  [self titleLabel]
+  0cbf60  [self titleLabel]
+  0cbf7c  [[self titleLabel] font]
+  0cbf98  [[[self titleLabel] font] pointSize]
+  0cbfb4  [UIFont fontWithName:@"Tiresias Infofont" size:[[[self titleLabel] font] pointSize]]
+  0cbfd8  [[self titleLabel] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:[[[self titleLabel] font] pointSize]]]
+  0cbff8  goto loc_1000cc0d0
+loc_1000cbffc:
+  0cc01c  [UIColor colorWithRed:255 green:255 blue:255 alpha:1]
+  0cc044  [self setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:1] forState:0]
+  0cc060  [self titleLabel]
+  0cc09c  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 20 : 30)]
+  0cc0c0  [[self titleLabel] setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 20 : 30)]]
+loc_1000cc0d0:
+  0cc0e0  return
+
+== -[UIButton(ADMainButton) setupAsBlocked]   (address 0x1000cc164  size 372  kind objc)
+  0cc18c  [ADGameParameters sharedParameters]
+  0cc1a8  [[ADGameParameters sharedParameters] isIphone]
+  0cc1e0  [UIColor colorWithRed:53 green:4 blue:4 alpha:1]
+  0cc208  [self setTitleColor:[UIColor colorWithRed:53 green:4 blue:4 alpha:1] forState:0]
+  0cc224  [self titleLabel]
+  0cc260  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 20 : 30)]
+  0cc284  [[self titleLabel] setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 20 : 30)]]
+  0cc2a0  return
+
+== -[UIButton(ADMainButton) setupAsTarotCardInfo]   (address 0x1000cc2d8  size 436  kind objc)
+  0cc304  [ADGameParameters sharedParameters]
+  0cc320  [[ADGameParameters sharedParameters] isIphone]
+  0cc344  [self titleLabel]
+  0cc380  [UIColor colorWithRed:24 green:86 blue:145 alpha:1]
+  0cc3a4  [[self titleLabel] setTextColor:[UIColor colorWithRed:24 green:86 blue:145 alpha:1]]
+  0cc3c0  [self titleLabel]
+  0cc3fc  [UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 20)]
+  0cc420  [[self titleLabel] setFont:[UIFont fontWithName:@"chainprinter" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 10 : 20)]]
+  0cc440  return
+
+== -[UIButton(ADMainButton) setupAsAccessibleTarotCardInfo]   (address 0x1000cc48c  size 276  kind objc)
+  0cc4b4  [ADGameParameters sharedParameters]
+  0cc4d0  [[ADGameParameters sharedParameters] isIphone]
+  0cc4f0  [self titleLabel]
+  0cc52c  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 25)]
+  0cc550  [[self titleLabel] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 25)]]
+  0cc56c  return

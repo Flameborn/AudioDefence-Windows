@@ -1,0 +1,37 @@
+
+== -[TAGExpandedFunctionCallBuilder init]   (address 0x100163aa0  size 180  kind objc)
+  163adc  [super init]
+  163ae4  if (self == 0) goto loc_100163b28
+  163b00  [NSMutableDictionary alloc]
+  163b0c  [[NSMutableDictionary alloc] init]
+  163b1c  self->_propertiesMap = [[NSMutableDictionary alloc] init]
+loc_100163b28:
+  163b3c  return
+
+== -[TAGExpandedFunctionCallBuilder addPropertyWithValue:forKey:]   (address 0x100163b54  size 184  kind objc)
+  163b94  [self propertiesMap]
+  163bb8  [[self propertiesMap] setObject:arg1 forKey:arg2]
+  163bdc  return
+
+== -[TAGExpandedFunctionCallBuilder build]   (address 0x100163c0c  size 216  kind objc)
+  163c34  [TAGExpandedFunctionCall alloc]
+  163c4c  [self propertiesMap]
+  163c6c  [self pushAfterEvaluate]
+  163c94  [[TAGExpandedFunctionCall alloc] initWithPropertiesMap:[self propertiesMap] pushAfterEvaluate:[self pushAfterEvaluate]]
+  163cbc  return
+
+== -[TAGExpandedFunctionCallBuilder propertiesMap]   (address 0x100163ce4  size 16  kind objc)
+  163cf0  return
+
+== -[TAGExpandedFunctionCallBuilder setPropertiesMap:]   (address 0x100163cf4  size 56  kind objc)
+  163d18  self->_propertiesMap = arg1
+  163d28  return
+
+== -[TAGExpandedFunctionCallBuilder pushAfterEvaluate]   (address 0x100163d2c  size 16  kind objc)
+  163d38  return
+
+== -[TAGExpandedFunctionCallBuilder setPushAfterEvaluate:]   (address 0x100163d3c  size 56  kind objc)
+  163d60  self->_pushAfterEvaluate = arg1
+  163d70  return
+
+== -[TAGExpandedFunctionCallBuilder .cxx_destruct]   (address 0x100163d74  size 64  kind objc)

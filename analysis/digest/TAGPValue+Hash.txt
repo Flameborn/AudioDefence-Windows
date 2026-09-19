@@ -1,0 +1,96 @@
+
+== -[TAGPValue(Hash) hash]   (address 0x10017f018  size 1472  kind objc)
+  17f058  [self type]
+  17f064  if (([self type] - 1) <=u 7) goto loc_10017f070
+  17f06c  goto loc_10017f518
+loc_10017f070:
+  17f080  switch (?) { case 0: goto loc_10017f084; case 1: goto loc_10017f0bc; case 2: goto loc_10017f19c; case 3: goto loc_10017f28c; case 4: goto loc_10017f2c4; case 5: goto loc_10017f304; case 6: goto loc_10017f320; case 7: goto loc_10017f400 }
+loc_10017f084:  ; case 0
+  17f094  [self string]
+  17f0b0  [[self string] hash]
+  17f0b4  goto loc_10017f2f4
+  17f0b8  goto loc_10017f590
+loc_10017f0bc:  ; case 1
+  17f0dc  [self listItemArray]
+  17f108  [[self listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x248] count:16]
+  17f110  if ([[self listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x248] count:16] == 0) goto loc_10017f424
+  17f120  &@selector(hash)
+loc_10017f134:
+loc_10017f138:
+  17f144  if (x8 == x28) goto loc_10017f150
+  17f14c  objc_enumerationMutation([self listItemArray])
+loc_10017f150:
+  17f15c  [x0 hash]
+  17f174  if ((x26 + 1) <u [[self listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x248] count:16]) goto loc_10017f138
+  17f18c  [[self listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x248] count:16]
+  17f194  if ([[self listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x248] count:16] != 0) goto loc_10017f134
+  17f198  goto loc_10017f428
+loc_10017f19c:  ; case 2
+  17f1cc  [self mapKeyArray]
+  17f1f8  [[self mapKeyArray] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16]
+  17f200  if ([[self mapKeyArray] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16] == 0) goto loc_10017f430
+  17f210  &@selector(hash)
+loc_10017f224:
+loc_10017f228:
+  17f234  if (0[+0x0] == 0[+0x0]) goto loc_10017f240
+  17f23c  objc_enumerationMutation([self mapKeyArray])
+loc_10017f240:
+  17f24c  [x0 hash]
+  17f264  if ((x26 + 1) <u [[self mapKeyArray] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16]) goto loc_10017f228
+  17f27c  [[self mapKeyArray] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16]
+  17f284  if ([[self mapKeyArray] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16] != 0) goto loc_10017f224
+  17f288  goto loc_10017f434
+loc_10017f28c:  ; case 3
+  17f29c  [self macroReference]
+  17f2b8  [[self macroReference] hash]
+  17f2bc  goto loc_10017f2f4
+  17f2c0  goto loc_10017f590
+loc_10017f2c4:  ; case 4
+  17f2d4  [self functionId]
+  17f2f0  [[self functionId] hash]
+loc_10017f2f4:
+  17f300  goto loc_10017f518
+loc_10017f304:  ; case 5
+  17f314  [self integer]
+  17f31c  goto loc_10017f518
+loc_10017f320:  ; case 6
+  17f340  [self templateTokenArray]
+  17f36c  [[self templateTokenArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  17f374  if ([[self templateTokenArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] == 0) goto loc_10017f424
+  17f384  &@selector(hash)
+loc_10017f398:
+loc_10017f39c:
+  17f3a8  if (x8 == x28) goto loc_10017f3b4
+  17f3b0  objc_enumerationMutation([self templateTokenArray])
+loc_10017f3b4:
+  17f3c0  [x0 hash]
+  17f3d8  if ((x26 + 1) <u [[self templateTokenArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]) goto loc_10017f39c
+  17f3f0  [[self templateTokenArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16]
+  17f3f8  if ([[self templateTokenArray] countByEnumeratingWithState:&sp[0x88] objects:&sp[0x8] count:16] != 0) goto loc_10017f398
+  17f3fc  goto loc_10017f428
+loc_10017f400:  ; case 7
+  17f410  [self boolean]
+  17f420  goto loc_10017f518
+loc_10017f424:
+loc_10017f428:
+  17f42c  goto loc_10017f50c
+loc_10017f430:
+loc_10017f434:
+  17f45c  [self mapValueArray]
+  17f47c  [[self mapValueArray] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16]
+  17f484  if ([[self mapValueArray] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16] == 0) goto loc_10017f508
+  17f494  &@selector(hash)
+loc_10017f4a4:
+loc_10017f4a8:
+  17f4b4  if (x8 == x28) goto loc_10017f4c0
+  17f4bc  objc_enumerationMutation([self mapValueArray])
+loc_10017f4c0:
+  17f4cc  [x0 hash]
+  17f4e4  if ((x26 + 1) <u [[self mapValueArray] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16]) goto loc_10017f4a8
+  17f4fc  [[self mapValueArray] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16]
+  17f504  if ([[self mapValueArray] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16] != 0) goto loc_10017f4a4
+loc_10017f508:
+loc_10017f50c:
+loc_10017f518:
+  17f528  [self containsReferences]
+  17f564  return

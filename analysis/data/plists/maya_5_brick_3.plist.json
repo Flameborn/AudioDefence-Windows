@@ -1,0 +1,32 @@
+{
+ "Ambiant": "Silence_ambiant",
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4,
+    "enemy": "ZombieC"
+   },
+   "spawn_angle": 230,
+   "spawn_distance": 10
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_angle": 330,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 50,
+   "spawn_distance": 10,
+   "spawn_time": 2
+  },
+  "QuietZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 270,
+   "spawn_distance": 10,
+   "spawn_time": 8
+  }
+ }
+}

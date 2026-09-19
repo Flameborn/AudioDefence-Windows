@@ -1,0 +1,86 @@
+
+== -[ADPlayer init]   (address 0x1000b647c  size 400  kind objc)
+  0b64bc  [super init]
+  0b64c4  if (self == 0) goto loc_1000b65b8
+  0b64e4  [S3DEngine engine]
+  0b650c  [[S3DEngine engine] playListWithName:@"tinnitus"]
+  0b6528  self->tinnitusPlaylist = [[S3DEngine engine] playListWithName:@"tinnitus"]
+  0b6550  [self->tinnitusPlaylist activate]
+  0b6560  [S3DEngine engine]
+  0b657c  [[S3DEngine engine] playListWithName:@"player"]
+  0b6598  self->playerPlaylist = [[S3DEngine engine] playListWithName:@"player"]
+  0b65b4  [self->playerPlaylist activate]
+loc_1000b65b8:
+  0b65d4  return
+
+== -[ADPlayer update:]   (address 0x1000b660c  size 820  kind objc)
+  0b6638  self->totalTime = (self->totalTime + arg1)
+  0b664c  if (self->tinnitusDuration <= (or unordered) 0.0) goto loc_1000b6750
+  0b6660  if (self->tinnitusTimer >= (or unordered) self->tinnitusDuration) goto loc_1000b6738
+  0b6668  self->tinnitusTimer = (self->tinnitusTimer + arg1)
+  0b6688  if ((self->tinnitusTimer + arg1) <= (or unordered) (self->tinnitusDuration * 0.8)) goto loc_1000b6750
+  0b66c0  t1 = (((1 - ((self->tinnitusTimer + arg1) / self->tinnitusDuration)) * self->tinnitusIntensity) / 0.2)
+  0b66d4  [self->tinnitusSound setGain:t1]
+  0b6708  [S3DEngine engine]
+  0b6728  [[S3DEngine engine] setReverbVolume:((((1 - ((self->tinnitusTimer + arg1) / self->tinnitusDuration)) * 5) / 0.2) + 1)]
+  0b6734  goto loc_1000b6750
+loc_1000b6738:
+  0b6748  [self stopTinnitus]
+  0b674c  self->tinnitusDuration = 0
+loc_1000b6750:
+  0b6768  [ADBrickManager sharedBrickManager]
+  0b6784  [[ADBrickManager sharedBrickManager] playerIsDead]
+  0b6794  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_1000b6900
+  0b67a0  [ADBrickManager sharedBrickManager]
+  0b67bc  [[ADBrickManager sharedBrickManager] minimumSquaredDistance]
+  0b67d4  if ([[ADBrickManager sharedBrickManager] minimumSquaredDistance] >= (or unordered) 9) goto loc_1000b6900
+  0b6800  t2 = ((([[ADBrickManager sharedBrickManager] minimumSquaredDistance] + -0.09) / 7.29) > 1 ? 1 : (([[ADBrickManager sharedBrickManager] minimumSquaredDistance] + -0.09) / 7.29))
+  0b6830  self->proximity_bpm = (((t2 < 0.0 ? 1 : (1 - t2)) * 60) + 120)
+  0b6864  if (self->totalTime <= (or unordered) (self->lastHeartbeat + (60 / (((t2 < 0.0 ? 1 : (1 - t2)) * 60) + 120)))) goto loc_1000b6900
+  0b6868  self->lastHeartbeat = self->totalTime
+  0b688c  [self->playerPlaylist anySoundContaining:@"heart"]
+  0b68a8  [[self->playerPlaylist anySoundContaining:@"heart"] play]
+  0b68e0  [[self->playerPlaylist anySoundContaining:@"heart"] setGain:((((t2 < 0.0 ? 1 : (1 - t2)) * (t2 < 0.0 ? 1 : (1 - t2))) * 0.7) + 0.3)]
+  0b68fc  return
+loc_1000b6900:
+  0b6914  return
+
+== -[ADPlayer startTinitusWithIntensity:]   (address 0x1000b6940  size 68  kind objc)
+  0b6980  tail [self startTinnitusWithDuration:((arg1 * 10) + 3) gain:((arg1 * 0.8) + 0.1)]
+
+== -[ADPlayer startTinnitusWithDuration:gain:]   (address 0x1000b6984  size 456  kind objc)
+  0b69b4  if (self->tinnitusDuration != 0.0) goto loc_1000b6a14
+  0b69d8  [self->tinnitusPlaylist S3DSound:@"tinnitus_and_background"]
+  0b69f0  self->tinnitusSound = [self->tinnitusPlaylist S3DSound:@"tinnitus_and_background"]
+  0b6a10  [self->tinnitusSound play:0]
+loc_1000b6a14:
+  0b6a30  [self->tinnitusSound setGain:arg2]
+  0b6a3c  self->tinnitusIntensity = arg2
+  0b6a40  self->tinnitusDuration = arg1
+  0b6a4c  self->tinnitusTimer = 0
+  0b6a68  [S3DEngine engine]
+  0b6aa0  [[S3DEngine engine] setReverbRoomSize:((arg2 * 0.6) + 1.5)]
+  0b6ab4  [S3DEngine engine]
+  0b6ad4  [[S3DEngine engine] setReverbDampening:10]
+  0b6ae8  [S3DEngine engine]
+  0b6b14  [[S3DEngine engine] setReverbVolume:((arg2 * 3) + 3)]
+  0b6b2c  return
+
+== -[ADPlayer stopTinnitus]   (address 0x1000b6b4c  size 196  kind objc)
+  0b6b64  NSLog(@"Stop tinnitus", _cmd)
+  0b6b80  [S3DEngine engine]
+  0b6ba0  [[S3DEngine engine] setReverbRoomSize:1.5]
+  0b6bb4  [S3DEngine engine]
+  0b6bd8  [[S3DEngine engine] setReverbDampening:50]
+  0b6bec  return
+
+== -[ADPlayer dealloc]   (address 0x1000b6c10  size 204  kind objc)
+  0b6c3c  [self->tinnitusSound stop]
+  0b6c5c  [self->tinnitusPlaylist deactivate]
+  0b6c70  [self->playerPlaylist deactivate]
+  0b6c94  [super dealloc]
+  0b6ca4  return
+  0b6ccc  [super dealloc]
+  0b6cd8  call sub_10000b760
+
+== -[ADPlayer .cxx_destruct]   (address 0x1000b6cdc  size 84  kind objc)

@@ -1,0 +1,195 @@
+
+== -[ADMissionTopbarViewController initWithSkip:]   (address 0x100019c70  size 96  kind objc)
+  019cac  [super initWithNibName:0 bundle:0]
+  019cb0  if (self == 0) goto loc_100019cc0
+  019cbc  self->canSkip = arg1
+loc_100019cc0:
+  019ccc  return
+
+== -[ADMissionTopbarViewController viewDidLoad]   (address 0x100019cd0  size 476  kind objc)
+  019d0c  [super viewDidLoad]
+  019d24  [self view]
+  019d40  [[self view] superview]
+  019d58  [self view]
+  019d7c  [[[self view] superview] sendSubviewToBack:[self view]]
+  019da0  [self view]
+  019dc0  [[self view] setAlpha:0]
+  019de0  [NSMutableArray alloc]
+  019df0  [[NSMutableArray alloc] init]
+  019e00  self->missionViewControllers = [[NSMutableArray alloc] init]
+  019e1c  [self missionButton]
+  019e4c  [[self missionButton] addTarget:self action:@selector(missionButtonPressed:) forControlEvents:64]
+  019e6c  return
+
+== -[ADMissionTopbarViewController reloadMissions]   (address 0x100019eac  size 1296  kind objc)
+  019ef4  [self removeAllMissions]
+  019f1c  [ADMissionManager sharedMissionManager]
+  019f38  [[ADMissionManager sharedMissionManager] activeMissions]
+  019f74  [[[ADMissionManager sharedMissionManager] activeMissions] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0xe8] count:16]
+  019f7c  if ([[[ADMissionManager sharedMissionManager] activeMissions] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0xe8] count:16] == 0) goto loc_10001a2f0
+  019f98  &@selector(containerView)
+  019fa4  &@selector(view)
+  019fac  &@selector(addSubview:)
+  019fcc  &@selector(setFrame:)
+  01a00c  &@selector(mission)
+loc_10001a044:
+loc_10001a048:
+  01a058  if (x8 == x9) goto loc_10001a064
+  01a060  objc_enumerationMutation([[ADMissionManager sharedMissionManager] activeMissions])
+loc_10001a064:
+  01a078  [ADMissionForTopbarViewController alloc]
+  01a088  [[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip]
+  01a098  [self containerView]
+  01a0b0  [[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view]
+  01a0cc  [[self containerView] addSubview:[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view]]
+  01a0e8  [self containerView]
+  01a0fc  [[self containerView] frame]
+  01a10c  [[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view]
+  01a120  [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] frame]
+  01a140  [[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view]
+  01a154  [[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view]
+  01a168  [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] frame]
+  01a178  [[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view]
+  01a18c  [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] frame]
+  01a190  t1 = ([[self containerView] frame].2 - [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] frame].2)
+  01a1bc  [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] setFrame:{(t1 * 0.5), (s2 + 0), [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] frame].2, [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] frame].3}]
+  01a1e0  [[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view]
+  01a1f4  [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] frame]
+  01a210  [self->missionViewControllers addObject:[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip]]
+  01a21c  [[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] mission]
+  01a230  [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] mission] isMissionCompleted]
+  01a240  t2 = (d0 + [[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] view] frame].3)
+  01a24c  if ([[[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] mission] isMissionCompleted] == 0) goto loc_10001a2b8
+  01a25c  dispatch_time(0, 0x59682f00)
+  01a2ac  dispatch_after(dispatch_time(0, 0x59682f00), __dispatch_main_q, ^{-[ADMissionTopbarViewController reloadMissions]_block_invoke captures +0x20=[[ADMissionForTopbarViewController alloc…})
+loc_10001a2b8:
+  01a2d0  if ((x28 + 1) <u [[[ADMissionManager sharedMissionManager] activeMissions] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0xe8] count:…) goto loc_10001a048
+  01a2e4  [[[ADMissionManager sharedMissionManager] activeMissions] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0xe8] count:16]
+  01a2ec  if ([[[ADMissionManager sharedMissionManager] activeMissions] countByEnumeratingWithState:&sp[0xa8] objects:&sp[0xe8] count:16] != 0) goto loc_10001a044
+loc_10001a2f0:
+  01a334  return
+
+== -[ADMissionTopbarViewController reloadMissions]_block_invoke   (address 0x10001a3bc  size 24  kind block)
+  01a3d0  tail [[[ADMissionForTopbarViewController alloc] initWithMission:x2 skippable:self->canSkip] markAsCompletedAndSwapWithReward:1]
+
+== sub_10001a3d4   (address 0x10001a3d4  size 8  kind sub)
+
+== sub_10001a3dc   (address 0x10001a3dc  size 8  kind sub)
+  01a3e0  return
+
+== -[ADMissionTopbarViewController removeAllMissions]   (address 0x10001a3e4  size 408  kind objc)
+  01a458  [self->missionViewControllers countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  01a460  if ([self->missionViewControllers countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_10001a4f8
+  01a47c  &@selector(removeFromSuperview)
+loc_10001a484:
+loc_10001a488:
+  01a494  if (x8 == x28) goto loc_10001a4a0
+  01a49c  objc_enumerationMutation(self->missionViewControllers)
+loc_10001a4a0:
+  01a4ac  [x0 view]
+  01a4c0  [[x0 view] removeFromSuperview]
+  01a4d4  if ((x26 + 1) <u [self->missionViewControllers countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_10001a488
+  01a4ec  [self->missionViewControllers countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  01a4f4  if ([self->missionViewControllers countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10001a484
+loc_10001a4f8:
+  01a510  [self->missionViewControllers removeAllObjects]
+  01a548  return
+
+== -[ADMissionTopbarViewController missionButtonPressed:]   (address 0x10001a57c  size 548  kind objc)
+  01a5a0  [self reloadMissions]
+  01a5b4  [self missionButton]
+  01a5d4  [[self missionButton] setEnabled:0]
+  01a5f4  [self view]
+  01a614  [[self view] setAlpha:0]
+  01a628  [self view]
+  01a644  [[self view] superview]
+  01a65c  [self view]
+  01a680  [[[self view] superview] bringSubviewToFront:[self view]]
+  01a720  [UIView animateWithDuration:0.5 animations:^{-[ADMissionTopbarViewController missionButtonPressed:]_block_invoke captures +0x20=self} completion:^{-[ADMissionTopbarViewController missionButtonPressed:]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADMissionTopbarViewController mission…, +0x40=&d_1003b1020, +0x48=self}]
+  01a744  return
+
+== -[ADMissionTopbarViewController missionButtonPressed:]_block_invoke   (address 0x10001a7a0  size 100  kind block)
+  01a7bc  [self view]
+  01a7dc  [[self view] setAlpha:1]
+  01a7ec  return
+
+== sub_10001a804   (address 0x10001a804  size 8  kind sub)
+
+== sub_10001a80c   (address 0x10001a80c  size 8  kind sub)
+  01a810  return
+
+== -[ADMissionTopbarViewController missionButtonPressed:]_block_invoke_2   (address 0x10001a814  size 120  kind block)
+  01a830  self->open = 1
+  01a844  [self missionButton]
+  01a864  [[self missionButton] setEnabled:1]
+  01a874  return
+
+== sub_10001a88c   (address 0x10001a88c  size 8  kind sub)
+
+== sub_10001a894   (address 0x10001a894  size 8  kind sub)
+  01a898  return
+
+== -[ADMissionTopbarViewController backButtonTouched:]   (address 0x10001a89c  size 300  kind objc)
+  01a8c0  [self missionButton]
+  01a8e0  [[self missionButton] setEnabled:0]
+  01a970  [UIView animateWithDuration:0.5 animations:^{-[ADMissionTopbarViewController backButtonTouched:]_block_invoke captures +0x20=self} completion:^{-[ADMissionTopbarViewController backButtonTouched:]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADMissionTopbarViewController backBut…, +0x40=&d_1003b1080, +0x48=self}]
+  01a994  return
+
+== -[ADMissionTopbarViewController backButtonTouched:]_block_invoke   (address 0x10001a9c8  size 100  kind block)
+  01a9e4  [self view]
+  01aa04  [[self view] setAlpha:0]
+  01aa14  return
+
+== sub_10001aa2c   (address 0x10001aa2c  size 8  kind sub)
+
+== sub_10001aa34   (address 0x10001aa34  size 8  kind sub)
+  01aa38  return
+
+== -[ADMissionTopbarViewController backButtonTouched:]_block_invoke_2   (address 0x10001aa3c  size 320  kind block)
+  01aa5c  self->open = 0
+  01aa74  [self view]
+  01aa90  [[self view] superview]
+  01aaa8  [self view]
+  01aacc  [[[self view] superview] sendSubviewToBack:[self view]]
+  01aaf8  [self missionButton]
+  01ab18  [[self missionButton] setEnabled:1]
+  01ab40  tail [self removeAllMissions]
+  01ab44  goto loc_10001ab68
+  01ab4c  goto loc_10001ab5c
+loc_10001ab5c:
+  01ab64  goto loc_10001ab6c
+loc_10001ab68:
+loc_10001ab6c:
+
+== sub_10001ab7c   (address 0x10001ab7c  size 8  kind sub)
+
+== sub_10001ab84   (address 0x10001ab84  size 8  kind sub)
+  01ab88  return
+
+== -[ADMissionTopbarViewController didReceiveMemoryWarning]   (address 0x10001ab8c  size 60  kind objc)
+  01abb8  [super didReceiveMemoryWarning]
+  01abc4  return
+
+== -[ADMissionTopbarViewController dealloc]   (address 0x10001abc8  size 160  kind objc)
+  01abe8  [self removeAllMissions]
+  01abf8  self->missionViewControllers = 0
+  01ac20  [super dealloc]
+  01ac30  return
+  01ac58  [super dealloc]
+  01ac64  call sub_10000b760
+
+== -[ADMissionTopbarViewController containerView]   (address 0x10001ac68  size 16  kind objc)
+  01ac74  return
+
+== -[ADMissionTopbarViewController setContainerView:]   (address 0x10001ac78  size 56  kind objc)
+  01ac9c  self->_containerView = arg1
+  01acac  return
+
+== -[ADMissionTopbarViewController missionButton]   (address 0x10001acb0  size 16  kind objc)
+  01acbc  return
+
+== -[ADMissionTopbarViewController setMissionButton:]   (address 0x10001acc0  size 56  kind objc)
+  01ace4  self->_missionButton = arg1
+  01acf4  return
+
+== -[ADMissionTopbarViewController .cxx_destruct]   (address 0x10001acf8  size 84  kind objc)

@@ -1,0 +1,14 @@
+// ADArmoryCurrencyViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #16 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #14 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #24 UIView  
+    #12 UITableView  
+
+CONNECTIONS
+  outlet  dataSource                                #12 UITableView --> #16 UIProxyObject
+  outlet  delegate                                  #12 UITableView --> #16 UIProxyObject
+  outlet  tableView                                 #16 UIProxyObject --> #12 UITableView
+  outlet  view                                      #16 UIProxyObject --> #24 UIView
+
+ACCESSIBILITY CONFIGURATIONS

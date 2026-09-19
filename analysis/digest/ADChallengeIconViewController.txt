@@ -1,0 +1,143 @@
+
+== -[ADChallengeIconViewController initWithDictionary:]   (address 0x10007fcc4  size 180  kind objc)
+  07fd14  [super initWithNibName:0 bundle:0]
+  07fd1c  if (self == 0) goto loc_10007fd3c
+  07fd38  [self setChallengeDict:arg1]
+loc_10007fd3c:
+  07fd58  return
+
+== -[ADChallengeIconViewController viewDidLoad]   (address 0x10007fd78  size 780  kind objc)
+  07fdb8  [super viewDidLoad]
+  07fdd0  [ADChallengeData sharedChallengeData]
+  07fdf4  [self challengeDict]
+  07fe1c  [[self challengeDict] objectForKey:@"challenge_id"]
+  07fe40  [[ADChallengeData sharedChallengeData] needsWeaponToCompleteChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  07fe60  if ([[ADChallengeData sharedChallengeData] needsWeaponToCompleteChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] == 0) goto loc_10007fea0
+  07fe74  [self warning_icon]
+  07fe94  [[self warning_icon] setHidden:0]
+loc_10007fea0:
+  07feb4  [self challengeTitle]
+  07fed0  [[self challengeTitle] setupAsTitle]
+  07fee4  [self challengeTitle]
+  07ff08  [UIColor blackColor]
+  07ff2c  [[self challengeTitle] setTextColor:[UIColor blackColor]]
+  07ff50  [self initLock]
+  07ff64  [self initStars]
+  07ff70  [self challengeTitle]
+  07ff88  [self challengeDict]
+  07ffa4  [[self challengeDict] objectForKey:@"icon_title"]
+  07ffc8  [[self challengeTitle] setText:[[self challengeDict] objectForKey:@"icon_title"]]
+  07fffc  return
+
+== -[ADChallengeIconViewController initStars]   (address 0x100080084  size 1248  kind objc)
+  0800c8  [ADChallengeData sharedChallengeData]
+  0800ec  [self challengeDict]
+  080114  [[self challengeDict] objectForKey:@"challenge_id"]
+  080138  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  080168  [self star_1]
+  080184  &@selector(imageNamed:)
+  08018c  if ([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] == 0) goto loc_1000801cc
+  08019c  [UIImage imageNamed:@"icon_star_small"]
+  0801c0  [[self star_1] setImage:[UIImage imageNamed:@"icon_star_small"]]
+  0801c4  goto loc_100080200
+  0801c8  goto loc_100080524
+loc_1000801cc:
+  0801d8  [UIImage imageNamed:@"icon_star_"]
+  0801fc  [[self star_1] setImage:[UIImage imageNamed:@"icon_star_"]]
+loc_100080200:
+  080218  [ADChallengeData sharedChallengeData]
+  080230  [self challengeDict]
+  080250  [[self challengeDict] objectForKey:@"challenge_id"]
+  080274  [[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  0802a4  [self star_2]
+  0802bc  if ([[ADChallengeData sharedChallengeData] hasAccuracyStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] == 0) goto loc_1000802fc
+  0802cc  [UIImage imageNamed:@"icon_star_small"]
+  0802f0  [[self star_2] setImage:[UIImage imageNamed:@"icon_star_small"]]
+  0802f4  goto loc_100080330
+  0802f8  goto loc_100080524
+loc_1000802fc:
+  080308  [UIImage imageNamed:@"icon_star_"]
+  08032c  [[self star_2] setImage:[UIImage imageNamed:@"icon_star_"]]
+loc_100080330:
+  080348  [ADChallengeData sharedChallengeData]
+  080360  [self challengeDict]
+  08037c  [[self challengeDict] objectForKey:@"challenge_id"]
+  0803a0  [[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  0803d0  [self star_3]
+  0803e4  if ([[ADChallengeData sharedChallengeData] hasTimeLimitStarForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] == 0) goto loc_100080424
+  0803f4  [UIImage imageNamed:@"icon_star_small"]
+  080418  [[self star_3] setImage:[UIImage imageNamed:@"icon_star_small"]]
+  08041c  goto loc_100080458
+  080420  goto loc_100080548
+loc_100080424:
+  080430  [UIImage imageNamed:@"icon_star_"]
+  080454  [[self star_3] setImage:[UIImage imageNamed:@"icon_star_"]]
+loc_100080458:
+  080488  return
+
+== -[ADChallengeIconViewController initLock]   (address 0x100080564  size 124  kind objc)
+  080580  [self challengeLock]
+  0805a0  [self isLocked]
+  0805b8  [[self challengeLock] setHidden:([self isLocked] ^ 1)]
+  0805c8  return
+
+== -[ADChallengeIconViewController isLocked]   (address 0x1000805e0  size 252  kind objc)
+  080608  [ADChallengeData sharedChallengeData]
+  080628  [self challengeDict]
+  08064c  [[self challengeDict] objectForKey:@"challenge_id"]
+  080670  [[ADChallengeData sharedChallengeData] hasChallengeRequirementsForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  080690  t1 = ([[ADChallengeData sharedChallengeData] hasChallengeRequirementsForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] ^ 1)
+  0806a0  return
+
+== -[ADChallengeIconViewController didReceiveMemoryWarning]   (address 0x1000806dc  size 60  kind objc)
+  080708  [super didReceiveMemoryWarning]
+  080714  return
+
+== -[ADChallengeIconViewController star_1]   (address 0x100080718  size 16  kind objc)
+  080724  return
+
+== -[ADChallengeIconViewController setStar_1:]   (address 0x100080728  size 56  kind objc)
+  08074c  self->_star_1 = arg1
+  08075c  return
+
+== -[ADChallengeIconViewController star_2]   (address 0x100080760  size 16  kind objc)
+  08076c  return
+
+== -[ADChallengeIconViewController setStar_2:]   (address 0x100080770  size 56  kind objc)
+  080794  self->_star_2 = arg1
+  0807a4  return
+
+== -[ADChallengeIconViewController star_3]   (address 0x1000807a8  size 16  kind objc)
+  0807b4  return
+
+== -[ADChallengeIconViewController setStar_3:]   (address 0x1000807b8  size 56  kind objc)
+  0807dc  self->_star_3 = arg1
+  0807ec  return
+
+== -[ADChallengeIconViewController challengeLock]   (address 0x1000807f0  size 16  kind objc)
+  0807fc  return
+
+== -[ADChallengeIconViewController setChallengeLock:]   (address 0x100080800  size 56  kind objc)
+  080824  self->_challengeLock = arg1
+  080834  return
+
+== -[ADChallengeIconViewController challengeDict]   (address 0x100080838  size 16  kind objc)
+  080844  return
+
+== -[ADChallengeIconViewController setChallengeDict:]   (address 0x100080848  size 56  kind objc)
+  08086c  self->_challengeDict = arg1
+  08087c  return
+
+== -[ADChallengeIconViewController challengeTitle]   (address 0x100080880  size 16  kind objc)
+  08088c  return
+
+== -[ADChallengeIconViewController setChallengeTitle:]   (address 0x100080890  size 56  kind objc)
+  0808b4  self->_challengeTitle = arg1
+  0808c4  return
+
+== -[ADChallengeIconViewController warning_icon]   (address 0x1000808c8  size 32  kind objc)
+  0808e4  return
+
+== -[ADChallengeIconViewController setWarning_icon:]   (address 0x1000808e8  size 20  kind objc)
+
+== -[ADChallengeIconViewController .cxx_destruct]   (address 0x1000808fc  size 160  kind objc)

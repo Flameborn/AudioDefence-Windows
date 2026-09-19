@@ -1,0 +1,10 @@
+// ADEmptyViewController~ipad.nib
+TOP-LEVEL OBJECTS
+  #3 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #9 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #13 UIView  
+
+CONNECTIONS
+  outlet  view                                      #3 UIProxyObject --> #13 UIView
+
+ACCESSIBILITY CONFIGURATIONS

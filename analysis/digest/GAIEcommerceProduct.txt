@@ -1,0 +1,137 @@
+
+== -[GAIEcommerceProduct init]   (address 0x100121078  size 140  kind objc)
+  1210a8  [super init]
+  1210b0  if (self == 0) goto loc_1001210f0
+  1210cc  [NSMutableDictionary dictionaryWithCapacity:8]
+  1210e4  self->_parameters = [NSMutableDictionary dictionaryWithCapacity:8]
+loc_1001210f0:
+  121100  return
+
+== -[GAIEcommerceProduct setString:forKey:]   (address 0x100121104  size 304  kind objc)
+  121138  if (arg2 == 0) goto loc_1001211a4
+  12114c  [self parameters]
+  121174  [GAIUtil valueForString:arg1]
+  12119c  [[self parameters] setObject:[GAIUtil valueForString:arg1] forKey:arg2]
+  1211a0  goto loc_1001211fc
+loc_1001211a4:
+  1211b8  [GAI sharedInstance]
+  1211d4  [[GAI sharedInstance] logger]
+  1211f8  [[[GAI sharedInstance] logger] warning:@"nil key not allowed in setString"]
+loc_1001211fc:
+  121230  return
+
+== -[GAIEcommerceProduct setNumber:forKey:]   (address 0x100121234  size 304  kind objc)
+  121268  if (arg2 == 0) goto loc_1001212d4
+  12127c  [self parameters]
+  1212a4  [GAIUtil valueForNumber:arg1]
+  1212cc  [[self parameters] setObject:[GAIUtil valueForNumber:arg1] forKey:arg2]
+  1212d0  goto loc_10012132c
+loc_1001212d4:
+  1212e8  [GAI sharedInstance]
+  121304  [[GAI sharedInstance] logger]
+  121328  [[[GAI sharedInstance] logger] warning:@"nil key not allowed in setNumber"]
+loc_10012132c:
+  121360  return
+
+== -[GAIEcommerceProduct setId:]   (address 0x100121364  size 72  kind objc)
+  12137c  [&d_1003b7c90] -> @"id"
+  12138c  [self setString:arg1 forKey:@"id"]
+  1213a8  return
+
+== -[GAIEcommerceProduct setName:]   (address 0x1001213ac  size 72  kind objc)
+  1213c4  [&d_1003b7c98] -> @"nm"
+  1213d4  [self setString:arg1 forKey:@"nm"]
+  1213f0  return
+
+== -[GAIEcommerceProduct setBrand:]   (address 0x1001213f4  size 72  kind objc)
+  12140c  [&d_1003b7ca0] -> @"br"
+  12141c  [self setString:arg1 forKey:@"br"]
+  121438  return
+
+== -[GAIEcommerceProduct setCategory:]   (address 0x10012143c  size 72  kind objc)
+  121454  [&d_1003b7ca8] -> @"ca"
+  121464  [self setString:arg1 forKey:@"ca"]
+  121480  return
+
+== -[GAIEcommerceProduct setVariant:]   (address 0x100121484  size 72  kind objc)
+  12149c  [&d_1003b7cb0] -> @"va"
+  1214ac  [self setString:arg1 forKey:@"va"]
+  1214c8  return
+
+== -[GAIEcommerceProduct setPrice:]   (address 0x1001214cc  size 72  kind objc)
+  1214e4  [&d_1003b7cb8] -> @"pr"
+  1214f4  [self setNumber:arg1 forKey:@"pr"]
+  121510  return
+
+== -[GAIEcommerceProduct setQuantity:]   (address 0x100121514  size 72  kind objc)
+  12152c  [&d_1003b7cc0] -> @"qt"
+  12153c  [self setNumber:arg1 forKey:@"qt"]
+  121558  return
+
+== -[GAIEcommerceProduct setCouponCode:]   (address 0x10012155c  size 72  kind objc)
+  121574  [&d_1003b7cc8] -> @"cc"
+  121584  [self setString:arg1 forKey:@"cc"]
+  1215a0  return
+
+== -[GAIEcommerceProduct setPosition:]   (address 0x1001215a4  size 72  kind objc)
+  1215bc  [&d_1003b7cd0] -> @"ps"
+  1215cc  [self setNumber:x2 forKey:@"ps"]
+  1215e8  return
+
+== -[GAIEcommerceProduct setCustomDimension:value:]   (address 0x1001215ec  size 172  kind objc)
+  121634  [GAIFields customDimensionForIndex:arg1]
+  12165c  [self setString:arg2 forKey:[GAIFields customDimensionForIndex:arg1]]
+  121694  return
+
+== -[GAIEcommerceProduct setCustomMetric:value:]   (address 0x100121698  size 172  kind objc)
+  1216e0  [GAIFields customMetricForIndex:arg1]
+  121708  [self setNumber:arg2 forKey:[GAIFields customMetricForIndex:arg1]]
+  121740  return
+
+== -[GAIEcommerceProduct buildWithIndex:]   (address 0x100121744  size 540  kind objc)
+  121784  [self parameters]
+  1217a0  [[self parameters] count]
+  1217bc  [NSMutableDictionary dictionaryWithCapacity:[[self parameters] count]]
+  1217dc  [self parameters]
+  1217f8  [[self parameters] keyEnumerator]
+  121824  [[[self parameters] keyEnumerator] nextObject]
+  121834  if ([[[self parameters] keyEnumerator] nextObject] == 0) goto loc_100121934
+  121844  &@selector(productFieldForIndex:suffix:)
+  12185c  &@selector(setObject:forKey:)
+loc_100121864:
+  12186c  [self parameters]
+  121884  [[self parameters] objectForKey:[[[self parameters] keyEnumerator] nextObject]]
+  1218b0  [GAIEcommerceFields productFieldForIndex:arg1 suffix:[[[self parameters] keyEnumerator] nextObject]]
+  1218dc  [[NSMutableDictionary dictionaryWithCapacity:[[self parameters] count]] setObject:[[self parameters] objectForKey:[[[self parameters] keyEnumerator] nextObject]] forKey:[GAIEcommerceFields productFieldForIndex:arg1 suffix:[[[self parameters] keyEnumerator] nextObject]]]
+  121914  [[[self parameters] keyEnumerator] nextObject]
+  121930  if ([[[self parameters] keyEnumerator] nextObject] != 0) goto loc_100121864
+loc_100121934:
+  12195c  return
+
+== -[GAIEcommerceProduct buildWithListIndex:index:]   (address 0x100121960  size 604  kind objc)
+  1219a4  [self parameters]
+  1219c0  [[self parameters] count]
+  1219dc  [NSMutableDictionary dictionaryWithCapacity:[[self parameters] count]]
+  121a0c  [GAIEcommerceFields impressionListForIndex:arg1]
+  121a24  [self parameters]
+  121a40  [[self parameters] keyEnumerator]
+  121a6c  [[[self parameters] keyEnumerator] nextObject]
+  121a7c  if ([[[self parameters] keyEnumerator] nextObject] == 0) goto loc_100121b88
+loc_100121ab0:
+  121ab8  [self parameters]
+  121ad0  [[self parameters] objectForKey:[[[self parameters] keyEnumerator] nextObject]]
+  121afc  [GAIEcommerceFields productImpressionForList:[GAIEcommerceFields impressionListForIndex:arg1] index:arg2 suffix:[[[self parameters] keyEnumerator] nextObject]]
+  121b2c  [[NSMutableDictionary dictionaryWithCapacity:[[self parameters] count]] setObject:[[self parameters] objectForKey:[[[self parameters] keyEnumerator] nextObject]] forKey:[GAIEcommerceFields productImpressionForList:[GAIEcommerceFields impressionListForIndex:arg1] index:arg2 suffix:[[[self parameters] keyEnumerator] nextObject]]]
+  121b68  [[[self parameters] keyEnumerator] nextObject]
+  121b84  if ([[[self parameters] keyEnumerator] nextObject] != 0) goto loc_100121ab0
+loc_100121b88:
+  121bb8  return
+
+== -[GAIEcommerceProduct parameters]   (address 0x100121bbc  size 16  kind objc)
+  121bc8  return
+
+== -[GAIEcommerceProduct setParameters:]   (address 0x100121bcc  size 56  kind objc)
+  121bf0  self->_parameters = arg1
+  121c00  return
+
+== -[GAIEcommerceProduct .cxx_destruct]   (address 0x100121c04  size 20  kind objc)

@@ -1,0 +1,206 @@
+
+== -[GAIReachabilityChecker reachabilityApi]   (address 0x1001203c8  size 16  kind objc)
+  1203d4  return
+
+== -[GAIReachabilityChecker setReachabilityApi:]   (address 0x1001203d8  size 244  kind objc)
+  1203f8  if (self->reachability_ == 0) goto loc_1001204ac
+  120410  [GAI sharedLogger]
+  120428  [&d_1003b7d70] -> @"GoogleAnalytics"
+  120434  [&d_1003b7d78] -> @"3.09"
+  12044c  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  120480  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Cannot change reachability API while reachability running; call stop fir…", @"GoogleAnalytics", @"3.09", "-[GAIReachabilityChecker setReachabilityApi:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 46]
+  1204a8  tail [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Cannot change reachability API while reachability running; call stop fir…", @"GoogleAnalytics", @"3.09", "-[GAIReachabilityChecker setReachabilityApi:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 46]]
+loc_1001204ac:
+  1204b4  self->reachabilityApi_ = arg1
+  1204c8  return
+
+== -[GAIReachabilityChecker isActive]   (address 0x1001204cc  size 24  kind objc)
+  1204e0  return
+
+== -[GAIReachabilityChecker setDelegate:]   (address 0x1001204e4  size 276  kind objc)
+  120500  if (arg1 == 0) goto loc_100120528
+  12050c  [0x10041dec8] -> &d_100429348
+  120520  [arg1 conformsToProtocol:&d_100429348]
+  120524  if (!([arg1 conformsToProtocol:&d_100429348] & 1)) goto loc_100120548
+loc_100120528:
+  120530  self->delegate_ = arg1
+  120544  return
+  12055c  [GAI sharedLogger]
+  120574  [&d_1003b7d70] -> @"GoogleAnalytics"
+  120580  [&d_1003b7d78] -> @"3.09"
+  120598  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  1205cc  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Cannot set delegate that doesn't conform to protocol.", @"GoogleAnalytics", @"3.09", "-[GAIReachabilityChecker setDelegate:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 63]
+  1205f4  tail [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Cannot set delegate that doesn't conform to protocol.", @"GoogleAnalytics", @"3.09", "-[GAIReachabilityChecker setDelegate:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 63]]
+
+== -[GAIReachabilityChecker init]   (address 0x1001205f8  size 128  kind objc)
+  12062c  [super init]
+  120634  if (self == 0) goto loc_100120664
+  12064c  [self doesNotRecognizeSelector:_cmd]
+  120660  [self release]
+loc_100120664:
+  120674  return
+
+== -[GAIReachabilityChecker initWithDelegate:withHost:]   (address 0x100120678  size 420  kind objc)
+  1206b8  [super init]
+  1206c0  if (arg2 == 0) goto loc_100120748
+  1206d4  [arg2 length]
+  1206d8  if ([arg2 length] == 0) goto loc_100120748
+  1206dc  if (self == 0) goto loc_1001207fc
+  1206f0  self->reachabilityApi_ = &d_1003b8340
+  1206fc  self->reachabilityStatus_ = 0
+  120710  [arg2 copy]
+  12071c  self->host_ = [arg2 copy]
+  120728  self->reachability_ = 0
+  120740  [self setDelegate:arg1]
+  120744  goto loc_100120800
+loc_100120748:
+  12075c  [GAI sharedLogger]
+  120774  [&d_1003b7d70] -> @"GoogleAnalytics"
+  120780  [&d_1003b7d78] -> @"3.09"
+  120798  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  1207cc  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Invalid host specified.", @"GoogleAnalytics", @"3.09", "-[GAIReachabilityChecker initWithDelegate:withHost:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 77]
+  1207e4  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Invalid host specified.", @"GoogleAnalytics", @"3.09", "-[GAIReachabilityChecker initWithDelegate:withHost:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 77]]
+  1207f8  [self release]
+loc_1001207fc:
+loc_100120800:
+  120818  return
+
+== -[GAIReachabilityChecker dealloc]   (address 0x10012081c  size 116  kind objc)
+  12083c  [self stop]
+  120858  [self->host_ release]
+  12087c  [super dealloc]
+  12088c  return
+
+== -[GAIReachabilityChecker start]   (address 0x100120890  size 272  kind objc)
+  1208b8  if (self->reachability_ != 0) goto loc_100120960
+  1208f0  [self->host_ UTF8String]
+  1208fc  call self->reachabilityApi_[+0x0]
+  120904  self->reachability_ = self->reachabilityApi_[+0x0](…)
+  120908  if (self->reachabilityApi_[+0x0](…) == 0) goto loc_100120998
+  12092c  call self->reachabilityApi_[+0x8]
+  120930  if (self->reachabilityApi_[+0x8](…) == 0) goto loc_10012097c
+  120940  CFRunLoopGetMain(self->reachabilityApi_[+0x8](…))
+  120958  call self->reachabilityApi_[+0x10]
+  12095c  if (self->reachabilityApi_[+0x10](…) == 0) goto loc_10012097c
+loc_100120960:
+  120978  return
+  120988  call self->reachabilityApi_[+0x20]
+  120990  self->reachability_ = 0
+
+== -[GAIReachabilityChecker start]_block_invoke   (address 0x1001209a0  size 28  kind block)
+  1209b8  tail [blockarg2 reachabilityFlagsChanged:blockarg1]
+
+== -[GAIReachabilityChecker stop]   (address 0x1001209bc  size 140  kind objc)
+  1209e0  if (self->reachability_ == 0) goto loc_100120a34
+  1209ec  self->reachabilityStatus_ = 0
+  120a04  CFRunLoopGetMain(self, _cmd)
+  120a1c  call self->reachabilityApi_[+0x18]
+  120a2c  call self->reachabilityApi_[+0x20]
+  120a30  self->reachability_ = 0
+loc_100120a34:
+  120a44  return
+
+== -[GAIReachabilityChecker statusForFlags:]   (address 0x100120a48  size 60  kind objc)
+  120a7c  t1 = ((arg1 & 2) == 0 ? 1 : ((arg1 & 4) != 0 ? ((arg1 & 40) == 0 ? 1 : ((arg1 & 16) != 0 ? 1 : w11)) : w11))
+  120a80  return
+
+== -[GAIReachabilityChecker reachabilityFlagsChanged:]   (address 0x100120a84  size 324  kind objc)
+  120ab8  [GAI sharedLogger]
+  120ad0  [&d_1003b7d70] -> @"GoogleAnalytics"
+  120adc  [&d_1003b7d78] -> @"3.09"
+  120af4  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  120b28  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Reachability flags update: %#08X", @"GoogleAnalytics", @"3.09", "-[GAIReachabilityChecker reachabilityFlagsChanged:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 159, arg1]
+  120b40  [[GAI sharedLogger] info:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Reachability flags update: %#08X", @"GoogleAnalytics", @"3.09", "-[GAIReachabilityChecker reachabilityFlagsChanged:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 159, arg1]]
+  120b58  [self statusForFlags:arg1]
+  120b70  if (self->reachabilityStatus_ != [self statusForFlags:arg1]) goto loc_100120b8c
+  120b88  return
+  120b8c  self->reachabilityStatus_ = [self statusForFlags:arg1]
+  120bc4  tail [self->delegate_ reachability:self statusChanged:[self statusForFlags:arg1]]
+
+== -[GAIReachabilityChecker reachability]   (address 0x100120bc8  size 16  kind objc)
+  120bd4  return
+
+== -[GAIReachabilityChecker setReachability:]   (address 0x100120bd8  size 16  kind objc)
+  120be0  self->reachability_ = arg1
+  120be4  return
+
+== -[GAIReachabilityChecker reachabilityStatus]   (address 0x100120be8  size 16  kind objc)
+  120bf4  return
+
+== -[GAIReachabilityChecker setReachabilityStatus:]   (address 0x100120bf8  size 16  kind objc)
+  120c00  self->reachabilityStatus_ = arg1
+  120c04  return
+
+== -[GAIReachabilityChecker host]   (address 0x100120c08  size 16  kind objc)
+  120c14  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[GAIReachabilityChecker setHost:]   (address 0x100120c18  size 28  kind objc)
+  120c30  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAIReachabilityChecker delegate]   (address 0x100120c34  size 16  kind objc)
+  120c40  return
+
+== sub_100120c44   (address 0x100120c44  size 64  kind sub)
+  120c4c  NSGetUncaughtExceptionHandler(a0, a1, a2, a3)
+  120c5c  if (NSGetUncaughtExceptionHandler(a0, a1, a2, a3) == &sub_100120c84) goto loc_100120c7c
+  120c68  store g_10042dc88 = NSGetUncaughtExceptionHandler(a0, a1, a2, a3)
+  120c78  tail NSSetUncaughtExceptionHandler(&sub_100120c84)
+loc_100120c7c:
+  120c80  return
+
+== sub_100120c84   (address 0x100120c84  size 956  kind sub)
+  120ccc  OSAtomicCompareAndSwap32Barrier(0, 1, &g_10042dc80, a3)
+  120cd0  if (!(OSAtomicCompareAndSwap32Barrier(0, 1, &g_10042dc80, a3) & 1)) goto loc_100120f68
+  120cd4  if (a0 == 0) goto loc_100121008
+  120cec  [GAI sharedLogger]
+  120d04  [&d_1003b7d70] -> @"GoogleAnalytics"
+  120d10  [&d_1003b7d78] -> @"3.09"
+  120d28  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  120d5c  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Uncaught exception: %@", @"GoogleAnalytics", @"3.09", "void GAIUncaughtExceptionHandler(NSException *)", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 49, a0]
+  120d74  [[GAI sharedLogger] warning:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Uncaught exception: %@", @"GoogleAnalytics", @"3.09", "void GAIUncaughtExceptionHandler(NSException *)", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 49, a0]]
+  120d94  [GAIExceptionParser exceptionDescription:a0 withMaxLength:150]
+  120dbc  [NSNumber numberWithBool:1]
+  120dd8  [GAIDictionaryBuilder gai_exceptionWithDescription:[GAIExceptionParser exceptionDescription:a0 withMaxLength:150] withFatal:[NSNumber numberWithBool:1]]
+  120de8  [[GAIDictionaryBuilder gai_exceptionWithDescription:[GAIExceptionParser exceptionDescription:a0 withMaxLength:150] withFatal:[NSNumber numberWithBool:1]] build]
+  120e04  [GAI sharedInstance]
+  120e14  [[GAI sharedInstance] defaultTracker]
+  120e28  [[[GAI sharedInstance] defaultTracker] gai_send:[[GAIDictionaryBuilder gai_exceptionWithDescription:[GAIExceptionParser exceptionDescription:a0 withMaxLength:150] withFatal:[NSNumber numberWithBool:1]] build]]
+  120e34  [GAI sharedInstance]
+  120e44  [[GAI sharedInstance] dispatch]
+  120e48  CFRunLoopGetCurrent([[GAI sharedInstance] dispatch])
+  120e4c  CFRunLoopCopyAllModes(CFRunLoopGetCurrent([[GAI sharedInstance] dispatch]))
+  120e6c  [NSDate timeIntervalSinceReferenceDate]
+loc_100120e94:
+  120eb8  [CFRunLoopCopyAllModes(CFRunLoopGetCurrent([[GAI sharedInstance] dispatch])) countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x38] count:16]
+  120ec0  if ([CFRunLoopCopyAllModes(CFRunLoopGetCurrent([[GAI sharedInstance] dispatch])) countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x38] count:16] == 0) goto loc_100120f28
+loc_100120ecc:
+loc_100120ed0:
+  120edc  if (x8 == x20) goto loc_100120ee8
+  120ee4  objc_enumerationMutation(CFRunLoopCopyAllModes(CFRunLoopGetCurrent([[GAI sharedInstance] dispatch])))
+loc_100120ee8:
+  120ef8  CFRunLoopRunInMode(x0, 0)
+  120f04  if ((x27 + 1) <u [CFRunLoopCopyAllModes(CFRunLoopGetCurrent([[GAI sharedInstance] dispatch])) countByEnumeratingWithState:&x29[-0xa8] obj…) goto loc_100120ed0
+  120f1c  [CFRunLoopCopyAllModes(CFRunLoopGetCurrent([[GAI sharedInstance] dispatch])) countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x38] count:16]
+  120f24  if ([CFRunLoopCopyAllModes(CFRunLoopGetCurrent([[GAI sharedInstance] dispatch])) countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x38] count:16] != 0) goto loc_100120ecc
+loc_100120f28:
+  120f30  [NSDate timeIntervalSinceReferenceDate]
+  120f38  if ([NSDate timeIntervalSinceReferenceDate] < ([NSDate timeIntervalSinceReferenceDate] + 5)) goto loc_100120e94
+  120f40  CFRelease(CFRunLoopCopyAllModes(CFRunLoopGetCurrent([[GAI sharedInstance] dispatch])))
+  120f58  if (g_10042dc88 == 0) goto loc_100121008
+  120f60  call g_10042dc88
+  120f64  goto loc_100121008
+loc_100120f68:
+  120f7c  [GAI sharedLogger]
+  120f94  [&d_1003b7d70] -> @"GoogleAnalytics"
+  120fa0  [&d_1003b7d78] -> @"3.09"
+  120fb8  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  120fec  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Bailing on multiple uncaught exceptions: %@", @"GoogleAnalytics", @"3.09", "void GAIUncaughtExceptionHandler(NSException *)", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 45, a0]
+  121004  [[GAI sharedLogger] warning:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Bailing on multiple uncaught exceptions: %@", @"GoogleAnalytics", @"3.09", "void GAIUncaughtExceptionHandler(NSException *)", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 45, a0]]
+loc_100121008:
+  121038  return
+
+== sub_100121040   (address 0x100121040  size 56  kind sub)
+  121048  NSGetUncaughtExceptionHandler(a0, a1, a2, a3)
+  121058  if (NSGetUncaughtExceptionHandler(a0, a1, a2, a3) == &sub_100120c84) goto loc_100121064
+  121060  return
+  121074  tail NSSetUncaughtExceptionHandler(g_10042dc88)

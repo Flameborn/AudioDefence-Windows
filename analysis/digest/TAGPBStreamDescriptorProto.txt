@@ -1,0 +1,9 @@
+
+== +[TAGPBStreamDescriptorProto descriptor]   (address 0x10012c4a8  size 180  kind objc)
+  12c4c8  if (g_10042dd60 != 0) goto loc_10012c548
+  12c4ec  [TAGPBStreamDescriptorProto class]
+  12c500  [TAGPBDescriptorRoot class]
+  12c540  [TAGPBDescriptor allocDescriptorForClass:[TAGPBStreamDescriptorProto class] rootClass:[TAGPBDescriptorRoot class] fields:&d_100429f50 fieldCount:4 enums:0 enumCount:0 ranges:40 rangeCount:x9 storageSize:x10 wireFormat:x11]
+  12c544  store g_10042dd60 = [TAGPBDescriptor allocDescriptorForClass:[TAGPBStreamDescriptorProto class] rootClass:[TAGPBDescriptorRoot class] fields:&d_100429f50 fieldCount:4 enums:0 enumCount:0 ranges:40 rangeCount:x9 storageSize:x10 wireFormat:x11]
+loc_10012c548:
+  12c558  return

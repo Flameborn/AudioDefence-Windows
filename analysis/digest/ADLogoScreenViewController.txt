@@ -1,0 +1,80 @@
+
+== -[ADLogoScreenViewController viewDidLoad]   (address 0x10009de3c  size 152  kind objc)
+  09de70  [super viewDidLoad]
+  09de84  [self logo]
+  09dea4  [[self logo] setAlpha:0]
+  09debc  return
+
+== -[ADLogoScreenViewController loadView]   (address 0x10009ded4  size 28  kind objc)
+  09deec  tail [self loADViewBasedOnDeviceWithNibName:@"ADLogoScreenViewController" WithTagDictionary:0]
+
+== -[ADLogoScreenViewController viewDidAppear:]   (address 0x10009def0  size 260  kind objc)
+  09df28  [super viewDidAppear:arg1]
+  09dfb0  [UIView animateWithDuration:0.5 animations:^{-[ADLogoScreenViewController viewDidAppear:]_block_invoke captures +0x20=self} completion:^{-[ADLogoScreenViewController viewDidAppear:]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[ADLogoScreenViewController viewDidApp…, +0x40=&d_1003b2250, +0x48=self}]
+  09dfd4  return
+
+== -[ADLogoScreenViewController viewDidAppear:]_block_invoke   (address 0x10009dff4  size 100  kind block)
+  09e010  [self logo]
+  09e030  [[self logo] setAlpha:1]
+  09e040  return
+
+== sub_10009e058   (address 0x10009e058  size 8  kind sub)
+
+== sub_10009e060   (address 0x10009e060  size 8  kind sub)
+  09e064  return
+
+== -[ADLogoScreenViewController viewDidAppear:]_block_invoke_2   (address 0x10009e068  size 80  kind block)
+  09e078  UIAccessibilityIsVoiceOverRunning()
+  09e0b4  tail [self performSelector:@selector(moveToOpener) withObject:0 afterDelay:(UIAccessibilityIsVoiceOverRunning() != 0 ? 0.5 : 2)]
+
+== sub_10009e0b8   (address 0x10009e0b8  size 8  kind sub)
+
+== sub_10009e0c0   (address 0x10009e0c0  size 8  kind sub)
+  09e0c4  return
+
+== -[ADLogoScreenViewController didReceiveMemoryWarning]   (address 0x10009e0c8  size 60  kind objc)
+  09e0f4  [super didReceiveMemoryWarning]
+  09e100  return
+
+== -[ADLogoScreenViewController fireTimer]   (address 0x10009e104  size 80  kind objc)
+  09e140  [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(moveToOpener) userInfo:0 repeats:0]
+  09e150  return
+
+== -[ADLogoScreenViewController moveToOpener]   (address 0x10009e154  size 156  kind objc)
+  09e1c0  [UIView animateWithDuration:0.5 animations:^{-[ADLogoScreenViewController moveToOpener]_block_invoke captures +0x20=self} completion:^{-[ADLogoScreenViewController moveToOpener]_block_invoke_2}]
+  09e1d8  return
+
+== -[ADLogoScreenViewController moveToOpener]_block_invoke   (address 0x10009e1f0  size 100  kind block)
+  09e20c  [self logo]
+  09e22c  [[self logo] setAlpha:0]
+  09e23c  return
+
+== sub_10009e254   (address 0x10009e254  size 8  kind sub)
+
+== sub_10009e25c   (address 0x10009e25c  size 8  kind sub)
+  09e260  return
+
+== -[ADLogoScreenViewController moveToOpener]_block_invoke_2   (address 0x10009e264  size 292  kind block)
+  09e284  [ADGameParameters sharedParameters]
+  09e2a0  [[ADGameParameters sharedParameters] controlScheme]
+  09e2c4  [UIApplication sharedApplication]
+  09e2d8  &@selector(delegate)
+  09e2e4  if ([[ADGameParameters sharedParameters] controlScheme] == -1) goto loc_10009e314
+  09e2ec  [[UIApplication sharedApplication] delegate]
+  09e308  [[[UIApplication sharedApplication] delegate] goToOpener]
+  09e30c  goto loc_10009e338
+  09e310  goto loc_10009e368
+loc_10009e314:
+  09e318  [[UIApplication sharedApplication] delegate]
+  09e334  [[[UIApplication sharedApplication] delegate] goToInputModeSelectScreen]
+loc_10009e338:
+  09e34c  return
+
+== -[ADLogoScreenViewController logo]   (address 0x10009e388  size 16  kind objc)
+  09e394  return
+
+== -[ADLogoScreenViewController setLogo:]   (address 0x10009e398  size 56  kind objc)
+  09e3bc  self->_logo = arg1
+  09e3cc  return
+
+== -[ADLogoScreenViewController .cxx_destruct]   (address 0x10009e3d0  size 20  kind objc)

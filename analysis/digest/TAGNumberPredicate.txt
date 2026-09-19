@@ -1,0 +1,21 @@
+
+== -[TAGNumberPredicate evaluateNoDefaultValues:arg1:parameters:]   (address 0x100178cf8  size 452  kind objc)
+  178d5c  [TAGTypes valueToNumber:arg1]
+  178d84  [TAGTypes valueToNumber:arg2]
+  178da8  [TAGTypes defaultNumber]
+  178dbc  if ([TAGTypes valueToNumber:arg1] == [TAGTypes defaultNumber]) goto loc_100178e18
+  178dc8  [TAGTypes defaultNumber]
+  178ddc  if ([TAGTypes valueToNumber:arg2] == [TAGTypes defaultNumber]) goto loc_100178e20
+  178dfc  [self evaluateWithArg0:[TAGTypes valueToNumber:arg1] arg1:[TAGTypes valueToNumber:arg2] parameters:arg3]
+  178e04  goto loc_100178e24
+  178e14  goto loc_100178e8c
+loc_100178e18:
+  178e1c  goto loc_100178e2c
+loc_100178e20:
+loc_100178e24:
+loc_100178e2c:
+  178e6c  return
+
+== -[TAGNumberPredicate evaluateWithArg0:arg1:parameters:]   (address 0x100178ebc  size 44  kind objc)
+  178ed8  [self doesNotRecognizeSelector:_cmd]
+  178ee4  return

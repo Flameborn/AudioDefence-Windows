@@ -1,0 +1,9 @@
+{
+ "coinsMedium": {
+  "coins": 2200
+ },
+ "coinsSmall": {
+  "coins": 1000
+ },
+ "coinDoubler": {}
+}

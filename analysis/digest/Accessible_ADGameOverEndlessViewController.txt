@@ -1,0 +1,370 @@
+
+== -[Accessible_ADGameOverEndlessViewController initWithNibName:bundle:]   (address 0x100099c68  size 280  kind objc)
+  099cc8  [super initWithNibName:arg1 bundle:arg2]
+  099cd0  if (self == 0) goto loc_100099d34
+  099cec  [NSMutableArray alloc]
+  099d00  [[NSMutableArray alloc] init]
+  099d14  self->_completedMissions = [[NSMutableArray alloc] init]
+  099d30  [self initMissions]
+loc_100099d34:
+  099d58  return
+
+== -[Accessible_ADGameOverEndlessViewController initMissions]   (address 0x100099d80  size 4  kind objc)
+  099d80  return
+
+== -[Accessible_ADGameOverEndlessViewController loadView]   (address 0x100099d84  size 460  kind objc)
+  099db8  [UIDevice currentDevice]
+  099dd8  [[UIDevice currentDevice] model]
+  099e00  [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"]
+  099e04  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] & 1)) goto loc_100099e10
+  099e0c  goto loc_100099e60
+loc_100099e10:
+  099e18  [UIDevice currentDevice]
+  099e2c  [[UIDevice currentDevice] model]
+  099e48  [[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"]
+loc_100099e60:
+  099e84  [NSBundle mainBundle]
+  099e98  &@selector(loadNibNamed:owner:options:)
+  099ea0  if (w22 == 0) goto loc_100099ec4
+  099eb8  [[NSBundle mainBundle] loadNibNamed:@"Accessible_ADGameOverEndlessViewController" owner:self options:0]
+  099ec0  goto loc_100099ee0
+loc_100099ec4:
+  099ed8  [[NSBundle mainBundle] loadNibNamed:@"Accessible_ADGameOverEndlessViewController_iPad" owner:self options:0]
+loc_100099ee0:
+  099f00  return
+
+== -[Accessible_ADGameOverEndlessViewController viewDidLoad]   (address 0x100099f50  size 992  kind objc)
+  099f80  [self statusBarViewController]
+  099f9c  [[self statusBarViewController] pageTitle]
+  099fc0  [[[self statusBarViewController] pageTitle] setText:@"GAME OVER"]
+  099fe8  [ADPersistentStats persistentStats]
+  09a010  [ADInGameStats singleton]
+  09a02c  [[ADInGameStats singleton] gameScore]
+  09a044  [[ADPersistentStats persistentStats] saveScore:[[ADInGameStats singleton] gameScore]]
+  09a068  [self resetCardsModifiersIfNeeded]
+  09a080  [UIDevice currentDevice]
+  09a09c  [[UIDevice currentDevice] systemVersion]
+  09a0b8  [[[UIDevice currentDevice] systemVersion] floatValue]
+  09a0d8  if ([[[UIDevice currentDevice] systemVersion] floatValue] < (or unordered) 7) goto loc_10009a0f0
+  09a0ec  [self reportScoreToGameCenter]
+loc_10009a0f0:
+  09a0f8  [self statusBarViewController]
+  09a10c  if ([self statusBarViewController] != 0) goto loc_10009a124
+  09a120  [self loadStatusBar]
+loc_10009a124:
+  09a12c  [self statusBarViewController]
+  09a14c  [[self statusBarViewController] setArmoryButtonVisibilty:1]
+  09a160  [self statusBarViewController]
+  09a180  [[self statusBarViewController] setArmoryLoadoutEnabled:1]
+  09a1a4  [ADInventory sharedInventory]
+  09a1bc  [ADInGameStats singleton]
+  09a1d8  [[ADInGameStats singleton] totalCoins]
+  09a1f0  [[ADInventory sharedInventory] coins]
+  09a208  [[ADInventory sharedInventory] setCoins:([[ADInventory sharedInventory] coins] + [[ADInGameStats singleton] totalCoins])]
+  09a224  [ADInventory sharedInventory]
+  09a23c  [ADInGameStats singleton]
+  09a258  [[ADInGameStats singleton] diamondLoot]
+  09a270  [[ADInventory sharedInventory] diamonds]
+  09a288  [[ADInventory sharedInventory] setDiamonds:([[ADInventory sharedInventory] diamonds] + [[ADInGameStats singleton] diamondLoot])]
+  09a2b0  return
+
+== -[Accessible_ADGameOverEndlessViewController backButtonPressed]   (address 0x10009a330  size 160  kind objc)
+  09a354  [UIApplication sharedApplication]
+  09a370  [[UIApplication sharedApplication] delegate]
+  09a38c  [[[UIApplication sharedApplication] delegate] goToMainMenu]
+  09a3a8  return
+
+== -[Accessible_ADGameOverEndlessViewController tableView:willDisplayCell:forRowAtIndexPath:]   (address 0x10009a3d0  size 396  kind objc)
+  09a3fc  [arg2 textLabel]
+  09a424  [UIColor blackColor]
+  09a44c  [[arg2 textLabel] setTextColor:[UIColor blackColor]]
+  09a470  [arg2 detailTextLabel]
+  09a488  [UIColor blackColor]
+  09a4a4  [[arg2 detailTextLabel] setTextColor:[UIColor blackColor]]
+  09a4c8  [UIColor whiteColor]
+  09a4ec  [arg2 setBackgroundColor:[UIColor whiteColor]]
+  09a50c  return
+
+== -[Accessible_ADGameOverEndlessViewController tableView:heightForRowAtIndexPath:]   (address 0x10009a55c  size 140  kind objc)
+  09a57c  [ADGameParameters sharedParameters]
+  09a598  [[ADGameParameters sharedParameters] isIphone]
+  09a5c8  return
+
+== -[Accessible_ADGameOverEndlessViewController tableView:heightForHeaderInSection:]   (address 0x10009a5e8  size 140  kind objc)
+  09a608  [ADGameParameters sharedParameters]
+  09a624  [[ADGameParameters sharedParameters] isIphone]
+  09a654  return
+
+== -[Accessible_ADGameOverEndlessViewController tableView:numberOfRowsInSection:]   (address 0x10009a674  size 28  kind objc)
+  09a68c  return
+
+== -[Accessible_ADGameOverEndlessViewController tableView:viewForHeaderInSection:]   (address 0x10009a690  size 524  kind objc)
+  09a6b8  [ADAccessibilityTableHeaderLabel alloc]
+  09a6d8  [[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  09a6e0  if (arg2 != 0) goto loc_10009a704
+  09a6fc  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Rewards"]
+  09a700  goto loc_10009a728
+loc_10009a704:
+  09a708  if (arg2 != 1) goto loc_10009a728
+  09a724  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Statistics"]
+loc_10009a728:
+  09a73c  [ADGameParameters sharedParameters]
+  09a758  [[ADGameParameters sharedParameters] isIphone]
+  09a798  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 35)]
+  09a7bc  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 35)]]
+  09a7dc  [UIColor blackColor]
+  09a800  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setTextColor:[UIColor blackColor]]
+  09a81c  [UIColor whiteColor]
+  09a840  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setBackgroundColor:[UIColor whiteColor]]
+  09a85c  return
+
+== -[Accessible_ADGameOverEndlessViewController numberOfSectionsInTableView:]   (address 0x10009a89c  size 8  kind objc)
+  09a8a0  return
+
+== -[Accessible_ADGameOverEndlessViewController tableView:cellForRowAtIndexPath:]   (address 0x10009a8a4  size 476  kind objc)
+  09a8d8  [arg2 section]
+  09a8dc  if ([arg2 section] != 0) goto loc_10009a904
+  09a8f8  [self cellForRewardsAtIndex:arg2]
+  09a900  goto loc_10009a92c
+loc_10009a904:
+  09a908  if ([arg2 section] != 1) goto loc_10009a93c
+  09a924  [self cellForStatsAtIndex:arg2]
+loc_10009a92c:
+  09a938  goto loc_10009aa24
+loc_10009a93c:
+  09a954  [ADAccessibleTableCell alloc]
+  09a974  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  09a990  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09a9b8  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"EMPTY CELL"]
+  09a9d8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09a9f4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"EMPTY CELL"]
+  09aa18  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] setSelectionStyle:0]
+loc_10009aa24:
+  09aa48  return
+
+== -[Accessible_ADGameOverEndlessViewController cellForRewardsAtIndex:]   (address 0x10009aa80  size 820  kind objc)
+  09aabc  [ADAccessibleTableCell alloc]
+  09aad8  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  09aaf4  [arg1 row]
+  09aaf8  if ([arg1 row] != 0) goto loc_10009abf0
+  09ab0c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09ab34  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Coins"]
+  09ab50  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09ab7c  [ADInGameStats singleton]
+  09ab98  [[ADInGameStats singleton] totalCoins]
+  09abb8  [NSString stringWithFormat:@"You earned %i coins for killing zombies", [[ADInGameStats singleton] totalCoins]]
+  09abd4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"You earned %i coins for killing zombies", [[ADInGameStats singleton] totalCoins]]]
+loc_10009abf0:
+  09abf8  [arg1 row]
+  09ac00  if ([arg1 row] != 1) goto loc_10009acf8
+  09ac14  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09ac3c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Diamonds"]
+  09ac58  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09ac84  [ADInGameStats singleton]
+  09aca0  [[ADInGameStats singleton] diamondLoot]
+  09acc0  [NSString stringWithFormat:@"You earned %i diamonds", [[ADInGameStats singleton] diamondLoot]]
+  09acdc  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"You earned %i diamonds", [[ADInGameStats singleton] diamondLoot]]]
+loc_10009acf8:
+  09ad1c  return
+
+== -[Accessible_ADGameOverEndlessViewController cellForMissionAtIndex:]   (address 0x10009adb4  size 1200  kind objc)
+  09adf8  [ADMissionManager sharedMissionManager]
+  09ae14  [[ADMissionManager sharedMissionManager] activeMissions]
+  09ae38  [arg1 row]
+  09ae50  [[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 row]]
+  09ae88  [[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 row]] cellViewForMissionWithCellIdentifier:@"AccessibleGameOverCell"]
+  09aeac  [ADGameParameters sharedParameters]
+  09aec8  [[ADGameParameters sharedParameters] isIphone]
+  09aeec  [UIButton alloc]
+  09af24  [[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}]
+  09af4c  [[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] setTitle:@"Skip" forState:0]
+  09af6c  [[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 row]] skipCost]
+  09af7c  [[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 row]] skipCost]
+  09af94  t1 = ([[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 row]] skipCost] > 1 ? @"s" : @"")
+  09afb4  [NSString stringWithFormat:@"Skip this mission for %i diamond%@", [[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 r…, t1]
+  09afd8  [[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] setAccessibilityLabel:[NSString stringWithFormat:@"Skip this mission for %i diamond%@", [[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 r…, t1]]
+  09aff8  [[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] titleLabel]
+  09b01c  [UIColor whiteColor]
+  09b040  [[[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] titleLabel] setTextColor:[UIColor whiteColor]]
+  09b064  [UIColor blackColor]
+  09b088  [[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] setBackgroundColor:[UIColor blackColor]]
+  09b09c  [[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] titleLabel]
+  09b0d8  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 25)]
+  09b0fc  [[[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] titleLabel] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 12 : 25)]]
+  09b134  [[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] addTarget:self action:@selector(skipMission:) forControlEvents:64]
+  09b14c  [[[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 row]] cellViewForMissionWithCellIdentifier:@"AccessibleGameOverCell"] setAccessoryView:[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}]]
+  09b158  [arg1 row]
+  09b170  [[[UIButton alloc] initWithFrame:{0, 0, ([[ADGameParameters sharedParameters] isIphone] != 0 ? 35 : 100), ([[ADGameParameters sharedParameters] isIphone] != 0 ? 18 : 35)}] setTag:[arg1 row]]
+  09b1ac  return
+
+== -[Accessible_ADGameOverEndlessViewController skipMission:]   (address 0x10009b264  size 708  kind objc)
+  09b2a8  [ADMissionManager sharedMissionManager]
+  09b2c4  [[ADMissionManager sharedMissionManager] activeMissions]
+  09b2e4  [arg1 tag]
+  09b2fc  [[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 tag]]
+  09b324  [ADMissionManager sharedMissionManager]
+  09b348  [ADInventory sharedInventory]
+  09b368  [[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 tag]] skipCost]
+  09b380  [[ADInventory sharedInventory] diamonds]
+  09b384  t1 = ([[ADInventory sharedInventory] diamonds] - [[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 tag]] skipCost])
+  09b398  [[ADInventory sharedInventory] setDiamonds:t1]
+  09b3ac  [ADMissionManager sharedMissionManager]
+  09b3cc  [[ADMissionManager sharedMissionManager] replaceMission:[[[ADMissionManager sharedMissionManager] activeMissions] objectAtIndex:[arg1 tag]]]
+  09b3f4  [self tableView]
+  09b410  [[self tableView] reloadData]
+  09b430  UIAccessibilityPostNotification(_UIAccessibilityAnnouncementNotification[+0x0], @"Mission skipped")
+  09b440  dispatch_time(0, 0x77359400)
+  09b490  dispatch_after(dispatch_time(0, 0x77359400), __dispatch_main_q, ^{-[Accessible_ADGameOverEndlessViewController skipMission:]_block_invoke captures +0x20=self})
+  09b4c4  return
+
+== -[Accessible_ADGameOverEndlessViewController skipMission:]_block_invoke   (address 0x10009b528  size 104  kind block)
+  09b550  [self tableView]
+  09b568  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [self tableView])
+  09b578  return
+
+== sub_10009b590   (address 0x10009b590  size 8  kind sub)
+
+== sub_10009b598   (address 0x10009b598  size 8  kind sub)
+  09b59c  return
+
+== -[Accessible_ADGameOverEndlessViewController cellForMissionCompletedAtIndex:]   (address 0x10009b5a0  size 556  kind objc)
+  09b5e0  [ADAccessibleTableCell alloc]
+  09b600  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  09b614  [ADAccessibleTableCell alloc]
+  09b62c  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  09b65c  [arg1 row]
+  09b678  [self->_completedMissions objectAtIndex:[arg1 row]]
+  09b698  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09b6b8  [[self->_completedMissions objectAtIndex:[arg1 row]] description]
+  09b6e0  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:[[self->_completedMissions objectAtIndex:[arg1 row]] description]]
+  09b704  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09b720  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:@"mission completed"]
+  09b740  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] setSelectionStyle:0]
+  09b76c  return
+
+== -[Accessible_ADGameOverEndlessViewController cellForStatsAtIndex:]   (address 0x10009b7cc  size 1704  kind objc)
+  09b80c  [ADAccessibleTableCell alloc]
+  09b828  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"]
+  09b844  [arg1 row]
+  09b848  if ([arg1 row] != 0) goto loc_10009b940
+  09b85c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09b884  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Score"]
+  09b8a0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09b8cc  [ADInGameStats singleton]
+  09b8e8  [[ADInGameStats singleton] gameScore]
+  09b908  [NSString stringWithFormat:@"%i", [[ADInGameStats singleton] gameScore]]
+  09b924  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"%i", [[ADInGameStats singleton] gameScore]]]
+loc_10009b940:
+  09b948  [arg1 row]
+  09b950  if ([arg1 row] != 1) goto loc_10009ba48
+  09b964  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09b98c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Kills"]
+  09b9a8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09b9d4  [ADInGameStats singleton]
+  09b9f0  [[ADInGameStats singleton] computeCurrentEnemyKillCount]
+  09ba10  [NSString stringWithFormat:@"%i", [[ADInGameStats singleton] computeCurrentEnemyKillCount]]
+  09ba2c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"%i", [[ADInGameStats singleton] computeCurrentEnemyKillCount]]]
+loc_10009ba48:
+  09ba50  [arg1 row]
+  09ba58  if ([arg1 row] != 2) goto loc_10009bb60
+  09ba6c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09ba94  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Accuracy"]
+  09bab0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09badc  [ADInGameStats singleton]
+  09baf8  [[ADInGameStats singleton] currentAccuracy]
+  09bb28  [NSString stringWithFormat:@"%.2f %%", ([[ADInGameStats singleton] currentAccuracy] * 100)]
+  09bb44  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"%.2f %%", ([[ADInGameStats singleton] currentAccuracy] * 100)]]
+loc_10009bb60:
+  09bb68  [arg1 row]
+  09bb70  if ([arg1 row] != 3) goto loc_10009bc58
+  09bb84  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09bbac  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Survival time"]
+  09bbc8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09bbec  [ADInGameStats singleton]
+  09bc08  [[ADInGameStats singleton] timeElapsed]
+  09bc20  [self timeStringFromSeconds:(int)[[ADInGameStats singleton] timeElapsed]]
+  09bc3c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[self timeStringFromSeconds:(int)[[ADInGameStats singleton] timeElapsed]]]
+loc_10009bc58:
+  09bc60  [arg1 row]
+  09bc68  if ([arg1 row] != 4) goto loc_10009bd60
+  09bc7c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel]
+  09bca4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] textLabel] setText:@"Maximum combo"]
+  09bcc0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel]
+  09bcec  [ADInGameStats singleton]
+  09bd08  [[ADInGameStats singleton] highestCombo]
+  09bd28  [NSString stringWithFormat:@"%i", [[ADInGameStats singleton] highestCombo]]
+  09bd44  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] detailTextLabel] setText:[NSString stringWithFormat:@"%i", [[ADInGameStats singleton] highestCombo]]]
+loc_10009bd60:
+  09bd74  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleGameOverCell"] setSelectionStyle:0]
+  09bd9c  return
+
+== -[Accessible_ADGameOverEndlessViewController timeStringFromSeconds:]   (address 0x10009be74  size 224  kind objc)
+  09bea4  t1 = (((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >> 5) + ((((arg1 * 0xffffffff88888889) >>> 32) + arg1) >>> 31))
+  09beec  [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 - t1 * 60)]
+  09bf10  [NSString stringWithFormat:@"%i:%@", t1, [NSString stringWithFormat:@"%@%i", ((arg1 - t1 * 60) < 10 ? @"0" : @""), (arg1 …]
+  09bf3c  return
+
+== -[Accessible_ADGameOverEndlessViewController playAgainButtonPressed:]   (address 0x10009bf54  size 164  kind objc)
+  09bf74  [UIApplication sharedApplication]
+  09bf90  [[UIApplication sharedApplication] delegate]
+  09bfac  [[[UIApplication sharedApplication] delegate] goToTarot]
+  09bfc4  return
+
+== -[Accessible_ADGameOverEndlessViewController accessibilityPerformMagicTap]   (address 0x10009bff8  size 40  kind objc)
+  09c010  [self playAgainButtonPressed:0]
+  09c01c  return
+
+== -[Accessible_ADGameOverEndlessViewController viewWillAppear:]   (address 0x10009c020  size 168  kind objc)
+  09c054  [super viewWillAppear:arg1]
+  09c068  [self initMissions]
+  09c07c  [self tableView]
+  09c098  [[self tableView] reloadData]
+  09c0b0  return
+
+== -[Accessible_ADGameOverEndlessViewController scrollViewDidScroll:]   (address 0x10009c0c8  size 4  kind objc)
+  09c0c8  return
+
+== -[Accessible_ADGameOverEndlessViewController AccessibleTwitterButtonPressed:]   (address 0x10009c0cc  size 696  kind objc)
+  09c114  [SLComposeViewController isAvailableForServiceType:_SLServiceTypeTwitter[+0x0]]
+  09c118  if ([SLComposeViewController isAvailableForServiceType:_SLServiceTypeTwitter[+0x0]] == 0) goto loc_10009c290
+  09c130  [SLComposeViewController composeViewControllerForServiceType:_SLServiceTypeTwitter[+0x0]]
+  09c15c  [NSBundle mainBundle]
+  09c18c  [[NSBundle mainBundle] localizedStringForKey:@"TWITTER_ACCESSIBLE_SHARE" value:@"" table:0]
+  09c1b4  [ADInGameStats singleton]
+  09c1d0  [[ADInGameStats singleton] numberOfEnemyKills]
+  09c1e0  [ADInGameStats singleton]
+  09c1fc  [[ADInGameStats singleton] gameScore]
+  09c218  [NSString stringWithFormat:[[NSBundle mainBundle] localizedStringForKey:@"TWITTER_ACCESSIBLE_SHARE" value:@"" table:0]]
+  09c23c  [[SLComposeViewController composeViewControllerForServiceType:_SLServiceTypeTwitter[+0x0]] setInitialText:[NSString stringWithFormat:[[NSBundle mainBundle] localizedStringForKey:@"TWITTER_ACCESSIBLE_SHARE" value:@"" table:0]]]
+  09c284  [self presentViewController:[SLComposeViewController composeViewControllerForServiceType:_SLServiceTypeTwitter[+0x0]] animated:1 completion:0]
+  09c288  goto loc_10009c2f4
+  09c28c  goto loc_10009c370
+loc_10009c290:
+  09c2a4  [UIAlertView alloc]
+  09c2d8  [[UIAlertView alloc] initWithTitle:@"Twitter Sign-In" message:@"Please register your device with twitter in order to share screenshots" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:0]
+  09c2f0  [[[UIAlertView alloc] initWithTitle:@"Twitter Sign-In" message:@"Please register your device with twitter in order to share screenshots" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:0] show]
+loc_10009c2f4:
+  09c314  return
+
+== -[Accessible_ADGameOverEndlessViewController completedMissions]   (address 0x10009c384  size 16  kind objc)
+  09c390  return
+
+== -[Accessible_ADGameOverEndlessViewController setCompletedMissions:]   (address 0x10009c394  size 56  kind objc)
+  09c3b8  self->_completedMissions = arg1
+  09c3c8  return
+
+== -[Accessible_ADGameOverEndlessViewController tableView]   (address 0x10009c3cc  size 16  kind objc)
+  09c3d8  return
+
+== -[Accessible_ADGameOverEndlessViewController setTableView:]   (address 0x10009c3dc  size 56  kind objc)
+  09c400  self->_tableView = arg1
+  09c410  return
+
+== -[Accessible_ADGameOverEndlessViewController enemyData]   (address 0x10009c414  size 16  kind objc)
+  09c420  return
+
+== -[Accessible_ADGameOverEndlessViewController setEnemyData:]   (address 0x10009c424  size 56  kind objc)
+  09c448  self->_enemyData = arg1
+  09c458  return
+
+== -[Accessible_ADGameOverEndlessViewController .cxx_destruct]   (address 0x10009c45c  size 84  kind objc)

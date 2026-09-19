@@ -1,0 +1,69 @@
+
+== +[TAGCustomFunctionCall functionId]   (address 0x10015a114  size 44  kind objc)
+  15a13c  return
+
+== +[TAGCustomFunctionCall functionCallNameKey]   (address 0x10015a140  size 44  kind objc)
+  15a168  return
+
+== +[TAGCustomFunctionCall additionalParametersKey]   (address 0x10015a16c  size 44  kind objc)
+  15a194  return
+
+== -[TAGCustomFunctionCall initWithEvaluator:]   (address 0x10015a198  size 240  kind objc)
+  15a1dc  [NSSet setWithObject:@"function_call_macro_name"]
+  15a218  [super initWithFunctionId:@"_func" requiredKeys:[NSSet setWithObject:@"function_call_macro_name"]]
+  15a220  if (self == 0) goto loc_10015a238
+loc_10015a238:
+  15a25c  return
+
+== -[TAGCustomFunctionCall isCacheable]   (address 0x10015a288  size 8  kind objc)
+  15a28c  return
+
+== -[TAGCustomFunctionCall evaluate:]   (address 0x10015a290  size 1464  kind objc)
+  15a2f0  [arg1 objectForKey:@"function_call_macro_name"]
+  15a314  [TAGTypes valueToString:[arg1 objectForKey:@"function_call_macro_name"]]
+  15a340  [NSMutableDictionary dictionary]
+  15a360  [arg1 objectForKey:@"additional_params"]
+  15a370  if ([arg1 objectForKey:@"additional_params"] == 0) goto loc_10015a528
+  15a388  [TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]]
+  15a3ac  [NSDictionary class]
+  15a3c4  [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] isKindOfClass:[NSDictionary class]]
+  15a3cc  if (!([[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] isKindOfClass:[NSDictionary class]] & 1)) goto loc_10015a594
+  15a418  [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]
+  15a420  if ([[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16] == 0) goto loc_10015a4f8
+loc_10015a454:
+loc_10015a458:
+  15a464  if (x8 == x19) goto loc_10015a470
+  15a46c  objc_enumerationMutation([TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]])
+loc_10015a470:
+  15a484  [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] objectForKey:x2]
+  15a49c  [x0 description]
+  15a4bc  [[NSMutableDictionary dictionary] setObject:[[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] objectForKey:x2] forKey:[x0 description]]
+  15a4d8  if ((x22 + 1) <u [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0…) goto loc_10015a458
+  15a4ec  [[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]
+  15a4f4  if ([[TAGTypes valueToObject:[arg1 objectForKey:@"additional_params"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16] != 0) goto loc_10015a454
+loc_10015a4f8:
+loc_10015a528:
+  15a538  [self functionCallEvaluator]
+  15a55c  [[self functionCallEvaluator] evaluate:[TAGTypes valueToString:[arg1 objectForKey:@"function_call_macro_name"]] parameters:[NSMutableDictionary dictionary]]
+  15a588  [TAGTypes objectToValue:[[self functionCallEvaluator] evaluate:[TAGTypes valueToString:[arg1 objectForKey:@"function_call_macro_name"]] parameters:[NSMutableDictionary dictionary]]]
+  15a590  goto loc_10015a5cc
+loc_10015a594:
+  15a5b0  [TAGLog warning:@"FunctionCallMacro: expected additional_params to be a map."]
+  15a5c4  [TAGTypes defaultValue]
+loc_10015a5cc:
+  15a62c  return
+  15a724  if (w22 != 1) goto loc_10015a834
+  15a72c  objc_begin_catch()
+  15a750  [objc_begin_catch() description]
+  15a78c  [NSString stringWithFormat:@"Custom macro/tag %@ threw exception %@", sp[0], [objc_begin_catch() description]]
+  15a7b4  [TAGLog warning:[NSString stringWithFormat:@"Custom macro/tag %@ threw exception %@", sp[0], [objc_begin_catch() description]]]
+  15a7c8  objc_end_catch()
+  15a7ec  [x0 defaultValue]
+  15a830  objc_end_catch()
+
+== -[TAGCustomFunctionCall functionCallEvaluator]   (address 0x10015a848  size 16  kind objc)
+  15a854  return
+
+== -[TAGCustomFunctionCall setFunctionCallEvaluator:]   (address 0x10015a858  size 20  kind objc)
+
+== -[TAGCustomFunctionCall .cxx_destruct]   (address 0x10015a86c  size 20  kind objc)

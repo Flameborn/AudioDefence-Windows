@@ -1,0 +1,61 @@
+
+== csl::Scalable::~Scalable   (address 0x1000e9c48  size 88  kind cxx)
+  0e9c64  a0[+0x8] = vtable<csl::Controllable>
+loc_1000e9c6c:
+  0e9c70  if (x0 == 0) goto loc_1000e9c84
+  0e9c7c  call x8
+loc_1000e9c84:
+  0e9c8c  if ((x20 + 8) != 120) goto loc_1000e9c6c
+  0e9c9c  return
+
+== csl::Scalable::thunk_vfunc_0   (address 0x1000e9ca0  size 92  kind cxx)
+  0e9cc4  (a0 + a0[+0x0][+0x-18])[+0x8] = vtable<csl::Controllable>
+loc_1000e9ccc:
+  0e9cd0  if (x0 == 0) goto loc_1000e9ce4
+  0e9cdc  call x8
+loc_1000e9ce4:
+  0e9cec  if ((x20 + 8) != 120) goto loc_1000e9ccc
+  0e9cf8  return
+
+== csl::Scalable::~Scalable/*deleting*/   (address 0x1000e9cfc  size 108  kind cxx)
+  0e9d18  a0[+0x8] = vtable<csl::Controllable>
+loc_1000e9d20:
+  0e9d24  if (x0 == 0) goto loc_1000e9d38
+  0e9d30  call x8
+loc_1000e9d38:
+  0e9d40  if ((x20 + 8) != 120) goto loc_1000e9d20
+  0e9d50  tail ZdlPv(a0)
+  0e9d5c  ZdlPv()
+
+== csl::Scalable::thunk_vfunc_1   (address 0x1000e9d68  size 16  kind cxx)
+  0e9d74  tail csl::Scalable::~Scalable/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== sub_1000e9d78   (address 0x1000e9d78  size 20  kind sub)
+  0e9d88  tail sub_1000e9714((a0 + a0[+0x0][+0x-18]), 1, a2, a3)
+
+== csl::Scalable::vfunc_2   (address 0x1000e9d8c  size 100  kind cxx)
+  0e9dac  if ((a0[+0x0][+0x-18] + a0)[+0x10] == 0) goto loc_1000e9dc4
+  0e9db8  call (a0[+0x0][+0x-18] + a0)[+0x10][+0x0][+0x18]
+loc_1000e9dc4:
+  0e9dcc  if ((a0[+0x0][+0x-18] + a0)[+0x18] == 0) goto loc_1000e9de4
+loc_1000e9de4:
+  0e9dec  return
+
+== sub_1000e9df0   (address 0x1000e9df0  size 80  kind sub)
+  0e9e04  sub_1000e732c(a0, a1, a2, a3)
+  0e9e14  sub_1000e886c(a0, sub_1000e732c(a0, a1, a2, a3), 1)
+  0e9e1c  a0[+0x0] = a1[+0x0]
+  0e9e2c  a0[+0xa4] = 0
+  0e9e3c  return
+
+== sub_1000e9e40   (address 0x1000e9e40  size 160  kind sub)
+  0e9e5c  sub_1000e732c(a0, a1, a2, a3)
+  0e9e6c  sub_1000e886c(a0, sub_1000e732c(a0, a1, a2, a3), 1)
+  0e9e74  a0[+0x0] = a1[+0x0]
+  0e9e84  a0[+0xa4] = 0
+  0e9e94  call a2[+0x0][+0x18]
+  0e9e98  a0[+0x60] = a2[+0x0][+0x18](…)
+  0e9eb0  sub_1000e969c((a0 + a0[+0x0][+0x-18]), 3, a2)
+  0e9ec4  return
+  0e9ed0  call sub_1000e8918
+  0e9edc  call sub_10000b760

@@ -1,0 +1,215 @@
+
+== +[TAGResourceLoader sdkVersion]   (address 0x10015508c  size 96  kind objc)
+  1550b8  [TAGRuntimeVersion versionNumber]
+  1550d8  [NSString stringWithFormat:@"i%ld", [TAGRuntimeVersion versionNumber]]
+  1550e8  return
+
+== -[TAGResourceLoader initWithContainerId:]   (address 0x1001550ec  size 324  kind objc)
+  155134  [super init]
+  15513c  if (self == 0) goto loc_1001551f4
+  155158  [@"https://www.googletagmanager.com" copy]
+  15516c  self->_ctfeServerAddress = [@"https://www.googletagmanager.com" copy]
+  155190  [@"/r?id=" stringByAppendingString:arg1]
+  1551a8  self->_ctfeUrlPathAndQuery = [@"/r?id=" stringByAppendingString:arg1]
+  1551c8  self->_containerId = arg1
+  1551e8  self->_defaultCtfeUrlPathAndQuery = self->_ctfeUrlPathAndQuery
+loc_1001551f4:
+  155210  return
+
+== -[TAGResourceLoader connection:didReceiveResponse:]   (address 0x100155230  size 200  kind objc)
+  155264  [NSMutableData data]
+  155288  [self setResponseData:[NSMutableData data]]
+  1552a4  [arg2 statusCode]
+  1552bc  [self setStatusCode:[arg2 statusCode]]
+  1552d0  return
+
+== -[TAGResourceLoader connection:didReceiveData:]   (address 0x1001552f8  size 148  kind objc)
+  155328  [self responseData]
+  155348  [[self responseData] appendData:arg2]
+  155364  return
+
+== -[TAGResourceLoader connection:didFailWithError:]   (address 0x10015538c  size 424  kind objc)
+  1553c8  [self setResponseData:0]
+  1553e0  [self setConnection:0]
+  1553fc  [self ctfeUrl]
+  15541c  [arg2 description]
+  155448  [NSString stringWithFormat:@"Error when loading resources from url: %@ %@", [self ctfeUrl], [arg2 description]]
+  155480  [TAGLog warning:[NSString stringWithFormat:@"Error when loading resources from url: %@ %@", [self ctfeUrl], [arg2 description]]]
+  155494  [self callback]
+  1554b4  [[self callback] onFailure:1]
+  1554e0  return
+
+== -[TAGResourceLoader connectionDidFinishLoading:]   (address 0x100155534  size 1800  kind objc)
+  155578  [self statusCode]
+  155580  if ([self statusCode] != 200) goto loc_100155728
+  155598  [TAGPBExtensionRegistry alloc]
+  1555a8  [[TAGPBExtensionRegistry alloc] init]
+  1555c4  [TAGPServingValue ext]
+  1555e8  [[[TAGPBExtensionRegistry alloc] init] addExtension:[TAGPServingValue ext]]
+  155618  [TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]]
+  15563c  [[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] description]
+  155668  [@"Successfully loaded supplemented resource: " stringByAppendingString:[[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] description]]
+  155690  [TAGLog verbose:[@"Successfully loaded supplemented resource: " stringByAppendingString:[[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] description]]]
+  1556b4  [[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] hasResource]
+  1556b8  if (([[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] hasResource] & 1)) goto loc_100155944
+  1556d0  [[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] supplementalArray]
+  1556e0  if ([[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] supplementalArray] == 0) goto loc_1001558d8
+  1556ec  [[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] supplementalArray]
+  155708  [[[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] supplementalArray] count]
+  155720  if ([[[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] supplementalArray] count] != 0) goto loc_100155944
+  155724  goto loc_1001558e0
+loc_100155728:
+  155730  [self statusCode]
+  155740  &@selector(ctfeUrl)
+  15574c  if ([self statusCode] != 404) goto loc_100155818
+  155754  [self ctfeUrl]
+  155774  [self containerId]
+  1557a0  [NSString stringWithFormat:@"No data was retrieved from the given url:%@. Make sure container_id:%@ is correct.", [self ctfeUrl], [self containerId]]
+  1557d8  [TAGLog warning:[NSString stringWithFormat:@"No data was retrieved from the given url:%@. Make sure container_id:%@ is correct.", [self ctfeUrl], [self containerId]]]
+  1557ec  [self callback]
+  15580c  [[self callback] onFailure:3]
+  155810  goto loc_1001558bc
+  155814  goto loc_100155aac
+loc_100155818:
+  15581c  [self ctfeUrl]
+  155834  [self statusCode]
+  155854  [NSString stringWithFormat:@"Error when loading resources from url: %@ status code = %ld", [self ctfeUrl], [self statusCode]]
+  155884  [TAGLog warning:[NSString stringWithFormat:@"Error when loading resources from url: %@ status code = %ld", [self ctfeUrl], [self statusCode]]]
+  155898  [self callback]
+  1558b8  [[self callback] onFailure:2]
+loc_1001558bc:
+  1558d4  goto loc_100155998
+loc_1001558d8:
+loc_1001558e0:
+  1558f4  [self containerId]
+  155914  [@"No change for container: " stringByAppendingString:[self containerId]]
+  155930  [TAGLog verbose:[@"No change for container: " stringByAppendingString:[self containerId]]]
+loc_100155944:
+  155954  [self callback]
+  155974  [[self callback] onSuccess:[TAGPSupplementedResource parseFromData:self->_responseData extensionRegistry:[[TAGPBExtensionRegistry alloc] init]]]
+loc_100155998:
+  1559ac  [self setConnection:0]
+  1559b0  if (0 != 0) goto loc_100155bd0
+  1559bc  if ((one of {0, 1} | 2) != 2) goto loc_1001559e0
+  1559dc  [TAGLog verbose:@"Load resource from network finished"]
+loc_1001559e0:
+  155a00  return
+  155adc  if (w28 != 2) goto loc_100155c28
+  155ae4  objc_begin_catch()
+  155b04  [x0 ctfeUrl]
+  155b34  [@"Error when parsing downloaded resources from url: " stringByAppendingString:[x0 ctfeUrl]]
+  155b5c  [TAGLog warning:[@"Error when parsing downloaded resources from url: " stringByAppendingString:[x0 ctfeUrl]]]
+  155b84  [x0 callback]
+  155ba8  [[x0 callback] onFailure:3]
+  155bb4  objc_end_catch()
+  155bc8  if (w21 == 0) goto loc_100155bec
+  155bd0  objc_exception_rethrow([self setConnection:0])
+  155bdc  objc_end_catch()
+  155be4  objc_terminate()
+  155c24  objc_end_catch()
+  155c2c  objc_begin_catch()
+
+== -[TAGResourceLoader loadResourceAsync]   (address 0x100155c3c  size 488  kind objc)
+  155c70  [self ctfeUrl]
+  155c94  [NSURL URLWithString:[self ctfeUrl]]
+  155cb8  [NSURLRequest requestWithURL:[NSURL URLWithString:[self ctfeUrl]]]
+  155cec  [NSURLConnection alloc]
+  155d04  [[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self ctfeUrl]]] delegate:self]
+  155d20  [self setConnection:[[NSURLConnection alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[self ctfeUrl]]] delegate:self]]
+  155d3c  [self connection]
+  155d54  &@selector(callback)
+  155d5c  if ([self connection] == 0) goto loc_100155d8c
+  155d64  [self callback]
+  155d80  [[self callback] startLoad]
+  155d84  goto loc_100155db4
+  155d88  goto loc_100155e08
+loc_100155d8c:
+  155d90  [self callback]
+  155db0  [[self callback] onFailure:1]
+loc_100155db4:
+  155dd0  return
+
+== -[TAGResourceLoader ctfeUrl]   (address 0x100155e24  size 720  kind objc)
+  155e5c  [self ctfeServerAddress]
+  155e7c  [self ctfeUrlPathAndQuery]
+  155ea0  [TAGResourceLoader sdkVersion]
+  155edc  [NSString stringWithFormat:@"%@%@%@%@", [self ctfeServerAddress], [self ctfeUrlPathAndQuery], @"&v=", [TAGResourceLoader sdkVersion]]
+  155f18  [self previousVersion]
+  155f28  if ([self previousVersion] == 0) goto loc_100156024
+  155f34  [self previousVersion]
+  155f58  [NSCharacterSet whitespaceAndNewlineCharacterSet]
+  155f7c  [[self previousVersion] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
+  155fa0  [[[self previousVersion] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqual:@""]
+  155fc8  if (([[[self previousVersion] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] isEqual:@""] & 1)) goto loc_10015602c
+  155fd8  [self previousVersion]
+  156008  [NSString stringWithFormat:@"%@&%@=%@", [NSString stringWithFormat:@"%@%@%@%@", [self ctfeServerAddress], [self ctfeUrlP…, @"pv", [self previousVersion]]
+  156020  goto loc_100156038
+loc_100156024:
+loc_10015602c:
+loc_100156038:
+  156060  return
+
+== -[TAGResourceLoader setCtfeUrlPathAndQuery:]   (address 0x1001560f4  size 156  kind objc)
+  156114  if (arg1 == 0) goto loc_100156140
+  156128  [arg1 copy]
+  156138  self->_ctfeUrlPathAndQuery = [arg1 copy]
+  15613c  goto loc_100156160
+loc_100156140:
+  15615c  self->_ctfeUrlPathAndQuery = self->_defaultCtfeUrlPathAndQuery
+loc_100156160:
+  156178  return
+
+== -[TAGResourceLoader callback]   (address 0x100156190  size 16  kind objc)
+  15619c  return
+
+== -[TAGResourceLoader setCallback:]   (address 0x1001561a0  size 20  kind objc)
+
+== -[TAGResourceLoader ctfeServerAddress]   (address 0x1001561b4  size 16  kind objc)
+  1561c0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGResourceLoader setCtfeServerAddress:]   (address 0x1001561c4  size 12  kind objc)
+  1561cc  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoader ctfeUrlPathAndQuery]   (address 0x1001561d0  size 16  kind objc)
+  1561dc  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGResourceLoader previousVersion]   (address 0x1001561e0  size 16  kind objc)
+  1561ec  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGResourceLoader setPreviousVersion:]   (address 0x1001561f0  size 12  kind objc)
+  1561f8  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoader connection]   (address 0x1001561fc  size 16  kind objc)
+  156208  return
+
+== -[TAGResourceLoader setConnection:]   (address 0x10015620c  size 56  kind objc)
+  156230  self->_connection = arg1
+  156240  return
+
+== -[TAGResourceLoader responseData]   (address 0x100156244  size 16  kind objc)
+  156250  return
+
+== -[TAGResourceLoader setResponseData:]   (address 0x100156254  size 56  kind objc)
+  156278  self->_responseData = arg1
+  156288  return
+
+== -[TAGResourceLoader statusCode]   (address 0x10015628c  size 16  kind objc)
+  156298  return
+
+== -[TAGResourceLoader setStatusCode:]   (address 0x10015629c  size 16  kind objc)
+  1562a4  self->_statusCode = arg1
+  1562a8  return
+
+== -[TAGResourceLoader containerId]   (address 0x1001562ac  size 16  kind objc)
+  1562b8  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGResourceLoader setContainerId:]   (address 0x1001562bc  size 12  kind objc)
+  1562c4  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoader defaultCtfeUrlPathAndQuery]   (address 0x1001562c8  size 16  kind objc)
+  1562d4  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[TAGResourceLoader setDefaultCtfeUrlPathAndQuery:]   (address 0x1001562d8  size 12  kind objc)
+  1562e0  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoader .cxx_destruct]   (address 0x1001562e4  size 184  kind objc)

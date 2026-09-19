@@ -1,0 +1,278 @@
+
+== -[Accessible_ADControlSchemeViewController initWithNibName:bundle:]   (address 0x1000b49e0  size 140  kind objc)
+  0b4a30  [super initWithNibName:arg1 bundle:arg2]
+  0b4a54  return
+
+== -[Accessible_ADControlSchemeViewController viewDidLoad]   (address 0x1000b4a6c  size 60  kind objc)
+  0b4a98  [super viewDidLoad]
+  0b4aa4  return
+
+== -[Accessible_ADControlSchemeViewController tableView:willDisplayCell:forRowAtIndexPath:]   (address 0x1000b4aa8  size 396  kind objc)
+  0b4ad4  [arg2 textLabel]
+  0b4afc  [UIColor blackColor]
+  0b4b24  [[arg2 textLabel] setTextColor:[UIColor blackColor]]
+  0b4b48  [arg2 detailTextLabel]
+  0b4b60  [UIColor blackColor]
+  0b4b7c  [[arg2 detailTextLabel] setTextColor:[UIColor blackColor]]
+  0b4ba0  [UIColor whiteColor]
+  0b4bc4  [arg2 setBackgroundColor:[UIColor whiteColor]]
+  0b4be4  return
+
+== -[Accessible_ADControlSchemeViewController tableView:numberOfRowsInSection:]   (address 0x1000b4c34  size 32  kind objc)
+  0b4c38  if (arg2 >u 2) goto loc_1000b4c4c
+  0b4c48  return
+loc_1000b4c4c:
+  0b4c50  return
+
+== -[Accessible_ADControlSchemeViewController tableView:heightForRowAtIndexPath:]   (address 0x1000b4c54  size 140  kind objc)
+  0b4c74  [ADGameParameters sharedParameters]
+  0b4c90  [[ADGameParameters sharedParameters] isIphone]
+  0b4cc0  return
+
+== -[Accessible_ADControlSchemeViewController tableView:heightForHeaderInSection:]   (address 0x1000b4ce0  size 140  kind objc)
+  0b4d00  [ADGameParameters sharedParameters]
+  0b4d1c  [[ADGameParameters sharedParameters] isIphone]
+  0b4d4c  return
+
+== -[Accessible_ADControlSchemeViewController tableView:viewForHeaderInSection:]   (address 0x1000b4d6c  size 564  kind objc)
+  0b4d94  [ADAccessibilityTableHeaderLabel alloc]
+  0b4db4  [[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}]
+  0b4dbc  if (arg2 == 0) goto loc_1000b4de8
+  0b4dc4  if (arg2 != 1) goto loc_1000b4e08
+  0b4de0  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Controls"]
+  0b4de4  goto loc_1000b4e2c
+loc_1000b4de8:
+  0b4e00  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Aiming"]
+  0b4e04  goto loc_1000b4e2c
+loc_1000b4e08:
+  0b4e0c  if (arg2 != 2) goto loc_1000b4e2c
+  0b4e28  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setText:@"Sound"]
+loc_1000b4e2c:
+  0b4e40  [ADGameParameters sharedParameters]
+  0b4e5c  [[ADGameParameters sharedParameters] isIphone]
+  0b4e9c  [UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 35)]
+  0b4ec0  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 25 : 35)]]
+  0b4ee0  [UIColor blackColor]
+  0b4f04  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setTextColor:[UIColor blackColor]]
+  0b4f20  [UIColor whiteColor]
+  0b4f44  [[[ADAccessibilityTableHeaderLabel alloc] initWithFrame:{CGRectZero.0, CGRectZero.1, d2, d3}] setBackgroundColor:[UIColor whiteColor]]
+  0b4f60  return
+
+== -[Accessible_ADControlSchemeViewController numberOfSectionsInTableView:]   (address 0x1000b4fa0  size 8  kind objc)
+  0b4fa4  return
+
+== -[Accessible_ADControlSchemeViewController tableView:cellForRowAtIndexPath:]   (address 0x1000b4fa8  size 520  kind objc)
+  0b4fdc  [arg2 section]
+  0b4fe0  if ([arg2 section] == 0) goto loc_1000b5010
+  0b4fe8  if ([arg2 section] != 1) goto loc_1000b5034
+  0b5004  [self cellForControlAtIndex:arg2]
+  0b500c  goto loc_1000b505c
+loc_1000b5010:
+  0b5028  [self cellForAimingAtIndex:arg2]
+  0b5030  goto loc_1000b505c
+loc_1000b5034:
+  0b5038  if ([arg2 section] != 2) goto loc_1000b5090
+  0b5054  [self cellForSound:arg2]
+loc_1000b505c:
+  0b508c  return
+  0b50a8  [UITableViewCell alloc]
+  0b50c8  [[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"]
+  0b50e4  [[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel]
+  0b510c  [[[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel] setText:@"EMPTY CELL"]
+  0b512c  [[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel]
+  0b5148  [[[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel] setText:@"EMPTY CELL"]
+  0b516c  [[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setSelectionStyle:0]
+
+== -[Accessible_ADControlSchemeViewController tableView:willSelectRowAtIndexPath:]   (address 0x1000b51b0  size 1412  kind objc)
+  0b5210  [arg2 section]
+  0b5214  if ([arg2 section] == 0) goto loc_1000b5290
+  0b521c  if ([arg2 section] != 1) goto loc_1000b5300
+  0b5234  [arg2 row]
+  0b5238  if ([arg2 row] == 0) goto loc_1000b53d0
+  0b5244  [arg2 row]
+  0b524c  if ([arg2 row] != 1) goto loc_1000b54a4
+  0b5264  [ADGameParameters sharedParameters]
+  0b5284  [[ADGameParameters sharedParameters] setButtonMode:0]
+  0b5288  goto loc_1000b549c
+  0b528c  goto loc_1000b56b4
+loc_1000b5290:
+  0b52a4  [arg2 row]
+  0b52a8  if ([arg2 row] == 0) goto loc_1000b5410
+  0b52b4  [arg2 row]
+  0b52bc  if ([arg2 row] != 1) goto loc_1000b5450
+  0b52d4  [ADGameParameters sharedParameters]
+  0b52f4  [[ADGameParameters sharedParameters] setControlScheme:2]
+  0b52f8  goto loc_1000b549c
+  0b52fc  goto loc_1000b56b4
+loc_1000b5300:
+  0b5304  if ([arg2 section] != 2) goto loc_1000b54a4
+  0b531c  [arg2 row]
+  0b5320  if ([arg2 row] == 0) goto loc_1000b55fc
+  0b532c  [arg2 row]
+  0b5334  if ([arg2 row] != 1) goto loc_1000b54a4
+  0b534c  [S3DEngine engine]
+  0b5370  [[S3DEngine engine] playListWithName:@"headphonesTest"]
+  0b5394  [[[S3DEngine engine] playListWithName:@"headphonesTest"] S3DSound:@"HeadphonesTest"]
+  0b53c4  [[[[S3DEngine engine] playListWithName:@"headphonesTest"] S3DSound:@"HeadphonesTest"] play]
+  0b53cc  goto loc_1000b56a8
+loc_1000b53d0:
+  0b53e4  [ADGameParameters sharedParameters]
+  0b5404  [[ADGameParameters sharedParameters] setButtonMode:1]
+  0b5408  goto loc_1000b549c
+  0b540c  goto loc_1000b56b4
+loc_1000b5410:
+  0b5424  [ADGameParameters sharedParameters]
+  0b5444  [[ADGameParameters sharedParameters] setControlScheme:1]
+  0b5448  goto loc_1000b549c
+  0b544c  goto loc_1000b56b4
+loc_1000b5450:
+  0b5458  [arg2 row]
+  0b5460  if ([arg2 row] != 2) goto loc_1000b54a4
+  0b5478  [ADGameParameters sharedParameters]
+  0b5498  [[ADGameParameters sharedParameters] setControlScheme:3]
+loc_1000b549c:
+loc_1000b54a4:
+  0b54c4  [arg1 indexPathsForSelectedRows]
+  0b54f0  [[arg1 indexPathsForSelectedRows] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0b54f8  if ([[arg1 indexPathsForSelectedRows] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] == 0) goto loc_1000b5598
+  0b5508  &@selector(deselectRowAtIndexPath:animated:)
+loc_1000b5510:
+loc_1000b5514:
+  0b5520  if (x8 == x28) goto loc_1000b552c
+  0b5528  objc_enumerationMutation([arg1 indexPathsForSelectedRows])
+loc_1000b552c:
+  0b553c  [x0 section]
+  0b554c  [arg2 section]
+  0b5554  if ([x0 section] != [arg2 section]) goto loc_1000b556c
+  0b5568  [arg1 deselectRowAtIndexPath:x2 animated:0]
+loc_1000b556c:
+  0b5574  if ((x23 + 1) <u [[arg1 indexPathsForSelectedRows] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]) goto loc_1000b5514
+  0b558c  [[arg1 indexPathsForSelectedRows] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16]
+  0b5594  if ([[arg1 indexPathsForSelectedRows] countByEnumeratingWithState:&sp[0x18] objects:&sp[0x58] count:16] != 0) goto loc_1000b5510
+loc_1000b5598:
+  0b55f4  return
+  0b5614  [ADGameParameters sharedParameters]
+  0b562c  [ADGameParameters sharedParameters]
+  0b5648  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  0b5660  [[ADGameParameters sharedParameters] setAnnouncer:([[ADGameParameters sharedParameters] lastAnnouncerValue] ^ 1)]
+  0b5684  [self tableView]
+  0b56a0  [[self tableView] reloadData]
+
+== -[Accessible_ADControlSchemeViewController cellForAimingAtIndex:]   (address 0x1000b5734  size 1584  kind objc)
+  0b5770  [ADAccessibleTableCell alloc]
+  0b578c  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"]
+  0b57a8  [arg1 row]
+  0b57ac  if ([arg1 row] != 0) goto loc_1000b5938
+  0b57c0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel]
+  0b57e8  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel] setText:@"Gyro"]
+  0b5804  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel]
+  0b5828  [NSBundle mainBundle]
+  0b5858  [[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]
+  0b5874  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"GYRO_DESCRIPTION" value:@"" table:0]]
+  0b58a8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setAccessibilityHint:@"double tap to select"]
+  0b58c0  [ADGameParameters sharedParameters]
+  0b58dc  [[ADGameParameters sharedParameters] controlScheme]
+  0b58f0  if ([[ADGameParameters sharedParameters] controlScheme] != 1) goto loc_1000b5938
+  0b5904  [self tableView]
+  0b592c  [[self tableView] selectRowAtIndexPath:arg1 animated:0 scrollPosition:0]
+loc_1000b5938:
+  0b5940  [arg1 row]
+  0b5948  if ([arg1 row] != 1) goto loc_1000b5ad4
+  0b595c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel]
+  0b5984  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel] setText:@"Swipe"]
+  0b59a0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel]
+  0b59c4  [NSBundle mainBundle]
+  0b59f4  [[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]
+  0b5a10  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"SWIPE_DESCRIPTION" value:@"" table:0]]
+  0b5a44  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setAccessibilityHint:@"double tap to select"]
+  0b5a5c  [ADGameParameters sharedParameters]
+  0b5a78  [[ADGameParameters sharedParameters] controlScheme]
+  0b5a8c  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_1000b5ad4
+  0b5aa0  [self tableView]
+  0b5ac8  [[self tableView] selectRowAtIndexPath:arg1 animated:0 scrollPosition:0]
+loc_1000b5ad4:
+  0b5adc  [arg1 row]
+  0b5ae4  if ([arg1 row] != 2) goto loc_1000b5c70
+  0b5af8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel]
+  0b5b20  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel] setText:@"Tilt"]
+  0b5b3c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel]
+  0b5b60  [NSBundle mainBundle]
+  0b5b90  [[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]
+  0b5bac  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"TILT_DESCRIPTION" value:@"" table:0]]
+  0b5be0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setAccessibilityHint:@"double tap to select"]
+  0b5bf8  [ADGameParameters sharedParameters]
+  0b5c14  [[ADGameParameters sharedParameters] controlScheme]
+  0b5c28  if ([[ADGameParameters sharedParameters] controlScheme] != 3) goto loc_1000b5c70
+  0b5c3c  [self tableView]
+  0b5c64  [[self tableView] selectRowAtIndexPath:arg1 animated:0 scrollPosition:0]
+loc_1000b5c70:
+  0b5c84  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setSelectionStyle:1]
+  0b5ca8  return
+
+== -[Accessible_ADControlSchemeViewController cellForControlAtIndex:]   (address 0x1000b5d64  size 1080  kind objc)
+  0b5da0  [ADAccessibleTableCell alloc]
+  0b5dbc  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"]
+  0b5dd8  [arg1 row]
+  0b5ddc  if ([arg1 row] != 0) goto loc_1000b5f48
+  0b5df0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel]
+  0b5e18  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel] setText:@"Button"]
+  0b5e34  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel]
+  0b5e58  [NSBundle mainBundle]
+  0b5e88  [[NSBundle mainBundle] localizedStringForKey:@"BUTTON_MODE" value:@"" table:0]
+  0b5ea4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"BUTTON_MODE" value:@"" table:0]]
+  0b5ed4  [ADGameParameters sharedParameters]
+  0b5ef0  [[ADGameParameters sharedParameters] buttonMode]
+  0b5f00  if ([[ADGameParameters sharedParameters] buttonMode] == 0) goto loc_1000b5f48
+  0b5f14  [self tableView]
+  0b5f3c  [[self tableView] selectRowAtIndexPath:arg1 animated:0 scrollPosition:0]
+loc_1000b5f48:
+  0b5f50  [arg1 row]
+  0b5f58  if ([arg1 row] != 1) goto loc_1000b60c4
+  0b5f6c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel]
+  0b5f94  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel] setText:@"Gesture"]
+  0b5fb0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel]
+  0b5fd4  [NSBundle mainBundle]
+  0b6004  [[NSBundle mainBundle] localizedStringForKey:@"GESTURE_MODE" value:@"" table:0]
+  0b6020  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"GESTURE_MODE" value:@"" table:0]]
+  0b6050  [ADGameParameters sharedParameters]
+  0b606c  [[ADGameParameters sharedParameters] buttonMode]
+  0b607c  if (([[ADGameParameters sharedParameters] buttonMode] & 1)) goto loc_1000b60c4
+  0b6090  [self tableView]
+  0b60b8  [[self tableView] selectRowAtIndexPath:arg1 animated:0 scrollPosition:0]
+loc_1000b60c4:
+  0b60d8  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setSelectionStyle:1]
+  0b60fc  return
+
+== -[Accessible_ADControlSchemeViewController cellForSound:]   (address 0x1000b619c  size 644  kind objc)
+  0b61d0  [ADAccessibleTableCell alloc]
+  0b61ec  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"]
+  0b6208  [arg1 row]
+  0b620c  if ([arg1 row] == 0) goto loc_1000b629c
+  0b6218  [arg1 row]
+  0b6220  if ([arg1 row] != 1) goto loc_1000b639c
+  0b6234  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel]
+  0b6258  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel] setText:@"Test headphones"]
+  0b627c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setAccessibilityHint:@"Double tap to test your headphones"]
+  0b6294  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setSelectionStyle:0]
+  0b6298  goto loc_1000b639c
+loc_1000b629c:
+  0b62ac  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel]
+  0b62d4  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] textLabel] setText:@"Announcer"]
+  0b62f0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel]
+  0b6314  [ADGameParameters sharedParameters]
+  0b6330  [[ADGameParameters sharedParameters] lastAnnouncerValue]
+  0b6354  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] detailTextLabel] setText:([[ADGameParameters sharedParameters] lastAnnouncerValue] != 0 ? @"ON" : @"OFF")]
+  0b6380  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setAccessibilityHint:@"Double tap to toggle in-game announcements"]
+  0b6398  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setSelectionStyle:0]
+loc_1000b639c:
+  0b63b0  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:@"AccessibleSettingsCell"] setSelectionStyle:0]
+  0b63d0  return
+
+== -[Accessible_ADControlSchemeViewController tableView]   (address 0x1000b6420  size 16  kind objc)
+  0b642c  return
+
+== -[Accessible_ADControlSchemeViewController setTableView:]   (address 0x1000b6430  size 56  kind objc)
+  0b6454  self->_tableView = arg1
+  0b6464  return
+
+== -[Accessible_ADControlSchemeViewController .cxx_destruct]   (address 0x1000b6468  size 20  kind objc)

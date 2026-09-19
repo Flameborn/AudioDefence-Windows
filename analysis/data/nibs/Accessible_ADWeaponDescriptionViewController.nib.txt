@@ -1,0 +1,27 @@
+// Accessible_ADWeaponDescriptionViewController.nib
+TOP-LEVEL OBJECTS
+  #11 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #33 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #28 UIView  
+    #54 UIButton (custom class ADButtonWithFont)  title[0]='Buy or upgrade'
+    #7 UIButton  title[0]='Equip instead of '
+    #26 UIButton  title[0]='Equip instead of '
+    #23 UIButton  title[0]='Close weapon description'
+    #65 UILabel  UserInteractionDisabled=False Text='Label'
+    #78 UILabel  UserInteractionDisabled=False Text='Label' NumberOfLines=2
+    #37 UILabel  UserInteractionDisabled=False Text='Label' NumberOfLines=2
+
+CONNECTIONS
+  action  backButtonPressed:                        #23 UIButton --(events 0x40)--> #11 UIProxyObject
+  action  buyOrUpgradeButtonPressed:                #54 ADButtonWithFont --(events 0x40)--> #11 UIProxyObject
+  action  equipSlot1ButtonPressed:                  #7 UIButton --(events 0x40)--> #11 UIProxyObject
+  action  equipSlot2ButtonPressed:                  #26 UIButton --(events 0x40)--> #11 UIProxyObject
+  outlet  buyOrUpgradeButton                        #11 UIProxyObject --> #54 ADButtonWithFont
+  outlet  equip1Button                              #11 UIProxyObject --> #7 UIButton
+  outlet  equip2Button                              #11 UIProxyObject --> #26 UIButton
+  outlet  view                                      #11 UIProxyObject --> #28 UIView
+  outlet  weaponDescription                         #11 UIProxyObject --> #78 UILabel Text='Label'
+  outlet  weaponName                                #11 UIProxyObject --> #65 UILabel Text='Label'
+  outlet  weaponStats                               #11 UIProxyObject --> #37 UILabel Text='Label'
+
+ACCESSIBILITY CONFIGURATIONS

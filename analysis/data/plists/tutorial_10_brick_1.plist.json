@@ -1,0 +1,23 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_tutorial_10_1"
+  }
+ ],
+ "Ambiant": "Silence_ambiant",
+ "Enemies": {
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "bastard_tutorial_10_1"
+   },
+   "spawn_angle": 10,
+   "spawn_distance": 10
+  }
+ }
+}

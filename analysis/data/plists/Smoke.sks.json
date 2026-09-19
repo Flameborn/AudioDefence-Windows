@@ -1,0 +1,165 @@
+{
+ "$archiver": "NSKeyedArchiver",
+ "root": {
+  "root": {
+   "$class": "SKEmitterNode",
+   "_zRotation": 0.0,
+   "_startSpeedVariance": 40.0,
+   "_emissionAngleVariance": 0.3499999940395355,
+   "_opacity": 1.0,
+   "_startColorVarianceB": 0.0,
+   "_startScaleVariance": 0.30000001192092896,
+   "_anchorPoint": {
+    "$class": "NSValue",
+    "NS.pointval": "{0.5, 0.5}",
+    "NS.special": 1
+   },
+   "_lifetimeVariance": 10.0,
+   "_info": {
+    "_PB_previewBackgroundColor": {
+     "$class": "NSColor",
+     "NSRGB": {
+      "$data_base64": "MC43OTUwNjQ4MDY5IDAuNzkxNzIzNDg5OCAwLjc5ODU0OTcxMTcA"
+     },
+     "NSColorSpace": 2
+    },
+    "_PB_previewParticlePosition": {
+     "$class": "NSValue",
+     "NS.pointval": "{0.43931837331482948, 0.25457993659420292}",
+     "NS.special": 1
+    }
+   },
+   "_repeatTextureSize": {
+    "$class": "NSValue",
+    "NS.sizeval": "{0, 0}",
+    "NS.special": 2
+   },
+   "_startOpacity": 0.4000000059604645,
+   "_startOpacityVariance": 0.30000001192092896,
+   "_centerRect": {
+    "$class": "NSValue",
+    "NS.rectval": "{{0, 0}, {1, 1}}",
+    "NS.special": 3
+   },
+   "_wantsPerPixelCollisionDetection": false,
+   "_baseColorR": 1.0,
+   "_startColorG": 0.11164980381727219,
+   "_startZPosition": 0.0,
+   "_yRotation": 0.0,
+   "_birthrate": 40.0,
+   "_particleBlendMode": 0,
+   "_lifetime": 1.0,
+   "_colorSpeedB": 0.0,
+   "_colorBlendSpeed": 0.0,
+   "_startColorBlendVariance": 0.0,
+   "_startSpeed": 40.0,
+   "_particleScaleSequence": null,
+   "_particleRotationSequence": null,
+   "_children": [],
+   "_startColorVarianceR": 0.0,
+   "_startScale": 1.0,
+   "_xRotation": 0.0,
+   "_colorSpeedR": 0.0,
+   "_startRotationVariance": 6.28000020980835,
+   "_startSize": "{0, 0}",
+   "_orderAdded": 2.0,
+   "_target": null,
+   "_actions": [],
+   "_colorSpeedG": 0.0,
+   "_PKPhysicsBody": null,
+   "_particleAction": null,
+   "_emissionAngle": 0.0,
+   "_startPositionVariance": "{40, 5}",
+   "_scaleSpeed": 0.5,
+   "_startZPositionVariance": 0.0,
+   "_startColorA": 1.0,
+   "_yScale": 1.0,
+   "_particleColorSequence": {
+    "$class": "SKKeyframeSequence",
+    "_times": [
+     0.0
+    ],
+    "_interpolationMode": 1,
+    "_repeatMode": 1,
+    "_values": [
+     {
+      "$class": "NSColor",
+      "NSRGB": {
+       "$data_base64": "MC4xMTAxMzMwNDQ0IDAuMjI2MjIwMzQ2NyAwLjEwNTQ1MzY3NzUA"
+      },
+      "NSColorSpace": 2
+     }
+    ]
+   },
+   "_startColorVarianceA": 0.0,
+   "_startColorMix": 1.0,
+   "_texture": null,
+   "_keyedActions": {},
+   "_bounds": {
+    "$class": "NSValue",
+    "NS.rectval": "{{0, 0}, {1, 1}}",
+    "NS.special": 3
+   },
+   "_startRotation": 0.0,
+   "_name": null,
+   "_startColorVarianceG": 0.0,
+   "_keyedSubSprites": {},
+   "_baseColorG": 1.0,
+   "_numParticlesToEmit": 0,
+   "_particleAlphaSequence": null,
+   "_opacitySpeed": -0.15000000596046448,
+   "_blendMode": 0,
+   "_xScale": 1.0,
+   "_colorMix": 0.0,
+   "_startPosition": "{0, 0}",
+   "_startColorB": 0.10545367747545242,
+   "_repeatTexture": false,
+   "_paused": true,
+   "_baseColorA": 0.0,
+   "_rotationSpeed": 3.0,
+   "_acceleration": "{10, 0}",
+   "_particleTexture": {
+    "$class": "SKTexture",
+    "_disableAlpha": false,
+    "_cropScale": {
+     "$class": "NSValue",
+     "NS.pointval": "{1, 1}",
+     "NS.special": 1
+    },
+    "_filteringMode": 1,
+    "_isPath": false,
+    "_isData": false,
+    "_cropOffset": {
+     "$class": "NSValue",
+     "NS.pointval": "{0, 0}",
+     "NS.special": 1
+    },
+    "_originalAtlasName": null,
+    "_pixelSize": {
+     "$class": "NSValue",
+     "NS.sizeval": "{64, 64}",
+     "NS.special": 2
+    },
+    "_subTextureName": null,
+    "_isRotated": false,
+    "_textRect": {
+     "$class": "NSValue",
+     "NS.rectval": "{{0, 0}, {1, 1}}",
+     "NS.special": 3
+    },
+    "_imgName": "spark.png"
+   },
+   "_position": {
+    "$class": "NSValue",
+    "NS.pointval": "{0, 0}",
+    "NS.special": 1
+   },
+   "_colorSpeedA": 0.0,
+   "_startColorR": 0.11013304442167282,
+   "_userData": null,
+   "_baseColorB": 1.0,
+   "_zPosition": 0.0,
+   "_particleColorBlendFactorSequence": null
+  }
+ }
+}

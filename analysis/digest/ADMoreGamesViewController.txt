@@ -1,0 +1,196 @@
+
+== -[ADMoreGamesViewController initWithNibName:bundle:]   (address 0x1000afb24  size 584  kind objc)
+  0afb88  [super initWithNibName:arg1 bundle:arg2]
+  0afb90  if (self == 0) goto loc_1000afcbc
+  0afbac  [NSBundle mainBundle]
+  0afbd8  [[NSBundle mainBundle] URLForResource:@"Credits" withExtension:@"plist"]
+  0afc08  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Credits" withExtension:@"plist"]]
+  0afc2c  [self setCreditsDictionary:[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Credits" withExtension:@"plist"]]]
+  0afc48  [self creditsDictionary]
+  0afc64  [[self creditsDictionary] allKeys]
+  0afc88  [self setCreditKeys:[[self creditsDictionary] allKeys]]
+  0afcb0  [self setDidLoadWebPage:0]
+loc_1000afcbc:
+  0afce4  return
+
+== -[ADMoreGamesViewController viewDidLoad]   (address 0x1000afd6c  size 1220  kind objc)
+  0afda8  [super viewDidLoad]
+  0afdc0  [self statusBarViewController]
+  0afde0  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  0afdf4  [self statusBarViewController]
+  0afe14  [[self statusBarViewController] setCurrenciesVisibility:0]
+  0afe28  [self statusBarViewController]
+  0afe48  [[self statusBarViewController] setDiamonsdsVisibility:0]
+  0afe5c  [self statusBarViewController]
+  0afe78  [[self statusBarViewController] pageTitle]
+  0afe9c  [[[self statusBarViewController] pageTitle] setText:@"More Games"]
+  0afec0  [self view]
+  0afee4  [self webView]
+  0aff08  [[self view] sendSubviewToBack:[self webView]]
+  0aff24  [self webView]
+  0aff40  [[self webView] scrollView]
+  0aff60  [[[self webView] scrollView] setBounces:0]
+  0aff7c  [self webView]
+  0aff9c  [[self webView] setOpaque:0]
+  0affb0  [self webView]
+  0affd4  [UIColor clearColor]
+  0afff8  [[self webView] setBackgroundColor:[UIColor clearColor]]
+  0b001c  [self registerForAppNotifications]
+  0b0034  [ADGameParameters sharedParameters]
+  0b0050  [[ADGameParameters sharedParameters] isIphone]
+  0b009c  [NSString stringWithFormat:@"%@/%@/", ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"iphone" : @"ipad"), @"ad1"]
+  0b00c4  [@"http://audiogames.papaengine.com/othergames/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/", ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"iphone" : @"ipad"), @"ad1"]]
+  0b00fc  [NSURL URLWithString:[@"http://audiogames.papaengine.com/othergames/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/", ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"iphone" : @"ipad"), @"ad1"]]]
+  0b0120  [NSURLRequest requestWithURL:[NSURL URLWithString:[@"http://audiogames.papaengine.com/othergames/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/", ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"iphone" : @"ipad"), @"ad1"]]]]
+  0b0140  [self webView]
+  0b0160  [[self webView] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[@"http://audiogames.papaengine.com/othergames/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/", ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"iphone" : @"ipad"), @"ad1"]]]]]
+  0b0190  return
+
+== -[ADMoreGamesViewController viewWillDisappear:]   (address 0x1000b0230  size 16  kind objc)
+  0b023c  tail [self deRegisterForAppNotifications]
+
+== -[ADMoreGamesViewController backButtonPressed]   (address 0x1000b0240  size 156  kind objc)
+  0b0274  [super backButtonPressed]
+  0b0288  [self presentingViewController]
+  0b02ac  [[self presentingViewController] dismissViewControllerAnimated:0 completion:0]
+  0b02c4  return
+
+== -[ADMoreGamesViewController applicationWillEnterForeground:]   (address 0x1000b02dc  size 156  kind objc)
+  0b02f4  NSLog(@"The application entered the foreground", _cmd, arg1)
+  0b0308  [self didLoadWebPage]
+  0b030c  if (!([self didLoadWebPage] & 1)) goto loc_1000b031c
+  0b0318  return
+loc_1000b031c:
+  0b032c  [self webView]
+  0b0348  [[self webView] reload]
+  0b0358  return
+
+== -[ADMoreGamesViewController applicationWillEnterBackground:]   (address 0x1000b0378  size 320  kind objc)
+  0b03a8  [self view]
+  0b03cc  [MBProgressHUD HUDForView:[self view]]
+  0b03e8  if ([MBProgressHUD HUDForView:[self view]] == 0) goto loc_1000b0474
+  0b03f8  [self view]
+  0b0420  [MBProgressHUD hideHUDForView:[self view] animated:0]
+  0b043c  [self webView]
+  0b0458  [[self webView] stopLoading]
+  0b0470  return
+loc_1000b0474:
+  0b0484  return
+
+== -[ADMoreGamesViewController webView:shouldStartLoadWithRequest:navigationType:]   (address 0x1000b04b8  size 528  kind objc)
+  0b04d0  if (arg3 == 0) goto loc_1000b04dc
+  0b04d8  goto loc_1000b066c
+loc_1000b04dc:
+  0b04f0  [Reachability reachabilityForInternetConnection]
+  0b050c  [[Reachability reachabilityForInternetConnection] currentReachabilityStatus]
+  0b0510  if ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == 0) goto loc_1000b051c
+  0b0518  goto loc_1000b0664
+loc_1000b051c:
+  0b0538  [self view]
+  0b055c  [MBProgressHUD HUDForView:[self view]]
+  0b0578  if ([MBProgressHUD HUDForView:[self view]] != 0) goto loc_1000b05bc
+  0b0588  [self view]
+  0b05b0  [MBProgressHUD hideHUDForView:[self view] animated:1]
+loc_1000b05bc:
+  0b05d0  [UIAlertView alloc]
+  0b0600  [[UIAlertView alloc] initWithTitle:@"No internet connection" message:@"Please check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:0]
+  0b061c  [self setAlertView:[[UIAlertView alloc] initWithTitle:@"No internet connection" message:@"Please check your internet connection" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:0]]
+  0b0638  [self alertView]
+  0b0654  [[self alertView] show]
+loc_1000b0664:
+loc_1000b066c:
+  0b0680  return
+
+== -[ADMoreGamesViewController webViewDidStartLoad:]   (address 0x1000b06c8  size 312  kind objc)
+  0b06f8  [self view]
+  0b071c  [MBProgressHUD HUDForView:[self view]]
+  0b0738  if ([MBProgressHUD HUDForView:[self view]] == 0) goto loc_1000b0750
+  0b074c  return
+loc_1000b0750:
+  0b075c  [self view]
+  0b0784  [MBProgressHUD showHUDAddedTo:[self view] animated:1]
+  0b07b4  [[MBProgressHUD showHUDAddedTo:[self view] animated:1] setLabelText:@"Loading"]
+  0b07cc  return
+
+== -[ADMoreGamesViewController webViewDidFinishLoad:]   (address 0x1000b0800  size 592  kind objc)
+  0b082c  [self webView]
+  0b0848  [[self webView] frame]
+  0b0858  [self webView]
+  0b0878  [[self webView] scrollView]
+  0b0894  [[[self webView] scrollView] contentSize]
+  0b08bc  [self webView]
+  0b08d0  [[self webView] scrollView]
+  0b08f4  [[[self webView] scrollView] setContentSize:{[[self webView] frame].2, [[[self webView] scrollView] contentSize].1}]
+  0b091c  [self view]
+  0b0934  [self webView]
+  0b0958  [[self view] bringSubviewToFront:[self webView]]
+  0b097c  [self view]
+  0b09a4  [MBProgressHUD hideHUDForView:[self view] animated:1]
+  0b09c4  [self setDidLoadWebPage:1]
+  0b09dc  return
+
+== -[ADMoreGamesViewController webView:didFailLoadWithError:]   (address 0x1000b0a50  size 568  kind objc)
+  0b0a7c  NSLog(@"Failed to load from the remote server. Loading the local cache instead")
+  0b0a94  [NSBundle mainBundle]
+  0b0ac4  [[NSBundle mainBundle] pathForResource:@"othergames_ad" ofType:@"html" inDirectory:@"html"]
+  0b0af0  [ADGameParameters sharedParameters]
+  0b0b0c  [[ADGameParameters sharedParameters] isIphone]
+  0b0b20  &@selector(stringByAppendingString:)
+  0b0b28  if ([[ADGameParameters sharedParameters] isIphone] == 0) goto loc_1000b0b48
+  0b0b3c  [[[NSBundle mainBundle] pathForResource:@"othergames_ad" ofType:@"html" inDirectory:@"html"] stringByAppendingString:@"?device=iphone"]
+  0b0b44  goto loc_1000b0b60
+loc_1000b0b48:
+  0b0b58  [[[NSBundle mainBundle] pathForResource:@"othergames_ad" ofType:@"html" inDirectory:@"html"] stringByAppendingString:@"?device=ipad"]
+loc_1000b0b60:
+  0b0b80  [NSURL URLWithString:x2]
+  0b0b9c  NSLog(@"%@", [NSURL URLWithString:x2])
+  0b0bb8  [NSURLRequest requestWithURL:[NSURL URLWithString:x2]]
+  0b0bdc  [arg1 loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:x2]]]
+  0b0c18  return
+
+== -[ADMoreGamesViewController dealloc]   (address 0x1000b0c88  size 220  kind objc)
+  0b0ca8  [self webView]
+  0b0cc8  [[self webView] setDelegate:0]
+  0b0ce4  [self deRegisterForAppNotifications]
+  0b0d08  [super dealloc]
+  0b0d18  return
+  0b0d54  [super dealloc]
+  0b0d60  call sub_10000b760
+
+== -[ADMoreGamesViewController didReceiveMemoryWarning]   (address 0x1000b0d64  size 60  kind objc)
+  0b0d90  [super didReceiveMemoryWarning]
+  0b0d9c  return
+
+== -[ADMoreGamesViewController webView]   (address 0x1000b0da0  size 16  kind objc)
+  0b0dac  return
+
+== -[ADMoreGamesViewController setWebView:]   (address 0x1000b0db0  size 56  kind objc)
+  0b0dd4  self->_webView = arg1
+  0b0de4  return
+
+== -[ADMoreGamesViewController creditsDictionary]   (address 0x1000b0de8  size 16  kind objc)
+  0b0df4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMoreGamesViewController setCreditsDictionary:]   (address 0x1000b0df8  size 12  kind objc)
+  0b0e00  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMoreGamesViewController creditKeys]   (address 0x1000b0e04  size 16  kind objc)
+  0b0e10  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMoreGamesViewController setCreditKeys:]   (address 0x1000b0e14  size 12  kind objc)
+  0b0e1c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMoreGamesViewController alertView]   (address 0x1000b0e20  size 16  kind objc)
+  0b0e2c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMoreGamesViewController setAlertView:]   (address 0x1000b0e30  size 12  kind objc)
+  0b0e38  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMoreGamesViewController didLoadWebPage]   (address 0x1000b0e3c  size 20  kind objc)
+  0b0e4c  return
+
+== -[ADMoreGamesViewController setDidLoadWebPage:]   (address 0x1000b0e50  size 16  kind objc)
+  0b0e58  self->_didLoadWebPage = arg1
+  0b0e5c  return
+
+== -[ADMoreGamesViewController .cxx_destruct]   (address 0x1000b0e60  size 104  kind objc)

@@ -1,0 +1,93 @@
+{
+ "CFBundleDisplayName": "Audio defence",
+ "DTXcode": "0631",
+ "DTSDKName": "iphoneos8.3",
+ "CFBundleName": "audiodefence",
+ "CFBundleIcons~ipad": {
+  "CFBundlePrimaryIcon": {
+   "CFBundleIconFiles": [
+    "AppIcon57x57",
+    "AppIcon60x60",
+    "AppIcon72x72",
+    "AppIcon76x76"
+   ]
+  }
+ },
+ "DTSDKBuild": "12F69",
+ "CFBundleDevelopmentRegion": "en",
+ "CFBundleVersion": "1.0",
+ "BuildMachineOSBuild": "14C109",
+ "UIStatusBarHidden": true,
+ "CFBundleShortVersionString": "1.0",
+ "CFBundlePackageType": "APPL",
+ "CFBundleSupportedPlatforms": [
+  "iPhoneOS"
+ ],
+ "DTPlatformName": "iphoneos",
+ "CFBundleInfoDictionaryVersion": "6.0",
+ "UIRequiredDeviceCapabilities": [
+  "armv7",
+  "gamekit"
+ ],
+ "DTCompiler": "com.apple.compilers.llvm.clang.1_0",
+ "CFBundleExecutable": "audiodefence",
+ "UILaunchImages": [
+  {
+   "UILaunchImageSize": "{320, 480}",
+   "UILaunchImageName": "LaunchImage-700",
+   "UILaunchImageMinimumOSVersion": "7.0",
+   "UILaunchImageOrientation": "Portrait"
+  },
+  {
+   "UILaunchImageSize": "{320, 568}",
+   "UILaunchImageName": "LaunchImage-700-568h",
+   "UILaunchImageMinimumOSVersion": "7.0",
+   "UILaunchImageOrientation": "Portrait"
+  },
+  {
+   "UILaunchImageSize": "{768, 1024}",
+   "UILaunchImageName": "LaunchImage-700-Landscape",
+   "UILaunchImageMinimumOSVersion": "7.0",
+   "UILaunchImageOrientation": "Landscape"
+  }
+ ],
+ "MinimumOSVersion": "7.0",
+ "UIDeviceFamily": [
+  1,
+  2
+ ],
+ "DTXcodeBuild": "6D1002",
+ "DTPlatformVersion": "8.3",
+ "UIStatusBarHidden~ipad": true,
+ "CFBundleIdentifier": "com.ernesto.AudioDefence",
+ "UIAppFonts": [
+  "scoreboard.ttf",
+  "AxeHandel.ttf",
+  "TravelingTypewriter.ttf",
+  "Friday13v12.ttf",
+  "Face Your Fears.ttf",
+  "Monstro.ttf",
+  "chainprinter.ttf",
+  "PWChalk.ttf",
+  "Tiresias_Infofont.ttf"
+ ],
+ "CFBundleSignature": "????",
+ "UISupportedInterfaceOrientations~ipad": [
+  "UIInterfaceOrientationLandscapeLeft",
+  "UIInterfaceOrientationLandscapeRight"
+ ],
+ "CFBundleIcons": {
+  "CFBundlePrimaryIcon": {
+   "CFBundleIconFiles": [
+    "AppIcon57x57",
+    "AppIcon60x60"
+   ]
+  }
+ },
+ "DTPlatformBuild": "12F69",
+ "LSRequiresIPhoneOS": true,
+ "UISupportedInterfaceOrientations": [
+  "UIInterfaceOrientationLandscapeLeft",
+  "UIInterfaceOrientationLandscapeRight"
+ ]
+}

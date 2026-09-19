@@ -1,0 +1,409 @@
+
+== -[ADStatsMultiCell initWithStyle:reuseIdentifier:]   (address 0x100069dec  size 2160  kind objc)
+  069e4c  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  069e54  if (self == 0) goto loc_10006a508
+  069e74  [ADStatsMultiCell defaultSubTitleCellHeight]
+  069e8c  [self setSubTitleLabelOffset:[ADStatsMultiCell defaultSubTitleCellHeight]]
+  069e9c  [ADStatsMultiCell defaultSubTitleCellHeight]
+  069eb4  [self setSubTitleCellHeight:[ADStatsMultiCell defaultSubTitleCellHeight]]
+  069ecc  [ADStatsMultiCell defaultCellHeight]
+  069ee4  [self setCellHeight:[ADStatsMultiCell defaultCellHeight]]
+  069efc  [ADStatsMultiCell defaultCellOffset]
+  069f14  [self setCellOffset:[ADStatsMultiCell defaultCellOffset]]
+  069f30  [self setIsPopulated:0]
+  069f58  [ADGameParameters sharedParameters]
+  069f7c  [[ADGameParameters sharedParameters] isIphone]
+  069fb8  [NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]
+  069ff0  [UIImage imageNamed:[NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]]
+  06a014  [self setKeyImage:[UIImage imageNamed:[NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]]]
+  06a02c  [ADGameParameters sharedParameters]
+  06a040  [[ADGameParameters sharedParameters] isIphone]
+  06a070  [NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]
+  06a094  [UIImage imageNamed:[NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]]
+  06a0b8  [self setValueImage:[UIImage imageNamed:[NSString stringWithFormat:([[ADGameParameters sharedParameters] isIphone] != 0 ? @"%@" : @"%@~ipad")]]]
+  06a0dc  [UIView alloc]
+  06a0f8  [self contentView]
+  06a114  [[self contentView] frame]
+  06a128  [[UIView alloc] initWithFrame:{[[self contentView] frame].0, [[self contentView] frame].1, [[self contentView] frame].2, [[self contentView] frame].3}]
+  06a144  [self setContainerView:[[UIView alloc] initWithFrame:{[[self contentView] frame].0, [[self contentView] frame].1, [[self contentView] frame].2, [[self contentView] frame].3}]]
+  06a16c  [self containerView]
+  06a190  [UIColor clearColor]
+  06a1b4  [[self containerView] setBackgroundColor:[UIColor clearColor]]
+  06a1d4  [UILabel alloc]
+  06a1e4  [[UILabel alloc] init]
+  06a200  [self setSubTitleLabelCell:[[UILabel alloc] init]]
+  06a220  [self subTitleLabelCell]
+  06a23c  [[self subTitleLabelCell] setupAsTitle]
+  06a250  [self subTitleLabelCell]
+  06a270  [[self subTitleLabelCell] setTextAlignment:1]
+  06a284  [self subTitleLabelCell]
+  06a2a8  [[self subTitleLabelCell] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06a2c0  [UIImageView alloc]
+  06a2d8  [UIImage imageNamed:@"list_oneline_subhead"]
+  06a2fc  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_oneline_subhead"]]
+  06a318  [self setSubTitleBackgroundImage:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_oneline_subhead"]]]
+  06a334  [self contentView]
+  06a34c  [self containerView]
+  06a374  [[self contentView] addSubview:[self containerView]]
+  06a390  [self containerView]
+  06a3b4  [self subTitleBackgroundImage]
+  06a3d0  [[self containerView] addSubview:[self subTitleBackgroundImage]]
+  06a3ec  [self containerView]
+  06a404  [self subTitleLabelCell]
+  06a420  [[self containerView] addSubview:[self subTitleLabelCell]]
+  06a43c  [self subTitleLabelCell]
+  06a454  [[self subTitleLabelCell] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06a468  [self subTitleBackgroundImage]
+  06a480  [[self subTitleBackgroundImage] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06a494  [self containerView]
+  06a4ac  [[self containerView] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06a4c8  [self setContainerViewConstraints]
+  06a4dc  [self setSubtitleConstraints]
+  06a4f0  [self setBackgroundImageConstraints]
+loc_10006a508:
+  06a530  return
+
+== +[ADStatsMultiCell defaultSubTitleLabelOffset]   (address 0x10006a65c  size 8  kind objc)
+  06a660  return
+
+== +[ADStatsMultiCell defaultSubTitleCellHeight]   (address 0x10006a664  size 208  kind objc)
+  06a68c  if (((w8 & 1) & 1)) goto loc_10006a6f8
+  06a690  cxa_guard_acquire(&g_10042d9d8, _cmd)
+  06a694  if (cxa_guard_acquire(&g_10042d9d8, _cmd) == 0) goto loc_10006a6f8
+  06a6ac  [ADGameParameters sharedParameters]
+  06a6c8  [[ADGameParameters sharedParameters] isIphone]
+  06a6f4  cxa_guard_release(&g_10042d9d0)
+loc_10006a6f8:
+  06a70c  return
+  06a728  cxa_guard_abort((x20 + 8))
+
+== +[ADStatsMultiCell defaultCellHeight]   (address 0x10006a734  size 204  kind objc)
+  06a75c  if (((w8 & 1) & 1)) goto loc_10006a7c4
+  06a760  cxa_guard_acquire(&g_10042d9e8, _cmd)
+  06a764  if (cxa_guard_acquire(&g_10042d9e8, _cmd) == 0) goto loc_10006a7c4
+  06a77c  [ADGameParameters sharedParameters]
+  06a798  [[ADGameParameters sharedParameters] isIphone]
+  06a7b8  store g_10042d9e0 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? 30 : 60)
+  06a7c0  cxa_guard_release(&g_10042d9e8)
+loc_10006a7c4:
+  06a7d8  return
+  06a7f4  cxa_guard_abort((x20 + 24))
+
+== +[ADStatsMultiCell defaultCellOffset]   (address 0x10006a800  size 200  kind objc)
+  06a828  if (((w8 & 1) & 1)) goto loc_10006a88c
+  06a82c  cxa_guard_acquire(&g_10042d9f8, _cmd)
+  06a830  if (cxa_guard_acquire(&g_10042d9f8, _cmd) == 0) goto loc_10006a88c
+  06a848  [ADGameParameters sharedParameters]
+  06a864  [[ADGameParameters sharedParameters] isIphone]
+  06a880  store g_10042d9f0 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? 5 : 10)
+  06a888  cxa_guard_release(&g_10042d9f8)
+loc_10006a88c:
+  06a8a0  return
+  06a8bc  cxa_guard_abort((x20 + 40))
+
+== -[ADStatsMultiCell getHeight]   (address 0x10006a8c8  size 340  kind objc)
+  06a900  [ADStatsMultiCell defaultCellOffset]
+  06a918  [ADStatsMultiCell defaultSubTitleCellHeight]
+  06a930  [ADStatsMultiCell defaultCellHeight]
+  06a940  [ADStatsMultiCell defaultCellOffset]
+  06a95c  [self keys]
+  06a97c  [[self keys] count]
+  06a98c  [self keys]
+  06a9a0  [[self keys] count]
+  06a9b4  t1 = (([ADStatsMultiCell defaultCellOffset] + [ADStatsMultiCell defaultSubTitleCellHeight]) + ([ADStatsMultiCell defaultCellHeight] * (float)([[self keys] count] + 1)))
+  06a9f4  return
+
+== -[ADStatsMultiCell setContainerViewConstraints]   (address 0x10006aa1c  size 952  kind objc)
+  06aa68  [self containerView]
+  06aa8c  [self contentView]
+  06aacc  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:9 relatedBy:0 toItem:[self contentView] attribute:9 multiplier:1 constant:0]
+  06aaf8  [self containerView]
+  06ab10  [self contentView]
+  06ab44  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:10 relatedBy:0 toItem:[self contentView] attribute:10 multiplier:1 constant:0]
+  06ab70  [self containerView]
+  06ab8c  [self contentView]
+  06abc0  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:7 relatedBy:0 toItem:[self contentView] attribute:7 multiplier:1 constant:0]
+  06abec  [self containerView]
+  06ac04  [self contentView]
+  06ac38  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:8 relatedBy:0 toItem:[self contentView] attribute:8 multiplier:1 constant:0]
+  06ac60  [self contentView]
+  06ac98  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  06acb0  [[self contentView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  06ad04  return
+
+== -[ADStatsMultiCell setSubtitleConstraints]   (address 0x10006add4  size 1012  kind objc)
+  06ae20  [self subTitleLabelCell]
+  06ae44  [self containerView]
+  06ae84  [NSLayoutConstraint constraintWithItem:[self subTitleLabelCell] attribute:5 relatedBy:0 toItem:[self containerView] attribute:5 multiplier:1 constant:10]
+  06aeb0  [self subTitleLabelCell]
+  06aecc  [self containerView]
+  06af00  [NSLayoutConstraint constraintWithItem:[self subTitleLabelCell] attribute:6 relatedBy:0 toItem:[self containerView] attribute:6 multiplier:1 constant:-10]
+  06af2c  [self subTitleLabelCell]
+  06af44  [self containerView]
+  06af64  [self subTitleLabelOffset]
+  06af8c  [NSLayoutConstraint constraintWithItem:[self subTitleLabelCell] attribute:3 relatedBy:0 toItem:[self containerView] attribute:3 multiplier:1 constant:[self subTitleLabelOffset]]
+  06afb8  [self subTitleLabelCell]
+  06afdc  [ADStatsMultiCell defaultSubTitleCellHeight]
+  06b004  [NSLayoutConstraint constraintWithItem:[self subTitleLabelCell] attribute:8 relatedBy:0 toItem:0 attribute:0 multiplier:1 constant:[ADStatsMultiCell defaultSubTitleCellHeight]]
+  06b024  [self subTitleLabelCell]
+  06b044  [[self subTitleLabelCell] addConstraint:[NSLayoutConstraint constraintWithItem:[self subTitleLabelCell] attribute:8 relatedBy:0 toItem:0 attribute:0 multiplier:1 constant:[ADStatsMultiCell defaultSubTitleCellHeight]]]
+  06b058  [self containerView]
+  06b090  [NSArray arrayWithObjects:&sp[0x10] count:3]
+  06b0a8  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x10] count:3]]
+  06b0fc  return
+
+== -[ADStatsMultiCell setBackgroundImageConstraints]   (address 0x10006b1c8  size 964  kind objc)
+  06b214  [self subTitleBackgroundImage]
+  06b238  [self subTitleLabelCell]
+  06b278  [NSLayoutConstraint constraintWithItem:[self subTitleBackgroundImage] attribute:9 relatedBy:0 toItem:[self subTitleLabelCell] attribute:9 multiplier:1 constant:0]
+  06b2a4  [self subTitleBackgroundImage]
+  06b2bc  [self subTitleLabelCell]
+  06b2f0  [NSLayoutConstraint constraintWithItem:[self subTitleBackgroundImage] attribute:10 relatedBy:0 toItem:[self subTitleLabelCell] attribute:10 multiplier:1 constant:0]
+  06b31c  [self subTitleBackgroundImage]
+  06b338  [self subTitleLabelCell]
+  06b36c  [NSLayoutConstraint constraintWithItem:[self subTitleBackgroundImage] attribute:7 relatedBy:0 toItem:[self subTitleLabelCell] attribute:7 multiplier:1 constant:0]
+  06b398  [self subTitleBackgroundImage]
+  06b3b0  [self subTitleLabelCell]
+  06b3e8  [NSLayoutConstraint constraintWithItem:[self subTitleBackgroundImage] attribute:8 relatedBy:0 toItem:[self subTitleLabelCell] attribute:8 multiplier:1 constant:0]
+  06b418  [self containerView]
+  06b450  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  06b468  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  06b4bc  return
+
+== -[ADStatsMultiCell populateWithSubtitleString:Keys:Values:]   (address 0x10006b58c  size 1284  kind objc)
+  06b5ec  [self subTitleLabelCell]
+  06b60c  [[self subTitleLabelCell] setText:arg1]
+  06b630  [NSMutableArray alloc]
+  06b64c  [[NSMutableArray alloc] initWithArray:arg2 copyItems:1]
+  06b668  [self setKeys:[[NSMutableArray alloc] initWithArray:arg2 copyItems:1]]
+  06b67c  [NSMutableArray alloc]
+  06b698  [self keys]
+  06b6b8  [[self keys] count]
+  06b6d4  [[NSMutableArray alloc] initWithCapacity:[[self keys] count]]
+  06b6f0  [self setKeyLabels:[[NSMutableArray alloc] initWithCapacity:[[self keys] count]]]
+  06b70c  [NSMutableArray alloc]
+  06b71c  [[NSMutableArray alloc] initWithArray:arg3 copyItems:1]
+  06b738  [self setValues:[[NSMutableArray alloc] initWithArray:arg3 copyItems:1]]
+  06b74c  [NSMutableArray alloc]
+  06b768  [self values]
+  06b77c  [[self values] count]
+  06b78c  [[NSMutableArray alloc] initWithCapacity:[[self values] count]]
+  06b7ac  [self setValueLabels:[[NSMutableArray alloc] initWithCapacity:[[self values] count]]]
+  06b814  &@selector(outerConstraintsForRow::)
+  06b81c  goto loc_10006b82c
+loc_10006b820:
+loc_10006b82c:
+  06b834  [self keys]
+  06b848  [[self keys] count]
+  06b85c  if (x26 >=u [[self keys] count]) goto loc_10006b960
+  06b868  [self keys]
+  06b880  [[self keys] objectAtIndex:x2]
+  06b898  [self values]
+  06b8b0  [[self values] objectAtIndex:x2]
+  06b8d4  [self row:x2 WithKeyText:[[self keys] objectAtIndex:x2] andValueText:[[self values] objectAtIndex:x2]]
+  06b90c  [self containerView]
+  06b924  [[self containerView] addSubview:[self row:x2 WithKeyText:[[self keys] objectAtIndex:x2] andValueText:[[self values] objectAtIndex:x2]]]
+  06b93c  [self innerConstraintsForRow:[self row:x2 WithKeyText:[[self keys] objectAtIndex:x2] andValueText:[[self values] objectAtIndex:x2]]]
+  06b950  [self outerConstraintsForRow:x2 :[self row:x2 WithKeyText:[[self keys] objectAtIndex:x2] andValueText:[[self values] objectAtIndex:x2]]]
+  06b954  goto loc_10006b820
+  06b95c  goto loc_10006ba08
+loc_10006b960:
+  06b978  [self setIsPopulated:1]
+  06b9ac  return
+
+== -[ADStatsMultiCell row:WithKeyText:andValueText:]   (address 0x10006ba90  size 1076  kind objc)
+  06bad0  [UIView alloc]
+  06bae4  [[UIView alloc] init]
+  06bb04  [[[UIView alloc] init] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06bb14  [UIImageView alloc]
+  06bb2c  [self keyImage]
+  06bb58  [[UIImageView alloc] initWithImage:[self keyImage]]
+  06bb80  [[[UIImageView alloc] initWithImage:[self keyImage]] setTag:1]
+  06bb8c  [UIImageView alloc]
+  06bba4  [self valueImage]
+  06bbc4  [[UIImageView alloc] initWithImage:[self valueImage]]
+  06bbe0  [[[UIImageView alloc] initWithImage:[self valueImage]] setTag:2]
+  06bbf0  [[[UIImageView alloc] initWithImage:[self keyImage]] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06bc00  [[[UIImageView alloc] initWithImage:[self valueImage]] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06bc10  [UILabel alloc]
+  06bc18  [[UILabel alloc] init]
+  06bc34  [[[UILabel alloc] init] setTag:3]
+  06bc44  [[[UILabel alloc] init] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06bc5c  [[[UILabel alloc] init] setupAsInfo]
+  06bc70  [self keys]
+  06bc94  [[self keys] objectAtIndex:arg1]
+  06bcbc  [[[UILabel alloc] init] setText:[[self keys] objectAtIndex:arg1]]
+  06bcd8  [UILabel alloc]
+  06bce0  [[UILabel alloc] init]
+  06bcf8  [[[UILabel alloc] init] setTag:4]
+  06bd08  [[[UILabel alloc] init] setTranslatesAutoresizingMaskIntoConstraints:0]
+  06bd14  [[[UILabel alloc] init] setupAsInfo]
+  06bd28  [self values]
+  06bd40  [[self values] objectAtIndex:arg1]
+  06bd5c  [[[UILabel alloc] init] setText:[[self values] objectAtIndex:arg1]]
+  06bd88  [[[UIView alloc] init] addSubview:[[UIImageView alloc] initWithImage:[self keyImage]]]
+  06bd98  [[[UIView alloc] init] addSubview:[[UIImageView alloc] initWithImage:[self valueImage]]]
+  06bda8  [[[UIView alloc] init] addSubview:[[UILabel alloc] init]]
+  06bdb8  [[[UIView alloc] init] addSubview:[[UILabel alloc] init]]
+  06bdfc  return
+
+== -[ADStatsMultiCell innerConstraintsForRow:]   (address 0x10006bec4  size 1952  kind objc)
+  06bf18  [arg1 viewWithTag:1]
+  06bf34  [arg1 viewWithTag:2]
+  06bf50  [arg1 viewWithTag:3]
+  06bf6c  [arg1 viewWithTag:4]
+  06bfb4  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:1] attribute:7 relatedBy:0 toItem:arg1 attribute:7 multiplier:0.7 constant:0]
+  06bfe8  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:1] attribute:3 relatedBy:0 toItem:arg1 attribute:3 multiplier:1 constant:0]
+  06c01c  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:1] attribute:5 relatedBy:0 toItem:arg1 attribute:5 multiplier:1 constant:0]
+  06c050  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:1] attribute:4 relatedBy:0 toItem:arg1 attribute:4 multiplier:1 constant:0]
+  06c074  [self containerView]
+  06c0c4  [NSArray arrayWithObjects:&x29[-0x78] count:4]
+  06c0e0  [[self containerView] addConstraints:[NSArray arrayWithObjects:&x29[-0x78] count:4]]
+  06c110  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:2] attribute:5 relatedBy:0 toItem:[arg1 viewWithTag:1] attribute:6 multiplier:1 constant:0]
+  06c144  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:2] attribute:3 relatedBy:0 toItem:arg1 attribute:3 multiplier:1 constant:0]
+  06c178  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:2] attribute:6 relatedBy:0 toItem:arg1 attribute:6 multiplier:1 constant:0]
+  06c1ac  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:2] attribute:4 relatedBy:0 toItem:arg1 attribute:4 multiplier:1 constant:0]
+  06c1c4  [self containerView]
+  06c204  [NSArray arrayWithObjects:&x29[-0x98] count:4]
+  06c214  [[self containerView] addConstraints:[NSArray arrayWithObjects:&x29[-0x98] count:4]]
+  06c244  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:3] attribute:10 relatedBy:0 toItem:arg1 attribute:10 multiplier:1 constant:0]
+  06c280  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:3] attribute:5 relatedBy:0 toItem:arg1 attribute:5 multiplier:1 constant:5]
+  06c2b8  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:3] attribute:7 relatedBy:0 toItem:[arg1 viewWithTag:1] attribute:7 multiplier:1 constant:-5]
+  06c2d0  [self containerView]
+  06c2fc  [NSArray arrayWithObjects:&sp[0x90] count:3]
+  06c30c  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x90] count:3]]
+  06c33c  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:4] attribute:10 relatedBy:0 toItem:arg1 attribute:10 multiplier:1 constant:0]
+  06c370  [NSLayoutConstraint constraintWithItem:[arg1 viewWithTag:4] attribute:9 relatedBy:0 toItem:[arg1 viewWithTag:2] attribute:9 multiplier:1 constant:0]
+  06c388  [self containerView]
+  06c3ac  [NSArray arrayWithObjects:&sp[0x80] count:2]
+  06c3bc  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x80] count:2]]
+  06c48c  return
+
+== -[ADStatsMultiCell outerConstraintsForRow::]   (address 0x10006c664  size 1456  kind objc)
+  06c6b8  &@selector(subTitleLabelCell)
+  06c6c4  if (arg1 <= 0) goto loc_10006c8e8
+  06c6cc  [self subTitleLabelCell]
+  06c6f0  [ADStatsMultiCell defaultCellOffset]
+  06c70c  [ADStatsMultiCell defaultCellHeight]
+  06c71c  t1 = (([ADStatsMultiCell defaultCellOffset] + [ADStatsMultiCell defaultCellOffset]) + ((float)arg1 * [ADStatsMultiCell defaultCellHeight]))
+  06c74c  [NSLayoutConstraint constraintWithItem:arg2 attribute:3 relatedBy:0 toItem:[self subTitleLabelCell] attribute:4 multiplier:1 constant:t1]
+  06c780  [self containerView]
+  06c7b4  [NSLayoutConstraint constraintWithItem:arg2 attribute:5 relatedBy:0 toItem:[self containerView] attribute:5 multiplier:1 constant:0]
+  06c7d8  [self containerView]
+  06c80c  [NSLayoutConstraint constraintWithItem:arg2 attribute:6 relatedBy:0 toItem:[self containerView] attribute:6 multiplier:1 constant:0]
+  06c830  [ADStatsMultiCell defaultCellHeight]
+  06c858  [NSLayoutConstraint constraintWithItem:arg2 attribute:8 relatedBy:0 toItem:0 attribute:0 multiplier:1 constant:[ADStatsMultiCell defaultCellHeight]]
+  06c870  [self containerView]
+  06c8b4  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  06c8cc  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  06c8e4  goto loc_10006cadc
+loc_10006c8e8:
+  06c8ec  [self subTitleLabelCell]
+  06c910  [ADStatsMultiCell defaultCellOffset]
+  06c944  [NSLayoutConstraint constraintWithItem:arg2 attribute:3 relatedBy:0 toItem:[self subTitleLabelCell] attribute:4 multiplier:1 constant:[ADStatsMultiCell defaultCellOffset]]
+  06c974  [self containerView]
+  06c9ac  [NSLayoutConstraint constraintWithItem:arg2 attribute:5 relatedBy:0 toItem:[self containerView] attribute:5 multiplier:1 constant:0]
+  06c9d4  [self containerView]
+  06ca08  [NSLayoutConstraint constraintWithItem:arg2 attribute:6 relatedBy:0 toItem:[self containerView] attribute:6 multiplier:1 constant:0]
+  06ca34  [ADStatsMultiCell defaultCellHeight]
+  06ca5c  [NSLayoutConstraint constraintWithItem:arg2 attribute:8 relatedBy:0 toItem:0 attribute:0 multiplier:1 constant:[ADStatsMultiCell defaultCellHeight]]
+  06ca74  [self containerView]
+  06caac  [NSArray arrayWithObjects:&sp[0x28] count:4]
+  06cac4  [[self containerView] addConstraints:[NSArray arrayWithObjects:&sp[0x28] count:4]]
+loc_10006cadc:
+  06cb24  return
+
+== -[ADStatsMultiCell setSelected:animated:]   (address 0x10006cc14  size 60  kind objc)
+  06cc40  [super setSelected:arg1 animated:arg2]
+  06cc4c  return
+
+== -[ADStatsMultiCell subTitleBackgroundImage]   (address 0x10006cc50  size 16  kind objc)
+  06cc5c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setSubTitleBackgroundImage:]   (address 0x10006cc60  size 12  kind objc)
+  06cc68  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell subTitleLabelCell]   (address 0x10006cc6c  size 16  kind objc)
+  06cc78  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setSubTitleLabelCell:]   (address 0x10006cc7c  size 12  kind objc)
+  06cc84  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell isPopulated]   (address 0x10006cc88  size 20  kind objc)
+  06cc98  return
+
+== -[ADStatsMultiCell setIsPopulated:]   (address 0x10006cc9c  size 16  kind objc)
+  06cca4  self->_isPopulated = arg1
+  06cca8  return
+
+== -[ADStatsMultiCell subTitleCellHeight]   (address 0x10006ccac  size 20  kind objc)
+  06ccbc  return
+
+== -[ADStatsMultiCell setSubTitleCellHeight:]   (address 0x10006ccc0  size 20  kind objc)
+  06cccc  self->_subTitleCellHeight = arg1
+  06ccd0  return
+
+== -[ADStatsMultiCell cellHeight]   (address 0x10006ccd4  size 20  kind objc)
+  06cce4  return
+
+== -[ADStatsMultiCell setCellHeight:]   (address 0x10006cce8  size 20  kind objc)
+  06ccf4  self->_cellHeight = arg1
+  06ccf8  return
+
+== -[ADStatsMultiCell cellOffset]   (address 0x10006ccfc  size 20  kind objc)
+  06cd0c  return
+
+== -[ADStatsMultiCell setCellOffset:]   (address 0x10006cd10  size 20  kind objc)
+  06cd1c  self->_cellOffset = arg1
+  06cd20  return
+
+== -[ADStatsMultiCell containerView]   (address 0x10006cd24  size 16  kind objc)
+  06cd30  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setContainerView:]   (address 0x10006cd34  size 12  kind objc)
+  06cd3c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell keyImage]   (address 0x10006cd40  size 16  kind objc)
+  06cd4c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setKeyImage:]   (address 0x10006cd50  size 12  kind objc)
+  06cd58  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell valueImage]   (address 0x10006cd5c  size 16  kind objc)
+  06cd68  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setValueImage:]   (address 0x10006cd6c  size 12  kind objc)
+  06cd74  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell subTitleLabelOffset]   (address 0x10006cd78  size 20  kind objc)
+  06cd88  return
+
+== -[ADStatsMultiCell setSubTitleLabelOffset:]   (address 0x10006cd8c  size 20  kind objc)
+  06cd98  self->_subTitleLabelOffset = arg1
+  06cd9c  return
+
+== -[ADStatsMultiCell keys]   (address 0x10006cda0  size 16  kind objc)
+  06cdac  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setKeys:]   (address 0x10006cdb0  size 12  kind objc)
+  06cdb8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell values]   (address 0x10006cdbc  size 16  kind objc)
+  06cdc8  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setValues:]   (address 0x10006cdcc  size 12  kind objc)
+  06cdd4  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell keyLabels]   (address 0x10006cdd8  size 16  kind objc)
+  06cde4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setKeyLabels:]   (address 0x10006cde8  size 12  kind objc)
+  06cdf0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell valueLabels]   (address 0x10006cdf4  size 16  kind objc)
+  06ce00  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsMultiCell setValueLabels:]   (address 0x10006ce04  size 12  kind objc)
+  06ce0c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsMultiCell .cxx_destruct]   (address 0x10006ce10  size 204  kind objc)

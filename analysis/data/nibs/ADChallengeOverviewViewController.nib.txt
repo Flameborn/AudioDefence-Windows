@@ -1,0 +1,45 @@
+// ADChallengeOverviewViewController.nib
+TOP-LEVEL OBJECTS
+  #52 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #108 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #119 UIView  Tag=2781
+    #100 UIView  
+      #190 UIImageView  Image='background_main.png'
+    #27 UIImageView  Image='frame_challenge.png'
+    #192 UILabel  UserInteractionDisabled=False Text='POWERUP AND DIAMONDS'
+    #53 UILabel  UserInteractionDisabled=False Text='STAR UNLOCKS:'
+    #114 UIButton (custom class ADButtonWithFont)  
+    #144 UIView  
+    #196 UITextView  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #205 UIView  
+      #150 UIView  
+      #74 UIView  
+      #64 UIView  
+  #174 UIView  Tag=2782
+    #58 UIView  
+      #137 UIImageView  Image='background_main.png'
+    #46 UIImageView  Image='frame_challenge.png'
+    #180 UILabel  Tag=4 UserInteractionDisabled=False Text='POWERUP AND DIAMONDS'
+    #88 UILabel  UserInteractionDisabled=False Text='STAR UNLOCKS:'
+    #172 UIButton (custom class ADButtonWithFont)  
+    #161 UIView  Tag=1
+    #6 UIView  Tag=3
+      #138 UIView  Tag=6
+      #171 UIView  Tag=7
+      #197 UIView  Tag=8
+    #191 UITextView  Tag=2 Text='Lorem ipsum dolor sit er elit lamet, Lorem ipsum dolor sit er elit lamet, '
+
+CONNECTIONS
+  action  playButtonPressed:                        #172 ADButtonWithFont --(events 0x40)--> #52 UIProxyObject
+  action  playButtonPressed:                        #114 ADButtonWithFont --(events 0x40)--> #52 UIProxyObject
+  outlet  background                                #52 UIProxyObject --> #190 UIImageView
+  outlet  challengeEquipement                       #52 UIProxyObject --> #144 UIView
+  outlet  challengeObjective                        #52 UIProxyObject --> #196 UITextView Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  challengeTitle                            #52 UIProxyObject --> #192 UILabel Text='POWERUP AND DIAMONDS'
+  outlet  starPlaceholder1                          #52 UIProxyObject --> #150 UIView
+  outlet  starPlaceholder2                          #52 UIProxyObject --> #74 UIView
+  outlet  starPlaceholder3                          #52 UIProxyObject --> #64 UIView
+  outlet  starUnlockArea                            #52 UIProxyObject --> #205 UIView
+  outlet  view                                      #52 UIProxyObject --> #119 UIView
+
+ACCESSIBILITY CONFIGURATIONS

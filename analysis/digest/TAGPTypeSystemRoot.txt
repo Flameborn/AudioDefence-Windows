@@ -1,0 +1,16 @@
+
+== +[TAGPTypeSystemRoot extensionRegistry]   (address 0x10014b9fc  size 140  kind objc)
+  14ba14  if (g_10042de60 != 0) goto loc_10014ba7c
+  14ba2c  [TAGPBExtensionRegistry alloc]
+  14ba3c  [[TAGPBExtensionRegistry alloc] init]
+  14ba44  store g_10042de60 = [[TAGPBExtensionRegistry alloc] init]
+  14ba5c  [TAGPBObjectivecDescriptorRoot extensionRegistry]
+  14ba74  [[[TAGPBExtensionRegistry alloc] init] addExtensions:[TAGPBObjectivecDescriptorRoot extensionRegistry]]
+loc_10014ba7c:
+  14ba84  return
+
+== +[TAGPTypeSystemRoot load]   (address 0x10014ba88  size 108  kind objc)
+  14baac  [NSAutoreleasePool alloc]
+  14babc  [[NSAutoreleasePool alloc] init]
+  14bad4  [TAGPTypeSystemRoot extensionRegistry]
+  14baf0  tail [[[NSAutoreleasePool alloc] init] drain]

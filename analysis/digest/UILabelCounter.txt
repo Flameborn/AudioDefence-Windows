@@ -1,0 +1,10 @@
+
+== -[UILabelCounter update:]   (address 0x10007cb24  size 8  kind objc)
+  07cb28  return
+
+== -[UILabelCounter rate]   (address 0x10007cb2c  size 20  kind objc)
+  07cb3c  return
+
+== -[UILabelCounter setRate:]   (address 0x10007cb40  size 20  kind objc)
+  07cb4c  self->_rate = arg1
+  07cb50  return

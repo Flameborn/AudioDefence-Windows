@@ -1,0 +1,228 @@
+
+== +[ADMissionManager sharedMissionManager]   (address 0x100007eec  size 172  kind objc)
+  007f00  objc_sync_enter(ADMissionManager)
+  007f0c  if (g_10042d950 != 0) goto loc_100007f5c
+  007f24  [ADMissionManager alloc]
+  007f34  [[ADMissionManager alloc] init]
+  007f3c  store g_10042d950 = [[ADMissionManager alloc] init]
+  007f58  [g_10042d950 initOrRestore]
+loc_100007f5c:
+  007f60  objc_sync_exit(ADMissionManager)
+  007f84  objc_sync_exit()
+
+== -[ADMissionManager missionArray]   (address 0x100007f98  size 268  kind objc)
+  007fb8  if (self->_missionArray == 0) goto loc_100007fc8
+  007fc4  goto loc_100008070
+loc_100007fc8:
+  007fdc  [NSBundle mainBundle]
+  008008  [[NSBundle mainBundle] URLForResource:@"Missions" withExtension:@"plist"]
+  008034  [NSArray alloc]
+  008048  [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Missions" withExtension:@"plist"]]
+  008050  self->_missionArray = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Missions" withExtension:@"plist"]]
+loc_100008070:
+  008080  return
+
+== -[ADMissionManager activeMissionsInit]   (address 0x1000080a4  size 480  kind objc)
+  0080e0  [NSMutableArray alloc]
+  0080f0  [[NSMutableArray alloc] init]
+  00810c  [self setActiveMissions:[[NSMutableArray alloc] init]]
+  00814c  &@selector(activeMissions)
+  00815c  &@selector(addObject:)
+loc_100008164:
+  008170  [ADMission alloc]
+  008180  [self missionArray]
+  008198  [[self missionArray] objectAtIndex:self->currentMissionIndex]
+  0081b4  [[ADMission alloc] initWithDictionary:[[self missionArray] objectAtIndex:self->currentMissionIndex]]
+  0081d4  [self activeMissions]
+  0081ec  [[self activeMissions] addObject:[[ADMission alloc] initWithDictionary:[[self missionArray] objectAtIndex:self->currentMissionIndex]]]
+  008200  self->currentMissionIndex = (self->currentMissionIndex + 1)
+  008214  if ((w20 + 1) < 3) goto loc_100008164
+  008234  return
+
+== -[ADMissionManager initOrRestore]   (address 0x100008284  size 216  kind objc)
+  0082ac  [NSUserDefaults standardUserDefaults]
+  0082d0  [[NSUserDefaults standardUserDefaults] valueForKey:@"missionArray"]
+  0082e4  if ([[NSUserDefaults standardUserDefaults] valueForKey:@"missionArray"] == 0) goto loc_100008300
+  0082f8  [self loadMissionProgress]
+  0082fc  goto loc_100008334
+loc_100008300:
+  008308  self->currentMissionIndex = 0
+  00831c  [self activeMissionsInit]
+  008330  [self saveMissionProgress]
+loc_100008334:
+  008344  return
+
+== -[ADMissionManager saveMissionProgress]   (address 0x10000835c  size 308  kind objc)
+  008384  [NSUserDefaults standardUserDefaults]
+  0083ac  [self activeMissions]
+  0083d0  [NSKeyedArchiver archivedDataWithRootObject:[self activeMissions]]
+  008404  [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:[self activeMissions]] forKey:@"missionArray"]
+  00842c  [[NSUserDefaults standardUserDefaults] setInteger:self->currentMissionIndex forKey:@"currentMissionIndex"]
+  008440  [[NSUserDefaults standardUserDefaults] synchronize]
+  00845c  return
+
+== -[ADMissionManager loadMissionProgress]   (address 0x100008490  size 284  kind objc)
+  0084b8  [NSUserDefaults standardUserDefaults]
+  0084dc  [[NSUserDefaults standardUserDefaults] valueForKey:@"missionArray"]
+  008504  [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"missionArray"]]
+  008528  [self setActiveMissions:[NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] valueForKey:@"missionArray"]]]
+  00854c  [[NSUserDefaults standardUserDefaults] integerForKey:@"currentMissionIndex"]
+  008558  self->currentMissionIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"currentMissionIndex"]
+  008574  return
+
+== -[ADMissionManager update:]   (address 0x1000085ac  size 108  kind objc)
+  0085cc  [ADChallengeData sharedChallengeData]
+  0085f0  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  008600  return
+
+== -[ADMissionManager missionsCompleted]   (address 0x100008618  size 404  kind objc)
+  008664  [self activeMissions]
+  008690  [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  00869c  if ([[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100008710
+  0086ac  &@selector(isMissionCompleted)
+loc_1000086b4:
+loc_1000086b8:
+  0086c4  if (x8 == x25) goto loc_1000086d0
+  0086cc  objc_enumerationMutation([self activeMissions])
+loc_1000086d0:
+  0086dc  [x0 isMissionCompleted]
+  0086ec  if ((x26 + 1) <u [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000086b8
+  008704  [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  00870c  if ([[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000086b4
+loc_100008710:
+  00872c  [ADPersistentStats persistentStats]
+  00874c  [[ADPersistentStats persistentStats] updateMissionsCompleted:x2]
+  008784  return
+
+== -[ADMissionManager replaceMission:]   (address 0x1000087ac  size 288  kind objc)
+  0087e0  [self activeMissions]
+  008800  [[self activeMissions] removeObject:arg1]
+  00881c  [self getNextMission]
+  008834  [self activeMissions]
+  008854  [[self activeMissions] addObject:[self getNextMission]]
+  008870  [self saveMissionProgress]
+  00888c  return
+
+== -[ADMissionManager getNextMission]   (address 0x1000088cc  size 340  kind objc)
+  0088f8  [ADMission alloc]
+  008914  [self missionArray]
+  00893c  [[self missionArray] objectAtIndex:self->currentMissionIndex]
+  008960  [[ADMission alloc] initWithDictionary:[[self missionArray] objectAtIndex:self->currentMissionIndex]]
+  008980  self->currentMissionIndex = (self->currentMissionIndex + 1)
+  00898c  [self missionArray]
+  0089a8  [[self missionArray] count]
+  0089c0  if ((self->currentMissionIndex + 1) <u [[self missionArray] count]) goto loc_1000089c8
+  0089c4  self->currentMissionIndex = 0
+loc_1000089c8:
+  0089dc  return
+
+== -[ADMissionManager enemiKilled:withWeapon:]   (address 0x100008a20  size 496  kind objc)
+  008a84  [ADChallengeData sharedChallengeData]
+  008aa8  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  008ab8  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_100008b90
+  008adc  [self activeMissions]
+  008b08  [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  008b10  if ([[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100008b88
+  008b20  &@selector(enemiKilled:withWeapon:)
+loc_100008b28:
+loc_100008b2c:
+  008b38  if (x8 == x26) goto loc_100008b44
+  008b40  objc_enumerationMutation([self activeMissions])
+loc_100008b44:
+  008b58  [x0 enemiKilled:arg1 withWeapon:arg2]
+  008b64  if ((x27 + 1) <u [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100008b2c
+  008b7c  [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  008b84  if ([[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_100008b28
+loc_100008b88:
+loc_100008b90:
+  008bc8  return
+
+== -[ADMissionManager upgradeWeaponToLevel:]   (address 0x100008c10  size 224  kind objc)
+  008c38  [ADChallengeData sharedChallengeData]
+  008c5c  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  008c6c  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_100008cc0
+  008c80  [self activeMissions]
+  008ca8  [[self activeMissions] makeObjectsPerformSelector:@selector(playerUpgradedWeapon)]
+  008cbc  return
+loc_100008cc0:
+  008ccc  return
+
+== -[ADMissionManager startGameplay]   (address 0x100008cf0  size 224  kind objc)
+  008d18  [ADChallengeData sharedChallengeData]
+  008d3c  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  008d4c  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_100008da0
+  008d60  [self activeMissions]
+  008d88  [[self activeMissions] makeObjectsPerformSelector:@selector(startGameplay)]
+  008d9c  return
+loc_100008da0:
+  008dac  return
+
+== -[ADMissionManager endGameplay]   (address 0x100008dd0  size 256  kind objc)
+  008df8  [ADChallengeData sharedChallengeData]
+  008e1c  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  008e2c  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_100008ea8
+  008e40  [self activeMissions]
+  008e68  [[self activeMissions] makeObjectsPerformSelector:@selector(endGameplay)]
+  008e84  [self missionsCompleted]
+  008ea4  tail [self saveMissionProgress]
+loc_100008ea8:
+  008eb4  return
+
+== -[ADMissionManager playerSwappedWeapon]   (address 0x100008ed0  size 224  kind objc)
+  008ef8  [ADChallengeData sharedChallengeData]
+  008f1c  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  008f2c  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_100008f80
+  008f40  [self activeMissions]
+  008f68  [[self activeMissions] makeObjectsPerformSelector:@selector(playerSwappedWeapon)]
+  008f7c  return
+loc_100008f80:
+  008f8c  return
+
+== -[ADMissionManager playerMissedAShot]   (address 0x100008fb0  size 224  kind objc)
+  008fd8  [ADChallengeData sharedChallengeData]
+  008ffc  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  00900c  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_100009060
+  009020  [self activeMissions]
+  009048  [[self activeMissions] makeObjectsPerformSelector:@selector(playerMissedAShot)]
+  00905c  return
+loc_100009060:
+  00906c  return
+
+== -[ADMissionManager playerShotWithWeapon:hitEnemi:]   (address 0x100009090  size 468  kind objc)
+  0090e8  [ADChallengeData sharedChallengeData]
+  00910c  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"]
+  00911c  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:@"tutorial_5"] & 1)) goto loc_1000091f4
+  009140  [self activeMissions]
+  00916c  [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  009174  if ([[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000091ec
+  009184  &@selector(playerShotWithWeapon:hitEnemi:)
+loc_10000918c:
+loc_100009190:
+  00919c  if (x8 == x26) goto loc_1000091a8
+  0091a4  objc_enumerationMutation([self activeMissions])
+loc_1000091a8:
+  0091bc  [x0 playerShotWithWeapon:arg1 hitEnemi:arg2]
+  0091c8  if ((x27 + 1) <u [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100009190
+  0091e0  [[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0091e8  if ([[self activeMissions] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10000918c
+loc_1000091ec:
+loc_1000091f4:
+  009224  return
+
+== -[ADMissionManager playerDied]   (address 0x100009264  size 104  kind objc)
+  00927c  [self activeMissions]
+  0092a4  [[self activeMissions] makeObjectsPerformSelector:@selector(playerDied)]
+  0092b4  return
+
+== -[ADMissionManager setMissionArray:]   (address 0x1000092cc  size 56  kind objc)
+  0092f0  self->_missionArray = arg1
+  009300  return
+
+== -[ADMissionManager activeMissions]   (address 0x100009304  size 16  kind objc)
+  009310  return
+
+== -[ADMissionManager setActiveMissions:]   (address 0x100009314  size 56  kind objc)
+  009338  self->_activeMissions = arg1
+  009348  return
+
+== -[ADMissionManager .cxx_destruct]   (address 0x10000934c  size 64  kind objc)

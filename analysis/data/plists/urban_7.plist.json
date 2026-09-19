@@ -1,0 +1,45 @@
+{
+ "icon_title": "17",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 75
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "title": "The Soundtrack of your Death",
+ "objective": "Survive another wave of zombies as Dr. Bastard's Jukebox plays awful music!",
+ "tip": "Shoot the Jukebox to turn it off...for a while.",
+ "bricks": [
+  "urban_7_brick_1",
+  "urban_7_brick_2",
+  "urban_7_brick_3",
+  "urban_7_brick_4"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "urban_7",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "urban_6"
+ ],
+ "weapons": [
+  {
+   "ammo": "50",
+   "name": "hunting"
+  },
+  {
+   "ammo": "60",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 75
+ }
+}

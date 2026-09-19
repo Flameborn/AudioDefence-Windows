@@ -1,0 +1,278 @@
+
+== -[TAGResourceStorageImpl initWithContainerId:]   (address 0x100156c1c  size 164  kind objc)
+  156c60  [super init]
+  156c68  if (self == 0) goto loc_100156c8c
+  156c80  self->_containerId = arg1
+loc_100156c8c:
+  156ca8  return
+
+== -[TAGResourceStorageImpl loadResourceFromDiskInBackground]   (address 0x100156cc0  size 220  kind objc)
+  156d50  [TAGAsyncUtil invokeAsync:^{-[TAGResourceStorageImpl loadResourceFromDiskInBackground]_block_invoke captures +0x20=self} resultBlock:^{-[TAGResourceStorageImpl loadResourceFromDiskInBackground]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[TAGResourceStorageImpl loadResourceFr…, +0x40=&d_1003b9690, +0x48=self}]
+  156d74  return
+
+== -[TAGResourceStorageImpl loadResourceFromDiskInBackground]_block_invoke   (address 0x100156d9c  size 20  kind block)
+  156dac  tail [self loadResourceFromDisk]
+
+== sub_100156db0   (address 0x100156db0  size 8  kind sub)
+
+== sub_100156db8   (address 0x100156db8  size 8  kind sub)
+  156dbc  return
+
+== -[TAGResourceStorageImpl loadResourceFromDiskInBackground]_block_invoke_2   (address 0x100156dc0  size 312  kind block)
+  156df0  [blockarg1 type]
+  156e0c  &@selector(loadCallback)
+  156e14  if ([blockarg1 type] == 0) goto loc_100156e64
+  156e18  [self loadCallback]
+  156e30  [blockarg1 type]
+  156e54  [[self loadCallback] onSuccess:[blockarg1 type]]
+  156e60  goto loc_100156ea0
+loc_100156e64:
+  156e64  [self loadCallback]
+  156e84  [blockarg1 failure]
+  156e9c  [[self loadCallback] onFailure:[blockarg1 failure]]
+loc_100156ea0:
+  156eb8  return
+
+== sub_100156ef8   (address 0x100156ef8  size 8  kind sub)
+
+== sub_100156f00   (address 0x100156f00  size 8  kind sub)
+  156f04  return
+
+== -[TAGResourceStorageImpl loadResourceFromDisk]   (address 0x100156f08  size 1100  kind objc)
+  156f30  [self loadCallback]
+  156f4c  [[self loadCallback] startLoad]
+  156f6c  [TAGPreviewManager instance]
+  156f8c  [self containerId]
+  156fb0  [[TAGPreviewManager instance] isPreviewingContainer:[self containerId]]
+  156fc0  if ([[TAGPreviewManager instance] isPreviewingContainer:[self containerId]] == 0) goto loc_100156ff8
+  156fd8  [TAGTypeOrFailure alloc]
+  156fec  [[TAGTypeOrFailure alloc] initWithFailure:1]
+  156ff4  goto loc_1001572e0
+loc_100156ff8:
+  157008  [self resourceFilename]
+  157030  [NSData dataWithContentsOfFile:[self resourceFilename]]
+  157040  if ([NSData dataWithContentsOfFile:[self resourceFilename]] == 0) goto loc_100157128
+  15705c  [TAGPBExtensionRegistry alloc]
+  15706c  [[TAGPBExtensionRegistry alloc] init]
+  157088  [TAGPServingValue ext]
+  1570ac  [[[TAGPBExtensionRegistry alloc] init] addExtension:[TAGPServingValue ext]]
+  1570d4  [TAGPResourceWithMetadata parseFromData:[NSData dataWithContentsOfFile:[self resourceFilename]] extensionRegistry:[[TAGPBExtensionRegistry alloc] init]]
+  1570f0  [[TAGPResourceWithMetadata parseFromData:[NSData dataWithContentsOfFile:[self resourceFilename]] extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] isInitialized]
+  1570f4  if ([[TAGPResourceWithMetadata parseFromData:[NSData dataWithContentsOfFile:[self resourceFilename]] extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] isInitialized] == 0) goto loc_10015717c
+  157104  [TAGTypeOrFailure alloc]
+  157118  [[TAGTypeOrFailure alloc] initWithType:[TAGPResourceWithMetadata parseFromData:[NSData dataWithContentsOfFile:[self resourceFilename]] extensionRegistry:[[TAGPBExtensionRegistry alloc] init]]]
+  157124  goto loc_1001571a0
+loc_100157128:
+  157144  [TAGLog debug:@"Resource not on disk"]
+  15715c  [TAGTypeOrFailure alloc]
+  157170  [[TAGTypeOrFailure alloc] initWithFailure:1]
+  157178  goto loc_1001572d0
+loc_10015717c:
+  157198  [TAGLog warning:@"Resource from disk not initialized."]
+loc_1001571a0:
+  1571b0  if (one of {0, 1} == 0) goto loc_1001572d0
+  1571b4  goto loc_1001572a8
+  1571b8  goto loc_1001571cc
+  1571c8  goto loc_100157344
+loc_1001571cc:
+  1571d0  goto loc_100157344
+  1571d8  goto loc_10015733c
+  1571e4  goto loc_100157210
+  1571e8  goto loc_1001571f8
+  1571f4  goto loc_100157208
+loc_1001571f8:
+loc_100157208:
+loc_100157210:
+  157214  if (w26 != 1) goto loc_100157334
+  15721c  objc_begin_catch()
+  157238  [objc_begin_catch() description]
+  157268  [@"Error reading resource from disk" stringByAppendingString:[objc_begin_catch() description]]
+  157290  [TAGLog warning:[@"Error reading resource from disk" stringByAppendingString:[objc_begin_catch() description]]]
+  1572a4  objc_end_catch()
+loc_1001572a8:
+  1572b4  [TAGTypeOrFailure alloc]
+  1572c8  [[TAGTypeOrFailure alloc] initWithFailure:2]
+loc_1001572d0:
+loc_1001572e0:
+  157300  return
+  157328  objc_end_catch()
+
+== -[TAGResourceStorageImpl saveResourceToDiskInBackground:]   (address 0x100157354  size 36  kind objc)
+  15736c  [self saveResourceToDiskInBackground:arg1 resultBlock:0]
+  157374  return
+
+== -[TAGResourceStorageImpl saveResourceToDiskInBackground:resultBlock:]   (address 0x100157378  size 272  kind objc)
+  157418  [TAGAsyncUtil invokeAsync:^{-[TAGResourceStorageImpl saveResourceToDiskInBackground:resultBlock:]_block_invoke captures +0x20=self, +0x28=arg1} resultBlock:arg2]
+  157450  return
+
+== -[TAGResourceStorageImpl saveResourceToDiskInBackground:resultBlock:]_block_invoke   (address 0x100157488  size 64  kind block)
+  1574a4  [x0 saveResourceToDisk:x2]
+  1574c4  tail [NSNumber numberWithBool:[x0 saveResourceToDisk:x2]]
+
+== sub_1001574c8   (address 0x1001574c8  size 40  kind sub)
+
+== sub_1001574f0   (address 0x1001574f0  size 40  kind sub)
+  157514  return
+
+== -[TAGResourceStorageImpl loadResourceFromContainerFile:]   (address 0x100157518  size 980  kind objc)
+  157558  [self mainBundle]
+  157580  [[self mainBundle] pathForResource:arg1 ofType:@""]
+  1575a0  if ([[self mainBundle] pathForResource:arg1 ofType:@""] == 0) goto loc_1001576dc
+  1575c0  [@"Loading default container from " stringByAppendingString:arg1]
+  1575e4  [TAGLog verbose:[@"Loading default container from " stringByAppendingString:arg1]]
+  157608  [NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@""]]
+  15762c  [TAGPBExtensionRegistry alloc]
+  15763c  [[TAGPBExtensionRegistry alloc] init]
+  157658  [TAGPServingValue ext]
+  15767c  [[[TAGPBExtensionRegistry alloc] init] addExtension:[TAGPServingValue ext]]
+  1576a4  [TAGPResource parseFromData:[NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@""]] extensionRegistry:[[TAGPBExtensionRegistry alloc] init]]
+  1576c0  [[TAGPResource parseFromData:[NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@""]] extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] isInitialized]
+  1576c4  if ([[TAGPResource parseFromData:[NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@""]] extensionRegistry:[[TAGPBExtensionRegistry alloc] init]] isInitialized] == 0) goto loc_100157734
+  1576d8  goto loc_100157754
+loc_1001576dc:
+  1576fc  [NSString stringWithFormat:@"Cannot find binary resource file '%@'.", arg1]
+  157720  [TAGLog warning:[NSString stringWithFormat:@"Cannot find binary resource file '%@'.", arg1]]
+  157730  goto loc_100157870
+loc_100157734:
+  15774c  [TAGLog warning:@"Resource from container not initialized."]
+loc_100157754:
+  157764  if (one of {0, 1} == 0) goto loc_100157868
+  157768  goto loc_100157864
+  157770  goto loc_1001578dc
+  15777c  goto loc_1001578d8
+  15778c  goto loc_1001578d4
+  157798  goto loc_1001577dc
+  15779c  goto loc_1001577c4
+  1577a8  goto loc_1001577d4
+  1577b0  goto loc_1001578d4
+  1577c0  goto loc_1001578d4
+loc_1001577c4:
+loc_1001577d4:
+loc_1001577dc:
+  1577e0  if (w27 != 1) goto loc_1001578cc
+  1577e8  objc_begin_catch()
+  157800  [objc_begin_catch() description]
+  157824  [@"Error reading resource from binary container file: " <sel x1>]
+  15784c  [x0 warning:[@"Error reading resource from binary container file: " <sel x1>]]
+  157860  objc_end_catch()
+loc_100157864:
+loc_100157868:
+loc_100157870:
+  1578a0  return
+  1578c8  objc_end_catch()
+
+== -[TAGResourceStorageImpl loadExpandedResourceFromJsonFile:]   (address 0x1001578ec  size 876  kind objc)
+  157928  [self mainBundle]
+  157950  [[self mainBundle] pathForResource:arg1 ofType:@"json"]
+  15797c  &@selector(stringWithFormat:)
+  157984  if ([[self mainBundle] pathForResource:arg1 ofType:@"json"] == 0) goto loc_100157a98
+  157994  [NSString stringWithFormat:@"loading default container from %@.json", arg1]
+  1579bc  [TAGLog verbose:[NSString stringWithFormat:@"loading default container from %@.json", arg1]]
+  1579e0  [NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@"json"]]
+  157a14  [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@"json"]] options:4 error:&sp[0x8]]
+  157a34  [[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@"json"]] options:4 error:&sp[0x8]] description]
+  157a50  [TAGLog verbose:[[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@"json"]] options:4 error:&sp[0x8]] description]]
+  157a74  [TAGSerialization expandedResourceFromDeserializedObject:[NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@"json"]] options:4 error:&sp[0x8]]]
+  157a94  goto loc_100157ad8
+loc_100157a98:
+  157aa4  [NSString stringWithFormat:@"Cannot find resource file '%@.json'.", arg1]
+  157ac8  [TAGLog warning:[NSString stringWithFormat:@"Cannot find resource file '%@.json'.", arg1]]
+loc_100157ad8:
+  157b04  return
+  157b60  if (w22 != 1) goto loc_100157c38
+  157b68  objc_begin_catch()
+  157b80  [objc_begin_catch() description]
+  157bb0  [@"Error reading resource from json file: " stringByAppendingString:[objc_begin_catch() description]]
+  157bd8  [x0 warning:[@"Error reading resource from json file: " stringByAppendingString:[objc_begin_catch() description]]]
+  157bec  objc_end_catch()
+  157c34  objc_end_catch()
+
+== -[TAGResourceStorageImpl loadExpandedResourceFromPlistFile:]   (address 0x100157c58  size 724  kind objc)
+  157c94  [self mainBundle]
+  157cbc  [[self mainBundle] pathForResource:arg1 ofType:@"plist"]
+  157ce8  &@selector(stringWithFormat:)
+  157cf0  if ([[self mainBundle] pathForResource:arg1 ofType:@"plist"] == 0) goto loc_100157d8c
+  157d00  [NSString stringWithFormat:@"loading default container from %@.plist", arg1]
+  157d24  [TAGLog verbose:[NSString stringWithFormat:@"loading default container from %@.plist", arg1]]
+  157d48  [NSDictionary dictionaryWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@"plist"]]
+  157d70  [TAGSerialization expandedResourceFromDeserializedObject:[NSDictionary dictionaryWithContentsOfFile:[[self mainBundle] pathForResource:arg1 ofType:@"plist"]]]
+  157d88  goto loc_100157dcc
+loc_100157d8c:
+  157d98  [NSString stringWithFormat:@"Cannot find resource file '%@.plist'.", arg1]
+  157dbc  [TAGLog warning:[NSString stringWithFormat:@"Cannot find resource file '%@.plist'.", arg1]]
+loc_100157dcc:
+  157df8  return
+  157e40  if (w25 != 1) goto loc_100157f14
+  157e48  objc_begin_catch()
+  157e60  [objc_begin_catch() description]
+  157e90  [@"Error reading resource from plist file: " stringByAppendingString:[objc_begin_catch() description]]
+  157eb8  [x0 warning:[@"Error reading resource from plist file: " stringByAppendingString:[objc_begin_catch() description]]]
+  157ecc  objc_end_catch()
+  157f10  objc_end_catch()
+
+== -[TAGResourceStorageImpl saveResourceToDisk:]   (address 0x100157f2c  size 528  kind objc)
+  157f60  [self resourceFilename]
+  157f8c  [NSOutputStream outputStreamToFileAtPath:[self resourceFilename] append:0]
+  157fb0  [arg1 writeToOutputStream:[NSOutputStream outputStreamToFileAtPath:[self resourceFilename] append:0]]
+  157fcc  [[NSOutputStream outputStreamToFileAtPath:[self resourceFilename] append:0] close]
+  157fd0  if (0 != 0) goto loc_1001580dc
+  158008  return
+  158028  if (w8 != 2) goto loc_100158124
+  158030  objc_begin_catch()
+  15805c  [TAGLog warning:@"Error writing resource to disk. Removing resource from disk."]
+  15807c  [NSFileManager alloc]
+  158090  [[NSFileManager alloc] init]
+  1580b4  [[[NSFileManager alloc] init] removeItemAtPath:x2 error:0]
+  1580c0  objc_end_catch()
+  1580d4  if (w23 == 0) goto loc_1001580ec
+  1580dc  objc_exception_rethrow([[NSOutputStream outputStreamToFileAtPath:[self resourceFilename] append:0] close])
+  1580e8  objc_end_catch()
+  158120  objc_end_catch()
+  158128  objc_begin_catch()
+  158138  objc_terminate()
+
+== -[TAGResourceStorageImpl resourceFilename]   (address 0x10015813c  size 252  kind objc)
+  15815c  [self dataPath]
+  15817c  [self containerId]
+  1581a4  [@"resource_" stringByAppendingString:[self containerId]]
+  1581c8  [[self dataPath] stringByAppendingPathComponent:[@"resource_" stringByAppendingString:[self containerId]]]
+  158200  return
+
+== -[TAGResourceStorageImpl dataPath]   (address 0x100158238  size 764  kind objc)
+  158264  NSSearchPathForDirectoriesInDomains(5, 1, 1)
+  158284  [NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0]
+  1582ac  [[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:@"Application Support"]
+  1582d4  [[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:@"Application Support"] stringByAppendingPathComponent:@"Google"]
+  1582f0  [[[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:@"Application Support"] stringByAppendingPathComponent:@"Google"] stringByAppendingPathComponent:@"TagManager"]
+  158314  [NSFileManager alloc]
+  158324  [[NSFileManager alloc] init]
+  158344  [[[NSFileManager alloc] init] fileExistsAtPath:[[[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:@"Application Support"] stringByAppendingPathComponent:@"Google"] stringByAppendingPathComponent:@"TagManager"]]
+  158348  if (!([[[NSFileManager alloc] init] fileExistsAtPath:[[[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:@"Application Support"] stringByAppendingPathComponent:@"Google"] stringByAppendingPathComponent:@"TagManager"]] & 1)) goto loc_100158354
+  158350  goto loc_100158394
+loc_100158354:
+  15837c  [[[NSFileManager alloc] init] createDirectoryAtPath:[[[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:@"Application Support"] stringByAppendingPathComponent:@"Google"] stringByAppendingPathComponent:@"TagManager"] withIntermediateDirectories:1 attributes:0 error:&sp[0x8]]
+  158390  if (!([[[NSFileManager alloc] init] createDirectoryAtPath:[[[[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:@"Application Support"] stringByAppendingPathComponent:@"Google"] stringByAppendingPathComponent:@"TagManager"] withIntermediateDirectories:1 attributes:0 error:&sp[0x8]] & 1)) goto loc_100158404
+loc_100158394:
+  1583dc  return
+  158420  [0 description]
+  158450  [@"Create directory error: " stringByAppendingString:[0 description]]
+  158478  [TAGLog error:[@"Create directory error: " stringByAppendingString:[0 description]]]
+  1584bc  [NSException exceptionWithName:@"UnableToCreateDataDirectory" reason:0 userInfo:0]
+  1584cc  objc_exception_throw([NSException exceptionWithName:@"UnableToCreateDataDirectory" reason:0 userInfo:0])
+
+== -[TAGResourceStorageImpl mainBundle]   (address 0x100158534  size 24  kind objc)
+  158548  tail [NSBundle mainBundle]
+
+== -[TAGResourceStorageImpl loadCallback]   (address 0x10015854c  size 16  kind objc)
+  158558  return
+
+== -[TAGResourceStorageImpl setLoadCallback:]   (address 0x10015855c  size 20  kind objc)
+
+== -[TAGResourceStorageImpl containerId]   (address 0x100158570  size 16  kind objc)
+  15857c  return
+
+== -[TAGResourceStorageImpl setContainerId:]   (address 0x100158580  size 56  kind objc)
+  1585a4  self->_containerId = arg1
+  1585b4  return
+
+== -[TAGResourceStorageImpl .cxx_destruct]   (address 0x1001585b8  size 64  kind objc)

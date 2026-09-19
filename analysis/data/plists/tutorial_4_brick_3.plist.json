@@ -1,0 +1,11 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1.5,
+   "name": "bastard_tutorial_4_2"
+  }
+ ]
+}

@@ -1,0 +1,1641 @@
+
+== -[S3DSound looping]   (address 0x100100888  size 16  kind objc)
+  100894  tail [self localLooping]
+
+== -[S3DSound setLoopinggg:]   (address 0x100100898  size 232  kind objc)
+  1008c0  [self setLocalLooping:arg1]
+  1008d8  [S3DEngine engine]
+  100904  [[S3DEngine engine] quietLog:1 format:@"Set local looping to %i for sound %@"]
+  100924  [self soundFile]
+  100928  if ([self soundFile] == 0) goto loc_100100950
+  100934  [self soundFile]
+  100938  [self soundFile][+0x191] = arg1
+  10094c  return
+  100968  tail puts("**** FAILED TO SET SOUND TO LOOPING ***** THERE IS NO SOUNDFILE\n\n")
+
+== -[S3DSound loaded]   (address 0x100100980  size 40  kind objc)
+  100994  [self soundFile]
+  1009a4  return
+
+== -[S3DSound playing]   (address 0x1001009a8  size 84  kind objc)
+  1009c8  [self soundFile]
+  1009cc  if ([self soundFile] == 0) goto loc_1001009ec
+  1009d8  [self soundFile]
+  1009e4  call [self soundFile][+0x0][+0x38]
+  1009e8  goto loc_1001009f0
+loc_1001009ec:
+loc_1001009f0:
+  1009f8  return
+
+== -[S3DSound duration]   (address 0x1001009fc  size 84  kind objc)
+  100a18  [self soundFile]
+  100a1c  if ([self soundFile] == 0) goto loc_100100a38
+  100a34  tail sub_1000e4aac(self->soundFile)
+loc_100100a38:
+  100a4c  return
+
+== -[S3DSound setPlayRate:]   (address 0x100100a50  size 108  kind objc)
+  100a70  self->playRate = arg1
+  100a84  [self soundFile]
+  100a88  if ([self soundFile] == 0) goto loc_100100aac
+  100a94  [self soundFile]
+  100aa8  tail sub_1000e4bd8([self soundFile])
+loc_100100aac:
+  100ab8  return
+
+== -[S3DSound setPan:]   (address 0x100100abc  size 120  kind objc)
+  100ae8  if (self->pan == arg1) goto loc_100100b20
+  100b00  [self panner]
+  100b04  if ([self panner] == 0) goto loc_100100b1c
+  100b10  [self panner]
+  100b18  sub_1000ee7f8([self panner])
+loc_100100b1c:
+  100b1c  self->pan = arg1
+loc_100100b20:
+  100b30  return
+
+== -[S3DSound setGain:]   (address 0x100100b34  size 428  kind objc)
+  100b60  self->gain = arg1
+  100b70  [self gainControl]
+  100b74  if ([self gainControl] == 0) goto loc_100100ca0
+  100b88  [self spatialized]
+  100b8c  if ([self spatialized] == 0) goto loc_100100bbc
+  100bb0  [S3DEngine getMasterSpatialisedGain]
+  100bb8  goto loc_100100c00
+loc_100100bbc:
+  100bd0  [self panner]
+  100bd4  if ([self panner] == 0) goto loc_100100be4
+  100be0  goto loc_100100bf4
+loc_100100be4:
+  100be8  &@selector(soundFile)
+loc_100100bf4:
+  100bf4  [self <sel x1>]
+loc_100100c00:
+  100c20  [S3DEngine engine]
+  100c8c  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound setGain:]_block_invoke captures +0x20=self, +0x30=(s9 * (self->fadeGain * arg1))}]
+loc_100100ca0:
+  100cb8  return
+
+== -[S3DSound setGain:]_block_invoke   (address 0x100100ce0  size 88  kind block)
+  100d04  [self gainControl]
+  100d08  if ([self gainControl] == 0) goto loc_100100d2c
+  100d14  [self gainControl]
+  100d28  tail sub_1000edfec([self gainControl], block[+0x28])
+loc_100100d2c:
+  100d34  return
+
+== sub_100100d38   (address 0x100100d38  size 8  kind sub)
+
+== sub_100100d40   (address 0x100100d40  size 8  kind sub)
+  100d44  return
+
+== -[S3DSound channelCount]   (address 0x100100d48  size 88  kind objc)
+  100d68  [self soundFile]
+  100d6c  if ([self soundFile] == 0) goto loc_100100d90
+  100d78  [self soundFile]
+  100d84  call [self soundFile][+0x0][+0x18]
+  100d8c  goto loc_100100d94
+loc_100100d90:
+loc_100100d94:
+  100d9c  return
+
+== -[S3DSound description]   (address 0x100100da0  size 468  kind objc)
+  100dc8  [self url]
+  100ddc  if ([self url] == 0) goto loc_100100ed8
+  100e00  [NSString stringWithFormat:@"<self:%08.8x>", self]
+  100e18  [self url]
+  100e34  [[self url] relativeString]
+  100e5c  [[[self url] relativeString] stringByDeletingPathExtension]
+  100e78  [[[[self url] relativeString] stringByDeletingPathExtension] lastPathComponent]
+  100eac  [[[[[self url] relativeString] stringByDeletingPathExtension] lastPathComponent] stringByAppendingFormat:@" %@", [NSString stringWithFormat:@"<self:%08.8x>", self]]
+  100ed4  goto loc_100100f08
+loc_100100ed8:
+  100ef8  [super description]
+loc_100100f08:
+  100f1c  return
+
+== -[S3DSound setPlanarInternalInternal]   (address 0x100100f74  size 596  kind objc)
+  100fa4  [self spatialSource]
+  100fa8  if ([self spatialSource] == 0) goto loc_1001010f4
+  100fc4  [S3DEngine engine]
+  100fe8  [self planar]
+  100ffc  [[S3DEngine engine] normalizeToHeadPosition:{[self planar].0, [self planar].1, [self planar].2}]
+  10101c  [self spatialSource]
+  101034  call [self spatialSource][+0x0][+0x78]
+  101040  self->planarNeedsUpdating = 0
+  101050  if (self->_autoReverbMix == 0) goto loc_1001010f4
+  10105c  [S3DEngine engine]
+  101078  [[S3DEngine engine] headPosition]
+  101098  [self planar]
+  1010a8  [self planar]
+  1010b8  [self planar]
+  1010c0  t1 = (([self planar].0 - [[S3DEngine engine] headPosition].0) * ([self planar].0 - [[S3DEngine engine] headPosition].0))
+  1010c4  t2 = (([self planar].1 - [[S3DEngine engine] headPosition].1) * ([self planar].1 - [[S3DEngine engine] headPosition].1))
+  1010cc  t3 = (([self planar].2 - [[S3DEngine engine] headPosition].2) * ([self planar].2 - [[S3DEngine engine] headPosition].2))
+  1010e8  if (sqrt(((t1 + t2) + t3)) >= (or unordered) self->_minReverbDistance) goto loc_100101110
+  1010f0  goto loc_100101138
+loc_1001010f4:
+  10110c  return
+  101120  if (sqrt(((t1 + t2) + t3)) <= (or unordered) self->_maxReverbDistance) goto loc_10010112c
+  101134  t4 = ((sqrt(((t1 + t2) + t3)) - self->_minReverbDistance) / (self->_maxReverbDistance - self->_minReverbDistance))
+  101174  [self setDryGain:(1 - (self->_minWetSend + (s0 * (self->_maxWetSend - self->_minWetSend))))]
+  1011a4  tail [self setWetGain:(self->_minWetSend + (s0 * (self->_maxWetSend - self->_minWetSend)))]
+
+== -[S3DSound setPlanarInternal]   (address 0x1001011c8  size 204  kind objc)
+  1011f0  [S3DEngine engine]
+  10124c  [[S3DEngine engine] dispatch:^{-[S3DSound setPlanarInternal]_block_invoke captures +0x20=self}]
+  10126c  return
+
+== -[S3DSound setPlanarInternal]_block_invoke   (address 0x100101294  size 204  kind block)
+  1012bc  [S3DEngine engine]
+  101318  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound setPlanarInternal]_block_invoke_block_invoke captures +0x20=self}]
+  101338  return
+
+== -[S3DSound setPlanarInternal]_block_invoke_block_invoke   (address 0x100101360  size 20  kind block)
+  101370  tail [self setPlanarInternalInternal]
+
+== sub_100101374   (address 0x100101374  size 8  kind sub)
+
+== sub_10010137c   (address 0x10010137c  size 8  kind sub)
+  101380  return
+
+== sub_100101384   (address 0x100101384  size 8  kind sub)
+
+== sub_10010138c   (address 0x10010138c  size 8  kind sub)
+  101390  return
+
+== -[S3DSound setPlanar:]   (address 0x100101394  size 124  kind objc)
+  1013d8  self->planar[+0x8] = arg1.2
+  1013e0  self->planarNeedsUpdating = 1
+  1013f4  [self setPlanarInternal]
+  10140c  return
+
+== -[S3DSound setSpatialized:]   (address 0x100101410  size 180  kind objc)
+  101434  [self soundFile]
+  101438  if ([self soundFile] == 0) goto loc_100101494
+  101450  [S3DEngine engine]
+  10147c  [[S3DEngine engine] quietLog:1 format:@"Sound is already allocated - can not set spatialized flag for sound %@"]
+  101490  return
+loc_100101494:
+  10149c  self->spatialized = arg1
+  1014ac  return
+
+== -[S3DSound cleanup]   (address 0x1001014c4  size 548  kind objc)
+  1014f0  [self soundFile]
+  1014f4  if ([self soundFile] == 0) goto loc_10010166c
+  1014f8  if (self == 0) goto loc_10010150c
+  101508  if (self->restarting != 0) goto loc_10010166c
+loc_10010150c:
+  101524  [S3DEngine engine]
+  101550  [[S3DEngine engine] quietLog:3 format:@"Starting cleanup and stopping tracking for: %@"]
+  101570  [self setPlayRate:0]
+  101588  [S3DEngineDispatcher dispatcher]
+  1015a8  [[S3DEngineDispatcher dispatcher] stopTracking:self]
+  1015c4  [self key]
+  1015dc  [S3DEngine engine]
+  101648  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound cleanup]_block_invoke captures +0x20=self, +0x28=[self key]}]
+loc_10010166c:
+  10168c  return
+
+== -[S3DSound cleanup]_block_invoke   (address 0x1001016e8  size 5668  kind block)
+  101724  [S3DEngine engine]
+  101758  [[S3DEngine engine] quietLog:3 format:@" ->->->->->  stage 1 cleanup queued, freeing resources for: %@"]
+  101770  if (self == 0) goto loc_100101c08
+  101788  [self soundFile]
+  10178c  if ([self soundFile] == 0) goto loc_1001017b8
+  101798  [self soundFile]
+  10179c  [self soundFile][+0x191] = 0
+  1017a8  [self soundFile]
+  1017b4  call [self soundFile][+0x0][+0xa8]
+loc_1001017b8:
+  1017c8  [self spatialized]
+  1017cc  if ([self spatialized] == 0) goto loc_100101c44
+  1017e4  [self spatializer]
+  1017e8  if ([self spatializer] == 0) goto loc_100101890
+  101800  [self spatialSource]
+  101804  if ([self spatialSource] == 0) goto loc_100101890
+  101810  [self spatializer]
+  101820  [self spatialSource]
+  10182c  sub_1000f0640([self spatializer], [self spatialSource])
+  101838  [S3DEngine engine]
+  101850  [self spatialSource]
+  101870  [[S3DEngine engine] quietLog:3 format:@"      removed input: spatialSource 0x%08X from spatializer for sound %@"]
+  10188c  store g_10042d8a8 = (g_10042d8a8 - 1)
+loc_100101890:
+  101898  [self spatializer]
+  10189c  if ([self spatializer] == 0) goto loc_10010195c
+  1018b4  [self gainControl]
+  1018b8  if ([self gainControl] == 0) goto loc_10010195c
+  1018c4  [self gainControl]
+  1018d4  [self spatializer]
+  1018e0  sub_1000edfac([self gainControl], [self spatializer])
+  1018e4  if (sub_1000edfac([self gainControl], [self spatializer]) == 0) goto loc_10010195c
+  1018f0  [self gainControl]
+  101900  [self spatializer]
+  10190c  sub_1000ede4c([self gainControl], [self spatializer])
+  101918  [S3DEngine engine]
+  101930  [self spatializer]
+  101950  [[S3DEngine engine] quietLog:3 format:@"      removed input: spatializer 0x%08X from gaincontrol for sound %@"]
+loc_10010195c:
+  101970  [self fanout]
+  10197c  if ([self fanout] == 0) goto loc_10010237c
+  101984  [S3DEngine engine]
+  1019ac  [[S3DEngine engine] quietLog:3 format:@"      Fanout DOES exists for sound %@"]
+  1019c0  [self fanout]
+  1019dc  [self gainControl]
+  1019e8  sub_1000e9f18([self fanout], [self gainControl])
+  1019f4  [S3DEngine engine]
+  101a0c  [self gainControl]
+  101a2c  [[S3DEngine engine] quietLog:3 format:@"      removed input: gainControl 0x%08X from fanout for sound %@"]
+  101a40  [S3DEngine engine]
+  101a60  [[S3DEngine engine] dryMixer]
+  101a70  [self fanout]
+  101a7c  sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout])
+  101a8c  if (sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout]) == 0) goto loc_100101b20
+  101a98  [S3DEngine engine]
+  101aac  [[S3DEngine engine] dryMixer]
+  101abc  [self fanout]
+  101ac8  sub_1000ede4c([[S3DEngine engine] dryMixer], [self fanout])
+  101adc  [S3DEngine engine]
+  101af4  [self fanout]
+  101b14  [[S3DEngine engine] quietLog:3 format:@"      removed input: fanout 0x%08X from dryMixer for sound %@"]
+loc_100101b20:
+  101b28  [S3DEngine engine]
+  101b48  [[S3DEngine engine] wetMixer]
+  101b58  [self fanout]
+  101b64  sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout])
+  101b74  if (sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout]) == 0) goto loc_10010246c
+  101b80  [S3DEngine engine]
+  101b94  [[S3DEngine engine] wetMixer]
+  101ba4  [self fanout]
+  101bb0  sub_1000ede4c([[S3DEngine engine] wetMixer], [self fanout])
+  101bc4  [S3DEngine engine]
+  101bdc  [self fanout]
+  101bfc  [[S3DEngine engine] quietLog:3 format:@"      removed input: fanout 0x%08X from wetMixer for sound %@"]
+  101c00  goto loc_100102464
+  101c04  goto loc_100102cd4
+loc_100101c08:
+  101c10  [S3DEngine engine]
+  101c38  [[S3DEngine engine] quietLog:3 format:@"      sound %@ has been cleanup already!"]
+  101c3c  goto loc_1001029ac
+  101c40  goto loc_100102c0c
+loc_100101c44:
+  101c58  [self panner]
+  101c5c  if ([self panner] == 0) goto loc_10010200c
+  101c68  [S3DEngine engine]
+  101c90  [[S3DEngine engine] quietLog:3 format:@"      panner present for %@"]
+  101cb0  [self gainControl]
+  101cb4  if ([self gainControl] == 0) goto loc_10010246c
+  101cc8  store g_10042d8ac = (g_10042d8ac - 1)
+  101cd4  [self gainControl]
+  101ce4  [self panner]
+  101cf0  sub_1000edfac([self gainControl], [self panner])
+  101cf4  if (sub_1000edfac([self gainControl], [self panner]) == 0) goto loc_100101d6c
+  101d00  [self gainControl]
+  101d10  [self panner]
+  101d1c  sub_1000ede4c([self gainControl], [self panner])
+  101d28  [S3DEngine engine]
+  101d40  [self panner]
+  101d60  [[S3DEngine engine] quietLog:3 format:@"      removed input:panner 0x%08X from gain control for sound %@"]
+loc_100101d6c:
+  101d80  [self fanout]
+  101d8c  if ([self fanout] == 0) goto loc_1001029dc
+  101d94  [S3DEngine engine]
+  101dbc  [[S3DEngine engine] quietLog:3 format:@"      Fanout DOES exists for sound %@"]
+  101dd0  [self fanout]
+  101de0  [self gainControl]
+  101dec  sub_1000e9f18([self fanout], [self gainControl])
+  101df8  [S3DEngine engine]
+  101e10  [self gainControl]
+  101e30  [[S3DEngine engine] quietLog:3 format:@"      removed input: gainControl 0x%08X from fanout for sound %@"]
+  101e44  [S3DEngine engine]
+  101e64  [[S3DEngine engine] dryMixer]
+  101e74  [self fanout]
+  101e80  sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout])
+  101e90  if (sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout]) == 0) goto loc_100101f24
+  101e9c  [S3DEngine engine]
+  101eb0  [[S3DEngine engine] dryMixer]
+  101ec0  [self fanout]
+  101ecc  sub_1000ede4c([[S3DEngine engine] dryMixer], [self fanout])
+  101ee0  [S3DEngine engine]
+  101ef8  [self fanout]
+  101f18  [[S3DEngine engine] quietLog:3 format:@"      removed input: fanout 0x%08X from dryMixer for sound %@"]
+loc_100101f24:
+  101f2c  [S3DEngine engine]
+  101f4c  [[S3DEngine engine] wetMixer]
+  101f5c  [self fanout]
+  101f68  sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout])
+  101f78  if (sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout]) == 0) goto loc_10010246c
+  101f84  [S3DEngine engine]
+  101f98  [[S3DEngine engine] wetMixer]
+  101fa8  [self fanout]
+  101fb4  sub_1000ede4c([[S3DEngine engine] wetMixer], [self fanout])
+  101fc8  [S3DEngine engine]
+  101fe0  [self fanout]
+  102000  [[S3DEngine engine] quietLog:3 format:@"      removed input: fanout 0x%08X from wetMixer for sound %@"]
+  102004  goto loc_100102464
+  102008  goto loc_100102cd4
+loc_10010200c:
+  102020  [self gainControl]
+  102024  if ([self gainControl] == 0) goto loc_10010246c
+  102038  store g_10042d8ac = (g_10042d8ac - 1)
+  102044  [self gainControl]
+  102054  [self soundFile]
+  102060  sub_1000edfac([self gainControl], [self soundFile])
+  102064  if (sub_1000edfac([self gainControl], [self soundFile]) == 0) goto loc_1001020dc
+  102070  [self gainControl]
+  102080  [self soundFile]
+  10208c  sub_1000ede4c([self gainControl], [self soundFile])
+  102098  [S3DEngine engine]
+  1020b0  [self soundFile]
+  1020d0  [[S3DEngine engine] quietLog:3 format:@"      removed input: soundfile 0x%08X from gainControl for sound %@"]
+loc_1001020dc:
+  1020f0  [self fanout]
+  1020fc  if ([self fanout] == 0) goto loc_100102ac0
+  102104  [S3DEngine engine]
+  10212c  [[S3DEngine engine] quietLog:3 format:@"      Fanout DOES exists for sound %@"]
+  102140  [self fanout]
+  102150  [self gainControl]
+  10215c  sub_1000e9f18([self fanout], [self gainControl])
+  102168  [S3DEngine engine]
+  102180  [self gainControl]
+  1021a0  [[S3DEngine engine] quietLog:3 format:@"      removed input: gainControl 0x%08X from fanout for sound %@"]
+  1021b4  [S3DEngine engine]
+  1021d4  [[S3DEngine engine] dryMixer]
+  1021e4  [self fanout]
+  1021f0  sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout])
+  102200  if (sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout]) == 0) goto loc_100102294
+  10220c  [S3DEngine engine]
+  102220  [[S3DEngine engine] dryMixer]
+  102230  [self fanout]
+  10223c  sub_1000ede4c([[S3DEngine engine] dryMixer], [self fanout])
+  102250  [S3DEngine engine]
+  102268  [self fanout]
+  102288  [[S3DEngine engine] quietLog:3 format:@"      removed input: fanout 0x%08X from dryMixer for sound %@"]
+loc_100102294:
+  10229c  [S3DEngine engine]
+  1022bc  [[S3DEngine engine] wetMixer]
+  1022cc  [self fanout]
+  1022d8  sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout])
+  1022e8  if (sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout]) == 0) goto loc_10010246c
+  1022f4  [S3DEngine engine]
+  102308  [[S3DEngine engine] wetMixer]
+  102318  [self fanout]
+  102324  sub_1000ede4c([[S3DEngine engine] wetMixer], [self fanout])
+  102338  [S3DEngine engine]
+  102350  [self fanout]
+  102370  [[S3DEngine engine] quietLog:3 format:@"      removed input: fanout 0X%08X from wetMixer for sound %@"]
+  102374  goto loc_100102464
+  102378  goto loc_100102cd4
+loc_10010237c:
+  102380  [S3DEngine engine]
+  1023a0  [[S3DEngine engine] masterMixer]
+  1023bc  [self gainControl]
+  1023c8  sub_1000edfac([[S3DEngine engine] masterMixer], [self gainControl])
+  1023d8  if (sub_1000edfac([[S3DEngine engine] masterMixer], [self gainControl]) == 0) goto loc_10010246c
+  1023e4  [S3DEngine engine]
+  1023f8  [[S3DEngine engine] masterMixer]
+  102408  [self gainControl]
+  102414  sub_1000ede4c([[S3DEngine engine] masterMixer], [self gainControl])
+  102428  [S3DEngine engine]
+  102440  [self gainControl]
+  102460  [[S3DEngine engine] quietLog:3 format:@"      removed input: gainControl 0x%08X from masterMixer for sound %@"]
+loc_100102464:
+loc_10010246c:
+  102474  [S3DEngine engine]
+  102498  [[S3DEngine engine] quietLog:3 format:@"   stage2 cleanup started, freeing resources for: %@"]
+  1024b8  [self spatializer]
+  1024bc  if ([self spatializer] == 0) goto loc_100102550
+  1024c8  [self spatializer]
+  1024cc  if ([self spatializer] == 0) goto loc_1001024ec
+  1024e0  call [self spatializer][+0x0][+0x0]
+  1024e8  ZdlPv(([self spatializer] + [self spatializer][+0x0][+0x-10]))
+loc_1001024ec:
+  1024f4  [S3DEngine engine]
+  10250c  [self spatializer]
+  10252c  [[S3DEngine engine] quietLog:3 format:@"      deleted spatializer 0x%08X for sound %@"]
+  10254c  [self setSpatializer:0]
+loc_100102550:
+  102564  [self spatialSource]
+  102568  if ([self spatialSource] == 0) goto loc_1001025fc
+  102574  [self spatialSource]
+  102578  if ([self spatialSource] == 0) goto loc_100102598
+  10258c  call [self spatialSource][+0x0][+0x0]
+  102594  ZdlPv(([self spatialSource] + [self spatialSource][+0x0][+0x-10]))
+loc_100102598:
+  1025a0  [S3DEngine engine]
+  1025b8  [self spatialSource]
+  1025d8  [[S3DEngine engine] quietLog:3 format:@"      deleted spatialSource 0x%08X for sound %@"]
+  1025f8  [self setSpatialSource:0]
+loc_1001025fc:
+  102610  [self gainControl]
+  102614  if ([self gainControl] == 0) goto loc_1001026a8
+  102620  [self gainControl]
+  102624  if ([self gainControl] == 0) goto loc_100102644
+  102638  call [self gainControl][+0x0][+0x0]
+  102640  ZdlPv(([self gainControl] + [self gainControl][+0x0][+0x-10]))
+loc_100102644:
+  10264c  [S3DEngine engine]
+  102664  [self gainControl]
+  102684  [[S3DEngine engine] quietLog:3 format:@"      deleted gainControl 0x%08X for sound %@"]
+  1026a4  [self setGainControl:0]
+loc_1001026a8:
+  1026bc  [self panner]
+  1026c0  if ([self panner] == 0) goto loc_100102754
+  1026cc  [self panner]
+  1026d0  if ([self panner] == 0) goto loc_1001026f0
+  1026e4  call [self panner][+0x0][+0x0]
+  1026ec  ZdlPv(([self panner] + [self panner][+0x0][+0x-10]))
+loc_1001026f0:
+  1026f8  [S3DEngine engine]
+  102710  [self panner]
+  102730  [[S3DEngine engine] quietLog:3 format:@"      deleted panner 0x%08X for sound %@"]
+  102750  [self setPanner:0]
+loc_100102754:
+  102768  [self fanout]
+  10276c  if ([self fanout] == 0) goto loc_100102800
+  102778  [self fanout]
+  10277c  if ([self fanout] == 0) goto loc_10010279c
+  102790  call [self fanout][+0x0][+0x0]
+  102798  ZdlPv(([self fanout] + [self fanout][+0x0][+0x-10]))
+loc_10010279c:
+  1027a4  [S3DEngine engine]
+  1027bc  [self fanout]
+  1027dc  [[S3DEngine engine] quietLog:3 format:@"      deleted fanout 0x%08X for sound %@"]
+  1027fc  [self setFanout:0]
+loc_100102800:
+  102808  [S3DEngine engine]
+  102830  [self unloadOnStop]
+  10284c  [[S3DEngine engine] quietLog:3 format:@"Sound %@ has unloadonstop set to %i"]
+  102860  [self unloadOnStop]
+  102864  if ([self unloadOnStop] == 0) goto loc_1001028bc
+  102870  [S3DEngine engine]
+  102898  [[S3DEngine engine] quietLog:3 format:@"      unloadOnStop is set - so deactivating sound now %@"]
+  1028b4  [self deactivate]
+  1028b8  goto loc_10010297c
+loc_1001028bc:
+  1028d0  [self setActive:0]
+  1028e8  [self setStopping:0]
+  1028fc  [self restart]
+  102900  if ([self restart] == 0) goto loc_10010297c
+  10290c  [S3DEngine engine]
+  102968  [[S3DEngine engine] dispatch:^{-[S3DSound cleanup]_block_invoke_block_invoke captures +0x20=self}]
+loc_10010297c:
+  102984  [S3DEngine engine]
+  1029a8  [[S3DEngine engine] quietLog:3 format:@"   stage2 cleanup complete for: %@"]
+loc_1001029ac:
+  1029d8  return
+  1029e0  [S3DEngine engine]
+  102a00  [[S3DEngine engine] masterMixer]
+  102a10  [self gainControl]
+  102a1c  sub_1000edfac([[S3DEngine engine] masterMixer], [self gainControl])
+  102a2c  if (sub_1000edfac([[S3DEngine engine] masterMixer], [self gainControl]) == 0) goto loc_10010246c
+  102a38  [S3DEngine engine]
+  102a4c  [[S3DEngine engine] masterMixer]
+  102a5c  [self gainControl]
+  102a68  sub_1000ede4c([[S3DEngine engine] masterMixer], [self gainControl])
+  102a7c  [S3DEngine engine]
+  102a94  [self gainControl]
+  102ab4  [[S3DEngine engine] quietLog:3 format:@"      removed input: gainControl 0x%08X from masterMixer for sound %@"]
+  102ac4  [S3DEngine engine]
+  102aec  [[S3DEngine engine] quietLog:3 format:@"      no fanout exists for sound %@"]
+  102b00  [S3DEngine engine]
+  102b20  [[S3DEngine engine] masterMixer]
+  102b30  [self gainControl]
+  102b3c  sub_1000edfac([[S3DEngine engine] masterMixer], [self gainControl])
+  102b4c  if (sub_1000edfac([[S3DEngine engine] masterMixer], [self gainControl]) == 0) goto loc_10010246c
+  102b58  [S3DEngine engine]
+  102b6c  [[S3DEngine engine] masterMixer]
+  102b7c  [self gainControl]
+  102b88  sub_1000ede4c([[S3DEngine engine] masterMixer], [self gainControl])
+  102b9c  [S3DEngine engine]
+  102bb4  [self gainControl]
+  102bd4  [[S3DEngine engine] quietLog:3 format:@"      removed input: gainControl 0x%08X from masterMixer for sound %@"]
+  102c50  ZdlPv()
+
+== -[S3DSound cleanup]_block_invoke_block_invoke   (address 0x100102d0c  size 92  kind block)
+  102d2c  [self play]
+  102d44  [self setRestart:0]
+  102d64  tail [self setRestarting:1]
+
+== sub_100102d68   (address 0x100102d68  size 8  kind sub)
+
+== sub_100102d70   (address 0x100102d70  size 8  kind sub)
+  102d74  return
+
+== sub_100102d78   (address 0x100102d78  size 40  kind sub)
+
+== sub_100102da0   (address 0x100102da0  size 40  kind sub)
+  102dc4  return
+
+== -[S3DSound deactivate]   (address 0x100102dc8  size 432  kind objc)
+  102df4  [S3DEngineDispatcher dispatcher]
+  102e14  [[S3DEngineDispatcher dispatcher] stopTracking:self]
+  102e30  [self stop]
+  102e44  [self cleanup]
+  102e98  [S3DEngine engine]
+  102ef4  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound deactivate]_block_invoke_3 captures +0x20=self, +0x40=0x42000000, +0x48=&-[S3DSound deactivate]_block_invoke, +0x50=&-[S3DSound deactivate]_block_invoke_2}]
+  102f10  Block_object_dispose(&sp[0x30], 8)
+  102f2c  return
+  102f64  Block_object_dispose(&sp[0x30], 8)
+
+== -[S3DSound deactivate]_block_invoke   (address 0x100102f78  size 12  kind block)
+  102f80  tail objc_moveWeak((block + 40), (blockarg1 + 40), blockarg2, blockarg3)
+
+== -[S3DSound deactivate]_block_invoke_2   (address 0x100102f84  size 8  kind block)
+
+== -[S3DSound deactivate]_block_invoke_3   (address 0x100102f8c  size 472  kind block)
+  102fb8  if (objc_loadWeakRetained((block[+0x28][+0x8] + 40), blockarg1, blockarg2, blockarg3) == 0) goto loc_100103108
+  102fcc  if (self->soundFile == 0) goto loc_100103108
+  102fd0  sub_1000e4c9c(self->soundFile)
+  102fd8  self->soundFile = 0
+  102ff0  [objc_loadWeakRetained((block[+0x28][+0x8] + 40), blockarg1, blockarg2, blockarg3) setActive:0]
+  103008  [objc_loadWeakRetained((block[+0x28][+0x8] + 40), blockarg1, blockarg2, blockarg3) setStopping:0]
+  10301c  [objc_loadWeakRetained((block[+0x28][+0x8] + 40), blockarg1, blockarg2, blockarg3) restart]
+  103020  if ([objc_loadWeakRetained((block[+0x28][+0x8] + 40), blockarg1, blockarg2, blockarg3) restart] == 0) goto loc_1001030a8
+  103038  [S3DEngine engine]
+  103094  [[S3DEngine engine] dispatch:^{-[S3DSound deactivate]_block_invoke_3_block_invoke captures +0x20=objc_loadWeakRetained((block[+0x28][+0x8…}]
+loc_1001030a8:
+  1030b8  store g_10042d8a4 = (g_10042d8a4 - 1)
+  1030d0  [S3DEngine engine]
+  1030fc  [[S3DEngine engine] quietLog:3 format:@"    deleted soundFile for sound %@"]
+loc_100103108:
+  103120  return
+
+== -[S3DSound deactivate]_block_invoke_3_block_invoke   (address 0x100103164  size 92  kind block)
+  103184  [objc_loadWeakRetained((block[+0x28][+0x8] + 40), blockarg1, blockarg2, blockarg3) play]
+  10319c  [objc_loadWeakRetained((block[+0x28][+0x8] + 40), blockarg1, blockarg2, blockarg3) setRestart:0]
+  1031bc  tail [objc_loadWeakRetained((block[+0x28][+0x8] + 40), blockarg1, blockarg2, blockarg3) setRestarting:1]
+
+== sub_1001031c0   (address 0x1001031c0  size 8  kind sub)
+
+== sub_1001031c8   (address 0x1001031c8  size 8  kind sub)
+  1031cc  return
+
+== sub_1001031d0   (address 0x1001031d0  size 48  kind sub)
+  1031ec  Block_object_assign((a0 + 40), a1[+0x28], 8, a3)
+
+== sub_100103200   (address 0x100103200  size 44  kind sub)
+  103218  Block_object_dispose(a0[+0x28], 8, a2, a3)
+  103228  return
+
+== -[S3DSound setupPlain]   (address 0x10010322c  size 384  kind objc)
+  10325c  [S3DEngine engine]
+  103288  [[S3DEngine engine] quietLog:3 format:@"Start 2D setup for: %@"]
+  1032a8  [self setPlayRate:0]
+  1032c0  [self soundFile]
+  1032c4  if ([self soundFile] == 0) goto loc_1001032f0
+  1032d0  [self soundFile]
+  1032d4  [self soundFile][+0x191] = 0
+  1032e0  [self soundFile]
+  1032ec  call [self soundFile][+0x0][+0xa8]
+loc_1001032f0:
+  1032f8  [S3DEngine engine]
+  103354  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound setupPlain]_block_invoke captures +0x20=self}]
+  103378  return
+
+== -[S3DSound setupPlain]_block_invoke   (address 0x1001033ac  size 1960  kind block)
+  1033dc  [self channelCount]
+  1033ec  if ([self channelCount] != 2) goto loc_100103400
+  1033f4  &@selector(soundFile)
+  1033fc  goto loc_1001034cc
+loc_100103400:
+  103410  [self panner]
+  103414  if ([self panner] != 0) goto loc_1001034c4
+  103420  Znwm(296)
+  103438  [self soundFile]
+  103448  sub_1000ee60c(Znwm(296), [self soundFile])
+  103460  [self setPanner:Znwm(296)]
+  103478  [S3DEngine engine]
+  103490  [self panner]
+  1034b8  [[S3DEngine engine] quietLog:3 format:@"   new panner (Panner) %x for sound %@"]
+loc_1001034c4:
+loc_1001034cc:
+  1034cc  [self <sel x1>]
+  1034e8  [self gainControl]
+  1034ec  if ([self gainControl] == 0) goto loc_100103540
+  103504  [S3DEngine engine]
+  103534  [[S3DEngine engine] quietLog:3 format:@"   ERROR: Gain control already exists for: %@"]
+  103538  goto loc_1001035dc
+  10353c  goto loc_100103adc
+loc_100103540:
+  103548  Znwm(400)
+  103554  sub_1000eda70(Znwm(400), 2)
+  10356c  [self setGainControl:Znwm(400)]
+  103578  [self gainControl]
+  103580  sub_1000edd54([self gainControl], [self <sel x1>])
+  103598  [S3DEngine engine]
+  1035b0  [self gainControl]
+  1035d8  [[S3DEngine engine] quietLog:3 format:@"   new gainControl (Mixer) %x for sound %@"]
+loc_1001035dc:
+  1035f4  [self sendToReverb]
+  1035f8  if ([self sendToReverb] == 0) goto loc_100103668
+  103610  [self fanout]
+  103614  if ([self fanout] == 0) goto loc_10010374c
+  10362c  [S3DEngine engine]
+  10365c  [[S3DEngine engine] quietLog:3 format:@"   ERROR: fanout Already Exists for sound %@"]
+  103660  goto loc_1001037e8
+  103664  goto loc_100103b44
+loc_100103668:
+  103680  [S3DEngine engine]
+  1036a0  [[S3DEngine engine] masterMixer]
+  1036b0  [self gainControl]
+  1036bc  sub_1000edd54([[S3DEngine engine] masterMixer], [self gainControl])
+  1036d0  [S3DEngine engine]
+  1036e8  [self gainControl]
+  1036f8  [S3DEngine engine]
+  10370c  [[S3DEngine engine] masterMixer]
+  103738  [[S3DEngine engine] quietLog:3 format:@"added gainControl 0x%08X as input of masterMixer 0x%08X for: %@"]
+  103748  goto loc_100103a6c
+loc_10010374c:
+  103754  Znwm(352)
+  103764  [self gainControl]
+  103774  sub_1000ea180(Znwm(352), [self gainControl], 2)
+  10378c  [self setFanout:Znwm(352)]
+  1037a4  [S3DEngine engine]
+  1037bc  [self fanout]
+  1037e4  [[S3DEngine engine] quietLog:3 format:@"    new fanout 0x%08X for sound %@"]
+loc_1001037e8:
+  103808  [S3DEngine engine]
+  103828  [[S3DEngine engine] wetMixer]
+  103838  [self fanout]
+  103844  sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout])
+  103854  if ((sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout]) & 1)) goto loc_100103938
+  103860  [S3DEngine engine]
+  103874  [[S3DEngine engine] wetMixer]
+  103884  [self fanout]
+  10389c  [self wetGain]
+  1038a8  sub_1000eddfc([[S3DEngine engine] wetMixer], [self fanout])
+  1038bc  [S3DEngine engine]
+  1038d4  [self fanout]
+  1038e4  [S3DEngine engine]
+  1038f8  [[S3DEngine engine] wetMixer]
+  103924  [[S3DEngine engine] quietLog:3 format:@"    Connected fanout 0x%08X to master wetMixer 0x%08X for sound %@"]
+loc_100103938:
+  103940  [S3DEngine engine]
+  103960  [[S3DEngine engine] dryMixer]
+  103970  [self fanout]
+  10397c  sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout])
+  10398c  if ((sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout]) & 1)) goto loc_100103a70
+  103998  [S3DEngine engine]
+  1039ac  [[S3DEngine engine] dryMixer]
+  1039bc  [self fanout]
+  1039d4  [self dryGain]
+  1039e0  sub_1000eddfc([[S3DEngine engine] dryMixer], [self fanout])
+  1039f4  [S3DEngine engine]
+  103a0c  [self fanout]
+  103a1c  [S3DEngine engine]
+  103a30  [[S3DEngine engine] dryMixer]
+  103a5c  [[S3DEngine engine] quietLog:3 format:@"    Connected fanout 0x%08X to master dryMixer 0x%08X for sound %@"]
+loc_100103a6c:
+loc_100103a70:
+  103a84  [self gain]
+  103ab0  tail [self setGain:[self gain]]
+  103ab4  goto loc_100103adc
+  103ab8  goto loc_100103afc
+  103abc  goto loc_100103afc
+  103ac0  goto loc_100103adc
+  103ad0  goto loc_100103ae0
+  103ad4  goto loc_100103afc
+  103ad8  goto loc_100103afc
+loc_100103adc:
+loc_100103ae0:
+  103ae8  goto loc_100103b08
+  103aec  goto loc_100103afc
+  103af8  goto loc_100103b18
+loc_100103afc:
+loc_100103b00:
+loc_100103b08:
+loc_100103b18:
+  103b1c  goto loc_100103b00
+  103b28  goto loc_100103b3c
+  103b2c  goto loc_100103b44
+  103b30  goto loc_100103b34
+loc_100103b34:
+loc_100103b3c:
+  103b3c  ZdlPv()
+  103b40  goto loc_100103b08
+loc_100103b44:
+  103b50  goto loc_100103b08
+
+== sub_100103b54   (address 0x100103b54  size 8  kind sub)
+
+== sub_100103b5c   (address 0x100103b5c  size 8  kind sub)
+  103b60  return
+
+== -[S3DSound setupSpatialized]   (address 0x100103b64  size 316  kind objc)
+  103b94  [S3DEngine engine]
+  103bc0  [[S3DEngine engine] quietLog:3 format:@"Start 3D setup for: %@"]
+  103be0  [self setPlayRate:0]
+  103bec  [S3DEngine engine]
+  103c48  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound setupSpatialized]_block_invoke captures +0x20=self}]
+  103c6c  return
+
+== -[S3DSound setupSpatialized]_block_invoke   (address 0x100103ca0  size 2480  kind block)
+  103cd4  [self soundFile]
+  103cd8  if ([self soundFile] == 0) goto loc_100103d28
+  103ce4  [self soundFile]
+  103ce8  sub_1000e4b5c([self soundFile])
+  103cf4  [self soundFile]
+  103cf8  [self soundFile][+0x191] = 0
+  103d04  [self soundFile]
+  103d0c  sub_1000e4b6c([self soundFile], 0)
+  103d18  [self soundFile]
+  103d24  call [self soundFile][+0x0][+0xa8]
+loc_100103d28:
+  103d3c  [self spatialSource]
+  103d40  if ([self spatialSource] == 0) goto loc_100103d94
+  103d58  [S3DEngine engine]
+  103d88  [[S3DEngine engine] quietLog:3 format:@"   ERROR: spatialSource Already Exists for sound %@"]
+  103d8c  goto loc_100103e38
+  103d90  goto loc_10010463c
+loc_100103d94:
+  103d9c  Znwm(304)
+  103dac  [self soundFile]
+  103dc4  sub_1000f14e0(Znwm(304), [self soundFile])
+  103ddc  [self setSpatialSource:Znwm(304)]
+  103df4  [S3DEngine engine]
+  103e0c  [self spatialSource]
+  103e34  [[S3DEngine engine] quietLog:3 format:@"   new spatialSource (SpatialSource) %x for sound %@"]
+loc_100103e38:
+  103e54  [self spatializer]
+  103e58  if ([self spatializer] == 0) goto loc_100103eac
+  103e70  [S3DEngine engine]
+  103ea0  [[S3DEngine engine] quietLog:3 format:@"   ERROR: spatializer Already Exists for sound %@"]
+  103ea4  goto loc_100103fdc
+  103ea8  goto loc_1001045e0
+loc_100103eac:
+  103eb4  Znwm(272)
+  103ebc  sub_1000f1cec(Znwm(272))
+  103ecc  sub_1000f0438(Znwm(272), 1, sub_1000f1cec(Znwm(272)))
+  103ee4  [self setSpatializer:Znwm(272)]
+  103f00  [S3DEngine engine]
+  103f18  [self spatializer]
+  103f40  [[S3DEngine engine] quietLog:3 format:@"   new spatializer (Spatializer(kBinaural)) %x for sound %@"]
+  103f54  [self spatialSource]
+  103f70  call [self spatialSource][+0x0][+0x78]
+  103f7c  [self spatializer]
+  103f8c  [self spatialSource]
+  103f98  sub_1000f0564([self spatializer], [self spatialSource])
+  103fa4  [self spatializer]
+  103fb4  [S3DEngine engine]
+  103fd0  [[S3DEngine engine] maxSpatialGain]
+  103fd8  sub_1000f0750([self spatializer])
+loc_100103fdc:
+  103ff8  [self gainControl]
+  103ffc  if ([self gainControl] == 0) goto loc_100104054
+  104014  [S3DEngine engine]
+  104044  [[S3DEngine engine] quietLog:3 format:@"   ERROR: gainControl Already Exists for sound %@"]
+  104050  goto loc_100104104
+loc_100104054:
+  10405c  Znwm(400)
+  104068  sub_1000eda70(Znwm(400), 2)
+  104080  [self setGainControl:Znwm(400)]
+  104098  [S3DEngine engine]
+  1040b0  [self gainControl]
+  1040d8  [[S3DEngine engine] quietLog:3 format:@"   new gainControl (Mixer) %x for sound %@"]
+  1040ec  [self gainControl]
+  104100  sub_1000edd54([self gainControl], self->spatializer)
+loc_100104104:
+  104114  [self sendToReverb]
+  104118  if ([self sendToReverb] == 0) goto loc_100104188
+  104130  [self fanout]
+  104134  if ([self fanout] == 0) goto loc_100104234
+  10414c  [S3DEngine engine]
+  10417c  [[S3DEngine engine] quietLog:3 format:@"   ERROR: fanout Already Exists for sound %@"]
+  104180  goto loc_1001042d0
+  104184  goto loc_10010463c
+loc_100104188:
+  1041a0  [S3DEngine engine]
+  1041c0  [[S3DEngine engine] masterMixer]
+  1041d0  [self gainControl]
+  1041dc  sub_1000edfac([[S3DEngine engine] masterMixer], [self gainControl])
+  1041ec  if ((sub_1000edfac([[S3DEngine engine] masterMixer], [self gainControl]) & 1)) goto loc_100104558
+  1041f8  [S3DEngine engine]
+  10420c  [[S3DEngine engine] masterMixer]
+  10421c  [self gainControl]
+  104228  sub_1000edd54([[S3DEngine engine] masterMixer], [self gainControl])
+  104230  goto loc_100104554
+loc_100104234:
+  10423c  Znwm(352)
+  10424c  [self gainControl]
+  10425c  sub_1000ea180(Znwm(352), [self gainControl], 2)
+  104274  [self setFanout:Znwm(352)]
+  10428c  [S3DEngine engine]
+  1042a4  [self fanout]
+  1042cc  [[S3DEngine engine] quietLog:3 format:@"    new fanout 0x%08X for sound %@"]
+loc_1001042d0:
+  1042f0  [S3DEngine engine]
+  104310  [[S3DEngine engine] wetMixer]
+  104320  [self fanout]
+  10432c  sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout])
+  10433c  if ((sub_1000edfac([[S3DEngine engine] wetMixer], [self fanout]) & 1)) goto loc_100104420
+  104348  [S3DEngine engine]
+  10435c  [[S3DEngine engine] wetMixer]
+  10436c  [self fanout]
+  104384  [self wetGain]
+  104390  sub_1000eddfc([[S3DEngine engine] wetMixer], [self fanout])
+  1043a4  [S3DEngine engine]
+  1043bc  [self fanout]
+  1043cc  [S3DEngine engine]
+  1043e0  [[S3DEngine engine] wetMixer]
+  10440c  [[S3DEngine engine] quietLog:3 format:@"    Connected fanout 0x%08X to master wetMixer 0x%08X for sound %@"]
+loc_100104420:
+  104428  [S3DEngine engine]
+  104448  [[S3DEngine engine] dryMixer]
+  104458  [self fanout]
+  104464  sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout])
+  104474  if ((sub_1000edfac([[S3DEngine engine] dryMixer], [self fanout]) & 1)) goto loc_100104558
+  104480  [S3DEngine engine]
+  104494  [[S3DEngine engine] dryMixer]
+  1044a4  [self fanout]
+  1044bc  [self dryGain]
+  1044c8  sub_1000eddfc([[S3DEngine engine] dryMixer], [self fanout])
+  1044dc  [S3DEngine engine]
+  1044f4  [self fanout]
+  104504  [S3DEngine engine]
+  104518  [[S3DEngine engine] dryMixer]
+  104544  [[S3DEngine engine] quietLog:3 format:@"    Connected fanout 0x%08X to master dryMixer 0x%08X for sound %@"]
+loc_100104554:
+loc_100104558:
+  10456c  [self gain]
+  104580  [self setGain:[self gain]]
+  1045ac  tail [self setPlanarInternalInternal]
+  1045b0  goto loc_100104600
+  1045b4  goto loc_100104600
+  1045b8  goto loc_100104600
+  1045bc  goto loc_100104600
+  1045c0  goto loc_100104600
+  1045c4  goto loc_10010462c
+  1045c8  goto loc_10010463c
+  1045cc  goto loc_10010462c
+  1045d0  goto loc_100104600
+  1045d4  goto loc_1001045e0
+  1045d8  goto loc_1001045e0
+  1045dc  goto loc_1001045e0
+loc_1001045e0:
+  1045ec  goto loc_100104648
+  1045f0  goto loc_100104600
+  1045fc  goto loc_100104618
+loc_100104600:
+loc_100104604:
+  10460c  goto loc_100104648
+loc_100104618:
+  10461c  goto loc_100104604
+  104628  goto loc_100104634
+loc_10010462c:
+loc_100104634:
+  104634  ZdlPv()
+  104638  goto loc_100104648
+loc_10010463c:
+loc_100104648:
+
+== sub_100104650   (address 0x100104650  size 8  kind sub)
+
+== sub_100104658   (address 0x100104658  size 8  kind sub)
+  10465c  return
+
+== -[S3DSound activate]   (address 0x100104660  size 20  kind objc)
+  104670  tail [self activate:0]
+
+== -[S3DSound soundFileOpen]   (address 0x100104674  size 280  kind objc)
+  104698  [self soundFile]
+  10469c  if ([self soundFile] == 0) goto loc_100104758
+  1046a8  [self soundFile]
+  1046b0  if ([self soundFile][+0x168] == 0) goto loc_100104758
+  1046d0  [self setLoopinggg:self->looping]
+  1046e8  [S3DEngine engine]
+  104744  [[S3DEngine engine] dispatch:^{-[S3DSound soundFileOpen]_block_invoke captures +0x20=self}]
+loc_100104758:
+  104764  return
+
+== -[S3DSound soundFileOpen]_block_invoke   (address 0x10010478c  size 96  kind block)
+  1047ac  if (self->_mPlayWhenLoaded == 0) goto loc_1001047e0
+  1047d4  [self setup_either:self->_mStoredFadeDuration loop:self->looping]
+  1047dc  self->_mPlayWhenLoaded = 0
+loc_1001047e0:
+  1047e8  return
+
+== sub_1001047ec   (address 0x1001047ec  size 8  kind sub)
+
+== sub_1001047f4   (address 0x1001047f4  size 8  kind sub)
+  1047f8  return
+
+== -[S3DSound activate:]   (address 0x1001047fc  size 428  kind objc)
+  104830  [self soundFile]
+  104834  if ([self soundFile] == 0) goto loc_1001048a0
+  10484c  [S3DEngine engine]
+  104878  [[S3DEngine engine] quietLog:3 format:@"sound %@ already active, skipping"]
+  104884  if (arg1 == 0) goto loc_10010494c
+  104890  call arg1[+0x10]
+  104894  goto loc_10010494c
+  10489c  goto loc_100104998
+loc_1001048a0:
+  1048b0  store g_10042d8a4 = (g_10042d8a4 + 1)
+  1048c8  [S3DEngine engine]
+  104930  [[S3DEngine engine] dispatch:^{-[S3DSound activate:]_block_invoke captures +0x20=self, +0x28=arg1}]
+loc_10010494c:
+  104964  return
+
+== -[S3DSound activate:]_block_invoke   (address 0x1001049a8  size 408  kind block)
+  1049c4  Znwm(584, blockarg1, blockarg2, blockarg3)
+  1049dc  [self url]
+  1049fc  [self stream]
+  104a14  [self spatialized]
+  104a2c  sub_1000e5d20(Znwm(584, blockarg1, blockarg2, blockarg3), [self url], ([self stream] ^ 1), [self spatialized])
+  104a4c  [S3DEngine engine]
+  104a6c  [self key]
+  104a9c  [[S3DEngine engine] quietLog:3 format:@"activate : new soundfile: %x for sound: %@"]
+  104ac4  [self setSoundFile:Znwm(584, blockarg1, blockarg2, blockarg3)]
+  104acc  if (arg1 == 0) goto loc_100104ae8
+loc_100104ae8:
+  104af8  return
+  104b14  ZdlPv()
+
+== sub_100104b40   (address 0x100104b40  size 52  kind sub)
+  104b70  tail Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_100104b74   (address 0x100104b74  size 40  kind sub)
+  104b98  return
+
+== -[S3DSound dealloc]   (address 0x100104b9c  size 336  kind objc)
+  104bc8  [S3DEngine engine]
+  104bf0  [self->url description]
+  104c20  [[S3DEngine engine] quietLog:3 format:@"S3DSound \"%@\" dealloc"]
+  104c44  [self cleanup]
+  104c5c  store g_10042d8a0 = (g_10042d8a0 - 1)
+  104c7c  [super dealloc]
+  104c90  return
+  104cdc  [super dealloc]
+  104ce8  call sub_10000b760
+
+== -[S3DSound cleardown]   (address 0x100104cec  size 276  kind objc)
+  104d00  self->planarNeedsUpdating = 0
+  104d08  self->polarUpdated = 0
+  104d18  self->fadeGain = 0x3f800000
+  104d1c  self->gain = 0x3f800000
+  104d2c  self->wetGain = 0
+  104d38  self->dryGain = 0x3f800000
+  104d40  self->_sendToReverb = 0
+  104d50  self->_minReverbDistance = 0x41200000
+  104d60  self->_maxReverbDistance = 0x43480000
+  104d74  self->_minWetSend = 0x3e4ccccd
+  104d80  self->_maxWetSend = 0x3f800000
+  104d8c  self->_userValue = 0
+  104d98  self->looping = 0
+  104da4  self->active = 0
+  104db0  self->stopping = 0
+  104dbc  self->restart = 0
+  104dc8  self->restarting = 0
+  104dd4  self->localLooping = 0
+  104de0  self->stream = 0
+  104dec  self->soundFile = 0
+  104df8  self->_mPlayWhenLoaded = 0
+  104dfc  return
+
+== -[S3DSound initWithURL:]   (address 0x100104e00  size 812  kind objc)
+  104e24  if (arg1 == 0) goto loc_100105054
+  104e4c  [super init]
+  104e54  if (self == 0) goto loc_100105040
+  104e70  [self setUrl:arg1]
+  104e88  [self url]
+  104ea4  [[self url] relativeString]
+  104ecc  [[[self url] relativeString] stringByDeletingPathExtension]
+  104ee8  [[[[self url] relativeString] stringByDeletingPathExtension] lastPathComponent]
+  104f00  self->key = [[[[self url] relativeString] stringByDeletingPathExtension] lastPathComponent]
+  104f28  self->planarNeedsUpdating = 0
+  104f38  self->polarUpdated = 0
+  104f48  self->fadeGain = 0x3f800000
+  104f4c  self->gain = 0x3f800000
+  104f60  self->wetGain = 0
+  104f64  self->dryGain = 0x3f800000
+  104f70  self->_sendToReverb = 0
+  104f80  self->_minReverbDistance = 0x41200000
+  104f90  self->_maxReverbDistance = 0x43480000
+  104fa4  self->_minWetSend = 0x3e4ccccd
+  104fb0  self->_maxWetSend = 0x3f800000
+  104fbc  self->_userValue = 0
+  104fc8  self->looping = 0
+  104fd4  self->active = 0
+  104fe0  self->stopping = 0
+  104fec  self->restart = 0
+  104ff8  self->restarting = 0
+  105004  self->localLooping = 0
+  105010  self->stream = 0
+  10501c  self->soundFile = 0
+  105028  self->_mPlayWhenLoaded = 0
+  105034  store g_10042d8a0 = (g_10042d8a0 + 1)
+loc_100105040:
+  105050  goto loc_1001050a0
+loc_100105054:
+  105068  [S3DEngine engine]
+  105090  [[S3DEngine engine] quietLog:0 format:@"### S3DSound called with a nil URL, skipping"]
+loc_1001050a0:
+  1050c4  return
+
+== +[S3DSound agentWithBundleResourceOfName:inDirectory:extension:]   (address 0x10010512c  size 408  kind objc)
+  105188  [S3DEngine engine]
+  1051b8  [[S3DEngine engine] quietLog:3 format:@"creating sound with name: %@ from directory: %@ with extension: %@"]
+  1051d8  [NSBundle mainBundle]
+  105200  [[NSBundle mainBundle] URLForResource:arg1 withExtension:arg3 subdirectory:arg2]
+  105224  [S3DSound agentWithURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:arg3 subdirectory:arg2]]
+  105274  return
+
+== +[S3DSound agentWithURL:]   (address 0x1001052c4  size 116  kind objc)
+  1052f0  [S3DSound alloc]
+  105304  [[S3DSound alloc] initWithURL:arg1]
+  105320  return
+
+== +[S3DSound agentWithDictionary:]   (address 0x100105338  size 840  kind objc)
+  10537c  [arg1 objectForKey:@"name"]
+  10539c  [arg1 objectForKey:@"path"]
+  1053bc  [arg1 objectForKey:@"extension"]
+  1053e8  [S3DSound agentWithBundleResourceOfName:[arg1 objectForKey:@"name"] inDirectory:[arg1 objectForKey:@"path"] extension:[arg1 objectForKey:@"extension"]]
+  105420  [arg1 objectForKey:@"spatialized"]
+  105440  [[arg1 objectForKey:@"spatialized"] boolValue]
+  105464  [[S3DSound agentWithBundleResourceOfName:[arg1 objectForKey:@"name"] inDirectory:[arg1 objectForKey:@"path"] extension:[arg1 objectForKey:@"extension"]] setSpatialized:[[arg1 objectForKey:@"spatialized"] boolValue]]
+  105478  [arg1 objectForKey:@"preload"]
+  10548c  [[arg1 objectForKey:@"preload"] boolValue]
+  1054b0  [[S3DSound agentWithBundleResourceOfName:[arg1 objectForKey:@"name"] inDirectory:[arg1 objectForKey:@"path"] extension:[arg1 objectForKey:@"extension"]] setPreload:[[arg1 objectForKey:@"preload"] boolValue]]
+  1054c4  [arg1 objectForKey:@"unloadonstop"]
+  1054d8  [[arg1 objectForKey:@"unloadonstop"] boolValue]
+  1054fc  [[S3DSound agentWithBundleResourceOfName:[arg1 objectForKey:@"name"] inDirectory:[arg1 objectForKey:@"path"] extension:[arg1 objectForKey:@"extension"]] setUnloadOnStop:[[arg1 objectForKey:@"unloadonstop"] boolValue]]
+  105510  [arg1 objectForKey:@"stream"]
+  105524  [[arg1 objectForKey:@"stream"] boolValue]
+  105548  [[S3DSound agentWithBundleResourceOfName:[arg1 objectForKey:@"name"] inDirectory:[arg1 objectForKey:@"path"] extension:[arg1 objectForKey:@"extension"]] setStream:[[arg1 objectForKey:@"stream"] boolValue]]
+  10555c  [arg1 objectForKey:@"planar"]
+  10556c  if ([arg1 objectForKey:@"planar"] == 0) goto loc_1001055d8
+  105588  [[arg1 objectForKey:@"planar"] objCType]
+  105594  strcmp([[arg1 objectForKey:@"planar"] objCType], "{?=fff}")
+  105598  if (strcmp([[arg1 objectForKey:@"planar"] objCType], "{?=fff}") != 0) goto loc_1001055d8
+  1055b8  [[arg1 objectForKey:@"planar"] getValue:&sp[0x0]]
+  1055d4  [[S3DSound agentWithBundleResourceOfName:[arg1 objectForKey:@"name"] inDirectory:[arg1 objectForKey:@"path"] extension:[arg1 objectForKey:@"extension"]] setPlanar:{0, d1, 0}]
+loc_1001055d8:
+  105600  return
+
+== -[S3DSound pause]   (address 0x100105680  size 20  kind objc)
+  105690  tail [self setPlayRate:0]
+
+== -[S3DSound resume]   (address 0x100105694  size 20  kind objc)
+  1056a4  tail [self setPlayRate:1]
+
+== -[S3DSound play]   (address 0x1001056a8  size 152  kind objc)
+  1056d0  [S3DEngine engine]
+  1056fc  [[S3DEngine engine] quietLog:3 format:@"play %@"]
+  105728  tail [self play:0]
+
+== -[S3DSound playAsIs]   (address 0x100105740  size 316  kind objc)
+  105770  [S3DEngine engine]
+  10579c  [[S3DEngine engine] quietLog:3 format:@"playAsIs starting %@"]
+  1057bc  [self setPlayRate:1]
+  1057c8  [S3DEngine engine]
+  105824  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound playAsIs]_block_invoke captures +0x20=self}]
+  105848  return
+
+== -[S3DSound playAsIs]_block_invoke   (address 0x10010587c  size 456  kind block)
+  1058a8  [self soundFile]
+  1058ac  if ([self soundFile] == 0) goto loc_1001059bc
+  1058b8  [self soundFile]
+  1058d0  [self localLooping]
+  1058d4  [self soundFile][+0x191] = [self localLooping]
+  1058e0  [self soundFile]
+  1058e8  sub_1000e4b6c([self soundFile], 0)
+  105900  [S3DEngine engine]
+  105920  [self key]
+  105950  [[S3DEngine engine] quietLog:3 format:@"playAsIs triggering: %@"]
+  10596c  [self soundFile]
+  105978  call [self soundFile][+0x0][+0x68]
+  105990  [S3DEngineDispatcher dispatcher]
+  1059b0  [[S3DEngineDispatcher dispatcher] startTracking:self]
+  1059b4  goto loc_1001059fc
+  1059b8  goto loc_100105a30
+loc_1001059bc:
+  1059d0  [S3DEngine engine]
+  1059f8  [[S3DEngine engine] quietLog:3 format:@"### playAsIs called bu no soundFile!!"]
+loc_1001059fc:
+  105a10  return
+
+== sub_100105a44   (address 0x100105a44  size 8  kind sub)
+
+== sub_100105a4c   (address 0x100105a4c  size 8  kind sub)
+  105a50  return
+
+== -[S3DSound setup_complete:loop:]   (address 0x100105a54  size 340  kind objc)
+  105a94  [S3DEngine engine]
+  105ac0  [[S3DEngine engine] quietLog:3 format:@"****   play: Finish setup for sound: %@"]
+  105ad8  self->_setup = 1
+  105ae4  [S3DEngine engine]
+  105b48  [[S3DEngine engine] dispatch:^{-[S3DSound setup_complete:loop:]_block_invoke captures +0x20=self, +0x28=arg1}]
+  105b74  return
+
+== -[S3DSound setup_complete:loop:]_block_invoke   (address 0x100105ba8  size 156  kind block)
+  105c14  [self activate:^{-[S3DSound setup_complete:loop:]_block_invoke_block_invoke captures +0x20=self, +0x28=arg1}]
+  105c2c  return
+
+== -[S3DSound setup_complete:loop:]_block_invoke_block_invoke   (address 0x100105c44  size 320  kind block)
+  105c74  [self prepareForPlay:arg1 looping:block[+0x2c]]
+  105c88  [self playAsIs]
+  105ca0  [self setLoopinggg:block[+0x2c]]
+  105cb4  if (self->restarting == 0) goto loc_100105cbc
+  105cb8  self->restarting = 0
+loc_100105cbc:
+  105cd0  [S3DEngine engine]
+  105cf0  [self key]
+  105d3c  [[S3DEngine engine] quietLog:3 format:@"sound: %@ should now be playing looping: %@ mode"]
+  105d5c  return
+
+== sub_100105d84   (address 0x100105d84  size 8  kind sub)
+
+== sub_100105d8c   (address 0x100105d8c  size 8  kind sub)
+  105d90  return
+
+== sub_100105d94   (address 0x100105d94  size 8  kind sub)
+
+== sub_100105d9c   (address 0x100105d9c  size 8  kind sub)
+  105da0  return
+
+== -[S3DSound setup_either:loop:]   (address 0x100105da4  size 276  kind objc)
+  105ddc  [S3DEngine engine]
+  105e08  [[S3DEngine engine] quietLog:3 format:@"Begin start setup for sound: %@ with loop flag %i"]
+  105e24  [self spatialized]
+  105e28  if ([self spatialized] == 0) goto loc_100105e4c
+  105e3c  [self setupSpatialized]
+  105e48  goto loc_100105e68
+loc_100105e4c:
+  105e5c  [self setupPlain]
+loc_100105e68:
+  105e70  one of {&g_10042d8a8, &g_10042d8ac}[+0x0] = (w9 + 1)
+  105ea0  tail [self setup_complete:arg1 loop:arg2]
+
+== -[S3DSound play:fadein:]   (address 0x100105eb8  size 656  kind objc)
+  105ef0  [self active]
+  105ef4  if ([self active] == 0) goto loc_100105f38
+  105f04  self->restart = 1
+  105f0c  &@selector(stop)
+  105f34  tail [self activate | stop]
+loc_100105f38:
+  105f48  [self stopping]
+  105f4c  if (!([self stopping] & 1)) goto loc_100105f80
+  105f5c  self->restart = 1
+  105f7c  return
+  105f94  [self setActive:1]
+  105fb0  [S3DEngine engine]
+  105fd0  [self key]
+  106024  [[S3DEngine engine] quietLog:3 format:@"play: %@ looping: %@ fade-in: %.2f"]
+  106040  self->looping = arg1
+  106054  [self setup]
+  106058  if (!([self setup] & 1)) goto loc_100106068
+  106060  &@selector(setup_complete:loop:)
+  106078  [self soundFile]
+  10607c  if ([self soundFile] == 0) goto loc_1001060b8
+  106084  &@selector(setup_either:loop:)
+  1060b4  tail [self setup_complete:arg1 loop:x3  | setup_either:x4 loop:x5]
+  1060c0  [S3DEngine engine]
+  1060e4  [[S3DEngine engine] quietLog:3 format:@"Data not loaded for sound: %@ - loading file data now"]
+  1060f8  self->_mStoredFadeDuration = arg2
+  106108  self->_mPlayWhenLoaded = 1
+  106110  &@selector(activate)
+
+== -[S3DSound play:]   (address 0x100106148  size 192  kind objc)
+  106178  [S3DEngine engine]
+  1061bc  [[S3DEngine engine] quietLog:3 format:@"play: %@"]
+  1061f0  tail [self play:arg1 fadein:0]
+
+== -[S3DSound prepareForPlay:looping:]   (address 0x100106208  size 372  kind objc)
+  10623c  [S3DEngine engine]
+  10625c  [self key]
+  10628c  [[S3DEngine engine] quietLog:3 format:@"prepareForPlay: %@"]
+  1062a4  if (arg1 <= (or unordered) 0.0) goto loc_100106330
+  1062cc  pow(100, (1 / (arg1 / 0.01)))
+  1062e0  self->fadeGain = 0x3c23d70a
+  106328  [self add3DSoundMonitor:^{-[S3DSound prepareForPlay:looping:]_block_invoke captures +0x20=pow(100, (1 / (arg1 / 0.01)))}]
+  10632c  goto loc_100106340
+loc_100106330:
+  10633c  self->fadeGain = 0x3f800000
+loc_100106340:
+  106354  return
+
+== -[S3DSound prepareForPlay:looping:]_block_invoke   (address 0x10010637c  size 192  kind block)
+  1063b0  if (d9 < (or unordered) d8) goto loc_1001063bc
+  1063b8  blockarg2[+0x0] = 1
+loc_1001063bc:
+  1063d0  if (blockarg1->fadeGain <= (or unordered) 1) goto loc_1001063e0
+  1063d8  blockarg1->fadeGain = 0x3f800000
+  1063dc  goto loc_100106410
+loc_1001063e0:
+  1063fc  [blockarg1 setGain:blockarg1->gain]
+  10640c  blockarg1->fadeGain = (pow(100, (1 / (arg1 / 0.01))) * blockarg1->fadeGain)
+loc_100106410:
+  106424  return
+
+== -[S3DSound fadeIn:looping:]   (address 0x10010643c  size 184  kind objc)
+  106474  [S3DEngine engine]
+  1064a4  [[S3DEngine engine] quietLog:3 format:@"fadeIn : %f"]
+  1064dc  tail [self play:arg2 fadein:arg1]
+
+== -[S3DSound fadeOut]   (address 0x1001064f4  size 24  kind objc)
+  106508  tail [self fadeOut:0.3]
+
+== -[S3DSound fadeOut:]   (address 0x10010650c  size 216  kind objc)
+  10653c  [S3DEngine engine]
+  106598  [[S3DEngine engine] dispatch:^{-[S3DSound fadeOut:]_block_invoke captures +0x20=self, +0x28=arg1}]
+  1065bc  return
+
+== -[S3DSound fadeOut:]_block_invoke   (address 0x1001065e4  size 184  kind block)
+  10660c  [S3DEngine engine]
+  106640  [[S3DEngine engine] quietLog:3 format:@"fadeOut for: %f"]
+  106654  if (arg1 <= 0.0) goto loc_100106668
+  106664  return
+  106684  tail [self stopInternal]
+
+== sub_10010669c   (address 0x10010669c  size 8  kind sub)
+
+== sub_1001066a4   (address 0x1001066a4  size 8  kind sub)
+  1066a8  return
+
+== -[S3DSound fadeIn:from:]   (address 0x1001066ac  size 332  kind objc)
+  1066f4  [S3DEngine engine]
+  106728  [[S3DEngine engine] quietLog:5 format:@"fadeIn over %f seconds for: %@ - **** NOTE THIS WILL SET THE LOOPING TO FALSE ****"]
+  10674c  [self fadeIn:arg1 looping:0]
+  106750  if (arg2 == 0) goto loc_100106770
+  106768  [arg2 fadeOut:arg1]
+  10676c  goto loc_1001067a4
+loc_100106770:
+  106778  [S3DEngine engine]
+  106798  [[S3DEngine engine] fadeAllBut:self]
+loc_1001067a4:
+  1067c0  return
+
+== -[S3DSound stopInternal]   (address 0x1001067f8  size 276  kind objc)
+  10681c  [self setStopping:0]
+  106834  [S3DEngine engine]
+  106860  [[S3DEngine engine] quietLog:3 format:@"plain stopInternal for: %@"]
+  106880  [self setPlayRate:0]
+  106898  [self soundFile]
+  10689c  if ([self soundFile] == 0) goto loc_1001068c8
+  1068a8  [self soundFile]
+  1068ac  [self soundFile][+0x191] = 0
+  1068b8  [self soundFile]
+  1068c4  call [self soundFile][+0x0][+0xa8]
+loc_1001068c8:
+  1068d8  [self cleanup]
+  1068e4  self->_setup = 0
+  1068f4  return
+
+== -[S3DSound stop]   (address 0x10010690c  size 532  kind objc)
+  106930  [self active]
+  106934  if ([self active] == 0) goto loc_1001069d8
+  106948  [self stopping]
+  10694c  if (([self stopping] & 1)) goto loc_100106ad0
+  106964  [self setStopping:1]
+  10697c  [S3DEngine engine]
+  1069a8  [[S3DEngine engine] quietLog:3 format:@"plain stop for: %@"]
+  1069d4  tail [self stopInternal]
+loc_1001069d8:
+  1069e8  [self restart]
+  1069ec  if ([self restart] == 0) goto loc_100106ad0
+  106a04  [self setStopping:1]
+  106a20  [S3DEngine engine]
+  106a4c  [[S3DEngine engine] quietLog:3 format:@"plain stop for: %@"]
+  106a60  [S3DEngine engine]
+  106abc  [[S3DEngine engine] dispatch:^{-[S3DSound stop]_block_invoke captures +0x20=self}]
+loc_100106ad0:
+  106ae0  return
+
+== -[S3DSound stop]_block_invoke   (address 0x100106b20  size 20  kind block)
+  106b30  tail [self stopInternal]
+
+== sub_100106b34   (address 0x100106b34  size 8  kind sub)
+
+== sub_100106b3c   (address 0x100106b3c  size 8  kind sub)
+  106b40  return
+
+== -[S3DSound add3DSoundMonitor:]   (address 0x100106b44  size 156  kind objc)
+  106b78  [S3DEngineDispatcher dispatcher]
+  106b9c  [[S3DEngineDispatcher dispatcher] add3DSoundMonitor:arg1 forSound:self]
+  106bb8  return
+
+== -[S3DSound add3DSoundEndCallback:]   (address 0x100106be0  size 176  kind objc)
+  106c4c  [self add3DSoundMonitor:^{-[S3DSound add3DSoundEndCallback:]_block_invoke captures +0x20=arg1}]
+  106c70  return
+
+== -[S3DSound add3DSoundEndCallback:]_block_invoke   (address 0x100106c90  size 104  kind block)
+  106cbc  if (d9 < (or unordered) d8) goto loc_100106cd0
+  106ccc  call arg1[+0x10]
+loc_100106cd0:
+  106ce0  return
+
+== sub_100106cf8   (address 0x100106cf8  size 16  kind sub)
+  106d04  tail Block_object_assign((a0 + 32), a1[+0x20], 7, a3)
+
+== sub_100106d08   (address 0x100106d08  size 8  kind sub)
+  106d0c  return
+
+== -[S3DSound setWetGain:]   (address 0x100106d10  size 224  kind objc)
+  106d34  self->wetGain = arg1
+  106d44  [self sendToReverb]
+  106d48  if ([self sendToReverb] == 0) goto loc_100106dc8
+  106d6c  [S3DEngine engine]
+  106dbc  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound setWetGain:]_block_invoke captures +0x20=self->fanout, +0x28=arg1}]
+loc_100106dc8:
+  106dd8  return
+
+== -[S3DSound setWetGain:]_block_invoke   (address 0x100106df0  size 228  kind block)
+  106e20  [S3DEngine engine]
+  106e40  [[S3DEngine engine] wetMixer]
+  106e48  sub_1000edfac([[S3DEngine engine] wetMixer], self->fanout)
+  106e58  if (sub_1000edfac([[S3DEngine engine] wetMixer], self->fanout) == 0) goto loc_100106ea0
+  106e64  [S3DEngine engine]
+  106e78  [[S3DEngine engine] wetMixer]
+  106e84  sub_1000edfec([[S3DEngine engine] wetMixer], self->fanout)
+  106e9c  return
+loc_100106ea0:
+  106eb0  return
+
+== -[S3DSound setDryGain:]   (address 0x100106ed4  size 224  kind objc)
+  106ef8  self->dryGain = arg1
+  106f08  [self sendToReverb]
+  106f0c  if ([self sendToReverb] == 0) goto loc_100106f8c
+  106f30  [S3DEngine engine]
+  106f80  [[S3DEngine engine] AU_preSerialize:^{-[S3DSound setDryGain:]_block_invoke captures +0x20=self->fanout, +0x28=arg1}]
+loc_100106f8c:
+  106f9c  return
+
+== -[S3DSound setDryGain:]_block_invoke   (address 0x100106fb4  size 228  kind block)
+  106fe4  [S3DEngine engine]
+  107004  [[S3DEngine engine] dryMixer]
+  10700c  sub_1000edfac([[S3DEngine engine] dryMixer], self->fanout)
+  10701c  if (sub_1000edfac([[S3DEngine engine] dryMixer], self->fanout) == 0) goto loc_100107064
+  107028  [S3DEngine engine]
+  10703c  [[S3DEngine engine] dryMixer]
+  107048  sub_1000edfec([[S3DEngine engine] dryMixer], self->fanout)
+  107060  return
+loc_100107064:
+  107074  return
+
+== -[S3DSound copyWithZone:]   (address 0x100107098  size 4  kind objc)
+
+== -[S3DSound key]   (address 0x10010709c  size 16  kind objc)
+  1070a8  return
+
+== -[S3DSound previous]   (address 0x1001070ac  size 24  kind objc)
+  1070c0  return
+
+== -[S3DSound setPrevious:]   (address 0x1001070c4  size 28  kind objc)
+  1070d0  self->previous = arg1.0
+  1070d4  self->previous[+0x4] = arg1.1
+  1070d8  self->previous[+0x8] = arg1.2
+  1070dc  return
+
+== -[S3DSound polarUpdated]   (address 0x1001070e0  size 16  kind objc)
+  1070ec  return
+
+== -[S3DSound setPolarUpdated:]   (address 0x1001070f0  size 16  kind objc)
+  1070f8  self->polarUpdated = arg1
+  1070fc  return
+
+== -[S3DSound planar]   (address 0x100107100  size 24  kind objc)
+  107114  return
+
+== -[S3DSound planarNeedsUpdating]   (address 0x100107118  size 16  kind objc)
+  107124  return
+
+== -[S3DSound setPlanarNeedsUpdating:]   (address 0x100107128  size 16  kind objc)
+  107130  self->planarNeedsUpdating = arg1
+  107134  return
+
+== -[S3DSound spatialized]   (address 0x100107138  size 16  kind objc)
+  107144  return
+
+== -[S3DSound preload]   (address 0x100107148  size 16  kind objc)
+  107154  return
+
+== -[S3DSound setPreload:]   (address 0x100107158  size 16  kind objc)
+  107160  self->preload = arg1
+  107164  return
+
+== -[S3DSound unloadOnStop]   (address 0x100107168  size 16  kind objc)
+  107174  return
+
+== -[S3DSound setUnloadOnStop:]   (address 0x100107178  size 16  kind objc)
+  107180  self->unloadOnStop = arg1
+  107184  return
+
+== -[S3DSound pan]   (address 0x100107188  size 16  kind objc)
+  107194  return
+
+== -[S3DSound gain]   (address 0x100107198  size 16  kind objc)
+  1071a4  return
+
+== -[S3DSound fadeGain]   (address 0x1001071a8  size 16  kind objc)
+  1071b4  return
+
+== -[S3DSound setFadeGain:]   (address 0x1001071b8  size 16  kind objc)
+  1071c0  self->fadeGain = arg1
+  1071c4  return
+
+== -[S3DSound soundFile]   (address 0x1001071c8  size 16  kind objc)
+  1071d4  return
+
+== -[S3DSound setSoundFile:]   (address 0x1001071d8  size 16  kind objc)
+  1071e0  self->soundFile = arg1
+  1071e4  return
+
+== -[S3DSound panner]   (address 0x1001071e8  size 16  kind objc)
+  1071f4  return
+
+== -[S3DSound setPanner:]   (address 0x1001071f8  size 16  kind objc)
+  107200  self->panner = arg1
+  107204  return
+
+== -[S3DSound gainControl]   (address 0x100107208  size 16  kind objc)
+  107214  return
+
+== -[S3DSound setGainControl:]   (address 0x100107218  size 16  kind objc)
+  107220  self->gainControl = arg1
+  107224  return
+
+== -[S3DSound fanout]   (address 0x100107228  size 16  kind objc)
+  107234  return
+
+== -[S3DSound setFanout:]   (address 0x100107238  size 16  kind objc)
+  107240  self->fanout = arg1
+  107244  return
+
+== -[S3DSound drygainControl]   (address 0x100107248  size 16  kind objc)
+  107254  return
+
+== -[S3DSound setDrygainControl:]   (address 0x100107258  size 16  kind objc)
+  107260  self->drygainControl = arg1
+  107264  return
+
+== -[S3DSound wetgainControl]   (address 0x100107268  size 16  kind objc)
+  107274  return
+
+== -[S3DSound setWetgainControl:]   (address 0x100107278  size 16  kind objc)
+  107280  self->wetgainControl = arg1
+  107284  return
+
+== -[S3DSound wetGain]   (address 0x100107288  size 16  kind objc)
+  107294  return
+
+== -[S3DSound dryGain]   (address 0x100107298  size 16  kind objc)
+  1072a4  return
+
+== -[S3DSound stream]   (address 0x1001072a8  size 16  kind objc)
+  1072b4  return
+
+== -[S3DSound setStream:]   (address 0x1001072b8  size 16  kind objc)
+  1072c0  self->stream = arg1
+  1072c4  return
+
+== -[S3DSound spatializer]   (address 0x1001072c8  size 16  kind objc)
+  1072d4  return
+
+== -[S3DSound setSpatializer:]   (address 0x1001072d8  size 16  kind objc)
+  1072e0  self->spatializer = arg1
+  1072e4  return
+
+== -[S3DSound fanner]   (address 0x1001072e8  size 16  kind objc)
+  1072f4  return
+
+== -[S3DSound setFanner:]   (address 0x1001072f8  size 16  kind objc)
+  107300  self->fanner = arg1
+  107304  return
+
+== -[S3DSound spatialSource]   (address 0x100107308  size 16  kind objc)
+  107314  return
+
+== -[S3DSound setSpatialSource:]   (address 0x100107318  size 16  kind objc)
+  107320  self->spatialSource = arg1
+  107324  return
+
+== -[S3DSound lowPassFilter]   (address 0x100107328  size 16  kind objc)
+  107334  return
+
+== -[S3DSound setLowPassFilter:]   (address 0x100107338  size 16  kind objc)
+  107340  self->lowPassFilter = arg1
+  107344  return
+
+== -[S3DSound url]   (address 0x100107348  size 16  kind objc)
+  107354  return
+
+== -[S3DSound setUrl:]   (address 0x100107358  size 56  kind objc)
+  10737c  self->url = arg1
+  10738c  return
+
+== -[S3DSound playRate]   (address 0x100107390  size 16  kind objc)
+  10739c  return
+
+== -[S3DSound active]   (address 0x1001073a0  size 20  kind objc)
+  1073b0  return
+
+== -[S3DSound setActive:]   (address 0x1001073b4  size 16  kind objc)
+  1073bc  self->active = arg1
+  1073c0  return
+
+== -[S3DSound stopping]   (address 0x1001073c4  size 20  kind objc)
+  1073d4  return
+
+== -[S3DSound setStopping:]   (address 0x1001073d8  size 16  kind objc)
+  1073e0  self->stopping = arg1
+  1073e4  return
+
+== -[S3DSound restart]   (address 0x1001073e8  size 20  kind objc)
+  1073f8  return
+
+== -[S3DSound setRestart:]   (address 0x1001073fc  size 16  kind objc)
+  107404  self->restart = arg1
+  107408  return
+
+== -[S3DSound restarting]   (address 0x10010740c  size 20  kind objc)
+  10741c  return
+
+== -[S3DSound setRestarting:]   (address 0x100107420  size 16  kind objc)
+  107428  self->restarting = arg1
+  10742c  return
+
+== -[S3DSound localLooping]   (address 0x100107430  size 20  kind objc)
+  107440  return
+
+== -[S3DSound setLocalLooping:]   (address 0x100107444  size 16  kind objc)
+  10744c  self->localLooping = arg1
+  107450  return
+
+== -[S3DSound sendToReverb]   (address 0x100107454  size 16  kind objc)
+  107460  return
+
+== -[S3DSound setSendToReverb:]   (address 0x100107464  size 16  kind objc)
+  10746c  self->_sendToReverb = arg1
+  107470  return
+
+== -[S3DSound autoReverbMix]   (address 0x100107474  size 16  kind objc)
+  107480  return
+
+== -[S3DSound setAutoReverbMix:]   (address 0x100107484  size 16  kind objc)
+  10748c  self->_autoReverbMix = arg1
+  107490  return
+
+== -[S3DSound minReverbDistance]   (address 0x100107494  size 16  kind objc)
+  1074a0  return
+
+== -[S3DSound setMinReverbDistance:]   (address 0x1001074a4  size 16  kind objc)
+  1074ac  self->_minReverbDistance = arg1
+  1074b0  return
+
+== -[S3DSound maxReverbDistance]   (address 0x1001074b4  size 16  kind objc)
+  1074c0  return
+
+== -[S3DSound setMaxReverbDistance:]   (address 0x1001074c4  size 16  kind objc)
+  1074cc  self->_maxReverbDistance = arg1
+  1074d0  return
+
+== -[S3DSound minWetSend]   (address 0x1001074d4  size 16  kind objc)
+  1074e0  return
+
+== -[S3DSound setMinWetSend:]   (address 0x1001074e4  size 16  kind objc)
+  1074ec  self->_minWetSend = arg1
+  1074f0  return
+
+== -[S3DSound maxWetSend]   (address 0x1001074f4  size 16  kind objc)
+  107500  return
+
+== -[S3DSound setMaxWetSend:]   (address 0x100107504  size 16  kind objc)
+  10750c  self->_maxWetSend = arg1
+  107510  return
+
+== -[S3DSound setup]   (address 0x100107514  size 16  kind objc)
+  107520  return
+
+== -[S3DSound userValue]   (address 0x100107524  size 16  kind objc)
+  107530  return
+
+== -[S3DSound setUserValue:]   (address 0x100107534  size 16  kind objc)
+  10753c  self->_userValue = arg1
+  107540  return
+
+== -[S3DSound timer]   (address 0x100107544  size 16  kind objc)
+  107550  return
+
+== -[S3DSound setTimer:]   (address 0x100107554  size 56  kind objc)
+  107578  self->_timer = arg1
+  107588  return
+
+== -[S3DSound mStoredFadeDuration]   (address 0x10010758c  size 16  kind objc)
+  107598  return
+
+== -[S3DSound setMStoredFadeDuration:]   (address 0x10010759c  size 16  kind objc)
+  1075a4  self->_mStoredFadeDuration = arg1
+  1075a8  return
+
+== -[S3DSound mPlayWhenLoaded]   (address 0x1001075ac  size 16  kind objc)
+  1075b8  return
+
+== -[S3DSound setMPlayWhenLoaded:]   (address 0x1001075bc  size 16  kind objc)
+  1075c4  self->_mPlayWhenLoaded = arg1
+  1075c8  return
+
+== -[S3DSound .cxx_destruct]   (address 0x1001075cc  size 84  kind objc)
+
+== -[S3DSound .cxx_construct]   (address 0x100107620  size 4  kind objc)
+  107620  return

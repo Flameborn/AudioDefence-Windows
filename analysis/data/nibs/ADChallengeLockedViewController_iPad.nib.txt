@@ -1,0 +1,20 @@
+// ADChallengeLockedViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #64 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #34 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #5 UIView  
+    #14 UIImageView  Image='background_main.png'
+    #3 UIImageView  Image='frame_popup_blank.png'
+    #27 UIImageView  Image='header_popup_centred.png'
+    #44 UILabel  UserInteractionDisabled=False Text='YOU NEED THE FOLLOWING WEAPONS TO PLAY THIS CHALLENGE' NumberOfLines=4
+    #11 UIButton (custom class ADButtonWithFont)  title[0]='VIEW IN ARMORY'
+    #57 UIImageView  Image='microsmg_icon.png'
+
+CONNECTIONS
+  action  armoryButtonTouched:                      #11 ADButtonWithFont --(events 0x40)--> #64 UIProxyObject
+  outlet  armoryButton                              #64 UIProxyObject --> #11 ADButtonWithFont
+  outlet  mainText                                  #64 UIProxyObject --> #44 UILabel Text='YOU NEED THE FOLLOWING WEAPONS TO PLAY THIS CHALLENGE'
+  outlet  view                                      #64 UIProxyObject --> #5 UIView
+  outlet  weaponIcon                                #64 UIProxyObject --> #57 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

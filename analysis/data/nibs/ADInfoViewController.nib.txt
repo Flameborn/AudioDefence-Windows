@@ -1,0 +1,23 @@
+// ADInfoViewController.nib
+TOP-LEVEL OBJECTS
+  #87 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #63 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #85 UIView  
+    #92 UIView (custom class ViewWithParalax)  
+      #28 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #55 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+    #37 UIImageView  UserInteractionDisabled=False Image='frame_popup_header.png'
+    #18 UILabel  UserInteractionDisabled=False Text='Mission'
+    #89 UITextView  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #58 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  continueButtonPressed:                    #58 ADButtonWithFont --(events 0x40)--> #87 UIProxyObject
+  outlet  background                                #87 UIProxyObject --> #28 UIImageView
+  outlet  continueButton                            #87 UIProxyObject --> #58 ADButtonWithFont
+  outlet  infoTextView                              #87 UIProxyObject --> #89 UITextView Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  titleLabel                                #87 UIProxyObject --> #18 UILabel Text='Mission'
+  outlet  view                                      #87 UIProxyObject --> #85 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#58 ADButtonWithFont' UIAccessibilityLabel='Play'

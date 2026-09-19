@@ -1,0 +1,859 @@
+
+== +[TAGRuntime initialize]   (address 0x100168a4c  size 148  kind objc)
+  168a74  [TAGTypes defaultValue]
+  168a9c  [TAGPValueAndStatic valueWithValue:[TAGTypes defaultValue] isStatic:1]
+  168ab0  store g_10042df50 = [TAGPValueAndStatic valueWithValue:[TAGTypes defaultValue] isStatic:1]
+  168ac8  return
+
+== +[TAGRuntime runtimeWithResource:dataLayer:functionCallMacroEvaluator:functionCallTagEvaluator:]   (address 0x100168ae0  size 240  kind objc)
+  168b44  [TAGRuntime alloc]
+  168b64  [[TAGRuntime alloc] initWithResource:arg1 dataLayer:arg2 functionCallMacroEvaluator:arg3 functionCallTagEvaluator:arg4]
+  168ba0  return
+
+== -[TAGRuntime initWithResource:dataLayer:functionCallMacroEvaluator:functionCallTagEvaluator:]   (address 0x100168bd0  size 6160  kind objc)
+  168c68  [super init]
+  168c74  if (self == 0) goto loc_10016a114
+  168c7c  if (arg1 == 0) goto loc_10016a0e4
+  168ca0  self->_resource = arg1
+  168cc0  self->_dataLayer = arg2
+  168ce4  [arg1 rules]
+  168d08  [NSSet setWithArray:[arg1 rules]]
+  168d28  self->_rules = [NSSet setWithArray:[arg1 rules]]
+  168d54  [NSCache alloc]
+  168d60  [[NSCache alloc] init]
+  168d74  self->_functionCallCache = [[NSCache alloc] init]
+  168d98  [self->_functionCallCache setTotalCostLimit:0x100000]
+  168dac  [NSMutableDictionary alloc]
+  168db8  [[NSMutableDictionary alloc] init]
+  168dcc  self->_trackingTagMap = [[NSMutableDictionary alloc] init]
+  168de4  [TAGCustomFunctionCall alloc]
+  168e00  [[TAGCustomFunctionCall alloc] initWithEvaluator:arg4]
+  168e24  [self addTrackingTag:[[TAGCustomFunctionCall alloc] initWithEvaluator:arg4]]
+  168e40  [TAGArbitraryPixel alloc]
+  168e4c  [[TAGArbitraryPixel alloc] init]
+  168e60  [self addTrackingTag:[[TAGArbitraryPixel alloc] init]]
+  168e7c  [TAGDataLayerWrite alloc]
+  168e98  [[TAGDataLayerWrite alloc] initWithDataLayer:arg2]
+  168eac  [self addTrackingTag:[[TAGDataLayerWrite alloc] initWithDataLayer:arg2]]
+  168ec8  [TAGUniversalAnalytics alloc]
+  168ed8  [[TAGUniversalAnalytics alloc] initWithDataLayer:arg2]
+  168eec  [self addTrackingTag:[[TAGUniversalAnalytics alloc] initWithDataLayer:arg2]]
+  168f04  [NSCache alloc]
+  168f10  [[NSCache alloc] init]
+  168f24  self->_macroEvaluationCache = [[NSCache alloc] init]
+  168f3c  [self->_macroEvaluationCache setTotalCostLimit:0x100000]
+  168f50  [NSMutableDictionary alloc]
+  168f5c  [[NSMutableDictionary alloc] init]
+  168f70  self->_predicateMap = [[NSMutableDictionary alloc] init]
+  168f88  [TAGContains alloc]
+  168f94  [[TAGContains alloc] init]
+  168fb4  [self addPredicate:[[TAGContains alloc] init]]
+  168fd0  [TAGEndsWith alloc]
+  168fdc  [[TAGEndsWith alloc] init]
+  168ff0  [self addPredicate:[[TAGEndsWith alloc] init]]
+  16900c  [TAGEquals alloc]
+  169018  [[TAGEquals alloc] init]
+  16902c  [self addPredicate:[[TAGEquals alloc] init]]
+  169048  [TAGGreaterEquals alloc]
+  169054  [[TAGGreaterEquals alloc] init]
+  169068  [self addPredicate:[[TAGGreaterEquals alloc] init]]
+  169084  [TAGGreaterThan alloc]
+  169090  [[TAGGreaterThan alloc] init]
+  1690a4  [self addPredicate:[[TAGGreaterThan alloc] init]]
+  1690c0  [TAGLessEquals alloc]
+  1690cc  [[TAGLessEquals alloc] init]
+  1690e0  [self addPredicate:[[TAGLessEquals alloc] init]]
+  1690fc  [TAGLessThan alloc]
+  169108  [[TAGLessThan alloc] init]
+  16911c  [self addPredicate:[[TAGLessThan alloc] init]]
+  169138  [TAGRegex alloc]
+  169144  [[TAGRegex alloc] init]
+  169158  [self addPredicate:[[TAGRegex alloc] init]]
+  169174  [TAGStartsWith alloc]
+  169180  [[TAGStartsWith alloc] init]
+  169194  [self addPredicate:[[TAGStartsWith alloc] init]]
+  1691b0  [NSMutableDictionary alloc]
+  1691bc  [[NSMutableDictionary alloc] init]
+  1691d0  self->_macroMap = [[NSMutableDictionary alloc] init]
+  1691e8  [TAGAdvertiserId alloc]
+  1691f4  [[TAGAdvertiserId alloc] init]
+  169214  [self addMacro:[[TAGAdvertiserId alloc] init]]
+  169230  [TAGAdvertiserIdFixed alloc]
+  16923c  [[TAGAdvertiserIdFixed alloc] init]
+  169250  [self addMacro:[[TAGAdvertiserIdFixed alloc] init]]
+  16926c  [TAGAdvertisingTrackingEnabledMacro alloc]
+  169278  [[TAGAdvertisingTrackingEnabledMacro alloc] init]
+  16928c  [self addMacro:[[TAGAdvertisingTrackingEnabledMacro alloc] init]]
+  1692a8  [TAGAdwordsClickReferrer alloc]
+  1692b4  [[TAGAdwordsClickReferrer alloc] init]
+  1692c8  [self addMacro:[[TAGAdwordsClickReferrer alloc] init]]
+  1692e4  [TAGAppId alloc]
+  1692f0  [[TAGAppId alloc] init]
+  169304  [self addMacro:[[TAGAppId alloc] init]]
+  169320  [TAGAppName alloc]
+  16932c  [[TAGAppName alloc] init]
+  169340  [self addMacro:[[TAGAppName alloc] init]]
+  16935c  [TAGAppVersion alloc]
+  169368  [[TAGAppVersion alloc] init]
+  16937c  [self addMacro:[[TAGAppVersion alloc] init]]
+  169398  [TAGConstantMacro alloc]
+  1693a4  [[TAGConstantMacro alloc] init]
+  1693b8  [self addMacro:[[TAGConstantMacro alloc] init]]
+  1693d4  [TAGContainerVersionMacro alloc]
+  1693f4  [self resource]
+  169410  [[self resource] version]
+  169434  [[TAGContainerVersionMacro alloc] initWithVersion:[[self resource] version]]
+  169448  [self addMacro:[[TAGContainerVersionMacro alloc] initWithVersion:[[self resource] version]]]
+  169474  [TAGCustomFunctionCall alloc]
+  169484  [[TAGCustomFunctionCall alloc] initWithEvaluator:arg3]
+  169498  [self addMacro:[[TAGCustomFunctionCall alloc] initWithEvaluator:arg3]]
+  1694b4  [TAGDataLayerMacro alloc]
+  1694c4  [[TAGDataLayerMacro alloc] initWithDataLayer:arg2]
+  1694d8  [self addMacro:[[TAGDataLayerMacro alloc] initWithDataLayer:arg2]]
+  1694f8  [TAGDeviceName alloc]
+  169504  [[TAGDeviceName alloc] init]
+  169518  [self addMacro:[[TAGDeviceName alloc] init]]
+  169534  [TAGEncode alloc]
+  169540  [[TAGEncode alloc] init]
+  169554  [self addMacro:[[TAGEncode alloc] init]]
+  169570  [TAGEventMacro alloc]
+  169588  [[TAGEventMacro alloc] initWithRuntime:self]
+  16959c  [self addMacro:[[TAGEventMacro alloc] initWithRuntime:self]]
+  1695b8  [TAGGtmVersionMacro alloc]
+  1695c4  [[TAGGtmVersionMacro alloc] init]
+  1695d8  [self addMacro:[[TAGGtmVersionMacro alloc] init]]
+  1695f4  [TAGHashMacro alloc]
+  169600  [[TAGHashMacro alloc] init]
+  169614  [self addMacro:[[TAGHashMacro alloc] init]]
+  169630  [TAGJoinerMacro alloc]
+  16963c  [[TAGJoinerMacro alloc] init]
+  169650  [self addMacro:[[TAGJoinerMacro alloc] init]]
+  16966c  [TAGLanguage alloc]
+  169678  [[TAGLanguage alloc] init]
+  16968c  [self addMacro:[[TAGLanguage alloc] init]]
+  1696a8  [TAGMobileAdwordsUniqueIdMacro alloc]
+  1696b4  [[TAGMobileAdwordsUniqueIdMacro alloc] init]
+  1696c8  [self addMacro:[[TAGMobileAdwordsUniqueIdMacro alloc] init]]
+  1696e4  [TAGOsVersion alloc]
+  1696f0  [[TAGOsVersion alloc] init]
+  169704  [self addMacro:[[TAGOsVersion alloc] init]]
+  169720  [TAGPlatform alloc]
+  16972c  [[TAGPlatform alloc] init]
+  169740  [self addMacro:[[TAGPlatform alloc] init]]
+  16975c  [TAGRandom alloc]
+  169768  [[TAGRandom alloc] init]
+  16977c  [self addMacro:[[TAGRandom alloc] init]]
+  169798  [TAGRegexGroup alloc]
+  1697a4  [[TAGRegexGroup alloc] init]
+  1697b8  [self addMacro:[[TAGRegexGroup alloc] init]]
+  1697d4  [TAGResolution alloc]
+  1697e0  [[TAGResolution alloc] init]
+  1697f4  [self addMacro:[[TAGResolution alloc] init]]
+  169810  [TAGRuntimeVersion alloc]
+  16981c  [[TAGRuntimeVersion alloc] init]
+  169830  [self addMacro:[[TAGRuntimeVersion alloc] init]]
+  16984c  [TAGSdkVersion alloc]
+  169858  [[TAGSdkVersion alloc] init]
+  16986c  [self addMacro:[[TAGSdkVersion alloc] init]]
+  169888  [TAGTime alloc]
+  169894  [[TAGTime alloc] init]
+  1698a8  [self addMacro:[[TAGTime alloc] init]]
+  1698cc  [NSMutableDictionary dictionary]
+  1698e8  self->_macroLookup = [NSMutableDictionary dictionary]
+  16990c  [self rules]
+  169920  &@selector(countByEnumeratingWithState:objects:count:)
+  169938  [[self rules] countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x3e8] count:16]
+  169944  if ([[self rules] countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x3e8] count:16] == 0) goto loc_100169d5c
+  169958  &@selector(removeMacros)
+  169968  &@selector(functionNameFromFunctionCall:)
+  1699c8  &@selector(addRemoveMacro:forRule:)
+loc_100169a18:
+loc_100169a24:
+  169a34  if (x8 == x9) goto loc_100169a40
+  169a3c  objc_enumerationMutation([self rules])
+loc_100169a40:
+  169a74  [x0 addMacros]
+  169a90  [[x0 addMacros] countByEnumeratingWithState:&sp[0x3a8] objects:&sp[0x328] count:16]
+  169a98  if ([[x0 addMacros] countByEnumeratingWithState:&sp[0x3a8] objects:&sp[0x328] count:16] == 0) goto loc_100169bb0
+loc_100169aa4:
+loc_100169aa8:
+  169ab4  if (0[+0x0] == 0[+0x0]) goto loc_100169ac0
+  169abc  objc_enumerationMutation([x0 addMacros])
+loc_100169ac0:
+  169adc  [TAGRuntime functionNameFromFunctionCall:x2]
+  169af4  [self macroLookup]
+  169b18  [TAGRuntime addOrGetMacroInfoForKey:[TAGRuntime functionNameFromFunctionCall:x2] macroLookup:[self macroLookup]]
+  169b40  [[TAGRuntime addOrGetMacroInfoForKey:[TAGRuntime functionNameFromFunctionCall:x2] macroLookup:[self macroLookup]] rules]
+  169b58  [[[TAGRuntime addOrGetMacroInfoForKey:[TAGRuntime functionNameFromFunctionCall:x2] macroLookup:[self macroLookup]] rules] addObject:x2]
+  169b74  [[TAGRuntime addOrGetMacroInfoForKey:[TAGRuntime functionNameFromFunctionCall:x2] macroLookup:[self macroLookup]] addAddMacro:x2 forRule:x3]
+  169b8c  if ((x19 + 1) <u [[x0 addMacros] countByEnumeratingWithState:&sp[0x3a8] objects:&sp[0x328] count:16]) goto loc_100169aa8
+  169ba4  [[x0 addMacros] countByEnumeratingWithState:&sp[0x3a8] objects:&sp[0x328] count:16]
+  169bac  if ([[x0 addMacros] countByEnumeratingWithState:&sp[0x3a8] objects:&sp[0x328] count:16] != 0) goto loc_100169aa4
+loc_100169bb0:
+  169be0  [x0 removeMacros]
+  169bfc  [[x0 removeMacros] countByEnumeratingWithState:&sp[0x2e8] objects:&sp[0x268] count:16]
+  169c04  if ([[x0 removeMacros] countByEnumeratingWithState:&sp[0x2e8] objects:&sp[0x268] count:16] == 0) goto loc_100169d1c
+loc_100169c10:
+loc_100169c14:
+  169c20  if (0[+0x0] == 0[+0x0]) goto loc_100169c2c
+  169c28  objc_enumerationMutation([x0 removeMacros])
+loc_100169c2c:
+  169c48  [TAGRuntime functionNameFromFunctionCall:x2]
+  169c60  [self macroLookup]
+  169c84  [TAGRuntime addOrGetMacroInfoForKey:[TAGRuntime functionNameFromFunctionCall:x2] macroLookup:[self macroLookup]]
+  169cac  [[TAGRuntime addOrGetMacroInfoForKey:[TAGRuntime functionNameFromFunctionCall:x2] macroLookup:[self macroLookup]] rules]
+  169cc4  [[[TAGRuntime addOrGetMacroInfoForKey:[TAGRuntime functionNameFromFunctionCall:x2] macroLookup:[self macroLookup]] rules] addObject:x2]
+  169ce0  [[TAGRuntime addOrGetMacroInfoForKey:[TAGRuntime functionNameFromFunctionCall:x2] macroLookup:[self macroLookup]] addRemoveMacro:x2 forRule:x3]
+  169cf8  if ((x19 + 1) <u [[x0 removeMacros] countByEnumeratingWithState:&sp[0x2e8] objects:&sp[0x268] count:16]) goto loc_100169c14
+  169d10  [[x0 removeMacros] countByEnumeratingWithState:&sp[0x2e8] objects:&sp[0x268] count:16]
+  169d18  if ([[x0 removeMacros] countByEnumeratingWithState:&sp[0x2e8] objects:&sp[0x268] count:16] != 0) goto loc_100169c10
+loc_100169d1c:
+  169d38  if ((x9 + 1) <u [[self rules] countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x3e8] count:16]) goto loc_100169a24
+  169d4c  [[self rules] countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x3e8] count:16]
+  169d54  &@selector(countByEnumeratingWithState:objects:count:)
+  169d58  if ([[self rules] countByEnumeratingWithState:&x29[-0xa8] objects:&sp[0x3e8] count:16] != 0) goto loc_100169a18
+loc_100169d5c:
+  169d74  [self resource]
+  169d94  [[self resource] allMacros]
+  169de4  [[[self resource] allMacros] allKeys]
+  169e04  [[[[self resource] allMacros] allKeys] countByEnumeratingWithState:&sp[0x228] objects:&sp[0x1a8] count:16]
+  169e08  if ([[[[self resource] allMacros] allKeys] countByEnumeratingWithState:&sp[0x228] objects:&sp[0x1a8] count:16] == 0) goto loc_10016a0d0
+  169e24  &@selector(notDefaultMacroKey)
+  169e34  &@selector(valueForKey:)
+loc_100169ec8:
+loc_100169ed0:
+  169ee0  if (0[+0x0] == 0[+0x0]) goto loc_100169eec
+  169ee8  objc_enumerationMutation([[[self resource] allMacros] allKeys])
+loc_100169eec:
+  169f10  [[[self resource] allMacros] objectForKey:x2]
+  169f30  [[[[self resource] allMacros] objectForKey:x2] countByEnumeratingWithState:&sp[0x168] objects:&sp[0xe8] count:16]
+  169f38  if ([[[[self resource] allMacros] objectForKey:x2] countByEnumeratingWithState:&sp[0x168] objects:&sp[0xe8] count:16] == 0) goto loc_10016a098
+loc_100169f44:
+loc_100169f48:
+  169f54  if (x8 == x24) goto loc_100169f60
+  169f5c  objc_enumerationMutation([[[self resource] allMacros] objectForKey:x2])
+loc_100169f60:
+  169f70  [x0 properties]
+  169f8c  [TAGExpandedFunctionCall notDefaultMacroKey]
+  169fa8  [[x0 properties] valueForKey:[TAGExpandedFunctionCall notDefaultMacroKey]]
+  169fc8  if ([[x0 properties] valueForKey:[TAGExpandedFunctionCall notDefaultMacroKey]] == 0) goto loc_10016a004
+  169fdc  [TAGTypes valueToBoolean:[[x0 properties] valueForKey:[TAGExpandedFunctionCall notDefaultMacroKey]]]
+  169ff0  [[TAGTypes valueToBoolean:[[x0 properties] valueForKey:[TAGExpandedFunctionCall notDefaultMacroKey]]] boolValue]
+  16a000  if (([[TAGTypes valueToBoolean:[[x0 properties] valueForKey:[TAGExpandedFunctionCall notDefaultMacroKey]]] boolValue] & 1)) goto loc_10016a064
+loc_10016a004:
+  16a014  [self macroLookup]
+  16a034  [TAGRuntime addOrGetMacroInfoForKey:x2 macroLookup:[self macroLookup]]
+  16a058  [[TAGRuntime addOrGetMacroInfoForKey:x2 macroLookup:[self macroLookup]] setDefaultFunctionCall:x2]
+loc_10016a064:
+  16a074  if ((x23 + 1) <u [[[[self resource] allMacros] objectForKey:x2] countByEnumeratingWithState:&sp[0x168] objects:&sp[0xe8] count:16]) goto loc_100169f48
+  16a08c  [[[[self resource] allMacros] objectForKey:x2] countByEnumeratingWithState:&sp[0x168] objects:&sp[0xe8] count:16]
+  16a094  if ([[[[self resource] allMacros] objectForKey:x2] countByEnumeratingWithState:&sp[0x168] objects:&sp[0xe8] count:16] != 0) goto loc_100169f44
+loc_10016a098:
+  16a0b4  if ((x20 + 1) <u [[[[self resource] allMacros] allKeys] countByEnumeratingWithState:&sp[0x228] objects:&sp[0x1a8] count:16]) goto loc_100169ed0
+  16a0c8  [[[[self resource] allMacros] allKeys] countByEnumeratingWithState:&sp[0x228] objects:&sp[0x1a8] count:16]
+  16a0cc  if ([[[[self resource] allMacros] allKeys] countByEnumeratingWithState:&sp[0x228] objects:&sp[0x1a8] count:16] != 0) goto loc_100169ec8
+loc_10016a0d0:
+  16a0e0  goto loc_10016a114
+loc_10016a0e4:
+  16a104  [TAGLog error:@"resource cannot be nil"]
+loc_10016a114:
+  16a16c  return
+
+== -[TAGRuntime setSupplementals:]   (address 0x10016a3e0  size 540  kind objc)
+  16a450  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  16a458  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_10016a568
+loc_10016a4b0:
+loc_10016a4b4:
+  16a4c0  if (x8 == x20) goto loc_10016a4cc
+  16a4c8  objc_enumerationMutation(arg1)
+loc_10016a4cc:
+  16a4dc  [x0 name]
+  16a4f4  [[x0 name] hasPrefix:@"gaExperiment:"]
+  16a504  if (!([[x0 name] hasPrefix:@"gaExperiment:"] & 1)) goto loc_10016a540
+  16a514  [self dataLayer]
+  16a534  [TAGExperimentMacroHelper handleExperimentSupplemental:[self dataLayer] supplemental:x3]
+loc_10016a540:
+  16a548  if ((x25 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]) goto loc_10016a4b4
+  16a55c  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  16a564  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_10016a4b0
+loc_10016a568:
+  16a5b0  return
+
+== -[TAGRuntime evaluateTags:]   (address 0x10016a5fc  size 756  kind objc)
+  16a648  objc_sync_enter(self)
+  16a664  [self setCurrentEventName:arg1]
+  16a688  [self rules]
+  16a6ac  [self calculateTagsToRunForRules:[self rules]]
+  16a6d0  [[self calculateTagsToRunForRules:[self rules]] set]
+  16a718  [[[self calculateTagsToRunForRules:[self rules]] set] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  16a720  if ([[[self calculateTagsToRunForRules:[self rules]] set] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] == 0) goto loc_10016a804
+loc_10016a754:
+loc_10016a758:
+  16a764  if (x8 == x19) goto loc_10016a770
+  16a76c  objc_enumerationMutation([[self calculateTagsToRunForRules:[self rules]] set])
+loc_10016a770:
+  16a780  [self trackingTagMap]
+  16a79c  [NSMutableSet set]
+  16a7c0  [self executeFunction:x2 implementationMap:[self trackingTagMap] pendingMacroExpansions:[NSMutableSet set]]
+  16a7e8  if ((x22 + 1) <u [[[self calculateTagsToRunForRules:[self rules]] set] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16…) goto loc_10016a758
+  16a7f8  [[[self calculateTagsToRunForRules:[self rules]] set] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16]
+  16a800  if ([[[self calculateTagsToRunForRules:[self rules]] set] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x38] count:16] != 0) goto loc_10016a754
+loc_10016a804:
+  16a818  [self setCurrentEventName:0]
+  16a828  objc_sync_exit(self)
+  16a868  return
+  16a8a8  objc_sync_exit()
+
+== -[TAGRuntime calculateMacrosToRunForRules:macroName:addMacros:removeMacros:pendingMacroExpansions:]   (address 0x10016a8f0  size 304  kind objc)
+  16a958  [TAGAddRemoveMacrosPopulator alloc]
+  16a970  [[TAGAddRemoveMacrosPopulator alloc] initWithAddMacros:arg3 removeMacros:arg4]
+  16a994  [self calculateGenericToRunForRules:arg1 pendingMacroExpansions:arg5 populator:[[TAGAddRemoveMacrosPopulator alloc] initWithAddMacros:arg3 removeMacros:arg4]]
+  16a9e0  return
+
+== -[TAGRuntime calculateTagsToRunForRules:]   (address 0x10016aa20  size 252  kind objc)
+  16aa54  [TAGAddRemoveTagsPopulator alloc]
+  16aa64  [[TAGAddRemoveTagsPopulator alloc] init]
+  16aa80  [NSMutableSet set]
+  16aaac  [self calculateGenericToRunForRules:arg1 pendingMacroExpansions:[NSMutableSet set] populator:[[TAGAddRemoveTagsPopulator alloc] init]]
+  16aae4  return
+
+== -[TAGRuntime calculateGenericToRunForRules:pendingMacroExpansions:populator:]   (address 0x10016ab1c  size 844  kind objc)
+  16ab94  [NSMutableSet alloc]
+  16aba8  [[NSMutableSet alloc] init]
+  16abb8  [NSMutableSet alloc]
+  16abc0  [[NSMutableSet alloc] init]
+  16ac00  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  16ac0c  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] == 0) goto loc_10016ad2c
+loc_10016ac68:
+loc_10016ac6c:
+  16ac78  if (x8 == x21) goto loc_10016ac84
+  16ac80  objc_enumerationMutation(arg1)
+loc_10016ac84:
+  16ac9c  [self evaluatePredicatesInRule:x2 pendingMacroExpansions:arg2]
+  16acb0  [[self evaluatePredicatesInRule:x2 pendingMacroExpansions:arg2] boolean]
+  16acc4  if ([[self evaluatePredicatesInRule:x2 pendingMacroExpansions:arg2] boolean] == 0) goto loc_10016acdc
+  16acd8  [arg3 rulePassed:x2 add:[[NSMutableSet alloc] init] remove:[[NSMutableSet alloc] init]]
+loc_10016acdc:
+  16acdc  if (!(w27 & 1)) goto loc_10016acf4
+  16ace8  [[self evaluatePredicatesInRule:x2 pendingMacroExpansions:arg2] isStatic]
+  16acf0  goto loc_10016acf8
+loc_10016acf4:
+loc_10016acf8:
+  16ad08  if ((x22 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]) goto loc_10016ac6c
+  16ad1c  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16]
+  16ad24  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x68] count:16] != 0) goto loc_10016ac68
+  16ad28  goto loc_10016ad34
+loc_10016ad2c:
+loc_10016ad34:
+  16ad54  [[[NSMutableSet alloc] init] minusSet:[[NSMutableSet alloc] init]]
+  16ad74  [TAGSetAndStatic setWithSet:[[NSMutableSet alloc] init] isStatic:x3]
+  16ade4  return
+
+== +[TAGRuntime addOrGetMacroInfoForKey:macroLookup:]   (address 0x10016ae68  size 232  kind objc)
+  16aea4  [arg2 valueForKey:arg1]
+  16aeb4  if ([arg2 valueForKey:arg1] != 0) goto loc_10016af00
+  16aecc  [TAGMacroInfo alloc]
+  16aedc  [[TAGMacroInfo alloc] init]
+  16aefc  [arg2 setObject:[[TAGMacroInfo alloc] init] forKey:arg1]
+loc_10016af00:
+  16af20  return
+
+== +[TAGRuntime functionNameFromFunctionCall:]   (address 0x10016af50  size 260  kind objc)
+  16af70  [arg1 properties]
+  16af94  [TAGExpandedFunctionCall instanceNameKey]
+  16afb8  [[arg1 properties] objectForKey:[TAGExpandedFunctionCall instanceNameKey]]
+  16aff0  [TAGTypes valueToString:[[arg1 properties] objectForKey:[TAGExpandedFunctionCall instanceNameKey]]]
+  16b018  return
+
+== +[TAGRuntime addFunctionImplToDict:functionCallImpl:]   (address 0x10016b054  size 544  kind objc)
+  16b094  [arg2 instanceFunctionId]
+  16b0a8  if ([arg2 instanceFunctionId] == 0) goto loc_10016b154
+  16b0b4  [arg2 instanceFunctionId]
+  16b0d8  [arg1 objectForKey:[arg2 instanceFunctionId]]
+  16b0f4  if ([arg1 objectForKey:[arg2 instanceFunctionId]] != 0) goto loc_10016b1a0
+  16b100  [arg2 instanceFunctionId]
+  16b128  [arg1 setObject:arg2 forKey:[arg2 instanceFunctionId]]
+  16b150  return
+  16b18c  [NSException exceptionWithName:@"IllegalArgumentException" reason:@"instanceFunctionId should be set" userInfo:0]
+  16b19c  objc_exception_throw([NSException exceptionWithName:@"IllegalArgumentException" reason:@"instanceFunctionId should be set" userInfo:0])
+  16b1a8  [arg2 instanceFunctionId]
+  16b1d8  [@"Duplicate function type name: " stringByAppendingString:[arg2 instanceFunctionId]]
+  16b220  [NSException exceptionWithName:@"IllegalArgumentException" reason:[@"Duplicate function type name: " stringByAppendingString:[arg2 instanceFunctionId]] userInfo:0]
+  16b230  objc_exception_throw([NSException exceptionWithName:@"IllegalArgumentException" reason:[@"Duplicate function type name: " stringByAppendingString:[arg2 instanceFunctionId]] userInfo:0])
+
+== -[TAGRuntime addMacro:]   (address 0x10016b274  size 164  kind objc)
+  16b2ac  [self macroMap]
+  16b2d4  [TAGRuntime addFunctionImplToDict:[self macroMap] functionCallImpl:arg1]
+  16b2f0  return
+
+== -[TAGRuntime addTrackingTag:]   (address 0x10016b318  size 164  kind objc)
+  16b350  [self trackingTagMap]
+  16b378  [TAGRuntime addFunctionImplToDict:[self trackingTagMap] functionCallImpl:arg1]
+  16b394  return
+
+== -[TAGRuntime addPredicate:]   (address 0x10016b3bc  size 164  kind objc)
+  16b3f4  [self predicateMap]
+  16b41c  [TAGRuntime addFunctionImplToDict:[self predicateMap] functionCallImpl:arg1]
+  16b438  return
+
+== -[TAGRuntime evaluatePredicate:pendingMacroExpansions:]   (address 0x10016b460  size 432  kind objc)
+  16b4a4  [self predicateMap]
+  16b4d0  [self executeFunction:arg1 implementationMap:[self predicateMap] pendingMacroExpansions:arg2]
+  16b508  [[self executeFunction:arg1 implementationMap:[self predicateMap] pendingMacroExpansions:arg2] value]
+  16b52c  [TAGTypes valueToBoolean:[[self executeFunction:arg1 implementationMap:[self predicateMap] pendingMacroExpansions:arg2] value]]
+  16b54c  [[self executeFunction:arg1 implementationMap:[self predicateMap] pendingMacroExpansions:arg2] isStatic]
+  16b568  [TAGBooleanAndStatic booleanWithBoolean:[TAGTypes valueToBoolean:[[self executeFunction:arg1 implementationMap:[self predicateMap] pendingMacroExpansions:arg2] value]] isStatic:[[self executeFunction:arg1 implementationMap:[self predicateMap] pendingMacroExpansions:arg2] isStatic]]
+  16b5b4  return
+
+== -[TAGRuntime evaluatePredicatesInRule:pendingMacroExpansions:]   (address 0x10016b610  size 1232  kind objc)
+  16b684  [arg1 negativePredicates]
+  16b6b0  [[arg1 negativePredicates] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x108] count:16]
+  16b6b8  if ([[arg1 negativePredicates] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x108] count:16] == 0) goto loc_10016b7fc
+loc_10016b70c:
+loc_10016b710:
+  16b71c  if (x8 == x27) goto loc_10016b728
+  16b724  objc_enumerationMutation([arg1 negativePredicates])
+loc_10016b728:
+  16b738  [self evaluatePredicate:x2 pendingMacroExpansions:arg2]
+  16b74c  [[self evaluatePredicate:x2 pendingMacroExpansions:arg2] boolean]
+  16b760  [[[self evaluatePredicate:x2 pendingMacroExpansions:arg2] boolean] boolValue]
+  16b770  if ([[[self evaluatePredicate:x2 pendingMacroExpansions:arg2] boolean] boolValue] != 0) goto loc_10016b7c4
+  16b774  if (!(w23 & 1)) goto loc_10016b78c
+  16b780  [[self evaluatePredicate:x2 pendingMacroExpansions:arg2] isStatic]
+  16b788  goto loc_10016b790
+loc_10016b78c:
+loc_10016b790:
+  16b7a0  if ((x21 + 1) <u [[arg1 negativePredicates] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x108] count:16]) goto loc_10016b710
+  16b7b4  [[arg1 negativePredicates] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x108] count:16]
+  16b7bc  if ([[arg1 negativePredicates] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x108] count:16] != 0) goto loc_10016b70c
+  16b7c0  goto loc_10016b800
+loc_10016b7c4:
+  16b7d4  [[self evaluatePredicate:x2 pendingMacroExpansions:arg2] isStatic]
+  16b7f0  [TAGBooleanAndStatic booleanWithBoolean:0 isStatic:[[self evaluatePredicate:x2 pendingMacroExpansions:arg2] isStatic]]
+  16b7f8  goto loc_10016b9f0
+loc_10016b7fc:
+loc_10016b800:
+  16b828  [arg1 positivePredicates]
+  16b848  [[arg1 positivePredicates] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x48] count:16]
+  16b850  if ([[arg1 positivePredicates] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x48] count:16] == 0) goto loc_10016b954
+loc_10016b8a0:
+loc_10016b8a4:
+  16b8b0  if (x8 == x27) goto loc_10016b8bc
+  16b8b8  objc_enumerationMutation([arg1 positivePredicates])
+loc_10016b8bc:
+  16b8cc  [self evaluatePredicate:x2 pendingMacroExpansions:arg2]
+  16b8e0  [[self evaluatePredicate:x2 pendingMacroExpansions:arg2] boolean]
+  16b8f4  [[[self evaluatePredicate:x2 pendingMacroExpansions:arg2] boolean] boolValue]
+  16b904  if (!([[[self evaluatePredicate:x2 pendingMacroExpansions:arg2] boolean] boolValue] & 1)) goto loc_10016b9bc
+  16b908  if (!(w23 & 1)) goto loc_10016b920
+  16b914  [[self evaluatePredicate:x2 pendingMacroExpansions:arg2] isStatic]
+  16b91c  goto loc_10016b924
+loc_10016b920:
+loc_10016b924:
+  16b934  if ((x21 + 1) <u [[arg1 positivePredicates] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x48] count:16]) goto loc_10016b8a4
+  16b948  [[arg1 positivePredicates] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x48] count:16]
+  16b950  if ([[arg1 positivePredicates] countByEnumeratingWithState:&sp[0xc8] objects:&sp[0x48] count:16] != 0) goto loc_10016b8a0
+loc_10016b954:
+  16b97c  [TAGBoolean booleanWithBool:1]
+  16b9a4  [TAGBooleanAndStatic booleanWithBoolean:[TAGBoolean booleanWithBool:1] isStatic:x3]
+  16b9b8  goto loc_10016ba04
+loc_10016b9bc:
+  16b9cc  [[self evaluatePredicate:x2 pendingMacroExpansions:arg2] isStatic]
+  16b9e8  [TAGBooleanAndStatic booleanWithBoolean:0 isStatic:[[self evaluatePredicate:x2 pendingMacroExpansions:arg2] isStatic]]
+loc_10016b9f0:
+loc_10016ba04:
+  16ba58  return
+
+== -[TAGRuntime evaluateMacroReference:]   (address 0x10016bae0  size 180  kind objc)
+  16bb14  [NSMutableSet set]
+  16bb3c  [self evaluateMacroReferenceWithCycleDetection:arg1 pendingMacroExpansions:[NSMutableSet set]]
+  16bb6c  return
+
+== -[TAGRuntime evaluateMacroReferenceWithCycleDetection:pendingMacroExpansions:]   (address 0x10016bb94  size 2176  kind objc)
+  16bbe8  [self macroEvaluationCache]
+  16bc0c  [[self macroEvaluationCache] objectForKey:arg1]
+  16bc38  [[[self macroEvaluationCache] objectForKey:arg1] pushAfterEvaluate]
+  16bc64  [self pushUnevaluatedValueToDataLayer:[[[self macroEvaluationCache] objectForKey:arg1] pushAfterEvaluate] pendingMacroExpansions:arg2]
+  16bc70  if ([[self macroEvaluationCache] objectForKey:arg1] == 0) goto loc_10016bc98
+  16bc84  [[[self macroEvaluationCache] objectForKey:arg1] valueAndStatic]
+  16bc94  goto loc_10016c240
+loc_10016bc98:
+  16bca8  [self macroLookup]
+  16bcc4  [[self macroLookup] objectForKey:arg1]
+  16bcdc  if ([[self macroLookup] objectForKey:arg1] == 0) goto loc_10016bed4
+  16bcf0  [[[self macroLookup] objectForKey:arg1] rules]
+  16bd10  [[[self macroLookup] objectForKey:arg1] addMacros]
+  16bd30  [[[self macroLookup] objectForKey:arg1] removeMacros]
+  16bd68  [self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2]
+  16bdac  [[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] set]
+  16bdcc  [[[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] set] count]
+  16bddc  if ([[[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] set] count] == 0) goto loc_10016bf38
+  16bdec  [[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] set]
+  16be00  [[[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] set] count]
+  16be14  if ([[[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self mac… <u 2) goto loc_10016be6c
+  16be3c  [@"Multiple macros active for macroName " stringByAppendingString:arg1]
+  16be60  [TAGLog warning:[@"Multiple macros active for macroName " stringByAppendingString:arg1]]
+loc_10016be6c:
+  16be78  [[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] set]
+  16be94  [[[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] set] objectEnumerator]
+  16beb0  [[[[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] set] objectEnumerator] nextObject]
+  16bed0  goto loc_10016bf5c
+loc_10016bed4:
+  16bef4  [@"Invalid macro: " stringByAppendingString:arg1]
+  16bf18  [TAGLog error:[@"Invalid macro: " stringByAppendingString:arg1]]
+  16bf34  goto loc_10016c238
+loc_10016bf38:
+  16bf4c  [[[self macroLookup] objectForKey:arg1] defaultFunctionCall]
+loc_10016bf5c:
+  16bf5c  if (x27 == 0) goto loc_10016bfe8
+  16bf70  [self macroMap]
+  16bfa0  [self executeFunction:x2 implementationMap:[self macroMap] pendingMacroExpansions:arg2]
+  16bfcc  [[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] isStatic]
+  16bfd0  if ([[self calculateMacrosToRunForRules:[[[self macroLookup] objectForKey:arg1] rules] macroName:arg1 addMacros:[[[self macroLookup] objectForKey:arg1] addMacros] removeMacros:[[[self macroLookup] objectForKey:arg1] removeMacros] pendingMacroExpansions:arg2] isStatic] == 0) goto loc_10016c000
+  16bfdc  [[self executeFunction:x2 implementationMap:[self macroMap] pendingMacroExpansions:arg2] isStatic]
+  16bfe4  goto loc_10016c004
+loc_10016bfe8:
+  16bffc  goto loc_10016c228
+loc_10016c000:
+loc_10016c004:
+  16c010  if ([self executeFunction:x2 implementationMap:[self macroMap] pendingMacroExpansions:arg2] == g_10042df50) goto loc_10016c074
+  16c02c  [[self executeFunction:x2 implementationMap:[self macroMap] pendingMacroExpansions:arg2] value]
+  16c058  [TAGPValueAndStatic valueWithValue:[[self executeFunction:x2 implementationMap:[self macroMap] pendingMacroExpansions:arg2] value] isStatic:x3]
+  16c070  goto loc_10016c084
+loc_10016c074:
+loc_10016c084:
+  16c090  [x0 pushAfterEvaluate]
+  16c0a8  [x0 isStatic]
+  16c0ac  if ([x0 isStatic] == 0) goto loc_10016c200
+  16c0c4  [arg1 length]
+  16c0dc  [x0 value]
+  16c100  [[x0 value] data]
+  16c118  [[[x0 value] data] length]
+  16c124  if ([x0 pushAfterEvaluate] == 0) goto loc_10016c160
+  16c130  [[x0 pushAfterEvaluate] data]
+  16c148  [[[x0 pushAfterEvaluate] data] length]
+  16c15c  goto loc_10016c168
+loc_10016c160:
+loc_10016c168:
+  16c188  [self macroEvaluationCache]
+  16c1ac  [TAGCachedMacro alloc]
+  16c1c4  [[TAGCachedMacro alloc] initWithValueAndStatic:x2 pushAfterEvaluate:[x0 pushAfterEvaluate]]
+  16c1ec  [[self macroEvaluationCache] setObject:[[TAGCachedMacro alloc] initWithValueAndStatic:x2 pushAfterEvaluate:[x0 pushAfterEvaluate]] forKey:arg1 cost:(([[[x0 value] data] length] + [arg1 length]) + x27)]
+loc_10016c200:
+  16c210  [self pushUnevaluatedValueToDataLayer:[x0 pushAfterEvaluate] pendingMacroExpansions:arg2]
+loc_10016c228:
+loc_10016c238:
+loc_10016c240:
+  16c278  return
+
+== -[TAGRuntime pushUnevaluatedValueToDataLayer:pendingMacroExpansions:]   (address 0x10016c414  size 1008  kind objc)
+  16c464  if (arg1 == 0) goto loc_10016c710
+  16c480  [self expandMacrosForValue:arg1 pendingMacroExpansions:arg2]
+  16c49c  if ([self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] == g_10042df50) goto loc_10016c700
+  16c4b8  [[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]
+  16c4dc  [TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]]
+  16c50c  [NSDictionary class]
+  16c528  [[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] isKindOfClass:[NSDictionary class]]
+  16c52c  if ([[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] isKindOfClass:[NSDictionary class]] == 0) goto loc_10016c570
+  16c540  [self dataLayer]
+  16c560  [[self dataLayer] push:[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]]]
+  16c56c  goto loc_10016c6f8
+loc_10016c570:
+  16c57c  [NSArray class]
+  16c58c  [[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] isKindOfClass:[NSArray class]]
+  16c590  if ([[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] isKindOfClass:[NSArray class]] == 0) goto loc_10016c6f8
+  16c5dc  [[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]
+  16c5e8  if ([[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16] == 0) goto loc_10016c6dc
+loc_10016c62c:
+loc_10016c630:
+  16c63c  if (x8 == x19) goto loc_10016c648
+  16c644  objc_enumerationMutation([TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]])
+loc_10016c648:
+  16c658  [NSDictionary class]
+  16c668  [x0 isKindOfClass:[NSDictionary class]]
+  16c66c  if ([x0 isKindOfClass:[NSDictionary class]] == 0) goto loc_10016c69c
+  16c674  [self dataLayer]
+  16c68c  [[self dataLayer] push:x2]
+  16c698  goto loc_10016c6b4
+loc_10016c69c:
+  16c6b0  [TAGLog warning:@"pushAfterEvaluate: value not a Map or List"]
+loc_10016c6b4:
+  16c6bc  if ((x26 + 1) <u [[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] countByEnumeratingWithSta…) goto loc_10016c630
+  16c6d0  [[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16]
+  16c6d8  if ([[TAGTypes valueToObject:[[self expandMacrosForValue:arg1 pendingMacroExpansions:arg2] value]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x58] count:16] != 0) goto loc_10016c62c
+loc_10016c6dc:
+loc_10016c6f8:
+loc_10016c700:
+loc_10016c710:
+  16c74c  return
+
+== -[TAGRuntime expandListValue:pendingMacroExpansions:]   (address 0x10016c804  size 900  kind objc)
+  16c86c  [TAGResourceUtil valueBuilderBasedOnValue:arg1]
+  16c898  [arg1 listItemArray]
+  16c8b4  [[arg1 listItemArray] count]
+  16c8d0  [TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 listItemArray] count]]
+  16c904  [arg1 listItemArray]
+  16c934  [[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  16c93c  if ([[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_10016ca2c
+loc_10016c980:
+loc_10016c984:
+  16c990  if (x8 == x20) goto loc_10016c99c
+  16c998  objc_enumerationMutation([arg1 listItemArray])
+loc_10016c99c:
+  16c9b0  [self expandMacrosForValue:x2 pendingMacroExpansions:arg2]
+  16c9c8  if ([self expandMacrosForValue:x2 pendingMacroExpansions:arg2] == g_10042df50) goto loc_10016ca8c
+  16c9d4  [[self expandMacrosForValue:x2 pendingMacroExpansions:arg2] value]
+  16c9f0  [[TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 listItemArray] count]] addObject:[[self expandMacrosForValue:x2 pendingMacroExpansions:arg2] value]]
+  16ca0c  if ((x22 + 1) <u [[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10016c984
+  16ca20  [[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  16ca28  if ([[arg1 listItemArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10016c980
+loc_10016ca2c:
+  16ca4c  [[TAGResourceUtil valueBuilderBasedOnValue:arg1] setListItemArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 listItemArray] count]]]
+  16ca74  [TAGPValueAndStatic valueWithValue:[TAGResourceUtil valueBuilderBasedOnValue:arg1] isStatic:0]
+  16ca88  goto loc_10016caa0
+loc_10016ca8c:
+loc_10016caa0:
+  16caf0  return
+
+== -[TAGRuntime expandMapValue:pendingMacroExpansions:]   (address 0x10016cb88  size 1480  kind objc)
+  16cbe0  [TAGResourceUtil valueBuilderBasedOnValue:arg1]
+  16cc04  [arg1 mapKeyArray]
+  16cc24  [[arg1 mapKeyArray] count]
+  16cc40  [arg1 mapValueArray]
+  16cc54  [[arg1 mapValueArray] count]
+  16cc70  if ([[arg1 mapKeyArray] count] != [[arg1 mapValueArray] count]) goto loc_10016cefc
+  16cc84  [arg1 mapKeyArray]
+  16cc98  [[arg1 mapKeyArray] count]
+  16ccb8  [TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 mapKeyArray] count]]
+  16ccdc  [arg1 mapKeyArray]
+  16ccf4  [[arg1 mapKeyArray] count]
+  16cd08  [TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 mapKeyArray] count]]
+  16cd3c  &@selector(value)
+loc_10016cd5c:
+  16cd64  [arg1 mapKeyArray]
+  16cd78  [[arg1 mapKeyArray] count]
+  16cd8c  if (x28 >=u [[arg1 mapKeyArray] count]) goto loc_10016cf84
+  16cd98  [arg1 mapKeyArray]
+  16cdb0  [[arg1 mapKeyArray] objectAtIndex:x2]
+  16cdcc  [self expandMacrosForValue:[[arg1 mapKeyArray] objectAtIndex:x2] pendingMacroExpansions:arg2]
+  16cdf8  if ([self expandMacrosForValue:[[arg1 mapKeyArray] objectAtIndex:x2] pendingMacroExpansions:arg2] == g_10042df50) goto loc_10016cfe4
+  16ce04  [arg1 mapValueArray]
+  16ce1c  [[arg1 mapValueArray] objectAtIndex:x2]
+  16ce38  [self expandMacrosForValue:[[arg1 mapValueArray] objectAtIndex:x2] pendingMacroExpansions:arg2]
+  16ce64  if ([self expandMacrosForValue:[[arg1 mapValueArray] objectAtIndex:x2] pendingMacroExpansions:arg2] != g_10042df50) goto loc_10016ce7c
+  16ce78  goto loc_10016cedc
+loc_10016ce7c:
+  16ce84  [[self expandMacrosForValue:[[arg1 mapKeyArray] objectAtIndex:x2] pendingMacroExpansions:arg2] value]
+  16ce9c  [[TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 mapKeyArray] count]] addObject:[[self expandMacrosForValue:[[arg1 mapKeyArray] objectAtIndex:x2] pendingMacroExpansions:arg2] value]]
+  16ceb0  [[self expandMacrosForValue:[[arg1 mapValueArray] objectAtIndex:x2] pendingMacroExpansions:arg2] value]
+  16cecc  [[TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 mapKeyArray] count]] addObject:[[self expandMacrosForValue:[[arg1 mapValueArray] objectAtIndex:x2] pendingMacroExpansions:arg2] value]]
+loc_10016cedc:
+  16cef4  if ((one of {0, 1} & 1)) goto loc_10016cd5c
+  16cef8  goto loc_10016cfe4
+loc_10016cefc:
+  16cf0c  [arg1 description]
+  16cf34  [@"Invalid serving value" stringByAppendingString:[arg1 description]]
+  16cf64  [TAGLog error:[@"Invalid serving value" stringByAppendingString:[arg1 description]]]
+  16cf80  goto loc_10016cff8
+loc_10016cf84:
+  16cf9c  [[TAGResourceUtil valueBuilderBasedOnValue:arg1] setMapKeyArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 mapKeyArray] count]]]
+  16cfb4  [[TAGResourceUtil valueBuilderBasedOnValue:arg1] setMapValueArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 mapKeyArray] count]]]
+  16cfd4  [TAGPValueAndStatic valueWithValue:[TAGResourceUtil valueBuilderBasedOnValue:arg1] isStatic:0]
+loc_10016cfe4:
+loc_10016cff8:
+  16d030  return
+
+== -[TAGRuntime expandMacroReferenceValue:pendingMacroExpansions:]   (address 0x10016d150  size 788  kind objc)
+  16d1a0  [arg1 macroReference]
+  16d1c4  [arg2 containsObject:[arg1 macroReference]]
+  16d1d4  if ([arg2 containsObject:[arg1 macroReference]] == 0) goto loc_10016d288
+  16d1e8  [arg1 macroReference]
+  16d208  [arg2 description]
+  16d234  [NSString stringWithFormat:@"Macro cycle detected.  Current macro reference: %@.  Previous macro reference: %@.", [arg1 macroReference], [arg2 description]]
+  16d26c  [TAGLog error:[NSString stringWithFormat:@"Macro cycle detected.  Current macro reference: %@.  Previous macro reference: %@.", [arg1 macroReference], [arg2 description]]]
+  16d284  goto loc_10016d3a0
+loc_10016d288:
+  16d290  [arg1 macroReference]
+  16d2b4  [arg2 addObject:[arg1 macroReference]]
+  16d2c8  [arg1 macroReference]
+  16d2f0  [self evaluateMacroReferenceWithCycleDetection:[arg1 macroReference] pendingMacroExpansions:arg2]
+  16d320  [arg1 escapingArray]
+  16d348  [TAGValueEscapeUtil applyEscapings:[arg1 escapingArray] toValue:[self evaluateMacroReferenceWithCycleDetection:[arg1 macroReference] pendingMacroExpansions:arg2]]
+  16d374  [arg1 macroReference]
+  16d398  [arg2 removeObject:[arg1 macroReference]]
+loc_10016d3a0:
+  16d3d0  return
+
+== -[TAGRuntime expandTemplateValue:pendingMacroExpansions:]   (address 0x10016d464  size 900  kind objc)
+  16d4cc  [TAGResourceUtil valueBuilderBasedOnValue:arg1]
+  16d4f8  [arg1 templateTokenArray]
+  16d514  [[arg1 templateTokenArray] count]
+  16d530  [TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 templateTokenArray] count]]
+  16d564  [arg1 templateTokenArray]
+  16d594  [[arg1 templateTokenArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  16d59c  if ([[arg1 templateTokenArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_10016d68c
+loc_10016d5e0:
+loc_10016d5e4:
+  16d5f0  if (x8 == x20) goto loc_10016d5fc
+  16d5f8  objc_enumerationMutation([arg1 templateTokenArray])
+loc_10016d5fc:
+  16d610  [self expandMacrosForValue:x2 pendingMacroExpansions:arg2]
+  16d628  if ([self expandMacrosForValue:x2 pendingMacroExpansions:arg2] == g_10042df50) goto loc_10016d6ec
+  16d634  [[self expandMacrosForValue:x2 pendingMacroExpansions:arg2] value]
+  16d650  [[TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 templateTokenArray] count]] addObject:[[self expandMacrosForValue:x2 pendingMacroExpansions:arg2] value]]
+  16d66c  if ((x22 + 1) <u [[arg1 templateTokenArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_10016d5e4
+  16d680  [[arg1 templateTokenArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  16d688  if ([[arg1 templateTokenArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_10016d5e0
+loc_10016d68c:
+  16d6ac  [[TAGResourceUtil valueBuilderBasedOnValue:arg1] setTemplateTokenArray:[TAGPBMutableArray arrayWithValueType:0 capacity:[[arg1 templateTokenArray] count]]]
+  16d6d4  [TAGPValueAndStatic valueWithValue:[TAGResourceUtil valueBuilderBasedOnValue:arg1] isStatic:0]
+  16d6e8  goto loc_10016d700
+loc_10016d6ec:
+loc_10016d700:
+  16d750  return
+
+== -[TAGRuntime expandMacrosForValue:pendingMacroExpansions:]   (address 0x10016d7e8  size 556  kind objc)
+  16d830  [arg1 containsReferences]
+  16d834  if (!([arg1 containsReferences] & 1)) goto loc_10016d894
+  16d84c  [arg1 type]
+  16d858  if (([arg1 type] - 2) >u 5) goto loc_10016d8c0
+  16d86c  switch (([arg1 type] - 2)) { case 0: goto loc_10016d870; case 1: goto loc_10016d964; case 2: goto loc_10016d988; case 3,4: goto loc_10016d8c0; case 5: goto loc_10016d9ac }
+loc_10016d870:  ; case 0
+  16d888  [self expandListValue:arg1 pendingMacroExpansions:arg2]
+  16d890  goto loc_10016d8b8
+loc_10016d894:
+  16d8b0  [TAGPValueAndStatic valueWithValue:arg1 isStatic:1]
+loc_10016d8b8:
+  16d8bc  goto loc_10016d934
+loc_10016d8c0:  ; case 3, 4
+  16d8d8  [arg1 type]
+  16d8f8  [NSString stringWithFormat:@"Unknown type: %ld", [arg1 type]]
+  16d91c  [TAGLog error:[NSString stringWithFormat:@"Unknown type: %ld", [arg1 type]]]
+loc_10016d934:
+  16d960  return
+  16d97c  [self expandMapValue:arg1 pendingMacroExpansions:arg2]
+  16d9a0  [self expandMacroReferenceValue:arg1 pendingMacroExpansions:arg2]
+  16d9c4  [self expandTemplateValue:arg1 pendingMacroExpansions:arg2]
+
+== -[TAGRuntime executeFunction:implementationMap:pendingMacroExpansions:]   (address 0x10016da14  size 2720  kind objc)
+  16da8c  [TAGExpandedFunctionCall functionKey]
+  16dab0  [arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]]
+  16dac8  if ([arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] == 0) goto loc_10016db74
+  16dadc  [[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]
+  16db04  [arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]]
+  16db14  if ([arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] == 0) goto loc_10016dba8
+  16db2c  [self functionCallCache]
+  16db48  [[self functionCallCache] objectForKey:arg1]
+  16db60  if ([[self functionCallCache] objectForKey:arg1] == 0) goto loc_10016dc04
+  16db70  goto loc_10016e1e4
+loc_10016db74:
+  16db90  [TAGLog error:@"No function id in properties"]
+  16dba4  goto loc_10016e1fc
+loc_10016dba8:
+  16dbc0  [[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId] stringByAppendingString:@" has no backing implementation."]
+  16dbe8  [TAGLog error:[[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId] stringByAppendingString:@" has no backing implementation."]]
+  16dc00  goto loc_10016e1e8
+loc_10016dc04:
+  16dc24  [arg1 properties]
+  16dc44  [[arg1 properties] count]
+  16dc5c  [NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]]
+  16dc84  [arg1 properties]
+  16dca4  [[arg1 properties] allKeys]
+  16dcc4  [[[arg1 properties] allKeys] copy]
+  16dd18  [[[[arg1 properties] allKeys] copy] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xd8] count:16]
+  16dd28  if ([[[[arg1 properties] allKeys] copy] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xd8] count:16] == 0) goto loc_10016df34
+  16dd6c  &@selector(setObject:forKey:)
+loc_10016dd9c:
+loc_10016dda0:
+  16ddac  if (x8 == x23) goto loc_10016ddb8
+  16ddb4  objc_enumerationMutation([[[arg1 properties] allKeys] copy])
+loc_10016ddb8:
+  16ddc8  [arg1 properties]
+  16dde0  [[arg1 properties] objectForKey:x2]
+  16de08  [self expandMacrosForValue:[[arg1 properties] objectForKey:x2] pendingMacroExpansions:arg3]
+  16de24  if ([self expandMacrosForValue:[[arg1 properties] objectForKey:x2] pendingMacroExpansions:arg3] != g_10042df50) goto loc_10016de3c
+  16de38  goto loc_10016ded0
+loc_10016de3c:
+  16de48  [[self expandMacrosForValue:[[arg1 properties] objectForKey:x2] pendingMacroExpansions:arg3] isStatic]
+  16de4c  if ([[self expandMacrosForValue:[[arg1 properties] objectForKey:x2] pendingMacroExpansions:arg3] isStatic] == 0) goto loc_10016de88
+  16de58  [[self expandMacrosForValue:[[arg1 properties] objectForKey:x2] pendingMacroExpansions:arg3] value]
+  16de78  [arg1 updateCacheablePropertyWithValue:[[self expandMacrosForValue:[[arg1 properties] objectForKey:x2] pendingMacroExpansions:arg3] value] forKey:x3]
+  16de84  goto loc_10016de90
+loc_10016de88:
+loc_10016de90:
+  16de98  [[self expandMacrosForValue:[[arg1 properties] objectForKey:x2] pendingMacroExpansions:arg3] value]
+  16deb8  [[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]] setObject:[[self expandMacrosForValue:[[arg1 properties] objectForKey:x2] pendingMacroExpansions:arg3] value] forKey:x3]
+loc_10016ded0:
+  16dee0  if (!(one of {0, 1} & 1)) goto loc_10016df10
+  16deec  if ((x27 + 1) <u [[[[arg1 properties] allKeys] copy] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xd8] count:16]) goto loc_10016dda0
+  16df00  [[[[arg1 properties] allKeys] copy] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xd8] count:16]
+  16df08  if ([[[[arg1 properties] allKeys] copy] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xd8] count:16] != 0) goto loc_10016dd9c
+  16df0c  goto loc_10016df3c
+loc_10016df10:
+  16df30  goto loc_10016e1d0
+loc_10016df34:
+loc_10016df3c:
+  16df68  [[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]] allKeys]
+  16df8c  [NSSet setWithArray:[[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]] allKeys]]
+  16dfb0  [[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] hasRequiredKeys:[NSSet setWithArray:[[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]] allKeys]]]
+  16dfc8  if (!([[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] hasRequiredKeys:[NSSet setWithArray:[[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]] allKeys]]] & 1)) goto loc_10016dff0
+  16dfd0  if (!(w8 & 1)) goto loc_10016e0bc
+  16dfe4  [[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] isCacheable]
+  16dfec  goto loc_10016e0c0
+loc_10016dff0:
+  16e010  [[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] requiredKeys]
+  16e028  [[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]] allKeys]
+  16e058  [NSString stringWithFormat:@"Incorrect keys for function %@ required %@ had %@", [[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId], [[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]]…, [[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]] allKeys]]
+  16e080  [TAGLog error:[NSString stringWithFormat:@"Incorrect keys for function %@ required %@ had %@", [[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId], [[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]]…, [[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]] allKeys]]]
+  16e0b8  goto loc_10016e1d0
+loc_10016e0bc:
+loc_10016e0c0:
+  16e0d4  [[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] evaluate:[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]]]
+  16e100  [TAGPValueAndStatic valueWithValue:[[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] evaluate:[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]]] isStatic:x3]
+  16e11c  if (w19 == 0) goto loc_10016e1c8
+  16e128  [self functionCallCache]
+  16e148  [[TAGPValueAndStatic valueWithValue:[[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] evaluate:[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]]] isStatic:x3] value]
+  16e164  [[[TAGPValueAndStatic valueWithValue:[[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] evaluate:[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]]] isStatic:x3] value] data]
+  16e180  [[[[TAGPValueAndStatic valueWithValue:[[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] evaluate:[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]]] isStatic:x3] value] data] length]
+  16e1a0  [[self functionCallCache] setObject:[TAGPValueAndStatic valueWithValue:[[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] evaluate:[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]]] isStatic:x3] forKey:arg1 cost:[[[[TAGPValueAndStatic valueWithValue:[[arg2 objectForKey:[[arg1 propertyForKey:[TAGExpandedFunctionCall functionKey]] functionId]] evaluate:[NSMutableDictionary dictionaryWithCapacity:[[arg1 properties] count]]] isStatic:x3…
+loc_10016e1c8:
+loc_10016e1d0:
+loc_10016e1e4:
+loc_10016e1e8:
+loc_10016e1fc:
+  16e24c  return
+
+== -[TAGRuntime resource]   (address 0x10016e4b4  size 16  kind objc)
+  16e4c0  return
+
+== -[TAGRuntime currentEventName]   (address 0x10016e4c4  size 16  kind objc)
+  16e4d0  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGRuntime setCurrentEventName:]   (address 0x10016e4d4  size 12  kind objc)
+  16e4dc  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGRuntime trackingTagMap]   (address 0x10016e4e0  size 16  kind objc)
+  16e4ec  return
+
+== -[TAGRuntime predicateMap]   (address 0x10016e4f0  size 16  kind objc)
+  16e4fc  return
+
+== -[TAGRuntime macroMap]   (address 0x10016e500  size 16  kind objc)
+  16e50c  return
+
+== -[TAGRuntime functionCallCache]   (address 0x10016e510  size 16  kind objc)
+  16e51c  return
+
+== -[TAGRuntime macroEvaluationCache]   (address 0x10016e520  size 16  kind objc)
+  16e52c  return
+
+== -[TAGRuntime rules]   (address 0x10016e530  size 16  kind objc)
+  16e53c  return
+
+== -[TAGRuntime macroLookup]   (address 0x10016e540  size 16  kind objc)
+  16e54c  return
+
+== -[TAGRuntime dataLayer]   (address 0x10016e550  size 16  kind objc)
+  16e55c  return
+
+== -[TAGRuntime .cxx_destruct]   (address 0x10016e560  size 224  kind objc)

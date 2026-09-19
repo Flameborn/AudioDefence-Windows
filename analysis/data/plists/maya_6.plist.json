@@ -1,0 +1,45 @@
+{
+ "icon_title": "26",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 85
+ },
+ "title": "Military Grade Weaponry",
+ "weapons": [
+  {
+   "ammo": "100",
+   "name": "tactical"
+  },
+  {
+   "ammo": "20",
+   "name": "hunting"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "tip": "The Tactical Rifle is very powerful, but has two weaknesses: it's loud and it takes a few seconds to reload. ",
+ "mission_star": {
+  "reward": 200
+ },
+ "bricks": [
+  "maya_6_brick_1",
+  "maya_6_brick_2",
+  "maya_6_brick_3",
+  "maya_6_brick_4"
+ ],
+ "objective": "Get the Tactical Rifle and learn how awesome it can be!",
+ "challenge_id": "maya_6",
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ruins"
+ },
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "maya_5"
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 135
+ }
+}

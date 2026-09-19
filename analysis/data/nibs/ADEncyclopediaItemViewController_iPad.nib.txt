@@ -1,0 +1,41 @@
+// ADEncyclopediaItemViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #125 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #99 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #71 UITapGestureRecognizer  
+  #128 UIView  
+    #108 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #11 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+    #4 UILabel  UserInteractionDisabled=False Text='Zombie name'
+    #103 UILabel  UserInteractionDisabled=False Text='KILLS'
+    #61 UILabel  UserInteractionDisabled=False Text='KV'
+    #24 UILabel  UserInteractionDisabled=False Text='KILLED BY'
+    #118 UILabel  UserInteractionDisabled=False Text='KBV'
+    #41 UITextView  Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+    #96 UIImageView  Image='arrow_large_right.png'
+    #9 UIImageView  Image='arrow_large_left.png'
+    #16 UIImageView  Image='button_audio_large.png'
+
+CONNECTIONS
+  action  handleTapForSound:                        #71 UITapGestureRecognizer --(events 0x0)--> #125 UIProxyObject
+  outlet  gestureRecognizers                        #16 UIImageView --> #91 NSMutableArray
+  outlet  bioView                                   #125 UIProxyObject --> #41 UITextView Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'
+  outlet  enemyNameLabel                            #125 UIProxyObject --> #4 UILabel Text='Zombie name'
+  outlet  killedByLabel                             #125 UIProxyObject --> #24 UILabel Text='KILLED BY'
+  outlet  killedByValueLabel                        #125 UIProxyObject --> #118 UILabel Text='KBV'
+  outlet  killsLabel                                #125 UIProxyObject --> #103 UILabel Text='KILLS'
+  outlet  killsValueLabel                           #125 UIProxyObject --> #61 UILabel Text='KV'
+  outlet  leftArrow                                 #125 UIProxyObject --> #9 UIImageView
+  outlet  rightArrow                                #125 UIProxyObject --> #96 UIImageView
+  outlet  view                                      #125 UIProxyObject --> #128 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject="#4 UILabel Text='Zombie name'" UIAccessibilityLabel=''
+  UIAccessibileObject="#103 UILabel Text='KILLS'" UIAccessibilityHint='' UIAccessibilityLabel=''
+  UIAccessibileObject="#61 UILabel Text='KV'" UIIsAccessibilityElement=0
+  UIAccessibileObject="#24 UILabel Text='KILLED BY'" UIAccessibilityLabel='Killed by'
+  UIAccessibileObject="#118 UILabel Text='KBV'" UIIsAccessibilityElement=0
+  UIAccessibileObject="#41 UITextView Text='Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.'" UIAccessibilityTraits=64
+  UIAccessibileObject='#96 UIImageView' UIAccessibilityHint="Click to view the next enemy's description. This button will be unavailable if you are at the end of the list" UIAccessibilityLabel='Next button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject='#9 UIImageView' UIAccessibilityHint="Click to view the previous enemy's description. This button will be unavailable if you are at the beginning of the list" UIAccessibilityLabel='Previous button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject='#16 UIImageView' UIAccessibilityHint='Tap to hear the enemy sound' UIAccessibilityLabel='Enemy sound' UIAccessibilityTraits=1 UIIsAccessibilityElement=1

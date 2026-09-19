@@ -1,0 +1,109 @@
+
+== -[ADStatsPortalViewController viewDidLoad]   (address 0x1000c9010  size 772  kind objc)
+  0c9048  [super viewDidLoad]
+  0c9060  [self statusBarViewController]
+  0c9080  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  0c9094  [self statusBarViewController]
+  0c90b4  [[self statusBarViewController] setCurrenciesVisibility:0]
+  0c90c8  [self statusBarViewController]
+  0c90e8  [[self statusBarViewController] setDiamonsdsVisibility:0]
+  0c90fc  [self statusBarViewController]
+  0c9118  [[self statusBarViewController] backButton]
+  0c9140  [[[self statusBarViewController] backButton] setTitle:@"Main Menu" forState:0]
+  0c915c  [self statusBarViewController]
+  0c9178  [[self statusBarViewController] pageTitle]
+  0c919c  [[[self statusBarViewController] pageTitle] setText:@"AUDIO DEFENCE"]
+  0c91c4  [GAI sharedInstance]
+  0c91e0  [[GAI sharedInstance] defaultTracker]
+  0c9200  [&d_1003b83b0] -> @"&cd"
+  0c921c  [[[GAI sharedInstance] defaultTracker] set:@"&cd" value:@"Stats Portal"]
+  0c9234  [GAIDictionaryBuilder createAppView]
+  0c9250  [[GAIDictionaryBuilder createAppView] build]
+  0c9274  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]]
+  0c92a0  return
+
+== -[ADStatsPortalViewController loadView]   (address 0x1000c9314  size 472  kind objc)
+  0c936c  [NSNumber numberWithInt:1]
+  0c9398  [NSNumber numberWithInt:2]
+  0c93c0  [NSNumber numberWithInt:3]
+  0c93e8  [NSNumber numberWithInt:4]
+  0c9418  [NSDictionary dictionaryWithObjects:&sp[0x28] forKeys:&sp[0x8] count:4]
+  0c9464  [self loADViewBasedOnDeviceWithNibName:@"ADStatsPortalViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x28] forKeys:&sp[0x8] count:4]]
+  0c9494  return
+
+== -[ADStatsPortalViewController didReceiveMemoryWarning]   (address 0x1000c94ec  size 60  kind objc)
+  0c9518  [super didReceiveMemoryWarning]
+  0c9524  return
+
+== -[ADStatsPortalViewController backButtonPressed]   (address 0x1000c9528  size 104  kind objc)
+  0c955c  [super backButtonPressed]
+  0c957c  [self dismissViewControllerAnimated:0 completion:^{-[ADStatsPortalViewController backButtonPressed]_block_invoke}]
+  0c958c  return
+
+== -[ADStatsPortalViewController backButtonPressed]_block_invoke   (address 0x1000c9590  size 4  kind block)
+  0c9590  return
+
+== -[ADStatsPortalViewController playSound]   (address 0x1000c9594  size 252  kind objc)
+  0c95b8  [S3DEngine engine]
+  0c95dc  [[S3DEngine engine] playListWithName:@"buttons"]
+  0c9600  [[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"]
+  0c9634  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] setGain:3]
+  0c9648  [[[[S3DEngine engine] playListWithName:@"buttons"] S3DSound:@"click_button"] play]
+  0c965c  return
+
+== -[ADStatsPortalViewController buttonPressed:]   (address 0x1000c9690  size 444  kind objc)
+  0c96b0  [arg1 tag]
+  0c96bc  if (([arg1 tag] - 1) <=u 3) goto loc_1000c96c8
+  0c96c4  goto loc_1000c97dc
+loc_1000c96c8:
+  0c96d8  switch (?) { case 0: goto loc_1000c96dc; case 1: goto loc_1000c971c; case 2: goto loc_1000c975c; case 3: goto loc_1000c979c }
+loc_1000c96dc:  ; case 0
+  0c96f4  [ADEncyclopediaViewController alloc]
+  0c9714  [[ADEncyclopediaViewController alloc] initWithNibName:@"ADEncyclopediaViewController" bundle:0]
+  0c9718  goto loc_1000c97d8
+loc_1000c971c:  ; case 1
+  0c9734  [ADStatsViewController alloc]
+  0c9754  [[ADStatsViewController alloc] initWithNibName:@"ADStatsViewController" bundle:0]
+  0c9758  goto loc_1000c97d8
+loc_1000c975c:  ; case 2
+  0c9774  [ADMoreGamesViewController alloc]
+  0c9794  [[ADMoreGamesViewController alloc] initWithNibName:@"ADMoreGamesViewController" bundle:0]
+  0c9798  goto loc_1000c97d8
+loc_1000c979c:  ; case 3
+  0c97b4  [ADAboutCreditsViewController alloc]
+  0c97d4  [[ADAboutCreditsViewController alloc] initWithNibName:@"ADAboutCreditsViewController" bundle:0]
+loc_1000c97d8:
+loc_1000c97dc:
+  0c97ec  [self playSound]
+  0c980c  [self presentViewController:x2 animated:0 completion:0]
+  0c981c  return
+
+== -[ADStatsPortalViewController zombipedia]   (address 0x1000c984c  size 16  kind objc)
+  0c9858  return
+
+== -[ADStatsPortalViewController setZombipedia:]   (address 0x1000c985c  size 56  kind objc)
+  0c9880  self->_zombipedia = arg1
+  0c9890  return
+
+== -[ADStatsPortalViewController stats]   (address 0x1000c9894  size 16  kind objc)
+  0c98a0  return
+
+== -[ADStatsPortalViewController setStats:]   (address 0x1000c98a4  size 56  kind objc)
+  0c98c8  self->_stats = arg1
+  0c98d8  return
+
+== -[ADStatsPortalViewController moreGames]   (address 0x1000c98dc  size 16  kind objc)
+  0c98e8  return
+
+== -[ADStatsPortalViewController setMoreGames:]   (address 0x1000c98ec  size 56  kind objc)
+  0c9910  self->_moreGames = arg1
+  0c9920  return
+
+== -[ADStatsPortalViewController credits]   (address 0x1000c9924  size 16  kind objc)
+  0c9930  return
+
+== -[ADStatsPortalViewController setCredits:]   (address 0x1000c9934  size 56  kind objc)
+  0c9958  self->_credits = arg1
+  0c9968  return
+
+== -[ADStatsPortalViewController .cxx_destruct]   (address 0x1000c996c  size 104  kind objc)

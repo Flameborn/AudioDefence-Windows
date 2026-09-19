@@ -1,0 +1,36 @@
+// ADEncyclopediaItemLockedViewController.nib
+TOP-LEVEL OBJECTS
+  #5 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #156 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #133 UIView  Tag=2781
+    #90 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #82 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+    #63 UIImageView  UserInteractionDisabled=False Image='icon_locked_wide.png'
+    #46 UILabel  UserInteractionDisabled=False Text='NAME'
+    #48 UIImageView  Image='arrow_large_right.png'
+    #65 UIImageView  Image='arrow_large_left.png'
+    #56 UIImageView  Image='button_audio_large.png'
+    #124 UILabel  UserInteractionDisabled=False Text='Unlock Condition'
+  #58 UIView  Tag=2782
+    #149 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #78 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+    #75 UIImageView  UserInteractionDisabled=False Image='icon_locked_wide.png'
+    #22 UILabel  Tag=1 UserInteractionDisabled=False Text='NAME'
+    #129 UIImageView  Tag=3 Image='arrow_large_right.png'
+    #52 UIImageView  Tag=2 Image='arrow_large_left.png'
+    #47 UIImageView  Tag=5 Image='button_audio_large.png'
+    #100 UILabel  Tag=4 UserInteractionDisabled=False Text='Unlock Condition'
+
+CONNECTIONS
+  outlet  audioButton                               #5 UIProxyObject --> #56 UIImageView
+  outlet  enemyNameLabel                            #5 UIProxyObject --> #46 UILabel Text='NAME'
+  outlet  leftArrow                                 #5 UIProxyObject --> #65 UIImageView
+  outlet  rightArrow                                #5 UIProxyObject --> #48 UIImageView
+  outlet  unlockConditionLabel                      #5 UIProxyObject --> #124 UILabel Text='Unlock Condition'
+  outlet  view                                      #5 UIProxyObject --> #133 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#48 UIImageView' UIAccessibilityHint="Click to view the next enemy's description. This button will be unavailable if you are at the end of the list" UIAccessibilityLabel='Next button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject='#65 UIImageView' UIAccessibilityHint="Click to view the previous enemy's description. This button will be unavailable if you are at the beginning of the list" UIAccessibilityLabel='Previous button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject='#129 UIImageView' UIAccessibilityHint="Click to view the next enemy's description. This button will be unavailable if you are at the end of the list" UIAccessibilityLabel='Next button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject='#52 UIImageView' UIAccessibilityHint="Click to view the previous enemy's description. This button will be unavailable if you are at the beginning of the list" UIAccessibilityLabel='Previous button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1

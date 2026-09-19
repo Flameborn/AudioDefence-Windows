@@ -1,0 +1,15 @@
+
+== +[TAGPlatform functionId]   (address 0x100177078  size 44  kind objc)
+  1770a0  return
+
+== -[TAGPlatform init]   (address 0x1001770a4  size 176  kind objc)
+  1770d0  [NSSet set]
+  17710c  [super initWithFunctionId:@"_p" requiredKeys:[NSSet set]]
+  177130  return
+
+== -[TAGPlatform isCacheable]   (address 0x100177154  size 8  kind objc)
+  177158  return
+
+== -[TAGPlatform evaluate:]   (address 0x10017715c  size 56  kind objc)
+  177180  [TAGTypes objectToValue:@"iOS"]
+  177190  return

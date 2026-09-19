@@ -1,0 +1,28 @@
+{
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_angle": 130,
+   "spawn_distance": 10,
+   "spawn_time": 8
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_angle": 0,
+   "spawn_distance": 10,
+   "spawn_time": 17
+  },
+  "Berserk": {
+   "spawn_sound": "",
+   "spawn_angle": 110,
+   "spawn_distance": 7,
+   "spawn_time": 3
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 50,
+   "spawn_distance": 10,
+   "spawn_time": 9
+  }
+ }
+}

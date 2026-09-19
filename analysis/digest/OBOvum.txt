@@ -1,0 +1,95 @@
+
+== -[OBOvum init]   (address 0x100029db8  size 160  kind objc)
+  029dec  [super init]
+  029df4  if (self == 0) goto loc_100029e30
+  029e10  [self setIsCentered:1]
+  029e2c  [self setShouldScale:0]
+loc_100029e30:
+  029e40  return
+
+== -[OBOvum dealloc]   (address 0x100029e58  size 148  kind objc)
+  029e7c  [self setSource:0]
+  029ea0  [super dealloc]
+  029eb0  return
+  029edc  [super dealloc]
+  029ee8  call sub_10000b760
+
+== -[OBOvum source]   (address 0x100029eec  size 32  kind objc)
+  029f08  return
+
+== -[OBOvum setSource:]   (address 0x100029f0c  size 20  kind objc)
+
+== -[OBOvum dataObject]   (address 0x100029f20  size 16  kind objc)
+  029f2c  return
+
+== -[OBOvum setDataObject:]   (address 0x100029f30  size 20  kind objc)
+
+== -[OBOvum tag]   (address 0x100029f44  size 16  kind objc)
+  029f50  return
+
+== -[OBOvum setTag:]   (address 0x100029f54  size 56  kind objc)
+  029f78  self->tag = arg1
+  029f88  return
+
+== -[OBOvum dropAction]   (address 0x100029f8c  size 16  kind objc)
+  029f98  return
+
+== -[OBOvum setDropAction:]   (address 0x100029f9c  size 16  kind objc)
+  029fa4  self->dropAction = arg1
+  029fa8  return
+
+== -[OBOvum currentDropHandlingView]   (address 0x100029fac  size 32  kind objc)
+  029fc8  return
+
+== -[OBOvum setCurrentDropHandlingView:]   (address 0x100029fcc  size 20  kind objc)
+
+== -[OBOvum dragView]   (address 0x100029fe0  size 16  kind objc)
+  029fec  return
+
+== -[OBOvum setDragView:]   (address 0x100029ff0  size 56  kind objc)
+  02a014  self->dragView = arg1
+  02a024  return
+
+== -[OBOvum dragViewInitialCenter]   (address 0x10002a028  size 20  kind objc)
+  02a038  return
+
+== -[OBOvum setDragViewInitialCenter:]   (address 0x10002a03c  size 20  kind objc)
+  02a04c  return
+
+== -[OBOvum isCentered]   (address 0x10002a050  size 16  kind objc)
+  02a05c  return
+
+== -[OBOvum setIsCentered:]   (address 0x10002a060  size 16  kind objc)
+  02a068  self->isCentered = arg1
+  02a06c  return
+
+== -[OBOvum shouldScale]   (address 0x10002a070  size 16  kind objc)
+  02a07c  return
+
+== -[OBOvum setShouldScale:]   (address 0x10002a080  size 16  kind objc)
+  02a088  self->shouldScale = arg1
+  02a08c  return
+
+== -[OBOvum offsetOvumAndTouch]   (address 0x10002a090  size 20  kind objc)
+  02a0a0  return
+
+== -[OBOvum setOffsetOvumAndTouch:]   (address 0x10002a0a4  size 20  kind objc)
+  02a0b4  return
+
+== -[OBOvum shiftPinchCentroid]   (address 0x10002a0b8  size 20  kind objc)
+  02a0c8  return
+
+== -[OBOvum setShiftPinchCentroid:]   (address 0x10002a0cc  size 20  kind objc)
+  02a0dc  return
+
+== -[OBOvum scale]   (address 0x10002a0e0  size 16  kind objc)
+  02a0ec  return
+
+== -[OBOvum setScale:]   (address 0x10002a0f0  size 16  kind objc)
+  02a0f8  self->scale = arg1
+  02a0fc  return
+
+== -[OBOvum .cxx_destruct]   (address 0x10002a100  size 116  kind objc)
+
+== -[OBOvum .cxx_construct]   (address 0x10002a174  size 4  kind objc)
+  02a174  return

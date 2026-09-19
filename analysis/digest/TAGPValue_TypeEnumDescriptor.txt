@@ -1,0 +1,10 @@
+
+== +[TAGPValue_TypeEnumDescriptor enumDescriptor]_block_invoke   (address 0x10014bbb8  size 16  kind block)
+  14bbc4  return
+
+== +[TAGPValue_TypeEnumDescriptor enumDescriptor]   (address 0x10014bbc8  size 96  kind objc)
+  14bbe0  if (g_10042de70 != 0) goto loc_10014bc1c
+  14bc14  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPValue_Type" values:&d_10042bf58 valueCount:9 enumVerifier:&+[TAGPValue_TypeEnumDescriptor enumDescriptor]_block_invoke]
+  14bc18  store g_10042de70 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPValue_Type" values:&d_10042bf58 valueCount:9 enumVerifier:&+[TAGPValue_TypeEnumDescriptor enumDescriptor]_block_invoke]
+loc_10014bc1c:
+  14bc24  return

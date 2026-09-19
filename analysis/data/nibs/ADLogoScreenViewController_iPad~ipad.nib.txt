@@ -1,0 +1,12 @@
+// ADLogoScreenViewController_iPad~ipad.nib
+TOP-LEVEL OBJECTS
+  #6 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #22 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #24 UIView  
+    #8 UIImageView  UserInteractionDisabled=False Image='ADlogo_black.png'
+
+CONNECTIONS
+  outlet  logo                                      #6 UIProxyObject --> #8 UIImageView
+  outlet  view                                      #6 UIProxyObject --> #24 UIView
+
+ACCESSIBILITY CONFIGURATIONS

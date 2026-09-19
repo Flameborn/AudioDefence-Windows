@@ -1,0 +1,14 @@
+// ADChallengeWeaponViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #23 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #28 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #26 UIView  
+    #20 UIImageView  UserInteractionDisabled=False
+    #14 UILabel  UserInteractionDisabled=False Text='10'
+
+CONNECTIONS
+  outlet  ammoLabel                                 #23 UIProxyObject --> #14 UILabel Text='10'
+  outlet  view                                      #23 UIProxyObject --> #26 UIView
+  outlet  weaponImage                               #23 UIProxyObject --> #20 UIImageView
+
+ACCESSIBILITY CONFIGURATIONS

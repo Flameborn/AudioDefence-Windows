@@ -1,0 +1,102 @@
+
+== -[TAGResourceLoaderScheduler initWithContainerId:]   (address 0x10015639c  size 164  kind objc)
+  1563e0  [super init]
+  1563e8  if (self == 0) goto loc_10015640c
+  156400  self->_containerId = arg1
+loc_10015640c:
+  156428  return
+
+== -[TAGResourceLoaderScheduler close]   (address 0x100156440  size 116  kind objc)
+  156454  objc_sync_enter(self, _cmd)
+  156478  [self cancelTimer]
+  156480  objc_sync_exit(self)
+  156494  return
+  1564a0  objc_sync_exit()
+
+== -[TAGResourceLoaderScheduler loadAfterDelay:withPreviousVersion:]   (address 0x1001564b4  size 376  kind objc)
+  1564f0  objc_sync_enter(self)
+  15650c  [self containerId]
+  15653c  [NSString stringWithFormat:@"scheduleTask: containerId=%@ delay=%f", [self containerId], arg1]
+  15656c  [TAGLog verbose:[NSString stringWithFormat:@"scheduleTask: containerId=%@ delay=%f", [self containerId], arg1]]
+  156580  [self cancelTimer]
+  156598  [self setPreviousVersion:arg2]
+  1565b0  [self scheduleTimerWithDelay:arg1]
+  1565c0  objc_sync_exit(self)
+  1565e8  return
+  156610  objc_sync_exit()
+
+== -[TAGResourceLoaderScheduler requestResource:]   (address 0x10015662c  size 980  kind objc)
+  156668  [self loadCallback]
+  15667c  if ([self loadCallback] == 0) goto loc_100156938
+  156694  [TAGResourceLoader alloc]
+  1566ac  [self containerId]
+  1566d0  [[TAGResourceLoader alloc] initWithContainerId:[self containerId]]
+  1566e8  [self loadCallback]
+  15670c  [[[TAGResourceLoader alloc] initWithContainerId:[self containerId]] setCallback:[self loadCallback]]
+  15672c  [self ctfeServerAddress]
+  156740  if ([self ctfeServerAddress] == 0) goto loc_1001567ec
+  156754  [self ctfeServerAddress]
+  15677c  [@"Setting CTFE server address to " stringByAppendingString:[self ctfeServerAddress]]
+  1567a0  [TAGLog debug:[@"Setting CTFE server address to " stringByAppendingString:[self ctfeServerAddress]]]
+  1567bc  [self ctfeServerAddress]
+  1567e0  [[[TAGResourceLoader alloc] initWithContainerId:[self containerId]] setCtfeServerAddress:[self ctfeServerAddress]]
+loc_1001567ec:
+  156800  [self ctfeUrlPathAndQuery]
+  156814  if ([self ctfeUrlPathAndQuery] == 0) goto loc_100156888
+  156828  [self ctfeUrlPathAndQuery]
+  156850  [@"Setting CTFE url path to " stringByAppendingString:[self ctfeUrlPathAndQuery]]
+  156874  [TAGLog debug:[@"Setting CTFE url path to " stringByAppendingString:[self ctfeUrlPathAndQuery]]]
+loc_100156888:
+  156890  [self ctfeUrlPathAndQuery]
+  1568b4  [[[TAGResourceLoader alloc] initWithContainerId:[self containerId]] setCtfeUrlPathAndQuery:[self ctfeUrlPathAndQuery]]
+  1568d0  [self previousVersion]
+  1568f4  [[[TAGResourceLoader alloc] initWithContainerId:[self containerId]] setPreviousVersion:[self previousVersion]]
+  156910  [[[TAGResourceLoader alloc] initWithContainerId:[self containerId]] loadResourceAsync]
+  156934  return
+  156970  [NSException exceptionWithName:@"IllegalStateException" reason:@"Callback must be set before scheduleTaskWithDelay is called." userInfo:0]
+  156980  objc_exception_throw([NSException exceptionWithName:@"IllegalStateException" reason:@"Callback must be set before scheduleTaskWithDelay is called." userInfo:0])
+
+== -[TAGResourceLoaderScheduler scheduleTimerWithDelay:]   (address 0x100156a00  size 148  kind objc)
+  156a48  [NSTimer scheduledTimerWithTimeInterval:(arg1 / 1000) target:self selector:@selector(requestResource:) userInfo:0 repeats:0]
+  156a6c  [self setTimer:[NSTimer scheduledTimerWithTimeInterval:(arg1 / 1000) target:self selector:@selector(requestResource:) userInfo:0 repeats:0]]
+  156a7c  return
+
+== -[TAGResourceLoaderScheduler cancelTimer]   (address 0x100156a94  size 92  kind objc)
+  156aac  [self timer]
+  156ac8  [[self timer] invalidate]
+  156ad8  return
+
+== -[TAGResourceLoaderScheduler containerId]   (address 0x100156af0  size 16  kind objc)
+  156afc  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGResourceLoaderScheduler loadCallback]   (address 0x100156b00  size 16  kind objc)
+  156b0c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGResourceLoaderScheduler setLoadCallback:]   (address 0x100156b10  size 12  kind objc)
+  156b18  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoaderScheduler ctfeServerAddress]   (address 0x100156b1c  size 16  kind objc)
+  156b28  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGResourceLoaderScheduler setCtfeServerAddress:]   (address 0x100156b2c  size 12  kind objc)
+  156b34  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoaderScheduler ctfeUrlPathAndQuery]   (address 0x100156b38  size 16  kind objc)
+  156b44  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGResourceLoaderScheduler setCtfeUrlPathAndQuery:]   (address 0x100156b48  size 12  kind objc)
+  156b50  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoaderScheduler previousVersion]   (address 0x100156b54  size 16  kind objc)
+  156b60  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGResourceLoaderScheduler setPreviousVersion:]   (address 0x100156b64  size 12  kind objc)
+  156b6c  tail objc_setProperty_atomic_copy(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoaderScheduler timer]   (address 0x100156b70  size 16  kind objc)
+  156b7c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGResourceLoaderScheduler setTimer:]   (address 0x100156b80  size 12  kind objc)
+  156b88  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGResourceLoaderScheduler .cxx_destruct]   (address 0x100156b8c  size 144  kind objc)

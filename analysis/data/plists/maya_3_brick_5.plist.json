@@ -1,0 +1,12 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "startMusicBeforeEnd": 3,
+   "spawn_time": 1,
+   "name": "bastard_maya_3_2"
+  }
+ ]
+}

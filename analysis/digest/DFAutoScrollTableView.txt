@@ -1,0 +1,86 @@
+
+== -[DFAutoScrollTableView initWithFrame:]   (address 0x100066a6c  size 132  kind objc)
+  066aa0  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  066aa8  if (self == 0) goto loc_100066ac8
+  066ac4  [self setScrollPointsPerSecond:15]
+loc_100066ac8:
+  066ad8  return
+
+== -[DFAutoScrollTableView startScrolling]   (address 0x100066af0  size 660  kind objc)
+  066b14  [self stopScrolling]
+  066b2c  [self window]
+  066b3c  if ([self window] == 0) goto loc_100066b94
+  066b48  [self window]
+  066b64  [[self window] screen]
+  066b80  [[[self window] screen] scale]
+  066b90  goto loc_100066bcc
+loc_100066b94:
+  066ba8  [UIScreen mainScreen]
+  066bc4  [[UIScreen mainScreen] scale]
+loc_100066bcc:
+  066bec  [self scrollPointsPerSecond]
+  066c10  [NSTimer alloc]
+  066c34  [NSDate dateWithTimeIntervalSinceNow:0.02]
+  066c74  [[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0.02] interval:(1 / (d8 * [self scrollPointsPerSecond])) target:self selector:@selector(scrollTick) userInfo:0 repeats:1]
+  066c90  [self setAutoScrollTimer:[[NSTimer alloc] initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0.02] interval:(1 / (d8 * [self scrollPointsPerSecond])) target:self selector:@selector(scrollTick) userInfo:0 repeats:1]]
+  066cb8  [NSRunLoop mainRunLoop]
+  066cd8  [self autoScrollTimer]
+  066d08  [[NSRunLoop mainRunLoop] addTimer:[self autoScrollTimer] forMode:_NSRunLoopCommonModes[+0x0]]
+  066d28  return
+
+== -[DFAutoScrollTableView stopScrolling]   (address 0x100066d84  size 120  kind objc)
+  066da0  [self autoScrollTimer]
+  066dbc  [[self autoScrollTimer] invalidate]
+  066de4  tail [self setAutoScrollTimer:0]
+
+== -[DFAutoScrollTableView scrollTick]   (address 0x100066dfc  size 496  kind objc)
+  066e20  NSLog(@"Table view is ticking...", _cmd)
+  066e34  [self window]
+  066e48  if ([self window] != 0) goto loc_100066e60
+  066e5c  [self stopScrolling]
+loc_100066e60:
+  066e70  [self autoScrollTimer]
+  066e8c  [[self autoScrollTimer] timeInterval]
+  066eac  [self scrollPointsPerSecond]
+  066ec8  [self contentOffset]
+  066ed8  [self contentOffset]
+  066edc  t1 = (([[self autoScrollTimer] timeInterval] * [self scrollPointsPerSecond]) + [self contentOffset].1)
+  066ef0  [self contentSize]
+  066f08  [self bounds]
+  066f14  if (t1 <= (or unordered) ([self contentSize].1 - [self bounds].3)) goto loc_100066f40
+  066f3c  tail [self stopScrolling]
+loc_100066f40:
+  066fa8  [UIView animateWithDuration:[[self autoScrollTimer] timeInterval] delay:0 options:2 animations:^{-[DFAutoScrollTableView scrollTick]_block_invoke captures +0x20=self, +0x28=[self contentOffset].0, +0x30=t1} completion:0]
+  066fc8  return
+
+== -[DFAutoScrollTableView scrollTick]_block_invoke   (address 0x100066fec  size 28  kind block)
+  067004  tail [self setContentOffset:{d0, d1}]
+
+== sub_100067008   (address 0x100067008  size 8  kind sub)
+
+== sub_100067010   (address 0x100067010  size 8  kind sub)
+  067014  return
+
+== -[DFAutoScrollTableView setScrolling:]   (address 0x100067018  size 36  kind objc)
+  067018  if (arg1 == 0) goto loc_10006702c
+  067028  tail [self startScrolling]
+loc_10006702c:
+  067038  tail [self stopScrolling]
+
+== -[DFAutoScrollTableView isScrolling]   (address 0x10006703c  size 64  kind objc)
+  067054  [self autoScrollTimer]
+  067078  return
+
+== -[DFAutoScrollTableView drawRect:]   (address 0x10006707c  size 60  kind objc)
+  0670a8  [super drawRect:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  0670b4  return
+
+== -[DFAutoScrollTableView scrollPointsPerSecond]   (address 0x1000670b8  size 20  kind objc)
+  0670c8  return
+
+== -[DFAutoScrollTableView setScrollPointsPerSecond:]   (address 0x1000670cc  size 20  kind objc)
+  0670d8  self->_scrollPointsPerSecond = arg1
+  0670dc  return
+
+== -[DFAutoScrollTableView scrolling]   (address 0x1000670e0  size 16  kind objc)
+  0670ec  return

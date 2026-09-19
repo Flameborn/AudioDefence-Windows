@@ -1,0 +1,31 @@
+// ADPauseViewController.nib
+TOP-LEVEL OBJECTS
+  #84 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #68 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #27 UIView  Tag=2781
+    #49 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_background.png'
+    #60 UIImageView  UserInteractionDisabled=False Image='frame_settings.png'
+    #66 UIView  
+    #29 UIButton (custom class ADButtonWithFont)  
+    #58 UIButton (custom class ADButtonWithFont)  
+  #38 UIView  Tag=2782
+    #59 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_background.png'
+    #105 UIImageView  UserInteractionDisabled=False Image='frame_settings.png'
+    #73 UIView  Tag=1
+    #45 UIButton (custom class ADButtonWithFont)  
+    #55 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  quitButtonTouched:                        #29 ADButtonWithFont --(events 0x40)--> #84 UIProxyObject
+  action  quitButtonTouched:                        #55 ADButtonWithFont --(events 0x40)--> #84 UIProxyObject
+  action  validateButtonPressed:                    #58 ADButtonWithFont --(events 0x40)--> #84 UIProxyObject
+  action  validateButtonPressed:                    #45 ADButtonWithFont --(events 0x40)--> #84 UIProxyObject
+  outlet  controlSchemeView                         #84 UIProxyObject --> #66 UIView
+  outlet  firstAccessibleElement                    #84 UIProxyObject --> #58 ADButtonWithFont
+  outlet  view                                      #84 UIProxyObject --> #27 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#29 ADButtonWithFont' UIAccessibilityLabel='End Game'
+  UIAccessibileObject='#58 ADButtonWithFont' UIAccessibilityLabel='Resume'
+  UIAccessibileObject='#45 ADButtonWithFont' UIAccessibilityLabel='Resume'
+  UIAccessibileObject='#55 ADButtonWithFont' UIAccessibilityLabel='End Game'

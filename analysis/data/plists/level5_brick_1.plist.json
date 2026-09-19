@@ -1,0 +1,130 @@
+{
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_angle": 30,
+   "spawn_distance": 10,
+   "spawn_time": 7
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 8,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "Zombie"
+   },
+   "spawn_angle": 300,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 20,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 200,
+   "spawn_distance": 10
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_angle": 180,
+   "spawn_distance": 10,
+   "spawn_time": 1
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 13,
+    "enemy": "WeakZombie"
+   },
+   "spawn_angle": 80,
+   "spawn_distance": 7
+  },
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_angle": 0,
+   "spawn_distance": 10,
+   "spawn_time": 11
+  },
+  "Colossus": {
+   "spawn_sound": "",
+   "spawn_angle": 250,
+   "spawn_distance": 10,
+   "spawn_time": 4
+  },
+  "Berserk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "ZombieB"
+   },
+   "spawn_angle": 335,
+   "spawn_distance": 7
+  },
+  "Shield": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 12,
+    "enemy": "Hulk"
+   },
+   "spawn_angle": 260,
+   "spawn_distance": 10
+  },
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "Shield"
+   },
+   "spawn_angle": 150,
+   "spawn_distance": 10
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 10,
+    "enemy": "Colossus"
+   },
+   "spawn_angle": 90,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "WeakZombieC"
+   },
+   "spawn_angle": 170,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 6,
+    "enemy": "ZombieB"
+   },
+   "spawn_angle": 350,
+   "spawn_distance": 10
+  },
+  "Dodge": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 19,
+    "enemy": "Colossus"
+   },
+   "spawn_angle": 230,
+   "spawn_distance": 10
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "10"
+ }
+}

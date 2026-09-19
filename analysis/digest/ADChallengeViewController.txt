@@ -1,0 +1,173 @@
+
+== -[ADChallengeViewController initWithDictionary:]   (address 0x1000770bc  size 180  kind objc)
+  07710c  [super initWithNibName:0 bundle:0]
+  077114  if (self == 0) goto loc_100077134
+  077130  [self setChallengeDict:arg1]
+loc_100077134:
+  077150  return
+
+== -[ADChallengeViewController viewDidLoad]   (address 0x100077170  size 684  kind objc)
+  0771ac  [super viewDidLoad]
+  0771c0  [self challengeTitle]
+  0771e4  [self challengeDict]
+  07720c  [[self challengeDict] objectForKey:@"title"]
+  077230  [[self challengeTitle] setText:[[self challengeDict] objectForKey:@"title"]]
+  07725c  [self challengeIcon]
+  07727c  [self challengeDict]
+  077298  [[self challengeDict] objectForKey:@"icon"]
+  0772bc  [UIImage imageNamed:[[self challengeDict] objectForKey:@"icon"]]
+  0772e0  [[self challengeIcon] setImage:[UIImage imageNamed:[[self challengeDict] objectForKey:@"icon"]]]
+  077314  [self initStarUnlockArea]
+  07732c  [self statusBarViewController]
+  07734c  [[self statusBarViewController] setArmoryLoadoutEnabled:0]
+  077360  [self statusBarViewController]
+  077380  [[self statusBarViewController] setDelegate:self]
+  0773a0  return
+
+== -[ADChallengeViewController initStarUnlockArea]   (address 0x10007741c  size 2512  kind objc)
+  077454  [ADChallengeCompletedViewController class]
+  07746c  [self isKindOfClass:[ADChallengeCompletedViewController class]]
+  07748c  [ADStarUnlockViewController alloc]
+  0774a8  [self challengeDict]
+  0774d0  [[self challengeDict] objectForKey:@"mission_star"]
+  0774e8  [self challengeDict]
+  077504  [[self challengeDict] objectForKey:@"challenge_id"]
+  077538  [[ADStarUnlockViewController alloc] initWithtype:1 dictionary:[[self challengeDict] objectForKey:@"mission_star"] challenge_id:[[self challengeDict] objectForKey:@"challenge_id"] orientation:[self isKindOfClass:[ADChallengeCompletedViewController class]]]
+  077554  [self setMissionStar:[[ADStarUnlockViewController alloc] initWithtype:1 dictionary:[[self challengeDict] objectForKey:@"mission_star"] challenge_id:[[self challengeDict] objectForKey:@"challenge_id"] orientation:[self isKindOfClass:[ADChallengeCompletedViewController class]]]]
+  077594  [self starUnlockArea]
+  0775b8  [self missionStar]
+  0775d8  [[self missionStar] view]
+  077600  [[self starUnlockArea] addSubview:[[self missionStar] view]]
+  077628  [ADStarUnlockViewController alloc]
+  077638  [self challengeDict]
+  077654  [[self challengeDict] objectForKey:@"time_limit_star"]
+  077670  [self challengeDict]
+  077690  [[self challengeDict] objectForKey:@"challenge_id"]
+  0776b8  [[ADStarUnlockViewController alloc] initWithtype:2 dictionary:[[self challengeDict] objectForKey:@"time_limit_star"] challenge_id:[[self challengeDict] objectForKey:@"challenge_id"] orientation:[self isKindOfClass:[ADChallengeCompletedViewController class]]]
+  0776d4  [self setTimeStar:[[ADStarUnlockViewController alloc] initWithtype:2 dictionary:[[self challengeDict] objectForKey:@"time_limit_star"] challenge_id:[[self challengeDict] objectForKey:@"challenge_id"] orientation:[self isKindOfClass:[ADChallengeCompletedViewController class]]]]
+  077708  [self starUnlockArea]
+  07772c  [self timeStar]
+  077740  [[self timeStar] view]
+  077760  [[self starUnlockArea] addSubview:[[self timeStar] view]]
+  077788  [ADStarUnlockViewController alloc]
+  077798  [self challengeDict]
+  0777b4  [[self challengeDict] objectForKey:@"accuracy_star"]
+  0777cc  [self challengeDict]
+  0777e8  [[self challengeDict] objectForKey:@"challenge_id"]
+  077810  [[ADStarUnlockViewController alloc] initWithtype:3 dictionary:[[self challengeDict] objectForKey:@"accuracy_star"] challenge_id:[[self challengeDict] objectForKey:@"challenge_id"] orientation:[self isKindOfClass:[ADChallengeCompletedViewController class]]]
+  07782c  [self setAccuracyStar:[[ADStarUnlockViewController alloc] initWithtype:3 dictionary:[[self challengeDict] objectForKey:@"accuracy_star"] challenge_id:[[self challengeDict] objectForKey:@"challenge_id"] orientation:[self isKindOfClass:[ADChallengeCompletedViewController class]]]]
+  077860  [self starUnlockArea]
+  077884  [self accuracyStar]
+  07789c  [[self accuracyStar] view]
+  0778b8  [[self starUnlockArea] addSubview:[[self accuracyStar] view]]
+  0778e0  [NSMutableArray alloc]
+  0778f4  [self missionStar]
+  07790c  [self accuracyStar]
+  077924  [self timeStar]
+  077950  [[NSMutableArray alloc] initWithObjects:[self missionStar], [self accuracyStar], [self timeStar], nil]
+  077960  self->stars = [[NSMutableArray alloc] initWithObjects:[self missionStar], [self accuracyStar], [self timeStar], nil]
+  07798c  [self missionStar]
+  0779a0  [[self missionStar] view]
+  0779c4  [self starPlaceholder1]
+  0779e4  [[self starPlaceholder1] frame]
+  0779fc  [[[self missionStar] view] setFrame:{[[self starPlaceholder1] frame].0, [[self starPlaceholder1] frame].1, [[self starPlaceholder1] frame].2, [[self starPlaceholder1] frame].3}]
+  077a20  [self timeStar]
+  077a34  [[self timeStar] view]
+  077a58  [self starPlaceholder2]
+  077a6c  [[self starPlaceholder2] frame]
+  077a78  [[[self timeStar] view] setFrame:{[[self starPlaceholder2] frame].0, [[self starPlaceholder2] frame].1, [[self starPlaceholder2] frame].2, [[self starPlaceholder2] frame].3}]
+  077a9c  [self accuracyStar]
+  077ab0  [[self accuracyStar] view]
+  077ad4  [self starPlaceholder3]
+  077ae8  [[self starPlaceholder3] frame]
+  077af4  [[[self accuracyStar] view] setFrame:{[[self starPlaceholder3] frame].0, [[self starPlaceholder3] frame].1, [[self starPlaceholder3] frame].2, [[self starPlaceholder3] frame].3}]
+  077b18  [self starPlaceholder1]
+  077b38  [[self starPlaceholder1] removeFromSuperview]
+  077b4c  [self starPlaceholder2]
+  077b60  [[self starPlaceholder2] removeFromSuperview]
+  077b74  [self starPlaceholder3]
+  077b88  [[self starPlaceholder3] removeFromSuperview]
+  077ba8  [self setStarPlaceholder1:0]
+  077bc0  [self setStarPlaceholder2:0]
+  077bd8  [self setStarPlaceholder3:0]
+  077be4  [self view]
+  077c00  [[self view] layoutIfNeeded]
+  077c24  return
+
+== -[ADChallengeViewController dealloc]   (address 0x100077dec  size 624  kind objc)
+  077e48  &@selector(removeFromSuperview)
+  077e50  goto loc_100077e60
+loc_100077e54:
+loc_100077e60:
+  077e68  [self starUnlockArea]
+  077e7c  [[self starUnlockArea] subviews]
+  077e90  [[[self starUnlockArea] subviews] count]
+  077eac  if (x22 >=u [[[self starUnlockArea] subviews] count]) goto loc_100077f20
+  077eb8  [self starUnlockArea]
+  077ecc  [[self starUnlockArea] subviews]
+  077ee4  [[[self starUnlockArea] subviews] objectAtIndex:x2]
+  077f0c  [[[[self starUnlockArea] subviews] objectAtIndex:x2] removeFromSuperview]
+  077f10  goto loc_100077e54
+  077f1c  goto loc_100078018
+loc_100077f20:
+  077f28  [self starUnlockArea]
+  077f3c  [[self starUnlockArea] removeFromSuperview]
+  077f5c  [self setStarUnlockArea:0]
+  077f74  [self setStarPlaceholder1:0]
+  077f8c  [self setStarPlaceholder2:0]
+  077fa4  [self setStarPlaceholder3:0]
+  077fc8  [super dealloc]
+  077fe8  return
+  07803c  [super dealloc]
+  078048  call sub_10000b760
+
+== -[ADChallengeViewController challengeIcon]   (address 0x10007805c  size 16  kind objc)
+  078068  return
+
+== -[ADChallengeViewController setChallengeIcon:]   (address 0x10007806c  size 56  kind objc)
+  078090  self->_challengeIcon = arg1
+  0780a0  return
+
+== -[ADChallengeViewController challengeDict]   (address 0x1000780a4  size 16  kind objc)
+  0780b0  return
+
+== -[ADChallengeViewController setChallengeDict:]   (address 0x1000780b4  size 56  kind objc)
+  0780d8  self->_challengeDict = arg1
+  0780e8  return
+
+== -[ADChallengeViewController starUnlockArea]   (address 0x1000780ec  size 16  kind objc)
+  0780f8  return
+
+== -[ADChallengeViewController setStarUnlockArea:]   (address 0x1000780fc  size 56  kind objc)
+  078120  self->_starUnlockArea = arg1
+  078130  return
+
+== -[ADChallengeViewController missionStar]   (address 0x100078134  size 16  kind objc)
+  078140  return
+
+== -[ADChallengeViewController setMissionStar:]   (address 0x100078144  size 56  kind objc)
+  078168  self->_missionStar = arg1
+  078178  return
+
+== -[ADChallengeViewController accuracyStar]   (address 0x10007817c  size 16  kind objc)
+  078188  return
+
+== -[ADChallengeViewController setAccuracyStar:]   (address 0x10007818c  size 56  kind objc)
+  0781b0  self->_accuracyStar = arg1
+  0781c0  return
+
+== -[ADChallengeViewController timeStar]   (address 0x1000781c4  size 16  kind objc)
+  0781d0  return
+
+== -[ADChallengeViewController setTimeStar:]   (address 0x1000781d4  size 56  kind objc)
+  0781f8  self->_timeStar = arg1
+  078208  return
+
+== -[ADChallengeViewController coinsReward]   (address 0x10007820c  size 16  kind objc)
+  078218  return
+
+== -[ADChallengeViewController setCoinsReward:]   (address 0x10007821c  size 56  kind objc)
+  078240  self->_coinsReward = arg1
+  078250  return
+
+== -[ADChallengeViewController .cxx_destruct]   (address 0x100078254  size 184  kind objc)

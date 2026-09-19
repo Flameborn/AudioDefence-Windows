@@ -1,0 +1,30 @@
+
+== -[TAGWaitForNonDefaultRefresh initWithContainerOpener:]   (address 0x1001519e4  size 164  kind objc)
+  151a28  [super init]
+  151a30  if (self == 0) goto loc_100151a54
+  151a48  self->_containerOpener = arg1
+loc_100151a54:
+  151a70  return
+
+== -[TAGWaitForNonDefaultRefresh containerRefreshBegin:refreshType:]   (address 0x100151a88  size 4  kind objc)
+  151a88  return
+
+== -[TAGWaitForNonDefaultRefresh containerRefreshSuccess:refreshType:]   (address 0x100151a8c  size 148  kind objc)
+  151abc  [self containerOpener]
+  151adc  [[self containerOpener] callNotifiers:arg1]
+  151af8  return
+
+== -[TAGWaitForNonDefaultRefresh containerRefreshFailure:failure:refreshType:]   (address 0x100151b20  size 160  kind objc)
+  151b48  if (arg3 != 1) goto loc_100151b88
+  151b5c  [self containerOpener]
+  151b7c  [[self containerOpener] callNotifiers:arg1]
+loc_100151b88:
+  151b98  return
+
+== -[TAGWaitForNonDefaultRefresh containerOpener]   (address 0x100151bc0  size 16  kind objc)
+  151bcc  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGWaitForNonDefaultRefresh setContainerOpener:]   (address 0x100151bd0  size 12  kind objc)
+  151bd8  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGWaitForNonDefaultRefresh .cxx_destruct]   (address 0x100151bdc  size 20  kind objc)

@@ -1,0 +1,49 @@
+
+== -[ADDebugMapView initWithFrame:]   (address 0x1000aed44  size 60  kind objc)
+  0aed70  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  0aed7c  return
+
+== -[ADDebugMapView drawRect:]   (address 0x1000aed80  size 324  kind objc)
+  0aedc0  [self weapon]
+  0aeddc  [[self weapon] spread]
+  0aee24  [self drawFieldForSpread:(([[self weapon] spread] * 3.14159) / 180) inRect:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  0aee38  [self weapon]
+  0aee54  [[self weapon] criticalSpread]
+  0aee80  [self drawFieldForSpread:(([[self weapon] criticalSpread] * 3.14159) / 180) inRect:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  0aeea0  return
+
+== -[ADDebugMapView drawFieldForSpread:inRect:]   (address 0x1000aeec4  size 444  kind objc)
+  0aef04  [self angle]
+  0aef4c  [self range]
+  0aef80  [UIBezierPath bezierPathWithArcCenter:{((arg2.2 * 0.5) + arg2.0), ((arg2.3 * 0.5) + arg2.1)} radius:([self range] * 10) startAngle:([self angle] + (arg1 * -0.5)) endAngle:(arg1 + ([self angle] + (arg1 * -0.5))) clockwise:1]
+  0aefa0  [self center]
+  0aefb4  [[UIBezierPath bezierPathWithArcCenter:{((arg2.2 * 0.5) + arg2.0), ((arg2.3 * 0.5) + arg2.1)} radius:([self range] * 10) startAngle:([self angle] + (arg1 * -0.5)) endAngle:(arg1 + ([self angle] + (arg1 * -0.5))) clockwise:1] addLineToPoint:{[self center].0, [self center].1}]
+  0aefc8  [[UIBezierPath bezierPathWithArcCenter:{((arg2.2 * 0.5) + arg2.0), ((arg2.3 * 0.5) + arg2.1)} radius:([self range] * 10) startAngle:([self angle] + (arg1 * -0.5)) endAngle:(arg1 + ([self angle] + (arg1 * -0.5))) clockwise:1] closePath]
+  0aefe0  [UIColor alloc]
+  0af004  [[UIColor alloc] initWithRed:0.5 green:0.5 blue:0.5 alpha:0.4]
+  0af01c  [[[UIColor alloc] initWithRed:0.5 green:0.5 blue:0.5 alpha:0.4] set]
+  0af030  [[UIBezierPath bezierPathWithArcCenter:{((arg2.2 * 0.5) + arg2.0), ((arg2.3 * 0.5) + arg2.1)} radius:([self range] * 10) startAngle:([self angle] + (arg1 * -0.5)) endAngle:(arg1 + ([self angle] + (arg1 * -0.5))) clockwise:1] fill]
+  0af058  return
+
+== -[ADDebugMapView weapon]   (address 0x1000af080  size 16  kind objc)
+  0af08c  return
+
+== -[ADDebugMapView setWeapon:]   (address 0x1000af090  size 56  kind objc)
+  0af0b4  self->_weapon = arg1
+  0af0c4  return
+
+== -[ADDebugMapView angle]   (address 0x1000af0c8  size 20  kind objc)
+  0af0d8  return
+
+== -[ADDebugMapView setAngle:]   (address 0x1000af0dc  size 20  kind objc)
+  0af0e8  self->_angle = arg1
+  0af0ec  return
+
+== -[ADDebugMapView range]   (address 0x1000af0f0  size 20  kind objc)
+  0af100  return
+
+== -[ADDebugMapView setRange:]   (address 0x1000af104  size 20  kind objc)
+  0af110  self->_range = arg1
+  0af114  return
+
+== -[ADDebugMapView .cxx_destruct]   (address 0x1000af118  size 20  kind objc)

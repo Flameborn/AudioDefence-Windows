@@ -1,0 +1,32 @@
+// ADOpenerGameplayViewController.nib
+TOP-LEVEL OBJECTS
+  #164 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #152 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #146 UIView  Tag=2781
+    #130 UIButton (custom class ADWeaponTouchArea)  title[0]='GUN'
+    #5 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_background.png'
+    #1 UIScrollView (custom class ADInfiniteScrollView)  UserInteractionDisabled=False
+    #111 UIImageView  UserInteractionDisabled=False Image='image_intro_headphones.png'
+    #9 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_foreground.png'
+    #123 UIButton  
+    #48 UIButton  UserInteractionDisabled=False title[0]='SWIPE TO LOOK AROUND'
+  #10 UIView  Tag=2782
+    #42 UIButton (custom class ADWeaponTouchArea)  Tag=3 title[0]='GUN'
+    #95 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_background.png'
+    #63 UIScrollView (custom class ADInfiniteScrollView)  Tag=10 UserInteractionDisabled=False
+    #56 UIImageView  UserInteractionDisabled=False Image='image_intro_headphones.png'
+    #29 UIImageView  UserInteractionDisabled=False Image='gesture_gameplay_foreground.png'
+    #22 UIButton  Tag=2
+    #76 UIButton  Tag=1 UserInteractionDisabled=False title[0]='SWIPE TO LOOK AROUND'
+
+CONNECTIONS
+  action  skipButtonPressed:                        #123 UIButton --(events 0x40)--> #164 UIProxyObject
+  action  skipButtonPressed:                        #22 UIButton --(events 0x40)--> #164 UIProxyObject
+  outlet  infiniteScrollViews                       #164 UIProxyObject --> #93 NSMutableArray
+  outlet  controlModeLabel                          #164 UIProxyObject --> #48 UIButton
+  outlet  skipButton                                #164 UIProxyObject --> #123 UIButton
+  outlet  view                                      #164 UIProxyObject --> #146 UIView
+  outlet  weaponTouchArea                           #164 UIProxyObject --> #130 ADWeaponTouchArea
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#130 ADWeaponTouchArea' UIAccessibilityLabel='Gameplay Area'

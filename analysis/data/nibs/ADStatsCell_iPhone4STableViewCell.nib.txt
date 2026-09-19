@@ -1,0 +1,19 @@
+// ADStatsCell_iPhone4STableViewCell.nib
+TOP-LEVEL OBJECTS
+  #53 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #6 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #28 UITableViewCell (custom class ADStatsCell_iPhone4STableViewCell)  
+    #37 UITableViewCellContentView  
+      #40 UIImageView  UserInteractionDisabled=False Image='list_single_left.png'
+      #42 UIImageView  UserInteractionDisabled=False Image='list_single_right.png'
+      #21 UILabel  UserInteractionDisabled=False Text='Label'
+      #49 UILabel  UserInteractionDisabled=False Text='Label'
+    #36 _UITableViewCellSeparatorView  
+    [UIContentView]
+      (-> #37)
+
+CONNECTIONS
+  outlet  placeholderKey                            #28 ADStatsCell_iPhone4STableViewCell --> #21 UILabel Text='Label'
+  outlet  placeholderValue                          #28 ADStatsCell_iPhone4STableViewCell --> #49 UILabel Text='Label'
+
+ACCESSIBILITY CONFIGURATIONS

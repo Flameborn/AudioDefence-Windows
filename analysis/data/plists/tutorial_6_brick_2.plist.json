@@ -1,0 +1,22 @@
+{
+ "Enemies": {
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_angle": 215,
+   "spawn_distance": 10,
+   "spawn_time": 2.5
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_angle": 200,
+   "spawn_distance": 10,
+   "spawn_time": 1
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_angle": 185,
+   "spawn_distance": 10,
+   "spawn_time": 1.8
+  }
+ }
+}

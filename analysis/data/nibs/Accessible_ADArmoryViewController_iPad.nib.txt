@@ -1,0 +1,27 @@
+// Accessible_ADArmoryViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #25 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #96 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #14 UIView  
+    #62 UIButton (custom class ADButtonWithFont)  title[0]='Weapons'
+    #77 UIButton (custom class ADButtonWithFont)  title[0]='Loadout'
+    #111 UIButton (custom class ADButtonWithFont)  title[0]='Powerup'
+    #21 UIButton (custom class ADButtonWithFont)  title[0]='Currency'
+    #11 UIScrollView  
+    #17 UILabel  UserInteractionDisabled=False Text='Change tabs at the bottom of the screen to navigate the armory'
+
+CONNECTIONS
+  action  currencyButtonPressed:                    #21 ADButtonWithFont --(events 0x40)--> #25 UIProxyObject
+  action  loadoutButtonPressed:                     #77 ADButtonWithFont --(events 0x40)--> #25 UIProxyObject
+  action  powerUpButtonPressed:                     #111 ADButtonWithFont --(events 0x40)--> #25 UIProxyObject
+  action  weaponsButtonPressed:                     #62 ADButtonWithFont --(events 0x40)--> #25 UIProxyObject
+  outlet  contentContainer                          #25 UIProxyObject --> #11 UIScrollView
+  outlet  currencyButton                            #25 UIProxyObject --> #21 ADButtonWithFont
+  outlet  detailView                                #25 UIProxyObject --> #17 UILabel Text='Change tabs at the bottom of the screen to navigate the armory'
+  outlet  firstAccessibleElement                    #25 UIProxyObject --> #17 UILabel Text='Change tabs at the bottom of the screen to navigate the armory'
+  outlet  loadOutButton                             #25 UIProxyObject --> #77 ADButtonWithFont
+  outlet  powerUpButton                             #25 UIProxyObject --> #111 ADButtonWithFont
+  outlet  view                                      #25 UIProxyObject --> #14 UIView
+  outlet  weaponsButton                             #25 UIProxyObject --> #62 ADButtonWithFont
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,763 @@
+
+== -[GAIDataStore requestEntityName:]   (address 0x100117fec  size 112  kind objc)
+  118024  [NSFetchRequest alloc]
+  118038  [[NSFetchRequest alloc] initWithEntityName:arg1]
+  118058  return
+
+== -[GAIDataStore requestHitsWithLimit:]   (address 0x10011805c  size 292  kind objc)
+  118098  [self requestEntityName:@"GAIHit"]
+  1180a8  if (arg1 == 0) goto loc_1001180c4
+  1180c0  [[self requestEntityName:@"GAIHit"] setFetchLimit:arg1]
+loc_1001180c4:
+  1180d4  [&d_1003b81f8] -> @"timestamp"
+  1180e8  [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:1]
+  118118  [NSArray arrayWithObjects:&sp[0x0] count:1]
+  118130  [[self requestEntityName:@"GAIHit"] setSortDescriptors:[NSArray arrayWithObjects:&sp[0x0] count:1]]
+  118148  [[self requestEntityName:@"GAIHit"] setIncludesPendingChanges:1]
+  118178  return
+
+== -[GAIDataStore requestPropertyWithName:]   (address 0x100118180  size 232  kind objc)
+  1181c0  [self requestEntityName:@"GAIProperty"]
+  1181e0  [&d_1003b8220] -> @"name"
+  1181fc  [NSPredicate predicateWithFormat:@"%K == %@", @"name"]
+  11822c  [[self requestEntityName:@"GAIProperty"] setPredicate:[NSPredicate predicateWithFormat:@"%K == %@", @"name"]]
+  11824c  [[self requestEntityName:@"GAIProperty"] setFetchLimit:1]
+  118264  return
+
+== -[GAIDataStore oldHitDescription:]   (address 0x100118268  size 972  kind objc)
+  1182c8  [&d_1003b81f8] -> @"timestamp"
+  1182cc  [&d_1003b8208] -> @"dispatchUrl"
+  1182d4  [&d_1003b8200] -> @"objectID"
+  1182d8  [&d_1003b8218] -> @"parametersData"
+  118300  [NSArray arrayWithObjects:&x29[-0x78] count:4]
+  118318  [arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]]
+  118334  [[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy]
+  118368  [[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]
+  11838c  [NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]]
+  1183b8  [NSMutableDictionary dictionary]
+  118400  [[NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]] countByEnumeratingWithState:&x29[-0xb8] objects:&sp[0x48] count:16]
+  118408  if ([[NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]] countByEnumeratingWithState:&x29[-0xb8] objects:&sp[0x48] count:16] == 0) goto loc_1001184ec
+  118420  &@selector(setObject:forKeyedSubscript:)
+loc_100118444:
+loc_100118448:
+  118454  if (x8 == x20) goto loc_100118460
+  11845c  objc_enumerationMutation([NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]])
+loc_100118460:
+  118474  [@"&" stringByAppendingString:x2]
+  118490  [[NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]] objectForKeyedSubscript:x2]
+  1184b0  [[NSMutableDictionary dictionary] setObject:[[NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]] objectForKeyedSubscript:x2] forKeyedSubscript:[@"&" stringByAppendingString:x2]]
+  1184cc  if ((x22 + 1) <u [[NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] co…) goto loc_100118448
+  1184e0  [[NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]] countByEnumeratingWithState:&x29[-0xb8] objects:&sp[0x48] count:16]
+  1184e8  if ([[NSKeyedUnarchiver unarchiveObjectWithData:[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"parametersData"]] countByEnumeratingWithState:&x29[-0xb8] objects:&sp[0x48] count:16] != 0) goto loc_100118444
+loc_1001184ec:
+  118500  [[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"dispatchUrl"]
+  118524  [[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"dispatchUrl"] hasPrefix:@"http:"]
+  118534  if ([[[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] objectForKeyedSubscript:@"dispatchUrl"] hasPrefix:@"http:"] == 0) goto loc_100118560
+  118540  [&d_1003b8518] -> @"useSecure"
+  11855c  [[NSMutableDictionary dictionary] setObject:@"0" forKeyedSubscript:@"useSecure"]
+loc_100118560:
+  118568  [&d_1003b8210] -> @"gaiVersion"
+  118584  [arg1 valueForKey:@"gaiVersion"]
+  1185b4  [[NSMutableDictionary dictionary] setObject:[arg1 valueForKey:@"gaiVersion"] forKeyedSubscript:@"gaiVersion"]
+  1185c8  [&d_1003b81f0] -> @"parameters"
+  1185d8  [[[arg1 dictionaryWithValuesForKeys:[NSArray arrayWithObjects:&x29[-0x78] count:4]] mutableCopy] setObject:[NSMutableDictionary dictionary] forKeyedSubscript:@"parameters"]
+  11862c  return
+
+== +[GAIDataStore databaseFullPath:]   (address 0x100118634  size 196  kind objc)
+  11865c  NSSearchPathForDirectoriesInDomains(5, 1, 1)
+  118678  [NSSearchPathForDirectoriesInDomains(5, 1, 1) count]
+  11867c  if ([NSSearchPathForDirectoriesInDomains(5, 1, 1) count] == 0) goto loc_1001186d0
+  118694  [NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndexedSubscript:0]
+  1186b4  [[NSSearchPathForDirectoriesInDomains(5, 1, 1) objectAtIndexedSubscript:0] stringByAppendingPathComponent:arg1]
+  1186cc  goto loc_1001186d4
+loc_1001186d0:
+loc_1001186d4:
+  1186f4  return
+
+== +[GAIDataStore databaseFullURL:]   (address 0x1001186f8  size 108  kind objc)
+  118718  [GAIDataStore databaseFullPath:arg1]
+  11873c  [NSURL fileURLWithPath:[GAIDataStore databaseFullPath:arg1]]
+  118760  return
+
+== -[GAIDataStore deleteExcessHits:]   (address 0x100118764  size 508  kind objc)
+  11879c  [self maxHitCount]
+  1187a0  if ([self maxHitCount] == 0) goto loc_100118934
+  1187b8  [self hitCount:arg1]
+  1187c8  [self maxHitCount]
+  1187d0  if ([self hitCount:arg1] <=u [self maxHitCount]) goto loc_100118934
+  1187e8  [GAI sharedLogger]
+  118808  [&d_1003b7d70] -> @"GoogleAnalytics"
+  118814  [&d_1003b7d78] -> @"3.09"
+  11882c  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  11886c  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Deleting excess hits.", @"GoogleAnalytics", @"3.09", "-[GAIDataStore deleteExcessHits:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 125]
+  118890  [[GAI sharedLogger] verbose:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Deleting excess hits.", @"GoogleAnalytics", @"3.09", "-[GAIDataStore deleteExcessHits:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 125]]
+  1188b4  [self maxHitCount]
+  1188d0  [self fetchHitsWithLimit:([self hitCount:arg1] - [self maxHitCount]) error:arg1]
+  1188e8  [&d_1003b8200] -> @"objectID"
+  1188f8  [[self fetchHitsWithLimit:([self hitCount:arg1] - [self maxHitCount]) error:arg1] valueForKey:@"objectID"]
+  118928  [self deleteHitsWithIds:[[self fetchHitsWithLimit:([self hitCount:arg1] - [self maxHitCount]) error:arg1] valueForKey:@"objectID"] error:arg1]
+loc_100118934:
+  11895c  return
+
+== -[GAIDataStore context:hitCount:]   (address 0x100118960  size 212  kind objc)
+  1189d8  [self performBlockAndWait:^{-[GAIDataStore context:hitCount:]_block_invoke captures +0x20=arg1, +0x28=self} withError:arg2]
+  1189f4  [[self performBlockAndWait:^{-[GAIDataStore context:hitCount:]_block_invoke captures +0x20=arg1, +0x28=self} withError:arg2] integerValue]
+  118a30  return
+
+== -[GAIDataStore context:hitCount:]_block_invoke   (address 0x100118a34  size 140  kind block)
+  118a60  [x0 requestEntityName:@"GAIHit"]
+  118a88  [x0 countForFetchRequest:[x0 requestEntityName:@"GAIHit"] error:blockarg1]
+  118abc  tail [NSNumber numberWithInteger:[x0 countForFetchRequest:[x0 requestEntityName:@"GAIHit"] error:blockarg1]]
+
+== sub_100118ac0   (address 0x100118ac0  size 40  kind sub)
+
+== sub_100118ae8   (address 0x100118ae8  size 40  kind sub)
+  118b0c  return
+
+== -[GAIDataStore context:removeStaleHits:]   (address 0x100118b10  size 232  kind objc)
+  118b9c  [self performBlockAndWait:^{-[GAIDataStore context:removeStaleHits:]_block_invoke captures +0x20=self, +0x28=arg1} withError:arg2]
+  118bb8  [[self performBlockAndWait:^{-[GAIDataStore context:removeStaleHits:]_block_invoke captures +0x20=self, +0x28=arg1} withError:arg2] boolValue]
+  118bf4  return
+
+== -[GAIDataStore context:removeStaleHits:]_block_invoke   (address 0x100118bf8  size 612  kind block)
+  118c44  [self requestHitsWithLimit:0]
+  118c68  [&d_1003b81f8] -> @"timestamp"
+  118c88  [NSDate dateWithTimeIntervalSinceNow:-2.592e+06]
+  118cb4  [NSPredicate predicateWithFormat:@"%K <= %@", @"timestamp"]
+  118cd8  [[self requestHitsWithLimit:0] setPredicate:[NSPredicate predicateWithFormat:@"%K <= %@", @"timestamp"]]
+  118d04  [arg1 executeFetchRequest:[self requestHitsWithLimit:0] error:blockarg1]
+  118d40  [[arg1 executeFetchRequest:[self requestHitsWithLimit:0] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  118d48  if ([[arg1 executeFetchRequest:[self requestHitsWithLimit:0] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] == 0) goto loc_100118dc4
+  118d58  &@selector(deleteObject:)
+loc_100118d68:
+loc_100118d6c:
+  118d78  if (x8 == x28) goto loc_100118d84
+  118d80  objc_enumerationMutation([arg1 executeFetchRequest:[self requestHitsWithLimit:0] error:blockarg1])
+loc_100118d84:
+  118d94  [arg1 deleteObject:x2]
+  118da0  if ((x19 + 1) <u [[arg1 executeFetchRequest:[self requestHitsWithLimit:0] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] object…) goto loc_100118d6c
+  118db8  [[arg1 executeFetchRequest:[self requestHitsWithLimit:0] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16]
+  118dc0  if ([[arg1 executeFetchRequest:[self requestHitsWithLimit:0] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x28] count:16] != 0) goto loc_100118d68
+loc_100118dc4:
+  118dd8  [self save:blockarg1]
+  118dfc  [NSNumber numberWithInt:(blockarg1[+0x0] == 0)]
+  118e54  return
+
+== sub_100118e5c   (address 0x100118e5c  size 40  kind sub)
+
+== sub_100118e84   (address 0x100118e84  size 40  kind sub)
+  118ea8  return
+
+== +[GAIDataStore thread]   (address 0x100118eac  size 32  kind objc)
+  118ec8  tail [GAI valueForKey:@"thread"]
+
+== -[GAIDataStore gai_performBlockHelper:]   (address 0x100118ecc  size 252  kind objc)
+  118f04  [arg1 objectForKeyedSubscript:@"block"]
+  118f30  [self performBlockAndWait:[arg1 objectForKeyedSubscript:@"block"] withError:&sp[0x8]]
+  118f54  if ([self performBlockAndWait:[arg1 objectForKeyedSubscript:@"block"] withError:&sp[0x8]] == 0) goto loc_100118f78
+  118f74  [arg1 setObject:[self performBlockAndWait:[arg1 objectForKeyedSubscript:@"block"] withError:&sp[0x8]] forKeyedSubscript:@"result"]
+loc_100118f78:
+  118f78  if (0 == 0) goto loc_100118f9c
+  118f98  [arg1 setObject:0 forKeyedSubscript:@"error"]
+loc_100118f9c:
+  118fc4  return
+
+== -[GAIDataStore performBlockAndWait:withError:]   (address 0x100118fc8  size 1036  kind objc)
+  11901c  [self class]
+  11902c  [[self class] thread]
+  119050  [NSThread currentThread]
+  119068  if ([NSThread currentThread] == [[self class] thread]) goto loc_10011913c
+  1190a0  [NSMutableDictionary dictionaryWithObjectsAndKeys:arg1, @"block", nil]
+  1190e0  [self performSelector:@selector(gai_performBlockHelper:) onThread:[[self class] thread] withObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:arg1, @"block", nil] waitUntilDone:1]
+  119100  [[NSMutableDictionary dictionaryWithObjectsAndKeys:arg1, @"block", nil] objectForKeyedSubscript:@"error"]
+  119120  [[NSMutableDictionary dictionaryWithObjectsAndKeys:arg1, @"block", nil] objectForKeyedSubscript:@"result"]
+  119138  goto loc_100119184
+loc_10011913c:
+  119148  if (self->_currentContext == 0) goto loc_10011917c
+  11915c  call arg1[+0x10]
+  119178  goto loc_100119184
+loc_10011917c:
+loc_100119184:
+  119184  if (arg2 == 0) goto loc_100119198
+  119190  arg2[+0x0] = x0
+  119194  goto loc_100119274
+loc_100119198:
+  119198  if (x22 == 0) goto loc_100119274
+  1191b0  [GAI sharedLogger]
+  1191d0  [&d_1003b7d70] -> @"GoogleAnalytics"
+  1191dc  [&d_1003b7d78] -> @"3.09"
+  1191f4  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  119234  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Datastore error: %@", @"GoogleAnalytics", @"3.09", "-[GAIDataStore performBlockAndWait:withError:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 213, sp[40]]
+  119258  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Datastore error: %@", @"GoogleAnalytics", @"3.09", "-[GAIDataStore performBlockAndWait:withError:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 213, sp[40]]]
+loc_100119274:
+  1192bc  return
+  1192d0  if (w8 != 1) goto loc_1001193cc
+  1192d8  objc_begin_catch()
+  119308  [GAIUtil descriptionFromException:objc_begin_catch()]
+  11935c  [NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x30] count:1]
+  119394  [NSError errorWithDomain:_NSSQLiteErrorDomain[+0x0] code:-1 userInfo:[NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x30] count:1]]
+  1193bc  objc_end_catch()
+  1193c8  objc_end_catch()
+
+== -[GAIDataStore coordinatorWithModel:URL:]   (address 0x1001193d4  size 868  kind objc)
+  119424  [NSPersistentStoreCoordinator alloc]
+  119438  [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:arg1]
+  119480  [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:arg1] addPersistentStoreWithType:_NSSQLiteStoreType[+0x0] configuration:0 URL:arg2 options:0 error:&sp[0x48]]
+  11949c  if ([[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:arg1] addPersistentStoreWithType:_NSSQLiteStoreType[+0x0] configuration:0 URL:arg2 options:0 error:&sp[0x48]] != 0) goto loc_10011961c
+  1194b4  [NSFileManager defaultManager]
+  1194d8  [[NSFileManager defaultManager] removeItemAtURL:arg2 error:0]
+  1194f8  [GAI sharedLogger]
+  119518  [&d_1003b7d70] -> @"GoogleAnalytics"
+  119524  [&d_1003b7d78] -> @"3.09"
+  11953c  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  119584  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Corrupted database with URL %@: %@", @"GoogleAnalytics", @"3.09", "-[GAIDataStore coordinatorWithModel:URL:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 233, arg2, 0]
+  1195a8  [[GAI sharedLogger] warning:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Corrupted database with URL %@: %@", @"GoogleAnalytics", @"3.09", "-[GAIDataStore coordinatorWithModel:URL:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 233, arg2, 0]]
+  1195e8  [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:arg1] addPersistentStoreWithType:_NSSQLiteStoreType[+0x0] configuration:0 URL:arg2 options:0 error:&sp[0x40]]
+loc_10011961c:
+  11961c  if (x21 != 0) goto loc_1001196fc
+  119634  [GAI sharedLogger]
+  119654  [&d_1003b7d70] -> @"GoogleAnalytics"
+  119660  [&d_1003b7d78] -> @"3.09"
+  119678  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  1196bc  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Error creating database with URL %@: %@", @"GoogleAnalytics", @"3.09", "-[GAIDataStore coordinatorWithModel:URL:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 241, arg2, 0]
+  1196e0  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Error creating database with URL %@: %@", @"GoogleAnalytics", @"3.09", "-[GAIDataStore coordinatorWithModel:URL:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 241, arg2, 0]]
+loc_1001196fc:
+  119734  return
+
+== -[GAIDataStore contextWithModel:URL:]   (address 0x100119738  size 228  kind objc)
+  119778  [self coordinatorWithModel:arg1 URL:arg2]
+  119794  if ([self coordinatorWithModel:arg1 URL:arg2] == 0) goto loc_1001197dc
+  1197ac  [NSManagedObjectContext alloc]
+  1197bc  [[NSManagedObjectContext alloc] init]
+  1197d4  [[[NSManagedObjectContext alloc] init] setPersistentStoreCoordinator:[self coordinatorWithModel:arg1 URL:arg2]]
+  1197d8  goto loc_1001197e0
+loc_1001197dc:
+loc_1001197e0:
+  1197fc  [x0 setMergePolicy:_NSOverwriteMergePolicy[+0x0]]
+  119818  return
+
+== -[GAIDataStore setProperty:numberValue:withError:]   (address 0x10011981c  size 572  kind objc)
+  119880  [self oldContext]
+  1198a4  [self requestPropertyWithName:arg1]
+  1198cc  [[self oldContext] executeFetchRequest:[self requestPropertyWithName:arg1] error:0]
+  1198e8  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:arg1] error:0] count]
+  1198ec  if ([[[self oldContext] executeFetchRequest:[self requestPropertyWithName:arg1] error:0] count] == 0) goto loc_100119918
+  119904  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:arg1] error:0] objectAtIndexedSubscript:0]
+  119914  goto loc_1001199b8
+loc_100119918:
+  119938  [NSEntityDescription insertNewObjectForEntityForName:@"GAIProperty" inManagedObjectContext:[self oldContext]]
+  11995c  [&d_1003b8220] -> @"name"
+  11996c  [&d_1003b8210] -> @"gaiVersion"
+  119970  [&d_1003b7d78] -> @"3.09"
+  11999c  [NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]
+  1199b4  [[NSEntityDescription insertNewObjectForEntityForName:@"GAIProperty" inManagedObjectContext:[self oldContext]] setValuesForKeysWithDictionary:[NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]]
+loc_1001199b8:
+  1199cc  [x0 setNumber:arg2]
+  1199ec  [[self oldContext] save:arg3]
+  119a50  return
+
+== -[GAIDataStore setProperty:stringValue:withError:]   (address 0x100119a58  size 572  kind objc)
+  119abc  [self oldContext]
+  119ae0  [self requestPropertyWithName:arg1]
+  119b08  [[self oldContext] executeFetchRequest:[self requestPropertyWithName:arg1] error:0]
+  119b24  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:arg1] error:0] count]
+  119b28  if ([[[self oldContext] executeFetchRequest:[self requestPropertyWithName:arg1] error:0] count] == 0) goto loc_100119b54
+  119b40  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:arg1] error:0] objectAtIndexedSubscript:0]
+  119b50  goto loc_100119bf4
+loc_100119b54:
+  119b74  [NSEntityDescription insertNewObjectForEntityForName:@"GAIProperty" inManagedObjectContext:[self oldContext]]
+  119b98  [&d_1003b8220] -> @"name"
+  119ba8  [&d_1003b8210] -> @"gaiVersion"
+  119bac  [&d_1003b7d78] -> @"3.09"
+  119bd8  [NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]
+  119bf0  [[NSEntityDescription insertNewObjectForEntityForName:@"GAIProperty" inManagedObjectContext:[self oldContext]] setValuesForKeysWithDictionary:[NSDictionary dictionaryWithObjects:&sp[0x18] forKeys:&sp[0x8] count:2]]
+loc_100119bf4:
+  119c08  [x0 setString:arg2]
+  119c28  [[self oldContext] save:arg3]
+  119c8c  return
+
+== -[GAIDataStore lastChangeTimeStamp]   (address 0x100119c94  size 156  kind objc)
+  119cf0  [self performBlockAndWait:^{-[GAIDataStore lastChangeTimeStamp]_block_invoke captures +0x20=self} withError:0]
+  119d2c  return
+
+== -[GAIDataStore lastChangeTimeStamp]_block_invoke   (address 0x100119d30  size 20  kind block)
+
+== sub_100119d44   (address 0x100119d44  size 8  kind sub)
+
+== sub_100119d4c   (address 0x100119d4c  size 8  kind sub)
+  119d50  return
+
+== -[GAIDataStore setLastChangeTimeStamp:]   (address 0x100119d54  size 220  kind objc)
+  119d88  self->_lastChangeTimeStamp = arg1
+  119df4  [self performBlockAndWait:^{-[GAIDataStore setLastChangeTimeStamp:]_block_invoke captures +0x20=self, +0x28=arg1} withError:0]
+  119e2c  return
+
+== -[GAIDataStore setLastChangeTimeStamp:]_block_invoke   (address 0x100119e30  size 60  kind block)
+  119e5c  [x0 setProperty:@"changeTS" numberValue:x3 withError:blockarg1]
+  119e68  return
+
+== sub_100119e6c   (address 0x100119e6c  size 40  kind sub)
+
+== sub_100119e94   (address 0x100119e94  size 40  kind sub)
+  119eb8  return
+
+== -[GAIDataStore idfaChangeCount]   (address 0x100119ebc  size 156  kind objc)
+  119f18  [self performBlockAndWait:^{-[GAIDataStore idfaChangeCount]_block_invoke captures +0x20=self} withError:0]
+  119f54  return
+
+== -[GAIDataStore idfaChangeCount]_block_invoke   (address 0x100119f58  size 20  kind block)
+
+== sub_100119f6c   (address 0x100119f6c  size 8  kind sub)
+
+== sub_100119f74   (address 0x100119f74  size 8  kind sub)
+  119f78  return
+
+== -[GAIDataStore setIdfaChangeCount:]   (address 0x100119f7c  size 220  kind objc)
+  119fb0  self->_idfaChangeCount = arg1
+  11a01c  [self performBlockAndWait:^{-[GAIDataStore setIdfaChangeCount:]_block_invoke captures +0x20=self, +0x28=arg1} withError:0]
+  11a054  return
+
+== -[GAIDataStore setIdfaChangeCount:]_block_invoke   (address 0x10011a058  size 60  kind block)
+  11a084  [x0 setProperty:@"numChanges" numberValue:x3 withError:blockarg1]
+  11a090  return
+
+== sub_10011a094   (address 0x10011a094  size 40  kind sub)
+
+== sub_10011a0bc   (address 0x10011a0bc  size 40  kind sub)
+  11a0e0  return
+
+== -[GAIDataStore hashedIdfa]   (address 0x10011a0e4  size 156  kind objc)
+  11a140  [self performBlockAndWait:^{-[GAIDataStore hashedIdfa]_block_invoke captures +0x20=self} withError:0]
+  11a17c  return
+
+== -[GAIDataStore hashedIdfa]_block_invoke   (address 0x10011a180  size 20  kind block)
+
+== sub_10011a194   (address 0x10011a194  size 8  kind sub)
+
+== sub_10011a19c   (address 0x10011a19c  size 8  kind sub)
+  11a1a0  return
+
+== -[GAIDataStore setHashedIdfa:]   (address 0x10011a1a4  size 236  kind objc)
+  11a1d4  [arg1 copy]
+  11a1e4  self->_hashedIdfa = [arg1 copy]
+  11a254  [self performBlockAndWait:^{-[GAIDataStore setHashedIdfa:]_block_invoke captures +0x20=self, +0x28=arg1} withError:0]
+  11a28c  return
+
+== -[GAIDataStore setHashedIdfa:]_block_invoke   (address 0x10011a290  size 60  kind block)
+  11a2bc  [x0 setProperty:@"idfa" stringValue:x3 withError:blockarg1]
+  11a2c8  return
+
+== sub_10011a2cc   (address 0x10011a2cc  size 40  kind sub)
+
+== sub_10011a2f4   (address 0x10011a2f4  size 40  kind sub)
+  11a318  return
+
+== -[GAIDataStore clientId]   (address 0x10011a31c  size 160  kind objc)
+  11a338  if (self->_clientId != 0) goto loc_10011a3a8
+  11a388  [self performBlockAndWait:^{-[GAIDataStore clientId]_block_invoke captures +0x20=self} withError:0]
+loc_10011a3a8:
+
+== -[GAIDataStore clientId]_block_invoke   (address 0x10011a3bc  size 20  kind block)
+
+== sub_10011a3d0   (address 0x10011a3d0  size 8  kind sub)
+
+== sub_10011a3d8   (address 0x10011a3d8  size 8  kind sub)
+  11a3dc  return
+
+== -[GAIDataStore fetchClientId]   (address 0x10011a3e0  size 132  kind objc)
+  11a438  [self performBlockAndWait:^{-[GAIDataStore fetchClientId]_block_invoke captures +0x20=self} withError:0]
+  11a460  return
+
+== -[GAIDataStore fetchClientId]_block_invoke   (address 0x10011a464  size 280  kind block)
+  11a48c  [self oldContext]
+  11a4b4  [self requestPropertyWithName:@"ClientId"]
+  11a4dc  [[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"ClientId"] error:0]
+  11a4f8  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"ClientId"] error:0] count]
+  11a500  if ([[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"ClientId"] error:0] count] == 0) goto loc_10011a54c
+  11a518  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"ClientId"] error:0] objectAtIndexedSubscript:0]
+  11a534  [[[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"ClientId"] error:0] objectAtIndexedSubscript:0] string]
+loc_10011a54c:
+  11a578  return
+
+== sub_10011a57c   (address 0x10011a57c  size 8  kind sub)
+
+== sub_10011a584   (address 0x10011a584  size 8  kind sub)
+  11a588  return
+
+== -[GAIDataStore setClientId:]   (address 0x10011a58c  size 220  kind objc)
+  11a5c0  self->_clientId = arg1
+  11a62c  [self performBlockAndWait:^{-[GAIDataStore setClientId:]_block_invoke captures +0x20=self, +0x28=arg1} withError:0]
+  11a664  return
+
+== -[GAIDataStore setClientId:]_block_invoke   (address 0x10011a668  size 60  kind block)
+  11a694  [x0 setProperty:@"ClientId" stringValue:x3 withError:blockarg1]
+  11a6a0  return
+
+== sub_10011a6a4   (address 0x10011a6a4  size 40  kind sub)
+
+== sub_10011a6cc   (address 0x10011a6cc  size 40  kind sub)
+  11a6f0  return
+
+== -[GAIDataStore hitCount:]   (address 0x10011a6f4  size 164  kind objc)
+  11a750  [self performBlockAndWait:^{-[GAIDataStore hitCount:]_block_invoke captures +0x20=self} withError:arg1]
+  11a76c  [[self performBlockAndWait:^{-[GAIDataStore hitCount:]_block_invoke captures +0x20=self} withError:arg1] integerValue]
+  11a794  return
+
+== -[GAIDataStore hitCount:]_block_invoke   (address 0x10011a798  size 280  kind block)
+  11a7e0  [self context:self->_context hitCount:&sp[0x8]]
+  11a7f4  if (0 != 0) goto loc_10011a84c
+  11a810  if (self->_context == self->_currentContext) goto loc_10011a848
+  11a820  [self context:self->_currentContext hitCount:&sp[0x0]]
+  11a83c  t1 = ([self context:self->_currentContext hitCount:&sp[0x0]] + [self context:self->_context hitCount:&sp[0x8]])
+  11a844  goto loc_10011a84c
+loc_10011a848:
+loc_10011a84c:
+  11a84c  if (blockarg1 == 0) goto loc_10011a85c
+  11a858  blockarg1[+0x0] = 0
+loc_10011a85c:
+  11a87c  [NSNumber numberWithLong:(0 != 0 ? -1 : x20)]
+  11a8ac  return
+
+== sub_10011a8b0   (address 0x10011a8b0  size 8  kind sub)
+
+== sub_10011a8b8   (address 0x10011a8b8  size 8  kind sub)
+  11a8bc  return
+
+== -[GAIDataStore addHit:]   (address 0x10011a8c0  size 168  kind objc)
+  11a930  [self performBlockAndWait:^{-[GAIDataStore addHit:]_block_invoke captures +0x20=arg1, +0x28=self} withError:0]
+  11a964  return
+
+== -[GAIDataStore addHit:]_block_invoke   (address 0x10011a968  size 432  kind block)
+  11a9a8  [arg1 mutableCopy]
+  11a9b8  [&d_1003b81f8] -> @"timestamp"
+  11a9cc  [[arg1 mutableCopy] objectForKeyedSubscript:@"timestamp"]
+  11a9e0  if ([[arg1 mutableCopy] objectForKeyedSubscript:@"timestamp"] != 0) goto loc_10011aa2c
+  11a9f8  [NSDate date]
+  11aa20  [[arg1 mutableCopy] setObject:[NSDate date] forKeyedSubscript:@"timestamp"]
+loc_10011aa2c:
+  11aa3c  [self context]
+  11aa6c  [NSEntityDescription insertNewObjectForEntityForName:@"GAIHit" inManagedObjectContext:[self context]]
+  11aa8c  [[NSEntityDescription insertNewObjectForEntityForName:@"GAIHit" inManagedObjectContext:[self context]] setValuesForKeysWithDictionary:[arg1 mutableCopy]]
+  11aab0  [NSArray arrayWithObjects:&sp[0x0] count:1]
+  11aacc  [[self context] obtainPermanentIDsForObjects:[NSArray arrayWithObjects:&sp[0x0] count:1] error:blockarg1]
+  11ab10  return
+
+== sub_10011ab18   (address 0x10011ab18  size 40  kind sub)
+
+== sub_10011ab40   (address 0x10011ab40  size 40  kind sub)
+  11ab64  return
+
+== -[GAIDataStore fetchHitsWithLimit:error:]   (address 0x10011ab68  size 140  kind objc)
+  11abc8  [self performBlockAndWait:^{-[GAIDataStore fetchHitsWithLimit:error:]_block_invoke captures +0x20=self, +0x28=arg1} withError:arg2]
+  11abf0  return
+
+== -[GAIDataStore fetchHitsWithLimit:error:]_block_invoke   (address 0x10011abf4  size 724  kind block)
+  11ac74  if (g_10042dc70 != -1) goto loc_10011aeac
+  11ac84  [self currentContext]
+  11aca4  [x0 requestHitsWithLimit:x2]
+  11accc  [[self currentContext] executeFetchRequest:[x0 requestHitsWithLimit:x2] error:blockarg1]
+  11acf8  [NSMutableArray array]
+  11ad40  [[[self currentContext] executeFetchRequest:[x0 requestHitsWithLimit:x2] error:blockarg1] countByEnumeratingWithState:&sp[0xb0] objects:&sp[0x30] count:16]
+  11ad48  if ([[[self currentContext] executeFetchRequest:[x0 requestHitsWithLimit:x2] error:blockarg1] countByEnumeratingWithState:&sp[0xb0] objects:&sp[0x30] count:16] == 0) goto loc_10011ae48
+loc_10011ad94:
+loc_10011ad98:
+  11ada4  if (x8 == x23) goto loc_10011adb0
+  11adac  objc_enumerationMutation([[self currentContext] executeFetchRequest:[x0 requestHitsWithLimit:x2] error:blockarg1])
+loc_10011adb0:
+  11adc8  if (self->_context != [self currentContext]) goto loc_10011adf0
+  11ade4  [x0 dictionaryWithValuesForKeys:g_10042dc68]
+  11adec  goto loc_10011adfc
+loc_10011adf0:
+  11adf4  [self oldHitDescription:x2]
+loc_10011adfc:
+  11ae10  [[NSMutableArray array] addObject:x2]
+  11ae28  if ((x19 + 1) <u [[[self currentContext] executeFetchRequest:[x0 requestHitsWithLimit:x2] error:blockarg1] countByEnumeratingWithState:&s…) goto loc_10011ad98
+  11ae3c  [[[self currentContext] executeFetchRequest:[x0 requestHitsWithLimit:x2] error:blockarg1] countByEnumeratingWithState:&sp[0xb0] objects:&sp[0x30] count:16]
+  11ae44  if ([[[self currentContext] executeFetchRequest:[x0 requestHitsWithLimit:x2] error:blockarg1] countByEnumeratingWithState:&sp[0xb0] objects:&sp[0x30] count:16] != 0) goto loc_10011ad94
+loc_10011ae48:
+  11aea4  return
+
+== -[GAIDataStore fetchHitsWithLimit:error:]_block_invoke_block_invoke   (address 0x10011aec8  size 244  kind block)
+  11af08  [NSEntityDescription entityForName:@"GAIHit" inManagedObjectContext:self->_context]
+  11af24  [[NSEntityDescription entityForName:@"GAIHit" inManagedObjectContext:self->_context] properties]
+  11af3c  [&d_1003b8220] -> @"name"
+  11af4c  [[[NSEntityDescription entityForName:@"GAIHit" inManagedObjectContext:self->_context] properties] valueForKey:@"name"]
+  11af64  [&d_1003b8200] -> @"objectID"
+  11af74  [[[[NSEntityDescription entityForName:@"GAIHit" inManagedObjectContext:self->_context] properties] valueForKey:@"name"] arrayByAddingObject:@"objectID"]
+  11af8c  store g_10042dc68 = [[[[NSEntityDescription entityForName:@"GAIHit" inManagedObjectContext:self->_context] properties] valueForKey:@"name"] arrayByAddingObject:@"objectID"]
+  11afb8  return
+
+== sub_10011afbc   (address 0x10011afbc  size 8  kind sub)
+
+== sub_10011afc4   (address 0x10011afc4  size 8  kind sub)
+  11afc8  return
+
+== sub_10011afcc   (address 0x10011afcc  size 8  kind sub)
+
+== sub_10011afd4   (address 0x10011afd4  size 8  kind sub)
+  11afd8  return
+
+== -[GAIDataStore deleteHitsWithIds:error:]   (address 0x10011afdc  size 232  kind objc)
+  11b068  [self performBlockAndWait:^{-[GAIDataStore deleteHitsWithIds:error:]_block_invoke captures +0x20=self, +0x28=arg1} withError:arg2]
+  11b084  [[self performBlockAndWait:^{-[GAIDataStore deleteHitsWithIds:error:]_block_invoke captures +0x20=self, +0x28=arg1} withError:arg2] boolValue]
+  11b0c0  return
+
+== -[GAIDataStore deleteHitsWithIds:error:]_block_invoke   (address 0x10011b0c4  size 460  kind block)
+  11b10c  [self currentContext]
+  11b154  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  11b15c  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_10011b210
+loc_10011b18c:
+loc_10011b190:
+  11b19c  if (x8 == x22) goto loc_10011b1a8
+  11b1a4  objc_enumerationMutation(arg1)
+loc_10011b1a8:
+  11b1bc  [[self currentContext] existingObjectWithID:x2 error:blockarg1]
+  11b1cc  if ([[self currentContext] existingObjectWithID:x2 error:blockarg1] == 0) goto loc_10011b1e0
+  11b1dc  [[self currentContext] deleteObject:[[self currentContext] existingObjectWithID:x2 error:blockarg1]]
+loc_10011b1e0:
+  11b1f0  if ((x26 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_10011b190
+  11b204  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  11b20c  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_10011b18c
+loc_10011b210:
+  11b238  [NSNumber numberWithInt:(blockarg1[+0x0] == 0)]
+  11b288  return
+
+== sub_10011b290   (address 0x10011b290  size 40  kind sub)
+
+== sub_10011b2b8   (address 0x10011b2b8  size 40  kind sub)
+  11b2dc  return
+
+== -[GAIDataStore deleteAllHits:]   (address 0x10011b2e0  size 164  kind objc)
+  11b33c  [self performBlockAndWait:^{-[GAIDataStore deleteAllHits:]_block_invoke captures +0x20=self} withError:arg1]
+  11b358  [[self performBlockAndWait:^{-[GAIDataStore deleteAllHits:]_block_invoke captures +0x20=self} withError:arg1] boolValue]
+  11b380  return
+
+== -[GAIDataStore deleteAllHits:]_block_invoke   (address 0x10011b384  size 824  kind block)
+  11b3f0  [self requestEntityName:@"GAIHit"]
+  11b414  [[self requestEntityName:@"GAIHit"] setIncludesPropertyValues:0]
+  11b434  [self->_oldContext executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1]
+  11b470  [[self->_oldContext executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16]
+  11b478  if ([[self->_oldContext executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16] == 0) goto loc_10011b4f4
+  11b488  &@selector(deleteObject:)
+loc_10011b498:
+loc_10011b49c:
+  11b4a8  if (x8 == x25) goto loc_10011b4b4
+  11b4b0  objc_enumerationMutation([self->_oldContext executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1])
+loc_10011b4b4:
+  11b4c4  [self->_oldContext deleteObject:x2]
+  11b4d0  if ((x22 + 1) <u [[self->_oldContext executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:…) goto loc_10011b49c
+  11b4e8  [[self->_oldContext executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16]
+  11b4f0  if ([[self->_oldContext executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xf8] count:16] != 0) goto loc_10011b498
+loc_10011b4f4:
+  11b528  [self requestEntityName:@"GAIHit"]
+  11b54c  [[self requestEntityName:@"GAIHit"] setIncludesPropertyValues:0]
+  11b560  [self->_context executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1]
+  11b5a4  [[self->_context executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16]
+  11b5ac  if ([[self->_context executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16] == 0) goto loc_10011b628
+  11b5bc  &@selector(deleteObject:)
+loc_10011b5cc:
+loc_10011b5d0:
+  11b5dc  if (x8 == x27) goto loc_10011b5e8
+  11b5e4  objc_enumerationMutation([self->_context executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1])
+loc_10011b5e8:
+  11b5f8  [self->_context deleteObject:x2]
+  11b604  if ((x28 + 1) <u [[self->_context executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&sp…) goto loc_10011b5d0
+  11b61c  [[self->_context executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16]
+  11b624  if ([[self->_context executeFetchRequest:[self requestEntityName:@"GAIHit"] error:blockarg1] countByEnumeratingWithState:&sp[0xb8] objects:&sp[0x38] count:16] != 0) goto loc_10011b5cc
+loc_10011b628:
+  11b654  [NSNumber numberWithInt:(blockarg1[+0x0] == 0)]
+  11b6b4  return
+
+== sub_10011b6bc   (address 0x10011b6bc  size 8  kind sub)
+
+== sub_10011b6c4   (address 0x10011b6c4  size 8  kind sub)
+  11b6c8  return
+
+== -[GAIDataStore save:]   (address 0x10011b6cc  size 164  kind objc)
+  11b728  [self performBlockAndWait:^{-[GAIDataStore save:]_block_invoke captures +0x20=self} withError:arg1]
+  11b744  [[self performBlockAndWait:^{-[GAIDataStore save:]_block_invoke captures +0x20=self} withError:arg1] boolValue]
+  11b76c  return
+
+== -[GAIDataStore save:]_block_invoke   (address 0x10011b770  size 392  kind block)
+  11b79c  [self context]
+  11b7bc  [self oldContext]
+  11b7e0  [[self context] hasChanges]
+  11b7e4  if (([[self context] hasChanges] & 1)) goto loc_10011b7f8
+  11b7f0  [[self oldContext] hasChanges]
+  11b7f4  if ([[self oldContext] hasChanges] == 0) goto loc_10011b8a0
+loc_10011b7f8:
+  11b80c  [self deleteExcessHits:blockarg1]
+  11b828  [[self context] save:blockarg1]
+  11b838  [[self oldContext] save:blockarg1]
+  11b85c  if (self->_currentContext == self->_context) goto loc_10011b8a0
+  11b87c  [self context:self->_oldContext hitCount:blockarg1]
+  11b880  if ([self context:self->_oldContext hitCount:blockarg1] != 0) goto loc_10011b8a0
+  11b894  self->_currentContext = self->_context
+loc_10011b8a0:
+  11b8c0  [NSNumber numberWithInt:(blockarg1[+0x0] == 0)]
+  11b8f4  return
+
+== sub_10011b8f8   (address 0x10011b8f8  size 8  kind sub)
+
+== sub_10011b900   (address 0x10011b900  size 8  kind sub)
+  11b904  return
+
+== -[GAIDataStore init]   (address 0x10011b908  size 384  kind objc)
+  11b940  [super init]
+  11b948  if (self == 0) goto loc_10011ba6c
+  11b964  [NSNotificationCenter defaultCenter]
+  11b9a8  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onExit:) name:_UIApplicationWillResignActiveNotification[+0x0] object:0]
+  11b9bc  [NSNotificationCenter defaultCenter]
+  11b9e8  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onExit:) name:_UIApplicationWillTerminateNotification[+0x0] object:0]
+  11ba00  self->_maxHitCount = 2000
+  11ba20  [self class]
+  11ba30  [[self class] thread]
+  11ba60  [self performSelector:@selector(setUpCoreData) onThread:[[self class] thread] withObject:0 waitUntilDone:0]
+loc_10011ba6c:
+  11ba84  return
+
+== -[GAIDataStore setUpCoreData]   (address 0x10011ba88  size 1312  kind objc)
+  11bab8  if (self->_setUpCoreData != 0) goto loc_10011bf80
+  11bad0  [self class]
+  11baec  [[self class] databaseFullURL:@"googleanalytics-v2.sql"]
+  11bb04  [self class]
+  11bb14  [[self class] databaseFullURL:@"googleanalytics-v3.sql"]
+  11bb38  [GAICoreDataUtil oldModel]
+  11bb64  [self contextWithModel:[GAICoreDataUtil oldModel] URL:[[self class] databaseFullURL:@"googleanalytics-v2.sql"]]
+  11bb7c  self->_oldContext = [self contextWithModel:[GAICoreDataUtil oldModel] URL:[[self class] databaseFullURL:@"googleanalytics-v2.sql"]]
+  11bba0  [GAICoreDataUtil model]
+  11bbc0  [self contextWithModel:[GAICoreDataUtil model] URL:[[self class] databaseFullURL:@"googleanalytics-v3.sql"]]
+  11bbd8  self->_context = [self contextWithModel:[GAICoreDataUtil model] URL:[[self class] databaseFullURL:@"googleanalytics-v3.sql"]]
+  11bc00  self->_currentContext = self->_context
+  11bc28  [self context:self->_oldContext hitCount:&x29[-0x58]]
+  11bc3c  if ([self context:self->_oldContext hitCount:&x29[-0x58]] == 0) goto loc_10011bc90
+  11bc4c  self->_currentContext = self->_oldContext
+  11bc74  [self context:self->_oldContext removeStaleHits:&x29[-0x60]]
+loc_10011bc90:
+  11bca0  [self fetchClientId]
+  11bcbc  self->_clientId = [self fetchClientId]
+  11bcc4  if ([self fetchClientId] != 0) goto loc_10011bd10
+  11bcdc  [GAIHitUtil generateClientId]
+  11bcec  self->_clientId = [GAIHitUtil generateClientId]
+  11bd0c  [self setClientId:self->_clientId]
+loc_10011bd10:
+  11bd64  [self performBlockAndWait:^{-[GAIDataStore setUpCoreData]_block_invoke captures +0x20=self} withError:0]
+  11bd7c  self->_hashedIdfa = [self performBlockAndWait:^{-[GAIDataStore setUpCoreData]_block_invoke captures +0x20=self} withError:0]
+  11bdc4  [self performBlockAndWait:^{-[GAIDataStore setUpCoreData]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[GAIDataStore setUpCoreData]_block_inv…, +0x40=&d_1003b8120, +0x48=self} withError:0]
+  11bddc  self->_idfaChangeCount = [self performBlockAndWait:^{-[GAIDataStore setUpCoreData]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[GAIDataStore setUpCoreData]_block_inv…, +0x40=&d_1003b8120, +0x48=self} withError:0]
+  11be24  [self performBlockAndWait:^{-[GAIDataStore setUpCoreData]_block_invoke_3 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[GAIDataStore setUpCoreData]_block_inv…, +0x40=&d_1003b8150, +0x48=self, +0x50=__NSConcreteStackBlock, +0x58=0xc2000000, +0x60=&-[GAIDataStore setUpCoreData]_block_inv…, +0x68=&d_1003b8120, +0x70=self} withError:0]
+  11be3c  self->_lastChangeTimeStamp = [self performBlockAndWait:^{-[GAIDataStore setUpCoreData]_block_invoke_3 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc2000000, +0x38=&-[GAIDataStore setUpCoreData]_block_inv…, +0x40=&d_1003b8150, +0x48=self, +0x50=__NSConcreteStackBlock, +0x58=0xc2000000, +0x60=&-[GAIDataStore setUpCoreData]_block_inv…, +0x68=&d_1003b8120, +0x70=self} withError:0]
+  11be4c  if (self->_context == 0) goto loc_10011be68
+  11be5c  self->_setUpCoreData = (self->_oldContext != 0)
+  11be60  if (self->_oldContext != 0) goto loc_10011bf44
+  11be64  goto loc_10011be6c
+loc_10011be68:
+  11be68  self->_setUpCoreData = 0
+loc_10011be6c:
+  11be80  [GAI sharedLogger]
+  11bea0  [&d_1003b7d70] -> @"GoogleAnalytics"
+  11beac  [&d_1003b7d78] -> @"3.09"
+  11bec4  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  11bf04  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Can not setup Core Data stack", @"GoogleAnalytics", @"3.09", "-[GAIDataStore setUpCoreData]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 559]
+  11bf28  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Can not setup Core Data stack", @"GoogleAnalytics", @"3.09", "-[GAIDataStore setUpCoreData]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 559]]
+loc_10011bf44:
+loc_10011bf80:
+  11bfa4  return
+
+== -[GAIDataStore setUpCoreData]_block_invoke   (address 0x10011bfa8  size 280  kind block)
+  11bfd0  [self oldContext]
+  11bff8  [self requestPropertyWithName:@"idfa"]
+  11c020  [[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"idfa"] error:0]
+  11c03c  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"idfa"] error:0] count]
+  11c044  if ([[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"idfa"] error:0] count] == 0) goto loc_10011c090
+  11c05c  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"idfa"] error:0] objectAtIndexedSubscript:0]
+  11c078  [[[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"idfa"] error:0] objectAtIndexedSubscript:0] string]
+loc_10011c090:
+  11c0bc  return
+
+== sub_10011c0c0   (address 0x10011c0c0  size 8  kind sub)
+
+== sub_10011c0c8   (address 0x10011c0c8  size 8  kind sub)
+  11c0cc  return
+
+== -[GAIDataStore setUpCoreData]_block_invoke_2   (address 0x10011c0d0  size 320  kind block)
+  11c0f8  [self oldContext]
+  11c120  [self requestPropertyWithName:@"numChanges"]
+  11c148  [[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"numChanges"] error:0]
+  11c164  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"numChanges"] error:0] count]
+  11c168  if ([[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"numChanges"] error:0] count] == 0) goto loc_10011c1b8
+  11c180  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"numChanges"] error:0] objectAtIndexedSubscript:0]
+  11c19c  [[[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"numChanges"] error:0] objectAtIndexedSubscript:0] number]
+  11c1b4  goto loc_10011c1e0
+loc_10011c1b8:
+  11c1d0  [NSNumber numberWithInt:0]
+loc_10011c1e0:
+  11c20c  return
+
+== sub_10011c210   (address 0x10011c210  size 8  kind sub)
+
+== sub_10011c218   (address 0x10011c218  size 8  kind sub)
+  11c21c  return
+
+== -[GAIDataStore setUpCoreData]_block_invoke_3   (address 0x10011c220  size 320  kind block)
+  11c248  [self oldContext]
+  11c270  [self requestPropertyWithName:@"changeTS"]
+  11c298  [[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"changeTS"] error:0]
+  11c2b4  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"changeTS"] error:0] count]
+  11c2b8  if ([[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"changeTS"] error:0] count] == 0) goto loc_10011c308
+  11c2d0  [[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"changeTS"] error:0] objectAtIndexedSubscript:0]
+  11c2ec  [[[[self oldContext] executeFetchRequest:[self requestPropertyWithName:@"changeTS"] error:0] objectAtIndexedSubscript:0] number]
+  11c304  goto loc_10011c330
+loc_10011c308:
+  11c320  [NSNumber numberWithInt:0]
+loc_10011c330:
+  11c35c  return
+
+== sub_10011c360   (address 0x10011c360  size 8  kind sub)
+
+== sub_10011c368   (address 0x10011c368  size 8  kind sub)
+  11c36c  return
+
+== -[GAIDataStore onExit:]   (address 0x10011c370  size 20  kind objc)
+  11c380  tail [self save:0]
+
+== -[GAIDataStore dealloc]   (address 0x10011c384  size 136  kind objc)
+  11c3ac  [NSNotificationCenter defaultCenter]
+  11c3cc  [[NSNotificationCenter defaultCenter] removeObserver:self]
+  11c3f8  [super dealloc]
+  11c408  return
+
+== +[GAIDataStore dataStore]   (address 0x10011c40c  size 48  kind objc)
+  11c420  [GAIDataStore alloc]
+  11c430  [[GAIDataStore alloc] init]
+  11c438  return
+
+== -[GAIDataStore maxHitCount]   (address 0x10011c43c  size 16  kind objc)
+  11c448  return
+
+== -[GAIDataStore setMaxHitCount:]   (address 0x10011c44c  size 16  kind objc)
+  11c454  self->_maxHitCount = arg1
+  11c458  return
+
+== -[GAIDataStore oldContext]   (address 0x10011c45c  size 16  kind objc)
+  11c468  return
+
+== -[GAIDataStore setOldContext:]   (address 0x10011c46c  size 56  kind objc)
+  11c490  self->_oldContext = arg1
+  11c4a0  return
+
+== -[GAIDataStore context]   (address 0x10011c4a4  size 16  kind objc)
+  11c4b0  return
+
+== -[GAIDataStore setContext:]   (address 0x10011c4b4  size 56  kind objc)
+  11c4d8  self->_context = arg1
+  11c4e8  return
+
+== -[GAIDataStore currentContext]   (address 0x10011c4ec  size 16  kind objc)
+  11c4f8  return
+
+== -[GAIDataStore setCurrentContext:]   (address 0x10011c4fc  size 56  kind objc)
+  11c520  self->_currentContext = arg1
+  11c530  return
+
+== -[GAIDataStore .cxx_destruct]   (address 0x10011c534  size 164  kind objc)

@@ -1,0 +1,9 @@
+
+== +[TAGPBSourceCodeInfo_Location descriptor]   (address 0x10012d2ac  size 180  kind objc)
+  12d2cc  if (g_10042de18 != 0) goto loc_10012d34c
+  12d2f0  [TAGPBSourceCodeInfo_Location class]
+  12d304  [TAGPBDescriptorRoot class]
+  12d344  [TAGPBDescriptor allocDescriptorForClass:[TAGPBSourceCodeInfo_Location class] rootClass:[TAGPBDescriptorRoot class] fields:&d_10042b8d0 fieldCount:4 enums:0 enumCount:0 ranges:40 rangeCount:x9 storageSize:x10 wireFormat:x11]
+  12d348  store g_10042de18 = [TAGPBDescriptor allocDescriptorForClass:[TAGPBSourceCodeInfo_Location class] rootClass:[TAGPBDescriptorRoot class] fields:&d_10042b8d0 fieldCount:4 enums:0 enumCount:0 ranges:40 rangeCount:x9 storageSize:x10 wireFormat:x11]
+loc_10012d34c:
+  12d35c  return

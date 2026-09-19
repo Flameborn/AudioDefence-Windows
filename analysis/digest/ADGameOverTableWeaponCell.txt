@@ -1,0 +1,136 @@
+
+== -[ADGameOverTableWeaponCell initWithStyle:reuseIdentifier:]   (address 0x10004a810  size 60  kind objc)
+  04a83c  [super initWithStyle:arg1 reuseIdentifier:arg2]
+  04a848  return
+
+== -[ADGameOverTableWeaponCell awakeFromNib]   (address 0x10004a84c  size 2148  kind objc)
+  04a884  [ADGameParameters sharedParameters]
+  04a8a0  [[ADGameParameters sharedParameters] isIphone]
+  04a8c4  [self nameLabel]
+  04a908  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04a930  [[self nameLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04a94c  [self nameLabel]
+  04a974  [UIColor whiteColor]
+  04a99c  [[self nameLabel] setTextColor:[UIColor whiteColor]]
+  04a9c4  [self accuracyLabel]
+  04a9ec  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04aa08  [[self accuracyLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04aa24  [self accuracyLabel]
+  04aa3c  [UIColor whiteColor]
+  04aa58  [[self accuracyLabel] setTextColor:[UIColor whiteColor]]
+  04aa7c  [self accuracyValue]
+  04aaa8  [UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04aac4  [[self accuracyValue] setFont:[UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04aaf0  [self shotsFiredLabel]
+  04ab18  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04ab34  [[self shotsFiredLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04ab50  [self shotsFiredLabel]
+  04ab6c  [UIColor whiteColor]
+  04ab88  [[self shotsFiredLabel] setTextColor:[UIColor whiteColor]]
+  04abac  [self shotsFiredValue]
+  04abcc  [UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04abe8  [[self shotsFiredValue] setFont:[UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04ac14  [self criticalsLabel]
+  04ac3c  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04ac58  [[self criticalsLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04ac74  [self criticalsLabel]
+  04ac90  [UIColor whiteColor]
+  04acac  [[self criticalsLabel] setTextColor:[UIColor whiteColor]]
+  04acd0  [self criticalsFiredValue]
+  04acf0  [UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04ad0c  [[self criticalsFiredValue] setFont:[UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04ad38  [self timeSpentLabel]
+  04ad60  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04ad7c  [[self timeSpentLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04ad98  [self timeSpentLabel]
+  04adb4  [UIColor whiteColor]
+  04add0  [[self timeSpentLabel] setTextColor:[UIColor whiteColor]]
+  04adf4  [self timeSpentValue]
+  04ae14  [UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04ae30  [[self timeSpentValue] setFont:[UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04ae58  [self killsLabel]
+  04ae80  [UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04ae9c  [[self killsLabel] setFont:[UIFont fontWithName:@"Friday13" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04aeb8  [self killsLabel]
+  04aed0  [UIColor whiteColor]
+  04aeec  [[self killsLabel] setTextColor:[UIColor whiteColor]]
+  04af10  [self killsValue]
+  04af30  [UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]
+  04af4c  [[self killsValue] setFont:[UIFont systemFontOfSize:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 20)]]
+  04af78  return
+
+== -[ADGameOverTableWeaponCell setSelected:animated:]   (address 0x10004b0b0  size 60  kind objc)
+  04b0dc  [super setSelected:arg1 animated:arg2]
+  04b0e8  return
+
+== -[ADGameOverTableWeaponCell startKillsAnimationUpTo::]   (address 0x10004b0ec  size 192  kind objc)
+  04b110  [self accuracyValue]
+  04b140  [NSString stringWithFormat:@"%d%%", arg1]
+  04b164  [[self accuracyValue] setText:[NSString stringWithFormat:@"%d%%", arg1]]
+  04b184  return
+
+== -[ADGameOverTableWeaponCell accuracyLabel]   (address 0x10004b1ac  size 32  kind objc)
+  04b1c8  return
+
+== -[ADGameOverTableWeaponCell setAccuracyLabel:]   (address 0x10004b1cc  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell criticalsLabel]   (address 0x10004b1e0  size 32  kind objc)
+  04b1fc  return
+
+== -[ADGameOverTableWeaponCell setCriticalsLabel:]   (address 0x10004b200  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell shotsFiredLabel]   (address 0x10004b214  size 32  kind objc)
+  04b230  return
+
+== -[ADGameOverTableWeaponCell setShotsFiredLabel:]   (address 0x10004b234  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell killsLabel]   (address 0x10004b248  size 16  kind objc)
+  04b254  return
+
+== -[ADGameOverTableWeaponCell setKillsLabel:]   (address 0x10004b258  size 56  kind objc)
+  04b27c  self->_killsLabel = arg1
+  04b28c  return
+
+== -[ADGameOverTableWeaponCell timeSpentLabel]   (address 0x10004b290  size 32  kind objc)
+  04b2ac  return
+
+== -[ADGameOverTableWeaponCell setTimeSpentLabel:]   (address 0x10004b2b0  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell timeSpentValue]   (address 0x10004b2c4  size 32  kind objc)
+  04b2e0  return
+
+== -[ADGameOverTableWeaponCell setTimeSpentValue:]   (address 0x10004b2e4  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell accuracyValue]   (address 0x10004b2f8  size 32  kind objc)
+  04b314  return
+
+== -[ADGameOverTableWeaponCell setAccuracyValue:]   (address 0x10004b318  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell shotsFiredValue]   (address 0x10004b32c  size 32  kind objc)
+  04b348  return
+
+== -[ADGameOverTableWeaponCell setShotsFiredValue:]   (address 0x10004b34c  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell killsValue]   (address 0x10004b360  size 16  kind objc)
+  04b36c  return
+
+== -[ADGameOverTableWeaponCell setKillsValue:]   (address 0x10004b370  size 56  kind objc)
+  04b394  self->_killsValue = arg1
+  04b3a4  return
+
+== -[ADGameOverTableWeaponCell criticalsFiredValue]   (address 0x10004b3a8  size 32  kind objc)
+  04b3c4  return
+
+== -[ADGameOverTableWeaponCell setCriticalsFiredValue:]   (address 0x10004b3c8  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell nameLabel]   (address 0x10004b3dc  size 32  kind objc)
+  04b3f8  return
+
+== -[ADGameOverTableWeaponCell setNameLabel:]   (address 0x10004b3fc  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell mainParentView]   (address 0x10004b410  size 32  kind objc)
+  04b42c  return
+
+== -[ADGameOverTableWeaponCell setMainParentView:]   (address 0x10004b430  size 20  kind objc)
+
+== -[ADGameOverTableWeaponCell .cxx_destruct]   (address 0x10004b444  size 224  kind objc)

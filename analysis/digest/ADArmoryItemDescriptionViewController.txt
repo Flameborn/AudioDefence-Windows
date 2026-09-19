@@ -1,0 +1,130 @@
+
+== -[ADArmoryItemDescriptionViewController initWithWeaponDictionary:]   (address 0x1000b0ec8  size 452  kind objc)
+  0b0f1c  [super initWithNibName:0 bundle:0]
+  0b0f24  if (self == 0) goto loc_1000b1028
+  0b0f44  self->weaponInventoryDict = arg1
+  0b0f60  [ADWeaponManager sharedWeaponManager]
+  0b0f88  [arg1 objectForKey:@"name"]
+  0b0fac  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[arg1 objectForKey:@"name"]]
+  0b0fc8  self->weaponStatsDict = [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[arg1 objectForKey:@"name"]]
+  0b0ff8  [NSMutableArray alloc]
+  0b100c  [[NSMutableArray alloc] init]
+  0b101c  self->statBars = [[NSMutableArray alloc] init]
+loc_1000b1028:
+  0b1048  return
+
+== -[ADArmoryItemDescriptionViewController viewDidLoad]   (address 0x1000b108c  size 1056  kind objc)
+  0b10d0  [super viewDidLoad]
+  0b10e8  [self weaponTitle]
+  0b110c  [ADWeaponManager sharedWeaponManager]
+  0b1140  [self->weaponInventoryDict objectForKey:@"name"]
+  0b1164  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  0b118c  [[self weaponTitle] setText:[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self->weaponInventoryDict objectForKey:@"name"]]]
+  0b11b8  [self weaponTitle]
+  0b11d4  [[self weaponTitle] setupAsTitle]
+  0b11f4  [ADInventory sharedInventory]
+  0b1214  [self->weaponInventoryDict objectForKey:@"name"]
+  0b1238  [[ADInventory sharedInventory] quantityForPowerUpWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  0b1260  [self quantityLabel]
+  0b1294  [NSString stringWithFormat:@"x %i", [[ADInventory sharedInventory] quantityForPowerUpWithName:[self->weaponInventory…]
+  0b12b0  [[self quantityLabel] setText:[NSString stringWithFormat:@"x %i", [[ADInventory sharedInventory] quantityForPowerUpWithName:[self->weaponInventory…]]
+  0b12d4  [self weaponImage]
+  0b1300  [self->weaponInventoryDict objectForKey:@"name"]
+  0b1324  [NSString stringWithFormat:@"%@_armory", [self->weaponInventoryDict objectForKey:@"name"]]
+  0b1348  [UIImage imageNamed:[NSString stringWithFormat:@"%@_armory", [self->weaponInventoryDict objectForKey:@"name"]]]
+  0b136c  [[self weaponImage] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_armory", [self->weaponInventoryDict objectForKey:@"name"]]]]
+  0b13a0  [self buyOrUpgradeButton]
+  0b13bc  [[self buyOrUpgradeButton] centerButtonTextWithCoinsImage]
+  0b13e4  return
+
+== -[ADArmoryItemDescriptionViewController handleBackActionFromStatusBar]   (address 0x1000b14ac  size 92  kind objc)
+  0b14c4  [self armoryViewController]
+  0b14e0  [[self armoryViewController] sendDetailViewToBack]
+  0b14f0  return
+
+== -[ADArmoryItemDescriptionViewController buyOrUpgradeButtonPressed:]   (address 0x1000b1508  size 748  kind objc)
+  0b1540  [ADInventory sharedInventory]
+  0b1574  [self->weaponInventoryDict objectForKey:@"name"]
+  0b1598  [[ADInventory sharedInventory] quantityForPowerUpWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  0b15b8  [ADInventory sharedInventory]
+  0b15d8  [self->weaponInventoryDict objectForKey:@"name"]
+  0b1604  [[ADInventory sharedInventory] setQuantity:([[ADInventory sharedInventory] quantityForPowerUpWithName:[self->weaponInventoryDict objectForKey:@"name"]] + 1) ForPowerUpWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  0b1628  [self quantityLabel]
+  0b1658  [NSString stringWithFormat:@"x %i", ([[ADInventory sharedInventory] quantityForPowerUpWithName:[self->weaponInventor…]
+  0b167c  [[self quantityLabel] setText:[NSString stringWithFormat:@"x %i", ([[ADInventory sharedInventory] quantityForPowerUpWithName:[self->weaponInventor…]]
+  0b16a4  [UIApplication sharedApplication]
+  0b16c0  [[UIApplication sharedApplication] delegate]
+  0b16dc  [[[UIApplication sharedApplication] delegate] statusBar]
+  0b16fc  [[[[UIApplication sharedApplication] delegate] statusBar] animateDiamonds:0xffffffff]
+  0b1720  [ADInventory sharedInventory]
+  0b173c  [[ADInventory sharedInventory] diamonds]
+  0b1754  [[ADInventory sharedInventory] setDiamonds:([[ADInventory sharedInventory] diamonds] - 1)]
+  0b1774  return
+
+== -[ADArmoryItemDescriptionViewController backButtonPressed:]   (address 0x1000b17f4  size 100  kind objc)
+  0b180c  [self armoryViewController]
+  0b1828  [[self armoryViewController] sendDetailViewToBack]
+  0b1838  return
+
+== -[ADArmoryItemDescriptionViewController dealloc]   (address 0x1000b1858  size 492  kind objc)
+  0b18cc  [self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0b18d4  if ([self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_1000b196c
+  0b18f0  &@selector(removeFromSuperview)
+loc_1000b18f8:
+loc_1000b18fc:
+  0b1908  if (x8 == x28) goto loc_1000b1914
+  0b1910  objc_enumerationMutation(self->statBars)
+loc_1000b1914:
+  0b1920  [x0 view]
+  0b1934  [[x0 view] removeFromSuperview]
+  0b1948  if ((x26 + 1) <u [self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_1000b18fc
+  0b1960  [self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0b1968  if ([self->statBars countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_1000b18f8
+loc_1000b196c:
+  0b1984  [self->statBars removeAllObjects]
+  0b19a8  [super dealloc]
+  0b19e0  return
+  0b1a24  [super dealloc]
+  0b1a30  call sub_10000b760
+
+== -[ADArmoryItemDescriptionViewController armoryViewController]   (address 0x1000b1a44  size 32  kind objc)
+  0b1a60  return
+
+== -[ADArmoryItemDescriptionViewController setArmoryViewController:]   (address 0x1000b1a64  size 20  kind objc)
+
+== -[ADArmoryItemDescriptionViewController weaponTitle]   (address 0x1000b1a78  size 16  kind objc)
+  0b1a84  return
+
+== -[ADArmoryItemDescriptionViewController setWeaponTitle:]   (address 0x1000b1a88  size 56  kind objc)
+  0b1aac  self->_weaponTitle = arg1
+  0b1abc  return
+
+== -[ADArmoryItemDescriptionViewController weaponImage]   (address 0x1000b1ac0  size 16  kind objc)
+  0b1acc  return
+
+== -[ADArmoryItemDescriptionViewController setWeaponImage:]   (address 0x1000b1ad0  size 56  kind objc)
+  0b1af4  self->_weaponImage = arg1
+  0b1b04  return
+
+== -[ADArmoryItemDescriptionViewController buyOrUpgradeButton]   (address 0x1000b1b08  size 16  kind objc)
+  0b1b14  return
+
+== -[ADArmoryItemDescriptionViewController setBuyOrUpgradeButton:]   (address 0x1000b1b18  size 56  kind objc)
+  0b1b3c  self->_buyOrUpgradeButton = arg1
+  0b1b4c  return
+
+== -[ADArmoryItemDescriptionViewController quantityLabel]   (address 0x1000b1b50  size 16  kind objc)
+  0b1b5c  return
+
+== -[ADArmoryItemDescriptionViewController setQuantityLabel:]   (address 0x1000b1b60  size 56  kind objc)
+  0b1b84  self->_quantityLabel = arg1
+  0b1b94  return
+
+== -[ADArmoryItemDescriptionViewController buyButton]   (address 0x1000b1b98  size 16  kind objc)
+  0b1ba4  return
+
+== -[ADArmoryItemDescriptionViewController setBuyButton:]   (address 0x1000b1ba8  size 56  kind objc)
+  0b1bcc  self->_buyButton = arg1
+  0b1bdc  return
+
+== -[ADArmoryItemDescriptionViewController .cxx_destruct]   (address 0x1000b1be0  size 240  kind objc)

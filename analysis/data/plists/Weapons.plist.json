@@ -1,0 +1,982 @@
+{
+ "PowerUps": [
+  {
+   "displayName": "Air Drops Frequency",
+   "level_4": {
+    "cooldownTime": 45,
+    "upgradeCost": 4375.0
+   },
+   "level_3": {
+    "cooldownTime": 60,
+    "upgradeCost": 3750.0
+   },
+   "level_2": {
+    "cooldownTime": 75,
+    "upgradeCost": 3125.0
+   },
+   "level_1": {
+    "cooldownTime": 90
+   },
+   "upgradeText": "Each upgrade reduces the powerup respawn time by 15 seconds.",
+   "icon": "powerUp_Drop",
+   "name": "frequency"
+  },
+  {
+   "displayName": "Fireworks",
+   "level_4": {
+    "damages": 7,
+    "upgradeCost": 3500.0
+   },
+   "level_3": {
+    "damages": 5,
+    "upgradeCost": 3000.0
+   },
+   "level_2": {
+    "damages": 4,
+    "upgradeCost": 2500.0
+   },
+   "level_1": {
+    "damages": 3
+   },
+   "upgradeText": "Each Upgrade boosts the Fireworks' damage area.",
+   "icon": "powerUp_Fireworks",
+   "name": "fireworks"
+  },
+  {
+   "displayName": "Minigun",
+   "level_4": {
+    "duration": 12.5,
+    "upgradeCost": 2625.0
+   },
+   "level_3": {
+    "duration": 10,
+    "upgradeCost": 2250.0
+   },
+   "level_2": {
+    "duration": 7.5,
+    "upgradeCost": 1875
+   },
+   "level_1": {
+    "duration": 5
+   },
+   "upgradeText": "Each upgrade lets you fire the minigun for 2.5 more seconds!",
+   "weaponDictionary": {
+    "level_1": {
+     "capacity": 25,
+     "fireRate": "0.20",
+     "spread": 30,
+     "switch": 1,
+     "criticalChance": "0",
+     "continuous_spread": 20,
+     "criticalSpread": 5,
+     "reloadTime": 2,
+     "damages": 10,
+     "criticalMultiplier": "1",
+     "dispersal": 99
+    },
+    "range": 10,
+    "continuousFire": true,
+    "name": "minigun"
+   },
+   "icon": "powerUp_minigun",
+   "name": "minigun"
+  },
+  {
+   "displayName": "Tesla Coil",
+   "level_4": {
+    "kills": 4,
+    "upgradeCost": 1750.0
+   },
+   "level_3": {
+    "kills": 3,
+    "upgradeCost": 1500
+   },
+   "level_2": {
+    "kills": 2,
+    "upgradeCost": 1250
+   },
+   "level_1": {
+    "kills": 1
+   },
+   "upgradeText": "Each upgrade makes the electric arc jump and kill the next closest zombie.",
+   "timeBetweenKills": 1.3,
+   "icon": "Roulette_icon_tesla",
+   "name": "tesla"
+  },
+  {
+   "displayName": "Tornado",
+   "level_4": {
+    "blowDistance": 5,
+    "upgradeCost": 1300
+   },
+   "level_3": {
+    "blowDistance": 3,
+    "upgradeCost": 1125
+   },
+   "level_2": {
+    "blowDistance": 2,
+    "upgradeCost": 950
+   },
+   "level_1": {
+    "blowDistance": 1
+   },
+   "upgradeText": "Blow your enemies away from you.",
+   "icon": "powerUp_tornado",
+   "name": "tornado"
+  }
+ ],
+ "Weapons": [
+  {
+   "displayName": "Revolver",
+   "level_4": {
+    "capacity": 7,
+    "fireRate": "0.30",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": 10,
+    "criticalSpread": 10,
+    "reloadTime": 1.8,
+    "upgradeCostInDiamonds": "3",
+    "damages": "14",
+    "criticalMultiplier": "2",
+    "dispersal": 90
+   },
+   "level_3": {
+    "capacity": 6,
+    "fireRate": "0.30",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": 10,
+    "criticalSpread": 10,
+    "reloadTime": 1.8,
+    "damages": "13",
+    "criticalMultiplier": "2",
+    "dispersal": 90,
+    "upgradeCost": "1000"
+   },
+   "level_2": {
+    "capacity": 6,
+    "fireRate": "0.30",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": 10,
+    "criticalSpread": 10,
+    "reloadTime": 1.8,
+    "damages": "12",
+    "criticalMultiplier": "2",
+    "dispersal": 90,
+    "upgradeCost": "500"
+   },
+   "level_1": {
+    "capacity": 6,
+    "fireRate": "0.30",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": 10,
+    "criticalSpread": 10,
+    "reloadTime": 1.8,
+    "damages": "10",
+    "criticalMultiplier": "2",
+    "dispersal": 90
+   },
+   "shotsHit": 0,
+   "range": 11,
+   "shotsFired": 0,
+   "kills": 0,
+   "description": "Your old revolver. Rusty, but packs a punch.",
+   "name": "pistol"
+  },
+  {
+   "level_1": {
+    "capacity": 20,
+    "fireRate": "0.20",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": "5",
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "reloadTime": 3.34,
+    "damages": 5,
+    "criticalMultiplier": "2",
+    "dispersal": 100
+   },
+   "description": "Lighting-fast firing speed, low damage.",
+   "kills": 0,
+   "level_3": {
+    "spread": 30,
+    "criticalMultiplier": "2",
+    "reloadTime": 3.4,
+    "criticalChance": "5",
+    "dispersal": 100,
+    "capacity": 25,
+    "upgradeCost": "1500",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 7,
+    "fireRate": "0.20"
+   },
+   "level_2": {
+    "spread": 30,
+    "criticalMultiplier": "2",
+    "reloadTime": 3.4,
+    "criticalChance": "5",
+    "dispersal": 100,
+    "capacity": 22,
+    "upgradeCost": "750",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 6,
+    "fireRate": "0.20"
+   },
+   "shotsFired": 0,
+   "continuousFire": true,
+   "shotsHit": 0,
+   "level_4": {
+    "spread": 30,
+    "criticalMultiplier": "2",
+    "reloadTime": 3.4,
+    "criticalChance": "5",
+    "dispersal": 100,
+    "capacity": 30,
+    "upgradeCostInDiamonds": "5",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 8,
+    "fireRate": "0.20"
+   },
+   "range": 11,
+   "displayName": "Micro SMG",
+   "name": "microsmg"
+  },
+  {
+   "level_1": {
+    "capacity": 2,
+    "fireRate": "0.50",
+    "spread": 60,
+    "switch": 1,
+    "criticalChance": 30,
+    "criticalSpread": 15,
+    "reloadTime": 2.3,
+    "damages": "30",
+    "criticalMultiplier": "2.5",
+    "dispersal": 1
+   },
+   "description": "Deals big damage at close range, with a huge spread. Can take out many zombies in one shot.",
+   "kills": 0,
+   "level_3": {
+    "capacity": 2,
+    "fireRate": "0.50",
+    "spread": 60,
+    "switch": 1,
+    "criticalChance": 30,
+    "criticalSpread": 15,
+    "reloadTime": 2.3,
+    "damages": "40",
+    "criticalMultiplier": "2.5",
+    "dispersal": 1,
+    "upgradeCost": "2250"
+   },
+   "price": 4500,
+   "level_2": {
+    "capacity": 2,
+    "fireRate": "0.50",
+    "spread": 60,
+    "switch": 1,
+    "criticalChance": 30,
+    "criticalSpread": 15,
+    "reloadTime": 2.3,
+    "damages": "35",
+    "criticalMultiplier": "2.5",
+    "dispersal": 1,
+    "upgradeCost": "1125"
+   },
+   "shotsFired": 0,
+   "multihit": true,
+   "shotsHit": 0,
+   "level_4": {
+    "capacity": 2,
+    "fireRate": "0.50",
+    "spread": 60,
+    "switch": 1,
+    "criticalChance": 30,
+    "criticalSpread": 15,
+    "reloadTime": 2.3,
+    "upgradeCostInDiamonds": "7",
+    "damages": "50",
+    "criticalMultiplier": "2.5",
+    "dispersal": 1
+   },
+   "range": 11,
+   "displayName": "Sawn-off Shotgun",
+   "name": "sawnoff"
+  },
+  {
+   "level_1": {
+    "capacity": 10,
+    "fireRate": "0.60",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": 15,
+    "criticalSpread": 10,
+    "reloadTime": 2.7,
+    "damages": "15",
+    "criticalMultiplier": "2.5",
+    "dispersal": 100
+   },
+   "description": "Kills most weak zombies in one shot if well aimed. Particularly powerful when levelled up.",
+   "kills": 0,
+   "level_3": {
+    "capacity": 10,
+    "fireRate": "0.60",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": 20,
+    "criticalSpread": 10,
+    "reloadTime": 2.7,
+    "damages": "20",
+    "criticalMultiplier": "2.5",
+    "dispersal": 100,
+    "upgradeCost": "3500"
+   },
+   "price": 8500.0,
+   "level_2": {
+    "capacity": 10,
+    "fireRate": "0.60",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": 17,
+    "criticalSpread": 10,
+    "reloadTime": 2.7,
+    "damages": "18",
+    "criticalMultiplier": "2.5",
+    "dispersal": 100,
+    "upgradeCost": "1750"
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "capacity": 10,
+    "fireRate": "0.60",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": 30,
+    "criticalSpread": 10,
+    "reloadTime": 2.7,
+    "upgradeCostInDiamonds": "10",
+    "damages": "25",
+    "criticalMultiplier": "2.5",
+    "dispersal": 100
+   },
+   "range": 11,
+   "displayName": "Hunting Rifle",
+   "name": "hunting"
+  },
+  {
+   "level_1": {
+    "capacity": 25,
+    "fireRate": "0.25",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": "5",
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "reloadTime": 4,
+    "damages": 10,
+    "criticalMultiplier": "1.5",
+    "dispersal": 75
+   },
+   "description": "The most balanced weapon in Dr. Bastard's Armory. You'll love it.",
+   "kills": 0,
+   "level_3": {
+    "spread": 35,
+    "criticalMultiplier": "1.5",
+    "reloadTime": 4,
+    "criticalChance": "5",
+    "dispersal": 75,
+    "capacity": 25,
+    "upgradeCost": "5000",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 13,
+    "fireRate": "0.25"
+   },
+   "price": 10000,
+   "level_2": {
+    "spread": 30,
+    "criticalMultiplier": "1.5",
+    "reloadTime": 4,
+    "criticalChance": "5",
+    "dispersal": 75,
+    "capacity": 30,
+    "upgradeCost": "2500",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 11,
+    "fireRate": "0.25"
+   },
+   "shotsFired": 0,
+   "continuousFire": true,
+   "shotsHit": 0,
+   "level_4": {
+    "spread": 30,
+    "criticalMultiplier": "1.5",
+    "reloadTime": 4,
+    "criticalChance": "5",
+    "dispersal": 75,
+    "capacity": 40,
+    "upgradeCostInDiamonds": "12",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 15,
+    "fireRate": "0.25"
+   },
+   "range": 11,
+   "displayName": "Tactical Rifle",
+   "name": "tactical"
+  },
+  {
+   "explosive": true,
+   "level_1": {
+    "capacity": 5,
+    "fireRate": "1",
+    "projectileSpeed": "30",
+    "spread": 30,
+    "switch": 1,
+    "continuous_spread": 20,
+    "reloadTime": 2,
+    "timeBeforeExplode": "1.5",
+    "damages": 45,
+    "dispersal": 50
+   },
+   "description": "Grenades will explode a short time after they're thrown, dealing damage to all nearby zombies.",
+   "kills": 0,
+   "level_3": {
+    "capacity": 7,
+    "fireRate": "1",
+    "projectileSpeed": "30",
+    "spread": 30,
+    "switch": 1,
+    "continuous_spread": 20,
+    "reloadTime": 2,
+    "timeBeforeExplode": "1.5",
+    "damages": 55,
+    "dispersal": 50,
+    "upgradeCost": 8000
+   },
+   "price": 16000,
+   "level_2": {
+    "capacity": 6,
+    "fireRate": "1",
+    "projectileSpeed": "30",
+    "spread": 30,
+    "switch": 1,
+    "continuous_spread": 20,
+    "reloadTime": 2,
+    "timeBeforeExplode": "1.5",
+    "damages": 50,
+    "dispersal": 50,
+    "upgradeCost": 4000
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "capacity": 8,
+    "fireRate": "1",
+    "projectileSpeed": "30",
+    "spread": 30,
+    "switch": 1,
+    "continuous_spread": 20,
+    "reloadTime": 2,
+    "timeBeforeExplode": "1.5",
+    "upgradeCostInDiamonds": 15,
+    "damages": 60,
+    "dispersal": 50
+   },
+   "range": 11,
+   "displayName": "Grenade Launcher",
+   "name": "grenade"
+  },
+  {
+   "level_1": {
+    "capacity": 7,
+    "fireRate": "1",
+    "spread": 50,
+    "switch": 1,
+    "criticalChance": 25,
+    "criticalSpread": 10,
+    "reloadTime": 3.6,
+    "damages": "20",
+    "criticalMultiplier": "2",
+    "dispersal": 50
+   },
+   "description": "Fast firing, high capacity. Can take out many zombies in one go. Hit harder at close range.",
+   "kills": 0,
+   "level_3": {
+    "capacity": 9,
+    "fireRate": "1",
+    "spread": 50,
+    "switch": 1,
+    "criticalChance": 25,
+    "criticalSpread": 10,
+    "reloadTime": 3.6,
+    "damages": "25",
+    "criticalMultiplier": "2",
+    "dispersal": 50,
+    "upgradeCost": "10500"
+   },
+   "price": 21000.0,
+   "level_2": {
+    "capacity": 8,
+    "fireRate": "1",
+    "spread": 50,
+    "switch": 1,
+    "criticalChance": 25,
+    "criticalSpread": 10,
+    "reloadTime": 3.6,
+    "damages": "22",
+    "criticalMultiplier": "2",
+    "dispersal": 50,
+    "upgradeCost": "5250"
+   },
+   "shotsFired": 0,
+   "multihit": true,
+   "shotsHit": 0,
+   "level_4": {
+    "capacity": 10,
+    "fireRate": "1",
+    "spread": 50,
+    "switch": 1,
+    "criticalChance": 25,
+    "criticalSpread": 10,
+    "reloadTime": 3.6,
+    "upgradeCostInDiamonds": "17",
+    "damages": "30",
+    "criticalMultiplier": "2",
+    "dispersal": 50
+   },
+   "range": 11,
+   "displayName": "Police Shotgun",
+   "name": "policeshotgun"
+  },
+  {
+   "explosive": true,
+   "level_1": {
+    "capacity": 5,
+    "fireRate": "1",
+    "projectileSpeed": "4",
+    "spread": 30,
+    "switch": 1,
+    "reloadTime": 2.5,
+    "damages": 60,
+    "criticalMultiplier": "2",
+    "dispersal": 75
+   },
+   "description": "Obliterates weak zombies and leaves the big ones VERY hurt. Don't use at close range!",
+   "kills": 0,
+   "level_3": {
+    "capacity": 5,
+    "fireRate": "1",
+    "projectileSpeed": "4",
+    "spread": 30,
+    "switch": 1,
+    "reloadTime": 2.5,
+    "damages": 75,
+    "criticalMultiplier": "2",
+    "dispersal": 75,
+    "upgradeCost": 11250.0
+   },
+   "price": 22500,
+   "level_2": {
+    "capacity": 5,
+    "fireRate": "1",
+    "projectileSpeed": "4",
+    "spread": 30,
+    "switch": 1,
+    "reloadTime": 2.5,
+    "damages": 70,
+    "criticalMultiplier": "2",
+    "dispersal": 75,
+    "upgradeCost": 5625.0
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "capacity": 5,
+    "fireRate": "1",
+    "projectileSpeed": "4",
+    "spread": 30,
+    "switch": 1,
+    "upgradeCostInDiamonds": 20,
+    "reloadTime": 2.5,
+    "damages": 80,
+    "criticalMultiplier": "2",
+    "dispersal": 75
+   },
+   "range": 15,
+   "displayName": "Bazooka",
+   "name": "bazooka"
+  },
+  {
+   "level_1": {
+    "capacity": 50,
+    "fireRate": "0.20",
+    "spread": 30,
+    "switch": 1,
+    "criticalChance": "5",
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "reloadTime": 6,
+    "damages": 10,
+    "criticalMultiplier": "1.5",
+    "dispersal": 75
+   },
+   "description": "The ultimate! Best capacity and stopping power, but careful, It takes ages to reload!",
+   "kills": 0,
+   "level_3": {
+    "spread": 30,
+    "criticalMultiplier": "1.5",
+    "reloadTime": 6,
+    "criticalChance": "5",
+    "dispersal": 75,
+    "capacity": 80,
+    "upgradeCost": "15,000",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 14,
+    "fireRate": "0.20"
+   },
+   "price": 30000.0,
+   "level_2": {
+    "spread": 30,
+    "criticalMultiplier": "1.5",
+    "reloadTime": 6,
+    "criticalChance": "5",
+    "dispersal": 75,
+    "capacity": 60,
+    "upgradeCost": "7,500",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 12,
+    "fireRate": "0.20"
+   },
+   "shotsFired": 0,
+   "continuousFire": true,
+   "shotsHit": 0,
+   "level_4": {
+    "spread": 30,
+    "criticalMultiplier": "1.5",
+    "reloadTime": 6,
+    "criticalChance": "5",
+    "dispersal": 75,
+    "capacity": 100,
+    "upgradeCostInDiamonds": "25",
+    "switch": 1,
+    "continuous_spread": 20,
+    "criticalSpread": 5,
+    "damages": 16,
+    "fireRate": "0.20"
+   },
+   "range": 11,
+   "displayName": "Machine Gun",
+   "name": "machinegun"
+  },
+  {
+   "level_1": {
+    "capacity": 1,
+    "fireRate": "1",
+    "spread": 25,
+    "switch": 1,
+    "criticalChance": 25,
+    "criticalSpread": 10,
+    "reloadTime": 1.8,
+    "damages": "50",
+    "criticalMultiplier": "2",
+    "dispersal": 75
+   },
+   "description": "Military experiment for a sonic-based, non-lethal weapon. The experiment went wrong.",
+   "priceInDiamonds": 100,
+   "level_3": {
+    "capacity": 1,
+    "fireRate": "1",
+    "spread": 25,
+    "switch": 1,
+    "criticalChance": 25,
+    "criticalSpread": 10,
+    "reloadTime": 1.8,
+    "upgradeCostInDiamonds": 20,
+    "damages": "60",
+    "criticalMultiplier": "2",
+    "dispersal": 75
+   },
+   "kills": 0,
+   "level_2": {
+    "capacity": 1,
+    "fireRate": "1",
+    "spread": 25,
+    "switch": 1,
+    "criticalChance": 25,
+    "criticalSpread": 10,
+    "reloadTime": 1.8,
+    "upgradeCostInDiamonds": 10,
+    "damages": "55",
+    "criticalMultiplier": "2",
+    "dispersal": 75
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "capacity": 1,
+    "fireRate": "1",
+    "spread": 25,
+    "switch": 1,
+    "criticalChance": 25,
+    "criticalSpread": 10,
+    "reloadTime": 1.8,
+    "upgradeCostInDiamonds": 50,
+    "damages": "65",
+    "criticalMultiplier": "2",
+    "dispersal": 75
+   },
+   "range": 11,
+   "displayName": "Sonic Cannon",
+   "name": "sonic"
+  },
+  {
+   "level_1": {
+    "spread": 30,
+    "fireRate": "1",
+    "criticalChance": "5",
+    "criticalSpread": 5,
+    "damages": 25,
+    "criticalMultiplier": " 1.5"
+   },
+   "description": "An oriental frying pan. Sturdy and easy to swing.",
+   "kills": 0,
+   "level_3": {
+    "spread": 30,
+    "fireRate": "0.50",
+    "criticalChance": "5",
+    "criticalSpread": 5,
+    "damages": 25,
+    "criticalMultiplier": " 1.5",
+    "upgradeCost": 1000
+   },
+   "melee": true,
+   "level_2": {
+    "spread": 30,
+    "fireRate": "0.75",
+    "criticalChance": "5",
+    "criticalSpread": 5,
+    "damages": 25,
+    "criticalMultiplier": " 1.5",
+    "upgradeCost": 500
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "spread": 30,
+    "fireRate": "0.25",
+    "criticalChance": "5",
+    "criticalSpread": 5,
+    "damages": 25,
+    "criticalMultiplier": " 1.5",
+    "upgradeCost": 1500
+   },
+   "range": 3,
+   "displayName": "Wok",
+   "name": "wok"
+  },
+  {
+   "level_1": {
+    "spread": 35,
+    "fireRate": "0.3",
+    "criticalChance": "10",
+    "criticalSpread": 10,
+    "damages": 30,
+    "criticalMultiplier": "1.5"
+   },
+   "description": "Dr. Bastard's banjo. Surprisingly resilient for such an instrument.",
+   "kills": 0,
+   "level_3": {
+    "spread": 35,
+    "fireRate": "0.3",
+    "criticalChance": "10",
+    "criticalSpread": 10,
+    "damages": 37,
+    "criticalMultiplier": "1.5",
+    "upgradeCost": 1500
+   },
+   "melee": true,
+   "price": 1500,
+   "level_2": {
+    "spread": 35,
+    "fireRate": "0.3",
+    "criticalChance": "10",
+    "criticalSpread": 10,
+    "damages": 33,
+    "criticalMultiplier": "1.5",
+    "upgradeCost": 750
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "spread": 35,
+    "fireRate": "0.25",
+    "criticalChance": "10",
+    "criticalSpread": 10,
+    "damages": 40,
+    "criticalMultiplier": "1.5",
+    "upgradeCost": 2250.0
+   },
+   "range": 3,
+   "displayName": "Banjo",
+   "name": "banjo"
+  },
+  {
+   "level_1": {
+    "spread": 40,
+    "fireRate": "0.5",
+    "criticalChance": "25",
+    "criticalSpread": 5,
+    "damages": 45,
+    "criticalMultiplier": "1.5"
+   },
+   "description": "Iron 3. For the yuppie zombie hunter in all of us.",
+   "kills": 0,
+   "level_3": {
+    "spread": 40,
+    "fireRate": "0.3",
+    "criticalChance": "25",
+    "criticalSpread": 5,
+    "damages": 45,
+    "criticalMultiplier": "1.5",
+    "upgradeCost": 4000
+   },
+   "melee": true,
+   "price": 4000.0,
+   "level_2": {
+    "spread": 40,
+    "fireRate": "0.4",
+    "criticalChance": "25",
+    "criticalSpread": 5,
+    "damages": 45,
+    "criticalMultiplier": "1.5",
+    "upgradeCost": 2000
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "spread": 40,
+    "fireRate": "0.25",
+    "criticalChance": "25",
+    "criticalSpread": 5,
+    "damages": 50,
+    "criticalMultiplier": "1.5",
+    "upgradeCost": 6000.0
+   },
+   "range": 3,
+   "displayName": "Golf",
+   "name": "golf"
+  },
+  {
+   "level_1": {
+    "spread": 50,
+    "fireRate": "1.5",
+    "criticalChance": "20",
+    "criticalSpread": 10,
+    "damages": 60,
+    "criticalMultiplier": "2"
+   },
+   "description": "Sends a 100,000 volt current through undead skin. Ouch.",
+   "kills": 0,
+   "level_3": {
+    "spread": 50,
+    "fireRate": "1.3",
+    "criticalChance": "20",
+    "criticalSpread": 10,
+    "damages": 63,
+    "criticalMultiplier": "2",
+    "upgradeCost": 7500
+   },
+   "melee": true,
+   "price": 10000.0,
+   "level_2": {
+    "spread": 50,
+    "fireRate": "1.4",
+    "criticalChance": "20",
+    "criticalSpread": 10,
+    "damages": 62,
+    "criticalMultiplier": "2",
+    "upgradeCost": 5000.0
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "spread": 50,
+    "fireRate": "1.2",
+    "criticalChance": "20",
+    "criticalSpread": 10,
+    "damages": 65,
+    "criticalMultiplier": "2",
+    "upgradeCost": 10000
+   },
+   "range": 3,
+   "displayName": "Cattle Prod",
+   "name": "prod"
+  },
+  {
+   "level_1": {
+    "spread": 50,
+    "fireRate": "2.5",
+    "criticalChance": "20",
+    "criticalSpread": 5,
+    "damages": 70,
+    "criticalMultiplier": "2"
+   },
+   "description": "Scottish two-hander. Deals the most damage of all melee weapons, but swings the slowest!",
+   "kills": 0,
+   "level_3": {
+    "spread": 50,
+    "fireRate": "2",
+    "criticalChance": "20",
+    "criticalSpread": 5,
+    "damages": 80,
+    "criticalMultiplier": "2",
+    "upgradeCost": 7500.0
+   },
+   "melee": true,
+   "price": 15000.0,
+   "level_2": {
+    "spread": 50,
+    "fireRate": "2.25",
+    "criticalChance": "20",
+    "criticalSpread": 5,
+    "damages": 75,
+    "criticalMultiplier": "2",
+    "upgradeCost": 7500.0
+   },
+   "shotsFired": 0,
+   "shotsHit": 0,
+   "level_4": {
+    "spread": 50,
+    "fireRate": "1.5",
+    "criticalChance": "20",
+    "criticalSpread": 5,
+    "damages": 85,
+    "criticalMultiplier": "2",
+    "upgradeCost": 11250.0
+   },
+   "range": 3,
+   "displayName": "Claymore",
+   "name": "claymore"
+  }
+ ]
+}

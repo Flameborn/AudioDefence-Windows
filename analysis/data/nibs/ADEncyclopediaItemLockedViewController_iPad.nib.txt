@@ -1,0 +1,29 @@
+// ADEncyclopediaItemLockedViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #64 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #39 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #75 UIView  
+    #57 UIImageView  UserInteractionDisabled=False Image='background_grunge.png'
+    #102 UIImageView  UserInteractionDisabled=False Image='frame_popup_blank.png'
+    #83 UIImageView  Image='button_audio_large.png'
+    #66 UILabel  UserInteractionDisabled=False Text='Zombie name'
+    #4 UILabel  UserInteractionDisabled=False Text='Unlock condition'
+    #5 UIImageView  UserInteractionDisabled=False Image='icon_locked_wide.png'
+    #20 UIImageView  Image='arrow_large_right.png'
+    #45 UIImageView  Image='arrow_large_left.png'
+  #86 UITapGestureRecognizer  
+
+CONNECTIONS
+  action  handleTapForSound:                        #86 UITapGestureRecognizer --(events 0x0)--> #64 UIProxyObject
+  outlet  gestureRecognizers                        #83 UIImageView --> #90 NSMutableArray
+  outlet  enemyNameLabel                            #64 UIProxyObject --> #66 UILabel Text='Zombie name'
+  outlet  leftArrow                                 #64 UIProxyObject --> #45 UIImageView
+  outlet  rightArrow                                #64 UIProxyObject --> #20 UIImageView
+  outlet  unlockConditionLabel                      #64 UIProxyObject --> #4 UILabel Text='Unlock condition'
+  outlet  view                                      #64 UIProxyObject --> #75 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#83 UIImageView' UIAccessibilityHint='Click to hear the enemy sound' UIAccessibilityLabel='Enemy sound' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject="#66 UILabel Text='Zombie name'" UIAccessibilityLabel=''
+  UIAccessibileObject='#20 UIImageView' UIAccessibilityHint="Click to view the next enemy's description. This button will be unavailable if you are at the end of the list" UIAccessibilityLabel='Next button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1
+  UIAccessibileObject='#45 UIImageView' UIAccessibilityHint="Click to view the previous enemy's description. This button will be unavailable if you are at the beginning of the list" UIAccessibilityLabel='Previous button' UIAccessibilityTraits=1 UIIsAccessibilityElement=1

@@ -1,0 +1,240 @@
+
+== -[GAITrackerImpl init]   (address 0x1001172a4  size 128  kind objc)
+  1172d8  [super init]
+  1172e0  if (self == 0) goto loc_100117310
+  1172f8  [self doesNotRecognizeSelector:_cmd]
+  11730c  [self release]
+loc_100117310:
+  117320  return
+
+== -[GAITrackerImpl initWithDispatcher:name:]   (address 0x100117324  size 532  kind objc)
+  117348  if (arg1 == 0) goto loc_100117464
+  117370  [super init]
+  117378  if (self == 0) goto loc_100117518
+  117394  [GAIUsageTracker alloc]
+  11739c  [[GAIUsageTracker alloc] init]
+  1173a8  self->_usageTracker = [[GAIUsageTracker alloc] init]
+  1173bc  [arg1 retain]
+  1173c8  self->dispatcher_ = [arg1 retain]
+  1173dc  [arg2 copy]
+  1173e8  self->name_ = [arg2 copy]
+  1173f8  [GAITrackerModel alloc]
+  117410  [arg1 dataStore]
+  117428  [[GAITrackerModel alloc] initWithDataStore:[arg1 dataStore]]
+  117440  self->model_ = [[GAITrackerModel alloc] initWithDataStore:[arg1 dataStore]]
+  117444  self->allowIDFACollection_ = 0
+  117450  self->trackingCredits_ = 0x404e000000000000
+  11745c  self->lastTrackTime_ = 0
+  117460  goto loc_10011751c
+loc_100117464:
+  117478  [GAI sharedLogger]
+  117490  [&d_1003b7d70] -> @"GoogleAnalytics"
+  11749c  [&d_1003b7d78] -> @"3.09"
+  1174b4  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  1174e8  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): initialization failed: dispatcher is required.", @"GoogleAnalytics", @"3.09", "-[GAITrackerImpl initWithDispatcher:name:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 66]
+  117500  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): initialization failed: dispatcher is required.", @"GoogleAnalytics", @"3.09", "-[GAITrackerImpl initWithDispatcher:name:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 66]]
+  117514  [self release]
+loc_100117518:
+loc_10011751c:
+  117534  return
+
+== -[GAITrackerImpl dealloc]   (address 0x100117538  size 208  kind objc)
+  117560  [NSNotificationCenter defaultCenter]
+  117574  [[NSNotificationCenter defaultCenter] removeObserver:self]
+  117594  [self->model_ release]
+  1175a8  [self->dispatcher_ release]
+  1175bc  [self->name_ release]
+  1175d0  [self->_usageTracker release]
+  1175f4  [super dealloc]
+  117604  return
+
+== +[GAITrackerImpl trackerWithDispatcher:name:]   (address 0x100117608  size 92  kind objc)
+  117630  [GAITrackerImpl alloc]
+  117648  [[GAITrackerImpl alloc] initWithDispatcher:arg1 name:arg2]
+  117660  tail [[[GAITrackerImpl alloc] initWithDispatcher:arg1 name:arg2] autorelease]
+
+== -[GAITrackerImpl shouldRateLimit]   (address 0x100117664  size 188  kind objc)
+  117688  [NSDate timeIntervalSinceReferenceDate]
+  1176a4  if (self->lastTrackTime_ == 0.0) goto loc_1001176e8
+  1176b8  if (self->trackingCredits_ >= (or unordered) 60) goto loc_1001176e8
+  1176c4  if (([NSDate timeIntervalSinceReferenceDate] - self->lastTrackTime_) <= (or unordered) 0.0) goto loc_1001176e8
+  1176d0  t1 = ((([NSDate timeIntervalSinceReferenceDate] - self->lastTrackTime_) * 0.5) + self->trackingCredits_)
+  1176d4  self->trackingCredits_ = t1
+  1176dc  if (t1 <= (or unordered) 60) goto loc_1001176e8
+  1176e4  self->trackingCredits_ = 0x404e000000000000
+loc_1001176e8:
+  1176e8  self->lastTrackTime_ = [NSDate timeIntervalSinceReferenceDate]
+  1176f8  if (self->trackingCredits_ >= 1) goto loc_100117704
+  117700  goto loc_100117714
+loc_100117704:
+  117710  self->trackingCredits_ = (self->trackingCredits_ + -1)
+loc_100117714:
+  11771c  return
+
+== -[GAITrackerImpl gai_set:value:]   (address 0x100117720  size 116  kind objc)
+  11773c  objc_sync_enter(self, _cmd, arg1, arg2)
+  117750  [self model]
+  117768  [[self model] setValue:arg2 forKey:arg1]
+  11777c  tail objc_sync_exit(self)
+  117788  objc_sync_exit()
+
+== -[GAITrackerImpl gai_get:]   (address 0x100117794  size 168  kind objc)
+  1177a8  objc_sync_enter(self, _cmd, arg1)
+  1177bc  [self model]
+  1177d0  [[self model] objectForKeyedSubscript:arg1]
+  1177ec  [NSString class]
+  117804  [[[self model] objectForKeyedSubscript:arg1] isKindOfClass:[NSString class]]
+  117808  if ([[[self model] objectForKeyedSubscript:arg1] isKindOfClass:[NSString class]] != 0) goto loc_100117810
+loc_100117810:
+  117814  objc_sync_exit(self)
+  117824  return
+  117830  objc_sync_exit()
+
+== -[GAITrackerImpl gai_set:]   (address 0x10011783c  size 332  kind objc)
+  1178a4  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  1178ac  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_10011794c
+  1178c8  &@selector(gai_set:value:)
+loc_1001178d8:
+loc_1001178dc:
+  1178e8  if (x8 == x28) goto loc_1001178f4
+  1178f0  objc_enumerationMutation(arg1)
+loc_1001178f4:
+  117908  [arg1 objectForKey:x2]
+  11791c  [self gai_set:x2 value:[arg1 objectForKey:x2]]
+  117928  if ((x21 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_1001178dc
+  117940  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  117948  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_1001178d8
+loc_10011794c:
+  117980  return
+
+== -[GAITrackerImpl gai_send:]   (address 0x100117988  size 964  kind objc)
+  1179b4  [&d_1003b8368] -> @"&t"
+  1179cc  [arg1 objectForKey:@"&t"]
+  1179e0  [[arg1 objectForKey:@"&t"] length]
+  1179e4  if ([[arg1 objectForKey:@"&t"] length] != 0) goto loc_100117a88
+  1179fc  [GAI sharedLogger]
+  117a14  [&d_1003b7d70] -> @"GoogleAnalytics"
+  117a20  [&d_1003b7d78] -> @"3.09"
+  117a38  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  117a6c  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Bad or missing hit type.", @"GoogleAnalytics", @"3.09", "-[GAITrackerImpl gai_send:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 145]
+  117a84  [[GAI sharedLogger] warning:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Bad or missing hit type.", @"GoogleAnalytics", @"3.09", "-[GAITrackerImpl gai_send:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 145]]
+loc_100117a88:
+  117a8c  objc_sync_enter(self)
+  117a98  [&d_1003b8548] -> @"transaction"
+  117ab0  [[arg1 objectForKey:@"&t"] isEqualToString:@"transaction"]
+  117ab4  if (([[arg1 objectForKey:@"&t"] isEqualToString:@"transaction"] & 1)) goto loc_100117b90
+  117ac0  [&d_1003b8550] -> @"item"
+  117acc  [[arg1 objectForKey:@"&t"] isEqualToString:@"item"]
+  117ad0  if (([[arg1 objectForKey:@"&t"] isEqualToString:@"item"] & 1)) goto loc_100117b90
+  117ae4  [self shouldRateLimit]
+  117ae8  if ([self shouldRateLimit] == 0) goto loc_100117b90
+  117b00  [GAI sharedLogger]
+  117b24  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  117b30  [&d_1003b7d70] -> @"GoogleAnalytics"
+  117b3c  [&d_1003b7d78] -> @"3.09"
+  117b70  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Excessive tracking detected and throttled.", @"GoogleAnalytics", @"3.09", "-[GAITrackerImpl gai_send:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 151]
+  117b88  [[GAI sharedLogger] info:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Excessive tracking detected and throttled.", @"GoogleAnalytics", @"3.09", "-[GAITrackerImpl gai_send:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 151]]
+  117b8c  goto loc_100117d18
+loc_100117b90:
+  117b90  if ([arg1 objectForKey:@"&t"] != 0) goto loc_100117bc4
+  117ba4  [self model]
+  117bb8  [[self model] objectForKeyedSubscript:@"&t"]
+  117bc0  if ([[self model] objectForKeyedSubscript:@"&t"] == 0) goto loc_100117c3c
+loc_100117bc4:
+  117bd8  [NSString class]
+  117bf0  [x0 isKindOfClass:[NSString class]]
+  117bf4  if ([x0 isKindOfClass:[NSString class]] == 0) goto loc_100117c60
+  117c00  [&d_1003b8528] -> @"appview"
+  117c18  [x0 compare:@"appview"]
+  117c1c  if ([x0 compare:@"appview"] == 0) goto loc_100117c3c
+  117c28  [&d_1003b8530] -> @"screenview"
+  117c34  [x0 compare:@"screenview"]
+  117c38  if ([x0 compare:@"screenview"] != 0) goto loc_100117c60
+loc_100117c3c:
+  117c4c  [self model]
+  117c5c  [[self model] willSendScreenView]
+loc_100117c60:
+  117c74  [self model]
+  117c90  [GAIUsageTracker getUsageSequence]
+  117ca0  [&d_1003b8508] -> @"&_u"
+  117cb4  [[self model] setObject:[GAIUsageTracker getUsageSequence] forKeyedSubscript:@"&_u"]
+  117cc8  [self dispatcher]
+  117cd8  [self model]
+  117cec  [[self model] copyWithOverride:arg1]
+  117cfc  [[[self model] copyWithOverride:arg1] autorelease]
+  117d14  [[self dispatcher] queueModel:[[[self model] copyWithOverride:arg1] autorelease]]
+loc_100117d18:
+  117d34  tail objc_sync_exit(self)
+  117d40  objc_sync_exit()
+
+== -[GAITrackerImpl get:]   (address 0x100117d4c  size 100  kind objc)
+  117d74  [self usageTracker]
+  117d88  [[self usageTracker] trackAction:_cmd]
+  117dac  tail [self gai_get:arg1]
+
+== -[GAITrackerImpl set:value:]   (address 0x100117db0  size 108  kind objc)
+  117ddc  [self usageTracker]
+  117df0  [[self usageTracker] trackAction:_cmd]
+  117e18  tail [self gai_set:arg1 value:arg2]
+
+== -[GAITrackerImpl send:]   (address 0x100117e1c  size 100  kind objc)
+  117e44  [self usageTracker]
+  117e58  [[self usageTracker] trackAction:_cmd]
+  117e7c  tail [self gai_send:arg1]
+
+== -[GAITrackerImpl name]   (address 0x100117e80  size 16  kind objc)
+  117e8c  return
+
+== -[GAITrackerImpl setAllowIDFACollection:]   (address 0x100117e90  size 72  kind objc)
+  117ea8  self->allowIDFACollection_ = arg1
+  117eb8  [self model]
+  117ed4  tail [[self model] setAllowIDFACollection:arg1]
+
+== -[GAITrackerImpl dispatcher]   (address 0x100117ed8  size 16  kind objc)
+  117ee4  return
+
+== -[GAITrackerImpl setDispatcher:]   (address 0x100117ee8  size 28  kind objc)
+  117f00  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAITrackerImpl trackingCredits]   (address 0x100117f04  size 16  kind objc)
+  117f10  return
+
+== -[GAITrackerImpl setTrackingCredits:]   (address 0x100117f14  size 16  kind objc)
+  117f1c  self->trackingCredits_ = arg1
+  117f20  return
+
+== -[GAITrackerImpl lastTrackTime]   (address 0x100117f24  size 16  kind objc)
+  117f30  return
+
+== -[GAITrackerImpl setLastTrackTime:]   (address 0x100117f34  size 16  kind objc)
+  117f3c  self->lastTrackTime_ = arg1
+  117f40  return
+
+== -[GAITrackerImpl model]   (address 0x100117f44  size 16  kind objc)
+  117f50  return
+
+== -[GAITrackerImpl setModel:]   (address 0x100117f54  size 28  kind objc)
+  117f6c  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAITrackerImpl allowIDFACollection]   (address 0x100117f70  size 16  kind objc)
+  117f7c  return
+
+== -[GAITrackerImpl trackCount]   (address 0x100117f80  size 16  kind objc)
+  117f8c  return
+
+== -[GAITrackerImpl setTrackCount:]   (address 0x100117f90  size 16  kind objc)
+  117f98  self->_trackCount = arg1
+  117f9c  return
+
+== -[GAITrackerImpl hitCount]   (address 0x100117fa0  size 16  kind objc)
+  117fac  return
+
+== -[GAITrackerImpl setHitCount:]   (address 0x100117fb0  size 16  kind objc)
+  117fb8  self->_hitCount = arg1
+  117fbc  return
+
+== -[GAITrackerImpl usageTracker]   (address 0x100117fc0  size 16  kind objc)
+  117fcc  return
+
+== -[GAITrackerImpl setUsageTracker:]   (address 0x100117fd0  size 28  kind objc)
+  117fe8  tail objc_setProperty(self, _cmd, x2, arg1)

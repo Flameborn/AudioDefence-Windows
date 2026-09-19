@@ -1,0 +1,146 @@
+
+== +[TAGExperimentMacroHelper handleExperimentSupplemental:supplemental:]   (address 0x100161590  size 392  kind objc)
+  1615d0  [arg2 hasExperimentSupplemental]
+  1615d4  if (!([arg2 hasExperimentSupplemental] & 1)) goto loc_10016169c
+  1615ec  [arg2 experimentSupplemental]
+  161614  [TAGExperimentMacroHelper clearKeys:arg1 expSupplemental:[arg2 experimentSupplemental]]
+  161628  [arg2 experimentSupplemental]
+  161650  [TAGExperimentMacroHelper pushValues:arg1 expSupplemental:[arg2 experimentSupplemental]]
+  161664  [arg2 experimentSupplemental]
+  16168c  [TAGExperimentMacroHelper setRandomValues:arg1 expSupplemental:[arg2 experimentSupplemental]]
+  161698  goto loc_1001616bc
+loc_10016169c:
+  1616b8  [TAGLog warning:@"supplemental missing experimentSupplemental"]
+loc_1001616bc:
+  1616d8  return
+
+== +[TAGExperimentMacroHelper clearKeys:expSupplemental:]   (address 0x100161718  size 460  kind objc)
+  161778  [arg2 valueToClearArray]
+  1617a4  [[arg2 valueToClearArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  1617ac  if ([[arg2 valueToClearArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_10016185c
+loc_1001617e0:
+loc_1001617e4:
+  1617f0  if (x8 == x28) goto loc_1001617fc
+  1617f8  objc_enumerationMutation([arg2 valueToClearArray])
+loc_1001617fc:
+  16180c  [TAGTypes valueToString:x2]
+  161828  [arg1 clearPersistentKeysWithPrefix:[TAGTypes valueToString:x2]]
+  16183c  if ((x25 + 1) <u [[arg2 valueToClearArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_1001617e4
+  161850  [[arg2 valueToClearArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  161858  if ([[arg2 valueToClearArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_1001617e0
+loc_10016185c:
+  1618a0  return
+
+== +[TAGExperimentMacroHelper pushValues:expSupplemental:]   (address 0x1001618e4  size 464  kind objc)
+  161948  [arg2 valueToPushArray]
+  161974  [[arg2 valueToPushArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  16197c  if ([[arg2 valueToPushArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_100161a2c
+loc_1001619ac:
+loc_1001619b0:
+  1619bc  if (x8 == x22) goto loc_1001619c8
+  1619c4  objc_enumerationMutation([arg2 valueToPushArray])
+loc_1001619c8:
+  1619d8  [TAGExperimentMacroHelper valueToMap:x2]
+  1619e8  if ([TAGExperimentMacroHelper valueToMap:x2] == 0) goto loc_1001619fc
+  1619f8  [arg1 push:[TAGExperimentMacroHelper valueToMap:x2]]
+loc_1001619fc:
+  161a0c  if ((x26 + 1) <u [[arg2 valueToPushArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_1001619b0
+  161a20  [[arg2 valueToPushArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  161a28  if ([[arg2 valueToPushArray] countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_1001619ac
+loc_100161a2c:
+  161a70  return
+
+== +[TAGExperimentMacroHelper setRandomValues:expSupplemental:]   (address 0x100161ab4  size 1720  kind objc)
+  161b14  [arg2 experimentRandomArray]
+  161b40  [[arg2 experimentRandomArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xb8] count:16]
+  161b48  if ([[arg2 experimentRandomArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xb8] count:16] == 0) goto loc_10016205c
+  161b74  &@selector(isKindOfClass:)
+  161b7c  &@selector(minRandom)
+  161bc0  &@selector(warning:)
+  161bc8  &@selector(numberWithLong:)
+  161c14  &@selector(mutableCopy)
+  161c7c  &@selector(longValue)
+loc_100161c90:
+loc_100161c94:
+  161ca0  if (x8 == x24) goto loc_100161cac
+  161ca8  objc_enumerationMutation([arg2 experimentRandomArray])
+loc_100161cac:
+  161cbc  [x0 hasKey]
+  161cc0  if (!([x0 hasKey] & 1)) goto loc_100161d40
+  161ccc  [x0 key]
+  161ce8  [arg1 get:[x0 key]]
+  161d14  [NSNumber class]
+  161d28  [[arg1 get:[x0 key]] isKindOfClass:[NSNumber class]]
+  161d2c  if (!([[arg1 get:[x0 key]] isKindOfClass:[NSNumber class]] & 1)) goto loc_100161d5c
+  161d3c  goto loc_100161d60
+loc_100161d40:
+  161d54  [TAGLog warning:@"GaExperimentRandom: No key"]
+  161d58  goto loc_100162030
+loc_100161d5c:
+loc_100161d60:
+  161d68  [x0 minRandom]
+  161d78  [x0 maxRandom]
+  161d88  [x0 retainOriginalValue]
+  161d8c  if (x20 == 0) goto loc_100161dc0
+  161d94  if ((([x0 retainOriginalValue] ^ 1) & 1)) goto loc_100161dc0
+  161da0  [x0 longValue]
+  161da8  if ([x0 longValue] < [x0 minRandom]) goto loc_100161dc0
+  161db4  [x0 longValue]
+  161dbc  if ([x0 longValue] <= [x0 maxRandom]) goto loc_100161e44
+loc_100161dc0:
+  161dc4  if ([x0 maxRandom] >= [x0 minRandom]) goto loc_100161de4
+  161ddc  [TAGLog warning:@"GaExperimentRandom: random range invalid"]
+  161de0  goto loc_10016201c
+loc_100161de4:
+  161df0  [NSNumber numberWithLong:([x0 maxRandom] - [x0 minRandom])]
+  161e0c  [[NSNumber numberWithLong:([x0 maxRandom] - [x0 minRandom])] unsignedIntValue]
+  161e10  arc4random_uniform([[NSNumber numberWithLong:([x0 maxRandom] - [x0 minRandom])] unsignedIntValue])
+  161e14  t1 = ([x0 minRandom] + arc4random_uniform([[NSNumber numberWithLong:([x0 maxRandom] - [x0 minRandom])] unsignedIntValue]))
+  161e20  [NSNumber numberWithLong:t1]
+loc_100161e44:
+  161e4c  [x0 key]
+  161e68  [arg1 clearPersistentKeysWithPrefix:[x0 key]]
+  161e7c  [x0 key]
+  161e9c  [arg1 expandKey:[x0 key] value:x3]
+  161eb0  [[arg1 expandKey:[x0 key] value:x3] mutableCopy]
+  161ed0  [x0 lifetimeInMilliseconds]
+  161ed8  if ([x0 lifetimeInMilliseconds] < 1) goto loc_100162004
+  161eec  [x0 lifetimeInMilliseconds]
+  161efc  [NSNumber numberWithLong:[x0 lifetimeInMilliseconds]]
+  161f1c  [[[arg1 expandKey:[x0 key] value:x3] mutableCopy] objectForKey:@"gtm"]
+  161f30  if ([[[arg1 expandKey:[x0 key] value:x3] mutableCopy] objectForKey:@"gtm"] != 0) goto loc_100161f7c
+  161f4c  [NSMutableDictionary dictionaryWithObject:[NSNumber numberWithLong:[x0 lifetimeInMilliseconds]] forKey:@"lifetime"]
+  161f70  [[[arg1 expandKey:[x0 key] value:x3] mutableCopy] setObject:[NSMutableDictionary dictionaryWithObject:[NSNumber numberWithLong:[x0 lifetimeInMilliseconds]] forKey:@"lifetime"] forKey:@"gtm"]
+  161f78  goto loc_100161ff8
+loc_100161f7c:
+  161f8c  [[[arg1 expandKey:[x0 key] value:x3] mutableCopy] objectForKey:@"gtm"]
+  161fa8  [NSMutableDictionary class]
+  161fb8  [[[[arg1 expandKey:[x0 key] value:x3] mutableCopy] objectForKey:@"gtm"] isKindOfClass:[NSMutableDictionary class]]
+  161fbc  if ([[[[arg1 expandKey:[x0 key] value:x3] mutableCopy] objectForKey:@"gtm"] isKindOfClass:[NSMutableDictionary class]] == 0) goto loc_100161fdc
+  161fd4  [[[[arg1 expandKey:[x0 key] value:x3] mutableCopy] objectForKey:@"gtm"] setObject:[NSNumber numberWithLong:[x0 lifetimeInMilliseconds]] forKey:@"lifetime"]
+  161fd8  goto loc_100161ff4
+loc_100161fdc:
+  161ff0  [TAGLog warning:@"GaExperimentRandom: gtm not a map"]
+loc_100161ff4:
+loc_100161ff8:
+loc_100162004:
+  162010  [arg1 push:[[arg1 expandKey:[x0 key] value:x3] mutableCopy]]
+loc_10016201c:
+loc_100162030:
+  162038  if ((x23 + 1) <u [[arg2 experimentRandomArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xb8] count:16]) goto loc_100161c94
+  162050  [[arg2 experimentRandomArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xb8] count:16]
+  162058  if ([[arg2 experimentRandomArray] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0xb8] count:16] != 0) goto loc_100161c90
+loc_10016205c:
+  1620a0  return
+
+== +[TAGExperimentMacroHelper valueToMap:]   (address 0x10016216c  size 292  kind objc)
+  162194  [TAGTypes valueToObject:arg1]
+  1621b8  [NSDictionary class]
+  1621d0  [[TAGTypes valueToObject:arg1] isKindOfClass:[NSDictionary class]]
+  1621d4  if (!([[TAGTypes valueToObject:arg1] isKindOfClass:[NSDictionary class]] & 1)) goto loc_1001621e8
+  1621e4  goto loc_100162244
+loc_1001621e8:
+  162210  [NSString stringWithFormat:@"value: %@ is not a map value, ignored.", [TAGTypes valueToObject:arg1]]
+  162234  [TAGLog warning:[NSString stringWithFormat:@"value: %@ is not a map value, ignored.", [TAGTypes valueToObject:arg1]]]
+loc_100162244:
+  162260  return

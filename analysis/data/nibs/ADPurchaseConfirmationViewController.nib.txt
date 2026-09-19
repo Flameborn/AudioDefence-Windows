@@ -1,0 +1,22 @@
+// ADPurchaseConfirmationViewController.nib
+TOP-LEVEL OBJECTS
+  #5 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #15 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #26 UIView  
+    #9 UIView  
+      #32 UIImageView  Image='challenge_metal_bg.png'
+      #70 UILabel  UserInteractionDisabled=False Text='PURCHASE CONFIRMATION'
+      #35 UILabel  UserInteractionDisabled=False Text='WEAPON'
+      #2 UIButton (custom class ADButtonWithFont)  title[0]='PAY '
+      #62 UIButton (custom class ADButtonWithFont)  title[0]='CANCEL'
+
+CONNECTIONS
+  action  cancelButtonPressed:                      #62 ADButtonWithFont --(events 0x40)--> #5 UIProxyObject
+  action  purchaseButtonPressed:                    #2 ADButtonWithFont --(events 0x40)--> #5 UIProxyObject
+  outlet  cancelButton                              #5 UIProxyObject --> #62 ADButtonWithFont
+  outlet  popupView                                 #5 UIProxyObject --> #9 UIView
+  outlet  purchaseButton                            #5 UIProxyObject --> #2 ADButtonWithFont
+  outlet  view                                      #5 UIProxyObject --> #26 UIView
+  outlet  weaponLabel                               #5 UIProxyObject --> #35 UILabel Text='WEAPON'
+
+ACCESSIBILITY CONFIGURATIONS

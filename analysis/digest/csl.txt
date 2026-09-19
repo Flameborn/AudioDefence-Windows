@@ -1,0 +1,22 @@
+
+== csl::SimpleVector<…>(…)   (address 0x1000eb444  size 120  kind sym)
+  0eb464  if (a0[+0x8] == 0) goto loc_1000eb4a8
+loc_1000eb470:
+  0eb488  call a1[+0x10]
+  0eb490  if (0 != 0) goto loc_1000eb4a8
+  0eb4a4  if ((x22 + 1) <u a0[+0x8]) goto loc_1000eb470
+loc_1000eb4a8:
+  0eb4b8  return
+
+== csl::SimpleVector<…>(…)   (address 0x1000eb4bc  size 140  kind sym)
+  0eb4d8  if (a0[+0x8] == 0) goto loc_1000eb538
+loc_1000eb4e0:
+  0eb4f0  if ((a0[+0x10] + (x21 << 3))[+0x0] == a1) goto loc_1000eb4fc
+  0eb4f8  goto loc_1000eb530
+loc_1000eb4fc:
+  0eb50c  memmove((a0[+0x10] + (x21 << 3)), (a0[+0x10] + ((x21 + 1) << 3)), (x8 + ~x21))
+  0eb52c  a0[+0x8] = (a0[+0x8] - 1)
+loc_1000eb530:
+  0eb534  if (x8 >u (x21 + 1)) goto loc_1000eb4e0
+loc_1000eb538:
+  0eb544  return

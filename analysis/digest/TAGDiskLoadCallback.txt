@@ -1,0 +1,132 @@
+
+== -[TAGDiskLoadCallback initWithCallback:container:]   (address 0x10014ce9c  size 220  kind objc)
+  14cef4  [super init]
+  14cefc  if (self == 0) goto loc_10014cf34
+  14cf28  self->_container = arg2
+loc_10014cf34:
+  14cf58  return
+
+== -[TAGDiskLoadCallback startLoad]   (address 0x10014cf78  size 244  kind objc)
+  14cf9c  [self container]
+  14cfac  objc_sync_enter([self container])
+  14cfc0  [self callback]
+  14cfd8  [self container]
+  14d000  [[self callback] containerRefreshBegin:[self container] refreshType:0]
+  14d018  objc_sync_exit([self container])
+  14d02c  return
+  14d058  objc_sync_exit()
+
+== -[TAGDiskLoadCallback onSuccess:]   (address 0x10014d06c  size 2232  kind objc)
+  14d0b8  [self container]
+  14d0c8  objc_sync_enter([self container])
+  14d0d4  [self container]
+  14d0f0  [[self container] isDefault]
+  14d100  if ([[self container] isDefault] == 0) goto loc_10014d680
+  14d118  [arg1 hasSupplementedResource]
+  14d11c  if ([arg1 hasSupplementedResource] == 0) goto loc_10014d1c4
+  14d138  [arg1 supplementedResource]
+  14d154  [[arg1 supplementedResource] resource]
+  14d174  [self container]
+  14d18c  [arg1 supplementedResource]
+  14d1b0  [[self container] setLastLoadedSupplementedResource:[arg1 supplementedResource]]
+  14d1c0  goto loc_10014d30c
+loc_10014d1c4:
+  14d1d8  [arg1 resource]
+  14d1f0  [self container]
+  14d210  [[self container] lastLoadedSupplementedResource]
+  14d230  [[[self container] lastLoadedSupplementedResource] setResource:[arg1 resource]]
+  14d24c  [self container]
+  14d260  [[self container] lastLoadedSupplementedResource]
+  14d280  [[[self container] lastLoadedSupplementedResource] setSupplementalArray:0]
+  14d29c  [self container]
+  14d2b0  [[self container] lastLoadedSupplementedResource]
+  14d2d0  [[arg1 resource] version]
+  14d2f4  [[[self container] lastLoadedSupplementedResource] setFingerprint:[[arg1 resource] version]]
+loc_10014d30c:
+  14d318  [self container]
+  14d338  [[self container] setupEvaluatorsWithResource:x2]
+  14d34c  [self container]
+  14d36c  [[self container] lastLoadedSupplementedResource]
+  14d38c  [[[self container] lastLoadedSupplementedResource] supplementalArray]
+  14d3b0  if ([[[self container] lastLoadedSupplementedResource] supplementalArray] == 0) goto loc_10014d44c
+  14d3bc  [self container]
+  14d3d8  [self container]
+  14d3ec  [[self container] lastLoadedSupplementedResource]
+  14d400  [[[self container] lastLoadedSupplementedResource] supplementalArray]
+  14d424  [[self container] setSupplementals:[[[self container] lastLoadedSupplementedResource] supplementalArray]]
+loc_10014d44c:
+  14d468  [arg1 timeStamp]
+  14d488  [NSString stringWithFormat:@"Setting refresh time to saved time: %lld", [arg1 timeStamp]]
+  14d4b4  [TAGLog verbose:[NSString stringWithFormat:@"Setting refresh time to saved time: %lld", [arg1 timeStamp]]]
+  14d4c0  [self container]
+  14d4d8  [arg1 timeStamp]
+  14d4f0  [[self container] setLastRefreshTime:(float)[arg1 timeStamp]]
+  14d514  [TAGContainer refreshPeriodOnSuccess]
+  14d524  [self container]
+  14d548  [[self container] lastRefreshTime]
+  14d558  [TAGContainer refreshPeriodOnSuccess]
+  14d568  [self container]
+  14d588  [[self container] currentTimeInMilliseconds]
+  14d590  t1 = (([[self container] lastRefreshTime] + [TAGContainer refreshPeriodOnSuccess]) - [[self container] currentTimeInMilliseconds])
+  14d598  if ([TAGContainer refreshPeriodOnSuccess] >= (or unordered) t1) goto loc_10014d5b0
+  14d5a4  [TAGContainer refreshPeriodOnSuccess]
+  14d5ac  goto loc_10014d61c
+loc_10014d5b0:
+  14d5b8  [self container]
+  14d5cc  [[self container] lastRefreshTime]
+  14d5dc  [TAGContainer refreshPeriodOnSuccess]
+  14d5ec  [self container]
+  14d600  [[self container] currentTimeInMilliseconds]
+  14d608  t2 = (([[self container] lastRefreshTime] + [TAGContainer refreshPeriodOnSuccess]) - [[self container] currentTimeInMilliseconds])
+loc_10014d61c:
+  14d638  [self container]
+  14d660  [[self container] loadAfterDelay:(d8 < 0.0 ? 0 : d8)]
+loc_10014d680:
+  14d690  [self callback]
+  14d6a8  [self container]
+  14d6d0  [[self callback] containerRefreshSuccess:[self container] refreshType:0]
+  14d6e8  objc_sync_exit([self container])
+  14d71c  return
+  14d908  objc_sync_exit()
+
+== -[TAGDiskLoadCallback onFailure:]   (address 0x10014d924  size 416  kind objc)
+  14d950  [self container]
+  14d960  objc_sync_enter([self container])
+  14d974  [self callback]
+  14d98c  [self container]
+  14d9b0  [self failureToRefreshFailure:arg1]
+  14d9d0  [[self callback] containerRefreshFailure:[self container] failure:[self failureToRefreshFailure:arg1] refreshType:0]
+  14d9ec  [self container]
+  14da08  [[self container] isDefault]
+  14da18  if ([[self container] isDefault] == 0) goto loc_10014da50
+  14da24  [self container]
+  14da44  [[self container] loadAfterDelay:0]
+loc_10014da50:
+  14da54  objc_sync_exit([self container])
+  14da6c  return
+  14dab0  objc_sync_exit()
+
+== -[TAGDiskLoadCallback failureToRefreshFailure:]   (address 0x10014dac4  size 40  kind objc)
+  14dae8  return
+
+== -[TAGDiskLoadCallback close]   (address 0x10014daec  size 124  kind objc)
+  14db08  [self container]
+  14db18  objc_sync_enter([self container])
+  14db30  [self setCallback:0]
+  14db38  objc_sync_exit([self container])
+  14db48  return
+  14db54  objc_sync_exit()
+
+== -[TAGDiskLoadCallback callback]   (address 0x10014db68  size 16  kind objc)
+  14db74  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDiskLoadCallback setCallback:]   (address 0x10014db78  size 12  kind objc)
+  14db80  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGDiskLoadCallback container]   (address 0x10014db84  size 16  kind objc)
+  14db90  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[TAGDiskLoadCallback setContainer:]   (address 0x10014db94  size 12  kind objc)
+  14db9c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[TAGDiskLoadCallback .cxx_destruct]   (address 0x10014dba0  size 64  kind objc)

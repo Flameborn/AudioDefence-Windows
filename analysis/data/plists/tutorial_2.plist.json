@@ -1,0 +1,44 @@
+{
+ "icon_title": "02",
+ "accuracy_star": {
+  "reward": 200,
+  "objective": 10
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_roman"
+ },
+ "title": "Plan B",
+ "objective": "Your pistol is out of bullets. Learn to switch weapons!",
+ "tip": "Switching weapons is always faster than reloading.",
+ "bricks": [
+  "tutorial_2_brick_1",
+  "tutorial_2_brick_2",
+  "tutorial_2_brick_3"
+ ],
+ "mission_star": {
+  "reward": 500
+ },
+ "challenge_id": "tutorial_2",
+ "icon": "Challenge_icon_02",
+ "challenges_requirement": [
+  "tutorial_1"
+ ],
+ "weapons": [
+  {
+   "ammo": "0",
+   "name": "pistol"
+  },
+  {
+   "ammo": "999",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 200,
+  "objective": 120
+ }
+}

@@ -1,0 +1,105 @@
+
+== csl::AmbisonicUnitGenerator::~AmbisonicUnitGenerator   (address 0x1000f5f5c  size 36  kind cxx)
+  0f5f6c  sub_1000e8918(a0, a1, a2, a3)
+  0f5f7c  return
+
+== csl::AmbisonicUnitGenerator::~AmbisonicUnitGenerator/*deleting*/   (address 0x1000f5f80  size 56  kind cxx)
+  0f5f90  sub_1000e8918(a0, a1, a2, a3)
+  0f5fa0  tail ZdlPv(a0)
+  0f5fac  ZdlPv()
+
+== sub_1000f5fb8   (address 0x1000f5fb8  size 56  kind sub)
+  0f5fec  return
+
+== sub_1000f5ff0   (address 0x1000f5ff0  size 16  kind sub)
+  0f5ffc  return
+
+== sub_1000f6000   (address 0x1000f6000  size 28  kind sub)
+  0f6018  return
+
+== sub_1000f601c   (address 0x1000f601c  size 292  kind sub)
+  0f6084  if ((uint)(((float)(w20 >u w21 ? w20 : w21) + 1) * ((float)(w20 >u w21 ? w20 : w21) + 1)) == 0) goto loc_1000f609c
+  0f6090  t1 = (4 + (((uint)(((float)(w20 >u w21 ? w20 : w21) + 1) * ((float)(w20 >u w21 ? w20 : w21) + 1)) - 1) << 2))
+  0f6098  bzero(a1, t1, a2, a3)
+loc_1000f609c:
+  0f60a0  if (((w10 - w9) + (uint)(((float)w21 + 1) * ((float)w21 + 1))) <u 2) goto loc_1000f612c
+loc_1000f60b0:
+  0f60b4  if (w8 >u w20) goto loc_1000f60cc
+loc_1000f60cc:
+  0f60e4  if (w8 >u w21) goto loc_1000f6118
+  0f60f0  if ((w10 + 2) >=u (uint)(((float)w8 + 1) * ((float)w8 + 1))) goto loc_1000f611c
+loc_1000f6100:
+  0f6110  if (w11 != (x12 + 1)) goto loc_1000f6100
+loc_1000f6118:
+loc_1000f611c:
+  0f6128  if (w9 <u ((w10 - w9) + (uint)(((float)w21 + 1) * ((float)w21 + 1)))) goto loc_1000f60b0
+loc_1000f612c:
+  0f613c  return
+
+== sub_1000f6140   (address 0x1000f6140  size 180  kind sub)
+  0f6178  a1[+0x0] = 0
+  0f6180  if (((w11 - w13) + (uint)(((float)w9 + 1) * ((float)w9 + 1))) <u 2) goto loc_1000f61f0
+loc_1000f6188:
+  0f618c  if (w12 <=u w8) goto loc_1000f6198
+  0f6194  goto loc_1000f61a8
+loc_1000f6198:
+loc_1000f61a8:
+  0f61c0  if (w12 >u w9) goto loc_1000f61e0
+  0f61c8  if ((w10 + 2) >=u (uint)(((float)w12 + 1) * ((float)w12 + 1))) goto loc_1000f61e4
+loc_1000f61cc:
+  0f61dc  if (w13 != (w10 + 1)) goto loc_1000f61cc
+loc_1000f61e0:
+loc_1000f61e4:
+  0f61ec  if (w10 <u ((w11 - w13) + (uint)(((float)w9 + 1) * ((float)w9 + 1)))) goto loc_1000f6188
+loc_1000f61f0:
+  0f61f0  return
+
+== sub_1000f61f4   (address 0x1000f61f4  size 108  kind sub)
+  0f620c  sub_1000f5e0c(a0, a2, a2, a3)
+  0f621c  a0[+0x0] = vtable<csl::AmbisonicEncoder>
+  0f6220  a0[+0xb8] = 0
+  0f622c  sub_1000f6260(a0, a1)
+  0f6234  sub_1000f62f0(a0)
+  0f6244  return
+  0f6250  call sub_1000e8918
+  0f625c  call sub_10000b760
+
+== sub_1000f6260   (address 0x1000f6260  size 144  kind sub)
+  0f627c  if (a0[+0xb8] != 0) goto loc_1000f6298
+  0f6284  Znwm(48, a1, a2, a3)
+  0f6290  sub_1000e9060(Znwm(48, a1, a2, a3), a1)
+  0f6294  a0[+0xb8] = Znwm(48, a1, a2, a3)
+loc_1000f6298:
+  0f62a0  if (x0 == a1) goto loc_1000f62cc
+  0f62a8  sub_1000e8af8(x0, a0)
+  0f62b0  a0[+0xb8][+0x8] = a1
+  0f62c8  tail sub_1000e89bc(a1, a0)
+loc_1000f62cc:
+  0f62d8  return
+  0f62e4  ZdlPv()
+
+== sub_1000f62f0   (address 0x1000f62f0  size 84  kind sub)
+  0f6308  Znam((a0[+0x60] << 2), a1, a2, a3)
+  0f630c  a0[+0xb0] = Znam((a0[+0x60] << 2), a1, a2, a3)
+  0f6318  Znam((a0[+0x60] << 2), a1, a2, a3)[+0x0] = 0x3f3504f3
+  0f6320  if (a0[+0x60] <u 2) goto loc_1000f6338
+  0f6334  bzero((Znam((a0[+0x60] << 2), a1, a2, a3) + 4), (a0[+0x60] >u 2 ? (4 + ((a0[+0x60] - 2) << 2)) : 4))
+loc_1000f6338:
+  0f6340  return
+
+== sub_1000f6344   (address 0x1000f6344  size 36  kind sub)
+  0f6354  sub_1000f61f4(a0, a1, a2, a3)
+  0f6364  return
+
+== sub_1000f6368   (address 0x1000f6368  size 112  kind sub)
+  0f6384  a0[+0x0] = vtable<csl::AmbisonicEncoder>
+  0f638c  if (a0[+0xb0] == 0) goto loc_1000f6394
+  0f6390  ZdaPv(a0[+0xb0], a1, a2, a3)
+loc_1000f6394:
+  0f6398  if (a0[+0xb8] == 0) goto loc_1000f63a8
+  0f63a4  call a0[+0xb8][+0x0][+0x8]
+loc_1000f63a8:
+  0f63ac  sub_1000e8918(a0)
+  0f63bc  return
+  0f63c8  call sub_1000e8918
+  0f63d4  call sub_10000b760

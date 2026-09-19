@@ -1,0 +1,54 @@
+
+== -[ADShakeDetector init]   (address 0x1000d7d14  size 392  kind objc)
+  0d7d50  [super init]
+  0d7d58  if (self == 0) goto loc_1000d7e48
+  0d7d74  [CMMotionManager alloc]
+  0d7d80  [[CMMotionManager alloc] init]
+  0d7d94  self->motionManager = [[CMMotionManager alloc] init]
+  0d7db8  [self->motionManager setDeviceMotionUpdateInterval:0.1]
+  0d7dd4  [NSOperationQueue mainQueue]
+  0d7e34  [self->motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue mainQueue] withHandler:^{-[ADShakeDetector init]_block_invoke captures +0x20=self, +0x28=self, +0x30=ADShakeDetector}]
+loc_1000d7e48:
+  0d7e5c  return
+
+== -[ADShakeDetector init]_block_invoke   (address 0x1000d7e9c  size 88  kind block)
+  0d7ecc  [self motionMethod:blockarg1]
+  0d7edc  return
+
+== sub_1000d7ef4   (address 0x1000d7ef4  size 8  kind sub)
+
+== sub_1000d7efc   (address 0x1000d7efc  size 8  kind sub)
+  0d7f00  return
+
+== -[ADShakeDetector motionMethod:]   (address 0x1000d7f04  size 428  kind objc)
+  0d7f40  [ADGameParameters sharedParameters]
+  0d7f5c  [[ADGameParameters sharedParameters] buttonMode]
+  0d7f60  if ([[ADGameParameters sharedParameters] buttonMode] != 0) goto loc_1000d8050
+  0d7f78  [ADBrickManager sharedBrickManager]
+  0d7f94  [[ADBrickManager sharedBrickManager] playerIsDead]
+  0d7fac  if (([[ADBrickManager sharedBrickManager] playerIsDead] & 1)) goto loc_1000d8058
+  0d7fc0  [arg1 userAcceleration]
+  0d7fd8  if (fabs([arg1 userAcceleration].0) <= (or unordered) 0.7) goto loc_1000d8014
+  0d7fec  [self weaponManager]
+  0d8008  [[self weaponManager] shootWithMelee]
+loc_1000d8014:
+  0d801c  if (fabs([arg1 userAcceleration].2) <= (or unordered) 0.7) goto loc_1000d8058
+  0d8030  [self weaponManager]
+  0d804c  [[self weaponManager] shootWithMelee]
+loc_1000d8050:
+loc_1000d8058:
+  0d8070  return
+
+== -[ADShakeDetector stopMotionManager]   (address 0x1000d80b0  size 64  kind objc)
+  0d80d8  [self->motionManager stopDeviceMotionUpdates]
+  0d80e0  self->motionManager = 0
+  0d80ec  return
+
+== -[ADShakeDetector weaponManager]   (address 0x1000d80f0  size 16  kind objc)
+  0d80fc  return
+
+== -[ADShakeDetector setWeaponManager:]   (address 0x1000d8100  size 56  kind objc)
+  0d8124  self->_weaponManager = arg1
+  0d8134  return
+
+== -[ADShakeDetector .cxx_destruct]   (address 0x1000d8138  size 64  kind objc)

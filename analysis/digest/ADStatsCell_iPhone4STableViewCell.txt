@@ -1,0 +1,29 @@
+
+== -[ADStatsCell_iPhone4STableViewCell awakeFromNib]   (address 0x1000417b0  size 4  kind objc)
+  0417b0  return
+
+== -[ADStatsCell_iPhone4STableViewCell setSelected:animated:]   (address 0x1000417b4  size 60  kind objc)
+  0417e0  [super setSelected:arg1 animated:arg2]
+  0417ec  return
+
+== -[ADStatsCell_iPhone4STableViewCell placeholderKey]   (address 0x1000417f0  size 16  kind objc)
+  0417fc  return
+
+== -[ADStatsCell_iPhone4STableViewCell setPlaceholderKey:]   (address 0x100041800  size 56  kind objc)
+  041824  self->_placeholderKey = arg1
+  041834  return
+
+== -[ADStatsCell_iPhone4STableViewCell placeholderValue]   (address 0x100041838  size 16  kind objc)
+  041844  return
+
+== -[ADStatsCell_iPhone4STableViewCell setPlaceholderValue:]   (address 0x100041848  size 56  kind objc)
+  04186c  self->_placeholderValue = arg1
+  04187c  return
+
+== -[ADStatsCell_iPhone4STableViewCell .cxx_destruct]   (address 0x100041880  size 64  kind objc)
+
+== sub_1000418c0   (address 0x1000418c0  size 152  kind sub)
+  0418f4  [ADAppDelegate class]
+  0418f8  NSStringFromClass([ADAppDelegate class])
+  041918  UIApplicationMain(a0, a1, 0, NSStringFromClass([ADAppDelegate class]))
+  041940  return

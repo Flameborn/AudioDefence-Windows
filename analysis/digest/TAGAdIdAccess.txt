@@ -1,0 +1,26 @@
+
+== +[TAGAdIdAccess load]   (address 0x100172924  size 80  kind objc)
+  172938  NSClassFromString(@"TAGActualAdIdAccess", _cmd)
+  172940  store g_10042dfa8 = NSClassFromString(@"TAGActualAdIdAccess", _cmd)
+  17294c  [0x10041ded0] -> &d_10042d6d0
+  17295c  [NSClassFromString(@"TAGActualAdIdAccess", _cmd) conformsToProtocol:&d_10042d6d0]
+  172960  if (([NSClassFromString(@"TAGActualAdIdAccess", _cmd) conformsToProtocol:&d_10042d6d0] & 1)) goto loc_100172968
+  172964  store g_10042dfa8 = 0
+loc_100172968:
+  172970  return
+
+== +[TAGAdIdAccess retrieveId]   (address 0x100172974  size 100  kind objc)
+  172988  if (g_10042dfa8 == 0) goto loc_1001729b8
+  1729a4  [g_10042dfa8 performSelector:@selector(retrieveId)]
+  1729b4  goto loc_1001729c8
+loc_1001729b8:
+loc_1001729c8:
+  1729d4  return
+
+== +[TAGAdIdAccess retrieveTrackingFlag]   (address 0x1001729d8  size 76  kind objc)
+  1729e8  if (g_10042dfa8 == 0) goto loc_100172a14
+  172a04  [g_10042dfa8 performSelector:@selector(retrieveTrackingFlag)]
+  172a10  goto loc_100172a18
+loc_100172a14:
+loc_100172a18:
+  172a20  return

@@ -1,0 +1,76 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "bastard_passerby_storm_a"
+  }
+ ],
+ "Enemies": {
+  "Runner": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 5,
+    "enemy": "bastard_passerby_storm_a"
+   },
+   "spawn_angle": 290,
+   "spawn_distance": 10
+  },
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3.4,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 80,
+   "spawn_distance": 10
+  },
+  "Chainsaw": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 7,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 130,
+   "spawn_distance": 12
+  },
+  "Clown": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 0.01,
+    "enemy": "bastard_passerby_storm_a"
+   },
+   "spawn_angle": 130,
+   "spawn_distance": 10
+  },
+  "Farty": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2.3,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 60,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4.1,
+    "enemy": "Runner"
+   },
+   "spawn_angle": 40,
+   "spawn_distance": 10
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 3,
+    "enemy": "bastard_passerby_storm_a"
+   },
+   "spawn_angle": 50,
+   "spawn_distance": 10
+  }
+ }
+}

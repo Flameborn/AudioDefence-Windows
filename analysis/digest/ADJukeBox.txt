@@ -1,0 +1,122 @@
+
+== -[ADJukeBox initWithName:]   (address 0x100065f4c  size 508  kind objc)
+  065f9c  [super initWithName:arg1]
+  065fa4  if (self == 0) goto loc_1000660b0
+  065fc0  [ADBrickManager sharedBrickManager]
+  065fe8  [arg1 componentsSeparatedByString:@" "]
+  066008  [[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]
+  06602c  [[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]]
+  06606c  [[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"pauseTime"]
+  066088  [[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"pauseTime"] floatValue]
+  06609c  [self setPauseTime:[[[[ADBrickManager sharedBrickManager] dictionaryForEnemyName:[[arg1 componentsSeparatedByString:@" "] objectAtIndex:0]] objectForKey:@"pauseTime"] floatValue]]
+loc_1000660b0:
+  0660d0  return
+
+== -[ADJukeBox update:]   (address 0x100066148  size 244  kind objc)
+  06616c  [self state]
+  066174  if ([self state] != 302) goto loc_1000661b8
+  066188  [self timeInState]
+  0661a0  [self pauseTime]
+  0661a8  if ([self timeInState] <= (or unordered) [self pauseTime]) goto loc_100066204
+  0661b0  &@selector(endOfPauseState)
+  0661b4  goto loc_1000661f8
+loc_1000661b8:
+  0661b8  if ([self state] != 0) goto loc_100066204
+  0661cc  [self timeInState]
+  0661e4  [self spawn_time]
+  0661ec  if ([self timeInState] <= (or unordered) [self spawn_time]) goto loc_100066204
+  0661f4  &@selector(spawn)
+loc_1000661f8:
+  066200  [self endOfPauseState | spawn]
+loc_100066204:
+  066214  [self timeInState]
+  066238  tail [self setTimeInState:([self timeInState] + arg1)]
+
+== -[ADJukeBox spawn]   (address 0x10006623c  size 64  kind objc)
+  066258  [self playRandomMusic]
+  066278  tail [self setState:301]
+
+== -[ADJukeBox playRandomMusic]   (address 0x10006627c  size 724  kind objc)
+  0662b0  [self playlist]
+  0662d8  [[self playlist] anySoundContaining:@"jukebox_music_"]
+  0662fc  [self setSound:[[self playlist] anySoundContaining:@"jukebox_music_"]]
+  066324  [self sound]
+  066348  [[self sound] setSpatialized:1]
+  06635c  [self sound]
+  066380  [self position]
+  066390  [self position]
+  0663b4  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+  0663c8  [self sound]
+  0663ec  [[self sound] play:1]
+  066400  [self sound]
+  066424  [[self sound] setGain:6]
+  066438  [self playlist]
+  066454  [[self playlist] anySoundContaining:@"jukebox_resume_"]
+  066478  [[[self playlist] anySoundContaining:@"jukebox_resume_"] setSpatialized:1]
+  066484  [self position]
+  066494  [self position]
+  0664ac  [[[self playlist] anySoundContaining:@"jukebox_resume_"] setPlanar:{[self position].0, [self position].1, 0}]
+  0664bc  [[[self playlist] anySoundContaining:@"jukebox_resume_"] play:0]
+  0664cc  [[[self playlist] anySoundContaining:@"jukebox_resume_"] setGain:6]
+  0664f0  return
+
+== -[ADJukeBox hitByWeapon:]   (address 0x100066550  size 564  kind objc)
+  066578  [self sound]
+  066594  [[self sound] stop]
+  0665b0  [self playlist]
+  0665d4  [[self playlist] anySoundContaining:@"jukebox_hit_"]
+  0665f8  [self setSound:[[self playlist] anySoundContaining:@"jukebox_hit_"]]
+  066614  [self sound]
+  066634  [[self sound] setSpatialized:1]
+  066648  [self sound]
+  06666c  [self position]
+  06667c  [self position]
+  06669c  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+  0666b0  [self sound]
+  0666d0  [[self sound] play:0]
+  0666e4  [self sound]
+  066704  [[self sound] setGain:6]
+  066724  [self setState:302]
+  066738  return
+
+== -[ADJukeBox hitByExplosionAtPosition:withDamages:dispersal:radius:]   (address 0x100066784  size 176  kind objc)
+  0667bc  [super hitByExplosionAtPosition:{arg1.0, arg1.1} withDamages:arg2 dispersal:arg3 radius:arg4 powerupname:0]
+  0667d0  [self sound]
+  0667ec  [[self sound] pause]
+  06680c  [self setState:302]
+  06681c  return
+
+== -[ADJukeBox canBeShotAt]   (address 0x100066834  size 120  kind objc)
+  066854  [self state]
+  06685c  if ([self state] == 302) goto loc_100066884
+  066868  [self state]
+  06686c  if ([self state] == 0) goto loc_100066884
+  066878  [self state]
+  066880  if ([self state] != 999) goto loc_10006688c
+loc_100066884:
+  066888  goto loc_1000668a0
+loc_10006688c:
+  066894  [self state]
+loc_1000668a0:
+  0668a8  return
+
+== -[ADJukeBox endOfPauseState]   (address 0x1000668ac  size 64  kind objc)
+  0668c8  [self playRandomMusic]
+  0668e8  tail [self setState:301]
+
+== -[ADJukeBox setRandomPosition]   (address 0x1000668ec  size 344  kind objc)
+  06691c  [NSDictionary alloc]
+  06692c  rand()
+  06694c  t1 = (((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >> 8) + ((((rand() * 0xffffffffb60b60b7) >>> 32) + rand()) >>> 31))
+  06696c  [NSNumber numberWithInt:(rand() - t1 * 360)]
+  066988  [NSNumber numberWithInt:7]
+  0669c4  [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:(rand() - t1 * 360)], @"spawn_angle", [NSNumber numberWithInt:7], @"spawn_distance", nil]
+  0669e0  [self setPositionFromDictionary:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:(rand() - t1 * 360)], @"spawn_angle", [NSNumber numberWithInt:7], @"spawn_distance", nil]]
+  066a0c  return
+
+== -[ADJukeBox pauseTime]   (address 0x100066a44  size 20  kind objc)
+  066a54  return
+
+== -[ADJukeBox setPauseTime:]   (address 0x100066a58  size 20  kind objc)
+  066a64  self->_pauseTime = arg1
+  066a68  return

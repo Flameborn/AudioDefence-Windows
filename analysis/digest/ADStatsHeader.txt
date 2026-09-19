@@ -1,0 +1,179 @@
+
+== -[ADStatsHeader initWithFrame:]   (address 0x10007ea10  size 128  kind objc)
+  07ea44  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  07ea4c  if (self == 0) goto loc_10007ea68
+  07ea64  [self customInit]
+loc_10007ea68:
+  07ea78  return
+
+== -[ADStatsHeader init]   (address 0x10007ea90  size 128  kind objc)
+  07eac4  [super init]
+  07eacc  if (self == 0) goto loc_10007eae8
+  07eae4  [self customInit]
+loc_10007eae8:
+  07eaf8  return
+
+== -[ADStatsHeader initWithReuseIdentifier:]   (address 0x10007eb10  size 172  kind objc)
+  07eb5c  [super initWithReuseIdentifier:arg1]
+  07eb64  if (self == 0) goto loc_10007eb80
+  07eb7c  [self customInit]
+loc_10007eb80:
+  07eb9c  return
+
+== -[ADStatsHeader customInit]   (address 0x10007ebbc  size 1640  kind objc)
+  07ebf0  [ADGameParameters sharedParameters]
+  07ec0c  [[ADGameParameters sharedParameters] isIphone]
+  07ec30  [self setTitleLabelInset:([[ADGameParameters sharedParameters] isIphone] != 0 ? 15 : 30)]
+  07ec54  [UIView alloc]
+  07ec70  [self contentView]
+  07ec8c  [[self contentView] frame]
+  07eca0  [[UIView alloc] initWithFrame:{[[self contentView] frame].0, [[self contentView] frame].1, [[self contentView] frame].2, [[self contentView] frame].3}]
+  07ecbc  [self setContainerView:[[UIView alloc] initWithFrame:{[[self contentView] frame].0, [[self contentView] frame].1, [[self contentView] frame].2, [[self contentView] frame].3}]]
+  07ece4  [self containerView]
+  07ed0c  [UIColor clearColor]
+  07ed34  [[self containerView] setBackgroundColor:[UIColor clearColor]]
+  07ed54  [UIImageView alloc]
+  07ed78  [UIImage imageNamed:@"list_subhead"]
+  07ed9c  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_subhead"]]
+  07edb8  [self setBackgroundImageView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_subhead"]]]
+  07ede0  [self backgroundImageView]
+  07ee00  [[self backgroundImageView] setContentMode:1]
+  07ee14  [self backgroundImageView]
+  07ee2c  [UIColor clearColor]
+  07ee48  [[self backgroundImageView] setBackgroundColor:[UIColor clearColor]]
+  07ee68  [UILabel alloc]
+  07ee78  [[UILabel alloc] init]
+  07ee94  [self setHeaderTitleLabel:[[UILabel alloc] init]]
+  07eeb4  [self headerTitleLabel]
+  07eed0  [[self headerTitleLabel] setupAsTitle]
+  07eee4  [self headerTitleLabel]
+  07eefc  [UIColor clearColor]
+  07ef18  [[self headerTitleLabel] setBackgroundColor:[UIColor clearColor]]
+  07ef34  [self headerTitleLabel]
+  07ef54  [[self headerTitleLabel] setTextAlignment:1]
+  07ef68  [self contentView]
+  07ef80  [self containerView]
+  07efa8  [[self contentView] addSubview:[self containerView]]
+  07efc4  [self containerView]
+  07efdc  [self backgroundImageView]
+  07eff8  [[self containerView] addSubview:[self backgroundImageView]]
+  07f014  [self containerView]
+  07f02c  [self headerTitleLabel]
+  07f048  [[self containerView] addSubview:[self headerTitleLabel]]
+  07f064  [self containerView]
+  07f088  [[self containerView] setTranslatesAutoresizingMaskIntoConstraints:0]
+  07f09c  [self backgroundImageView]
+  07f0b4  [[self backgroundImageView] setTranslatesAutoresizingMaskIntoConstraints:0]
+  07f0c8  [self headerTitleLabel]
+  07f0e0  [[self headerTitleLabel] setTranslatesAutoresizingMaskIntoConstraints:0]
+  07f0fc  [self addContainerViewConstraints]
+  07f110  [self addBackgroundImageConstraints]
+  07f13c  tail [self addTitleLabelConstraints]
+  07f144  goto loc_10007f15c
+  07f14c  goto loc_10007f15c
+loc_10007f15c:
+  07f160  goto loc_10007f218
+  07f168  goto loc_10007f184
+  07f16c  goto loc_10007f178
+  07f174  goto loc_10007f184
+loc_10007f178:
+loc_10007f184:
+  07f188  goto loc_10007f218
+  07f18c  goto loc_10007f1b0
+  07f190  goto loc_10007f1b0
+  07f19c  goto loc_10007f1c0
+  07f1a8  goto loc_10007f218
+  07f1ac  goto loc_10007f1b0
+loc_10007f1b0:
+  07f1b4  goto loc_10007f1c4
+loc_10007f1c0:
+loc_10007f1c4:
+  07f1c8  goto loc_10007f218
+  07f1d0  goto loc_10007f200
+  07f1d8  goto loc_10007f200
+  07f1dc  goto loc_10007f1f4
+  07f1e4  goto loc_10007f200
+  07f1e8  goto loc_10007f1f4
+  07f1f0  goto loc_10007f200
+loc_10007f1f4:
+loc_10007f200:
+  07f204  goto loc_10007f218
+  07f208  goto loc_10007f210
+  07f20c  goto loc_10007f210
+loc_10007f210:
+loc_10007f218:
+
+== -[ADStatsHeader addContainerViewConstraints]   (address 0x10007f224  size 952  kind objc)
+  07f270  [self containerView]
+  07f294  [self contentView]
+  07f2d4  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:9 relatedBy:0 toItem:[self contentView] attribute:9 multiplier:1 constant:0]
+  07f300  [self containerView]
+  07f318  [self contentView]
+  07f34c  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:10 relatedBy:0 toItem:[self contentView] attribute:10 multiplier:1 constant:0]
+  07f378  [self containerView]
+  07f394  [self contentView]
+  07f3c8  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:7 relatedBy:0 toItem:[self contentView] attribute:7 multiplier:1 constant:0]
+  07f3f4  [self containerView]
+  07f40c  [self contentView]
+  07f440  [NSLayoutConstraint constraintWithItem:[self containerView] attribute:8 relatedBy:0 toItem:[self contentView] attribute:8 multiplier:1 constant:0]
+  07f468  [self contentView]
+  07f4a0  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  07f4b8  [[self contentView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  07f50c  return
+
+== -[ADStatsHeader addBackgroundImageConstraints]   (address 0x10007f5dc  size 964  kind objc)
+  07f628  [self backgroundImageView]
+  07f64c  [self containerView]
+  07f68c  [NSLayoutConstraint constraintWithItem:[self backgroundImageView] attribute:9 relatedBy:0 toItem:[self containerView] attribute:9 multiplier:1 constant:0]
+  07f6b8  [self backgroundImageView]
+  07f6d0  [self containerView]
+  07f704  [NSLayoutConstraint constraintWithItem:[self backgroundImageView] attribute:10 relatedBy:0 toItem:[self containerView] attribute:10 multiplier:1 constant:0]
+  07f730  [self backgroundImageView]
+  07f74c  [self containerView]
+  07f780  [NSLayoutConstraint constraintWithItem:[self backgroundImageView] attribute:7 relatedBy:0 toItem:[self containerView] attribute:7 multiplier:1 constant:0]
+  07f7ac  [self backgroundImageView]
+  07f7c4  [self containerView]
+  07f7fc  [NSLayoutConstraint constraintWithItem:[self backgroundImageView] attribute:8 relatedBy:0 toItem:[self containerView] attribute:8 multiplier:1 constant:0]
+  07f82c  [self contentView]
+  07f864  [NSArray arrayWithObjects:&sp[0x8] count:4]
+  07f87c  [[self contentView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:4]]
+  07f8d0  return
+
+== -[ADStatsHeader addTitleLabelConstraints]   (address 0x10007f9a0  size 604  kind objc)
+  07f9ec  [self headerTitleLabel]
+  07fa10  [self containerView]
+  07fa50  [NSLayoutConstraint constraintWithItem:[self headerTitleLabel] attribute:9 relatedBy:0 toItem:[self containerView] attribute:9 multiplier:1 constant:0]
+  07fa7c  [self headerTitleLabel]
+  07fa94  [self containerView]
+  07fac8  [NSLayoutConstraint constraintWithItem:[self headerTitleLabel] attribute:10 relatedBy:0 toItem:[self containerView] attribute:10 multiplier:1 constant:0]
+  07faf8  [self contentView]
+  07fb28  [NSArray arrayWithObjects:&sp[0x8] count:2]
+  07fb40  [[self contentView] addConstraints:[NSArray arrayWithObjects:&sp[0x8] count:2]]
+  07fb84  return
+
+== -[ADStatsHeader headerTitleLabel]   (address 0x10007fbfc  size 16  kind objc)
+  07fc08  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsHeader setHeaderTitleLabel:]   (address 0x10007fc0c  size 12  kind objc)
+  07fc14  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsHeader containerView]   (address 0x10007fc18  size 16  kind objc)
+  07fc24  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsHeader setContainerView:]   (address 0x10007fc28  size 12  kind objc)
+  07fc30  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsHeader backgroundImageView]   (address 0x10007fc34  size 16  kind objc)
+  07fc40  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADStatsHeader setBackgroundImageView:]   (address 0x10007fc44  size 12  kind objc)
+  07fc4c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADStatsHeader titleLabelInset]   (address 0x10007fc50  size 16  kind objc)
+  07fc5c  return
+
+== -[ADStatsHeader setTitleLabelInset:]   (address 0x10007fc60  size 16  kind objc)
+  07fc68  self->_titleLabelInset = arg1
+  07fc6c  return
+
+== -[ADStatsHeader .cxx_destruct]   (address 0x10007fc70  size 84  kind objc)

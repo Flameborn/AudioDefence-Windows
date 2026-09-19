@@ -1,0 +1,19 @@
+
+== +[TAGRuntimeVersion functionId]   (address 0x100178074  size 44  kind objc)
+  17809c  return
+
+== +[TAGRuntimeVersion versionNumber]   (address 0x1001780a0  size 12  kind objc)
+  1780a8  return
+
+== -[TAGRuntimeVersion init]   (address 0x1001780ac  size 176  kind objc)
+  1780d8  [NSSet set]
+  178114  [super initWithFunctionId:@"_rv" requiredKeys:[NSSet set]]
+  178138  return
+
+== -[TAGRuntimeVersion isCacheable]   (address 0x10017815c  size 8  kind objc)
+  178160  return
+
+== -[TAGRuntimeVersion evaluate:]   (address 0x100178164  size 152  kind objc)
+  178194  [NSNumber numberWithUnsignedInt:0x44d6fb8]
+  1781b8  [TAGTypes objectToValue:[NSNumber numberWithUnsignedInt:0x44d6fb8]]
+  1781dc  return

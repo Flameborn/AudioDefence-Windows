@@ -1,0 +1,46 @@
+{
+ "icon_title": "18",
+ "accuracy_star": {
+  "reward": 150,
+  "objective": 75
+ },
+ "ambient": {
+  "gain": 0.5,
+  "ambientPlaylist": "ambient_ghosttown"
+ },
+ "title": "Zombie horde!",
+ "objective": "Dr. Bastard will release a massive zombie horde. Survive!",
+ "tip": "Remember to switch weapons or use Melee if you're caught reloading and a zombie gets too close!",
+ "bricks": [
+  "urban_8_brick_1",
+  "urban_8_brick_2",
+  "urban_8_brick_3",
+  "urban_8_brick_4",
+  "urban_8_brick_5"
+ ],
+ "mission_star": {
+  "reward": 200
+ },
+ "challenge_id": "urban_8",
+ "icon": "Challenge_icon_01",
+ "challenges_requirement": [
+  "urban_7"
+ ],
+ "weapons": [
+  {
+   "ammo": "50",
+   "name": "hunting"
+  },
+  {
+   "ammo": "200",
+   "name": "microsmg"
+  },
+  {
+   "name": "wok"
+  }
+ ],
+ "time_limit_star": {
+  "reward": 150,
+  "objective": 135
+ }
+}

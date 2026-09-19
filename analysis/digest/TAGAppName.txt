@@ -1,0 +1,38 @@
+
+== +[TAGAppName functionId]   (address 0x100173358  size 44  kind objc)
+  173380  return
+
+== -[TAGAppName init]   (address 0x100173384  size 176  kind objc)
+  1733b0  [NSSet set]
+  1733ec  [super initWithFunctionId:@"_an" requiredKeys:[NSSet set]]
+  173410  return
+
+== -[TAGAppName isCacheable]   (address 0x100173434  size 8  kind objc)
+  173438  return
+
+== -[TAGAppName evaluate:]   (address 0x10017343c  size 408  kind objc)
+  173458  [self class]
+  173468  [[self class] infoDictionary]
+  173494  [[[self class] infoDictionary] objectForKey:_kCFBundleNameKey[+0x0]]
+  1734a4  if ([[[self class] infoDictionary] objectForKey:_kCFBundleNameKey[+0x0]] == 0) goto loc_1001734c8
+  1734c0  [[[[self class] infoDictionary] objectForKey:_kCFBundleNameKey[+0x0]] isEqual:@""]
+  1734c4  if ([[[[self class] infoDictionary] objectForKey:_kCFBundleNameKey[+0x0]] isEqual:@""] == 0) goto loc_1001734f8
+loc_1001734c8:
+  1734dc  [[[self class] infoDictionary] objectForKey:_kCFBundleIdentifierKey[+0x0]]
+loc_1001734f8:
+  1734f8  if (x20 == 0) goto loc_10017351c
+  173514  [x0 isEqual:@""]
+  173518  if ([x0 isEqual:@""] == 0) goto loc_10017355c
+loc_10017351c:
+  173538  [TAGLog error:@"Application name cannot be retrieved."]
+  173550  [TAGTypes defaultValue]
+  173558  goto loc_10017357c
+loc_10017355c:
+  173574  [TAGTypes objectToValue:x2]
+loc_10017357c:
+  1735a4  return
+
+== +[TAGAppName infoDictionary]   (address 0x1001735d4  size 120  kind objc)
+  1735f4  [NSBundle mainBundle]
+  173610  [[NSBundle mainBundle] infoDictionary]
+  173634  return

@@ -1,0 +1,131 @@
+
+== -[ADProjectile initWithSpeed:squaredDistanceToCover:timeToLive:soundsPrefix:orientation:]   (address 0x100053660  size 420  kind objc)
+  0536cc  [super init]
+  0536d4  if (self == 0) goto loc_1000537a4
+  0536f0  [S3DEngine engine]
+  053710  [[S3DEngine engine] playListWithName:arg4]
+  05372c  self->playlist = [[S3DEngine engine] playListWithName:arg4]
+  053748  self->squaredDistanceToCover = arg2
+  05375c  [self move]
+  05377c  self->speed = arg1
+  053794  [self setExplosionRadius:5]
+  0537a0  self->ttl = arg3
+loc_1000537a4:
+  0537d0  return
+
+== -[ADProjectile update:]   (address 0x100053804  size 592  kind objc)
+  053830  [self state]
+  053838  if ([self state] == 1) goto loc_10005385c
+  053840  if ([self state] != 2) goto loc_100053938
+  053854  if (self->ttl >= (or unordered) 0.0) goto loc_100053a00
+  053858  goto loc_100053974
+loc_10005385c:
+  053870  [self position]
+  053898  [self position]
+  0538cc  t1 = (([self position].0 + (arg1 * (self->orientation.x * self->speed))) * ([self position].0 + (arg1 * (self->orientation.x * self->speed))))
+  0538d0  t2 = (([self position].1 + (arg1 * (self->orientation.y * self->speed))) * ([self position].1 + (arg1 * (self->orientation.y * self->speed))))
+  0538ec  if ((t1 + t2) <= (or unordered) self->squaredDistanceToCover) goto loc_1000539a4
+  05390c  if (self->ttl <= (or unordered) 0.05) goto loc_100053974
+  053920  [self playCountDown]
+  053928  &@selector(setState:)
+  053934  goto loc_100053998
+loc_100053938:
+  05393c  if ([self state] != 3) goto loc_100053a00
+  053950  [self timeInState]
+  05395c  if ([self timeInState] <= (or unordered) 3) goto loc_100053a00
+  053964  &@selector(setState:)
+  053970  goto loc_100053998
+loc_100053974:
+  053984  [self explode]
+  05398c  &@selector(setState:)
+loc_100053998:
+  05399c  [self setState:one of {2, 3, 0xffffffff}]
+  0539a0  goto loc_100053a00
+loc_1000539a4:
+  0539b4  [self setPosition:{([self position].0 + (arg1 * (self->orientation.x * self->speed))), ([self position].1 + (arg1 * (self->orientation.y * self->speed)))}]
+  0539cc  [self position]
+  0539dc  [self position]
+  0539fc  [self->movingSound setPlanar:{[self position].0, [self position].1, 0}]
+loc_100053a00:
+  053a10  self->ttl = (self->ttl - arg1)
+  053a24  [self timeInState]
+  053a50  tail [self setTimeInState:([self timeInState] + arg1)]
+
+== -[ADProjectile move]   (address 0x100053a54  size 160  kind objc)
+  053a74  [self setState:1]
+  053a98  [self->playlist anySoundContaining:@"_move_"]
+  053ab0  self->movingSound = [self->playlist anySoundContaining:@"_move_"]
+  053ad0  [self->movingSound setSpatialized:1]
+  053af0  tail [self->movingSound play:1]
+
+== -[ADProjectile playCountDown]   (address 0x100053af4  size 236  kind objc)
+  053b30  [self->playlist anySoundContaining:@"_timer"]
+  053b50  [[self->playlist anySoundContaining:@"_timer"] setSpatialized:1]
+  053b68  [self position]
+  053b78  [self position]
+  053b98  [[self->playlist anySoundContaining:@"_timer"] setPlanar:{[self position].0, [self position].1, 0}]
+  053bb0  [[self->playlist anySoundContaining:@"_timer"] play:0]
+  053bc8  return
+
+== -[ADProjectile explode]   (address 0x100053be0  size 372  kind objc)
+  053c04  if (self->movingSound == 0) goto loc_100053c18
+  053c14  [self->movingSound stop]
+loc_100053c18:
+  053c3c  [self->playlist anySoundContaining:@"_explosion_"]
+  053c5c  [[self->playlist anySoundContaining:@"_explosion_"] setSpatialized:1]
+  053c74  [self position]
+  053c84  [self position]
+  053ca4  [[self->playlist anySoundContaining:@"_explosion_"] setPlanar:{[self position].0, [self position].1, 0}]
+  053cbc  [[self->playlist anySoundContaining:@"_explosion_"] setGain:10]
+  053cd4  [[self->playlist anySoundContaining:@"_explosion_"] play:0]
+  053cec  [ADBrickManager sharedBrickManager]
+  053d0c  [[ADBrickManager sharedBrickManager] solveExplosionOfProjectile:self]
+  053d2c  return
+
+== -[ADProjectile setState:]   (address 0x100053d54  size 48  kind objc)
+  053d64  if (self->_state != arg1) goto loc_100053d6c
+  053d68  return
+  053d6c  self->_state = arg1
+  053d80  tail [self setTimeInState:0]
+
+== -[ADProjectile position]   (address 0x100053d84  size 60  kind objc)
+  053dac  objc_copyStruct(&sp[0x0], x1, 16, 1)
+  053dbc  return
+
+== -[ADProjectile setPosition:]   (address 0x100053dc0  size 60  kind objc)
+  053dec  objc_copyStruct(x0, &sp[0x0], 16, 1)
+  053df8  return
+
+== -[ADProjectile state]   (address 0x100053dfc  size 16  kind objc)
+  053e08  return
+
+== -[ADProjectile tag]   (address 0x100053e0c  size 16  kind objc)
+  053e18  return
+
+== -[ADProjectile setTag:]   (address 0x100053e1c  size 16  kind objc)
+  053e24  self->_tag = arg1
+  053e28  return
+
+== -[ADProjectile timeInState]   (address 0x100053e2c  size 20  kind objc)
+  053e3c  return
+
+== -[ADProjectile setTimeInState:]   (address 0x100053e40  size 20  kind objc)
+  053e4c  self->_timeInState = arg1
+  053e50  return
+
+== -[ADProjectile explosionRadius]   (address 0x100053e54  size 20  kind objc)
+  053e64  return
+
+== -[ADProjectile setExplosionRadius:]   (address 0x100053e68  size 20  kind objc)
+  053e74  self->_explosionRadius = arg1
+  053e78  return
+
+== -[ADProjectile weapon]   (address 0x100053e7c  size 32  kind objc)
+  053e98  return
+
+== -[ADProjectile setWeapon:]   (address 0x100053e9c  size 20  kind objc)
+
+== -[ADProjectile .cxx_destruct]   (address 0x100053eb0  size 100  kind objc)
+
+== -[ADProjectile .cxx_construct]   (address 0x100053f14  size 4  kind objc)
+  053f14  return

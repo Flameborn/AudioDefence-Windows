@@ -1,0 +1,12 @@
+// ADLoadoutScrollViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #18 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #4 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #5 UIView  Tag=92
+    #10 UIScrollView  
+
+CONNECTIONS
+  outlet  scrollView                                #18 UIProxyObject --> #10 UIScrollView
+  outlet  view                                      #18 UIProxyObject --> #5 UIView
+
+ACCESSIBILITY CONFIGURATIONS

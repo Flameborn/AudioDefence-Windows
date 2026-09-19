@@ -1,0 +1,34 @@
+{
+ "Sounds": [
+  {
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 2,
+   "name": "bastard_zombie_berserk_a"
+  }
+ ],
+ "Ambiant": "Silence_ambiant",
+ "Enemies": {
+  "Berserk": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 29.25,
+    "afterStart": true,
+    "enemy": "bastard_zombie_berserk_a"
+   },
+   "spawn_angle": 320,
+   "spawn_distance": 7
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 33.25,
+    "afterStart": true,
+    "enemy": "bastard_zombie_berserk_a"
+   },
+   "spawn_angle": 340,
+   "spawn_distance": 5
+  }
+ }
+}

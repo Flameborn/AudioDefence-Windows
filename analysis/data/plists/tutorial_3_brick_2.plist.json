@@ -1,0 +1,33 @@
+{
+ "Sounds": [
+  {
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 0.1,
+   "name": "bastard_tutorial_3_3"
+  },
+  {
+   "spawn_after": {
+    "time": 1,
+    "enemy": "Jim"
+   },
+   "blocker": true,
+   "gain": "1",
+   "skippable": true,
+   "startMusicBeforeEnd": 5,
+   "name": "bastard_tutorial_3_4"
+  }
+ ],
+ "Enemies": {
+  "Jim": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 32.4,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_3_3"
+   },
+   "spawn_angle": 10,
+   "spawn_distance": 1.3
+  }
+ }
+}

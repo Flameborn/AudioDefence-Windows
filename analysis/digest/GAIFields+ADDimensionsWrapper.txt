@@ -1,0 +1,10 @@
+
+== +[GAIFields(ADDimensionsWrapper) customDimensionForName:]   (address 0x1000dd6b4  size 140  kind objc)
+  0dd6ec  [ADTracker indexForDimensionName:arg1]
+  0dd704  [GAIFields customDimensionForIndex:[ADTracker indexForDimensionName:arg1]]
+  0dd728  return
+
+== +[GAIFields(ADDimensionsWrapper) customMetricForName:]   (address 0x1000dd740  size 140  kind objc)
+  0dd778  [ADTracker indexForMetricName:arg1]
+  0dd790  [GAIFields customMetricForIndex:[ADTracker indexForMetricName:arg1]]
+  0dd7b4  return

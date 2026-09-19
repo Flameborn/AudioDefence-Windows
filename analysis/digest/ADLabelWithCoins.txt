@@ -1,0 +1,48 @@
+
+== -[ADLabelWithCoins initWithFrame:]   (address 0x1000d714c  size 60  kind objc)
+  0d7178  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  0d7184  return
+
+== -[ADLabelWithCoins animateCoins]   (address 0x1000d7188  size 244  kind objc)
+  0d71ac  [self setDidAnimate:1]
+  0d71c0  [self fromView]
+  0d71d4  if ([self fromView] == 0) goto loc_1000d71e8
+  0d71e4  return
+loc_1000d71e8:
+  0d71f8  [self delegate]
+  0d7214  [[self delegate] view]
+  0d7238  [self setFromView:[[self delegate] view]]
+  0d7254  return
+
+== -[ADLabelWithCoins delegate]   (address 0x1000d727c  size 32  kind objc)
+  0d7298  return
+
+== -[ADLabelWithCoins setDelegate:]   (address 0x1000d729c  size 20  kind objc)
+
+== -[ADLabelWithCoins fromView]   (address 0x1000d72b0  size 32  kind objc)
+  0d72cc  return
+
+== -[ADLabelWithCoins setFromView:]   (address 0x1000d72d0  size 20  kind objc)
+
+== -[ADLabelWithCoins value]   (address 0x1000d72e4  size 16  kind objc)
+  0d72f0  return
+
+== -[ADLabelWithCoins setValue:]   (address 0x1000d72f4  size 16  kind objc)
+  0d72fc  self->_value = arg1
+  0d7300  return
+
+== -[ADLabelWithCoins prority]   (address 0x1000d7304  size 16  kind objc)
+  0d7310  return
+
+== -[ADLabelWithCoins setPrority:]   (address 0x1000d7314  size 16  kind objc)
+  0d731c  self->_prority = arg1
+  0d7320  return
+
+== -[ADLabelWithCoins didAnimate]   (address 0x1000d7324  size 20  kind objc)
+  0d7334  return
+
+== -[ADLabelWithCoins setDidAnimate:]   (address 0x1000d7338  size 16  kind objc)
+  0d7340  self->_didAnimate = arg1
+  0d7344  return
+
+== -[ADLabelWithCoins .cxx_destruct]   (address 0x1000d7348  size 56  kind objc)

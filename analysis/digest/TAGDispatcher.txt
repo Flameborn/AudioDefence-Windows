@@ -1,0 +1,388 @@
+
+== -[TAGDispatcher init]   (address 0x10010f6b4  size 476  kind objc)
+  10f6f0  [super init]
+  10f6f8  if (self == 0) goto loc_10010f864
+  10f70c  self->_dispatchInterval = 0x405e000000000000
+  10f730  [TAGRateLimiter rateLimiterWithMaxTokens:60 secondsPerToken:2]
+  10f74c  self->_rateLimiter = [TAGRateLimiter rateLimiterWithMaxTokens:60 secondsPerToken:2]
+  10f76c  [NSMutableSet set]
+  10f788  self->_operations = [NSMutableSet set]
+  10f7ac  [TAGDataProvider alloc]
+  10f7b8  [[TAGDataProvider alloc] init]
+  10f7cc  self->_store = [[TAGDataProvider alloc] init]
+  10f7e4  [TAGNetworking alloc]
+  10f7f0  [[TAGNetworking alloc] init]
+  10f804  self->_network = [[TAGNetworking alloc] init]
+  10f81c  self->_maxRequestsPerDispatch = 40
+  10f848  [self addObserver:self forKeyPath:@"canScheduleDispatch" options:2 context:&d_1003b7a90]
+  10f860  [self initialDispatch]
+loc_10010f864:
+  10f878  return
+
+== -[TAGDispatcher dealloc]   (address 0x10010f890  size 236  kind objc)
+  10f8bc  [self removeObserver:self forKeyPath:@"canScheduleDispatch"]
+  10f8d0  [self class]
+  10f8f4  [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(timerFired) object:0]
+  10f908  [self cancelTimer]
+  10f92c  [super dealloc]
+  10f93c  return
+  10f96c  [super dealloc]
+  10f978  objc_terminate()
+
+== -[TAGDispatcher initialDispatch]   (address 0x10010f97c  size 152  kind objc)
+  10f9e0  [TAGDispatchUtil background:^{-[TAGDispatcher initialDispatch]_block_invoke captures +0x20=self} wait:0]
+  10f9f8  return
+
+== -[TAGDispatcher initialDispatch]_block_invoke   (address 0x10010fa14  size 40  kind block)
+  10fa38  tail [self performSelector:@selector(timerFired) withObject:0 afterDelay:1]
+
+== sub_10010fa3c   (address 0x10010fa3c  size 8  kind sub)
+
+== sub_10010fa44   (address 0x10010fa44  size 8  kind sub)
+  10fa48  return
+
+== -[TAGDispatcher canScheduleDispatch]   (address 0x10010fa4c  size 80  kind objc)
+  10fa68  [self dispatchInterval]
+  10fa70  if ([self dispatchInterval] <= (or unordered) 0.0) goto loc_10010fa8c
+  10fa84  [self canDispatch]
+  10fa88  goto loc_10010fa90
+loc_10010fa8c:
+loc_10010fa90:
+  10fa98  return
+
+== -[TAGDispatcher canDispatch]   (address 0x10010fa9c  size 200  kind objc)
+  10fabc  [self network]
+  10fad8  [[self network] isReachable]
+  10fadc  if ([[self network] isReachable] == 0) goto loc_10010fb20
+  10faf0  [self store]
+  10fb0c  [[self store] hasHits]
+  10fb1c  goto loc_10010fb24
+loc_10010fb20:
+loc_10010fb24:
+  10fb3c  return
+
+== -[TAGDispatcher rescheduleDispatch]   (address 0x10010fb64  size 152  kind objc)
+  10fbc8  [TAGDispatchUtil background:^{-[TAGDispatcher rescheduleDispatch]_block_invoke captures +0x20=self} wait:0]
+  10fbe0  return
+
+== -[TAGDispatcher rescheduleDispatch]_block_invoke   (address 0x10010fbfc  size 156  kind block)
+  10fc1c  [self class]
+  10fc40  [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(timerFired) object:0]
+  10fc54  [self cancelTimer]
+  10fc68  [self canScheduleDispatch]
+  10fc6c  if ([self canScheduleDispatch] == 0) goto loc_10010fc8c
+  10fc88  tail [self startTimer]
+loc_10010fc8c:
+  10fc94  return
+
+== sub_10010fc98   (address 0x10010fc98  size 8  kind sub)
+
+== sub_10010fca0   (address 0x10010fca0  size 8  kind sub)
+  10fca4  return
+
+== -[TAGDispatcher timerFired]   (address 0x10010fca8  size 76  kind objc)
+  10fcc4  [self canScheduleDispatch]
+  10fcc8  if ([self canScheduleDispatch] == 0) goto loc_10010fce8
+  10fce4  tail [self dispatch]
+loc_10010fce8:
+  10fcf0  return
+
+== -[TAGDispatcher cancelTimer]   (address 0x10010fcf4  size 120  kind objc)
+  10fd10  [self timer]
+  10fd2c  [[self timer] invalidate]
+  10fd54  tail [self setTimer:0]
+
+== -[TAGDispatcher startTimer]   (address 0x10010fd6c  size 156  kind objc)
+  10fd90  [self dispatchInterval]
+  10fdbc  [NSTimer scheduledTimerWithTimeInterval:[self dispatchInterval] target:self selector:@selector(timerFired) userInfo:0 repeats:1]
+  10fde0  [self setTimer:[NSTimer scheduledTimerWithTimeInterval:[self dispatchInterval] target:self selector:@selector(timerFired) userInfo:0 repeats:1]]
+  10fdf0  return
+
+== -[TAGDispatcher dispatch]   (address 0x10010fe08  size 20  kind objc)
+  10fe18  tail [self dispatchWithCallback:0]
+
+== -[TAGDispatcher dispatchWithCallback:]   (address 0x10010fe1c  size 344  kind objc)
+  10fee8  [TAGDispatchUtil background:^{-[TAGDispatcher dispatchWithCallback:]_block_invoke_3 captures +0x20=arg1, +0x28=self, +0x48=0x42000000, +0x50=&-[TAGDispatcher dispatchWithCallback:]_…, +0x58=&-[TAGDispatcher dispatchWithCallback:]_…} wait:0]
+  10ff04  Block_object_dispose(&sp[0x40], 8)
+  10ff2c  return
+  10ff58  Block_object_dispose(&sp[0x40], 8)
+
+== -[TAGDispatcher dispatchWithCallback:]_block_invoke   (address 0x10010ff74  size 12  kind block)
+  10ff7c  tail objc_moveWeak((block + 40), (blockarg1 + 40), blockarg2, blockarg3)
+
+== -[TAGDispatcher dispatchWithCallback:]_block_invoke_2   (address 0x10010ff80  size 8  kind block)
+
+== -[TAGDispatcher dispatchWithCallback:]_block_invoke_3   (address 0x10010ff88  size 512  kind block)
+  10ffc4  [objc_loadWeakRetained((block[+0x30][+0x8] + 40), blockarg1, blockarg2, blockarg3) operations]
+  10ffe0  [[objc_loadWeakRetained((block[+0x30][+0x8] + 40), blockarg1, blockarg2, blockarg3) operations] count]
+  10ffe4  if ([[objc_loadWeakRetained((block[+0x30][+0x8] + 40), blockarg1, blockarg2, blockarg3) operations] count] == 0) goto loc_10010fff0
+  10ffec  goto loc_100110020
+loc_10010fff0:
+  110010  [objc_loadWeakRetained((block[+0x30][+0x8] + 40)) canDispatch]
+loc_100110020:
+  110034  if (w22 == 0) goto loc_100110044
+  110038  if (arg1 == 0) goto loc_100110058
+  110040  goto loc_100110070
+loc_100110044:
+  110044  if (arg1 == 0) goto loc_100110114
+  110050  call arg1[+0x10]
+  110054  goto loc_100110114
+loc_100110058:
+  110068  [self maxRequestsPerDispatch]
+loc_100110070:
+  110090  [objc_loadWeakRetained((block[+0x30][+0x8] + 40)) store]
+  1100f8  [[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) store] fetchNotRecentlyAttemptedHitsWithLimit:x2 completion:^{-[TAGDispatcher dispatchWithCallback:]_block_invoke_3_block_invoke captures +0x20=arg1, +0x28=block[+0x30]}]
+loc_100110114:
+  110128  return
+
+== -[TAGDispatcher dispatchWithCallback:]_block_invoke_3_block_invoke   (address 0x100110188  size 880  kind block)
+  1101f8  [blockarg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16]
+  110200  if ([blockarg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16] == 0) goto loc_100110414
+  110214  &@selector(URLWithString:)
+loc_10011027c:
+loc_100110280:
+  110290  if (x8 == x9) goto loc_10011029c
+  110298  objc_enumerationMutation(blockarg1)
+loc_10011029c:
+  1102b4  [x0 dispatchURL]
+  1102d0  [NSURL URLWithString:[x0 dispatchURL]]
+  110300  [objc_loadWeakRetained((block[+0x30][+0x8] + 40)) network]
+  11036c  [[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) network] sendURL:[NSURL URLWithString:[x0 dispatchURL]] completion:^{-[TAGDispatcher dispatchWithCallback:]_block_invoke_3_block_invoke_block_invoke captures +0x28=arg1, +0x30=block[+0x30]}]
+  1103a4  [objc_loadWeakRetained((block[+0x30][+0x8] + 40)) operations]
+  1103bc  [[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) operations] addObject:[[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) network] sendURL:[NSURL URLWithString:[x0 dispatchURL]] completion:^{-[TAGDispatcher dispatchWithCallback:]_block_invoke_3_block_invoke_block_invoke captures +0x28=arg1, +0x30=block[+0x30]}]]
+  1103f8  if ((x26 + 1) <u [blockarg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16]) goto loc_100110280
+  110408  [blockarg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16]
+  110410  if ([blockarg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x88] count:16] != 0) goto loc_10011027c
+loc_100110414:
+  11045c  return
+
+== -[TAGDispatcher dispatchWithCallback:]_block_invoke_3_block_invoke_block_invoke   (address 0x1001104f8  size 1192  kind block)
+  110544  [blockarg1 response]
+  110560  [[blockarg1 response] statusCode]
+  11056c  if (([[blockarg1 response] statusCode] - 200) <u 100) goto loc_1001105bc
+  110580  [block[+0x20] dispatchTime]
+  11059c  [[block[+0x20] dispatchTime] timeIntervalSinceNow]
+  1105b8  if ([[block[+0x20] dispatchTime] timeIntervalSinceNow] >= (or unordered) -14400) goto loc_1001106cc
+loc_1001105bc:
+  1105d4  [block[+0x20] dispatchURL]
+  1105fc  [@"Successfully sent hit: " stringByAppendingString:[block[+0x20] dispatchURL]]
+  110620  [TAGLog verbose:[@"Successfully sent hit: " stringByAppendingString:[block[+0x20] dispatchURL]]]
+  110654  [objc_loadWeakRetained((block[+0x30][+0x8] + 40)) store]
+  110688  [NSArray arrayWithObjects:&sp[0x10] count:1]
+  1106a0  [[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) store] deleteHits:[NSArray arrayWithObjects:&sp[0x10] count:1]]
+  1106b8  if (arg1 == 0) goto loc_100110860
+  1106c4  call arg1[+0x10]
+  1106c8  goto loc_100110860
+loc_1001106cc:
+  1106dc  [blockarg1 isCancelled]
+  1106e0  if (([blockarg1 isCancelled] & 1)) goto loc_10011084c
+  110704  [objc_loadWeakRetained((block[+0x30][+0x8] + 40)) network]
+  110720  [[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) network] isReachable]
+  110738  if ([[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) network] isReachable] == 0) goto loc_10011084c
+  110754  [block[+0x20] dispatchURL]
+  11077c  [@"Failed to send hit: " stringByAppendingString:[block[+0x20] dispatchURL]]
+  1107a0  [TAGLog verbose:[@"Failed to send hit: " stringByAppendingString:[block[+0x20] dispatchURL]]]
+  1107d4  [objc_loadWeakRetained((block[+0x30][+0x8] + 40)) store]
+  110808  [NSArray arrayWithObjects:&sp[0x8] count:1]
+  110820  [[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) store] updateFailedHits:[NSArray arrayWithObjects:&sp[0x8] count:1]]
+  110838  if (arg1 == 0) goto loc_100110860
+  110844  call arg1[+0x10]
+  110848  goto loc_100110860
+loc_10011084c:
+  110850  if (arg1 == 0) goto loc_100110860
+  11085c  call arg1[+0x10]
+loc_100110860:
+  110880  [objc_loadWeakRetained((block[+0x30][+0x8] + 40)) operations]
+  1108a0  [[objc_loadWeakRetained((block[+0x30][+0x8] + 40)) operations] removeObject:blockarg1]
+  1108f0  return
+
+== sub_1001109a0   (address 0x1001109a0  size 68  kind sub)
+  1109c8  Block_object_assign((a0 + 48), a1[+0x30], 8)
+  1109e0  tail Block_object_assign((a0 + 40), a1[+0x28], 7)
+
+== sub_1001109e4   (address 0x1001109e4  size 52  kind sub)
+  110a04  Block_object_dispose(a0[+0x30], 8)
+  110a14  return
+
+== sub_100110a18   (address 0x100110a18  size 60  kind sub)
+  110a38  Block_object_assign((a0 + 40), a1[+0x28], 8, a3)
+  110a50  tail Block_object_assign((a0 + 32), a1[+0x20], 7)
+
+== sub_100110a54   (address 0x100110a54  size 44  kind sub)
+  110a6c  Block_object_dispose(a0[+0x28], 8, a2, a3)
+  110a7c  return
+
+== sub_100110a80   (address 0x100110a80  size 68  kind sub)
+  110aa0  Block_object_assign((a0 + 48), a1[+0x30], 8, a3)
+  110ab0  Block_object_assign((a0 + 32), a1[+0x20], 7)
+
+== sub_100110ac4   (address 0x100110ac4  size 52  kind sub)
+  110adc  Block_object_dispose(a0[+0x30], 8, a2, a3)
+  110af4  return
+
+== -[TAGDispatcher sendHitToUrl:]   (address 0x100110af8  size 688  kind objc)
+  110b34  [self rateLimiter]
+  110b50  [[self rateLimiter] tokenAvailable]
+  110b60  if ([[self rateLimiter] tokenAvailable] == 0) goto loc_100110d0c
+  110b78  [self wrapperUrl]
+  110b88  if ([self wrapperUrl] == 0) goto loc_100110c78
+  110ba0  [self wrapperQueryParameter]
+  110bbc  if ([self wrapperQueryParameter] == 0) goto loc_100110c80
+  110bd0  [self wrapperUrl]
+  110be8  [self wrapperQueryParameter]
+  110c10  [TAGValueEscapeUtil urlEncode:arg1]
+  110c40  [NSString stringWithFormat:@"%@?%@=%@", [self wrapperUrl], [self wrapperQueryParameter], [TAGValueEscapeUtil urlEncode:arg1]]
+  110c74  goto loc_100110c80
+loc_100110c78:
+loc_100110c80:
+  110ca0  [@"Dispatch url: " stringByAppendingString:x2]
+  110cc4  [TAGLog verbose:[@"Dispatch url: " stringByAppendingString:x2]]
+  110ce0  [self store]
+  110d00  [[self store] addHitWithURLString:x2]
+loc_100110d0c:
+  110d28  return
+
+== +[TAGDispatcher instance]   (address 0x100110da8  size 120  kind objc)
+  110df4  if (g_10042dc30 != -1) goto loc_100110e0c
+loc_100110df8:
+loc_100110e0c:
+  110e18  dispatch_once(&g_10042dc30, ^{+[TAGDispatcher instance]_block_invoke captures +0x20=TAGDispatcher})
+  110e1c  goto loc_100110df8
+
+== +[TAGDispatcher instance]_block_invoke   (address 0x100110e20  size 72  kind block)
+  110e38  [TAGDispatcher alloc]
+  110e48  [[TAGDispatcher alloc] init]
+  110e58  store g_10042dc38 = [[TAGDispatcher alloc] init]
+  110e64  return
+
+== sub_100110e68   (address 0x100110e68  size 4  kind sub)
+  110e68  return
+
+== sub_100110e6c   (address 0x100110e6c  size 4  kind sub)
+  110e6c  return
+
+== +[TAGDispatcher initialize]   (address 0x100110e70  size 228  kind objc)
+  110e9c  [TAGDispatcher class]
+  110ea4  if ([TAGDispatcher class] == TAGDispatcher) goto loc_100110ebc
+  110eb8  return
+loc_100110ebc:
+  110ee8  [NSSet setWithObjects:@"canDispatch", @"dispatchInterval", nil]
+  110f00  store g_10042dc40 = [NSSet setWithObjects:@"canDispatch", @"dispatchInterval", nil]
+  110f28  [NSSet setWithObjects:@"store.hasHits", @"network.isReachable", nil]
+  110f38  store g_10042dc48 = [NSSet setWithObjects:@"store.hasHits", @"network.isReachable", nil]
+  110f50  return
+
+== +[TAGDispatcher keyPathsForValuesAffectingCanScheduleDispatch]   (address 0x100110f54  size 16  kind objc)
+
+== +[TAGDispatcher keyPathsForValuesAffectingCanDispatch]   (address 0x100110f64  size 16  kind objc)
+
+== -[TAGDispatcher observeValueForKeyPath:ofObject:change:context:]   (address 0x100110f74  size 464  kind objc)
+  11100c  if (arg4 == &d_1003b7a90) goto loc_100111050
+  111040  [super observeValueForKeyPath:arg1 ofObject:arg2 change:arg3 context:arg4]
+  111044  goto loc_1001110b4
+  11104c  goto loc_10011110c
+loc_100111050:
+  1110a8  [TAGDispatchUtil background:^{-[TAGDispatcher observeValueForKeyPath:ofObject:change:context:]_block_invoke captures +0x20=arg3, +0x40=0x42000000, +0x48=&-[TAGDispatcher dispatchWithCallback:]_…, +0x50=&-[TAGDispatcher dispatchWithCallback:]_…} wait:0]
+loc_1001110b4:
+  1110bc  Block_object_dispose(&sp[0x40], 8)
+  1110f8  return
+  111118  Block_object_dispose(&sp[0x40], 8)
+
+== -[TAGDispatcher observeValueForKeyPath:ofObject:change:context:]_block_invoke   (address 0x100111144  size 440  kind block)
+  11117c  [arg3 objectForKeyedSubscript:_NSKeyValueChangeOldKey[+0x0]]
+  111198  [[arg3 objectForKeyedSubscript:_NSKeyValueChangeOldKey[+0x0]] boolValue]
+  1111c8  [objc_loadWeakRetained((block[+0x28][+0x8] + 40)) canScheduleDispatch]
+  1111cc  t1 = ([[arg3 objectForKeyedSubscript:_NSKeyValueChangeOldKey[+0x0]] boolValue] ^ [objc_loadWeakRetained((block[+0x28][+0x8] + 40)) canScheduleDispatch])
+  1111d4  if (t1 != 1) goto loc_1001111e4
+  1111e0  goto loc_10011125c
+loc_1001111e4:
+  111204  [objc_loadWeakRetained((block[+0x28][+0x8] + 40)) timerInterval]
+  11122c  [objc_loadWeakRetained((block[+0x28][+0x8] + 40)) dispatchInterval]
+  111234  t2 = ([objc_loadWeakRetained((block[+0x28][+0x8] + 40)) timerInterval] != [objc_loadWeakRetained((block[+0x28][+0x8] + 40)) dispatchInterval])
+  111258  if ((t2 & [[arg3 objectForKeyedSubscript:_NSKeyValueChangeOldKey[+0x0]] boolValue]) != 1) goto loc_10011129c
+loc_10011125c:
+  11127c  [objc_loadWeakRetained((block[+0x28][+0x8] + 40)) rescheduleDispatch]
+  111298  return
+loc_10011129c:
+  1112b0  return
+
+== sub_1001112fc   (address 0x1001112fc  size 52  kind sub)
+  11132c  tail Block_object_assign((a0 + 40), a1[+0x28], 8)
+
+== sub_100111330   (address 0x100111330  size 44  kind sub)
+  111358  tail Block_object_dispose(a0[+0x28], 8)
+
+== -[TAGDispatcher timerInterval]   (address 0x10011135c  size 112  kind objc)
+  111378  [self timer]
+  111394  [[self timer] timeInterval]
+  1113b4  return
+
+== -[TAGDispatcher store]   (address 0x1001113cc  size 16  kind objc)
+  1113d8  return
+
+== -[TAGDispatcher setStore:]   (address 0x1001113dc  size 56  kind objc)
+  111400  self->_store = arg1
+  111410  return
+
+== -[TAGDispatcher network]   (address 0x100111414  size 16  kind objc)
+  111420  return
+
+== -[TAGDispatcher setNetwork:]   (address 0x100111424  size 56  kind objc)
+  111448  self->_network = arg1
+  111458  return
+
+== -[TAGDispatcher wrapperUrl]   (address 0x10011145c  size 16  kind objc)
+  111468  return
+
+== -[TAGDispatcher setWrapperUrl:]   (address 0x10011146c  size 56  kind objc)
+  111490  self->_wrapperUrl = arg1
+  1114a0  return
+
+== -[TAGDispatcher wrapperQueryParameter]   (address 0x1001114a4  size 16  kind objc)
+  1114b0  return
+
+== -[TAGDispatcher setWrapperQueryParameter:]   (address 0x1001114b4  size 56  kind objc)
+  1114d8  self->_wrapperQueryParameter = arg1
+  1114e8  return
+
+== -[TAGDispatcher logger]   (address 0x1001114ec  size 32  kind objc)
+  111508  return
+
+== -[TAGDispatcher setLogger:]   (address 0x10011150c  size 20  kind objc)
+
+== -[TAGDispatcher dispatchInterval]   (address 0x100111520  size 16  kind objc)
+  11152c  return
+
+== -[TAGDispatcher setDispatchInterval:]   (address 0x100111530  size 16  kind objc)
+  111538  self->_dispatchInterval = arg1
+  11153c  return
+
+== -[TAGDispatcher rateLimiter]   (address 0x100111540  size 16  kind objc)
+  11154c  return
+
+== -[TAGDispatcher setRateLimiter:]   (address 0x100111550  size 56  kind objc)
+  111574  self->_rateLimiter = arg1
+  111584  return
+
+== -[TAGDispatcher operations]   (address 0x100111588  size 16  kind objc)
+  111594  return
+
+== -[TAGDispatcher setOperations:]   (address 0x100111598  size 56  kind objc)
+  1115bc  self->_operations = arg1
+  1115cc  return
+
+== -[TAGDispatcher timer]   (address 0x1001115d0  size 16  kind objc)
+  1115dc  return
+
+== -[TAGDispatcher setTimer:]   (address 0x1001115e0  size 56  kind objc)
+  111604  self->_timer = arg1
+  111614  return
+
+== -[TAGDispatcher maxRequestsPerDispatch]   (address 0x100111618  size 16  kind objc)
+  111624  return
+
+== -[TAGDispatcher setMaxRequestsPerDispatch:]   (address 0x100111628  size 16  kind objc)
+  111630  self->_maxRequestsPerDispatch = arg1
+  111634  return
+
+== -[TAGDispatcher .cxx_destruct]   (address 0x100111638  size 180  kind objc)

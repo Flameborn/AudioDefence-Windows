@@ -1,0 +1,91 @@
+
+== -[ADMinigunPowerUp init]   (address 0x1000b23f0  size 60  kind objc)
+  0b241c  [super init]
+  0b2428  return
+
+== -[ADMinigunPowerUp preload]   (address 0x1000b242c  size 1060  kind objc)
+  0b2460  [S3DEngine engine]
+  0b2484  [[S3DEngine engine] playListWithName:@"minigun"]
+  0b24a8  [self setPlaylist:[[S3DEngine engine] playListWithName:@"minigun"]]
+  0b24cc  [self playlist]
+  0b24e8  [[self playlist] activate]
+  0b2508  [ADWeaponManager sharedWeaponManager]
+  0b252c  [[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"]
+  0b2558  [ADWeapon alloc]
+  0b257c  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:@"weaponDictionary"]
+  0b25a0  [[ADWeapon alloc] initWithDictionary:[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:@"weaponDictionary"]]
+  0b25b0  self->minigunWeapon = [[ADWeapon alloc] initWithDictionary:[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:@"weaponDictionary"]]
+  0b25d4  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:@"name"]
+  0b25f8  [self setName:[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:@"name"]]
+  0b2618  [ADInventory sharedInventory]
+  0b263c  [[ADInventory sharedInventory] levelForPowerUpWithName:@"minigun"]
+  0b2660  [ADGameModifiers sharedModifiers]
+  0b267c  [[ADGameModifiers sharedModifiers] betterPowerUps]
+  0b2680  if ([[ADGameModifiers sharedModifiers] betterPowerUps] == 0) goto loc_1000b26e8
+  0b26a8  [NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:@"minigun"] + 1)]
+  0b26c4  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:[NSString stringWithFormat:@"level_%i", ([[ADInventory sharedInventory] levelForPowerUpWithName:@"minigun"] + 1)]]
+  0b26d4  t1 = ([[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:[NSString stringWithFormat… != 0)
+  0b26e4  goto loc_1000b26ec
+loc_1000b26e8:
+loc_1000b26ec:
+  0b2718  [NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"minigun"])]
+  0b2734  [[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:[NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"minigun"])]]
+  0b2750  [[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:[NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"minigun"])]] objectForKey:@"duration"]
+  0b276c  [[[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:[NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"minigun"])]] objectForKey:@"duration"] intValue]
+  0b2770  t2 = (float)[[[[[ADWeaponManager sharedWeaponManager] dictionaryForPowerupWithName:@"minigun"] objectForKey:[NSString stringWithFormat:@"level_%i", (w25 + [[ADInventory sharedInventory] levelForPowerUpWithName:@"minigun"])]] objectForKey:@"duration"] intValue]
+  0b277c  self->minigunDuration = t2
+  0b27b4  return
+
+== -[ADMinigunPowerUp use]   (address 0x1000b2850  size 228  kind objc)
+  0b2870  [self playlist]
+  0b2894  [[self playlist] anySoundContaining:@"minigun_fire"]
+  0b28ac  self->loopSound = [[self playlist] anySoundContaining:@"minigun_fire"]
+  0b28d4  [self->loopSound play:0]
+  0b28f0  [self->loopSound setGain:0.4]
+  0b28fc  self->timeSinceActivation = 0
+  0b290c  self->active = 1
+  0b291c  return
+
+== -[ADMinigunPowerUp update:]   (address 0x1000b2934  size 568  kind objc)
+  0b295c  if (self->active == 0) goto loc_1000b2b30
+  0b2970  self->timeSinceActivation = (self->timeSinceActivation + arg1)
+  0b297c  if ((self->timeSinceActivation + arg1) <= (or unordered) 1.5) goto loc_1000b2b30
+  0b2994  self->nextBulletTime = (self->nextBulletTime - arg1)
+  0b2998  if ((self->nextBulletTime - arg1) >= (or unordered) 0.0) goto loc_1000b29fc
+  0b29b4  [self->minigunWeapon fireRate]
+  0b29b8  self->nextBulletTime = [self->minigunWeapon fireRate]
+  0b29d0  [ADBrickManager sharedBrickManager]
+  0b29f0  [[ADBrickManager sharedBrickManager] shotWithSpecialWeapon:self->minigunWeapon]
+loc_1000b29fc:
+  0b2a10  if (self->timeSinceActivation <= (or unordered) self->minigunDuration) goto loc_1000b2b30
+  0b2a18  if (self->active == 0) goto loc_1000b2b30
+  0b2a1c  self->active = 0
+  0b2a68  dispatch_after(0, __dispatch_main_q, ^{-[ADMinigunPowerUp update:]_block_invoke captures +0x20=self->loopSound})
+  0b2a7c  [self playlist]
+  0b2aa0  [[self playlist] anySoundContaining:@"minigun_tail"]
+  0b2acc  [[[self playlist] anySoundContaining:@"minigun_tail"] play:0]
+  0b2ae8  [[[self playlist] anySoundContaining:@"minigun_tail"] setGain:0.4]
+  0b2b24  [[[self playlist] anySoundContaining:@"minigun_tail"] add3DSoundEndCallback:^{-[ADMinigunPowerUp update:]_block_invoke_2 captures +0x20=self, +0x28=__NSConcreteStackBlock, +0x30=0xc0000000, +0x38=&-[ADMinigunPowerUp update:]_block_invok…, +0x40=&d_1003b25b0, +0x48=self->loopSound}]
+loc_1000b2b30:
+  0b2b44  return
+
+== -[ADMinigunPowerUp update:]_block_invoke   (address 0x1000b2b6c  size 20  kind block)
+  0b2b7c  tail [self->loopSound stop]
+
+== -[ADMinigunPowerUp update:]_block_invoke_2   (address 0x1000b2b80  size 36  kind block)
+  0b2b98  [self clean]
+  0b2ba0  return
+
+== -[ADMinigunPowerUp clean]   (address 0x1000b2ba4  size 388  kind objc)
+  0b2bc8  [self playlist]
+  0b2be4  [[self playlist] deactivate]
+  0b2c04  [ADTracker sharedInstance]
+  0b2c2c  [ADInGameStats singleton]
+  0b2c48  [[ADInGameStats singleton] enemyKillsWithPowerup]
+  0b2c60  [self name]
+  0b2c88  [[ADTracker sharedInstance] numberOfEnemyKills:[[ADInGameStats singleton] enemyKillsWithPowerup] ByPowerUp:[self name]]
+  0b2cac  [ADInGameStats singleton]
+  0b2ccc  [[ADInGameStats singleton] setEnemyKillsWithPowerup:0]
+  0b2ce4  return
+
+== -[ADMinigunPowerUp .cxx_destruct]   (address 0x1000b2d28  size 64  kind objc)

@@ -1,0 +1,540 @@
+
+== -[ADArmoryViewController initWithNibName:bundle:loadoutEnabled:]   (address 0x100073864  size 224  kind objc)
+  0738cc  [super initWithNibName:arg1 bundle:arg2]
+  0738d4  if (self == 0) goto loc_1000738f4
+  0738f0  [self setLoadoutEnabled:arg3]
+loc_1000738f4:
+  07391c  return
+
+== -[ADArmoryViewController initWithNibName:bundle:tab:loadoutEnabled:]   (address 0x100073944  size 312  kind objc)
+  0739bc  [super initWithNibName:arg1 bundle:arg2]
+  0739c4  if (self == 0) goto loc_100073a1c
+  0739e0  [self setPreviousTab:arg3]
+  0739fc  [self setBrowse_dt:0]
+  073a18  [self setLoadoutEnabled:arg4]
+loc_100073a1c:
+  073a4c  return
+
+== -[ADArmoryViewController loadView]   (address 0x100073a7c  size 808  kind objc)
+  073ad8  [NSNumber numberWithInt:1]
+  073b04  [NSNumber numberWithInt:2]
+  073b2c  [NSNumber numberWithInt:3]
+  073b54  [NSNumber numberWithInt:4]
+  073b7c  [NSNumber numberWithInt:5]
+  073ba4  [NSNumber numberWithInt:6]
+  073bcc  [NSNumber numberWithInt:7]
+  073bfc  [NSNumber numberWithInt:8]
+  073c24  [NSNumber numberWithInt:9]
+  073c54  [NSDictionary dictionaryWithObjects:&sp[0x60] forKeys:&sp[0x18] count:9]
+  073cc8  [self loADViewBasedOnDeviceWithNibName:@"ADArmoryViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x60] forKeys:&sp[0x18] count:9]]
+  073cfc  return
+
+== -[ADArmoryViewController initWithNibName:bundle:weapon:]   (address 0x100073da4  size 244  kind objc)
+  073e14  [super initWithNibName:arg1 bundle:arg2]
+  073e2c  if (self == 0) goto loc_100073e50
+  073e44  self->weaponName = arg3
+loc_100073e50:
+  073e70  return
+
+== -[ADArmoryViewController viewDidLoad]   (address 0x100073e98  size 2792  kind objc)
+  073ef0  [super viewDidLoad]
+  073f0c  [self setBrowsingTime:0]
+  073f24  [self statusBarViewController]
+  073f44  [[self statusBarViewController] setDelegate:self]
+  073f58  [self statusBarViewController]
+  073f74  [[self statusBarViewController] pageTitle]
+  073f98  [[[self statusBarViewController] pageTitle] setText:@"ARMORY"]
+  073fb4  [self statusBarViewController]
+  073fd4  [[self statusBarViewController] setArmoryButtonVisibilty:0]
+  073ff0  [self previousTab]
+  074014  [[self previousTab] isEqualToString:@"loadout"]
+  074018  if ([[self previousTab] isEqualToString:@"loadout"] == 0) goto loc_100074054
+  07402c  [self loadoutEnabled]
+  07403c  if ([self loadoutEnabled] == 0) goto loc_10007405c
+  074044  &@selector(loadoutButtonPressed:)
+  074050  goto loc_100074088
+loc_100074054:
+loc_10007405c:
+  074070  [self weaponsButtonPressed:0]
+  074078  &@selector(setPreviousTab:)
+loc_100074088:
+  07408c  [self <sel x1>]
+  0740a4  [self contentContainer]
+  0740bc  [self contentContainer]
+  0740dc  [[self contentContainer] frame]
+  0740ec  [self contentContainer]
+  074100  [[self contentContainer] frame]
+  074124  [[self contentContainer] setContentSize:{([[self contentContainer] frame].2 * 4), ([[self contentContainer] frame].3 * 0.5)}]
+  074148  [self contentContainer]
+  074168  [[self contentContainer] setScrollEnabled:0]
+  0741a8  [NSTimer timerWithTimeInterval:0.001 target:self selector:@selector(updateBrowseTimer:) userInfo:0 repeats:1]
+  0741c4  [self setBrowsingTime:[NSTimer timerWithTimeInterval:0.001 target:self selector:@selector(updateBrowseTimer:) userInfo:0 repeats:1]]
+  0741e4  [NSRunLoop mainRunLoop]
+  074204  [self browsingTime]
+  074234  [[NSRunLoop mainRunLoop] addTimer:[self browsingTime] forMode:_NSRunLoopCommonModes[+0x0]]
+  074264  [ADTracker sharedInstance]
+  074284  [[ADTracker sharedInstance] trackerInventory]
+  0742ac  [ADInventory sharedInventory]
+  0742c8  [[ADInventory sharedInventory] weaponSlot1]
+  0742f8  [[[ADTracker sharedInstance] trackerInventory] setObject:[[ADInventory sharedInventory] weaponSlot1] forKey:@"slot1"]
+  074324  [ADTracker sharedInstance]
+  074338  [[ADTracker sharedInstance] trackerInventory]
+  074350  [ADInventory sharedInventory]
+  07436c  [[ADInventory sharedInventory] weaponSlot2]
+  074390  [[[ADTracker sharedInstance] trackerInventory] setObject:[[ADInventory sharedInventory] weaponSlot2] forKey:@"slot2"]
+  0743bc  [ADTracker sharedInstance]
+  0743d0  [[ADTracker sharedInstance] trackerInventory]
+  0743e8  [ADInventory sharedInventory]
+  074404  [[ADInventory sharedInventory] weaponSlotMelee]
+  07442c  [[[ADTracker sharedInstance] trackerInventory] setObject:[[ADInventory sharedInventory] weaponSlotMelee] forKey:@"slotMelee"]
+  074468  [NSMutableArray alloc]
+  074488  [ADWeaponManager sharedWeaponManager]
+  0744a8  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  0744c4  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count]
+  0744dc  [[NSMutableArray alloc] initWithCapacity:[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count]]
+  0744f8  [self setItemNames:[[NSMutableArray alloc] initWithCapacity:[[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] count]]]
+  074530  [ADWeaponManager sharedWeaponManager]
+  074544  [[ADWeaponManager sharedWeaponManager] getAllWeaponsArray]
+  074580  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] count:16]
+  074588  if ([[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] count:16] == 0) goto loc_10007468c
+  0745b8  &@selector(setObject:atIndexedSubscript:)
+loc_1000745c0:
+loc_1000745cc:
+  0745dc  if (x8 == x9) goto loc_1000745e8
+  0745e4  objc_enumerationMutation([[ADWeaponManager sharedWeaponManager] getAllWeaponsArray])
+loc_1000745e8:
+  0745f8  [self itemNames]
+  07461c  [x0 objectForKey:@"name"]
+  074640  [[self itemNames] setObject:[x0 objectForKey:@"name"] atIndexedSubscript:(x27 + x21)]
+  074660  if ((x21 + 1) <u [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] coun…) goto loc_1000745cc
+  074678  [[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] count:16]
+  074688  if ([[[ADWeaponManager sharedWeaponManager] getAllWeaponsArray] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x88] count:16] != 0) goto loc_1000745c0
+loc_10007468c:
+  0746a8  [self setHideEquipButtonsOnDetailView:1]
+  0746bc  [UITapGestureRecognizer alloc]
+  0746e0  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nextWeaponButtonPressed:)]
+  0746fc  [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nextWeaponButtonPressed:)] setNumberOfTapsRequired:1]
+  074710  [self rightArrow]
+  074734  [[self rightArrow] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nextWeaponButtonPressed:)]]
+  074748  [UITapGestureRecognizer alloc]
+  074760  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousWeaponButtonPressed:)]
+  074774  [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousWeaponButtonPressed:)] setNumberOfTapsRequired:1]
+  074788  [self leftArrow]
+  0747a0  [[self leftArrow] addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousWeaponButtonPressed:)]]
+  0747f4  return
+
+== -[ADArmoryViewController updateBrowseTimer:]   (address 0x100074980  size 28  kind objc)
+  074994  self->_browse_dt = (self->_browse_dt + 1)
+  074998  return
+
+== -[ADArmoryViewController browse_dt]   (address 0x10007499c  size 32  kind objc)
+  0749b4  self->_browse_dt = 0
+  0749b8  return
+
+== -[ADArmoryViewController loadWeapons]   (address 0x1000749bc  size 740  kind objc)
+  0749e8  if (self->shop != 0) goto loc_100074ba8
+  074a00  [ADArmoryShopViewController alloc]
+  074a1c  [[ADArmoryShopViewController alloc] initWithNibName:@"ADArmoryShopViewController" bundle:0]
+  074a24  self->shop = [[ADArmoryShopViewController alloc] initWithNibName:@"ADArmoryShopViewController" bundle:0]
+  074a44  [self contentContainer]
+  074a68  [self->shop view]
+  074a8c  [[self contentContainer] addSubview:[self->shop view]]
+  074aa8  [self->shop view]
+  074ac0  [self contentContainer]
+  074ae0  [[self contentContainer] frame]
+  074af0  [self contentContainer]
+  074b04  [[self contentContainer] frame]
+  074b24  [[self->shop view] setCenter:{([[self contentContainer] frame].2 * 0.5), ([[self contentContainer] frame].3 * 0.5)}]
+  074b54  [self->shop setArmoryViewController:self]
+  074b9c  dispatch_async(__dispatch_main_q, ^{-[ADArmoryViewController loadWeapons]_block_invoke captures +0x20=self})
+loc_100074ba8:
+  074bbc  [self contentContainer]
+  074bd4  [self contentContainer]
+  074bf0  [[self contentContainer] frame]
+  074c14  [[self contentContainer] setContentOffset:{([[self contentContainer] frame].2 * 0), 0} animated:1]
+  074c40  return
+
+== -[ADArmoryViewController loadWeapons]_block_invoke   (address 0x100074ca0  size 140  kind block)
+  074cc0  if (self->weaponName == 0) goto loc_100074d00
+  074cc4  UIAccessibilityIsVoiceOverRunning()
+  074cd0  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_100074d0c
+  074cfc  tail [self->shop showAccessibleDetailViewForWeaponWithName:self->weaponName]
+loc_100074d00:
+  074d08  return
+  074d28  tail [self openDescriptionForItemWithName:self->weaponName withButton:0]
+
+== sub_100074d2c   (address 0x100074d2c  size 8  kind sub)
+
+== sub_100074d34   (address 0x100074d34  size 8  kind sub)
+  074d38  return
+
+== -[ADArmoryViewController loadLoadout]   (address 0x100074d3c  size 780  kind objc)
+  074d64  if (self->loadOut != 0) goto loc_100074f54
+  074d68  UIAccessibilityIsVoiceOverRunning()
+  074d6c  if (!(UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_100074da4
+  074d84  [Accessible_ADArmoryLoadoutViewController alloc]
+  074d8c  &@selector(initWithNibName:bundle:)
+  074da0  goto loc_100074dd4
+loc_100074da4:
+  074db8  [ADArmoryLoadoutViewController alloc]
+  074dc0  &@selector(initWithNibName:bundle:)
+loc_100074dd4:
+  074dd4  [x0 initWithNibName:one of {@"ADArmoryLoadoutViewController", @"Accessible_ADArmoryLoadoutViewController"} bundle:0]
+  074ddc  self->loadOut = [x0 initWithNibName:one of {@"ADArmoryLoadoutViewController", @"Accessible_ADArmoryLoadoutViewController"} bundle:0]
+  074dfc  [self->loadOut setArmoryViewController:self]
+  074e14  [self contentContainer]
+  074e38  [self->loadOut view]
+  074e5c  [[self contentContainer] addSubview:[self->loadOut view]]
+  074e78  [self->loadOut view]
+  074e90  [self contentContainer]
+  074eb0  [[self contentContainer] frame]
+  074ec0  [self contentContainer]
+  074ed4  [[self contentContainer] frame]
+  074ef8  [[self->loadOut view] setCenter:{([[self contentContainer] frame].2 * 1.5), ([[self contentContainer] frame].3 * 0.5)}]
+  074f24  [self loadOutButton]
+  074f48  [self updateTabsAfterButtonPressed:[self loadOutButton]]
+loc_100074f54:
+  074f68  [self contentContainer]
+  074f80  [self contentContainer]
+  074f9c  [[self contentContainer] frame]
+  074fbc  [[self contentContainer] setContentOffset:{[[self contentContainer] frame].2, 0} animated:1]
+  074fe0  return
+
+== -[ADArmoryViewController loadPowerUps]   (address 0x100075048  size 648  kind objc)
+  075070  if (self->powerups != 0) goto loc_1000751e4
+  075088  [ADArmoryPowerUpViewController alloc]
+  0750a4  [[ADArmoryPowerUpViewController alloc] initWithNibName:@"ADArmoryPowerUpViewController" bundle:0]
+  0750ac  self->powerups = [[ADArmoryPowerUpViewController alloc] initWithNibName:@"ADArmoryPowerUpViewController" bundle:0]
+  0750cc  [self contentContainer]
+  0750f0  [self->powerups view]
+  075114  [[self contentContainer] addSubview:[self->powerups view]]
+  075130  [self->powerups view]
+  075148  [self contentContainer]
+  075168  [[self contentContainer] frame]
+  075178  [self contentContainer]
+  07518c  [[self contentContainer] frame]
+  0751b0  [[self->powerups view] setCenter:{([[self contentContainer] frame].2 * 2.5), ([[self contentContainer] frame].3 * 0.5)}]
+  0751e0  [self->powerups setArmoryViewController:self]
+loc_1000751e4:
+  0751f8  [self contentContainer]
+  075210  [self contentContainer]
+  07522c  [[self contentContainer] frame]
+  07524c  [[self contentContainer] setContentOffset:{([[self contentContainer] frame].2 + [[self contentContainer] frame].2), 0} animated:1]
+  075270  return
+
+== -[ADArmoryViewController loadCurrency]   (address 0x1000752d0  size 652  kind objc)
+  0752f8  if (self->currency != 0) goto loc_10007546c
+  075310  [ADArmoryCurrencyViewController alloc]
+  07532c  [[ADArmoryCurrencyViewController alloc] initWithNibName:@"ADArmoryCurrencyViewController" bundle:0]
+  075334  self->currency = [[ADArmoryCurrencyViewController alloc] initWithNibName:@"ADArmoryCurrencyViewController" bundle:0]
+  075354  [self->currency setArmoryVCDelegate:self]
+  07536c  [self contentContainer]
+  075390  [self->currency view]
+  0753b4  [[self contentContainer] addSubview:[self->currency view]]
+  0753d0  [self->currency view]
+  0753e8  [self contentContainer]
+  075408  [[self contentContainer] frame]
+  075418  [self contentContainer]
+  07542c  [[self contentContainer] frame]
+  075450  [[self->currency view] setCenter:{([[self contentContainer] frame].2 * 3.5), ([[self contentContainer] frame].3 * 0.5)}]
+loc_10007546c:
+  075480  [self contentContainer]
+  075498  [self contentContainer]
+  0754b4  [[self contentContainer] frame]
+  0754d8  [[self contentContainer] setContentOffset:{([[self contentContainer] frame].2 * 3), 0} animated:1]
+  0754fc  return
+
+== -[ADArmoryViewController weaponsButtonPressed:]   (address 0x10007555c  size 448  kind objc)
+  075580  [self browsingTime]
+  075594  if ([self browsingTime] == 0) goto loc_10007563c
+  0755a8  [self browse_dt]
+  0755c4  [ADTracker sharedInstance]
+  0755e4  [self previousTab]
+  07560c  [[ADTracker sharedInstance] recordTabChangeEventWithTabName:[self previousTab] TimeSpentInTab:[self browse_dt]]
+  075638  [self setPreviousTab:@"weaponsTab"]
+loc_10007563c:
+  07564c  [self weaponsButton]
+  075670  [self updateTabsAfterButtonPressed:[self weaponsButton]]
+  07568c  [self loadWeapons]
+  0756a8  [self->shop view]
+  0756cc  [self toggleAccessibilityAfterTabWasSelected:[self->shop view]]
+  0756e4  return
+
+== -[ADArmoryViewController loadoutButtonPressed:]   (address 0x10007571c  size 844  kind objc)
+  075744  [self loadoutEnabled]
+  075748  if ([self loadoutEnabled] == 0) goto loc_1000758b4
+  07575c  [self browsingTime]
+  075770  if ([self browsingTime] == 0) goto loc_100075818
+  075784  [self browse_dt]
+  0757a0  [ADTracker sharedInstance]
+  0757c0  [self previousTab]
+  0757e8  [[ADTracker sharedInstance] recordTabChangeEventWithTabName:[self previousTab] TimeSpentInTab:[self browse_dt]]
+  075814  [self setPreviousTab:@"loadOutTab"]
+loc_100075818:
+  075828  [self loadOutButton]
+  07584c  [self updateTabsAfterButtonPressed:[self loadOutButton]]
+  075868  [self loadLoadout]
+  075884  [self->loadOut view]
+  0758a8  [self toggleAccessibilityAfterTabWasSelected:[self->loadOut view]]
+  0758b0  goto loc_1000759d4
+loc_1000758b4:
+  0758c8  [UIAlertView alloc]
+  0758e8  [NSBundle mainBundle]
+  07591c  [[NSBundle mainBundle] localizedStringForKey:@"EQUIP_ALERT_TITLE" value:@"" table:0]
+  075934  [NSBundle mainBundle]
+  07595c  [[NSBundle mainBundle] localizedStringForKey:@"EQUIP_ALERT_CONTENT" value:@"" table:0]
+  075994  [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"EQUIP_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"EQUIP_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:@"OK" otherButtonTitles:0]
+  0759cc  [[[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"EQUIP_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"EQUIP_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:@"OK" otherButtonTitles:0] show]
+loc_1000759d4:
+  0759e8  return
+
+== -[ADArmoryViewController powerUpButtonPressed:]   (address 0x100075a68  size 448  kind objc)
+  075a8c  [self browsingTime]
+  075aa0  if ([self browsingTime] == 0) goto loc_100075b48
+  075ab4  [self browse_dt]
+  075ad0  [ADTracker sharedInstance]
+  075af0  [self previousTab]
+  075b18  [[ADTracker sharedInstance] recordTabChangeEventWithTabName:[self previousTab] TimeSpentInTab:[self browse_dt]]
+  075b44  [self setPreviousTab:@"powerupTab"]
+loc_100075b48:
+  075b58  [self powerUpButton]
+  075b7c  [self updateTabsAfterButtonPressed:[self powerUpButton]]
+  075b98  [self loadPowerUps]
+  075bb4  [self->powerups view]
+  075bd8  [self toggleAccessibilityAfterTabWasSelected:[self->powerups view]]
+  075bf0  return
+
+== -[ADArmoryViewController currencyButtonPressed:]   (address 0x100075c28  size 448  kind objc)
+  075c4c  [self browsingTime]
+  075c60  if ([self browsingTime] == 0) goto loc_100075d08
+  075c74  [self browse_dt]
+  075c90  [ADTracker sharedInstance]
+  075cb0  [self previousTab]
+  075cd8  [[ADTracker sharedInstance] recordTabChangeEventWithTabName:[self previousTab] TimeSpentInTab:[self browse_dt]]
+  075d04  [self setPreviousTab:@"currencyTab"]
+loc_100075d08:
+  075d18  [self currencyButton]
+  075d3c  [self updateTabsAfterButtonPressed:[self currencyButton]]
+  075d58  [self loadCurrency]
+  075d74  [self->currency view]
+  075d98  [self toggleAccessibilityAfterTabWasSelected:[self->currency view]]
+  075db0  return
+
+== -[ADArmoryViewController updateTabsAfterButtonPressed:]   (address 0x100075de8  size 604  kind objc)
+  075e24  [self currencyButton]
+  075e48  [[self currencyButton] setEnabled:1]
+  075e68  [self powerUpButton]
+  075e80  [[self powerUpButton] setEnabled:1]
+  075ea0  [self weaponsButton]
+  075eb8  [[self weaponsButton] setEnabled:1]
+  075ed8  [self loadOutButton]
+  075ef0  [[self loadOutButton] setEnabled:1]
+  075f04  [self weaponsButton]
+  075f28  [[self weaponsButton] setSelected:0]
+  075f3c  [self loadOutButton]
+  075f54  [[self loadOutButton] setSelected:0]
+  075f68  [self powerUpButton]
+  075f80  [[self powerUpButton] setSelected:0]
+  075f94  [self currencyButton]
+  075fac  [[self currencyButton] setSelected:0]
+  075fc4  [arg1 setSelected:1]
+  075fe0  return
+
+== -[ADArmoryViewController didReceiveMemoryWarning]   (address 0x100076044  size 60  kind objc)
+  076070  [super didReceiveMemoryWarning]
+  07607c  return
+
+== -[ADArmoryViewController backButtonPressed]   (address 0x100076080  size 372  kind objc)
+  0760a8  [self statusBarViewController]
+  0760c8  [[self statusBarViewController] backButtonDelegate]
+  0760e4  if ([[self statusBarViewController] backButtonDelegate] == 0) goto loc_100076178
+  0760f0  [self statusBarViewController]
+  076104  [[self statusBarViewController] backButtonDelegate]
+  076120  [[[self statusBarViewController] backButtonDelegate] handleBackActionFromStatusBar]
+  07613c  [self statusBarViewController]
+  07615c  [[self statusBarViewController] setBackButtonDelegate:0]
+  076174  return
+  076188  [self trackBrowsingTime]
+  0761b8  tail [self dismissViewControllerAnimated:0 completion:^{-[ADArmoryViewController backButtonPressed]_block_invoke}]
+
+== -[ADArmoryViewController backButtonPressed]_block_invoke   (address 0x1000761f4  size 4  kind block)
+  0761f4  return
+
+== -[ADArmoryViewController trackBrowsingTime]   (address 0x1000761f8  size 1056  kind objc)
+  076224  [self browsingTime]
+  076240  [[self browsingTime] invalidate]
+  07625c  [self browse_dt]
+  076274  [self setBrowsingTime:0]
+  076290  [ADTracker sharedInstance]
+  0762ac  [[ADTracker sharedInstance] configured]
+  0762bc  if ([[ADTracker sharedInstance] configured] == 0) goto loc_100076530
+  0762dc  [ADTracker getWeaponInSlot:@"slot1"]
+  076304  [ADInventory sharedInventory]
+  076320  [[ADInventory sharedInventory] weaponSlot1]
+  076350  [[ADTracker getWeaponInSlot:@"slot1"] isEqualToString:[[ADInventory sharedInventory] weaponSlot1]]
+  076354  if (([[ADTracker getWeaponInSlot:@"slot1"] isEqualToString:[[ADInventory sharedInventory] weaponSlot1]] & 1)) goto loc_100076390
+  076360  [ADTracker sharedInstance]
+  076384  [[ADTracker sharedInstance] recordWeaponEquipWithName:[ADTracker getWeaponInSlot:@"slot1"] WeaponSlot:1]
+loc_100076390:
+  0763a0  [ADTracker getWeaponInSlot:@"slot2"]
+  0763c4  [ADInventory sharedInventory]
+  0763e0  [[ADInventory sharedInventory] weaponSlot2]
+  076414  [[ADTracker getWeaponInSlot:@"slot2"] isEqualToString:[[ADInventory sharedInventory] weaponSlot2]]
+  076418  if (([[ADTracker getWeaponInSlot:@"slot2"] isEqualToString:[[ADInventory sharedInventory] weaponSlot2]] & 1)) goto loc_10007645c
+  07642c  [ADTracker sharedInstance]
+  076450  [[ADTracker sharedInstance] recordWeaponEquipWithName:[ADTracker getWeaponInSlot:@"slot2"] WeaponSlot:2]
+loc_10007645c:
+  076474  [ADTracker getWeaponInSlot:@"slotMelee"]
+  076498  [ADInventory sharedInventory]
+  0764b4  [[ADInventory sharedInventory] weaponSlotMelee]
+  0764e0  [[ADTracker getWeaponInSlot:@"slotMelee"] isEqualToString:[[ADInventory sharedInventory] weaponSlotMelee]]
+  0764e4  if (([[ADTracker getWeaponInSlot:@"slotMelee"] isEqualToString:[[ADInventory sharedInventory] weaponSlotMelee]] & 1)) goto loc_100076520
+  0764f0  [ADTracker sharedInstance]
+  076514  [[ADTracker sharedInstance] recordWeaponEquipWithName:[ADTracker getWeaponInSlot:@"slotMelee"] WeaponSlot:3]
+loc_100076520:
+loc_100076530:
+  076538  [ADTracker sharedInstance]
+  076558  [[ADTracker sharedInstance] setConfigured:0]
+  076578  return
+
+== -[ADArmoryViewController sendDetailViewToBack]   (address 0x100076618  size 60  kind objc)
+  076644  [super sendDetailViewToBack]
+  076650  return
+
+== -[ADArmoryViewController setAccessibilityOnView:to:]   (address 0x100076654  size 44  kind objc)
+  076674  [arg1 setAccessibilityElementsHidden:(arg2 ^ 1)]
+  07667c  return
+
+== -[ADArmoryViewController toggleAccessibilityAfterTabWasSelected:]   (address 0x100076680  size 596  kind objc)
+  0766c0  [self->powerups view]
+  0766d8  if ([self->powerups view] == arg1) goto loc_100076718
+  0766e4  [self->powerups view]
+  07670c  [self setAccessibilityOnView:[self->powerups view] to:0]
+loc_100076718:
+  076728  [self->currency view]
+  076740  if ([self->currency view] == arg1) goto loc_100076780
+  07674c  [self->currency view]
+  076774  [self setAccessibilityOnView:[self->currency view] to:0]
+loc_100076780:
+  076790  [self->shop view]
+  0767a8  if ([self->shop view] == arg1) goto loc_1000767e8
+  0767b4  [self->shop view]
+  0767dc  [self setAccessibilityOnView:[self->shop view] to:0]
+loc_1000767e8:
+  0767f8  [self->loadOut view]
+  076810  if ([self->loadOut view] == arg1) goto loc_100076850
+  07681c  [self->loadOut view]
+  076844  [self setAccessibilityOnView:[self->loadOut view] to:0]
+loc_100076850:
+  076868  [self setAccessibilityOnView:arg1 to:1]
+  07687c  UIAccessibilityPostNotification(_UIAccessibilityLayoutChangedNotification[+0x0], 0)
+  076894  return
+
+== -[ADArmoryViewController showNotEnoughMoneyAlert]   (address 0x1000768d4  size 684  kind objc)
+  07690c  [UIAlertView alloc]
+  07692c  [NSBundle mainBundle]
+  076960  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_TITLE" value:@"" table:0]
+  076978  [NSBundle mainBundle]
+  0769a0  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CONTENT" value:@"" table:0]
+  0769b8  [NSBundle mainBundle]
+  0769e0  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CANCEL" value:@"" table:0]
+  0769f8  [NSBundle mainBundle]
+  076a20  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]
+  076a58  [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CANCEL" value:@"" table:0] otherButtonTitles:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]]
+  076a68  self->currencyAlert = [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_TITLE" value:@"" table:0] message:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CONTENT" value:@"" table:0] delegate:0 cancelButtonTitle:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_CANCEL" value:@"" table:0] otherButtonTitles:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]]
+  076ac8  [self->currencyAlert setDelegate:self]
+  076af8  tail [self->currencyAlert show]
+  076b00  goto loc_100076b70
+  076b08  goto loc_100076b68
+  076b10  goto loc_100076b60
+  076b18  goto loc_100076b58
+  076b20  goto loc_100076b50
+  076b28  goto loc_100076b48
+  076b30  goto loc_100076b40
+loc_100076b40:
+loc_100076b48:
+loc_100076b50:
+loc_100076b58:
+loc_100076b60:
+loc_100076b68:
+loc_100076b70:
+
+== -[ADArmoryViewController alertView:willDismissWithButtonIndex:]   (address 0x100076b80  size 320  kind objc)
+  076bac  [arg1 buttonTitleAtIndex:arg2]
+  076bd0  [NSBundle mainBundle]
+  076c00  [[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]
+  076c24  [[arg1 buttonTitleAtIndex:arg2] isEqualToString:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]]
+  076c3c  if ([[arg1 buttonTitleAtIndex:arg2] isEqualToString:[[NSBundle mainBundle] localizedStringForKey:@"COINS_ALERT_MORE" value:@"" table:0]] == 0) goto loc_100076c6c
+  076c54  [self currencyButtonPressed:0]
+  076c68  [self sendDetailViewToBack]
+loc_100076c6c:
+  076c80  return
+
+== -[ADArmoryViewController dealloc]   (address 0x100076cc0  size 268  kind objc)
+  076ce4  [self contentContainer]
+  076d00  [[self contentContainer] subviews]
+  076d28  [[[self contentContainer] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)]
+  076d5c  [super dealloc]
+  076d70  return
+  076dbc  [super dealloc]
+  076dc8  call sub_10000b760
+
+== -[ADArmoryViewController contentContainer]   (address 0x100076dcc  size 16  kind objc)
+  076dd8  return
+
+== -[ADArmoryViewController setContentContainer:]   (address 0x100076ddc  size 56  kind objc)
+  076e00  self->_contentContainer = arg1
+  076e10  return
+
+== -[ADArmoryViewController weaponsButton]   (address 0x100076e14  size 16  kind objc)
+  076e20  return
+
+== -[ADArmoryViewController setWeaponsButton:]   (address 0x100076e24  size 56  kind objc)
+  076e48  self->_weaponsButton = arg1
+  076e58  return
+
+== -[ADArmoryViewController powerUpButton]   (address 0x100076e5c  size 16  kind objc)
+  076e68  return
+
+== -[ADArmoryViewController setPowerUpButton:]   (address 0x100076e6c  size 56  kind objc)
+  076e90  self->_powerUpButton = arg1
+  076ea0  return
+
+== -[ADArmoryViewController currencyButton]   (address 0x100076ea4  size 16  kind objc)
+  076eb0  return
+
+== -[ADArmoryViewController setCurrencyButton:]   (address 0x100076eb4  size 56  kind objc)
+  076ed8  self->_currencyButton = arg1
+  076ee8  return
+
+== -[ADArmoryViewController loadOutButton]   (address 0x100076eec  size 16  kind objc)
+  076ef8  return
+
+== -[ADArmoryViewController setLoadOutButton:]   (address 0x100076efc  size 56  kind objc)
+  076f20  self->_loadOutButton = arg1
+  076f30  return
+
+== -[ADArmoryViewController browsingTime]   (address 0x100076f34  size 16  kind objc)
+  076f40  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADArmoryViewController setBrowsingTime:]   (address 0x100076f44  size 12  kind objc)
+  076f4c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADArmoryViewController setBrowse_dt:]   (address 0x100076f50  size 16  kind objc)
+  076f58  self->_browse_dt = arg1
+  076f5c  return
+
+== -[ADArmoryViewController previousTab]   (address 0x100076f60  size 16  kind objc)
+  076f6c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADArmoryViewController setPreviousTab:]   (address 0x100076f70  size 12  kind objc)
+  076f78  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADArmoryViewController loadoutEnabled]   (address 0x100076f7c  size 20  kind objc)
+  076f8c  return
+
+== -[ADArmoryViewController setLoadoutEnabled:]   (address 0x100076f90  size 16  kind objc)
+  076f98  self->_loadoutEnabled = arg1
+  076f9c  return
+
+== -[ADArmoryViewController .cxx_destruct]   (address 0x100076fa0  size 284  kind objc)

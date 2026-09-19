@@ -1,0 +1,37 @@
+
+== +[ADTypefaceGenerator createTitle:]   (address 0x100072a40  size 264  kind objc)
+  072a88  [UIColor colorWithRed:237 green:180 blue:55 alpha:1]
+  072aac  [arg1 setTextColor:[UIColor colorWithRed:237 green:180 blue:55 alpha:1]]
+  072adc  [UIFont fontWithName:@"Monstro" size:65]
+  072b00  [arg1 setFont:[UIFont fontWithName:@"Monstro" size:65]]
+  072b18  return
+
+== +[ADTypefaceGenerator createButton:]   (address 0x100072b48  size 276  kind objc)
+  072b88  [UIColor colorWithRed:255 green:255 blue:255 alpha:1]
+  072bb0  [arg1 setTitleColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:1] forState:0]
+  072bd4  [arg1 setFontName:@"Monstro"]
+  072bf0  [NSNumber numberWithInt:40]
+  072c14  [arg1 setFontSize:[NSNumber numberWithInt:40]]
+  072c2c  return
+
+== +[ADTypefaceGenerator createBlockedButton:]   (address 0x100072c5c  size 276  kind objc)
+  072c9c  [UIColor colorWithRed:53 green:4 blue:4 alpha:1]
+  072cc4  [arg1 setTitleColor:[UIColor colorWithRed:53 green:4 blue:4 alpha:1] forState:0]
+  072ce8  [arg1 setFontName:@"Monstro"]
+  072d04  [NSNumber numberWithInt:40]
+  072d28  [arg1 setFontSize:[NSNumber numberWithInt:40]]
+  072d40  return
+
+== +[ADTypefaceGenerator createInfoText:]   (address 0x100072d70  size 232  kind objc)
+  072d9c  [UIColor whiteColor]
+  072dc0  [arg1 setTextColor:[UIColor whiteColor]]
+  072dec  [UIFont fontWithName:@"chainprinter" size:20]
+  072e10  [arg1 setFont:[UIFont fontWithName:@"chainprinter" size:20]]
+  072e28  return
+
+== +[ADTypefaceGenerator createParagraphText:]   (address 0x100072e58  size 232  kind objc)
+  072e84  [UIColor whiteColor]
+  072ea8  [arg1 setTextColor:[UIColor whiteColor]]
+  072ed4  [UIFont fontWithName:@"chainprinter" size:17]
+  072ef8  [arg1 setFont:[UIFont fontWithName:@"chainprinter" size:17]]
+  072f10  return

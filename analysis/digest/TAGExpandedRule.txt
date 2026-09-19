@@ -1,0 +1,49 @@
+
+== -[TAGExpandedRule initWithPositivePredicates:negativePredicates:addTags:removeTags:addMacros:removeMacros:]   (address 0x100163db4  size 500  kind objc)
+  163e50  [super init]
+  163e58  if (self == 0) goto loc_100163f1c
+  163e70  self->_positivePredicates = arg1
+  163e90  self->_negativePredicates = arg2
+  163eb0  self->_addTags = arg3
+  163ed0  self->_removeTags = arg4
+  163ef0  self->_addMacros = arg5
+  163f10  self->_removeMacros = arg6
+loc_100163f1c:
+  163f68  return
+
+== +[TAGExpandedRule builder]   (address 0x100163fa8  size 56  kind objc)
+  163fc4  [TAGExpandedRuleBuilder alloc]
+  163fd4  [[TAGExpandedRuleBuilder alloc] init]
+  163fdc  return
+
+== -[TAGExpandedRule description]   (address 0x100163fe0  size 460  kind objc)
+  164014  [self positivePredicates]
+  164034  [self negativePredicates]
+  164054  [self addTags]
+  164074  [self removeTags]
+  164094  [self addMacros]
+  1640b4  [self removeMacros]
+  1640e8  [NSString stringWithFormat:@"Positive predicates: %@  Negative predicates: %@  Add tags: %@  Remove tags: %@  Add macro…", [self positivePredicates], [self negativePredicates], [self addTags], [self removeTags], [self addMacros], [self removeMacros]]
+  164144  return
+
+== -[TAGExpandedRule copyWithZone:]   (address 0x1001641ac  size 4  kind objc)
+
+== -[TAGExpandedRule positivePredicates]   (address 0x1001641b0  size 16  kind objc)
+  1641bc  return
+
+== -[TAGExpandedRule negativePredicates]   (address 0x1001641c0  size 16  kind objc)
+  1641cc  return
+
+== -[TAGExpandedRule addTags]   (address 0x1001641d0  size 16  kind objc)
+  1641dc  return
+
+== -[TAGExpandedRule removeTags]   (address 0x1001641e0  size 16  kind objc)
+  1641ec  return
+
+== -[TAGExpandedRule addMacros]   (address 0x1001641f0  size 16  kind objc)
+  1641fc  return
+
+== -[TAGExpandedRule removeMacros]   (address 0x100164200  size 16  kind objc)
+  16420c  return
+
+== -[TAGExpandedRule .cxx_destruct]   (address 0x100164210  size 144  kind objc)

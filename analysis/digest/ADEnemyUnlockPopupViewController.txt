@@ -1,0 +1,65 @@
+
+== -[ADEnemyUnlockPopupViewController initWithEnemyName:]   (address 0x100038dd8  size 172  kind objc)
+  038e24  [super initWithNibName:0 bundle:0]
+  038e2c  if (self == 0) goto loc_100038e50
+  038e44  self->enemyName = arg1
+loc_100038e50:
+  038e6c  return
+
+== -[ADEnemyUnlockPopupViewController viewDidLoad]   (address 0x100038e84  size 836  kind objc)
+  038ec8  [super viewDidLoad]
+  038edc  [self titleLabel]
+  038f04  [ADBrickManager sharedBrickManager]
+  038f30  [[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:self->enemyName]
+  038f58  [[self titleLabel] setText:[[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:self->enemyName]]
+  038f8c  [ADPersistentStats persistentStats]
+  038fa8  [[ADPersistentStats persistentStats] getNextUnlockEnemy]
+  038fc0  if ([[ADPersistentStats persistentStats] getNextUnlockEnemy] == 0) goto loc_1000390c8
+  038fcc  [ADPersistentStats persistentStats]
+  038fec  [[ADPersistentStats persistentStats] getKillRequirementForEnemyWithName:[[ADPersistentStats persistentStats] getNextUnlockEnemy]]
+  03900c  [self nextUnlockLabel]
+  03902c  [ADBrickManager sharedBrickManager]
+  039044  [[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[ADPersistentStats persistentStats] getNextUnlockEnemy]]
+  039068  t1 = ([[ADPersistentStats persistentStats] getKillRequirementForEnemyWithName:[[ADPersistentStats persistentStats] getNextUnlo… > 1 ? @"s" : @"")
+  03908c  [NSString stringWithFormat:@"Next unlock : %@ requires %i more kill%@", [[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[ADPersistentS…, [[ADPersistentStats persistentStats] getKillRequirementForEnemyWithName:[[ADPers…, t1]
+  0390a8  [[self nextUnlockLabel] setText:[NSString stringWithFormat:@"Next unlock : %@ requires %i more kill%@", [[ADBrickManager sharedBrickManager] displayNameForEnemyWithName:[[ADPersistentS…, [[ADPersistentStats persistentStats] getKillRequirementForEnemyWithName:[[ADPers…, t1]]
+  0390c4  goto loc_1000390fc
+loc_1000390c8:
+  0390d8  [self nextUnlockLabel]
+  0390f8  [[self nextUnlockLabel] setHidden:1]
+loc_1000390fc:
+  039128  return
+
+== -[ADEnemyUnlockPopupViewController backButtonTouched:]   (address 0x1000391c8  size 44  kind objc)
+  0391e8  [self dismissViewControllerAnimated:0 completion:^{-[ADEnemyUnlockPopupViewController backButtonTouched:]_block_invoke}]
+  0391f0  return
+
+== -[ADEnemyUnlockPopupViewController backButtonTouched:]_block_invoke   (address 0x1000391f4  size 4  kind block)
+  0391f4  return
+
+== -[ADEnemyUnlockPopupViewController didReceiveMemoryWarning]   (address 0x1000391f8  size 60  kind objc)
+  039224  [super didReceiveMemoryWarning]
+  039230  return
+
+== -[ADEnemyUnlockPopupViewController nextUnlockLabel]   (address 0x100039234  size 16  kind objc)
+  039240  return
+
+== -[ADEnemyUnlockPopupViewController setNextUnlockLabel:]   (address 0x100039244  size 56  kind objc)
+  039268  self->_nextUnlockLabel = arg1
+  039278  return
+
+== -[ADEnemyUnlockPopupViewController descriptionTextView]   (address 0x10003927c  size 16  kind objc)
+  039288  return
+
+== -[ADEnemyUnlockPopupViewController setDescriptionTextView:]   (address 0x10003928c  size 56  kind objc)
+  0392b0  self->_descriptionTextView = arg1
+  0392c0  return
+
+== -[ADEnemyUnlockPopupViewController titleLabel]   (address 0x1000392c4  size 16  kind objc)
+  0392d0  return
+
+== -[ADEnemyUnlockPopupViewController setTitleLabel:]   (address 0x1000392d4  size 56  kind objc)
+  0392f8  self->_titleLabel = arg1
+  039308  return
+
+== -[ADEnemyUnlockPopupViewController .cxx_destruct]   (address 0x10003930c  size 104  kind objc)

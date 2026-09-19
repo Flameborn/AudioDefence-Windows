@@ -1,0 +1,41 @@
+// ADScenarioRouletteViewController.nib
+TOP-LEVEL OBJECTS
+  #117 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #63 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #196 UIView  
+    #186 UIImageView  Image='default_background.png'
+    #140 UIView (custom class ADRotationBugFixView)  
+      #41 UIImageView (custom class ADRouletteView)  Image='Roulette.png'
+    #128 UIView (custom class ADRotationBugFixView)  
+      #109 UIImageView (custom class ADRouletteView)  Image='Roulette.png'
+    #69 UIImageView  Image='background_redline.png'
+    #104 UIImageView  Image='Roulette_Pointer_Left.png'
+    #159 UIImageView  Image='Roulette_Pointer_Right.png'
+    #165 UIButton (custom class ADButtonWithFont)  title[0]='PLAY'
+    #62 UIButton (custom class ADButtonWithFont)  title[0]='GET RID OF IT FOR 1'
+    #26 UIButton (custom class ADButtonWithFont)  title[0]='REROLL FOR 1'
+    #18 UILabel  UserInteractionDisabled=False Text='SLOW ZOMBIES' NumberOfLines=3
+    #138 UILabel  UserInteractionDisabled=False Text='BAD NEWS' NumberOfLines=2
+    #4 UILabel  UserInteractionDisabled=False Text='NO GOOD NEWS FOR THIS GAME' NumberOfLines=3
+    #101 UILabel  UserInteractionDisabled=False Text='GOOD NEWS' NumberOfLines=2
+    #66 UIImageView  Image='Roulette_Banner_BadNews.png'
+    #25 UIImageView  Image='Roulette_Banner_GoodNews.png'
+
+CONNECTIONS
+  action  playButtonTouched:                        #165 ADButtonWithFont --(events 0x40)--> #117 UIProxyObject
+  action  rerollBadNews:                            #62 ADButtonWithFont --(events 0x40)--> #117 UIProxyObject
+  action  rerollGoodNews:                           #26 ADButtonWithFont --(events 0x40)--> #117 UIProxyObject
+  outlet  badNewsLabel                              #117 UIProxyObject --> #18 UILabel Text='SLOW ZOMBIES'
+  outlet  badNewsTitle                              #117 UIProxyObject --> #138 UILabel Text='BAD NEWS'
+  outlet  badRoulette                               #117 UIProxyObject --> #41 ADRouletteView
+  outlet  goodNewsLabel                             #117 UIProxyObject --> #4 UILabel Text='NO GOOD NEWS FOR THIS GAME'
+  outlet  goodNewsTitle                             #117 UIProxyObject --> #101 UILabel Text='GOOD NEWS'
+  outlet  goodRoulette                              #117 UIProxyObject --> #109 ADRouletteView
+  outlet  playButton                                #117 UIProxyObject --> #165 ADButtonWithFont
+  outlet  removeBadNews                             #117 UIProxyObject --> #62 ADButtonWithFont
+  outlet  rerollGoodNewsButton                      #117 UIProxyObject --> #26 ADButtonWithFont
+  outlet  rouletteImageView                         #128 ADRotationBugFixView --> #109 ADRouletteView
+  outlet  rouletteImageView                         #140 ADRotationBugFixView --> #41 ADRouletteView
+  outlet  view                                      #117 UIProxyObject --> #196 UIView
+
+ACCESSIBILITY CONFIGURATIONS

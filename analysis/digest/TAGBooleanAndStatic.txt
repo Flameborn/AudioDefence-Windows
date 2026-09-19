@@ -1,0 +1,18 @@
+
+== -[TAGBooleanAndStatic initWithBoolean:isStatic:]   (address 0x1001627ec  size 60  kind objc)
+  162818  [super initWithObject:arg1 isStatic:arg2]
+  162824  return
+
+== -[TAGBooleanAndStatic boolean]   (address 0x100162828  size 16  kind objc)
+  162834  tail [self object]
+
+== +[TAGBooleanAndStatic booleanWithBoolean:isStatic:]   (address 0x100162838  size 124  kind objc)
+  162868  [TAGBooleanAndStatic alloc]
+  162880  [[TAGBooleanAndStatic alloc] initWithBoolean:arg1 isStatic:arg2]
+  16289c  return
+
+== +[TAGBooleanAndStatic booleanWithBool:isStatic:]   (address 0x1001628b4  size 172  kind objc)
+  1628e0  [TAGBooleanAndStatic alloc]
+  162900  [TAGBoolean booleanWithBool:arg1]
+  162928  [[TAGBooleanAndStatic alloc] initWithBoolean:[TAGBoolean booleanWithBool:arg1] isStatic:arg2]
+  162948  return

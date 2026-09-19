@@ -1,0 +1,19 @@
+// ADStatsViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #10 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #26 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #19 UIView  
+    #3 UIView (custom class ViewWithParalax)  
+      #29 UIImageView  Image='background_main.png'
+    #28 UIImageView  Image='background_main.png'
+    #6 UIImageView  UserInteractionDisabled=False Image='Frame_scroller_blank.png'
+    #13 UITableView  
+
+CONNECTIONS
+  outlet  background                                #10 UIProxyObject --> #29 UIImageView
+  outlet  dataSource                                #13 UITableView --> #10 UIProxyObject
+  outlet  delegate                                  #13 UITableView --> #10 UIProxyObject
+  outlet  tableView                                 #10 UIProxyObject --> #13 UITableView
+  outlet  view                                      #10 UIProxyObject --> #19 UIView
+
+ACCESSIBILITY CONFIGURATIONS

@@ -1,0 +1,54 @@
+
+== csl::Phased::~Phased   (address 0x1000e9a08  size 88  kind cxx)
+  0e9a24  a0[+0x10] = vtable<csl::Controllable>
+loc_1000e9a2c:
+  0e9a30  if (x0 == 0) goto loc_1000e9a44
+  0e9a3c  call x8
+loc_1000e9a44:
+  0e9a4c  if ((x20 + 8) != 128) goto loc_1000e9a2c
+  0e9a5c  return
+
+== csl::Phased::thunk_vfunc_0   (address 0x1000e9a60  size 92  kind cxx)
+  0e9a84  (a0 + a0[+0x0][+0x-18])[+0x10] = vtable<csl::Controllable>
+loc_1000e9a8c:
+  0e9a90  if (x0 == 0) goto loc_1000e9aa4
+  0e9a9c  call x8
+loc_1000e9aa4:
+  0e9aac  if ((x20 + 8) != 128) goto loc_1000e9a8c
+  0e9ab8  return
+
+== csl::Phased::~Phased/*deleting*/   (address 0x1000e9abc  size 108  kind cxx)
+  0e9ad8  a0[+0x10] = vtable<csl::Controllable>
+loc_1000e9ae0:
+  0e9ae4  if (x0 == 0) goto loc_1000e9af8
+  0e9af0  call x8
+loc_1000e9af8:
+  0e9b00  if ((x20 + 8) != 128) goto loc_1000e9ae0
+  0e9b10  tail ZdlPv(a0)
+  0e9b1c  ZdlPv()
+
+== csl::Phased::thunk_vfunc_1   (address 0x1000e9b28  size 16  kind cxx)
+  0e9b34  tail csl::Phased::~Phased/*deleting*/((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== sub_1000e9b38   (address 0x1000e9b38  size 20  kind sub)
+  0e9b48  tail sub_1000e9714((a0 + a0[+0x0][+0x-18]), 6, a2, a3)
+
+== sub_1000e9b4c   (address 0x1000e9b4c  size 140  kind sub)
+  0e9b60  a0[+0x0] = a1[+0x0]
+  0e9b74  Znwm(48, a1, a2, a3)
+  0e9b7c  sub_1000e8ebc(Znwm(48, a1, a2, a3))
+  0e9b8c  (a0[+0x0][+0x-18] + a0)[+0x10] = Znwm(48, a1, a2, a3)
+  0e9b94  Znwm(48)
+  0e9b9c  sub_1000e8ebc(Znwm(48))
+  0e9bac  (a0[+0x0][+0x-18] + a0)[+0x18] = Znwm(48)
+  0e9bbc  return
+  0e9bcc  ZdlPv()
+
+== sub_1000e9bd8   (address 0x1000e9bd8  size 108  kind sub)
+  0e9bf4  a0[+0x0] = a1[+0x0]
+  0e9c14  sub_1000e9714((a0 + a0[+0x0][+0x-18]), 1, a2, a3)
+  0e9c2c  sub_1000e9714((a0 + a0[+0x0][+0x-18]), 2)
+  0e9c40  return
+
+== sub_1000e9c44   (address 0x1000e9c44  size 4  kind sub)
+  0e9c44  return

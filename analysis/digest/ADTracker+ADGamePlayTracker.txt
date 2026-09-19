@@ -1,0 +1,407 @@
+
+== -[ADTracker(ADGamePlayTracker) setBrickCounter:]   (address 0x1000260d0  size 16  kind objc)
+  0260d8  store g_10042d990 = arg1
+  0260dc  return
+
+== -[ADTracker(ADGamePlayTracker) getBrickCounter]   (address 0x1000260e0  size 16  kind objc)
+  0260ec  return
+
+== +[ADTracker(ADGamePlayTracker) initGamePlayTracker]   (address 0x1000260f0  size 40  kind objc)
+  026100  if (g_10042d9a0 != -1) goto loc_100026108
+  026104  return
+  026114  tail dispatch_once(&g_10042d9a0, ^{+[ADTracker(ADGamePlayTracker) initGamePlayTracker]_block_invoke})
+
+== +[ADTracker(ADGamePlayTracker) initGamePlayTracker]_block_invoke   (address 0x100026118  size 2376  kind block)
+  026144  [ADTracker sharedInstance]
+  02615c  store g_10042d998 = [ADTracker sharedInstance]
+  02617c  [g_10042d998 dimensionDictionary]
+  0261a8  [NSNumber numberWithInt:7]
+  0261d8  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:7] forKey:@"Brick name"]
+  0261f4  [g_10042d998 dimensionDictionary]
+  026210  [NSNumber numberWithInt:9]
+  026234  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:9] forKey:@"Button mode"]
+  026250  [g_10042d998 dimensionDictionary]
+  02626c  [NSNumber numberWithInt:10]
+  026290  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:10] forKey:@"Challenge name"]
+  0262ac  [g_10042d998 dimensionDictionary]
+  0262c8  [NSNumber numberWithInt:8]
+  0262ec  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:8] forKey:@"Control mode"]
+  026308  [g_10042d998 dimensionDictionary]
+  026324  [NSNumber numberWithInt:3]
+  026348  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:3] forKey:@"Enemy name"]
+  026364  [g_10042d998 dimensionDictionary]
+  026380  [NSNumber numberWithInt:5]
+  0263a4  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:5] forKey:@"Game mode"]
+  0263c0  [g_10042d998 dimensionDictionary]
+  0263dc  [NSNumber numberWithInt:1]
+  026400  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:1] forKey:@"Tarot modifier one"]
+  02641c  [g_10042d998 dimensionDictionary]
+  026438  [NSNumber numberWithInt:11]
+  02645c  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:11] forKey:@"Tarot modifier two"]
+  026478  [g_10042d998 dimensionDictionary]
+  026494  [NSNumber numberWithInt:12]
+  0264b8  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:12] forKey:@"Tarot modifier three"]
+  0264d4  [g_10042d998 dimensionDictionary]
+  0264f0  [NSNumber numberWithInt:2]
+  026514  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:2] forKey:@"Modifier desirability one"]
+  026530  [g_10042d998 dimensionDictionary]
+  02654c  [NSNumber numberWithInt:13]
+  026570  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:13] forKey:@"Modifier desirability two"]
+  02658c  [g_10042d998 dimensionDictionary]
+  0265a8  [NSNumber numberWithInt:14]
+  0265cc  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:14] forKey:@"Modifier desirability three"]
+  0265e8  [g_10042d998 dimensionDictionary]
+  026604  [NSNumber numberWithInt:4]
+  026628  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:4] forKey:@"PowerUp name"]
+  026644  [g_10042d998 dimensionDictionary]
+  026660  [NSNumber numberWithInt:6]
+  026684  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:6] forKey:@"Weapon name"]
+  0266a0  [g_10042d998 dimensionDictionary]
+  0266bc  [NSNumber numberWithInt:18]
+  0266e0  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:18] forKey:@"Hours played"]
+  0266fc  [g_10042d998 dimensionDictionary]
+  026718  [NSNumber numberWithInt:17]
+  02673c  [[g_10042d998 dimensionDictionary] setObject:[NSNumber numberWithInt:17] forKey:@"Accessibility"]
+  026764  [g_10042d998 metricDictionary]
+  026780  [NSNumber numberWithInt:1]
+  0267a4  [[g_10042d998 metricDictionary] setObject:[NSNumber numberWithInt:1] forKey:@"Weapon accuracy"]
+  0267c0  [g_10042d998 metricDictionary]
+  0267dc  [NSNumber numberWithInt:0]
+  026800  [[g_10042d998 metricDictionary] setObject:[NSNumber numberWithInt:0] forKey:@"Experience"]
+  02681c  [g_10042d998 metricDictionary]
+  026838  [NSNumber numberWithInt:3]
+  02685c  [[g_10042d998 metricDictionary] setObject:[NSNumber numberWithInt:3] forKey:@"Unlocked weapons"]
+  026878  [g_10042d998 metricDictionary]
+  026894  [NSNumber numberWithInt:2]
+  0268b8  [[g_10042d998 metricDictionary] setObject:[NSNumber numberWithInt:2] forKey:@"Enemy kills"]
+  0268d4  [g_10042d998 metricDictionary]
+  0268f0  [NSNumber numberWithInt:4]
+  026914  [[g_10042d998 metricDictionary] setObject:[NSNumber numberWithInt:4] forKey:@"Success ratio"]
+  026938  return
+
+== -[ADTracker(ADGamePlayTracker) fireOffEventsWithCategory:Action:WithLabelsAndValues:]   (address 0x100026a60  size 4  kind objc)
+  026a60  return
+
+== -[ADTracker(ADGamePlayTracker) killEnemy:DisplayName:Weapon:]   (address 0x100026a64  size 664  kind objc)
+  026ab4  [GAI sharedInstance]
+  026ad0  [[GAI sharedInstance] defaultTracker]
+  026b14  [GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"enemy killed (type)" label:arg2 value:0]
+  026b3c  [GAIFields customMetricForIndex:2]
+  026b6c  [[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"enemy killed (type)" label:arg2 value:0] set:@"1" forKey:[GAIFields customMetricForIndex:2]]
+  026b90  [GAIFields customDimensionForIndex:3]
+  026bb0  [[[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"enemy killed (type)" label:arg2 value:0] set:@"1" forKey:[GAIFields customMetricForIndex:2]] set:arg1 forKey:[GAIFields customDimensionForIndex:3]]
+  026bcc  [[[[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"enemy killed (type)" label:arg2 value:0] set:@"1" forKey:[GAIFields customMetricForIndex:2]] set:arg1 forKey:[GAIFields customDimensionForIndex:3]] build]
+  026bf0  [[[GAI sharedInstance] defaultTracker] send:[[[[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"enemy killed (type)" label:arg2 value:0] set:@"1" forKey:[GAIFields customMetricForIndex:2]] set:arg1 forKey:[GAIFields customDimensionForIndex:3]] build]]
+  026c54  return
+
+== -[ADTracker(ADGamePlayTracker) reloadWeaponWithRemainingBullets:InWeapon:]   (address 0x100026cfc  size 436  kind objc)
+  026d38  [GAI sharedInstance]
+  026d54  [[GAI sharedInstance] defaultTracker]
+  026d8c  [NSNumber numberWithInteger:arg1]
+  026dc4  [GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon reloaded" label:arg2 value:[NSNumber numberWithInteger:arg1]]
+  026de0  [[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon reloaded" label:arg2 value:[NSNumber numberWithInteger:arg1]] build]
+  026e04  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon reloaded" label:arg2 value:[NSNumber numberWithInteger:arg1]] build]]
+  026e40  return
+
+== -[ADTracker(ADGamePlayTracker) setButtonMode:]   (address 0x100026eb0  size 164  kind objc)
+  026ee0  [ADTracker sharedInstance]
+  026f10  [[ADTracker sharedInstance] setValue:arg1 ForDimension:@"Button mode" AndValue:0 ForMetric:0]
+  026f2c  return
+
+== -[ADTracker(ADGamePlayTracker) setControlMode:]   (address 0x100026f54  size 164  kind objc)
+  026f84  [ADTracker sharedInstance]
+  026fb4  [[ADTracker sharedInstance] setValue:arg1 ForDimension:@"Control mode" AndValue:0 ForMetric:0]
+  026fd0  return
+
+== -[ADTracker(ADGamePlayTracker) switchFromWeapon:ToNewWeapon:WithBulletsRemaining:]   (address 0x100026ff8  size 548  kind objc)
+  027048  [ADTracker sharedInstance]
+  027078  [[ADTracker sharedInstance] setValue:arg2 ForDimension:@"Weapon name" AndValue:0 ForMetric:0]
+  027090  [GAI sharedInstance]
+  0270ac  [[GAI sharedInstance] defaultTracker]
+  0270e4  [NSNumber numberWithUnsignedInteger:arg3]
+  02711c  [GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon switched" label:arg1 value:[NSNumber numberWithUnsignedInteger:arg3]]
+  027138  [[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon switched" label:arg1 value:[NSNumber numberWithUnsignedInteger:arg3]] build]
+  02715c  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon switched" label:arg1 value:[NSNumber numberWithUnsignedInteger:arg3]] build]]
+  0271a0  return
+
+== -[ADTracker(ADGamePlayTracker) shootWeaponWithName:didHit:]   (address 0x10002721c  size 436  kind objc)
+  027258  [GAI sharedInstance]
+  027274  [[GAI sharedInstance] defaultTracker]
+  0272ac  [NSNumber numberWithBool:arg2]
+  0272e4  [GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon fired" label:arg1 value:[NSNumber numberWithBool:arg2]]
+  027300  [[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon fired" label:arg1 value:[NSNumber numberWithBool:arg2]] build]
+  027324  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Weapon event" action:@"weapon fired" label:arg1 value:[NSNumber numberWithBool:arg2]] build]]
+  027360  return
+
+== -[ADTracker(ADGamePlayTracker) setModifierDimensions:]   (address 0x1000273d0  size 1016  kind objc)
+  027408  [arg1 allKeys]
+  027424  &@selector(alloc)
+  02742c  &@selector(init)
+  027434  &@selector(appendFormat:)
+  02743c  &@selector(numberWithInt:)
+  0274a4  goto loc_1000274e4
+loc_1000274a8:
+loc_1000274e4:
+  0274ec  [[arg1 allKeys] count]
+  0274f4  if (x23 >u [[arg1 allKeys] count]) goto loc_100027704
+  027500  [NSMutableString alloc]
+  027508  [[NSMutableString alloc] init]
+  027520  [[[NSMutableString alloc] init] appendFormat:@"DIMENSION_TAROT_MODIFIER_"]
+  027538  [NSNumber numberWithInt:x2]
+  02755c  [[[NSMutableString alloc] init] appendFormat:@"%@", [NSNumber numberWithInt:x2]]
+  027578  [[[NSMutableString alloc] init] appendFormat:@"_LABEL"]
+  027584  [NSMutableString alloc]
+  02758c  [[NSMutableString alloc] init]
+  0275a4  [[[NSMutableString alloc] init] appendFormat:@"DIMENSION_MODIFIER_DESIRABILITY_"]
+  0275b8  [NSNumber numberWithInt:x2]
+  0275dc  [[[NSMutableString alloc] init] appendFormat:@"%@", [NSNumber numberWithInt:x2]]
+  0275f8  [[[NSMutableString alloc] init] appendFormat:@"_LABEL"]
+  027608  [ADTracker sharedInstance]
+  02762c  [[arg1 allKeys] objectAtIndex:(x23 - 1)]
+  027654  [[ADTracker sharedInstance] setValue:[[arg1 allKeys] objectAtIndex:(x23 - 1)] ForDimension:[[NSMutableString alloc] init] AndValue:0 ForMetric:0]
+  027674  [ADTracker sharedInstance]
+  02769c  [[arg1 allKeys] objectAtIndex:(x23 - 1)]
+  0276bc  [arg1 objectForKey:[[arg1 allKeys] objectAtIndex:(x23 - 1)]]
+  0276e8  [[ADTracker sharedInstance] setValue:[arg1 objectForKey:[[arg1 allKeys] objectAtIndex:(x23 - 1)]] ForDimension:[[NSMutableString alloc] init] AndValue:0 ForMetric:0]
+  0276ec  goto loc_1000274a8
+  027700  goto loc_100027784
+loc_100027704:
+  02772c  return
+
+== -[ADTracker(ADGamePlayTracker) sendLoadOutEventWithWeapon1:Weapon2:Melee:]   (address 0x1000277c8  size 1404  kind objc)
+  027828  [GAI sharedInstance]
+  027844  [[GAI sharedInstance] defaultTracker]
+  027874  [ADInventory sharedInventory]
+  027898  [arg1 name]
+  0278c0  [[ADInventory sharedInventory] levelForWeaponWithName:[arg1 name]]
+  0278e8  [arg1 name]
+  027914  [NSNumber numberWithInt:[[ADInventory sharedInventory] levelForWeaponWithName:[arg1 name]]]
+  027950  [GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg1 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForWeaponWithName:[arg1 name]]]]
+  027974  [[GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg1 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForWeaponWithName:[arg1 name]]]] build]
+  02799c  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg1 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForWeaponWithName:[arg1 name]]]] build]]
+  0279cc  [ADInventory sharedInventory]
+  0279e4  [arg2 name]
+  027a00  [[ADInventory sharedInventory] levelForWeaponWithName:[arg2 name]]
+  027a28  [arg2 name]
+  027a48  [NSNumber numberWithInt:[[ADInventory sharedInventory] levelForWeaponWithName:[arg2 name]]]
+  027a78  [GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg2 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForWeaponWithName:[arg2 name]]]]
+  027a8c  [[GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg2 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForWeaponWithName:[arg2 name]]]] build]
+  027aa8  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg2 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForWeaponWithName:[arg2 name]]]] build]]
+  027ad8  [ADInventory sharedInventory]
+  027af0  [arg3 name]
+  027b14  [[ADInventory sharedInventory] levelForPowerUpWithName:[arg3 name]]
+  027b3c  [arg3 name]
+  027b5c  [NSNumber numberWithInt:[[ADInventory sharedInventory] levelForPowerUpWithName:[arg3 name]]]
+  027b8c  [GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg3 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForPowerUpWithName:[arg3 name]]]]
+  027ba0  [[GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg3 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForPowerUpWithName:[arg3 name]]]] build]
+  027bc0  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Loadout event" action:@"weapon loadout" label:[arg3 name] value:[NSNumber numberWithInt:[[ADInventory sharedInventory] levelForPowerUpWithName:[arg3 name]]]] build]]
+  027c1c  return
+
+== -[ADTracker(ADGamePlayTracker) diamondAcquired]   (address 0x100027d44  size 304  kind objc)
+  027d68  [GAI sharedInstance]
+  027d84  [[GAI sharedInstance] defaultTracker]
+  027dc8  [GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond shot" label:0 value:0]
+  027de4  [[GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond shot" label:0 value:0] build]
+  027e08  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond shot" label:0 value:0] build]]
+  027e2c  return
+
+== -[ADTracker(ADGamePlayTracker) diamondAppeared]   (address 0x100027e74  size 304  kind objc)
+  027e98  [GAI sharedInstance]
+  027eb4  [[GAI sharedInstance] defaultTracker]
+  027ef8  [GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond appeared" label:0 value:0]
+  027f14  [[GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond appeared" label:0 value:0] build]
+  027f38  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond appeared" label:0 value:0] build]]
+  027f5c  return
+
+== -[ADTracker(ADGamePlayTracker) diamondDisappered]   (address 0x100027fa4  size 304  kind objc)
+  027fc8  [GAI sharedInstance]
+  027fe4  [[GAI sharedInstance] defaultTracker]
+  028028  [GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond disappered" label:0 value:0]
+  028044  [[GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond disappered" label:0 value:0] build]
+  028068  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Diamond event" action:@"diamond disappered" label:0 value:0] build]]
+  02808c  return
+
+== -[ADTracker(ADGamePlayTracker) loadBrick:WithBrickNumber:]   (address 0x1000280d4  size 516  kind objc)
+  028114  [ADTracker sharedInstance]
+  028144  [[ADTracker sharedInstance] setValue:arg1 ForDimension:@"Brick name" AndValue:0 ForMetric:0]
+  02815c  [GAI sharedInstance]
+  028178  [[GAI sharedInstance] defaultTracker]
+  0281b0  [NSNumber numberWithInteger:arg2]
+  0281e8  [GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"brick loaded" label:arg1 value:[NSNumber numberWithInteger:arg2]]
+  028204  [[GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"brick loaded" label:arg1 value:[NSNumber numberWithInteger:arg2]] build]
+  028228  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"brick loaded" label:arg1 value:[NSNumber numberWithInteger:arg2]] build]]
+  028264  return
+
+== -[ADTracker(ADGamePlayTracker) defeatBrick:InTime:]   (address 0x1000282d8  size 544  kind objc)
+  028310  if (arg2 < 1) goto loc_100028320
+loc_100028320:
+  028338  [ADTracker sharedInstance]
+  028360  [[ADTracker sharedInstance] removeValueForDimension:@"Brick name" AndRemoveValueForMetric:0]
+  028378  [GAI sharedInstance]
+  028394  [[GAI sharedInstance] defaultTracker]
+  0283cc  [NSNumber numberWithInteger:x2]
+  028404  [GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"brick defeated" label:arg1 value:[NSNumber numberWithInteger:x2]]
+  028420  [[GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"brick defeated" label:arg1 value:[NSNumber numberWithInteger:x2]] build]
+  028444  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"brick defeated" label:arg1 value:[NSNumber numberWithInteger:x2]] build]]
+  028484  return
+
+== -[ADTracker(ADGamePlayTracker) timeOfDeathInBrick:BrickName:]   (address 0x1000284f8  size 544  kind objc)
+  028530  if (arg1 < 1) goto loc_100028540
+loc_100028540:
+  028558  [ADTracker sharedInstance]
+  028580  [[ADTracker sharedInstance] removeValueForDimension:@"Brick name" AndRemoveValueForMetric:0]
+  028598  [GAI sharedInstance]
+  0285b4  [[GAI sharedInstance] defaultTracker]
+  0285ec  [NSNumber numberWithInteger:x2]
+  028624  [GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"player defeated" label:arg2 value:[NSNumber numberWithInteger:x2]]
+  028640  [[GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"player defeated" label:arg2 value:[NSNumber numberWithInteger:x2]] build]
+  028664  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Brick event" action:@"player defeated" label:arg2 value:[NSNumber numberWithInteger:x2]] build]]
+  0286a4  return
+
+== -[ADTracker(ADGamePlayTracker) powerUpAppeared:]   (address 0x100028718  size 340  kind objc)
+  028748  [GAI sharedInstance]
+  028764  [[GAI sharedInstance] defaultTracker]
+  0287a8  [GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"appeared" label:arg1 value:0]
+  0287c4  [[GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"appeared" label:arg1 value:0] build]
+  0287e8  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"appeared" label:arg1 value:0] build]]
+  028814  return
+
+== -[ADTracker(ADGamePlayTracker) powerUpUsed]   (address 0x10002886c  size 304  kind objc)
+  028890  [GAI sharedInstance]
+  0288ac  [[GAI sharedInstance] defaultTracker]
+  0288f0  [GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"used" label:0 value:0]
+  02890c  [[GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"used" label:0 value:0] build]
+  028930  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"used" label:0 value:0] build]]
+  028954  return
+
+== -[ADTracker(ADGamePlayTracker) powerUpMissed]   (address 0x10002899c  size 304  kind objc)
+  0289c0  [GAI sharedInstance]
+  0289dc  [[GAI sharedInstance] defaultTracker]
+  028a20  [GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"missed" label:0 value:0]
+  028a3c  [[GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"missed" label:0 value:0] build]
+  028a60  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"missed" label:0 value:0] build]]
+  028a84  return
+
+== -[ADTracker(ADGamePlayTracker) numberOfEnemyKills:ByPowerUp:]   (address 0x100028acc  size 436  kind objc)
+  028b08  [GAI sharedInstance]
+  028b24  [[GAI sharedInstance] defaultTracker]
+  028b5c  [NSNumber numberWithInteger:arg1]
+  028b94  [GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"kill" label:arg2 value:[NSNumber numberWithInteger:arg1]]
+  028bb0  [[GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"kill" label:arg2 value:[NSNumber numberWithInteger:arg1]] build]
+  028bd4  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Power up event" action:@"kill" label:arg2 value:[NSNumber numberWithInteger:arg1]] build]]
+  028c10  return
+
+== -[ADTracker(ADGamePlayTracker) reviveUsedWithCost:]   (address 0x100028c80  size 380  kind objc)
+  028ca8  [GAI sharedInstance]
+  028cc4  [[GAI sharedInstance] defaultTracker]
+  028cfc  [NSNumber numberWithUnsignedInteger:arg1]
+  028d38  [GAIDictionaryBuilder createEventWithCategory:@"Revive event" action:@"item used" label:@"revive" value:[NSNumber numberWithUnsignedInteger:arg1]]
+  028d54  [[GAIDictionaryBuilder createEventWithCategory:@"Revive event" action:@"item used" label:@"revive" value:[NSNumber numberWithUnsignedInteger:arg1]] build]
+  028d78  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Revive event" action:@"item used" label:@"revive" value:[NSNumber numberWithUnsignedInteger:arg1]] build]]
+  028da4  return
+
+== -[ADTracker(ADGamePlayTracker) gameOverButtonPressed]   (address 0x100028dfc  size 308  kind objc)
+  028e20  [GAI sharedInstance]
+  028e3c  [[GAI sharedInstance] defaultTracker]
+  028e84  [GAIDictionaryBuilder createEventWithCategory:@"Revive event" action:@"game over by button press" label:@"game over" value:0]
+  028ea0  [[GAIDictionaryBuilder createEventWithCategory:@"Revive event" action:@"game over by button press" label:@"game over" value:0] build]
+  028ec4  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Revive event" action:@"game over by button press" label:@"game over" value:0] build]]
+  028ee8  return
+
+== -[ADTracker(ADGamePlayTracker) recordEndOfGameData]   (address 0x100028f30  size 1808  kind objc)
+  028f6c  [ADInGameStats singleton]
+  028f88  [[ADInGameStats singleton] gameScore]
+  028fa0  [ADInGameStats singleton]
+  028fbc  [[ADInGameStats singleton] numberOfEnemyKills]
+  028fd4  [ADInGameStats singleton]
+  028ff0  [[ADInGameStats singleton] totalCoins]
+  029008  [ADInGameStats singleton]
+  029024  [[ADInGameStats singleton] diamondLoot]
+  02903c  [ADInGameStats singleton]
+  029058  [[ADInGameStats singleton] timeElapsed]
+  029074  if ([[ADInGameStats singleton] timeElapsed] < 1) goto loc_100029084
+loc_100029084:
+  02908c  [ADInGameStats singleton]
+  0290a8  [[ADInGameStats singleton] currentAccuracy]
+  0290d0  [GAI sharedInstance]
+  0290ec  [[GAI sharedInstance] defaultTracker]
+  02912c  [NSNumber numberWithInteger:[[ADInGameStats singleton] gameScore]]
+  02916c  [GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"game score" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] gameScore]]]
+  02918c  [[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"game score" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] gameScore]]] build]
+  0291b4  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"game score" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] gameScore]]] build]]
+  0291e4  [NSNumber numberWithInteger:[[ADInGameStats singleton] numberOfEnemyKills]]
+  029218  [GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total kills" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] numberOfEnemyKills]]]
+  02922c  [[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total kills" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] numberOfEnemyKills]]] build]
+  029248  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total kills" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] numberOfEnemyKills]]] build]]
+  029274  [NSNumber numberWithInteger:[[ADInGameStats singleton] totalCoins]]
+  0292a8  [GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total coins" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] totalCoins]]]
+  0292bc  [[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total coins" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] totalCoins]]] build]
+  0292d8  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total coins" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] totalCoins]]] build]]
+  029304  [NSNumber numberWithInteger:[[ADInGameStats singleton] diamondLoot]]
+  029338  [GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total diamonds" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] diamondLoot]]]
+  02934c  [[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total diamonds" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] diamondLoot]]] build]
+  029368  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"total diamonds" value:[NSNumber numberWithInteger:[[ADInGameStats singleton] diamondLoot]]] build]]
+  029394  [NSNumber numberWithInteger:x2]
+  0293c8  [GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"time elapsed in game" value:[NSNumber numberWithInteger:x2]]
+  0293dc  [[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"time elapsed in game" value:[NSNumber numberWithInteger:x2]] build]
+  0293f8  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"time elapsed in game" value:[NSNumber numberWithInteger:x2]] build]]
+  02942c  if (([[ADInGameStats singleton] currentAccuracy] * 100) < 1) goto loc_10002943c
+loc_10002943c:
+  029448  [NSNumber numberWithInteger:x2]
+  02947c  [GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"accuracy" value:[NSNumber numberWithInteger:x2]]
+  029494  [[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"accuracy" value:[NSNumber numberWithInteger:x2]] build]
+  0294b0  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Score event" action:@"completed game session" label:@"accuracy" value:[NSNumber numberWithInteger:x2]] build]]
+  0294f0  return
+
+== -[ADTracker(ADGamePlayTracker) challengeStarted]   (address 0x100029640  size 304  kind objc)
+  029664  [GAI sharedInstance]
+  029680  [[GAI sharedInstance] defaultTracker]
+  0296c4  [GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge started" label:0 value:0]
+  0296e0  [[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge started" label:0 value:0] build]
+  029704  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge started" label:0 value:0] build]]
+  029728  return
+
+== -[ADTracker(ADGamePlayTracker) challengeCompleted:]   (address 0x100029770  size 852  kind objc)
+  0297a0  [GAI sharedInstance]
+  0297b4  &@selector(defaultTracker)
+  0297bc  if (arg1 == 0) goto loc_1000298d4
+  0297c4  [[GAI sharedInstance] defaultTracker]
+  0297fc  [NSNumber numberWithBool:1]
+  029834  [GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge completed" label:0 value:[NSNumber numberWithBool:1]]
+  02985c  [GAIFields customMetricForIndex:4]
+  029888  [[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge completed" label:0 value:[NSNumber numberWithBool:1]] set:@"1" forKey:[GAIFields customMetricForIndex:4]]
+  0298a4  [[[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge completed" label:0 value:[NSNumber numberWithBool:1]] set:@"1" forKey:[GAIFields customMetricForIndex:4]] build]
+  0298c8  [[[GAI sharedInstance] defaultTracker] send:[[[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge completed" label:0 value:[NSNumber numberWithBool:1]] set:@"1" forKey:[GAIFields customMetricForIndex:4]] build]]
+  0298cc  goto loc_1000299e0
+  0298d0  goto loc_100029a84
+loc_1000298d4:
+  0298d8  [[GAI sharedInstance] defaultTracker]
+  029910  [NSNumber numberWithBool:0]
+  029948  [GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge completed" label:0 value:[NSNumber numberWithBool:0]]
+  029970  [GAIFields customMetricForIndex:4]
+  02999c  [[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge completed" label:0 value:[NSNumber numberWithBool:0]] set:@"0" forKey:[GAIFields customMetricForIndex:4]]
+  0299b8  [[[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge completed" label:0 value:[NSNumber numberWithBool:0]] set:@"0" forKey:[GAIFields customMetricForIndex:4]] build]
+  0299dc  [[[GAI sharedInstance] defaultTracker] send:[[[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"challenge completed" label:0 value:[NSNumber numberWithBool:0]] set:@"0" forKey:[GAIFields customMetricForIndex:4]] build]]
+loc_1000299e0:
+  029a20  return
+
+== -[ADTracker(ADGamePlayTracker) accuracyObjectiveReached:]   (address 0x100029ac4  size 376  kind objc)
+  029aec  [GAI sharedInstance]
+  029b08  [[GAI sharedInstance] defaultTracker]
+  029b40  [NSNumber numberWithBool:arg1]
+  029b78  [GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"accuracy objective reached" label:0 value:[NSNumber numberWithBool:arg1]]
+  029b94  [[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"accuracy objective reached" label:0 value:[NSNumber numberWithBool:arg1]] build]
+  029bb8  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"accuracy objective reached" label:0 value:[NSNumber numberWithBool:arg1]] build]]
+  029be4  return
+
+== -[ADTracker(ADGamePlayTracker) timeObjectiveReached:]   (address 0x100029c3c  size 376  kind objc)
+  029c64  [GAI sharedInstance]
+  029c80  [[GAI sharedInstance] defaultTracker]
+  029cb8  [NSNumber numberWithBool:arg1]
+  029cf0  [GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"time objective reached" label:0 value:[NSNumber numberWithBool:arg1]]
+  029d0c  [[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"time objective reached" label:0 value:[NSNumber numberWithBool:arg1]] build]
+  029d30  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Challenge event" action:@"time objective reached" label:0 value:[NSNumber numberWithBool:arg1]] build]]
+  029d5c  return
+
+== -[ADTracker(ADGamePlayTracker) turnOffAllDimensions]   (address 0x100029db4  size 4  kind objc)
+  029db4  return

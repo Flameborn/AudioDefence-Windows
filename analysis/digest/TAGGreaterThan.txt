@@ -1,0 +1,11 @@
+
+== +[TAGGreaterThan functionId]   (address 0x1001789fc  size 44  kind objc)
+  178a24  return
+
+== -[TAGGreaterThan init]   (address 0x100178a28  size 68  kind objc)
+  178a5c  [super initWithFunctionId:@"_gt"]
+  178a68  return
+
+== -[TAGGreaterThan evaluateWithArg0:arg1:parameters:]   (address 0x100178a6c  size 144  kind objc)
+  178ab0  [arg1 compare:arg2]
+  178adc  return

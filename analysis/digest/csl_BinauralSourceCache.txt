@@ -1,0 +1,579 @@
+
+== csl::BinauralSourceCache::~BinauralSourceCache   (address 0x1000f3b54  size 36  kind cxx)
+  0f3b64  sub_1000f3ac8(a0, a1, a2, a3)
+  0f3b74  return
+
+== csl::BinauralSourceCache::~BinauralSourceCache/*deleting*/   (address 0x1000f3b78  size 36  kind cxx)
+  0f3b88  sub_1000f3ac8(a0, a1, a2, a3)
+  0f3b98  tail ZdlPv(a0)
+
+== sub_1000f3b9c   (address 0x1000f3b9c  size 832  kind sub)
+  0f3bb8  a0[+0x0] = 3
+  0f3bc0  a0[+0x4] = 0
+  0f3bc8  a0[+0x20] = 4
+  0f3bd4  calloc(8, 4, a2, a3)
+  0f3bdc  a0[+0x10] = calloc(8, 4, a2, a3)
+  0f3be0  if (calloc(8, 4, a2, a3) == 0) goto loc_1000f3c7c
+loc_1000f3bec:
+  0f3bf4  calloc(8, 257)
+  0f3c04  if (x8 == 0) goto loc_1000f3d08
+  0f3c14  if ((w22 + 1) <=u 3) goto loc_1000f3bec
+  0f3c20  calloc(8, 4)
+  0f3c28  a0[+0x18] = calloc(8, 4)
+  0f3c2c  if (calloc(8, 4) == 0) goto loc_1000f3d94
+loc_1000f3c38:
+  0f3c40  calloc(8, 257)
+  0f3c50  if (x8 == 0) goto loc_1000f3e20
+  0f3c60  if ((w22 + 1) <=u 3) goto loc_1000f3c38
+  0f3c78  return
+  0f3c80  cxa_allocate_exception(16)
+  0f3c98  ZNSsC1EPKcRKSaIcE(&x29[-0x30], "can't allocate buffer", &sp[0x38])
+  0f3ca4  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &x29[-0x30])
+  0f3cb4  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f3ccc  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f3cec  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3eb8
+  0f3d00  if (w11 != 0) goto loc_1000f3cf4
+  0f3d0c  cxa_allocate_exception(16)
+  0f3d24  ZNSsC1EPKcRKSaIcE(&sp[0x30], "can't allocate buffer", &sp[0x28])
+  0f3d30  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x30])
+  0f3d40  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f3d58  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f3d78  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3eb8
+  0f3d8c  if (w11 != 0) goto loc_1000f3d80
+  0f3d98  cxa_allocate_exception(16)
+  0f3db0  ZNSsC1EPKcRKSaIcE(&sp[0x20], "can't allocate buffer", &sp[0x18])
+  0f3dbc  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x20])
+  0f3dcc  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f3de4  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f3e04  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3eb8
+  0f3e18  if (w11 != 0) goto loc_1000f3e0c
+  0f3e24  cxa_allocate_exception(16)
+  0f3e3c  ZNSsC1EPKcRKSaIcE(&sp[0x10], "can't allocate buffer", &sp[0x8])
+  0f3e48  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x10])
+  0f3e58  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f3e70  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f3e90  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f3eb8
+  0f3ea4  if (w11 != 0) goto loc_1000f3e98
+  0f3eac  if (w9 > 0) goto loc_1000f3eb8
+  0f3eb4  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x28])
+  0f3ed4  cxa_free_exception()
+
+== sub_1000f3edc   (address 0x1000f3edc  size 2348  kind sub)
+  0f3f10  a0[+0x0] = 3
+  0f3f18  a0[+0x4] = 0
+  0f3f20  a0[+0x20] = 4
+  0f3f2c  calloc(8, 4, a2, a3)
+  0f3f34  a0[+0x10] = calloc(8, 4, a2, a3)
+  0f3f38  if (calloc(8, 4, a2, a3) == 0) goto loc_1000f41b8
+loc_1000f3f44:
+  0f3f4c  calloc(8, 257)
+  0f3f5c  if (x8 == 0) goto loc_1000f4244
+  0f3f6c  if ((w24 + 1) <=u 3) goto loc_1000f3f44
+  0f3f78  calloc(8, 4)
+  0f3f80  a0[+0x18] = calloc(8, 4)
+  0f3f84  if (calloc(8, 4) == 0) goto loc_1000f42d0
+loc_1000f3f90:
+  0f3f98  calloc(8, 257)
+  0f3fa8  if (x8 == 0) goto loc_1000f435c
+  0f3fb8  if ((w24 + 1) <=u 3) goto loc_1000f3f90
+  0f3fcc  sub_1000e8084(&x29[-0xe0], 1, 512, 4)
+  0f3fe0  sub_1000e8084(&sp[0x2b8], 1, 512, 4)
+  0f3fe8  sub_1000e8220(&x29[-0xe0])
+  0f3ff8  strstr(a1, "_T")
+  0f3ffc  if (strstr(a1, "_T") == 0) goto loc_1000f43fc
+  0f4008  strtof((strstr(a1, "_T") + 2), 0)
+  0f401c  strstr(a1, "_P")
+  0f4020  if (strstr(a1, "_P") == 0) goto loc_1000f449c
+  0f402c  strtof((strstr(a1, "_P") + 2), 0)
+  0f4048  a0[+0x0] = 3
+  0f4050  d0 = sin((s8 / 57.2958)), d1 = cos((s8 / 57.2958))
+  0f4060  cos((s0 / 57.2958), cos((s8 / 57.2958)))
+  0f406c  a0[+0x4] = (cos((s0 / 57.2958), cos((s8 / 57.2958))) * cos((s8 / 57.2958)))
+  0f4074  d0 = sin((s0 / 57.2958)), d1 = cos((s0 / 57.2958))
+  0f408c  ZNSsC1EPKcRKSaIcE(&sp[0x48], a1, &sp[0x40])
+  0f40ac  sub_1000e5b08(&sp[0x50], &sp[0x48], 0xffffffff, 0xffffffff)
+  0f40c4  if ((x8 - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f471c
+loc_1000f40c8:
+  0f40d0  csl::CASoundFile::vfunc_14(&sp[0x50], 1)
+  0f40d8  if (w8 == 0) goto loc_1000f453c
+  0f40e0  sub_1000e4a94(&sp[0x50])
+  0f40e8  if (sub_1000e4a94(&sp[0x50]) != 2) goto loc_1000f4104
+  0f40f8  call x8
+  0f4100  if (x8(…) >=u 1024) goto loc_1000f45e8
+loc_1000f4104:
+  0f4108  sub_1000e4a94(&sp[0x50])
+  0f411c  call x8
+  0f4130  sub_1000e75a0("Sound file \"%s\" is wrong format: %d ch, %d frames")
+  0f4138  cxa_allocate_exception(16)
+  0f4150  ZNSsC1EPKcRKSaIcE(&sp[0x28], "Sound file open error", &sp[0x20])
+  0f415c  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x28])
+  0f416c  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f4184  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0f4188  goto loc_1000f4744
+  0f419c  if ((x8 - 24) == x22) goto loc_1000f45dc
+loc_1000f41a4:
+  0f41b0  if (w11 != 0) goto loc_1000f41a4
+  0f41b4  goto loc_1000f45cc
+loc_1000f41b8:
+  0f41bc  cxa_allocate_exception(16)
+  0f41d4  ZNSsC1EPKcRKSaIcE(&x29[-0x70], "can't allocate buffer", &x29[-0x78])
+  0f41e0  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &x29[-0x70])
+  0f41f0  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f4208  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f420c  goto loc_1000f4744
+  0f4228  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f43f4
+loc_1000f4230:
+  0f423c  if (w11 != 0) goto loc_1000f4230
+  0f4240  goto loc_1000f43e4
+loc_1000f4244:
+  0f4248  cxa_allocate_exception(16)
+  0f4260  ZNSsC1EPKcRKSaIcE(&x29[-0x80], "can't allocate buffer", &x29[-0x88])
+  0f426c  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &x29[-0x80])
+  0f427c  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f4294  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f4298  goto loc_1000f4744
+  0f42b4  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f43f4
+loc_1000f42bc:
+  0f42c8  if (w11 != 0) goto loc_1000f42bc
+  0f42cc  goto loc_1000f43e4
+loc_1000f42d0:
+  0f42d4  cxa_allocate_exception(16)
+  0f42ec  ZNSsC1EPKcRKSaIcE(&x29[-0x90], "can't allocate buffer", &x29[-0x98])
+  0f42f8  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &x29[-0x90])
+  0f4308  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f4320  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f4324  goto loc_1000f4744
+  0f4340  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f43f4
+loc_1000f4348:
+  0f4354  if (w11 != 0) goto loc_1000f4348
+  0f4358  goto loc_1000f43e4
+loc_1000f435c:
+  0f4360  cxa_allocate_exception(16)
+  0f4378  ZNSsC1EPKcRKSaIcE(&x29[-0xa0], "can't allocate buffer", &x29[-0xa8])
+  0f4384  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &x29[-0xa0])
+  0f4394  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f43ac  cxa_throw(cxa_allocate_exception(16), &d_1004290d0, INDIRECT_SYMBOL_LOCAL)
+  0f43b0  goto loc_1000f4744
+  0f43cc  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f43f4
+loc_1000f43d4:
+  0f43e0  if (w11 != 0) goto loc_1000f43d4
+loc_1000f43e4:
+  0f43e8  if (w9 > 0) goto loc_1000f43f4
+  0f43f0  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x68])
+loc_1000f43f4:
+loc_1000f43fc:
+  0f440c  sub_1000e772c(2, "Cannot parse HRIR file name for theta: \"%s\"\n")
+  0f4414  cxa_allocate_exception(16)
+  0f442c  ZNSsC1EPKcRKSaIcE(&sp[0x2b0], "Cannot parse HRIR filename", &sp[0x2a8])
+  0f4438  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x2b0])
+  0f4448  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f4460  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0f4464  goto loc_1000f4744
+  0f4480  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f47c8
+loc_1000f4488:
+  0f4494  if (w11 != 0) goto loc_1000f4488
+  0f4498  goto loc_1000f47b8
+loc_1000f449c:
+  0f44ac  sub_1000e772c(2, "Cannot parse HRIR file namefor phi: \"%s\"\n")
+  0f44b4  cxa_allocate_exception(16)
+  0f44cc  ZNSsC1EPKcRKSaIcE(&sp[0x2a0], "Cannot parse HRIR filename", &sp[0x298])
+  0f44d8  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x2a0])
+  0f44e8  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f4500  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0f4504  goto loc_1000f4744
+  0f4520  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f47c8
+loc_1000f4528:
+  0f4534  if (w11 != 0) goto loc_1000f4528
+  0f4538  goto loc_1000f47b8
+loc_1000f453c:
+  0f4548  sub_1000e75a0("Cannot open sound file \"%s\"")
+  0f4550  cxa_allocate_exception(16)
+  0f4568  ZNSsC1EPKcRKSaIcE(&sp[0x38], "Sound file open error", &sp[0x30])
+  0f4574  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x38])
+  0f4584  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f459c  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0f45a0  goto loc_1000f4744
+  0f45b4  if ((x8 - 24) == x22) goto loc_1000f45dc
+loc_1000f45bc:
+  0f45c8  if (w11 != 0) goto loc_1000f45bc
+loc_1000f45cc:
+  0f45d0  if (w9 > 0) goto loc_1000f45dc
+  0f45d8  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x68])
+loc_1000f45dc:
+  0f45e0  csl::CASoundFile::~CASoundFile(&sp[0x50])
+  0f45e4  goto loc_1000f47c8
+loc_1000f45e8:
+  0f45ec  if (a0[+0x20] == 0) goto loc_1000f46d4
+loc_1000f4600:
+  0f4604  sub_1000e8310(&x29[-0xe0])
+  0f4610  csl::Buffer::vfunc_4(&x29[-0xe0], 0)
+  0f4620  csl::Buffer::vfunc_4((&sp[0x50] + 200), 0)
+  0f4630  memcpy(csl::Buffer::vfunc_4(&x29[-0xe0], 0), (csl::Buffer::vfunc_4((&sp[0x50] + 200), 0) + (w23 << 2)), 1024)
+  0f4658  call a2[+0x0][+0x10]
+  0f4660  sub_1000e8310(&x29[-0xe0])
+  0f466c  csl::Buffer::vfunc_4(&x29[-0xe0], 0)
+  0f467c  csl::Buffer::vfunc_4((&sp[0x50] + 200), 1)
+  0f4694  memcpy(csl::Buffer::vfunc_4(&x29[-0xe0], 0), (csl::Buffer::vfunc_4((&sp[0x50] + 200), 1) + (x8 << 2)), 1024)
+  0f46bc  call a2[+0x0][+0x10]
+  0f46d0  if ((w24 + 1) <u a0[+0x20]) goto loc_1000f4600
+loc_1000f46d4:
+  0f46d8  sub_1000e4c9c(&sp[0x50])
+  0f46e0  csl::CASoundFile::~CASoundFile(&sp[0x50])
+  0f46e8  csl::Buffer::~Buffer(&sp[0x2b8])
+  0f46f0  csl::Buffer::~Buffer(&x29[-0xe0])
+  0f4718  return
+  0f472c  if (w11 != 0) goto loc_1000f4720
+  0f4734  if (w9 > 0) goto loc_1000f40c8
+  0f473c  ZNSs4_Rep10_M_destroyERKSaIcE((x8 - 24), &x29[-0x68])
+  0f477c  cxa_free_exception()
+  0f47a0  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f47c8
+  0f47b4  if (w11 != 0) goto loc_1000f47a8
+  0f47bc  if (w9 > 0) goto loc_1000f47c8
+  0f47c4  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x68])
+  0f47cc  csl::Buffer::~Buffer(&sp[0x2b8])
+  0f47d4  csl::Buffer::~Buffer(&x29[-0xe0])
+  0f47dc  call sub_10000b760
+  0f47ec  cxa_free_exception()
+  0f4800  cxa_free_exception()
+
+== sub_1000f4808   (address 0x1000f4808  size 260  kind sub)
+  0f4820  if (g_10042d8d0 != 0) goto loc_1000f4878
+  0f4828  sub_1000e737c(g_10042d8d0, a1, a2, a3)
+  0f483c  ZNSs6appendEPKcm(&sp[0x8], "IRCAM_HRTF/", 11)
+  0f4844  Znwm(40)
+  0f4854  sub_1000f497c(Znwm(40))
+  0f4858  store g_10042d8d0 = Znwm(40)
+  0f4870  if ((x8 - 24) != __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f4888
+loc_1000f4874:
+loc_1000f4878:
+  0f4884  return
+  0f4898  if (w11 != 0) goto loc_1000f488c
+  0f48a0  if (w9 > 0) goto loc_1000f4874
+  0f48a8  ZNSs4_Rep10_M_destroyERKSaIcE((x8 - 24), &sp[0x10])
+  0f48c4  ZdlPv()
+  0f48dc  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f4904
+  0f48f0  if (w11 != 0) goto loc_1000f48e4
+  0f48f8  if (w9 > 0) goto loc_1000f4904
+  0f4900  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+
+== sub_1000f490c   (address 0x1000f490c  size 112  kind sub)
+  0f4920  Znwm(40, a1, a2, a3)
+  0f492c  sub_1000f497c(Znwm(40, a1, a2, a3), a0)
+  0f4938  store g_10042d8d0 = Znwm(40, a1, a2, a3)
+  0f493c  if (g_10042d8d0 == 0) goto loc_1000f495c
+  0f4944  if (g_10042d8d0[+0x0] == 0) goto loc_1000f494c
+  0f4948  ZdlPv(g_10042d8d0[+0x0])
+loc_1000f494c:
+  0f4958  tail ZdlPv(g_10042d8d0)
+loc_1000f495c:
+  0f4964  return
+  0f4970  ZdlPv()
+
+== sub_1000f497c   (address 0x1000f497c  size 732  kind sub)
+  0f49ac  a0[+0x0] = 0
+  0f49b8  a0[+0x18] = 0x10000000200
+  0f49c0  a0[+0x20] = 1024
+  0f49c4  if (a1 == 0) goto loc_1000f49dc
+  0f49d4  strcasestr(a1, ".dat", a2, a3)
+  0f49d8  if (strcasestr(a1, ".dat", a2, a3) == 0) goto loc_1000f4a10
+loc_1000f49dc:
+  0f49e4  sub_1000f4c58(a0, a1)
+  0f4a08  return
+  0f4a14  strlen(a1)
+  0f4a24  if ((strlen(a1) + a1)[+0x-1] != 47) goto loc_1000f4a7c
+  0f4a34  memset(&sp[0x38], 0, 256)
+  0f4a40  if (a1[+0x0] != 126) goto loc_1000f4c0c
+  0f4a4c  getenv("HOME")
+  0f4a58  strcpy(&sp[0x38], getenv("HOME"))
+  0f4a60  strlen(a1)
+  0f4a68  if (strlen(a1) <u 2) goto loc_1000f4c18
+  0f4a74  strcat(&sp[0x38], (a1 + 1))
+  0f4a84  sub_1000f5378(a0, a1)
+  0f4a94  if (w1 != 1) goto loc_1000f4b78
+  0f4a9c  cxa_get_exception_ptr()
+  0f4ac0  ZNSsC1ERKSs((&sp[0x8] + 8), (cxa_get_exception_ptr() + 8))
+  0f4ac8  cxa_begin_catch()
+  0f4ae0  sub_1000e772c(2, "Loading the HRTFDatabase: %s\n")
+  0f4ae8  exit(0)
+  0f4af4  ZN3csl10CExceptionD2Ev(&sp[0x8])
+  0f4af8  cxa_end_catch(ZN3csl10CExceptionD2Ev(&sp[0x8]))
+  0f4b08  if (w1 != 1) goto loc_1000f4b78
+  0f4b10  cxa_get_exception_ptr()
+  0f4b34  ZNSsC1ERKSs((&sp[0x28] + 8), (cxa_get_exception_ptr() + 8))
+  0f4b3c  cxa_begin_catch()
+  0f4b54  sub_1000e772c(2, "Loading the HRTFDatabase: %s\n")
+  0f4b5c  exit(0)
+  0f4b68  ZN3csl10CExceptionD2Ev(&sp[0x28])
+  0f4b6c  cxa_end_catch(ZN3csl10CExceptionD2Ev(&sp[0x28]))
+  0f4b7c  if (x0 == 0) goto loc_1000f4b84
+  0f4b80  ZdlPv()
+  0f4b94  ZNSt9exceptionD2Ev(&sp[0x28])
+  0f4ba4  ZNSt9exceptionD2Ev(&sp[0x8])
+  0f4bb4  if (w1 != 1) goto loc_1000f4b78
+  0f4bbc  cxa_get_exception_ptr()
+  0f4be0  ZNSsC1ERKSs((&sp[0x18] + 8), (cxa_get_exception_ptr() + 8))
+  0f4be8  cxa_begin_catch()
+  0f4c00  sub_1000e772c(2, "Loading the HRTFDatabase: %s\n")
+  0f4c08  exit(0)
+  0f4c14  strcpy(&sp[0x38], a1)
+  0f4c20  sub_1000f52e4(a0, &sp[0x38])
+  0f4c30  ZNSt9exceptionD2Ev(&sp[0x18])
+  0f4c40  ZN3csl10CExceptionD2Ev(&sp[0x18])
+  0f4c44  cxa_end_catch(ZN3csl10CExceptionD2Ev(&sp[0x18]))
+  0f4c54  call sub_10000b760
+
+== sub_1000f4c58   (address 0x1000f4c58  size 1676  kind sub)
+  0f4ca4  if (a1 == 0) goto loc_1000f4cd4
+  0f4cb4  fopen(a1, "r", a2, a3)
+  0f4cbc  if (fopen(a1, "r", a2, a3) != 0) goto loc_1000f4cdc
+  0f4ccc  sub_1000e75a0("Cannot open DB file %s for reading.\n")
+  0f4cd0  goto loc_1000f4ec4
+loc_1000f4cd4:
+loc_1000f4cdc:
+  0f4cec  ZN7MemFile5fgetsEPciP7__sFILE(&sp[0x60], &sp[0xb8], 1024)
+  0f4d00  strncmp(&sp[0xb8], "HRTF", 4)
+  0f4d04  if (strncmp(&sp[0xb8], "HRTF", 4) == 0) goto loc_1000f4d1c
+  0f4d14  sub_1000e75a0("DB file %s wrong format.\n")
+  0f4d18  goto loc_1000f4ea8
+loc_1000f4d1c:
+  0f4d50  sscanf(&sp[0xb8], "%s	%s	%d	%d	%d	%d", &sp[0xb0], &sp[0xa0], &sp[0x94], &sp[0x8c], &sp[0x88], &sp[0x90])
+  0f4d58  if (sscanf(&sp[0xb8], "%s	%s	%d	%d	%d	%d", &sp[0xb0], &sp[0xa0], &sp[0x94], &sp[0x8c], &sp[0x88], &sp[0x90]) != 6) goto loc_1000f4e4c
+  0f4d6c  a0[+0x20] = w9
+  0f4d80  if (w10 != (w9 / (w8 & 0x7fffffff))) goto loc_1000f4e60
+  0f4d94  ZN7MemFile5fgetsEPciP7__sFILE(&sp[0x60], &sp[0xb8], 512)
+  0f4d9c  strlen(&sp[0xb8])
+  0f4da4  if (strlen(&sp[0xb8]) <=u 1) goto loc_1000f5298
+loc_1000f4dc4:
+  0f4dd0  sscanf(&sp[0xb8], "%d	%d", &sp[0x6c], &sp[0x68])
+  0f4dd8  if (sscanf(&sp[0xb8], "%d	%d", &sp[0x6c], &sp[0x68]) != 2) goto loc_1000f4e78
+  0f4de0  Znwm(16)
+  0f4e0c  sub_1000ef058(Znwm(16), 1)
+  0f4e1c  ZNSt6vectorIPN3csl6CPointESaIS2_EE9push_backERKS2_(&sp[0x70], &sp[0x58])
+  0f4e30  ZN7MemFile5fgetsEPciP7__sFILE(&sp[0x60], &sp[0xb8], 512)
+  0f4e38  strlen(&sp[0xb8])
+  0f4e40  if (strlen(&sp[0xb8]) >u 1) goto loc_1000f4dc4
+  0f4e48  goto loc_1000f4f1c
+loc_1000f4e4c:
+  0f4e58  sub_1000e75a0("Line format: %s\n")
+  0f4e5c  goto loc_1000f4ea8
+loc_1000f4e60:
+  0f4e70  sub_1000e75a0("Line format: %s\n")
+  0f4e74  goto loc_1000f4ea8
+loc_1000f4e78:
+  0f4e88  sub_1000e75a0("Line format: %s\n")
+  0f4e8c  goto loc_1000f4ea8
+  0f4e90  goto loc_1000f4f10
+  0f4ea0  ZdlPv()
+  0f4ea4  goto loc_1000f5280
+loc_1000f4ea8:
+  0f4eb0  if (&sp[0x60] == x19) goto loc_1000f4ec0
+  0f4eb8  fclose()
+  0f4ebc  goto loc_1000f4ec4
+loc_1000f4ec0:
+loc_1000f4ec4:
+  0f4ec8  if (0 == 0) goto loc_1000f4ed0
+  0f4ecc  ZdlPv(0)
+loc_1000f4ed0:
+  0f4f04  return
+  0f4f2c  if (((x9 - 0) >> 3) != x8) goto loc_1000f5100
+  0f4f38  if (&sp[0x60] == x19) goto loc_1000f4f48
+  0f4f40  ftell()
+  0f4f48  if (w8 == 0) goto loc_1000f5094
+  0f4f6c  Znwm(40)
+  0f4f78  sub_1000f3b9c(Znwm(40))
+  0f4f84  call sub_1000ef15c
+  0f4f94  call sub_1000ef1fc
+  0f4fa0  Znwm(40)[+0x0] = 3
+  0f4fa8  d0 = sin(d0), d1 = cos(d0)
+  0f4fb8  cos(d0, cos(d0))
+  0f4fc4  Znwm(40)[+0x4] = (cos(d0, cos(d0)) * cos(d0))
+  0f4fcc  d0 = sin(d0), d1 = cos(d0)
+  0f4fdc  if (w8 == 0) goto loc_1000f5050
+  0f5000  ZN7MemFile5freadEPvmmP7__sFILE(&sp[0x60], x1, 8)
+  0f5010  if (ZN7MemFile5freadEPvmmP7__sFILE(&sp[0x60], x1, 8) != a0[+0x1c]) goto loc_1000f5114
+  0f5030  ZN7MemFile5freadEPvmmP7__sFILE(&sp[0x60], x1, 8, ZN7MemFile5freadEPvmmP7__sFILE(&sp[0x60], x1, 8))
+  0f503c  if (ZN7MemFile5freadEPvmmP7__sFILE(&sp[0x60], x1, 8, ZN7MemFile5freadEPvmmP7__sFILE(&sp[0x60], x1, 8)) != a0[+0x1c]) goto loc_1000f51c4
+  0f504c  if ((w26 + 1) <u w9) goto loc_1000f4fe8
+  0f5054  sub_1000ef1fc(Znwm(40))
+  0f5060  if (d0 <= (or unordered) -0.1) goto loc_1000f5084
+  0f5068  sub_1000ef1fc(Znwm(40))
+  0f5074  if (d0 >= (or unordered) 0.1) goto loc_1000f5084
+  0f5080  ZNSt6vectorIPN3csl4HRTFESaIS2_EE9push_backERKS2_(a0, &sp[0x50])
+  0f5090  if ((w22 + 1) <u w8) goto loc_1000f4f68
+  0f509c  if (&sp[0x60] == x19) goto loc_1000f50a8
+  0f50a4  ftell()
+  0f50c0  ZN7MemFile5fgetsEPciP7__sFILE(&sp[0x60], &sp[0xb8], 1024)
+  0f50d4  strncmp(&sp[0xb8], "HRTF", 4)
+  0f50d8  if (strncmp(&sp[0xb8], "HRTF", 4) == 0) goto loc_1000f50ec
+  0f50e8  sub_1000e75a0("Error: Trailer format: %s\n")
+  0f50f0  if (&sp[0x60] == x19) goto loc_1000f52ac
+  0f50f8  fclose()
+  0f510c  sub_1000e75a0("Found %d positions ( ! = %d)")
+  0f5124  sub_1000e772c(2, "HRTF load read error %d\n")
+  0f5130  perror("Error reading HRTF  ")
+  0f5138  cxa_allocate_exception(16)
+  0f5150  ZNSsC1EPKcRKSaIcE(&sp[0x48], "Error reading HRTF", &sp[0x40])
+  0f515c  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x48])
+  0f516c  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f5184  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0f51a8  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f5280
+  0f51bc  if (w11 != 0) goto loc_1000f51b0
+  0f51d4  sub_1000e772c(2, "HRTF load read error %d\n")
+  0f51e0  perror("Error reading HRTF  ")
+  0f51e8  cxa_allocate_exception(16)
+  0f5200  ZNSsC1EPKcRKSaIcE(&sp[0x38], "Error reading HRTF", &sp[0x30])
+  0f520c  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16), &sp[0x38])
+  0f521c  cxa_allocate_exception(16)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0f5234  cxa_throw(cxa_allocate_exception(16), &d_100429110, INDIRECT_SYMBOL_LOCAL)
+  0f5258  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000f5280
+  0f526c  if (w11 != 0) goto loc_1000f5260
+  0f5274  if (w9 > 0) goto loc_1000f5280
+  0f527c  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x98])
+  0f5284  if (x0 == 0) goto loc_1000f528c
+  0f5288  ZdlPv()
+  0f528c  if (w19 >= 0) goto loc_1000f52a4
+  0f5294  cxa_call_unexpected()
+  0f52b4  sub_1000f5540(a0)
+  0f52dc  cxa_free_exception()
+
+== sub_1000f52e4   (address 0x1000f52e4  size 148  kind sub)
+  0f5314  strcpy(&sp[0x8], a1, a2, a3)
+  0f531c  strlen(&sp[0x8])
+  0f5328  (&sp[0x8] + strlen(&sp[0x8]))[+0x8] = 116
+  0f5334  ["files.txt"] -> 0x78742e73656c6966
+  0f5338  (&sp[0x8] + strlen(&sp[0x8]))[+0x0] = 0x78742e73656c6966
+  0f5344  sub_1000f5378(a0, &sp[0x8])
+  0f5364  return
+  0f536c  if (w1 >= 0) goto loc_1000f5374
+  0f5370  cxa_call_unexpected()
+
+== sub_1000f5378   (address 0x1000f5378  size 436  kind sub)
+  0f53bc  sub_1000eeddc(&sp[0x18], a0[+0x18], 1, 0)
+  0f53cc  fopen(a1, "r")
+  0f53d4  if (fopen(a1, "r") == 0) goto loc_1000f549c
+  0f53e0  strcpy(&sp[0x158], a1)
+  0f53ec  rindex(&sp[0x158], 47)
+  0f53f0  rindex(&sp[0x158], 47)[+0x1] = 0
+  0f53f8  feof(fopen(a1, "r"))
+  0f53fc  if (feof(fopen(a1, "r")) != 0) goto loc_1000f5490
+loc_1000f5408:
+  0f5414  fgets(&sp[0x258], 1024, fopen(a1, "r"))
+  0f541c  strlen(&sp[0x258])
+  0f5428  if ((strlen(&sp[0x258]) + 0xffffffff) < 2) goto loc_1000f5484
+  0f5434  if (w9 != 10) goto loc_1000f5440
+loc_1000f5440:
+  0f5448  strcpy(&sp[0x58], &sp[0x158])
+  0f5454  strcat(&sp[0x58], &sp[0x258])
+  0f545c  Znwm(40)
+  0f5470  sub_1000f3edc(Znwm(40), &sp[0x58], &sp[0x18])
+  0f5480  ZNSt6vectorIPN3csl4HRTFESaIS2_EE9push_backERKS2_(a0, &sp[0x10])
+loc_1000f5484:
+  0f5488  feof(fopen(a1, "r"))
+  0f548c  if (feof(fopen(a1, "r")) == 0) goto loc_1000f5408
+loc_1000f5490:
+  0f5494  fclose(fopen(a1, "r"))
+  0f5498  goto loc_1000f54ac
+loc_1000f549c:
+  0f54a8  sub_1000e75a0("Cannot open list file %s for reading.\n")
+loc_1000f54ac:
+  0f54b0  csl::ACCFFT_Wrapper::~ACCFFT_Wrapper(&sp[0x18])
+  0f54d8  return
+  0f54f0  ZdlPv()
+  0f5504  csl::ACCFFT_Wrapper::~ACCFFT_Wrapper(&sp[0x18])
+  0f550c  call sub_10000b760
+  0f5518  if (w20 >= 0) goto loc_1000f5524
+  0f5520  cxa_call_unexpected()
+
+== sub_1000f552c   (address 0x1000f552c  size 20  kind sub)
+  0f553c  return
+
+== sub_1000f5540   (address 0x1000f5540  size 720  kind sub)
+  0f5584  ZNSt12_Vector_baseIPN3csl4HRTFESaIS2_EEC2EmRKS3_(&sp[0x18], ((x9 - x8) >> 3), a0, a3)
+  0f559c  memmove(x0, x1, (x8 - x1))
+  0f55ac  a0[+0x8] = a0[+0x0]
+  0f55b8  if ((x20 + ((x8 - x1) & -8)) == x8) goto loc_1000f57a8
+loc_1000f55e0:
+loc_1000f5608:
+  0f560c  Znwm(40)
+  0f5618  sub_1000f3b9c(Znwm(40))
+  0f5624  call sub_1000ef15c
+  0f5630  call sub_1000ef15c
+  0f563c  if (s10 >= (or unordered) s8) goto loc_1000f5644
+loc_1000f5644:
+  0f5648  call sub_1000ef1fc
+  0f5670  Znwm(40)[+0x0] = 3
+  0f5674  d0 = sin((((1 - ((float)w26 / 15)) * s8) + (((float)w26 / 15) * s10))), d1 = cos((((1 - ((float)w26 / 15)) * s8) + (((float)w26 / 15) * s10)))
+  0f5684  cos(d0, cos((((1 - ((float)w26 / 15)) * s8) + (((float)w26 / 15) * s10))))
+  0f5688  t1 = (cos(d0, cos((((1 - ((float)w26 / 15)) * s8) + (((float)w26 / 15) * s10)))) * cos((((1 - ((float)w26 / 15)) * s8) + (((float)w26 / 15) * s10))))
+  0f5690  Znwm(40)[+0x4] = t1
+  0f5698  d0 = sin(d0), d1 = cos(d0)
+  0f56a4  if ((a0[+0x20] / (a0[+0x18] >>> 1)) == 0) goto loc_1000f576c
+loc_1000f56b0:
+  0f56b0  if (a0[+0x1c] == 0) goto loc_1000f5760
+loc_1000f56f4:
+  0f575c  if ((w10 + 1) <u a0[+0x1c]) goto loc_1000f56f4
+loc_1000f5760:
+  0f5768  if ((x8 + 1) <u (a0[+0x20] / (a0[+0x18] >>> 1))) goto loc_1000f56b0
+loc_1000f576c:
+  0f5774  ZNSt6vectorIPN3csl4HRTFESaIS2_EE9push_backERKS2_(a0, &sp[0x8])
+  0f5780  if ((w26 + 1) < 15) goto loc_1000f5608
+  0f578c  ZNSt6vectorIPN3csl4HRTFESaIS2_EE9push_backERKS2_(a0, &sp[0x10])
+  0f57a0  if ((x23 + 1) <u (((x20 + ((x8 - x1) & -8)) - x8) >> 3)) goto loc_1000f55e0
+  0f57a4  goto loc_1000f57ac
+loc_1000f57a8:
+loc_1000f57ac:
+  0f57ac  if (x8 == 0) goto loc_1000f57b8
+  0f57b4  ZdlPv()
+loc_1000f57b8:
+  0f57e0  return
+  0f57ec  if (x0 == 0) goto loc_1000f57f4
+  0f57f0  ZdlPv()
+  0f5804  ZdlPv()
+
+== sub_1000f5810   (address 0x1000f5810  size 16  kind sub)
+  0f581c  return
+
+== sub_1000f5820   (address 0x1000f5820  size 8  kind sub)
+  0f5824  return
+
+== sub_1000f5828   (address 0x1000f5828  size 8  kind sub)
+  0f582c  return
+
+== sub_1000f5830   (address 0x1000f5830  size 60  kind sub)
+  0f5844  if (((x9 - x8) >>> 3) == 0) goto loc_1000f5850
+  0f584c  goto loc_1000f5864
+loc_1000f5850:
+  0f585c  sub_1000e772c(2, "HRTFDatabase::hrtfAt - empty data", a2, a3)
+loc_1000f5864:
+  0f5868  return
+
+== sub_1000f586c   (address 0x1000f586c  size 188  kind sub)
+  0f5894  if (((x9 - x8) >>> 3) == 0) goto loc_1000f58f8
+  0f58a4  sub_1000ef23c(&sp[0x0], a1, a2, a3)
+loc_1000f58c8:
+  0f58d4  sub_1000ef1c8(&sp[0x0])
+  0f58f0  if (((x9 - x8) >>> 3) != (x22 + 1)) goto loc_1000f58c8
+  0f58f4  goto loc_1000f590c
+loc_1000f58f8:
+  0f5904  sub_1000e772c(2, "HRTFDatabase::hrtfAt - empty data", a2, a3)
+loc_1000f590c:
+  0f5924  return
+
+== sub_1000f5928   (address 0x1000f5928  size 36  kind sub)
+  0f5938  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0f5948  return
+
+== sub_1000f594c   (address 0x1000f594c  size 36  kind sub)
+  0f595c  ZN3csl10CExceptionD2Ev(a0, a1, a2, a3)
+  0f596c  return
+
+== std::vector<…><…>(…)   (address 0x1000f5970  size 60  kind sym)
+  0f597c  if (x1 == x9) goto loc_1000f5994
+  0f5980  if (x1 == 0) goto loc_1000f599c
+  0f5990  goto loc_1000f59a0
+loc_1000f5994:
+  0f5998  tail ZNSt6vectorIPN3csl4HRTFESaIS2_EE13_M_insert_auxEN9__gnu_cxx17__normal_iteratorIPS2_S4_EERKS2_(a0, x1, a1, a3)
+loc_1000f599c:
+loc_1000f59a0:
+  0f59a4  a0[+0x8] = (x8 + 8)
+  0f59a8  return

@@ -1,0 +1,135 @@
+
+== -[MBRoundProgressView init]   (address 0x100032f88  size 52  kind objc)
+  032fb0  [self initWithFrame:{0, 0, 37, 37}]
+  032fb8  return
+
+== -[MBRoundProgressView initWithFrame:]   (address 0x100032fbc  size 436  kind objc)
+  032ff8  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  033000  if (self == 0) goto loc_10003312c
+  03301c  [UIColor clearColor]
+  033040  [self setBackgroundColor:[UIColor clearColor]]
+  033064  [self setOpaque:0]
+  033074  self->_progress = 0
+  033080  self->_annular = 0
+  033098  [UIColor alloc]
+  0330b8  [[UIColor alloc] initWithWhite:1 alpha:1]
+  0330cc  self->_progressTintColor = [[UIColor alloc] initWithWhite:1 alpha:1]
+  0330e0  [UIColor alloc]
+  0330f8  [[UIColor alloc] initWithWhite:1 alpha:0.1]
+  03310c  self->_backgroundTintColor = [[UIColor alloc] initWithWhite:1 alpha:0.1]
+  033128  [self registerForKVO]
+loc_10003312c:
+  033144  return
+
+== -[MBRoundProgressView dealloc]   (address 0x100033170  size 144  kind objc)
+  033190  [self unregisterFromKVO]
+  0331b4  [super dealloc]
+  0331c4  return
+  0331f0  [super dealloc]
+  0331fc  call sub_10000b760
+
+== -[MBRoundProgressView drawRect:]   (address 0x100033200  size 964  kind objc)
+  03323c  [self bounds]
+  033250  CGRectInset()
+  033264  UIGraphicsGetCurrentContext(CGRectInset())
+  033278  if (self->_annular == 0) goto loc_100033464
+  033294  [UIBezierPath bezierPath]
+  0332b8  [[UIBezierPath bezierPath] setLineWidth:5]
+  0332d4  [[UIBezierPath bezierPath] setLineCapStyle:1]
+  0332e0  [self bounds]
+  0332f0  [self bounds]
+  033300  [self bounds]
+  033354  [[UIBezierPath bezierPath] addArcWithCenter:{([self bounds].2 * 0.5), ([self bounds].3 * 0.5)} radius:(([self bounds].2 + -5) * 0.5) startAngle:-1.5708 endAngle:4.71239 clockwise:1]
+  033374  [self->_backgroundTintColor set]
+  03338c  [[UIBezierPath bezierPath] stroke]
+  033398  [UIBezierPath bezierPath]
+  0333b0  [[UIBezierPath bezierPath] setLineCapStyle:1]
+  0333c0  [[UIBezierPath bezierPath] setLineWidth:5]
+  0333d4  [self progress]
+  03340c  [[UIBezierPath bezierPath] addArcWithCenter:{([self bounds].2 * 0.5), ([self bounds].3 * 0.5)} radius:(([self bounds].2 + -5) * 0.5) startAngle:-1.5708 endAngle:((([self progress] + [self progress]) * 3.14159) + -1.5708) clockwise:1]
+  033420  [self->_progressTintColor set]
+  03342c  [[UIBezierPath bezierPath] stroke]
+  033460  return
+  03347c  [self->_progressTintColor setStroke]
+  033498  [self->_backgroundTintColor setFill]
+  0334a4  CGContextSetLineWidth(UIGraphicsGetCurrentContext(CGRectInset()))
+  0334bc  CGContextFillEllipseInRect(UIGraphicsGetCurrentContext(CGRectInset()))
+  0334d4  CGContextStrokeEllipseInRect(UIGraphicsGetCurrentContext(CGRectInset()))
+  033500  [self progress]
+  033538  CGContextSetRGBFillColor(UIGraphicsGetCurrentContext(CGRectInset()))
+  033548  CGContextMoveToPoint(UIGraphicsGetCurrentContext(CGRectInset()))
+  033568  CGContextAddArc(UIGraphicsGetCurrentContext(CGRectInset()), 0)
+  033570  CGContextClosePath(UIGraphicsGetCurrentContext(CGRectInset()))
+  03359c  tail CGContextFillPath(UIGraphicsGetCurrentContext(CGRectInset()))
+
+== -[MBRoundProgressView registerForKVO]   (address 0x1000335c4  size 344  kind objc)
+  033614  [self observableKeypaths]
+  033640  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  033648  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000336c8
+  033658  &@selector(addObserver:forKeyPath:options:context:)
+loc_100033660:
+loc_100033664:
+  033670  if (x8 == x25) goto loc_10003367c
+  033678  objc_enumerationMutation([self observableKeypaths])
+loc_10003367c:
+  033698  [self addObserver:self forKeyPath:x3 options:1 context:0]
+  0336a4  if ((x26 + 1) <u [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_100033664
+  0336bc  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0336c4  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_100033660
+loc_1000336c8:
+  0336f8  return
+
+== -[MBRoundProgressView unregisterFromKVO]   (address 0x10003371c  size 336  kind objc)
+  03376c  [self observableKeypaths]
+  033798  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0337a0  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_100033818
+  0337b0  &@selector(removeObserver:forKeyPath:)
+loc_1000337b8:
+loc_1000337bc:
+  0337c8  if (x8 == x25) goto loc_1000337d4
+  0337d0  objc_enumerationMutation([self observableKeypaths])
+loc_1000337d4:
+  0337e8  [self removeObserver:self forKeyPath:x3]
+  0337f4  if ((x26 + 1) <u [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000337bc
+  03380c  [[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  033814  if ([[self observableKeypaths] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000337b8
+loc_100033818:
+  033848  return
+
+== -[MBRoundProgressView observableKeypaths]   (address 0x10003386c  size 88  kind objc)
+  0338b4  [NSArray arrayWithObjects:@"progressTintColor", @"backgroundTintColor", @"progress", @"annular", nil]
+  0338c0  return
+
+== -[MBRoundProgressView observeValueForKeyPath:ofObject:change:context:]   (address 0x1000338c4  size 32  kind objc)
+  0338d8  [self setNeedsDisplay]
+  0338e0  return
+
+== -[MBRoundProgressView progress]   (address 0x1000338e4  size 16  kind objc)
+  0338f0  return
+
+== -[MBRoundProgressView setProgress:]   (address 0x1000338f4  size 16  kind objc)
+  0338fc  self->_progress = arg1
+  033900  return
+
+== -[MBRoundProgressView progressTintColor]   (address 0x100033904  size 16  kind objc)
+  033910  return
+
+== -[MBRoundProgressView setProgressTintColor:]   (address 0x100033914  size 56  kind objc)
+  033938  self->_progressTintColor = arg1
+  033948  return
+
+== -[MBRoundProgressView backgroundTintColor]   (address 0x10003394c  size 16  kind objc)
+  033958  return
+
+== -[MBRoundProgressView setBackgroundTintColor:]   (address 0x10003395c  size 56  kind objc)
+  033980  self->_backgroundTintColor = arg1
+  033990  return
+
+== -[MBRoundProgressView isAnnular]   (address 0x100033994  size 16  kind objc)
+  0339a0  return
+
+== -[MBRoundProgressView setAnnular:]   (address 0x1000339a4  size 16  kind objc)
+  0339ac  self->_annular = arg1
+  0339b0  return
+
+== -[MBRoundProgressView .cxx_destruct]   (address 0x1000339b4  size 64  kind objc)

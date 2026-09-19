@@ -1,0 +1,779 @@
+
+== -[GAIBatchingDispatcher setTimer:]   (address 0x100126dd0  size 112  kind objc)
+  126e00  if (self->_timer == arg1) goto loc_100126e2c
+  126e10  [self->_timer invalidate]
+  126e20  self->_timer = arg1
+loc_100126e2c:
+  126e3c  return
+
+== -[GAIBatchingDispatcher setDispatchInterval:]   (address 0x100126e40  size 44  kind objc)
+  126e50  if (self->_dispatchInterval == arg1) goto loc_100126e68
+  126e54  self->_dispatchInterval = arg1
+  126e64  tail [self rescheduleDispatch]
+loc_100126e68:
+  126e68  return
+
+== -[GAIBatchingDispatcher setHostReachable:]   (address 0x100126e6c  size 44  kind objc)
+  126e7c  if (self->_hostReachable != arg1) goto loc_100126e84
+  126e80  return
+  126e84  self->_hostReachable = arg1
+  126e94  tail [self rescheduleDispatch]
+
+== -[GAIBatchingDispatcher setHasHits:]   (address 0x100126e98  size 44  kind objc)
+  126ea8  if (self->_hasHits != arg1) goto loc_100126eb0
+  126eac  return
+  126eb0  self->_hasHits = arg1
+  126ec0  tail [self rescheduleDispatch]
+
+== -[GAIBatchingDispatcher reachability:statusChanged:]   (address 0x100126ec4  size 24  kind objc)
+  126ed8  tail [self setHostReachable:(arg2 != 1)]
+
+== -[GAIBatchingDispatcher observeValueForKeyPath:ofObject:change:context:]   (address 0x100126edc  size 284  kind objc)
+  126f28  if (arg4 == &d_1003b85b0) goto loc_100126f64
+  126f5c  [super observeValueForKeyPath:arg1 ofObject:arg2 change:arg3 context:arg4]
+  126f60  goto loc_100126fd0
+loc_100126f64:
+  126f80  [arg3 objectForKeyedSubscript:_NSKeyValueChangeNewKey[+0x0]]
+  126f9c  [[arg3 objectForKeyedSubscript:_NSKeyValueChangeNewKey[+0x0]] boolValue]
+  126fa8  self->_optOut = [[arg3 objectForKeyedSubscript:_NSKeyValueChangeNewKey[+0x0]] boolValue]
+  126fb8  if (self->_optOut == 0) goto loc_100126fd0
+  126fcc  [self deleteAllHits]
+loc_100126fd0:
+  126ff4  return
+
+== -[GAIBatchingDispatcher didSendHits:response:data:error:completionHandler:]   (address 0x100126ff8  size 652  kind objc)
+  127058  if (arg2 == 0) goto loc_1001270cc
+  127070  [NSHTTPURLResponse class]
+  127088  [arg2 isKindOfClass:[NSHTTPURLResponse class]]
+  12708c  if ([arg2 isKindOfClass:[NSHTTPURLResponse class]] == 0) goto loc_1001270cc
+  1270a0  [arg2 statusCode]
+  1270c4  [self didSendHits:arg1 sendMore:(arg5 == 0)]
+  1270c8  goto loc_1001270e4
+loc_1001270cc:
+  1270d8  self->_connection = 0
+loc_1001270e4:
+  1270f8  [GAI sharedLogger]
+  127118  [&d_1003b7d70] -> @"GoogleAnalytics"
+  127124  [&d_1003b7d78] -> @"3.09"
+  12713c  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  127150  &@selector(stringWithFormat:)
+  127158  if (arg4 == 0) goto loc_1001271d0
+  127180  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Dispatch error: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher didSendHits:response:data:error:completionHandler:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 156, arg4]
+  1271a4  [[GAI sharedLogger] info:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Dispatch error: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher didSendHits:response:data:error:completionHandler:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 156, arg4]]
+  1271c0  if (arg5 == 0) goto loc_100127248
+  1271cc  goto loc_100127240
+loc_1001271d0:
+  1271f4  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Hit(s) dispatched: HTTP status %ld", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher didSendHits:response:data:error:completionHandler:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 161, sp[40]]
+  127218  [[GAI sharedLogger] info:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Hit(s) dispatched: HTTP status %ld", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher didSendHits:response:data:error:completionHandler:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 161, sp[40]]]
+  127234  if (arg5 == 0) goto loc_100127248
+loc_100127240:
+  127244  call arg5[+0x10]
+loc_100127248:
+  127280  return
+
+== -[GAIBatchingDispatcher didSendHits:sendMore:]   (address 0x100127284  size 448  kind objc)
+  1272d4  [self rescheduleIfNeeded:_cmd withObject:arg1 andWait:0]
+  1272d8  if (([self rescheduleIfNeeded:_cmd withObject:arg1 andWait:0] & 1)) goto loc_100127424
+  1272f0  [self deleteHits:arg1]
+  127300  self->_connection = 0
+  12731c  [GAI sharedLogger]
+  12733c  [&d_1003b7d70] -> @"GoogleAnalytics"
+  127348  [&d_1003b7d78] -> @"3.09"
+  127360  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  127380  [arg1 count]
+  1273b4  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): %lu hit(s) sent", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher didSendHits:sendMore:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 174, [arg1 count]]
+  1273d8  [[GAI sharedLogger] info:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): %lu hit(s) sent", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher didSendHits:sendMore:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 174, [arg1 count]]]
+  127404  [self canDispatch]
+  127408  if ([self canDispatch] == 0) goto loc_100127424
+  12740c  if (arg2 == 0) goto loc_100127424
+  127420  [self dispatch]
+loc_100127424:
+  127440  return
+
+== -[GAIBatchingDispatcher init]   (address 0x100127444  size 116  kind objc)
+  127478  [super init]
+  127480  if (self == 0) goto loc_10012749c
+  127498  [self doesNotRecognizeSelector:_cmd]
+loc_10012749c:
+  1274b4  return
+
+== -[GAIBatchingDispatcher initWithDataStore:]   (address 0x1001274b8  size 696  kind objc)
+  127504  [super init]
+  12750c  if (self == 0) goto loc_1001276f8
+  127524  self->_dataStore = arg1
+  127538  [&d_1003b81e0] -> @"https://ssl.google-analytics.com/collect"
+  127550  self->_httpsURL = @"https://ssl.google-analytics.com/collect"
+  127560  [&d_1003b81e8] -> @"http://www.google-analytics.com/collect"
+  127574  self->_httpURL = @"http://www.google-analytics.com/collect"
+  12758c  self->_dispatchInterval = 0x405e000000000000
+  1275a8  [GAIRequestBuilder alloc]
+  1275b0  [[GAIRequestBuilder alloc] init]
+  1275c0  self->_requestBuilder = [[GAIRequestBuilder alloc] init]
+  1275d8  self->_maxHitsPerDispatch = 20
+  1275ec  self->_maxHitAge = 0x4143c68000000000
+  1275f8  [tconst_1002faa40] -> 0x2000
+  127604  self->_maxBodySize = 0x2000
+  127610  [tconst_1002faa38] -> 0x2000
+  12761c  self->_maxHitSize = 0x2000
+  12762c  self->_hostReachable = 1
+  127638  self->_hasHits = 1
+  127654  [NSURL URLWithString:@"https://ssl.google-analytics.com/collect"]
+  127670  [[NSURL URLWithString:@"https://ssl.google-analytics.com/collect"] host]
+  127694  [GAIReachabilityChecker alloc]
+  1276ac  [[GAIReachabilityChecker alloc] initWithDelegate:self withHost:[[NSURL URLWithString:@"https://ssl.google-analytics.com/collect"] host]]
+  1276bc  self->_reachability = [[GAIReachabilityChecker alloc] initWithDelegate:self withHost:[[NSURL URLWithString:@"https://ssl.google-analytics.com/collect"] host]]
+  1276d8  [self->_reachability start]
+  1276ec  [self initialDispatch]
+loc_1001276f8:
+  12770c  [GAI sharedInstance]
+  127740  [[GAI sharedInstance] addObserver:self forKeyPath:@"optOut" options:1 context:&d_1003b85b0]
+  12776c  return
+
+== -[GAIBatchingDispatcher dealloc]   (address 0x100127770  size 276  kind objc)
+  12779c  [self->_timer invalidate]
+  1277b8  [self->_reachability stop]
+  1277d4  [self->_connection cancel]
+  1277ec  [GAI sharedInstance]
+  12781c  [[GAI sharedInstance] removeObserver:self forKeyPath:@"optOut" context:&d_1003b85b0]
+  127838  [self cancelDispatch]
+  12784c  [self cancelPerformRequests]
+  127870  [super dealloc]
+  127880  return
+
+== -[GAIBatchingDispatcher cancelPerformRequests]   (address 0x100127884  size 112  kind objc)
+  1278b0  [self rescheduleIfNeeded:_cmd withObject:0 andWait:1]
+  1278b4  if (!([self rescheduleIfNeeded:_cmd withObject:0 andWait:1] & 1)) goto loc_1001278c4
+  1278c0  return
+  1278d4  [self class]
+  1278f0  tail [[self class] cancelPreviousPerformRequestsWithTarget:self]
+
+== -[GAIBatchingDispatcher batchByTimeGap:maxHits:]   (address 0x1001278f4  size 516  kind objc)
+  127938  [arg1 count]
+  127940  if ([arg1 count] >=u arg2) goto loc_100127954
+  12794c  [arg1 count]
+loc_100127954:
+  127954  if (x20 == 0) goto loc_100127aac
+  127970  [arg1 objectAtIndexedSubscript:0]
+  127984  if (x20 <u 2) goto loc_100127ab4
+  127994  [&d_1003b81f8] -> @"timestamp"
+loc_1001279d8:
+  1279e4  [arg1 objectAtIndexedSubscript:x2]
+  127a00  [x0 objectForKeyedSubscript:@"timestamp"]
+  127a1c  [[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"timestamp"]
+  127a2c  if ([x0 objectForKeyedSubscript:@"timestamp"] == 0) goto loc_100127a80
+  127a30  if ([[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"timestamp"] == 0) goto loc_100127a80
+  127a40  [[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"timestamp"] compare:[x0 objectForKeyedSubscript:@"timestamp"]]
+  127a48  if ([[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"timestamp"] compare:[x0 objectForKeyedSubscript:@"timesta… == -1) goto loc_100127a80
+  127a58  [[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"timestamp"] timeIntervalSinceDate:[x0 objectForKeyedSubscript:@"timestamp"]]
+  127a5c  t1 = ([[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"timestamp"] timeIntervalSinceDate:[x0 objectForKeyedSubscript:@"timestamp"]] * 1000)
+loc_100127a80:
+  127aa4  if (x20 != (x28 + 1)) goto loc_1001279d8
+  127aa8  goto loc_100127abc
+loc_100127aac:
+  127ab0  goto loc_100127ac8
+loc_100127ab4:
+loc_100127abc:
+loc_100127ac8:
+  127af4  return
+
+== -[GAIBatchingDispatcher batchBySessionSplit:maxHits:]   (address 0x100127af8  size 380  kind objc)
+  127b38  [&d_1003b8398] -> @"&sc"
+  127b44  [&d_1003b81f0] -> @"parameters"
+  127b5c  [&d_1003b81d0] -> @"start"
+  127b78  [&d_1003b81d8] -> @"end"
+loc_100127b84:
+  127b88  if (x27 < 1) goto loc_100127c50
+  127b98  [arg1 objectAtIndexedSubscript:x2]
+  127bb0  [[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"parameters"]
+  127bc8  [[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"&sc"]
+  127be0  if ([[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"&sc"] == 0) goto loc_100127c34
+  127bf4  [[[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"&sc"] isEqualToString:@"start"]
+  127bf8  if (!([[[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"&sc"] isEqualToString:@"start"] & 1)) goto loc_100127c0c
+  127c08  goto loc_100127c38
+loc_100127c0c:
+  127c1c  [[[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"&sc"] isEqualToString:@"end"]
+  127c20  if (!([[[[arg1 objectAtIndexedSubscript:x2] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"&sc"] isEqualToString:@"end"] & 1)) goto loc_100127c34
+  127c30  goto loc_100127c38
+loc_100127c34:
+loc_100127c38:
+  127c4c  if (one of {0, 1} == 0) goto loc_100127b84
+loc_100127c50:
+  127c70  return
+
+== -[GAIBatchingDispatcher hitsForDispatch]   (address 0x100127c74  size 1984  kind objc)
+  127cb4  [self nextPendingHits]
+  127cd4  [[self nextPendingHits] count]
+  127cd8  if ([[self nextPendingHits] count] == 0) goto loc_100127fec
+  127cf4  [[self nextPendingHits] objectAtIndexedSubscript:0]
+  127d14  [self batchingStrategy]
+  127d18  if ([self batchingStrategy] == 0) goto loc_1001280f4
+  127d2c  [&d_1003b81f0] -> @"parameters"
+  127d44  [[[self nextPendingHits] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"]
+  127d5c  [&d_1003b8518] -> @"useSecure"
+  127d64  [[[[self nextPendingHits] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"]
+  127d88  [[[[[self nextPendingHits] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"] isEqualToString:@"0"]
+  127e20  [[self nextPendingHits] count]
+  127e38  [NSMutableArray arrayWithCapacity:[[self nextPendingHits] count]]
+  127e84  [[self nextPendingHits] countByEnumeratingWithState:&x29[-0xd0] objects:&sp[0xa0] count:16]
+  127e8c  if ([[self nextPendingHits] countByEnumeratingWithState:&x29[-0xd0] objects:&sp[0xa0] count:16] == 0) goto loc_100128130
+  127ef4  &@selector(maxBodySize)
+loc_100127f00:
+loc_100127f04:
+  127f14  if (x8 == x9) goto loc_100127f20
+  127f1c  objc_enumerationMutation([self nextPendingHits])
+loc_100127f20:
+  127f44  [self->_requestBuilder parametersForHit:x2]
+  127f58  [[self->_requestBuilder parametersForHit:x2] length]
+  127f70  [NSNumber numberWithUnsignedInteger:([[self->_requestBuilder parametersForHit:x2] length] + x28)]
+  127f8c  [[NSMutableArray arrayWithCapacity:[[self nextPendingHits] count]] addObject:[NSNumber numberWithUnsignedInteger:([[self->_requestBuilder parametersForHit:x2] length] + x28)]]
+  127fa0  [self maxBodySize]
+  127fac  t1 = (x27 + (([[self->_requestBuilder parametersForHit:x2] length] + x28) <=u [self maxBodySize]))
+  127fc4  if ((x19 + 1) <u [[self nextPendingHits] countByEnumeratingWithState:&x29[-0xd0] objects:&sp[0xa0] count:16]) goto loc_100127f04
+  127fd8  [[self nextPendingHits] countByEnumeratingWithState:&x29[-0xd0] objects:&sp[0xa0] count:16]
+  127fe4  if ([[self nextPendingHits] countByEnumeratingWithState:&x29[-0xd0] objects:&sp[0xa0] count:16] != 0) goto loc_100127f00
+  127fe8  goto loc_10012813c
+loc_100127fec:
+  128000  [GAI sharedLogger]
+  128020  [&d_1003b7d70] -> @"GoogleAnalytics"
+  12802c  [&d_1003b7d78] -> @"3.09"
+  128044  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  128084  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): No pending hits.", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher hitsForDispatch]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 288]
+  1280a8  [[GAI sharedLogger] info:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): No pending hits.", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher hitsForDispatch]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 288]]
+  1280e0  [NSArray arrayWithObjects:&x29[-0x60] count:0]
+  1280f0  goto loc_1001283e0
+loc_1001280f4:
+  128114  [NSArray arrayWithObjects:&x29[-0x68] count:1]
+  12812c  goto loc_1001283e0
+loc_100128130:
+loc_10012813c:
+  128168  [self maxBodySize]
+  128170  if (x28 <=u [self maxBodySize]) goto loc_100128390
+  128188  if ((self->_batchingStrategy - 1) <=u 4) goto loc_1001282b8
+  1281a0  [GAI sharedLogger]
+  1281c4  [&d_1003b7d70] -> @"GoogleAnalytics"
+  1281d0  [&d_1003b7d78] -> @"3.09"
+  1281e8  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  128230  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): unexpected batch strategy: %lu", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher hitsForDispatch]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 369, self->_batchingStrategy]
+  128254  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): unexpected batch strategy: %lu", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher hitsForDispatch]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 369, self->_batchingStrategy]]
+  12827c  [[self nextPendingHits] count]
+  128284  if ([[self nextPendingHits] count] <u 2) goto loc_1001282b0
+  128290  [[self nextPendingHits] count]
+  1282ac  [[self nextPendingHits] removeObjectsInRange:1]
+loc_1001282b0:
+  1282b4  goto loc_100128390
+loc_1001282b8:
+  1282c8  switch (?) { case 0: goto loc_100128390; case 1: goto loc_1001282cc; case 2: goto loc_1001282d8; case 3: goto loc_100128354; case 4: goto loc_100128370 }
+loc_1001282cc:  ; case 1
+  1282d0  &@selector(batchByTimeGap:maxHits:)
+  1282d4  goto loc_100128378
+loc_1001282d8:  ; case 2
+  1282e0  [self maxBodySize]
+  1282e8  if (x28 >=u ([self maxBodySize] << 1)) goto loc_100128390
+  1282f4  [[NSMutableArray arrayWithCapacity:[[self nextPendingHits] count]] count]
+  1282fc  &@selector(intValue)
+loc_10012830c:
+  128314  if (x27 < 1) goto loc_100128390
+  128324  [[NSMutableArray arrayWithCapacity:[[self nextPendingHits] count]] objectAtIndexedSubscript:x2]
+  128338  [[[NSMutableArray arrayWithCapacity:[[self nextPendingHits] count]] objectAtIndexedSubscript:x2] intValue]
+  12834c  if ([[[NSMutableArray arrayWithCapacity:[[self nextPendingHits] count]] objectAtIndexedSubscript:x2] intValue] >u (x28 >>> 1)) goto loc_10012830c
+  128350  goto loc_100128390
+loc_100128354:  ; case 3
+  12835c  [[self nextPendingHits] count]
+  128368  t2 = (x27 >u ([[self nextPendingHits] count] >>> 1) ? ([[self nextPendingHits] count] >>> 1) : x27)
+  12836c  goto loc_100128390
+loc_100128370:  ; case 4
+  128374  &@selector(batchBySessionSplit:maxHits:)
+loc_100128378:
+  128388  [self batchBySessionSplit:[self nextPendingHits] maxHits:x3  | batchByTimeGap:x4 maxHits:x5]
+loc_100128390:  ; case 0
+  128398  [[self nextPendingHits] count]
+  1283b4  [[self nextPendingHits] removeObjectsInRange:x2]
+loc_1001283e0:
+  128418  return
+
+== -[GAIBatchingDispatcher hitsForDispatch]_block_invoke   (address 0x100128434  size 192  kind block)
+  128460  [&d_1003b81f0] -> @"parameters"
+  128474  [blockarg1 objectForKeyedSubscript:@"parameters"]
+  128498  [&d_1003b8518] -> @"useSecure"
+  1284a0  [[blockarg1 objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"]
+  1284c4  [[[blockarg1 objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"] isEqualToString:@"0"]
+  1284cc  t1 = ([[[[[self nextPendingHits] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"… == [[[blockarg1 objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"] isEqualToString:@"0"])
+  1284f0  return
+
+== -[GAIBatchingDispatcher nextPendingHits]   (address 0x1001284f4  size 1180  kind objc)
+  128544  [NSMutableArray array]
+  128568  [NSDate date]
+  128594  [[NSDate date] dateByAddingTimeInterval:x2]
+  1285f4  &@selector(stringWithFormat:)
+  128614  &@selector(countByEnumeratingWithState:objects:count:)
+  128634  &@selector(addObjectsFromArray:)
+  128648  [&d_1003b7d70] -> @"GoogleAnalytics"
+  128650  [&d_1003b7d78] -> @"3.09"
+  128674  &@selector(compare:)
+  12867c  &@selector(addObject:)
+  1286a0  [&d_1003b81f8] -> @"timestamp"
+loc_1001286b8:
+  1286c8  [self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]]
+  1286ec  [[self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]] count]
+  1286f0  if ([[self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]] count] != 0) goto loc_1001287bc
+  1286f4  if ([self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]] != 0) goto loc_1001287b4
+  128704  [GAI sharedLogger]
+  128728  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  128778  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to load pending hits: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher nextPendingHits]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 401, 0]
+  128794  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to load pending hits: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher nextPendingHits]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 401, 0]]
+loc_1001287b4:
+  1287b8  goto loc_100128928
+loc_1001287bc:
+  1287c8  [NSMutableArray array]
+  128808  [[self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]] countByEnumeratingWithState:&x29[-0xa0] objects:&sp[0xf0] count:16]
+  128810  if ([[self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]] countByEnumeratingWithState:&x29[-0xa0] objects:&sp[0xf0] count:16] == 0) goto loc_1001288bc
+loc_10012881c:
+loc_100128820:
+  12882c  if (x8 == x22) goto loc_100128838
+  128834  objc_enumerationMutation([self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]])
+loc_100128838:
+  12884c  [x0 objectForKeyedSubscript:@"timestamp"]
+  128868  [[[NSDate date] dateByAddingTimeInterval:x2] compare:[x0 objectForKeyedSubscript:@"timestamp"]]
+  12887c  if ([[[NSDate date] dateByAddingTimeInterval:x2] compare:[x0 objectForKeyedSubscript:@"timestamp"]] == -1) goto loc_100128890
+  12888c  [[NSMutableArray array] addObject:x2]
+loc_100128890:
+  128898  if ((x24 + 1) <u [[self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]] countByEnumeratingWithState:&x29[-0xa…) goto loc_100128820
+  1288b0  [[self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]] countByEnumeratingWithState:&x29[-0xa0] objects:&sp[0xf0] count:16]
+  1288b8  if ([[self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]] countByEnumeratingWithState:&x29[-0xa0] objects:&sp[0xf0] count:16] != 0) goto loc_10012881c
+loc_1001288bc:
+  1288d0  [[NSMutableArray array] count]
+  1288e0  if ([[NSMutableArray array] count] == 0) goto loc_1001288fc
+  1288f4  [self deleteHits:[NSMutableArray array]]
+  1288f8  goto loc_100128910
+loc_1001288fc:
+  128908  [[NSMutableArray array] addObjectsFromArray:[self->_dataStore fetchHitsWithLimit:self->_maxHitsPerDispatch error:&x29[-0x60]]]
+loc_100128910:
+loc_100128928:
+  128938  if ((one of {0, 1} & 1)) goto loc_100128948
+  128944  if (!((w8 ^ 1) & 1)) goto loc_1001286b8
+loc_100128948:
+  128988  return
+
+== -[GAIBatchingDispatcher persist:]   (address 0x100128990  size 520  kind objc)
+  1289e0  [self rescheduleIfNeeded:_cmd withObject:arg1 andWait:0]
+  1289e4  if (([self rescheduleIfNeeded:_cmd withObject:arg1 andWait:0] & 1)) goto loc_100128b70
+  128a04  [self->_dataStore addHit:arg1]
+  128a20  [self->_dataStore save:&sp[0x38]]
+  128a48  [GAI sharedLogger]
+  128a68  [&d_1003b7d70] -> @"GoogleAnalytics"
+  128a74  [&d_1003b7d78] -> @"3.09"
+  128a8c  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  128aa0  &@selector(stringWithFormat:)
+  128aa8  if (!([self->_dataStore save:&sp[0x38]] & 1)) goto loc_100128aec
+  128ad0  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Saved hit: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher persist:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 431, arg1]
+  128ae4  &@selector(verbose:)
+  128ae8  goto loc_100128b28
+loc_100128aec:
+  128b10  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to save hit: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher persist:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 429, 0]
+  128b24  &@selector(error:)
+loc_100128b28:
+  128b34  [[GAI sharedLogger] error:x2  | verbose:x3]
+  128b64  [self setHasHits:1]
+loc_100128b70:
+  128b94  return
+
+== -[GAIBatchingDispatcher deleteHits:]   (address 0x100128b98  size 808  kind objc)
+  128be0  [self dataStore]
+  128bf8  [&d_1003b8200] -> @"objectID"
+  128c0c  [arg1 valueForKey:@"objectID"]
+  128c44  [[self dataStore] deleteHitsWithIds:[arg1 valueForKey:@"objectID"] error:&sp[0x58]]
+  128c80  [self->_dataStore hitCount:0]
+  128c9c  [self setHasHits:([self->_dataStore hitCount:0] != 0)]
+  128cb8  [GAI sharedLogger]
+  128cd8  [&d_1003b7d70] -> @"GoogleAnalytics"
+  128ce8  [&d_1003b7d78] -> @"3.09"
+  128d08  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  128d4c  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): hit(s) Successfully dispatched", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher deleteHits:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 443]
+  128d70  [[GAI sharedLogger] info:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): hit(s) Successfully dispatched", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher deleteHits:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 443]]
+  128d94  [self dataStore]
+  128db8  [[self dataStore] save:&sp[0x50]]
+  128dd8  if (([[self dataStore] save:&sp[0x50]] & 1)) goto loc_100128e94
+  128de0  if (0 == 0) goto loc_100128e98
+  128df0  [GAI sharedLogger]
+  128e14  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  128e58  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Unable to save after deleting hit(s): %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher deleteHits:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 445, 0]
+  128e7c  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Unable to save after deleting hit(s): %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher deleteHits:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 445, 0]]
+loc_100128e94:
+loc_100128e98:
+  128ebc  return
+
+== -[GAIBatchingDispatcher deleteAllHits]   (address 0x100128ec0  size 720  kind objc)
+  128efc  [self rescheduleIfNeeded:_cmd withObject:0 andWait:0]
+  128f00  if (([self rescheduleIfNeeded:_cmd withObject:0 andWait:0] & 1)) goto loc_100129174
+  128f14  [self dataStore]
+  128f38  [[self dataStore] deleteAllHits:&sp[0x48]]
+  128f4c  if (([[self dataStore] deleteAllHits:&sp[0x48]] & 1)) goto loc_100129028
+  128f64  [GAI sharedLogger]
+  128f84  [&d_1003b7d70] -> @"GoogleAnalytics"
+  128f90  [&d_1003b7d78] -> @"3.09"
+  128fa8  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  128fe8  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to delete all hits for opt-out: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher deleteAllHits]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 455, 0]
+  12900c  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to delete all hits for opt-out: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher deleteAllHits]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 455, 0]]
+loc_100129028:
+  129040  [[self dataStore] save:&sp[0x40]]
+  12905c  if (0 == 0) goto loc_10012914c
+  129064  if (([[self dataStore] save:&sp[0x40]] ^ 1) == 0) goto loc_10012914c
+  12907c  [GAI sharedLogger]
+  12909c  [&d_1003b7d70] -> @"GoogleAnalytics"
+  1290a8  [&d_1003b7d78] -> @"3.09"
+  1290c0  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  12910c  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to save after updating opt-out property %@: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher deleteAllHits]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 459, @"and deleting pending hits", 0]
+  129130  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to save after updating opt-out property %@: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher deleteAllHits]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 459, @"and deleting pending hits", 0]]
+loc_10012914c:
+  129160  [self setHasHits:0]
+loc_100129174:
+  12918c  return
+
+== -[GAIBatchingDispatcher clientId]   (address 0x100129190  size 92  kind objc)
+  1291a8  [self dataStore]
+  1291c4  [[self dataStore] clientId]
+  1291e8  return
+
+== -[GAIBatchingDispatcher dispatch]   (address 0x1001291ec  size 20  kind objc)
+  1291fc  tail [self dispatchWithCompletionHandler:0]
+
+== -[GAIBatchingDispatcher dispatchWithCompletionHandler:]   (address 0x100129200  size 1916  kind objc)
+  129258  [self rescheduleIfNeeded:_cmd withObject:arg1 andWait:0]
+  129268  if (([self rescheduleIfNeeded:_cmd withObject:arg1 andWait:0] & 1)) goto loc_100129924
+  12927c  [self canDispatch]
+  129280  if (!([self canDispatch] & 1)) goto loc_10012948c
+  129294  [self hitsForDispatch]
+  1292b4  [[self hitsForDispatch] count]
+  1292b8  if ([[self hitsForDispatch] count] == 0) goto loc_1001294a4
+  1292c8  if (self->_connection != 0) goto loc_1001294bc
+  1292e4  [NSNotificationCenter defaultCenter]
+  12930c  [[NSNotificationCenter defaultCenter] postNotificationName:@"GAIWillDispatchNotification" object:self]
+  12932c  [[self hitsForDispatch] objectAtIndexedSubscript:0]
+  129344  [&d_1003b81f0] -> @"parameters"
+  129358  [[[self hitsForDispatch] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"]
+  129370  [&d_1003b8518] -> @"useSecure"
+  129378  [[[[self hitsForDispatch] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"]
+  1293a4  [NSString class]
+  1293bc  [[[[[self hitsForDispatch] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"] isKindOfClass:[NSString class]]
+  1293c8  if ([[[[[self hitsForDispatch] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"] isKindOfClass:[NSString class]] == 0) goto loc_1001293f8
+  1293e4  [[[[[self hitsForDispatch] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"useSecure"] isEqualToString:@"0"]
+  1293f4  t1 = ([[[[[self hitsForDispatch] objectAtIndexedSubscript:0] objectForKeyedSubscript:@"parameters"] objectForKeyedSubscript:@"… != 0 ? 0x1004208d4 : 0x1004208d0)
+loc_1001293f8:
+  12941c  [self buildPayload:[self hitsForDispatch]]
+  129440  [self maxBodySize]
+  129444  if ([self maxBodySize] == 0) goto loc_1001294d4
+  12945c  [[self buildPayload:[self hitsForDispatch]] lengthOfBytesUsingEncoding:4]
+  129470  [self maxBodySize]
+  12947c  if ([[self buildPayload:[self hitsForDispatch]] lengthOfBytesUsingEncoding:4] <=u [self maxBodySize]) goto loc_1001294d4
+  129488  goto loc_1001295d8
+loc_10012948c:
+  12948c  if (arg1 == 0) goto loc_100129924
+  12949c  call arg1[+0x10]
+  1294a0  goto loc_100129924
+loc_1001294a4:
+  1294b8  [self setHasHits:0]
+loc_1001294bc:
+  1294bc  if (arg1 == 0) goto loc_10012991c
+  1294cc  call arg1[+0x10]
+  1294d0  goto loc_10012991c
+loc_1001294d4:
+  1294dc  [[self hitsForDispatch] count]
+  1294e4  if ([[self hitsForDispatch] count] != 1) goto loc_100129524
+  1294fc  [[self buildPayload:[self hitsForDispatch]] lengthOfBytesUsingEncoding:4]
+  129508  [tconst_1002faa30] -> 0x7d0
+  129510  if ([[self buildPayload:[self hitsForDispatch]] lengthOfBytesUsingEncoding:4] >=u 0x7d0) goto loc_100129524
+  129520  if (self->_compressionStrategy == 0) goto loc_10012994c
+loc_100129524:
+  129554  [self->_requestBuilder requestPostUrl:x2 payload:[self buildPayload:[self hitsForDispatch]] compression:self->_compressionStrategy]
+  129568  if (x23 == 0) goto loc_1001295d4
+  129578  [self maxBodySize]
+  12957c  if ([self maxBodySize] == 0) goto loc_1001295e4
+  129590  [x0 HTTPBody]
+  1295ac  [[x0 HTTPBody] length]
+  1295bc  [self maxBodySize]
+  1295d0  goto loc_1001295e8
+loc_1001295d4:
+loc_1001295d8:
+  1295e0  goto loc_1001295e8
+loc_1001295e4:
+loc_1001295e8:
+  1295fc  [GAI sharedLogger]
+  12961c  [&d_1003b7d70] -> @"GoogleAnalytics"
+  129628  [&d_1003b7d78] -> @"3.09"
+  129640  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  129650  if (!(w25 & 1)) goto loc_1001296f8
+  129688  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to generate request for hit(s).", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher dispatchWithCompletionHandler:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 523]
+  1296ac  [[GAI sharedLogger] error:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Failed to generate request for hit(s).", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher dispatchWithCompletionHandler:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 523]]
+  1296dc  [self deleteHits:[self hitsForDispatch]]
+  1296e0  if (arg1 == 0) goto loc_1001298d0
+  1296f0  call arg1[+0x10]
+  1296f4  goto loc_1001298e8
+loc_1001296f8:
+  129708  [x0 HTTPMethod]
+  129730  [x0 URL]
+  129750  [[x0 URL] absoluteString]
+  129798  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Sending hit(s) %@: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher dispatchWithCompletionHandler:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 536, [x0 HTTPMethod], [[x0 URL] absoluteString]]
+  1297c0  [[GAI sharedLogger] verbose:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Sending hit(s) %@: %@", @"GoogleAnalytics", @"3.09", "-[GAIBatchingDispatcher dispatchWithCompletionHandler:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 536, [x0 HTTPMethod], [[x0 URL] absoluteString]]]
+  12986c  [self->_urlConnectionClass alloc]
+  12988c  [[self->_urlConnectionClass alloc] initWithRequest:x2 completionQueue:__dispatch_main_q completionHandler:^{-[GAIBatchingDispatcher dispatchWithCompletionHandler:]_block_invoke captures +0x20=self, +0x28=[self hitsForDispatch], +0x30=arg1}]
+  129898  self->_connection = [[self->_urlConnectionClass alloc] initWithRequest:x2 completionQueue:__dispatch_main_q completionHandler:^{-[GAIBatchingDispatcher dispatchWithCompletionHandler:]_block_invoke captures +0x20=self, +0x28=[self hitsForDispatch], +0x30=arg1}]
+  1298cc  goto loc_1001298f4
+loc_1001298d0:
+  1298e4  [self dispatchWithCompletionHandler:0]
+loc_1001298e8:
+loc_1001298f4:
+loc_10012991c:
+loc_100129924:
+  129948  return
+  129970  [self->_requestBuilder requestGetUrl:x2 payload:[self buildPayload:[self hitsForDispatch]]]
+
+== -[GAIBatchingDispatcher dispatchWithCompletionHandler:]_block_invoke   (address 0x10012997c  size 116  kind block)
+  1299d0  [x0 didSendHits:x2 response:blockarg1 data:blockarg2 error:blockarg3 completionHandler:arg1]
+  1299ec  return
+
+== sub_1001299f0   (address 0x1001299f0  size 60  kind sub)
+  129a28  tail Block_object_assign((a0 + 48), a1[+0x30], 7)
+
+== sub_100129a2c   (address 0x100129a2c  size 48  kind sub)
+  129a58  return
+
+== -[GAIBatchingDispatcher buildPayload:]   (address 0x100129a5c  size 640  kind objc)
+  129ab0  [NSMutableArray array]
+  129af8  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  129b00  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] == 0) goto loc_100129c54
+loc_100129b78:
+loc_100129b7c:
+  129b88  if (x8 == x21) goto loc_100129b94
+  129b90  objc_enumerationMutation(arg1)
+loc_100129b94:
+  129ba4  [x0 mutableCopy]
+  129bb8  [self->_requestBuilder parametersForHit:[x0 mutableCopy]]
+  129bd8  [[self->_requestBuilder parametersForHit:[x0 mutableCopy]] length]
+  129bdc  if ([[self->_requestBuilder parametersForHit:[x0 mutableCopy]] length] == 0) goto loc_100129c24
+  129be8  [self maxHitSize]
+  129bec  if ([self maxHitSize] == 0) goto loc_100129c18
+  129bfc  [[self->_requestBuilder parametersForHit:[x0 mutableCopy]] lengthOfBytesUsingEncoding:4]
+  129c0c  [self maxHitSize]
+  129c14  if ([[self->_requestBuilder parametersForHit:[x0 mutableCopy]] lengthOfBytesUsingEncoding:4] >u [self maxHitSize]) goto loc_100129c24
+loc_100129c18:
+  129c20  [[NSMutableArray array] addObject:[self->_requestBuilder parametersForHit:[x0 mutableCopy]]]
+loc_100129c24:
+  129c34  if ((x27 + 1) <u [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]) goto loc_100129b7c
+  129c48  [arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16]
+  129c50  if ([arg1 countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x48] count:16] != 0) goto loc_100129b78
+loc_100129c54:
+  129c7c  [[NSMutableArray array] componentsJoinedByString:@"%@\n"]
+  129cd4  return
+
+== -[GAIBatchingDispatcher queueModel:]   (address 0x100129cdc  size 180  kind objc)
+  129d10  [self optOut]
+  129d14  if (([self optOut] & 1)) goto loc_100129d7c
+  129d34  [self rescheduleIfNeeded:_cmd withObject:arg1 andWait:0]
+  129d38  if (([self rescheduleIfNeeded:_cmd withObject:arg1 andWait:0] & 1)) goto loc_100129d7c
+  129d4c  [arg1 buildDictionary]
+  129d70  [self queueDispatch:[arg1 buildDictionary]]
+loc_100129d7c:
+  129d8c  return
+
+== -[GAIBatchingDispatcher queueDispatch:]   (address 0x100129d90  size 628  kind objc)
+  129ddc  [self optOut]
+  129de0  if (([self optOut] & 1)) goto loc_100129fc4
+  129dec  [&d_1003b8380] -> @"&cid"
+  129e04  [arg1 objectForKeyedSubscript:@"&cid"]
+  129e1c  [&d_1003b84e0] -> @"&sf"
+  129e28  [arg1 objectForKeyedSubscript:@"&sf"]
+  129e38  if ([arg1 objectForKeyedSubscript:@"&sf"] == 0) goto loc_100129ef0
+  129e54  [NSScanner scannerWithString:[arg1 objectForKeyedSubscript:@"&sf"]]
+  129e74  [[NSScanner scannerWithString:[arg1 objectForKeyedSubscript:@"&sf"]] scanFloat:&sp[0x24]]
+  129e78  if ([[NSScanner scannerWithString:[arg1 objectForKeyedSubscript:@"&sf"]] scanFloat:&sp[0x24]] == 0) goto loc_100129ee8
+  129e8c  [[NSScanner scannerWithString:[arg1 objectForKeyedSubscript:@"&sf"]] isAtEnd]
+  129e90  if ([[NSScanner scannerWithString:[arg1 objectForKeyedSubscript:@"&sf"]] isAtEnd] == 0) goto loc_100129ee8
+  129eac  [GAIHitUtil gaHash:[arg1 objectForKeyedSubscript:@"&cid"]]
+  129ec8  t1 = ([GAIHitUtil gaHash:[arg1 objectForKeyedSubscript:@"&cid"]] - ((x8 * 0xd1b71759) >>> 45) * 0x2710)
+  129ee4  if ((float)t1 >= (s1 * 100)) goto loc_100129ffc
+loc_100129ee8:
+loc_100129ef0:
+  129ef8  [&d_1003b81f8] -> @"timestamp"
+  129f14  [NSDate date]
+  129f30  [&d_1003b81f0] -> @"parameters"
+  129f48  [arg1 copy]
+  129f74  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x0] count:2]
+  129fa8  [self persist:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x0] count:2]]
+loc_100129fc4:
+  129ff4  return
+
+== +[GAIBatchingDispatcher dispatcher]   (address 0x10012a004  size 132  kind objc)
+  12a024  [GAIDataStore dataStore]
+  12a034  if ([GAIDataStore dataStore] == 0) goto loc_10012a06c
+  12a04c  [GAIBatchingDispatcher alloc]
+  12a060  [[GAIBatchingDispatcher alloc] initWithDataStore:[GAIDataStore dataStore]]
+  12a068  goto loc_10012a070
+loc_10012a06c:
+loc_10012a070:
+  12a084  return
+
+== +[GAIBatchingDispatcher thread]   (address 0x10012a088  size 32  kind objc)
+  12a0a4  tail [GAI valueForKey:@"thread"]
+
+== -[GAIBatchingDispatcher rescheduleIfNeeded:withObject:andWait:]   (address 0x10012a0a8  size 228  kind objc)
+  12a0e4  [self class]
+  12a0f4  [[self class] thread]
+  12a118  [NSThread currentThread]
+  12a130  if ([[self class] thread] == [NSThread currentThread]) goto loc_10012a160
+  12a154  [self performSelector:arg1 onThread:[[self class] thread] withObject:arg2 waitUntilDone:arg3]
+  12a15c  goto loc_10012a164
+loc_10012a160:
+loc_10012a164:
+  12a188  return
+
+== -[GAIBatchingDispatcher initialDispatch]   (address 0x10012a18c  size 112  kind objc)
+  12a1b8  [self rescheduleIfNeeded:_cmd withObject:0 andWait:0]
+  12a1bc  if (!([self rescheduleIfNeeded:_cmd withObject:0 andWait:0] & 1)) goto loc_10012a1cc
+  12a1c8  return
+  12a1f8  tail [self performSelector:@selector(timerFired) withObject:0 afterDelay:1]
+
+== -[GAIBatchingDispatcher cancelDispatch]   (address 0x10012a1fc  size 152  kind objc)
+  12a228  [self rescheduleIfNeeded:_cmd withObject:0 andWait:1]
+  12a22c  if (!([self rescheduleIfNeeded:_cmd withObject:0 andWait:1] & 1)) goto loc_10012a23c
+  12a238  return
+  12a24c  [self class]
+  12a270  [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(timerFired) object:0]
+  12a290  tail [self setTimer:0]
+
+== -[GAIBatchingDispatcher canDispatch]   (address 0x10012a294  size 76  kind objc)
+  12a2b0  [self hostReachable]
+  12a2b4  if ([self hostReachable] == 0) goto loc_10012a2d0
+  12a2c8  [self hasHits]
+  12a2cc  goto loc_10012a2d4
+loc_10012a2d0:
+loc_10012a2d4:
+  12a2dc  return
+
+== -[GAIBatchingDispatcher canScheduleDispatch]   (address 0x10012a2e0  size 80  kind objc)
+  12a2fc  [self dispatchInterval]
+  12a304  if ([self dispatchInterval] <= (or unordered) 0.0) goto loc_10012a320
+  12a318  [self canDispatch]
+  12a31c  goto loc_10012a324
+loc_10012a320:
+loc_10012a324:
+  12a32c  return
+
+== -[GAIBatchingDispatcher timerFired]   (address 0x10012a330  size 76  kind objc)
+  12a34c  [self canScheduleDispatch]
+  12a350  if ([self canScheduleDispatch] == 0) goto loc_10012a370
+  12a36c  tail [self dispatch]
+loc_10012a370:
+  12a378  return
+
+== -[GAIBatchingDispatcher rescheduleDispatch]   (address 0x10012a37c  size 232  kind objc)
+  12a3a8  [self rescheduleIfNeeded:_cmd withObject:0 andWait:0]
+  12a3ac  if (([self rescheduleIfNeeded:_cmd withObject:0 andWait:0] & 1)) goto loc_10012a458
+  12a3c0  [self cancelDispatch]
+  12a3d4  [self canScheduleDispatch]
+  12a3d8  if ([self canScheduleDispatch] == 0) goto loc_10012a458
+  12a3f4  [self dispatchInterval]
+  12a420  [NSTimer scheduledTimerWithTimeInterval:[self dispatchInterval] target:self selector:@selector(timerFired) userInfo:0 repeats:1]
+  12a444  [self setTimer:[NSTimer scheduledTimerWithTimeInterval:[self dispatchInterval] target:self selector:@selector(timerFired) userInfo:0 repeats:1]]
+  12a454  return
+loc_10012a458:
+  12a460  return
+
+== -[GAIBatchingDispatcher optOut]   (address 0x10012a464  size 16  kind objc)
+  12a470  return
+
+== -[GAIBatchingDispatcher batchingStrategy]   (address 0x10012a474  size 16  kind objc)
+  12a480  return
+
+== -[GAIBatchingDispatcher setBatchingStrategy:]   (address 0x10012a484  size 16  kind objc)
+  12a48c  self->_batchingStrategy = arg1
+  12a490  return
+
+== -[GAIBatchingDispatcher compressionStrategy]   (address 0x10012a494  size 16  kind objc)
+  12a4a0  return
+
+== -[GAIBatchingDispatcher setCompressionStrategy:]   (address 0x10012a4a4  size 16  kind objc)
+  12a4ac  self->_compressionStrategy = arg1
+  12a4b0  return
+
+== -[GAIBatchingDispatcher dispatchInterval]   (address 0x10012a4b4  size 16  kind objc)
+  12a4c0  return
+
+== -[GAIBatchingDispatcher dataStore]   (address 0x10012a4c4  size 16  kind objc)
+  12a4d0  return
+
+== -[GAIBatchingDispatcher setDataStore:]   (address 0x10012a4d4  size 56  kind objc)
+  12a4f8  self->_dataStore = arg1
+  12a508  return
+
+== -[GAIBatchingDispatcher requestBuilder]   (address 0x10012a50c  size 16  kind objc)
+  12a518  return
+
+== -[GAIBatchingDispatcher urlConnectionClass]   (address 0x10012a51c  size 16  kind objc)
+  12a528  return
+
+== -[GAIBatchingDispatcher setUrlConnectionClass:]   (address 0x10012a52c  size 20  kind objc)
+
+== -[GAIBatchingDispatcher maxHitsPerDispatch]   (address 0x10012a540  size 16  kind objc)
+  12a54c  return
+
+== -[GAIBatchingDispatcher setMaxHitsPerDispatch:]   (address 0x10012a550  size 16  kind objc)
+  12a558  self->_maxHitsPerDispatch = arg1
+  12a55c  return
+
+== -[GAIBatchingDispatcher maxHitAge]   (address 0x10012a560  size 16  kind objc)
+  12a56c  return
+
+== -[GAIBatchingDispatcher setMaxHitAge:]   (address 0x10012a570  size 16  kind objc)
+  12a578  self->_maxHitAge = arg1
+  12a57c  return
+
+== -[GAIBatchingDispatcher maxBodySize]   (address 0x10012a580  size 16  kind objc)
+  12a58c  return
+
+== -[GAIBatchingDispatcher setMaxBodySize:]   (address 0x10012a590  size 16  kind objc)
+  12a598  self->_maxBodySize = arg1
+  12a59c  return
+
+== -[GAIBatchingDispatcher maxHitSize]   (address 0x10012a5a0  size 16  kind objc)
+  12a5ac  return
+
+== -[GAIBatchingDispatcher setMaxHitSize:]   (address 0x10012a5b0  size 16  kind objc)
+  12a5b8  self->_maxHitSize = arg1
+  12a5bc  return
+
+== -[GAIBatchingDispatcher reachability]   (address 0x10012a5c0  size 16  kind objc)
+  12a5cc  return
+
+== -[GAIBatchingDispatcher setReachability:]   (address 0x10012a5d0  size 56  kind objc)
+  12a5f4  self->_reachability = arg1
+  12a604  return
+
+== -[GAIBatchingDispatcher hasHits]   (address 0x10012a608  size 16  kind objc)
+  12a614  return
+
+== -[GAIBatchingDispatcher hostReachable]   (address 0x10012a618  size 16  kind objc)
+  12a624  return
+
+== -[GAIBatchingDispatcher httpURL]   (address 0x10012a628  size 16  kind objc)
+  12a634  return
+
+== -[GAIBatchingDispatcher setHttpURL:]   (address 0x10012a638  size 56  kind objc)
+  12a65c  self->_httpURL = arg1
+  12a66c  return
+
+== -[GAIBatchingDispatcher httpsURL]   (address 0x10012a670  size 16  kind objc)
+  12a67c  return
+
+== -[GAIBatchingDispatcher setHttpsURL:]   (address 0x10012a680  size 56  kind objc)
+  12a6a4  self->_httpsURL = arg1
+  12a6b4  return
+
+== -[GAIBatchingDispatcher connection]   (address 0x10012a6b8  size 16  kind objc)
+  12a6c4  return
+
+== -[GAIBatchingDispatcher setConnection:]   (address 0x10012a6c8  size 20  kind objc)
+
+== -[GAIBatchingDispatcher timer]   (address 0x10012a6dc  size 16  kind objc)
+  12a6e8  return
+
+== -[GAIBatchingDispatcher .cxx_destruct]   (address 0x10012a6ec  size 184  kind objc)

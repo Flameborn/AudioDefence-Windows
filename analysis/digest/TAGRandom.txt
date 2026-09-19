@@ -1,0 +1,54 @@
+
+== +[TAGRandom functionId]   (address 0x100177194  size 44  kind objc)
+  1771bc  return
+
+== -[TAGRandom init]   (address 0x1001771c0  size 176  kind objc)
+  1771ec  [NSSet set]
+  177228  [super initWithFunctionId:@"_r" requiredKeys:[NSSet set]]
+  17724c  return
+
+== -[TAGRandom isCacheable]   (address 0x100177270  size 8  kind objc)
+  177274  return
+
+== -[TAGRandom evaluate:]   (address 0x100177278  size 952  kind objc)
+  1772c0  [arg1 objectForKey:@"min"]
+  1772e0  [arg1 objectForKey:@"max"]
+  1772f8  if ([arg1 objectForKey:@"min"] == 0) goto loc_100177448
+  177314  [TAGTypes defaultValue]
+  17732c  if (flags !=) goto loc_10017733c
+  177338  goto loc_100177448
+loc_10017733c:
+  177344  [TAGTypes defaultValue]
+  177364  if ([arg1 objectForKey:@"max"] == [TAGTypes defaultValue]) goto loc_100177448
+  177380  [TAGTypes valueToNumber:[arg1 objectForKey:@"min"]]
+  17739c  [TAGTypes valueToNumber:[arg1 objectForKey:@"max"]]
+  1773c0  [TAGTypes defaultNumber]
+  1773d4  if ([TAGTypes valueToNumber:[arg1 objectForKey:@"min"]] == [TAGTypes defaultNumber]) goto loc_100177450
+  1773e0  [TAGTypes defaultNumber]
+  177404  if ([TAGTypes valueToNumber:[arg1 objectForKey:@"max"]] == [TAGTypes defaultNumber]) goto loc_10017743c
+  17741c  [[TAGTypes valueToNumber:[arg1 objectForKey:@"min"]] doubleValue]
+  17742c  [[TAGTypes valueToNumber:[arg1 objectForKey:@"max"]] doubleValue]
+  177438  if ([[TAGTypes valueToNumber:[arg1 objectForKey:@"min"]] doubleValue] <= [[TAGTypes valueToNumber:[arg1 objectForKey:@"max"]] doubleValue]) goto loc_100177468
+loc_10017743c:
+  177444  goto loc_10017746c
+loc_100177448:
+  17744c  goto loc_100177480
+loc_100177450:
+  177464  goto loc_10017746c
+loc_100177468:
+loc_10017746c:
+loc_100177480:
+  17748c  llround((d8 - d0))
+  177498  if (llround((d8 - d0)) > 0xffffffff) goto loc_1001774dc
+  1774a8  arc4random_uniform(llround((d8 - d0)))
+  1774d0  [NSNumber numberWithLongLong:(int)(d1 + (float)arc4random_uniform(llround((d8 - d0))))]
+  1774d8  goto loc_10017754c
+loc_1001774dc:
+  1774e4  arc4random_uniform(0xffffffff)
+  1774f4  arc4random_uniform(0xffffffff)
+  17751c  llround(((d8 - d0) * ((float)(x8 | (arc4random_uniform(0xffffffff) << 32)) * 5.42101e-20)), 5.42101e-20)
+  177520  t1 = (float)llround(((d8 - d0) * ((float)(x8 | (arc4random_uniform(0xffffffff) << 32)) * 5.42101e-20)), 5.42101e-20)
+  177544  [NSNumber numberWithLongLong:(int)(d1 + t1)]
+loc_10017754c:
+  17756c  [TAGTypes objectToValue:x2]
+  1775c0  return

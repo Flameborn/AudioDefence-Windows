@@ -1,0 +1,14 @@
+{
+ "Enemies": {
+  "Bob": {
+   "spawn_sound": "",
+   "spawn_angle": 0,
+   "spawn_distance": 4,
+   "spawn_time": 3
+  }
+ },
+ "PowerUp": {
+  "force_spawn_time": "0.01",
+  "type": "Tesla"
+ }
+}

@@ -1,0 +1,16 @@
+
+== -[TAGObjectAndStatic initWithObject:isStatic:]   (address 0x100162704  size 180  kind objc)
+  16274c  [super init]
+  162754  if (self == 0) goto loc_100162784
+  16276c  self->_object = arg1
+  162780  self->_isStatic = arg2
+loc_100162784:
+  1627a0  return
+
+== -[TAGObjectAndStatic isStatic]   (address 0x1001627b8  size 16  kind objc)
+  1627c4  return
+
+== -[TAGObjectAndStatic object]   (address 0x1001627c8  size 16  kind objc)
+  1627d4  return
+
+== -[TAGObjectAndStatic .cxx_destruct]   (address 0x1001627d8  size 20  kind objc)

@@ -1,0 +1,380 @@
+
+== -[ADArmoryCurrencyViewController initWithNibName:bundle:]   (address 0x100021ed0  size 140  kind objc)
+  021f20  [super initWithNibName:arg1 bundle:arg2]
+  021f44  return
+
+== -[ADArmoryCurrencyViewController likeOnFacebook:]   (address 0x100021f5c  size 980  kind objc)
+  021f9c  [self->progress valueForKey:@"likedOnFacebook"]
+  021fb8  [[self->progress valueForKey:@"likedOnFacebook"] boolValue]
+  021fc8  if (([[self->progress valueForKey:@"likedOnFacebook"] boolValue] & 1)) goto loc_1000221f0
+  021fe8  [self->progress setBool:1 forKey:@"likedOnFacebook"]
+  021ffc  [self->progress synchronize]
+  022014  [UIApplication sharedApplication]
+  022030  [[UIApplication sharedApplication] delegate]
+  02204c  [[[UIApplication sharedApplication] delegate] statusBar]
+  02206c  [[[[UIApplication sharedApplication] delegate] statusBar] animateCoins:1000]
+  0220a0  [ADInventory sharedInventory]
+  0220c0  [[ADInventory sharedInventory] coins]
+  0220d8  [[ADInventory sharedInventory] setCoins:([[ADInventory sharedInventory] coins] + 1000)]
+  0220f4  [self statusBarViewController]
+  022110  [[self statusBarViewController] coinsLabel]
+  022130  [ADInventory sharedInventory]
+  022144  [[ADInventory sharedInventory] coins]
+  022164  [NSString stringWithFormat:@"%i", [[ADInventory sharedInventory] coins]]
+  022188  [[[self statusBarViewController] coinsLabel] setText:[NSString stringWithFormat:@"%i", [[ADInventory sharedInventory] coins]]]
+  0221c0  [ADTracker sharedInstance]
+  0221e4  [[ADTracker sharedInstance] recordSocialNetworkTagEvent:@"Facebook"]
+loc_1000221f0:
+  022200  [self tableView]
+  02221c  [[self tableView] reloadData]
+  02223c  [NSURL alloc]
+  022254  [[NSURL alloc] initWithString:@"http://facebook.com/audiodefence"]
+  022270  [UIApplication sharedApplication]
+  022290  [[UIApplication sharedApplication] openURL:[[NSURL alloc] initWithString:@"http://facebook.com/audiodefence"]]
+  0222b8  return
+
+== -[ADArmoryCurrencyViewController twitterButtonPRessed:]   (address 0x100022330  size 980  kind objc)
+  022370  [self->progress valueForKey:@"followedOnTwitter"]
+  02238c  [[self->progress valueForKey:@"followedOnTwitter"] boolValue]
+  02239c  if (([[self->progress valueForKey:@"followedOnTwitter"] boolValue] & 1)) goto loc_1000225c4
+  0223bc  [self->progress setBool:1 forKey:@"followedOnTwitter"]
+  0223d0  [self->progress synchronize]
+  0223e8  [UIApplication sharedApplication]
+  022404  [[UIApplication sharedApplication] delegate]
+  022420  [[[UIApplication sharedApplication] delegate] statusBar]
+  022440  [[[[UIApplication sharedApplication] delegate] statusBar] animateCoins:1000]
+  022474  [ADInventory sharedInventory]
+  022494  [[ADInventory sharedInventory] coins]
+  0224ac  [[ADInventory sharedInventory] setCoins:([[ADInventory sharedInventory] coins] + 1000)]
+  0224c8  [self statusBarViewController]
+  0224e4  [[self statusBarViewController] coinsLabel]
+  022504  [ADInventory sharedInventory]
+  022518  [[ADInventory sharedInventory] coins]
+  022538  [NSString stringWithFormat:@"%i", [[ADInventory sharedInventory] coins]]
+  02255c  [[[self statusBarViewController] coinsLabel] setText:[NSString stringWithFormat:@"%i", [[ADInventory sharedInventory] coins]]]
+  022594  [ADTracker sharedInstance]
+  0225b8  [[ADTracker sharedInstance] recordSocialNetworkTagEvent:@"Twitter"]
+loc_1000225c4:
+  0225d4  [self tableView]
+  0225f0  [[self tableView] reloadData]
+  022610  [NSURL alloc]
+  022628  [[NSURL alloc] initWithString:@"https://twitter.com/audiodefence"]
+  022644  [UIApplication sharedApplication]
+  022664  [[UIApplication sharedApplication] openURL:[[NSURL alloc] initWithString:@"https://twitter.com/audiodefence"]]
+  02268c  return
+
+== -[ADArmoryCurrencyViewController appstoreLinkPressed]   (address 0x100022704  size 480  kind objc)
+  022738  [self->progress valueForKey:@"appStoreReviewed"]
+  022754  [[self->progress valueForKey:@"appStoreReviewed"] boolValue]
+  022764  if (([[self->progress valueForKey:@"appStoreReviewed"] boolValue] & 1)) goto loc_1000227e0
+  022784  [self->progress setBool:1 forKey:@"appStoreReviewed"]
+  022798  [self->progress synchronize]
+  0227b0  [ADTracker sharedInstance]
+  0227d4  [[ADTracker sharedInstance] recordSocialNetworkTagEvent:@"App Store"]
+loc_1000227e0:
+  0227f0  [self tableView]
+  02280c  [[self tableView] reloadData]
+  02282c  [NSURL alloc]
+  022844  [[NSURL alloc] initWithString:@"https://itunes.apple.com/app/id804041240"]
+  022860  [UIApplication sharedApplication]
+  022880  [[UIApplication sharedApplication] openURL:[[NSURL alloc] initWithString:@"https://itunes.apple.com/app/id804041240"]]
+  02289c  return
+
+== -[ADArmoryCurrencyViewController moreGamesButtonPressed]   (address 0x1000228e4  size 592  kind objc)
+  02291c  [self->progress valueForKey:@"moreGamesClicked"]
+  022938  [[self->progress valueForKey:@"moreGamesClicked"] boolValue]
+  022948  if (([[self->progress valueForKey:@"moreGamesClicked"] boolValue] & 1)) goto loc_1000229d4
+  022968  [self->progress setBool:1 forKey:@"moreGamesClicked"]
+  02297c  [self->progress synchronize]
+  022994  [ADInventory sharedInventory]
+  0229b0  [[ADInventory sharedInventory] coins]
+  0229c8  [[ADInventory sharedInventory] setCoins:([[ADInventory sharedInventory] coins] + 500)]
+loc_1000229d4:
+  0229e8  [ADMoreGamesViewController alloc]
+  022a04  [[ADMoreGamesViewController alloc] initWithNibName:@"ADMoreGamesViewController" bundle:0]
+  022a20  [self armoryVCDelegate]
+  022a34  if ([self armoryVCDelegate] == 0) goto loc_100022abc
+  022a40  [self armoryVCDelegate]
+  022aa4  [[self armoryVCDelegate] presentViewController:[[ADMoreGamesViewController alloc] initWithNibName:@"ADMoreGamesViewController" bundle:0] animated:0 completion:^{-[ADArmoryCurrencyViewController moreGamesButtonPressed]_block_invoke captures +0x20=self}]
+  022ab8  goto loc_100022ae0
+loc_100022abc:
+  022adc  [NSException raise:@"The armory vc delegate should never be nil!!" format:0]
+loc_100022ae0:
+  022af8  return
+
+== -[ADArmoryCurrencyViewController moreGamesButtonPressed]_block_invoke   (address 0x100022b34  size 96  kind block)
+  022b50  [self tableView]
+  022b6c  [[self tableView] reloadData]
+  022b7c  return
+
+== sub_100022b94   (address 0x100022b94  size 8  kind sub)
+
+== sub_100022b9c   (address 0x100022b9c  size 8  kind sub)
+  022ba0  return
+
+== -[ADArmoryCurrencyViewController viewDidLoad]   (address 0x100022ba4  size 460  kind objc)
+  022bdc  [super viewDidLoad]
+  022bf4  [NSUserDefaults standardUserDefaults]
+  022c0c  self->progress = [NSUserDefaults standardUserDefaults]
+  022c2c  [ADGameParameters sharedParameters]
+  022c48  [[ADGameParameters sharedParameters] isIphone]
+  022c68  [self tableView]
+  022c84  &@selector(nibWithNibName:bundle:)
+  022c8c  if ([[ADGameParameters sharedParameters] isIphone] == 0) goto loc_100022cd4
+  022c9c  [UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles" bundle:0]
+  022cc8  [[self tableView] registerNib:[UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles" bundle:0] forCellReuseIdentifier:@"customCell"]
+  022ccc  goto loc_100022d10
+  022cd0  goto loc_100022d50
+loc_100022cd4:
+  022ce0  [UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles_iPad" bundle:0]
+  022d0c  [[self tableView] registerNib:[UINib nibWithNibName:@"ADCustomTableViewCellWithSubtitles_iPad" bundle:0] forCellReuseIdentifier:@"customCell"]
+loc_100022d10:
+  022d30  return
+
+== -[ADArmoryCurrencyViewController loadView]   (address 0x100022d70  size 260  kind objc)
+  022dbc  [NSNumber numberWithInt:1]
+  022df0  [NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]
+  022e24  [self loADViewBasedOnDeviceWithNibName:@"ADArmoryCurrencyViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x10] forKeys:&sp[0x8] count:1]]
+  022e4c  return
+
+== -[ADArmoryCurrencyViewController didReceiveMemoryWarning]   (address 0x100022e74  size 60  kind objc)
+  022ea0  [super didReceiveMemoryWarning]
+  022eac  return
+
+== -[ADArmoryCurrencyViewController tableView:heightForRowAtIndexPath:]   (address 0x100022eb0  size 140  kind objc)
+  022ed0  [ADGameParameters sharedParameters]
+  022eec  [[ADGameParameters sharedParameters] isIphone]
+  022f1c  return
+
+== -[ADArmoryCurrencyViewController numberOfSectionsInTableView:]   (address 0x100022f3c  size 8  kind objc)
+  022f40  return
+
+== -[ADArmoryCurrencyViewController tableView:numberOfRowsInSection:]   (address 0x100022f44  size 112  kind objc)
+  022f5c  [self products]
+  022f78  [[self products] count]
+  022f94  return
+
+== -[ADArmoryCurrencyViewController tableView:cellForRowAtIndexPath:]   (address 0x100022fb4  size 1356  kind objc)
+  022ffc  [self tableView]
+  023024  [UIColor clearColor]
+  02304c  [[self tableView] setBackgroundColor:[UIColor clearColor]]
+  02307c  [arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2]
+  0230a4  [self presetCell:[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] ForIndexPath:arg2]
+  0230b0  [UIColor clearColor]
+  0230cc  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] setBackgroundColor:[UIColor clearColor]]
+  0230ec  [self actionAlreadyTakenForRowAtIndexPath:arg2]
+  0230f4  &@selector(textLabel)
+  0230fc  if ([self actionAlreadyTakenForRowAtIndexPath:arg2] == 0) goto loc_1000231b4
+  023104  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] textLabel]
+  023128  [UIColor lightGrayColor]
+  023150  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] textLabel] setTextColor:[UIColor lightGrayColor]]
+  023174  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] detailTextLabel]
+  02318c  [UIColor lightGrayColor]
+  0231a8  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] detailTextLabel] setTextColor:[UIColor lightGrayColor]]
+  0231ac  goto loc_100023260
+  0231b0  goto loc_1000234cc
+loc_1000231b4:
+  0231b8  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] textLabel]
+  0231dc  [UIColor whiteColor]
+  023204  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] textLabel] setTextColor:[UIColor whiteColor]]
+  023228  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] detailTextLabel]
+  023240  [UIColor whiteColor]
+  02325c  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] detailTextLabel] setTextColor:[UIColor whiteColor]]
+loc_100023260:
+  023280  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] buyUpgradeButton]
+  02329c  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] buyUpgradeButton] removeFromSuperview]
+  0232bc  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] setBuyUpgradeButton:0]
+  0232d0  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] detailLabel]
+  0232ec  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] detailLabel] setupAsInfo]
+  02330c  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] titleLabel]
+  023328  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] titleLabel] setupAsMain]
+  02333c  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] titleLabel]
+  02335c  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] titleLabel] frame]
+  023368  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] titleLabel]
+  02337c  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] titleLabel] frame]
+  023388  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] titleLabel]
+  02339c  [[[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] titleLabel] frame]
+  0233cc  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] setSelectionStyle:0]
+  0233e4  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] setAccessoryView:0]
+  0233fc  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] setAccessoryType:0]
+  023410  [[arg1 dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:arg2] setNeedsLayout]
+  02343c  return
+
+== -[ADArmoryCurrencyViewController actionAlreadyTakenForRowAtIndexPath:]   (address 0x100023500  size 368  kind objc)
+  02352c  [arg1 row]
+  023530  if ([arg1 row] == 0) goto loc_100023588
+  023538  if ([arg1 row] != 1) goto loc_1000235d4
+  02355c  [self->progress valueForKey:@"followedOnTwitter"]
+  023578  [[self->progress valueForKey:@"followedOnTwitter"] boolValue]
+  023580  goto loc_100023620
+  023584  goto loc_100023654
+loc_100023588:
+  0235a8  [self->progress valueForKey:@"likedOnFacebook"]
+  0235c4  [[self->progress valueForKey:@"likedOnFacebook"] boolValue]
+  0235cc  goto loc_100023620
+  0235d0  goto loc_100023654
+loc_1000235d4:
+  0235d8  if ([arg1 row] != 2) goto loc_10002362c
+  0235fc  [self->progress valueForKey:@"moreGamesClicked"]
+  023618  [[self->progress valueForKey:@"moreGamesClicked"] boolValue]
+loc_100023620:
+  023628  goto loc_100023630
+loc_10002362c:
+loc_100023630:
+  023648  return
+
+== -[ADArmoryCurrencyViewController presetCell:ForIndexPath:]   (address 0x100023670  size 2848  kind objc)
+  0236b4  [arg2 row]
+  0236bc  if ([arg2 row] >u 3) goto loc_100024090
+  0236d0  switch ([arg2 row]) { case 0: goto loc_1000236d4; case 1: goto loc_1000238b8; case 2: goto loc_100023a9c; case 3: goto loc_100023c8c }
+loc_1000236d4:  ; case 0
+  0236e4  [arg1 image]
+  023710  [ADGameParameters sharedParameters]
+  02372c  [[ADGameParameters sharedParameters] isIphone]
+  023744  t1 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"button_facebook" : @"button_facebook~ipad")
+  023758  [UIImage imageNamed:t1]
+  02377c  [[arg1 image] setImage:[UIImage imageNamed:t1]]
+  0237b8  [self->progress valueForKey:@"likedOnFacebook"]
+  0237d4  [[self->progress valueForKey:@"likedOnFacebook"] boolValue]
+  0237e8  &@selector(detailLabel)
+  0237f0  if (!([[self->progress valueForKey:@"likedOnFacebook"] boolValue] & 1)) goto loc_100023e1c
+  0237f8  [arg1 detailLabel]
+  023820  [[arg1 detailLabel] setText:@"Thanks!"]
+  02383c  [arg1 titleLabel]
+  023860  [NSBundle mainBundle]
+  023890  [[NSBundle mainBundle] localizedStringForKey:@"FACEBOOK_LIKE_ALREADY" value:@"" table:0]
+  0238ac  [[arg1 titleLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"FACEBOOK_LIKE_ALREADY" value:@"" table:0]]
+  0238b0  goto loc_100023c78
+  0238b4  goto loc_100024120
+loc_1000238b8:  ; case 1
+  0238c8  [arg1 image]
+  0238f4  [ADGameParameters sharedParameters]
+  023910  [[ADGameParameters sharedParameters] isIphone]
+  023928  t2 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"button_twitter" : @"button_twitter~ipad")
+  02393c  [UIImage imageNamed:t2]
+  023960  [[arg1 image] setImage:[UIImage imageNamed:t2]]
+  02399c  [self->progress valueForKey:@"followedOnTwitter"]
+  0239b8  [[self->progress valueForKey:@"followedOnTwitter"] boolValue]
+  0239cc  &@selector(detailLabel)
+  0239d4  if (!([[self->progress valueForKey:@"followedOnTwitter"] boolValue] & 1)) goto loc_100023ec8
+  0239dc  [arg1 detailLabel]
+  023a04  [[arg1 detailLabel] setText:@"Thanks!"]
+  023a20  [arg1 titleLabel]
+  023a44  [NSBundle mainBundle]
+  023a74  [[NSBundle mainBundle] localizedStringForKey:@"TWITTER_FOLLOW_ALREADY" value:@"" table:0]
+  023a90  [[arg1 titleLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"TWITTER_FOLLOW_ALREADY" value:@"" table:0]]
+  023a94  goto loc_100023c78
+  023a98  goto loc_100024120
+loc_100023a9c:  ; case 2
+  023aac  [arg1 image]
+  023ad8  [ADGameParameters sharedParameters]
+  023af4  [[ADGameParameters sharedParameters] isIphone]
+  023b0c  t3 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"button_more_games" : @"button_more_games~ipad")
+  023b20  [UIImage imageNamed:t3]
+  023b44  [[arg1 image] setImage:[UIImage imageNamed:t3]]
+  023b80  [self->progress valueForKey:@"moreGamesClicked"]
+  023b9c  [[self->progress valueForKey:@"moreGamesClicked"] boolValue]
+  023bb0  &@selector(detailLabel)
+  023bb8  if (!([[self->progress valueForKey:@"moreGamesClicked"] boolValue] & 1)) goto loc_100023f74
+  023bc0  [arg1 detailLabel]
+  023be8  [[arg1 detailLabel] setText:@"Thanks!"]
+  023c04  [arg1 titleLabel]
+  023c28  [NSBundle mainBundle]
+  023c58  [[NSBundle mainBundle] localizedStringForKey:@"MORE_GAMES_ALREADY" value:@"" table:0]
+  023c74  [[arg1 titleLabel] setText:[[NSBundle mainBundle] localizedStringForKey:@"MORE_GAMES_ALREADY" value:@"" table:0]]
+loc_100023c78:
+  023c88  goto loc_100024088
+loc_100023c8c:  ; case 3
+  023c9c  [arg1 image]
+  023cc8  [ADGameParameters sharedParameters]
+  023ce4  [[ADGameParameters sharedParameters] isIphone]
+  023cfc  t4 = ([[ADGameParameters sharedParameters] isIphone] != 0 ? @"button_rate" : @"button_rate~ipad")
+  023d10  [UIImage imageNamed:t4]
+  023d34  [[arg1 image] setImage:[UIImage imageNamed:t4]]
+  023d70  [self->progress valueForKey:@"appStoreReviewed"]
+  023d8c  [[self->progress valueForKey:@"appStoreReviewed"] boolValue]
+  023da0  &@selector(detailLabel)
+  023da8  if (!([[self->progress valueForKey:@"appStoreReviewed"] boolValue] & 1)) goto loc_100024020
+  023db0  [arg1 detailLabel]
+  023dd8  [[arg1 detailLabel] setText:@"Thanks!"]
+  023df4  [arg1 titleLabel]
+  023e10  [[arg1 titleLabel] setText:@"You've already reviewed the game!"]
+  023e14  goto loc_100024088
+  023e18  goto loc_10002415c
+loc_100023e1c:
+  023e20  [arg1 detailLabel]
+  023e54  [NSString stringWithFormat:@"to get %i free coins", 1000]
+  023e7c  [[arg1 detailLabel] setText:[NSString stringWithFormat:@"to get %i free coins", 1000]]
+  023ea0  [arg1 titleLabel]
+  023ebc  [[arg1 titleLabel] setText:@"Like Audio Defence on Facebook"]
+  023ec0  goto loc_100024088
+  023ec4  goto loc_10002415c
+loc_100023ec8:
+  023ecc  [arg1 detailLabel]
+  023f00  [NSString stringWithFormat:@"to get %i free coins", 1000]
+  023f28  [[arg1 detailLabel] setText:[NSString stringWithFormat:@"to get %i free coins", 1000]]
+  023f4c  [arg1 titleLabel]
+  023f68  [[arg1 titleLabel] setText:@"Follow @audiodefence on Twitter"]
+  023f6c  goto loc_100024088
+  023f70  goto loc_10002415c
+loc_100023f74:
+  023f78  [arg1 detailLabel]
+  023fac  [NSString stringWithFormat:@"to get %i free coins", 500]
+  023fd4  [[arg1 detailLabel] setText:[NSString stringWithFormat:@"to get %i free coins", 500]]
+  023ff8  [arg1 titleLabel]
+  024014  [[arg1 titleLabel] setText:@"Check out our other games"]
+  024018  goto loc_100024088
+  02401c  goto loc_10002415c
+loc_100024020:
+  024024  [arg1 detailLabel]
+  02404c  [[arg1 detailLabel] setText:@"to support the developers"]
+  024068  [arg1 titleLabel]
+  024084  [[arg1 titleLabel] setText:@"Rate this game on the appstore"]
+loc_100024088:
+loc_100024090:
+  0240b0  return
+
+== -[ADArmoryCurrencyViewController tableView:didSelectRowAtIndexPath:]   (address 0x100024190  size 276  kind objc)
+  0241c0  [arg2 row]
+  0241c8  if ([arg2 row] > 3) goto loc_10002427c
+  0241d4  [arg2 row]
+  0241d8  if ([arg2 row] == 0) goto loc_10002420c
+  0241e4  [arg2 row]
+  0241ec  if ([arg2 row] != 1) goto loc_100024228
+  024204  [self twitterButtonPRessed:0]
+  024208  goto loc_10002427c
+loc_10002420c:
+  024220  [self likeOnFacebook:0]
+  024224  goto loc_10002427c
+loc_100024228:
+  024230  [arg2 row]
+  024238  if ([arg2 row] != 2) goto loc_100024254
+  02424c  [self moreGamesButtonPressed]
+  024250  goto loc_10002427c
+loc_100024254:
+  02425c  [arg2 row]
+  024264  if ([arg2 row] != 3) goto loc_10002427c
+  024278  [self appstoreLinkPressed]
+loc_10002427c:
+  02428c  return
+
+== -[ADArmoryCurrencyViewController products]   (address 0x1000242a4  size 16  kind objc)
+  0242b0  return
+
+== -[ADArmoryCurrencyViewController setProducts:]   (address 0x1000242b4  size 56  kind objc)
+  0242d8  self->_products = arg1
+  0242e8  return
+
+== -[ADArmoryCurrencyViewController tableView]   (address 0x1000242ec  size 16  kind objc)
+  0242f8  return
+
+== -[ADArmoryCurrencyViewController setTableView:]   (address 0x1000242fc  size 56  kind objc)
+  024320  self->_tableView = arg1
+  024330  return
+
+== -[ADArmoryCurrencyViewController armoryVCDelegate]   (address 0x100024334  size 32  kind objc)
+  024350  return
+
+== -[ADArmoryCurrencyViewController setArmoryVCDelegate:]   (address 0x100024354  size 20  kind objc)
+
+== -[ADArmoryCurrencyViewController .cxx_destruct]   (address 0x100024368  size 120  kind objc)

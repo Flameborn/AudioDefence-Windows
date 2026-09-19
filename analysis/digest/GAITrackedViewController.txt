@@ -1,0 +1,45 @@
+
+== -[GAITrackedViewController viewDidAppear:]   (address 0x1001200ac  size 700  kind objc)
+  1200f8  [super viewDidAppear:arg1]
+  120110  [self screenName]
+  120124  if ([self screenName] == 0) goto loc_10012016c
+  12013c  [self tracker]
+  12014c  if ([self tracker] == 0) goto loc_100120244
+  120158  [self tracker]
+  120168  goto loc_10012028c
+loc_10012016c:
+  120180  [GAI sharedLogger]
+  1201a0  [&d_1003b7d70] -> @"GoogleAnalytics"
+  1201ac  [&d_1003b7d78] -> @"3.09"
+  1201c4  [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branches/tagmanager…" lastPathComponent]
+  120204  [NSString stringWithFormat:@"%@ %@ %s (%@:%d): Tracked view controller missing view name.", @"GoogleAnalytics", @"3.09", "-[GAITrackedViewController viewDidAppear:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 21]
+  120228  [[GAI sharedLogger] info:[NSString stringWithFormat:@"%@ %@ %s (%@:%d): Tracked view controller missing view name.", @"GoogleAnalytics", @"3.09", "-[GAITrackedViewController viewDidAppear:]", [@"/Volumes/BuildData/pulse-data/agents/wpyo25.hot/recipes/526991262/base/branch…, 21]]
+  120240  goto loc_100120338
+loc_100120244:
+  120258  [GAI sharedInstance]
+  120274  [[GAI sharedInstance] defaultTracker]
+loc_10012028c:
+  12029c  [&d_1003b83b0] -> @"&cd"
+  1202a8  [self screenName]
+  1202d0  [x0 gai_set:@"&cd" value:[self screenName]]
+  1202ec  [&d_1003b8368] -> @"&t"
+  1202f0  [&d_1003b8528] -> @"appview"
+  120318  [NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x28] count:1]
+  120330  [x0 gai_send:[NSDictionary dictionaryWithObjects:&sp[0x30] forKeys:&sp[0x28] count:1]]
+loc_100120338:
+  120360  return
+
+== -[GAITrackedViewController tracker]   (address 0x100120368  size 16  kind objc)
+  120374  return
+
+== -[GAITrackedViewController setTracker:]   (address 0x100120378  size 16  kind objc)
+  120380  self->_tracker = arg1
+  120384  return
+
+== -[GAITrackedViewController screenName]   (address 0x100120388  size 16  kind objc)
+  120394  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[GAITrackedViewController setScreenName:]   (address 0x100120398  size 28  kind objc)
+  1203b0  tail objc_setProperty(self, _cmd, x2, arg1)
+
+== -[GAITrackedViewController .cxx_destruct]   (address 0x1001203b4  size 20  kind objc)

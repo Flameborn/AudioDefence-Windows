@@ -1,0 +1,101 @@
+
+== +[ADTracker(ADArmoryTracker) initArmoryTracker]   (address 0x10002dce0  size 40  kind objc)
+  02dcf0  if (g_10042d9b8 != -1) goto loc_10002dcf8
+  02dcf4  return
+  02dd04  tail dispatch_once(&g_10042d9b8, ^{+[ADTracker(ADArmoryTracker) initArmoryTracker]_block_invoke})
+
+== +[ADTracker(ADArmoryTracker) initArmoryTracker]_block_invoke   (address 0x10002dd08  size 176  kind block)
+  02dd28  [ADTracker sharedInstance]
+  02dd40  store g_10042d9b0 = [ADTracker sharedInstance]
+  02dd64  [NSMutableDictionary alloc]
+  02dd74  [[NSMutableDictionary alloc] init]
+  02dd90  [g_10042d9b0 setTrackerInventory:[[NSMutableDictionary alloc] init]]
+  02dda0  return
+
+== +[ADTracker(ADArmoryTracker) addWeapon:InSlot:]   (address 0x10002ddb8  size 240  kind objc)
+  02ddf8  [ADTracker sharedInstance]
+  02de14  [[ADTracker sharedInstance] trackerInventory]
+  02de38  [[[ADTracker sharedInstance] trackerInventory] setObject:arg1 forKey:arg2]
+  02de64  return
+
+== +[ADTracker(ADArmoryTracker) getWeaponInSlot:]   (address 0x10002dea8  size 224  kind objc)
+  02ded8  [ADTracker sharedInstance]
+  02def4  [[ADTracker sharedInstance] trackerInventory]
+  02df14  [[[ADTracker sharedInstance] trackerInventory] objectForKey:arg1]
+  02df4c  return
+
+== -[ADTracker(ADArmoryTracker) recordPurchaseForItemOrWeapon:Price:]   (address 0x10002df88  size 472  kind objc)
+  02dfc0  if (arg2 < 1) goto loc_10002dfd0
+loc_10002dfd0:
+  02dfe4  [GAI sharedInstance]
+  02e000  [[GAI sharedInstance] defaultTracker]
+  02e038  [NSNumber numberWithInteger:x2]
+  02e070  [GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Item purchased" label:arg1 value:[NSNumber numberWithInteger:x2]]
+  02e08c  [[GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Item purchased" label:arg1 value:[NSNumber numberWithInteger:x2]] build]
+  02e0b0  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Item purchased" label:arg1 value:[NSNumber numberWithInteger:x2]] build]]
+  02e0f0  return
+
+== -[ADTracker(ADArmoryTracker) recordTabChangeEventWithTabName:TimeSpentInTab:]   (address 0x10002e160  size 464  kind objc)
+  02e1a0  [GAI sharedInstance]
+  02e1bc  [[GAI sharedInstance] defaultTracker]
+  02e1e0  if (arg2 < 1) goto loc_10002e1f0
+loc_10002e1f0:
+  02e20c  [NSNumber numberWithInteger:x2]
+  02e244  [GAIDictionaryBuilder createEventWithCategory:@"Tab change event" action:@"PLACEHOLDER FOR EVENTS" label:arg1 value:[NSNumber numberWithInteger:x2]]
+  02e260  [[GAIDictionaryBuilder createEventWithCategory:@"Tab change event" action:@"PLACEHOLDER FOR EVENTS" label:arg1 value:[NSNumber numberWithInteger:x2]] build]
+  02e284  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Tab change event" action:@"PLACEHOLDER FOR EVENTS" label:arg1 value:[NSNumber numberWithInteger:x2]] build]]
+  02e2c4  return
+
+== -[ADTracker(ADArmoryTracker) recordPowerUpUpgrade:Level:]   (address 0x10002e330  size 436  kind objc)
+  02e36c  [GAI sharedInstance]
+  02e388  [[GAI sharedInstance] defaultTracker]
+  02e3c0  [NSNumber numberWithInteger:arg2]
+  02e3f8  [GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Item upgraded" label:arg1 value:[NSNumber numberWithInteger:arg2]]
+  02e414  [[GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Item upgraded" label:arg1 value:[NSNumber numberWithInteger:arg2]] build]
+  02e438  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Item upgraded" label:arg1 value:[NSNumber numberWithInteger:arg2]] build]]
+  02e474  return
+
+== -[ADTracker(ADArmoryTracker) recordSocialNetworkTagEvent:]   (address 0x10002e4e4  size 340  kind objc)
+  02e514  [GAI sharedInstance]
+  02e530  [[GAI sharedInstance] defaultTracker]
+  02e574  [GAIDictionaryBuilder createEventWithCategory:@"Social network tag event" action:@"Tagged social network" label:arg1 value:0]
+  02e590  [[GAIDictionaryBuilder createEventWithCategory:@"Social network tag event" action:@"Tagged social network" label:arg1 value:0] build]
+  02e5b4  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Social network tag event" action:@"Tagged social network" label:arg1 value:0] build]]
+  02e5e0  return
+
+== -[ADTracker(ADArmoryTracker) recordWeaponEquipWithName:WeaponSlot:]   (address 0x10002e638  size 440  kind objc)
+  02e674  [GAI sharedInstance]
+  02e690  [[GAI sharedInstance] defaultTracker]
+  02e6d0  [NSString stringWithFormat:@"slot %d", arg2]
+  02e704  [GAIDictionaryBuilder createEventWithCategory:@"Weapon equipped in armory" action:arg1 label:[NSString stringWithFormat:@"slot %d", arg2] value:0]
+  02e720  [[GAIDictionaryBuilder createEventWithCategory:@"Weapon equipped in armory" action:arg1 label:[NSString stringWithFormat:@"slot %d", arg2] value:0] build]
+  02e744  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Weapon equipped in armory" action:arg1 label:[NSString stringWithFormat:@"slot %d", arg2] value:0] build]]
+  02e780  return
+
+== -[ADTracker(ADArmoryTracker) recordWeaponBrowse:BrowseForm:]   (address 0x10002e7f0  size 376  kind objc)
+  02e834  [GAI sharedInstance]
+  02e850  [[GAI sharedInstance] defaultTracker]
+  02e890  [GAIDictionaryBuilder createEventWithCategory:@"Browsing weapons" action:arg1 label:arg2 value:0]
+  02e8ac  [[GAIDictionaryBuilder createEventWithCategory:@"Browsing weapons" action:arg1 label:arg2 value:0] build]
+  02e8d0  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Browsing weapons" action:arg1 label:arg2 value:0] build]]
+  02e908  return
+
+== -[ADTracker(ADArmoryTracker) recordWeaponUpgrade:Price:]   (address 0x10002e968  size 472  kind objc)
+  02e9a0  if (arg2 < 1) goto loc_10002e9b0
+loc_10002e9b0:
+  02e9c4  [GAI sharedInstance]
+  02e9e0  [[GAI sharedInstance] defaultTracker]
+  02ea18  [NSNumber numberWithInteger:x2]
+  02ea50  [GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Weapon upgraded" label:arg1 value:[NSNumber numberWithInteger:x2]]
+  02ea6c  [[GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Weapon upgraded" label:arg1 value:[NSNumber numberWithInteger:x2]] build]
+  02ea90  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Weapon upgraded" label:arg1 value:[NSNumber numberWithInteger:x2]] build]]
+  02ead0  return
+
+== -[ADTracker(ADArmoryTracker) recordWeaponUpgradePreview:LevelPreviewed:]   (address 0x10002eb40  size 436  kind objc)
+  02eb7c  [GAI sharedInstance]
+  02eb98  [[GAI sharedInstance] defaultTracker]
+  02ebd0  [NSNumber numberWithInteger:arg2]
+  02ec08  [GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Weapon upgrade preview" label:arg1 value:[NSNumber numberWithInteger:arg2]]
+  02ec24  [[GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Weapon upgrade preview" label:arg1 value:[NSNumber numberWithInteger:arg2]] build]
+  02ec48  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Transaction event" action:@"Weapon upgrade preview" label:arg1 value:[NSNumber numberWithInteger:arg2]] build]]
+  02ec84  return

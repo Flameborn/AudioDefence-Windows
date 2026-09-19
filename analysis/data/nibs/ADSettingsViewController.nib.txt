@@ -1,0 +1,30 @@
+// ADSettingsViewController.nib
+TOP-LEVEL OBJECTS
+  #98 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #91 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #54 UIView  Tag=2781
+    #66 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #22 UIImageView  UserInteractionDisabled=False Image='chains_settings_top.png'
+    #70 UIImageView  UserInteractionDisabled=False Image='chains_settings_mid.png'
+    #101 UIImageView  UserInteractionDisabled=False Image='chains_settings_bottom.png'
+    #79 UIImageView  UserInteractionDisabled=False Image='frame_settings.png'
+    #19 UIView  
+    #65 UIButton (custom class ADButtonWithFont)  
+  #37 UIView  Tag=2782
+    #107 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #88 UIImageView  UserInteractionDisabled=False Image='chains_settings_top.png'
+    #99 UIImageView  UserInteractionDisabled=False Image='chains_settings_mid.png'
+    #36 UIImageView  UserInteractionDisabled=False Image='chains_settings_bottom.png'
+    #71 UIImageView  UserInteractionDisabled=False Image='frame_settings.png'
+    #110 UIView  Tag=1
+    #1 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  validateButtonPressed:                    #1 ADButtonWithFont --(events 0x40)--> #98 UIProxyObject
+  action  validateButtonPressed:                    #65 ADButtonWithFont --(events 0x40)--> #98 UIProxyObject
+  outlet  controlSchemeView                         #98 UIProxyObject --> #19 UIView
+  outlet  view                                      #98 UIProxyObject --> #54 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#65 ADButtonWithFont' UIAccessibilityLabel='OK'
+  UIAccessibileObject='#1 ADButtonWithFont' UIAccessibilityLabel='OK'

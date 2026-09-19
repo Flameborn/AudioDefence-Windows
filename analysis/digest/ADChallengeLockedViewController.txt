@@ -1,0 +1,251 @@
+
+== -[ADChallengeLockedViewController initWithDictionary:]   (address 0x10000f898  size 180  kind objc)
+  00f8e8  [super initWithNibName:0 bundle:0]
+  00f8f0  if (self == 0) goto loc_10000f910
+  00f90c  [self setChallengeDict:arg1]
+loc_10000f910:
+  00f92c  return
+
+== -[ADChallengeLockedViewController backButtonPressed]   (address 0x10000f94c  size 160  kind objc)
+  00f970  [UIApplication sharedApplication]
+  00f98c  [[UIApplication sharedApplication] delegate]
+  00f9a8  [[[UIApplication sharedApplication] delegate] goToChallengeSelector]
+  00f9c4  return
+
+== -[ADChallengeLockedViewController viewDidLoad]   (address 0x10000f9ec  size 572  kind objc)
+  00fa28  [super viewDidLoad]
+  00fa40  [ADChallengeData sharedChallengeData]
+  00fa60  [self challengeDict]
+  00fa84  [[self challengeDict] objectForKey:@"challenge_id"]
+  00faa8  [[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  00fac8  if (([[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] & 1)) goto loc_10000fae0
+  00fadc  [self initMissingWeapons]
+loc_10000fae0:
+  00faf0  [self mainText]
+  00fb1c  [ADGameParameters sharedParameters]
+  00fb38  [[ADGameParameters sharedParameters] isIphone]
+  00fb68  [UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 24 : 40)]
+  00fb8c  [[self mainText] setFont:[UIFont fontWithName:@"Monstro" size:([[ADGameParameters sharedParameters] isIphone] != 0 ? 24 : 40)]]
+  00fbbc  return
+
+== -[ADChallengeLockedViewController viewWillAppear:]   (address 0x10000fc28  size 1268  kind objc)
+  00fc58  [self initMissingWeapons]
+  00fc74  [self->missingWeapons count]
+  00fc78  if ([self->missingWeapons count] != 0) goto loc_10000fecc
+  00fc90  [ADChallengeData sharedChallengeData]
+  00fcb4  [self challengeDict]
+  00fcd8  [[self challengeDict] objectForKey:@"challenge_id"]
+  00fcfc  [[ADChallengeData sharedChallengeData] hasChallengeRequirementsForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  00fd1c  if ([[ADChallengeData sharedChallengeData] hasChallengeRequirementsForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] == 0) goto loc_10000fecc
+  00fd34  [UIView alloc]
+  00fd50  [self view]
+  00fd6c  [[self view] frame]
+  00fd80  [[UIView alloc] initWithFrame:{[[self view] frame].0, [[self view] frame].1, [[self view] frame].2, [[self view] frame].3}]
+  00fda4  [UIColor blackColor]
+  00fdc8  [[[UIView alloc] initWithFrame:{[[self view] frame].0, [[self view] frame].1, [[self view] frame].2, [[self view] frame].3}] setBackgroundColor:[UIColor blackColor]]
+  00fddc  [self view]
+  00fdfc  [[self view] addSubview:[[UIView alloc] initWithFrame:{[[self view] frame].0, [[self view] frame].1, [[self view] frame].2, [[self view] frame].3}]]
+  00fe10  [self view]
+  00fe30  [[self view] bringSubviewToFront:[[UIView alloc] initWithFrame:{[[self view] frame].0, [[self view] frame].1, [[self view] frame].2, [[self view] frame].3}]]
+  00fe50  [UIApplication sharedApplication]
+  00fe6c  [[UIApplication sharedApplication] delegate]
+  00fe84  [self challengeDict]
+  00fea8  [[[UIApplication sharedApplication] delegate] goToChallengeOverviewWithDictionary:[self challengeDict]]
+loc_10000fecc:
+  00fee4  [ADChallengeData sharedChallengeData]
+  00ff08  [self challengeDict]
+  00ff30  [[self challengeDict] objectForKey:@"challenge_id"]
+  00ff54  [[ADChallengeData sharedChallengeData] hasChallengeRequirementsForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  00ff74  if (!([[ADChallengeData sharedChallengeData] hasChallengeRequirementsForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] & 1)) goto loc_100010018
+  00ff80  [ADChallengeData sharedChallengeData]
+  00ff98  [self challengeDict]
+  00ffb4  [[self challengeDict] objectForKey:@"challenge_id"]
+  00ffd8  [[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]]
+  00fff8  if (!([[ADChallengeData sharedChallengeData] hasWeaponForChallengeWithName:[[self challengeDict] objectForKey:@"challenge_id"]] & 1)) goto loc_10001002c
+  010014  return
+  01001c  &@selector(initMissingChallenges)
+  01004c  tail [self <sel x1>]
+
+== -[ADChallengeLockedViewController initMissingChallenges]   (address 0x10001011c  size 312  kind objc)
+  01013c  [self mainText]
+  010160  [[self mainText] setText:@"YOU NEED TO FINISH THE PREVIOUS CHALLENGES TO PLAY THIS ONE"]
+  01017c  [self weaponIcon]
+  0101a8  [UIImage imageNamed:@"lock blank"]
+  0101cc  [[self weaponIcon] setImage:[UIImage imageNamed:@"lock blank"]]
+  0101f0  [self armoryButton]
+  010210  [[self armoryButton] setHidden:1]
+  010224  return
+
+== -[ADChallengeLockedViewController initMissingWeapons]   (address 0x100010254  size 2692  kind objc)
+  01029c  if (self->missingWeapons == 0) goto loc_100010324
+  0102ac  [self->missingWeapons removeAllObjects]
+  0102b4  self->missingWeapons = 0
+  0102cc  [self missingWeaponsView]
+  0102e8  [[self missingWeaponsView] subviews]
+  010310  [[[self missingWeaponsView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)]
+loc_100010324:
+  01033c  [NSMutableArray alloc]
+  01034c  [[NSMutableArray alloc] init]
+  010354  self->missingWeapons = [[NSMutableArray alloc] init]
+  010380  [self challengeDict]
+  0103a8  [[self challengeDict] objectForKey:@"weapons"]
+  0103e4  [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x138] objects:&x29[-0xf8] count:16]
+  0103ec  if ([[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x138] objects:&x29[-0xf8] count:16] == 0) goto loc_100010918
+  010420  &@selector(view)
+  010468  &@selector(mainText)
+loc_100010548:
+loc_100010550:
+  010560  if (x8 == x9) goto loc_10001056c
+  010568  objc_enumerationMutation([[self challengeDict] objectForKey:@"weapons"])
+loc_10001056c:
+  01057c  [ADInventory sharedInventory]
+  01059c  [x0 objectForKey:@"name"]
+  0105bc  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  0105d4  if (([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]] & 1)) goto loc_1000108e4
+  0105e4  [ADChallengeBuyWeaponViewController alloc]
+  0105fc  [x0 objectForKey:@"name"]
+  010618  [[ADChallengeBuyWeaponViewController alloc] initWithweaponName:[x0 objectForKey:@"name"]]
+  010634  [[[ADChallengeBuyWeaponViewController alloc] initWithweaponName:[x0 objectForKey:@"name"]] setChallengeLockedViewController:self]
+  010640  [self missingWeaponsView]
+  010658  [[[ADChallengeBuyWeaponViewController alloc] initWithweaponName:[x0 objectForKey:@"name"]] view]
+  010674  [[self missingWeaponsView] addSubview:[[[ADChallengeBuyWeaponViewController alloc] initWithweaponName:[x0 objectForKey:@"name"]] view]]
+  010694  [self->missingWeapons addObject:[[ADChallengeBuyWeaponViewController alloc] initWithweaponName:[x0 objectForKey:@"name"]]]
+  0106a0  [[[ADChallengeBuyWeaponViewController alloc] initWithweaponName:[x0 objectForKey:@"name"]] view]
+  0106b4  [[[[ADChallengeBuyWeaponViewController alloc] initWithweaponName:[x0 objectForKey:@"name"]] view] frame]
+  0106cc  [self mainText]
+  0106f4  [ADWeaponManager sharedWeaponManager]
+  010714  [x0 objectForKey:@"name"]
+  010730  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[x0 objectForKey:@"name"]]
+  010744  [[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[x0 objectForKey:@"name"]] uppercaseString]
+  01076c  [NSString stringWithFormat:@"YOU NEED A %@ TO PLAY THIS CHALLENGE", [[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[x0 objectFor…]
+  010788  [[self mainText] setText:[NSString stringWithFormat:@"YOU NEED A %@ TO PLAY THIS CHALLENGE", [[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[x0 objectFor…]]
+  0107cc  [self weaponIcon]
+  010810  [x0 objectForKey:@"name"]
+  010834  [NSString stringWithFormat:@"%@_icon", [x0 objectForKey:@"name"]]
+  010850  [UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [x0 objectForKey:@"name"]]]
+  010870  [[self weaponIcon] setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_icon", [x0 objectForKey:@"name"]]]]
+  0108a0  [self armoryButton]
+  0108c0  [[self armoryButton] setHidden:0]
+loc_1000108e4:
+  0108f0  if ((x23 + 1) <u [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x138] objects:&x29[-0xf8] count:16]) goto loc_100010550
+  010908  [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x138] objects:&x29[-0xf8] count:16]
+  010910  if ([[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x138] objects:&x29[-0xf8] count:16] != 0) goto loc_100010548
+  010914  goto loc_100010920
+loc_100010918:
+loc_100010920:
+  01093c  [self missingWeaponsView]
+  01095c  [[self missingWeaponsView] frame]
+  010978  [self->missingWeapons count]
+  010988  [self->missingWeapons count]
+  0109c4  [self->missingWeapons countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x178] count:16]
+  0109cc  if ([self->missingWeapons countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x178] count:16] == 0) goto loc_100010afc
+  0109f0  t1 = (([[self missingWeaponsView] frame].2 - (s2 * (float)[self->missingWeapons count])) / (float)([self->missingWeapons count] + 1))
+  010a18  &@selector(setCenter:)
+loc_100010a24:
+loc_100010a2c:
+  010a38  if (x8 == x28) goto loc_100010a44
+  010a40  objc_enumerationMutation(self->missingWeapons)
+loc_100010a44:
+  010a50  [x0 view]
+  010a68  [self missingWeaponsView]
+  010a7c  [[self missingWeaponsView] frame]
+  010ab8  [[x0 view] setCenter:{((s2 * 0.5) + ((s2 * (float)(x20 + x22)) + (t1 * (float)((w20 + w22) + 1)))), ([[self missingWeaponsView] frame].3 * 0.5)}]
+  010ad4  if ((x22 + 1) <u [self->missingWeapons countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x178] count:16]) goto loc_100010a2c
+  010aec  [self->missingWeapons countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x178] count:16]
+  010af8  if ([self->missingWeapons countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x178] count:16] != 0) goto loc_100010a24
+loc_100010afc:
+  010b40  return
+
+== -[ADChallengeLockedViewController armoryButtonTouched:]   (address 0x100010cd8  size 852  kind objc)
+  010d48  [self challengeDict]
+  010d70  [[self challengeDict] objectForKey:@"weapons"]
+  010dac  [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  010db8  if ([[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_100010ec8
+loc_100010de8:
+loc_100010dec:
+  010df8  if (x8 == x20) goto loc_100010e04
+  010e00  objc_enumerationMutation([[self challengeDict] objectForKey:@"weapons"])
+loc_100010e04:
+  010e18  [ADInventory sharedInventory]
+  010e38  [x0 objectForKey:@"name"]
+  010e54  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  010e6c  if (([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]] & 1)) goto loc_100010e9c
+  010e80  [x0 objectForKey:@"name"]
+loc_100010e9c:
+  010ea4  if ((x28 + 1) <u [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_100010dec
+  010eb8  [[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  010ec0  if ([[[self challengeDict] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_100010de8
+  010ec4  goto loc_100010ed4
+loc_100010ec8:
+loc_100010ed4:
+  010ef8  [ADArmoryViewController alloc]
+  010f1c  [[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0 weapon:x4]
+  010f40  [self presentViewController:[[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0 weapon:x4] animated:0 completion:0]
+  010f90  return
+
+== -[ADChallengeLockedViewController showPurchaseConfirmation:]   (address 0x10001102c  size 624  kind objc)
+  0110b0  [self->missingWeapons countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0110b8  if ([self->missingWeapons countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_100011204
+  0110f8  &@selector(initWithDictionary:)
+  011110  &@selector(presentViewController:animated:completion:)
+loc_100011118:
+loc_10001111c:
+  011128  if (x8 == x27) goto loc_100011134
+  011130  objc_enumerationMutation(self->missingWeapons)
+loc_100011134:
+  011144  [x0 coinButton]
+  01115c  [[x0 coinButton] isEqual:arg1]
+  01116c  if ([[x0 coinButton] isEqual:arg1] == 0) goto loc_1000111d8
+  01117c  [ADPurchaseConfirmationViewController alloc]
+  01118c  [x0 weaponDict]
+  0111a8  [[ADPurchaseConfirmationViewController alloc] initWithDictionary:[x0 weaponDict]]
+  0111cc  [self presentViewController:[[ADPurchaseConfirmationViewController alloc] initWithDictionary:[x0 weaponDict]] animated:0 completion:0]
+loc_1000111d8:
+  0111e0  if ((x28 + 1) <u [self->missingWeapons countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_10001111c
+  0111f8  [self->missingWeapons countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  011200  if ([self->missingWeapons countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_100011118
+loc_100011204:
+  011248  return
+
+== -[ADChallengeLockedViewController showWeaponInArmory:]   (address 0x10001129c  size 188  kind objc)
+  0112d0  [ADArmoryViewController alloc]
+  0112f0  [[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0 weapon:arg1]
+  011314  [self presentViewController:[[ADArmoryViewController alloc] initWithNibName:@"ADArmoryViewController" bundle:0 weapon:arg1] animated:0 completion:0]
+  011330  return
+
+== -[ADChallengeLockedViewController challengeDict]   (address 0x100011358  size 16  kind objc)
+  011364  return
+
+== -[ADChallengeLockedViewController setChallengeDict:]   (address 0x100011368  size 56  kind objc)
+  01138c  self->_challengeDict = arg1
+  01139c  return
+
+== -[ADChallengeLockedViewController missingWeaponsView]   (address 0x1000113a0  size 16  kind objc)
+  0113ac  return
+
+== -[ADChallengeLockedViewController setMissingWeaponsView:]   (address 0x1000113b0  size 56  kind objc)
+  0113d4  self->_missingWeaponsView = arg1
+  0113e4  return
+
+== -[ADChallengeLockedViewController mainText]   (address 0x1000113e8  size 16  kind objc)
+  0113f4  return
+
+== -[ADChallengeLockedViewController setMainText:]   (address 0x1000113f8  size 56  kind objc)
+  01141c  self->_mainText = arg1
+  01142c  return
+
+== -[ADChallengeLockedViewController weaponIcon]   (address 0x100011430  size 16  kind objc)
+  01143c  return
+
+== -[ADChallengeLockedViewController setWeaponIcon:]   (address 0x100011440  size 56  kind objc)
+  011464  self->_weaponIcon = arg1
+  011474  return
+
+== -[ADChallengeLockedViewController armoryButton]   (address 0x100011478  size 16  kind objc)
+  011484  return
+
+== -[ADChallengeLockedViewController setArmoryButton:]   (address 0x100011488  size 56  kind objc)
+  0114ac  self->_armoryButton = arg1
+  0114bc  return
+
+== -[ADChallengeLockedViewController .cxx_destruct]   (address 0x1000114c0  size 144  kind objc)

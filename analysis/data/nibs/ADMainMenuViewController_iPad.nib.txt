@@ -1,0 +1,38 @@
+// ADMainMenuViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #33 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #117 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #80 UIView  
+    #124 UIView (custom class ViewWithParalax)  
+      #27 UIImageView  Image='background_main.png'
+    #59 UIButton (custom class ADButtonWithFont)  
+    #4 UILabel  Hidden=False UserInteractionDisabled=False Text='version alpha x.xx'
+    #45 UILabel  UserInteractionDisabled=False Text=''
+    #12 UIButton (custom class ADButtonWithFont)  title[0]='CHEAT'
+    #79 UIButton (custom class ADButtonWithFont)  
+    #104 UIView (custom class ADSlidingView)  
+      #119 UIImageView  UserInteractionDisabled=False Image='chains_main.png'
+      #8 UIButton (custom class ADButtonWithFont)  
+      #66 UIImageView  Image='frame_headphones.png'
+    #10 UIButton (custom class ADButtonWithFont)  
+
+CONNECTIONS
+  action  cheatButtonPressed:                       #12 ADButtonWithFont --(events 0x40)--> #33 UIProxyObject
+  action  leaderboardsButtonPressed:                #79 ADButtonWithFont --(events 0x40)--> #33 UIProxyObject
+  action  moveToEncyclopedia:                       #59 ADButtonWithFont --(events 0x40)--> #33 UIProxyObject
+  action  playButtonPressed:                        #8 ADButtonWithFont --(events 0x40)--> #33 UIProxyObject
+  action  settingsButtonTouched:                    #10 ADButtonWithFont --(events 0x40)--> #33 UIProxyObject
+  outlet  background                                #33 UIProxyObject --> #27 UIImageView
+  outlet  cheatMenu                                 #33 UIProxyObject --> #12 ADButtonWithFont
+  outlet  firstAccessibleElement                    #33 UIProxyObject --> #8 ADButtonWithFont
+  outlet  slidingView                               #33 UIProxyObject --> #104 ADSlidingView
+  outlet  useHeadphones                             #33 UIProxyObject --> #66 UIImageView
+  outlet  versionNumberLabel                        #33 UIProxyObject --> #4 UILabel Text='version alpha x.xx'
+  outlet  view                                      #33 UIProxyObject --> #80 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#59 ADButtonWithFont' UIAccessibilityLabel='Info'
+  UIAccessibileObject='#79 ADButtonWithFont' UIAccessibilityLabel='Game Center'
+  UIAccessibileObject='#8 ADButtonWithFont' UIAccessibilityLabel='Play'
+  UIAccessibileObject='#66 UIImageView' UIAccessibilityHint='the right way round' UIAccessibilityLabel='Use headphones' UIIsAccessibilityElement=1
+  UIAccessibileObject='#10 ADButtonWithFont' UIAccessibilityLabel='Settings'

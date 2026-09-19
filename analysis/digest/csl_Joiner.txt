@@ -1,0 +1,91 @@
+
+== csl::Joiner::vfunc_7   (address 0x1000eaa54  size 108  kind cxx)
+  0eaa68  if (a0[+0x60] == 0) goto loc_1000eaaa8
+loc_1000eaa70:
+  0eaa90  call ((a0[+0x0][+0x-18] + a0) + (w20 << 3))[+0x8][+0x8][+0x0][+0x38]
+  0eaa94  if (((a0[+0x0][+0x-18] + a0) + (w20 << 3))[+0x8][+0x8][+0x0][+0x38](…) != 0) goto loc_1000eaab0
+  0eaaa4  if ((w20 + 1) <u a0[+0x60]) goto loc_1000eaa70
+loc_1000eaaa8:
+  0eaaac  goto loc_1000eaab4
+loc_1000eaab0:
+loc_1000eaab4:
+  0eaabc  return
+
+== csl::Joiner::vfunc_5   (address 0x1000eaac0  size 216  kind cxx)
+  0eaad4  cxa_allocate_exception(16, a1, a2, a3)
+  0eaaec  ZNSsC1EPKcRKSaIcE(&sp[0x10], "Asking for mono nextBuffer of a Joiner", &sp[0x8])
+  0eaaf8  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &sp[0x10])
+  0eab08  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0eab20  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0eab24  goto loc_1000eab70
+  0eab44  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000eab6c
+loc_1000eab4c:
+  0eab58  if (w11 != 0) goto loc_1000eab4c
+  0eab60  if (w9 > 0) goto loc_1000eab6c
+  0eab68  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &sp[0x18])
+loc_1000eab6c:
+  0eab6c  if (w20 >= 0) goto loc_1000eab78
+loc_1000eab70:
+  0eab74  cxa_call_unexpected()
+loc_1000eab78:
+  0eab90  cxa_free_exception()
+  0eab94  goto loc_1000eab6c
+
+== csl::Joiner::vfunc_4   (address 0x1000eab98  size 472  kind cxx)
+  0eabc0  if (a1[+0x8] != a0[+0x60]) goto loc_1000eac8c
+  0eac0c  sub_1000e7fac(&sp[0x0], 1, a1[+0xc], a3)
+  0eac14  if (a0[+0x60] == 0) goto loc_1000eac70
+loc_1000eac1c:
+  0eac2c  call a1[+0x0][+0x20]
+  0eac34  0[+0x0] = a1[+0x0][+0x20](…)
+  0eac5c  call ((a0[+0x0][+0x-18] + a0) + (w21 << 3))[+0x8][+0x8][+0x0][+0x20]
+  0eac6c  if ((w21 + 1) <u a0[+0x60]) goto loc_1000eac1c
+loc_1000eac70:
+  0eac74  sub_1000e80e0(&sp[0x0])
+  0eac88  return
+  0eac90  cxa_allocate_exception(16, a1, a2, a3)
+  0eaca8  ZNSsC1EPKcRKSaIcE(&x29[-0x30], "Wrong number of channels in a joiner", &sp[0x38])
+  0eacb4  ZN3csl10CExceptionC2ERKSs(cxa_allocate_exception(16, a1, a2, a3), &x29[-0x30])
+  0eacc4  cxa_allocate_exception(16, a1, a2, a3)[+0x0] = (INDIRECT_SYMBOL_LOCAL + 16)
+  0eacdc  cxa_throw(cxa_allocate_exception(16, a1, a2, a3), &d_100428ed0, INDIRECT_SYMBOL_LOCAL)
+  0ead00  if ((x8 - 24) == __ZNSs4_Rep20_S_empty_rep_storageE) goto loc_1000ead28
+  0ead14  if (w11 != 0) goto loc_1000ead08
+  0ead1c  if (w9 > 0) goto loc_1000ead28
+  0ead24  ZNSs4_Rep10_M_destroyERKSaIcE(x0, &x29[-0x28])
+  0ead28  if (w20 >= 0) goto loc_1000ead34
+  0ead30  cxa_call_unexpected()
+  0ead48  sub_1000e80e0(&sp[0x0])
+  0ead68  cxa_free_exception()
+
+== csl::Joiner::vfunc_13   (address 0x1000ead70  size 88  kind cxx)
+  0ead84  if (a0[+0x60] == 0) goto loc_1000eadbc
+loc_1000ead8c:
+  0eada8  call ((a0[+0x0][+0x-18] + a0) + (w20 << 3))[+0x8][+0x0][+0x18]
+  0eadb8  if ((w20 + 1) <u a0[+0x60]) goto loc_1000ead8c
+loc_1000eadbc:
+  0eadc4  return
+
+== csl::Joiner::~Joiner(…)   (address 0x1000eb6c4  size 176  kind sym)
+  0eb6d8  sub_1000e8918(a0, a1, a2, a3)
+  0eb6e8  a0[+0xb0] = vtable<csl::Controllable>
+loc_1000eb6f0:
+  0eb6f4  if (x0 == 0) goto loc_1000eb708
+  0eb700  call x8
+loc_1000eb708:
+  0eb710  if ((x20 + 8) != 288) goto loc_1000eb6f0
+  0eb724  return
+  0eb748  if (x0 == 0) goto loc_1000eb75c
+  0eb754  call x8
+  0eb764  if ((x21 + 8) != 104) goto loc_1000eb744
+  0eb770  call sub_10000b760
+
+== csl::Joiner::~Joiner/*deleting*/(…)   (address 0x1000eb774  size 56  kind sym)
+  0eb784  ZN3csl6JoinerD1Ev(a0, a1, a2, a3)
+  0eb794  tail ZdlPv(a0)
+  0eb7a0  ZdlPv()
+
+== csl::Joiner::thunk_vfunc_0   (address 0x1000eb7ac  size 16  kind cxx)
+  0eb7b8  tail ZN3csl6JoinerD1Ev((a0 + a0[+0x0][+0x-18]), a1, a2, a3)
+
+== csl::Joiner::thunk_vfunc_1   (address 0x1000eb7bc  size 16  kind cxx)
+  0eb7c8  tail ZN3csl6JoinerD0Ev((a0 + a0[+0x0][+0x-18]), a1, a2, a3)

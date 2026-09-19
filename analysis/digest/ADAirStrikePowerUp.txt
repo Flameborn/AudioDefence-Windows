@@ -1,0 +1,115 @@
+
+== -[ADAirStrikePowerUp preload]   (address 0x10009d4ac  size 240  kind objc)
+  09d4d4  [S3DEngine engine]
+  09d4f8  [[S3DEngine engine] playListWithName:@"airstrike"]
+  09d51c  [self setPlaylist:[[S3DEngine engine] playListWithName:@"airstrike"]]
+  09d540  [self playlist]
+  09d55c  [[self playlist] activate]
+  09d570  return
+
+== -[ADAirStrikePowerUp use]   (address 0x10009d59c  size 472  kind objc)
+  09d5bc  [self playlist]
+  09d5e0  [[self playlist] S3DSound:@"airstrike_plane"]
+  09d60c  [[[self playlist] S3DSound:@"airstrike_plane"] play:0]
+  09d628  [[[self playlist] S3DSound:@"airstrike_plane"] setGain:0.3]
+  09d644  [self setName:@"airstrike"]
+  09d65c  [self setRadius:6]
+  09d674  [self setDamages:20]
+  09d690  [self setDispersal:180]
+  09d6a8  [self setNumberOfExplosions:10]
+  09d6bc  self->timeSinceActivation = 0
+  09d6c4  self->active = 1
+  09d6d8  [self randomizeNextExplosionTime]
+  09d6e4  self->currentExplosion = 0
+  09d6fc  [S3DEngine engine]
+  09d718  [[S3DEngine engine] headOrientation]
+  09d724  self->angle = [[S3DEngine engine] headOrientation]
+  09d740  return
+
+== -[ADAirStrikePowerUp update:]   (address 0x10009d774  size 204  kind objc)
+  09d794  if (self->active == 0) goto loc_10009d830
+  09d7a8  self->timeSinceActivation = (self->timeSinceActivation + arg1)
+  09d7b4  if ((self->timeSinceActivation + arg1) <= (or unordered) 1) goto loc_10009d830
+  09d7cc  self->nextExplosionTime = (self->nextExplosionTime - arg1)
+  09d7d0  if ((self->nextExplosionTime - arg1) >= (or unordered) 0.0) goto loc_10009d7fc
+  09d7e4  [self randomizeNextExplosionTime]
+  09d7f8  [self playRandomExplosion]
+loc_10009d7fc:
+  09d808  if (self->timeSinceActivation <= (or unordered) 8) goto loc_10009d830
+  09d80c  self->active = 0
+  09d82c  tail [self clean]
+loc_10009d830:
+  09d83c  return
+
+== -[ADAirStrikePowerUp randomizeNextExplosionTime]   (address 0x10009d840  size 100  kind objc)
+  09d85c  [self numberOfExplosions]
+  09d890  t1 = ((4 / (float)[self numberOfExplosions]) < 0.1 ? 0.1 : (4 / (float)[self numberOfExplosions]))
+  09d894  self->nextExplosionTime = t1
+  09d8a0  return
+
+== -[ADAirStrikePowerUp playRandomExplosion]   (address 0x10009d8a4  size 956  kind objc)
+  09d8d4  [self playlist]
+  09d8f8  [[self playlist] anySoundContaining:@"explosion"]
+  09d924  [[[self playlist] anySoundContaining:@"explosion"] setSpatialized:1]
+  09d928  rand()
+  09d930  rand()
+  09d964  t1 = ((float)(rand() - (((rand() * 0x51eb851f) >> 37) + ((rand() * 0x51eb851f) >>> 63)) * 100) / 200)
+  09d9a0  self->angle = ((((float)((2 &~ (rand() << 1)) - 1) * t1) * 0.785398) + self->angle)
+  09d9bc  d0 = sin(((((float)((2 &~ (rand() << 1)) - 1) * t1) * 0.785398) + self->angle)), d1 = cos(((((float)((2 &~ (rand() << 1)) - 1) * t1) * 0.785398) + self->angle))
+  09d9c4  t2 = (cos(((((float)((2 &~ (rand() << 1)) - 1) * t1) * 0.785398) + self->angle)) * (float)(self->currentExplosion + 1))
+  09d9c8  t3 = ((float)(self->currentExplosion + 1) * sin(((((float)((2 &~ (rand() << 1)) - 1) * t1) * 0.785398) + self->angle)))
+  09d9e8  [[[self playlist] anySoundContaining:@"explosion"] setPlanar:{t2, t3, 0}]
+  09da00  [[[self playlist] anySoundContaining:@"explosion"] setGain:3]
+  09da18  [[[self playlist] anySoundContaining:@"explosion"] play:0]
+  09da24  NSStringFromCGPoint([[[self playlist] anySoundContaining:@"explosion"] play:0])
+  09da40  NSLog(@"position : %@", NSStringFromCGPoint([[[self playlist] anySoundContaining:@"explosion"] play:0]))
+  09da60  [NSDictionary alloc]
+  09da80  [self radius]
+  09da98  [NSNumber numberWithFloat:[self radius]]
+  09dabc  [self damages]
+  09dac8  [NSNumber numberWithFloat:[self damages]]
+  09daec  [self dispersal]
+  09daf8  [NSNumber numberWithFloat:[self dispersal]]
+  09db40  [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithFloat:[self radius]], @"radius", [NSNumber numberWithFloat:[self damages]], @"damages", [NSNumber numberWithFloat:[self dispersal]], @"dispersal", nil]
+  09db74  [ADBrickManager sharedBrickManager]
+  09dba8  [[ADBrickManager sharedBrickManager] solveExplosionWithDictionary:[[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithFloat:[self radius]], @"radius", [NSNumber numberWithFloat:[self damages]], @"damages", [NSNumber numberWithFloat:[self dispersal]], @"dispersal", nil] atPosition:{t2, t3} withWeaponName:@"airstrike" ignoreTinnitus:1]
+  09dbbc  self->currentExplosion = (self->currentExplosion + 1)
+  09dbe8  return
+
+== -[ADAirStrikePowerUp clean]   (address 0x10009dc60  size 324  kind objc)
+  09dc80  [self playlist]
+  09dc9c  [[self playlist] deactivate]
+  09dcbc  [ADTracker sharedInstance]
+  09dce0  [ADInGameStats singleton]
+  09dcfc  [[ADInGameStats singleton] enemyKillsWithPowerup]
+  09dd14  [self name]
+  09dd3c  [[ADTracker sharedInstance] numberOfEnemyKills:[[ADInGameStats singleton] enemyKillsWithPowerup] ByPowerUp:[self name]]
+  09dd60  return
+
+== -[ADAirStrikePowerUp dispersal]   (address 0x10009dda4  size 20  kind objc)
+  09ddb4  return
+
+== -[ADAirStrikePowerUp setDispersal:]   (address 0x10009ddb8  size 20  kind objc)
+  09ddc4  self->_dispersal = arg1
+  09ddc8  return
+
+== -[ADAirStrikePowerUp radius]   (address 0x10009ddcc  size 20  kind objc)
+  09dddc  return
+
+== -[ADAirStrikePowerUp setRadius:]   (address 0x10009dde0  size 20  kind objc)
+  09ddec  self->_radius = arg1
+  09ddf0  return
+
+== -[ADAirStrikePowerUp damages]   (address 0x10009ddf4  size 20  kind objc)
+  09de04  return
+
+== -[ADAirStrikePowerUp setDamages:]   (address 0x10009de08  size 20  kind objc)
+  09de14  self->_damages = arg1
+  09de18  return
+
+== -[ADAirStrikePowerUp numberOfExplosions]   (address 0x10009de1c  size 16  kind objc)
+  09de28  return
+
+== -[ADAirStrikePowerUp setNumberOfExplosions:]   (address 0x10009de2c  size 16  kind objc)
+  09de34  self->_numberOfExplosions = arg1
+  09de38  return

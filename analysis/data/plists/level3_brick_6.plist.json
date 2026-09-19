@@ -1,0 +1,16 @@
+{
+ "Enemies": {
+  "Hulk": {
+   "spawn_sound": "",
+   "spawn_angle": 350,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "HulkB": {
+   "spawn_sound": "",
+   "spawn_angle": 260,
+   "spawn_distance": 10,
+   "spawn_time": 7
+  }
+ }
+}

@@ -1,0 +1,425 @@
+
+== -[ADSound initWithDictionary:]   (address 0x1000b2d68  size 2092  kind objc)
+  0b2dc0  [super init]
+  0b2dc8  if (self == 0) goto loc_1000b34b8
+  0b2ddc  self->squaredDistanceFromFinalPosition = 0x7f800000
+  0b2dfc  [arg1 objectForKey:@"name"]
+  0b2e20  [self setName:[arg1 objectForKey:@"name"]]
+  0b2e40  [arg1 objectForKey:@"spawn_after"]
+  0b2e64  [self setSpawn_after:[arg1 objectForKey:@"spawn_after"]]
+  0b2e84  [arg1 objectForKey:@"spawn_time"]
+  0b2ea4  [[arg1 objectForKey:@"spawn_time"] floatValue]
+  0b2eb8  [self setSpawn_time:[[arg1 objectForKey:@"spawn_time"] floatValue]]
+  0b2ed8  [arg1 objectForKey:@"speed"]
+  0b2eec  [[arg1 objectForKey:@"speed"] floatValue]
+  0b2f04  [self setSpeed:[[arg1 objectForKey:@"speed"] floatValue]]
+  0b2f24  [arg1 objectForKey:@"gain"]
+  0b2f38  [[arg1 objectForKey:@"gain"] floatValue]
+  0b2f4c  [self setGain:[[arg1 objectForKey:@"gain"] floatValue]]
+  0b2f6c  [arg1 objectForKey:@"loop"]
+  0b2f8c  [[arg1 objectForKey:@"loop"] boolValue]
+  0b2fa4  [self setLoop:[[arg1 objectForKey:@"loop"] boolValue]]
+  0b2fc4  [arg1 objectForKey:@"blocker"]
+  0b2fd8  [[arg1 objectForKey:@"blocker"] boolValue]
+  0b2ff0  [self setBlocker:[[arg1 objectForKey:@"blocker"] boolValue]]
+  0b3010  [arg1 objectForKey:@"skippable"]
+  0b3024  [[arg1 objectForKey:@"skippable"] boolValue]
+  0b303c  [self setSkippable:[[arg1 objectForKey:@"skippable"] boolValue]]
+  0b305c  [arg1 objectForKey:@"stopsOtherSounds"]
+  0b3070  [[arg1 objectForKey:@"stopsOtherSounds"] boolValue]
+  0b3088  [self setStopsOtherSounds:[[arg1 objectForKey:@"stopsOtherSounds"] boolValue]]
+  0b30a8  [arg1 objectForKey:@"startMusicBeforeEnd"]
+  0b30bc  [[arg1 objectForKey:@"startMusicBeforeEnd"] floatValue]
+  0b30d0  [self setStartMusicBeforeEnd:[[arg1 objectForKey:@"startMusicBeforeEnd"] floatValue]]
+  0b30ec  [self setSpeed:2]
+  0b3104  [arg1 objectForKey:@"spawn_distance"]
+  0b3114  if ([arg1 objectForKey:@"spawn_distance"] == 0) goto loc_1000b320c
+  0b3128  [arg1 objectForKey:@"spawn_angle"]
+  0b3144  if ([arg1 objectForKey:@"spawn_angle"] == 0) goto loc_1000b320c
+  0b315c  [arg1 objectForKey:@"spawn_angle"]
+  0b3170  [[arg1 objectForKey:@"spawn_angle"] floatValue]
+  0b3194  [arg1 objectForKey:@"spawn_distance"]
+  0b31a8  [[arg1 objectForKey:@"spawn_distance"] floatValue]
+  0b31e0  d0 = sin((([[arg1 objectForKey:@"spawn_angle"] floatValue] * 3.14159) / 180)), d1 = cos((([[arg1 objectForKey:@"spawn_angle"] floatValue] * 3.14159) / 180))
+  0b31e4  t1 = ([[arg1 objectForKey:@"spawn_distance"] floatValue] * sin((([[arg1 objectForKey:@"spawn_angle"] floatValue] * 3.14159) / 180)))
+  0b31ec  t2 = ([[arg1 objectForKey:@"spawn_distance"] floatValue] * cos((([[arg1 objectForKey:@"spawn_angle"] floatValue] * 3.14159) / 180)))
+  0b3204  [self setPosition:{t1, t2}]
+  0b3208  goto loc_1000b3398
+loc_1000b320c:
+  0b3220  [arg1 objectForKey:@"position"]
+  0b3234  if ([arg1 objectForKey:@"position"] == 0) goto loc_1000b3398
+  0b324c  [arg1 objectForKey:@"position"]
+  0b325c  CGPointFromString([arg1 objectForKey:@"position"])
+  0b3270  [self setPosition:{d0, d1}]
+  0b3290  [arg1 objectForKey:@"finalPosition"]
+  0b32a4  if ([arg1 objectForKey:@"finalPosition"] == 0) goto loc_1000b3398
+  0b32bc  [arg1 objectForKey:@"finalPosition"]
+  0b32cc  CGPointFromString([arg1 objectForKey:@"finalPosition"])
+  0b32e0  [self setFinalPosition:{d0, d1}]
+  0b3304  [self finalPosition]
+  0b3324  [self position]
+  0b3338  [self finalPosition]
+  0b334c  [self position]
+  0b3364  t3 = (([self finalPosition].0 - [self position].0) * ([self finalPosition].0 - [self position].0))
+  0b3368  t4 = (([self finalPosition].1 - [self position].1) * ([self finalPosition].1 - [self position].1))
+  0b3394  [self setOrientation:{(([self finalPosition].0 - [self position].0) / sqrt((t3 + t4))), (([self finalPosition].1 - [self position].1) / sqrt((t3 + t4)))}]
+loc_1000b3398:
+  0b33b0  [S3DEngine engine]
+  0b33d4  [ADBrickManager sharedBrickManager]
+  0b33f0  [[ADBrickManager sharedBrickManager] currentBrickName]
+  0b3414  [[S3DEngine engine] playListWithName:[[ADBrickManager sharedBrickManager] currentBrickName]]
+  0b3430  self->playlist = [[S3DEngine engine] playListWithName:[[ADBrickManager sharedBrickManager] currentBrickName]]
+  0b3464  [self spawn_time]
+  0b346c  &@selector(setState:)
+  0b3478  if ([self spawn_time] == 0.0) goto loc_1000b3490
+  0b3488  [self setState:1]
+  0b348c  goto loc_1000b34a0
+loc_1000b3490:
+  0b349c  [self setState:0]
+loc_1000b34a0:
+  0b34b4  [self initSound]
+loc_1000b34b8:
+  0b34e4  return
+
+== -[ADSound initSound]   (address 0x1000b3594  size 896  kind objc)
+  0b35c0  [self name]
+  0b35d8  [self name]
+  0b3600  [[self name] rangeOfString:@"BUTTONMODE"]
+  0b3618  if ([[self name] rangeOfString:@"BUTTONMODE"] == 0x7fffffffffffffff) goto loc_1000b36bc
+  0b3630  [ADGameParameters sharedParameters]
+  0b364c  [[ADGameParameters sharedParameters] buttonMode]
+  0b3660  &@selector(stringByReplacingOccurrencesOfString:withString:)
+  0b3668  if ([[ADGameParameters sharedParameters] buttonMode] == 0) goto loc_1000b368c
+  0b3680  [[self name] stringByReplacingOccurrencesOfString:@"BUTTONMODE" withString:@"buttonMode"]
+  0b3688  goto loc_1000b36a8
+loc_1000b368c:
+  0b36a0  [[self name] stringByReplacingOccurrencesOfString:@"BUTTONMODE" withString:@"gestureMode"]
+loc_1000b36a8:
+loc_1000b36bc:
+  0b36c4  [self name]
+  0b36e0  [[self name] rangeOfString:@"CONTROLMODE"]
+  0b36f8  if ([[self name] rangeOfString:@"CONTROLMODE"] == 0x7fffffffffffffff) goto loc_1000b3868
+  0b3714  [ADGameParameters sharedParameters]
+  0b3734  [[ADGameParameters sharedParameters] controlScheme]
+  0b3748  if ([[ADGameParameters sharedParameters] controlScheme] != 1) goto loc_1000b3788
+  0b376c  [x0 stringByReplacingOccurrencesOfString:@"CONTROLMODE" withString:@"gyroMode"]
+loc_1000b3788:
+  0b3790  [ADGameParameters sharedParameters]
+  0b37a4  [[ADGameParameters sharedParameters] controlScheme]
+  0b37b8  if ([[ADGameParameters sharedParameters] controlScheme] != 2) goto loc_1000b37f8
+  0b37dc  [x0 stringByReplacingOccurrencesOfString:@"CONTROLMODE" withString:@"swipeMode"]
+loc_1000b37f8:
+  0b3800  [ADGameParameters sharedParameters]
+  0b3814  [[ADGameParameters sharedParameters] controlScheme]
+  0b3828  if ([[ADGameParameters sharedParameters] controlScheme] != 3) goto loc_1000b3868
+  0b384c  [x0 stringByReplacingOccurrencesOfString:@"CONTROLMODE" withString:@"tiltMode"]
+loc_1000b3868:
+  0b3884  [self->playlist S3DSound:x2]
+  0b38a8  [self setSound:[self->playlist S3DSound:x2]]
+  0b38cc  return
+
+== -[ADSound update:]   (address 0x1000b3914  size 1848  kind objc)
+  0b3950  [self state]
+  0b3958  if ([self state] != 2) goto loc_1000b3b34
+  0b3970  [self startMusicBeforeEnd]
+  0b3978  if ([self startMusicBeforeEnd] <= (or unordered) 0.0) goto loc_1000b3b90
+  0b3988  if (self->startedMainMenuMusic != 0) goto loc_1000b3b90
+  0b39a0  [self timeInState]
+  0b39bc  [self sound]
+  0b39dc  [[self sound] duration]
+  0b39ec  [self startMusicBeforeEnd]
+  0b39f8  if ([self timeInState] <= (or unordered) ([[self sound] duration] - [self startMusicBeforeEnd])) goto loc_1000b3b88
+  0b3a04  [self sound]
+  0b3a18  [[self sound] duration]
+  0b3a34  if ([[self sound] duration] <= (or unordered) 0.0) goto loc_1000b3b90
+  0b3a48  [self timeInState]
+  0b3a58  [self sound]
+  0b3a6c  [[self sound] duration]
+  0b3a94  [NSString stringWithFormat:@"Start music before end : %f / %f", [self timeInState], [[self sound] duration]]
+  0b3ab0  NSLog(@"%@", [NSString stringWithFormat:@"Start music before end : %f / %f", [self timeInStat…)
+  0b3ac8  self->startedMainMenuMusic = 1
+  0b3ae0  [UIApplication sharedApplication]
+  0b3afc  [[UIApplication sharedApplication] delegate]
+  0b3b20  [[[UIApplication sharedApplication] delegate] startMenuMusic:@"main_menu_theme"]
+  0b3b30  goto loc_1000b3b8c
+loc_1000b3b34:
+  0b3b38  if ([self state] != 1) goto loc_1000b3f3c
+  0b3b4c  [self timeInState]
+  0b3b64  [self spawn_time]
+  0b3b6c  if ([self timeInState] <= (or unordered) [self spawn_time]) goto loc_1000b3f3c
+  0b3b80  [self play]
+  0b3b84  goto loc_1000b3f3c
+loc_1000b3b88:
+loc_1000b3b8c:
+loc_1000b3b90:
+  0b3ba4  [self sound]
+  0b3bc4  [[self sound] duration]
+  0b3bcc  if ([[self sound] duration] == 0.0) goto loc_1000b3bd8
+  0b3bd4  goto loc_1000b3c18
+loc_1000b3bd8:
+  0b3be8  [self name]
+  0b3c0c  [[self name] isEqualToString:@"silence"]
+  0b3c10  if ([[self name] isEqualToString:@"silence"] == 0) goto loc_1000b3d54
+loc_1000b3c18:
+  0b3c28  [self timeInState]
+  0b3c38  [self sound]
+  0b3c4c  [[self sound] duration]
+  0b3c5c  if (one of {0, 1} == 0) goto loc_1000b3c68
+loc_1000b3c68:
+  0b3c74  if ([self timeInState] <= (or unordered) [[self sound] duration]) goto loc_1000b3d64
+  0b3c88  [self sound]
+  0b3ca4  [[self sound] key]
+  0b3cbc  [self sound]
+  0b3cd0  [[self sound] duration]
+  0b3cf8  [NSString stringWithFormat:@"[%@] sound finished after %f", [[self sound] key], [[self sound] duration]]
+  0b3d14  NSLog(@"%@", [NSString stringWithFormat:@"[%@] sound finished after %f", [[self sound] key], …)
+  0b3d4c  [self finishSoundWithSkip:0]
+  0b3d50  goto loc_1000b3f3c
+loc_1000b3d54:
+loc_1000b3d64:
+  0b3d78  [self orientation]
+  0b3d80  if ([self orientation].0 != 0.0) goto loc_1000b3d98
+  0b3d8c  [self orientation]
+  0b3d94  if ([self orientation].1 == 0.0) goto loc_1000b3f3c
+loc_1000b3d98:
+  0b3dac  [self position]
+  0b3dbc  [self orientation]
+  0b3dd8  [self speed]
+  0b3df8  [self position]
+  0b3e08  [self orientation]
+  0b3e18  [self speed]
+  0b3e40  [self setPosition:{([self position].0 + (arg1 * ([self orientation].0 * [self speed]))), ([self position].1 + (arg1 * ([self orientation].1 * [self speed])))}]
+  0b3e58  [self finalPosition]
+  0b3e68  [self position]
+  0b3e78  [self finalPosition]
+  0b3e88  [self position]
+  0b3e98  [self sound]
+  0b3eb0  [self position]
+  0b3ec0  [self position]
+  0b3ee0  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+  0b3efc  t1 = (([self finalPosition].0 - [self position].0) * ([self finalPosition].0 - [self position].0))
+  0b3f00  t2 = (([self finalPosition].1 - [self position].1) * ([self finalPosition].1 - [self position].1))
+  0b3f18  if ((t1 + t2) >= (or unordered) self->squaredDistanceFromFinalPosition) goto loc_1000b3f24
+  0b3f1c  self->squaredDistanceFromFinalPosition = (t1 + t2)
+  0b3f20  goto loc_1000b3f3c
+loc_1000b3f24:
+  0b3f38  [self setSpeed:0]
+loc_1000b3f3c:
+  0b3f4c  [self timeInState]
+  0b3f88  tail [self setTimeInState:([self timeInState] + arg1)]
+  0b3f90  if (w25 == 0) goto loc_1000b4004
+  0b3f94  goto loc_1000b3ffc
+loc_1000b3f9c:
+  0b3fa0  goto loc_1000b4008
+  0b3fa8  goto loc_1000b4004
+  0b3fb8  if ((w25 & 1)) goto loc_1000b3ffc
+  0b3fbc  goto loc_1000b4004
+  0b3fc4  goto loc_1000b3fec
+  0b3fcc  goto loc_1000b4020
+  0b3fd4  goto loc_1000b4004
+  0b3fdc  goto loc_1000b3ffc
+loc_1000b3fec:
+  0b3ff4  goto loc_1000b3ffc
+loc_1000b3ffc:
+loc_1000b4004:
+loc_1000b4008:
+loc_1000b4020:
+  0b4024  goto loc_1000b4008
+  0b402c  goto loc_1000b3f9c
+  0b4030  goto loc_1000b403c
+  0b4038  goto loc_1000b3f9c
+loc_1000b403c:
+  0b4048  goto loc_1000b3f9c
+
+== -[ADSound skip]   (address 0x1000b404c  size 20  kind objc)
+  0b405c  tail [self finishSoundWithSkip:1]
+
+== -[ADSound finishSoundWithSkip:]   (address 0x1000b4060  size 268  kind objc)
+  0b4084  [self sound]
+  0b40a0  [[self sound] stop]
+  0b40c0  [self setState:3]
+  0b40d8  [ADBrickManager sharedBrickManager]
+  0b40f8  [self name]
+  0b4120  [[ADBrickManager sharedBrickManager] soundOrEnemyWithNameWasDeactivated:[self name] withSkip:arg1]
+  0b413c  return
+
+== -[ADSound play]   (address 0x1000b416c  size 716  kind objc)
+  0b4190  [self stopsOtherSounds]
+  0b4194  if ([self stopsOtherSounds] == 0) goto loc_1000b41d4
+  0b41ac  [ADBrickManager sharedBrickManager]
+  0b41c8  [[ADBrickManager sharedBrickManager] stopAllSoundsInCurrentBrick]
+loc_1000b41d4:
+  0b41e8  [self position]
+  0b41f0  if ([self position].0 != 0.0) goto loc_1000b4208
+  0b41fc  [self position]
+  0b4204  if ([self position].1 == 0.0) goto loc_1000b42a4
+loc_1000b4208:
+  0b421c  [self sound]
+  0b423c  [[self sound] setSpatialized:1]
+  0b4250  [self sound]
+  0b4268  [self position]
+  0b4278  [self position]
+  0b4298  [[self sound] setPlanar:{[self position].0, [self position].1, 0}]
+loc_1000b42a4:
+  0b42b8  [self sound]
+  0b42d8  [self loop]
+  0b42f0  [[self sound] play:[self loop]]
+  0b4310  [self gain]
+  0b4318  if ([self gain] <= (or unordered) 0.0) goto loc_1000b435c
+  0b4324  [self sound]
+  0b433c  [self gain]
+  0b4350  [[self sound] setGain:[self gain]]
+loc_1000b435c:
+  0b4370  [self setState:2]
+  0b4388  [ADBrickManager sharedBrickManager]
+  0b43a8  [self name]
+  0b43cc  [[ADBrickManager sharedBrickManager] checkSpawnOnStart:[self name]]
+  0b43ec  return
+
+== -[ADSound stopWithNoCallback]   (address 0x1000b4438  size 184  kind objc)
+  0b4458  [self state]
+  0b4460  if ([self state] == 2) goto loc_1000b4478
+  0b446c  [self state]
+  0b4474  if ([self state] != 1) goto loc_1000b44d0
+loc_1000b4478:
+  0b448c  [self setState:3]
+  0b44a0  [self sound]
+  0b44bc  [[self sound] stop]
+  0b44cc  return
+loc_1000b44d0:
+  0b44d8  return
+
+== -[ADSound setState:]   (address 0x1000b44f0  size 208  kind objc)
+  0b451c  if (self->_state != arg1) goto loc_1000b4534
+  0b4530  return
+  0b4544  [self name]
+  0b4564  [self state]
+  0b4574  NSLog(@"[%@] Change ADSound state to : %i", [self name], [self state])
+  0b4580  self->_state = arg1
+  0b45a8  tail [self setTimeInState:0]
+
+== -[ADSound pause]   (address 0x1000b45c0  size 180  kind objc)
+  0b45e4  [self sound]
+  0b4600  [[self sound] playing]
+  0b460c  self->soundWasPlaying = [[self sound] playing]
+  0b4620  [self sound]
+  0b463c  [[self sound] pause]
+  0b4650  return
+
+== -[ADSound resume]   (address 0x1000b4674  size 120  kind objc)
+  0b468c  if (self->soundWasPlaying == 0) goto loc_1000b46cc
+  0b469c  [self sound]
+  0b46b8  [[self sound] resume]
+  0b46c8  return
+loc_1000b46cc:
+  0b46d4  return
+
+== -[ADSound speed]   (address 0x1000b46ec  size 16  kind objc)
+  0b46f8  return
+
+== -[ADSound setSpeed:]   (address 0x1000b46fc  size 16  kind objc)
+  0b4704  self->_speed = arg1
+  0b4708  return
+
+== -[ADSound name]   (address 0x1000b470c  size 16  kind objc)
+  0b4718  return
+
+== -[ADSound setName:]   (address 0x1000b471c  size 56  kind objc)
+  0b4740  self->_name = arg1
+  0b4750  return
+
+== -[ADSound spawn_time]   (address 0x1000b4754  size 16  kind objc)
+  0b4760  return
+
+== -[ADSound setSpawn_time:]   (address 0x1000b4764  size 16  kind objc)
+  0b476c  self->_spawn_time = arg1
+  0b4770  return
+
+== -[ADSound gain]   (address 0x1000b4774  size 16  kind objc)
+  0b4780  return
+
+== -[ADSound setGain:]   (address 0x1000b4784  size 16  kind objc)
+  0b478c  self->_gain = arg1
+  0b4790  return
+
+== -[ADSound position]   (address 0x1000b4794  size 20  kind objc)
+  0b47a4  return
+
+== -[ADSound setPosition:]   (address 0x1000b47a8  size 20  kind objc)
+  0b47b8  return
+
+== -[ADSound finalPosition]   (address 0x1000b47bc  size 20  kind objc)
+  0b47cc  return
+
+== -[ADSound setFinalPosition:]   (address 0x1000b47d0  size 20  kind objc)
+  0b47e0  return
+
+== -[ADSound orientation]   (address 0x1000b47e4  size 20  kind objc)
+  0b47f4  return
+
+== -[ADSound setOrientation:]   (address 0x1000b47f8  size 20  kind objc)
+  0b4808  return
+
+== -[ADSound timeInState]   (address 0x1000b480c  size 20  kind objc)
+  0b481c  return
+
+== -[ADSound setTimeInState:]   (address 0x1000b4820  size 20  kind objc)
+  0b482c  self->_timeInState = arg1
+  0b4830  return
+
+== -[ADSound spawn_after]   (address 0x1000b4834  size 16  kind objc)
+  0b4840  return
+
+== -[ADSound setSpawn_after:]   (address 0x1000b4844  size 56  kind objc)
+  0b4868  self->_spawn_after = arg1
+  0b4878  return
+
+== -[ADSound state]   (address 0x1000b487c  size 16  kind objc)
+  0b4888  return
+
+== -[ADSound loop]   (address 0x1000b488c  size 16  kind objc)
+  0b4898  return
+
+== -[ADSound setLoop:]   (address 0x1000b489c  size 16  kind objc)
+  0b48a4  self->_loop = arg1
+  0b48a8  return
+
+== -[ADSound blocker]   (address 0x1000b48ac  size 16  kind objc)
+  0b48b8  return
+
+== -[ADSound setBlocker:]   (address 0x1000b48bc  size 16  kind objc)
+  0b48c4  self->_blocker = arg1
+  0b48c8  return
+
+== -[ADSound stopsOtherSounds]   (address 0x1000b48cc  size 16  kind objc)
+  0b48d8  return
+
+== -[ADSound setStopsOtherSounds:]   (address 0x1000b48dc  size 16  kind objc)
+  0b48e4  self->_stopsOtherSounds = arg1
+  0b48e8  return
+
+== -[ADSound sound]   (address 0x1000b48ec  size 16  kind objc)
+  0b48f8  return
+
+== -[ADSound setSound:]   (address 0x1000b48fc  size 56  kind objc)
+  0b4920  self->_sound = arg1
+  0b4930  return
+
+== -[ADSound skippable]   (address 0x1000b4934  size 16  kind objc)
+  0b4940  return
+
+== -[ADSound setSkippable:]   (address 0x1000b4944  size 16  kind objc)
+  0b494c  self->_skippable = arg1
+  0b4950  return
+
+== -[ADSound startMusicBeforeEnd]   (address 0x1000b4954  size 16  kind objc)
+  0b4960  return
+
+== -[ADSound setStartMusicBeforeEnd:]   (address 0x1000b4964  size 16  kind objc)
+  0b496c  self->_startMusicBeforeEnd = arg1
+  0b4970  return
+
+== -[ADSound .cxx_destruct]   (address 0x1000b4974  size 104  kind objc)
+
+== -[ADSound .cxx_construct]   (address 0x1000b49dc  size 4  kind objc)
+  0b49dc  return

@@ -1,0 +1,595 @@
+# Windows port — status, controls and divergences
+
+The port is written method by method against the disassembly (`python tools/query.py digest|fn …`);
+each ported method carries its original address in a comment. This file records what is ported, the
+input mapping that replaces touch and motion, and every place the port knowingly differs.
+
+## Running
+
+```
+python AudioDefence.py                  # the game: logo, opener (or first control scheme choice), main menu
+python AudioDefence.py --endless
+python AudioDefence.py --challenge tutorial_1
+```
+
+Testing flags: `--mute`, `--no-speech`, `--exit-after SECONDS`, `--log-level debug`.
+The log is written to `%APPDATA%\AudioDefence\audiodefence.log`; saves live in the same folder.
+
+## Ported so far
+
+| area | modules |
+|---|---|
+| audio engine (S3D on OpenAL Soft, HRTF from the embedded IRCAM set, original Freeverb reverb) | `s3d/` |
+| run loop, NSTimer, notifications, NSUserDefaults, C rand | `platform/` |
+| speech (NVDA controller client, SAPI fallback) | `platform/speech.py` |
+| parameters, modifiers, inventory, persistent + in-game stats | `game/parameters.py`, `modifiers.py`, `inventory.py`, `persistent_stats.py`, `ingame_stats.py` |
+| enemies, passers-by (cows, cars, jukebox, machine), diamonds, power-up containers | `game/enemy.py`, `passerby.py`, `passerby_manager.py` |
+| bricks, brick manager, scripted sounds | `game/brick.py`, `brick_manager.py`, `adsound.py` |
+| weapons, melee, projectiles, weapon manager | `game/weapon.py`, `projectile.py`, `weapon_manager.py` |
+| power-ups (minigun, fireworks, tornado, tesla) and cooldown manager | `game/powerups.py` |
+| ambience, player (tinnitus, heartbeat), missions, challenge data | `game/ambient.py`, `player.py`, `missions.py`, `challenge_data.py` |
+| gameplay controllers (endless, challenge, opener), revive, pause | `game/gameplay.py` |
+| app delegate (launch, menu music, navigation) | `app.py` |
+| VoiceOver stand-in, ADNoBarViewController / ADViewController, status bar | `ui/accessibility.py`, `ui/viewcontroller.py` |
+| logo, first control scheme choice, main menu, play menu, info pages | `ui/menus.py` |
+| tarot (Endless start) | `ui/tarot.py` |
+| Endless game over for screen reader users | `ui/gameover.py` |
+| world list, challenge selector, challenge overview, challenge completed / failed | `ui/challenges.py` |
+| armory: tabs, weapon shop, loadout, power-ups, currency, weapon and power-up detail views | `ui/armory.py` |
+| settings, pause, control scheme table | `ui/settings.py` |
+| stats portal: Zombiepedia, Statistics, Credits | `ui/statsportal.py`, `ui/credits_text.py` |
+
+Every screen a player can reach with a screen reader is ported, so the port test menu is gone.
+
+Not ported, and unreachable in the original: `ADScenarioRouletteViewController` and `ADStoryViewController`
+(`goToRoulette` / `goToStory` have no callers, no nib action and no selector string reaches them),
+`ADCheatViewController` (the main menu's cheat button is hidden), `ADEnemyUnlockPopupViewController` and
+`ADScoreFeedbackViewController` (never allocated).  The non-accessible (sighted) variants of the ported
+screens are not ported either: the port always runs with a screen reader.  A screen that is not ported shows
+a placeholder with "Main menu", or "Close" when it was presented.
+
+## Menu controls (VoiceOver stand-in)
+
+Menu screens are built from the iPhone nibs (the 568x320 tag-2781 layout) and read like VoiceOver reads
+them: elements top to bottom, then left to right, with their accessibility labels, "button", "dimmed" and
+hints.
+
+| key | VoiceOver gesture |
+|---|---|
+| Right / Tab | flick right: next element |
+| Left / Shift+Tab | flick left: previous element |
+| Ctrl+Right / Ctrl+Left, End / Home | first / last element |
+| Enter / Space | double tap: activate |
+| Shift+Enter | a row's second action, where it has one (Settings: the previous sensitivity value) |
+| Escape / Backspace | two-finger scrub: `accessibilityPerformEscape` (the Back button on screens with a status bar) |
+| F2 | two-finger double tap: `accessibilityPerformMagicTap` (Play on the main menu, tarot, game over) |
+| Ctrl+Tab / Ctrl+Shift+Tab | last / first element, as End / Home do |
+| Down / Up (the unused pair) | next / previous tab or category, where the screen has them |
+| Ctrl+Down / Ctrl+Up (the unused pair) | last / first tab or category |
+| F1 | read the focused element again |
+
+PORT ADDITION: which pair of arrows moves the cursor is a setting - Left and Right by default, Up and Down
+instead if Settings -> Menus -> Menu arrows is switched (`GameParameters.menu_axis`, defaults key
+`menuAxis`).  The unused pair does nothing in a menu; Tab, Shift+Tab, Home and End are not affected.  A
+swipe has no direction to choose, so none of this comes from the original.
+
+PORT ADDITION: holding a key that steps one element repeats it (`ScreenManager._hold_navigation_key`,
+0.4 s then every 0.09 s).  Only 'next' and 'previous' repeat, and only while a menu screen is on top, so
+the ends, Enter and every gameplay key are left alone.  VoiceOver's own repeat comes from the swipe being
+repeated, so there is nothing in the original to copy here.
+
+PORT UI: Settings holds five categories - Aiming, Controls, Sound, Menus and Keyboard.  Menus carries the
+two settings that describe how the cursor moves through a screen (the menu arrows and whether a screen
+reopens where you left it), because those hold whatever device is driving it; Keyboard carries the key
+bindings alone, so a Joystick category can sit beside it without either moving.  Each category restores its
+own defaults.
+
+PORT ADDITION: the pair that does not move the cursor changes tab (`cross_axis_key`), so the two are always
+different keys.  The armory steps through its four tab buttons (`ArmoryScreen.step_tab`, skipping Loadout
+when it is not enabled, since its button only raises the EQUIP alert) and the settings panel steps through
+its categories (`ControlSchemePanel.step_category`), which is the only way to reach one: the settings
+screen opens inside Aiming with that category's heading as its first row, so there is no list of categories
+and Escape always leaves the screen.  Both name what they opened before reading the element they land on
+(`post_screen_changed(element, prefix)`), and both hold at the ends.  The original has neither:
+its tab bar is tapped directly, and its nib label says so - "Change tabs at the bottom of the screen to
+navigate the armory", which the port replaces with the keys that do it here.
+
+## Gameplay controls (port input mapping)
+
+The original is played by touch plus device motion; with VoiceOver running it replaces the touch views with
+`ADAccessibleGameView`. The port does the same when NVDA runs, sending keys as touches in the matching
+screen quadrant of the button-mode layout.
+
+These are the defaults; every gameplay key can be rebound in Settings -> Keyboard, and "Restore default
+keys" puts them back.
+
+Next weapon and Reload are bound per control scheme (`KeyMap.BY_MODE`, stored as
+`{"button": [...], "gesture": [...]}` under the `keymap` default).  Under Gesture the key stands for a
+swipe, so the arrows keep the swipe's direction; under Button it stands for a corner button, where nothing
+is directional, so the defaults are W and R.  Rebinding one scheme leaves the other alone, and a key bound
+in one scheme does nothing in the other.  Every other action is a single binding shared by both.
+
+| key | gesture mode | button mode |
+|---|---|---|
+| Space tap / hold | tap = single shot, hold over 0.2 s = continuous fire | top-right corner: tap = fire, hold = continuous |
+| Left / Right Ctrl | triple tap: melee | top-left corner: melee |
+| Up arrow / **W** | swipe up: next weapon | bottom-left corner: next weapon |
+| Down arrow / **R** | swipe down: reload | bottom-right corner: reload |
+| Left / Right | turn (see control schemes) | same |
+| Escape | Pause button | same |
+| Enter | Skip button (challenge narration; opener) | same |
+| T | read the challenge timer label | same |
+
+The revive screen after a death is read like the menus (VoiceOver starts on the tip, then Revive and Game
+over); F2, the magic tap, presses Game over.
+
+Control schemes (the original's `controlScheme`):
+
+* 1 gyro: holding an arrow rotates the virtual device yaw at 2 rad/s (port choice, `KeyboardMotion.yaw_rate`).
+* 2 swipe: holding an arrow drags at 600 points/s (port choice, `SWIPE_POINTS_PER_SECOND`).
+* 3 tilt: holding an arrow tilts the virtual device by 0.5 rad (port choice, `KeyboardMotion.tilt`).
+
+The heading itself goes through the original scroll-view model: a 430-point `line.png` strip
+(`line@2x.png`, iPhone nib), `(int)offset % (int)width`, and the 5.68889 points-per-degree swipe scale.
+
+## Divergences
+
+* `-[ADWeapon playSingleShootSound]` spins on the main thread until it picks a `_fire_` sound that is not
+  playing; with no such sound it would hang forever (the port returns instead).  The weapons' fire sounds last
+  1 to 1.7 s while the Tactical Rifle fires every 0.25 s and the Micro SMG every 0.2 s, so after a few quick
+  shots every fire sound is still playing and the original waits - the whole game froze for up to a second,
+  after the hit sounds had already started.  When every fire sound is still playing the port gives the shot a
+  source of its own (`S3DEngine.play_copy_of`) so the shots overlap: an S3DSound owns one OpenAL source, and
+  playing it again restarts it, which is heard as the last shot being cut off.  Measured over 20 shots: the
+  Tactical Rifle cut 17 of them before this, none after; the Hunting Rifle (0.6 s) never needed it.
+* Sound files are decoded ahead of time on a background thread when their playlist is activated, and streamed
+  sounds (music, ambience) load in the background like the original's engine-queue loading, so first plays do
+  not stall the game (the port used to decode on the main thread: 3-70 ms per new sound, 0.3-0.5 s for an
+  ambience at the start of a game).
+* `-[ADAppDelegate pauseGame]` presents the pause screen even over an already paused game (or the revive
+  view). The port ignores focus loss while paused so screens cannot stack.
+* The stats screen's "Money earned" and "Diamonds collected" rows are dead in the original: nothing writes
+  those keys (`saveCoinsData:` 0x1000869f4 and `saveDiamondsData:` 0x100086c2c only ever add to
+  "Total Money Spent" and "Total Diamonds Spent", which no screen shows), so both read 0 for ever.  The
+  port credits them as a run's rewards are paid out (`save_coins_earned`, `save_diamonds_earned`) and adds
+  a "Money spent" and a "Diamonds spent" row beside them, reading the totals the original already keeps.
+* `-[ADAppDelegate pauseGame]` tests `isKindOfClass:[ADGameplayViewController class]`, and
+  `ADOpenerGameplayViewController` is one, so the original pauses the opener as well when the app resigns
+  active.  On a phone that is a phone call or the home button; on Windows it is every alt-tab, so the port
+  pauses real gameplay only (`App.pause_game`).  The logo and the menus never paused in either.
+* The settings rows play `click_button` when pressed.  The original's accessible table is silent, but its
+  sighted twin's rows are `ADButtonWithFont`s, which click (`-[ADButtonWithFont playSound]` 0x100073578) -
+  and the port's categories are pressed like buttons, so they click like them.
+* `-[ADAppDelegate startMenuMusic:]`'s sound monitor returns an undefined BOOL (a tail call into
+  `objc_release`); the port keeps monitoring.
+* ARC deallocation side effects (`-[ADWeapon dealloc]` deactivating the weapon playlist, `-[ADPlayer dealloc]`)
+  run where the owning reference is dropped.
+* Analytics (`ADTracker`, Google Analytics) only log locally.
+* `-[ADBrickManager runSanityCheck]` (log-only) is not ported; its `loadBrickChancePlist:` side effects are.
+* `-[ADTarotCardViewController flipCard:]` 0x1000a5e50 returns at once while VoiceOver runs, and the flip
+  sound is played at the end of the animation it skips, so a VoiceOver player hears nothing at all while the
+  two cards are dealt.  The port keeps the animation skipped and plays the sound, one card at a time (about
+  1 s and 2 s in), so the deal is audible.
+* `-[ADStatusBarViewController deactivateButtons]` 0x10001cee4 fades the Back and Armory buttons to alpha 0
+  while a screen animates in - on the tarot screen, the 2.3 s of the deal - which takes them out of the
+  reading order for those seconds: long enough to arrow past where the Armory button is about to appear and
+  think it is missing.  The port keeps the lock-out but dims them instead of hiding them, so the screen has
+  the same shape throughout and the buttons say why they cannot be pressed yet.
+* The armory's nib label (#2) is an element VoiceOver reads; the port says its line when the armory opens -
+  after the tab it opens on, "Weapons. Up and Down change tab..." - and leaves it out of the reading order.
+  The four tab buttons (#38, #6, #76, #10) are left out too: the arrows change tab and name what they land
+  on, so the buttons are only the controllers' own state now.  Their "This tab is currently selected" hint
+  goes with them; the opening line says which tab you are in instead.
+* Four of the game's strings are written in capitals for the screen - TAROT_NO_RELOAD, CHALLENGE_INFO_TITLE,
+  FACEBOOK_LIKE, TWITTER_FOLLOW.  What is spoken is sentence case, with the label's line breaks collapsed
+  (`data.spoken_text`); the text on screen is unchanged.
+* `Accessible_ADGameOverEndlessViewController viewDidLoad` 0x100099f50 does not call `[super viewDidLoad]`,
+  which is where `startMenuMusic:@"game_over_theme"` lives (0x1000d37cc), so the Endless game over screen is
+  silent - kept, because that screen is the run you just lost rather than a menu.  What the port adds is the
+  theme on the card screen it leads to, which the original leaves silent as well.
+* `-[ADAmbientManager checkAmbiant]` 0x100099444 refuses to start an ambience only when the player is
+  dead.  Ending a game from the pause screen is not a death, and `killGameplay`'s clean-up 0.1 s later
+  reports every enemy as gone, which calls `checkAmbiant` again - with a Chainsaw still in the brick that
+  starts `Chainsaw_ambiant` over, after the game has finished, with nothing left to stop it: it plays on
+  over the menus until the next game.  The port also refuses once `killGameplay` has cleared the gameplay
+  controller, which is what "there is no game any more" looks like.
+* `-[S3DSound resume]` 0x100105694 is one line, `[self setPlayRate:1]`, because the original's engine
+  pauses by play rate; the port pauses the OpenAL source instead, and a stopped source still carried its
+  paused flag - so a later resume (the next pause, or any `AmbientManager.resume`) called alSourcePlay on
+  it and started it again from the beginning.  An enemy's ambience - the Chainsaw's is the audible one -
+  could come back over the menus after the game had ended.  Stopping a sound now clears the flag, and
+  resume only resumes a source that OpenAL still reports as paused.
+* `-[ADInfiniteScrollView awakeFromNib]` 0x10009c4b0 sets the starting content offset (half the content
+  width) *before* it sets itself as the delegate, so `scrollViewDidScroll:` never runs for it and the
+  engine's head orientation stays 0 while the heading is really pi.  On a phone the gyro pushes the real
+  heading within milliseconds; with keys nothing moves until a turn key is pressed, so the first enemies
+  are heard half a turn from where they are - behind sounds in front, right sounds left.  The port sends
+  the starting heading once, at the end of the same setup.
+* The original starts the menu theme on three screens - the main menu, the play menu and the world list -
+  and lets it run on from there (`goToChallengeSelector` 0x1000816e0, `goToTarot`, the challenge overview
+  and the info pages start nothing), so any menu reached straight out of a game is silent.  The port starts
+  it on every menu.  The screens that have a sound of their own keep it: the pause screen, the revive
+  screen, the challenge failed screen (its `gameover_N` jingle) and the two game over screens
+  ("game_over_theme").
+* `-[ADArmoryViewController backButtonPressed]` 0x100076080 dismisses the armory even when a detail view
+  has taken the back button, so Escape inside a weapon or a power-up left the armory altogether.  In the
+  port Escape closes the detail first, exactly as the detail's own Back button does, and closing a detail
+  returns the cursor to the row it was opened from instead of the top of the screen.
+* `-[ADAccessibleGameView solveButtonPress]` 0x10008a914 starts continuous fire when the fire quadrant is
+  tapped in Button mode, however short the press was.  Continuous fire is a looping "_conti" sound, so the
+  release stops it milliseconds later: tapping fire spends bullets almost silently, and because the empty
+  click and the reload call-out are only reached from the continuous update, an empty clip is silent too
+  unless the key is held.  The button that quadrant stands for does the opposite - `ADButtonWithSwipe`
+  fires a single shot when the press is under 0.28 s - and so does Gesture mode, so the port fires a single
+  shot for a tap here as well.  Holding still starts continuous fire, from `update()`, untouched.
+* The power-up upgrader's button is titled "Upgrade for %i" and the currency is a coin image drawn beside
+  it (`setCoins:` then `centerButtonTextWithCoinsImage`, 0x10004da74), which VoiceOver cannot read.  The port
+  keeps the title and speaks "Upgrade for N coins".
+* The Zombiepedia's sound button (nib #170) is an image view with a tap recogniser and no accessibility
+  label - the nib names the two arrows, `applyAccessibility` names the text labels, nothing names this one,
+  so VoiceOver reads its image file as "button audio large".  The port calls it "Preview sound", since it is
+  the only way to hear the zombie at all.  The two arrows are labelled "Previous button" and "Next button" in
+  the nib, which reads as "Next button, button" once the trait is added, so the port calls them "Previous"
+  and "Next" and shortens their hints ("Click to view the next enemy's description. This button will be
+  unavailable if you are at the end of the list" becomes "Click to view the next enemy").
+* The revive screen waits for the killing enemy's `_attack` sound to finish: `-[ADEnemy attack]` 0x100060304
+  registers `add3DSoundEndCallback` -> `afterAttackSound` -> `showReviveView`.  Those sounds run from about a
+  second to 8.7 s (WeakZombieC, WeakZombieD; Chainsaw 8.2 s) and `Jim_attack.m4a` is 71 s, long enough to
+  look like a hang.  The port waits for the sound as the original does but no more than `ADEnemy.REVIVE_AFTER`
+  (5 s); the sound is left to finish underneath.
+* `ADChallengeFailedViewController`'s two buttons (nib #103 and #84) hold an image and nothing else - no
+  title, no accessibility label in the nib or in `viewDidLoad`, and the screen has no `Accessible_` nib - so
+  VoiceOver reads them by their image file name ("menu try again single").  The port labels them "Try again"
+  and "Challenge selection", after the actions they are wired to.
+* Spoken texts that name a touch gesture name the port's key instead: the opener's "Triple tap to skip intro"
+  says "Press Enter to skip intro", a tarot card's "(double tap to change for N diamonds)" says "(press Enter
+  to change for N diamonds)", and the same for the challenge selector's two hints, the armory's tab hints and
+  power-up rows, and the control scheme's "double tap to select" / "Double tap to toggle in-game
+  announcements" / "Double tap to test your headphones".  The Aiming rows also replace the original's device
+  descriptions ("Holding the device in front of you, turn to face the zombie") with one short line each about
+  the turn keys, and the Controls rows say what Button and Gesture change for a keyboard player instead of
+  where to tap and swipe.
+* A button that only carries an image is read by its image file name ("menu try again single"), which is what
+  VoiceOver does with an unlabelled image button; a selected table row is read as "Selected, <row>".
+* Most float ivars are Python doubles. Float32 rounding is reproduced only in the touch hold timers
+  (0.2 s / 0.28 s thresholds, where it moves continuous fire by one 50 ms tick) and in the heading model;
+  other accumulated timers may cross their thresholds one tick differently.
+* With nothing stored, `-[ADGameParameters lastControlScheme]` answers -1 and the first launch goes to the
+  first control scheme screen - whose Gyro button is hidden while a screen reader runs, so Gyro could never
+  be chosen there.  The port starts on **Gyro (scheme 1)** instead, so that screen is skipped; Settings ->
+  Aiming still offers Gyro, Swipe and Tilt.
+* `-[ADGameParameters isHeadsetPluggedIn]` always answers YES (Windows cannot reliably tell headphones from
+  speakers), so the main menu's "Wear headphones" alert is not shown.
+* Game Center is removed entirely (user request): the main menu has no Game Center button, and neither the
+  main menu's player authentication nor the game over score report exists.
+* The stats portal's "More games" button (ADMoreGamesViewController) is left out (user request);
+  Zombiepedia, Stats and Credits are there.
+* The armory's currency tab is an empty table: its row count comes from a `products` array that nothing in
+  the binary ever sets, so the four "free coins" actions it can build (Facebook, Twitter, more games, App
+  Store - all of them open web pages) are unreachable in the shipped game and none of them is ported.
+* The armory's 1 ms browsing timer only feeds the analytics tracker, so the port does not run it.
+* The Zombiepedia's detail pages live side by side in a scroll view; the port only lets the screen reader
+  into the page being shown (iOS clips the others).
+* A modal view (`accessibilityViewIsModal`) hides its siblings from the screen reader, as UIKit documents:
+  the armory's weapon description leaves the tab buttons and the status bar reachable, while the power-up
+  upgrader - a child of the armory's own view - hides them (it has its own Back button).
+* The game over screen's "Share on twitter" button is removed (user request).
+* PORT UI: Settings (and the settings part of the pause screen) opens its options as categories - Aiming,
+  Controls, Sound, Keyboard - instead of the accessible table's one list under headings; Enter opens a
+  category, Escape leaves it.  The original's sighted control scheme screen has the same three as tabs.
+  Every change is spoken ("Tilt selected", "Announcer ON", "Turn sensitivity 2").
+* PORT ADDITION: the Aiming category can set the turn sensitivity (0.5 to 3, default 1.5, Enter for the next
+  value and Shift+Enter for the previous, wrapping round) and restore the aiming defaults.  The original only has that slider on its sighted screen, and stores the value with
+  `setInteger:` so 1.5 comes back as 1; the port stores a float.  Sensitivity scales the port's gyro and
+  swipe turn rates the way it scales the original's tilt formula.
+* PORT ADDITION: `platform/keymap.py` holds the key bindings (the original is touch driven, so it has none).
+  Settings -> Keyboard rebinds any gameplay action - press Enter on a row, then the new key, or Escape to
+  keep the old one - and "Restore default keys" resets them.  Melee defaults to Left or Right Ctrl.
+* PORT ADDITION: the main menu has a Quit button, read last, which shuts the engine down and ends the run
+  loop; iOS apps have no Quit.
+* View controller presentations and UIView animations are not animated: a screen appears at once, and
+  animation completions run after the animation's duration.
+* VoiceOver's reading order is approximated from the nib frames (see `ui/accessibility.py`), and no
+  screen wraps: moving past the last element (or before the first) stays there, alerts included.
+* The original reverb (csl::Stereoverb: two Freeverbs, 6 combs and 3 allpasses each) runs in the port
+  itself (`s3d/reverb.py`, checked against the per-sample model in `tools/reverb_calibrate.py`).  Sounds that
+  send to it play on a second OpenAL Soft device (loopback, same HRTF) whose render is mixed with the reverb
+  into the output through a callback source: about 0.5 ms later than sounds on the output device.  Only
+  dryGain = wetGain = 1 is supported, the only values the game uses.
+* The per-sound hard clip of the binaural panner (`vDSP_vclip ±1`) is not reproduced.
+* Dying in a challenge starts no music.  `-[ADChallengeGameplayViewController showDeathOverlay]` 0x1000db788
+  calls `startMenuMusic:@"game_over_theme"` at 0x0db7f0 with nothing guarding it, yet in a recording of the
+  real game no theme is heard when you die in a challenge, nor on the retry screen that follows.  What plays
+  there is that screen's own sting, a random `gameover_1..3` started by `-[ADChallengeFailedViewController
+  viewDidLoad]` 0x100071718 at 0x071c90, and the theme returns only at the challenge selector.  Checked and
+  ruled out as the cause: `startMenuMusic:` 0x100082ca0 and its two early exits, `killGameplay` 0x10005c170
+  and its 0.1 s block, `playListWithName:` 0x1000fc050 (cached, still returns the playlist once deactivated),
+  `activate:` 0x1000fe9c0 (it only skips while already activating), the retry screen's own `viewDidLoad`, and
+  all three callers of `stopMenuMusic`.  The mechanism is unidentified - most likely something in S3D's
+  asynchronous activation on the device - so this one item follows the ear rather than the line.  Pressing
+  End Challenge never reaches here at all, which is why that path was already silent.
+* A wave is not reported cleared before its sounds exist.  `-[ADBrick initSounds]` 0x10009f274 builds a
+  wave's `ADSound`s inside the playlist's activation callback (the block at 0x10009f4c0), so for a short
+  window after the wave loads its `sounds` array is empty although the wave has some, and `brickIsCleared`
+  0x1000a1658 walks the enemies and then that empty array and answers "yes".  A wave whose only content is a
+  cutscene - tutorial_7_brick_4, the closing line of "Meet The Farty", has no enemies at all - therefore
+  looked finished the instant it loaded, and the challenge ended before its sound existed.  On the phone the
+  callback lands before anything can ask; here the question arrives first, because a kill produces a second
+  deactivation right behind the one that advanced the wave.  A wave that is supposed to have sounds is not
+  cleared until it has them - unless its playlist is missing altogether, in which case the sounds can never
+  be built and waiting for them would never end.
+* Escape on the challenge-completed screen returns to the challenge list (user request).
+  `-[ADChallengeCompletedViewController backButtonPressed]` 0x100048728 stops the screen's animations and
+  calls `goToMainMenu` at 0x100048804, which on the phone is a one-finger scrub back out of the whole
+  challenge flow: the next challenge was then three screens away again, through Play, the world and the
+  list.  Escape now calls what the screen's own Select challenge button calls, `missionSelectButtonPressed`
+  0x100068f64, so it returns to the list the challenge was started from, and the main menu is one Escape
+  further through the world selector.  The button itself is unchanged, and the challenge-failed screen
+  (`backButtonPressed` 0x100072004) still goes to the main menu as the original does.
+* Returning to the menus does not replay the opening sting (user request).  When a fade ends,
+  `reduceMainMenuThemeVolume` 0x100083460 restarts the music through the whole of `startMenuMusic:`
+  0x100082ca0, which plays `main_menu_open` - a 13.2 s sting that the theme only joins at 70 per cent of it
+  (the monitor block at 0x100083178).  That is right for menus opened fresh, but this call is a *return* to
+  the menus, so leaving a finished challenge for the challenge list played the whole intro again before the
+  music came back.  The theme starts directly on that path; launching the game, the main menu and every
+  other path still play the sting.
+* `game_over_theme` and `main_menu_theme` are treated as one track, because they are one file.  Both are
+  2,121,278 bytes with the same SHA-256: a single 129-second piece of music shipped under two names.  The
+  original treats them as different tracks, so `startMenuMusic:` 0x100082ca0 finds "the track you asked for
+  is not playing", calls `stopMenuMusic` at 0x082dc4 and restarts the same music from the beginning - you
+  hear it fade out and start again for no audible reason every time you leave a finished challenge for the
+  challenge list, or arrive at the completed screen.  The opening sting counts as that music too, being its
+  front.  Asking for either name while either is playing now leaves it alone, so the music runs continuously
+  from a challenge's closing line through the completed screen and back into the menus.
+* PORT ADDITION removed: the gameplay screen used to speak "Skip" when the skip button appeared.  The
+  original posts `UIAccessibilityLayoutChangedNotification` with a nil argument (0x1000da8c4), which tells
+  VoiceOver the screen changed without speaking or moving the cursor, so every dialog in a challenge was
+  being interrupted to announce a button that the key bindings already cover.
+* A menu-music request made during a fade is no longer lost.  `startMenuMusic:` 0x100082ca0 returns at
+  0x082db0 whenever the theme being asked for is playing, taking that to mean "already playing, nothing to
+  do".  While a fade is running that theme is on its way out, not staying, so the request was dropped and
+  `startThemeAfterFade` never set: the fade finished, stopped everything, and nothing started it again -
+  which left a whole round silent after a quick Try again.  A dying theme no longer counts as playing.
+* A playlist can no longer be wedged into never activating again.  `-[S3DPlayList activate:]_block_invoke`
+  0x1000fed40 clears `activating` only on the no-completion path (loc_1000ff1c0, the store at 0x0ff1c8).
+  Asked to activate a playlist that is already active *with* a completion, it dispatches the completion and
+  branches to the epilogue at loc_1000ff198 without clearing the flag, so `activating` stays 1 for good and
+  every later `activate:` returns at the guard in 0x1000fe9c0 with its completion never run.  For `main_menu`
+  that is silence until the game is restarted, which is what it sounded like: the music stops and no menu or
+  replay brings it back.  The flag is cleared on both paths here; the completion still runs either way.
+  0x1000fed40 clears `activating` only on the no-completion path - the store at 0x0ff1c8, under
+  loc_1000ff1c0.  Asked to activate a playlist that is *already* active and given a completion, it logs
+  "ALREADY active, skipping", dispatches the completion, and branches to the epilogue at loc_1000ff198
+  without clearing the flag.  `activating` then stays 1 for the rest of the run, and every later
+  `activate:` returns at the guard in 0x1000fe9c0 with its completion never run.  For `main_menu` that is
+  silence no menu, replay or new challenge can undo - the shape of "the music stopped and never came back".
+  The flag is cleared on both paths here; the completion still runs exactly as before.
+* PORT ADDITION: the cursor lands on the screen's own first element, not on the status bar.  VoiceOver
+  starts at the first element of a screen, which on every screen with a status bar is its Back button, then
+  the coins and the diamonds - three pieces of chrome to walk past before reaching what the screen is for.
+  `AccessibleScreen.first_content_element` skips the status bar's subtree (view #87, which owns Back, the
+  currencies and Armory) when nothing else has decided where to go.  They are all still there, one step
+  back.
+* PORT ADDITION: Settings -> Menus -> Remember cursor position, **off by default**.  When it is on,
+  leaving a screen records the label the cursor was on and returning puts it back there - matching by label,
+  since the rows are new objects after the rebuild.  Off, a screen opens at its first element the way the
+  original always does.
+* DIVERGENCE: a dead player can no longer fire, melee, reload or switch weapons.  `showDeathOverlay` brings
+  the death overlay to the front of the gameplay view and gives it `userInteractionEnabled` (0x10005b9e4 and
+  0x10005ba20; the challenge controller's own at 0x1000db814), so on a phone it swallows every touch and the
+  weapon views beneath it stop responding.  Endless also sets `paused`, which the port already honoured; the
+  challenge controller does not, so a dead player kept firing until the failed screen loaded.  Keys are not
+  routed through the view hierarchy here, so the overlay is honoured explicitly in `GameplayScreen.key_down`.
+  Pause, skip and the timer are handled before that gate and still work, and `key_up` is left ungated so a
+  key held at the moment of death still releases cleanly.
+* The Swipe aim scheme applied the turn sensitivity twice.  `touchesMoveDetected` 0x10005a3e0 multiplies the
+  drag by the sensitivity, as the original does; the port's own key-to-drag generator scaled the drag rate
+  by it as well, so Swipe turned with the *square* of the setting while Gyro and Tilt were linear -
+  26 degrees a second at 0.5 and 634 at 3.0, against Gyro's 38 and 224.  The port's generator now runs at a
+  fixed rate and leaves the scaling to the original's own line.  Measured after: 53.6 / 105.5 / 158.2 /
+  211.0 / 316.5 degrees a second at sensitivity 0.5 / 1.0 / 1.5 / 2.0 / 3.0 - linear, like the other two.
+* PORT INPUT: the three aim schemes describe themselves by speed.  On a phone Gyro, Swipe and Tilt are three
+  different devices; on a keyboard all three are the turn keys held down, and what actually separates them
+  is the rate each code path turns at - about 110, 160 and 190 degrees a second at the default sensitivity,
+  all scaling in proportion to it.  The rows say so, in place of the original's GYRO_DESCRIPTION,
+  SWIPE_DESCRIPTION and TILT_DESCRIPTION, which tell the player to move the handset.
+  it was last focused on (`_LAST_FOCUS` in `ui/accessibility.py`) and restores it when it is entered again,
+  matching by label because the rows are new objects after the rebuild.  The original rebuilds the screen
+  and VoiceOver starts at the first element every time, so leaving a challenge, the armory or the settings
+  meant walking back down the list.  A screen seen for the first time opens where it always did.
+  0x082db0 whenever `main_menu_theme` is playing, reading that as "already playing, nothing to do".  During
+  the 2 s fade `stopMenuMusic` runs (0x100083460, 0.01 of gain every 0.05 s from 0.4) that theme is on its
+  way out, so the request is dropped *and* `startThemeAfterFade` is never set; the fade then stops
+  everything and nothing starts it again.  Every challenge-ending dialog carries `startMusicBeforeEnd`
+  (3 seconds, 5 in tutorial 3), so pressing Try again quickly enough put the next round's request inside
+  that fade and left the whole round silent - which is why it would not reproduce to order.  A theme that is
+  fading no longer counts as playing, so the request falls through to `startThemeAfterFade`, which
+  `reduceMainMenuThemeVolume` already honours when the fade ends.  Scoped to `main_menu_theme`, the only
+  track that flag restarts, so the game-over paths are untouched.
+* The armory's Back button takes one step, not two.  `backButtonPressed` 0x100076080 hands the press to the
+  open detail view (`handleBackActionFromStatusBar` at 0x076120), clears the delegate, and then dismisses
+  the armory anyway in the tail call at 0x0761b8 - so one press closed the weapon page *and* threw you out
+  of the armory, skipping the list.  Back now matches Escape (`accessibility_perform_escape`): it closes the
+  detail and leaves the cursor on the row it was opened from, and a second press leaves the armory.
+* The statistics screen speaks a weapon's exact accuracy (user request).  `configureWeaponCell:ForRow:`
+  0x1000d0ff0 builds the label at 0x0d129c from everything before the first dot of the accuracy's string
+  value, so 66.6 per cent is announced as 66; and a weapon that has never been fired has shotsHit /
+  shotsFired = 0 / 0, which is nan, so its row is read out as "accuracy, nan percent".  The figure is spoken
+  to one decimal instead, and a weapon with no shots says so.
+* PORT ADDITION: every screen names itself as you enter it - "Main Menu. Play, button".  These are the
+  game's own names: each of these controllers sends `-[ADStatusBarViewController setPageTitle:]` in its
+  `viewDidLoad` (ARMORY, PLAY, CHALLENGE, ZOMBIPEDIA, STATISTICS, INFO, GAME OVER, Credits, Dr Bastard's
+  Tarot, Challenge completed), and the iPhone nib has no `pageTitle` outlet, so every one of them goes to
+  nil and is never seen or heard.  The capitals are not shouted, and four screens are named for the button
+  that opens them rather than for the original's title, so the two agree: the main menu is "Main Menu" and
+  not "AUDIO DEFENCE"; the stats portal, which the main menu's Info button opens, is "Info" and not
+  "AUDIO DEFENCE"; `ADInfoViewController` says which page you opened - "Challenge Info" or "Endless Info",
+  after the two buttons on the play menu - instead of the original's bare "INFO"; and the tarot screen is
+  "Endless", since it is how Endless starts and the button that reaches it says Endless.  Settings has no
+  title in the binary at all and is called "Settings".
+  The challenge screens all set "CHALLENGE", which made four different screens announce the same word, so
+  each is named for the row that opened it: the world list keeps "Challenge" (the play menu's button says
+  that), a world's challenge list takes the world's name from `challenges_index.plist`, a challenge's
+  overview takes that challenge's `title`, and the failed screen is "Challenge failed" to sit beside the
+  completed screen's own "Challenge completed".  A screen
+  that already names what it opened, like the armory's tab, is not made to say it twice.
+* PORT ADDITION: the tutorial announcer's lines are also spoken as text, with the keys you have bound
+  (`game/tutorial_text.py`, hooked into `-[ADSound play]` 0x1000b416c).  The announcer tells you to tilt the
+  device, swipe, or tap a corner button, none of which a keyboard can do.  The brick scripts name these
+  sounds with a placeholder - `announcer_tutorial_aim_CONTROLMODE`, `announcer_tutorial_shoot_BUTTONMODE` -
+  which `init_sound` 0x1000b3594 resolves against the control scheme and the button mode, so the three aim
+  variants share one line and each button/gesture pair shares another.  Rebinding a key changes what is
+  said.  `aimhelp` and `aimprompt` name no key and have no line.  Settings -> Sound -> Tutorial text chooses
+  "As the announcer speaks" (the default), "After the announcer finishes", or "Off".
+* PORT ADDITION: an action can hold several keys, and the binding rows say how.  Enter adds a key,
+  Shift+Enter replaces every key the action has, and Delete removes the one added last; an action is never
+  left with none.  The storage was already a list per action - only the rebinding screen was one key at a
+  time.  Melee now defaults to Left Ctrl alone rather than both Ctrls.
+* PORT ADDITION: key names are spoken as the keys people call them.  pygame's names for the two Enter keys
+  are "return" and "enter", which read out as "Return or Enter" and sound like one key said twice; they are
+  "Enter" and "Numpad Enter" here, the arrows are "Left Arrow" and so on, and space is "Spacebar".
+* PORT ADDITION: the one defaults file is split three ways - `save.json` (progress: coins, diamonds,
+  weapons, power-ups, missions, challenge data and the four stats blocks), `settings.json` (control scheme,
+  button mode, sensitivity, menu arrows, tutorial text) and `keys.json` (the key bindings, and the joystick
+  later).  The game reaches all three through one `UserDefaults.standard()`, which routes each key by name.
+  the figure at 0x0d129c from everything before the first dot of the number's `stringValue`, so a weapon
+  that has never been fired (`shotsHit` / `shotsFired` = 0 / 0, which is nan) is read out as
+  "accuracy, nan percent", and a real figure is cut at the decimal point - 66.6 per cent announced as 66.
+  The port speaks one decimal place, trimming a trailing zero, and says "not fired yet" when there are no
+  shots to divide.
+  sends `startMenuMusic:@"game_over_theme"` at 0x0db7f0 with nothing guarding it, but a recording of the
+  real game has no theme at the death nor on the retry screen that follows: what is heard is that screen's
+  own sting, a random `gameover_1..3` playlist started by `-[ADChallengeFailedViewController viewDidLoad]`
+  0x100071718 at 0x071c90, and the menu theme only returns at the challenge selector.  Ruled out as the
+  cause, read as listings rather than digests: `startMenuMusic:` 0x100082ca0 (neither early exit applies),
+  `killGameplay` 0x10005c170 and its 0.1 s block, `playListWithName:` 0x1000fc050 (a cache, still returns
+  the playlist after a deactivate), `activate:` 0x1000fe9c0 (skips only while already activating), the
+  retry screen's own `viewDidLoad`, and all three callers of `stopMenuMusic`.  The mechanism is
+  unidentified - most likely something in S3D's asynchronous activation on the device - so this one follows
+  the recording rather than the line, and is the only divergence here that is not read off the binary.
+  Pressing End Challenge never reaches `showDeathOverlay`, so that path was already silent.
+* The status bar's coins and diamonds counters keep their spoken labels in step with the number on screen.
+  `animateCoins:` 0x10001c728, `animateDiamonds:` 0x10001c850 and their timer methods 0x10001ca14 /
+  0x10001cb68 only call `setText:`; the accessibility label is set once by `setCoinsLabel:` 0x10001d278 /
+  `setDiamondsLabel:` 0x10001d394 and refreshed only by `refreshCoinsAndDiamonds` 0x10001c3d0, which the
+  tarot screen never calls - so in the original a VoiceOver player hears the count from before the purchase
+  until some other screen happens to refresh it, while the screen itself is right the whole time.
+* A tarot card you pay to change is stored.  In the original only `-[ADTarotViewController
+  loadCardWithNumber:]` 0x100035390 writes `tarotCardN`, and only when the key is missing;
+  `changeCardButtonPressed:` 0x1000a62b8 and `changeCard` 0x1000a65a4 never touch it, so leaving the screen
+  and coming back deals the stored card again and the diamonds are gone.  `change_card` now saves the new
+  modifier under the same key.  Nothing else moves: `applyAllModifiers` 0x100035a5c still reads the live
+  card, and `resetCardsModifiersIfNeeded` 0x1000d42a8 still clears all three keys after an endless game
+  lasting over 60 seconds, so a fresh deal still follows a real run.
+* After a tarot card is paid for, both cards' "You have N diamonds" hints are rebuilt.
+  `changeCardButtonPressed:` 0x1000a62b8 calls `changeCard` (0x1000a63fc, ending in `refreshCard`) before
+  `setDiamonds:` at 0x1000a6518, so the hint was built from the old balance; the card that was not changed
+  was never refreshed at all and kept the number it was dealt with.  The amount taken is unchanged
+  (3, 2, 1 diamonds by card level, `viewDidLoad` 0x1000a4bd4).
+* The loadout tab names the currency a locked weapon is actually sold in.  `weaponStatus:` 0x100049c1c
+  always formats the `price` key as "Locked, costs : %i coins", so the Sonic Cannon - which only has
+  `priceInDiamonds` - was announced as "costs : 0 coins" while its own detail view said "Buy for 100
+  diamonds".  The split used here is `checkBuyOrUpgradeButton`'s own (0x10006fa68): a price below 1 means
+  the diamond price.  This line is only in the accessible loadout; the sighted `ADArmoryLoadoutViewController`
+  is a drag-and-drop scroller with no price text.
+* REMOVED (user request): the armory's Currency tab.  Its table asks `products` for its row count and
+  nothing in the binary ever sets `products`, so the tab was blank on every device.  It was built to hold
+  four "free coins" offers - Facebook, Twitter, the studio's other games, the App Store - each opening a web
+  page, none of them wired up.  The port briefly kept it with a row explaining itself; it is now gone, so
+  the armory has three tabs.  Two knock-ons: `showNotEnoughMoneyAlert` 0x1000768d4 no longer offers its
+  "More coins" button, which called `currencyButtonPressed`, and `COINS_ALERT_CONTENT`'s last sentence -
+  "You can also get coins in the Armory's currency tab" - is cut, since it would point at nothing.  The
+  button itself stays in the nib layout, unreachable and with nothing routed to it.
+* A power-up no longer survives the game it was picked up in.  `-[ADWeaponManager clean]` 0x1000aad50 cleans
+  the power-up of the manager it is sent to, and killGameplay's block only sends it to the gameplay manager,
+  whose own `powerUp` is always nil - `initPowerUp:` and `usePowerUp` go through `+sharedWeaponManager`,
+  which nothing ever cleans.  The shared one is cleared with the rest of the game.
+* A "survive" mission advances.  `-[ADMissionManager update:]` 0x1000085ac asks whether tutorial_5 is
+  complete, throws the answer away, and never forwards the tick, so `-[ADMission update:]` 0x100044e30 never
+  ran and `survivalTime` stayed at 0 however long you lived: the mission could be shown, attempted and
+  saved, but never completed.  The tick is forwarded.
+* A "kill N zombies" mission remembers its count.  `-[ADMission encodeWithCoder:]` 0x1000464c0 stores twelve
+  fields and omits `progression_zombies`, which `isMissionCompleted` tests - so the count went back to zero
+  on every restart and the mission could only be finished in one sitting.  It is saved with the rest.
+* A finished game's rewards are paid once.  `-[ADGameOverWithStatsViewController viewDidLoad]` sends
+  `ignoreRewards` at 0x100042030 and discards the answer, so the coins and diamonds were credited by every
+  screen of that family - including the challenge overview, which sets `ignoreRewards` to YES precisely to
+  avoid it, and which paid again each time it was opened.  The answer is tested.
+* The completed screen reports a failed accuracy objective as failed.  The pass and fail paths converge at
+  loc_100068794 and `accuracyObjectiveReached:1` is sent from there unconditionally.  The time-limit star
+  three lines below already reports its failure properly; accuracy now does the same.
+* A weapon at its maximum level says nothing instead of "Not enough Diamonds!".  With no next level there is
+  no cost to compare, both branches read 0, and the alert was shown; `checkBuyOrUpgradeButton` 0x10006fa68
+  hides the button by then, which is why it is hard to reach, but the alert was wrong wherever it appeared.
+* The first control scheme screen offers Gyro.  The nib wires `gyroTextButton` to the Gyro button itself
+  (`tiltTextButton` and `swipeTextButton` are not connected at all), so hiding the "text buttons" under a
+  screen reader hid the recommended scheme - the one a fresh profile starts on - leaving Tilt and Swipe as
+  the only choices on the one screen that exists to make that choice.
+* A cow or a car is added to the passer-by list once.  `generateCow` 0x1000d5d04 appends it and then hands
+  it to `ADBrickManager addPasserBy:`, which forwards straight back and appends it again; the duplicate was
+  updated alongside the original, so they moved and aged at twice their speed.  Cars do the same at
+  0x1000d5f08.
+* A cow that cannot spawn waits its turn.  `generateCow` returns without touching `nextCow` when both cow
+  playlists are busy, and `nextCow` is already below zero, so `update:` retried it every single tick.  The
+  timer is re-rolled instead.
+* The tornado cleans up once.  `update:` 0x100097af0 cleans it after its four gusts but never clears
+  `active`, so every later tick fell through the guard and cleaned it again for the rest of the game.
+* The enemy unlock gate reads the enemy's name, not the brick's slot label.  `canUseBrickWithName:`
+  0x1000c259c looks each `Enemies` key up verbatim, but a brick wanting two of the same enemy labels the
+  slots "Chainsaw - 2", "Runner - 3", "WeakZombieB " with a trailing space.  Those match nothing in
+  `enemies.plist`, so the requirement came back 0 and the slot walked through the gate.  No gated enemy is
+  written that way today, so nothing actually escaped - but one added in a repeat slot would have.
+* An explosion pauses a jukebox.  `-[ADJukeBox hitByExplosionAtPosition:withDamages:dispersal:radius:]`
+  0x100066784 pauses the music, but every sender - `solveExplosionWithDictionary:` 0x1000c5c40 and
+  `hitByProjectile:` 0x100061098 - uses the five-argument `...powerupname:` form, so the override was never
+  reached and ADEnemy's implementation ran instead: the jukebox took the damage and played on.
+* The post-game statistics show the combo they measured.  `buildMiscPostGameData` 0x1000bacfc labels entry 4
+  "Highest combo" and fills it from `numberOfEnemyKills` (the load at 0x1000bb1fc), so the screen reported
+  the kill count twice and never showed `highestCombo`, which is maintained right beside it.
+
+
+## Original quirks kept on purpose
+
+These are the original's, reproduced deliberately.  Each is either a design decision rather than a fault, a
+change that would alter how the game plays or sounds rather than what it tells you, or something with no
+observable effect at all.
+
+* **Endless hides enemies that challenges show.**  `-[ADBrickManager canUseBrickWithName:]` 0x1000c259c
+  refuses a wave while any enemy in it still has a kill requirement (`bestiary -> Unlock requirement` minus
+  the save's total kills, 0x100084ea8).  Challenges do not check: `scenarioBrickNameForWaveNumber:`
+  0x1000c28d8 indexes the challenge's own brick list, and several scripts hold gated enemies - maya_8 is all
+  Berserk (250 kills), maya_10 Berserk and Riot Gear Zombie, maya_5 and maya_6 the Whisperer.  The gated
+  five: Whisperer 150, Berserk 250, Riot Gear Zombie 350, Zombie Dog 400, Colossus 450.  This is the design -
+  challenges are scripted set pieces - and changing it either breaks them or removes Endless's progression.
+* **`brick_chance.plist` has a row 12 that nothing can read.**  `brickNameForWaveNumber:` clamps the wave
+  with `arg1 > 11 ? 11 : arg1`, so from wave 11 the mix stops changing and `loadNextBrick` ramps
+  `difficultyModifier` by 0.14 a wave instead.  Reaching row 12 would change the difficulty curve of every
+  long Endless run.
+* **The weapon timers advance by wall-clock time** (`CACurrentMediaTime`), not by the timer's interval.
+  Changing it would alter every weapon's fire rate and reload.
+* **Only an enemy's looping voice and footstep sounds reach the reverb**
+  (`playAnySoundContaining:looping:spatialized:` with spatialized YES); its hit, pain, death, impact and
+  explosion sounds are dry.  Changing it would rewrite how the game sounds.
+* **The explosion falloff cancels its own radius**: `1 - (d2 / radius) * radius`, so damage falls off by
+  squared distance whatever the blast radius.  Changing it would re-balance every explosive weapon.
+* **A dead Berserk-style enemy cannot be hit by a blast until it wakes.**  `canBeShotAt` 0x100061f68 excludes
+  state 0, and both the blast solver and the explosive weapon's targeting consult it, so an explosion next to
+  a Berserk that has not been shot does nothing.  Confirmed in play with the grenade.
+* The accessible Endless game-over screen is silent, because `-[Accessible_ADGameOverEndlessViewController
+  viewDidLoad]` 0x100099f50 never calls `[super viewDidLoad]` and so never starts `game_over_theme`.  Kept at
+  the user's request: it is the score you just lost, not a menu.
+* `-[ADSound initWithDictionary:]` hardcodes a speed of 2.0 and ignores any `speed` key.  No scripted sound
+  in any of the game's plists carries one, so nothing can reach it.
+* The diamond dropper schedules `[nil deactivatePlaylist]` five seconds after dying (the `str xzr` at
+  0x10007e950): the receiver is nil, so nothing is scheduled and nothing happens.
+* `-[ADWeapon changeState:]` 0x100015148 returns `(old != 0) != newState`, comparing a bool with a state
+  number.  Every caller discards the result.
+* The challenge selector asks the app delegate for the sighted challenge overview with a nil challenge;
+  `goToChallengeSelector` 0x1000816e0 always passes nil for `challengeToLoad`, so the port never reaches that
+  call at all.
+* The tarot schedules each card flip with `dispatch_after(<card number>)`, a time already past, so the block
+  runs on the next pass and then flips after that many seconds - which is the timing either way.
+* `checkEquipButtons` 0x10006ff8c leaves `equip1Button` with whatever hidden state it had when the weapon is
+  a melee weapon; the nib's state is visible, which is what that branch wants.
+* `-[ADPersistentStats allUnlockedEnemies]` 0x100085dd4 keys its dictionary by display name rather than by
+  the enemy's internal name.

@@ -1,0 +1,60 @@
+
+== +[TAGPropertyListUtil readPropertyList:]   (address 0x100162af0  size 548  kind objc)
+  162b1c  [TAGPropertyListUtil plistFilePath:arg1]
+  162b40  [NSFileManager defaultManager]
+  162b60  [[NSFileManager defaultManager] contentsAtPath:[TAGPropertyListUtil plistFilePath:arg1]]
+  162b78  if ([[NSFileManager defaultManager] contentsAtPath:[TAGPropertyListUtil plistFilePath:arg1]] == 0) goto loc_100162c2c
+  162ba4  [NSPropertyListSerialization propertyListWithData:[[NSFileManager defaultManager] contentsAtPath:[TAGPropertyListUtil plistFilePath:arg1]] options:2 format:&sp[0x18] error:&sp[0x10]]
+  162bc0  if ([NSPropertyListSerialization propertyListWithData:[[NSFileManager defaultManager] contentsAtPath:[TAGPropertyListUtil plistFilePath:arg1]] options:2 format:&sp[0x18] error:&sp[0x10]] != 0) goto loc_100162c20
+  162bf0  [NSString stringWithFormat:@"Error reading plist: %@, format: %lur", 0, sp[8]]
+  162c14  [TAGLog info:[NSString stringWithFormat:@"Error reading plist: %@, format: %lur", 0, sp[8]]]
+loc_100162c20:
+  162c28  goto loc_100162c88
+loc_100162c2c:
+  162c54  [NSString stringWithFormat:@"No plist file: %@ found.", [TAGPropertyListUtil plistFilePath:arg1]]
+  162c78  [TAGLog debug:[NSString stringWithFormat:@"No plist file: %@ found.", [TAGPropertyListUtil plistFilePath:arg1]]]
+loc_100162c88:
+  162cb0  return
+
+== +[TAGPropertyListUtil removePropertyList:]   (address 0x100162d14  size 380  kind objc)
+  162d40  [TAGPropertyListUtil plistFilePath:arg1]
+  162d68  [NSFileManager defaultManager]
+  162d90  [[NSFileManager defaultManager] removeItemAtPath:[TAGPropertyListUtil plistFilePath:arg1] error:&sp[0x18]]
+  162dac  if (0 == 0) goto loc_100162e24
+  162dc0  [0 code]
+  162dc8  if ([0 code] == 4) goto loc_100162e24
+  162df4  [NSString stringWithFormat:@"Error clearing out plist: %@ with error: %@", [TAGPropertyListUtil plistFilePath:arg1], 0]
+  162e18  [TAGLog error:[NSString stringWithFormat:@"Error clearing out plist: %@ with error: %@", [TAGPropertyListUtil plistFilePath:arg1], 0]]
+loc_100162e24:
+  162e4c  return
+
+== +[TAGPropertyListUtil writePropertyListAsync:withData:]   (address 0x100162e90  size 276  kind objc)
+  162f34  [TAGAsyncUtil invokeAsync:^{+[TAGPropertyListUtil writePropertyListAsync:withData:]_block_invoke captures +0x20=TAGPropertyListUtil, +0x28=arg1, +0x30=arg2} resultBlock:0]
+  162f6c  return
+
+== +[TAGPropertyListUtil writePropertyListAsync:withData:]_block_invoke   (address 0x100162fa4  size 80  kind block)
+  162fd0  [x0 writePropertyList:x2 withData:arg2]
+  162ff0  tail [NSNumber numberWithBool:[x0 writePropertyList:x2 withData:arg2]]
+
+== sub_100162ff4   (address 0x100162ff4  size 40  kind sub)
+
+== sub_10016301c   (address 0x10016301c  size 40  kind sub)
+  163040  return
+
+== +[TAGPropertyListUtil writePropertyList:withData:]   (address 0x100163044  size 436  kind objc)
+  163094  [TAGPropertyListUtil plistFilePath:arg1]
+  1630c4  [NSPropertyListSerialization dataFromPropertyList:arg2 format:200 errorDescription:&sp[0x18]]
+  1630d4  if ([NSPropertyListSerialization dataFromPropertyList:arg2 format:200 errorDescription:&sp[0x18]] == 0) goto loc_1001630fc
+  1630f4  [[NSPropertyListSerialization dataFromPropertyList:arg2 format:200 errorDescription:&sp[0x18]] writeToFile:[TAGPropertyListUtil plistFilePath:arg1] atomically:1]
+  1630f8  goto loc_10016315c
+loc_1001630fc:
+  163128  [NSString stringWithFormat:@"Failed to Write property list %@ with error %@", arg1, 0]
+  16314c  [TAGLog warning:[NSString stringWithFormat:@"Failed to Write property list %@ with error %@", arg1, 0]]
+loc_10016315c:
+  16319c  return
+
+== +[TAGPropertyListUtil plistFilePath:]   (address 0x1001631f8  size 216  kind objc)
+  163220  NSSearchPathForDirectoriesInDomains(9, 1, 1)
+  163240  [NSSearchPathForDirectoriesInDomains(9, 1, 1) objectAtIndex:0]
+  16326c  [[NSSearchPathForDirectoriesInDomains(9, 1, 1) objectAtIndex:0] stringByAppendingPathComponent:arg1]
+  16329c  return

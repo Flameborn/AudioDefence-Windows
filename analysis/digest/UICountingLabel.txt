@@ -1,0 +1,182 @@
+
+== -[UICountingLabel countFrom:to:]   (address 0x10007cc90  size 20  kind objc)
+  07cca0  tail [self countFrom:arg1 to:arg2 withDuration:2]
+
+== -[UICountingLabel countFrom:to:withDuration:]   (address 0x10007cca4  size 924  kind objc)
+  07ccd8  [self setEasingRate:3]
+  07ccf0  [self setStartingValue:arg1]
+  07cd08  [self setDestinationValue:arg2]
+  07cd20  [self setProgress:0]
+  07cd38  [self setTotalTime:arg3]
+  07cd50  [NSDate timeIntervalSinceReferenceDate]
+  07cd64  [self setLastUpdate:[NSDate timeIntervalSinceReferenceDate]]
+  07cd78  [self format]
+  07cd8c  if ([self format] != 0) goto loc_10007cdac
+  07cda8  [self setFormat:@"%f"]
+loc_10007cdac:
+  07cdbc  [self method]
+  07cdc4  if ([self method] >u 3) goto loc_10007cf10
+  07cddc  switch ([self method]) { case 0: goto loc_10007cde0; case 1: goto loc_10007ce2c; case 2: goto loc_10007ce78; case 3: goto loc_10007cec4 }
+loc_10007cde0:  ; case 0
+  07cdf4  [UILabelCounterEaseInOut alloc]
+  07ce04  [[UILabelCounterEaseInOut alloc] init]
+  07ce20  [self setCounter:[[UILabelCounterEaseInOut alloc] init]]
+  07ce24  goto loc_10007cf08
+  07ce28  goto loc_10007cff4
+loc_10007ce2c:  ; case 1
+  07ce40  [UILabelCounterEaseIn alloc]
+  07ce50  [[UILabelCounterEaseIn alloc] init]
+  07ce6c  [self setCounter:[[UILabelCounterEaseIn alloc] init]]
+  07ce70  goto loc_10007cf08
+  07ce74  goto loc_10007cff4
+loc_10007ce78:  ; case 2
+  07ce8c  [UILabelCounterEaseOut alloc]
+  07ce9c  [[UILabelCounterEaseOut alloc] init]
+  07ceb8  [self setCounter:[[UILabelCounterEaseOut alloc] init]]
+  07cebc  goto loc_10007cf08
+  07cec0  goto loc_10007cff4
+loc_10007cec4:  ; case 3
+  07ced8  [UILabelCounterLinear alloc]
+  07cee8  [[UILabelCounterLinear alloc] init]
+  07cf04  [self setCounter:[[UILabelCounterLinear alloc] init]]
+loc_10007cf08:
+loc_10007cf10:
+  07cf20  [self counter]
+  07cf40  [[self counter] setRate:3]
+  07cf80  [NSTimer timerWithTimeInterval:0.0333333 target:self selector:@selector(updateValue:) userInfo:0 repeats:1]
+  07cfa4  [NSRunLoop mainRunLoop]
+  07cfd0  [[NSRunLoop mainRunLoop] addTimer:[NSTimer timerWithTimeInterval:0.0333333 target:self selector:@selector(updateValue:) userInfo:0 repeats:1] forMode:_NSRunLoopCommonModes[+0x0]]
+  07cff0  return
+
+== -[UICountingLabel updateValue:]   (address 0x10007d040  size 1252  kind objc)
+  07d088  [NSDate timeIntervalSinceReferenceDate]
+  07d0a0  [self lastUpdate]
+  07d0bc  [self progress]
+  07d0dc  [self setProgress:(([NSDate timeIntervalSinceReferenceDate] - [self lastUpdate]) + [self progress])]
+  07d0f4  [self setLastUpdate:[NSDate timeIntervalSinceReferenceDate]]
+  07d100  [self progress]
+  07d11c  [self totalTime]
+  07d124  if ([self progress] < (or unordered) [self totalTime]) goto loc_10007d154
+  07d138  [arg1 invalidate]
+  07d144  [self totalTime]
+  07d150  [self setProgress:[self totalTime]]
+loc_10007d154:
+  07d15c  [self progress]
+  07d16c  [self totalTime]
+  07d184  [self counter]
+  07d19c  [[self counter] update:([self progress] / [self totalTime])]
+  07d1b8  [self startingValue]
+  07d1d0  [self destinationValue]
+  07d1e0  [self startingValue]
+  07d1fc  [self formatBlock]
+  07d21c  if ([self formatBlock] == 0) goto loc_10007d270
+  07d228  [self formatBlock]
+  07d240  call [self formatBlock][+0x10]
+  07d264  [self setText:[self formatBlock][+0x10](…)]
+  07d268  goto loc_10007d3e4
+  07d26c  goto loc_10007d4ec
+loc_10007d270:
+  07d284  [self format]
+  07d2ac  [[self format] rangeOfString:@"%(.*)d" options:1024]
+  07d2b8  if ([[self format] rangeOfString:@"%(.*)d" options:1024] != 0x7fffffffffffffff) goto loc_10007d378
+  07d2c4  [self format]
+  07d2e8  [[self format] rangeOfString:@"%(.*)i"]
+  07d310  if ([[self format] rangeOfString:@"%(.*)i"] != 0x7fffffffffffffff) goto loc_10007d388
+  07d31c  [self format]
+  07d348  [NSString stringWithFormat:[self format]]
+  07d36c  [self setText:[NSString stringWithFormat:[self format]]]
+  07d370  goto loc_10007d3e4
+  07d374  goto loc_10007d4ec
+loc_10007d378:
+loc_10007d388:
+  07d390  [self format]
+  07d3bc  [NSString stringWithFormat:[self format]]
+  07d3e0  [self setText:[NSString stringWithFormat:[self format]]]
+loc_10007d3e4:
+  07d3fc  [self progress]
+  07d40c  [self totalTime]
+  07d414  if ([self progress] != [self totalTime]) goto loc_10007d484
+  07d42c  [self completionBlock]
+  07d440  if ([self completionBlock] == 0) goto loc_10007d484
+  07d44c  [self completionBlock]
+  07d460  call [self completionBlock][+0x10]
+  07d480  [self setCompletionBlock:0]
+loc_10007d484:
+  07d4a8  return
+
+== -[UICountingLabel format]   (address 0x10007d524  size 16  kind objc)
+  07d530  return
+
+== -[UICountingLabel setFormat:]   (address 0x10007d534  size 56  kind objc)
+  07d558  self->_format = arg1
+  07d568  return
+
+== -[UICountingLabel method]   (address 0x10007d56c  size 16  kind objc)
+  07d578  return
+
+== -[UICountingLabel setMethod:]   (address 0x10007d57c  size 16  kind objc)
+  07d584  self->_method = arg1
+  07d588  return
+
+== -[UICountingLabel formatBlock]   (address 0x10007d58c  size 16  kind objc)
+  07d598  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[UICountingLabel setFormatBlock:]   (address 0x10007d59c  size 12  kind objc)
+  07d5a4  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[UICountingLabel completionBlock]   (address 0x10007d5a8  size 16  kind objc)
+  07d5b4  tail objc_getProperty(self, _cmd, x2, 0)
+
+== -[UICountingLabel setCompletionBlock:]   (address 0x10007d5b8  size 12  kind objc)
+  07d5c0  tail objc_setProperty_nonatomic_copy(self, _cmd, arg1, x3)
+
+== -[UICountingLabel startingValue]   (address 0x10007d5c4  size 20  kind objc)
+  07d5d4  return
+
+== -[UICountingLabel setStartingValue:]   (address 0x10007d5d8  size 20  kind objc)
+  07d5e4  self->_startingValue = arg1
+  07d5e8  return
+
+== -[UICountingLabel destinationValue]   (address 0x10007d5ec  size 20  kind objc)
+  07d5fc  return
+
+== -[UICountingLabel setDestinationValue:]   (address 0x10007d600  size 20  kind objc)
+  07d60c  self->_destinationValue = arg1
+  07d610  return
+
+== -[UICountingLabel progress]   (address 0x10007d614  size 20  kind objc)
+  07d624  return
+
+== -[UICountingLabel setProgress:]   (address 0x10007d628  size 20  kind objc)
+  07d634  self->_progress = arg1
+  07d638  return
+
+== -[UICountingLabel lastUpdate]   (address 0x10007d63c  size 20  kind objc)
+  07d64c  return
+
+== -[UICountingLabel setLastUpdate:]   (address 0x10007d650  size 20  kind objc)
+  07d65c  self->_lastUpdate = arg1
+  07d660  return
+
+== -[UICountingLabel totalTime]   (address 0x10007d664  size 20  kind objc)
+  07d674  return
+
+== -[UICountingLabel setTotalTime:]   (address 0x10007d678  size 20  kind objc)
+  07d684  self->_totalTime = arg1
+  07d688  return
+
+== -[UICountingLabel easingRate]   (address 0x10007d68c  size 20  kind objc)
+  07d69c  return
+
+== -[UICountingLabel setEasingRate:]   (address 0x10007d6a0  size 20  kind objc)
+  07d6ac  self->_easingRate = arg1
+  07d6b0  return
+
+== -[UICountingLabel counter]   (address 0x10007d6b4  size 16  kind objc)
+  07d6c0  return
+
+== -[UICountingLabel setCounter:]   (address 0x10007d6c4  size 56  kind objc)
+  07d6e8  self->_counter = arg1
+  07d6f8  return
+
+== -[UICountingLabel .cxx_destruct]   (address 0x10007d6fc  size 104  kind objc)

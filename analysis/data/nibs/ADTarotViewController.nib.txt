@@ -1,0 +1,31 @@
+// ADTarotViewController.nib
+TOP-LEVEL OBJECTS
+  #83 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #80 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #121 UIView  Tag=2781
+    #44 UIView (custom class ViewWithParalax)  
+      #76 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #55 UIImageView  UserInteractionDisabled=False Image='frame_tarot.png'
+    #115 UIView  
+    #20 UITextView  Text="Dr. Bastard's tarot cards will disrupt your game"
+    #71 UIButton (custom class ADButtonWithFont)  
+  #105 UIView  Tag=2782
+    #18 UIView (custom class ViewWithParalax)  
+      #90 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #108 UIImageView  UserInteractionDisabled=False Image='frame_tarot.png'
+    #34 UIView  Tag=1
+    #73 UITextView  Tag=2 Text="Dr. Bastard's tarot cards will disrupt your game"
+    #67 UIButton (custom class ADButtonWithFont)  Tag=3
+
+CONNECTIONS
+  action  playButtonPressed:                        #67 ADButtonWithFont --(events 0x40)--> #83 UIProxyObject
+  action  playButtonPressed:                        #71 ADButtonWithFont --(events 0x40)--> #83 UIProxyObject
+  outlet  background                                #83 UIProxyObject --> #76 UIImageView
+  outlet  cardContainer                             #83 UIProxyObject --> #115 UIView
+  outlet  infoText                                  #83 UIProxyObject --> #20 UITextView Text="Dr. Bastard's tarot cards will disrupt your game"
+  outlet  playButton                                #83 UIProxyObject --> #71 ADButtonWithFont
+  outlet  view                                      #83 UIProxyObject --> #121 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#71 ADButtonWithFont' UIAccessibilityLabel='Play'
+  UIAccessibileObject='#67 ADButtonWithFont' UIAccessibilityLabel='Play'

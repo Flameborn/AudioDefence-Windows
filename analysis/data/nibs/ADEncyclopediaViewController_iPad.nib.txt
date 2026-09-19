@@ -1,0 +1,21 @@
+// ADEncyclopediaViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #29 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #22 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #49 UIView  
+    #50 UIView (custom class ViewWithParalax)  
+      #55 UIImageView  Image='background_main.png'
+    #26 UIImageView  UserInteractionDisabled=False Image='Frame_scroller_blank.png'
+    #40 UIScrollView  Hidden=False
+    #35 UITableView  
+
+CONNECTIONS
+  outlet  background                                #29 UIProxyObject --> #55 UIImageView
+  outlet  dataSource                                #35 UITableView --> #29 UIProxyObject
+  outlet  delegate                                  #35 UITableView --> #29 UIProxyObject
+  outlet  delegate                                  #40 UIScrollView --> #29 UIProxyObject
+  outlet  view                                      #29 UIProxyObject --> #49 UIView
+  outlet  zombieDetailHorizontalScrollTable         #29 UIProxyObject --> #40 UIScrollView
+  outlet  zombieNameVerticalTable                   #29 UIProxyObject --> #35 UITableView
+
+ACCESSIBILITY CONFIGURATIONS

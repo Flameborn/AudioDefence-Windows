@@ -1,0 +1,127 @@
+
+== csl::ACCFFT_Wrapper::~ACCFFT_Wrapper   (address 0x1000eee58  size 36  kind cxx)
+  0eee68  sub_1000eee00(a0, a1, a2, a3)
+  0eee78  return
+
+== csl::ACCFFT_Wrapper::~ACCFFT_Wrapper/*deleting*/   (address 0x1000eee7c  size 56  kind cxx)
+  0eee8c  sub_1000eee00(a0, a1, a2, a3)
+  0eee9c  tail ZdlPv(a0)
+  0eeea8  ZdlPv()
+
+== csl::ACCFFT_Wrapper::vfunc_2   (address 0x1000eeeb4  size 420  kind cxx)
+  0eeee4  log2((float)a0[+0x8])
+  0eeefc  call a2[+0x0][+0x20]
+  0eef1c  bzero(a0[+0x18], (a0[+0x8] << 2))
+  0eef28  bzero(a0[+0x8], (a0[+0x8] << 2))
+  0eef34  bzero(a2[+0x0][+0x20](…), (a0[+0x8] << 2))
+  0eef44  if (a0[+0x-4] == 0) goto loc_1000eefc0
+  0eef50  call a1[+0x0][+0x20]
+  0eef68  vDSP_ctoz(a1[+0x0][+0x20](…), 2, a0, 1)
+  0eef84  vDSP_vneg(a0[+0x20], 1, a0[+0x20], 1)
+  0eef9c  vDSP_fft_zrip(a0[+0x38], a0, 1, (int)log2((float)a0[+0x8]))
+  0eefb8  vDSP_ztoc(a0, 1, a2[+0x0][+0x20](…), 2)
+  0eefbc  goto loc_1000ef034
+loc_1000eefc0:
+  0eefc8  call a1[+0x0][+0x20]
+  0eefe0  vDSP_ctoz(a1[+0x0][+0x20](…), 2, a0, 1)
+  0eeff8  vDSP_fft_zrip(a0[+0x38], a0, 1, (int)log2((float)a0[+0x8]))
+  0ef014  vDSP_vneg(a0[+0x20], 1, a0[+0x20], 1)
+  0ef030  vDSP_ztoc(a0, 1, a2[+0x0][+0x20](…), 2)
+loc_1000ef034:
+  0ef048  return
+  0ef04c  if (w1 >= 0) goto loc_1000ef054
+  0ef050  cxa_call_unexpected()
+
+== sub_1000ef058   (address 0x1000ef058  size 132  kind sub)
+  0ef07c  a0[+0x0] = 3
+  0ef080  if (a1 == 0) goto loc_1000ef0b8
+  0ef088  d0 = sin(d0), d1 = cos(d0)
+  0ef098  d0 = sin(d0), d1 = cos(d0)
+  0ef0a0  a0[+0x4] = ((cos(d0) * s8) * cos(d0))
+  0ef0ac  a0[+0x8] = (cos(d0) * (sin(d0) * s8))
+  0ef0b4  goto loc_1000ef0c0
+loc_1000ef0b8:
+  0ef0b8  a0[+0x4] = s8
+  0ef0bc  a0[+0x8] = s1
+loc_1000ef0c0:
+  0ef0c0  a0[+0xc] = s9
+  0ef0d8  return
+
+== sub_1000ef0dc   (address 0x1000ef0dc  size 128  kind sub)
+  0ef100  a0[+0x0] = 3
+  0ef104  if (a1 == 0) goto loc_1000ef13c
+  0ef10c  d0 = sin(d0), d1 = cos(d0)
+  0ef11c  d0 = sin(d0), d1 = cos(d0)
+  0ef124  a0[+0x4] = ((cos(d0) * s8) * cos(d0))
+  0ef130  a0[+0x8] = (cos(d0) * (sin(d0) * s8))
+  0ef138  goto loc_1000ef144
+loc_1000ef13c:
+  0ef13c  a0[+0x4] = s8
+  0ef140  a0[+0x8] = s1
+loc_1000ef144:
+  0ef144  a0[+0xc] = s9
+  0ef158  return
+
+== sub_1000ef15c   (address 0x1000ef15c  size 108  kind sub)
+  0ef170  if (s8 != 0.0) goto loc_1000ef18c
+  0ef188  goto loc_1000ef1bc
+loc_1000ef18c:
+  0ef190  atanf((s0 / s8))
+  0ef198  if (s8 >= (or unordered) 0.0) goto loc_1000ef1a8
+  0ef1a4  goto loc_1000ef1b8
+loc_1000ef1a8:
+  0ef1ac  if (atanf((s0 / s8)) >= (or unordered) 0.0) goto loc_1000ef1bc
+loc_1000ef1b8:
+loc_1000ef1bc:
+  0ef1c4  return
+
+== sub_1000ef1c8   (address 0x1000ef1c8  size 52  kind sub)
+  0ef1f4  t1 = ((((s0 - s2) * (s0 - s2)) + ((s1 - s3) * (s1 - s3))) + ((a0[+0xc] - a1[+0xc]) * (a0[+0xc] - a1[+0xc])))
+  0ef1f8  return
+
+== sub_1000ef1fc   (address 0x1000ef1fc  size 64  kind sub)
+  0ef22c  asin((s0 / sqrt(((s0 * s0) + ((a0[+0x4] * a0[+0x4]) + (s2 * s2))))), sqrt(((s0 * s0) + ((a0[+0x4] * a0[+0x4]) + (s2 * s2)))))
+  0ef238  return
+
+== sub_1000ef23c   (address 0x1000ef23c  size 64  kind sub)
+  0ef260  if (sqrt((((s1 * s1) + (s0 * s0)) + (a0[+0xc] * a0[+0xc]))) == 0.0) goto loc_1000ef278
+  0ef274  a0[+0xc] = (a0[+0xc] / sqrt((((s1 * s1) + (s0 * s0)) + (a0[+0xc] * a0[+0xc]))))
+loc_1000ef278:
+  0ef278  return
+
+== sub_1000ef27c   (address 0x1000ef27c  size 324  kind sub)
+  0ef2a0  sub_1000e9560((a0 + 216), a1, a2, a3)
+  0ef2b8  sub_1000e9b4c((a0 + 208), &d_1003b5f30)
+  0ef2d4  sub_1000f1280(a0, &d_1003b5f08, a1)
+  0ef2e4  a0[+0x0] = vtable<csl::DistanceSimulator>
+  0ef2ec  a0[+0xd0] = vtable<csl::DistanceSimulator (secondary, -0xd0)>
+  0ef2f8  a0[+0xd8] = vtable<csl::DistanceSimulator (secondary, -0xd8)>
+  0ef304  sub_1000e969c(a0, 3, a1)
+  0ef310  sub_1000f18f0(a1, 0)
+  0ef31c  sub_1000f18ac(a0, sub_1000f18f0(a1, 0))
+  0ef324  a0[+0xc8] = 0x42c80000
+  0ef32c  Znwm(16)
+  0ef33c  Znwm(16)[+0x0] = vtable<csl::IntensityAttenuationCue>
+  0ef340  a0[+0xb8] = Znwm(16)
+  0ef344  Znwm(16)[+0xc] = 0x42c80000
+  0ef34c  Znwm(32)
+  0ef35c  Znwm(32)[+0x0] = vtable<csl::AirAbsorptionCue>
+  0ef364  a0[+0xc0] = Znwm(32)
+  0ef37c  return
+  0ef38c  sub_1000f16e4(x0, (x23 + 8))
+  0ef3a8  sub_1000e9c44(x0, (x23 + 48))
+  0ef3b0  call sub_1000e9388
+  0ef3bc  call sub_10000b760
+
+== sub_1000ef3c0   (address 0x1000ef3c0  size 160  kind sub)
+  0ef3dc  a0[+0x0] = a1[+0x0]
+  0ef400  if (a0[+0xb8] == 0) goto loc_1000ef410
+  0ef40c  call a0[+0xb8][+0x0][+0x8]
+loc_1000ef410:
+  0ef414  if (a0[+0xc0] == 0) goto loc_1000ef424
+  0ef420  call a0[+0xc0][+0x0][+0x8]
+loc_1000ef424:
+  0ef42c  sub_1000f16e4(a0, (a1 + 8))
+  0ef440  return
+  0ef450  sub_1000f16e4(x0, (x20 + 8))
+  0ef45c  call sub_10000b760

@@ -1,0 +1,31 @@
+// ADEncyclopediaViewController.nib
+TOP-LEVEL OBJECTS
+  #92 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #24 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #56 UIView  Tag=2781
+    #73 UIView  
+      #25 UIImageView  Image='background_main.png'
+    #51 UIScrollView  
+    #27 UIImageView  Image='Frame_scroller_blank.png'
+    #90 UITableView  
+  #1 UIView  Tag=2782
+    #34 UIView  
+      #64 UIImageView  Tag=1 Image='background_main.png'
+    #57 UIScrollView  Tag=3
+    #3 UIImageView  Image='Frame_scroller_blank.png'
+    #83 UITableView  Tag=4
+
+CONNECTIONS
+  outlet  background                                #92 UIProxyObject --> #25 UIImageView
+  outlet  dataSource                                #83 UITableView --> #92 UIProxyObject
+  outlet  dataSource                                #90 UITableView --> #92 UIProxyObject
+  outlet  delegate                                  #83 UITableView --> #92 UIProxyObject
+  outlet  delegate                                  #51 UIScrollView --> #92 UIProxyObject
+  outlet  delegate                                  #90 UITableView --> #92 UIProxyObject
+  outlet  delegate                                  #57 UIScrollView --> #92 UIProxyObject
+  outlet  firstAccessibleElement                    #92 UIProxyObject --> #90 UITableView
+  outlet  view                                      #92 UIProxyObject --> #56 UIView
+  outlet  zombieDetailHorizontalScrollTable         #92 UIProxyObject --> #51 UIScrollView
+  outlet  zombieNameVerticalTable                   #92 UIProxyObject --> #90 UITableView
+
+ACCESSIBILITY CONFIGURATIONS

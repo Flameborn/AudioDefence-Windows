@@ -1,0 +1,263 @@
+
+== -[SExp dateFormatter]   (address 0x1000e07f8  size 124  kind objc)
+  0e080c  if (g_10042db70 != 0) goto loc_1000e0868
+  0e0824  [NSDateFormatter alloc]
+  0e0834  [[NSDateFormatter alloc] init]
+  0e083c  store g_10042db70 = [[NSDateFormatter alloc] init]
+  0e0860  [g_10042db70 setDateFormat:@"yyyyMMdd"]
+loc_1000e0868:
+
+== +[SExp sexp]   (address 0x1000e0874  size 56  kind objc)
+  0e0890  [SExp alloc]
+  0e08a0  [[SExp alloc] init]
+  0e08a8  return
+
+== +[SExp sexp:]   (address 0x1000e08ac  size 148  kind objc)
+  0e08dc  [SExp sexp]
+  0e08fc  [[SExp sexp] setToken:arg1]
+  0e0918  return
+
+== +[SExp sexp:root:]   (address 0x1000e0940  size 668  kind objc)
+  0e0994  [arg1 componentsSeparatedByString:@"/"]
+  0e09d4  [[arg1 componentsSeparatedByString:@"/"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0e09e0  if ([[arg1 componentsSeparatedByString:@"/"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_1000e0ae0
+  0e0a00  &@selector(children)
+  0e0a10  &@selector(addObject:)
+loc_1000e0a18:
+loc_1000e0a1c:
+  0e0a28  if (x8 == x24) goto loc_1000e0a34
+  0e0a30  objc_enumerationMutation([arg1 componentsSeparatedByString:@"/"])
+loc_1000e0a34:
+  0e0a48  [SExp sexp:x2]
+  0e0a58  if (x23 == 0) goto loc_1000e0a94
+  0e0a64  [x0 children]
+  0e0a7c  [[x0 children] addObject:[SExp sexp:x2]]
+  0e0a90  goto loc_1000e0ab0
+loc_1000e0a94:
+loc_1000e0ab0:
+  0e0abc  if ((x22 + 1) <u [[arg1 componentsSeparatedByString:@"/"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]) goto loc_1000e0a1c
+  0e0ad0  [[arg1 componentsSeparatedByString:@"/"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0e0ad8  if ([[arg1 componentsSeparatedByString:@"/"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_1000e0a18
+  0e0adc  goto loc_1000e0ae8
+loc_1000e0ae0:
+loc_1000e0ae8:
+  0e0b00  arg2[+0x0] = x0
+  0e0b50  return
+
+== -[SExp addAttribute:]   (address 0x1000e0bdc  size 156  kind objc)
+  0e0c0c  [self attributes]
+  0e0c2c  [[self attributes] addObject:arg1]
+  0e0c50  return
+
+== -[SExp addIntAttribute:]   (address 0x1000e0c78  size 204  kind objc)
+  0e0ca0  [self attributes]
+  0e0cd0  [NSString stringWithFormat:@"%d", arg1]
+  0e0cf4  [[self attributes] addObject:[NSString stringWithFormat:@"%d", arg1]]
+  0e0d1c  return
+
+== -[SExp addFloatAttribute:]   (address 0x1000e0d44  size 216  kind objc)
+  0e0d70  [self attributes]
+  0e0da4  [NSString stringWithFormat:@"%f", arg1]
+  0e0dc8  [[self attributes] addObject:[NSString stringWithFormat:@"%f", arg1]]
+  0e0df4  return
+
+== -[SExp addDateAttribute:]   (address 0x1000e0e1c  size 280  kind objc)
+  0e0e50  [self attributes]
+  0e0e70  [self dateFormatter]
+  0e0e90  [[self dateFormatter] stringFromDate:arg1]
+  0e0eb4  [[self attributes] addObject:[[self dateFormatter] stringFromDate:arg1]]
+  0e0eec  return
+
+== -[SExp addBoolAttribute:]   (address 0x1000e0f34  size 140  kind objc)
+  0e0f58  [self attributes]
+  0e0f8c  [[self attributes] addObject:(arg1 != 0 ? @"true" : @"false")]
+  0e0fa8  return
+
+== -[SExp init]   (address 0x1000e0fc0  size 316  kind objc)
+  0e0ffc  [super init]
+  0e1004  if (self == 0) goto loc_1000e10b4
+  0e1028  [NSMutableArray arrayWithCapacity:5]
+  0e104c  [self setChildren:[NSMutableArray arrayWithCapacity:5]]
+  0e1068  [NSMutableArray arrayWithCapacity:1]
+  0e108c  [self setAttributes:[NSMutableArray arrayWithCapacity:1]]
+  0e10b0  [self setToken:0]
+loc_1000e10b4:
+  0e10cc  return
+
+== -[SExp stringValue:]   (address 0x1000e10fc  size 20  kind objc)
+  0e110c  tail [self stringValue:arg1 at:0]
+
+== -[SExp stringValue:at:]   (address 0x1000e1110  size 300  kind objc)
+  0e1144  [self attributes]
+  0e1154  if ([self attributes] == 0) goto loc_1000e11e8
+  0e1160  [self attributes]
+  0e117c  [[self attributes] count]
+  0e1198  if ([[self attributes] count] <=u arg2) goto loc_1000e11f0
+  0e11a4  [self attributes]
+  0e11c4  [[self attributes] objectAtIndex:arg2]
+  0e11d4  arg1[+0x0] = [[self attributes] objectAtIndex:arg2]
+  0e11e4  goto loc_1000e11f4
+loc_1000e11e8:
+loc_1000e11f0:
+loc_1000e11f4:
+  0e1208  return
+
+== -[SExp intValue:]   (address 0x1000e123c  size 20  kind objc)
+  0e124c  tail [self intValue:arg1 at:0]
+
+== -[SExp intValue:at:]   (address 0x1000e1250  size 160  kind objc)
+  0e1280  [self stringValue:&sp[0x8] at:arg2]
+  0e1294  if ([self stringValue:&sp[0x8] at:arg2] == 0) goto loc_1000e12b8
+  0e12a8  [0 intValue]
+  0e12ac  arg1[+0x0] = [0 intValue]
+  0e12b4  goto loc_1000e12bc
+loc_1000e12b8:
+loc_1000e12bc:
+  0e12d8  return
+
+== -[SExp dateValue:]   (address 0x1000e12f0  size 20  kind objc)
+  0e1300  tail [self dateValue:arg1 at:0]
+
+== -[SExp dateValue:at:]   (address 0x1000e1304  size 232  kind objc)
+  0e1338  [self stringValue:&sp[0x8] at:arg2]
+  0e134c  if ([self stringValue:&sp[0x8] at:arg2] == 0) goto loc_1000e13a4
+  0e1360  [self dateFormatter]
+  0e1380  [[self dateFormatter] dateFromString:0]
+  0e1390  arg1[+0x0] = [[self dateFormatter] dateFromString:0]
+  0e13a0  goto loc_1000e13a8
+loc_1000e13a4:
+loc_1000e13a8:
+  0e13c4  return
+
+== -[SExp floatValue:]   (address 0x1000e13ec  size 20  kind objc)
+  0e13fc  tail [self floatValue:arg1 at:0]
+
+== -[SExp floatValue:at:]   (address 0x1000e1400  size 160  kind objc)
+  0e1430  [self stringValue:&sp[0x8] at:arg2]
+  0e1444  if ([self stringValue:&sp[0x8] at:arg2] == 0) goto loc_1000e1468
+  0e1458  [0 floatValue]
+  0e145c  arg1[+0x0] = [0 floatValue]
+  0e1464  goto loc_1000e146c
+loc_1000e1468:
+loc_1000e146c:
+  0e1488  return
+
+== -[SExp boolValue:]   (address 0x1000e14a0  size 20  kind objc)
+  0e14b0  tail [self boolValue:arg1 at:0]
+
+== -[SExp boolValue:at:]   (address 0x1000e14b4  size 272  kind objc)
+  0e14e4  [self stringValue:&sp[0x8] at:arg2]
+  0e1508  if (([self stringValue:&sp[0x8] at:arg2] & (0 != 0)) != 1) goto loc_1000e1550
+  0e151c  [0 length]
+  0e1520  if ([0 length] == 0) goto loc_1000e1550
+  0e1538  [0 characterAtIndex:0]
+  0e1540  if ([0 characterAtIndex:0] > 83) goto loc_1000e1558
+  0e1548  if ([0 characterAtIndex:0] != 49) goto loc_1000e1588
+  0e154c  goto loc_1000e157c
+loc_1000e1550:
+  0e1554  goto loc_1000e1590
+loc_1000e1558:
+  0e1578  if (flags ==) goto loc_1000e1588
+loc_1000e157c:
+  0e1580  arg1[+0x0] = 1
+  0e1584  goto loc_1000e1590
+loc_1000e1588:
+  0e1588  arg1[+0x0] = 0
+loc_1000e1590:
+  0e15ac  return
+
+== -[SExp description]   (address 0x1000e15c4  size 160  kind objc)
+  0e15e8  [NSString alloc]
+  0e1608  [SExpIO encode:self]
+  0e1630  [[NSString alloc] initWithData:[SExpIO encode:self] encoding:4]
+  0e164c  return
+
+== -[SExp subnode:]   (address 0x1000e1664  size 44  kind objc)
+  0e167c  [self subnode:arg1 sibling:0]
+  0e168c  return
+
+== -[SExp subnode:sibling:]   (address 0x1000e1690  size 280  kind objc)
+  0e16c8  [arg1 componentsSeparatedByString:@"/"]
+  0e16e4  [[arg1 componentsSeparatedByString:@"/"] objectEnumerator]
+  0e1700  [[[arg1 componentsSeparatedByString:@"/"] objectEnumerator] nextObject]
+  0e172c  [self subnode:[[[arg1 componentsSeparatedByString:@"/"] objectEnumerator] nextObject] enumerator:[[arg1 componentsSeparatedByString:@"/"] objectEnumerator] sibling:arg2]
+  0e1768  return
+
+== -[SExp subnode:enumerator:sibling:]   (address 0x1000e17a8  size 744  kind objc)
+  0e17fc  if (arg1 == 0) goto loc_1000e195c
+  0e1810  [self children]
+  0e1820  if ([self children] == 0) goto loc_1000e1964
+  0e1834  [arg2 nextObject]
+  0e187c  [[self children] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0e1884  if ([[self children] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_1000e196c
+  0e1894  &@selector(token)
+  0e18a4  &@selector(compare:)
+loc_1000e18b0:
+loc_1000e18b4:
+  0e18c0  if (x8 == x22) goto loc_1000e18cc
+  0e18c8  objc_enumerationMutation([self children])
+loc_1000e18cc:
+  0e18dc  [x0 token]
+  0e18f8  [arg1 compare:[x0 token]]
+  0e1908  if ([arg1 compare:[x0 token]] != 0) goto loc_1000e1928
+  0e1910  if ([arg2 nextObject] != 0) goto loc_1000e1974
+  0e1924  if ((w23 + 1) == arg3) goto loc_1000e19b0
+loc_1000e1928:
+  0e1930  if ((x24 + 1) <u [[self children] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]) goto loc_1000e18b4
+  0e1948  [[self children] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  0e1950  if ([[self children] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_1000e18b0
+  0e1958  goto loc_1000e19bc
+loc_1000e195c:
+  0e1960  goto loc_1000e19e4
+loc_1000e1964:
+  0e1968  goto loc_1000e19dc
+loc_1000e196c:
+  0e1970  goto loc_1000e19cc
+loc_1000e1974:
+  0e1990  [x0 subnode:[arg2 nextObject] enumerator:arg2 sibling:arg3]
+  0e19ac  goto loc_1000e19cc
+loc_1000e19b0:
+loc_1000e19bc:
+loc_1000e19cc:
+loc_1000e19dc:
+loc_1000e19e4:
+  0e1a20  return
+
+== -[SExp each:]   (address 0x1000e1a90  size 352  kind objc)
+  0e1aec  [self children]
+  0e1b18  [[self children] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0e1b20  if ([[self children] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_1000e1b88
+loc_1000e1b2c:
+loc_1000e1b30:
+  0e1b3c  if (x8 == x24) goto loc_1000e1b48
+  0e1b44  objc_enumerationMutation([self children])
+loc_1000e1b48:
+  0e1b58  call arg1[+0x10]
+  0e1b64  if ((x25 + 1) <u [[self children] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]) goto loc_1000e1b30
+  0e1b7c  [[self children] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  0e1b84  if ([[self children] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_1000e1b2c
+loc_1000e1b88:
+  0e1bbc  return
+
+== -[SExp children]   (address 0x1000e1bf0  size 16  kind objc)
+  0e1bfc  return
+
+== -[SExp setChildren:]   (address 0x1000e1c00  size 56  kind objc)
+  0e1c24  self->children = arg1
+  0e1c34  return
+
+== -[SExp attributes]   (address 0x1000e1c38  size 16  kind objc)
+  0e1c44  return
+
+== -[SExp setAttributes:]   (address 0x1000e1c48  size 56  kind objc)
+  0e1c6c  self->attributes = arg1
+  0e1c7c  return
+
+== -[SExp token]   (address 0x1000e1c80  size 16  kind objc)
+  0e1c8c  return
+
+== -[SExp setToken:]   (address 0x1000e1c90  size 56  kind objc)
+  0e1cb4  self->token = arg1
+  0e1cc4  return
+
+== -[SExp .cxx_destruct]   (address 0x1000e1cc8  size 84  kind objc)

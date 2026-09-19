@@ -1,0 +1,8 @@
+
+== -[TAGSha512HashAlgorithm hashData:]   (address 0x100175048  size 196  kind objc)
+  175068  malloc(64)
+  175080  [arg1 length]
+  1750a0  [arg1 bytes]
+  1750ac  CC_SHA512([arg1 bytes], [arg1 length], malloc(64))
+  1750cc  [NSData dataWithBytesNoCopy:malloc(64) length:64]
+  1750f4  return

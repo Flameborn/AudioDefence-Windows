@@ -1,0 +1,86 @@
+{
+ "Sounds": [
+  {
+   "gain": "1",
+   "skippable": true,
+   "spawn_time": 1,
+   "name": "bastard_tutorial_1_4"
+  },
+  {
+   "spawn_after": {
+    "time": 0.1,
+    "enemy": "bastard_tutorial_1_4"
+   },
+   "gain": "0.5",
+   "skippable": true,
+   "name": "announcer_tutorial_reload_BUTTONMODE"
+  },
+  {
+   "spawn_after": {
+    "time": 1.5,
+    "enemy": "announcer_tutorial_reload_BUTTONMODE"
+   },
+   "gain": "1",
+   "skippable": true,
+   "name": "bastard_tutorial_1_5"
+  },
+  {
+   "spawn_after": {
+    "time": 20,
+    "enemy": "bastard_tutorial_1_45"
+   },
+   "blocker": false,
+   "gain": "0.5",
+   "skippable": true,
+   "name": "announcer_tutorial_aimhelp"
+  },
+  {
+   "spawn_after": {
+    "time": 2.3,
+    "enemy": "Jim"
+   },
+   "stopsOtherSounds": true,
+   "gain": "1",
+   "blocker": true,
+   "skippable": true,
+   "startMusicBeforeEnd": 3,
+   "name": "bastard_tutorial_1_6"
+  },
+  {
+   "spawn_after": {
+    "time": 10.5,
+    "afterStart": true,
+    "ignoreIfSkipped": true,
+    "enemy": "bastard_tutorial_1_4"
+   },
+   "spawn_angle": 130,
+   "gain": 8,
+   "spawn_distance": 2,
+   "name": "tutorial_1_cracker_SPA"
+  },
+  {
+   "spawn_after": {
+    "time": 17,
+    "afterStart": true,
+    "ignoreIfSkipped": true,
+    "enemy": "bastard_tutorial_1_4"
+   },
+   "spawn_angle": 310,
+   "gain": 8,
+   "spawn_distance": 2,
+   "name": "tutorial_1_tiger_SPA"
+  }
+ ],
+ "Enemies": {
+  "Jim": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 13.5,
+    "afterStart": true,
+    "enemy": "bastard_tutorial_1_5"
+   },
+   "spawn_angle": 50,
+   "spawn_distance": 6
+  }
+ }
+}

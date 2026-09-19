@@ -1,0 +1,658 @@
+
+== +[TAGUniversalAnalytics functionId]   (address 0x10017b038  size 44  kind objc)
+  17b060  return
+
+== -[TAGUniversalAnalytics initWithDataLayer:]   (address 0x10017b064  size 388  kind objc)
+  17b09c  [NSSet set]
+  17b0d8  [super initWithFunctionId:@"_ua" requiredKeys:[NSSet set]]
+  17b0e8  if (self == 0) goto loc_10017b1a0
+  17b100  self->_dataLayer = arg1
+  17b13c  [NSSet setWithObjects:@"", @"0", @"false", nil]
+  17b154  self->_turnOffAnonymizeIpValues = [NSSet setWithObjects:@"", @"0", @"false", nil]
+  17b174  [NSNumberFormatter alloc]
+  17b184  [[NSNumberFormatter alloc] init]
+  17b194  self->_numberFormatter = [[NSNumberFormatter alloc] init]
+loc_10017b1a0:
+  17b1bc  return
+
+== -[TAGUniversalAnalytics checkBooleanPropertyForTag:key:]   (address 0x10017b1e8  size 272  kind objc)
+  17b220  [arg1 objectForKey:arg2]
+  17b23c  if ([arg1 objectForKey:arg2] == 0) goto loc_10017b288
+  17b254  [NSNull null]
+  17b278  [[arg1 objectForKey:arg2] isEqual:[NSNull null]]
+  17b27c  if (!([[arg1 objectForKey:arg2] isEqual:[NSNull null]] & 1)) goto loc_10017b290
+  17b284  goto loc_10017b2a8
+loc_10017b288:
+  17b28c  goto loc_10017b2b0
+loc_10017b290:
+  17b2a0  [[arg1 objectForKey:arg2] boolean]
+loc_10017b2a8:
+loc_10017b2b0:
+  17b2c8  return
+
+== -[TAGUniversalAnalytics evaluateTrackingTag:]   (address 0x10017b2f8  size 524  kind objc)
+  17b32c  [self setLoggerIfNecessary]
+  17b340  [self openTracker]
+  17b370  [self checkBooleanPropertyForTag:arg1 key:@"enable_ecommerce"]
+  17b374  if ([self checkBooleanPropertyForTag:arg1 key:@"enable_ecommerce"] == 0) goto loc_10017b398
+  17b390  [self sendEnhancedEcommerce:arg1 withTracker:[self openTracker]]
+  17b394  goto loc_10017b488
+loc_10017b398:
+  17b3ac  [self checkBooleanPropertyForTag:arg1 key:@"analytics_pass_through"]
+  17b3b0  if ([self checkBooleanPropertyForTag:arg1 key:@"analytics_pass_through"] == 0) goto loc_10017b42c
+  17b3cc  [arg1 objectForKey:@"analytics_fields"]
+  17b3f0  [self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]
+  17b414  [[self openTracker] send:[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]]
+  17b428  goto loc_10017b488
+loc_10017b42c:
+  17b440  [self checkBooleanPropertyForTag:arg1 key:@"track_transaction"]
+  17b444  if ([self checkBooleanPropertyForTag:arg1 key:@"track_transaction"] == 0) goto loc_10017b468
+  17b460  [self sendTransaction:arg1 withTracker:[self openTracker]]
+  17b464  goto loc_10017b488
+loc_10017b468:
+  17b484  [TAGLog warning:@"Ignoring unknown tag."]
+loc_10017b488:
+  17b49c  [self closeTracker:[self openTracker]]
+  17b4bc  return
+
+== -[TAGUniversalAnalytics dataLayerString:]   (address 0x10017b504  size 232  kind objc)
+  17b534  [self dataLayer]
+  17b554  [[self dataLayer] get:arg1]
+  17b56c  if ([[self dataLayer] get:arg1] == 0) goto loc_10017b594
+  17b580  [[[self dataLayer] get:arg1] description]
+  17b590  goto loc_10017b598
+loc_10017b594:
+loc_10017b598:
+  17b5b8  return
+
+== -[TAGUniversalAnalytics valueToStringMap:]   (address 0x10017b5ec  size 752  kind objc)
+  17b624  [arg1 type]
+  17b62c  if ([arg1 type] != 3) goto loc_10017b81c
+  17b64c  [arg1 mapKeyArray]
+  17b66c  [[arg1 mapKeyArray] count]
+  17b684  [NSMutableDictionary dictionaryWithCapacity:[[arg1 mapKeyArray] count]]
+  17b6b8  &@selector(mapValueArray)
+  17b6d8  goto loc_10017b6f0
+loc_10017b6dc:
+loc_10017b6f0:
+  17b6f8  [arg1 mapKeyArray]
+  17b70c  [[arg1 mapKeyArray] count]
+  17b720  if (x23 >=u [[arg1 mapKeyArray] count]) goto loc_10017b820
+  17b734  [arg1 mapKeyArray]
+  17b74c  [[arg1 mapKeyArray] objectAtIndex:x2]
+  17b768  [TAGTypes valueToString:[[arg1 mapKeyArray] objectAtIndex:x2]]
+  17b79c  [arg1 mapValueArray]
+  17b7b4  [[arg1 mapValueArray] objectAtIndex:x2]
+  17b7d0  [TAGTypes valueToString:[[arg1 mapValueArray] objectAtIndex:x2]]
+  17b804  [[NSMutableDictionary dictionaryWithCapacity:[[arg1 mapKeyArray] count]] setObject:[TAGTypes valueToString:[[arg1 mapValueArray] objectAtIndex:x2]] forKey:[TAGTypes valueToString:[[arg1 mapKeyArray] objectAtIndex:x2]]]
+  17b808  goto loc_10017b6dc
+  17b818  goto loc_10017b8b8
+loc_10017b81c:
+loc_10017b820:
+  17b848  return
+
+== -[TAGUniversalAnalytics gaFieldsWithAnalyticsFields:]   (address 0x10017b8dc  size 460  kind objc)
+  17b904  if (arg1 == 0) goto loc_10017ba0c
+  17b918  [arg1 type]
+  17b920  if ([arg1 type] != 3) goto loc_10017ba0c
+  17b938  [self valueToStringMap:arg1]
+  17b950  [&d_1003b8390] -> @"&aip"
+  17b964  [[self valueToStringMap:arg1] objectForKey:@"&aip"]
+  17b974  if ([[self valueToStringMap:arg1] objectForKey:@"&aip"] == 0) goto loc_10017ba00
+  17b988  [self turnOffAnonymizeIpValues]
+  17b9a8  [[[self valueToStringMap:arg1] objectForKey:@"&aip"] lowercaseString]
+  17b9cc  [[self turnOffAnonymizeIpValues] containsObject:[[[self valueToStringMap:arg1] objectForKey:@"&aip"] lowercaseString]]
+  17b9e4  if ([[self turnOffAnonymizeIpValues] containsObject:[[[self valueToStringMap:arg1] objectForKey:@"&aip"] lowercaseString]] == 0) goto loc_10017ba00
+  17b9fc  [[self valueToStringMap:arg1] removeObjectForKey:@"&aip"]
+loc_10017ba00:
+  17ba08  goto loc_10017ba30
+loc_10017ba0c:
+  17ba20  [NSMutableDictionary dictionary]
+loc_10017ba30:
+  17ba50  return
+
+== -[TAGUniversalAnalytics openTracker]   (address 0x10017baa8  size 128  kind objc)
+  17bac8  [GAI sharedInstance]
+  17baec  [[GAI sharedInstance] trackerWithTrackingId:@"__GTM_DEFAULT_TRACKER__"]
+  17bb10  return
+
+== -[TAGUniversalAnalytics closeTracker:]   (address 0x10017bb28  size 208  kind objc)
+  17bb58  [GAI sharedInstance]
+  17bb78  [arg1 name]
+  17bb9c  [[GAI sharedInstance] removeTrackerByName:[arg1 name]]
+  17bbc0  return
+
+== -[TAGUniversalAnalytics setLoggerIfNecessary]   (address 0x10017bbf8  size 364  kind objc)
+  17bc20  [self logger]
+  17bc30  objc_sync_enter([self logger])
+  17bc3c  [self logger]
+  17bc50  if ([self logger] != 0) goto loc_10017bd00
+  17bc68  [GAILoggerImpl alloc]
+  17bc78  [[GAILoggerImpl alloc] init]
+  17bc98  [self setLogger:[[GAILoggerImpl alloc] init]]
+  17bcb8  [GAI sharedInstance]
+  17bcd0  [self logger]
+  17bcec  [[GAI sharedInstance] setLogger:[self logger]]
+loc_10017bd00:
+  17bd04  objc_sync_exit([self logger])
+  17bd1c  return
+  17bd50  objc_sync_exit()
+
+== -[TAGUniversalAnalytics getArrayOfDictionariesFromObject:]   (address 0x10017bd64  size 616  kind objc)
+  17bda0  if (arg1 == 0) goto loc_10017bec8
+  17bdbc  [NSArray class]
+  17bdd8  [arg1 isKindOfClass:[NSArray class]]
+  17bddc  if (!([arg1 isKindOfClass:[NSArray class]] & 1)) goto loc_10017bf50
+  17be20  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  17be28  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] == 0) goto loc_10017beb0
+loc_10017be40:
+loc_10017be44:
+  17be50  if (x8 == x28) goto loc_10017be5c
+  17be58  objc_enumerationMutation(arg1)
+loc_10017be5c:
+  17be6c  [NSDictionary class]
+  17be7c  [x0 isKindOfClass:[NSDictionary class]]
+  17be80  if (!([x0 isKindOfClass:[NSDictionary class]] & 1)) goto loc_10017bf0c
+  17be8c  if ((x23 + 1) <u [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]) goto loc_10017be44
+  17bea4  [arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16]
+  17beac  if ([arg1 countByEnumeratingWithState:&sp[0x98] objects:&sp[0x18] count:16] != 0) goto loc_10017be40
+loc_10017beb0:
+  17bec4  goto loc_10017becc
+loc_10017bec8:
+loc_10017becc:
+  17bf04  return
+  17bf34  [NSException exceptionWithName:@"IllegalArgumentException" reason:@"Each element of the array should be of type NSDictionary" userInfo:0]
+  17bf44  objc_exception_throw([NSException exceptionWithName:@"IllegalArgumentException" reason:@"Each element of the array should be of type NSDictionary" userInfo:0])
+  17bf88  [NSException exceptionWithName:@"IllegalArgumentException" reason:@"Expected dictionary entry to be of type NSArray" userInfo:0]
+  17bf98  objc_exception_throw([NSException exceptionWithName:@"IllegalArgumentException" reason:@"Expected dictionary entry to be of type NSArray" userInfo:0])
+
+== -[TAGUniversalAnalytics addParam:value:toParams:]   (address 0x10017bfcc  size 164  kind objc)
+  17c008  if (arg2 == 0) goto loc_10017c028
+  17c024  [arg3 setObject:arg2 forKey:arg1]
+loc_10017c028:
+  17c048  return
+
+== -[TAGUniversalAnalytics sendTransaction:withTracker:]   (address 0x10017c070  size 3076  kind objc)
+  17c0e8  [arg1 objectForKey:@"account"]
+  17c10c  [TAGTypes valueToString:[arg1 objectForKey:@"account"]]
+  17c140  [self dataLayerString:@"transactionId"]
+  17c154  if ([self dataLayerString:@"transactionId"] == 0) goto loc_10017c800
+  17c16c  [NSMutableArray array]
+  17c18c  [arg1 objectForKey:@"analytics_fields"]
+  17c1b4  [self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]
+  17c1d8  [&d_1003b8378] -> @"&tid"
+  17c1f4  [[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]] setObject:[TAGTypes valueToString:[arg1 objectForKey:@"account"]] forKey:@"&tid"]
+  17c200  [&d_1003b8368] -> @"&t"
+  17c218  [[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]] setObject:@"transaction" forKey:@"&t"]
+  17c230  [self transactionFieldsForTag:arg1]
+  17c278  [[self transactionFieldsForTag:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x308] count:16]
+  17c280  if ([[self transactionFieldsForTag:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x308] count:16] == 0) goto loc_10017c35c
+loc_10017c2a8:
+loc_10017c2ac:
+  17c2b8  if (x8 == x19) goto loc_10017c2c4
+  17c2c0  objc_enumerationMutation([self transactionFieldsForTag:arg1])
+loc_10017c2c4:
+  17c2d8  [[self transactionFieldsForTag:arg1] objectForKey:x2]
+  17c2f4  [self dataLayerString:x2]
+  17c318  [self addParam:[[self transactionFieldsForTag:arg1] objectForKey:x2] value:[self dataLayerString:x2] toParams:[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]]
+  17c334  if ((x24 + 1) <u [[self transactionFieldsForTag:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x308] count:16]) goto loc_10017c2ac
+  17c34c  [[self transactionFieldsForTag:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x308] count:16]
+  17c358  if ([[self transactionFieldsForTag:arg1] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x308] count:16] != 0) goto loc_10017c2a8
+loc_10017c35c:
+  17c37c  [[NSMutableArray array] addObject:[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]]
+  17c390  [self dataLayer]
+  17c3b4  [[self dataLayer] get:@"transactionProducts"]
+  17c3d8  [self getArrayOfDictionariesFromObject:[[self dataLayer] get:@"transactionProducts"]]
+  17c3fc  if ([self getArrayOfDictionariesFromObject:[[self dataLayer] get:@"transactionProducts"]] == 0) goto loc_10017c710
+  17c440  [[self getArrayOfDictionariesFromObject:[[self dataLayer] get:@"transactionProducts"]] countByEnumeratingWithState:&sp[0x2c8] objects:&sp[0x248] count:16]
+  17c444  if ([[self getArrayOfDictionariesFromObject:[[self dataLayer] get:@"transactionProducts"]] countByEnumeratingWithState:&sp[0x2c8] objects:&sp[0x248] count:16] == 0) goto loc_10017c708
+  17c46c  [&d_1003b8410] -> @"&ti"
+  17c480  &@selector(addParam:value:toParams:)
+loc_10017c4bc:
+loc_10017c4cc:
+  17c4d8  if (0[+0x0] == 0[+0x0]) goto loc_10017c4e4
+  17c4e0  objc_enumerationMutation([self getArrayOfDictionariesFromObject:[[self dataLayer] get:@"transactionProducts"]])
+loc_10017c4e4:
+  17c4fc  [x0 objectForKey:@"name"]
+  17c510  if ([x0 objectForKey:@"name"] == 0) goto loc_10017ca7c
+  17c524  [arg1 objectForKey:@"analytics_fields"]
+  17c540  [self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]
+  17c56c  [[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]] setObject:@"item" forKey:@"&t"]
+  17c580  [[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]] setObject:[self dataLayerString:@"transactionId"] forKey:@"&ti"]
+  17c590  [self transactionItemFieldsForTag:arg1]
+  17c5d0  [[self transactionItemFieldsForTag:arg1] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16]
+  17c5d8  if ([[self transactionItemFieldsForTag:arg1] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16] == 0) goto loc_10017c6a0
+loc_10017c5e4:
+loc_10017c5e8:
+  17c5f4  if (0[+0x0] == 0[+0x0]) goto loc_10017c600
+  17c5fc  objc_enumerationMutation([self transactionItemFieldsForTag:arg1])
+loc_10017c600:
+  17c614  [[self transactionItemFieldsForTag:arg1] objectForKey:x2]
+  17c630  [x0 objectForKey:x2]
+  17c654  [self addParam:[[self transactionItemFieldsForTag:arg1] objectForKey:x2] value:[x0 objectForKey:x2] toParams:[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]]
+  17c670  if ((x24 + 1) <u [[self transactionItemFieldsForTag:arg1] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16]) goto loc_10017c5e8
+  17c68c  [[self transactionItemFieldsForTag:arg1] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16]
+  17c69c  if ([[self transactionItemFieldsForTag:arg1] countByEnumeratingWithState:&sp[0x208] objects:&sp[0x188] count:16] != 0) goto loc_10017c5e4
+loc_10017c6a0:
+  17c6b4  [[NSMutableArray array] addObject:[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]]
+  17c6ec  if ((x9 + 1) <u [[self getArrayOfDictionariesFromObject:[[self dataLayer] get:@"transactionProducts"]] countByEnumeratingWithState:&sp[0…) goto loc_10017c4cc
+  17c700  [[self getArrayOfDictionariesFromObject:[[self dataLayer] get:@"transactionProducts"]] countByEnumeratingWithState:&sp[0x2c8] objects:&sp[0x248] count:16]
+  17c704  if ([[self getArrayOfDictionariesFromObject:[[self dataLayer] get:@"transactionProducts"]] countByEnumeratingWithState:&sp[0x2c8] objects:&sp[0x248] count:16] != 0) goto loc_10017c4bc
+loc_10017c708:
+loc_10017c710:
+  17c740  [[NSMutableArray array] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16]
+  17c74c  if ([[NSMutableArray array] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16] == 0) goto loc_10017c7cc
+loc_10017c774:
+loc_10017c778:
+  17c784  if (x8 == x24) goto loc_10017c790
+  17c78c  objc_enumerationMutation([NSMutableArray array])
+loc_10017c790:
+  17c7a0  [arg2 send:x2]
+  17c7ac  if ((x26 + 1) <u [[NSMutableArray array] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16]) goto loc_10017c778
+  17c7c0  [[NSMutableArray array] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16]
+  17c7c8  if ([[NSMutableArray array] countByEnumeratingWithState:&sp[0x148] objects:&sp[0xc8] count:16] != 0) goto loc_10017c774
+loc_10017c7cc:
+  17c7fc  goto loc_10017ca08
+loc_10017c800:
+  17c81c  [TAGLog error:@"Cannot find transactionId in data layer."]
+  17c820  goto loc_10017ca10
+  17c830  goto loc_10017cc3c
+  17c848  goto loc_10017c87c
+  17c854  goto loc_10017c868
+loc_10017c868:
+loc_10017c87c:
+  17c880  goto loc_10017c900
+  17c890  goto loc_10017c8f4
+  17c8a4  goto loc_10017c8d4
+  17c8b0  goto loc_10017c8c4
+loc_10017c8c4:
+loc_10017c8d4:
+loc_10017c8f4:
+loc_10017c900:
+  17c918  if (w26 != 1) goto loc_10017cbd4
+  17c920  objc_begin_catch()
+  17c93c  [objc_begin_catch() name]
+  17c960  [[objc_begin_catch() name] isEqualToString:@"IllegalArgumentException"]
+  17c970  if ([[objc_begin_catch() name] isEqualToString:@"IllegalArgumentException"] == 0) goto loc_10017cbe4
+  17c98c  [objc_begin_catch() reason]
+  17c9b4  [@"Unable to send transaction: " stringByAppendingString:[objc_begin_catch() reason]]
+  17c9dc  [TAGLog error:[@"Unable to send transaction: " stringByAppendingString:[objc_begin_catch() reason]]]
+  17ca00  objc_end_catch()
+loc_10017ca08:
+loc_10017ca10:
+  17ca5c  return
+  17ca9c  [TAGLog error:@"Unable to send transaction item hit due to missing 'name' field."]
+  17cbec  objc_exception_throw()
+  17cc30  objc_end_catch()
+
+== -[TAGUniversalAnalytics transactionFieldsForTag:]   (address 0x10017cc74  size 484  kind objc)
+  17ccbc  [arg1 objectForKey:@"transaction_datalayer_map"]
+  17cccc  if ([arg1 objectForKey:@"transaction_datalayer_map"] == 0) goto loc_10017ccf0
+  17cce4  [self valueToStringMap:[arg1 objectForKey:@"transaction_datalayer_map"]]
+  17ccec  goto loc_10017cdf8
+loc_10017ccf0:
+  17cd04  [self defaultTransactionMap]
+  17cd18  if ([self defaultTransactionMap] != 0) goto loc_10017cde8
+  17cdcc  [NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x8] count:6]
+  17cde4  [self setDefaultTransactionMap:[NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x8] count:6]]
+loc_10017cde8:
+  17cdf0  [self defaultTransactionMap]
+loc_10017cdf8:
+  17ce30  return
+
+== -[TAGUniversalAnalytics transactionItemFieldsForTag:]   (address 0x10017ce58  size 484  kind objc)
+  17cea0  [arg1 objectForKey:@"transaction_item_datalayer_map"]
+  17ceb0  if ([arg1 objectForKey:@"transaction_item_datalayer_map"] == 0) goto loc_10017ced4
+  17cec8  [self valueToStringMap:[arg1 objectForKey:@"transaction_item_datalayer_map"]]
+  17ced0  goto loc_10017cfdc
+loc_10017ced4:
+  17cee8  [self defaultItemMap]
+  17cefc  if ([self defaultItemMap] != 0) goto loc_10017cfcc
+  17cfb0  [NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x8] count:6]
+  17cfc8  [self setDefaultItemMap:[NSDictionary dictionaryWithObjects:&sp[0x38] forKeys:&sp[0x8] count:6]]
+loc_10017cfcc:
+  17cfd4  [self defaultItemMap]
+loc_10017cfdc:
+  17d014  return
+
+== -[TAGUniversalAnalytics promotionFromDataLayerDictionary:]   (address 0x10017d03c  size 688  kind objc)
+  17d074  [GAIEcommercePromotion alloc]
+  17d084  [[GAIEcommercePromotion alloc] init]
+  17d0ac  [arg1 objectForKeyedSubscript:@"id"]
+  17d0cc  [[arg1 objectForKeyedSubscript:@"id"] description]
+  17d0e4  if ([[arg1 objectForKeyedSubscript:@"id"] description] == 0) goto loc_10017d10c
+  17d0fc  [[[GAIEcommercePromotion alloc] init] setId:[[arg1 objectForKeyedSubscript:@"id"] description]]
+loc_10017d10c:
+  17d11c  [arg1 objectForKeyedSubscript:@"name"]
+  17d130  [[arg1 objectForKeyedSubscript:@"name"] description]
+  17d150  if ([[arg1 objectForKeyedSubscript:@"name"] description] == 0) goto loc_10017d17c
+  17d16c  [[[GAIEcommercePromotion alloc] init] setName:[[arg1 objectForKeyedSubscript:@"name"] description]]
+loc_10017d17c:
+  17d190  [arg1 objectForKeyedSubscript:@"creative"]
+  17d1a4  [[arg1 objectForKeyedSubscript:@"creative"] description]
+  17d1c4  if ([[arg1 objectForKeyedSubscript:@"creative"] description] == 0) goto loc_10017d1ec
+  17d1dc  [[[GAIEcommercePromotion alloc] init] setCreative:[[arg1 objectForKeyedSubscript:@"creative"] description]]
+loc_10017d1ec:
+  17d1fc  [arg1 objectForKeyedSubscript:@"position"]
+  17d210  [[arg1 objectForKeyedSubscript:@"position"] description]
+  17d230  if ([[arg1 objectForKeyedSubscript:@"position"] description] == 0) goto loc_10017d25c
+  17d24c  [[[GAIEcommercePromotion alloc] init] setPosition:{d0, d1}]
+loc_10017d25c:
+  17d284  return
+
+== -[TAGUniversalAnalytics productFromDataLayerDictionary:]   (address 0x10017d2ec  size 1428  kind objc)
+  17d32c  [GAIEcommerceProduct alloc]
+  17d33c  [[GAIEcommerceProduct alloc] init]
+  17d368  [arg1 objectForKeyedSubscript:@"id"]
+  17d388  [[arg1 objectForKeyedSubscript:@"id"] description]
+  17d3a0  if ([[arg1 objectForKeyedSubscript:@"id"] description] == 0) goto loc_10017d3cc
+  17d3bc  [[[GAIEcommerceProduct alloc] init] setId:[[arg1 objectForKeyedSubscript:@"id"] description]]
+loc_10017d3cc:
+  17d3e0  [arg1 objectForKeyedSubscript:@"name"]
+  17d3f4  [[arg1 objectForKeyedSubscript:@"name"] description]
+  17d414  if ([[arg1 objectForKeyedSubscript:@"name"] description] == 0) goto loc_10017d444
+  17d434  [[[GAIEcommerceProduct alloc] init] setName:[[arg1 objectForKeyedSubscript:@"name"] description]]
+loc_10017d444:
+  17d45c  [arg1 objectForKeyedSubscript:@"brand"]
+  17d470  [[arg1 objectForKeyedSubscript:@"brand"] description]
+  17d490  if ([[arg1 objectForKeyedSubscript:@"brand"] description] == 0) goto loc_10017d4bc
+  17d4ac  [[[GAIEcommerceProduct alloc] init] setBrand:[[arg1 objectForKeyedSubscript:@"brand"] description]]
+loc_10017d4bc:
+  17d4d0  [arg1 objectForKeyedSubscript:@"category"]
+  17d4e4  [[arg1 objectForKeyedSubscript:@"category"] description]
+  17d504  if ([[arg1 objectForKeyedSubscript:@"category"] description] == 0) goto loc_10017d534
+  17d524  [[[GAIEcommerceProduct alloc] init] setCategory:[[arg1 objectForKeyedSubscript:@"category"] description]]
+loc_10017d534:
+  17d54c  [arg1 objectForKeyedSubscript:@"variant"]
+  17d560  [[arg1 objectForKeyedSubscript:@"variant"] description]
+  17d580  if ([[arg1 objectForKeyedSubscript:@"variant"] description] == 0) goto loc_10017d5ac
+  17d59c  [[[GAIEcommerceProduct alloc] init] setVariant:[[arg1 objectForKeyedSubscript:@"variant"] description]]
+loc_10017d5ac:
+  17d5c0  [arg1 objectForKeyedSubscript:@"coupon"]
+  17d5d4  [[arg1 objectForKeyedSubscript:@"coupon"] description]
+  17d5f4  if ([[arg1 objectForKeyedSubscript:@"coupon"] description] == 0) goto loc_10017d624
+  17d614  [[[GAIEcommerceProduct alloc] init] setCouponCode:[[arg1 objectForKeyedSubscript:@"coupon"] description]]
+loc_10017d624:
+  17d63c  [arg1 objectForKeyedSubscript:@"position"]
+  17d664  [self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"position"]]
+  17d67c  if ([self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"position"]] == 0) goto loc_10017d6a8
+  17d698  [[[GAIEcommerceProduct alloc] init] setPosition:{d0, d1}]
+loc_10017d6a8:
+  17d6bc  [arg1 objectForKeyedSubscript:@"price"]
+  17d6d8  [self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"price"]]
+  17d6f8  if ([self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"price"]] == 0) goto loc_10017d728
+  17d718  [[[GAIEcommerceProduct alloc] init] setPrice:[self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"price"]]]
+loc_10017d728:
+  17d740  [arg1 objectForKeyedSubscript:@"quantity"]
+  17d75c  [self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"quantity"]]
+  17d77c  if ([self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"quantity"]] == 0) goto loc_10017d7a8
+  17d798  [[[GAIEcommerceProduct alloc] init] setQuantity:[self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"quantity"]]]
+loc_10017d7a8:
+  17d7dc  return
+
+== -[TAGUniversalAnalytics actionDataFromDataLayerDictionary:]   (address 0x10017d880  size 1396  kind objc)
+  17d8c0  [GAIEcommerceProductAction alloc]
+  17d8d0  [[GAIEcommerceProductAction alloc] init]
+  17d8fc  [arg1 objectForKeyedSubscript:@"id"]
+  17d91c  [[arg1 objectForKeyedSubscript:@"id"] description]
+  17d934  if ([[arg1 objectForKeyedSubscript:@"id"] description] == 0) goto loc_10017d960
+  17d950  [[[GAIEcommerceProductAction alloc] init] setTransactionId:[[arg1 objectForKeyedSubscript:@"id"] description]]
+loc_10017d960:
+  17d974  [arg1 objectForKeyedSubscript:@"affiliation"]
+  17d988  [[arg1 objectForKeyedSubscript:@"affiliation"] description]
+  17d9a8  if ([[arg1 objectForKeyedSubscript:@"affiliation"] description] == 0) goto loc_10017d9d8
+  17d9c8  [[[GAIEcommerceProductAction alloc] init] setAffiliation:[[arg1 objectForKeyedSubscript:@"affiliation"] description]]
+loc_10017d9d8:
+  17d9f0  [arg1 objectForKeyedSubscript:@"coupon"]
+  17da04  [[arg1 objectForKeyedSubscript:@"coupon"] description]
+  17da24  if ([[arg1 objectForKeyedSubscript:@"coupon"] description] == 0) goto loc_10017da50
+  17da40  [[[GAIEcommerceProductAction alloc] init] setCouponCode:[[arg1 objectForKeyedSubscript:@"coupon"] description]]
+loc_10017da50:
+  17da64  [arg1 objectForKeyedSubscript:@"list"]
+  17da78  [[arg1 objectForKeyedSubscript:@"list"] description]
+  17da98  if ([[arg1 objectForKeyedSubscript:@"list"] description] == 0) goto loc_10017dac8
+  17dab8  [[[GAIEcommerceProductAction alloc] init] setProductActionList:[[arg1 objectForKeyedSubscript:@"list"] description]]
+loc_10017dac8:
+  17dae0  [arg1 objectForKeyedSubscript:@"option"]
+  17daf4  [[arg1 objectForKeyedSubscript:@"option"] description]
+  17db14  if ([[arg1 objectForKeyedSubscript:@"option"] description] == 0) goto loc_10017db40
+  17db30  [[[GAIEcommerceProductAction alloc] init] setCheckoutOption:[[arg1 objectForKeyedSubscript:@"option"] description]]
+loc_10017db40:
+  17db54  [arg1 objectForKeyedSubscript:@"revenue"]
+  17db7c  [self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"revenue"]]
+  17db94  if ([self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"revenue"]] == 0) goto loc_10017dbbc
+  17dbac  [[[GAIEcommerceProductAction alloc] init] setRevenue:[self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"revenue"]]]
+loc_10017dbbc:
+  17dbcc  [arg1 objectForKeyedSubscript:@"tax"]
+  17dbe8  [self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"tax"]]
+  17dc08  if ([self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"tax"]] == 0) goto loc_10017dc34
+  17dc24  [[[GAIEcommerceProductAction alloc] init] setTax:[self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"tax"]]]
+loc_10017dc34:
+  17dc48  [arg1 objectForKeyedSubscript:@"shipping"]
+  17dc64  [self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"shipping"]]
+  17dc84  if ([self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"shipping"]] == 0) goto loc_10017dcac
+  17dc9c  [[[GAIEcommerceProductAction alloc] init] setShipping:[self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"shipping"]]]
+loc_10017dcac:
+  17dcbc  [arg1 objectForKeyedSubscript:@"step"]
+  17dcd8  [self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"step"]]
+  17dcf8  if ([self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"step"]] == 0) goto loc_10017dd24
+  17dd14  [[[GAIEcommerceProductAction alloc] init] setCheckoutStep:[self NSNumberFromObject:[arg1 objectForKeyedSubscript:@"step"]]]
+loc_10017dd24:
+  17dd58  return
+
+== -[TAGUniversalAnalytics NSNumberFromObject:]   (address 0x10017ddf4  size 292  kind objc)
+  17de14  if (arg1 == 0) goto loc_10017ded4
+  17de30  [NSNumber class]
+  17de4c  [arg1 isKindOfClass:[NSNumber class]]
+  17de50  if ([arg1 isKindOfClass:[NSNumber class]] == 0) goto loc_10017de64
+  17de60  goto loc_10017ded8
+loc_10017de64:
+  17de70  [NSString class]
+  17de80  [arg1 isKindOfClass:[NSString class]]
+  17de84  if ([arg1 isKindOfClass:[NSString class]] == 0) goto loc_10017ded4
+  17de98  [self numberFormatter]
+  17deb8  [[self numberFormatter] numberFromString:arg1]
+  17ded0  goto loc_10017ded8
+loc_10017ded4:
+loc_10017ded8:
+  17def0  return
+
+== -[TAGUniversalAnalytics sendEnhancedEcommerce:withTracker:]   (address 0x10017df18  size 3776  kind objc)
+  17df80  [GAIDictionaryBuilder alloc]
+  17df94  [[GAIDictionaryBuilder alloc] init]
+  17dfbc  [arg1 objectForKey:@"analytics_fields"]
+  17dfe4  [self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]
+  17e008  [[[GAIDictionaryBuilder alloc] init] setAll:[self gaFieldsWithAnalyticsFields:[arg1 objectForKey:@"analytics_fields"]]]
+  17e048  [self checkBooleanPropertyForTag:arg1 key:@"ecommerce_use_data_layer"]
+  17e04c  if ([self checkBooleanPropertyForTag:arg1 key:@"ecommerce_use_data_layer"] == 0) goto loc_10017e0e4
+  17e064  [self dataLayer]
+  17e088  [[self dataLayer] get:@"ecommerce"]
+  17e0b4  [NSDictionary class]
+  17e0cc  [[[self dataLayer] get:@"ecommerce"] isKindOfClass:[NSDictionary class]]
+  17e0d0  if ([[[self dataLayer] get:@"ecommerce"] isKindOfClass:[NSDictionary class]] == 0) goto loc_10017e1b0
+  17e0e0  goto loc_10017e1b4
+loc_10017e0e4:
+  17e0f8  [arg1 objectForKey:@"ecommerce_macro_data"]
+  17e124  [NSDictionary class]
+  17e144  [[arg1 objectForKey:@"ecommerce_macro_data"] isKindOfClass:[NSDictionary class]]
+  17e148  if ([[arg1 objectForKey:@"ecommerce_macro_data"] isKindOfClass:[NSDictionary class]] == 0) goto loc_10017e1a8
+  17e160  [[arg1 objectForKey:@"ecommerce_macro_data"] objectForKey:@"ecommerce"]
+  17e180  [NSDictionary class]
+  17e190  [[[arg1 objectForKey:@"ecommerce_macro_data"] objectForKey:@"ecommerce"] isKindOfClass:[NSDictionary class]]
+  17e194  if ([[[arg1 objectForKey:@"ecommerce_macro_data"] objectForKey:@"ecommerce"] isKindOfClass:[NSDictionary class]] == 0) goto loc_10017e1bc
+  17e1a4  goto loc_10017e1c0
+loc_10017e1a8:
+  17e1ac  goto loc_10017e1c4
+loc_10017e1b0:
+loc_10017e1b4:
+  17e1b8  goto loc_10017e1c8
+loc_10017e1bc:
+loc_10017e1c0:
+loc_10017e1c4:
+loc_10017e1c8:
+  17e1cc  if (x26 == 0) goto loc_10017eab8
+  17e1d8  [&d_1003b8438] -> @"&cu"
+  17e1f0  [[[GAIDictionaryBuilder alloc] init] get:@"&cu"]
+  17e204  if ([[[GAIDictionaryBuilder alloc] init] get:@"&cu"] != 0) goto loc_10017e264
+  17e220  [x0 objectForKeyedSubscript:@"currencyCode"]
+  17e230  if ([x0 objectForKeyedSubscript:@"currencyCode"] == 0) goto loc_10017e25c
+  17e24c  [[[GAIDictionaryBuilder alloc] init] set:[x0 objectForKeyedSubscript:@"currencyCode"] forKey:@"&cu"]
+loc_10017e25c:
+loc_10017e264:
+  17e280  [x0 objectForKeyedSubscript:@"impressions"]
+  17e2a8  [self getArrayOfDictionariesFromObject:[x0 objectForKeyedSubscript:@"impressions"]]
+  17e2fc  [[self getArrayOfDictionariesFromObject:[x0 objectForKeyedSubscript:@"impressions"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x2f8] count:16]
+  17e304  if ([[self getArrayOfDictionariesFromObject:[x0 objectForKeyedSubscript:@"impressions"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x2f8] count:16] == 0) goto loc_10017e424
+  17e328  &@selector(addProductImpression:impressionList:)
+loc_10017e344:
+loc_10017e34c:
+  17e358  if (x8 == x27) goto loc_10017e364
+  17e360  objc_enumerationMutation([self getArrayOfDictionariesFromObject:[x0 objectForKeyedSubscript:@"impressions"]])
+loc_10017e364:
+  17e378  [self productFromDataLayerDictionary:x2]
+  17e388  if ([self productFromDataLayerDictionary:x2] == 0) goto loc_10017e3f0
+  17e39c  [x0 objectForKeyedSubscript:@"list"]
+  17e3b0  [[x0 objectForKeyedSubscript:@"list"] description]
+  17e3d8  [[[GAIDictionaryBuilder alloc] init] addProductImpression:[self productFromDataLayerDictionary:x2] impressionList:[[x0 objectForKeyedSubscript:@"list"] description]]
+loc_10017e3f0:
+  17e400  if ((x23 + 1) <u [[self getArrayOfDictionariesFromObject:[x0 objectForKeyedSubscript:@"impressions"]] countByEnumeratingWithState:&x29[-0…) goto loc_10017e34c
+  17e418  [[self getArrayOfDictionariesFromObject:[x0 objectForKeyedSubscript:@"impressions"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x2f8] count:16]
+  17e420  if ([[self getArrayOfDictionariesFromObject:[x0 objectForKeyedSubscript:@"impressions"]] countByEnumeratingWithState:&x29[-0x98] objects:&sp[0x2f8] count:16] != 0) goto loc_10017e344
+loc_10017e424:
+  17e444  [x0 objectForKeyedSubscript:@"promoClick"]
+  17e458  if ([x0 objectForKeyedSubscript:@"promoClick"] == 0) goto loc_10017e4b4
+  17e470  [x0 objectForKeyedSubscript:@"promoClick"]
+  17e48c  [[x0 objectForKeyedSubscript:@"promoClick"] objectForKeyedSubscript:@"promotions"]
+  17e4a8  [self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:@"promoClick"] objectForKeyedSubscript:@"promotions"]]
+  17e4b0  goto loc_10017e534
+loc_10017e4b4:
+  17e4c8  [x0 objectForKeyedSubscript:@"promoView"]
+  17e4dc  if ([x0 objectForKeyedSubscript:@"promoView"] == 0) goto loc_10017ea00
+  17e4f4  [x0 objectForKeyedSubscript:@"promoView"]
+  17e510  [[x0 objectForKeyedSubscript:@"promoView"] objectForKeyedSubscript:@"promotions"]
+  17e52c  [self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:@"promoView"] objectForKeyedSubscript:@"promotions"]]
+loc_10017e534:
+loc_10017e54c:
+  17e560  [x0 count]
+  17e564  if ([x0 count] == 0) goto loc_10017e720
+  17e5ac  [x0 countByEnumeratingWithState:&sp[0x2b8] objects:&sp[0x238] count:16]
+  17e5b4  if ([x0 countByEnumeratingWithState:&sp[0x2b8] objects:&sp[0x238] count:16] == 0) goto loc_10017e670
+  17e5d0  &@selector(addPromotion:)
+loc_10017e5e0:
+loc_10017e5e4:
+  17e5f0  if (0[+0x0] == 0[+0x0]) goto loc_10017e5fc
+  17e5f8  objc_enumerationMutation()
+loc_10017e5fc:
+  17e60c  [self promotionFromDataLayerDictionary:x2]
+  17e61c  if ([self promotionFromDataLayerDictionary:x2] == 0) goto loc_10017e63c
+  17e62c  [[[GAIDictionaryBuilder alloc] init] addPromotion:[self promotionFromDataLayerDictionary:x2]]
+loc_10017e63c:
+  17e64c  if ((x23 + 1) <u [x0 countByEnumeratingWithState:&sp[0x2b8] objects:&sp[0x238] count:16]) goto loc_10017e5e4
+  17e664  [x0 countByEnumeratingWithState:&sp[0x2b8] objects:&sp[0x238] count:16]
+  17e66c  if ([x0 countByEnumeratingWithState:&sp[0x2b8] objects:&sp[0x238] count:16] != 0) goto loc_10017e5e0
+loc_10017e670:
+  17e690  [x0 objectForKeyedSubscript:@"promoClick"]
+  17e6a8  if ([x0 objectForKeyedSubscript:@"promoClick"] == 0) goto loc_10017e6e8
+  17e6b4  [&d_1003b7d68] -> @"click"
+  17e6c0  [&d_1003b7d58] -> @"&promoa"
+  17e6d4  [[[GAIDictionaryBuilder alloc] init] set:@"click" forKey:@"&promoa"]
+  17e6e4  goto loc_10017eaa8
+loc_10017e6e8:
+  17e6f0  [&d_1003b7d60] -> @"view"
+  17e6fc  [&d_1003b7d58] -> @"&promoa"
+  17e710  [[[GAIDictionaryBuilder alloc] init] set:@"view" forKey:@"&promoa"]
+loc_10017e720:
+  17e79c  [NSArray arrayWithObjects:&sp[0x1f8] count:8]
+  17e7d4  [[NSArray arrayWithObjects:&sp[0x1f8] count:8] countByEnumeratingWithState:&sp[0x1b8] objects:&sp[0x138] count:16]
+  17e7dc  if ([[NSArray arrayWithObjects:&sp[0x1f8] count:8] countByEnumeratingWithState:&sp[0x1b8] objects:&sp[0x138] count:16] == 0) goto loc_10017ea90
+loc_10017e7f0:
+loc_10017e7f4:
+  17e800  if (x8 == x21) goto loc_10017e80c
+  17e808  objc_enumerationMutation([NSArray arrayWithObjects:&sp[0x1f8] count:8])
+loc_10017e80c:
+  17e820  [x0 objectForKeyedSubscript:x2]
+  17e830  if ([x0 objectForKeyedSubscript:x2] != 0) goto loc_10017e860
+  17e83c  if ((x23 + 1) <u [[NSArray arrayWithObjects:&sp[0x1f8] count:8] countByEnumeratingWithState:&sp[0x1b8] objects:&sp[0x138] count:16]) goto loc_10017e7f4
+  17e850  [[NSArray arrayWithObjects:&sp[0x1f8] count:8] countByEnumeratingWithState:&sp[0x1b8] objects:&sp[0x138] count:16]
+  17e858  if ([[NSArray arrayWithObjects:&sp[0x1f8] count:8] countByEnumeratingWithState:&sp[0x1b8] objects:&sp[0x138] count:16] != 0) goto loc_10017e7f0
+  17e85c  goto loc_10017ea90
+loc_10017e860:
+  17e870  [[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"products"]
+  17e88c  [self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"products"]]
+  17e8d8  [[self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"products"]] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16]
+  17e8e0  if ([[self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"products"]] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16] == 0) goto loc_10017e9a4
+loc_10017e914:
+loc_10017e918:
+  17e924  if (x8 == x23) goto loc_10017e930
+  17e92c  objc_enumerationMutation([self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"products"]])
+loc_10017e930:
+  17e944  [self productFromDataLayerDictionary:x2]
+  17e954  if (x21 == 0) goto loc_10017e974
+  17e964  [[[GAIDictionaryBuilder alloc] init] addProduct:[self productFromDataLayerDictionary:x2]]
+loc_10017e974:
+  17e984  if ((x27 + 1) <u [[self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"products"]] countByEn…) goto loc_10017e918
+  17e998  [[self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"products"]] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16]
+  17e9a0  if ([[self getArrayOfDictionariesFromObject:[[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"products"]] countByEnumeratingWithState:&sp[0xf8] objects:&sp[0x78] count:16] != 0) goto loc_10017e914
+loc_10017e9a4:
+  17e9bc  [[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"actionField"]
+  17e9d4  if ([[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"actionField"] == 0) goto loc_10017ea08
+  17e9f0  [self actionDataFromDataLayerDictionary:[[x0 objectForKeyedSubscript:x2] objectForKeyedSubscript:@"actionField"]]
+  17e9fc  goto loc_10017ea28
+loc_10017ea00:
+  17ea04  goto loc_10017e54c
+loc_10017ea08:
+  17ea18  [GAIEcommerceProductAction alloc]
+  17ea24  [[GAIEcommerceProductAction alloc] init]
+loc_10017ea28:
+  17ea3c  [x0 setAction:x2]
+  17ea60  [[[GAIDictionaryBuilder alloc] init] setProductAction:x2]
+loc_10017ea90:
+loc_10017eaa8:
+loc_10017eab8:
+  17eac8  [[[GAIDictionaryBuilder alloc] init] build]
+  17eaf0  [arg2 send:[[[GAIDictionaryBuilder alloc] init] build]]
+  17eb50  return
+
+== -[TAGUniversalAnalytics logger]   (address 0x10017edd8  size 16  kind objc)
+  17ede4  return
+
+== -[TAGUniversalAnalytics setLogger:]   (address 0x10017ede8  size 56  kind objc)
+  17ee0c  self->_logger = arg1
+  17ee1c  return
+
+== -[TAGUniversalAnalytics dataLayer]   (address 0x10017ee20  size 16  kind objc)
+  17ee2c  return
+
+== -[TAGUniversalAnalytics setDataLayer:]   (address 0x10017ee30  size 56  kind objc)
+  17ee54  self->_dataLayer = arg1
+  17ee64  return
+
+== -[TAGUniversalAnalytics turnOffAnonymizeIpValues]   (address 0x10017ee68  size 16  kind objc)
+  17ee74  return
+
+== -[TAGUniversalAnalytics setTurnOffAnonymizeIpValues:]   (address 0x10017ee78  size 56  kind objc)
+  17ee9c  self->_turnOffAnonymizeIpValues = arg1
+  17eeac  return
+
+== -[TAGUniversalAnalytics numberFormatter]   (address 0x10017eeb0  size 16  kind objc)
+  17eebc  return
+
+== -[TAGUniversalAnalytics setNumberFormatter:]   (address 0x10017eec0  size 56  kind objc)
+  17eee4  self->_numberFormatter = arg1
+  17eef4  return
+
+== -[TAGUniversalAnalytics defaultTransactionMap]   (address 0x10017eef8  size 16  kind objc)
+  17ef04  return
+
+== -[TAGUniversalAnalytics setDefaultTransactionMap:]   (address 0x10017ef08  size 56  kind objc)
+  17ef2c  self->_defaultTransactionMap = arg1
+  17ef3c  return
+
+== -[TAGUniversalAnalytics defaultItemMap]   (address 0x10017ef40  size 16  kind objc)
+  17ef4c  return
+
+== -[TAGUniversalAnalytics setDefaultItemMap:]   (address 0x10017ef50  size 56  kind objc)
+  17ef74  self->_defaultItemMap = arg1
+  17ef84  return
+
+== -[TAGUniversalAnalytics .cxx_destruct]   (address 0x10017ef88  size 144  kind objc)

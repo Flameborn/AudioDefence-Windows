@@ -1,0 +1,21 @@
+// ADStarUnlockViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #46 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #19 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #39 UIView  
+    #40 UIImageView  Image='icon_star_off_medium.png'
+    #49 UIImageView  Image='icon_star_on_medium.png'
+    #21 UIImageView  Image='icon_plus.png'
+    #2 UIImageView  Image='icon_currency_small.png'
+    #45 UILabel  UserInteractionDisabled=False Text='STAR UNLOCKS' NumberOfLines=3
+    #3 UILabel (custom class ADLabelWithCoins)  UserInteractionDisabled=False Text='200'
+    #11 UIImageView  Image='icon_completed.png'
+
+CONNECTIONS
+  outlet  completedImage                            #46 UIProxyObject --> #11 UIImageView
+  outlet  lockedDescription                         #46 UIProxyObject --> #45 UILabel Text='STAR UNLOCKS'
+  outlet  rewardLabel                               #46 UIProxyObject --> #3 ADLabelWithCoins Text='200'
+  outlet  starImage                                 #46 UIProxyObject --> #49 UIImageView
+  outlet  view                                      #46 UIProxyObject --> #39 UIView
+
+ACCESSIBILITY CONFIGURATIONS

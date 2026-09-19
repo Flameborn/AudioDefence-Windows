@@ -1,0 +1,337 @@
+
+== +[ADChallengeData sharedChallengeData]   (address 0x10001dd28  size 152  kind objc)
+  01dd3c  objc_sync_enter(ADChallengeData)
+  01dd48  if (g_10042d980 != 0) goto loc_10001dd84
+  01dd60  [ADChallengeData alloc]
+  01dd70  [[ADChallengeData alloc] init]
+  01dd78  store g_10042d980 = [[ADChallengeData alloc] init]
+loc_10001dd84:
+  01dd88  objc_sync_exit(ADChallengeData)
+  01ddac  objc_sync_exit()
+
+== -[ADChallengeData init]   (address 0x10001ddc0  size 128  kind objc)
+  01ddf4  [super init]
+  01ddfc  if (self == 0) goto loc_10001de18
+  01de14  [self createOrRestoreChallengeData]
+loc_10001de18:
+  01de28  return
+
+== -[ADChallengeData createOrRestoreChallengeData]   (address 0x10001de40  size 400  kind objc)
+  01de68  [NSUserDefaults standardUserDefaults]
+  01de90  [[NSUserDefaults standardUserDefaults] valueForKey:@"challengeData"]
+  01dea4  if ([[NSUserDefaults standardUserDefaults] valueForKey:@"challengeData"] == 0) goto loc_10001df20
+  01deb8  [[NSUserDefaults standardUserDefaults] valueForKey:@"challengeData"]
+  01dedc  [NSMutableDictionary alloc]
+  01def4  [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] valueForKey:@"challengeData"] copyItems:1]
+  01df10  [self setChallengeData:[[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] valueForKey:@"challengeData"] copyItems:1]]
+  01df1c  goto loc_10001df64
+loc_10001df20:
+  01df34  [NSMutableDictionary alloc]
+  01df44  [[NSMutableDictionary alloc] init]
+  01df60  [self setChallengeData:[[NSMutableDictionary alloc] init]]
+loc_10001df64:
+  01df7c  [self saveChallengeData]
+  01df90  return
+
+== -[ADChallengeData dictionaryForChallengeWithName:]   (address 0x10001dfd0  size 340  kind objc)
+  01e008  [self challengeData]
+  01e02c  [[self challengeData] objectForKey:arg1]
+  01e048  if ([[self challengeData] objectForKey:arg1] == 0) goto loc_10001e0bc
+  01e05c  [self challengeData]
+  01e074  [[self challengeData] objectForKey:arg1]
+  01e098  [NSMutableDictionary dictionaryWithDictionary:[[self challengeData] objectForKey:arg1]]
+  01e0b8  goto loc_10001e0c0
+loc_10001e0bc:
+loc_10001e0c0:
+  01e0dc  return
+
+== -[ADChallengeData hasCompletedChallengeWithName:]   (address 0x10001e124  size 184  kind objc)
+  01e140  [self dictionaryForChallengeWithName:arg1]
+  01e164  [[self dictionaryForChallengeWithName:arg1] objectForKey:@"completed"]
+  01e180  [[[self dictionaryForChallengeWithName:arg1] objectForKey:@"completed"] boolValue]
+  01e1a8  return
+
+== -[ADChallengeData hasAccuracyStarForChallengeWithName:]   (address 0x10001e1dc  size 184  kind objc)
+  01e1f8  [self dictionaryForChallengeWithName:arg1]
+  01e21c  [[self dictionaryForChallengeWithName:arg1] objectForKey:@"accuracy_star_unlocked"]
+  01e238  [[[self dictionaryForChallengeWithName:arg1] objectForKey:@"accuracy_star_unlocked"] boolValue]
+  01e260  return
+
+== -[ADChallengeData hasTimeLimitStarForChallengeWithName:]   (address 0x10001e294  size 184  kind objc)
+  01e2b0  [self dictionaryForChallengeWithName:arg1]
+  01e2d4  [[self dictionaryForChallengeWithName:arg1] objectForKey:@"time_limit_star_unlocked"]
+  01e2f0  [[[self dictionaryForChallengeWithName:arg1] objectForKey:@"time_limit_star_unlocked"] boolValue]
+  01e318  return
+
+== -[ADChallengeData playerDidCompleteChallengeWithName:accuracyUnlocked:timeLimitUnlocked:]   (address 0x10001e34c  size 680  kind objc)
+  01e390  [self dictionaryForChallengeWithName:arg1]
+  01e3a4  if ([self dictionaryForChallengeWithName:arg1] != 0) goto loc_10001e43c
+  01e3c0  [NSMutableDictionary alloc]
+  01e3d4  [[NSMutableDictionary alloc] init]
+  01e400  [NSNumber numberWithBool:1]
+  01e42c  [[[NSMutableDictionary alloc] init] setObject:[NSNumber numberWithBool:1] forKey:@"completed"]
+loc_10001e43c:
+  01e450  [self hasAccuracyStarForChallengeWithName:arg1]
+  01e45c  if ((([self hasAccuracyStarForChallengeWithName:arg1] | (arg2 ^ 1)) & 1)) goto loc_10001e4b0
+  01e478  [NSNumber numberWithBool:1]
+  01e4a4  [x0 setObject:[NSNumber numberWithBool:1] forKey:@"accuracy_star_unlocked"]
+loc_10001e4b0:
+  01e4c4  [self hasTimeLimitStarForChallengeWithName:arg1]
+  01e4d0  if ((([self hasTimeLimitStarForChallengeWithName:arg1] | (arg3 ^ 1)) & 1)) goto loc_10001e524
+  01e4ec  [NSNumber numberWithBool:1]
+  01e518  [x0 setObject:[NSNumber numberWithBool:1] forKey:@"time_limit_star_unlocked"]
+loc_10001e524:
+  01e534  [self challengeData]
+  01e558  [[self challengeData] setObject:x2 forKey:arg1]
+  01e574  [self saveChallengeData]
+  01e598  return
+
+== -[ADChallengeData computeTotalChallengesWon]   (address 0x10001e5f4  size 544  kind objc)
+  01e624  [self challengeData]
+  01e640  [[self challengeData] keyEnumerator]
+  01e68c  &@selector(boolValue)
+  01e694  goto loc_10001e6b8
+loc_10001e698:
+  01e6a0  t1 = (x22 + [[[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"completed"] boolValue])
+  01e6a4  t2 = (t1 + [[[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"accuracy_star_unlocked"] boolValue])
+  01e6a8  t3 = (t2 + [[[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"time_limit_star_unlocked"] boolValue])
+loc_10001e6b8:
+  01e6c0  [[[self challengeData] keyEnumerator] nextObject]
+  01e6d8  if ([[[self challengeData] keyEnumerator] nextObject] == 0) goto loc_10001e790
+  01e6e8  [self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]]
+  01e704  [[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"completed"]
+  01e718  [[[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"completed"] boolValue]
+  01e738  [[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"accuracy_star_unlocked"]
+  01e74c  [[[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"accuracy_star_unlocked"] boolValue]
+  01e76c  [[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"time_limit_star_unlocked"]
+  01e780  [[[self dictionaryForChallengeWithName:[[[self challengeData] keyEnumerator] nextObject]] objectForKey:@"time_limit_star_unlocked"] boolValue]
+  01e788  goto loc_10001e698
+  01e78c  goto loc_10001e7dc
+loc_10001e790:
+  01e7b8  return
+
+== -[ADChallengeData saveChallengeData]   (address 0x10001e814  size 204  kind objc)
+  01e83c  [NSUserDefaults standardUserDefaults]
+  01e85c  [self challengeData]
+  01e888  [[NSUserDefaults standardUserDefaults] setObject:[self challengeData] forKey:@"challengeData"]
+  01e8a4  [[NSUserDefaults standardUserDefaults] synchronize]
+  01e8b8  return
+
+== -[ADChallengeData totalStarsUnlockedForWorld:]   (address 0x10001e8e0  size 1012  kind objc)
+  01e938  [NSBundle mainBundle]
+  01e968  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  01e99c  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  01e9c0  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1]
+  01e9dc  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"challenges"]
+  01ea34  [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"challenges"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  01ea40  if ([[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"challenges"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] == 0) goto loc_10001ebb0
+  01ea6c  &@selector(hasCompletedChallengeWithName:)
+  01ea74  &@selector(hasTimeLimitStarForChallengeWithName:)
+loc_10001ea80:
+loc_10001ea84:
+  01ea94  if (x8 == x9) goto loc_10001eaa0
+  01ea9c  objc_enumerationMutation([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"challenges"])
+loc_10001eaa0:
+  01eab4  [NSBundle mainBundle]
+  01ead4  [[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]
+  01eafc  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]]
+  01eb18  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]] objectForKey:@"challenge_id"]
+  01eb3c  [self hasAccuracyStarForChallengeWithName:[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]] objectForKey:@"challenge_id"]]
+  01eb50  [self hasCompletedChallengeWithName:[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]] objectForKey:@"challenge_id"]]
+  01eb64  [self hasTimeLimitStarForChallengeWithName:[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]] objectForKey:@"challenge_id"]]
+  01eb68  t1 = ([self hasAccuracyStarForChallengeWithName:[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]] objectForKey:@"challenge_id"]] + w27)
+  01eb6c  t2 = (t1 + [self hasCompletedChallengeWithName:[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]] objectForKey:@"challenge_id"]])
+  01eb70  t3 = (t2 + [self hasTimeLimitStarForChallengeWithName:[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:x2 withExtension:@"plist"]] objectForKey:@"challenge_id"]])
+  01eb8c  if ((x20 + 1) <u [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"p…) goto loc_10001ea84
+  01eba0  [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"challenges"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16]
+  01eba8  if ([[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"challenges"] countByEnumeratingWithState:&sp[0x58] objects:&sp[0x98] count:16] != 0) goto loc_10001ea80
+  01ebac  goto loc_10001ebb4
+loc_10001ebb0:
+loc_10001ebb4:
+  01ec10  return
+
+== -[ADChallengeData totalStarsUnlocked]   (address 0x10001ecd4  size 552  kind objc)
+  01ed1c  [NSBundle mainBundle]
+  01ed48  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  01ed78  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  01ed94  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys]
+  01ede4  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  01edf0  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] == 0) goto loc_10001ee68
+  01ee00  &@selector(totalStarsUnlockedForWorld:)
+loc_10001ee08:
+loc_10001ee0c:
+  01ee18  if (x8 == x27) goto loc_10001ee24
+  01ee20  objc_enumerationMutation([[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys])
+loc_10001ee24:
+  01ee34  [self totalStarsUnlockedForWorld:x2]
+  01ee44  if ((x28 + 1) <u [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"pl…) goto loc_10001ee0c
+  01ee5c  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16]
+  01ee64  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] allKeys] countByEnumeratingWithState:&sp[0x8] objects:&sp[0x48] count:16] != 0) goto loc_10001ee08
+loc_10001ee68:
+  01eeac  return
+
+== -[ADChallengeData starsRequirementForWorld:]   (address 0x10001eefc  size 408  kind objc)
+  01ef30  [NSBundle mainBundle]
+  01ef5c  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  01ef8c  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  01efb0  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1]
+  01efd8  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"starsRequired"]
+  01eff4  [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"starsRequired"] intValue]
+  01f030  return
+
+== -[ADChallengeData numberOfChallengesForWorld:]   (address 0x10001f094  size 412  kind objc)
+  01f0c8  [NSBundle mainBundle]
+  01f0f4  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  01f124  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  01f148  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1]
+  01f164  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"challenges"]
+  01f194  [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg1] objectForKey:@"challenges"] count]
+  01f1c8  return
+
+== -[ADChallengeData hasChallengeAfter:inWorld:]   (address 0x10001f230  size 764  kind objc)
+  01f284  [NSBundle mainBundle]
+  01f2b8  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  01f2ec  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  01f314  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2]
+  01f330  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"]
+  01f358  [NSBundle mainBundle]
+  01f378  [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject]
+  01f39c  [[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]
+  01f3c8  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]]
+  01f3e8  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]] objectForKey:@"challenge_id"]
+  01f418  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]] objectForKey:@"challenge_id"] isEqualToString:arg1]
+  01f41c  t1 = ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]] objectForKey:@"challenge_id"] isEqualToString:arg1] ^ 1)
+  01f470  return
+
+== -[ADChallengeData challengeAfter:inWorld:]   (address 0x10001f52c  size 828  kind objc)
+  01f580  [NSBundle mainBundle]
+  01f5b0  [[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]
+  01f5e8  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]]
+  01f60c  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2]
+  01f628  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"]
+  01f650  [NSBundle mainBundle]
+  01f670  [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject]
+  01f694  [[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]
+  01f6c0  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]]
+  01f6dc  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]] objectForKey:@"challenge_id"]
+  01f70c  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]] objectForKey:@"challenge_id"] isEqualToString:arg1]
+  01f710  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:[[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] lastObject] withExtension:@"plist"]] objectForKey:@"challenge_id"] isEqualToString:arg1] == 0) goto loc_10001f728
+  01f724  goto loc_10001f764
+loc_10001f728:
+  01f73c  [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] indexOfObject:arg1]
+  01f754  [[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] objectAtIndex:([[[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"challenges_index" withExtension:@"plist"]] objectForKey:arg2] objectForKey:@"challenges"] indexOfObject:arg1] + 1)]
+loc_10001f764:
+  01f7b4  return
+
+== -[ADChallengeData hasWeaponForChallengeWithName:]   (address 0x10001f868  size 1068  kind objc)
+  01f8b8  [NSBundle mainBundle]
+  01f8e0  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  01f918  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  01f950  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"]
+  01f980  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16]
+  01f988  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16] == 0) goto loc_10001fa60
+  01f9a4  &@selector(hasUnlockedWeaponWithName:)
+loc_10001f9b4:
+loc_10001f9b8:
+  01f9c4  if (x8 == x22) goto loc_10001f9d0
+  01f9cc  objc_enumerationMutation([[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"])
+loc_10001f9d0:
+  01f9e4  [ADInventory sharedInventory]
+  01fa00  [x0 objectForKey:@"name"]
+  01fa1c  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  01fa34  if (!([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]] & 1)) goto loc_10001fb68
+  01fa40  if ((x23 + 1) <u [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectFo…) goto loc_10001f9b8
+  01fa54  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16]
+  01fa5c  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x78] objects:&x29[-0xd8] count:16] != 0) goto loc_10001f9b4
+loc_10001fa60:
+  01fa8c  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"]
+  01faac  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16]
+  01fab4  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16] == 0) goto loc_10001fb60
+  01fac0  &@selector(sharedChallengeData)
+  01fad0  &@selector(hasCompletedChallengeWithName:)
+loc_10001fadc:
+loc_10001fae0:
+  01faec  if (x8 == x21) goto loc_10001faf8
+  01faf4  objc_enumerationMutation([[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"])
+loc_10001faf8:
+  01fb08  [ADChallengeData sharedChallengeData]
+  01fb20  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:x2]
+  01fb30  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:x2] & 1)) goto loc_10001fb80
+  01fb3c  if ((x27 + 1) <u [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectFo…) goto loc_10001fae0
+  01fb54  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16]
+  01fb5c  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0xb8] count:16] != 0) goto loc_10001fadc
+loc_10001fb60:
+  01fb64  goto loc_10001fb84
+loc_10001fb68:
+  01fb7c  goto loc_10001fb90
+loc_10001fb80:
+loc_10001fb84:
+loc_10001fb90:
+  01fbe0  return
+
+== -[ADChallengeData needsWeaponToCompleteChallengeWithName:]   (address 0x10001fc94  size 808  kind objc)
+  01fce8  [self hasChallengeRequirementsForChallengeWithName:arg1]
+  01fd04  [NSBundle mainBundle]
+  01fd2c  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  01fd5c  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  01fd94  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"]
+  01fdc0  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  01fdc8  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] == 0) goto loc_10001fec4
+  01fde0  &@selector(sharedInventory)
+  01fde8  &@selector(hasUnlockedWeaponWithName:)
+loc_10001fdf8:
+loc_10001fdfc:
+  01fe08  if (x8 == x24) goto loc_10001fe14
+  01fe10  objc_enumerationMutation([[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"])
+loc_10001fe14:
+  01fe28  [ADInventory sharedInventory]
+  01fe48  [x0 objectForKey:@"name"]
+  01fe64  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]]
+  01fe7c  t1 = ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[x0 objectForKey:@"name"]] | ([self hasChallengeRequirementsForChallengeWithName:arg1] ^ 1))
+  01fe80  if (!(t1 & 1)) goto loc_10001feb4
+  01fe8c  if ((x25 + 1) <u [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectFo…) goto loc_10001fdfc
+  01fea0  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16]
+  01fea8  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"weapons"] countByEnumeratingWithState:&sp[0x38] objects:&sp[0x78] count:16] != 0) goto loc_10001fdf8
+  01feb0  goto loc_10001feb8
+loc_10001feb4:
+loc_10001feb8:
+  01fec0  goto loc_10001fec8
+loc_10001fec4:
+loc_10001fec8:
+  01ff20  return
+
+== -[ADChallengeData hasChallengeRequirementsForChallengeWithName:]   (address 0x10001ffbc  size 708  kind objc)
+  02000c  [NSBundle mainBundle]
+  020034  [[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]
+  020064  [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]]
+  020098  [[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"]
+  0200c4  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  0200cc  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] == 0) goto loc_1000201a4
+  0200e0  &@selector(sharedChallengeData)
+  0200f0  &@selector(hasCompletedChallengeWithName:)
+loc_1000200fc:
+loc_100020100:
+  02010c  if (x8 == x19) goto loc_100020118
+  020114  objc_enumerationMutation([[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"])
+loc_100020118:
+  020128  [ADChallengeData sharedChallengeData]
+  020140  [[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:x2]
+  020150  if (!([[ADChallengeData sharedChallengeData] hasCompletedChallengeWithName:x2] & 1)) goto loc_100020188
+  02015c  if ((x21 + 1) <u [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectFo…) goto loc_100020100
+  020174  [[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16]
+  02017c  if ([[[NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:arg1 withExtension:@"plist"]] objectForKey:@"challenges_requirement"] countByEnumeratingWithState:&sp[0x28] objects:&sp[0x68] count:16] != 0) goto loc_1000200fc
+  020184  goto loc_10002018c
+loc_100020188:
+loc_10002018c:
+  0201a0  goto loc_1000201a8
+loc_1000201a4:
+loc_1000201a8:
+  0201f4  return
+
+== -[ADChallengeData challengeData]   (address 0x100020280  size 16  kind objc)
+  02028c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADChallengeData setChallengeData:]   (address 0x100020290  size 12  kind objc)
+  020298  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADChallengeData .cxx_destruct]   (address 0x10002029c  size 20  kind objc)

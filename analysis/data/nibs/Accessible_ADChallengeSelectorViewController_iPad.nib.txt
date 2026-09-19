@@ -1,0 +1,15 @@
+// Accessible_ADChallengeSelectorViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #23 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #3 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #11 UIView  
+    #25 UITableView  
+
+CONNECTIONS
+  outlet  dataSource                                #25 UITableView --> #23 UIProxyObject
+  outlet  delegate                                  #25 UITableView --> #23 UIProxyObject
+  outlet  firstAccessibleElement                    #23 UIProxyObject --> #25 UITableView
+  outlet  tableView                                 #23 UIProxyObject --> #25 UITableView
+  outlet  view                                      #23 UIProxyObject --> #11 UIView
+
+ACCESSIBILITY CONFIGURATIONS

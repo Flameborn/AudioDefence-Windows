@@ -1,0 +1,21 @@
+// Accessible_ADChallengeCompletedViewController.nib
+TOP-LEVEL OBJECTS
+  #55 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #29 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #41 UIView  
+    #4 UITableView  
+    #32 UIButton  title[0]='Next challenge'
+    #70 UIButton  title[0]='Challenge selection'
+    #3 UIButton  title[0]='Retry'
+
+CONNECTIONS
+  action  missionSelectButtonPressed:               #70 UIButton --(events 0x40)--> #55 UIProxyObject
+  action  nextMissionButtonPressed:                 #32 UIButton --(events 0x40)--> #55 UIProxyObject
+  action  retryButtonPressed:                       #3 UIButton --(events 0x40)--> #55 UIProxyObject
+  outlet  dataSource                                #4 UITableView --> #55 UIProxyObject
+  outlet  delegate                                  #4 UITableView --> #55 UIProxyObject
+  outlet  nextChallengeButton                       #55 UIProxyObject --> #32 UIButton
+  outlet  tableView                                 #55 UIProxyObject --> #4 UITableView
+  outlet  view                                      #55 UIProxyObject --> #41 UIView
+
+ACCESSIBILITY CONFIGURATIONS

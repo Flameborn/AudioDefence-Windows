@@ -1,0 +1,25 @@
+
+== -[TAGPBEnumValueDescriptor initWithEnumValueDescription:prefix:]   (address 0x100137940  size 240  kind objc)
+  13797c  [super init]
+  137984  if (self == 0) goto loc_100137a18
+  137990  self->description_ = arg1
+  137998  if (arg1[+0x0] == 0) goto loc_100137a18
+  1379b0  [NSString alloc]
+  1379c4  [[NSString alloc] initWithUTF8String:arg1[+0x0]]
+  1379dc  [arg2 mutableCopy]
+  1379f4  [[arg2 mutableCopy] appendString:[[NSString alloc] initWithUTF8String:arg1[+0x0]]]
+  137a00  self->name_ = [arg2 mutableCopy]
+  137a14  [[[NSString alloc] initWithUTF8String:arg1[+0x0]] release]
+loc_100137a18:
+  137a2c  return
+
+== -[TAGPBEnumValueDescriptor dealloc]   (address 0x100137a30  size 100  kind objc)
+  137a5c  [self->name_ release]
+  137a80  [super dealloc]
+  137a90  return
+
+== -[TAGPBEnumValueDescriptor number]   (address 0x100137a94  size 20  kind objc)
+  137aa4  return
+
+== -[TAGPBEnumValueDescriptor name]   (address 0x100137aa8  size 16  kind objc)
+  137ab4  return

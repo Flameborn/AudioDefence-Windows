@@ -1,0 +1,424 @@
+
+== -[ADMission initWithDictionary:]   (address 0x1000449b0  size 976  kind objc)
+  0449fc  [super init]
+  044a04  if (self == 0) goto loc_100044d00
+  044a28  [arg1 objectForKey:@"objective_zombie"]
+  044a48  [[arg1 objectForKey:@"objective_zombie"] intValue]
+  044a60  [self setObjective_zombies:[[arg1 objectForKey:@"objective_zombie"] intValue]]
+  044a80  [arg1 objectForKey:@"objective"]
+  044a94  [[arg1 objectForKey:@"objective"] intValue]
+  044aac  [self setObjective:[[arg1 objectForKey:@"objective"] intValue]]
+  044acc  [arg1 objectForKey:@"skipCost"]
+  044ae0  [[arg1 objectForKey:@"skipCost"] intValue]
+  044af8  [self setSkipCost:[[arg1 objectForKey:@"skipCost"] intValue]]
+  044b18  [arg1 objectForKey:@"reward"]
+  044b2c  [[arg1 objectForKey:@"reward"] intValue]
+  044b44  [self setReward:[[arg1 objectForKey:@"reward"] intValue]]
+  044b64  [arg1 objectForKey:@"type"]
+  044b88  [self setType:[arg1 objectForKey:@"type"]]
+  044ba8  [arg1 objectForKey:@"description"]
+  044bcc  [self setDescription:[arg1 objectForKey:@"description"]]
+  044bec  [arg1 objectForKey:@"enemi"]
+  044c10  [self setEnemi:[arg1 objectForKey:@"enemi"]]
+  044c30  [arg1 objectForKey:@"weapon"]
+  044c54  [self setWeapon:[arg1 objectForKey:@"weapon"]]
+  044c74  [arg1 objectForKey:@"singleLife"]
+  044c90  [[arg1 objectForKey:@"singleLife"] boolValue]
+  044ca8  [self setSingleLife:[[arg1 objectForKey:@"singleLife"] boolValue]]
+  044cc8  [arg1 objectForKey:@"attempts"]
+  044cdc  [[arg1 objectForKey:@"attempts"] intValue]
+  044cf4  [self setAttempts:[[arg1 objectForKey:@"attempts"] intValue]]
+loc_100044d00:
+  044d20  return
+
+== -[ADMission startGameplay]   (address 0x100044d80  size 176  kind objc)
+  044d9c  self->playerIsAlive = 1
+  044dac  [self singleLife]
+  044db0  if ([self singleLife] == 0) goto loc_100044dfc
+  044dc8  [self setSurvivalTime:0]
+  044de0  [self setProgression:0]
+  044df8  [self setProgression_zombies:0]
+loc_100044dfc:
+  044e0c  [self attempts]
+  044e2c  tail [self setAttempts:([self attempts] + 1)]
+
+== -[ADMission update:]   (address 0x100044e30  size 112  kind objc)
+  044e54  if (self->playerIsAlive == 0) goto loc_100044e90
+  044e68  [self survivalTime]
+  044e8c  tail [self setSurvivalTime:([self survivalTime] + arg1)]
+loc_100044e90:
+  044e9c  return
+
+== -[ADMission setObjective:]   (address 0x100044ea0  size 16  kind objc)
+  044ea8  self->objective = arg1
+  044eac  return
+
+== -[ADMission playerShotWithWeapon:hitEnemi:]   (address 0x100044eb0  size 352  kind objc)
+  044ee4  [self type]
+  044f0c  [[self type] isEqualToString:@"shoot"]
+  044f1c  if ([[self type] isEqualToString:@"shoot"] == 0) goto loc_100044fbc
+  044f34  [self weapon]
+  044f44  if ([self weapon] == 0) goto loc_100044f88
+  044f50  [self weapon]
+  044f68  [[self weapon] isEqualToString:arg1]
+  044f80  if (!([[self weapon] isEqualToString:arg1] & 1)) goto loc_100044fbc
+  044f84  goto loc_100044f90
+loc_100044f88:
+loc_100044f90:
+  044fa0  [self progression]
+  044fb8  [self setProgression:([self progression] + 1)]
+loc_100044fbc:
+  044fd0  return
+
+== -[ADMission enemiKilled:withWeapon:]   (address 0x100045010  size 560  kind objc)
+  045058  [self type]
+  045080  [[self type] isEqualToString:@"kill"]
+  045090  if ([[self type] isEqualToString:@"kill"] == 0) goto loc_100045198
+  0450a8  [self weapon]
+  0450b8  if ([self weapon] == 0) goto loc_1000450f0
+  0450c4  [self weapon]
+  0450dc  [[self weapon] isEqualToString:arg2]
+  0450ec  goto loc_1000450f4
+loc_1000450f0:
+loc_1000450f4:
+  045110  [self enemi]
+  045120  if ([self enemi] == 0) goto loc_100045158
+  04512c  [self enemi]
+  045144  [[self enemi] isEqualToString:arg1]
+  045154  goto loc_10004515c
+loc_100045158:
+loc_10004515c:
+  045168  if (!((w23 & w22) & 1)) goto loc_100045198
+  04517c  [self progression]
+  045194  [self setProgression:([self progression] + 1)]
+loc_100045198:
+  0451a8  [self progression_zombies]
+  0451c0  [self setProgression_zombies:([self progression_zombies] + 1)]
+  0451e4  return
+
+== -[ADMission playerDied]   (address 0x100045240  size 180  kind objc)
+  045260  [self type]
+  045284  [[self type] isEqualToString:@"die"]
+  045294  if ([[self type] isEqualToString:@"die"] == 0) goto loc_1000452d0
+  0452a8  [self progression]
+  0452cc  tail [self setProgression:([self progression] + 1)]
+loc_1000452d0:
+  0452dc  return
+
+== -[ADMission playerUpgradedWeapon]   (address 0x1000452f4  size 180  kind objc)
+  045314  [self type]
+  045338  [[self type] isEqualToString:@"upgrade"]
+  045348  if ([[self type] isEqualToString:@"upgrade"] == 0) goto loc_100045384
+  04535c  [self progression]
+  045380  tail [self setProgression:([self progression] + 1)]
+loc_100045384:
+  045390  return
+
+== -[ADMission endGameplay]   (address 0x1000453a8  size 16  kind objc)
+  0453b0  self->playerIsAlive = 0
+  0453b4  return
+
+== -[ADMission playerSwappedWeapon]   (address 0x1000453b8  size 4  kind objc)
+  0453b8  return
+
+== -[ADMission playerMissedAShot]   (address 0x1000453bc  size 4  kind objc)
+  0453bc  return
+
+== -[ADMission isMissionCompleted]   (address 0x1000453c0  size 848  kind objc)
+  0453f0  [self type]
+  045418  [[self type] isEqualToString:@"kill"]
+  04541c  if ([[self type] isEqualToString:@"kill"] != 0) goto loc_100045454
+  045428  [self type]
+  045444  [[self type] isEqualToString:@"shoot"]
+  045448  if (!([[self type] isEqualToString:@"shoot"] & 1)) goto loc_100045494
+loc_100045454:
+loc_10004545c:
+  04546c  [self progression]
+  045484  [self objective]
+  04548c  if ([self progression] < [self objective]) goto loc_1000454dc
+  045490  goto loc_100045628
+loc_100045494:
+  04549c  [self type]
+  0454b8  [[self type] isEqualToString:@"die"]
+  0454d8  if (([[self type] isEqualToString:@"die"] & 1)) goto loc_10004545c
+loc_1000454dc:
+  0454e4  [self type]
+  045500  [[self type] isEqualToString:@"survive"]
+  045510  if ([[self type] isEqualToString:@"survive"] == 0) goto loc_10004554c
+  045524  [self survivalTime]
+  04553c  [self objective]
+  045548  if ([self survivalTime] >= (float)[self objective]) goto loc_100045628
+loc_10004554c:
+  045554  [self type]
+  045570  [[self type] isEqualToString:@"accuracy"]
+  045580  if ([[self type] isEqualToString:@"accuracy"] == 0) goto loc_100045630
+  045594  [self progression_zombies]
+  0455ac  [self objective_zombies]
+  0455b4  if ([self progression_zombies] < [self objective_zombies]) goto loc_1000456a0
+  0455cc  [ADInGameStats singleton]
+  0455e8  [[ADInGameStats singleton] currentAccuracy]
+  045600  [self objective]
+  045624  goto loc_1000456a4
+loc_100045628:
+  04562c  goto loc_1000456a4
+loc_100045630:
+  045638  [self type]
+  045654  [[self type] isEqualToString:@"upgrade"]
+  045664  if ([[self type] isEqualToString:@"upgrade"] == 0) goto loc_1000456a0
+  045678  [self progression]
+  045690  [self objective]
+  04569c  goto loc_1000456a4
+loc_1000456a0:
+loc_1000456a4:
+  0456c0  return
+
+== -[ADMission completionToString]   (address 0x100045710  size 924  kind objc)
+  04573c  [self attempts]
+  045740  if ([self attempts] == 0) goto loc_100045a0c
+  045758  [self type]
+  045780  [[self type] isEqualToString:@"kill"]
+  045784  if ([[self type] isEqualToString:@"kill"] != 0) goto loc_1000457bc
+  045790  [self type]
+  0457ac  [[self type] isEqualToString:@"shoot"]
+  0457b0  if (!([[self type] isEqualToString:@"shoot"] & 1)) goto loc_100045828
+loc_1000457bc:
+loc_1000457c4:
+  0457dc  [self progression]
+  0457f4  [self objective]
+  045814  [NSString stringWithFormat:@"%i/%i", [self progression], [self objective]]
+loc_10004581c:
+  045824  goto loc_100045a1c
+loc_100045828:
+  045830  [self type]
+  04584c  [[self type] isEqualToString:@"die"]
+  04586c  if (([[self type] isEqualToString:@"die"] & 1)) goto loc_1000457c4
+  045878  [self type]
+  045894  [[self type] isEqualToString:@"survive"]
+  0458a4  if ([[self type] isEqualToString:@"survive"] == 0) goto loc_100045904
+  0458c0  [self survivalTime]
+  0458d8  [self objective]
+  0458f8  [NSString stringWithFormat:@"%i/%i", (int)[self survivalTime], [self objective]]
+  045900  goto loc_10004581c
+loc_100045904:
+  04590c  [self type]
+  045928  [[self type] isEqualToString:@"accuracy"]
+  045938  if ([[self type] isEqualToString:@"accuracy"] == 0) goto loc_100045a0c
+  045950  [self progression_zombies]
+  045968  [self progression_zombies]
+  045980  [self objective_zombies]
+  045988  if ([self progression_zombies] == 0) goto loc_100045a3c
+  0459a0  [ADInGameStats singleton]
+  0459bc  [[ADInGameStats singleton] currentAccuracy]
+  0459f0  [NSString stringWithFormat:@"%i/%i    %.1f%%", [self progression_zombies], [self objective_zombies], ([[ADInGameStats singleton] currentAccuracy] * 100)]
+  045a08  goto loc_100045a1c
+loc_100045a0c:
+loc_100045a1c:
+  045a38  return
+  045a58  [NSString stringWithFormat:@"%i/%i", [self progression_zombies], [self objective_zombies]]
+
+== -[ADMission completionToFloat]   (address 0x100045aac  size 608  kind objc)
+  045ae0  [self type]
+  045b08  [[self type] isEqualToString:@"kill"]
+  045b0c  if ([[self type] isEqualToString:@"kill"] != 0) goto loc_100045b44
+  045b18  [self type]
+  045b34  [[self type] isEqualToString:@"shoot"]
+  045b38  if (!([[self type] isEqualToString:@"shoot"] & 1)) goto loc_100045c74
+loc_100045b44:
+loc_100045b4c:
+  045b5c  [self progression]
+  045b74  [self objective]
+  045b8c  [self type]
+  045ba8  [[self type] isEqualToString:@"survive"]
+  045bb8  if ([[self type] isEqualToString:@"survive"] == 0) goto loc_100045bf4
+  045bcc  [self survivalTime]
+  045be4  [self objective]
+loc_100045bf4:
+  045bfc  [self type]
+  045c18  [[self type] isEqualToString:@"accuracy"]
+  045c2c  if ([[self type] isEqualToString:@"accuracy"] == 0) goto loc_100045c48
+  045c40  [self progression_zombies]
+loc_100045c48:
+  045c70  return
+  045c7c  [self type]
+  045c98  [[self type] isEqualToString:@"die"]
+  045cb8  if (([[self type] isEqualToString:@"die"] & 1)) goto loc_100045b4c
+
+== -[ADMission cellViewForMissionWithCellIdentifier:]   (address 0x100045d0c  size 1056  kind objc)
+  045d3c  UIAccessibilityIsVoiceOverRunning()
+  045d40  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100045ebc
+  045d5c  [UITableViewCell alloc]
+  045d78  [[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:arg1]
+  045d94  [[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:arg1] textLabel]
+  045dbc  [self description]
+  045ddc  [self reward]
+  045dfc  [NSString stringWithFormat:@"%@ ; reward : %i coins", [self description], [self reward]]
+  045e24  [[[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:arg1] textLabel] setText:[NSString stringWithFormat:@"%@ ; reward : %i coins", [self description], [self reward]]]
+  045e54  [self attempts]
+  045e5c  &@selector(detailTextLabel)
+  045e68  if ([self attempts] < 1) goto loc_100046018
+  045e74  [[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:arg1] detailTextLabel]
+  045e94  [self completionToString]
+  045eb0  [[[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:arg1] detailTextLabel] setText:[self completionToString]]
+  045eb4  goto loc_10004600c
+  045eb8  goto loc_1000460ec
+loc_100045ebc:
+  045ed4  [ADAccessibleTableCell alloc]
+  045ef0  [[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:arg1]
+  045f0c  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:arg1] textLabel]
+  045f34  [self description]
+  045f54  [self reward]
+  045f74  [NSString stringWithFormat:@"%@ ; reward : %i coins", [self description], [self reward]]
+  045f9c  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:arg1] textLabel] setText:[NSString stringWithFormat:@"%@ ; reward : %i coins", [self description], [self reward]]]
+  045fcc  [[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:arg1] detailTextLabel]
+  045fec  [self completionToString]
+  046008  [[[[ADAccessibleTableCell alloc] initWithStyle:3 reuseIdentifier:arg1] detailTextLabel] setText:[self completionToString]]
+loc_10004600c:
+  046014  goto loc_100046040
+loc_100046018:
+  046020  [[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:arg1] detailTextLabel]
+  04603c  [[[[UITableViewCell alloc] initWithStyle:3 reuseIdentifier:arg1] detailTextLabel] setText:@"New mission"]
+loc_100046040:
+  046060  [x0 setSelectionStyle:0]
+  046088  return
+
+== -[ADMission initWithCoder:]   (address 0x10004612c  size 916  kind objc)
+  046178  [super init]
+  046180  if (self == 0) goto loc_100046458
+  0461a4  [arg1 decodeIntForKey:@"objective"]
+  0461c0  [self setObjective:[arg1 decodeIntForKey:@"objective"]]
+  0461d8  [arg1 decodeIntForKey:@"objective_zombies"]
+  0461f4  [self setObjective_zombies:[arg1 decodeIntForKey:@"objective_zombies"]]
+  046218  [arg1 decodeObjectForKey:@"description"]
+  04623c  [self setDescription:[arg1 decodeObjectForKey:@"description"]]
+  04625c  [arg1 decodeObjectForKey:@"type"]
+  046280  [self setType:[arg1 decodeObjectForKey:@"type"]]
+  0462a0  [arg1 decodeObjectForKey:@"enemi"]
+  0462c4  [self setEnemi:[arg1 decodeObjectForKey:@"enemi"]]
+  0462e4  [arg1 decodeObjectForKey:@"weapon"]
+  046308  [self setWeapon:[arg1 decodeObjectForKey:@"weapon"]]
+  046328  [arg1 decodeIntForKey:@"skipCost"]
+  046344  [self setSkipCost:[arg1 decodeIntForKey:@"skipCost"]]
+  04635c  [arg1 decodeIntForKey:@"reward"]
+  046378  [self setReward:[arg1 decodeIntForKey:@"reward"]]
+  046390  [arg1 decodeIntForKey:@"progression"]
+  0463ac  [self setProgression:[arg1 decodeIntForKey:@"progression"]]
+  0463c4  [arg1 decodeIntForKey:@"attempts"]
+  0463e0  [self setAttempts:[arg1 decodeIntForKey:@"attempts"]]
+  046400  [arg1 decodeBoolForKey:@"singleLife"]
+  04641c  [self setSingleLife:[arg1 decodeBoolForKey:@"singleLife"]]
+  04643c  [arg1 decodeFloatForKey:@"survivalTime"]
+  046454  [self setSurvivalTime:[arg1 decodeFloatForKey:@"survivalTime"]]
+loc_100046458:
+  046478  return
+
+== -[ADMission encodeWithCoder:]   (address 0x1000464c0  size 744  kind objc)
+  0464f0  [self description]
+  046520  [arg1 encodeObject:[self description] forKey:@"description"]
+  04653c  [self type]
+  046560  [arg1 encodeObject:[self type] forKey:@"type"]
+  04657c  [self enemi]
+  0465a0  [arg1 encodeObject:[self enemi] forKey:@"enemi"]
+  0465bc  [self weapon]
+  0465e0  [arg1 encodeObject:[self weapon] forKey:@"weapon"]
+  0465fc  [self objective]
+  046620  [arg1 encodeInt:[self objective] forKey:@"objective"]
+  046634  [self objective_zombies]
+  04664c  [arg1 encodeInt:[self objective_zombies] forKey:@"objective_zombies"]
+  046660  [self skipCost]
+  046678  [arg1 encodeInt:[self skipCost] forKey:@"skipCost"]
+  04668c  [self reward]
+  0466a4  [arg1 encodeInt:[self reward] forKey:@"reward"]
+  0466b8  [self progression]
+  0466d0  [arg1 encodeInt:[self progression] forKey:@"progression"]
+  0466e4  [self attempts]
+  0466fc  [arg1 encodeInt:[self attempts] forKey:@"attempts"]
+  046710  [self singleLife]
+  046730  [arg1 encodeBool:[self singleLife] forKey:@"singleLife"]
+  046744  [self survivalTime]
+  046760  [arg1 encodeFloat:[self survivalTime] forKey:@"survivalTime"]
+  046774  return
+
+== -[ADMission objective]   (address 0x1000467a8  size 16  kind objc)
+  0467b4  return
+
+== -[ADMission objective_zombies]   (address 0x1000467b8  size 16  kind objc)
+  0467c4  return
+
+== -[ADMission setObjective_zombies:]   (address 0x1000467c8  size 16  kind objc)
+  0467d0  self->objective_zombies = arg1
+  0467d4  return
+
+== -[ADMission description]   (address 0x1000467d8  size 16  kind objc)
+  0467e4  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMission setDescription:]   (address 0x1000467e8  size 12  kind objc)
+  0467f0  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMission type]   (address 0x1000467f4  size 16  kind objc)
+  046800  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMission setType:]   (address 0x100046804  size 12  kind objc)
+  04680c  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMission skipCost]   (address 0x100046810  size 16  kind objc)
+  04681c  return
+
+== -[ADMission setSkipCost:]   (address 0x100046820  size 16  kind objc)
+  046828  self->skipCost = arg1
+  04682c  return
+
+== -[ADMission reward]   (address 0x100046830  size 16  kind objc)
+  04683c  return
+
+== -[ADMission setReward:]   (address 0x100046840  size 16  kind objc)
+  046848  self->reward = arg1
+  04684c  return
+
+== -[ADMission enemi]   (address 0x100046850  size 16  kind objc)
+  04685c  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMission setEnemi:]   (address 0x100046860  size 12  kind objc)
+  046868  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMission weapon]   (address 0x10004686c  size 16  kind objc)
+  046878  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADMission setWeapon:]   (address 0x10004687c  size 12  kind objc)
+  046884  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADMission survivalTime]   (address 0x100046888  size 20  kind objc)
+  046898  return
+
+== -[ADMission setSurvivalTime:]   (address 0x10004689c  size 20  kind objc)
+  0468a8  self->survivalTime = arg1
+  0468ac  return
+
+== -[ADMission singleLife]   (address 0x1000468b0  size 20  kind objc)
+  0468c0  return
+
+== -[ADMission setSingleLife:]   (address 0x1000468c4  size 16  kind objc)
+  0468cc  self->singleLife = arg1
+  0468d0  return
+
+== -[ADMission progression]   (address 0x1000468d4  size 16  kind objc)
+  0468e0  return
+
+== -[ADMission setProgression:]   (address 0x1000468e4  size 16  kind objc)
+  0468ec  self->progression = arg1
+  0468f0  return
+
+== -[ADMission progression_zombies]   (address 0x1000468f4  size 16  kind objc)
+  046900  return
+
+== -[ADMission setProgression_zombies:]   (address 0x100046904  size 16  kind objc)
+  04690c  self->progression_zombies = arg1
+  046910  return
+
+== -[ADMission attempts]   (address 0x100046914  size 16  kind objc)
+  046920  return
+
+== -[ADMission setAttempts:]   (address 0x100046924  size 16  kind objc)
+  04692c  self->attempts = arg1
+  046930  return
+
+== -[ADMission .cxx_destruct]   (address 0x100046934  size 104  kind objc)

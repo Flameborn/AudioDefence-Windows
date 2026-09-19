@@ -1,0 +1,39 @@
+// ADScenarioRouletteViewController_iPad.nib
+TOP-LEVEL OBJECTS
+  #49 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #27 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #83 UIView  
+    #63 UIImageView  Image='background_main.png'
+    #1 UIImageView  Image='background_redline.png'
+    #41 UIView (custom class ADRotationBugFixView)  
+      #50 UIImageView (custom class ADRouletteView)  Image='Roulette.png'
+    #61 UIView (custom class ADRotationBugFixView)  
+      #30 UIImageView (custom class ADRouletteView)  Image='Roulette.png'
+    #46 UIImageView  Image='Roulette_Pointer_Left.png'
+    #78 UIImageView  Image='Roulette_Pointer_Right.png'
+    #73 UIButton (custom class ADButtonWithFont)  title[0]='PLAY'
+    #5 UIButton (custom class ADButtonWithFont)  title[0]='GET RID OF IT FOR 1'
+    #25 UIButton (custom class ADButtonWithFont)  title[0]='REROLL FOR 1'
+    #57 UILabel  UserInteractionDisabled=False Text='SLOW ZOMBIES' NumberOfLines=3
+    #16 UILabel  UserInteractionDisabled=False Text='BAD NEWS' NumberOfLines=2
+    #59 UILabel  UserInteractionDisabled=False Text='NO GOOD NEWS FOR THIS GAME' NumberOfLines=3
+    #62 UILabel  UserInteractionDisabled=False Text='GOOD NEWS' NumberOfLines=2
+    #98 UIImageView  Image='Roulette_Banner_BadNews.png'
+    #112 UIImageView  Image='Roulette_Banner_GoodNews.png'
+
+CONNECTIONS
+  action  playButtonTouched:                        #73 ADButtonWithFont --(events 0x40)--> #49 UIProxyObject
+  action  rerollBadNews:                            #5 ADButtonWithFont --(events 0x40)--> #49 UIProxyObject
+  action  rerollGoodNews:                           #25 ADButtonWithFont --(events 0x40)--> #49 UIProxyObject
+  outlet  badNewsLabel                              #49 UIProxyObject --> #57 UILabel Text='SLOW ZOMBIES'
+  outlet  badNewsTitle                              #49 UIProxyObject --> #16 UILabel Text='BAD NEWS'
+  outlet  badRoulette                               #49 UIProxyObject --> #30 ADRouletteView
+  outlet  goodNewsLabel                             #49 UIProxyObject --> #59 UILabel Text='NO GOOD NEWS FOR THIS GAME'
+  outlet  goodNewsTitle                             #49 UIProxyObject --> #62 UILabel Text='GOOD NEWS'
+  outlet  goodRoulette                              #49 UIProxyObject --> #50 ADRouletteView
+  outlet  playButton                                #49 UIProxyObject --> #73 ADButtonWithFont
+  outlet  removeBadNews                             #49 UIProxyObject --> #5 ADButtonWithFont
+  outlet  rerollGoodNewsButton                      #49 UIProxyObject --> #25 ADButtonWithFont
+  outlet  view                                      #49 UIProxyObject --> #83 UIView
+
+ACCESSIBILITY CONFIGURATIONS

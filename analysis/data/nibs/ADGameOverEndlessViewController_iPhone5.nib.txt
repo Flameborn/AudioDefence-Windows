@@ -1,0 +1,44 @@
+// ADGameOverEndlessViewController_iPhone5.nib
+TOP-LEVEL OBJECTS
+  #117 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #183 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #37 UIView  Tag=2781
+    #34 UIView (custom class ViewWithParalax)  
+      #39 UIImageView  UserInteractionDisabled=False Image='background_main.png'
+    #171 UIScrollView  
+    #148 UIButton  
+    #147 UIButton  Hidden=False
+  #79 UIView  
+    #127 UIImageView  UserInteractionDisabled=False Image='frame_completed.png'
+    #72 UIImageView  UserInteractionDisabled=False Image='frame_endless_score.png'
+    #40 UIView  
+      #131 UILabel  UserInteractionDisabled=False Text='Label'
+      #55 UILabel  UserInteractionDisabled=False Text='Label'
+      #43 UILabel  UserInteractionDisabled=False Text='Label'
+      #167 UILabel  UserInteractionDisabled=False Text='Label'
+      #153 UILabel  UserInteractionDisabled=False Text='Label'
+      #158 UILabel  UserInteractionDisabled=False Text='Label'
+      #120 UIImageView  UserInteractionDisabled=False Image='icon_diamond_medium.png'
+      #176 UIImageView  UserInteractionDisabled=False Image='icon_currency_small.png'
+      #12 UILabel  UserInteractionDisabled=False Text='Label'
+      #166 UILabel (custom class ADLabelWithCoins)  UserInteractionDisabled=False Text='Label'
+      #95 UIButton  
+
+CONNECTIONS
+  action  playAgainButtonPressed:                   #148 UIButton --(events 0x40)--> #117 UIProxyObject
+  action  showGameStatistics:                       #147 UIButton --(events 0x40)--> #117 UIProxyObject
+  action  twitterScreenshotButtonPressed:           #95 UIButton --(events 0x40)--> #117 UIProxyObject
+  outlet  accuracyLabel                             #117 UIProxyObject --> #167 UILabel Text='Label'
+  outlet  background                                #117 UIProxyObject --> #39 UIImageView
+  outlet  coinsTotal                                #117 UIProxyObject --> #166 ADLabelWithCoins Text='Label'
+  outlet  comboLabel                                #117 UIProxyObject --> #153 UILabel Text='Label'
+  outlet  contentScrollView                         #117 UIProxyObject --> #171 UIScrollView
+  outlet  contentView                               #117 UIProxyObject --> #79 UIView
+  outlet  diamondsLoot                              #117 UIProxyObject --> #12 UILabel Text='Label'
+  outlet  highScoreLabel                            #117 UIProxyObject --> #55 UILabel Text='Label'
+  outlet  killsLabel                                #117 UIProxyObject --> #158 UILabel Text='Label'
+  outlet  scoreLabel                                #117 UIProxyObject --> #131 UILabel Text='Label'
+  outlet  timeLabel                                 #117 UIProxyObject --> #43 UILabel Text='Label'
+  outlet  view                                      #117 UIProxyObject --> #37 UIView
+
+ACCESSIBILITY CONFIGURATIONS

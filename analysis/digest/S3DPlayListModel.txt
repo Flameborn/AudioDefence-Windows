@@ -1,0 +1,246 @@
+
+== -[S3DPlayListModel initWithArray:nested:name:repeats:]   (address 0x10010a120  size 484  kind objc)
+  10a190  [super init]
+  10a198  if (self == 0) goto loc_10010a28c
+  10a1b4  [self setName:arg3]
+  10a1d0  [self setPlayListRepeatPolicy:arg4]
+  10a1f0  [NSMutableArray arrayWithArray:arg1]
+  10a214  [self setPlayList:[NSMutableArray arrayWithArray:arg1]]
+  10a238  [self setNested_xIds:arg2]
+  10a280  dispatch_async(__dispatch_main_q, ^{-[S3DPlayListModel initWithArray:nested:name:repeats:]_block_invoke captures +0x20=self, +0x28=self, +0x30=S3DPlayListModel})
+loc_10010a28c:
+  10a2bc  return
+
+== -[S3DPlayListModel initWithArray:nested:name:repeats:]_block_invoke   (address 0x10010a304  size 280  kind block)
+  10a330  [S3DEngine engine]
+  10a350  [self name]
+  10a384  [super xId]
+  10a3b4  [[S3DEngine engine] quietLog:2 format:@"Initialising PlayList with name \"%@\" and xId \"%@\""]
+  10a3e0  return
+
+== sub_10010a41c   (address 0x10010a41c  size 8  kind sub)
+
+== sub_10010a424   (address 0x10010a424  size 8  kind sub)
+  10a428  return
+
+== +[S3DPlayListModel PlayListRepeatPolicyFromNSString:]   (address 0x10010a42c  size 140  kind objc)
+  10a454  [arg1 characterAtIndex:0]
+  10a458  tolower([arg1 characterAtIndex:0])
+  10a464  if ((tolower([arg1 characterAtIndex:0]) & 0xffff) == 102) goto loc_10010a480
+  10a46c  if ((tolower([arg1 characterAtIndex:0]) & 0xffff) != 108) goto loc_10010a478
+  10a474  goto loc_10010a48c
+loc_10010a478:
+  10a47c  if ((tolower([arg1 characterAtIndex:0]) & 0xffff) != 115) goto loc_10010a488
+loc_10010a480:
+  10a484  goto loc_10010a48c
+loc_10010a488:
+loc_10010a48c:
+  10a4a0  return
+
+== +[S3DPlayListModel NSStringFromRepeatPolicy:]   (address 0x10010a4b8  size 104  kind objc)
+  10a4dc  if (arg1 != 2) goto loc_10010a4ec
+  10a4e8  goto loc_10010a4fc
+loc_10010a4ec:
+  10a4f0  if (arg1 != 1) goto loc_10010a510
+loc_10010a4fc:
+loc_10010a510:
+  10a51c  return
+
+== +[S3DPlayListModel decode:]   (address 0x10010a520  size 2716  kind objc)
+  10a570  [arg1 subnode:@"playlist/name"]
+  10a598  [[arg1 subnode:@"playlist/name"] stringValue:&x29[-0x58]]
+  10a5c8  [arg1 subnode:@"playlist/repeat"]
+  10a5e4  [[arg1 subnode:@"playlist/repeat"] stringValue:&x29[-0x60]]
+  10a620  [NSMutableArray arrayWithCapacity:10]
+  10a63c  [NSMutableArray arrayWithCapacity:10]
+  10a660  [arg1 subnode:@"playlist"]
+  10a664  t1 = ([[arg1 subnode:@"playlist/name"] stringValue:&x29[-0x58]] & [[arg1 subnode:@"playlist/repeat"] stringValue:&x29[-0x60]])
+  10a688  &@selector(boolValue:)
+  10a690  &@selector(floatValue:)
+  10a698  &@selector(floatValue:at:)
+  10a720  goto loc_10010a73c
+loc_10010a724:
+loc_10010a73c:
+  10a750  [[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3]
+  10a768  if ([[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] == 0) goto loc_10010ac64
+  10a78c  [[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"spatialized"]
+  10a7a4  [[[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"spatialized"] boolValue:&x29[-0x61]]
+  10a7c0  [[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"preload"]
+  10a7d8  [[[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"preload"] boolValue:&x29[-0x62]]
+  10a7f4  [[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"unloadonstop"]
+  10a80c  [[[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"unloadonstop"] boolValue:&x29[-0x63]]
+  10a828  [[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"stream"]
+  10a840  [[[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"stream"] boolValue:&x29[-0x64]]
+  10a850  if (0 == 0) goto loc_10010a860
+loc_10010a860:
+  10a864  if (0 == 0) goto loc_10010a870
+loc_10010a870:
+  10a888  [[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"planar"]
+  10a8a0  [[[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"planar"] floatValue:&x29[-0x70]]
+  10a8bc  [[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"planar"]
+  10a8d8  [[[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"planar"] floatValue:(&x29[-0x70] | 4) at:1]
+  10a8f4  [[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"planar"]
+  10a910  [[[[arg1 subnode:@"playlist"] subnode:@"sound" sibling:x3] subnode:@"planar"] floatValue:(&x29[-0x70] + 8) at:2]
+  10a928  goto loc_10010a97c
+loc_10010a92c:
+  10a93c  t2 = ((w8 & [[[x0 subnode:@"bundle" sibling:x3] subnode:@"path"] stringValue:&x29[-0x78]]) & [[[x0 subnode:@"bundle" sibling:x3] subnode:@"name"] stringValue:&x29[-0x80]])
+loc_10010a97c:
+  10a990  [x0 subnode:@"bundle" sibling:x3]
+  10a9a0  if ([x0 subnode:@"bundle" sibling:x3] == 0) goto loc_10010a724
+  10a9c0  [[x0 subnode:@"bundle" sibling:x3] subnode:@"path"]
+  10a9dc  [[[x0 subnode:@"bundle" sibling:x3] subnode:@"path"] stringValue:&x29[-0x78]]
+  10aa10  [[x0 subnode:@"bundle" sibling:x3] subnode:@"name"]
+  10aa2c  [[[x0 subnode:@"bundle" sibling:x3] subnode:@"name"] stringValue:&x29[-0x80]]
+  10aa5c  [[x0 subnode:@"bundle" sibling:x3] subnode:@"extension"]
+  10aa78  [[[x0 subnode:@"bundle" sibling:x3] subnode:@"extension"] stringValue:&x29[-0x88]]
+  10aaa4  [CWLOrderedDictionary dictionaryWithCapacity:3]
+  10aad0  [[CWLOrderedDictionary dictionaryWithCapacity:3] setObject:0 forKey:@"path"]
+  10aae8  [[CWLOrderedDictionary dictionaryWithCapacity:3] setObject:0 forKey:@"name"]
+  10ab00  [[CWLOrderedDictionary dictionaryWithCapacity:3] setObject:0 forKey:@"extension"]
+  10ab14  [NSNumber numberWithBool:0]
+  10ab38  [[CWLOrderedDictionary dictionaryWithCapacity:3] setObject:[NSNumber numberWithBool:0] forKey:@"spatialized"]
+  10ab54  [NSNumber numberWithBool:x2]
+  10ab78  [[CWLOrderedDictionary dictionaryWithCapacity:3] setObject:[NSNumber numberWithBool:x2] forKey:@"preload"]
+  10ab94  [NSNumber numberWithBool:x2]
+  10abb8  [[CWLOrderedDictionary dictionaryWithCapacity:3] setObject:[NSNumber numberWithBool:x2] forKey:@"unloadonstop"]
+  10abd4  [NSNumber numberWithBool:0]
+  10abf8  [[CWLOrderedDictionary dictionaryWithCapacity:3] setObject:[NSNumber numberWithBool:0] forKey:@"stream"]
+  10ac1c  [NSValue valueWithBytes:&x29[-0x70] objCType:"{?=fff}"]
+  10ac40  [[CWLOrderedDictionary dictionaryWithCapacity:3] setObject:[NSValue valueWithBytes:&x29[-0x70] objCType:"{?=fff}"] forKey:@"planar"]
+  10ac54  [[NSMutableArray arrayWithCapacity:10] addObject:[CWLOrderedDictionary dictionaryWithCapacity:3]]
+  10ac58  goto loc_10010a92c
+  10ac60  goto loc_10010aeac
+loc_10010ac64:
+  10ac90  goto loc_10010acac
+loc_10010ac94:
+  10ac98  t3 = (w27 & [[[[arg1 subnode:@"playlist"] subnode:@"playlist" sibling:x3] subnode:@"name"] stringValue:&x29[-0x90]])
+loc_10010acac:
+  10acbc  [[arg1 subnode:@"playlist"] subnode:@"playlist" sibling:x3]
+  10accc  if ([[arg1 subnode:@"playlist"] subnode:@"playlist" sibling:x3] == 0) goto loc_10010ad38
+  10ace0  [[[arg1 subnode:@"playlist"] subnode:@"playlist" sibling:x3] subnode:@"name"]
+  10acfc  [[[[arg1 subnode:@"playlist"] subnode:@"playlist" sibling:x3] subnode:@"name"] stringValue:&x29[-0x90]]
+  10ad24  [[NSMutableArray arrayWithCapacity:10] addObject:0]
+  10ad28  goto loc_10010ac94
+  10ad34  goto loc_10010af70
+loc_10010ad38:
+  10ad54  if ((w27 & ([NSMutableArray arrayWithCapacity:10] != 0)) != 1) goto loc_10010adcc
+  10ad70  [S3DPlayListModel alloc]
+  10ad88  [S3DPlayListModel class]
+  10ad9c  [[S3DPlayListModel class] PlayListRepeatPolicyFromNSString:0]
+  10adc0  [[S3DPlayListModel alloc] initWithArray:[NSMutableArray arrayWithCapacity:10] nested:[NSMutableArray arrayWithCapacity:10] name:0 repeats:[[S3DPlayListModel class] PlayListRepeatPolicyFromNSString:0]]
+  10adc8  goto loc_10010adec
+loc_10010adcc:
+  10ade4  [S3DAbstractModel new]
+loc_10010adec:
+  10ae3c  return
+
+== -[S3DPlayListModel encode]   (address 0x10010afbc  size 2408  kind objc)
+  10b010  [SExp sexp:@"playlist"]
+  10b030  [[SExp sexp:@"playlist"] children]
+  10b050  [SExp sexp:@"name"]
+  10b074  [self name]
+  10b09c  [[SExp sexp:@"name"] addAttribute:[self name]]
+  10b0c4  [[[SExp sexp:@"playlist"] children] addObject:[[SExp sexp:@"name"] addAttribute:[self name]]]
+  10b0f0  [[SExp sexp:@"playlist"] children]
+  10b118  [SExp sexp:@"repeat"]
+  10b138  [self class]
+  10b150  [self playListRepeatPolicy]
+  10b168  [[self class] NSStringFromRepeatPolicy:[self playListRepeatPolicy]]
+  10b184  [[SExp sexp:@"repeat"] addAttribute:[[self class] NSStringFromRepeatPolicy:[self playListRepeatPolicy]]]
+  10b1a0  [[[SExp sexp:@"playlist"] children] addObject:[[SExp sexp:@"repeat"] addAttribute:[[self class] NSStringFromRepeatPolicy:[self playListRepeatPolicy]]]]
+  10b1e4  [self playList]
+  10b214  [[self playList] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16]
+  10b21c  if ([[self playList] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16] == 0) goto loc_10010b71c
+  10b234  &@selector(compare:)
+  10b240  &@selector(boolValue)
+  10b298  &@selector(getValue:)
+loc_10010b2ac:
+loc_10010b2b4:
+  10b2c4  if (x8 == x9) goto loc_10010b2d0
+  10b2cc  objc_enumerationMutation([self playList])
+loc_10010b2d0:
+  10b2ec  [SExp sexp:@"sound"]
+  10b308  [[SExp sexp:@"playlist"] children]
+  10b320  [[[SExp sexp:@"playlist"] children] addObject:[SExp sexp:@"sound"]]
+  10b33c  [SExp sexp:@"bundle"]
+  10b354  [[SExp sexp:@"sound"] children]
+  10b36c  [[[SExp sexp:@"sound"] children] addObject:[SExp sexp:@"bundle"]]
+  10b390  [x0 allKeys]
+  10b3b4  [[x0 allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16]
+  10b3bc  if ([[x0 allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16] == 0) goto loc_10010b6d8
+loc_10010b3cc:
+loc_10010b3d0:
+  10b3e0  if (x8 == x9) goto loc_10010b3ec
+  10b3e8  objc_enumerationMutation([x0 allKeys])
+loc_10010b3ec:
+  10b3fc  [x0 objectForKey:x2]
+  10b41c  [x0 compare:@"spatialized"]
+  10b420  if ([x0 compare:@"spatialized"] == 0) goto loc_10010b4bc
+  10b434  [x0 compare:@"planar"]
+  10b438  if ([x0 compare:@"planar"] == 0) goto loc_10010b554
+  10b444  [[SExp sexp:@"bundle"] children]
+  10b460  [SExp sexp:x2]
+  10b478  [[SExp sexp:x2] addAttribute:[x0 objectForKey:x2]]
+  10b49c  [[[SExp sexp:@"bundle"] children] addObject:[[SExp sexp:x2] addAttribute:[x0 objectForKey:x2]]]
+  10b4b8  goto loc_10010b6a0
+loc_10010b4bc:
+  10b4c4  [[SExp sexp:@"sound"] children]
+  10b4e0  [SExp sexp:x2]
+  10b4f8  [[x0 objectForKey:x2] boolValue]
+  10b508  [[SExp sexp:x2] addBoolAttribute:[[x0 objectForKey:x2] boolValue]]
+  10b530  [[[SExp sexp:@"sound"] children] addObject:[[SExp sexp:x2] addBoolAttribute:[[x0 objectForKey:x2] boolValue]]]
+  10b550  goto loc_10010b6a0
+loc_10010b554:
+  10b564  [x0 objectForKey:x2]
+  10b574  if ([x0 objectForKey:x2] == 0) goto loc_10010b5ac
+  10b588  [[x0 objectForKey:x2] objCType]
+  10b594  strcmp([[x0 objectForKey:x2] objCType], "{?=fff}")
+  10b598  if (strcmp([[x0 objectForKey:x2] objCType], "{?=fff}") != 0) goto loc_10010b5ac
+  10b5a8  [[x0 objectForKey:x2] getValue:&sp[0xc8]]
+loc_10010b5ac:
+  10b5b4  [[SExp sexp:@"sound"] children]
+  10b5d0  [SExp sexp:x2]
+  10b5f8  [[SExp sexp:x2] addFloatAttribute:0]
+  10b610  [[[SExp sexp:x2] addFloatAttribute:0] addFloatAttribute:d0]
+  10b640  [[[[SExp sexp:x2] addFloatAttribute:0] addFloatAttribute:d0] addFloatAttribute:0]
+  10b65c  [[[SExp sexp:@"sound"] children] addObject:[[[[SExp sexp:x2] addFloatAttribute:0] addFloatAttribute:d0] addFloatAttribute:0]]
+loc_10010b6a0:
+  10b6b4  if ((x27 + 1) <u [[x0 allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16]) goto loc_10010b3d0
+  10b6cc  [[x0 allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16]
+  10b6d4  if ([[x0 allKeys] countByEnumeratingWithState:&sp[0xd8] objects:&sp[0x158] count:16] != 0) goto loc_10010b3cc
+loc_10010b6d8:
+  10b6fc  if ((x19 + 1) <u [[self playList] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16]) goto loc_10010b2b4
+  10b714  [[self playList] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16]
+  10b718  if ([[self playList] countByEnumeratingWithState:&sp[0x118] objects:&x29[-0xd8] count:16] != 0) goto loc_10010b2ac
+loc_10010b71c:
+  10b75c  return
+
+== -[S3DPlayListModel name]   (address 0x10010b924  size 16  kind objc)
+  10b930  return
+
+== -[S3DPlayListModel setName:]   (address 0x10010b934  size 56  kind objc)
+  10b958  self->name = arg1
+  10b968  return
+
+== -[S3DPlayListModel playList]   (address 0x10010b96c  size 16  kind objc)
+  10b978  return
+
+== -[S3DPlayListModel setPlayList:]   (address 0x10010b97c  size 56  kind objc)
+  10b9a0  self->playList = arg1
+  10b9b0  return
+
+== -[S3DPlayListModel playListRepeatPolicy]   (address 0x10010b9b4  size 16  kind objc)
+  10b9c0  return
+
+== -[S3DPlayListModel setPlayListRepeatPolicy:]   (address 0x10010b9c4  size 16  kind objc)
+  10b9cc  self->playListRepeatPolicy = arg1
+  10b9d0  return
+
+== -[S3DPlayListModel nested_xIds]   (address 0x10010b9d4  size 16  kind objc)
+  10b9e0  return
+
+== -[S3DPlayListModel setNested_xIds:]   (address 0x10010b9e4  size 56  kind objc)
+  10ba08  self->nested_xIds = arg1
+  10ba18  return
+
+== -[S3DPlayListModel .cxx_destruct]   (address 0x10010ba1c  size 84  kind objc)

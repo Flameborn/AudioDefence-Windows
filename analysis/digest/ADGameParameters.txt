@@ -1,0 +1,239 @@
+
+== -[ADGameParameters init]   (address 0x1000a360c  size 480  kind objc)
+  0a3644  [super init]
+  0a364c  if (self == 0) goto loc_1000a37ac
+  0a3664  [self lastControlScheme]
+  0a3680  [self setControlScheme:[self lastControlScheme]]
+  0a369c  [self setEndlessMode:0]
+  0a36b4  [self lastButtonMode]
+  0a36d0  [self setButtonMode:[self lastButtonMode]]
+  0a36e8  [self lastSensivity]
+  0a3700  [self setSensivity:[self lastSensivity]]
+  0a3718  [self lastDebugMapVisible]
+  0a3734  [self setDebugMapVisible:[self lastDebugMapVisible]]
+  0a3740  time()
+  0a3748  srand(time())
+  0a3764  [AVAudioSession sharedInstance]
+  0a3784  [[AVAudioSession sharedInstance] setDelegate:self]
+  0a37a8  AudioSessionAddPropertyListener(0x726f6368, &-[ADGameParameters init]_block_invoke, self)
+loc_1000a37ac:
+  0a37c0  return
+
+== -[ADGameParameters init]_block_invoke   (address 0x1000a37ec  size 140  kind block)
+  0a3804  if (blockarg1 != 0x726f6368) goto loc_1000a3858
+  0a381c  [NSNotificationCenter defaultCenter]
+  0a3844  [[NSNotificationCenter defaultCenter] postNotificationName:@"AD_MESSAGE_AudioRouteChanged" object:0]
+  0a3854  return
+loc_1000a3858:
+  0a3860  return
+
+== +[ADGameParameters sharedParameters]   (address 0x1000a3878  size 152  kind objc)
+  0a388c  objc_sync_enter(ADGameParameters)
+  0a3898  if (g_10042da28 != 0) goto loc_1000a38d4
+  0a38b0  [ADGameParameters alloc]
+  0a38c0  [[ADGameParameters alloc] init]
+  0a38c8  store g_10042da28 = [[ADGameParameters alloc] init]
+loc_1000a38d4:
+  0a38d8  objc_sync_exit(ADGameParameters)
+  0a38fc  objc_sync_exit()
+
+== -[ADGameParameters isIphone]   (address 0x1000a3910  size 320  kind objc)
+  0a393c  [UIDevice currentDevice]
+  0a395c  [[UIDevice currentDevice] model]
+  0a3984  [[[UIDevice currentDevice] model] isEqualToString:@"iPhone"]
+  0a3988  if (!([[[UIDevice currentDevice] model] isEqualToString:@"iPhone"] & 1)) goto loc_1000a3994
+  0a3990  goto loc_1000a39e4
+loc_1000a3994:
+  0a399c  [UIDevice currentDevice]
+  0a39b0  [[UIDevice currentDevice] model]
+  0a39cc  [[[UIDevice currentDevice] model] isEqualToString:@"iPod touch"]
+loc_1000a39e4:
+  0a3a08  return
+
+== -[ADGameParameters setButtonMode:]   (address 0x1000a3a50  size 156  kind objc)
+  0a3a6c  self->_buttonMode = arg1
+  0a3a84  [NSUserDefaults standardUserDefaults]
+  0a3aac  [[NSUserDefaults standardUserDefaults] setBool:self->_buttonMode forKey:@"buttonMode"]
+  0a3ac0  [[NSUserDefaults standardUserDefaults] synchronize]
+  0a3ad4  return
+
+== -[ADGameParameters lastButtonMode]   (address 0x1000a3aec  size 180  kind objc)
+  0a3b0c  [NSUserDefaults standardUserDefaults]
+  0a3b30  [[NSUserDefaults standardUserDefaults] objectForKey:@"buttonMode"]
+  0a3b44  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"buttonMode"] == 0) goto loc_1000a3b6c
+  0a3b60  [[NSUserDefaults standardUserDefaults] boolForKey:@"buttonMode"]
+  0a3b68  goto loc_1000a3b74
+loc_1000a3b6c:
+  0a3b6c  UIAccessibilityIsVoiceOverRunning()
+loc_1000a3b74:
+  0a3b88  return
+
+== -[ADGameParameters setMasterGain:]   (address 0x1000a3ba0  size 256  kind objc)
+  0a3bcc  [S3DEngine engine]
+  0a3bec  [[S3DEngine engine] setMasterGain:arg1]
+  0a3c10  [NSUserDefaults standardUserDefaults]
+  0a3c38  [[NSUserDefaults standardUserDefaults] setFloat:arg1 forKey:@"masterGain"]
+  0a3c4c  [NSUserDefaults standardUserDefaults]
+  0a3c68  [[NSUserDefaults standardUserDefaults] synchronize]
+  0a3c80  return
+
+== -[ADGameParameters lastMasterGain]   (address 0x1000a3ca0  size 260  kind objc)
+  0a3cd4  [NSUserDefaults standardUserDefaults]
+  0a3cfc  [[NSUserDefaults standardUserDefaults] floatForKey:@"masterGain"]
+  0a3d10  if ([[NSUserDefaults standardUserDefaults] floatForKey:@"masterGain"] == 0.0) goto loc_1000a3d4c
+  0a3d1c  [NSUserDefaults standardUserDefaults]
+  0a3d38  [[NSUserDefaults standardUserDefaults] floatForKey:@"masterGain"]
+  0a3d48  goto loc_1000a3d68
+loc_1000a3d4c:
+  0a3d64  [self setMasterGain:1]
+loc_1000a3d68:
+  0a3d80  return
+
+== -[ADGameParameters setAnnouncer:]   (address 0x1000a3da4  size 188  kind objc)
+  0a3dd0  [NSUserDefaults standardUserDefaults]
+  0a3df8  [[NSUserDefaults standardUserDefaults] setBool:arg1 forKey:@"announcer"]
+  0a3e0c  [NSUserDefaults standardUserDefaults]
+  0a3e28  [[NSUserDefaults standardUserDefaults] synchronize]
+  0a3e3c  return
+
+== -[ADGameParameters lastAnnouncerValue]   (address 0x1000a3e60  size 228  kind objc)
+  0a3e88  [NSUserDefaults standardUserDefaults]
+  0a3eac  [[NSUserDefaults standardUserDefaults] objectForKey:@"announcer"]
+  0a3ec8  if ([[NSUserDefaults standardUserDefaults] objectForKey:@"announcer"] == 0) goto loc_1000a3f0c
+  0a3ed4  [NSUserDefaults standardUserDefaults]
+  0a3ef8  [[NSUserDefaults standardUserDefaults] boolForKey:@"announcer"]
+  0a3f08  goto loc_1000a3f10
+loc_1000a3f0c:
+loc_1000a3f10:
+  0a3f20  return
+
+== -[ADGameParameters setLastGoodNews:]   (address 0x1000a3f44  size 204  kind objc)
+  0a3f74  self->_lastGoodNews = arg1
+  0a3f90  [NSUserDefaults standardUserDefaults]
+  0a3fb8  [[NSUserDefaults standardUserDefaults] setObject:arg1 forKey:@"lastGoodNews"]
+  0a3fcc  [[NSUserDefaults standardUserDefaults] synchronize]
+  0a3fe8  return
+
+== -[ADGameParameters timeSinceLastGoodNews]   (address 0x1000a4010  size 236  kind objc)
+  0a4038  [NSUserDefaults standardUserDefaults]
+  0a405c  [[NSUserDefaults standardUserDefaults] valueForKey:@"lastGoodNews"]
+  0a406c  if ([[NSUserDefaults standardUserDefaults] valueForKey:@"lastGoodNews"] != 0) goto loc_1000a4094
+  0a4084  [NSDate distantPast]
+loc_1000a4094:
+  0a40a4  [x0 timeIntervalSinceNow]
+  0a40d4  return
+
+== -[ADGameParameters setControlScheme:]   (address 0x1000a40fc  size 160  kind objc)
+  0a4128  [NSUserDefaults standardUserDefaults]
+  0a4150  [[NSUserDefaults standardUserDefaults] setInteger:arg1 forKey:@"controlScheme"]
+  0a4164  [[NSUserDefaults standardUserDefaults] synchronize]
+  0a4170  self->_controlScheme = arg1
+  0a4184  return
+
+== -[ADGameParameters setSensivity:]   (address 0x1000a419c  size 160  kind objc)
+  0a41c8  [NSUserDefaults standardUserDefaults]
+  0a41f0  [[NSUserDefaults standardUserDefaults] setInteger:(int)arg1 forKey:@"sensivity"]
+  0a4204  [[NSUserDefaults standardUserDefaults] synchronize]
+  0a4210  self->_sensivity = arg1
+  0a4224  return
+
+== -[ADGameParameters lastSensivity]   (address 0x1000a423c  size 288  kind objc)
+  0a4268  [NSUserDefaults standardUserDefaults]
+  0a4290  [[NSUserDefaults standardUserDefaults] valueForKey:@"sensivity"]
+  0a42a4  if ([[NSUserDefaults standardUserDefaults] valueForKey:@"sensivity"] == 0) goto loc_1000a42e8
+  0a42b8  [[NSUserDefaults standardUserDefaults] valueForKey:@"sensivity"]
+  0a42d4  [[[NSUserDefaults standardUserDefaults] valueForKey:@"sensivity"] floatValue]
+  0a42e4  goto loc_1000a4318
+loc_1000a42e8:
+  0a42fc  [self setSensivity:1.5]
+  0a4310  [self sensivity]
+loc_1000a4318:
+  0a4334  return
+
+== -[ADGameParameters setDebugMapVisible:]   (address 0x1000a435c  size 160  kind objc)
+  0a4388  [NSUserDefaults standardUserDefaults]
+  0a43b0  [[NSUserDefaults standardUserDefaults] setInteger:arg1 forKey:@"debugMapVisible"]
+  0a43c4  [[NSUserDefaults standardUserDefaults] synchronize]
+  0a43d0  self->_debugMapVisible = arg1
+  0a43e4  return
+
+== -[ADGameParameters lastDebugMapVisible]   (address 0x1000a43fc  size 236  kind objc)
+  0a4420  [NSUserDefaults standardUserDefaults]
+  0a4448  [[NSUserDefaults standardUserDefaults] valueForKey:@"debugMapVisible"]
+  0a445c  if ([[NSUserDefaults standardUserDefaults] valueForKey:@"debugMapVisible"] == 0) goto loc_1000a44a4
+  0a4470  [[NSUserDefaults standardUserDefaults] valueForKey:@"debugMapVisible"]
+  0a448c  [[[NSUserDefaults standardUserDefaults] valueForKey:@"debugMapVisible"] floatValue]
+  0a4494  t1 = ([[[NSUserDefaults standardUserDefaults] valueForKey:@"debugMapVisible"] floatValue] != 0.0)
+  0a44a0  goto loc_1000a44a8
+loc_1000a44a4:
+loc_1000a44a8:
+  0a44c0  return
+
+== -[ADGameParameters lastControlScheme]   (address 0x1000a44e8  size 232  kind objc)
+  0a450c  [NSUserDefaults standardUserDefaults]
+  0a4534  [[NSUserDefaults standardUserDefaults] valueForKey:@"controlScheme"]
+  0a4548  if ([[NSUserDefaults standardUserDefaults] valueForKey:@"controlScheme"] == 0) goto loc_1000a458c
+  0a455c  [[NSUserDefaults standardUserDefaults] valueForKey:@"controlScheme"]
+  0a4578  [[[NSUserDefaults standardUserDefaults] valueForKey:@"controlScheme"] intValue]
+  0a4588  goto loc_1000a4590
+loc_1000a458c:
+loc_1000a4590:
+  0a45a8  return
+
+== -[ADGameParameters isHeadsetPluggedIn]   (address 0x1000a45d0  size 180  kind objc)
+  0a45f8  AudioSessionGetProperty(0x726f7574, &x29[-0x14], &sp[0x10])
+  0a45fc  if (AudioSessionGetProperty(0x726f7574, &x29[-0x14], &sp[0x10]) != 0) goto loc_1000a4654
+  0a4604  if (x0 == 0) goto loc_1000a4654
+  0a461c  NSLog(@"Route : %@", sp[0])
+  0a4638  [x0 rangeOfString:@"Head"]
+  0a4650  if ([x0 rangeOfString:@"Head"] != 0x7fffffffffffffff) goto loc_1000a465c
+loc_1000a4654:
+  0a4658  goto loc_1000a4660
+loc_1000a465c:
+loc_1000a4660:
+  0a466c  return
+
+== -[ADGameParameters controlScheme]   (address 0x1000a4684  size 16  kind objc)
+  0a4690  return
+
+== -[ADGameParameters sensivity]   (address 0x1000a4694  size 16  kind objc)
+  0a46a0  return
+
+== -[ADGameParameters buttonMode]   (address 0x1000a46a4  size 16  kind objc)
+  0a46b0  return
+
+== -[ADGameParameters endlessMode]   (address 0x1000a46b4  size 16  kind objc)
+  0a46c0  return
+
+== -[ADGameParameters setEndlessMode:]   (address 0x1000a46c4  size 16  kind objc)
+  0a46cc  self->_endlessMode = arg1
+  0a46d0  return
+
+== -[ADGameParameters debugMapVisible]   (address 0x1000a46d4  size 16  kind objc)
+  0a46e0  return
+
+== -[ADGameParameters currentLevel]   (address 0x1000a46e4  size 16  kind objc)
+  0a46f0  return
+
+== -[ADGameParameters setCurrentLevel:]   (address 0x1000a46f4  size 56  kind objc)
+  0a4718  self->_currentLevel = arg1
+  0a4728  return
+
+== -[ADGameParameters playlistName]   (address 0x1000a472c  size 16  kind objc)
+  0a4738  return
+
+== -[ADGameParameters setPlaylistName:]   (address 0x1000a473c  size 56  kind objc)
+  0a4760  self->_playlistName = arg1
+  0a4770  return
+
+== -[ADGameParameters lastGoodNews]   (address 0x1000a4774  size 16  kind objc)
+  0a4780  return
+
+== -[ADGameParameters lastChallengeWorld]   (address 0x1000a4784  size 16  kind objc)
+  0a4790  return
+
+== -[ADGameParameters setLastChallengeWorld:]   (address 0x1000a4794  size 56  kind objc)
+  0a47b8  self->_lastChallengeWorld = arg1
+  0a47c8  return
+
+== -[ADGameParameters .cxx_destruct]   (address 0x1000a47cc  size 104  kind objc)

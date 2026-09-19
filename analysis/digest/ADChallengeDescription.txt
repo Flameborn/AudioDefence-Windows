@@ -1,0 +1,76 @@
+
+== -[ADChallengeDescription initWithFrame:]   (address 0x10009110c  size 60  kind objc)
+  091138  [super initWithFrame:{arg1.0, arg1.1, arg1.2, arg1.3}]
+  091144  return
+
+== -[ADChallengeDescription awakeFromNib]   (address 0x100091148  size 92  kind objc)
+  09117c  [super awakeFromNib]
+  091190  [self updateLayout]
+  0911a0  return
+
+== -[ADChallengeDescription didMoveToSuperview]   (address 0x1000911a4  size 92  kind objc)
+  0911d8  [super didMoveToSuperview]
+  0911ec  [self updateLayout]
+  0911fc  return
+
+== -[ADChallengeDescription updateLayout]   (address 0x100091200  size 828  kind objc)
+  091218  UIAccessibilityIsVoiceOverRunning()
+  09121c  if (UIAccessibilityIsVoiceOverRunning() == 0) goto loc_100091344
+  091238  [self isIphone]
+  091264  [UIFont fontWithName:@"Tiresias Infofont" size:([self isIphone] != 0 ? 18 : 22)]
+  091288  [self setFont:[UIFont fontWithName:@"Tiresias Infofont" size:([self isIphone] != 0 ? 18 : 22)]]
+  0912a0  [self setEditable:1]
+  0912b8  [self setTextAlignment:1]
+  0912d0  [UIColor whiteColor]
+  0912f4  [self setTextColor:[UIColor whiteColor]]
+  091310  [UIColor clearColor]
+  091334  [self setBackgroundColor:[UIColor clearColor]]
+  091340  goto loc_1000914dc
+loc_100091344:
+  091358  [self fontSize]
+  09136c  if ([self fontSize] == 0) goto loc_1000913a8
+  091378  [self fontSize]
+  091394  [[self fontSize] intValue]
+  0913a4  goto loc_1000913cc
+loc_1000913a8:
+  0913b8  [self isIphone]
+loc_1000913cc:
+  0913ec  [UIFont fontWithName:@"Chainprinter" size:(float)w21]
+  091410  [self setFont:[UIFont fontWithName:@"Chainprinter" size:(float)w21]]
+  09142c  [self setEditable:1]
+  091444  [self setTextAlignment:1]
+  09145c  [UIColor whiteColor]
+  091480  [self setTextColor:[UIColor whiteColor]]
+  09149c  [UIColor clearColor]
+  0914c0  [self setBackgroundColor:[UIColor clearColor]]
+  0914d8  [self setEditable:0]
+loc_1000914dc:
+  0914f0  return
+
+== -[ADChallengeDescription setText:]   (address 0x10009153c  size 360  kind objc)
+  091588  [super setText:arg1]
+  09158c  UIAccessibilityIsVoiceOverRunning()
+  091590  if ((UIAccessibilityIsVoiceOverRunning() & 1)) goto loc_10009165c
+  0915ac  [self setEditable:1]
+  0915c4  [self setTextAlignment:1]
+  0915dc  [UIColor whiteColor]
+  091600  [self setTextColor:[UIColor whiteColor]]
+  09161c  [UIColor clearColor]
+  091640  [self setBackgroundColor:[UIColor clearColor]]
+  091658  [self setEditable:0]
+loc_10009165c:
+  091678  return
+
+== -[ADChallengeDescription isIphone]   (address 0x1000916a4  size 112  kind objc)
+  0916c4  [ADGameParameters sharedParameters]
+  0916e0  [[ADGameParameters sharedParameters] isIphone]
+  0916fc  return
+
+== -[ADChallengeDescription fontSize]   (address 0x100091714  size 16  kind objc)
+  091720  return
+
+== -[ADChallengeDescription setFontSize:]   (address 0x100091724  size 56  kind objc)
+  091748  self->_fontSize = arg1
+  091758  return
+
+== -[ADChallengeDescription .cxx_destruct]   (address 0x10009175c  size 20  kind objc)

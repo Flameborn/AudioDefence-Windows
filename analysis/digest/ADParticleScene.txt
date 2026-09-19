@@ -1,0 +1,42 @@
+
+== -[ADParticleScene initWithSize:]   (address 0x100039374  size 716  kind objc)
+  0393b4  [super initWithSize:{arg1.0, arg1.1}]
+  0393bc  if (self == 0) goto loc_1000395c0
+  0393e0  [SKSpriteNode spriteNodeWithImageNamed:@"background_main"]
+  039404  [self frame]
+  039408  CGRectGetMidX()
+  039418  [self frame]
+  03941c  CGRectGetMidY()
+  039438  [[SKSpriteNode spriteNodeWithImageNamed:@"background_main"] setPosition:{d0, d1}]
+  039454  [[SKSpriteNode spriteNodeWithImageNamed:@"background_main"] setName:@"BACKGROUND"]
+  039470  [[SKSpriteNode spriteNodeWithImageNamed:@"background_main"] setScale:1.1]
+  03948c  [self addChild:[SKSpriteNode spriteNodeWithImageNamed:@"background_main"]]
+  0394a4  [UIColor blackColor]
+  0394c8  [self setBackgroundColor:[UIColor blackColor]]
+  0394f0  [NSBundle mainBundle]
+  03951c  [[NSBundle mainBundle] pathForResource:@"MyParticle" ofType:@"sks"]
+  039540  [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"MyParticle" ofType:@"sks"]]
+  039564  [self setEmitter:[NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"MyParticle" ofType:@"sks"]]]
+  039590  [self emitter]
+  0395ac  [self addChild:[self emitter]]
+loc_1000395c0:
+  0395dc  return
+
+== -[ADParticleScene willMoveFromView:]   (address 0x100039640  size 160  kind objc)
+  03965c  [self children]
+  039680  [[self children] enumerateObjectsUsingBlock:^{-[ADParticleScene willMoveFromView:]_block_invoke}]
+  03969c  [self removeAllChildren]
+  0396b4  [self setEmitter:0]
+  0396c0  return
+
+== -[ADParticleScene willMoveFromView:]_block_invoke   (address 0x1000396e0  size 40  kind block)
+  0396fc  [blockarg1 removeFromParent]
+  039704  return
+
+== -[ADParticleScene emitter]   (address 0x100039708  size 16  kind objc)
+  039714  tail objc_getProperty(self, _cmd, x2, 1)
+
+== -[ADParticleScene setEmitter:]   (address 0x100039718  size 12  kind objc)
+  039720  tail objc_setProperty_atomic(self, _cmd, arg1, x3)
+
+== -[ADParticleScene .cxx_destruct]   (address 0x100039724  size 20  kind objc)

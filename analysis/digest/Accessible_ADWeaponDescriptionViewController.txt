@@ -1,0 +1,436 @@
+
+== -[Accessible_ADWeaponDescriptionViewController initWithWeaponDictionary:]   (address 0x10006f000  size 384  kind objc)
+  06f054  [super initWithNibName:0 bundle:0]
+  06f05c  if (self == 0) goto loc_10006f118
+  06f07c  self->weaponInventoryDict = arg1
+  06f098  [ADWeaponManager sharedWeaponManager]
+  06f0c0  [arg1 objectForKey:@"name"]
+  06f0e4  [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[arg1 objectForKey:@"name"]]
+  06f0fc  self->weaponStatsDict = [[ADWeaponManager sharedWeaponManager] dictionaryForWeaponWithName:[arg1 objectForKey:@"name"]]
+loc_10006f118:
+  06f138  return
+
+== -[Accessible_ADWeaponDescriptionViewController viewDidLoad]   (address 0x10006f180  size 92  kind objc)
+  06f1b4  [super viewDidLoad]
+  06f1c8  [self loadInformations]
+  06f1d8  return
+
+== -[Accessible_ADWeaponDescriptionViewController loadInformations]   (address 0x10006f1dc  size 2188  kind objc)
+  06f21c  [ADInventory sharedInventory]
+  06f250  [self->weaponInventoryDict objectForKey:@"name"]
+  06f274  [[ADInventory sharedInventory] levelForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  06f280  self->current_level = [[ADInventory sharedInventory] levelForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  06f2c8  [NSString stringWithFormat:@"level_%i", self->current_level]
+  06f2e4  [self->weaponStatsDict objectForKey:[NSString stringWithFormat:@"level_%i", self->current_level]]
+  06f300  self->currentLevelDict = [self->weaponStatsDict objectForKey:[NSString stringWithFormat:@"level_%i", self->current_level]]
+  06f338  [NSString stringWithFormat:@"level_%i", (self->current_level + 1)]
+  06f354  [self->weaponStatsDict objectForKey:[NSString stringWithFormat:@"level_%i", (self->current_level + 1)]]
+  06f36c  self->nextLevelDict = [self->weaponStatsDict objectForKey:[NSString stringWithFormat:@"level_%i", (self->current_level + 1)]]
+  06f394  [self weaponName]
+  06f3b8  [ADWeaponManager sharedWeaponManager]
+  06f3e0  [self->weaponInventoryDict objectForKey:@"name"]
+  06f404  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  06f42c  [[self weaponName] setText:[[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[self->weaponInventoryDict objectForKey:@"name"]]]
+  06f45c  [ADInventory sharedInventory]
+  06f47c  [self->weaponInventoryDict objectForKey:@"name"]
+  06f4a4  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  06f4c8  [self weaponName]
+  06f4dc  if ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] == 0) goto loc_10006f68c
+  06f4e8  [self weaponName]
+  06f508  [[self weaponName] text]
+  06f530  [NSString stringWithFormat:@"%@ : level %i", [[self weaponName] text], self->current_level]
+  06f550  [[self weaponName] setText:[NSString stringWithFormat:@"%@ : level %i", [[self weaponName] text], self->current_level]]
+  06f584  [ADInventory sharedInventory]
+  06f5a4  [self->weaponInventoryDict objectForKey:@"name"]
+  06f5cc  [[ADInventory sharedInventory] isWeaponEquipped:[self->weaponInventoryDict objectForKey:@"name"]]
+  06f5e8  if ([[ADInventory sharedInventory] isWeaponEquipped:[self->weaponInventoryDict objectForKey:@"name"]] == 0) goto loc_10006f71c
+  06f5f4  [self weaponName]
+  06f610  [self weaponName]
+  06f624  [[self weaponName] text]
+  06f648  [NSString stringWithFormat:@"%@ : equipped", [[self weaponName] text]]
+  06f664  [[self weaponName] setText:[NSString stringWithFormat:@"%@ : equipped", [[self weaponName] text]]]
+  06f688  goto loc_10006f71c
+loc_10006f68c:
+  06f694  [self weaponName]
+  06f6b0  [[self weaponName] text]
+  06f6d4  [NSString stringWithFormat:@"%@ : locked", [[self weaponName] text]]
+  06f6f0  [[self weaponName] setText:[NSString stringWithFormat:@"%@ : locked", [[self weaponName] text]]]
+loc_10006f71c:
+  06f72c  [self weaponStats]
+  06f75c  [self->currentLevelDict valueForKey:@"damages"]
+  06f77c  [[self->currentLevelDict valueForKey:@"damages"] floatValue]
+  06f794  [self->currentLevelDict valueForKey:@"capacity"]
+  06f7b4  [[self->currentLevelDict valueForKey:@"capacity"] intValue]
+  06f7cc  [self->currentLevelDict valueForKey:@"spread"]
+  06f7e0  [[self->currentLevelDict valueForKey:@"spread"] intValue]
+  06f800  [NSString stringWithFormat:@"Damages : %.1f, Capacity : %i, Spread : %i", [[self->currentLevelDict valueForKey:@"damages"] floatValue], [[self->currentLevelDict valueForKey:@"capacity"] intValue], [[self->currentLevelDict valueForKey:@"spread"] intValue]]
+  06f81c  [[self weaponStats] setText:[NSString stringWithFormat:@"Damages : %.1f, Capacity : %i, Spread : %i", [[self->currentLevelDict valueForKey:@"damages"] floatValue], [[self->currentLevelDict valueForKey:@"capacity"] intValue], [[self->currentLevelDict valueForKey:@"spread"] intValue]]]
+  06f858  [self weaponDescription]
+  06f87c  [self->weaponStatsDict objectForKey:@"description"]
+  06f898  [[self weaponDescription] setText:[self->weaponStatsDict objectForKey:@"description"]]
+  06f8bc  [self checkBuyOrUpgradeButton]
+  06f8f0  tail [self checkEquipButtons]
+  06f8f8  goto loc_10006f98c
+  06f900  goto loc_10006f984
+  06f908  goto loc_10006f97c
+  06f90c  goto loc_10006f99c
+  06f918  goto loc_10006f9ac
+  06f91c  goto loc_10006f99c
+  06f920  goto loc_10006f99c
+  06f928  goto loc_10006fa34
+  06f930  goto loc_10006f960
+  06f938  goto loc_10006f948
+loc_10006f948:
+  06f950  goto loc_10006f960
+  06f958  goto loc_10006fa34
+loc_10006f960:
+  06f964  goto loc_10006fa30
+  06f96c  goto loc_10006f994
+loc_10006f97c:
+loc_10006f980:
+loc_10006f984:
+loc_10006f98c:
+loc_10006f990:
+loc_10006f994:
+  06f998  goto loc_10006fa38
+loc_10006f99c:
+  06f9a0  goto loc_10006f9b0
+loc_10006f9ac:
+loc_10006f9b0:
+  06f9b4  goto loc_10006fa38
+  06f9bc  goto loc_10006fa34
+  06f9c4  goto loc_10006f9e4
+  06f9cc  goto loc_10006f9dc
+loc_10006f9dc:
+loc_10006f9e4:
+  06f9e8  goto loc_10006fa30
+  06f9f0  goto loc_10006f994
+  06f9fc  goto loc_10006f990
+  06fa04  goto loc_10006fa34
+  06fa0c  goto loc_10006fa2c
+  06fa14  goto loc_10006fa24
+loc_10006fa24:
+loc_10006fa2c:
+loc_10006fa30:
+loc_10006fa34:
+loc_10006fa38:
+  06fa48  goto loc_10006f994
+  06fa50  goto loc_10006f98c
+  06fa58  goto loc_10006f984
+  06fa64  goto loc_10006f980
+
+== -[Accessible_ADWeaponDescriptionViewController checkBuyOrUpgradeButton]   (address 0x10006fa68  size 1316  kind objc)
+  06fa9c  [ADInventory sharedInventory]
+  06fad0  [self->weaponInventoryDict objectForKey:@"name"]
+  06faf4  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  06fb0c  if ([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] == 0) goto loc_10006fc1c
+  06fb1c  if (self->nextLevelDict == 0) goto loc_10006fd0c
+  06fb38  [self->nextLevelDict valueForKey:@"upgradeCost"]
+  06fb58  [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]
+  06fb68  if ([[self->nextLevelDict valueForKey:@"upgradeCost"] intValue] == 0) goto loc_10006fdcc
+  06fb7c  [self buyOrUpgradeButton]
+  06fbb0  [self->nextLevelDict valueForKey:@"upgradeCost"]
+  06fbc4  [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]
+  06fbe8  [NSString stringWithFormat:@"Upgrade to level %i for %i coins", (self->current_level + 1), [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]]
+  06fc10  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"Upgrade to level %i for %i coins", (self->current_level + 1), [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]] forState:0]
+  06fc14  goto loc_10006feac
+  06fc18  goto loc_10006ff68
+loc_10006fc1c:
+  06fc34  [self->weaponStatsDict objectForKey:@"price"]
+  06fc54  [[self->weaponStatsDict objectForKey:@"price"] intValue]
+  06fc74  [self buyOrUpgradeButton]
+  06fc94  if ([[self->weaponStatsDict objectForKey:@"price"] intValue] < 1) goto loc_10006fd48
+  06fca4  [self->weaponStatsDict objectForKey:@"price"]
+  06fcb8  [[self->weaponStatsDict objectForKey:@"price"] intValue]
+  06fcd8  [NSString stringWithFormat:@"Buy for %i coins", [[self->weaponStatsDict objectForKey:@"price"] intValue]]
+  06fd00  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"Buy for %i coins", [[self->weaponStatsDict objectForKey:@"price"] intValue]] forState:0]
+  06fd04  goto loc_10006fdb4
+  06fd08  goto loc_10006ff38
+loc_10006fd0c:
+  06fd1c  [self buyOrUpgradeButton]
+  06fd3c  [[self buyOrUpgradeButton] setHidden:1]
+  06fd40  goto loc_10006fdc4
+  06fd44  goto loc_10006ff30
+loc_10006fd48:
+  06fd54  [self->weaponStatsDict objectForKey:@"priceInDiamonds"]
+  06fd68  [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]
+  06fd88  [NSString stringWithFormat:@"Buy for %i diamonds", [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]]
+  06fdb0  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"Buy for %i diamonds", [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]] forState:0]
+loc_10006fdb4:
+loc_10006fdc4:
+  06fdc8  goto loc_10006fec0
+loc_10006fdcc:
+  06fddc  [self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"]
+  06fdf0  [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]
+  06fe00  if ([[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue] == 0) goto loc_10006fedc
+  06fe14  [self buyOrUpgradeButton]
+  06fe48  [self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"]
+  06fe5c  [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]
+  06fe80  [NSString stringWithFormat:@"Upgrade to level %i for %i diamonds", (self->current_level + 1), [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]]
+  06fea8  [[self buyOrUpgradeButton] setTitle:[NSString stringWithFormat:@"Upgrade to level %i for %i diamonds", (self->current_level + 1), [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]] forState:0]
+loc_10006feac:
+loc_10006fec0:
+  06fed8  return
+loc_10006fedc:
+  06fef4  return
+
+== -[Accessible_ADWeaponDescriptionViewController checkEquipButtons]   (address 0x10006ff8c  size 2088  kind objc)
+  06ffbc  [self hideButtons]
+  06ffc0  if (([self hideButtons] & 1)) goto loc_1000702cc
+  06ffdc  [ADInventory sharedInventory]
+  070010  [self->weaponInventoryDict objectForKey:@"name"]
+  070034  [[ADInventory sharedInventory] isWeaponEquipped:[self->weaponInventoryDict objectForKey:@"name"]]
+  070038  if (!([[ADInventory sharedInventory] isWeaponEquipped:[self->weaponInventoryDict objectForKey:@"name"]] & 1)) goto loc_100070050
+  07004c  goto loc_1000702cc
+loc_100070050:
+  070058  [ADInventory sharedInventory]
+  070078  [self->weaponInventoryDict objectForKey:@"name"]
+  07009c  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  0700c4  if (!([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] & 1)) goto loc_1000702cc
+  0700e0  [ADWeaponManager sharedWeaponManager]
+  070100  [self->weaponInventoryDict objectForKey:@"name"]
+  070124  [[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  070150  [self equip1Button]
+  070170  if ([[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] == 0) goto loc_100070390
+  070178  [ADWeaponManager sharedWeaponManager]
+  070190  [ADInventory sharedInventory]
+  0701ac  [[ADInventory sharedInventory] weaponSlotMelee]
+  0701d0  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory sharedInventory] weaponSlotMelee]]
+  0701fc  [NSString stringWithFormat:@"equip instead of %@", [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory …]
+  070224  [[self equip1Button] setTitle:[NSString stringWithFormat:@"equip instead of %@", [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory …] forState:0]
+  070268  [self equip2Button]
+  07028c  [[self equip2Button] setHidden:1]
+  0702a8  [self equip3Button]
+  0702c0  [[self equip3Button] setHidden:1]
+  0702c4  goto loc_10007036c
+  0702c8  goto loc_100070630
+loc_1000702cc:
+  0702dc  [self equip1Button]
+  070300  [[self equip1Button] setHidden:1]
+  07031c  [self equip2Button]
+  070334  [[self equip2Button] setHidden:1]
+  070350  [self equip3Button]
+  070368  [[self equip3Button] setHidden:1]
+loc_10007036c:
+  07038c  return
+  070394  [ADWeaponManager sharedWeaponManager]
+  0703ac  [ADInventory sharedInventory]
+  0703c8  [[ADInventory sharedInventory] weaponSlot1]
+  0703f4  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory sharedInventory] weaponSlot1]]
+  07042c  [NSString stringWithFormat:@"equip instead of %@", [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory …]
+  07045c  [[self equip1Button] setTitle:[NSString stringWithFormat:@"equip instead of %@", [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory …] forState:0]
+  0704a4  [self equip2Button]
+  0704c8  [ADWeaponManager sharedWeaponManager]
+  0704e0  [ADInventory sharedInventory]
+  0704fc  [[ADInventory sharedInventory] weaponSlot2]
+  070518  [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory sharedInventory] weaponSlot2]]
+  07053c  [NSString stringWithFormat:@"equip instead of %@", [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory …]
+  07055c  [[self equip2Button] setTitle:[NSString stringWithFormat:@"equip instead of %@", [[ADWeaponManager sharedWeaponManager] displayNameForItemWithName:[[ADInventory …] forState:0]
+  070598  [self equip1Button]
+  0705bc  [[self equip1Button] setHidden:0]
+  0705d0  [self equip2Button]
+  0705e8  [[self equip2Button] setHidden:0]
+  070604  [self equip3Button]
+  07061c  [[self equip3Button] setHidden:1]
+
+== -[Accessible_ADWeaponDescriptionViewController backButtonPressed:]   (address 0x1000707b4  size 168  kind objc)
+  0707d0  [self parentTableView]
+  0707f0  [[self parentTableView] setAccessibilityElementsHidden:0]
+  07080c  [self view]
+  070828  [[self view] removeFromSuperview]
+  070838  return
+
+== -[Accessible_ADWeaponDescriptionViewController buyOrUpgradeButtonPressed:]   (address 0x10007085c  size 2044  kind objc)
+  070894  [ADInventory sharedInventory]
+  0708c8  [self->weaponInventoryDict objectForKey:@"name"]
+  0708ec  [[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  070904  if (!([[ADInventory sharedInventory] hasUnlockedWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] & 1)) goto loc_100070a80
+  07092c  [self->nextLevelDict valueForKey:@"upgradeCost"]
+  07094c  [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]
+  07095c  if ([[self->nextLevelDict valueForKey:@"upgradeCost"] intValue] == 0) goto loc_100070b48
+  070968  [ADInventory sharedInventory]
+  070988  [[ADInventory sharedInventory] coins]
+  07099c  if ([[ADInventory sharedInventory] coins] < [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue]) goto loc_100070b10
+  0709a8  [ADInventory sharedInventory]
+  0709d4  [self->weaponInventoryDict objectForKey:@"name"]
+  0709f0  [[ADInventory sharedInventory] setLevel:(self->current_level + 1) forWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  070a10  [ADMissionManager sharedMissionManager]
+  070a34  [[ADMissionManager sharedMissionManager] upgradeWeaponToLevel:(self->current_level + 1)]
+  070a48  [ADInventory sharedInventory]
+  070a5c  [[ADInventory sharedInventory] coins]
+  070a60  t1 = ([[ADInventory sharedInventory] coins] - [[self->nextLevelDict valueForKey:@"upgradeCost"] intValue])
+  070a74  [[ADInventory sharedInventory] setCoins:t1]
+  070a78  goto loc_100070ec0
+  070a7c  goto loc_100071014
+loc_100070a80:
+  070a98  [self->weaponStatsDict objectForKey:@"price"]
+  070ab8  [[self->weaponStatsDict objectForKey:@"price"] intValue]
+  070acc  if ([[self->weaponStatsDict objectForKey:@"price"] intValue] < 1) goto loc_100070bf8
+  070ad8  [ADInventory sharedInventory]
+  070af8  [[ADInventory sharedInventory] coins]
+  070b0c  if ([[ADInventory sharedInventory] coins] >= [[self->weaponStatsDict objectForKey:@"price"] intValue]) goto loc_100070ca8
+loc_100070b10:
+  070b20  [self armoryViewController]
+  070b3c  [[self armoryViewController] showNotEnoughMoneyAlert]
+  070b44  goto loc_100070f74
+loc_100070b48:
+  070b58  [self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"]
+  070b6c  [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]
+  070b7c  if ([[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue] == 0) goto loc_100070bc0
+  070b88  [ADInventory sharedInventory]
+  070ba8  [[ADInventory sharedInventory] diamonds]
+  070bbc  if ([[ADInventory sharedInventory] diamonds] >= [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue]) goto loc_100070d48
+loc_100070bc0:
+  070bd0  [self armoryViewController]
+  070bec  [[self armoryViewController] showNoDiamondsAlert]
+  070bf0  goto loc_100070ec0
+  070bf4  goto loc_100071014
+loc_100070bf8:
+  070c08  [self->weaponStatsDict objectForKey:@"priceInDiamonds"]
+  070c1c  [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]
+  070c2c  if ([[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue] == 0) goto loc_100070ec8
+  070c38  [ADInventory sharedInventory]
+  070c58  [[ADInventory sharedInventory] diamonds]
+  070c6c  if ([[ADInventory sharedInventory] diamonds] >= [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue]) goto loc_100070e28
+  070c80  [self armoryViewController]
+  070c9c  [[self armoryViewController] showNoDiamondsAlert]
+  070ca0  goto loc_100070ec0
+  070ca4  goto loc_100071014
+loc_100070ca8:
+  070cb0  [ADInventory sharedInventory]
+  070cd0  [self->weaponInventoryDict objectForKey:@"name"]
+  070cf4  [[ADInventory sharedInventory] unlockWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  070d10  [ADInventory sharedInventory]
+  070d24  [[ADInventory sharedInventory] coins]
+  070d28  t2 = ([[ADInventory sharedInventory] coins] - [[self->weaponStatsDict objectForKey:@"price"] intValue])
+  070d3c  [[ADInventory sharedInventory] setCoins:t2]
+  070d40  goto loc_100070ec0
+  070d44  goto loc_100071014
+loc_100070d48:
+  070d50  [ADInventory sharedInventory]
+  070d7c  [self->weaponInventoryDict objectForKey:@"name"]
+  070d98  [[ADInventory sharedInventory] setLevel:(self->current_level + 1) forWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  070db8  [ADMissionManager sharedMissionManager]
+  070ddc  [[ADMissionManager sharedMissionManager] upgradeWeaponToLevel:(self->current_level + 1)]
+  070df0  [ADInventory sharedInventory]
+  070e04  [[ADInventory sharedInventory] diamonds]
+  070e08  t3 = ([[ADInventory sharedInventory] diamonds] - [[self->nextLevelDict valueForKey:@"upgradeCostInDiamonds"] intValue])
+  070e1c  [[ADInventory sharedInventory] setDiamonds:t3]
+  070e20  goto loc_100070ec0
+  070e24  goto loc_100071014
+loc_100070e28:
+  070e30  [ADInventory sharedInventory]
+  070e50  [self->weaponInventoryDict objectForKey:@"name"]
+  070e74  [[ADInventory sharedInventory] unlockWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  070e90  [ADInventory sharedInventory]
+  070ea4  [[ADInventory sharedInventory] diamonds]
+  070ea8  t4 = ([[ADInventory sharedInventory] diamonds] - [[self->weaponStatsDict objectForKey:@"priceInDiamonds"] intValue])
+  070ebc  [[ADInventory sharedInventory] setDiamonds:t4]
+loc_100070ec0:
+loc_100070ec8:
+  070ed8  [self loadInformations]
+  070eec  [self armoryViewController]
+  070f08  [[self armoryViewController] statusBarViewController]
+  070f24  [[[self armoryViewController] statusBarViewController] refreshCoinsAndDiamonds]
+  070f54  [self weaponStats]
+  070f6c  UIAccessibilityPostNotification(_UIAccessibilityScreenChangedNotification[+0x0], [self weaponStats])
+loc_100070f74:
+  070f8c  return
+
+== -[Accessible_ADWeaponDescriptionViewController equipSlot1ButtonPressed:]   (address 0x100071058  size 464  kind objc)
+  071084  [ADWeaponManager sharedWeaponManager]
+  0710b8  [self->weaponInventoryDict objectForKey:@"name"]
+  0710dc  [[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]]
+  071100  &@selector(sharedInventory)
+  071108  if ([[ADWeaponManager sharedWeaponManager] isMeleeForWeaponWithName:[self->weaponInventoryDict objectForKey:@"name"]] == 0) goto loc_10007115c
+  07110c  [ADInventory sharedInventory]
+  07112c  [self->weaponInventoryDict objectForKey:@"name"]
+  071150  [[ADInventory sharedInventory] setWeaponSlotMelee:[self->weaponInventoryDict objectForKey:@"name"]]
+  071154  goto loc_1000711a4
+  071158  goto loc_10007120c
+loc_10007115c:
+  07115c  [ADInventory sharedInventory]
+  07117c  [self->weaponInventoryDict objectForKey:@"name"]
+  0711a0  [[ADInventory sharedInventory] setWeaponSlot1:[self->weaponInventoryDict objectForKey:@"name"]]
+loc_1000711a4:
+  0711c8  [self backButtonPressed:0]
+  0711dc  return
+
+== -[Accessible_ADWeaponDescriptionViewController equipSlot2ButtonPressed:]   (address 0x100071228  size 228  kind objc)
+  071250  [ADInventory sharedInventory]
+  071280  [self->weaponInventoryDict objectForKey:@"name"]
+  0712a4  [[ADInventory sharedInventory] setWeaponSlot2:[self->weaponInventoryDict objectForKey:@"name"]]
+  0712cc  [self backButtonPressed:0]
+  0712dc  return
+
+== -[Accessible_ADWeaponDescriptionViewController didReceiveMemoryWarning]   (address 0x10007130c  size 60  kind objc)
+  071338  [super didReceiveMemoryWarning]
+  071344  return
+
+== -[Accessible_ADWeaponDescriptionViewController armoryViewController]   (address 0x100071348  size 32  kind objc)
+  071364  return
+
+== -[Accessible_ADWeaponDescriptionViewController setArmoryViewController:]   (address 0x100071368  size 20  kind objc)
+
+== -[Accessible_ADWeaponDescriptionViewController parentTableView]   (address 0x10007137c  size 32  kind objc)
+  071398  return
+
+== -[Accessible_ADWeaponDescriptionViewController setParentTableView:]   (address 0x10007139c  size 20  kind objc)
+
+== -[Accessible_ADWeaponDescriptionViewController weaponName]   (address 0x1000713b0  size 16  kind objc)
+  0713bc  return
+
+== -[Accessible_ADWeaponDescriptionViewController setWeaponName:]   (address 0x1000713c0  size 56  kind objc)
+  0713e4  self->_weaponName = arg1
+  0713f4  return
+
+== -[Accessible_ADWeaponDescriptionViewController weaponDescription]   (address 0x1000713f8  size 16  kind objc)
+  071404  return
+
+== -[Accessible_ADWeaponDescriptionViewController setWeaponDescription:]   (address 0x100071408  size 56  kind objc)
+  07142c  self->_weaponDescription = arg1
+  07143c  return
+
+== -[Accessible_ADWeaponDescriptionViewController weaponStats]   (address 0x100071440  size 16  kind objc)
+  07144c  return
+
+== -[Accessible_ADWeaponDescriptionViewController setWeaponStats:]   (address 0x100071450  size 56  kind objc)
+  071474  self->_weaponStats = arg1
+  071484  return
+
+== -[Accessible_ADWeaponDescriptionViewController buyOrUpgradeButton]   (address 0x100071488  size 16  kind objc)
+  071494  return
+
+== -[Accessible_ADWeaponDescriptionViewController setBuyOrUpgradeButton:]   (address 0x100071498  size 56  kind objc)
+  0714bc  self->_buyOrUpgradeButton = arg1
+  0714cc  return
+
+== -[Accessible_ADWeaponDescriptionViewController equip1Button]   (address 0x1000714d0  size 16  kind objc)
+  0714dc  return
+
+== -[Accessible_ADWeaponDescriptionViewController setEquip1Button:]   (address 0x1000714e0  size 56  kind objc)
+  071504  self->_equip1Button = arg1
+  071514  return
+
+== -[Accessible_ADWeaponDescriptionViewController equip2Button]   (address 0x100071518  size 16  kind objc)
+  071524  return
+
+== -[Accessible_ADWeaponDescriptionViewController setEquip2Button:]   (address 0x100071528  size 56  kind objc)
+  07154c  self->_equip2Button = arg1
+  07155c  return
+
+== -[Accessible_ADWeaponDescriptionViewController equip3Button]   (address 0x100071560  size 16  kind objc)
+  07156c  return
+
+== -[Accessible_ADWeaponDescriptionViewController setEquip3Button:]   (address 0x100071570  size 56  kind objc)
+  071594  self->_equip3Button = arg1
+  0715a4  return
+
+== -[Accessible_ADWeaponDescriptionViewController hideButtons]   (address 0x1000715a8  size 16  kind objc)
+  0715b4  return
+
+== -[Accessible_ADWeaponDescriptionViewController setHideButtons:]   (address 0x1000715b8  size 16  kind objc)
+  0715c0  self->_hideButtons = arg1
+  0715c4  return
+
+== -[Accessible_ADWeaponDescriptionViewController .cxx_destruct]   (address 0x1000715c8  size 276  kind objc)

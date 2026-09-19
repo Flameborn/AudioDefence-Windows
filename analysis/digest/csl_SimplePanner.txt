@@ -1,0 +1,79 @@
+
+== csl::SimplePanner::~SimplePanner   (address 0x1000efd88  size 36  kind cxx)
+  0efd98  sub_1000efbbc(a0, a1, a2, a3)
+  0efda8  return
+
+== csl::SimplePanner::thunk_vfunc_0   (address 0x1000efdac  size 8  kind cxx)
+  0efdb0  tail sub_1000efbbc((a0 - 168), a1, a2, a3)
+
+== csl::SimplePanner::~SimplePanner/*deleting*/   (address 0x1000efdb4  size 56  kind cxx)
+  0efdc4  sub_1000efbbc(a0, a1, a2, a3)
+  0efdd4  tail ZdlPv(a0)
+  0efde0  ZdlPv()
+
+== csl::SimplePanner::thunk_vfunc_1   (address 0x1000efdec  size 8  kind cxx)
+  0efdf0  tail csl::SimplePanner::~SimplePanner/*deleting*/((a0 - 168), a1, a2, a3)
+
+== csl::SimplePanner::vfunc_14   (address 0x1000efdf4  size 152  kind cxx)
+  0efe1c  ZNSt6vectorIPN3csl13UnitGeneratorESaIS2_EE9push_backERKS2_((a0 + 184), &sp[0x8], a2, a3)
+  0efe24  Znwm(296)
+  0efe30  sub_1000ee52c(Znwm(296), a1)
+  0efe40  ZNSt6vectorIPN3csl13UnitGeneratorESaIS2_EE9push_backERKS2_((a0 + 3792), &sp[0x0])
+  0efe4c  sub_1000edda8((a0 + 296), Znwm(296))
+  0efe58  sub_1000edda8((a0 + 696), Znwm(296))
+  0efe74  tail sub_1000edda8((a0 + 1096), Znwm(296))
+  0efe80  ZdlPv()
+
+== csl::SimplePanner::vfunc_15   (address 0x1000efe8c  size 252  kind cxx)
+  0efea8  if (x9 == x8) goto loc_1000eff78
+loc_1000efeb4:
+  0efebc  if (x11 == a1) goto loc_1000efed4
+  0efecc  if (x21 <u ((x9 - x8) >> 3)) goto loc_1000efeb4
+  0efed0  goto loc_1000eff78
+loc_1000efed4:
+  0efee4  sub_1000ede4c((a0 + 296), x1, a2, a3)
+  0efef0  sub_1000ede4c((a0 + 696))
+  0efefc  sub_1000ede4c((a0 + 1096))
+  0eff10  if ((x9 + ((x21 + 1) << 3)) == x8) goto loc_1000eff24
+  0eff1c  memmove((x9 + (x21 << 3)), (x9 + ((x21 + 1) << 3)), (x8 - (x9 + ((x21 + 1) << 3))))
+loc_1000eff24:
+  0eff28  a0[+0xc0] = (x1 - 8)
+  0eff3c  if ((a0[+0xed0] + ((x21 + 1) << 3)) == a0[+0xed8]) goto loc_1000eff50
+  0eff48  memmove((a0[+0xed0] + (x21 << 3)), (a0[+0xed0] + ((x21 + 1) << 3)), (a0[+0xed8] - (a0[+0xed0] + ((x21 + 1) << 3))))
+loc_1000eff50:
+  0eff54  a0[+0xed8] = (x1 - 8)
+  0eff58  if (x20 == 0) goto loc_1000eff78
+loc_1000eff78:
+  0eff84  return
+
+== csl::SimplePanner::vfunc_4   (address 0x1000eff88  size 480  kind cxx)
+  0effc0  if (x9 == x8) goto loc_1000f0130
+loc_1000efff4:
+  0efffc  call sub_1000ef15c
+  0f0004  goto loc_1000f000c
+loc_1000f0008:
+loc_1000f000c:
+  0f0010  if (s15 < 0.0) goto loc_1000f0008
+  0f0014  goto loc_1000f001c
+loc_1000f0018:
+loc_1000f001c:
+  0f0020  if (s15 > 1) goto loc_1000f0018
+  0f002c  if (s15 <= (or unordered) 0.5) goto loc_1000f0034
+loc_1000f0034:
+  0f0044  call sub_1000ee7f8
+  0f0094  sub_1000edfec((a0 + 1096))
+  0f009c  if (s15 >= (or unordered) 0.5) goto loc_1000f00cc
+  0f00b0  sub_1000edfec((a0 + 696))
+  0f00c4  sub_1000edfec((a0 + 296))
+  0f00c8  goto loc_1000f010c
+loc_1000f00cc:
+  0f00ec  t1 = ((1 / sqrt(sqrt((((s0 * s0) + (s1 * s1)) + (s1 * s1))))) * (1.5 - (fabs((0.75 - s15)) * 4)))
+  0f00f4  sub_1000edfec((a0 + 696))
+  0f0108  sub_1000edfec((a0 + 296))
+loc_1000f010c:
+  0f0120  if ((w24 + 1) <u ((x9 - x8) >> 3)) goto loc_1000efff4
+  0f012c  csl::Mixer::vfunc_4((a0 + 3392), a1)
+loc_1000f0130:
+  0f0154  return
+  0f0158  if (w1 >= 0) goto loc_1000f0160
+  0f015c  cxa_call_unexpected()

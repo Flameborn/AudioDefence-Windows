@@ -1,0 +1,12 @@
+
+== -[TAGSetAndStatic initWithSet:isStatic:]   (address 0x100162a28  size 60  kind objc)
+  162a54  [super initWithObject:arg1 isStatic:arg2]
+  162a60  return
+
+== -[TAGSetAndStatic set]   (address 0x100162a64  size 16  kind objc)
+  162a70  tail [self object]
+
+== +[TAGSetAndStatic setWithSet:isStatic:]   (address 0x100162a74  size 124  kind objc)
+  162aa4  [TAGSetAndStatic alloc]
+  162abc  [[TAGSetAndStatic alloc] initWithSet:arg1 isStatic:arg2]
+  162ad8  return

@@ -1,0 +1,15 @@
+// ADInventoryItemViewController.nib
+TOP-LEVEL OBJECTS
+  #11 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #15 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #41 UIView  
+    #27 UIImageView  Image='icon_lock blank.png'
+    #4 UILabel  Hidden=False UserInteractionDisabled=False Text='Label' NumberOfLines=3
+    #24 UIButton  Hidden=False
+
+CONNECTIONS
+  action  buttonPressed:                            #24 UIButton --(events 0x40)--> #11 UIProxyObject
+  outlet  titleLabel                                #11 UIProxyObject --> #4 UILabel Text='Label'
+  outlet  view                                      #11 UIProxyObject --> #41 UIView
+
+ACCESSIBILITY CONFIGURATIONS

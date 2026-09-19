@@ -1,0 +1,115 @@
+
+== -[ADEncyclopediaItemViewController initWithNibName:bundle:name:data:]   (address 0x1000b6d30  size 220  kind objc)
+  0b6dac  [super initWithNibName:arg1 bundle:arg2 name:arg3 data:arg4]
+  0b6de4  return
+
+== -[ADEncyclopediaItemViewController viewDidLoad]   (address 0x1000b6e0c  size 92  kind objc)
+  0b6e40  [super viewDidLoad]
+  0b6e54  [self populateViewWithData]
+  0b6e64  return
+
+== -[ADEncyclopediaItemViewController loadView]   (address 0x1000b6e68  size 808  kind objc)
+  0b6ec4  [NSNumber numberWithInt:1]
+  0b6ef0  [NSNumber numberWithInt:2]
+  0b6f18  [NSNumber numberWithInt:3]
+  0b6f40  [NSNumber numberWithInt:4]
+  0b6f68  [NSNumber numberWithInt:5]
+  0b6f90  [NSNumber numberWithInt:6]
+  0b6fb8  [NSNumber numberWithInt:7]
+  0b6fe8  [NSNumber numberWithInt:8]
+  0b7010  [NSNumber numberWithInt:9]
+  0b7040  [NSDictionary dictionaryWithObjects:&sp[0x60] forKeys:&sp[0x18] count:9]
+  0b70b4  [self loADViewBasedOnDeviceWithNibName:@"ADEncyclopediaItemViewController" WithTagDictionary:[NSDictionary dictionaryWithObjects:&sp[0x60] forKeys:&sp[0x18] count:9]]
+  0b70e8  return
+
+== -[ADEncyclopediaItemViewController populateViewWithData]   (address 0x1000b7190  size 1380  kind objc)
+  0b71c4  [self setupData]
+  0b71ec  [[self setupData] objectForKey:@"Killed"]
+  0b720c  [[[self setupData] objectForKey:@"Killed"] integerValue]
+  0b722c  [self setupData]
+  0b7248  [[self setupData] objectForKey:@"Casualty"]
+  0b725c  [[[self setupData] objectForKey:@"Casualty"] integerValue]
+  0b7288  [self enemyNameLabel]
+  0b72a4  [[self enemyNameLabel] setupAsTitle]
+  0b72b8  [self enemyNameLabel]
+  0b72d8  [self enemyName]
+  0b7300  [[self enemyNameLabel] setText:[self enemyName]]
+  0b7328  [self killsLabel]
+  0b7348  [[self killsLabel] setupAsMain]
+  0b735c  [self killsLabel]
+  0b7378  [[self killsLabel] setText:@"Kills"]
+  0b7398  [self killsValueLabel]
+  0b73ac  [[self killsValueLabel] setupAsMain]
+  0b73c0  [self killsValueLabel]
+  0b73f4  [NSString stringWithFormat:@"%d", [[[self setupData] objectForKey:@"Killed"] integerValue]]
+  0b7410  [[self killsValueLabel] setText:[NSString stringWithFormat:@"%d", [[[self setupData] objectForKey:@"Killed"] integerValue]]]
+  0b7438  [self killedByLabel]
+  0b744c  [[self killedByLabel] setupAsMain]
+  0b7460  [self killedByLabel]
+  0b747c  [[self killedByLabel] setText:@"Killed by"]
+  0b749c  [self killedByValueLabel]
+  0b74b0  [[self killedByValueLabel] setupAsMain]
+  0b74c4  [self killedByValueLabel]
+  0b74e8  [NSString stringWithFormat:@"%d", [[[self setupData] objectForKey:@"Casualty"] integerValue]]
+  0b7504  [[self killedByValueLabel] setText:[NSString stringWithFormat:@"%d", [[[self setupData] objectForKey:@"Casualty"] integerValue]]]
+  0b752c  [self bioView]
+  0b7548  [[self bioView] setupAsParagraph]
+  0b755c  [self bioView]
+  0b7574  [self setupData]
+  0b7590  [[self setupData] objectForKey:@"Bio"]
+  0b75ac  [[self bioView] setText:[[self setupData] objectForKey:@"Bio"]]
+  0b75d0  [self bioView]
+  0b75f0  [[self bioView] setEditable:0]
+  0b7614  return
+
+== -[ADEncyclopediaItemViewController viewWillAppear:]   (address 0x1000b76f4  size 92  kind objc)
+  0b770c  [self view]
+  0b7728  [[self view] layoutIfNeeded]
+  0b7738  return
+
+== -[ADEncyclopediaItemViewController applyAccessibility]   (address 0x1000b7750  size 608  kind objc)
+  0b7794  [super applyAccessibility]
+  0b77a8  [self killsLabel]
+  0b77d0  [self killsValueLabel]
+  0b77f0  [[self killsValueLabel] text]
+  0b7820  [NSString stringWithFormat:@"Killed: %@", [[self killsValueLabel] text]]
+  0b7848  [[self killsLabel] setAccessibilityLabel:[NSString stringWithFormat:@"Killed: %@", [[self killsValueLabel] text]]]
+  0b787c  [self killedByLabel]
+  0b78a0  [self killedByValueLabel]
+  0b78b4  [[self killedByValueLabel] text]
+  0b78d8  [NSString stringWithFormat:@"Killed by: %@", [[self killedByValueLabel] text]]
+  0b78f4  [[self killedByLabel] setAccessibilityLabel:[NSString stringWithFormat:@"Killed by: %@", [[self killedByValueLabel] text]]]
+  0b7934  return
+
+== -[ADEncyclopediaItemViewController killsLabel]   (address 0x1000b79b0  size 32  kind objc)
+  0b79cc  return
+
+== -[ADEncyclopediaItemViewController setKillsLabel:]   (address 0x1000b79d0  size 20  kind objc)
+
+== -[ADEncyclopediaItemViewController killsValueLabel]   (address 0x1000b79e4  size 16  kind objc)
+  0b79f0  return
+
+== -[ADEncyclopediaItemViewController setKillsValueLabel:]   (address 0x1000b79f4  size 56  kind objc)
+  0b7a18  self->_killsValueLabel = arg1
+  0b7a28  return
+
+== -[ADEncyclopediaItemViewController killedByLabel]   (address 0x1000b7a2c  size 16  kind objc)
+  0b7a38  return
+
+== -[ADEncyclopediaItemViewController setKilledByLabel:]   (address 0x1000b7a3c  size 56  kind objc)
+  0b7a60  self->_killedByLabel = arg1
+  0b7a70  return
+
+== -[ADEncyclopediaItemViewController killedByValueLabel]   (address 0x1000b7a74  size 16  kind objc)
+  0b7a80  return
+
+== -[ADEncyclopediaItemViewController setKilledByValueLabel:]   (address 0x1000b7a84  size 56  kind objc)
+  0b7aa8  self->_killedByValueLabel = arg1
+  0b7ab8  return
+
+== -[ADEncyclopediaItemViewController bioView]   (address 0x1000b7abc  size 32  kind objc)
+  0b7ad8  return
+
+== -[ADEncyclopediaItemViewController setBioView:]   (address 0x1000b7adc  size 20  kind objc)
+
+== -[ADEncyclopediaItemViewController .cxx_destruct]   (address 0x1000b7af0  size 116  kind objc)

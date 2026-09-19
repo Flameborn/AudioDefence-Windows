@@ -1,0 +1,30 @@
+// ADMissionForTopbarViewController.nib
+TOP-LEVEL OBJECTS
+  #133 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #108 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #112 UIView  
+    #47 UIImageView  UserInteractionDisabled=False Image='line_vertical_small.png'
+    #45 UIImageView  UserInteractionDisabled=False Image='line_vertical_small.png'
+    #15 UIImageView  Image='completionbar_back.png'
+    #58 UIView  
+      #1 UIImageView  UserInteractionDisabled=False Image='completionbar_front.png'
+    #76 UILabel  UserInteractionDisabled=False Text='Description Description Description Description' NumberOfLines=2
+    #41 UIButton (custom class ADButtonWithFont)  title[0]='skip'
+    #33 UIImageView  Image='icon_currency_small.png'
+    #14 UILabel (custom class ADLabelWithCoins)  UserInteractionDisabled=False Text='500'
+    #48 UILabel  UserInteractionDisabled=False Text='10/50'
+    #134 UILabel  UserInteractionDisabled=False Text='SKIP FOR:'
+
+CONNECTIONS
+  action  skipButtonTouched:                        #41 ADButtonWithFont --(events 0x40)--> #133 UIProxyObject
+  outlet  completion                                #133 UIProxyObject --> #48 UILabel Text='10/50'
+  outlet  completionBar                             #133 UIProxyObject --> #58 UIView
+  outlet  completionBarBackground                   #133 UIProxyObject --> #15 UIImageView
+  outlet  description                               #133 UIProxyObject --> #76 UILabel Text='Description Description Description Description'
+  outlet  reward                                    #133 UIProxyObject --> #14 ADLabelWithCoins Text='500'
+  outlet  rewardLabel                               #133 UIProxyObject --> #14 ADLabelWithCoins Text='500'
+  outlet  skipButton                                #133 UIProxyObject --> #41 ADButtonWithFont
+  outlet  skipDiamondsLabel                         #133 UIProxyObject --> #134 UILabel Text='SKIP FOR:'
+  outlet  view                                      #133 UIProxyObject --> #112 UIView
+
+ACCESSIBILITY CONFIGURATIONS

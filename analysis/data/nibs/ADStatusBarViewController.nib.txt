@@ -1,0 +1,40 @@
+// ADStatusBarViewController.nib
+TOP-LEVEL OBJECTS
+  #105 UIProxyObject  ProxiedObjectIdentifier='IBFilesOwner'
+  #86 UIProxyObject  ProxiedObjectIdentifier='IBFirstResponder'
+  #87 UIView  Tag=2781
+    #171 UIImageView  UserInteractionDisabled=False Image='darken.png'
+    #108 UIView (custom class ADSlidingView)  
+      #62 UIImageView  UserInteractionDisabled=False Image='topmenu_centre.png'
+      #106 UILabel  UserInteractionDisabled=False Text='50000'
+      #1 UILabel  UserInteractionDisabled=False Text='50'
+      #122 UIImageView  UserInteractionDisabled=False Image='icon_currency_small.png'
+      #123 UIImageView  UserInteractionDisabled=False Image='icon_diamond_small.png'
+    #74 UIButton (custom class ADButtonWithFont)  title[0]='  BACK'
+    #70 UIButton (custom class ADButtonWithFont)  title[0]='ARMORY'
+  #28 UIView  Tag=2782
+    #159 UIImageView  UserInteractionDisabled=False Image='darken.png'
+    #120 UIView (custom class ADSlidingView)  Tag=2
+      #169 UIImageView  UserInteractionDisabled=False Image='topmenu_centre.png'
+      #104 UILabel  Tag=3 UserInteractionDisabled=False Text='50000'
+      #55 UILabel  Tag=5 UserInteractionDisabled=False Text='50'
+      #84 UIImageView  UserInteractionDisabled=False Image='icon_currency_small.png'
+      #6 UIImageView  UserInteractionDisabled=False Image='icon_diamond_small.png'
+    #98 UIButton (custom class ADButtonWithFont)  Tag=8 title[0]='  BACK'
+    #179 UIButton (custom class ADButtonWithFont)  Tag=9 title[0]='ARMORY'
+
+CONNECTIONS
+  action  armoryButtonPressed:                      #70 ADButtonWithFont --(events 0x40)--> #105 UIProxyObject
+  action  armoryButtonPressed:                      #179 ADButtonWithFont --(events 0x40)--> #105 UIProxyObject
+  outlet  armoryButton                              #105 UIProxyObject --> #70 ADButtonWithFont
+  outlet  backButton                                #105 UIProxyObject --> #74 ADButtonWithFont
+  outlet  coinsLabel                                #105 UIProxyObject --> #1 UILabel Text='50'
+  outlet  currenciesView                            #105 UIProxyObject --> #108 ADSlidingView
+  outlet  diamondsLabel                             #105 UIProxyObject --> #106 UILabel Text='50000'
+  outlet  view                                      #105 UIProxyObject --> #87 UIView
+
+ACCESSIBILITY CONFIGURATIONS
+  UIAccessibileObject='#74 ADButtonWithFont' UIAccessibilityLabel='Back'
+  UIAccessibileObject='#70 ADButtonWithFont' UIAccessibilityLabel='Armory'
+  UIAccessibileObject='#98 ADButtonWithFont' UIAccessibilityLabel='Back'
+  UIAccessibileObject='#179 ADButtonWithFont' UIAccessibilityLabel='Armory'

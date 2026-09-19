@@ -1,0 +1,95 @@
+{
+ "Ambiant": "Horde_ambiant",
+ "Enemies": {
+  "Zombie": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 0,
+   "spawn_distance": 10
+  },
+  "WeakZombieC - 2": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2.5,
+    "enemy": "WeakZombieC"
+   },
+   "spawn_angle": 312,
+   "spawn_distance": 10
+  },
+  "WeakZombieD": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 6.6,
+    "enemy": "WeakZombie"
+   },
+   "spawn_angle": 210,
+   "spawn_distance": 10
+  },
+  "WeakZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2.5,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 140,
+   "spawn_distance": 10
+  },
+  "ZombieC": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "Zombie"
+   },
+   "spawn_angle": 190,
+   "spawn_distance": 10
+  },
+  "WeakZombieB - 3": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1.4,
+    "enemy": "WeakZombieB - 2"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "ZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 1.3,
+    "enemy": "WeakZombieD"
+   },
+   "spawn_angle": 35,
+   "spawn_distance": 10
+  },
+  "WeakZombieB - 2": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 4.2,
+    "enemy": "WeakZombieB"
+   },
+   "spawn_angle": 70,
+   "spawn_distance": 10
+  },
+  "WeakZombie": {
+   "spawn_sound": "",
+   "spawn_angle": 145,
+   "spawn_distance": 10,
+   "spawn_time": 3
+  },
+  "WeakZombieB": {
+   "spawn_sound": "",
+   "spawn_after": {
+    "time": 2,
+    "enemy": "WeakZombie"
+   },
+   "spawn_angle": 76,
+   "spawn_distance": 10
+  }
+ },
+ "PowerUp": {
+  "spawn_time": "2"
+ }
+}

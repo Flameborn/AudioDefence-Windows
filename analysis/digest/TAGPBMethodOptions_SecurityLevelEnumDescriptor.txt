@@ -1,0 +1,10 @@
+
+== +[TAGPBMethodOptions_SecurityLevelEnumDescriptor enumDescriptor]_block_invoke   (address 0x10012ce1c  size 12  kind block)
+  12ce24  return
+
+== +[TAGPBMethodOptions_SecurityLevelEnumDescriptor enumDescriptor]   (address 0x10012ce28  size 96  kind objc)
+  12ce40  if (g_10042ddd8 != 0) goto loc_10012ce7c
+  12ce74  [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBMethodOptions_SecurityLevel" values:&d_10042b2f8 valueCount:4 enumVerifier:&+[TAGPBMethodOptions_SecurityLevelEnumDescriptor enumDescriptor]_block_invoke]
+  12ce78  store g_10042ddd8 = [TAGPBEnumDescriptor allocDescriptorForName:@"TAGPBMethodOptions_SecurityLevel" values:&d_10042b2f8 valueCount:4 enumVerifier:&+[TAGPBMethodOptions_SecurityLevelEnumDescriptor enumDescriptor]_block_invoke]
+loc_10012ce7c:
+  12ce84  return
