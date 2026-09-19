@@ -13,7 +13,6 @@ tree:
     Enter / Space               activate              (double tap)
     Shift+Enter                 a row's second action, where it has one (PORT ADDITION)
     Escape / Backspace          accessibilityPerformEscape (two-finger scrub)
-    F1                          read the focused element again
 
 Settings -> Keyboard -> Menu arrows swaps those two pairs: the arrows that move through the elements
 and the arrows that change tab are always the two different pairs.
@@ -475,6 +474,3 @@ class AccessibleScreen(Screen):
                 self.focus.activate(shift and k != pygame.K_SPACE)
         elif k in (pygame.K_ESCAPE, pygame.K_BACKSPACE):
             self.accessibility_perform_escape()
-        elif k == pygame.K_F1:
-            if self.focus is not None:
-                self.speak(self.focus.spoken())

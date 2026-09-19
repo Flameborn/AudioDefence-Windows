@@ -136,16 +136,15 @@ screen the way VoiceOver reads them, with their labels, hints and "button".
 | Ctrl+Right / Ctrl+Left, Ctrl+Tab / Ctrl+Shift+Tab, End / Home | last / first element |
 | Down / Up | next / previous tab or category |
 | Ctrl+Down / Ctrl+Up | last / first tab or category |
+| Enter / Space | activate |
+| Shift+Enter | a row's second action, where it has one |
+| Escape / Backspace | back |
 
 Hold a key that moves one element — the arrows, Tab or Shift+Tab — and it
 repeats, so a long list can be walked through without tapping. It starts
 repeating after about a third of a second. Nothing else repeats: a jump to an
 end has nowhere to go, Enter must act once, and a key held in a game belongs to
 the game.
-| Enter / Space | activate |
-| Shift+Enter | a row's second action, where it has one |
-| Escape / Backspace | back |
-| F1 | read the focused element again |
 
 In a game, these are the defaults; all of them can be rebound in
 **Settings → Keyboard**, and "Restore default keys" puts them back.
@@ -363,12 +362,12 @@ keyed by display name.
 A few things the original shipped are gone rather than ported. Each is either something that cannot work
 outside an iPhone in 2015, or a dead end that would only cost you a keypress to discover.
 
-**The magic tap, and its F2 key.** VoiceOver has a two-finger double tap that a screen can answer with
-its most obvious action, and the port had put it on F2. Every screen that answered it did so by pressing a
-button the cursor already reaches — Play, Play again, Next mission — so it was a second way to do something
-the menu does anyway, and on the revive screen after a death it was a second way to end the run without
-meaning to. `docs/PORTING_NOTES.md` records what each screen's did. F1, which reads the focused element
-again, is unaffected.
+**The magic tap on F2, and the repeat key on F1.** VoiceOver has a two-finger double tap that a screen
+can answer with its most obvious action, and the port had put it on F2. Every screen that answered it did
+so by pressing a button the cursor already reaches — Play, Play again, Next mission — so it was a second
+way to do something the menu does anyway, and on the revive screen after a death it was a second way to end
+the run without meaning to. `docs/PORTING_NOTES.md` records what each screen's did. F1 read the focused
+element out again, which your screen reader's own review keys already do.
 
 **The armory's Currency tab.** It was built to hold four "free coins" offers — follow the game on Facebook,
 follow it on Twitter, look at the studio's other games, rate it on the App Store — each of which opened a

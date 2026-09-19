@@ -65,7 +65,6 @@ hints.
 | Ctrl+Tab / Ctrl+Shift+Tab | last / first element, as End / Home do |
 | Down / Up (the unused pair) | next / previous tab or category, where the screen has them |
 | Ctrl+Down / Ctrl+Up (the unused pair) | last / first tab or category |
-| F1 | read the focused element again |
 
 PORT ADDITION: which pair of arrows moves the cursor is a setting - Left and Right by default, Up and Down
 instead if Settings -> Menus -> Menu arrows is switched (`GameParameters.menu_axis`, defaults key
@@ -501,7 +500,8 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   it even while Play was disabled); the play menu 0x1000abc80 pressed Endless once tutorial_5 had been
   completed and Challenge before that; the Endless game over 0x10009bff8 pressed Play again; the
   challenge-completed screen 0x10006974c pressed Next mission; and the revive screen 0x100021cb4 pressed
-  Game over.  F1, which re-reads the focused element, is unaffected.
+  Game over.  F1, which read the focused element out again, went with it (user request): a screen
+  reader's own review keys already do that, on any window.
 * REMOVED (user request): the armory's Currency tab.  Its table asks `products` for its row count and
   nothing in the binary ever sets `products`, so the tab was blank on every device.  It was built to hold
   four "free coins" offers - Facebook, Twitter, the studio's other games, the App Store - each opening a web

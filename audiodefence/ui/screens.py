@@ -133,8 +133,6 @@ class MenuScreen(Screen):
             self.activate()
         elif k == pygame.K_ESCAPE and self.back_action is not None:
             self.back_action()
-        elif k == pygame.K_F1:
-            self.announce_screen()
 
 
 class PlaceholderScreen(MenuScreen):

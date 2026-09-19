@@ -7,11 +7,11 @@ Newest changes first.  Dates are year-month-day.
 2026-09-20
 ----------
 
-Removed: the magic tap, and F2, the key it was on.  On each screen it pressed
+Removed: the magic tap on F2, and the repeat key on F1.  The magic tap pressed
 a button the cursor already reaches - Play, Play again, Next mission - so it
 was a second way to do what the menu does, and on the revive screen after a
-death it was a second way to end the run without meaning to.  F1, which reads
-the focused item again, is unchanged.
+death it was a second way to end the run without meaning to.  F1 read the
+focused item out again, which your screen reader's own review keys already do.
 
 Fixed: with "Remember cursor position" turned off, leaving a screen put the
 cursor back on the row that had opened it instead of at the top.  Pressing OK
