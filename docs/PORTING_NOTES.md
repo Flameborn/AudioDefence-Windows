@@ -444,7 +444,7 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
 * PORT ADDITION: an action can hold several keys, and the binding rows say how.  Enter adds a key,
   Shift+Enter replaces every key the action has, and Delete removes the one added last; an action is never
   left with none.  The storage was already a list per action - only the rebinding screen was one key at a
-  time.  Melee now defaults to Left Ctrl alone rather than both Ctrls.
+  time.  Melee is bound to both Ctrls by default, so it is under whichever hand is not on the turn keys.
 * PORT ADDITION: key names are spoken as the keys people call them.  pygame's names for the two Enter keys
   are "return" and "enter", which read out as "Return or Enter" and sound like one key said twice; they are
   "Enter" and "Numpad Enter" here, the arrows are "Left Arrow" and so on, and space is "Spacebar".

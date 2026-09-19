@@ -154,7 +154,7 @@ In a game, these are the defaults; all of them can be rebound in
 | | |
 |---|---|
 | Space | fire: tap for a single shot, hold for continuous fire |
-| Left Ctrl | melee |
+| Left Ctrl or Right Ctrl | melee |
 | W, or Up arrow under Gesture | next weapon |
 | R, or Down arrow under Gesture | reload |
 | Left / Right arrow | turn |
@@ -506,6 +506,7 @@ it — and compare side by side.
     python tools/query.py const 0.8                       who loads a float constant
     python tools/listing.py "ADWeapon fire" 0x100 0x200   a range of one listing
     python tools/nib_layout.py --all ADMainMenuViewController   a screen's frames and labels
+    python tools/verify_stats.py                          every weapon and enemy vs the plists
 
 The digests are condensed and sometimes drop code that matters — when a branch
 does not add up, read the `.s` listing for the same function. Annotation

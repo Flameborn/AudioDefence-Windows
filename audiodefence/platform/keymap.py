@@ -27,7 +27,7 @@ MODES = ('button', 'gesture')
 # action, what Settings calls it, default keys; a dict of defaults means one binding per control scheme
 ACTIONS = (
     ('fire', 'Fire', ('space',)),
-    ('melee', 'Melee attack', ('left ctrl',)),            # one key by default; add Right Ctrl if you want it
+    ('melee', 'Melee attack', ('left ctrl', 'right ctrl')),   # either Ctrl, whichever hand is free
     ('next_weapon', 'Next weapon', {'button': ('w',), 'gesture': ('up',)}),
     ('reload', 'Reload', {'button': ('r',), 'gesture': ('down',)}),
     ('turn_left', 'Turn left', ('left',)),
