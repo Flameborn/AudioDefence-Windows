@@ -92,7 +92,7 @@ class ControlSchemePanel:
                    hint='Press Enter for the next value, Shift plus Enter for the previous.',
                    action=self.step_sensitivity, shift_action=self.step_sensitivity_back)
             t.cell('Restore aiming defaults',
-                   hint='Press Enter to restore Gyro and sensitivity to default.',
+                   hint='Press Enter to put Gyro and the turn sensitivity back to default.',
                    action=self.restore_aiming)
         elif self.category == 'controls':                 # cellForControlAtIndex: 0x1000b5d64
             for title, description, button in CONTROL_ROWS:
