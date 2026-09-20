@@ -603,6 +603,21 @@ the right arguments, copies the game's data next to the executable and says
 where the result is: `dist\AudioDefence\AudioDefence.exe`, in a folder that
 runs on a machine with no Python on it at all.
 
+The script takes six flags, all optional:
+
+| flag | what it does |
+|---|---|
+| `--dry-run` | print the PyInstaller command and what would be copied, then build nothing |
+| `--no-game` | leave `game/` out, so the build is the port alone — silent until `--game PATH` points it at a copy |
+| `--onefile` | one executable instead of a folder; it unpacks itself into a temporary directory at every launch, which makes starting slower |
+| `--console` | keep a console window beside the game, where a failed start-up prints its traceback |
+| `--clean` | throw away PyInstaller's cache before building, for when a stale build misbehaves |
+| `--test` | start the result afterwards and read its log: that it found the game data, that the game's own HRTF is in use, and that it finished without a traceback |
+
+`--dry-run` is the one to reach for first: it names every file the build would
+produce, including `changelog.txt` beside the executable, without spending the
+minute a real build takes.
+
 PyInstaller is the only extra package, and it goes in the same Python you play
 with: a build is made by following the game's own imports, so `pygame-ce`,
 `numpy`, `av` and `comtypes` have to be installed there too. The script names
