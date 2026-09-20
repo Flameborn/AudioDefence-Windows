@@ -1,6 +1,6 @@
 unrelease:
 Changing a tarot card reads the new card out now. The card changed under the cursor without saying anything, so the only way to hear what you had drawn was to arrow off it and back on.
-The pause menu has a Restart challenge button, between Resume and End Game. A challenge you have already lost, on time or on accuracy, no longer has to be played out to the end or ended and then found again in the list. Endless games do not have it, having no challenge to restart.
+The pause menu has a Restart challenge button, between Resume and End Game. It starts the challenge again with the same sound a level normally starts with. A challenge you have already lost, on time or on accuracy, no longer has to be played out to the end or ended and then found again in the list. Endless games do not have it, having no challenge to restart.
 Pausing in the middle of a reload no longer finishes it. The reload and its sound stop where they are and carry on when you resume, instead of the whole length of the pause counting towards the reload.
 Melee no longer cancels a reload. It waits for the weapon to finish, the same as firing already did.
 

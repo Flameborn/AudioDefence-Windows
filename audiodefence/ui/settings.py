@@ -27,7 +27,7 @@ from ..game.parameters import GameParameters
 from ..platform.keymap import ACTIONS, BY_MODE, KeyMap, key_text, mode_text
 from ..s3d.engine import S3DEngine
 from .accessibility import CELL, Button, View, cross_axis_key, cross_axis_text, play_button_click
-from .challenges import _TableLoader
+from .challenges import _TableLoader, _play_buttons_sound
 from .host import register
 from .viewcontroller import ViewControllerScreen
 
@@ -476,6 +476,12 @@ class PauseScreen(SettingsScreen):
             self.host.dismiss_presented(self)
 
     def restart_button_touched(self) -> None:             # PORT ADDITION
+        # The same sound the challenge's own Play button makes (ADChallengeOverviewViewController
+        # 0x1000d8b48) and the failed screen's Try again (0x100071ee8): a restart is a level starting,
+        # and it should sound like one.  It is played here rather than beside the relaunch because the
+        # relaunch waits for killGameplay's clean-up, and a level should start with this sound rather
+        # than a fifth of a second after it.
+        _play_buttons_sound('start_level_button')
         if self.pause is not None:
             self.pause.restart_button_touched()
 
