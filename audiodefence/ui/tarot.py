@@ -8,6 +8,7 @@ from ..game import data
 from ..platform import crand
 from ..platform.defaults import UserDefaults
 from ..platform.runloop import RunLoop
+from ..platform.speech import Speech
 from ..platform.tracker import Tracker
 from ..s3d.engine import S3DEngine
 from .accessibility import BUTTON, Button, View
@@ -191,6 +192,21 @@ class TarotCardViewController:
             screen = self.tarot_view_controller
             for card in (screen.tarot_cards if screen is not None else [self]):
                 card.refresh_card()
+            # PORT ADDITION: the card's label is rewritten under a cursor that is already on it, and a
+            # screen reader has no reason to read a label it is not being moved onto, so the player was
+            # left holding a card whose words they could only hear by arrowing off it and back.  Saying
+            # it is what the cursor would say if it landed here now - View.spoken(), the same text the
+            # arrow keys produce - so the new card is heard exactly as a card is normally heard.
+            self.announce_card()
+
+    def announce_card(self) -> None:                      # PORT ADDITION
+        """Read the card out the way the cursor reads it, after it has changed under the cursor."""
+        card = self.accessible_card
+        if card is None:
+            return
+        screen = self.tarot_view_controller
+        speak = screen.speak if screen is not None else Speech.shared().speak
+        speak(card.spoken())
 
     def change_card(self) -> None:                        # 0x1000a65a4
         cards = _cards_for_level(self.card_level)

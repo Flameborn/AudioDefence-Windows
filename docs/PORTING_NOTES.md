@@ -448,6 +448,23 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   Shift+Enter replaces every key the action has, and Delete removes the one added last; an action is never
   left with none.  The storage was already a list per action - only the rebinding screen was one key at a
   time.  Melee is bound to both Ctrls by default, so it is under whichever hand is not on the turn keys.
+* PORT ADDITION: changing a tarot card says the new card.  `changeCardButtonPressed:` 0x1000a62b8
+  rewrites the card's `accessibilityLabel` in place, under a cursor that is already sitting on it, and a
+  screen reader reads a label when it is moved onto one - not when one changes beneath it.  On the phone
+  that mattered less: VoiceOver users flipped with a double tap and swiped on.  Here the card you had
+  just paid three diamonds for could only be heard by arrowing off it and back.  It now speaks
+  `View.spoken()`, which is the exact text the arrow keys produce when the cursor lands on that card, so
+  a changed card is heard as any card is heard.  `announce_card` in `ui/tarot.py`.
+* PORT ADDITION: Restart challenge on the pause screen.  `ADPauseViewController` offers Resume
+  (`validateButtonPressed` 0x100055bbc) and End Game (`quitButtonTouched` 0x1000559c0) and nothing else,
+  so a challenge already lost - a time limit missed, an accuracy that cannot be recovered - had to be
+  played out to its end, or ended and then found again three screens away in the challenge list.  The
+  button tears the run down the way End Game does (`MissionManager endGameplay`, then `killGameplay`) and
+  starts the same dictionary again, which is what the failed screen's Try again does
+  (`tryAgainButtonPressed` 0x100071ee8).  It is built only when the paused game has a challenge
+  dictionary, so an endless run does not grow a button for a challenge it is not playing, and it sits
+  between the two nib buttons so the order read is Resume, Restart challenge, End Game: least final
+  first, most final last.
 * PORT ADDITION: the game updates itself, which on iOS was the App Store's job and has no counterpart in
   the binary.  `platform/updater.py` asks GitHub for the newest release, compares its tag with the
   `VERSION` file beside the executable, and offers what it finds through the game's own alert rather than

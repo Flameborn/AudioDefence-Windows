@@ -179,7 +179,7 @@ In a game, these are the defaults; all of them can be rebound in
 | W, or Up arrow under Gesture | next weapon |
 | R, or Down arrow under Gesture | reload |
 | Left / Right arrow | turn |
-| Escape | pause |
+| Escape | pause: Resume, Restart challenge (in a challenge), End Game |
 | Enter | skip the narration |
 | T | read the challenge timer |
 

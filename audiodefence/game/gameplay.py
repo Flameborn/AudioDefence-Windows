@@ -824,6 +824,38 @@ class PauseController:
         if pl is not None:
             pl.deactivate()
 
+    def challenge_dictionary(self):                       # PORT ADDITION
+        """The challenge being played, or None in an endless game."""
+        gvc = self.gameplay_view_controller
+        return getattr(gvc, 'challenge_dictionary', None) if gvc is not None else None
+
+    def restart_button_touched(self) -> None:             # PORT ADDITION
+        """Start the same challenge again, without going out to the failed screen first.
+
+        The original offers Resume and End Game and nothing else, so a challenge you had already lost -
+        a missed time limit, an accuracy you could not recover - had to be played out to its end, or
+        ended and then found again in the challenge list.  This tears the run down the way End Game does
+        and starts the same dictionary again, which is what the failed screen's Try again does."""
+        from ..app import App
+        challenge = self.challenge_dictionary()
+        if challenge is None:
+            return
+        MissionManager.shared().end_gameplay()
+        gvc = self.gameplay_view_controller
+
+        def dismissed():
+            if gvc is not None:
+                gvc.kill_gameplay()
+            self.gameplay_view_controller = None
+            App.delegate().go_to_challenge_with_dict(challenge)
+        if gvc is not None and gvc.host is not None:
+            gvc.host.dismiss_pause(dismissed)
+        else:
+            dismissed()
+        pl = S3DEngine.engine().play_list_with_name('headphonesTest')
+        if pl is not None:
+            pl.deactivate()
+
     def validate_button_pressed(self) -> None:            # 0x100055bbc ("Resume")
         gvc = self.gameplay_view_controller
 

@@ -444,6 +444,13 @@ class PauseScreen(SettingsScreen):
         self.control_scheme_view = View('', (30, 45, 508, 210), accessible=False, parent=v, name='#66')
         self.resume_button = Button('Resume', (60, 263, 120, 40), parent=v,
                                     actions=[self.validate_button_pressed], name='#58')
+        # PORT ADDITION: a challenge you have already lost - a missed time limit, an accuracy you cannot
+        # get back - had to be played out or ended and then found again in the list.  It sits between the
+        # two nib buttons, so the order read is Resume, Restart challenge, End Game: the least final
+        # first and the most final last.  An endless game has no challenge to restart, so it is not built.
+        if self.pause is not None and self.pause.challenge_dictionary() is not None:
+            Button('Restart challenge', (196, 263, 150, 40), parent=v,
+                   actions=[self.restart_button_touched], name='Restart challenge (port)')
         Button('End Game', (358, 263, 150, 40), parent=v, actions=[self.quit_button_touched], name='#29')
         self.first_accessible_element = self.resume_button
         self.roots = [v]
@@ -467,6 +474,10 @@ class PauseScreen(SettingsScreen):
             self.pause.validate_button_pressed()
         else:
             self.host.dismiss_presented(self)
+
+    def restart_button_touched(self) -> None:             # PORT ADDITION
+        if self.pause is not None:
+            self.pause.restart_button_touched()
 
     def quit_button_touched(self) -> None:                # 0x1000559c0
         if self.pause is not None:
