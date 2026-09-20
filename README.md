@@ -216,6 +216,19 @@ Settings speaks every change and clicks like the original's buttons. Escape
 leaves it; the turn sensitivity and the key bindings live in Aiming and
 Keyboard. Quit is on the main menu.
 
+## Sharing a result
+
+The screen after an endless run and the screen after a challenge you completed
+both have a **Copy results** button, below the other buttons so it is read
+last. It puts what the screen just told you — the stars, the rewards and the
+statistics, whichever of them that screen shows — on the clipboard as plain
+text, ready to paste into a message.
+
+The text is taken from the rows of the screen itself rather than worked out
+again, so what you paste is what you were read. The original had one way to
+share a score, a Twitter sheet, which needed an account and an iPhone; this
+needs neither.
+
 ## Updates
 
 The game keeps itself up to date. When the main menu opens it asks GitHub

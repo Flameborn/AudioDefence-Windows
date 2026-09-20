@@ -20,6 +20,7 @@ from ..platform.cfloat import f32
 from ..platform.defaults import ns_float_value, ns_int_value
 from ..platform.tracker import Tracker
 from ..s3d.engine import S3DEngine
+from . import results
 from .accessibility import CELL, STATIC_TEXT, Button, View, play_button_click
 from .gameover import AccessibleGameOverEndlessScreen, time_string_from_seconds
 from .host import register
@@ -63,11 +64,13 @@ class _TableLoader:
         v = self._view(STATIC_TEXT)
         v.label = v.text = text or ''
         v.hidden = not text
+        results.mark_header(v)                            # PORT ADDITION: for Copy results
         return v
 
     def cell(self, text, detail=None, hint=None, action=None, shift_action=None) -> View:
         v = self._view(CELL)
         v.label = ', '.join(str(p) for p in (text, detail) if p)
+        results.mark_cell(v, text, detail)                # PORT ADDITION: for Copy results
         v.hint = hint
         if action is not None:
             v.add_target(action)
@@ -555,6 +558,10 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
                                             actions=[self.next_mission_button_pressed], name='#32')
         Button('Retry', (364, 285, 98, 30), parent=v, font_button=False, actions=[self.retry_button_pressed],
                name='#3')
+        # PORT ADDITION: below the three nib buttons, so it is read after them
+        copy = Button(results.COPY_LABEL, (164, 320, 154, 30), parent=v, font_button=False,
+                      actions=[self.copy_results_button_pressed], name='Copy results (port)')
+        copy.hint = results.COPY_HINT
         self.roots = [v]
 
     def view_did_load(self) -> None:                      # 0x1000673f4 (no [super viewDidLoad])
@@ -614,5 +621,10 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
     def retry_button_pressed(self) -> None:               # 0x100069134
         _play_buttons_sound('click_button')               # playButtonSound 0x100049300, called at 0x048bc0
         App.delegate().go_to_challenge_with_dict(self.challenge_dict)
+
+    def copy_results_button_pressed(self) -> None:        # PORT ADDITION
+        title = self.challenge_dict.get('title')
+        heading = 'Audio Defence, Challenge: %s' % title if title else 'Audio Defence, Challenge'
+        results.copy_results(self, heading)
 
     # REMOVED (user request): the magic tap 0x10006974c pressed Next mission.

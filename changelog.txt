@@ -1,3 +1,6 @@
+unrelease:
+The game over screen after an endless run, and the screen after a challenge you have completed, both have a Copy results button now. It puts everything the screen just read out on the clipboard, so you can paste it into a message and show somebody what you did.
+
 26.09.20-3:
 The main menu has a Check for updates button, between Settings and Quit. The game still looks by itself when it starts and only speaks up when there is something to install, so the button is there for when you want to ask it yourself.
 

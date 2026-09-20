@@ -15,6 +15,7 @@ import logging
 from ..app import App
 from ..platform.defaults import UserDefaults
 from ..s3d.engine import S3DEngine
+from . import results
 from .accessibility import Button, View
 from .host import register
 from .viewcontroller import ViewControllerScreen
@@ -57,6 +58,12 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         # REMOVED (user request): the "Share on twitter" button #22 (AccessibleTwitterButtonPressed: 0x10009c0cc)
         Button('PLAY AGAIN', (265, 290, 133, 30), parent=v, font_button=False,
                actions=[self.play_again_button_pressed], name='#47')
+        # PORT ADDITION: what the removed Twitter button was for, in a form that does not need an account
+        # and works with whatever the player shares things in.  It sits below Play again so it is read
+        # last: the score is what you came for, and copying it is the afterthought.
+        copy = Button(results.COPY_LABEL, (265, 320, 133, 30), parent=v, font_button=False,
+                      actions=[self.copy_results_button_pressed], name='Copy results (port)')
+        copy.hint = results.COPY_HINT
         self.roots = [v]
 
     def view_did_load(self) -> None:                     # 0x100099f50 (no [super viewDidLoad])
@@ -107,10 +114,13 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         t = self.table_view
         t.children.clear()
         for section in range(self.number_of_sections()):
-            View(self.header_for_section(section), t.frame, parent=t, name='header %i' % section)
+            head = View(self.header_for_section(section), t.frame, parent=t, name='header %i' % section)
+            results.mark_header(head)                    # PORT ADDITION: for Copy results
             for row in range(self.number_of_rows_in_section(section)):
                 text, detail = self.cell_for_row(section, row, stats)
-                View(', '.join(p for p in (text, detail) if p), t.frame, parent=t, name='cell %i.%i' % (section, row))
+                cell = View(', '.join(p for p in (text, detail) if p), t.frame, parent=t,
+                            name='cell %i.%i' % (section, row))
+                results.mark_cell(cell, text, detail)    # PORT ADDITION: for Copy results
 
     @staticmethod
     def number_of_sections() -> int:                     # numberOfSectionsInTableView: 0x10009a89c
@@ -166,5 +176,8 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
     @staticmethod
     def play_again_button_pressed() -> None:             # playAgainButtonPressed: 0x10009bf54
         App.delegate().go_to_tarot()
+
+    def copy_results_button_pressed(self) -> None:       # PORT ADDITION
+        results.copy_results(self, 'Audio Defence, Endless')
 
     # REMOVED (user request): the magic tap 0x10009bff8 pressed Play again.
