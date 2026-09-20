@@ -499,8 +499,16 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   of Play, world, challenge), the Zombiepedia's names (`cellSelectedWithZombieName:` 0x10007abcc), and its
   Preview sound button (`handleTapForSound:` 0x10008b9b4, where the zombie itself is held back a second by
   `dispatch_after` at 0x10008ba58 so it does not fight VoiceOver - a second that sounded like nothing
-  happening).  A challenge row locked by its requirements stays silent, because nothing happens.  This is
-  the same reasoning as the Settings rows, which are `ADButtonWithFont`s in the sighted original.
+  happening), and the challenge-failed screen's Challenge selection (`missionSelectButtonPressed:`
+  0x100071e1c, whose sibling on the completed screen does call `playButtonSound`, so the two screens
+  answered the same key differently).  A challenge row locked by its requirements stays silent, because
+  nothing happens.  This is the same reasoning as the Settings rows, which are `ADButtonWithFont`s in the
+  sighted original.
+
+  Not in this list, because it was a fault rather than a choice: the challenge-completed screen's three
+  buttons - Challenge selection, Next challenge and Retry - do call `playButtonSound` 0x100049300 in the
+  original (at 0x048884, 0x0489e0 and 0x048bc0), which plays `click_button` at gain 3, and the port had
+  simply missed it.  They click now because the original does.
 * PORT ADDITION: the Credits screen names the studio, and carries the port's own credits.
   `ADAboutCreditsViewController` 0x100020ea4 lays out two text views, and the nib's credits (object #25)
   list every person who made the game and `www.audiodefence.com`, but never Somethin' Else - the studio's

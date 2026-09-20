@@ -459,6 +459,10 @@ class ChallengeFailedScreen(ViewControllerScreen):
             self.game_over_playlist.deactivate()
 
     def mission_select_button_pressed(self) -> None:      # 0x100071e1c
+        # PORT ADDITION: this one really is silent in the original - unlike the completed screen's, which
+        # calls playButtonSound - so the two screens answered the same key differently.  Try again above it
+        # plays start_level_button from its own playButtonSound 0x1000720c4.
+        _play_buttons_sound('click_button')
         App.delegate().go_to_challenge_selector()
         self._deactivate_playlist()
 
@@ -588,6 +592,7 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
         self.post_screen_changed(header)
 
     def mission_select_button_pressed(self) -> None:      # 0x100068f64
+        _play_buttons_sound('click_button')               # playButtonSound 0x100049300, called at 0x048884
         App.delegate().go_to_challenge_selector()
 
     def back_button_pressed(self) -> None:                # 0x100048728
@@ -597,13 +602,17 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
         # the world, the list.  Escape now does what this screen's own Select challenge button does
         # (`missionSelectButtonPressed` 0x100068f64) and returns to the list the challenge was started from;
         # the main menu is still one Escape further, through the world selector.  The button itself is
-        # untouched, and the failed screen keeps the original's route to the main menu.
-        self.mission_select_button_pressed()
+        # untouched, and the failed screen keeps the original's route to the main menu.  The navigation is
+        # repeated rather than calling missionSelectButtonPressed, which plays the click: the Back button
+        # plays its own already, and one press would click twice.
+        App.delegate().go_to_challenge_selector()
 
     def next_mission_button_pressed(self) -> None:        # 0x100069008
+        _play_buttons_sound('click_button')               # playButtonSound 0x100049300, called at 0x0489e0
         App.delegate().go_to_challenge_after(self.challenge_dict.get('challenge_id'))
 
     def retry_button_pressed(self) -> None:               # 0x100069134
+        _play_buttons_sound('click_button')               # playButtonSound 0x100049300, called at 0x048bc0
         App.delegate().go_to_challenge_with_dict(self.challenge_dict)
 
     # REMOVED (user request): the magic tap 0x10006974c pressed Next mission.
