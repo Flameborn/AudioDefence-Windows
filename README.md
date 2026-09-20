@@ -79,6 +79,10 @@ There are two ways to play, and only one of them needs Python.
 the executable — nothing to install, no Python, 64-bit Windows and a pair of
 headphones. `readme.html` and `changelog.txt` are in the same folder.
 
+You only have to do that once. From then on the game tells you when a new
+version is out and installs it for you, downloading only the files that
+changed — see [Updates](#updates) below.
+
 **From source** is everything below: the repository as it stands, run with the
 Python you have. That is the one to take if you want to read the code, change
 it, or build the executable yourself.
