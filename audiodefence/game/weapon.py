@@ -47,6 +47,7 @@ class Weapon:
         self.fire_rate_timer = 0.0
         self.continuous_sound = None
         self.continuous_warning = None
+        self.reload_sound = None                          # PORT ADDITION: the one reload actually started
         self.last_announcer_speech = 0.0
         self.previous_tick_time = 0.0
         self.dropped_magasine = False
@@ -201,6 +202,7 @@ class Weapon:
         elif st == 8:
             if self.time_in_state > self.reload_time:
                 self.set_state(0)
+                self.reload_sound = None                  # PORT ADDITION: it has played itself out
                 if self.bullets_total >= self.capacity:
                     self.bullets_in_clip = self.capacity
                 else:
@@ -358,6 +360,7 @@ class Weapon:
             return
         Tracker.shared().reload_weapon_with_remaining_bullets(self.bullets_in_clip, self.name)
         snd = self.playlist.any_sound_with_prefix(f'weapon_gun_{self.name}_reloadfull') if self.playlist else None
+        self.reload_sound = snd                           # PORT ADDITION: so pause and interrupt find this one
         if snd is not None:
             snd.set_spatialized(False)
             snd.set_gain(0.6)
@@ -365,9 +368,16 @@ class Weapon:
         self.change_state(8)
 
     def interrupt_reload(self) -> None:                   # 0x10001652c
-        snd = self.playlist.any_sound_with_prefix(f'weapon_gun_{self.name}_reloadfull') if self.playlist else None
+        # DIVERGENCE: the original asks the playlist for a sound with the reload prefix and stops that,
+        # and `anySoundWithPrefix:` returns a random one of them - not necessarily the one playing.  A
+        # weapon with more than one reload sound could therefore be interrupted and go on reloading
+        # aloud.  The sound `reload` started is remembered now, and that is the one stopped.
+        snd = self.reload_sound
+        if snd is None and self.playlist is not None:
+            snd = self.playlist.any_sound_with_prefix(f'weapon_gun_{self.name}_reloadfull')
         if snd is not None:
-            snd.stop()                                    # a random pick, not necessarily the one playing
+            snd.stop()
+        self.reload_sound = None
         self.set_state(0)
 
     def deploy(self) -> None:                             # 0x1000166e4
@@ -386,6 +396,28 @@ class Weapon:
                 voice.set_spatialized(False)
                 voice.set_gain(0.6)
                 voice.play(False)
+
+    # --- pausing (PORT ADDITION) ------------------------------------------------------------------
+    def pause(self) -> None:
+        """Hold the weapon exactly where it is while the game is paused.
+
+        DIVERGENCE: `pauseGame` 0x10005b5fc stops the timers and pauses the bricks and the ambience, and
+        says nothing about the weapon.  Two things followed.  The reload sound is not a brick's, so it
+        played on through the pause.  And `update:` 0x100014c8c advances `timeInState` by the wall clock
+        between calls rather than by the timer's dt (the quirk at the top of this file), so the whole
+        length of the pause was credited to the reload on the first pass after resuming: pausing during a
+        reload finished it, however long the reload was.  Pausing mid-reload was a way to reload for
+        free, which is what this stops."""
+        for sound in (self.reload_sound, self.continuous_sound, self.continuous_warning):
+            if sound is not None:
+                sound.pause()
+
+    def resume(self) -> None:
+        for sound in (self.reload_sound, self.continuous_sound, self.continuous_warning):
+            if sound is not None:
+                sound.resume()
+        # The pause must not count towards the state this weapon is in: start the wall clock again here.
+        self.previous_tick_time = ca_current_media_time()
 
     def clean(self) -> None:                              # 0x100016a2c
         if self.continuous_sound is not None:

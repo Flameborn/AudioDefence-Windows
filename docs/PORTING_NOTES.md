@@ -455,6 +455,22 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   just paid three diamonds for could only be heard by arrowing off it and back.  It now speaks
   `View.spoken()`, which is the exact text the arrow keys produce when the cursor lands on that card, so
   a changed card is heard as any card is heard.  `announce_card` in `ui/tarot.py`.
+* DIVERGENCE (user request): a paused game no longer reloads.  `pauseGame` 0x10005b5fc stops the timers
+  and pauses the bricks and the ambience, and says nothing about the weapon, so two things went on
+  through a pause.  The reload sound is not a brick's and kept playing.  And `-[ADWeapon update:]`
+  0x100014c8c advances `timeInState` by the wall clock between calls rather than by the timer's dt (the
+  quirk at the top of `game/weapon.py`), so the first pass after resuming credited the entire length of
+  the pause to whatever state the weapon was in: pausing during a reload finished it, however long the
+  reload and however long the pause.  Pausing mid-reload was a free reload and a way to stop the clock
+  while getting one.  `Weapon.pause` / `.resume` pause the reload and continuous sounds and re-base the
+  wall clock on resume, and `pauseGame` / `resumeGame` send them through the weapon manager.
+* DIVERGENCE (user request): melee no longer cancels a reload.  `shootWithMelee` 0x1000aaa98 interrupts
+  a reload in progress and *then* asks `isWeaponReadyToShoot` 0x1000aa350, which by then answers yes
+  because interrupting put the weapon back in Idle - so melee did not override the check, it cleared the
+  state the check reads.  Firing has always waited, `readyToShoot` 0x10001537c answering no in the
+  reload states.  With the interrupt gone melee asks the same question and gets the same answer, so it
+  needs no gate of its own.  (`interruptReload` is still there for the weapon switch, which is the other
+  caller and is meant to cancel.)
 * PORT ADDITION: Restart challenge on the pause screen.  `ADPauseViewController` offers Resume
   (`validateButtonPressed` 0x100055bbc) and End Game (`quitButtonTouched` 0x1000559c0) and nothing else,
   so a challenge already lost - a time limit missed, an accuracy that cannot be recovered - had to be
@@ -465,6 +481,12 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   dictionary, so an endless run does not grow a button for a challenge it is not playing, and it sits
   between the two nib buttons so the order read is Resume, Restart challenge, End Game: least final
   first, most final last.
+  The new game has to be started *after* `killGameplay`'s deferred block, not after `killGameplay`
+  returns.  That block (0x10005c770, a tenth of a second later) ends in `BrickManager.clean()` and
+  `WeaponManager.clean()`, both of which are the shared singletons rather than the dying controller's
+  own, so starting the challenge straight away built the new arena first and emptied it a tenth of a
+  second afterwards: an arena with nothing in it, and a weapon that still fired.  The delay is
+  `KILL_GAMEPLAY_CLEANUP`, named where `killGameplay` schedules it so the two cannot drift apart.
 * PORT ADDITION: the game updates itself, which on iOS was the App Store's job and has no counterpart in
   the binary.  `platform/updater.py` asks GitHub for the newest release, compares its tag with the
   `VERSION` file beside the executable, and offers what it finds through the game's own alert rather than

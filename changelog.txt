@@ -1,6 +1,8 @@
 unrelease:
 Changing a tarot card reads the new card out now. The card changed under the cursor without saying anything, so the only way to hear what you had drawn was to arrow off it and back on.
 The pause menu has a Restart challenge button, between Resume and End Game. A challenge you have already lost, on time or on accuracy, no longer has to be played out to the end or ended and then found again in the list. Endless games do not have it, having no challenge to restart.
+Pausing in the middle of a reload no longer finishes it. The reload and its sound stop where they are and carry on when you resume, instead of the whole length of the pause counting towards the reload.
+Melee no longer cancels a reload. It waits for the weapon to finish, the same as firing already did.
 
 26.09.20-4:
 The screen at the end of a run has a Copy results button now: after an endless game, after a challenge you completed, and after one you failed. It puts what the screen tells you on the clipboard, so you can paste it into a message and show somebody what you did.

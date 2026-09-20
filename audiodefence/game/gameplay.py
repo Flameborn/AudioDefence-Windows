@@ -697,6 +697,8 @@ class GameplayController:
         self.stop_timers()
         BrickManager.shared().pause_all_bricks()
         AmbientManager.shared().pause()
+        if self.weapon_manager is not None:               # PORT ADDITION: see Weapon.pause
+            self.weapon_manager.pause()
         self.paused = True
         self.announcer_value_on_entering_pause = GameParameters.shared().last_announcer_value()
 
@@ -704,6 +706,8 @@ class GameplayController:
         self.start_update_timers()
         BrickManager.shared().resume_all_bricks()
         AmbientManager.shared().resume()
+        if self.weapon_manager is not None:               # PORT ADDITION: see Weapon.pause
+            self.weapon_manager.resume()
         self.pause_view = None
         self.paused = False
         announcer = GameParameters.shared().last_announcer_value()
@@ -763,7 +767,7 @@ class GameplayController:
             # initPowerUp:/usePowerUp go through +sharedWeaponManager, which nothing ever cleans.  A power-up
             # still in hand at the end of a run was therefore waiting at the start of the next one.
             WeaponManager.shared().set_power_up(None)
-        RunLoop.main().call_later(0.1, later)
+        RunLoop.main().call_later(KILL_GAMEPLAY_CLEANUP, later)
         self.weapon_touch_area.gameplay_view_controller = None
         self.weapon_button.gameplay_view_controller = None
         if self.player is not None:
@@ -789,6 +793,12 @@ class GameplayController:
         self.update_timer = None
         self.weapon_update_timer = None
         self.stats_update_timer = None
+
+
+#: killGameplay_block_invoke 0x10005c770 runs this long after killGameplay returns, and only then are
+#: the shared BrickManager and WeaponManager cleaned.  Anything that starts another game has to wait
+#: for it, or the clean-up lands on the new game instead of the old one.
+KILL_GAMEPLAY_CLEANUP = 0.1
 
 
 def _ns_int(text) -> int:
@@ -847,7 +857,14 @@ class PauseController:
             if gvc is not None:
                 gvc.kill_gameplay()
             self.gameplay_view_controller = None
-            App.delegate().go_to_challenge_with_dict(challenge)
+            # killGameplay 0x10005c170 does not finish when it returns: it defers the real clean-up by a
+            # tenth of a second, and that block ends in BrickManager.clean() and WeaponManager.clean() -
+            # both shared singletons, not the dying controller's own.  Starting the challenge straight
+            # away meant the new arena was built first and emptied a tenth of a second later, leaving a
+            # silent arena with nothing in it and a weapon that still fired.  The new game starts after
+            # that block has run instead.
+            RunLoop.main().call_later(KILL_GAMEPLAY_CLEANUP + 0.1,
+                                      lambda: App.delegate().go_to_challenge_with_dict(challenge))
         if gvc is not None and gvc.host is not None:
             gvc.host.dismiss_pause(dismissed)
         else:

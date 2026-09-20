@@ -206,6 +206,18 @@ class WeaponManager:
         if self.melee_weapon is not None:
             self.melee_weapon.update(dt)
 
+    # --- pausing (PORT ADDITION) ------------------------------------------------------------------
+    def pause(self) -> None:
+        """Freeze the weapons with the rest of the game: see Weapon.pause."""
+        for weapon in (self.current_weapon, self.melee_weapon):
+            if weapon is not None:
+                weapon.pause()
+
+    def resume(self) -> None:
+        for weapon in (self.current_weapon, self.melee_weapon):
+            if weapon is not None:
+                weapon.resume()
+
     # --- power-ups (always through the shared instance) ------------------------------------------
     @property
     def power_up(self):
@@ -318,9 +330,12 @@ class WeaponManager:
         return self.projectile_array
 
     def shoot_with_melee(self) -> None:                   # 0x1000aaa98
-        cw = self.current_weapon
-        if cw is not None and (cw.state == 6 or cw.state == 8):
-            cw.interrupt_reload()
+        # DIVERGENCE (user request): the original interrupts a reload in progress (0x1000aab3c) and then
+        # asks whether the weapon is ready - which it now is, because interrupting put it back in Idle.
+        # That is how melee cut a reload short: not by overriding the check, but by clearing the state
+        # the check reads.  With the interrupt gone, `isWeaponReadyToShoot` 0x1000aa350 answers for melee
+        # exactly what it already answered for firing, so melee waits for a reload the way firing does
+        # and no gate of its own is needed.
         if self.is_weapon_ready_to_shoot():
             self.melee_weapon.single_shot()
 
