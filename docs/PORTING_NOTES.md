@@ -490,6 +490,13 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   diamonds".  The split used here is `checkBuyOrUpgradeButton`'s own (0x10006fa68): a price below 1 means
   the diamond price.  This line is only in the accessible loadout; the sighted `ADArmoryLoadoutViewController`
   is a drag-and-drop scroller with no price text.
+* PORT ADDITION: the Credits screen names the studio, and carries the port's own credits.
+  `ADAboutCreditsViewController` 0x100020ea4 lays out two text views, and the nib's credits (object #25)
+  list every person who made the game and `www.audiodefence.com`, but never Somethin' Else - the studio's
+  name is nowhere on the screen.  Two lines go above that text saying whose game it is.  A third text view
+  follows the nib's two, read last, with who made the Windows port and where the repository is; it is a
+  view of its own so the cursor reaches it in one step instead of through the whole cast.  The nib's text
+  is unchanged, and `ui/credits_text.py` still holds it exactly as extracted.
 * REMOVED (user request): the magic tap, and F2, the key the port had bound it to.  VoiceOver's
   two-finger double tap is a gesture iOS gives no keyboard equivalent, and every screen that answered it
   did so with a button the screen already reads out - so the key was a second way to press something the

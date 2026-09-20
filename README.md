@@ -215,7 +215,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **84 divergences** and **14 original quirks kept on purpose**.
+There are **85 divergences** and **14 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -730,6 +730,11 @@ worth hearing in this port is theirs. The Papa Engine that carries it announces
 itself as "Somethin' Else Papa Engine" when it starts, and the source paths
 still inside the binary point at Papa Sangre, which is a nice thing to find at
 two in the morning.
+
+The game's own Credits screen, under Info, says so too: the nib lists everyone
+who made it but never names the studio, so the port puts **Audio Defence:
+Zombie Arena, by Somethin' Else** above that list, and adds the port's own
+credits and this repository's address in a section after it.
 
 This port, on the other hand:
 

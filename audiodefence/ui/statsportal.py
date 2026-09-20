@@ -19,7 +19,7 @@ from ..platform.runloop import RunLoop
 from ..s3d.engine import S3DEngine
 from .accessibility import BUTTON, Button, View
 from .challenges import _TableLoader
-from .credits_text import ABOUT_TEXT, CREDITS_TEXT
+from .credits_text import ABOUT_TEXT, CREDITS_TEXT, PORT_CREDITS_TEXT, STUDIO_TEXT
 from .host import register
 from .viewcontroller import ViewControllerScreen
 
@@ -93,7 +93,9 @@ class AboutCreditsScreen(ViewControllerScreen):
     def load_view(self) -> None:                          # 0x100020ea4
         v = self.view = View('', (0, 0, 568, 320), accessible=False, name='#97')
         View(ABOUT_TEXT, (43, 95, 229, 217), parent=v, name='#76 UITextView')
-        View(CREDITS_TEXT, (308, 95, 240, 217), parent=v, name='#25 UITextView')
+        View(STUDIO_TEXT + CREDITS_TEXT, (308, 95, 240, 217), parent=v, name='#25 UITextView')
+        # PORT ADDITION: the port's own credits, below the nib's two text views so they are read last
+        View(PORT_CREDITS_TEXT, (43, 320, 505, 200), parent=v, name='Port credits (port)')
         self.roots = [v]
 
     def view_did_load(self) -> None:                      # 0x100020a44
