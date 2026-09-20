@@ -363,12 +363,14 @@ keyed by display name.
 A few things the original shipped are gone rather than ported. Each is either something that cannot work
 outside an iPhone in 2015, or a dead end that would only cost you a keypress to discover.
 
-**The magic tap on F2, and the repeat key on F1.** VoiceOver has a two-finger double tap that a screen
-can answer with its most obvious action, and the port had put it on F2. Every screen that answered it did
-so by pressing a button the cursor already reaches — Play, Play again, Next mission — so it was a second
-way to do something the menu does anyway, and on the revive screen after a death it was a second way to end
-the run without meaning to. `docs/PORTING_NOTES.md` records what each screen's did. F1 read the focused
-element out again, which your screen reader's own review keys already do.
+**Three keys: the magic tap on F2, the repeat key on F1, and Space.** VoiceOver has a two-finger double
+tap that a screen can answer with its most obvious action, and the port had put it on F2. Every screen that
+answered it did so by pressing a button the cursor already reaches — Play, Play again, Next mission — so it
+was a second way to do something the menu does anyway, and on the revive screen after a death it was a
+second way to end the run without meaning to. `docs/PORTING_NOTES.md` records what each screen's did. F1
+read the focused element out again, which your screen reader's own review keys already do. Space activated
+whatever the cursor was on, beside Enter; it is now the fire key in a game and nothing else. Enter, and the
+number pad's Enter, activate.
 
 **The armory's Currency tab.** It was built to hold four "free coins" offers — follow the game on Facebook,
 follow it on Twitter, look at the studio's other games, rate it on the App Store — each of which opened a
@@ -397,6 +399,17 @@ contains them, nothing can open them, and the port does not implement them: the 
 story screen (nothing calls them, no NIB action reaches them), the cheat screen (its button is hidden), the
 enemy-unlock popup and the score-feedback view (never allocated). `docs/PORTING_NOTES.md` lists them with
 the reasoning.
+
+**Touch handlers are ported but never called**, which is also not removal. A few of the original's methods
+are here in full with nothing to reach them, because a keyboard sends no fingers: `touchesMoved:`
+0x10008a5a4, the weapon buttons' touch-down and touch-up 0x1000a9d78 and 0x1000a9d7c, the shake
+`motionEnded:` 0x10005a108. `hitByProjectile:` 0x100061098 is here for a different reason: nothing in the
+original calls it either, because a rocket's damage is dealt by `solveExplosionOfProjectile` 0x1000c6360
+instead. They stay as the record of what the original did, next to the keyboard code that stands in for
+them. That is the line the magic tap fell the wrong side of: it was not a handler waiting for input the
+port never sends, it was a gesture the port had invented a key for, so when the key went there was nothing
+left to keep — and `post_announcement`, which existed only to say "no magic tap available on this screen",
+went with it.
 
 ## What is in the repository
 
