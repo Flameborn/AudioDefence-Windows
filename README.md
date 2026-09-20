@@ -179,7 +179,7 @@ arrows**. Whichever pair you choose, Ctrl with it jumps to the first or last
 element, and Tab, Shift+Tab, Home and End work either way.
 
 The other pair changes tab. In the armory, Down and Up step through Weapons,
-Loadout, Powerup and Currency without walking to the bottom of the list first,
+Loadout and Powerup without walking to the bottom of the list first,
 and each one is named before it reads what you land on; Settings opens straight
 inside **Aiming**, and the same two keys move it to Controls, Sound and
 Keyboard — there is no list of categories to go through first. Choose Up and Down
@@ -191,11 +191,22 @@ from wherever you are. The ends hold rather than wrap, as everywhere else.
 
 Settings speaks every change and clicks like the original's buttons. Escape
 leaves it; the turn sensitivity and the key bindings live in Aiming and
-Keyboard. Turning is the one place a phone cannot
-be copied: the original turns with the gyroscope, a finger drag or a tilt, and
-here all three are the turn keys held down, with a sensitivity (0.5 to 3, Enter
-for the next value, Shift+Enter for the previous) that scales all three. Quit
-is on the main menu.
+Keyboard. Quit is on the main menu.
+
+Turning is the one place a phone cannot be copied. The original turns with the
+gyroscope, a finger drag or a tilt; here all three are the turn keys held down,
+and the only difference left is how fast they turn:
+
+| **Settings → Aiming** | turn speed at the default sensitivity |
+|---|---|
+| Gyro | the slowest, about 110 degrees a second |
+| Swipe | in between, about 160 |
+| Tilt | the fastest, about 190 |
+
+**Turn sensitivity** — 0.5 to 3, Enter for the next value, Shift+Enter for the
+previous — scales all three in proportion, so it is the dial to reach for
+first; the three rows only choose where it starts from. All three are kept
+because the tutorial has a separate announcer clip for each.
 
 ## How faithful this is
 

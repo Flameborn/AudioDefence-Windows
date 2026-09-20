@@ -40,14 +40,12 @@ def _headphones_playlist():
 
 # PORT INPUT: the original's descriptions (GYRO_DESCRIPTION, SWIPE_DESCRIPTION, TILT_DESCRIPTION) tell the
 # player to turn the device, swipe or tilt it.  All three are the turn keys here, so what actually separates
-# them is how fast they turn: the three code paths run at different rates and the rows say so, in degrees a
-# second at the default sensitivity.  Sensitivity scales all three, in proportion.
-AIMING_ROWS = (('Gyro', 'Hold a turn key to turn at a steady speed. The slowest: about 110 degrees a '
-                        'second at sensitivity 1.5', 1),
-               ('Swipe', 'Hold a turn key to turn as if dragging. In between: about 160 degrees a second '
-                         'at sensitivity 1.5', 2),
-               ('Tilt', 'Hold a turn key to turn as if the device were tilted. The fastest: about 190 '
-                        'degrees a second at sensitivity 1.5', 3))
+# them is how fast they turn - the three code paths run at different rates - and the rows say only which is
+# which.  The degrees a second are in the README, where they can be read rather than sat through on every
+# pass of the list; Turn sensitivity scales all three in proportion.
+AIMING_ROWS = (('Gyro', 'Turns slowest', 1),
+               ('Swipe', 'Turns in between', 2),
+               ('Tilt', 'Turns fastest', 3))
 
 # BUTTON_MODE / GESTURE_MODE describe where to tap and how to swipe; the port's keys do both, so the rows
 # say what the mode changes for a keyboard player instead.
@@ -93,8 +91,9 @@ class ControlSchemePanel:
             t.cell('Turn sensitivity', '%s, used by Gyro, Swipe and Tilt' % self.sensitivity_text(),
                    hint='Press Enter for the next value, Shift plus Enter for the previous.',
                    action=self.step_sensitivity, shift_action=self.step_sensitivity_back)
-            t.cell('Restore aiming defaults', hint='Press Enter to restore Gyro and sensitivity %s.'
-                   % self.sensitivity_text(GameParameters.DEFAULT_SENSIVITY), action=self.restore_aiming)
+            t.cell('Restore aiming defaults',
+                   hint='Press Enter to restore Gyro and the default sensitivity.',
+                   action=self.restore_aiming)
         elif self.category == 'controls':                 # cellForControlAtIndex: 0x1000b5d64
             for title, description, button in CONTROL_ROWS:
                 cell = t.cell(title, description, hint=SELECT_HINT,
