@@ -24,7 +24,11 @@ class Inventory:
         self.power_up_slot = None
         self._coins = 0
         self._diamonds = 0
+        #: PORT ADDITION: true while the save is being restored, so putting the saved balance back is not
+        #: counted as earning it.  A fresh profile's 5000 and 500 are not earnings either.
+        self._restoring = True
         self.create_or_restore_weapon_dictionary()
+        self._restoring = False
 
     def create_or_restore_weapon_dictionary(self) -> None:   # 0x10000c1c4
         d = self.defaults
@@ -102,6 +106,13 @@ class Inventory:
         if self._coins > value:
             from .persistent_stats import PersistentStats
             PersistentStats.shared().save_coins_data(self._coins - value)
+        elif value > self._coins and not self._restoring:
+            # PORT ADDITION: the other half of the ledger.  saveCoinsData: 0x1000869f4 records what is
+            # spent, and the statistics screen asks for "Money earned" as well - a key the original never
+            # writes, so its row reads 0 for ever.  Every credit goes through here, so this is the one
+            # place that sees them all: challenge rewards, Endless winnings, mission rewards.
+            from .persistent_stats import PersistentStats
+            PersistentStats.shared().save_coins_earned(value - self._coins)
         self._coins = value
         self.defaults.set_integer(value, 'coins')
         self.defaults.synchronize()
@@ -111,6 +122,9 @@ class Inventory:
         if self._diamonds > value:
             from .persistent_stats import PersistentStats
             PersistentStats.shared().save_diamonds_data(self._diamonds - value)
+        elif value > self._diamonds and not self._restoring:
+            from .persistent_stats import PersistentStats     # "Diamonds collected", as above
+            PersistentStats.shared().save_diamonds_earned(value - self._diamonds)
         self._diamonds = value
         self.defaults.set_integer(value, 'diamonds')
         self.defaults.synchronize()

@@ -299,6 +299,12 @@ class PowerUpUpgraderView:
         RunLoop.main().post(POWERUP_UPGRADE_EVENT, self, {'name': name})
         Tracker.shared().record_weapon_upgrade(name, float(cost))
         self.show_next_level()
+        # DIVERGENCE: the original waits a second before loadInformation (the dispatch_after before
+        # 0x10004ea84), because that second is its badge animation.  The button's words are the next
+        # level's price, so for that second it offers a price that is no longer the one you would pay -
+        # and a screen reader that lands back on the button inside it reads the old number as fact.  The
+        # words are refreshed at once; the delayed call stays, so the animation still ends as it did.
+        self.load_information()
         RunLoop.main().call_later(1.0, self.load_information)   # dispatch_after 1 s
 
     def show_next_level(self) -> None:                    # 0x10004ea98 (badge image transition)

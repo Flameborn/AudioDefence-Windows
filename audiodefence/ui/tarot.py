@@ -123,12 +123,9 @@ class TarotCardViewController:
 
     def refresh_card(self) -> None:                       # 0x1000a58e0
         if self.host.screen_reader_running():
-            from ..game.inventory import Inventory
             card = self.accessible_card
-            card.set_title(self.accessible_description())
-            card.label = self.accessible_description()
+            self.refresh_accessible_text()
             card.add_target(self.change_card_button_pressed)
-            card.hint = 'You have %i diamonds' % Inventory.shared().diamonds
             # makeAccessible / setupAsAccessibleTarotCardInfo: colours and fonts
         else:
             self.card_title.label = self.card_dictionary.get('title')
@@ -154,6 +151,18 @@ class TarotCardViewController:
                 self.flip_card(False)
         RunLoop.main().call_later(0.5, completion)
         _flip_sound_play()
+
+    def refresh_accessible_text(self) -> None:
+        """PORT ADDITION: what refreshCard says, without re-adding the card's action.
+
+        The action is added once, when the card is dealt.  Anything that only needs the words again -
+        coming back to this screen with a different number of diamonds - calls this instead, because
+        adding the target twice would change the card twice, and charge twice, on one press."""
+        from ..game.inventory import Inventory
+        card = self.accessible_card
+        card.set_title(self.accessible_description())
+        card.label = self.accessible_description()
+        card.hint = 'You have %i diamonds' % Inventory.shared().diamonds
 
     def accessible_description(self) -> str:             # 0x1000a61a0
         # PORT INPUT: the original says "(double tap to change for %i diamonds)"; the port names its key
@@ -230,6 +239,17 @@ class TarotScreen(ViewControllerScreen):
         self.play_button.alpha = 0.0                      # nib alpha
         self.mission_button = None                        # no missionButton outlet in the nib
         self.roots = [v]
+
+    def view_will_appear(self) -> None:
+        # DIVERGENCE: -refreshCard 0x1000a58e0 runs when a card is dealt and when one is changed, and
+        # nothing runs it when this screen comes back.  A card's hint carries the count of diamonds you
+        # had when it was dealt, so after spending in the armory - which is presented over this screen -
+        # the card still said "You have 500 diamonds" until something else happened to rebuild it.  The
+        # words are refreshed on the way in; the card, its cost and its action are untouched.
+        super().view_will_appear()
+        for card in self.tarot_cards:
+            if getattr(card, 'accessible_card', None) is not None and self.host.screen_reader_running():
+                card.refresh_accessible_text()
 
     def view_did_load(self) -> None:                      # 0x10003461c
         super().view_did_load()

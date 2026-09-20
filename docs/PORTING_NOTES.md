@@ -151,6 +151,11 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   "Total Money Spent" and "Total Diamonds Spent", which no screen shows), so both read 0 for ever.  The
   port credits them as a run's rewards are paid out (`save_coins_earned`, `save_diamonds_earned`) and adds
   a "Money spent" and a "Diamonds spent" row beside them, reading the totals the original already keeps.
+  The crediting is done by `-[ADInventory setCoins:]` 0x10000dfd8 and `setDiamonds:` 0x10000e0d4, which
+  already record the other direction when the balance falls: a rise records what was earned, unless the
+  save is being restored, since putting a balance back is not earning it.  (Until 2026-09-21 the two
+  functions existed and nothing called them, so the rows still read 0 - the fault this note described in
+  the original, reproduced by accident.)
 * `-[ADAppDelegate pauseGame]` tests `isKindOfClass:[ADGameplayViewController class]`, and
   `ADOpenerGameplayViewController` is one, so the original pauses the opener as well when the app resigns
   active.  On a phone that is a phone call or the home button; on Windows it is every alt-tab, so the port
@@ -490,6 +495,19 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   diamonds".  The split used here is `checkBuyOrUpgradeButton`'s own (0x10006fa68): a price below 1 means
   the diamond price.  This line is only in the accessible loadout; the sighted `ADArmoryLoadoutViewController`
   is a drag-and-drop scroller with no price text.
+* A tarot card says how many diamonds you have now, not when it was dealt.  `-refreshCard` 0x1000a58e0
+  builds the card's hint, "You have N diamonds", when a card is dealt and when one is changed, and nothing
+  runs it when the screen comes back - the armory is presented over this screen, so spending in it leaves
+  the card quoting the balance from before.  The words are rebuilt as the screen reappears.  Only the
+  words: the card, its cost and its action are untouched, because `refreshCard` also re-adds the card's
+  target, and doing that twice would change the card twice, and charge twice, on one press.
+* The price on a power-up's Upgrade button is right the moment it changes.  `upgradeButtonPressed:`
+  0x10004e1b4 ends by asking for `loadInformation` a second later (the `dispatch_after` before
+  0x10004ea84), because that second is the badge animation; the button's words are the next level's price,
+  so for that second it offers a price that is no longer the one you would pay.  Sighted, the animation
+  covers it.  With a screen reader, stepping off the button and back inside that second reads the old
+  number as fact.  The words are refreshed at once, and the delayed call still runs, so the animation ends
+  as it did.
 * PORT ADDITION: three table rows that answered a key with nothing now click.  The original's buttons
   click - `-[ADButtonWithFont playSound]` 0x100073578, the status bar's and the play menu's being the same
   code - but its table rows never do.  Sighted, that is fine: the screen visibly changes.  On a keyboard,

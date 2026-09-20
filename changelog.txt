@@ -1,2 +1,16 @@
+unrelease:
+Fixed: the statistics screen never counted the coins and diamonds you earned,
+so "Money earned" and "Diamonds collected" stayed at nought. They count now.
+What you had already earned before this build cannot be recovered, so both
+start from here; the spent totals were always right.
+
+Fixed: a tarot card said how many diamonds you had when it was dealt. Spend
+some in the armory, come straight back, and the card still quoted the old
+number until something else rebuilt it.
+
+Fixed: after upgrading a power-up, the Upgrade button offered the old price
+for about a second, so stepping off it and back inside that second read a
+price you could no longer pay.
+
 26.09.20:
 Initial release.
