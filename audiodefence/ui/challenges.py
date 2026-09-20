@@ -240,7 +240,7 @@ class AccessibleChallengeSelectorScreen(ViewControllerScreen):
             d = self.dictionary_for_challenge_with_name(name) or {}
             status = self.status_for_challenge_with_dict(d)
             # PORT INPUT: the original hint is "double tap to play this challenge"
-            hint = None if status == 'locked' else 'press Enter to play this challenge'
+            hint = None if status == 'locked' else 'Press Enter to play this challenge.'
             t.cell(d.get('title'), status, hint=hint, action=lambda r=row: self.did_select_row(r))
 
     @staticmethod

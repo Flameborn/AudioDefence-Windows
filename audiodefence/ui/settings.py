@@ -61,7 +61,7 @@ CONTROL_ROWS = (('Button', 'Your keys press the four corner buttons of the phone
 # beside it later without anything moving again.
 CATEGORIES = (('aiming', 'Aiming'), ('controls', 'Controls'), ('sound', 'Sound'),
               ('menus', 'Menus'), ('keyboard', 'Keyboard'))
-SELECT_HINT = 'press Enter to select'
+SELECT_HINT = 'Press Enter to select.'
 
 
 class ControlSchemePanel:
@@ -91,9 +91,9 @@ class ControlSchemePanel:
                               action=lambda s=scheme: self.select_control_scheme(s))
                 cell.selected = params.control_scheme == scheme     # selectRowAtIndexPath:
             t.cell('Turn sensitivity', '%s, used by Gyro, Swipe and Tilt' % self.sensitivity_text(),
-                   hint='press Enter for the next value, Shift plus Enter for the previous',
+                   hint='Press Enter for the next value, Shift plus Enter for the previous.',
                    action=self.step_sensitivity, shift_action=self.step_sensitivity_back)
-            t.cell('Restore aiming defaults', hint='press Enter to restore Gyro and sensitivity %s'
+            t.cell('Restore aiming defaults', hint='Press Enter to restore Gyro and sensitivity %s.'
                    % self.sensitivity_text(GameParameters.DEFAULT_SENSIVITY), action=self.restore_aiming)
         elif self.category == 'controls':                 # cellForControlAtIndex: 0x1000b5d64
             for title, description, button in CONTROL_ROWS:
@@ -102,23 +102,23 @@ class ControlSchemePanel:
                 cell.selected = bool(params.button_mode) == button
         elif self.category == 'sound':                    # cellForSound: 0x1000b619c
             t.cell('Announcer', 'ON' if params.last_announcer_value() else 'OFF',
-                   hint='press Enter to toggle in-game announcements', action=self.toggle_announcer)
-            t.cell('Test headphones', hint='press Enter to test your headphones', action=self.test_headphones)
+                   hint='Press Enter to toggle in-game announcements.', action=self.toggle_announcer)
+            t.cell('Test headphones', hint='Press Enter to test your headphones.', action=self.test_headphones)
             t.cell('Tutorial text', self.tutorial_text_text(),   # PORT ADDITION
-                   hint='press Enter for the next setting, Shift plus Enter for the previous: when the '
-                        "tutorial announcer's lines are also spoken, with the keys you have bound",
+                   hint='Press Enter for the next setting, Shift plus Enter for the previous: when the '
+                        "tutorial announcer's lines are also spoken, with the keys you have bound.",
                    action=self.step_tutorial_text, shift_action=self.step_tutorial_text_back)
         elif self.category == 'menus':                    # PORT ADDITION: how the cursor moves
             t.cell('Menu arrows', self.menu_axis_text(),
-                   hint='press Enter to move through menus with the other pair; Control with an arrow, '
-                        'or with Tab, jumps to the first or last',
+                   hint='Press Enter to move through menus with the other pair; Control with an arrow, '
+                        'or with Tab, jumps to the first or last.',
                    action=self.toggle_menu_axis)
             t.cell('Remember cursor position', 'ON' if params.remember_focus() else 'OFF',
-                   hint='press Enter to toggle: when on, going back to a screen returns the cursor to the '
-                        'row you left it on instead of the first one',
+                   hint='Press Enter to toggle: when on, going back to a screen returns the cursor to the '
+                        'row you left it on instead of the first one.',
                    action=self.toggle_remember_focus)
             t.cell('Restore menu defaults',
-                   hint='press Enter to put the menu arrows back to %s and turn the cursor memory off'
+                   hint='Press Enter to put the menu arrows back to %s and turn the cursor memory off.'
                         % self.menu_axis_text(GameParameters.DEFAULT_MENU_AXIS),
                    action=self.restore_menus)
         elif self.category == 'keyboard':                 # PORT ADDITION: the key bindings
@@ -129,13 +129,13 @@ class ControlSchemePanel:
                 if action in BY_MODE:                     # this one is bound per control scheme
                     detail = '%s, in %s mode' % (detail, scheme)
                 row = t.cell(keymap.label(action), detail,
-                             hint='press Enter to add a key, Shift Enter to replace them all, '
-                                  'Delete to remove the last one',
+                             hint='Press Enter to add a key, Shift Enter to replace them all, '
+                                  'Delete to remove the last one.',
                              action=lambda a=action: self.capture_key(a),
                              shift_action=lambda a=action: self.capture_key(a, replace=True))
                 row.binding_action = action               # what Delete acts on, for this row
             t.cell('Restore default keys',
-                   hint='press Enter to put every key back to its default, in both control schemes',
+                   hint='Press Enter to put every key back to its default, in both control schemes.',
                    action=self.restore_keys)
         self.click_on_every_row()
 
