@@ -129,7 +129,7 @@ class MenuScreen(Screen):
         elif move in ('first', 'last') and self.items:
             self.index = 0 if move == 'first' else len(self.items) - 1
             self.speak(self.items[self.index].spoken())
-        elif k in (pygame.K_RETURN, pygame.K_KP_ENTER, pygame.K_SPACE):
+        elif k in (pygame.K_RETURN, pygame.K_KP_ENTER):   # not Space: it is the fire key in a game
             self.activate()
         elif k == pygame.K_ESCAPE and self.back_action is not None:
             self.back_action()

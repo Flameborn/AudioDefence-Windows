@@ -59,7 +59,7 @@ hints.
 | Right / Tab | flick right: next element |
 | Left / Shift+Tab | flick left: previous element |
 | Ctrl+Right / Ctrl+Left, End / Home | first / last element |
-| Enter / Space | double tap: activate |
+| Enter | double tap: activate (Space did too, until it was taken off) |
 | Shift+Enter | a row's second action, where it has one (Settings: the previous value on a row that steps through several - turn sensitivity, tutorial text) |
 | Escape / Backspace | two-finger scrub: `accessibilityPerformEscape` (the Back button on screens with a status bar) |
 | Ctrl+Tab / Ctrl+Shift+Tab | last / first element, as End / Home do |

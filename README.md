@@ -136,7 +136,7 @@ screen the way VoiceOver reads them, with their labels, hints and "button".
 | Ctrl+Right / Ctrl+Left, Ctrl+Tab / Ctrl+Shift+Tab, End / Home | last / first element |
 | Down / Up | next / previous tab or category |
 | Ctrl+Down / Ctrl+Up | last / first tab or category |
-| Enter / Space | activate |
+| Enter | activate |
 | Shift+Enter | a row's second action, where it has one |
 | Escape / Backspace | back |
 

@@ -7,6 +7,9 @@ Newest changes first.  Dates are year-month-day.
 2026-09-20
 ----------
 
+Changed: Space no longer activates the item the cursor is on.  Enter and the
+number pad's Enter do that.  Space is still the fire key in a game.
+
 Changed: on the Tutorial text row in Settings, Sound, Shift plus Enter now
 steps back through the three settings, the way it does on Turn sensitivity.
 Enter still steps forward.

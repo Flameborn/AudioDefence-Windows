@@ -10,7 +10,7 @@ tree:
     Ctrl+Right / Ctrl+Left      last / first element, as End / Home and Ctrl+Tab / Ctrl+Shift+Tab do
     Down / Up                   next / previous tab or category, where the screen has them
     Ctrl+Down / Ctrl+Up         last / first tab or category
-    Enter / Space               activate              (double tap)
+    Enter                       activate              (double tap)
     Shift+Enter                 a row's second action, where it has one (PORT ADDITION)
     Escape / Backspace          accessibilityPerformEscape (two-finger scrub)
 
@@ -469,8 +469,10 @@ class AccessibleScreen(Screen):
             self._jump(False)
         elif move == 'last':
             self._jump(True)
-        elif k in (pygame.K_RETURN, pygame.K_KP_ENTER, pygame.K_SPACE):
+        elif k in (pygame.K_RETURN, pygame.K_KP_ENTER):
+            # Space activated too, until it was taken off (user request).  It stays the gameplay
+            # fire key, which is its only job now.
             if self.focus is not None and self.focus in self.elements():
-                self.focus.activate(shift and k != pygame.K_SPACE)
+                self.focus.activate(shift)
         elif k in (pygame.K_ESCAPE, pygame.K_BACKSPACE):
             self.accessibility_perform_escape()
