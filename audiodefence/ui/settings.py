@@ -105,9 +105,9 @@ class ControlSchemePanel:
                    hint='press Enter to toggle in-game announcements', action=self.toggle_announcer)
             t.cell('Test headphones', hint='press Enter to test your headphones', action=self.test_headphones)
             t.cell('Tutorial text', self.tutorial_text_text(),   # PORT ADDITION
-                   hint="press Enter to choose when the tutorial announcer's lines are also spoken, "
-                        'with the keys you have bound',
-                   action=self.step_tutorial_text)
+                   hint='press Enter for the next setting, Shift plus Enter for the previous: when the '
+                        "tutorial announcer's lines are also spoken, with the keys you have bound",
+                   action=self.step_tutorial_text, shift_action=self.step_tutorial_text_back)
         elif self.category == 'menus':                    # PORT ADDITION: how the cursor moves
             t.cell('Menu arrows', self.menu_axis_text(),
                    hint='press Enter to move through menus with the other pair; Control with an arrow, '
@@ -234,13 +234,16 @@ class ControlSchemePanel:
         params = GameParameters.shared()
         return dict(params.TUTORIAL_TEXT_MODES)[params.tutorial_text_mode() if mode is None else mode]
 
-    def step_tutorial_text(self) -> None:
+    def step_tutorial_text(self, step: int = 1) -> None:
         params = GameParameters.shared()
         modes = [m for m, _text in params.TUTORIAL_TEXT_MODES]
-        mode = modes[(modes.index(params.tutorial_text_mode()) + 1) % len(modes)]
+        mode = modes[(modes.index(params.tutorial_text_mode()) + step) % len(modes)]
         params.set_tutorial_text_mode(mode)
         self.reload_data()
         self.announce('Tutorial text %s' % self.tutorial_text_text(mode))
+
+    def step_tutorial_text_back(self) -> None:
+        self.step_tutorial_text(-1)
 
     @staticmethod
     def test_headphones() -> None:

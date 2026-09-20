@@ -244,7 +244,8 @@ nothing, or says something no keyboard player can act on.
   readouts that precede it. They are still one step back.
 - **The tutorial announcer's lines are also spoken as text**, naming the keys you have actually bound. The
   announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
-  **Settings → Sound → Tutorial text** chooses when, or turns it off.
+  **Settings → Sound → Tutorial text** chooses when, or turns it off: Enter steps to the next
+  setting, Shift+Enter to the previous.
 - **The tarot deal is silent on iOS** — the flip sound plays at the end of an animation that is skipped for
   VoiceOver. Here you hear the cards.
 - **A card you pay to change is never saved on iOS**: leave the screen and the old card is back, diamonds
