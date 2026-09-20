@@ -70,7 +70,23 @@ built from a clone, and a build made by `compile.py` carries it too.
 Nothing of theirs is claimed here, this project is not affiliated with them, and
 if they want it taken down it comes down.
 
+## Getting it
+
+There are two ways to play, and only one of them needs Python.
+
+**The built game** is on this repository's Releases page: a folder with
+`AudioDefence.exe` in it, and the game's own data beside it. Unzip it and run
+the executable — nothing to install, no Python, 64-bit Windows and a pair of
+headphones. `readme.html` and `changelog.txt` are in the same folder.
+
+**From source** is everything below: the repository as it stands, run with the
+Python you have. That is the one to take if you want to read the code, change
+it, or build the executable yourself.
+
 ## Requirements
+
+These are for running from source. A built game from Releases needs none of
+them.
 
 64-bit Python 3.12 or newer on Windows, and these packages to play:
 
