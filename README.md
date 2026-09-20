@@ -619,6 +619,17 @@ is no cross-compiling to another system.
 | `--test` | run the result for ten seconds afterwards and read its log: that it found the game data, that the game's own HRTF is in use, and that it ended without a traceback |
 | `--dry-run` | print what would happen, build nothing — including every file that would land beside the executable |
 
+A build also carries two pieces of text beside the executable: `changelog.txt`
+as it is, and `readme.html` — this file, converted at build time by
+`tools/md_to_html.py`, which needs nothing installed. HTML rather than Markdown
+because a screen reader moves through it by heading, table and list, where a
+`.md` file reads every `#` and `|` aloud. The page is not committed, so it
+cannot drift from this one; if the Markdown ever grows something the converter
+does not know — a fenced code block, a numbered list — the build says so and
+writes no page rather than shipping one with holes in it.
+`python tools/md_to_html.py --check README.md` asks the same question at any
+time.
+
 ### What a build carries, and what it does not
 
 The port, the HRTF and the two vendored DLLs go inside the build. `game/` does

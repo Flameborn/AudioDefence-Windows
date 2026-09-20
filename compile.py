@@ -29,6 +29,11 @@ BINARIES = (('vendor/openal/soft_oal.dll', 'vendor/openal'),    # the audio engi
 #: copied beside the executable rather than bundled inside it, so the player can open them
 SIDE_FILES = ('changelog.txt',)
 
+#: built beside the executable from the Markdown they are written in, rather than committed as well and
+#: left to drift.  A screen reader moves through HTML by heading, table and list; through a .md file it
+#: reads every # and | aloud.  tools/md_to_html.py does the conversion, with nothing installed.
+GENERATED_PAGES = (('README.md', 'readme.html'),)
+
 
 def say(text: str = '') -> None:
     print(text, flush=True)
@@ -103,6 +108,32 @@ def copy_side_files(dest_root: str) -> None:
             continue
         shutil.copy2(src, os.path.join(dest_root, name))
         say('%s is beside the executable.' % name)
+    for md_name, page in GENERATED_PAGES:
+        write_page(md_name, os.path.join(dest_root, page))
+
+
+def write_page(md_name: str, dest: str) -> None:
+    """README.md -> readme.html beside the executable."""
+    import importlib.util
+    converter = os.path.join(HERE, 'tools', 'md_to_html.py')
+    source = os.path.join(HERE, md_name)
+    if not os.path.isfile(converter) or not os.path.isfile(source):
+        say('  %s was not written: %s is missing.'
+            % (os.path.basename(dest), md_name if os.path.isfile(converter) else 'tools/md_to_html.py'))
+        return
+    spec = importlib.util.spec_from_file_location('md_to_html', converter)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    md = open(source, encoding='utf-8').read()
+    problems = module.unhandled(md)
+    if problems:                                  # say so rather than ship a page with holes in it
+        say('  %s was not written: %s uses Markdown the converter does not know -' % (os.path.basename(dest), md_name))
+        for problem in problems:
+            say('    ' + problem)
+        return
+    with open(dest, 'w', encoding='utf-8', newline='\n') as f:
+        f.write(module.convert(md))
+    say('%s is beside the executable, built from %s.' % (os.path.basename(dest), md_name))
 
 
 def read_log(text: str, returncode: int, log: str) -> bool:
@@ -170,6 +201,8 @@ def main(argv=None) -> int:
         for name in SIDE_FILES:
             say('%s would be copied beside the executable%s'
                 % (name, '' if os.path.isfile(os.path.join(HERE, name)) else ' - but it is not here'))
+        for md_name, page in GENERATED_PAGES:
+            say('%s would be built there from %s' % (page, md_name))
         return 0
 
     started = time.perf_counter()

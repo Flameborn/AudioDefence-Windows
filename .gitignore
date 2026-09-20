@@ -21,3 +21,6 @@ crash.txt
 # Windows
 Thumbs.db
 desktop.ini
+
+# the page the build makes from README.md; a manual run of tools/md_to_html.py can land it here
+readme.html
