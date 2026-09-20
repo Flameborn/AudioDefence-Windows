@@ -1,6 +1,8 @@
+26.09.20-3:
+The main menu has a Check for updates button, between Settings and Quit. The game still looks by itself when it starts and only speaks up when there is something to install, so the button is there for when you want to ask it yourself.
+
 26.09.20-2:
 The game now checks for updates by itself. When a newer version is out, the main menu says so and asks whether to install it; answering no will not ask again for that version. Settings has an Updates page with the version you are on, a Check for updates button, and a switch for whether it checks when the game starts. An update only downloads the files that actually changed, so a small fix is a small download rather than the whole game again, and your progress, settings and keys are untouched.
-The main menu has a Check for updates button, between Settings and Quit. The game still looks by itself when it starts and only speaks up when there is something to install, so the button is there for when you want to ask it yourself.
 The melee attack is on both Control keys now, left and right, instead of the left one only. Whichever hand is not on the turn keys can reach it.
 The statistics screen never counted the coins and diamonds you earned, so "Money earned" and "Diamonds collected" stayed at nought. They count now.
 No more tarot card said how many diamonds you had when it was dealt. Spend some in the armory, come straight back, and the card still quoted the old number until something else rebuilt it. 
