@@ -141,9 +141,16 @@ class MainMenuScreen(ViewControllerScreen):
         # has no Game Center
         Button('Info', (247, 283, 65, 41), parent=v, actions=[self.move_to_encyclopedia], name='#24')
         Button('Settings', (426, 281, 117, 41), parent=v, actions=[self.settings_button_touched], name='#79')
-        # PORT ADDITION: iOS has no Quit.  It sits below the nib's buttons so it is read last: Play, Info,
-        # Settings, Quit.
-        Button('Quit', (426, 330, 117, 41), parent=v, actions=[self.quit_button_pressed], name='Quit (port)')
+        # PORT ADDITION: the App Store updated the phone game, so the two buttons below it have no
+        # counterpart in the nib.  This view is not a table, so the cursor follows the frames rather than
+        # the order they are made in: both sit below the nib's buttons, and Quit below the other, to read
+        # Play, Info, Settings, Check for updates, Quit.  Check for updates is on the menu and not only in
+        # Settings because the start-up check is silent when there is nothing to report, and a player who
+        # hears nothing cannot tell that from a thing that is not working.
+        Button('Check for updates', (426, 330, 117, 41), parent=v, actions=[self.check_for_updates],
+               name='Check for updates (port)')
+        # PORT ADDITION: iOS has no Quit.
+        Button('Quit', (426, 379, 117, 41), parent=v, actions=[self.quit_button_pressed], name='Quit (port)')
         self.cheat_menu = Button('', (191, 240, 187, 33), parent=v, actions=[self.cheat_button_pressed],
                                  name='#148')
         self.cheat_menu.label = self.cheat_menu.text = 'CHEAT'
@@ -176,6 +183,10 @@ class MainMenuScreen(ViewControllerScreen):
 
     def quit_button_pressed(self) -> None:                # PORT ADDITION
         self.host.quit_game()
+
+    def check_for_updates(self) -> None:                  # PORT ADDITION
+        from .updates import check_now
+        check_now(self.host, self.speak)
 
     def armory_button_pressed(self) -> None:              # armoryButtonPressed: 0x100064fb0 (no button uses it)
         App.delegate().present_view_controller_named(self, 'ADArmoryViewController')

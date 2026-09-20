@@ -223,6 +223,10 @@ whether there is a newer build, and says nothing at all unless there is one —
 if there is, it tells you the version and asks **Yes** or **No**. Saying no is
 remembered, so that build is not offered again; a later one still will be.
 
+Because that check is silent when there is nothing to report, the main menu
+also has a **Check for updates** button, between Settings and Quit. It answers
+either way: it either offers the new version or tells you the one you are on.
+
 Say yes and it downloads, then offers to restart. It has to close to put the
 new files in place and starts itself again afterwards. **Your progress is never
 at risk**: saves, settings and key bindings live in `%APPDATA%\AudioDefence`,
@@ -235,8 +239,7 @@ you already have, file by file, so a build that only fixes code is a download
 of a few megabytes rather than the whole game again.
 
 If you would rather it did not look, **Settings → Updates** has a switch for
-it, along with the version you are on and a Check for updates button you can
-press whenever you like. Answering "Not yet" to a restart keeps the download:
+it, along with the version you are on and the same Check for updates button. Answering "Not yet" to a restart keeps the download:
 the next time you start the game it offers to finish the job rather than
 fetching anything a second time.
 

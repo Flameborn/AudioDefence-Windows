@@ -295,26 +295,9 @@ class ControlSchemePanel:
         self.announce('Check when the game starts %s' % ('ON' if params.check_updates() else 'OFF'))
 
     def check_for_updates(self) -> None:
-        """Unlike the quiet check the main menu makes, this one says what it found either way."""
-        from ..platform import version
-        from .updates import UpdateService, offer
-        service = UpdateService.shared()
-        if service.busy:
-            self.announce('Already checking. One moment.')
-            return
-
-        def result(release, problem):
-            if problem:
-                self.announce('Could not check for updates: %s.' % problem)
-                return
-            if release is None:
-                self.announce('You have the newest version, %s.' % version.text())
-                return
-            self.reload_data()                            # the download row appears now there is one
-            offer(self.screen.host, release)
-
-        if service.check(result):
-            self.announce('Checking for updates.')
+        """The same check the main menu's button makes; here it also grows the Download row."""
+        from .updates import check_now
+        check_now(self.screen.host, self.announce, after=self.reload_data)
 
     def install_update(self) -> None:
         from .updates import UpdateService, offer

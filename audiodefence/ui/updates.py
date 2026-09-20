@@ -230,6 +230,31 @@ def ask_to_restart(host, staging: str, remove, message: str) -> None:
                                   [('Restart now', yes), ('Not yet', later)]))
 
 
+def check_now(host, speak, after=None) -> None:
+    """A check the player asked for, from the main menu or from Settings.
+
+    The quiet check at start-up says nothing when there is no update, which is right when nobody asked;
+    a check somebody pressed has to answer either way, or it looks broken."""
+    service = UpdateService.shared()
+    if service.busy:
+        speak('Already checking. One moment.')
+        return
+
+    def result(release, problem):
+        if problem:
+            speak('Could not check for updates: %s.' % problem)
+            return
+        if release is None:
+            speak('You have the newest version, %s.' % version.text())
+            return
+        if after is not None:
+            after()                                       # Settings grows a Download row at this point
+        offer(host, release)
+
+    if service.check(result):
+        speak('Checking for updates.')
+
+
 # ================================================================== the check the main menu starts quietly
 def check_on_start(host, screen) -> None:
     """Called when the main menu opens.  Says nothing unless there is a build worth offering.
