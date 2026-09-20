@@ -167,6 +167,9 @@ def main(argv=None) -> int:
         else:
             say("the game's data would then be copied into %s"
                 % os.path.join(output_dir(args), 'game'))
+        for name in SIDE_FILES:
+            say('%s would be copied beside the executable%s'
+                % (name, '' if os.path.isfile(os.path.join(HERE, name)) else ' - but it is not here'))
         return 0
 
     started = time.perf_counter()
