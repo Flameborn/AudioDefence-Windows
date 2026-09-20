@@ -89,10 +89,9 @@ class ControlSchemePanel:
                               action=lambda s=scheme: self.select_control_scheme(s))
                 cell.selected = params.control_scheme == scheme     # selectRowAtIndexPath:
             # the value is a bare multiplier - sensivity * angle in the gyro path 0x10005a108, sensivity *
-            # dx in the drag path 0x10005a3e0 - so the row names the scale rather than a unit it has not got
-            t.cell('Turn sensitivity', '%s, from %s to %s'
-                   % (self.sensitivity_text(), self.sensitivity_text(GameParameters.SENSIVITY_STEPS[0]),
-                      self.sensitivity_text(GameParameters.SENSIVITY_STEPS[-1])),
+            # dx in the drag path 0x10005a3e0 - with no unit of its own.  The row reads it alone; the range
+            # and what it works out to in degrees a second are in the README.
+            t.cell('Turn sensitivity', self.sensitivity_text(),
                    hint='Press Enter for the next value, Shift plus Enter for the previous.',
                    action=self.step_sensitivity, shift_action=self.step_sensitivity_back)
             t.cell('Restore aiming defaults',
