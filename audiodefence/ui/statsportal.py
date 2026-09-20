@@ -129,11 +129,11 @@ class EncyclopediaItemView:
         # unavailable ("Click to view the next enemy's description. This button will be unavailable if you
         # are at the end of the list").  The port drops the word from the label and shortens the hint.
         self.left_arrow = View('Previous', (8, 0, 40, 240), traits=BUTTON, parent=v,
-                               hint='Click to view the previous enemy.',
+                               hint='Press Enter to view the previous enemy.',
                                name='#65' if self.locked else '#108')
         self.left_arrow.add_target(self.screen.previous_button_pressed)
         self.right_arrow = View('Next', (520, 0, 40, 240), traits=BUTTON, parent=v,
-                                hint='Click to view the next enemy.',
+                                hint='Press Enter to view the next enemy.',
                                 name='#48' if self.locked else '#74')
         self.right_arrow.add_target(self.screen.next_button_pressed)
         # DIVERGENCE: the audio button is an image view with a tap recogniser and no accessibility label -
