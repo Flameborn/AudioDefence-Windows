@@ -475,9 +475,12 @@ def apply(staging: str, remove) -> None:
     remove = list(remove)
     back_up(staging, remove)
     script = write_handoff(staging, remove)
-    creation = 0
-    if os.name == 'nt':
-        creation = getattr(subprocess, 'CREATE_NO_WINDOW', 0) | getattr(subprocess, 'DETACHED_PROCESS', 0)
+    # CREATE_NO_WINDOW and nothing else.  DETACHED_PROCESS looks like the right flag for something that
+    # has to outlive us, and it is not: it gives the child no console, and powershell.exe with no console
+    # exits immediately without running the script.  CreateProcess still succeeds, so the failure is
+    # silent - the game quits and the update is simply never installed.  A child survives its parent on
+    # Windows anyway; DETACHED_PROCESS is about consoles, not lifetimes.
+    creation = getattr(subprocess, 'CREATE_NO_WINDOW', 0) if os.name == 'nt' else 0
     try:
         # not cwd=staging: a process cannot delete the folder it is sitting in, and the last thing the
         # script does is delete that folder

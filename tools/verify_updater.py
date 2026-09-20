@@ -289,31 +289,29 @@ def main() -> int:
     removals = applied.get('remove') or []
     if staging is None:
         return report()
-    updater.back_up(staging, removals)
     marker = os.path.join(WORK, 'relaunched.txt')
     fake_exe = os.path.join(install, 'relaunch.cmd')
     write(fake_exe, '@echo restarted> "%s"\r\n' % marker)
-    holder = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(4)'])
-    script = os.path.join(staging, 'apply.ps1')
-    with open(script, 'w', encoding='utf-8-sig') as fh:
-        fh.write(updater.SCRIPT.format(
-            pid=holder.pid,
-            install=updater._ps_literal(install),
-            payload=updater._ps_literal(os.path.join(staging, 'payload')),
-            backup=updater._ps_literal(os.path.join(staging, 'backup')),
-            staging=updater._ps_literal(staging),
-            exe=updater._ps_literal(fake_exe),
-            removals='@(%s)' % ', '.join(updater._ps_literal(r.replace('/', os.sep))
-                                         for r in removals)))
-    proc = subprocess.Popen(['powershell', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
-                             '-WindowStyle', 'Hidden', '-File', script], cwd=WORK)
+    holder = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(5)'])
+
+    # Go through updater.apply() itself rather than building the hand-off here.  An earlier version of
+    # this check spawned PowerShell with its own Popen, and so did not notice that apply() was passing
+    # DETACHED_PROCESS - which creates the process, runs nothing, and reports no error.  Whatever spawns
+    # the script in the game must be what is spawned here.
+    real_getpid, real_executable = os.getpid, sys.executable
+    os.getpid = lambda: holder.pid                        # apply() waits on the stand-in game
+    sys.executable = fake_exe                             # and restarts it afterwards
+    try:
+        updater.apply(staging, removals)
+    finally:
+        os.getpid, sys.executable = real_getpid, real_executable
+
     time.sleep(1.5)
     mid = open(os.path.join(install, 'VERSION'), encoding='utf-8').read().strip()
     check(mid == OLD, 'nothing is touched while the game is still running')
     holder.wait()
-    proc.wait(timeout=90)
-    for _ in range(60):
-        if os.path.isfile(marker):
+    for _ in range(600):
+        if os.path.isfile(marker) and                 open(os.path.join(install, 'VERSION'), encoding='utf-8').read().strip() == NEW:
             break
         time.sleep(0.1)
 
