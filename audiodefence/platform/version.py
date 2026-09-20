@@ -5,12 +5,16 @@ game's, not this port's, and the App Store did the updating.  A Windows build ha
 
 The number lives in one place, the `VERSION` file, which `compile.py` copies beside the executable the way
 it copies `changelog.txt`.  It holds the release tag exactly as GitHub has it, so cutting a release is
-copy-and-paste rather than a conversion: tag `26-09-20-1`, file `26-09-20-1`.
+copy-and-paste rather than a conversion.
 
-Comparison reads the digits and ignores everything between them, so the tag's dashes and the changelog's
-dots (`26.09.20`) compare equal, and a shorter number is padded with zeroes - `26-09-20` is older than
-`26-09-20-1`.  A version that holds no digits at all is unknown, and an unknown version never asks the
-player to update: better to say nothing than to offer an update over a build we cannot place.
+The format is `YY.MM.DD-XX`: the last two digits of the year, the month, the day, and the build number
+within that day, counting from 1.  `26.09.20-1` is the first release of the 20th of September 2026 and
+`26.09.20-2` the second.
+
+Comparison reads the digits and ignores everything between them, so dots and dashes compare alike and a
+shorter number is padded with zeroes - `26.09.20` is older than `26.09.20-1`.  A version that holds no
+digits at all is unknown, and an unknown version never asks the player to update: better to say nothing
+than to offer an update over a build we cannot place.
 """
 from __future__ import annotations
 
@@ -46,7 +50,7 @@ def current() -> str:
 
 
 def parse(version: str) -> tuple:
-    """'26-09-20-1' and '26.09.20.1' both -> (26, 9, 20, 1); '' -> ()."""
+    """'26.09.20-1' and '26-09-20-1' both -> (26, 9, 20, 1); '' -> ()."""
     digits, number, seen = [], 0, False
     for ch in str(version):
         if ch.isdigit():
@@ -71,10 +75,10 @@ def is_newer(remote: str, local: str) -> bool:
 def text(version: str = None) -> str:
     """What a screen reader should say for a version.
 
-    The number is a date and a build - `26-09-20-1` is the first build of the 20th of September 2026 - so
-    it is said as one: "26.09.20, build 1".  Read straight off the tag a synthesiser makes "26-09-20-1"
-    into "26 minus 9 minus 20 minus 1", and spelling every part out as "point" buries the build number
-    among the date.  The date keeps its two digits, the way it is written down."""
+    The number is a date and a build - `26.09.20-1` is the first release of the 20th of September 2026 -
+    so it is said as one: "26.09.20, build 1".  Read straight off the tag a synthesiser makes the dash
+    into "minus", and spelling every part out as "point" buries the build number among the date.  The
+    date keeps its two digits, the way it is written down."""
     version = current() if version is None else version
     parts = parse(version)
     if not parts:

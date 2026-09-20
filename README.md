@@ -484,7 +484,7 @@ went with it.
                         stand-in that reads them
         app.py          the app delegate: launch, menu music, navigation
     compile.py          builds the executable, and the release zip (see below)
-    VERSION             the release tag this build calls itself, e.g. 26-09-20-1
+    VERSION             the release tag this build calls itself, e.g. 26.09.20-2
     game/               the original game's own files (see below)
     assets/hrtf/        the HRTF recovered from the binary
     analysis/           the reverse engineering: disassembly, digests, dumps
@@ -676,11 +676,14 @@ shipping an extractor. `python compile.py --package` builds it.
 Three things move together and must agree — the `VERSION` file, the git tag,
 and the heading at the top of `changelog.txt`. In order:
 
-- give the `unrelease:` section in `changelog.txt` its date, `26.09.21:`
-- put the tag in `VERSION`, exactly as GitHub will have it: `26-09-21-1`. The
-  number after the date is the build, for a second release on the same day
+- give the `unrelease:` section in `changelog.txt` the version, `26.09.21-1:`
+- put the same version in `VERSION`, exactly as GitHub will have it
 - run `python compile.py --package`
-- tag the release `26-09-21-1` and upload `dist\AudioDefence-Win-26-09-21-1.zip`
+- tag the release `26.09.21-1` and upload `dist\AudioDefence-Win-26.09.21-1.zip`
+
+The format is **`YY.MM.DD-XX`**: last two digits of the year, month, day, and
+which release of that day it is, counting from 1. The first release on the 20th
+of September 2026 is `26.09.20-1`; a second one the same day is `26.09.20-2`.
 
 `--package` says so if `VERSION` is missing or the changelog still says
 `unrelease:`. A build with no `VERSION` file does not know what it is and never
