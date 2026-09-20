@@ -490,6 +490,17 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   diamonds".  The split used here is `checkBuyOrUpgradeButton`'s own (0x10006fa68): a price below 1 means
   the diamond price.  This line is only in the accessible loadout; the sighted `ADArmoryLoadoutViewController`
   is a drag-and-drop scroller with no price text.
+* PORT ADDITION: three table rows that answered a key with nothing now click.  The original's buttons
+  click - `-[ADButtonWithFont playSound]` 0x100073578, the status bar's and the play menu's being the same
+  code - but its table rows never do.  Sighted, that is fine: the screen visibly changes.  On a keyboard,
+  with the screen reader still finishing the row you were on, a press that makes no sound is
+  indistinguishable from a key that did not register.  The three are the challenge selector's rows
+  (`tableView:didSelectRowAtIndexPath:` 0x100054f8c, which opens the overview and is the only silent step
+  of Play, world, challenge), the Zombiepedia's names (`cellSelectedWithZombieName:` 0x10007abcc), and its
+  Preview sound button (`handleTapForSound:` 0x10008b9b4, where the zombie itself is held back a second by
+  `dispatch_after` at 0x10008ba58 so it does not fight VoiceOver - a second that sounded like nothing
+  happening).  A challenge row locked by its requirements stays silent, because nothing happens.  This is
+  the same reasoning as the Settings rows, which are `ADButtonWithFont`s in the sighted original.
 * PORT ADDITION: the Credits screen names the studio, and carries the port's own credits.
   `ADAboutCreditsViewController` 0x100020ea4 lays out two text views, and the nib's credits (object #25)
   list every person who made the game and `www.audiodefence.com`, but never Somethin' Else - the studio's

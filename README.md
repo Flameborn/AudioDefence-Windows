@@ -218,7 +218,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **85 divergences** and **14 original quirks kept on purpose**.
+There are **86 divergences** and **14 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -248,6 +248,10 @@ nothing, or says something no keyboard player can act on.
   which on a phone is a scrub out of the whole flow). The list is where the next challenge is, and the main
   menu is one Escape further. The screen's Select challenge button is unchanged, and the screen you get
   after failing a challenge still goes to the main menu.
+- **A row that does something makes a sound.** The original's buttons click but its table rows do not,
+  which sighted is invisible and on a keyboard is not: opening a challenge, opening a zombie's page, or
+  pressing Preview sound answered with silence, and silence is what a key that missed sounds like. Those
+  three now click. A challenge row you cannot open yet stays silent, because nothing happens.
 - **Screens name themselves.** Every screen sets a page title that the iPhone layout has nowhere to show, so
   on iOS it is never seen or heard. Four are named for the button that opens them rather than the original's
   own word, so the two agree — the main menu, the stats portal reached by Info, the two Info pages, and the

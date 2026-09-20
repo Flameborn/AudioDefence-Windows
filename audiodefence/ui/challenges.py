@@ -20,7 +20,7 @@ from ..platform.cfloat import f32
 from ..platform.defaults import ns_float_value, ns_int_value
 from ..platform.tracker import Tracker
 from ..s3d.engine import S3DEngine
-from .accessibility import CELL, STATIC_TEXT, Button, View
+from .accessibility import CELL, STATIC_TEXT, Button, View, play_button_click
 from .gameover import AccessibleGameOverEndlessScreen, time_string_from_seconds
 from .host import register
 from .viewcontroller import ViewControllerScreen
@@ -263,16 +263,23 @@ class AccessibleChallengeSelectorScreen(ViewControllerScreen):
         return '%i star%s unlocked' % (stars, 's' if stars > 1 else '')
 
     def did_select_row(self, row: int) -> None:           # tableView:didSelectRowAtIndexPath: 0x100054f8c
+        # PORT ADDITION: the original plays nothing here - its buttons click (ADButtonWithFont playSound
+        # 0x100073578) but its table rows never do, and the world list one screen up plays start_button
+        # from its own playButtonSound.  Opening a challenge was therefore the one step of that walk with
+        # no sound at all, which on a keyboard is indistinguishable from a key that did not register.
+        # The click goes on the paths that do something; a locked row stays silent, because nothing happens.
         from ..game.inventory import Inventory
         d = self.dictionary_for_challenge_with_name(self.challenge_files[row]) or {}
         for w in d.get('weapons') or []:
             if not Inventory.shared().has_unlocked_weapon(w.get('name')):
+                play_button_click()
                 App.delegate().go_to_armory(self, False)
                 return
         cd = ChallengeData.shared()
         for req in d.get('challenges_requirement') or []:
             if not cd.has_completed_challenge_with_name(req):
                 return
+        play_button_click()
         App.delegate().go_to_accessible_challenge_overview_with_dictionary(d)
 
     def back_button_pressed(self) -> None:                # ADChallengeSelectorViewController 0x1000cb9b8

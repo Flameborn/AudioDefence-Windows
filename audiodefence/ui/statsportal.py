@@ -172,9 +172,13 @@ class EncyclopediaItemView:
             self.killed_by_label.label = 'Killed by: %d' % self.killed_by_value
 
     def handle_tap_for_sound(self) -> None:               # 0x10008b9b4
+        # PORT ADDITION: the click answers the key at once.  The zombie itself follows a second later -
+        # dispatch_after(1 s) at 0x10008ba58, which the original does so the sound does not fight
+        # VoiceOver's reading of the label - and that second of silence is otherwise indistinguishable
+        # from a press that did nothing.
+        _play_click()
         if self.enemy_sound is None:
             return
-        # with VoiceOver the sound is played a second later, so it does not fight the spoken label
         RunLoop.main().call_later(1.0, lambda: self.enemy_sound.play(False))
 
 
@@ -285,6 +289,10 @@ class EncyclopediaScreen(ViewControllerScreen):
 
     # --- actions ---------------------------------------------------------------------------------
     def cell_selected_with_zombie_name(self, display) -> None:   # 0x10007abcc
+        # PORT ADDITION: silent in the original, like every table row in the game.  Opening a zombie's page
+        # replaces one list with another that the screen reader then reads, so without a click there is
+        # nothing to say the key was taken.
+        _play_click()
         self.scroll_view.hidden = False
         self.displaying_detail_view = True
         for index, item in enumerate(self.item_views):
