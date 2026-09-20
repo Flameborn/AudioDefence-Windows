@@ -35,34 +35,46 @@ def mark_cell(view, text, detail=None) -> None:
     view.parts = (text, detail)
 
 
-def _row_text(view) -> str:
+def _row_text(kind_text_detail) -> str:
     """One row as a line of the paste, or '' for a row that should not appear."""
-    if view.hidden or not view.label:
-        return ''
-    parts = getattr(view, 'parts', None)
-    if parts is None:                                     # a heading, or a row built before this existed
-        return str(view.label)
-    text, detail = parts
+    is_header, text, detail = kind_text_detail
     text = '' if text is None else str(text).strip()
     detail = '' if detail is None else str(detail).strip()
+    if is_header:
+        return text
     if text and detail:
         return '%s: %s' % (text, detail)
     return text or detail
 
 
-def results_text(heading: str, table_view) -> str:
-    """The whole screen as text: a heading, the table's sections, and which build produced it."""
+def rows_from_table(table_view) -> list:
+    """A results table as (is_header, text, detail) rows.
+
+    The rows keep the pieces they were built from, so the paste can lay them out its own way instead of
+    picking apart the "Kills, 87" a screen reader is given."""
+    rows = []
+    for view in table_view.children:
+        if view.hidden or not view.label:
+            continue
+        parts = getattr(view, 'parts', None)
+        if getattr(view, 'is_header', False) or parts is None:
+            rows.append((True, view.label, None))
+        else:
+            rows.append((False, parts[0], parts[1]))
+    return rows
+
+
+def results_text(heading: str, rows) -> str:
+    """The whole result as text: a heading, the sections, and which build produced it."""
     lines = [heading, '']
-    for row in table_view.children:
+    for row in rows:
         line = _row_text(row)
         if not line:
             continue
-        if getattr(row, 'is_header', False):
+        if row[0]:                                        # a section heading
             if lines and lines[-1] != '':
                 lines.append('')
-            lines.append(line)
-        else:
-            lines.append(line)
+        lines.append(line)
     while lines and lines[-1] == '':
         lines.pop()
     lines.append('')
@@ -70,17 +82,22 @@ def results_text(heading: str, table_view) -> str:
     return '\n'.join(lines)
 
 
-def copy_results(screen, heading: str) -> None:
-    """The Copy results button: build the text, put it on the clipboard, say what happened."""
-    table = getattr(screen, 'table_view', None)
-    if table is None:
-        screen.speak('There is nothing to copy.')
-        return
-    text = results_text(heading, table)
+def copy_results(screen, heading: str, rows=None) -> None:
+    """The Copy results button: build the text, put it on the clipboard, say what happened.
+
+    `rows` is for a screen that has no results table of its own; everything else reads the table it has
+    just laid out, so that the paste and the screen cannot say different things."""
+    if rows is None:
+        table = getattr(screen, 'table_view', None)
+        if table is None:
+            screen.speak('There is nothing to copy.')
+            return
+        rows = rows_from_table(table)
+    text = results_text(heading, rows)
     if copy_text(text):
         # Counting the lines is the only way to say "it worked" that is worth hearing: reading the whole
         # thing back would repeat the screen the player has just been through.
-        rows = len([line for line in text.splitlines() if line])
-        screen.speak('Results copied, %d lines. Paste them wherever you like.' % rows)
+        written = len([line for line in text.splitlines() if line])
+        screen.speak('Results copied, %d lines. Paste them wherever you like.' % written)
     else:
         screen.speak('The results could not be copied to the clipboard.')

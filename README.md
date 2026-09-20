@@ -218,16 +218,22 @@ Keyboard. Quit is on the main menu.
 
 ## Sharing a result
 
-The screen after an endless run and the screen after a challenge you completed
-both have a **Copy results** button, below the other buttons so it is read
-last. It puts what the screen just told you — the stars, the rewards and the
-statistics, whichever of them that screen shows — on the clipboard as plain
-text, ready to paste into a message.
+Every screen at the end of a run has a **Copy results** button, below the other
+buttons so it is read last: after an endless game, after a challenge you
+completed, and after one you failed. It puts what the screen told you — the
+stars, the rewards and the statistics, whichever of them that screen shows —
+on the clipboard as plain text, ready to paste into a message.
 
 The text is taken from the rows of the screen itself rather than worked out
 again, so what you paste is what you were read. The original had one way to
 share a score, a Twitter sheet, which needed an account and an iPhone; this
 needs neither.
+
+The failed screen is the exception, because the original tells you nothing
+there at all — a tip, and two buttons. It now reads out your kills, accuracy
+and time, the same three the completed screen shows, so a run you lost can be
+compared with one you won, and so the copy is not handing you figures you were
+never told.
 
 ## Updates
 

@@ -429,6 +429,14 @@ class ChallengeFailedScreen(ViewControllerScreen):
                actions=[self.try_again_button_pressed], name='#103')
         Button('Challenge selection', (144, 266, 280, 60), parent=v,
                font_button=False, actions=[self.mission_select_button_pressed], name='#84')
+        # PORT ADDITION: this screen shows no statistics in the original - only the tip and these two
+        # buttons - so a copy here would hand the player numbers they were never told.  The figures are
+        # read out as well, in one row above the buttons, and they are the same three the completed
+        # screen shows so that a failed attempt and a won one can be compared.
+        self.stats_view = View('', (34, 200, 500, 24), parent=v, name='Statistics (port)')
+        copy = Button(results.COPY_LABEL, (144, 320, 280, 30), parent=v, font_button=False,
+                      actions=[self.copy_results_button_pressed], name='Copy results (port)')
+        copy.hint = results.COPY_HINT
         self.first_accessible_element = self.tip_text_view
         self.roots = [v]
 
@@ -448,6 +456,7 @@ class ChallengeFailedScreen(ViewControllerScreen):
         self.tip_text_view.label = self.tip_text_view.text = tip if tip is not None else ''
         sb.set_currencies_visibility(False)
         sb.set_armory_button_visibility(True)
+        self.show_statistics()                            # PORT ADDITION
         self.game_over_playlist = S3DEngine.engine().play_list_with_name('gameover_%i' % (crand.c_mod(crand.rand(), 3) + 1))
         if self.game_over_playlist is not None:
             self.game_over_playlist.activate(self._game_over_playlist_activated)
@@ -460,6 +469,25 @@ class ChallengeFailedScreen(ViewControllerScreen):
     def _deactivate_playlist(self) -> None:
         if self.game_over_playlist is not None:
             self.game_over_playlist.deactivate()
+
+    def result_rows(self) -> list:                         # PORT ADDITION
+        """The three figures the completed screen shows, for a challenge that was not completed."""
+        from ..game.ingame_stats import InGameStats
+        stats = InGameStats.singleton()
+        return [(True, 'Statistics', None),
+                (False, 'Kills', '%i' % stats.number_of_enemy_kills),
+                (False, 'Accuracy', '%.2f %%' % f32(f32(stats.current_accuracy()) * f32(100.0))),
+                (False, 'Survival time', time_string_from_seconds(int(stats.challenge_time_elapsed)))]
+
+    def show_statistics(self) -> None:                    # PORT ADDITION
+        text = ', '.join('%s %s' % (name, value) for header, name, value in self.result_rows()
+                         if not header)
+        self.stats_view.label = self.stats_view.text = text
+
+    def copy_results_button_pressed(self) -> None:        # PORT ADDITION
+        title = self.challenge_dict.get('title')
+        heading = 'Audio Defence, Challenge failed: %s' % title if title             else 'Audio Defence, Challenge failed'
+        results.copy_results(self, heading, rows=self.result_rows())
 
     def mission_select_button_pressed(self) -> None:      # 0x100071e1c
         # PORT ADDITION: this one really is silent in the original - unlike the completed screen's, which
