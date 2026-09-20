@@ -380,9 +380,6 @@ class AccessibleScreen(Screen):
                 return content[0]
         return elements[0]
 
-    def post_announcement(self, text: str) -> None:               # UIAccessibilityAnnouncementNotification
-        self.speak(text)
-
     def frame(self) -> None:
         if self._pending_focus is not None and self.host.top() is self:
             element = self._pending_focus[0]
@@ -434,6 +431,8 @@ class AccessibleScreen(Screen):
     # every screen already reads out, and on the revive screen a second way to end the run.  The original's
     # own implementations are listed in docs/PORTING_NOTES.md, with -[ADViewController
     # accessibilityPerformMagicTap] 0x100072940, whose only job was to announce that a screen has none.
+    # `post_announcement`, the port's UIAccessibilityAnnouncementNotification, went with it: that
+    # announcement was its only caller, and Windows has no gesture to announce the absence of.
 
     def back_button_pressed(self) -> None:          # -[ADNoBarViewController backButtonPressed] 0x1000195e8
         log.info('Back button')
