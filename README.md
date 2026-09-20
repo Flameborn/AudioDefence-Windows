@@ -619,8 +619,9 @@ is no cross-compiling to another system.
 | `--test` | run the result for ten seconds afterwards and read its log: that it found the game data, that the game's own HRTF is in use, and that it ended without a traceback |
 | `--dry-run` | print what would happen, build nothing — including every file that would land beside the executable |
 
-A build also carries two pieces of text beside the executable: `changelog.txt`
-as it is, and `readme.html` — this file, converted at build time by
+A build also carries three pieces of text beside the executable: `changelog.txt`
+as it is, `license.txt` (the repository's `LICENSE`, renamed so Windows opens
+it without asking what with), and `readme.html` — this file, converted at build time by
 `tools/md_to_html.py`, which needs nothing installed. HTML rather than Markdown
 because a screen reader moves through it by heading, table and list, where a
 `.md` file reads every `#` and `|` aloud. The page is not committed, so it

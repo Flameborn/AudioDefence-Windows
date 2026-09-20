@@ -26,8 +26,11 @@ PLAY_PACKAGES = (('pygame', 'pygame-ce'), ('numpy', 'numpy'), ('av', 'av'), ('co
 DATA = (('assets/hrtf', 'assets/hrtf'),)                        # the game's own HRTF
 BINARIES = (('vendor/openal/soft_oal.dll', 'vendor/openal'),    # the audio engine itself
             ('vendor/nvda/nvdaControllerClient64.dll', 'vendor/nvda'))
-#: copied beside the executable rather than bundled inside it, so the player can open them
-SIDE_FILES = ('changelog.txt',)
+#: copied beside the executable rather than bundled inside it, so the player can open them: what it is
+#: called here, and what it is called there.  LICENSE has no extension, which is the convention on GitHub
+#: but means Windows asks what to open it with, so it ships as a .txt.
+SIDE_FILES = (('changelog.txt', 'changelog.txt'),
+              ('LICENSE', 'license.txt'))
 
 #: built beside the executable from the Markdown they are written in, rather than committed as well and
 #: left to drift.  A screen reader moves through HTML by heading, table and list; through a .md file it
@@ -101,13 +104,14 @@ def copy_game(dest_root: str) -> bool:
 
 def copy_side_files(dest_root: str) -> None:
     """The text the player reads, next to the game rather than inside it."""
-    for name in SIDE_FILES:
+    for name, shipped_as in SIDE_FILES:
         src = os.path.join(HERE, name)
         if not os.path.isfile(src):
             say('  %s is not here, so it was not copied.' % name)
             continue
-        shutil.copy2(src, os.path.join(dest_root, name))
-        say('%s is beside the executable.' % name)
+        shutil.copy2(src, os.path.join(dest_root, shipped_as))
+        say('%s is beside the executable%s.'
+            % (shipped_as, '' if shipped_as == name else ', from %s' % name))
     for md_name, page in GENERATED_PAGES:
         write_page(md_name, os.path.join(dest_root, page))
 
@@ -198,9 +202,10 @@ def main(argv=None) -> int:
         else:
             say("the game's data would then be copied into %s"
                 % os.path.join(output_dir(args), 'game'))
-        for name in SIDE_FILES:
-            say('%s would be copied beside the executable%s'
-                % (name, '' if os.path.isfile(os.path.join(HERE, name)) else ' - but it is not here'))
+        for name, shipped_as in SIDE_FILES:
+            say('%s would be copied beside the executable%s%s'
+                % (name, '' if shipped_as == name else ', as %s' % shipped_as,
+                   '' if os.path.isfile(os.path.join(HERE, name)) else ' - but it is not here'))
         for md_name, page in GENERATED_PAGES:
             say('%s would be built there from %s' % (page, md_name))
         return 0
