@@ -58,7 +58,7 @@ CONTROL_ROWS = (('Button', 'Your keys press the four corner buttons of the phone
 # whatever you are driving it with; Keyboard holds the key bindings alone, so a Joystick category can sit
 # beside it later without anything moving again.
 CATEGORIES = (('aiming', 'Aiming'), ('controls', 'Controls'), ('sound', 'Sound'),
-              ('menus', 'Menus'), ('keyboard', 'Keyboard'))
+              ('menus', 'Menus'), ('keyboard', 'Keyboard'), ('updates', 'Updates'))
 SELECT_HINT = 'Press Enter to select.'
 
 
@@ -138,6 +138,28 @@ class ControlSchemePanel:
             t.cell('Restore default keys',
                    hint='Press Enter to put every key back to its default, in both control schemes.',
                    action=self.restore_keys)
+        elif self.category == 'updates':                  # PORT ADDITION: there is no App Store here
+            from ..platform import updater, version
+            from .updates import UpdateService
+            t.cell('This version', version.text(),
+                   hint='The build you are playing. Press Enter to check for a newer one.',
+                   action=self.check_for_updates)
+            t.cell('Check for updates',
+                   hint='Press Enter to ask GitHub whether there is a newer build.',
+                   action=self.check_for_updates)
+            release = UpdateService.shared().release
+            if release is not None:
+                t.cell('Download version %s' % version.text(release.tag),
+                       hint='Press Enter to download and install it. Your progress is kept.',
+                       action=self.install_update)
+            t.cell('Check when the game starts', 'ON' if params.check_updates() else 'OFF',
+                   hint='Press Enter to toggle: when on, the main menu looks for a new build and tells '
+                        'you only if there is one.',
+                   action=self.toggle_check_updates)
+            allowed, why_not = updater.can_update()
+            if not allowed:
+                t.cell('Updating is not available here', why_not.capitalize(),
+                       hint='Nothing to press.')
         self.click_on_every_row()
 
     def click_on_every_row(self) -> None:
@@ -264,6 +286,43 @@ class ControlSchemePanel:
         params.set_remember_focus(not params.remember_focus())
         self.reload_data()
         self.announce('Remember cursor position %s' % ('ON' if params.remember_focus() else 'OFF'))
+
+    # --- updates (PORT ADDITION) -----------------------------------------------------------------
+    def toggle_check_updates(self) -> None:
+        params = GameParameters.shared()
+        params.set_check_updates(not params.check_updates())
+        self.reload_data()
+        self.announce('Check when the game starts %s' % ('ON' if params.check_updates() else 'OFF'))
+
+    def check_for_updates(self) -> None:
+        """Unlike the quiet check the main menu makes, this one says what it found either way."""
+        from ..platform import version
+        from .updates import UpdateService, offer
+        service = UpdateService.shared()
+        if service.busy:
+            self.announce('Already checking. One moment.')
+            return
+
+        def result(release, problem):
+            if problem:
+                self.announce('Could not check for updates: %s.' % problem)
+                return
+            if release is None:
+                self.announce('You have the newest version, %s.' % version.text())
+                return
+            self.reload_data()                            # the download row appears now there is one
+            offer(self.screen.host, release)
+
+        if service.check(result):
+            self.announce('Checking for updates.')
+
+    def install_update(self) -> None:
+        from .updates import UpdateService, offer
+        release = UpdateService.shared().release
+        if release is None:
+            self.announce('There is nothing to install.')
+            return
+        offer(self.screen.host, release)
 
     def toggle_menu_axis(self) -> None:
         params = GameParameters.shared()

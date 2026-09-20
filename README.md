@@ -212,6 +212,30 @@ Settings speaks every change and clicks like the original's buttons. Escape
 leaves it; the turn sensitivity and the key bindings live in Aiming and
 Keyboard. Quit is on the main menu.
 
+## Updates
+
+The game keeps itself up to date. When the main menu opens it asks GitHub
+whether there is a newer build, and says nothing at all unless there is one —
+if there is, it tells you the version and asks **Yes** or **No**. Saying no is
+remembered, so that build is not offered again; a later one still will be.
+
+Say yes and it downloads, then offers to restart. It has to close to put the
+new files in place and starts itself again afterwards. **Your progress is never
+at risk**: saves, settings and key bindings live in `%APPDATA%\AudioDefence`,
+and an update only ever replaces the game's own program files.
+
+**An update downloads only what changed.** The release is around 155 MB, and
+nearly all of it is the game's audio, which is the same in every build. The
+updater reads the archive's index over the network and compares it with what
+you already have, file by file, so a build that only fixes code is a download
+of a few megabytes rather than the whole game again.
+
+If you would rather it did not look, **Settings → Updates** has a switch for
+it, along with the version you are on and a Check for updates button you can
+press whenever you like. Answering "Not yet" to a restart keeps the download:
+the next time you start the game it offers to finish the job rather than
+fetching anything a second time.
+
 Turning is the one place a phone cannot be copied. The original turns with the
 gyroscope, a finger drag or a tilt; here all three are the turn keys held down,
 and the only difference left is how fast they turn:
@@ -453,13 +477,14 @@ went with it.
         s3d/            the S3D audio engine on OpenAL Soft: HRTF, playlists,
                         streaming decoder, the original Freeverb reverb bus
         platform/       run loop, timers, notifications, user defaults, C rand,
-                        speech, the key map
+                        speech, the key map, the updater and its remote-zip reader
         game/           gameplay: enemies, bricks, weapons, power-ups, missions,
                         challenges, inventory, stats, the gameplay controllers
         ui/             the screens, built from the NIBs, and the VoiceOver
                         stand-in that reads them
         app.py          the app delegate: launch, menu music, navigation
-    compile.py          builds the executable, with PyInstaller (see below)
+    compile.py          builds the executable, and the release zip (see below)
+    VERSION             the release tag this build calls itself, e.g. 26-09-20-1
     game/               the original game's own files (see below)
     assets/hrtf/        the HRTF recovered from the binary
     analysis/           the reverse engineering: disassembly, digests, dumps
@@ -560,6 +585,7 @@ it — and compare side by side.
     python tools/listing.py "ADWeapon fire" 0x100 0x200   a range of one listing
     python tools/nib_layout.py --all ADMainMenuViewController   a screen's frames and labels
     python tools/verify_stats.py                          every weapon and enemy vs the plists
+    python tools/verify_updater.py                        the updater, end to end, offline
 
 The digests are condensed and sometimes drop code that matters — when a branch
 does not add up, read the `.s` listing for the same function. Annotation
@@ -638,10 +664,33 @@ is no cross-compiling to another system.
 | `--clean` | empty both of PyInstaller's working places first — this project's `build\` folder and the shared cache in `%LOCALAPPDATA%\pyinstaller` — when a rebuild behaves oddly. `dist\` is untouched, and so is everything in the repository |
 | `--test` | run the result for ten seconds afterwards and read its log: that it found the game data, that the game's own HRTF is in use, and that it ended without a traceback |
 | `--dry-run` | print what would happen, build nothing — including every file that would land beside the executable |
+| `--package` | afterwards, zip `dist\AudioDefence` into `dist\AudioDefence-Win-<version>.zip`, which is what a release's asset is and what the updater reads. It warns first if `VERSION` is missing or `changelog.txt` still starts with `unrelease:` |
 
-A build also carries three pieces of text beside the executable: `changelog.txt`
-as it is, `license.txt` (the repository's `LICENSE`, renamed so Windows opens
-it without asking what with), and `readme.html` — this file, converted at build time by
+### Cutting a release
+
+The archive has to be a **zip**, not a rar: the updater opens it with Python's
+own `zipfile` and reads single files out of it over HTTP, which is what makes a
+small fix a small download, and nothing can do either with a rar without
+shipping an extractor. `python compile.py --package` builds it.
+
+Three things move together and must agree — the `VERSION` file, the git tag,
+and the heading at the top of `changelog.txt`. In order:
+
+- give the `unrelease:` section in `changelog.txt` its date, `26.09.21:`
+- put the tag in `VERSION`, exactly as GitHub will have it: `26-09-21-1`. The
+  number after the date is the build, for a second release on the same day
+- run `python compile.py --package`
+- tag the release `26-09-21-1` and upload `dist\AudioDefence-Win-26-09-21-1.zip`
+
+`--package` says so if `VERSION` is missing or the changelog still says
+`unrelease:`. A build with no `VERSION` file does not know what it is and never
+offers an update, which is the one way to ship something that cannot be
+updated afterwards.
+
+A build also carries four pieces of text beside the executable: `changelog.txt`
+and `VERSION` as they are, `license.txt` (the repository's `LICENSE`, renamed so
+Windows opens it without asking what with), and `readme.html` — this file,
+converted at build time by
 `tools/md_to_html.py`, which needs nothing installed. HTML rather than Markdown
 because a screen reader moves through it by heading, table and list, where a
 `.md` file reads every `#` and `|` aloud. The page is not committed, so it

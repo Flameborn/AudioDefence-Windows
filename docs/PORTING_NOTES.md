@@ -448,6 +448,26 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   Shift+Enter replaces every key the action has, and Delete removes the one added last; an action is never
   left with none.  The storage was already a list per action - only the rebinding screen was one key at a
   time.  Melee is bound to both Ctrls by default, so it is under whichever hand is not on the turn keys.
+* PORT ADDITION: the game updates itself, which on iOS was the App Store's job and has no counterpart in
+  the binary.  `platform/updater.py` asks GitHub for the newest release, compares its tag with the
+  `VERSION` file beside the executable, and offers what it finds through the game's own alert rather than
+  a Windows dialog, so a screen reader reads it like every other screen.  Two things are worth knowing.
+  First, nothing a player owns is at risk by construction: every write the game makes goes to
+  `paths.user_dir()`, the installed folder is read-only while the game runs, and the updater will not
+  write outside the folder the executable is in - so replacing program files cannot touch a save.
+  Second, the download is a delta.  The release is one zip of about 155 MB of which nearly all is the
+  game's audio, identical in every build; `platform/remotezip.py` fetches the archive's central directory
+  over HTTP byte ranges and compares each member's CRC-32 with the file already installed, so a
+  code-only build downloads megabytes rather than the lot.  A server that will not serve ranges, or a
+  zip64 archive, falls back to fetching the whole asset.  The last step cannot happen from inside the
+  game, because a running program holds its own executable and DLLs open: the changed files are staged
+  under `%APPDATA%\AudioDefence\updates` with a backup of what they replace, and a PowerShell script
+  waits for the game to exit, copies them in, and starts it again - putting the backup back if the copy
+  fails.  PowerShell rather than a `.cmd` because a player's folder can have non-ASCII characters in it.
+  A download the player puts off is kept, marked ready, and offered again at the next start rather than
+  fetched twice; the sweep that clears staging folders leaves that one alone.
+  `tools/verify_updater.py` proves the whole path offline, against a local server that serves ranges and
+  a real hand-off, on a folder whose name has a space and Arabic in it.
 * PORT ADDITION: key names are spoken as the keys people call them.  pygame's names for the two Enter keys
   are "return" and "enter", which read out as "Return or Enter" and sound like one key said twice; they are
   "Enter" and "Numpad Enter" here, the arrows are "Left Arrow" and so on, and space is "Spacebar".

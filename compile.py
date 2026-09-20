@@ -17,6 +17,7 @@ import shutil
 import subprocess
 import sys
 import time
+import zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 NAME = 'AudioDefence'
@@ -30,6 +31,7 @@ BINARIES = (('vendor/openal/soft_oal.dll', 'vendor/openal'),    # the audio engi
 #: called here, and what it is called there.  LICENSE has no extension, which is the convention on GitHub
 #: but means Windows asks what to open it with, so it ships as a .txt.
 SIDE_FILES = (('changelog.txt', 'changelog.txt'),
+              ('VERSION', 'VERSION'),
               ('LICENSE', 'license.txt'))
 
 #: built beside the executable from the Markdown they are written in, rather than committed as well and
@@ -40,6 +42,62 @@ GENERATED_PAGES = (('README.md', 'readme.html'),)
 
 def say(text: str = '') -> None:
     print(text, flush=True)
+
+
+def build_version() -> str:
+    """What this build calls itself: the one line in VERSION, or '' when there is no such file."""
+    try:
+        with open(os.path.join(HERE, 'VERSION'), encoding='utf-8') as fh:
+            return fh.read().strip().splitlines()[0].strip()
+    except (OSError, IndexError):
+        return ''
+
+
+def package(dest_root: str) -> str:
+    """Zip the built folder into the archive a release is made of, and that the updater reads.
+
+    A zip rather than a rar because the updater opens it with Python's own zipfile, and reads single
+    files out of it over HTTP so that a small fix is a small download; nothing can do that with a rar
+    without shipping an extractor.  Everything sits under one folder inside the archive, so extracting it
+    gives a player a folder rather than a heap of files in their Downloads.
+    """
+    version = build_version()
+    name = '%s-Win-%s' % (NAME, version) if version else '%s-Win' % NAME
+    archive = os.path.join(HERE, 'dist', name + '.zip')
+    if os.path.isfile(archive):
+        os.remove(archive)
+    say()
+    say('packing %s ...' % os.path.basename(archive))
+    started = time.perf_counter()
+    count = 0
+    with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED, compresslevel=6) as zf:
+        for dirpath, _dirs, files in os.walk(dest_root):
+            for filename in sorted(files):
+                full = os.path.join(dirpath, filename)
+                inside = os.path.join(NAME, os.path.relpath(full, dest_root))
+                zf.write(full, inside.replace(os.sep, '/'))
+                count += 1
+    say('  %d files, %.0f MB, in %.0f seconds.'
+        % (count, os.path.getsize(archive) / (1 << 20), time.perf_counter() - started))
+    say('upload this as the release asset, and tag the release %s.' % (version or 'with its version'))
+    return archive
+
+
+def release_warnings() -> list:
+    """What would make this a bad thing to publish."""
+    found = []
+    if not build_version():
+        found.append('there is no VERSION file, so the built game will not know what version it is '
+                     'and will never offer an update')
+    try:
+        with open(os.path.join(HERE, 'changelog.txt'), encoding='utf-8') as fh:
+            first = fh.readline().strip().lower()
+        if first.startswith('unrelease'):
+            found.append('changelog.txt still starts with "%s": give that section the version number '
+                         'and bump VERSION to match the tag you are about to push' % first.rstrip(':'))
+    except OSError:
+        found.append('changelog.txt is not here, so the release notes would be empty')
+    return found
 
 
 def problems_now() -> list[str]:
@@ -181,6 +239,8 @@ def main(argv=None) -> int:
                         help='keep a console window, where a failed start-up prints its traceback')
     parser.add_argument('--clean', action='store_true', help="throw away PyInstaller's cache first")
     parser.add_argument('--test', action='store_true', help='start the result afterwards and check its log')
+    parser.add_argument('--package', action='store_true',
+                        help='afterwards, zip the folder into the archive a release is made of')
     parser.add_argument('--dry-run', action='store_true', help='print what would be done, build nothing')
     args = parser.parse_args(argv)
     os.chdir(HERE)                                      # the paths above are relative to the project
@@ -208,6 +268,11 @@ def main(argv=None) -> int:
                    '' if os.path.isfile(os.path.join(HERE, name)) else ' - but it is not here'))
         for md_name, page in GENERATED_PAGES:
             say('%s would be built there from %s' % (page, md_name))
+        if args.package:
+            say('it would then be packed into dist%s%s-Win-%s.zip'
+                % (os.sep, NAME, build_version() or '<no VERSION file>'))
+        for warning in release_warnings():
+            say('before releasing: ' + warning)
         return 0
 
     started = time.perf_counter()
@@ -220,6 +285,11 @@ def main(argv=None) -> int:
     if not args.no_game:
         copy_game(dest_root)
     copy_side_files(dest_root)
+
+    if args.package:
+        for warning in release_warnings():
+            say('before releasing: ' + warning)
+        package(dest_root)
 
     exe = os.path.join(dest_root, NAME + '.exe')
     say()

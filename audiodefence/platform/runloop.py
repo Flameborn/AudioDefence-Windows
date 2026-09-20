@@ -11,7 +11,7 @@ import itertools
 import logging
 import math
 import time
-from collections import defaultdict
+from collections import defaultdict, deque
 
 log = logging.getLogger('runloop')
 
@@ -47,6 +47,7 @@ class RunLoop:
         self._seq = itertools.count()
         self._timers: list[Timer] = []
         self._observers: dict[str, list] = defaultdict(list)
+        self._inbox: deque = deque()              # work handed over from other threads
 
     def now(self) -> float:
         return self.clock()
@@ -60,6 +61,15 @@ class RunLoop:
 
     def call_soon(self, fn) -> object:
         return self.call_later(0.0, fn)
+
+    def call_soon_threadsafe(self, fn) -> None:
+        """PORT ADDITION: hand work back from a worker thread, the way dispatch_async(main queue) does.
+
+        Everything the original schedules runs on the main thread and the heap above is not locked, so a
+        thread cannot push onto it.  The updater is the one thing here that waits on a network, which
+        cannot be done on the thread drawing the game, so it posts its results through this queue and
+        ``run_once`` drains them where every other callback already runs."""
+        self._inbox.append(fn)                            # deque.append is atomic under the GIL
 
     @staticmethod
     def cancel(token) -> None:
@@ -89,6 +99,8 @@ class RunLoop:
     # --- pump ------------------------------------------------------------------------------------
     def run_once(self) -> None:
         now = self.now()
+        while self._inbox:                        # whatever the worker threads handed over
+            self._invoke(self._inbox.popleft())
         while self._heap and self._heap[0][0] <= now:
             _, _, fn, token = heapq.heappop(self._heap)
             if token[0]:
@@ -109,6 +121,8 @@ class RunLoop:
         self._timers = [t for t in self._timers if t.valid]
 
     def next_deadline(self) -> float:
+        if self._inbox:
+            return self.now()
         cands = [t.fire_date for t in self._timers if t.valid]
         if self._heap:
             cands.append(self._heap[0][0])

@@ -165,6 +165,10 @@ class MainMenuScreen(ViewControllerScreen):
         # versionNumberLabel is nil; ADTracker / Google Analytics calls are not ported
         RunLoop.main().add_observer(self, 'AD_MESSAGE_AudioRouteChanged', lambda *_: self.audio_route_changed())
         self.audio_route_changed()
+        # PORT ADDITION: the App Store updated the phone game; on Windows the main menu looks for a new
+        # build itself.  It runs on a worker thread and says nothing unless there is one to offer.
+        from .updates import check_on_start
+        check_on_start(self.host, self)
 
     def dealloc(self) -> None:
         RunLoop.main().remove_observer(self)
