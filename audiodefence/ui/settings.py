@@ -107,8 +107,7 @@ class ControlSchemePanel:
                    hint='Press Enter to toggle in-game announcements.', action=self.toggle_announcer)
             t.cell('Test headphones', hint='Press Enter to test your headphones.', action=self.test_headphones)
             t.cell('Tutorial text', self.tutorial_text_text(),   # PORT ADDITION
-                   hint='Press Enter for the next setting, Shift plus Enter for the previous: when the '
-                        "tutorial announcer's lines are also spoken, with the keys you have bound.",
+                   hint='Press Enter for the next setting and Shift plus Enter for the previous.',
                    action=self.step_tutorial_text, shift_action=self.step_tutorial_text_back)
         elif self.category == 'menus':                    # PORT ADDITION: how the cursor moves
             t.cell('Menu arrows', self.menu_axis_text(),
