@@ -88,11 +88,11 @@ class ControlSchemePanel:
                 cell = t.cell(title, description, hint=SELECT_HINT,
                               action=lambda s=scheme: self.select_control_scheme(s))
                 cell.selected = params.control_scheme == scheme     # selectRowAtIndexPath:
-            t.cell('Turn sensitivity', '%s, used by Gyro, Swipe and Tilt' % self.sensitivity_text(),
+            t.cell('Turn sensitivity', self.sensitivity_text(),
                    hint='Press Enter for the next value, Shift plus Enter for the previous.',
                    action=self.step_sensitivity, shift_action=self.step_sensitivity_back)
             t.cell('Restore aiming defaults',
-                   hint='Press Enter to restore Gyro and the default sensitivity.',
+                   hint='Press Enter to restore Gyro and sensitivity to default.',
                    action=self.restore_aiming)
         elif self.category == 'controls':                 # cellForControlAtIndex: 0x1000b5d64
             for title, description, button in CONTROL_ROWS:
