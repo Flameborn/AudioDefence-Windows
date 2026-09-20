@@ -60,12 +60,15 @@ miniature:
   ambience that outlived the game that started it. None of them would have been
   found by reading code.
 
-## A warning before you share this
+## Whose work this is
 
-`game/` holds the original's own data and audio. That is **Somethin' Else's
-work, not ours**, and it is in the repository only so that a clone can build and
-play. Publishing it, uploading it, or handing out a build that contains it is
-distributing someone else's game. Please don't.
+`game/` holds the original's own data and audio — the narration, the zombies,
+the weapons, the music, the playlists that arrange them. That is **Somethin'
+Else's work, not ours**. It is in the repository so the port can run and be
+built from a clone, and a build made by `compile.py` carries it too.
+
+Nothing of theirs is claimed here, this project is not affiliated with them, and
+if they want it taken down it comes down.
 
 ## Requirements
 
@@ -622,10 +625,8 @@ The port, the HRTF and the two vendored DLLs go inside the build. `game/` does
 not — and `game/` is the game's audio: the 918 sound files under `game/sounds/`
 (the narration, the zombies, the weapons, the music), the playlists under
 `game/meta/` that arrange them, the plists and the strings. Every one of those
-is Somethin' Else's recording, not the port's, so handing the built folder to
-somebody else hands their audio on with it — theirs to allow, not yours. Build
-it for your own machine and that question never arises; it is passing a copy
-around that does.
+is Somethin' Else's recording, not the port's, and a build carries them with
+it.
 
 The script copies `game/` **next to the executable** — `AudioDefence.exe` and
 `game/` side by side — which is where `audiodefence/paths.py` looks when
@@ -767,9 +768,8 @@ The port's own code — everything in `audiodefence/`, `tools/`, `compile.py` an
 the documentation — is the author's to license.
 
 `game/` is the original game: Somethin' Else's data, audio and layouts. It is
-not ours, it is not covered by the port's licence, and it is here only so the
-port can run. `analysis/` is derived from their binary and is in the same
-position. Neither is redistributable, and a build produced by `compile.py`
+not ours and it is not covered by the port's licence. `analysis/` is derived
+from their binary and is in the same position. A build produced by `compile.py`
 contains all of it.
 
 This project is not affiliated with Somethin' Else, and no claim is made to

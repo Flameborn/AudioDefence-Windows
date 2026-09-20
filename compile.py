@@ -186,8 +186,7 @@ def main(argv=None) -> int:
     exe = os.path.join(dest_root, NAME + '.exe')
     say()
     say('the game is %s' % exe)
-    say("the folder around it is what you hand over - and the game's own files in it are Somethin' Else's,")
-    say('so keep it to yourself unless you hold the right to pass them on.')
+    say("the folder around it is what you hand over, and the game's own files in it are Somethin' Else's.")
     return test_build(exe) if args.test else 0
 
 
