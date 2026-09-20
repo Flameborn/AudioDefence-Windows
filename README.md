@@ -132,7 +132,7 @@ with the default key bindings.
 In the menus, the port stands in for VoiceOver: it reads the elements of a
 screen the way VoiceOver reads them, with their labels, hints and "button".
 
-| | |
+| key | what it does in the menus |
 |---|---|
 | Right / Tab | next element |
 | Left / Shift+Tab | previous element |
@@ -152,7 +152,7 @@ the game.
 In a game, these are the defaults; all of them can be rebound in
 **Settings → Keyboard**, and "Restore default keys" puts them back.
 
-| | |
+| key | what it does in a game |
 |---|---|
 | Space | fire: tap for a single shot, hold for continuous fire |
 | Left Ctrl or Right Ctrl | melee |
@@ -200,7 +200,7 @@ Turning is the one place a phone cannot be copied. The original turns with the
 gyroscope, a finger drag or a tilt; here all three are the turn keys held down,
 and the only difference left is how fast they turn:
 
-| **Settings → Aiming** | turn speed at the default sensitivity |
+| Settings → Aiming | turn speed at the default sensitivity |
 |---|---|
 | Gyro | the slowest, about 110 degrees a second |
 | Swipe | in between, about 160 |
@@ -469,7 +469,7 @@ be misled by the underscore in `game/sounds/_weapons/` or in the `_fight` /
 
 46 MB of generated material, and the reason the port can claim to be faithful:
 
-| | |
+| file | what is in it |
 |---|---|
 | `disasm/<unit>.s` | full annotated listings of all 7,692 functions, one file per class |
 | `digest/<unit>.txt` | the condensed pseudo-code view of the same functions |
