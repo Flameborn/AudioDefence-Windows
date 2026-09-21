@@ -406,6 +406,13 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   original's.  The volume is kept apart from `gain` because `reduceMainMenuThemeVolume` 0x100083460 fades by
   taking 0.01 off the gain every 0.05 s until it reaches 0: scaling the gain would change how long the fade
   lasts.  The percentage is squared into a gain so the steps sound even.  The ends hold rather than wrap.
+* PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
+  puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
+  turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,
+  menu arrows, cursor memory, the update check and the menu music volume - through the same setters the
+  rows use.  The key bindings are left alone (Settings -> Keyboard has its own Restore default keys), as
+  joystick bindings will be.  The original has no reset; this one replaced the port's own Restore aiming
+  defaults and Restore menu defaults rows.
 * DIVERGENCE: a dead player can no longer fire, melee, reload or switch weapons.  `showDeathOverlay` brings
   the death overlay to the front of the gameplay view and gives it `userInteractionEnabled` (0x10005b9e4 and
   0x10005ba20; the challenge controller's own at 0x1000db814), so on a phone it swallows every touch and the
