@@ -76,7 +76,7 @@ Button mode on a new profile.
 | Page Up / Page Down | no gesture: the menu music volume, up / down (a port addition, see Divergences) |
 
 PORT ADDITION: which pair of arrows moves the cursor is a setting - Left and Right by default, Up and Down
-instead if Settings -> Miscellaneous -> Menu arrows is switched (`GameParameters.menu_axis`, defaults key
+instead if Settings -> Miscellaneous -> Menu layout is switched (`GameParameters.menu_axis`, defaults key
 `menuAxis`).  The unused pair does nothing in a menu; Tab, Shift+Tab, Home and End are not affected.  A
 swipe has no direction to choose, so none of this comes from the original.
 
@@ -85,11 +85,11 @@ PORT ADDITION: holding a key that steps one element repeats it (`ScreenManager._
 the ends, Enter and every gameplay key are left alone.  VoiceOver's own repeat comes from the swipe being
 repeated, so there is nothing in the original to copy here.
 
-PORT UI: Settings holds five categories - Aiming, Controls, Sound, Menus and Keyboard.  Menus carries the
-two settings that describe how the cursor moves through a screen (the menu arrows and whether a screen
-reopens where you left it), because those hold whatever device is driving it; Keyboard carries the key
-bindings alone, so a Joystick category can sit beside it without either moving.  Each category restores its
-own defaults.
+PORT UI: Settings holds seven categories - the original's Aiming, Controls and Sound, then Speech, Keyboard,
+Joystick and Miscellaneous.  Speech carries who speaks the game and SAPI 5's own voice; Keyboard the key
+bindings and Joystick a controller's buttons, each on its own so neither moves the other; Miscellaneous the
+rest, from how the cursor moves through a screen to how a controller vibrates.  Keyboard and Joystick
+restore their own defaults, and Miscellaneous holds the one button that resets every setting.
 
 PORT ADDITION: the pair that does not move the cursor changes tab (`cross_axis_key`), so the two are always
 different keys.  The armory steps through its four tab buttons (`ArmoryScreen.step_tab`, skipping Loadout
@@ -495,10 +495,11 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   against gravity's 9.8, once per half second.  A DualSense's adaptive triggers get the pad's simple
   effects through `SDL_GameControllerSendEffect` - R2 resists between a quarter and a half of its travel
   and gives way where it fires, L2 (reload under Button) a light spring - only while the game is in front;
-  a pause, the menus and closing the game set them plain.  Settings -> Joystick names the pad, sets how
-  strong both are - Off, Light, Medium or Strong (`vibration` and `triggerEffects` in settings.json; Medium
-  by default, and reset by Reset all settings; a stored true or false from before is read as Medium or
-  Off).  Vibration scales every pulse (a half, 0.8, full); the trigger levels are the effect's strength
+  a pause, the menus and closing the game set them plain.  Settings -> Miscellaneous -> Joystick vibration
+  and Trigger feel set how strong both are - Off, Light, Medium or Strong (`vibration` and `triggerEffects`
+  in settings.json; Medium by default, and reset by Reset all settings; a stored true or false from before
+  is read as Medium or Off), and the Trigger feel's hint says that only a DualSense has
+  one.  Vibration scales every pulse (a half, 0.8, full); the trigger levels are the effect's strength
   byte (R2 0x28 / 0x50 / 0x90, L2 0x18 / 0x30 / 0x50 - Medium is well under the 0xC0 R2 had at first, which
   was too stiff).  Settings -> Miscellaneous -> Names in hints and tutorial (`keyNames`: Keyboard keys by
   default, or Controller buttons) names a connected pad's buttons, in its family's names (`pad.family`,
@@ -531,7 +532,7 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   bindings are left alone (Settings -> Keyboard has its own Restore default keys), and so are the
   controllers' buttons (Settings -> Joystick -> Restore default buttons).  The original has no reset; this
   one replaced the port's own Restore aiming defaults and Restore menu defaults rows.
-* PORT ADDITION: Settings -> Miscellaneous -> Speech output (`speechOutput` in settings.json,
+* PORT ADDITION: Settings -> Speech -> Speech output (`speechOutput` in settings.json,
   `Speech.choice`, `platform/speech.py OUTPUTS`): Automatic by default - NVDA through its controller
   client, else another screen reader through Prism, else SAPI 5 (`Speech.speak_automatic`) - or one of
   NVDA, JAWS, ZDSR, Narrator, ZoomText, System Access, Window-Eyes, PC-Talker, Boy PC Reader, Sense Reader
@@ -543,7 +544,9 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   or that Prism is not installed): said through the choice itself, it would not be heard, and a player
   stepping through would not know where they had landed.  The game reads the choice as it starts
   (`__main__`), and the log says when the chosen one stops being able to speak and when it can again.
-  While it is Automatic or SAPI 5, rows for SAPI 5 itself follow (`_Sapi`, `sapiVoice` / `sapiRate` /
+  While SAPI 5 is what speaks - chosen, or Automatic with nothing else running
+  (`ControlSchemePanel.sapi_speaking`, looked at once a second while the category is open, so the rows come
+  and go as a screen reader starts or closes) - rows for SAPI 5 itself follow (`_Sapi`, `sapiVoice` / `sapiRate` /
   `sapiRateBoost` / `sapiPitch` / `sapiVolume`): the voice - Control Panel's, as a new SpVoice starts on,
   then every installed token - the rate (-10 to 10) and the volume (0 to 100 in tens), which are SpVoice's
   own properties and start at Control Panel's, and the pitch (-10 to 10), which SAPI has only as XML,

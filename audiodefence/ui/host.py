@@ -171,7 +171,7 @@ class ScreenManager:
         """The key a controller input stands for in the menus, as (key, modifiers), or None."""
         from ..game.parameters import GameParameters
         from .gameplay_screen import GameplayScreen
-        # the shoulders change tab, and tabs are on the arrows the navigation is not using (Menu arrows)
+        # the shoulders change tab, and tabs are on the arrows the navigation is not using (Menu layout)
         if GameParameters.shared().menu_axis() == 'vertical':
             tab_next, tab_previous = pygame.K_RIGHT, pygame.K_LEFT
         else:

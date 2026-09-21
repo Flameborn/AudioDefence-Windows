@@ -18,6 +18,7 @@ is touch driven).  Every change is spoken.
 from __future__ import annotations
 
 import logging
+import time
 
 import pygame
 
@@ -76,11 +77,12 @@ def _mode_words(action: str, mode: str) -> str:
         return button_words(action, mode) or 'no button'
     return KeyMap.shared().keys_text(action, mode)
 
-# PORT UI: Keyboard holds the key bindings alone, and Joystick a game controller's - its buttons, and
-# whether it vibrates.  Miscellaneous is last and holds the rest: how the cursor moves through a screen,
-# when the tutorial's lines are shown as text, whether the game looks for updates, and the one button that
-# puts every setting back.
-CATEGORIES = (('aiming', 'Aiming'), ('controls', 'Controls'), ('sound', 'Sound'),
+# PORT UI: Speech holds who speaks the game - Speech output - and SAPI 5's own voice while SAPI 5 is what
+# speaks.  Keyboard holds the key bindings alone, and Joystick a game controller's buttons.  Miscellaneous is
+# last and holds the rest: how the cursor moves through a screen, when the tutorial's lines are shown as
+# text and what they name, how a controller vibrates and how a DualSense's triggers feel, whether the game
+# looks for updates, and the one button that puts every setting back.
+CATEGORIES = (('aiming', 'Aiming'), ('controls', 'Controls'), ('sound', 'Sound'), ('speech', 'Speech'),
               ('keyboard', 'Keyboard'), ('joystick', 'Joystick'), ('misc', 'Miscellaneous'))
 PAD_BINDING_HINT = ('Press Enter to add a button, Shift Enter to replace them all, '
                     'Delete to remove the last one.')
@@ -98,6 +100,8 @@ class ControlSchemePanel:
         self.pad_capturing = None                         # the action waiting for a controller button
         self.pad_capturing_replaces = False
         self.pad_capturing_model = None                   # and the controller whose profile it goes to
+        self.sapi_shown = False                           # Speech: whether SAPI 5's rows are listed
+        self._speech_due = 0.0
         frame = (center[0] - 220.0, center[1] - 122.0, 440.0, 244.0)
         self.view = View('', frame, accessible=False, parent=parent, name='#21')
         self.table_view = View('', frame, accessible=False, parent=self.view, ordered=True, name='#13')
@@ -137,7 +141,7 @@ class ControlSchemePanel:
             else:
                 axis_hint = ('Press Enter to move through menus with the other pair; Control with an arrow, '
                              'or with Tab, jumps to the first or last.')
-            t.cell('Menu arrows', self.menu_axis_text(), hint=axis_hint, action=self.toggle_menu_axis)
+            t.cell('Menu layout', self.menu_axis_text(), hint=axis_hint, action=self.toggle_menu_axis)
             t.cell('Remember cursor position', 'ON' if params.remember_focus() else 'OFF',
                    hint='Press Enter to toggle: when on, going back to a screen returns the cursor to the '
                         'row you left it on instead of the first one.',
@@ -160,15 +164,17 @@ class ControlSchemePanel:
                                   'the previous.',
                              action=self.step_names_controller, shift_action=self.step_names_controller_back)
                 row.enabled = params.key_names() == 'buttons'
-            from ..platform.speech import OUTPUTS
-            t.cell('Speech output', dict(OUTPUTS)[params.speech_output()],
-                   hint='Which screen reader or voice speaks the game. Automatic uses NVDA, or another screen '
-                        'reader that is running, or SAPI 5 when none is. Choose one and only that one speaks: '
-                        'the game is silent while it is not running. Press Enter for the next setting and '
-                        'Shift plus Enter for the previous.',
-                   action=self.step_speech_output, shift_action=self.step_speech_output_back)
-            if params.speech_output() in ('auto', 'sapi'):   # SAPI 5 can be what speaks
-                self.sapi_rows(t, params)
+            levels = dict(params.FEEL_LEVELS)
+            t.cell('Joystick vibration', levels[params.vibration_level()],
+                   hint='How strongly a game controller vibrates, for hits, kills, explosions, the heartbeat '
+                        'and your death. Press Enter for the next setting and Shift plus Enter for the '
+                        'previous.',
+                   action=self.step_vibration, shift_action=self.step_vibration_back)
+            t.cell('Trigger feel', levels[params.trigger_level()],
+                   hint="Only for a DualSense controller; other controllers have no trigger feel. How stiff "
+                        "its triggers are while you play: R2 like a gun's trigger, L2 a pull where it "
+                        'reloads. Press Enter for the next setting and Shift plus Enter for the previous.',
+                   action=self.step_trigger_level, shift_action=self.step_trigger_level_back)
             t.cell('Check for updates when the game starts', 'ON' if params.check_updates() else 'OFF',
                    hint='Press Enter to toggle: when on, the main menu looks for a new build and tells '
                         'you only if there is one.',
@@ -177,6 +183,17 @@ class ControlSchemePanel:
                    hint='Press Enter to put every setting back to its default. Your key and controller '
                         'bindings stay as they are.',
                    action=self.reset_all_settings)
+        elif self.category == 'speech':                   # PORT ADDITION: who speaks, and SAPI 5's voice
+            from ..platform.speech import OUTPUTS
+            t.cell('Speech output', dict(OUTPUTS)[params.speech_output()],
+                   hint='Which screen reader or voice speaks the game. Automatic uses NVDA, or another screen '
+                        'reader that is running, or SAPI 5 when none is. Choose one and only that one speaks: '
+                        'the game is silent while it is not running. Press Enter for the next setting and '
+                        'Shift plus Enter for the previous.',
+                   action=self.step_speech_output, shift_action=self.step_speech_output_back)
+            self.sapi_shown = self.sapi_speaking()
+            if self.sapi_shown:                           # only while SAPI 5 is what speaks
+                self.sapi_rows(t, params)
         elif self.category == 'keyboard':                 # PORT ADDITION: the key bindings
             keymap = KeyMap.shared()
             scheme = mode_text(keymap.mode())
@@ -206,17 +223,6 @@ class ControlSchemePanel:
             else:
                 t.cell('Controller', editing or 'none connected',
                        hint=None if editing else 'Connect a controller to set its buttons.')
-            levels = dict(params.FEEL_LEVELS)
-            t.cell('Vibration', levels[params.vibration_level()],
-                   hint='How strongly the controller vibrates, for hits, kills, explosions, the heartbeat '
-                        'and your death. Press Enter for the next setting and Shift plus Enter for the '
-                        'previous.',
-                   action=self.step_vibration, shift_action=self.step_vibration_back)
-            t.cell('Trigger feel', levels[params.trigger_level()],
-                   hint="How stiff a DualSense's triggers are while you play: R2 like a gun's trigger, L2 a "
-                        'pull where it reloads. Press Enter for the next setting and Shift plus Enter for '
-                        'the previous.',
-                   action=self.step_trigger_level, shift_action=self.step_trigger_level_back)
             t.cell('Turn', 'either stick, sideways',
                    hint='The further a stick is pushed, the faster you turn.')
             if editing is None:                           # the buttons are set for a connected controller
@@ -401,7 +407,7 @@ class ControlSchemePanel:
         params = GameParameters.shared()
         params.set_vibration_level(self._next_level(params.vibration_level(), step))
         self.reload_data()
-        self.announce('Vibration %s' % dict(params.FEEL_LEVELS)[params.vibration_level()])
+        self.announce('Joystick vibration %s' % dict(params.FEEL_LEVELS)[params.vibration_level()])
         from ..platform.haptics import Haptics            # so the new strength can be felt
         Haptics.shared().sample()
 
@@ -449,6 +455,26 @@ class ControlSchemePanel:
 
     # --- SAPI 5 (PORT ADDITION) ------------------------------------------------------------------
     SAPI_STEP_HINT = 'Press Enter for the next setting and Shift plus Enter for the previous.'
+    SPEECH_CHECK_EVERY = 1.0                              # seconds between looks at what speaks
+
+    @staticmethod
+    def sapi_speaking() -> bool:
+        """Whether SAPI 5 is what speaks: chosen, or Automatic with no screen reader running."""
+        from ..platform.speech import Speech
+        choice = GameParameters.shared().speech_output()
+        return choice == 'sapi' or (choice == 'auto' and Speech.shared().automatic_output() == 'sapi')
+
+    def follow_speech(self) -> None:
+        """On the Speech category, SAPI 5's rows come and go as it starts or stops being what speaks - a
+        screen reader started or closed while the list is open - looked at once a second."""
+        if self.category != 'speech' or self.capturing is not None:
+            return
+        now = time.monotonic()
+        if now < self._speech_due:
+            return
+        self._speech_due = now + self.SPEECH_CHECK_EVERY
+        if self.sapi_speaking() != self.sapi_shown:
+            self.reload_data()
     CONTROL_PANEL_VOICE = 'Control Panel default'
 
     def sapi_rows(self, t, params) -> None:
@@ -627,7 +653,7 @@ class ControlSchemePanel:
         axis = axes[(axes.index(params.menu_axis()) + 1) % len(axes)]
         params.set_menu_axis(axis)
         self.reload_data()
-        self.announce('Menu arrows %s' % self.menu_axis_text(axis))
+        self.announce('Menu layout %s' % self.menu_axis_text(axis))
 
     def capture_key(self, action: str, replace: bool = False) -> None:
         self.capturing = action
@@ -736,6 +762,10 @@ class SettingsScreen(ViewControllerScreen):
             self.control_scheme.move_category(where)
             return
         super().key_down(event)
+
+    def frame(self) -> None:
+        super().frame()
+        self.control_scheme.follow_speech()               # PORT ADDITION: see there
 
     def pads_changed(self) -> None:
         """PORT ADDITION: a controller came or went.  The Joystick category names it and shows its

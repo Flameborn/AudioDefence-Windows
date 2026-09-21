@@ -14,7 +14,7 @@ tree:
     Shift+Enter                 a row's second action, where it has one (PORT ADDITION)
     Escape / Backspace          accessibilityPerformEscape (two-finger scrub)
 
-Settings -> Keyboard -> Menu arrows swaps those two pairs: the arrows that move through the elements
+Settings -> Miscellaneous -> Menu layout swaps those two pairs: the arrows that move through the elements
 and the arrows that change tab are always the two different pairs.
 
 PORT APPROXIMATION: VoiceOver's reading order.  VoiceOver visits the elements of a screen top to bottom,

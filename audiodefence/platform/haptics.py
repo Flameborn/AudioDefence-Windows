@@ -14,7 +14,7 @@ vibrate sound - so everything here is the port's own, for players with a control
 * and **dying** - a zombie reaching you - is a long, heavy shudder.
 
 What happens in one pass of the game loop is felt as one pulse: a shotgun blast into three zombies is one
-jolt, firmer for the extra two, not three buzzes over each other.  Settings -> Joystick -> Vibration scales
+jolt, firmer for the extra two, not three buzzes over each other.  Settings -> Miscellaneous -> Joystick vibration scales
 it all (light, medium, strong) or turns it off.
 
 Every pad that can rumble does, through SDL.  A DualSense on USB is played its fine haptics instead
@@ -27,7 +27,7 @@ import logging
 
 log = logging.getLogger('platform.haptics')
 
-#: Settings -> Joystick -> Vibration: how much of each pulse is felt
+#: Settings -> Miscellaneous -> Joystick vibration: how much of each pulse is felt
 LEVEL_SCALE = {'off': 0.0, 'light': 0.5, 'medium': 0.8, 'strong': 1.0}
 
 #: kind -> (low-frequency motor, high-frequency motor, milliseconds) at strength s: the heavy motor is the

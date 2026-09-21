@@ -27,7 +27,7 @@ closed while the game runs is followed within a few seconds. The game is the
 same whichever speaks: with SAPI 5 you get every screen and the spoken game
 exactly as an NVDA player does.
 
-That choice is automatic. **Settings → Miscellaneous → Speech output** picks one
+That choice is automatic. **Settings → Speech → Speech output** picks one
 instead — NVDA, JAWS, ZDSR, Narrator, ZoomText, System Access, Window-Eyes,
 PC-Talker, Boy PC Reader, Sense Reader or SAPI 5 — with Enter for the next and
 Shift+Enter for the previous, and Automatic, the default, at the start of the
@@ -37,8 +37,9 @@ you what you picked, through the automatic choice when the one you picked
 cannot speak ("JAWS is not running, so the game will be silent until it is"),
 so you can step on to another without being left in silence.
 
-While Speech output is Automatic or SAPI 5, five more rows follow it, for SAPI
-5 itself:
+While SAPI 5 is what speaks — chosen, or Automatic with no screen reader
+running — five more rows follow it in the same tab, for SAPI 5 itself. They
+come and go by themselves as a screen reader starts or closes:
 
 | row | what it does |
 |---|---|
@@ -327,12 +328,14 @@ R2 resists like a gun's trigger and gives way where it fires, and under Button
 L2 pulls against a light spring where it reloads. In the menus and on the pause
 screen they are plain again, and they are set back when the game closes.
 
-**Settings → Joystick** names the controller that is connected, and sets how
-strong the **Vibration** and the **Trigger feel** are: Off, Light, Medium (the
-default) or Strong, with Enter for the next and Shift+Enter for the previous.
-Each step of Vibration gives a pulse at the new strength so you can feel it.
+**Settings → Miscellaneous** sets how strong **Joystick vibration** and the
+**Trigger feel** are: Off, Light, Medium (the default) or Strong, with Enter
+for the next and Shift+Enter for the previous. Each step of Joystick vibration
+gives a pulse at the new strength so you can feel it, and the Trigger feel is
+only for a DualSense — no other controller has one.
 
-It also lets you change which button does what, the way Keyboard does for keys:
+**Settings → Joystick** names the controller that is connected, and lets you
+change which button does what, the way Keyboard does for keys:
 Enter (Cross) on an action
 adds a button, Shift+Enter (Square) replaces them all, Delete (Triangle)
 removes the last one, and Escape on the keyboard cancels. Next weapon and
@@ -623,8 +626,8 @@ replacing them.
   announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
   **Settings → Miscellaneous → Tutorial text** chooses when, or turns it off: Enter steps to the next
   setting, Shift+Enter to the previous.
-- **Settings → Miscellaneous → Speech output**: Automatic, or one screen reader or voice only, and SAPI
-  5's voice, rate, rate boost, pitch and volume. See [Accessibility](#accessibility).
+- **Settings → Speech**: Speech output — Automatic, or one screen reader or voice only — and SAPI 5's
+  voice, rate, rate boost, pitch and volume. See [Accessibility](#accessibility).
 - **Settings → Miscellaneous → Remember cursor position** (off by default) returns the cursor to the row
   you left a screen on.
 - **A menu music volume**: Page Up and Page Down, on any menu, in steps of 10% from 100% — the original's

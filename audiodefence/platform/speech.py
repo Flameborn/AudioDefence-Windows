@@ -416,6 +416,14 @@ class Speech:
             return
         self.sapi.speak(text, interrupt)
 
+    def automatic_output(self) -> str:
+        """What Automatic speaks through right now, without speaking: 'nvda', another screen reader's
+        Prism name, or 'sapi'."""
+        if self.nvda.running():
+            return 'nvda'
+        reader = self.readers.current()
+        return reader.name if reader is not None else 'sapi'
+
     def can_speak(self, choice: str) -> bool:
         """Whether this Speech output choice can speak right now."""
         if choice == 'auto':

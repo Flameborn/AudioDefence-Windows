@@ -354,7 +354,7 @@ def sdl():
 DS5_RIGHT_TRIGGER, DS5_LEFT_TRIGGER = 0x04, 0x08
 TRIGGER_OFF = (0x05,)
 #: R2 resists from a quarter of its travel and breaks at half, where it fires (TRIGGER_DOWN), as stiffly as
-#: Settings -> Joystick -> Trigger feel says.  0xC0 was found too hard to fire with; strong is well below.
+#: Settings -> Miscellaneous -> Trigger feel says.  0xC0 was found too hard to fire with; strong is well below.
 GUN_TRIGGER = {'light': (0x02, 0x40, 0x80, 0x28), 'medium': (0x02, 0x40, 0x80, 0x50),
                'strong': (0x02, 0x40, 0x80, 0x90)}
 #: L2, the reload under Button, pulls against a spring
