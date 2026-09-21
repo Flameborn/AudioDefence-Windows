@@ -493,15 +493,20 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   reached through pygame's own SDL2.dll) calls `motionEnded:withEvent:` 0x10005a108 as the phone's shake
   does, so it swings the melee weapon under Gesture and does nothing under Button; the threshold is 25 m/s2
   against gravity's 9.8, once per half second.  A DualSense's adaptive triggers get the pad's simple
-  effects through `SDL_GameControllerSendEffect` - R2 resists between a quarter and a half of its travel
-  and gives way where it fires, L2 (reload under Button) a light spring - only while the game is in front;
+  effects through `SDL_GameControllerSendEffect` - R2 is the pad's weapon effect, free until just before
+  half its travel, where it catches, and breaking through the catch at half is where the game fires
+  (TRIGGER_DOWN), so the shot comes with the break; L2 (reload under Button) is a light spring - only
+  while the game is in front;
   a pause, the menus and closing the game set them plain.  Settings -> Miscellaneous -> Joystick vibration
   and Trigger feel set how strong both are - Off, Light, Medium or Strong (`vibration` and `triggerEffects`
   in settings.json; Medium by default, and reset by Reset all settings; a stored true or false from before
   is read as Medium or Off), and the Trigger feel's hint says that only a DualSense has
   one.  Vibration scales every pulse (a half, 0.8, full); the trigger levels are the effect's strength
-  byte (R2 0x28 / 0x50 / 0x90, L2 0x18 / 0x30 / 0x50 - Medium is well under the 0xC0 R2 had at first, which
-  was too stiff).  Settings -> Miscellaneous -> Names in hints and tutorial (`keyNames`: Keyboard keys by
+  byte (R2 0x14 / 0x28 / 0x50, L2 0x0C / 0x18 / 0x30).  The scale was softened a step after playing with
+  it: 0xC0 was too stiff to fire with, and at 0x28 / 0x50 / 0x90 Medium was still hard, so what was Light is
+  Medium now and Light is softer than anything there was.  Stepping the row gives a connected DualSense that
+  feel for eight seconds (`ControlSchemePanel.sample_triggers`), since the triggers are a game's feel and no
+  game is running while you choose it; leaving Settings makes them plain again.  Settings -> Miscellaneous -> Names in hints and tutorial (`keyNames`: Keyboard keys by
   default, or Controller buttons) names a connected pad's buttons, in its family's names (`pad.family`,
   from the name SDL gives it): every row's hint turns the keys a menu button stands for into that button
   (`pad.menu_words`: Shift+Enter, Enter, Delete and Escape become Square, Cross, Triangle and Circle, or X,

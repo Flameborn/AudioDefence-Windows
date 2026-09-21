@@ -353,12 +353,18 @@ def sdl():
 # breaks.  Positions and strength run 0 to 255.
 DS5_RIGHT_TRIGGER, DS5_LEFT_TRIGGER = 0x04, 0x08
 TRIGGER_OFF = (0x05,)
-#: R2 resists from a quarter of its travel and breaks at half, where it fires (TRIGGER_DOWN), as stiffly as
-#: Settings -> Miscellaneous -> Trigger feel says.  0xC0 was found too hard to fire with; strong is well below.
-GUN_TRIGGER = {'light': (0x02, 0x40, 0x80, 0x28), 'medium': (0x02, 0x40, 0x80, 0x50),
-               'strong': (0x02, 0x40, 0x80, 0x90)}
-#: L2, the reload under Button, pulls against a spring
-RELOAD_TRIGGER = {'light': (0x01, 0x40, 0x18), 'medium': (0x01, 0x40, 0x30), 'strong': (0x01, 0x40, 0x50)}
+#: R2 is a gun's trigger: free for the first part of its travel, then it catches and will not go on, and
+#: pressing through the catch breaks it and fires.  The pad's own weapon effect does that - resistance from
+#: `start` to `end`, then it gives way - so the catch sits just before half the travel and breaks at half,
+#: which is where the game fires (TRIGGER_DOWN): the shot comes with the break, not before it.  The catch
+#: used to begin at a quarter of the travel, which felt like a long hard squeeze rather than a catch.
+#: How hard it is to press through is what Settings -> Miscellaneous -> Trigger feel sets; the scale was
+#: softened a step after playing with it (0xC0 was too stiff to fire at all, then Medium at 0x50 was still
+#: hard), so what was Light is Medium now and Light is softer than anything there was.
+GUN_TRIGGER = {'light': (0x02, 0x60, 0x80, 0x14), 'medium': (0x02, 0x60, 0x80, 0x28),
+               'strong': (0x02, 0x60, 0x80, 0x50)}
+#: L2, the reload under Button, pulls against a spring - softened the same way
+RELOAD_TRIGGER = {'light': (0x01, 0x40, 0x0C), 'medium': (0x01, 0x40, 0x18), 'strong': (0x01, 0x40, 0x30)}
 
 
 def ds5_effect(right=None, left=None) -> bytes:

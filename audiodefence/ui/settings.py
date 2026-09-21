@@ -101,6 +101,7 @@ class ControlSchemePanel:
         self.pad_capturing_replaces = False
         self.pad_capturing_model = None                   # and the controller whose profile it goes to
         self.sapi_shown = False                           # Speech: whether SAPI 5's rows are listed
+        self._trigger_sample = None                       # the Trigger feel being tried on the pad
         self._speech_due = 0.0
         frame = (center[0] - 220.0, center[1] - 122.0, 440.0, 244.0)
         self.view = View('', frame, accessible=False, parent=parent, name='#21')
@@ -414,11 +415,36 @@ class ControlSchemePanel:
     def step_vibration_back(self) -> None:
         self.step_vibration(-1)
 
+    #: PORT ADDITION: seconds a stepped Trigger feel is left on the pad, to squeeze R2 and feel it.  The
+    #: triggers are a game's feel, and the game is not running while you are choosing it.
+    TRIGGER_SAMPLE = 8.0
+
     def step_trigger_level(self, step: int = 1) -> None:
         params = GameParameters.shared()
         params.set_trigger_level(self._next_level(params.trigger_level(), step))
         self.reload_data()
         self.announce('Trigger feel %s' % dict(params.FEEL_LEVELS)[params.trigger_level()])
+        self.sample_triggers(params.trigger_level())
+
+    def sample_triggers(self, level: str) -> None:
+        """Give a connected DualSense this feel for a few seconds, so it can be tried here; then plain
+        again, as the menus always leave it."""
+        from ..platform.pad import Pads
+        from ..platform.runloop import RunLoop
+        pads = Pads.shared()
+        if not pads.dualsenses:
+            return
+        if level == 'off':
+            pads.set_triggers('off')
+            return
+        pads.set_triggers('gun and reload', level)
+        token = self._trigger_sample = object()
+
+        def plain() -> None:
+            if self._trigger_sample is token:             # a later step has its own few seconds
+                self._trigger_sample = None
+                pads.set_triggers('off')
+        RunLoop.main().call_later(self.TRIGGER_SAMPLE, plain)
 
     def step_trigger_level_back(self) -> None:
         self.step_trigger_level(-1)
@@ -766,6 +792,12 @@ class SettingsScreen(ViewControllerScreen):
     def frame(self) -> None:
         super().frame()
         self.control_scheme.follow_speech()               # PORT ADDITION: see there
+
+    def on_dismiss(self) -> None:
+        from ..platform.pad import Pads
+        self.control_scheme._trigger_sample = None        # PORT ADDITION: no Trigger feel left on the pad
+        Pads.shared().set_triggers('off')
+        super().on_dismiss()
 
     def pads_changed(self) -> None:
         """PORT ADDITION: a controller came or went.  The Joystick category names it and shows its

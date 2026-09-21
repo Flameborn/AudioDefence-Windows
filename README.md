@@ -324,15 +324,18 @@ the very recording you hear, felt in your hands — and its own knocks, thuds
 and rumbles for the rest, through the fine haptics PlayStation games use rather
 than plain rumble. Over Bluetooth Windows does not offer that, and it rumbles
 like any other pad. On a **DualSense** the triggers change too while you play:
-R2 resists like a gun's trigger and gives way where it fires, and under Button
-L2 pulls against a light spring where it reloads. In the menus and on the pause
+R2 is a gun's trigger: free for the first part of the pull, then it catches and
+holds, and pressing through the catch breaks it and fires the shot. Under
+Button, L2 pulls against a light spring where it reloads. In the menus and on the pause
 screen they are plain again, and they are set back when the game closes.
 
 **Settings → Miscellaneous** sets how strong **Joystick vibration** and the
 **Trigger feel** are: Off, Light, Medium (the default) or Strong, with Enter
 for the next and Shift+Enter for the previous. Each step of Joystick vibration
-gives a pulse at the new strength so you can feel it, and the Trigger feel is
-only for a DualSense — no other controller has one.
+gives a pulse at the new strength so you can feel it, and each step of the
+Trigger feel puts that feel on the triggers for eight seconds so you can
+squeeze R2 and try it there and then. The Trigger feel is only for a
+DualSense — no other controller has one.
 
 **Settings → Joystick** names the controller that is connected, and lets you
 change which button does what, the way Keyboard does for keys:
