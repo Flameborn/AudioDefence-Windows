@@ -1,17 +1,24 @@
 """Build Audio Defence into an executable with PyInstaller.
 
-    py compile.py                one folder in dist\\AudioDefence, the game's data copied in
-    py compile.py --onefile      a single executable instead (unpacks itself at every launch)
-    py compile.py --test         build, then start the result and check its log
-    py compile.py --dry-run      say what would happen, build nothing
-    py compile.py --no-package   the folder alone, without the release zip
+Double-click this file, or run py compiler.py with nothing after it, and it offers a numbered menu of
+builds, then waits for Enter at the end so you can hear how it went.  Its first choice is the release
+build.  Every other choice is one of these flags, which still work typed out:
 
-A build ends by zipping the folder into dist\\AudioDefence-Win-<VERSION>.zip, which is what a release's
-asset is and what the updater reads; --no-package is the way to skip that.
+    py compiler.py --test         build, then start the result and check its log
+    py compiler.py --no-package   the folder alone, without the release zip
+    py compiler.py --clean        empty PyInstaller's cache first
+    py compiler.py --console      keep a console window, to see why the game will not start
+    py compiler.py --onefile      a single executable instead (unpacks itself at every launch)
+    py compiler.py --no-game      leave the game's data out
+    py compiler.py --dry-run      say what a build would do, build nothing
 
-A plain build - no flags at all - is a release, and it files the changelog first: the lines under
-"unrelease:" go under this version's heading in the repository's changelog.txt, and the copy beside
-the executable opens on that version.  It ends by saying what it changed, for you to commit.
+A build makes one folder, dist\\AudioDefence, with the game's data copied in, and ends by zipping it into
+dist\\AudioDefence-Win-<VERSION>.zip, which is what a release's asset is and what the updater reads.
+
+The release build - no flags at all - also files the changelog first: the lines under "unrelease:" go
+under this version's heading in the repository's changelog.txt, and the copy beside the executable opens
+on that version.  It ends by saying what it changed, for you to commit.  Run with no flags and no
+keyboard (from a script), it is the release build straight away, without the menu.
 
 The port, the HRTF and the vendored DLLs go inside the build; the game's own files do not - they are
 copied next to the executable, where audiodefence/paths.py looks for them when frozen.  See the README.
@@ -94,7 +101,7 @@ def package(dest_root: str) -> str:
 
 # --- the changelog -----------------------------------------------------------------------------------
 # changelog.txt collects what has changed under one heading, "unrelease:", at the top.  A plain build -
-# py compile.py with no flags at all - files those lines under the version being built, in the
+# py compiler.py with no flags at all - files those lines under the version being built, in the
 # repository's changelog, and ships a copy that opens on that version instead.  Any flag leaves the
 # changelog exactly as it is: a build with a flag is a build for trying something, not a release.
 
@@ -210,9 +217,9 @@ def release_warnings(changelog: str) -> list:
         with open(changelog, encoding='utf-8') as fh:
             first = fh.readline().strip()
         if first == UNRELEASE:
-            found.append('the changelog in this build still opens with "%s", because a build with a flag '
-                         'leaves the changelog as it is; run py compile.py with no flags to file those '
-                         'lines under the version' % UNRELEASE)
+            found.append('the changelog in this build still opens with "%s", because only the release '
+                         'build files the changelog; choose it, number 1, from the menu to put those lines '
+                         'under the version' % UNRELEASE)
     except OSError:
         found.append('there is no changelog.txt, so the release notes would be empty')
     return found
@@ -241,8 +248,12 @@ def problems_now() -> list[str]:
     return found
 
 
-def command(args) -> list[str]:
+def command(args, quiet: bool = False) -> list[str]:
     cmd = [sys.executable, '-m', 'PyInstaller', '--noconfirm', '--noupx', '--name', NAME]
+    if quiet:
+        # from the menu: PyInstaller's few hundred INFO lines would otherwise be read out one by one;
+        # warnings and errors still come through
+        cmd += ['--log-level', 'WARN']
     for src, dest in DATA:
         cmd += ['--add-data', src + os.pathsep + dest]
     for src, dest in BINARIES:
@@ -347,8 +358,8 @@ def test_build(exe: str) -> int:
     return 0 if read_log(text, run.returncode, log) else 1
 
 
-def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(prog='compile.py', description='build Audio Defence with PyInstaller')
+def main(argv=None, quiet: bool = False) -> int:
+    parser = argparse.ArgumentParser(prog='compiler.py', description='build Audio Defence with PyInstaller')
     parser.add_argument('--onefile', action='store_true',
                         help='one executable instead of one folder (unpacks itself at every launch)')
     parser.add_argument('--no-game', action='store_true',
@@ -375,8 +386,11 @@ def main(argv=None) -> int:
             return 2
         say()
 
-    cmd = command(args)
-    say('running: python ' + ' '.join(cmd[1:]))
+    cmd = command(args, quiet)
+    if not quiet:
+        say('running: python ' + ' '.join(cmd[1:]))
+    elif not args.dry_run:
+        say('building with PyInstaller - this takes a minute or so, and only its warnings are read out ...')
     if args.dry_run:
         if args.no_game:
             say("the game's data would not be copied.")
@@ -445,5 +459,68 @@ def main(argv=None) -> int:
     return test_build(exe) if args.test else 0
 
 
+# --- the menu ----------------------------------------------------------------------------------------
+# Double-click compiler.py, or run it with nothing after it, and it asks rather than expects you to know
+# the flags.  Each choice is exactly one of the command lines below, so the two can never disagree; the
+# flags still work as they always have for anyone typing them.
+
+MENU = (
+    ('Release build: file the changelog under the version, build, and zip', []),
+    ('Test build: build, zip, then run it for ten seconds and check its log', ['--test']),
+    ('Build without the zip', ['--no-package']),
+    ("Clean build: empty PyInstaller's cache first, for when a build behaves oddly", ['--clean']),
+    ("Build with a console window, to see why the game will not start", ['--console']),
+    ('One-file build: a single executable instead of a folder', ['--onefile']),
+    ("Build without the game's data", ['--no-game']),
+    ('Show what a release build would do, without building anything', ['--dry-run']),
+)
+
+
+def menu() -> list | None:
+    """Ask which build.  Returns the flags for it, or None to quit."""
+    version = build_version()
+    say('Audio Defence compiler.  VERSION is %s.'
+        % (version or 'missing - a release build will start it at %s' % FIRST_VERSION))
+    say()
+    for number, (text, _flags) in enumerate(MENU, 1):
+        say('  %d. %s' % (number, text))
+    say('  0. Quit')
+    say()
+    while True:
+        try:
+            choice = input('Type a number and press Enter: ').strip()
+        except EOFError:
+            return None
+        if choice == '0':
+            return None
+        if choice.isdigit() and 1 <= int(choice) <= len(MENU):
+            text, flags = MENU[int(choice) - 1]
+            say('%s.' % text.split(':')[0])
+            say()
+            return list(flags)
+        say('There is no choice "%s". Type a number from 0 to %d.' % (choice, len(MENU)))
+
+
+def run(argv=None) -> int:
+    """Flags on the command line build straight away, as they always have.  No flags with a keyboard at
+    the other end - a double-click in Explorer, or py compiler.py typed on its own - opens the menu, and
+    the window waits at the end so what happened can be heard before it closes.  With no keyboard at
+    all, no flags is still the release build it always was."""
+    argv = sys.argv[1:] if argv is None else argv
+    if argv or not sys.stdin.isatty():
+        return main(argv)
+    chosen = menu()
+    if chosen is None:
+        return 0
+    try:
+        return main(chosen, quiet=True)
+    finally:
+        say()
+        try:
+            input('Finished. Press Enter to close this window.')
+        except EOFError:
+            pass
+
+
 if __name__ == '__main__':
-    sys.exit(main())
+    sys.exit(run())

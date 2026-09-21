@@ -3,7 +3,7 @@
 The iOS original has a version - `CFBundleShortVersionString` in `Info.plist` - but it is the phone
 game's, not this port's, and the App Store did the updating.  A Windows build has to carry its own.
 
-The number lives in one place, the `VERSION` file, which `compile.py` copies beside the executable the way
+The number lives in one place, the `VERSION` file, which `compiler.py` copies beside the executable the way
 it copies `changelog.txt`.  It holds the release tag exactly as GitHub has it, so cutting a release is
 copy-and-paste rather than a conversion.
 

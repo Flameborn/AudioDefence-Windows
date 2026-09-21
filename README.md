@@ -65,7 +65,7 @@ miniature:
 `game/` holds the original's own data and audio — the narration, the zombies,
 the weapons, the music, the playlists that arrange them. That is **Somethin'
 Else's work, not ours**. It is in the repository so the port can run and be
-built from a clone, and a build made by `compile.py` carries it too.
+built from a clone, and a build made by `compiler.py` carries it too.
 
 Nothing of theirs is claimed here, this project is not affiliated with them, and
 if they want it taken down it comes down.
@@ -519,7 +519,7 @@ went with it.
         ui/             the screens, built from the NIBs, and the VoiceOver
                         stand-in that reads them
         app.py          the app delegate: launch, menu music, navigation
-    compile.py          builds the executable, and the release zip (see below)
+    compiler.py          builds the executable, and the release zip (see below)
     VERSION             the release tag this build calls itself, e.g. 26.09.20-2
     game/               the original game's own files (see below)
     assets/hrtf/        the HRTF recovered from the binary
@@ -678,12 +678,33 @@ first — and note that the extractor needs the thin arm64 slice, not the fat
 ## Building an executable
 
     py -m pip install pyinstaller
-    py compile.py
+
+Then **double-click `compiler.py`** in Explorer, or type `py compiler.py` on
+its own. It asks which build you want:
+
+    1. Release build: file the changelog under the version, build, and zip
+    2. Test build: build, zip, then run it for ten seconds and check its log
+    3. Build without the zip
+    4. Clean build: empty PyInstaller's cache first, for when a build behaves oddly
+    5. Build with a console window, to see why the game will not start
+    6. One-file build: a single executable instead of a folder
+    7. Build without the game's data
+    8. Show what a release build would do, without building anything
+    0. Quit
+
+Type the number and press Enter. PyInstaller's own few hundred lines of
+progress are kept quiet, so a screen reader hears only what matters, and the
+window waits for Enter at the end so you can hear how it went before it closes.
 
 That is the whole build. The script checks what it needs, runs PyInstaller with
 the right arguments, copies the game's data next to the executable and says
 where the result is: `dist\AudioDefence\AudioDefence.exe`, in a folder that
 runs on a machine with no Python on it at all.
+
+Each choice is one of the options in the table below, and they still work typed
+out — `py compiler.py --test` builds straight away with no menu. Run with no
+options and nothing to type into — from a script — it goes straight to the
+release build.
 
 PyInstaller is the only extra package, and it goes in the same Python you play
 with: a build is made by following the game's own imports, so `pygame-ce`,
@@ -707,21 +728,21 @@ is no cross-compiling to another system.
 The archive has to be a **zip**, not a rar: the updater opens it with Python's
 own `zipfile` and reads single files out of it over HTTP, which is what makes a
 small fix a small download, and nothing can do either with a rar without
-shipping an extractor. `py compile.py` builds it: the zip is what a build makes
-unless you say `--no-package`.
+shipping an extractor. Every build makes it, unless you choose the build without
+the zip (`--no-package`).
 
 New changes go in `changelog.txt` under one heading at the top, `unrelease:`,
 one line each. You never rename that heading yourself — the build files it.
 In order:
 
 - put the version in `VERSION`, exactly as GitHub will have it: `26.09.21-1`
-- run `py compile.py`, with **no flags**
+- double-click `compiler.py` and choose **1, Release build**
 - commit what it tells you changed — `changelog.txt`, and `VERSION` if it had
   to make one
 - tag the release `26.09.21-1` and upload `dist\AudioDefence-Win-26.09.21-1.zip`
 
-A plain `py compile.py` is a release, and before it copies anything it does
-three things to the repository:
+The release build — choice 1, or `py compiler.py` with no options from a
+script — does three things to the repository before it copies anything:
 
 - the lines under `unrelease:` move to the entry for this version, headed
   without the `-1`: `26.09.21:`. If that entry is already there — a second
@@ -737,11 +758,12 @@ Nothing under `unrelease:` means nothing is moved and the repository's
 changelog is not touched. Building twice without committing is harmless: the
 second build finds `unrelease:` already empty.
 
-**Any flag** — `--test`, `--clean`, `--no-package` or the rest — leaves the
-changelog exactly as it is, because a build with a flag is for trying
-something, not for releasing it. If such a build is zipped, it says so: its
-changelog still opens with `unrelease:`. `py compile.py --dry-run` shows what a
-plain build would do to the changelog without writing anything.
+**Every other choice** — the test build, the clean build, the build without
+the zip and the rest, or any of their options typed out — leaves the changelog
+exactly as it is, because those builds are for trying something, not for
+releasing it. If such a build is zipped, it says so: its changelog still opens
+with `unrelease:`. Choice 8, *Show what a release build would do*, reads out
+what the release build would do to the changelog without writing anything.
 
 `VERSION` is **`YY.MM.DD-XX`**: last two digits of the year, month, day, and
 which release of that day it is, counting from 1. The first release on the 20th
@@ -794,7 +816,7 @@ executable, not inside the payload.)
 
 ### Checking the result
 
-    py compile.py --test
+    py compiler.py --test
 
 After building it starts the game for ten seconds and reads
 `%APPDATA%\AudioDefence\audiodefence.log` for the three things that matter:
@@ -819,7 +841,7 @@ are what PyInstaller's analysis is likeliest to walk past. The script already
 names them outright — `--collect-all av`, `--collect-submodules comtypes` — so
 the usual two failures are covered. For anything else that turns up as a
 `ModuleNotFoundError` in a frozen run, add `--hidden-import NAME` to the list
-in `command()` in `compile.py`.
+in `command()` in `compiler.py`.
 
 ### No console window
 
@@ -909,12 +931,12 @@ directing it and two sets of commits.
 
 ## Licence
 
-The port's own code — everything in `audiodefence/`, `tools/`, `compile.py` and
+The port's own code — everything in `audiodefence/`, `tools/`, `compiler.py` and
 the documentation — is the author's to license.
 
 `game/` is the original game: Somethin' Else's data, audio and layouts. It is
 not ours and it is not covered by the port's licence. `analysis/` is derived
-from their binary and is in the same position. A build produced by `compile.py`
+from their binary and is in the same position. A build produced by `compiler.py`
 contains all of it.
 
 This project is not affiliated with Somethin' Else, and no claim is made to
