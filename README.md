@@ -153,8 +153,8 @@ Settings, saves and the log live in `%APPDATA%\AudioDefence`, in three files:
 | file | what is in it |
 |---|---|
 | `save.json` | progress: coins, diamonds, weapons, power-ups, missions, challenges, statistics |
-| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped |
-| `keys.json` | the key bindings |
+| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, vibration and the trigger feel |
+| `keys.json` | the key bindings, and a controller's |
 
 Deleting the folder starts a fresh profile — the first run then begins on Gyro
 with the default key bindings.
@@ -278,7 +278,17 @@ attack connects. A miss is felt as nothing. On a **DualSense** the triggers
 change too while you play: R2 resists like a gun's trigger and gives way where
 it fires, and under Button L2 pulls against a light spring where it reloads.
 In the menus and on the pause screen they are plain again, and they are set
-back when the game closes. If Steam is running it
+back when the game closes.
+
+**Settings → Joystick** names the controller that is connected, switches
+**Vibration** and the **Trigger feel** on and off, and lets you change which
+button does what, the way Keyboard does for keys: Enter (Cross) on an action
+adds a button, Shift+Enter (Square) replaces them all, Delete (Triangle)
+removes the last one, and Escape on the keyboard cancels. Next weapon and
+Reload are set for the control scheme you are in, as on the keyboard. A stick
+pushed sideways cannot be bound — it turns — and neither can the PS or Xbox
+button, which Windows or Steam often keeps. **Restore default buttons** puts
+them all back, and Reset all settings leaves them alone. If Steam is running it
 may take the controller over and present it as an Xbox pad; the game still
 works, but for your own controller's button names, turn Steam Input off for
 the game.

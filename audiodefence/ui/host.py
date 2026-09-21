@@ -149,6 +149,10 @@ class ScreenManager:
             return
         if not pressed and isinstance(self.screen, GameplayScreen):
             self.screen.pad_up(source, name)              # held into a pause: let go in the game as well
+        takes = getattr(top, 'takes_pad_input', None)
+        if pressed and takes is not None and takes():     # Settings is waiting for a button to bind
+            top.pad_input(name)
+            return
         key = self._pad_menu_key(name)
         if key is None:
             return

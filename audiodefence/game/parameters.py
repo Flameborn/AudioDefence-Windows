@@ -211,6 +211,28 @@ class GameParameters:
         percentages barely change anything near the top and drop to nothing in the last step or two."""
         return (self.menu_music_volume() / 100.0) ** 2
 
+    #: PORT ADDITION: whether a game controller vibrates (platform/haptics.py), and whether a DualSense's
+    #: triggers are given their feel in play (platform/pad.py).  Both on by default: a player holding a
+    #: controller that can do either expects it to.
+    DEFAULT_VIBRATION = True
+    DEFAULT_TRIGGER_EFFECTS = True
+
+    def vibration(self) -> bool:
+        value = self.defaults.object('vibration')
+        return self.DEFAULT_VIBRATION if value is None else bool(value)
+
+    def set_vibration(self, value: bool) -> None:
+        self.defaults.set_bool(bool(value), 'vibration')
+        self.defaults.synchronize()
+
+    def trigger_effects(self) -> bool:
+        value = self.defaults.object('triggerEffects')
+        return self.DEFAULT_TRIGGER_EFFECTS if value is None else bool(value)
+
+    def set_trigger_effects(self, value: bool) -> None:
+        self.defaults.set_bool(bool(value), 'triggerEffects')
+        self.defaults.synchronize()
+
     #: The version the player answered "no" to, so the same build is not offered at every launch.  Asking
     #: again for a *newer* build is right, so this stores which one was refused rather than a flag.
     def skipped_update(self) -> str:

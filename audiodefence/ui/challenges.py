@@ -62,6 +62,10 @@ class _TableLoader:
             v.shift_actions.clear()
             v.hint = None
             v.selected = False
+            # PORT ADDITION: what Delete removes on a Settings binding row belongs to that row only, not to
+            # whatever row reuses its view after a change of category
+            v.__dict__.pop('binding_action', None)
+            v.__dict__.pop('pad_binding_action', None)
             self.table.children.append(v)
             return v
         return View('', self.table.frame, traits=traits, parent=self.table)

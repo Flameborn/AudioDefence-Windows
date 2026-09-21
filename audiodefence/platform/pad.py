@@ -1,4 +1,5 @@
-"""PORT ADDITION: game controllers - a DualSense, a DualShock, an Xbox or Switch Pro pad, or anything SDL knows.
+"""PORT ADDITION: game controllers - a DualSense, a DualShock, an Xbox or Switch Pro pad, or anything SDL
+knows.
 
 The original is played by touch and by turning the phone; the port plays it from the keyboard (keymap.py),
 and this is the other way in.  SDL's game controller layer names every pad's buttons the same way - the
@@ -53,7 +54,8 @@ BUTTONS = {
     pygame.CONTROLLER_BUTTON_BACK: 'back', pygame.CONTROLLER_BUTTON_GUIDE: 'guide',
     pygame.CONTROLLER_BUTTON_START: 'start',
     pygame.CONTROLLER_BUTTON_LEFTSTICK: 'leftstick', pygame.CONTROLLER_BUTTON_RIGHTSTICK: 'rightstick',
-    pygame.CONTROLLER_BUTTON_LEFTSHOULDER: 'leftshoulder', pygame.CONTROLLER_BUTTON_RIGHTSHOULDER: 'rightshoulder',
+    pygame.CONTROLLER_BUTTON_LEFTSHOULDER: 'leftshoulder',
+    pygame.CONTROLLER_BUTTON_RIGHTSHOULDER: 'rightshoulder',
     pygame.CONTROLLER_BUTTON_DPAD_UP: 'dpup', pygame.CONTROLLER_BUTTON_DPAD_DOWN: 'dpdown',
     pygame.CONTROLLER_BUTTON_DPAD_LEFT: 'dpleft', pygame.CONTROLLER_BUTTON_DPAD_RIGHT: 'dpright',
     15: 'misc1', 16: 'paddle1', 17: 'paddle2', 18: 'paddle3', 19: 'paddle4', 20: 'touchpad',
@@ -77,8 +79,8 @@ NAMES = {
              'leftshoulder': 'LB', 'rightshoulder': 'RB', 'lefttrigger': 'LT', 'righttrigger': 'RT',
              'back': 'View', 'start': 'Menu', 'guide': 'Xbox button',
              'leftstick': 'Left stick click', 'rightstick': 'Right stick click', 'misc1': 'Share button'},
-    # SDL reports Nintendo face buttons by the letter printed on them (SDL_HINT_GAMECONTROLLER_USE_BUTTON_LABELS
-    # is on by default in SDL 2), so the letters are the right names
+    # SDL reports Nintendo face buttons by the letter printed on them
+    # (SDL_HINT_GAMECONTROLLER_USE_BUTTON_LABELS is on by default in SDL 2), so the letters are right
     'nintendo': {'a': 'A', 'b': 'B', 'x': 'X', 'y': 'Y',
                  'leftshoulder': 'L', 'rightshoulder': 'R', 'lefttrigger': 'ZL', 'righttrigger': 'ZR',
                  'back': 'Minus', 'start': 'Plus', 'guide': 'Home',
@@ -130,6 +132,11 @@ PAD_DEFAULTS = {
 PAD_DEFAULTS_KEY = 'padmap'
 
 
+def _default_bindings() -> dict:
+    return {action: ({mode: list(names) for mode, names in d.items()} if isinstance(d, dict) else list(d))
+            for action, d in PAD_DEFAULTS.items()}
+
+
 class PadMap:
     """The controller's bindings, like KeyMap's: the defaults, and a player's changes kept in keys.json."""
 
@@ -143,12 +150,7 @@ class PadMap:
 
     def __init__(self):
         stored = UserDefaults.standard().object(PAD_DEFAULTS_KEY)
-        self.bindings = {}
-        for action, default in PAD_DEFAULTS.items():
-            if isinstance(default, dict):
-                self.bindings[action] = {mode: list(default[mode]) for mode in default}
-            else:
-                self.bindings[action] = list(default)
+        self.bindings = _default_bindings()
         if isinstance(stored, dict):
             for action, value in stored.items():
                 if action not in self.bindings:
@@ -176,6 +178,77 @@ class PadMap:
             if name in self.names(action, mode):
                 return action
         return None
+
+    def text(self, action: str, mode: str | None = None) -> str:
+        """'R2', or 'L1 or Triangle', in the names of the controller plugged in."""
+        names = self.names(action, mode)
+        if not names:
+            return 'not set'
+        pads = Pads.shared()
+        return ' or '.join(pads.name_of(n) for n in names)
+
+    def is_default(self, action: str, mode: str | None = None) -> bool:
+        default = PAD_DEFAULTS[action]
+        if isinstance(default, dict):
+            default = default[mode or self.mode()]
+        return self.names(action, mode) == list(default)
+
+    # --- changes, as KeyMap makes them ----------------------------------------------------------------
+    #: what a player cannot bind: a stick pushed sideways turns, and the PS / Xbox / Home button is often
+    #: kept by Windows or by Steam, so a binding to it could not be relied on
+    UNBINDABLE = frozenset({'stickleft', 'stickright', 'guide'})
+
+    def _store(self, action: str, names: list, mode: str) -> None:
+        if isinstance(self.bindings[action], dict):
+            self.bindings[action][mode] = names
+        else:
+            self.bindings[action] = names
+
+    def _take_from_others(self, action: str, name: str, mode: str) -> None:
+        """A button belongs to one action at a time, within the scheme it is bound for."""
+        for other in self.bindings:
+            if other != action and name in self.names(other, mode):
+                self._store(other, [n for n in self.names(other, mode) if n != name], mode)
+
+    def add(self, action: str, name: str) -> None:
+        mode = self.mode()
+        self._take_from_others(action, name, mode)
+        names = self.names(action, mode)
+        if name not in names:
+            names.append(name)
+        self._store(action, names, mode)
+        self.save()
+
+    def set(self, action: str, name: str) -> None:
+        mode = self.mode()
+        self._take_from_others(action, name, mode)
+        self._store(action, [name], mode)
+        self.save()
+
+    def remove_last(self, action: str):
+        """The button added last, taken off; None when it is the action's only one, which stays."""
+        mode = self.mode()
+        names = self.names(action, mode)
+        if len(names) < 2:
+            return None
+        self._store(action, names[:-1], mode)
+        self.save()
+        return names[-1]
+
+    def restore_defaults(self) -> None:
+        self.bindings = _default_bindings()
+        self.save()
+
+    def save(self) -> None:
+        stored = {}
+        for action, bound in self.bindings.items():
+            if isinstance(bound, dict):
+                stored[action] = {mode: list(v) for mode, v in bound.items()}
+            else:
+                stored[action] = list(bound)
+        defaults = UserDefaults.standard()
+        defaults.set_object(stored, PAD_DEFAULTS_KEY)
+        defaults.synchronize()
 
 
 # --- SDL itself, for what pygame does not wrap -----------------------------------------------------------

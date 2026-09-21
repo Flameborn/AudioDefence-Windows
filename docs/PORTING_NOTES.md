@@ -457,7 +457,11 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   Button; the threshold is 25 m/s2 against gravity's 9.8, once per half second.  A DualSense's adaptive
   triggers get the pad's simple effects through `SDL_GameControllerSendEffect` - R2 resists between a quarter
   and a half of its travel and gives way where it fires, L2 (reload under Button) a light spring - only while
-  the game is in front; a pause, the menus and closing the game set them plain.
+  the game is in front; a pause, the menus and closing the game set them plain.  Settings -> Joystick names
+  the pad, switches both (`vibration` and `triggerEffects` in settings.json, on by default, reset by Reset
+  all settings) and rebinds its buttons as Keyboard does keys (`PadMap.add` / `set` / `remove_last`,
+  per scheme for Next weapon and Reload); while a button is being set the host hands the screen the pad's
+  presses as they are (`takes_pad_input`).  A stick pushed sideways and the guide button cannot be bound.
 * PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
   puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
   turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,

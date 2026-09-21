@@ -54,9 +54,10 @@ class Haptics:
 
     # --- the pads ------------------------------------------------------------------------------------
     def _pulse(self, low: float, high: float, ms: int) -> None:
+        from ..game.parameters import GameParameters
         from .pad import Pads
         pads = Pads.shared()
-        if not pads.pads:
+        if not pads.pads or not GameParameters.shared().vibration():
             return
         self.sent = (self.sent + [(round(low, 3), round(high, 3), ms)])[-20:]
         for pad in list(pads.pads.values()):

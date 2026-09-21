@@ -254,6 +254,7 @@ class GameplayScreen(Screen):
         if pads.shaken() and playing:
             c.motion_ended(True)
         padmap = PadMap.shared()
+        playing = playing and GameParameters.shared().trigger_effects()
         gun = playing and 'righttrigger' in padmap.names('fire')
         reload = playing and 'lefttrigger' in padmap.names('reload')
         pads.set_triggers('gun and reload' if gun and reload else 'gun' if gun else 'off')

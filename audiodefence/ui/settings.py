@@ -54,12 +54,14 @@ CONTROL_ROWS = (('Button', 'Your keys press the four corner buttons of the phone
                 ('Gesture', 'Your keys tap and swipe anywhere on the screen, so Up switches weapon and '
                             'Down reloads', False))
 
-# PORT UI: Keyboard holds the key bindings alone, so a Joystick category can sit beside it later without
-# anything moving again.  Miscellaneous is last and holds the rest: how the cursor moves through a
-# screen, when the tutorial's lines are shown as text, whether the game looks for updates, and the one
-# button that puts every setting back.
+# PORT UI: Keyboard holds the key bindings alone, and Joystick a game controller's - its buttons, and
+# whether it vibrates.  Miscellaneous is last and holds the rest: how the cursor moves through a screen,
+# when the tutorial's lines are shown as text, whether the game looks for updates, and the one button that
+# puts every setting back.
 CATEGORIES = (('aiming', 'Aiming'), ('controls', 'Controls'), ('sound', 'Sound'),
-              ('keyboard', 'Keyboard'), ('misc', 'Miscellaneous'))
+              ('keyboard', 'Keyboard'), ('joystick', 'Joystick'), ('misc', 'Miscellaneous'))
+PAD_BINDING_HINT = ('Press Enter to add a button, Shift Enter to replace them all, '
+                    'Delete to remove the last one.')
 SELECT_HINT = 'Press Enter to select.'
 
 
@@ -71,6 +73,8 @@ class ControlSchemePanel:
         self.category = CATEGORIES[0][0]                  # settings open inside a category, not on a list
         self.capturing = None                             # the action waiting for its new key
         self.capturing_replaces = False                   # Shift+Enter: the new key replaces the others
+        self.pad_capturing = None                         # the action waiting for a controller button
+        self.pad_capturing_replaces = False
         frame = (center[0] - 220.0, center[1] - 122.0, 440.0, 244.0)
         self.view = View('', frame, accessible=False, parent=parent, name='#21')
         self.table_view = View('', frame, accessible=False, parent=self.view, ordered=True, name='#13')
@@ -121,8 +125,8 @@ class ControlSchemePanel:
                         'you only if there is one.',
                    action=self.toggle_check_updates)
             t.cell('Reset all settings',
-                   hint='Press Enter to put every setting back to its default. Your key bindings stay as '
-                        'they are.',
+                   hint='Press Enter to put every setting back to its default. Your key and controller '
+                        'bindings stay as they are.',
                    action=self.reset_all_settings)
         elif self.category == 'keyboard':                 # PORT ADDITION: the key bindings
             keymap = KeyMap.shared()
@@ -140,6 +144,34 @@ class ControlSchemePanel:
             t.cell('Restore default keys',
                    hint='Press Enter to put every key back to its default, in both control schemes.',
                    action=self.restore_keys)
+        elif self.category == 'joystick':                 # PORT ADDITION: a game controller
+            from ..platform.pad import PAD_DEFAULTS, PadMap, Pads
+            pads = Pads.shared()
+            t.cell('Controller', pads.last_name() if pads.connected() else 'none connected')
+            t.cell('Vibration', 'ON' if params.vibration() else 'OFF',
+                   hint='Press Enter to toggle: the heartbeat, and the shots and melee attacks that hit, '
+                        'felt on the controller.',
+                   action=self.toggle_vibration)
+            t.cell('Trigger feel', 'ON' if params.trigger_effects() else 'OFF',
+                   hint="Press Enter to toggle: on a DualSense, R2 feels like a gun's trigger while you "
+                        'play, and L2 has a light pull where it reloads.',
+                   action=self.toggle_trigger_effects)
+            t.cell('Turn', 'either stick, sideways',
+                   hint='The further a stick is pushed, the faster you turn.')
+            padmap = PadMap.shared()
+            scheme = mode_text(padmap.mode())
+            for action in PAD_DEFAULTS:
+                detail = padmap.text(action)
+                if isinstance(PAD_DEFAULTS[action], dict):   # bound per control scheme, as on the keyboard
+                    detail = '%s, in %s mode' % (detail, scheme)
+                row = t.cell(KeyMap.label(action), detail, hint=PAD_BINDING_HINT,
+                             action=lambda a=action: self.capture_pad(a),
+                             shift_action=lambda a=action: self.capture_pad(a, replace=True))
+                row.pad_binding_action = action           # what Delete acts on, for this row
+            t.cell('Restore default buttons',
+                   hint='Press Enter to put every controller button back to its default, in both control '
+                        'schemes.',
+                   action=self.restore_pad)
         self.click_on_every_row()
 
     def click_on_every_row(self) -> None:
@@ -269,8 +301,8 @@ class ControlSchemePanel:
                       % ('ON' if params.check_updates() else 'OFF'))
 
     def reset_all_settings(self) -> None:
-        """Every setting on these pages back to where a new profile starts, except the key bindings -
-        they have their own Restore default keys, and joystick bindings will be kept out the same way.
+        """Every setting on these pages back to where a new profile starts, except the key bindings and the
+        controller's - they have their own Restore default keys and Restore default buttons.
 
         Each value is what the setting's own getter answers when nothing is stored, so a reset profile
         and a new one cannot disagree.  The setters are all the Settings rows ever call, so going
@@ -285,9 +317,80 @@ class ControlSchemePanel:
         params.set_remember_focus(params.DEFAULT_REMEMBER_FOCUS)
         params.set_check_updates(params.DEFAULT_CHECK_UPDATES)
         params.set_menu_music_volume(params.DEFAULT_MENU_MUSIC_VOLUME)
+        params.set_vibration(params.DEFAULT_VIBRATION)
+        params.set_trigger_effects(params.DEFAULT_TRIGGER_EFFECTS)
         App.apply_menu_music_volume()
         self.reload_data()
-        self.announce('All settings reset to default. Your key bindings are unchanged.')
+        self.announce('All settings reset to default. Your key and controller bindings are unchanged.')
+
+    # --- joystick (PORT ADDITION) ----------------------------------------------------------------
+    def toggle_vibration(self) -> None:
+        params = GameParameters.shared()
+        params.set_vibration(not params.vibration())
+        self.reload_data()
+        self.announce('Vibration %s' % ('ON' if params.vibration() else 'OFF'))
+        if params.vibration():                            # so it can be felt that it is on
+            from ..platform.haptics import Haptics
+            Haptics.shared().melee_hit()
+
+    def toggle_trigger_effects(self) -> None:
+        params = GameParameters.shared()
+        params.set_trigger_effects(not params.trigger_effects())
+        self.reload_data()
+        self.announce('Trigger feel %s' % ('ON' if params.trigger_effects() else 'OFF'))
+
+    def capture_pad(self, action: str, replace: bool = False) -> None:
+        from ..platform.pad import PadMap, Pads
+        if not Pads.shared().connected():
+            self.announce('Connect a controller first.')
+            return
+        self.pad_capturing = action
+        self.pad_capturing_replaces = replace
+        self.announce('Press the button to %s %s, or Escape on the keyboard to keep %s'
+                      % ('use instead of' if replace else 'add to', KeyMap.label(action),
+                         PadMap.shared().text(action)))
+
+    def handle_captured_pad(self, name: str) -> None:
+        """The next controller input while a button is being set."""
+        from ..platform.pad import PadMap, Pads
+        action = self.pad_capturing
+        if action is None:
+            return
+        padmap = PadMap.shared()
+        if name in padmap.UNBINDABLE:
+            why = ('Pushing a stick sideways turns' if name in ('stickleft', 'stickright')
+                   else '%s is kept by Windows' % Pads.shared().name_of(name))
+            self.announce('%s. Press another button, or Escape to keep %s' % (why, padmap.text(action)))
+            return
+        replace = self.pad_capturing_replaces
+        self.pad_capturing, self.pad_capturing_replaces = None, False
+        padmap.set(action, name) if replace else padmap.add(action, name)
+        self.reload_data()
+        self.announce('%s is now %s' % (KeyMap.label(action), padmap.text(action)))
+
+    def cancel_pad_capture(self) -> None:
+        from ..platform.pad import PadMap
+        action, self.pad_capturing, self.pad_capturing_replaces = self.pad_capturing, None, False
+        if action is not None:
+            self.announce('%s keeps %s' % (KeyMap.label(action), PadMap.shared().text(action)))
+
+    def remove_pad(self, action: str) -> None:
+        from ..platform.pad import PadMap, Pads
+        padmap = PadMap.shared()
+        name = padmap.remove_last(action)
+        if name is None:
+            self.announce('%s keeps %s: an action needs at least one button'
+                          % (KeyMap.label(action), padmap.text(action)))
+            return
+        self.reload_data()
+        self.announce('%s removed from %s, now %s'
+                      % (Pads.shared().name_of(name), KeyMap.label(action), padmap.text(action)))
+
+    def restore_pad(self) -> None:
+        from ..platform.pad import PadMap
+        PadMap.shared().restore_defaults()
+        self.reload_data()
+        self.announce('Default controller buttons restored in both control schemes')
 
     def toggle_menu_axis(self) -> None:
         params = GameParameters.shared()
@@ -382,16 +485,36 @@ class SettingsScreen(ViewControllerScreen):
             key = pygame.K_ESCAPE if getattr(event, 'pad', False) else event.key
             self.control_scheme.handle_captured_key(key)
             return
+        panel = self.control_scheme
+        if panel.pad_capturing is not None:               # PORT ADDITION: setting a controller button
+            if not getattr(event, 'pad', False):
+                if event.key == pygame.K_ESCAPE:
+                    panel.cancel_pad_capture()
+                else:
+                    panel.announce('Press a button on the controller, or Escape to cancel')
+            return
         if event.key == pygame.K_DELETE:                  # PORT ADDITION: take a key off the focused binding
             action = getattr(self.focus, 'binding_action', None)
             if action is not None:
                 self.control_scheme.remove_key(action)
+                return
+            action = getattr(self.focus, 'pad_binding_action', None)
+            if action is not None:
+                self.control_scheme.remove_pad(action)
                 return
         where = cross_axis_key(event)                     # PORT ADDITION: the other arrows change category
         if where is not None:
             self.control_scheme.move_category(where)
             return
         super().key_down(event)
+
+    # PORT ADDITION: while a controller button is being set, the host hands this screen the controller's
+    # presses as they are, instead of the keys they stand for in a menu
+    def takes_pad_input(self) -> bool:
+        return self.control_scheme.pad_capturing is not None
+
+    def pad_input(self, name: str) -> None:
+        self.control_scheme.handle_captured_pad(name)
 
     # --- actions ---------------------------------------------------------------------------------
     def validate_button_pressed(self) -> None:            # 0x1000afa58

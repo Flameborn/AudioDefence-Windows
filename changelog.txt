@@ -23,6 +23,7 @@ A controller works in the menus too: the D-pad or a stick moves, Cross selects, 
 A controller vibrates with the heartbeat when a zombie is close, harder the closer it is, and when a shot or a melee attack hits.
 Shaking the controller swings your melee weapon in Gesture mode, like shaking the phone did.
 On a DualSense, R2 feels like a gun's trigger while you play, and in Button mode L2 has a light pull for reloading.
+Settings has a Joystick tab. It names the controller you have connected, turns vibration and the trigger feel on or off, and lets you change which button does what.
 
 26.09.20:
 Initial release.
