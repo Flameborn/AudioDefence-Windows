@@ -324,10 +324,11 @@ the very recording you hear, felt in your hands — and its own knocks, thuds
 and rumbles for the rest, through the fine haptics PlayStation games use rather
 than plain rumble. Over Bluetooth Windows does not offer that, and it rumbles
 like any other pad. On a **DualSense** the triggers change too while you play:
-R2 is a gun's trigger: free for the first part of the pull, then it catches and
-holds for a good part of the travel, and pressing all the way through the catch
-breaks it and fires the shot — so the shot comes at the break, not when you
-first meet the wall. Under Button, L2 pulls against a light spring where it
+R2 is shaped like a pistol's trigger: a long take-up with nothing in it, then
+the wall, where it holds; pressing through the wall breaks it and the shot goes
+at the break, not when you first meet it. Letting it back out to just under the
+wall is the reset, and it fires again from there, so you can shoot without
+letting go all the way. Under Button, L2 pulls against a light spring where it
 reloads. In the menus and on the pause
 screen they are plain again, and they are set back when the game closes.
 
