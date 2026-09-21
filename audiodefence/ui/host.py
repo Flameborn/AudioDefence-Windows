@@ -114,6 +114,12 @@ class ScreenManager:
 
     # --- events ----------------------------------------------------------------------------------
     def handle_event(self, event) -> None:
+        from ..platform.pad import Pads
+        moves = Pads.shared().handle(event)               # PORT ADDITION: a game controller
+        if moves is not None:
+            for pressed, source, name in moves:
+                self._pad_input(pressed, source, name)
+            return
         if event.type == pygame.KEYDOWN:
             top = self.top()
             if top is not None:
@@ -130,6 +136,46 @@ class ScreenManager:
             top = self.top()
             if top is not None:
                 top.mouse_motion(event)
+
+    # PORT ADDITION: a game controller.  In play its buttons are the game's own actions (pad.PadMap); on any
+    # other screen they are the keys that screen already understands, so every menu works with a pad without
+    # knowing one exists.  The key presses made here carry `pad`, so a key being captured in Settings is
+    # not taken from a controller button.
+    def _pad_input(self, pressed: bool, source, name: str) -> None:
+        from .gameplay_screen import GameplayScreen
+        top = self.top()
+        if isinstance(top, GameplayScreen):
+            (top.pad_down if pressed else top.pad_up)(source, name)
+            return
+        if not pressed and isinstance(self.screen, GameplayScreen):
+            self.screen.pad_up(source, name)              # held into a pause: let go in the game as well
+        key = self._pad_menu_key(name)
+        if key is None:
+            return
+        code, mod = key
+        self.handle_event(pygame.event.Event(pygame.KEYDOWN if pressed else pygame.KEYUP, key=code, mod=mod,
+                                             unicode='', scancode=0, pad=True))
+
+    def _pad_menu_key(self, name: str):
+        """The key a controller input stands for in the menus, as (key, modifiers), or None."""
+        from ..game.parameters import GameParameters
+        from .gameplay_screen import GameplayScreen
+        # the shoulders change tab, and tabs are on the arrows the navigation is not using (Menu arrows)
+        if GameParameters.shared().menu_axis() == 'vertical':
+            tab_next, tab_previous = pygame.K_RIGHT, pygame.K_LEFT
+        else:
+            tab_next, tab_previous = pygame.K_DOWN, pygame.K_UP
+        keys = {'dpup': pygame.K_UP, 'dpdown': pygame.K_DOWN, 'dpleft': pygame.K_LEFT, 'dpright': pygame.K_RIGHT,
+                'stickup': pygame.K_UP, 'stickdown': pygame.K_DOWN,
+                'stickleft': pygame.K_LEFT, 'stickright': pygame.K_RIGHT,
+                'a': pygame.K_RETURN, 'b': pygame.K_ESCAPE, 'y': pygame.K_DELETE,
+                'leftshoulder': tab_previous, 'rightshoulder': tab_next,
+                'lefttrigger': pygame.K_PAGEDOWN, 'righttrigger': pygame.K_PAGEUP}
+        if name == 'x':                                   # a row's second action, as Shift+Enter is
+            return pygame.K_RETURN, pygame.KMOD_SHIFT
+        if name == 'start' and isinstance(self.screen, GameplayScreen):
+            return pygame.K_ESCAPE, 0                     # Options closes the pause screen it opened
+        return (keys[name], 0) if name in keys else None
 
     # PORT ADDITION: a key held down keeps moving through a menu, the way a list behaves anywhere else.
     # Only the keys that step one element repeat: a jump to an end has nowhere to go, an activation must

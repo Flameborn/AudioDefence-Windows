@@ -24,7 +24,7 @@ from .. import paths
 SETTINGS_KEYS = frozenset({'buttonMode', 'controlScheme', 'sensivity', 'menuAxis', 'debugMapVisible',
                           'tutorialText', 'rememberFocus', 'checkUpdates', 'skippedUpdate',
                           'menuMusicVolume'})
-INPUT_KEYS = frozenset({'keymap'})
+INPUT_KEYS = frozenset({'keymap', 'padmap'})
 
 
 class SplitDefaults:

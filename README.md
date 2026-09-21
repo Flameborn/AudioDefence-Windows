@@ -231,6 +231,46 @@ Keyboard. **Settings → Miscellaneous → Reset all settings** puts every setti
 back to how a new profile starts, except your key bindings, which Keyboard has
 its own Restore default keys for. Quit is on the main menu.
 
+### With a game controller
+
+A controller works in the menus and in play: a DualSense, a DualShock 4, an
+Xbox or Switch Pro controller, or most others Windows recognises. Plug it in
+before or after starting the game; it says so when one connects or goes. The
+buttons are named as your controller names them — Cross and R2 on a
+PlayStation pad, A and RT on an Xbox one.
+
+In the menus it stands in for the keys:
+
+| controller | what it does in the menus |
+|---|---|
+| D-pad or either stick | the arrows: move, and change tab on the other pair |
+| Cross (A) | Enter: activate |
+| Square (X) | Shift+Enter: a row's second action |
+| Circle (B) | Escape: back |
+| L1 / R1 | previous / next tab or category |
+| L2 / R2 | menu music quieter / louder |
+| Triangle (Y) | Delete, on a key binding row |
+
+In a game:
+
+| controller | what it does in a game |
+|---|---|
+| either stick, sideways | turn — a small push turns slowly, all the way as fast as the arrow keys |
+| R2 | fire |
+| R1 | melee |
+| L1, or a stick flicked up under Gesture | next weapon |
+| L2, or a stick flicked down under Gesture | reload |
+| Options | pause, and Options again to resume |
+| Cross | skip the narration |
+| Square | read the challenge timer |
+
+Under **Gesture** a stick flicked up or down is the swipe, as the Up and Down
+arrows are on the keyboard; a stick pushed more sideways than up or down only
+turns, so turning does not switch weapons by accident. If Steam is running it
+may take the controller over and present it as an Xbox pad; the game still
+works, but for your own controller's button names, turn Steam Input off for
+the game.
+
 ## Sharing a result
 
 Every screen at the end of a run has a **Copy results** button, read straight
@@ -337,7 +377,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **97 divergences** and **15 original quirks kept on purpose**.
+There are **98 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -490,6 +530,8 @@ replacing them.
   and on the pause screen, the keys do nothing and the game's music and ambience are untouched.
 - **Settings → Miscellaneous → Reset all settings** puts every setting back to its default, except your key
   bindings.
+- **Game controllers**: a DualSense, DualShock, Xbox, Switch Pro or most other pads, in the menus and in
+  play, with a stick that turns as fast as it is pushed. See [With a game controller](#with-a-game-controller).
 
 ### Original quirks kept on purpose
 

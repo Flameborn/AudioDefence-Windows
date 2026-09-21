@@ -122,6 +122,27 @@ in one scheme does nothing in the other.  Every other action is a single binding
 The revive screen after a death is read like the menus (VoiceOver starts on the tip, then Revive and Game
 over).
 
+PORT ADDITION: a game controller (`platform/pad.py`, through SDL's game controller layer, so the buttons are
+laid out alike on every pad and only their spoken names change).  In play its buttons press the same
+actions as the keys (`PadMap`, stored under `padmap` in keys.json beside `keymap`); in the menus
+`ScreenManager._pad_menu_key` turns them into the keys the menus already take.
+
+| controller | gesture mode | button mode |
+|---|---|---|
+| R2 (a trigger counts as pressed past half way) | as Space | as Space |
+| R1 | as Ctrl: melee | as Ctrl: melee |
+| a stick flicked up / L1 | stick: swipe up, next weapon | L1: next weapon |
+| a stick flicked down / L2 | stick: swipe down, reload | L2: reload |
+| either stick, sideways | turn at the speed it is pushed | same |
+| Options | Pause button (and on the pause screen, Resume) | same |
+| Cross | Skip button | same |
+| Square | read the challenge timer label | same |
+
+A stick counts as flicked past 60% and let go below 30%, in the direction of its larger axis, so a turn does
+not switch weapons.  Turning ignores the first 18% of a stick's travel and grows in proportion past it, up
+to the arrow keys' full speed; the three schemes above take that fraction as it is (the yaw rate, the drag
+speed or the tilt angle), and a held turn key overrides the stick.
+
 Control schemes (the original's `controlScheme`):
 
 * 1 gyro: holding an arrow rotates the virtual device yaw at 2 rad/s (port choice, `KeyboardMotion.yaw_rate`).
@@ -420,6 +441,12 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   original's.  The volume is kept apart from `gain` because `reduceMainMenuThemeVolume` 0x100083460 fades by
   taking 0.01 off the gain every 0.05 s until it reaches 0: scaling the gain would change how long the fade
   lasts.  The percentage is squared into a gain so the steps sound even.  The ends hold rather than wrap.
+* PORT ADDITION: game controllers - see *Gameplay controls* for the bindings and the turning.  A controller
+  connecting or going is announced; a button held when it goes is let go.  In the menus a controller button
+  stands for a key (the D-pad and sticks for the arrows, Cross Enter, Circle Escape, Square Shift+Enter,
+  Triangle Delete, L1/R1 the tab arrows, L2/R2 Page Down/Up), and those key presses carry `pad`, so a key
+  being captured in Settings -> Keyboard is cancelled by a controller button instead of taking the key it
+  stands for.  SDL is asked (before pygame.init) to let PlayStation pads rumble over Bluetooth.
 * PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
   puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
   turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,

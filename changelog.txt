@@ -18,6 +18,8 @@ The game keeps its version number inside itself now, not in a VERSION file besid
 When an update is offered, No now only means not now, and the game asks again the next time it starts. To stop being asked about that version, there is a new Skip this version button. A newer version is still offered, and Check for updates on the main menu still finds a skipped one.
 The screens at the end of a run read one result per line, the same as Copy results, and Copy results comes before the other buttons. After Endless, the first line is your tarot cards. After a challenge, it is the challenge name and whether you completed or failed it.
 The Play again button after an Endless game is called Close. It still takes you back to the Endless screen.
+You can play with a game controller, like a DualSense, DualShock, Xbox or Switch Pro controller. Either stick turns, slowly with a small push and fast when pushed all the way. R2 fires, R1 is melee, L1 switches weapon and L2 reloads, or in Gesture mode, flick a stick up or down. Options pauses.
+A controller works in the menus too: the D-pad or a stick moves, Cross selects, Circle goes back, L1 and R1 change tab, and L2 and R2 set the menu music volume.
 
 26.09.20:
 Initial release.

@@ -14,6 +14,9 @@ be rebound in Settings -> Keyboard; these are the defaults:
 
 With a screen reader running the original replaces the touch views with ADAccessibleGameView; the port
 does the same and sends key presses as touches at the centre of the matching screen quadrant.
+
+A game controller (platform/pad.py) presses the same actions through pad_down / pad_up, and its sticks turn
+at the speed they are pushed (_update_turn).
 """
 from __future__ import annotations
 
@@ -106,9 +109,24 @@ class GameplayScreen(Screen):
         return self.controller.accessible_game_view
 
     def key_down(self, event) -> None:
+        self.press(KeyMap.shared().action_for(event.key), event.key)
+
+    def key_up(self, event) -> None:
+        self.release(KeyMap.shared().action_for(event.key), event.key)
+
+    # PORT ADDITION: a game controller presses the same actions as the keys, from its own bindings; `source`
+    # tells one held button or key from another, as the key code does for the keyboard.
+    def pad_down(self, source, name: str) -> None:
+        from ..platform.pad import PadMap
+        self.press(PadMap.shared().action_for(name), source)
+
+    def pad_up(self, source, name: str) -> None:
+        from ..platform.pad import PadMap
+        self.release(PadMap.shared().action_for(name), source)
+
+    def press(self, action, k) -> None:
+        """An action's key or button went down; `k` is which one."""
         c = self.controller
-        k = event.key
-        action = KeyMap.shared().action_for(k)
         if action == 'pause':
             if not isinstance(c, OpenerGameplayController) and not c.paused:
                 c.pause_button_touched()
@@ -177,10 +195,8 @@ class GameplayScreen(Screen):
                 else:
                     area.handle_swipe_down_gesture()
 
-    def key_up(self, event) -> None:
+    def release(self, action, k) -> None:
         c = self.controller
-        k = event.key
-        action = KeyMap.shared().action_for(k)
         if action in ('turn_left', 'turn_right'):
             if k in self._turn_keys:
                 self._turn_keys.remove(k)
@@ -203,13 +219,26 @@ class GameplayScreen(Screen):
                 agv.touches_ended()
 
     def _update_turn(self) -> None:
-        direction = 0
+        """The turn keys decide while one is held; otherwise a controller's stick does, at the speed it is
+        pushed to (PORT ADDITION: the keys only ever turn at full speed)."""
         if self._turn_keys:
             direction = 1 if KeyMap.shared().action_for(self._turn_keys[-1]) == 'turn_right' else -1
-        self.motion.set_direction(direction)
+        else:
+            direction = self._stick_turn()
+        if direction != self.motion.direction:
+            self.motion.set_direction(direction)
+
+    def _stick_turn(self) -> float:
+        from ..platform.pad import Pads
+        c = self.controller
+        # the gate the turn keys pass through in press(): no turning while paused or dead
+        if getattr(c, 'paused', False) or getattr(c, 'death_overlay_visible', False):
+            return 0
+        return Pads.shared().turn()
 
     # --- per pass --------------------------------------------------------------------------------
     def frame(self) -> None:
+        self._update_turn()                               # PORT ADDITION: a stick moves without events
         now = RunLoop.main().now()
         dt = now - self._last_frame
         self._last_frame = now
