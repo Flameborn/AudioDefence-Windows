@@ -239,11 +239,15 @@ def main(argv=None) -> int:
                         help='keep a console window, where a failed start-up prints its traceback')
     parser.add_argument('--clean', action='store_true', help="throw away PyInstaller's cache first")
     parser.add_argument('--test', action='store_true', help='start the result afterwards and check its log')
-    parser.add_argument('--package', action='store_true',
-                        help='afterwards, zip the folder into the archive a release is made of')
+    parser.add_argument('--no-package', action='store_true',
+                        help='do not zip the folder afterwards; a build makes the release archive by default')
+    # --package was the flag when zipping was opt-in.  Kept so that typing it is not an error, and says so.
+    parser.add_argument('--package', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('--dry-run', action='store_true', help='print what would be done, build nothing')
     args = parser.parse_args(argv)
     os.chdir(HERE)                                      # the paths above are relative to the project
+    if args.package:
+        say('--package is what a build does anyway now; --no-package is the one that changes anything.')
 
     found = problems_now()
     if found:
@@ -268,7 +272,9 @@ def main(argv=None) -> int:
                    '' if os.path.isfile(os.path.join(HERE, name)) else ' - but it is not here'))
         for md_name, page in GENERATED_PAGES:
             say('%s would be built there from %s' % (page, md_name))
-        if args.package:
+        if args.no_package:
+            say('it would not be zipped, because of --no-package.')
+        else:
             say('it would then be packed into dist%s%s-Win-%s.zip'
                 % (os.sep, NAME, build_version() or '<no VERSION file>'))
         for warning in release_warnings():
@@ -286,7 +292,7 @@ def main(argv=None) -> int:
         copy_game(dest_root)
     copy_side_files(dest_root)
 
-    if args.package:
+    if not args.no_package:
         for warning in release_warnings():
             say('before releasing: ' + warning)
         package(dest_root)

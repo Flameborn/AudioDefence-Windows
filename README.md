@@ -700,28 +700,29 @@ is no cross-compiling to another system.
 | `--clean` | empty both of PyInstaller's working places first — this project's `build\` folder and the shared cache in `%LOCALAPPDATA%\pyinstaller` — when a rebuild behaves oddly. `dist\` is untouched, and so is everything in the repository |
 | `--test` | run the result for ten seconds afterwards and read its log: that it found the game data, that the game's own HRTF is in use, and that it ended without a traceback |
 | `--dry-run` | print what would happen, build nothing — including every file that would land beside the executable |
-| `--package` | afterwards, zip `dist\AudioDefence` into `dist\AudioDefence-Win-<version>.zip`, which is what a release's asset is and what the updater reads. It warns first if `VERSION` is missing or `changelog.txt` still starts with `unrelease:` |
+| `--no-package` | do not make the zip. A build otherwise ends by packing `dist\AudioDefence` into `dist\AudioDefence-Win-<version>.zip`, which is what a release's asset is and what the updater reads, warning first if `VERSION` is missing or `changelog.txt` still starts with `unrelease:` |
 
 ### Cutting a release
 
 The archive has to be a **zip**, not a rar: the updater opens it with Python's
 own `zipfile` and reads single files out of it over HTTP, which is what makes a
 small fix a small download, and nothing can do either with a rar without
-shipping an extractor. `python compile.py --package` builds it.
+shipping an extractor. `py compile.py` builds it: the zip is what a build makes
+unless you say `--no-package`.
 
 Three things move together and must agree — the `VERSION` file, the git tag,
 and the heading at the top of `changelog.txt`. In order:
 
 - give the `unrelease:` section in `changelog.txt` the version, `26.09.21-1:`
 - put the same version in `VERSION`, exactly as GitHub will have it
-- run `python compile.py --package`
+- run `py compile.py`
 - tag the release `26.09.21-1` and upload `dist\AudioDefence-Win-26.09.21-1.zip`
 
 The format is **`YY.MM.DD-XX`**: last two digits of the year, month, day, and
 which release of that day it is, counting from 1. The first release on the 20th
 of September 2026 is `26.09.20-1`; a second one the same day is `26.09.20-2`.
 
-`--package` says so if `VERSION` is missing or the changelog still says
+A build says so if `VERSION` is missing or the changelog still says
 `unrelease:`. A build with no `VERSION` file does not know what it is and never
 offers an update, which is the one way to ship something that cannot be
 updated afterwards.
@@ -736,7 +737,7 @@ because a screen reader moves through it by heading, table and list, where a
 cannot drift from this one; if the Markdown ever grows something the converter
 does not know — a fenced code block, a numbered list — the build says so and
 writes no page rather than shipping one with holes in it.
-`python tools/md_to_html.py --check README.md` asks the same question at any
+`py tools/md_to_html.py --check README.md` asks the same question at any
 time.
 
 ### What a build carries, and what it does not
