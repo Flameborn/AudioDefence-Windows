@@ -92,9 +92,19 @@ it, or build the executable yourself.
 These are for running from source. A built game from Releases needs none of
 them.
 
-64-bit Python 3.12 or newer on Windows, and these packages to play:
+64-bit Python 3.12 or newer on Windows. The simplest way to get it is the
+**Python install manager** from python.org, which is what that site now leads
+with: install it, then
 
-    pip install pygame-ce numpy av comtypes
+    py install 3.14
+
+and `py` is the command for everything below. A traditional python.org
+installer works just as well — it brings `py` with it — so if you already have
+Python, you have what you need.
+
+Then the packages to play:
+
+    py -m pip install pygame-ce numpy av comtypes
 
 | package | what needs it |
 |---|---|
@@ -110,7 +120,7 @@ is nothing to install for either, and no system OpenAL is used.
 
 One more package is needed only to redo the reverse engineering, never to play:
 
-    pip install capstone
+    py -m pip install capstone
 
 | package | what needs it |
 |---|---|
@@ -123,18 +133,18 @@ and `tools/reverb_calibrate.py`, `av` for the sound durations in
 And one more only if you want to build an executable rather than run from
 source (*Building an executable*, below):
 
-    pip install pyinstaller
+    py -m pip install pyinstaller
 
 ## Running from source
 
-    python AudioDefence.py
+    py AudioDefence.py
 
 That is the whole story: the logo, the opener, then the main menu. The launcher
 can be double-clicked, and it takes the options below:
 
-    python AudioDefence.py --endless
-    python AudioDefence.py --challenge tutorial_1
-    python AudioDefence.py --help
+    py AudioDefence.py --endless
+    py AudioDefence.py --challenge tutorial_1
+    py AudioDefence.py --help
 
 Settings, saves and the log live in `%APPDATA%\AudioDefence`, in three files:
 
@@ -580,7 +590,7 @@ another folder holding the data — one with `meta/` and `sounds/` inside it.
 With the game in the repository you never need the option; it is there for the
 cases where the data is somewhere else:
 
-    python AudioDefence.py --game "D:/backups/audiodefence.app"
+    py AudioDefence.py --game "D:/backups/audiodefence.app"
 
 * a clone without `game/` (if it is ever ignored by git), with your own copy
   kept elsewhere;
@@ -600,18 +610,18 @@ The rule the port is written by: **never from memory**. Before changing a
 ported method, read the original again — the address is in the comment above
 it — and compare side by side.
 
-    python tools/query.py digest "ADEnemy update:"        pseudo-code for a method
-    python tools/query.py digest "ADWeapon " 90           a whole class, skipping tiny accessors
-    python tools/query.py fn "ADPlayer update:"           the full annotated listing
-    python tools/query.py sel setHeadOrientation:         who sends a selector
-    python tools/query.py callers "ADBrickManager loadNextBrick"
-    python tools/query.py str "brick_chance"              who references a string
-    python tools/query.py ivar "ADEnemy._life"            who reads / writes an ivar
-    python tools/query.py const 0.8                       who loads a float constant
-    python tools/listing.py "ADWeapon fire" 0x100 0x200   a range of one listing
-    python tools/nib_layout.py --all ADMainMenuViewController   a screen's frames and labels
-    python tools/verify_stats.py                          every weapon and enemy vs the plists
-    python tools/verify_updater.py                        the updater, end to end, offline
+    py tools/query.py digest "ADEnemy update:"        pseudo-code for a method
+    py tools/query.py digest "ADWeapon " 90           a whole class, skipping tiny accessors
+    py tools/query.py fn "ADPlayer update:"           the full annotated listing
+    py tools/query.py sel setHeadOrientation:         who sends a selector
+    py tools/query.py callers "ADBrickManager loadNextBrick"
+    py tools/query.py str "brick_chance"              who references a string
+    py tools/query.py ivar "ADEnemy._life"            who reads / writes an ivar
+    py tools/query.py const 0.8                       who loads a float constant
+    py tools/listing.py "ADWeapon fire" 0x100 0x200   a range of one listing
+    py tools/nib_layout.py --all ADMainMenuViewController   a screen's frames and labels
+    py tools/verify_stats.py                          every weapon and enemy vs the plists
+    py tools/verify_updater.py                        the updater, end to end, offline
 
 The digests are condensed and sometimes drop code that matters — when a branch
 does not add up, read the `.s` listing for the same function. Annotation
@@ -641,16 +651,16 @@ regenerated. Run these from the project root.
 
 **The whole analysis** — needs `capstone` (and `av` for the sound durations):
 
-    python tools/macho.py extract game/audiodefence analysis/bin
-    python tools/objc.py analysis/bin/audiodefence_arm64
-    python tools/disasm.py analysis/bin/audiodefence_arm64 --out analysis
-    python tools/query.py make-digests
-    python tools/resources.py game --out analysis/data
-    python tools/extract_hrtf.py analysis/bin/audiodefence_arm64
+    py tools/macho.py extract game/audiodefence analysis/bin
+    py tools/objc.py analysis/bin/audiodefence_arm64
+    py tools/disasm.py analysis/bin/audiodefence_arm64 --out analysis
+    py tools/query.py make-digests
+    py tools/resources.py game --out analysis/data
+    py tools/extract_hrtf.py analysis/bin/audiodefence_arm64
 
 **The HRTF**, if `assets/hrtf/audiodefence_ircam1050.mhr` is deleted:
 
-    python tools/build_hrtf.py
+    py tools/build_hrtf.py
 
 It rebuilds the file from `analysis/data/embedded_hrtf.dat` and prints the
 interaural level difference and delays at five angles as a sanity check — a
@@ -661,14 +671,14 @@ either way. If `analysis/data/embedded_hrtf.dat` is gone as well, extract it
 first — and note that the extractor needs the thin arm64 slice, not the fat
 `game/audiodefence`:
 
-    python tools/macho.py extract game/audiodefence analysis/bin
-    python tools/extract_hrtf.py analysis/bin/audiodefence_arm64      needs capstone
-    python tools/build_hrtf.py
+    py tools/macho.py extract game/audiodefence analysis/bin
+    py tools/extract_hrtf.py analysis/bin/audiodefence_arm64      needs capstone
+    py tools/build_hrtf.py
 
 ## Building an executable
 
-    pip install pyinstaller
-    python compile.py
+    py -m pip install pyinstaller
+    py compile.py
 
 That is the whole build. The script checks what it needs, runs PyInstaller with
 the right arguments, copies the game's data next to the executable and says
@@ -759,7 +769,7 @@ executable, not inside the payload.)
 
 ### Checking the result
 
-    python compile.py --test
+    py compile.py --test
 
 After building it starts the game for ten seconds and reads
 `%APPDATA%\AudioDefence\audiodefence.log` for the three things that matter:
