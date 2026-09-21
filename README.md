@@ -40,7 +40,9 @@ who tested every line of it by ear.
 The rule was: copy what the game *does*, not what it ought to do. Its bugs
 included. Every ported method carries the address it was written against, so any
 line can be checked against the disassembly, and every deliberate departure is
-written down with the address of the method it came from.
+written down with the address of the method it came from. That rule is for the
+game itself; what the port adds to it is listed on its own, under *How faithful
+this is*.
 
 The toolchain that made it possible lives in `tools/` and its output in
 `analysis/` — a disassembler, an Objective-C class and selector dump, a digest
@@ -295,6 +297,18 @@ because the tutorial has a separate announcer clip for each.
 
 ## How faithful this is
 
+Faithful here means the game itself. What you play is the original's, and it
+stays that way: the waves, the zombies, the weapons and what they cost, the
+challenges, the sounds, and the quirks that shape how it plays. The port also
+adds things, and will go on adding them — some around the game, like the updater
+or Copy results, and in time some inside it, like new tarot cards or another
+arena. Whatever is added follows the original's concept and sits beside what the
+original has, rather than changing it. You can hear the line in Settings: the
+original's own rows work as they always did, and only the rows the port added
+step through their values with Enter and Shift+Enter. The additions are listed
+together under *New in the port*, apart from the changes to what the original
+already had.
+
 The port is written method by method against the original's arm64 disassembly, and the rule it follows is to
 copy what the game does rather than what it ought to do — its bugs included. Every place it departs from
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
@@ -342,10 +356,6 @@ nothing, or says something no keyboard player can act on.
   opened it.
 - **The cursor opens on a screen's own first item**, not on the Back button and the coin and diamond
   readouts that precede it. They are still one step back.
-- **The tutorial announcer's lines are also spoken as text**, naming the keys you have actually bound. The
-  announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
-  **Settings → Miscellaneous → Tutorial text** chooses when, or turns it off: Enter steps to the next
-  setting, Shift+Enter to the previous.
 - **The tarot deal is silent on iOS** — the flip sound plays at the end of an animation that is skipped for
   VoiceOver. Here you hear the cards.
 - **A card you pay to change is never saved on iOS**: leave the screen and the old card is back, diamonds
@@ -361,8 +371,6 @@ nothing, or says something no keyboard player can act on.
 - Zombiepedia's preview button, its Next and Previous buttons, and the armory's upgrade button were
   unlabelled, double-labelled or silent about their price. Four strings written in capitals are spoken in
   sentence case; the screen keeps the capitals.
-- **Settings → Miscellaneous → Remember cursor position** (off by default) returns the cursor to the row you left
-  a screen on.
 
 ### 3. Original bugs fixed
 
@@ -428,6 +436,27 @@ Faults in the game's own logic, not in how it describes itself. Each was read ag
 - The reading order is approximated from the nib frames, and no screen wraps at its ends.
 - Game Center, the Twitter and Facebook sharing buttons, and the "more games" screen are removed.
 - The per-sound hard clip of the binaural panner is not reproduced.
+
+### 6. New in the port
+
+Things the original never had. Each one sits beside the original's own screens and rows rather than
+replacing them.
+
+- **Check for updates**, on the main menu, and a quiet check each time the game starts, which you can
+  switch off in **Settings → Miscellaneous**. An update downloads only the files that changed. See
+  [Updates](#updates).
+- **Copy results**, on the screen at the end of a run, puts the results on the clipboard. See
+  [Sharing a result](#sharing-a-result).
+- **Restart challenge**, on the pause menu during a challenge, so a challenge you have already lost does not
+  have to be played to the end.
+- **The tutorial announcer's lines are also spoken as text**, naming the keys you have actually bound. The
+  announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
+  **Settings → Miscellaneous → Tutorial text** chooses when, or turns it off: Enter steps to the next
+  setting, Shift+Enter to the previous.
+- **Settings → Miscellaneous → Remember cursor position** (off by default) returns the cursor to the row
+  you left a screen on.
+- **Settings → Miscellaneous → Reset all settings** puts every setting back to its default, except your key
+  bindings.
 
 ### Original quirks kept on purpose
 
