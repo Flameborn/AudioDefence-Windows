@@ -532,16 +532,29 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   controllers' buttons (Settings -> Joystick -> Restore default buttons).  The original has no reset; this
   one replaced the port's own Restore aiming defaults and Restore menu defaults rows.
 * PORT ADDITION: Settings -> Miscellaneous -> Speech output (`speechOutput` in settings.json,
-  `Speech.choice`, `platform/speech.py OUTPUTS`): Automatic by default - NVDA through its controller client, else another
-  screen reader through Prism, else SAPI 5 (`Speech.speak_automatic`) - or one of NVDA, JAWS, Narrator,
-  ZoomText, System Access, Window-Eyes, PC-Talker, ZDSR, Boy PC Reader, Sense Reader and SAPI 5 only (the
-  Prism ones through `_Readers.current(only)`), with nothing spoken while that one cannot speak.  Enter
-  and Shift+Enter step through them and wrap.  The row says each step through the new choice or, when
-  that one cannot speak (`Speech.can_speak`), through the automatic one with the reason ("JAWS is not
-  running, so the game will be silent until it is", or that Prism is not installed): said through the
-  choice itself, it would not be heard, and a player stepping through would not know where they had
-  landed.  The game reads the choice as it starts (`__main__`), and the log says when the chosen one
-  stops being able to speak and when it can again.
+  `Speech.choice`, `platform/speech.py OUTPUTS`): Automatic by default - NVDA through its controller
+  client, else another screen reader through Prism, else SAPI 5 (`Speech.speak_automatic`) - or one of
+  NVDA, JAWS, ZDSR, Narrator, ZoomText, System Access, Window-Eyes, PC-Talker, Boy PC Reader, Sense Reader
+  and SAPI 5 only (the Prism ones through `_Readers.current(only)`), with nothing spoken while that one
+  cannot speak.  Automatic tries the Prism ones in that same order, not Prism's own (which puts PC-Talker,
+  ZDSR and Boy PC Reader before JAWS, and Narrator last).  Enter and Shift+Enter step through them and
+  wrap.  The row says each step through the new choice or, when that one cannot speak (`Speech.can_speak`),
+  through the automatic one with the reason ("JAWS is not running, so the game will be silent until it is",
+  or that Prism is not installed): said through the choice itself, it would not be heard, and a player
+  stepping through would not know where they had landed.  The game reads the choice as it starts
+  (`__main__`), and the log says when the chosen one stops being able to speak and when it can again.
+  While it is Automatic or SAPI 5, rows for SAPI 5 itself follow (`_Sapi`, `sapiVoice` / `sapiRate` /
+  `sapiRateBoost` / `sapiPitch` / `sapiVolume`): the voice - Control Panel's, as a new SpVoice starts on,
+  then every installed token - the rate (-10 to 10) and the volume (0 to 100 in tens), which are SpVoice's
+  own properties and start at Control Panel's, and the pitch (-10 to 10), which SAPI has only as XML,
+  `<pitch absmiddle>`.  The rate boost is `<rate speed="10">` on top of the rate; some voices go faster
+  that way than rate 10 allows and some do not (here Zira did, US Paul and BestSpeech Fred did not), so
+  each voice is tried once a session, speaking a line into memory both ways (`boost_supported`), and the
+  row is offered only where it helps.  NVDA's own SAPI 5 rate boost is another thing: it speeds the voice's
+  audio up with the Sonic library, which the port does not have.  The XML is sent only while the pitch or
+  the boost is in use, since a voice may take XML oddly; otherwise the text goes as plain text
+  (SVSFIsNotXML), never parsed.  Each change is said in SAPI 5 at the new setting, whatever else is
+  speaking.
 * DIVERGENCE: a dead player can no longer fire, melee, reload or switch weapons.  `showDeathOverlay` brings
   the death overlay to the front of the gameplay view and gives it `userInteractionEnabled` (0x10005b9e4 and
   0x10005ba20; the challenge controller's own at 0x1000db814), so on a phone it swallows every touch and the

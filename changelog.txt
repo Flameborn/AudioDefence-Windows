@@ -39,6 +39,8 @@ On the Endless screen, the Play button is dimmed along with the Armory and Back 
 Playing with the SAPI 5 voice instead of NVDA works like playing with NVDA. Before, the challenge screens said they were not ported yet, and the game itself was not described.
 The game speaks through JAWS, ZoomText, System Access, Narrator and other screen readers too, not only NVDA. Before, it used the SAPI 5 voice with them. A screen reader started or closed while the game is open is followed within a few seconds.
 The Miscellaneous tab has a Speech output option. Automatic, the default, uses whichever screen reader is running, or SAPI 5 when none is. You can pick one screen reader or SAPI 5 instead, and then only that one speaks, so the game is silent while it is not running. Enter and Shift+Enter go through the list, and the option always tells you what you picked.
+When Speech output is Automatic or SAPI 5, the Miscellaneous tab also has the SAPI 5 voice, rate, pitch and volume, and a rate boost for voices that can go faster. The voice starts on the one set in Control Panel, and each change is said in SAPI 5 so you can hear it.
+Screen readers are tried in this order: NVDA, JAWS, ZDSR, then the others, and SAPI 5 last. The Speech output list goes in the same order.
 
 26.09.20:
 Initial release.

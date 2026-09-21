@@ -279,6 +279,32 @@ class GameParameters:
         self.defaults.synchronize()
         Speech.shared().choice = self.speech_output()
 
+    #: PORT ADDITION: Settings -> Miscellaneous -> SAPI 5 voice, rate, rate boost, pitch and volume
+    #: (platform/speech.py _Sapi).  Nothing stored is Control Panel's voice, rate and volume.
+    SAPI_KEYS = {'voice': 'sapiVoice', 'rate': 'sapiRate', 'boost': 'sapiRateBoost', 'pitch': 'sapiPitch',
+                 'volume': 'sapiVolume'}
+
+    def sapi_config(self) -> dict:
+        voice = self.defaults.object('sapiVoice')
+        rate = self.defaults.object('sapiRate')
+        pitch = self.defaults.object('sapiPitch')
+        volume = self.defaults.object('sapiVolume')
+        return {'voice': voice if isinstance(voice, str) and voice else None,
+                'rate': max(-10, min(10, int(rate))) if isinstance(rate, (int, float)) else None,
+                'boost': self.defaults.object('sapiRateBoost') is True,
+                'pitch': max(-10, min(10, int(pitch))) if isinstance(pitch, (int, float)) else 0,
+                'volume': max(0, min(100, int(volume))) if isinstance(volume, (int, float)) else None}
+
+    def set_sapi(self, **changes) -> None:
+        """Change some of them - None (or False, 0 for pitch) puts one back - and tell the voice."""
+        from ..platform.speech import Speech
+        for key, value in changes.items():
+            # compared by identity: 0 == False, and a rate or volume of 0 is a setting, not Control Panel's
+            unset = value is None or value is False or (key == 'pitch' and value == 0)
+            self.defaults.set_object(None if unset else value, self.SAPI_KEYS[key])
+        self.defaults.synchronize()
+        Speech.shared().configure_sapi(**self.sapi_config())
+
     def names_controller(self):
         """The connected controller whose buttons the lines name, by the name it gives itself - the one
         chosen when several kinds are connected, else the one connected last - or None to name keys."""

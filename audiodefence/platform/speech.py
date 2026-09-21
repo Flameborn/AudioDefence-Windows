@@ -10,18 +10,19 @@ import ctypes
 import logging
 import time
 from ctypes import wintypes
+from xml.sax.saxutils import escape
 
 from .. import paths
 
 log = logging.getLogger('speech')
 
-#: PORT ADDITION: Settings -> Miscellaneous -> Speech output.  Automatic takes the first of NVDA, another
-#: screen reader and SAPI 5 that can speak; any other choice speaks through that one only, and the game is
-#: silent while it cannot.
-OUTPUTS = (('auto', 'Automatic'), ('nvda', 'NVDA'), ('jaws', 'JAWS'), ('narrator', 'Narrator'),
+#: PORT ADDITION: Settings -> Miscellaneous -> Speech output.  Automatic takes the first of these that can
+#: speak, in this order; any other choice speaks through that one only, and the game is silent while it
+#: cannot.
+OUTPUTS = (('auto', 'Automatic'), ('nvda', 'NVDA'), ('jaws', 'JAWS'), ('zdsr', 'ZDSR'), ('narrator', 'Narrator'),
            ('zoomtext', 'ZoomText'), ('systemaccess', 'System Access'), ('windoweyes', 'Window-Eyes'),
-           ('pctalker', 'PC-Talker'), ('zdsr', 'ZDSR'), ('boypcreader', 'Boy PC Reader'),
-           ('sensereader', 'Sense Reader'), ('sapi', 'SAPI 5'))
+           ('pctalker', 'PC-Talker'), ('boypcreader', 'Boy PC Reader'), ('sensereader', 'Sense Reader'),
+           ('sapi', 'SAPI 5'))
 #: the choices Prism speaks for, by Prism's own names for them
 PRISM_NAMES = {'jaws': 'JAWS', 'narrator': 'UIA', 'zoomtext': 'ZoomText', 'systemaccess': 'SystemAccess',
                'windoweyes': 'WindowEyes', 'pctalker': 'PCTalker', 'zdsr': 'ZDSR', 'boypcreader': 'BoyPCReader',
@@ -101,8 +102,9 @@ class _Readers:
     """PORT ADDITION: the screen readers other than NVDA, through Prism (the prismatoid package, optional).
 
     NVDA keeps its own controller client above, which is asked before every line whether NVDA is running.
-    Prism also offers plain voices (OneCore, its own SAPI); those are left out, so with no screen reader
-    running the voice is the same SAPI 5 one as before.  Narrator is reached through Prism's UI
+    The others are tried in Speech output's order (OUTPUTS), not Prism's own.  Prism also offers plain
+    voices (OneCore, its own SAPI); those are left out, so with no screen reader running the voice is the
+    same SAPI 5 one as before, with its own settings (_Sapi).  Narrator is reached through Prism's UI
     Automation notifications ('UIA'), which Prism ranks last and which report themselves ready whether
     Narrator is running or not - sent with nothing listening, a line would be lost - so the game asks
     Windows itself whether Narrator.exe is running, and uses them only then.  A screen reader started
@@ -110,7 +112,6 @@ class _Readers:
     SAPI 5 speaks the line instead.  Prism is loaded only once NVDA is found not to be running, so an NVDA
     player never loads it."""
 
-    SKIP = frozenset({'NVDA', 'OneCore', 'SAPI'})
     NARRATOR = 'UIA'                                      # Prism's name for what Narrator reads
     PROBE_EVERY = 5.0                                     # seconds between looks, while none is speaking
     CHECK_EVERY = 1.0                                     # seconds between asking the one in use
@@ -125,8 +126,10 @@ class _Readers:
         try:
             from prism import Context
             self.ctx = Context()
-            self.ids = [bid for bid in (self.ctx.id_of(i) for i in range(self.ctx.backends_count))
-                        if self.ctx.name_of(bid) not in self.SKIP]
+            present = {self.ctx.name_of(bid): bid
+                       for bid in (self.ctx.id_of(i) for i in range(self.ctx.backends_count))}
+            self.ids = [present[PRISM_NAMES[key]] for key, _name in OUTPUTS
+                        if key in PRISM_NAMES and PRISM_NAMES[key] in present]
             log.info('Prism: %s', ', '.join(self.ctx.name_of(bid) for bid in self.ids))
         except Exception as exc:                          # not installed, or its library will not load
             log.info('Prism not available (%s): NVDA and SAPI 5 only', exc)
@@ -198,24 +201,135 @@ class _Readers:
                 self._drop(exc)
 
 
+#: PORT ADDITION: Settings -> Miscellaneous -> SAPI 5 voice, rate, rate boost, pitch and volume.  A voice or
+#: rate or volume of None is Control Panel's (whatever a new SpVoice starts with); pitch 0 is the voice's own.
+SAPI_DEFAULTS = {'voice': None, 'rate': None, 'boost': False, 'pitch': 0, 'volume': None}
+
+
 class _Sapi:
-    SVSF_ASYNC = 1
+    """SAPI 5, with the player's voice, rate, rate boost, pitch and volume.
+
+    Rate (-10 to 10) and volume (0 to 100) are the voice's own properties.  Pitch has none, so it is SAPI's
+    XML, <pitch absmiddle> (-10 to 10), and the rate boost is <rate speed="10"> on top of the rate: some
+    voices go faster that way than rate 10 allows and some do not, which is measured for each voice
+    (boost_supported) rather than assumed.  The XML is sent only while one of them is in use, since some
+    voices take XML oddly; otherwise the text goes as plain text (SVSFIsNotXML), never parsed."""
+
+    SVSF_ASYNC = 1                                        # SpeechLib's SpeechVoiceSpeakFlags
     SVSF_PURGE = 2
+    SVSF_IS_XML = 8
+    SVSF_IS_NOT_XML = 16
 
     def __init__(self):
         self.voice = None
+        self.client = None
+        self.panel_rate, self.panel_volume = 0, 100
+        self.config = dict(SAPI_DEFAULTS)
+        self._voices = None
+        self._boost = {}
         try:
             import comtypes.client
+            self.client = comtypes.client
             self.voice = comtypes.client.CreateObject('SAPI.SpVoice')
+            self.panel_rate, self.panel_volume = int(self.voice.Rate), int(self.voice.Volume)
         except Exception:
             log.info('SAPI not available')
             self.voice = None
+
+    def voices(self) -> list:
+        """(id, name) for every installed SAPI 5 voice, in SAPI's own order."""
+        if self._voices is None:
+            self._voices = []
+            if self.voice is not None:
+                tokens = self.voice.GetVoices()
+                for i in range(tokens.Count):
+                    token = tokens.Item(i)
+                    self._voices.append((str(token.Id), str(token.GetDescription())))
+        return self._voices
+
+    def _token(self, voice_id):
+        tokens = self.voice.GetVoices()
+        for i in range(tokens.Count):
+            if tokens.Item(i).Id == voice_id:
+                return tokens.Item(i)
+        return None
+
+    def configure(self, voice=None, rate=None, boost=False, pitch=0, volume=None) -> None:
+        self.config = {'voice': voice, 'rate': rate, 'boost': bool(boost), 'pitch': int(pitch or 0),
+                       'volume': volume}
+        if self.voice is None:
+            return
+        try:
+            token = self._token(voice) if voice else None
+            if token is None:                             # Control Panel's, as a new SpVoice starts on
+                token = self.client.CreateObject('SAPI.SpVoice').Voice
+            if token.Id != self.voice.Voice.Id:
+                self.voice.Voice = token
+            self.voice.Rate = self.rate()
+            self.voice.Volume = self.volume()
+        except Exception as exc:
+            log.info('SAPI settings not applied: %s', exc)
+
+    def rate(self) -> int:
+        rate = self.config['rate']
+        return self.panel_rate if rate is None else max(-10, min(10, int(rate)))
+
+    def volume(self) -> int:
+        volume = self.config['volume']
+        return self.panel_volume if volume is None else max(0, min(100, int(volume)))
+
+    def boost_supported(self, voice_id=None) -> bool:
+        """Whether this voice (None: Control Panel's) speaks faster with the boost than at rate 10 alone,
+        measured once a session by speaking a line into memory both ways."""
+        key = voice_id or ''
+        if key not in self._boost:
+            self._boost[key] = self._measure_boost(voice_id)
+        return self._boost[key]
+
+    def _measure_boost(self, voice_id) -> bool:
+        if self.voice is None:
+            return False
+        try:
+            from comtypes.gen import SpeechLib
+            voice = self.client.CreateObject('SAPI.SpVoice')
+            token = self._token(voice_id) if voice_id else None
+            if token is not None:
+                voice.Voice = token
+            voice.Rate = 10
+            line = 'Reload your weapon and get ready.'
+
+            def length(text, flags) -> int:
+                stream = self.client.CreateObject('SAPI.SpMemoryStream')
+                audio_format = self.client.CreateObject('SAPI.SpAudioFormat')
+                audio_format.Type = SpeechLib.SAFT22kHz16BitMono
+                stream.Format = audio_format
+                voice.AudioOutputStream = stream
+                voice.Speak(text, flags)
+                return len(bytes(stream.GetData()))
+            plain = length(line, self.SVSF_IS_NOT_XML)
+            boosted = length('<rate speed="10">%s</rate>' % line, self.SVSF_IS_XML)
+            log.info('SAPI rate boost for %s: %s', voice_id or 'the Control Panel voice',
+                     'yes' if plain and boosted < 0.9 * plain else 'no')
+            return bool(plain) and boosted < 0.9 * plain
+        except Exception as exc:
+            log.info('SAPI rate boost not measured: %s', exc)
+            return False
 
     def speak(self, text: str, interrupt: bool) -> bool:
         if self.voice is None:
             return False
         flags = self.SVSF_ASYNC | (self.SVSF_PURGE if interrupt else 0)
-        self.voice.Speak(text, flags)
+        pitch = self.config['pitch']
+        boost = self.config['boost'] and self.boost_supported(self.config['voice'])
+        if pitch or boost:
+            body = escape(text)
+            if boost:
+                body = '<rate speed="10">%s</rate>' % body
+            if pitch:
+                body = '<pitch absmiddle="%d">%s</pitch>' % (max(-10, min(10, pitch)), body)
+            self.voice.Speak(body, flags | self.SVSF_IS_XML)
+        else:
+            self.voice.Speak(text, flags | self.SVSF_IS_NOT_XML)
         return True
 
     def stop(self) -> None:
@@ -237,6 +351,7 @@ class Speech:
         self._readers = None
         self._sapi = None
         self.choice = 'auto'                              # Speech output (OUTPUTS), set from the settings
+        self.sapi_config = dict(SAPI_DEFAULTS)            # SAPI 5's voice and the rest, likewise
         self._silent = False                              # the chosen one could not speak the last line
 
     @property
@@ -249,7 +364,15 @@ class Speech:
     def sapi(self) -> _Sapi:
         if self._sapi is None:
             self._sapi = _Sapi()
+            self._sapi.configure(**self.sapi_config)
         return self._sapi
+
+    def configure_sapi(self, **config) -> None:
+        """SAPI 5's voice, rate, boost, pitch and volume (SAPI_DEFAULTS), from the settings."""
+        self.sapi_config = dict(SAPI_DEFAULTS, **config)
+        configure = getattr(self._sapi, 'configure', None)
+        if configure is not None:
+            configure(**self.sapi_config)
 
     def screen_reader_running(self) -> bool:
         """UIAccessibilityIsVoiceOverRunning() equivalent: always, in the port.

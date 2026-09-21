@@ -18,24 +18,39 @@ playing it and describing what they heard.
 ## Accessibility
 
 The port is built for a screen reader, not adapted to one afterwards. It speaks
-through **NVDA** when NVDA is running; through **JAWS**, **ZoomText**, **System
-Access**, **PC-Talker**, **ZDSR**, **Boy PC Reader**, **Sense Reader**,
-**Window-Eyes** or **Narrator** when one of those is (through the Prism
-library); and through the **SAPI 5** voice when none is — nothing else is
+through **NVDA** when NVDA is running; through **JAWS**, **ZDSR**, **Narrator**,
+**ZoomText**, **System Access**, **Window-Eyes**, **PC-Talker**, **Boy PC
+Reader** or **Sense Reader** when one of those is, tried in that order (through
+the Prism library); and through the **SAPI 5** voice when none is — nothing else is
 required, and there is no visual mode worth using. A screen reader started or
 closed while the game runs is followed within a few seconds. The game is the
 same whichever speaks: with SAPI 5 you get every screen and the spoken game
 exactly as an NVDA player does.
 
 That choice is automatic. **Settings → Miscellaneous → Speech output** picks one
-instead — NVDA, JAWS, Narrator, ZoomText, System Access, Window-Eyes, PC-Talker,
-ZDSR, Boy PC Reader, Sense Reader or SAPI 5 — with Enter for the next and
+instead — NVDA, JAWS, ZDSR, Narrator, ZoomText, System Access, Window-Eyes,
+PC-Talker, Boy PC Reader, Sense Reader or SAPI 5 — with Enter for the next and
 Shift+Enter for the previous, and Automatic, the default, at the start of the
 list. The one you pick is the only one used: while it is not running the game
 is silent, even with another screen reader running. The row itself always tells
 you what you picked, through the automatic choice when the one you picked
 cannot speak ("JAWS is not running, so the game will be silent until it is"),
 so you can step on to another without being left in silence.
+
+While Speech output is Automatic or SAPI 5, five more rows follow it, for SAPI
+5 itself:
+
+| row | what it does |
+|---|---|
+| **SAPI 5 voice** | the voice set in Control Panel (the default), then every installed voice |
+| **SAPI 5 rate** | -10 to 10, starting where Control Panel has it |
+| **SAPI 5 rate boost** | faster again than the rate allows — only for a voice that can, which the game tries once per voice to find out |
+| **SAPI 5 pitch** | -10 to 10, 0 being the voice's own |
+| **SAPI 5 volume** | in steps of 10%, starting where Control Panel has it |
+
+Enter and Shift+Enter change each one, and each change is said in SAPI 5 at the
+new setting, even while NVDA speaks the rest, so you hear what you chose. Reset
+all settings puts all five back to Control Panel's.
 
 Every screen the original offered a VoiceOver user is here, read in the
 order VoiceOver read it, with the same labels and hints, and a good number of
@@ -171,7 +186,7 @@ Settings, saves and the log live in `%APPDATA%\AudioDefence`, in three files:
 | file | what is in it |
 |---|---|
 | `save.json` | progress: coins, diamonds, weapons, power-ups, missions, challenges, statistics |
-| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, how strong the vibration and the trigger feel are, and whether hints name keys or controller buttons, and which controller's, and the speech output |
+| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, how strong the vibration and the trigger feel are, and whether hints name keys or controller buttons, and which controller's, and the speech output and SAPI 5's voice, rate, rate boost, pitch and volume |
 | `keys.json` | the key bindings, and each kind of controller's, by its name |
 
 Deleting the folder starts a fresh profile — the first run then begins on Gyro
@@ -608,8 +623,8 @@ replacing them.
   announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
   **Settings → Miscellaneous → Tutorial text** chooses when, or turns it off: Enter steps to the next
   setting, Shift+Enter to the previous.
-- **Settings → Miscellaneous → Speech output**: Automatic, or one screen reader or voice only. See
-  [Accessibility](#accessibility).
+- **Settings → Miscellaneous → Speech output**: Automatic, or one screen reader or voice only, and SAPI
+  5's voice, rate, rate boost, pitch and volume. See [Accessibility](#accessibility).
 - **Settings → Miscellaneous → Remember cursor position** (off by default) returns the cursor to the row
   you left a screen on.
 - **A menu music volume**: Page Up and Page Down, on any menu, in steps of 10% from 100% — the original's

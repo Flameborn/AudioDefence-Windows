@@ -167,6 +167,8 @@ class ControlSchemePanel:
                         'the game is silent while it is not running. Press Enter for the next setting and '
                         'Shift plus Enter for the previous.',
                    action=self.step_speech_output, shift_action=self.step_speech_output_back)
+            if params.speech_output() in ('auto', 'sapi'):   # SAPI 5 can be what speaks
+                self.sapi_rows(t, params)
             t.cell('Check for updates when the game starts', 'ON' if params.check_updates() else 'OFF',
                    hint='Press Enter to toggle: when on, the main menu looks for a new build and tells '
                         'you only if there is one.',
@@ -384,6 +386,7 @@ class ControlSchemePanel:
         params.set_key_names(params.DEFAULT_KEY_NAMES)
         params.set_names_controller(None)
         params.set_speech_output(params.DEFAULT_SPEECH_OUTPUT)
+        params.set_sapi(voice=None, rate=None, boost=False, pitch=0, volume=None)
         App.apply_menu_music_volume()
         self.reload_data()
         self.announce('All settings reset to default. Your key and controller bindings are unchanged.')
@@ -443,6 +446,90 @@ class ControlSchemePanel:
 
     def step_speech_output_back(self) -> None:
         self.step_speech_output(-1)
+
+    # --- SAPI 5 (PORT ADDITION) ------------------------------------------------------------------
+    SAPI_STEP_HINT = 'Press Enter for the next setting and Shift plus Enter for the previous.'
+    CONTROL_PANEL_VOICE = 'Control Panel default'
+
+    def sapi_rows(self, t, params) -> None:
+        """SAPI 5's voice, rate, rate boost (for a voice that has one), pitch and volume.  Each change is
+        said in SAPI 5 itself, at the new setting, so it can be heard whatever else is speaking."""
+        from ..platform.speech import Speech
+        sapi = Speech.shared().sapi
+        if sapi.voice is None:                            # no SAPI here (comtypes missing)
+            return
+        config = params.sapi_config()
+        names = dict(sapi.voices())
+        t.cell('SAPI 5 voice', names.get(config['voice'], self.CONTROL_PANEL_VOICE),
+               hint='The voice SAPI 5 speaks with: the one set in Control Panel, or any installed voice. '
+                    + self.SAPI_STEP_HINT,
+               action=self.step_sapi_voice, shift_action=self.step_sapi_voice_back)
+        t.cell('SAPI 5 rate', str(sapi.rate()), hint='How fast SAPI 5 speaks, from -10 to 10. ' + self.SAPI_STEP_HINT,
+               action=self.step_sapi_rate, shift_action=self.step_sapi_rate_back)
+        if sapi.boost_supported(config['voice'] if config['voice'] in names else None):
+            t.cell('SAPI 5 rate boost', 'ON' if config['boost'] else 'OFF',
+                   hint='Press Enter to toggle: when on, this voice speaks faster again than its rate.',
+                   action=self.toggle_sapi_boost, shift_action=self.toggle_sapi_boost)
+        t.cell('SAPI 5 pitch', str(config['pitch']), hint='How high SAPI 5 speaks, from -10 to 10. '
+                                                          + self.SAPI_STEP_HINT,
+               action=self.step_sapi_pitch, shift_action=self.step_sapi_pitch_back)
+        t.cell('SAPI 5 volume', '%d%%' % sapi.volume(), hint='How loud SAPI 5 speaks. ' + self.SAPI_STEP_HINT,
+               action=self.step_sapi_volume, shift_action=self.step_sapi_volume_back)
+
+    @staticmethod
+    def _sapi_say(text: str) -> None:
+        from ..platform.speech import Speech
+        Speech.shared().sapi.speak(text, True)
+
+    def step_sapi_voice(self, step: int = 1) -> None:
+        from ..platform.speech import Speech
+        params = GameParameters.shared()
+        voices = Speech.shared().sapi.voices()
+        ids = [None] + [voice_id for voice_id, _name in voices]
+        current = params.sapi_config()['voice']
+        index = ids.index(current) if current in ids else 0
+        params.set_sapi(voice=ids[(index + step) % len(ids)])
+        self.reload_data()
+        chosen = params.sapi_config()['voice']
+        self._sapi_say('SAPI 5 voice: %s' % dict(voices).get(chosen, self.CONTROL_PANEL_VOICE))
+
+    def step_sapi_voice_back(self) -> None:
+        self.step_sapi_voice(-1)
+
+    def step_sapi_rate(self, step: int = 1) -> None:
+        from ..platform.speech import Speech
+        params = GameParameters.shared()
+        params.set_sapi(rate=max(-10, min(10, Speech.shared().sapi.rate() + step)))   # the ends hold
+        self.reload_data()
+        self._sapi_say('SAPI 5 rate %d' % Speech.shared().sapi.rate())
+
+    def step_sapi_rate_back(self) -> None:
+        self.step_sapi_rate(-1)
+
+    def toggle_sapi_boost(self) -> None:
+        params = GameParameters.shared()
+        params.set_sapi(boost=not params.sapi_config()['boost'])
+        self.reload_data()
+        self._sapi_say('SAPI 5 rate boost %s' % ('ON' if params.sapi_config()['boost'] else 'OFF'))
+
+    def step_sapi_pitch(self, step: int = 1) -> None:
+        params = GameParameters.shared()
+        params.set_sapi(pitch=max(-10, min(10, params.sapi_config()['pitch'] + step)))
+        self.reload_data()
+        self._sapi_say('SAPI 5 pitch %d' % params.sapi_config()['pitch'])
+
+    def step_sapi_pitch_back(self) -> None:
+        self.step_sapi_pitch(-1)
+
+    def step_sapi_volume(self, step: int = 1) -> None:
+        from ..platform.speech import Speech
+        params = GameParameters.shared()
+        params.set_sapi(volume=max(0, min(100, Speech.shared().sapi.volume() + 10 * step)))
+        self.reload_data()
+        self._sapi_say('SAPI 5 volume %d%%' % Speech.shared().sapi.volume())
+
+    def step_sapi_volume_back(self) -> None:
+        self.step_sapi_volume(-1)
 
     def step_names_controller(self, step: int = 1) -> None:
         from ..platform.pad import Pads
