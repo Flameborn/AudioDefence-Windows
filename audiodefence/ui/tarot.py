@@ -24,7 +24,8 @@ def _cards_for_level(level: int) -> list:
 
 
 def cards_in_play() -> list:
-    """PORT ADDITION: [(1, title), (2, title)] - the two cards this Endless run was dealt, for Copy results.
+    """PORT ADDITION: [(1, title), (2, title)] - the two cards this Endless run was dealt, for the game-over
+    screen's first row and so for Copy results.
 
     They are kept as tarotCard1 and tarotCard2, each by its selector, and a selector is looked up in its
     own level of Tarot.plist: the same selector names a different card on another level.  The game-over

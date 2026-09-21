@@ -40,6 +40,15 @@ def compute_current_enemy_kill_count(stats) -> int:     # -[ADInGameStats comput
     return total
 
 
+def tarot_row(cards):
+    """PORT ADDITION: the run's cards as one line - ('Tarot cards', 'More Power Ups! and Glue Barrels') -
+    or ('Tarot card', title) for one, or None when the run had none."""
+    titles = [title for _level, title in cards]
+    if not titles:
+        return None
+    return ('Tarot card' if len(titles) == 1 else 'Tarot cards'), ' and '.join(titles)
+
+
 @register('Accessible_ADGameOverEndlessViewController')
 class AccessibleGameOverEndlessScreen(ViewControllerScreen):
     page_title = 'Game over'
@@ -72,7 +81,7 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         from ..game.persistent_stats import PersistentStats
         # [[statusBarViewController pageTitle] setText:@"GAME OVER"] goes to nil
         PersistentStats.shared().save_score(InGameStats.singleton().game_score)
-        # PORT ADDITION: which cards this run had, for Copy results - asked now, because the line below
+        # PORT ADDITION: which cards this run had, for the first row - asked now, because the line below
         # clears them after any run longer than a minute
         from .tarot import cards_in_play
         self.cards_played = cards_in_play()
@@ -113,48 +122,37 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
 
     # --- table (UITableViewDataSource) -----------------------------------------------------------
     def reload_data(self) -> None:                       # [tableView reloadData]
+        """DIVERGENCE (user request): one row per line, read exactly as Copy results pastes it.
+
+        The original's table (numberOfSectionsInTableView: 0x10009a89c, tableView:numberOfRowsInSection:
+        0x10009a674) has two sections under the headers "Rewards" and "Statistics"
+        (tableView:viewForHeaderInSection: 0x10009a690), and its rewards are sentences - "Coins, You earned
+        87 coins for killing zombies" (cellForRewardsAtIndex: 0x10009aa80).  Here there are no header rows,
+        each value is one line - "Coins Earned: 87", "Score: 1200" - and the run's tarot cards come first,
+        which the original never shows at all.  Copy results reads this same table, so the screen and the
+        paste say the same lines; only the paste's heading is not on the screen, which has its title."""
         from ..game.ingame_stats import InGameStats
         stats = InGameStats.singleton()
         t = self.table_view
         t.children.clear()
-        for section in range(self.number_of_sections()):
-            head = View(self.header_for_section(section), t.frame, parent=t, name='header %i' % section)
-            results.mark_header(head)                    # PORT ADDITION: for Copy results
-            for row in range(self.number_of_rows_in_section(section)):
-                text, detail = self.cell_for_row(section, row, stats)
-                cell = View(', '.join(p for p in (text, detail) if p), t.frame, parent=t,
-                            name='cell %i.%i' % (section, row))
-                # PORT ADDITION: for Copy results - a reward is pasted as its number, not its sentence
-                results.mark_cell(cell, *(self.copy_for_rewards_at_index(row, stats) if section == 0
-                                          else (text, detail)))
+        for n, (text, detail) in enumerate(self.result_rows(stats)):
+            cell = View(results.line(text, detail), t.frame, parent=t, name='row %i' % n)
+            results.mark_cell(cell, text, detail)
 
-    @staticmethod
-    def number_of_sections() -> int:                     # numberOfSectionsInTableView: 0x10009a89c
-        return 2
-
-    @staticmethod
-    def number_of_rows_in_section(section: int) -> int:  # tableView:numberOfRowsInSection: 0x10009a674
-        if section == 0:
-            return 2
-        return 5 if section == 1 else 0
-
-    @staticmethod
-    def header_for_section(section: int) -> str:         # tableView:viewForHeaderInSection: 0x10009a690
-        if section == 0:
-            return 'Rewards'
-        if section == 1:
-            return 'Statistics'
-        return ''
-
-    def cell_for_row(self, section: int, row: int, stats):   # tableView:cellForRowAtIndexPath: 0x10009a8a4
-        if section == 0:
-            return self.cell_for_rewards_at_index(row, stats)
-        if section == 1:
-            return self.cell_for_stats_at_index(row, stats)
-        return 'EMPTY CELL', 'EMPTY CELL'
+    def result_rows(self, stats) -> list:
+        """(text, value) for each line: the tarot cards, the two rewards, the five statistics."""
+        rows = []
+        cards = tarot_row(getattr(self, 'cards_played', []))
+        if cards is not None:
+            rows.append(cards)
+        rows += [self.copy_for_rewards_at_index(row, stats) for row in range(2)]
+        rows += [self.cell_for_stats_at_index(row, stats) for row in range(5)]
+        return rows
 
     @staticmethod
     def cell_for_rewards_at_index(row: int, stats):      # cellForRewardsAtIndex: 0x10009aa80
+        """The original's sentences.  The Endless screen no longer reads them (see reload_data); the
+        challenge completed screen, which inherits this, still does."""
         if row == 0:
             return 'Coins', 'You earned %i coins for killing zombies' % stats.total_coins
         if row == 1:
@@ -162,7 +160,7 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         return '', ''
 
     @staticmethod
-    def copy_for_rewards_at_index(row: int, stats):      # PORT ADDITION: how a reward reads in Copy results
+    def copy_for_rewards_at_index(row: int, stats):      # PORT ADDITION: a reward as one line
         if row == 0:
             return 'Coins Earned', '%i' % stats.total_coins
         if row == 1:
@@ -191,9 +189,7 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
     def play_again_button_pressed() -> None:             # playAgainButtonPressed: 0x10009bf54
         App.delegate().go_to_tarot()
 
-    def copy_results_button_pressed(self) -> None:       # PORT ADDITION
-        cards = [(False, 'Tarot card %i' % n, title) for n, title in getattr(self, 'cards_played', [])]
-        results.copy_results(self, 'Audio Defence Endless Statistics',
-                             rows=cards + results.rows_from_table(self.table_view))
+    def copy_results_button_pressed(self) -> None:       # PORT ADDITION: the table, cards and all
+        results.copy_results(self, 'Audio Defence Endless Statistics')
 
     # REMOVED (user request): the magic tap 0x10009bff8 pressed Play again.

@@ -241,8 +241,7 @@ clipboard." After an Endless game it looks like this:
 
     Audio Defence Endless Statistics
 
-    Tarot card 1: Electric Shield
-    Tarot card 2: Zombies With Helmets!
+    Tarot cards: Electric Shield and Zombies With Helmets!
     Coins Earned: 7802
     Diamonds Earned: 14
     Score: 11882144
@@ -256,11 +255,13 @@ challenge's name and whether you completed or failed it, then the stars,
 rewards and statistics that screen shows. There are no tarot cards in a
 challenge.
 
-The numbers are taken from the rows of the screen itself rather than worked
-out again, so they are the ones you were read; only the wording is shorter.
-The coins and diamonds are just the numbers, and the section headings and the
-game's version are left out. The original had one way to share a score, a
-Twitter sheet, which needed an account and an iPhone; this needs neither.
+The lines are taken from the screen itself rather than worked out again. After
+an Endless game the screen reads exactly these lines, one row each — only the
+heading is not on it, since the screen has its own title. A challenge screen
+reads its own rows, which the paste shortens: the coins and diamonds become just
+the numbers, and the section headings are left out. The game's version is never
+in it. The original had one way to share a score, a Twitter sheet, which needed
+an account and an iPhone; this needs neither.
 
 The failed screen is the exception, because the original tells you nothing
 there at all — a tip, and two buttons. It now reads out your kills, accuracy
@@ -337,7 +338,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **95 divergences** and **15 original quirks kept on purpose**.
+There are **96 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -377,6 +378,10 @@ nothing, or says something no keyboard player can act on.
   tarot screen, which is called Endless because that is how Endless starts. The challenge screens all set
   "CHALLENGE", which made four different screens announce the same word; each is now named for the row that
   opened it.
+- **The screen after an Endless game reads one line per result** — "Coins Earned: 7802", "Score: 11882144"
+  — the same lines Copy results pastes, and starts with the tarot cards you played with, which the original
+  never tells you. The original reads a "Rewards" and a "Statistics" heading, and its rewards as sentences:
+  "Coins, You earned 7802 coins for killing zombies".
 - **The cursor opens on a screen's own first item**, not on the Back button and the coin and diamond
   readouts that precede it. They are still one step back.
 - **The tarot deal is silent on iOS** — the flip sound plays at the end of an animation that is skipped for

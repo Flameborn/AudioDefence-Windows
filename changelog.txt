@@ -21,6 +21,8 @@ After a revive, being killed by the same kind of zombie again plays its attack s
 Page Up and Page Down set the volume of the menu music, on any menu. It goes from 100%, as loud as the music has always been, down to silent, and does nothing in a game.
 The game keeps its version number inside itself now, not in a VERSION file beside it, so editing or deleting that file can no longer stop it from updating. A VERSION file left from an older version is not used any more.
 When an update is offered, No now only means not now, and the game asks again the next time it starts. To stop being asked about that version, there is a new Skip this version button. A newer version is still offered, and Check for updates on the main menu still finds a skipped one.
+The screen after an Endless game reads one line for each result, the same lines Copy results pastes, and starts with the tarot cards you played with.
+Copy results puts both tarot cards on one line.
 
 26.09.20:
 Initial release.

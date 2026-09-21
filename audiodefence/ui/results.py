@@ -7,8 +7,9 @@ the clipboard, which works with whatever they were going to share it in.
 
 **The text is read off the screen, not built beside it.**  Both results screens lay their rows out in a
 table, and the copy walks that same table, so what is pasted is what was read out and the two cannot
-drift.  Each row keeps the pieces it was made from (``parts``), so "Kills, 87" on screen becomes
-"Kills: 87" in the paste rather than being re-derived from the statistics.
+drift.  Each row keeps the pieces it was made from (``parts``), so "Kills, 87" on a challenge screen
+becomes "Kills: 87" in the paste rather than being re-derived from the statistics.  The Endless game-over
+screen goes further and reads each row exactly as it is pasted, one line each (``line``).
 """
 from __future__ import annotations
 
@@ -34,16 +35,21 @@ def mark_cell(view, text, detail=None) -> None:
     view.parts = (text, detail)
 
 
-def _row_text(kind_text_detail) -> str:
-    """One row as a line of the paste, or '' for a row that should not appear."""
-    is_header, text, detail = kind_text_detail
+def line(text, detail=None) -> str:
+    """A value as one line: 'Kills: 87', or just the text when there is no value."""
     text = '' if text is None else str(text).strip()
     detail = '' if detail is None else str(detail).strip()
-    if is_header:
-        return text
     if text and detail:
         return '%s: %s' % (text, detail)
     return text or detail
+
+
+def _row_text(kind_text_detail) -> str:
+    """One row as a line of the paste, or '' for a row that should not appear."""
+    is_header, text, detail = kind_text_detail
+    if is_header:
+        return '' if text is None else str(text).strip()
+    return line(text, detail)
 
 
 def rows_from_table(table_view) -> list:
