@@ -155,7 +155,7 @@ class ADSound:
     def speak_tutorial_text(self) -> None:
         """PORT ADDITION: the tutorial announcer tells you to tilt, swipe or tap a corner of a phone.  None
         of that reaches a keyboard, so its lines are also spoken with the keys that are actually bound - see
-        game/tutorial_text.py.  Settings -> Sound -> Tutorial text chooses when, or turns it off."""
+        game/tutorial_text.py.  Settings -> Miscellaneous -> Tutorial text chooses when, or turns it off."""
         from ..platform.speech import Speech
         from .parameters import GameParameters
         from .tutorial_text import text_for

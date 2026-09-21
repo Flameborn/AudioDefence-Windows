@@ -56,7 +56,8 @@ CONTROL_ROWS = (('Button', 'Your keys press the four corner buttons of the phone
 
 # PORT UI: Keyboard holds the key bindings alone, so a Joystick category can sit beside it later without
 # anything moving again.  Miscellaneous is last and holds the rest: how the cursor moves through a
-# screen, whether the game looks for updates, and the one button that puts every setting back.
+# screen, when the tutorial's lines are shown as text, whether the game looks for updates, and the one
+# button that puts every setting back.
 CATEGORIES = (('aiming', 'Aiming'), ('controls', 'Controls'), ('sound', 'Sound'),
               ('keyboard', 'Keyboard'), ('misc', 'Miscellaneous'))
 SELECT_HINT = 'Press Enter to select.'
@@ -103,9 +104,6 @@ class ControlSchemePanel:
             t.cell('Announcer', 'ON' if params.last_announcer_value() else 'OFF',
                    hint='Press Enter to toggle in-game announcements.', action=self.toggle_announcer)
             t.cell('Test headphones', hint='Press Enter to test your headphones.', action=self.test_headphones)
-            t.cell('Tutorial text', self.tutorial_text_text(),   # PORT ADDITION
-                   hint='Press Enter for the next setting and Shift plus Enter for the previous.',
-                   action=self.step_tutorial_text, shift_action=self.step_tutorial_text_back)
         elif self.category == 'misc':                     # PORT ADDITION: everything else
             t.cell('Menu arrows', self.menu_axis_text(),
                    hint='Press Enter to move through menus with the other pair; Control with an arrow, '
@@ -115,6 +113,9 @@ class ControlSchemePanel:
                    hint='Press Enter to toggle: when on, going back to a screen returns the cursor to the '
                         'row you left it on instead of the first one.',
                    action=self.toggle_remember_focus)
+            t.cell('Tutorial text', self.tutorial_text_text(),
+                   hint='Press Enter for the next setting and Shift plus Enter for the previous.',
+                   action=self.step_tutorial_text, shift_action=self.step_tutorial_text_back)
             t.cell('Check for updates when the game starts', 'ON' if params.check_updates() else 'OFF',
                    hint='Press Enter to toggle: when on, the main menu looks for a new build and tells '
                         'you only if there is one.',
