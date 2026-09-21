@@ -19,7 +19,7 @@ from ..platform.clipboard import copy_text
 
 log = logging.getLogger('ui.results')
 
-COPY_HINT = 'Press Enter to copy these results, to paste somewhere else.'
+COPY_HINT = 'Press Enter to copy these results to the clipboard.'
 COPY_LABEL = 'Copy results'
 
 
