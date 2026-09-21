@@ -140,6 +140,22 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   source of its own (`S3DEngine.play_copy_of`) so the shots overlap: an S3DSound owns one OpenAL source, and
   playing it again restarts it, which is heard as the last shot being cut off.  Measured over 20 shots: the
   Tactical Rifle cut 17 of them before this, none after; the Hunting Rifle (0.6 s) never needed it.
+* Every enemy plays its own copy of its sounds (`ADEnemy.voice_of`, `S3DSound.copy`).  In the original the
+  enemies of one type share a playlist (`playListWithName:atBundlePath:` 0x1000fc050 caches it by name) and
+  the playlist holds one sound per file (`-[S3DPlayList each:]` 0x1000ffeb8 caches the agent by key), so
+  two zombies of a type share a sound whenever they pick the same file.  Playing a sound that is already
+  playing restarts it once, without its loop (`play:fadein:` 0x100105eb8 sets `restart`; the cleanup block
+  sends `play`, which is `play:0`); a sound keeps only the last end callback it was given
+  (`add3DSoundMonitor:forSound:` 0x100109c7c empties the set first); and the first zombie to be hit or change
+  step stops the sound under the other, which then walks on in silence.  Two Shield zombies walking side by
+  side for 40 s: one was silent for 13.8 s of it before this, neither for any of it after.  The same sharing
+  silenced a second death: the waves of a run all stay in `bricks` (nothing removes one), so the zombie that
+  killed you before a revive still holds its attack sound, and when the next zombie of its type kills you,
+  `stopAllEnemiesAfterPlayerDeathByEnemyWithName:` 0x1000c71b4 sends the old one
+  `stopAfterPlayerWasKilled` 0x100060a58 - it is no longer attacking, so it stops that sound at once.  The
+  Shield zombie has one attack sound, so its second kill in a run was always silent.  The file is still
+  chosen by the playlist with the same random draws; a copy has its own source, position and end callback
+  on the same buffer, and the playlist stops and unloads the copies with its own sounds.
 * Sound files are decoded ahead of time on a background thread when their playlist is activated, and streamed
   sounds (music, ambience) load in the background like the original's engine-queue loading, so first plays do
   not stall the game (the port used to decode on the main thread: 3-70 ms per new sound, 0.3-0.5 s for an

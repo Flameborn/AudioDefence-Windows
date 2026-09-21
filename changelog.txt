@@ -16,6 +16,8 @@ The Menus tab in Settings is called Miscellaneous now and comes last. Besides th
 Tutorial text has moved from the Sound tab to the Miscellaneous tab.
 The Miscellaneous tab has a Reset all settings button. It sets everything back to default, except your keys.
 The Restore aiming defaults and Restore menu defaults buttons are removed. Use Reset all settings instead.
+Two zombies of the same kind no longer cut off each other's sound. One of them could go quiet and keep walking towards you.
+After a revive, being killed by the same kind of zombie again plays its attack sound. It used to be silent, every time with the Shield zombie.
 
 26.09.20:
 Initial release.

@@ -300,7 +300,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **92 divergences** and **15 original quirks kept on purpose**.
+There are **93 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -413,6 +413,10 @@ Faults in the game's own logic, not in how it describes itself. Each was read ag
 - **A wave's ambience plays.** `Horde_ambiant` is written into 17 waves and the port had been muting it
   through a misread of the disassembly; a zombie with its own ambience still takes over while it lives.
 - **The Chainsaw ambience stops when a game ends**, instead of playing on until the app closes.
+- **Two zombies of the same kind no longer silence each other.** They shared their sounds, one per file, so
+  when both picked the same one, the first to be shot or to change step stopped it under the other, which
+  walked on without a sound. The same sharing made a second death silent after a revive, when it was a
+  zombie of the same kind again — always, for the Shield zombie. Each zombie now has sounds of its own.
 - 3D positioning is correct from the first frame; the original relies on the gyroscope firing to correct it.
 
 ### 5. Engine and presentation

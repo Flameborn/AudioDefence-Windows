@@ -85,6 +85,7 @@ class Enemy:
         self.use_own_impact_sounds = False
         self.destroyed = False
         self._revive_done = False                          # PORT ADDITION: see attack()
+        self._voices = {}                                  # PORT ADDITION: see voice_of()
         self.parent_brick = None
         self.required_playlist_activation = False
         self.playlist_activated = False
@@ -381,7 +382,7 @@ class Enemy:
         if BrickManager.shared().player_is_dead:
             return
         if self._state == 6:
-            snd = self.playlist.any_sound_containing('shieldimpact') if self.playlist else None
+            snd = self.voice_of(self.playlist.any_sound_containing('shieldimpact')) if self.playlist else None
             if snd is not None:
                 snd.set_planar((self.position[0], self.position[1], 0.0))
                 snd.set_spatialized(True)
@@ -506,6 +507,30 @@ class Enemy:
         if self.playlist is not None:
             self.playlist.deactivate()
 
+    def voice_of(self, shared):
+        """DIVERGENCE: this enemy's own copy of a sound its playlist picked (S3DSound.copy).
+
+        The playlist is shared by every enemy of a type and holds one sound per file (-[S3DPlayList each:]
+        0x1000ffeb8), so the original's zombies of one type share their sounds, and one zombie silences
+        another.  Two walking zombies that pick the same approach loop share it: playing a sound that is
+        already playing restarts it without its loop (-[S3DSound play:fadein:] 0x100105eb8), a sound keeps
+        one end callback, the last one given (0x100109c7c), and the first zombie to be hit or change step
+        stops the sound under the other - which walks on in silence.  And the waves of a run all stay in
+        the brick manager's list, so the zombie that killed you before a revive still holds the attack
+        sound; the next zombie of its type to kill you plays that same sound, and
+        stopAllEnemiesAfterPlayerDeathByEnemyWithName: 0x1000c71b4 sends the old one stopAfterPlayerWasKilled
+        0x100060a58, which stops it at once.  A Shield zombie has one attack sound, so its second kill in a
+        run was always silent.  Here each enemy plays its own copy of each file, and the choice of file is
+        the playlist's, as before."""
+        if shared is None:
+            return None
+        twin = self._voices.get(shared.key)
+        if twin is None:
+            twin = self._voices[shared.key] = shared.copy()
+        elif shared.loaded and not twin.loaded:           # the playlist was unloaded and loaded again
+            twin.activate()
+        return twin
+
     def play_any_sound_containing(self, text: str, looping: bool = True, spatialized: bool = True) -> float:
         """-[ADEnemy playAnySoundContaining:looping:spatialized:] 0x100062420 (1-arg form 0x100062d90)."""
         if self.sound is not None:
@@ -519,12 +544,12 @@ class Enemy:
         count = len(pl.sounds_matching(lambda k: text in k))
         old_key = self.sound.key if self.sound is not None else None
         if count == 1 or not looping:
-            self.sound = pl.any_sound_containing(text)
+            self.sound = self.voice_of(pl.any_sound_containing(text))
         else:
-            self.sound = pl.any_sound_containing(text)
+            self.sound = self.voice_of(pl.any_sound_containing(text))
             if self.sound is not None:
                 while self.sound.key == old_key:
-                    self.sound = pl.any_sound_containing(text)
+                    self.sound = self.voice_of(pl.any_sound_containing(text))
                 log.debug('Loop from %s to %s', old_key, self.sound.key)
 
                 def on_end(_s, text=text, spatialized=spatialized):
@@ -552,7 +577,7 @@ class Enemy:
         if not melee:
             snd = None
             if self.use_own_impact_sounds:
-                snd = self.playlist.any_sound_containing('impact_') if self.playlist else None
+                snd = self.voice_of(self.playlist.any_sound_containing('impact_')) if self.playlist else None
             else:
                 impact = S3DEngine.engine().play_list_with_name('impact')
                 if impact is not None:
@@ -579,7 +604,8 @@ class Enemy:
         if self._life <= 0.0:
             if self.explosion_dictionary is not None:
                 if not (self.explosion_sound is not None and self.explosion_sound.playing):
-                    self.explosion_sound = self.playlist.any_sound_containing('explosion') if self.playlist else None
+                    self.explosion_sound = (self.voice_of(self.playlist.any_sound_containing('explosion'))
+                                            if self.playlist else None)
                     if self.explosion_sound is not None:
                         self.explosion_sound.set_planar((self.position[0], self.position[1], 0.0))
                         self.explosion_sound.set_spatialized(True)
@@ -599,9 +625,9 @@ class Enemy:
         else:
             name = '_hit_'
         pl = self.playlist
-        self.pain_sound = pl.any_sound_containing(name) if pl else None
+        self.pain_sound = self.voice_of(pl.any_sound_containing(name)) if pl else None
         if self.pain_sound is None and pl is not None:
-            self.pain_sound = pl.any_sound_containing('_hit_')
+            self.pain_sound = self.voice_of(pl.any_sound_containing('_hit_'))
         if self.pain_sound is None:
             return
         self.pain_sound.set_gain(5.0)
@@ -633,13 +659,13 @@ class Enemy:
             self.pain_sound = None
             return
         if self.next_shot_will_be_critical:
-            self.pain_sound = pl.any_sound_containing('death_crit')
+            self.pain_sound = self.voice_of(pl.any_sound_containing('death_crit'))
             if self.pain_sound is None:
-                self.pain_sound = pl.any_sound_containing('_diecrit_')
+                self.pain_sound = self.voice_of(pl.any_sound_containing('_diecrit_'))
         else:
-            self.pain_sound = pl.any_sound_containing('_death_')
+            self.pain_sound = self.voice_of(pl.any_sound_containing('_death_'))
             if self.pain_sound is None:
-                self.pain_sound = pl.any_sound_containing('_die_')
+                self.pain_sound = self.voice_of(pl.any_sound_containing('_die_'))
         if self.pain_sound is None:
             return
         self.pain_sound.set_gain(4.0)

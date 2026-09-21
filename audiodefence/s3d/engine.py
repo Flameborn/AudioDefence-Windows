@@ -447,11 +447,19 @@ class S3DPlayList:
             return
         self.active = False
         self.each(lambda s: s.deactivate() and False)
+        for twin in self._copies():                                 # PORT ADDITION: see S3DSound.copy
+            twin.deactivate()
         if completion is not None:
             self.engine.dispatch(lambda: completion(self))
 
     def stop_all(self) -> None:                                     # 0x1001005cc
         self.each(lambda s: (s.stop() if s.playing else None) and False)
+        for twin in self._copies():                                 # PORT ADDITION: see S3DSound.copy
+            if twin.playing:
+                twin.stop()
+
+    def _copies(self) -> list:
+        return [twin for agent in self.agent_cache.values() if agent is not None for twin in agent.copies]
 
 
 def _NOOP_COMPLETION(_playlist) -> None:
@@ -521,9 +529,29 @@ class S3DSound:
         self._loading = False
         self._load_generation = 0
         self._load_waiters: list = []
+        self.copies: list = []         # PORT ADDITION: see copy()
 
     def __repr__(self) -> str:
         return f'<S3DSound {self.key}>'
+
+    def copy(self) -> 'S3DSound':
+        """PORT ADDITION: a second, independent sound for the same file.
+
+        A playlist holds one S3DSound per file (-[S3DPlayList each:] 0x1000ffeb8 caches the agent by key),
+        and every enemy of a type draws from that type's playlist, so two zombies of one type share a
+        sound whenever they pick the same file.  The copy has its own source, position, gain, loop and
+        end callback, on the same buffer (buffers are shared by file, see acquire_buffer).  It is loaded
+        at once if this one is, from the decoder's cache, so its duration is right before it first plays.
+        The playlist that owns this sound stops and unloads the copies along with it."""
+        twin = S3DSound(self.engine, self.path)
+        twin.spatialized = self.spatialized
+        twin.preload = self.preload
+        twin.unload_on_stop = self.unload_on_stop
+        twin.stream = self.stream
+        self.copies.append(twin)
+        if self.loaded:
+            twin.activate()
+        return twin
 
     @property
     def al(self):
