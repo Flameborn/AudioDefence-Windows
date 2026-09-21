@@ -294,15 +294,20 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   the armory's weapon description leaves the tab buttons and the status bar reachable, while the power-up
   upgrader - a child of the armory's own view - hides them (it has its own Back button).
 * The game over screen's "Share on twitter" button is removed (user request).
-* The Endless game over screen reads one row per result, exactly as Copy results pastes it (user
-  request).  The original's table has two sections under the headers "Rewards" and "Statistics"
-  (numberOfSectionsInTableView: 0x10009a89c, tableView:viewForHeaderInSection: 0x10009a690) and reads its
-  rewards as sentences - "Coins, You earned 87 coins for killing zombies" (cellForRewardsAtIndex:
-  0x10009aa80).  Here there are no header rows, each value is one line ("Coins Earned: 87", "Score: 1200",
-  the statistics as cellForStatsAtIndex: 0x10009b7cc words them), and the first row is the run's tarot
-  cards - "Tarot cards: More Power Ups! and Glue Barrels" - which the original never shows.  Copy results
-  reads this same table, adding only its heading.  The challenge completed screen, which inherits the
-  sentences, keeps the original's layout.
+* The three results screens read one row per result, exactly as Copy results pastes it, and Copy results
+  comes straight after them, before the screen's own buttons (user request).  The Endless game over
+  table has two sections under the headers "Rewards" and "Statistics" (numberOfSectionsInTableView:
+  0x10009a89c, tableView:viewForHeaderInSection: 0x10009a690) and reads its rewards as sentences - "Coins,
+  You earned 87 coins for killing zombies" (cellForRewardsAtIndex: 0x10009aa80); the challenge completed
+  table adds a "Stars" section (0x1000672f8) and inherits the sentences.  Here there are no header rows and
+  each value is one line ("Coins Earned: 87", "Score: 1200", the statistics as cellForStatsAtIndex:
+  0x10009b7cc and 0x100067c0c word them).  The Endless screen's first row is the run's tarot cards -
+  "Tarot cards: More Power Ups! and Glue Barrels" - which the original never shows; a challenge screen
+  starts with the challenge's name and "Result: Completed" or "Result: Failed".  The failed screen, which
+  shows no figures in the original, reads its rows first and its tip after them.  Copy results reads the
+  same rows, adding only its heading.
+* The Endless game over screen's PLAY AGAIN button (nib #47) is called Close (user request).  It still does
+  what playAgainButtonPressed: 0x10009bf54 does - leave for the Endless card screen - and its hint says so.
 * PORT UI: Settings (and the settings part of the pause screen) opens its options as categories - Aiming,
   Controls, Sound, Keyboard - instead of the accessible table's one list under headings; Enter opens a
   category, Escape leaves it.  The original's sighted control scheme screen has the same three as tabs.

@@ -233,9 +233,10 @@ its own Restore default keys for. Quit is on the main menu.
 
 ## Sharing a result
 
-Every screen at the end of a run has a **Copy results** button, below the other
-buttons so it is read last: after an endless game, after a challenge you
-completed, and after one you failed. It puts a short list on the clipboard as
+Every screen at the end of a run has a **Copy results** button, read straight
+after the results and before the screen's other buttons: after an endless game,
+after a challenge you completed, and after one you failed. It puts a short list
+on the clipboard as
 plain text, ready to paste into a message, and says "Results copied to
 clipboard." After an Endless game it looks like this:
 
@@ -255,19 +256,17 @@ challenge's name and whether you completed or failed it, then the stars,
 rewards and statistics that screen shows. There are no tarot cards in a
 challenge.
 
-The lines are taken from the screen itself rather than worked out again. After
-an Endless game the screen reads exactly these lines, one row each — only the
-heading is not on it, since the screen has its own title. A challenge screen
-reads its own rows, which the paste shortens: the coins and diamonds become just
-the numbers, and the section headings are left out. The game's version is never
-in it. The original had one way to share a score, a Twitter sheet, which needed
-an account and an iPhone; this needs neither.
+The lines are taken from the screen itself rather than worked out again: each
+results screen reads exactly these lines, one row each, and only the heading is
+not on it, since the screen has its own title. The game's version is never in
+it. The original had one way to share a score, a Twitter sheet, which needed an
+account and an iPhone; this needs neither.
 
-The failed screen is the exception, because the original tells you nothing
-there at all — a tip, and two buttons. It now reads out your kills, accuracy
-and time, the same three the completed screen shows, so a run you lost can be
-compared with one you won, and so the copy is not handing you figures you were
-never told.
+The failed screen used to tell you nothing at all — the original shows a tip,
+and two buttons. It now reads your results first, the same kills, accuracy and
+time the completed screen shows, so a run you lost can be compared with one you
+won, and so the copy is not handing you figures you were never told. The tip
+follows them.
 
 ## Updates
 
@@ -338,7 +337,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **96 divergences** and **15 original quirks kept on purpose**.
+There are **97 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -378,10 +377,13 @@ nothing, or says something no keyboard player can act on.
   tarot screen, which is called Endless because that is how Endless starts. The challenge screens all set
   "CHALLENGE", which made four different screens announce the same word; each is now named for the row that
   opened it.
-- **The screen after an Endless game reads one line per result** — "Coins Earned: 7802", "Score: 11882144"
-  — the same lines Copy results pastes, and starts with the tarot cards you played with, which the original
-  never tells you. The original reads a "Rewards" and a "Statistics" heading, and its rewards as sentences:
-  "Coins, You earned 7802 coins for killing zombies".
+- **The results screens read one line per result** — "Coins Earned: 7802", "Score: 11882144" — the same
+  lines Copy results pastes, with Copy results straight after them, before the other buttons. After an
+  Endless game the first line is the tarot cards you played with, which the original never tells you;
+  after a challenge it is the challenge's name, then whether you completed or failed it. The original reads
+  "Rewards", "Statistics" and "Stars" headings, and its rewards as sentences: "Coins, You earned 7802 coins
+  for killing zombies". The Endless screen's Play again button is called **Close**: it still takes you
+  back to the Endless screen, where you can play again.
 - **The cursor opens on a screen's own first item**, not on the Back button and the coin and diamond
   readouts that precede it. They are still one step back.
 - **The tarot deal is silent on iOS** — the flip sound plays at the end of an animation that is skipped for

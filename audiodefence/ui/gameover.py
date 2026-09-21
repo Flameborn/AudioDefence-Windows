@@ -65,14 +65,18 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         v = self.view = View('', (0, 0, 480, 320), accessible=False, name='#16')
         self.table_view = View('', (0, 31, 480, 251), accessible=False, parent=v, ordered=True, name='#39 UITableView')
         # REMOVED (user request): the "Share on twitter" button #22 (AccessibleTwitterButtonPressed: 0x10009c0cc)
-        Button('PLAY AGAIN', (265, 290, 133, 30), parent=v, font_button=False,
-               actions=[self.play_again_button_pressed], name='#47')
         # PORT ADDITION: what the removed Twitter button was for, in a form that does not need an account
-        # and works with whatever the player shares things in.  It sits below Play again so it is read
-        # last: the score is what you came for, and copying it is the afterthought.
-        copy = Button(results.COPY_LABEL, (265, 320, 133, 30), parent=v, font_button=False,
+        # and works with whatever the player shares things in.  It is read straight after the results it
+        # copies, before the button that leaves the screen (user request).
+        copy = Button(results.COPY_LABEL, (265, 290, 133, 30), parent=v, font_button=False,
                       actions=[self.copy_results_button_pressed], name='Copy results (port)')
         copy.hint = results.COPY_HINT
+        # DIVERGENCE (user request): the nib's button #47 is titled PLAY AGAIN.  It is called Close here and
+        # read after Copy results, one row lower; it does what it always did (playAgainButtonPressed:
+        # 0x10009bf54) - leave for the Endless screen, where the cards are dealt - and the hint says so.
+        close = Button('Close', (265, 320, 133, 30), parent=v, font_button=False,
+                       actions=[self.play_again_button_pressed], name='#47')
+        close.hint = 'Press Enter to go back to the Endless screen, where you can play again.'
         self.roots = [v]
 
     def view_did_load(self) -> None:                     # 0x100099f50 (no [super viewDidLoad])
@@ -96,7 +100,7 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         inv.set_diamonds(inv.diamonds + InGameStats.singleton().diamond_loot)
         # QUIRK KEPT: the missing [super viewDidLoad] also skips startMenuMusic:@"game_over_theme"
         # (0x1000d37cc), so this screen is silent - which is what it should be: it is the score you just
-        # lost, not a menu.  The theme starts again on the card screen (Play again) or the main menu.
+        # lost, not a menu.  The theme starts again on the card screen (Close) or the main menu.
 
     def view_will_appear(self) -> None:                  # 0x10009c020
         super().view_will_appear()                       # ADGameOverEndlessViewController 0x1000d424c: positionView
@@ -192,4 +196,4 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
     def copy_results_button_pressed(self) -> None:       # PORT ADDITION: the table, cards and all
         results.copy_results(self, 'Audio Defence Endless Statistics')
 
-    # REMOVED (user request): the magic tap 0x10009bff8 pressed Play again.
+    # REMOVED (user request): the magic tap 0x10009bff8 pressed Play again (the Close button here).

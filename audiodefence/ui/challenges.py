@@ -438,13 +438,18 @@ class ChallengeFailedScreen(ViewControllerScreen):
                font_button=False, actions=[self.mission_select_button_pressed], name='#84')
         # PORT ADDITION: this screen shows no statistics in the original - only the tip and these two
         # buttons - so a copy here would hand the player numbers they were never told.  The figures are
-        # read out as well, in one row above the buttons, and they are the same three the completed
-        # screen shows so that a failed attempt and a won one can be compared.
-        self.stats_view = View('', (34, 200, 500, 24), parent=v, name='Statistics (port)')
-        copy = Button(results.COPY_LABEL, (144, 320, 280, 30), parent=v, font_button=False,
+        # read out as well, one row each and first, exactly as Copy results pastes them (user request, as
+        # on the other two results screens): the challenge, "Result: Failed", and the same three figures
+        # the completed screen shows, so that a failed attempt and a won one can be compared.  The tip
+        # follows them.
+        self.results_view = View('', (34, 40, 500, 90), accessible=False, parent=v, ordered=True,
+                                 name='Results (port)')
+        # PORT ADDITION: read straight after the results and the tip, before the two buttons (user request);
+        # its centre is a row above Try again's, so the reading order cannot merge them
+        copy = Button(results.COPY_LABEL, (144, 205, 280, 30), parent=v, font_button=False,
                       actions=[self.copy_results_button_pressed], name='Copy results (port)')
         copy.hint = results.COPY_HINT
-        self.first_accessible_element = self.tip_text_view
+        self.first_accessible_element = self.tip_text_view   # until show_statistics has made the rows
         self.roots = [v]
 
     def view_did_load(self) -> None:                      # 0x100071718
@@ -478,22 +483,27 @@ class ChallengeFailedScreen(ViewControllerScreen):
             self.game_over_playlist.deactivate()
 
     def result_rows(self) -> list:                         # PORT ADDITION
-        """The three figures the completed screen shows, for a challenge that was not completed."""
+        """(text, value) for each line: the challenge, how it ended, and the three figures the completed
+        screen shows, for a challenge that was not completed."""
         from ..game.ingame_stats import InGameStats
         stats = InGameStats.singleton()
-        return [(True, 'Statistics', None),
-                (False, 'Kills', '%i' % stats.number_of_enemy_kills),
-                (False, 'Accuracy', '%.2f %%' % f32(f32(stats.current_accuracy()) * f32(100.0))),
-                (False, 'Survival time', time_string_from_seconds(int(stats.challenge_time_elapsed)))]
+        rows = [(text, detail) for _header, text, detail in _challenge_rows(self.challenge_dict, 'Failed')]
+        return rows + [('Kills', '%i' % stats.number_of_enemy_kills),
+                       ('Accuracy', '%.2f %%' % f32(f32(stats.current_accuracy()) * f32(100.0))),
+                       ('Survival time', time_string_from_seconds(int(stats.challenge_time_elapsed)))]
 
     def show_statistics(self) -> None:                    # PORT ADDITION
-        text = ', '.join('%s %s' % (name, value) for header, name, value in self.result_rows()
-                         if not header)
-        self.stats_view.label = self.stats_view.text = text
+        self.results_view.children.clear()
+        for n, (text, detail) in enumerate(self.result_rows()):
+            row = View(results.line(text, detail), self.results_view.frame, parent=self.results_view,
+                       name='result %i (port)' % n)
+            results.mark_cell(row, text, detail)
+        if self.results_view.children:                    # the screen opens on its results, as the others do
+            self.first_accessible_element = self.results_view.children[0]
 
-    def copy_results_button_pressed(self) -> None:        # PORT ADDITION
+    def copy_results_button_pressed(self) -> None:        # PORT ADDITION: the rows, as they read
         results.copy_results(self, 'Audio Defence Challenge Statistics',
-                             rows=_challenge_rows(self.challenge_dict, 'Failed') + self.result_rows())
+                             rows=results.rows_from_table(self.results_view))
 
     def mission_select_button_pressed(self) -> None:      # 0x100071e1c
         # PORT ADDITION: this one really is silent in the original - unlike the completed screen's, which
@@ -592,8 +602,9 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
                                             actions=[self.next_mission_button_pressed], name='#32')
         Button('Retry', (364, 285, 98, 30), parent=v, font_button=False, actions=[self.retry_button_pressed],
                name='#3')
-        # PORT ADDITION: below the three nib buttons, so it is read after them
-        copy = Button(results.COPY_LABEL, (164, 320, 154, 30), parent=v, font_button=False,
+        # PORT ADDITION: between the results and the three nib buttons, so it is read straight after what it
+        # copies (user request).  Its centre is a row above theirs, so the reading order cannot merge them.
+        copy = Button(results.COPY_LABEL, (164, 250, 154, 30), parent=v, font_button=False,
                       actions=[self.copy_results_button_pressed], name='Copy results (port)')
         copy.hint = results.COPY_HINT
         self.roots = [v]
@@ -613,25 +624,36 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
         self.next_challenge_button.set_title('next arena')
 
     def reload_data(self) -> None:
+        """DIVERGENCE (user request): one row per line, read exactly as Copy results pastes it, as on the
+        Endless game over screen.  The original (numberOfSectionsInTableView: 3, rows 3 / 2 / 3 at
+        tconst_100181c50) has the headers "Stars", "Rewards" and "Statistics"
+        (tableView:viewForHeaderInSection: 0x1000672f8) and reads its rewards as the inherited sentences
+        (cellForRewardsAtIndex: 0x10009aa80).  Here there are no header rows, the rewards are numbers, and
+        the challenge's name and "Result: Completed" come first, as they do in the paste."""
         from ..game.ingame_stats import InGameStats
         stats = InGameStats.singleton()
         t = _TableLoader(self.table_view)
-        # numberOfSectionsInTableView: 3; rows per section 3 / 2 / 3 (tconst_100181c50)
-        header = t.header('Stars')                        # tableView:viewForHeaderInSection: 0x1000672f8
-        # tableView:cellForRowAtIndexPath: 0x1000677a8
-        t.cell('Challenge completed star', self.mission_star_status)
-        t.cell('Accuracy star', self.accuracy_star_status)
-        t.cell('Time limit star', self.time_star_status)
-        t.header('Rewards')
-        for row in range(2):
-            cell = t.cell(*self.cell_for_rewards_at_index(row, stats))
-            results.mark_cell(cell, *self.copy_for_rewards_at_index(row, stats))   # the number, for the paste
-        t.header('Statistics')                            # cellForStatsAtIndex: 0x100067c0c
-        t.cell('Kills', '%i' % stats.number_of_enemy_kills)
-        t.cell('Accuracy', '%.2f %%' % f32(f32(stats.current_accuracy()) * f32(100.0)))
-        t.cell('Survival time', time_string_from_seconds(int(stats.challenge_time_elapsed)))
-        # the header of section 0 posts UIAccessibilityScreenChangedNotification with itself
-        self.post_screen_changed(header)
+        first = None
+        for text, detail in self.result_rows(stats):      # tableView:cellForRowAtIndexPath: 0x1000677a8
+            cell = t.cell(text, detail)
+            cell.label = results.line(text, detail)
+            first = first or cell
+        # the original posts UIAccessibilityScreenChangedNotification with the header of section 0; with no
+        # headers, the first row takes its place
+        self.post_screen_changed(first)
+
+    def result_rows(self, stats) -> list:                  # PORT ADDITION
+        """(text, value) for each line: the challenge and how it ended, the stars, the rewards, the
+        statistics (cellForStatsAtIndex: 0x100067c0c)."""
+        rows = [(text, detail) for _header, text, detail in _challenge_rows(self.challenge_dict, 'Completed')]
+        rows += [('Challenge completed star', self.mission_star_status),
+                 ('Accuracy star', self.accuracy_star_status),
+                 ('Time limit star', self.time_star_status)]
+        rows += [self.copy_for_rewards_at_index(row, stats) for row in range(2)]
+        rows += [('Kills', '%i' % stats.number_of_enemy_kills),
+                 ('Accuracy', '%.2f %%' % f32(f32(stats.current_accuracy()) * f32(100.0))),
+                 ('Survival time', time_string_from_seconds(int(stats.challenge_time_elapsed)))]
+        return rows
 
     def mission_select_button_pressed(self) -> None:      # 0x100068f64
         _play_buttons_sound('click_button')               # playButtonSound 0x100049300, called at 0x048884
@@ -657,9 +679,7 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
         _play_buttons_sound('click_button')               # playButtonSound 0x100049300, called at 0x048bc0
         App.delegate().go_to_challenge_with_dict(self.challenge_dict)
 
-    def copy_results_button_pressed(self) -> None:        # PORT ADDITION
-        results.copy_results(self, 'Audio Defence Challenge Statistics',
-                             rows=_challenge_rows(self.challenge_dict, 'Completed')
-                             + results.rows_from_table(self.table_view))
+    def copy_results_button_pressed(self) -> None:        # PORT ADDITION: the table, as it reads
+        results.copy_results(self, 'Audio Defence Challenge Statistics')
 
     # REMOVED (user request): the magic tap 0x10006974c pressed Next mission.
