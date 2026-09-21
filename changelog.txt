@@ -10,6 +10,8 @@ Melee is on both Control keys now, left and right, so whichever hand is free can
 The statistics screen counts the coins and diamonds you earn. Money earned and Diamonds collected used to stay at nought for ever.
 A tarot card says how many diamonds you have now. Spend some in the armory, come straight back, and it used to quote the old number.
 After upgrading a power-up, the Upgrade button shows the new price at once. It used to offer the old one for about a second.
+Copy results puts a short list on the clipboard now: just the numbers, without the section headings or the game's version. After an Endless game it starts with the two tarot cards you played with.
+Copying results says Results copied to clipboard, instead of a long sentence.
 
 26.09.20:
 Initial release.

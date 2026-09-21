@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import logging
 
-from ..platform import version
 from ..platform.clipboard import copy_text
 
 log = logging.getLogger('ui.results')
@@ -65,20 +64,17 @@ def rows_from_table(table_view) -> list:
 
 
 def results_text(heading: str, rows) -> str:
-    """The whole result as text: a heading, the sections, and which build produced it."""
+    """The whole result as text: a heading, a blank line, then one line per value.
+
+    The screen's section headings ("Rewards", "Statistics") are left out - each line already says what
+    it is - and so is the build number, which says nothing about the game that was played."""
     lines = [heading, '']
     for row in rows:
-        line = _row_text(row)
-        if not line:
+        if row[0]:                                        # a section heading on screen
             continue
-        if row[0]:                                        # a section heading
-            if lines and lines[-1] != '':
-                lines.append('')
-        lines.append(line)
-    while lines and lines[-1] == '':
-        lines.pop()
-    lines.append('')
-    lines.append('Audio Defence for Windows %s' % version.text())
+        line = _row_text(row)
+        if line:
+            lines.append(line)
     return '\n'.join(lines)
 
 
@@ -95,9 +91,6 @@ def copy_results(screen, heading: str, rows=None) -> None:
         rows = rows_from_table(table)
     text = results_text(heading, rows)
     if copy_text(text):
-        # Counting the lines is the only way to say "it worked" that is worth hearing: reading the whole
-        # thing back would repeat the screen the player has just been through.
-        written = len([line for line in text.splitlines() if line])
-        screen.speak('Results copied, %d lines. Paste them wherever you like.' % written)
+        screen.speak('Results copied to clipboard.')
     else:
         screen.speak('The results could not be copied to the clipboard.')

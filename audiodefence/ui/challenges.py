@@ -29,6 +29,13 @@ from .viewcontroller import ViewControllerScreen
 log = logging.getLogger('ui.challenges')
 
 
+def _challenge_rows(challenge: dict, outcome: str) -> list:
+    """PORT ADDITION: the first two lines of a challenge's Copy results - which challenge, and how it
+    ended - so the paste still says what the old heading did now that the heading is the same for both."""
+    rows = [(False, 'Challenge', challenge.get('title'))] if challenge.get('title') else []
+    return rows + [(False, 'Result', outcome)]
+
+
 def _play_buttons_sound(key: str) -> None:
     """playButtonSound of the challenge screens: S3DSound <key> of the "buttons" playlist at gain 3."""
     pl = S3DEngine.engine().play_list_with_name('buttons')
@@ -485,9 +492,8 @@ class ChallengeFailedScreen(ViewControllerScreen):
         self.stats_view.label = self.stats_view.text = text
 
     def copy_results_button_pressed(self) -> None:        # PORT ADDITION
-        title = self.challenge_dict.get('title')
-        heading = 'Audio Defence, Challenge failed: %s' % title if title             else 'Audio Defence, Challenge failed'
-        results.copy_results(self, heading, rows=self.result_rows())
+        results.copy_results(self, 'Audio Defence Challenge Statistics',
+                             rows=_challenge_rows(self.challenge_dict, 'Failed') + self.result_rows())
 
     def mission_select_button_pressed(self) -> None:      # 0x100071e1c
         # PORT ADDITION: this one really is silent in the original - unlike the completed screen's, which
@@ -618,7 +624,8 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
         t.cell('Time limit star', self.time_star_status)
         t.header('Rewards')
         for row in range(2):
-            t.cell(*self.cell_for_rewards_at_index(row, stats))
+            cell = t.cell(*self.cell_for_rewards_at_index(row, stats))
+            results.mark_cell(cell, *self.copy_for_rewards_at_index(row, stats))   # the number, for the paste
         t.header('Statistics')                            # cellForStatsAtIndex: 0x100067c0c
         t.cell('Kills', '%i' % stats.number_of_enemy_kills)
         t.cell('Accuracy', '%.2f %%' % f32(f32(stats.current_accuracy()) * f32(100.0)))
@@ -651,8 +658,8 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
         App.delegate().go_to_challenge_with_dict(self.challenge_dict)
 
     def copy_results_button_pressed(self) -> None:        # PORT ADDITION
-        title = self.challenge_dict.get('title')
-        heading = 'Audio Defence, Challenge: %s' % title if title else 'Audio Defence, Challenge'
-        results.copy_results(self, heading)
+        results.copy_results(self, 'Audio Defence Challenge Statistics',
+                             rows=_challenge_rows(self.challenge_dict, 'Completed')
+                             + results.rows_from_table(self.table_view))
 
     # REMOVED (user request): the magic tap 0x10006974c pressed Next mission.

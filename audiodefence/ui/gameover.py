@@ -72,6 +72,10 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         from ..game.persistent_stats import PersistentStats
         # [[statusBarViewController pageTitle] setText:@"GAME OVER"] goes to nil
         PersistentStats.shared().save_score(InGameStats.singleton().game_score)
+        # PORT ADDITION: which cards this run had, for Copy results - asked now, because the line below
+        # clears them after any run longer than a minute
+        from .tarot import cards_in_play
+        self.cards_played = cards_in_play()
         self.reset_cards_modifiers_if_needed()
         # REMOVED (user request): [self reportScoreToGameCenter] (0x1000d46f4); Windows has no Game Center
         if self.status_bar_view_controller is None:
@@ -120,7 +124,9 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
                 text, detail = self.cell_for_row(section, row, stats)
                 cell = View(', '.join(p for p in (text, detail) if p), t.frame, parent=t,
                             name='cell %i.%i' % (section, row))
-                results.mark_cell(cell, text, detail)    # PORT ADDITION: for Copy results
+                # PORT ADDITION: for Copy results - a reward is pasted as its number, not its sentence
+                results.mark_cell(cell, *(self.copy_for_rewards_at_index(row, stats) if section == 0
+                                          else (text, detail)))
 
     @staticmethod
     def number_of_sections() -> int:                     # numberOfSectionsInTableView: 0x10009a89c
@@ -156,6 +162,14 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         return '', ''
 
     @staticmethod
+    def copy_for_rewards_at_index(row: int, stats):      # PORT ADDITION: how a reward reads in Copy results
+        if row == 0:
+            return 'Coins Earned', '%i' % stats.total_coins
+        if row == 1:
+            return 'Diamonds Earned', '%i' % stats.diamond_loot
+        return '', ''
+
+    @staticmethod
     def cell_for_stats_at_index(row: int, stats):        # cellForStatsAtIndex: 0x10009b7cc
         if row == 0:
             return 'Score', '%i' % stats.game_score
@@ -178,6 +192,8 @@ class AccessibleGameOverEndlessScreen(ViewControllerScreen):
         App.delegate().go_to_tarot()
 
     def copy_results_button_pressed(self) -> None:       # PORT ADDITION
-        results.copy_results(self, 'Audio Defence, Endless')
+        cards = [(False, 'Tarot card %i' % n, title) for n, title in getattr(self, 'cards_played', [])]
+        results.copy_results(self, 'Audio Defence Endless Statistics',
+                             rows=cards + results.rows_from_table(self.table_view))
 
     # REMOVED (user request): the magic tap 0x10009bff8 pressed Play again.

@@ -23,6 +23,25 @@ def _cards_for_level(level: int) -> list:
     return list((data.plist_ro('Tarot') or {}).get('level_%i' % level) or [])
 
 
+def cards_in_play() -> list:
+    """PORT ADDITION: [(1, title), (2, title)] - the two cards this Endless run was dealt, for Copy results.
+
+    They are kept as tarotCard1 and tarotCard2, each by its selector, and a selector is looked up in its
+    own level of Tarot.plist: the same selector names a different card on another level.  The game-over
+    screen clears them as it opens after a long enough run, so it has to ask before that."""
+    out = []
+    defaults = UserDefaults.standard()
+    for level in (1, 2):                                  # cardsToLoad is 2: one card from each level
+        selector = defaults.object('tarotCard%i' % level)
+        if selector is None:
+            continue
+        title = next((card.get('title') for card in _cards_for_level(level)
+                      if card.get('selector') == selector), None)
+        if title:
+            out.append((level, title))
+    return out
+
+
 def _flip_sound_play() -> None:
     pl = S3DEngine.engine().play_list_with_name('tarot')
     sound = pl.any_sound_containing('flip') if pl is not None else None
