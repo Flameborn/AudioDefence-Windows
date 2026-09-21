@@ -12,9 +12,9 @@ A tarot card says how many diamonds you have now. Spend some in the armory, come
 After upgrading a power-up, the Upgrade button shows the new price at once. It used to offer the old one for about a second.
 Copy results puts a short list on the clipboard now: just the numbers, without the section headings or the game's version. After an Endless game it starts with the two tarot cards you played with.
 Copying results says Results copied to clipboard, instead of a long sentence.
-The Menus page in Settings is called Miscellaneous now and comes last. Besides the menu arrows and remember cursor position, it has the switch for checking for updates when the game starts.
-Settings, Miscellaneous has a Reset all settings button. It puts every setting back to its default and leaves your key bindings alone.
-The Restore aiming defaults and Restore menu defaults buttons are gone, now that Reset all settings does both.
+The Menus tab in Settings is called Miscellaneous now and comes last. Besides the menu arrows and remember cursor position, it has the switch for checking for updates when the game starts.
+The Miscellaneous tab has a Reset all settings button. It sets everything back to default, except your keys.
+The Restore aiming defaults and Restore menu defaults buttons are removed. Use Reset all settings instead.
 
 26.09.20:
 Initial release.
