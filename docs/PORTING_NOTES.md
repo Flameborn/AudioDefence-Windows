@@ -493,10 +493,11 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   reached through pygame's own SDL2.dll) calls `motionEnded:withEvent:` 0x10005a108 as the phone's shake
   does, so it swings the melee weapon under Gesture and does nothing under Button; the threshold is 25 m/s2
   against gravity's 9.8, once per half second.  A DualSense's adaptive triggers get the pad's simple
-  effects through `SDL_GameControllerSendEffect` - R2 is the pad's weapon effect, free until just before
-  half its travel, where it catches, and breaking through the catch at half is where the game fires
-  (TRIGGER_DOWN), so the shot comes with the break; L2 (reload under Button) is a light spring - only
-  while the game is in front;
+  effects through `SDL_GameControllerSendEffect` - R2 is the pad's weapon effect, free for the first
+  37% of its travel, where it catches, and holding until 72%, where it breaks and the game fires
+  (`Pads.trigger_points`: R2 with that feel on it presses through the wall at GUN_DOWN and lets go at
+  GUN_UP, above the wall; every other trigger keeps the plain half-way TRIGGER_DOWN, having no wall to
+  press through); L2 (reload under Button) is a light spring - only while the game is in front;
   a pause, the menus and closing the game set them plain.  Settings -> Miscellaneous -> Joystick vibration
   and Trigger feel set how strong both are - Off, Light, Medium or Strong (`vibration` and `triggerEffects`
   in settings.json; Medium by default, and reset by Reset all settings; a stored true or false from before

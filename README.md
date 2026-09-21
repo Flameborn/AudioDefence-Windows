@@ -325,8 +325,10 @@ and rumbles for the rest, through the fine haptics PlayStation games use rather
 than plain rumble. Over Bluetooth Windows does not offer that, and it rumbles
 like any other pad. On a **DualSense** the triggers change too while you play:
 R2 is a gun's trigger: free for the first part of the pull, then it catches and
-holds, and pressing through the catch breaks it and fires the shot. Under
-Button, L2 pulls against a light spring where it reloads. In the menus and on the pause
+holds for a good part of the travel, and pressing all the way through the catch
+breaks it and fires the shot — so the shot comes at the break, not when you
+first meet the wall. Under Button, L2 pulls against a light spring where it
+reloads. In the menus and on the pause
 screen they are plain again, and they are set back when the game closes.
 
 **Settings → Miscellaneous** sets how strong **Joystick vibration** and the

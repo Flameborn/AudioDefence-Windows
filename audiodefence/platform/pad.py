@@ -65,6 +65,11 @@ STICKS = ((LEFT_X, LEFT_Y), (RIGHT_X, RIGHT_Y))
 TRIGGERS = {TRIGGER_LEFT: 'lefttrigger', TRIGGER_RIGHT: 'righttrigger'}
 
 TRIGGER_DOWN, TRIGGER_UP = 0.5, 0.3
+#: R2 on a DualSense with the gun feel: the wall holds from GUN_TRIGGER's start until here, where it breaks
+#: and the shot goes, so the wall is pressed through rather than nudged.  Let go below GUN_RELEASE, which is
+#: back up above the wall.  An ordinary trigger - another pad, or a DualSense with the Trigger feel off -
+#: has no wall to press through and keeps the plain half-way TRIGGER_DOWN.
+GUN_DOWN, GUN_UP = 0.72, 0.45
 PUSH_DOWN, PUSH_UP = 0.6, 0.3
 #: how far a stick has to move before it turns at all: a stick at rest seldom reads exactly zero
 DEAD_ZONE = 0.18
@@ -356,13 +361,14 @@ TRIGGER_OFF = (0x05,)
 #: R2 is a gun's trigger: free for the first part of its travel, then it catches and will not go on, and
 #: pressing through the catch breaks it and fires.  The pad's own weapon effect does that - resistance from
 #: `start` to `end`, then it gives way - so the catch sits just before half the travel and breaks at half,
-#: which is where the game fires (TRIGGER_DOWN): the shot comes with the break, not before it.  The catch
-#: used to begin at a quarter of the travel, which felt like a long hard squeeze rather than a catch.
+#: which is where the game fires (GUN_DOWN): the shot comes with the break, not before it.  The catch used
+#: to begin at a quarter of the travel and break half way, which felt like a long hard squeeze and then a
+#: shot before the wall had been pressed through.
 #: How hard it is to press through is what Settings -> Miscellaneous -> Trigger feel sets; the scale was
 #: softened a step after playing with it (0xC0 was too stiff to fire at all, then Medium at 0x50 was still
 #: hard), so what was Light is Medium now and Light is softer than anything there was.
-GUN_TRIGGER = {'light': (0x02, 0x60, 0x80, 0x14), 'medium': (0x02, 0x60, 0x80, 0x28),
-               'strong': (0x02, 0x60, 0x80, 0x50)}
+GUN_TRIGGER = {'light': (0x02, 0x60, 0xB8, 0x14), 'medium': (0x02, 0x60, 0xB8, 0x28),
+               'strong': (0x02, 0x60, 0xB8, 0x50)}
 #: L2, the reload under Button, pulls against a spring - softened the same way
 RELOAD_TRIGGER = {'light': (0x01, 0x40, 0x0C), 'medium': (0x01, 0x40, 0x18), 'strong': (0x01, 0x40, 0x30)}
 
@@ -529,9 +535,10 @@ class Pads:
             if event.axis in TRIGGERS:
                 name = TRIGGERS[event.axis]
                 down = (iid, name) in self.held
-                if not down and value >= TRIGGER_DOWN:
+                presses, lets_go = self.trigger_points(iid, name)
+                if not down and value >= presses:
                     return self._set((iid, name), name, True)
-                if down and value < TRIGGER_UP:
+                if down and value < lets_go:
                     return self._set((iid, name), name, False)
                 return []
             return self._stick(iid, 0 if event.axis in STICKS[0] else 1)
@@ -540,6 +547,14 @@ class Pads:
                  pygame.CONTROLLERDEVICEREMAPPED):
             return []                                     # the same pad, seen by the lower layer: not ours
         return None
+
+    def trigger_points(self, iid, name: str):
+        """How far this trigger goes down before it counts as pressed, and comes back up before it counts
+        as let go.  R2 with the gun feel on it is pressed through its wall (GUN_DOWN); everything else is
+        an ordinary trigger, half way down."""
+        if name == 'righttrigger' and str(self.triggers_set.get(iid, 'off')).startswith('gun'):
+            return GUN_DOWN, GUN_UP
+        return TRIGGER_DOWN, TRIGGER_UP
 
     @staticmethod
     def _iid(event):
