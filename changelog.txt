@@ -1,4 +1,6 @@
 unrelease:
+
+26.09.21-3:
 The game checks for updates by itself and tells you when one is out. An update downloads only the files that changed, so a small fix is a small download, and your progress, settings and keys are untouched.
 The main menu has a Check for updates button, between Settings and Quit, for when you want to ask it yourself. It also tells you which version you are on. Run from source, it says updating is not available there instead, because a copy from GitHub updates with git.
 The pause menu has a Restart challenge button, between Resume and End Game. A challenge you have already lost no longer has to be played to the end. Endless games do not have it.
