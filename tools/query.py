@@ -1,15 +1,15 @@
 """Query the disassembly database produced by tools/disasm.py.
 
-    python tools/query.py fn      <regex>        full annotated listing of matching functions
-    python tools/query.py digest  <regex> [min]  condensed pseudo-code view (sends, stores, conditions, calls);
+    py tools/query.py fn      <regex>        full annotated listing of matching functions
+    py tools/query.py digest  <regex> [min]  condensed pseudo-code view (sends, stores, conditions, calls);
                                                  optional minimum function size in bytes skips trivial accessors
-    python tools/query.py list    <regex>        matching function names with address and size
-    python tools/query.py callers <regex>        who calls / takes the address of matching functions
-    python tools/query.py sel     <selector>     functions that send this selector (exact, or /regex/)
-    python tools/query.py str     <regex>        functions referencing a string literal matching regex
-    python tools/query.py ivar    <regex>        readers and writers of ivars matching Class.ivar regex
-    python tools/query.py const   <number>       functions that load this float/double constant
-    python tools/query.py make-digests           write analysis/digest/<unit>.txt for every unit
+    py tools/query.py list    <regex>        matching function names with address and size
+    py tools/query.py callers <regex>        who calls / takes the address of matching functions
+    py tools/query.py sel     <selector>     functions that send this selector (exact, or /regex/)
+    py tools/query.py str     <regex>        functions referencing a string literal matching regex
+    py tools/query.py ivar    <regex>        readers and writers of ivars matching Class.ivar regex
+    py tools/query.py const   <number>       functions that load this float/double constant
+    py tools/query.py make-digests           write analysis/digest/<unit>.txt for every unit
 
 The digest keeps only lines that carry meaning after annotation: message sends, ivar/global/struct
 stores, conditional branches (as if-conditions), direct calls, returns and labels. Every line keeps

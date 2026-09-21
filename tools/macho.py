@@ -8,8 +8,8 @@ Handles:
   * virtual address <-> file offset translation and typed readers
 
 Usage:
-    python tools/macho.py extract <fat-binary> <outdir>
-    python tools/macho.py info <thin-binary>
+    py tools/macho.py extract <fat-binary> <outdir>
+    py tools/macho.py info <thin-binary>
 """
 import os
 import struct

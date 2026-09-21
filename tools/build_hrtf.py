@@ -37,7 +37,7 @@ ear for the 24 directions, converts it to minimum phase + onset delay, and write
 interpolation reproduces the original's nearest-direction selection.  ``--verify`` renders noise through
 OpenAL Soft (loopback device) with the new file and compares ear levels and delays with the model.
 
-    python tools/build_hrtf.py [--verify]
+    py tools/build_hrtf.py [--verify]
 """
 from __future__ import annotations
 

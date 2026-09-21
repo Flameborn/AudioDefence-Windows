@@ -4,8 +4,8 @@ Everything here was read out of the shipped iOS binary (`Payload/audiodefence.ap
 arm64 slice) and its data files. Addresses are virtual addresses in the arm64 slice
 (`analysis/bin/audiodefence_arm64`); every claim can be checked with
 
-    python tools/query.py digest "<Class> <selector>"      # condensed pseudo-code
-    python tools/query.py fn     "<Class> <selector>"      # full annotated disassembly
+    py tools/query.py digest "<Class> <selector>"      # condensed pseudo-code
+    py tools/query.py fn     "<Class> <selector>"      # full annotated disassembly
 
 Provenance tags used below:
 
@@ -77,11 +77,11 @@ constant appears in its compiled form; the common ones are:
 
 Rebuild everything from the IPA:
 
-    python tools/macho.py extract game/audiodefence analysis/bin
-    python tools/objc.py analysis/bin/audiodefence_arm64
-    python tools/disasm.py analysis/bin/audiodefence_arm64 --out analysis
-    python tools/query.py make-digests
-    python tools/resources.py game --out analysis/data
+    py tools/macho.py extract game/audiodefence analysis/bin
+    py tools/objc.py analysis/bin/audiodefence_arm64
+    py tools/disasm.py analysis/bin/audiodefence_arm64 --out analysis
+    py tools/query.py make-digests
+    py tools/resources.py game --out analysis/data
 
 ---
 
@@ -1058,7 +1058,7 @@ position update (`S3DEngineDispatcher setNeedsPositionUpdate:`).
 * **Binaural** rendering: `csl::BinauralPanner` / `BinauralSourceCache` using an HRTF database. The game never
   calls `+setHRTFPath:`, so the **embedded database** is used: `__TEXT,__const` **0x100182314, 1,541,427 bytes**,
   read through `MemFile` (0x1000f59ac); header `HRTF 1050 188 512 256 2` (IRCAM subject 1050, 188 directions,
-  512-sample responses). Extract with `python tools/extract_hrtf.py analysis/bin/audiodefence_arm64`.
+  512-sample responses). Extract with `py tools/extract_hrtf.py analysis/bin/audiodefence_arm64`.
   Stereo (2-channel) files are never spatialized — they get a `Panner` instead.
 
 ### 17.3 Gains and reverb **[R]**

@@ -1,15 +1,15 @@
 # Windows port — status, controls and divergences
 
-The port is written method by method against the disassembly (`python tools/query.py digest|fn …`);
+The port is written method by method against the disassembly (`py tools/query.py digest|fn …`);
 each ported method carries its original address in a comment. This file records what is ported, the
 input mapping that replaces touch and motion, and every place the port knowingly differs.
 
 ## Running
 
 ```
-python AudioDefence.py                  # the game: logo, opener (or first control scheme choice), main menu
-python AudioDefence.py --endless
-python AudioDefence.py --challenge tutorial_1
+py AudioDefence.py                  # the game: logo, opener (or first control scheme choice), main menu
+py AudioDefence.py --endless
+py AudioDefence.py --challenge tutorial_1
 ```
 
 Testing flags: `--mute`, `--no-speech`, `--exit-after SECONDS`, `--log-level debug`.

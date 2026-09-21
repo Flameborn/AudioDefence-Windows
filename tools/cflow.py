@@ -3,7 +3,7 @@
 Keeps labels, branches (with their decoded conditions), calls / message sends, stores, float constant loads
 and returns; drops ARC retain/release and plain register shuffling.
 
-    python tools/cflow.py "ADEnemy update:"
+    py tools/cflow.py "ADEnemy update:"
 """
 from __future__ import annotations
 

@@ -18,8 +18,8 @@ Outputs (under analysis/):
   xrefs.json        per-function calls, callers, selectors sent, strings, ivars, constants
 
 Usage:
-    python tools/disasm.py <arm64-binary> [--out analysis]
-    python tools/disasm.py <arm64-binary> --fn "<regex on function name>"   (print to stdout)
+    py tools/disasm.py <arm64-binary> [--out analysis]
+    py tools/disasm.py <arm64-binary> --fn "<regex on function name>"   (print to stdout)
 """
 import bisect
 import collections

@@ -1,4 +1,4 @@
-"""Print parts of a function listing: python tools/listing.py <function regex> [start-end ...] (hex addresses).
+"""Print parts of a function listing: py tools/listing.py <function regex> [start-end ...] (hex addresses).
 
 Without ranges the whole listing is printed.  Retain/release noise is dropped.
 """

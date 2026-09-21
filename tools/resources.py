@@ -9,7 +9,7 @@
   * sounds/ inventory with durations (needs PyAV)                     -> analysis/data/sounds.tsv
 
 Usage:
-    python tools/resources.py "<path to audiodefence.app>" [--out analysis/data] [--no-durations]
+    py tools/resources.py "<path to audiodefence.app>" [--out analysis/data] [--no-durations]
 """
 import base64
 import collections

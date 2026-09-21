@@ -1,9 +1,13 @@
 """Build Audio Defence into an executable with PyInstaller.
 
-    python compile.py                one folder in dist\\AudioDefence, the game's data copied in
-    python compile.py --onefile      a single executable instead (unpacks itself at every launch)
-    python compile.py --test         build, then start the result and check its log
-    python compile.py --dry-run      say what would happen, build nothing
+    py compile.py                one folder in dist\\AudioDefence, the game's data copied in
+    py compile.py --onefile      a single executable instead (unpacks itself at every launch)
+    py compile.py --test         build, then start the result and check its log
+    py compile.py --dry-run      say what would happen, build nothing
+    py compile.py --no-package   the folder alone, without the release zip
+
+A build ends by zipping the folder into dist\AudioDefence-Win-<VERSION>.zip, which is what a release's
+asset is and what the updater reads; --no-package is the way to skip that.
 
 The port, the HRTF and the vendored DLLs go inside the build; the game's own files do not - they are
 copied next to the executable, where audiodefence/paths.py looks for them when frozen.  See the README.
@@ -116,7 +120,7 @@ def problems_now() -> list[str]:
     for src, _ in DATA:
         path = os.path.join(HERE, src.replace('/', os.sep))
         if not os.path.isdir(path) or not os.listdir(path):
-            found.append('%s is empty - rebuild the HRTF with: python tools/build_hrtf.py' % src)
+            found.append('%s is empty - rebuild the HRTF with: py tools/build_hrtf.py' % src)
     for src, _ in BINARIES:
         if not os.path.isfile(os.path.join(HERE, src.replace('/', os.sep))):
             found.append('%s is missing - it ships with the repository' % src)

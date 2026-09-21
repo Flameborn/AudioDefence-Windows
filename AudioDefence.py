@@ -1,6 +1,6 @@
 """Start Audio Defence (Windows port).
 
-Double-click this file, or run:  python AudioDefence.py
+Double-click this file, or run:  py AudioDefence.py
 Options such as --endless or --challenge tutorial_1 are passed through (see the README).
 """
 import os

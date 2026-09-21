@@ -1,6 +1,6 @@
 """Audio Defence for Windows.
 
-The game is started by ``python AudioDefence.py [options]``, which calls
+The game is started by ``py AudioDefence.py [options]``, which calls
 ``main()`` here; ``python -m audiodefence`` runs the same thing.
 """
 from __future__ import annotations

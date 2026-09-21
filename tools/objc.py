@@ -5,7 +5,7 @@ categories, protocols, selector refs, class refs, CFStrings, and decodes the com
 type encodings back into Objective-C declarations.
 
 Usage:
-    python tools/objc.py <arm64-binary> [--out analysis/classdump.h] [--json analysis/objc.json]
+    py tools/objc.py <arm64-binary> [--out analysis/classdump.h] [--json analysis/objc.json]
 """
 import json
 import os

@@ -4,7 +4,7 @@ VoiceOver visits elements by screen position (top to bottom, then left to right)
 of each top-level view tree with its absolute centre, size, class, text/title and accessibility label so a
 port can order a screen's accessible elements from the original layout instead of guessing.
 
-    python tools/nib_layout.py ADMainMenuViewController [--all]
+    py tools/nib_layout.py ADMainMenuViewController [--all]
 
 Without --all only views with a label, title, text or a custom class are listed.
 """

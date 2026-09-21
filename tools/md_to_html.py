@@ -1,6 +1,6 @@
 """Turn this project's Markdown into one HTML page, with nothing installed.
 
-    python tools/md_to_html.py README.md readme.html
+    py tools/md_to_html.py README.md readme.html
 
 The point is the page that ships beside the executable: a screen reader moves through HTML by heading,
 table and list in a way it cannot through a .md file, where every # and | is read out as itself.
@@ -8,7 +8,7 @@ table and list in a way it cannot through a .md file, where every # and | is rea
 This handles what the project's Markdown actually contains - headings, tables, bullets, block quotes,
 four-space code blocks, `code`, **bold** and [links](url) - and nothing else.  It is not a Markdown
 implementation; anything it does not know it leaves as text, which for a document we write ourselves is
-the safe way round.  `python tools/md_to_html.py --check FILE` names any construct it would not convert.
+the safe way round.  `py tools/md_to_html.py --check FILE` names any construct it would not convert.
 """
 from __future__ import annotations
 

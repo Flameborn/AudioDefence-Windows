@@ -24,7 +24,7 @@ The original (recovered from the arm64 binary):
       allpass: b = buf[i]; buf[i] = out + b * 0.5; out = b - out
   then output = out * wet + x * dry (vDSP_vsmul, vDSP_vsma).
 
-    python tools/reverb_calibrate.py            print the model's level and decay, and check reverb.py against it
+    py tools/reverb_calibrate.py            print the model's level and decay, and check reverb.py against it
 """
 from __future__ import annotations
 

@@ -6,7 +6,7 @@ is configured (`+[S3DEngine setHRTFPath:]` is never called by the game). This to
 function, then writes the blob and a short description of its header.
 
 Usage:
-    python tools/extract_hrtf.py analysis/bin/audiodefence_arm64 [--out analysis/data/embedded_hrtf.dat]
+    py tools/extract_hrtf.py analysis/bin/audiodefence_arm64 [--out analysis/data/embedded_hrtf.dat]
 """
 import os
 import sys
