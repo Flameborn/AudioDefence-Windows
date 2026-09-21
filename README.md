@@ -743,9 +743,11 @@ In order:
 The release build — choice 1, or `py compiler.py` with no options from a
 script — does three things to the repository before it copies anything:
 
-- the lines under `unrelease:` move to the entry for this version, headed
-  without the `-1`: `26.09.21:`. If that entry is already there — a second
-  build the same day — they go to the bottom of it instead of starting another.
+- the lines under `unrelease:` move to the entry headed exactly as `VERSION`
+  says, build number and all: `26.09.21-1:`. If that entry is already there —
+  you built again without changing `VERSION` — they go to the bottom of it
+  instead of starting another. Change the number in `VERSION` and the next
+  release build starts a new entry.
 - `unrelease:` stays at the top, empty, ready for whatever changes next. If
   someone has deleted that line, it is put back.
 - if there is no `VERSION` file, one is made, starting at `1.0.0-1`.
@@ -767,8 +769,8 @@ what the release build would do to the changelog without writing anything.
 `VERSION` is **`YY.MM.DD-XX`**: last two digits of the year, month, day, and
 which release of that day it is, counting from 1. The first release on the 20th
 of September 2026 is `26.09.20-1`; a second one the same day is `26.09.20-2`.
-The changelog has one entry per day, `26.09.20:`, whichever build of it you are
-reading. A build with no `VERSION` file does not know what it is and never
+The compiler never works the number out: it follows whatever you wrote in
+`VERSION`, and the changelog entry is named the same. A build with no `VERSION` file does not know what it is and never
 offers an update, which is the one way to ship something that cannot be
 updated afterwards.
 

@@ -115,9 +115,10 @@ _HEADING = re.compile(r'^[^\s:]+:$')
 
 
 def changelog_heading(version: str) -> str:
-    """'26.09.21-1' -> '26.09.21:'.  The -1, -2 count the builds of a day; they belong to VERSION and the
-    zip's name, and a day's changes are one entry in the notes whichever build of it you are reading."""
-    return version.rsplit('-', 1)[0] + ':'
+    """'26.09.21-1' -> '26.09.21-1:'.  The heading is VERSION exactly as written, build number and all.
+    Nothing here works a version out: build again without changing VERSION and the new lines join the
+    same entry; change the number in VERSION and the next release build starts a new one."""
+    return version + ':'
 
 
 def _parse_changelog(text: str) -> list:
