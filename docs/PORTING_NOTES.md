@@ -54,6 +54,14 @@ Menu screens are built from the iPhone nibs (the 568x320 tag-2781 layout) and re
 them: elements top to bottom, then left to right, with their accessibility labels, "button", "dimmed" and
 hints.
 
+PORT INPUT: `UIAccessibilityIsVoiceOverRunning()` is always true here (`Speech.screen_reader_running`).
+The original's other branch is its sighted game - `ADChallengeSelectorViewController`,
+`ADArmoryViewController`, `ADGameOverEndlessViewController` and the rest, none of them ported, since the
+port has nothing to look at - and every screen is spoken, by NVDA when it is running and by SAPI 5 when it
+is not.  Asking whether NVDA was running sent a player on SAPI 5 down the sighted path: "... is not ported
+yet" on opening a world's challenges, no spoken game view (`AccessibleGameView`), and Gesture rather than
+Button mode on a new profile.
+
 | key | VoiceOver gesture |
 |---|---|
 | Right / Tab | flick right: next element |

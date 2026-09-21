@@ -1,6 +1,7 @@
 """Screen reader output: NVDA through its controller client, otherwise SAPI 5.
 
-This replaces VoiceOver's reading of labels and UIAccessibilityPostNotification announcements.
+This replaces VoiceOver's reading of labels and UIAccessibilityPostNotification announcements, and the port
+counts as a VoiceOver player whichever of the two is speaking (Speech.screen_reader_running).
 """
 from __future__ import annotations
 
@@ -89,8 +90,16 @@ class Speech:
         return self._sapi
 
     def screen_reader_running(self) -> bool:
-        """UIAccessibilityIsVoiceOverRunning() equivalent."""
-        return self.nvda.running()
+        """UIAccessibilityIsVoiceOverRunning() equivalent: always, in the port.
+
+        The original takes its VoiceOver branches - the accessible screens, the spoken game view, Button
+        mode on a new profile - only while VoiceOver is on; the other branches are its sighted game, which
+        the port has not ported, since it has nothing to look at.  Every screen here is spoken, by NVDA
+        when it is running and by SAPI 5 when it is not, so the VoiceOver branches are always the ones
+        taken.  This used to ask whether NVDA was running, which sent a player on SAPI 5 down the sighted
+        path: "ADChallengeSelectorViewController is not ported yet" on opening a world's challenges, and
+        a game that was not described."""
+        return True
 
     def speak(self, text, interrupt: bool = True) -> None:
         if not text:

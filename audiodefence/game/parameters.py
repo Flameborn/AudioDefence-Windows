@@ -11,7 +11,9 @@ GYRO, SWIPE, TILT = 1, 2, 3
 
 class GameParameters:
     _shared: 'GameParameters | None' = None
-    screen_reader_running = False           # UIAccessibilityIsVoiceOverRunning() equivalent, set by the app
+    #: UIAccessibilityIsVoiceOverRunning() equivalent: always, in the port (platform/speech.py
+    #: Speech.screen_reader_running, which __main__ copies here)
+    screen_reader_running = True
 
     @classmethod
     def shared(cls) -> 'GameParameters':    # +[ADGameParameters sharedParameters] 0x1000a3878

@@ -20,7 +20,8 @@ playing it and describing what they heard.
 The port is built for a screen reader, not adapted to one afterwards. It speaks
 through **NVDA** when NVDA is running, and falls back to the **SAPI 5** voice
 when it is not — nothing else is required, and there is no visual mode worth
-using. Every screen the original offered a VoiceOver user is here, read in the
+using. The game is the same either way: with SAPI 5 you get every screen and
+the spoken game exactly as an NVDA player does. Every screen the original offered a VoiceOver user is here, read in the
 order VoiceOver read it, with the same labels and hints, and a good number of
 places where the original said the wrong thing or nothing at all have been
 fixed. They are all listed under *How faithful this is*.
