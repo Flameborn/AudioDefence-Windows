@@ -165,7 +165,8 @@ class ScreenManager:
             tab_next, tab_previous = pygame.K_RIGHT, pygame.K_LEFT
         else:
             tab_next, tab_previous = pygame.K_DOWN, pygame.K_UP
-        keys = {'dpup': pygame.K_UP, 'dpdown': pygame.K_DOWN, 'dpleft': pygame.K_LEFT, 'dpright': pygame.K_RIGHT,
+        keys = {'dpup': pygame.K_UP, 'dpdown': pygame.K_DOWN,
+                'dpleft': pygame.K_LEFT, 'dpright': pygame.K_RIGHT,
                 'stickup': pygame.K_UP, 'stickdown': pygame.K_DOWN,
                 'stickleft': pygame.K_LEFT, 'stickright': pygame.K_RIGHT,
                 'a': pygame.K_RETURN, 'b': pygame.K_ESCAPE, 'y': pygame.K_DELETE,

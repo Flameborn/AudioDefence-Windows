@@ -379,7 +379,8 @@ class SettingsScreen(ViewControllerScreen):
         if self.control_scheme.capturing is not None:     # setting a binding: every key goes to the panel
             # PORT ADDITION: a controller button stands for a key in the menus; here it cancels, as Escape
             # does, rather than binding the key it stands for
-            self.control_scheme.handle_captured_key(pygame.K_ESCAPE if getattr(event, 'pad', False) else event.key)
+            key = pygame.K_ESCAPE if getattr(event, 'pad', False) else event.key
+            self.control_scheme.handle_captured_key(key)
             return
         if event.key == pygame.K_DELETE:                  # PORT ADDITION: take a key off the focused binding
             action = getattr(self.focus, 'binding_action', None)

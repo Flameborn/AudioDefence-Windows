@@ -332,6 +332,10 @@ class BrickManager:
         hits = self.calculate_hit_enemies(weapon, S3DEngine.engine().head_orientation)
         for t in hits:
             t.hit_by_weapon(weapon)
+        if hits:                                          # PORT ADDITION: felt on a controller
+            from ..platform.haptics import Haptics
+            haptics = Haptics.shared()
+            haptics.melee_hit() if isinstance(weapon, MeleeWeapon) else haptics.hit(len(hits))
         if isinstance(weapon, MeleeWeapon):
             if not hits:
                 weapon.play_miss_sound()
@@ -362,6 +366,9 @@ class BrickManager:
                 notify_stats('UPDATE_MELEE_WEAPON_DATA', weapon.name, False)
             else:
                 notify_stats('UPDATE_WEAPON_DATA', weapon.name, True, False, False, False, -1.0)
+        if count:                                         # PORT ADDITION: felt on a controller
+            from ..platform.haptics import Haptics
+            Haptics.shared().melee_hit() if melee else Haptics.shared().hit(count)
         if melee:
             if count == 0:
                 weapon.play_miss_sound()
@@ -417,11 +424,15 @@ class BrickManager:
                 gvc.player.start_tinitus_with_intensity(p2 / -25 + 1)
         notify_stats('UPDATE_WEAPON_DATA', weapon_name, True, len(hits) != 0, False, False, -1.0)
         self.check_deaths_for_hit_enemies(hits, weapon_name)
+        return hits                                       # PORT ADDITION: for the controller's vibration
 
     def solve_explosion_of_projectile(self, projectile) -> None:   # 0x1000c6360
         w = projectile.weapon
         d = {'radius': projectile.explosion_radius, 'damages': w.damages, 'dispersal': w.dispersal}
-        self.solve_explosion_with_dictionary(d, projectile.position, w.name, False)
+        hits = self.solve_explosion_with_dictionary(d, projectile.position, w.name, False)
+        if hits:                                          # PORT ADDITION: felt on a controller, as a shot is
+            from ..platform.haptics import Haptics
+            Haptics.shared().hit(len(hits))
 
     def check_deaths_for_hit_enemies(self, hits: list, weapon_name) -> None:   # 0x1000c66a4
         from .missions import MissionManager

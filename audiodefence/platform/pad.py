@@ -23,9 +23,11 @@ turning with a stick does not flick it up or down by accident.
 """
 from __future__ import annotations
 
+import ctypes
 import logging
 import math
 import os
+import time
 
 import pygame
 
@@ -176,6 +178,61 @@ class PadMap:
         return None
 
 
+# --- SDL itself, for what pygame does not wrap -----------------------------------------------------------
+# pygame opens the controllers; the motion sensors and the DualSense's trigger effects are reached through
+# the same SDL2.dll pygame loaded, by the controller's instance id, so both work on the one SDL object.
+SENSOR_ACCELEROMETER = 1                                  # SDL_SENSOR_ACCEL
+TYPE_PS5 = 7                                              # SDL_CONTROLLER_TYPE_PS5
+_sdl = None
+
+
+def sdl():
+    """pygame's SDL2.dll, or None where it cannot be reached (then there is no shake and no trigger feel)."""
+    global _sdl
+    if _sdl is None:
+        try:
+            lib = ctypes.CDLL(os.path.join(os.path.dirname(pygame.__file__), 'SDL2.dll'))
+            lib.SDL_GameControllerFromInstanceID.restype = ctypes.c_void_p
+            lib.SDL_GameControllerFromInstanceID.argtypes = [ctypes.c_int32]
+            lib.SDL_GameControllerGetType.argtypes = [ctypes.c_void_p]
+            lib.SDL_GameControllerHasSensor.argtypes = [ctypes.c_void_p, ctypes.c_int]
+            lib.SDL_GameControllerSetSensorEnabled.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_int]
+            lib.SDL_GameControllerGetSensorData.argtypes = [ctypes.c_void_p, ctypes.c_int,
+                                                            ctypes.POINTER(ctypes.c_float), ctypes.c_int]
+            lib.SDL_GameControllerSendEffect.argtypes = [ctypes.c_void_p, ctypes.c_void_p, ctypes.c_int]
+            _sdl = lib
+        except (OSError, AttributeError) as exc:
+            log.info('SDL is not reachable directly (%s): no shake, no trigger effects', exc)
+            _sdl = False
+    return _sdl or None
+
+
+# --- the DualSense's adaptive triggers ------------------------------------------------------------------
+# SDL_GameControllerSendEffect hands a PS5 pad a DS5EffectsState_t: 47 bytes, of which the first says what
+# to change (0x04 the right trigger, 0x08 the left) and bytes 10 and 21 start the two triggers' effects.
+# The effects are the pad's own simple modes, the ones SDL's test program uses: 0x05 off, 0x01 resistance
+# from a point on, 0x02 resistance between two points that gives way past the second, as a gun's trigger
+# breaks.  Positions and strength run 0 to 255.
+DS5_RIGHT_TRIGGER, DS5_LEFT_TRIGGER = 0x04, 0x08
+TRIGGER_OFF = (0x05,)
+#: R2 resists from a quarter of its travel and breaks at half, where it fires (TRIGGER_DOWN)
+GUN_TRIGGER = (0x02, 0x40, 0x80, 0xC0)
+#: L2, the reload under Button, pulls against a light spring
+RELOAD_TRIGGER = (0x01, 0x40, 0x50)
+
+
+def ds5_effect(right=None, left=None) -> bytes:
+    """The 47 bytes that set the right and/or left trigger; None leaves that trigger as it is."""
+    state = bytearray(47)
+    if right is not None:
+        state[0] |= DS5_RIGHT_TRIGGER
+        state[10:10 + len(right)] = bytes(right)
+    if left is not None:
+        state[0] |= DS5_LEFT_TRIGGER
+        state[21:21 + len(left)] = bytes(left)
+    return bytes(state)
+
+
 # --- the controllers themselves -------------------------------------------------------------------------
 class Pads:
     """Every controller plugged in, and what their buttons and sticks are doing.
@@ -198,6 +255,11 @@ class Pads:
         self.axes: dict = {}                              # SDL instance id -> six axes, -1 to 1
         self.pushed: dict = {}                            # (instance id, stick) -> 'stickup' or the like
         self.held: set = set()                            # sources down now
+        self.handles: dict = {}                           # SDL instance id -> SDL_GameController*
+        self.accelerometers: set = set()                  # instance ids whose accelerometer is on
+        self.dualsenses: set = set()                      # instance ids of PS5 pads (trigger effects)
+        self.triggers_set: dict = {}                      # instance id -> the trigger feel it was given
+        self.last_shake = 0.0
         self.started = False
         self.speak = None                                 # set by the host: says a pad came or went
 
@@ -228,8 +290,26 @@ class Pads:
         self.pads[iid] = pad
         self.names[iid] = str(getattr(pad, 'name', '') or 'Controller')
         self.axes[iid] = [0.0] * 6
-        log.info('controller connected: %s (%s names)', self.names[iid], family(self.names[iid]))
+        self._open_extras(iid)
+        log.info('controller connected: %s (%s names%s%s)', self.names[iid], family(self.names[iid]),
+                 ', shake' if iid in self.accelerometers else '',
+                 ', trigger effects' if iid in self.dualsenses else '')
         return pad
+
+    def _open_extras(self, iid) -> None:
+        """The accelerometer, for shaking, and whether this is a DualSense, for the trigger effects."""
+        lib = sdl()
+        if lib is None:
+            return
+        handle = lib.SDL_GameControllerFromInstanceID(iid)
+        if not handle:
+            return
+        self.handles[iid] = handle
+        if lib.SDL_GameControllerHasSensor(handle, SENSOR_ACCELEROMETER):
+            if lib.SDL_GameControllerSetSensorEnabled(handle, SENSOR_ACCELEROMETER, 1) == 0:
+                self.accelerometers.add(iid)
+        if lib.SDL_GameControllerGetType(handle) == TYPE_PS5:
+            self.dualsenses.add(iid)
 
     # --- what is plugged in ---------------------------------------------------------------------------
     def connected(self) -> bool:
@@ -318,6 +398,10 @@ class Pads:
             return []
         name = self.names.pop(iid, 'Controller')
         self.axes.pop(iid, None)
+        self.handles.pop(iid, None)
+        self.accelerometers.discard(iid)
+        self.dualsenses.discard(iid)
+        self.triggers_set.pop(iid, None)
         for key in [k for k in self.pushed if k[0] == iid]:
             del self.pushed[key]
         out = [(False, source, source[1]) for source in list(self.held) if source[0] == iid]
@@ -326,6 +410,54 @@ class Pads:
         if self.speak:
             self.speak('%s disconnected.' % name)
         return out
+
+    # --- shaking --------------------------------------------------------------------------------------
+    #: how hard a shake has to be: the accelerometer reads about 9.8 m/s2 at rest (gravity), and a firm
+    #: shake of the hand goes well past twice that.  One shake is one melee, however long it goes on.
+    SHAKE_ACCELERATION = 25.0
+    SHAKE_INTERVAL = 0.5
+
+    def shaken(self) -> bool:
+        """Whether a pad has just been shaken - the phone game's shake, which is a melee under Gesture."""
+        lib = sdl()
+        if lib is None or not self.accelerometers:
+            return False
+        reading = (ctypes.c_float * 3)()
+        now = time.monotonic()
+        for iid in list(self.accelerometers):
+            handle = self.handles.get(iid)
+            if not handle:
+                continue
+            if lib.SDL_GameControllerGetSensorData(handle, SENSOR_ACCELEROMETER, reading, 3) != 0:
+                continue
+            size = math.sqrt(reading[0] ** 2 + reading[1] ** 2 + reading[2] ** 2)
+            if size >= self.SHAKE_ACCELERATION and now - self.last_shake >= self.SHAKE_INTERVAL:
+                self.last_shake = now
+                return True
+        return False
+
+    # --- the DualSense's triggers --------------------------------------------------------------------
+    def set_triggers(self, feel) -> None:
+        """Give every DualSense the trigger feel `feel` names - 'gun' (R2 only), 'gun and reload' (R2
+        and L2) or 'off' - unless it has it already.  Other pads have no such thing and are left alone."""
+        lib = sdl()
+        if lib is None:
+            return
+        for iid in list(self.dualsenses):
+            if self.triggers_set.get(iid) == feel or iid not in self.handles:
+                continue
+            right = GUN_TRIGGER if feel in ('gun', 'gun and reload') else TRIGGER_OFF
+            left = RELOAD_TRIGGER if feel == 'gun and reload' else TRIGGER_OFF
+            data = ds5_effect(right, left)
+            if lib.SDL_GameControllerSendEffect(self.handles[iid], data, len(data)) == 0:
+                self.triggers_set[iid] = feel
+            else:
+                log.info('the trigger effect could not be sent to %s', self.names.get(iid))
+                self.dualsenses.discard(iid)              # do not try again every frame
+
+    def stop(self) -> None:
+        """The game is closing: a DualSense keeps a trigger effect until it is told otherwise."""
+        self.set_triggers('off')
 
     # --- turning --------------------------------------------------------------------------------------
     def turn(self) -> float:

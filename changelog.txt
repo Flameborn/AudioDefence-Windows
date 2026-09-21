@@ -20,6 +20,9 @@ The screens at the end of a run read one result per line, the same as Copy resul
 The Play again button after an Endless game is called Close. It still takes you back to the Endless screen.
 You can play with a game controller, like a DualSense, DualShock, Xbox or Switch Pro controller. Either stick turns, slowly with a small push and fast when pushed all the way. R2 fires, R1 is melee, L1 switches weapon and L2 reloads, or in Gesture mode, flick a stick up or down. Options pauses.
 A controller works in the menus too: the D-pad or a stick moves, Cross selects, Circle goes back, L1 and R1 change tab, and L2 and R2 set the menu music volume.
+A controller vibrates with the heartbeat when a zombie is close, harder the closer it is, and when a shot or a melee attack hits.
+Shaking the controller swings your melee weapon in Gesture mode, like shaking the phone did.
+On a DualSense, R2 feels like a gun's trigger while you play, and in Button mode L2 has a light pull for reloading.
 
 26.09.20:
 Initial release.

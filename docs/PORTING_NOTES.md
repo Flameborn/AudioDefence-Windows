@@ -447,6 +447,17 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   Triangle Delete, L1/R1 the tab arrows, L2/R2 Page Down/Up), and those key presses carry `pad`, so a key
   being captured in Settings -> Keyboard is cancelled by a controller button instead of taking the key it
   stands for.  SDL is asked (before pygame.init) to let PlayStation pads rumble over Bluetooth.
+* PORT ADDITION: what a controller makes you feel (`platform/haptics.py`).  The original never vibrates.
+  The proximity heartbeat (`ADPlayer`, player.py) pulses the heavy motor on each beat, scaled as the sound
+  is (closeness squared * 0.7 + 0.3); `shotWithWeapon:` 0x1000c4dfc, `shotWithSpecialWeapon:` 0x1000c4b38
+  and a projectile's explosion (`solveExplosionOfProjectile:` 0x1000c6360, whose explosion now returns what
+  it hit) pulse on a hit - a tap for one, firmer for several, a thud for melee.  Shaking a pad that has an
+  accelerometer (SDL's sensor, reached through pygame's own SDL2.dll) calls `motionEnded:withEvent:`
+  0x10005a108 as the phone's shake does, so it swings the melee weapon under Gesture and does nothing under
+  Button; the threshold is 25 m/s2 against gravity's 9.8, once per half second.  A DualSense's adaptive
+  triggers get the pad's simple effects through `SDL_GameControllerSendEffect` - R2 resists between a quarter
+  and a half of its travel and gives way where it fires, L2 (reload under Button) a light spring - only while
+  the game is in front; a pause, the menus and closing the game set them plain.
 * PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
   puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
   turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,

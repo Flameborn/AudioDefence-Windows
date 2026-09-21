@@ -103,6 +103,8 @@ class GameplayScreen(Screen):
     def on_dismiss(self) -> None:
         if MotionManager.shared().source is self.motion:
             MotionManager.shared().source = None
+        from ..platform.pad import Pads
+        Pads.shared().set_triggers('off')                 # PORT ADDITION: the game is over; so is the gun
 
     # --- keys ------------------------------------------------------------------------------------
     def _agv(self) -> AccessibleGameView | None:
@@ -236,9 +238,30 @@ class GameplayScreen(Screen):
             return 0
         return Pads.shared().turn()
 
+    def _update_controller(self) -> None:
+        """PORT ADDITION: shaking a controller is shaking the phone - motionEnded:withEvent: 0x10005a108,
+        which swings the melee weapon under Gesture and does nothing under Button.  And a DualSense's
+        triggers are given their feel while the game is in front: R2 a gun's trigger that breaks where it
+        fires, L2 a light spring where it reloads.  In a pause, a death or the menus they are plain again."""
+        from ..platform.pad import PadMap, Pads
+        pads = Pads.shared()
+        if not pads.pads:
+            return
+        c = self.controller
+        playing = (self.host.top() is self and not getattr(c, 'paused', False)
+                   and not getattr(c, 'death_overlay_visible', False)
+                   and not isinstance(c, OpenerGameplayController))
+        if pads.shaken() and playing:
+            c.motion_ended(True)
+        padmap = PadMap.shared()
+        gun = playing and 'righttrigger' in padmap.names('fire')
+        reload = playing and 'lefttrigger' in padmap.names('reload')
+        pads.set_triggers('gun and reload' if gun and reload else 'gun' if gun else 'off')
+
     # --- per pass --------------------------------------------------------------------------------
     def frame(self) -> None:
         self._update_turn()                               # PORT ADDITION: a stick moves without events
+        self._update_controller()
         now = RunLoop.main().now()
         dt = now - self._last_frame
         self._last_frame = now

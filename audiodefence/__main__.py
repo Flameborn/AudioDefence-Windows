@@ -112,6 +112,10 @@ def main(argv=None) -> int:
     finally:
         log.info('shutting down')
         try:
+            try:
+                Pads.shared().stop()                    # a DualSense keeps a trigger feel until told not to
+            except Exception:
+                log.exception('could not reset the controllers')
             engine.shutdown()
         finally:
             pygame.quit()

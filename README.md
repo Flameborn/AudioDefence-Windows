@@ -266,7 +266,19 @@ In a game:
 
 Under **Gesture** a stick flicked up or down is the swipe, as the Up and Down
 arrows are on the keyboard; a stick pushed more sideways than up or down only
-turns, so turning does not switch weapons by accident. If Steam is running it
+turns, so turning does not switch weapons by accident. Shaking the controller
+is shaking the phone: under Gesture it swings your melee weapon, as it did in
+the original, and under Button it does nothing, as it did not. It needs a pad
+that can feel movement — a DualSense, a DualShock 4 or a Switch Pro.
+
+A controller that can vibrate lets you feel the game: the **heartbeat** when a
+zombie is close, on every beat and harder the closer it is; a short tap when a
+**shot hits**, firmer when it hits several; and a heavier thud when a **melee**
+attack connects. A miss is felt as nothing. On a **DualSense** the triggers
+change too while you play: R2 resists like a gun's trigger and gives way where
+it fires, and under Button L2 pulls against a light spring where it reloads.
+In the menus and on the pause screen they are plain again, and they are set
+back when the game closes. If Steam is running it
 may take the controller over and present it as an Xbox pad; the game still
 works, but for your own controller's button names, turn Steam Input off for
 the game.
@@ -377,7 +389,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **98 divergences** and **15 original quirks kept on purpose**.
+There are **99 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -531,7 +543,9 @@ replacing them.
 - **Settings → Miscellaneous → Reset all settings** puts every setting back to its default, except your key
   bindings.
 - **Game controllers**: a DualSense, DualShock, Xbox, Switch Pro or most other pads, in the menus and in
-  play, with a stick that turns as fast as it is pushed. See [With a game controller](#with-a-game-controller).
+  play, with a stick that turns as fast as it is pushed, vibration for the heartbeat and for hits, the
+  phone's shake, and a DualSense's triggers that feel like a gun. See
+  [With a game controller](#with-a-game-controller).
 
 ### Original quirks kept on purpose
 
