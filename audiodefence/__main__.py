@@ -59,7 +59,9 @@ def main(argv=None) -> int:
 
     if args.no_speech:
         Speech.shared().speak = lambda *a, **k: None
+        Speech.shared().speak_automatic = lambda *a, **k: None
     GameParameters.screen_reader_running = Speech.shared().screen_reader_running()
+    Speech.shared().choice = GameParameters.shared().speech_output()   # Settings -> Miscellaneous
 
     from .platform.pad import Pads, set_hints
     set_hints()                                         # before SDL's joystick layer starts, in pygame.init()

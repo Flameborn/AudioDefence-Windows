@@ -24,9 +24,20 @@ Access**, **PC-Talker**, **ZDSR**, **Boy PC Reader**, **Sense Reader**,
 library); and through the **SAPI 5** voice when none is — nothing else is
 required, and there is no visual mode worth using. A screen reader started or
 closed while the game runs is followed within a few seconds. The game is the
-same whichever
-speaks: with SAPI 5 you get every screen and the spoken game exactly as an NVDA
-player does. Every screen the original offered a VoiceOver user is here, read in the
+same whichever speaks: with SAPI 5 you get every screen and the spoken game
+exactly as an NVDA player does.
+
+That choice is automatic. **Settings → Miscellaneous → Speech output** picks one
+instead — NVDA, JAWS, Narrator, ZoomText, System Access, Window-Eyes, PC-Talker,
+ZDSR, Boy PC Reader, Sense Reader or SAPI 5 — with Enter for the next and
+Shift+Enter for the previous, and Automatic, the default, at the start of the
+list. The one you pick is the only one used: while it is not running the game
+is silent, even with another screen reader running. The row itself always tells
+you what you picked, through the automatic choice when the one you picked
+cannot speak ("JAWS is not running, so the game will be silent until it is"),
+so you can step on to another without being left in silence.
+
+Every screen the original offered a VoiceOver user is here, read in the
 order VoiceOver read it, with the same labels and hints, and a good number of
 places where the original said the wrong thing or nothing at all have been
 fixed. They are all listed under *How faithful this is*.
@@ -160,7 +171,7 @@ Settings, saves and the log live in `%APPDATA%\AudioDefence`, in three files:
 | file | what is in it |
 |---|---|
 | `save.json` | progress: coins, diamonds, weapons, power-ups, missions, challenges, statistics |
-| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, how strong the vibration and the trigger feel are, and whether hints name keys or controller buttons, and which controller's |
+| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, how strong the vibration and the trigger feel are, and whether hints name keys or controller buttons, and which controller's, and the speech output |
 | `keys.json` | the key bindings, and each kind of controller's, by its name |
 
 Deleting the folder starts a fresh profile — the first run then begins on Gyro
@@ -444,7 +455,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **102 divergences** and **15 original quirks kept on purpose**.
+There are **103 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -597,6 +608,8 @@ replacing them.
   announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
   **Settings → Miscellaneous → Tutorial text** chooses when, or turns it off: Enter steps to the next
   setting, Shift+Enter to the previous.
+- **Settings → Miscellaneous → Speech output**: Automatic, or one screen reader or voice only. See
+  [Accessibility](#accessibility).
 - **Settings → Miscellaneous → Remember cursor position** (off by default) returns the cursor to the row
   you left a screen on.
 - **A menu music volume**: Page Up and Page Down, on any menu, in steps of 10% from 100% — the original's

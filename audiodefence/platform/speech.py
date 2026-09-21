@@ -15,6 +15,18 @@ from .. import paths
 
 log = logging.getLogger('speech')
 
+#: PORT ADDITION: Settings -> Miscellaneous -> Speech output.  Automatic takes the first of NVDA, another
+#: screen reader and SAPI 5 that can speak; any other choice speaks through that one only, and the game is
+#: silent while it cannot.
+OUTPUTS = (('auto', 'Automatic'), ('nvda', 'NVDA'), ('jaws', 'JAWS'), ('narrator', 'Narrator'),
+           ('zoomtext', 'ZoomText'), ('systemaccess', 'System Access'), ('windoweyes', 'Window-Eyes'),
+           ('pctalker', 'PC-Talker'), ('zdsr', 'ZDSR'), ('boypcreader', 'Boy PC Reader'),
+           ('sensereader', 'Sense Reader'), ('sapi', 'SAPI 5'))
+#: the choices Prism speaks for, by Prism's own names for them
+PRISM_NAMES = {'jaws': 'JAWS', 'narrator': 'UIA', 'zoomtext': 'ZoomText', 'systemaccess': 'SystemAccess',
+               'windoweyes': 'WindowEyes', 'pctalker': 'PCTalker', 'zdsr': 'ZDSR', 'boypcreader': 'BoyPCReader',
+               'sensereader': 'SenseReader'}
+
 
 class _Nvda:
     def __init__(self):
@@ -107,6 +119,7 @@ class _Readers:
         self.ctx = None
         self.ids = []
         self.reader = None
+        self.only = None                                  # the one screen reader chosen, or None for any
         self.next_probe = 0.0
         self.checked = 0.0
         try:
@@ -134,10 +147,12 @@ class _Readers:
         self.reader = None
         self.next_probe = 0.0                             # look for another at once
 
-    def current(self):
-        """The screen reader to speak through, or None."""
+    def current(self, only=None):
+        """The screen reader to speak through, or None - any of them, or only the one Prism calls `only`."""
         if self.ctx is None:
             return None
+        if only != self.only:                             # Speech output changed: look again, for it
+            self.only, self.reader, self.next_probe = only, None, 0.0
         now = time.monotonic()
         if self.reader is not None and now - self.checked >= self.CHECK_EVERY:
             self.checked = now
@@ -146,7 +161,10 @@ class _Readers:
         if self.reader is None and now >= self.next_probe:
             self.next_probe = now + self.PROBE_EVERY
             for bid in self.ids:
-                if self.ctx.name_of(bid) == self.NARRATOR and not process_running('narrator.exe'):
+                name = self.ctx.name_of(bid)
+                if only is not None and name != only:
+                    continue
+                if name == self.NARRATOR and not process_running('narrator.exe'):
                     continue                              # not even made, with Narrator off
                 try:
                     backend = self.ctx.create(bid)
@@ -158,8 +176,8 @@ class _Readers:
                     break
         return self.reader
 
-    def speak(self, text: str, interrupt: bool) -> bool:
-        reader = self.current()
+    def speak(self, text: str, interrupt: bool, only=None) -> bool:
+        reader = self.current(only)
         if reader is None:
             return False
         try:
@@ -218,6 +236,8 @@ class Speech:
         self.nvda = _Nvda()
         self._readers = None
         self._sapi = None
+        self.choice = 'auto'                              # Speech output (OUTPUTS), set from the settings
+        self._silent = False                              # the chosen one could not speak the last line
 
     @property
     def readers(self) -> _Readers:
@@ -248,14 +268,53 @@ class Speech:
             return
         text = str(text)
         log.debug('speak: %s', text)
+        choice = self.choice
+        if choice not in PRISM_NAMES and choice not in ('nvda', 'sapi'):
+            self.speak_automatic(text, interrupt)
+            return
+        if choice == 'nvda':
+            spoken = self.nvda.speak(text, interrupt)
+        elif choice == 'sapi':
+            spoken = self.sapi.speak(text, interrupt)
+        else:
+            spoken = self.readers.speak(text, interrupt, PRISM_NAMES[choice])
+        if spoken == self._silent:                        # said once, as it starts or stops
+            self._silent = not spoken
+            log.info('speech: %s %s', dict(OUTPUTS)[choice],
+                     'is not running: the game is silent until it is' if self._silent else 'speaks again')
+
+    def speak_automatic(self, text, interrupt: bool = True) -> None:
+        """The first of NVDA, another screen reader and SAPI 5 that can speak, whatever Speech output says.
+        The game speaks this way on Automatic, and Settings says through it that a chosen screen reader
+        is not running, which it could not say through that one."""
         if self.nvda.speak(text, interrupt):
             return
         if self.readers.speak(text, interrupt):
             return
         self.sapi.speak(text, interrupt)
 
+    def can_speak(self, choice: str) -> bool:
+        """Whether this Speech output choice can speak right now."""
+        if choice == 'auto':
+            return True
+        if choice == 'nvda':
+            return self.nvda.running()
+        if choice == 'sapi':
+            return self.sapi.voice is not None
+        return self.readers.current(PRISM_NAMES.get(choice)) is not None
+
     def stop(self) -> None:
-        if self.nvda.running():
+        choice = self.choice
+        if choice == 'nvda':
+            if self.nvda.running():
+                self.nvda.stop()
+        elif choice == 'sapi':
+            if self._sapi is not None:
+                self._sapi.stop()
+        elif choice in PRISM_NAMES:
+            if self._readers is not None:
+                self._readers.stop()
+        elif self.nvda.running():
             self.nvda.stop()
         elif self._readers is not None and self._readers.reader is not None:
             self._readers.stop()

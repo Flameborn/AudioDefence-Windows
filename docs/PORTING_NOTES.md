@@ -526,10 +526,22 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
 * PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
   puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
   turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,
-  menu arrows, cursor memory, the update check and the menu music volume - through the same setters the
-  rows use.  The key bindings are left alone (Settings -> Keyboard has its own Restore default keys), as
-  joystick bindings will be.  The original has no reset; this one replaced the port's own Restore aiming
-  defaults and Restore menu defaults rows.
+  menu arrows, cursor memory, the update check, the menu music volume, the vibration and the trigger feel,
+  the names in hints and tutorial, and the speech output - through the same setters the rows use.  The key
+  bindings are left alone (Settings -> Keyboard has its own Restore default keys), and so are the
+  controllers' buttons (Settings -> Joystick -> Restore default buttons).  The original has no reset; this
+  one replaced the port's own Restore aiming defaults and Restore menu defaults rows.
+* PORT ADDITION: Settings -> Miscellaneous -> Speech output (`speechOutput` in settings.json,
+  `Speech.choice`, `platform/speech.py OUTPUTS`): Automatic by default - NVDA through its controller client, else another
+  screen reader through Prism, else SAPI 5 (`Speech.speak_automatic`) - or one of NVDA, JAWS, Narrator,
+  ZoomText, System Access, Window-Eyes, PC-Talker, ZDSR, Boy PC Reader, Sense Reader and SAPI 5 only (the
+  Prism ones through `_Readers.current(only)`), with nothing spoken while that one cannot speak.  Enter
+  and Shift+Enter step through them and wrap.  The row says each step through the new choice or, when
+  that one cannot speak (`Speech.can_speak`), through the automatic one with the reason ("JAWS is not
+  running, so the game will be silent until it is", or that Prism is not installed): said through the
+  choice itself, it would not be heard, and a player stepping through would not know where they had
+  landed.  The game reads the choice as it starts (`__main__`), and the log says when the chosen one
+  stops being able to speak and when it can again.
 * DIVERGENCE: a dead player can no longer fire, melee, reload or switch weapons.  `showDeathOverlay` brings
   the death overlay to the front of the gameplay view and gives it `userInteractionEnabled` (0x10005b9e4 and
   0x10005ba20; the challenge controller's own at 0x1000db814), so on a phone it swallows every touch and the

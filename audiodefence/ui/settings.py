@@ -160,6 +160,13 @@ class ControlSchemePanel:
                                   'the previous.',
                              action=self.step_names_controller, shift_action=self.step_names_controller_back)
                 row.enabled = params.key_names() == 'buttons'
+            from ..platform.speech import OUTPUTS
+            t.cell('Speech output', dict(OUTPUTS)[params.speech_output()],
+                   hint='Which screen reader or voice speaks the game. Automatic uses NVDA, or another screen '
+                        'reader that is running, or SAPI 5 when none is. Choose one and only that one speaks: '
+                        'the game is silent while it is not running. Press Enter for the next setting and '
+                        'Shift plus Enter for the previous.',
+                   action=self.step_speech_output, shift_action=self.step_speech_output_back)
             t.cell('Check for updates when the game starts', 'ON' if params.check_updates() else 'OFF',
                    hint='Press Enter to toggle: when on, the main menu looks for a new build and tells '
                         'you only if there is one.',
@@ -376,6 +383,7 @@ class ControlSchemePanel:
         params.set_trigger_level(params.DEFAULT_TRIGGER_FEEL)
         params.set_key_names(params.DEFAULT_KEY_NAMES)
         params.set_names_controller(None)
+        params.set_speech_output(params.DEFAULT_SPEECH_OUTPUT)
         App.apply_menu_music_volume()
         self.reload_data()
         self.announce('All settings reset to default. Your key and controller bindings are unchanged.')
@@ -411,6 +419,30 @@ class ControlSchemePanel:
         params.set_key_names('keys' if params.key_names() == 'buttons' else 'buttons')
         self.reload_data()
         self.announce('Names in hints and tutorial: %s' % dict(params.KEY_NAMES)[params.key_names()])
+
+    def step_speech_output(self, step: int = 1) -> None:
+        """The next Speech output.  Said through the new one - or, when that one cannot speak, through the
+        automatic choice, since it could not be heard otherwise and the player would be left in silence
+        without knowing why."""
+        from ..platform.speech import OUTPUTS, PRISM_NAMES, Speech
+        params = GameParameters.shared()
+        keys = [key for key, _name in OUTPUTS]
+        params.set_speech_output(keys[(keys.index(params.speech_output()) + step) % len(keys)])
+        self.reload_data()
+        choice = params.speech_output()
+        name = dict(OUTPUTS)[choice]
+        speech = Speech.shared()
+        if speech.can_speak(choice):
+            self.announce('Speech output: %s' % name)
+        elif choice in PRISM_NAMES and speech.readers.ctx is None:
+            speech.speak_automatic('Speech output: %s. It needs Prism, which is not installed, so the game '
+                                   'will be silent.' % name)
+        else:
+            speech.speak_automatic('Speech output: %s. %s is not running, so the game will be silent until '
+                                   'it is.' % (name, name))
+
+    def step_speech_output_back(self) -> None:
+        self.step_speech_output(-1)
 
     def step_names_controller(self, step: int = 1) -> None:
         from ..platform.pad import Pads

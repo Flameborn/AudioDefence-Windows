@@ -37,6 +37,7 @@ Hits from power-ups and explosions are felt too.
 On the Endless screen, the Play button is dimmed along with the Armory and Back buttons while the cards are dealt, and all three are ready once the cards are down.
 Playing with the SAPI 5 voice instead of NVDA works like playing with NVDA. Before, the challenge screens said they were not ported yet, and the game itself was not described.
 The game speaks through JAWS, ZoomText, System Access, Narrator and other screen readers too, not only NVDA. Before, it used the SAPI 5 voice with them. A screen reader started or closed while the game is open is followed within a few seconds.
+The Miscellaneous tab has a Speech output option. Automatic, the default, uses whichever screen reader is running, or SAPI 5 when none is. You can pick one screen reader or SAPI 5 instead, and then only that one speaks, so the game is silent while it is not running. Enter and Shift+Enter go through the list, and the option always tells you what you picked.
 
 26.09.20:
 Initial release.

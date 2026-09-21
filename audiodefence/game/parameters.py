@@ -264,6 +264,21 @@ class GameParameters:
         self.defaults.set_object(value, 'keyNames')
         self.defaults.synchronize()
 
+    #: PORT ADDITION: Settings -> Miscellaneous -> Speech output: Automatic, or one screen reader or voice
+    #: only (platform/speech.py OUTPUTS).  Automatic by default, as it always was.
+    DEFAULT_SPEECH_OUTPUT = 'auto'
+
+    def speech_output(self) -> str:
+        from ..platform.speech import OUTPUTS
+        value = self.defaults.object('speechOutput')
+        return value if value in dict(OUTPUTS) else self.DEFAULT_SPEECH_OUTPUT
+
+    def set_speech_output(self, value: str) -> None:
+        from ..platform.speech import Speech
+        self.defaults.set_object(value, 'speechOutput')
+        self.defaults.synchronize()
+        Speech.shared().choice = self.speech_output()
+
     def names_controller(self):
         """The connected controller whose buttons the lines name, by the name it gives itself - the one
         chosen when several kinds are connected, else the one connected last - or None to name keys."""
