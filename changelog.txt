@@ -1,4 +1,8 @@
 unrelease:
+The Speech output option and the SAPI 5 voice settings have moved to a Speech tab of their own in Settings, reached like the other tabs.
+The SAPI 5 voice, rate, pitch, volume and rate boost are listed only while SAPI 5 is what speaks: chosen, or Automatic with no screen reader running. They come and go by themselves as a screen reader starts or closes.
+Vibration and the trigger feel have moved from the Joystick tab to Miscellaneous. Vibration is called Joystick vibration, and the trigger feel says that only a DualSense controller has one.
+The Menu arrows option in Miscellaneous is called Menu layout.
 
 26.09.21-3:
 The game checks for updates by itself and tells you when one is out. An update downloads only the files that changed, so a small fix is a small download, and your progress, settings and keys are untouched.
@@ -11,7 +15,7 @@ Melee is on both Control keys now by default, left and right, so whichever hand 
 In Info, the Statistics screen now counts the coins and diamonds you earn. Money earned and Diamonds collected always said 0 before.
 On the tarot card screen, a card now tells you the right number of diamonds you have. After spending diamonds in the armory, it used to still say the old number.
 After upgrading a power-up, the Upgrade button shows the new price at once. It used to offer the old one for about a second.
-The Menus tab in Settings is called Miscellaneous now and comes last. It has the menu layout, which used to be called menu arrows, remember cursor position, tutorial text, which has moved there from the Sound tab, and the switch for checking for updates when the game starts.
+The Menus tab in Settings is called Miscellaneous now and comes last. It has the menu arrows, remember cursor position, tutorial text, which has moved there from the Sound tab, and the switch for checking for updates when the game starts.
 The Miscellaneous tab has a Reset all settings button. It sets everything back to default, except your keys.
 When a melee weapon connects, you hear the swing where you are and the hit out at the zombie you hit, instead of both in front of you. A swing that hits nothing is just the swing, from you.
 Two zombies of the same kind no longer cut off each other's sound. One of them could go quiet and keep walking towards you.
@@ -26,13 +30,13 @@ A controller works in the menus too: the D-pad or a stick moves, Cross selects, 
 A controller vibrates with the heartbeat when a zombie is close, harder the closer it is, and when a shot or a melee attack hits.
 Shaking the controller swings your melee weapon in Gesture mode, like shaking the phone did.
 On a DualSense, R2 feels like a gun's trigger while you play, and in Button mode L2 has a light pull for reloading.
-Settings has a Joystick tab. It names the controller you have connected and lets you change which button does what.
+Settings has a Joystick tab. It names the controller you have connected, turns vibration and the trigger feel on or off, and lets you change which button does what.
 The Shield zombie, and a few others, no longer die in silence when the killing hit is critical, which happened often with melee. Their hit sound was cut off and no death sound played.
 When two zombies die close together at the end of a wave, the second one's death sound is no longer cut off.
 A DualSense plugged in by USB plays the heartbeat you hear in its grips, using the fine haptics PlayStation games use instead of plain rumble.
-The Miscellaneous tab has a Names in hints and tutorial option. Set it to Controller buttons and the hints and the tutorial text name the controller's buttons instead of the keys, like: press Cross to copy the results, or use the R2 button to fire your weapon. Enter or Shift+Enter switches it.
+The Joystick tab has a Names in hints and tutorial option, there while a controller is connected. Set it to Controller buttons and the hints and the tutorial text name the controller's buttons instead of the keys, like: press Cross to copy the results, or use the R2 button to fire your weapon. Enter or Shift+Enter switches it.
 Connecting or unplugging a controller while the game is open updates the Joystick tab at once.
-Joystick vibration and the trigger feel are in the Miscellaneous tab, with four settings each: Off, Light, Medium and Strong. Enter goes to the next and Shift+Enter to the previous. The trigger feel is only for a DualSense controller, and the option says so.
+Vibration and the trigger feel each have four settings in the Joystick tab: Off, Light, Medium and Strong. Enter goes to the next and Shift+Enter to the previous.
 R2's trigger feel is much softer than it was, at Medium.
 A hit is felt as hard as it hurts, so a big gun's hit is stronger than a small one's.
 The controller vibrates when a zombie dies, for an explosion, harder the closer it is, when the tornado pushes zombies back, when a shot hits the Shield zombie's shield, and when a zombie kills you.
@@ -40,8 +44,8 @@ Hits from power-ups and explosions are felt too.
 On the Endless screen, the Play button is dimmed along with the Armory and Back buttons while the cards are dealt, and all three are ready once the cards are down.
 Playing with the SAPI 5 voice instead of NVDA works like playing with NVDA. Before, the challenge screens said they were not ported yet, and the game itself was not described.
 The game speaks through JAWS, ZoomText, System Access, Narrator and other screen readers too, not only NVDA. Before, it used the SAPI 5 voice with them. A screen reader started or closed while the game is open is followed within a few seconds.
-Settings has a Speech tab. It has a Speech output option. Automatic, the default, uses whichever screen reader is running, or SAPI 5 when none is. You can pick one screen reader or SAPI 5 instead, and then only that one speaks, so the game is silent while it is not running. Enter and Shift+Enter go through the list, and the option always tells you what you picked.
-While SAPI 5 is what speaks, the Speech tab also has the SAPI 5 voice, rate, pitch and volume, and a rate boost for voices that can go faster. The rows come and go as a screen reader starts or closes. The voice starts on the one set in Control Panel, and each change is said in SAPI 5 so you can hear it.
+The Miscellaneous tab has a Speech output option. Automatic, the default, uses whichever screen reader is running, or SAPI 5 when none is. You can pick one screen reader or SAPI 5 instead, and then only that one speaks, so the game is silent while it is not running. Enter and Shift+Enter go through the list, and the option always tells you what you picked.
+When Speech output is Automatic or SAPI 5, the Miscellaneous tab also has the SAPI 5 voice, rate, pitch and volume, and a rate boost for voices that can go faster. The voice starts on the one set in Control Panel, and each change is said in SAPI 5 so you can hear it.
 Screen readers are tried in this order: NVDA, JAWS, ZDSR, then the others, and SAPI 5 last. The Speech output list goes in the same order.
 
 26.09.20:
