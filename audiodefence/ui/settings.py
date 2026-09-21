@@ -284,6 +284,8 @@ class ControlSchemePanel:
         params.set_menu_axis(params.DEFAULT_MENU_AXIS)
         params.set_remember_focus(params.DEFAULT_REMEMBER_FOCUS)
         params.set_check_updates(params.DEFAULT_CHECK_UPDATES)
+        params.set_menu_music_volume(params.DEFAULT_MENU_MUSIC_VOLUME)
+        App.apply_menu_music_volume()
         self.reload_data()
         self.announce('All settings reset to default. Your key bindings are unchanged.')
 

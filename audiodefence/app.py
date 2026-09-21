@@ -248,6 +248,7 @@ class App:
             return
 
         def activated(_pl, name=name):                    # startMenuMusic:_block_invoke 0x100082ee0
+            self.apply_menu_music_volume()                # PORT ADDITION
             if name == 'main_menu_theme' and play_open_sting:
                 self.open_sound = pl.sound('main_menu_open')
                 if self.open_sound is None:
@@ -276,6 +277,18 @@ class App:
                     self.current_menu_music.play(True)
                 self.menu_music_playing = True
         pl.activate(activated)
+
+    @staticmethod
+    def apply_menu_music_volume() -> None:
+        """PORT ADDITION: the menu music volume (Page Up / Page Down in the menus, see
+        screens.menu_music_volume_key), on every sound of the main_menu playlist - the theme, the game-over
+        theme and the opening sting, which is all it holds.  Called as the music starts and whenever the
+        volume changes, so a change is heard at once."""
+        from .game.parameters import GameParameters
+        pl = S3DEngine.engine().play_list_with_name('main_menu')
+        if pl is not None:
+            volume = GameParameters.shared().menu_music_gain()
+            pl.each(lambda sound: sound.set_volume(volume) and False)
 
     def stop_menu_music(self) -> None:                    # 0x1000833dc
         if self.fade_out_timer is not None:

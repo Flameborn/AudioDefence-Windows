@@ -191,6 +191,26 @@ class GameParameters:
         self.defaults.set_bool(bool(value), 'checkUpdates')
         self.defaults.synchronize()
 
+    #: PORT ADDITION: how loud the menu music is, in percent - the three sounds of the main_menu playlist
+    #: (the theme, the game-over theme, which is the same music, and the opening sting), not the music
+    #: or the ambience of a game.  The original has no volume of its own: the phone's buttons set all of
+    #: it at once.
+    MENU_MUSIC_VOLUMES = tuple(range(0, 101, 10))
+    DEFAULT_MENU_MUSIC_VOLUME = 100
+
+    def menu_music_volume(self) -> int:
+        value = self.defaults.object('menuMusicVolume')
+        return value if value in self.MENU_MUSIC_VOLUMES else self.DEFAULT_MENU_MUSIC_VOLUME
+
+    def set_menu_music_volume(self, value: int) -> None:
+        self.defaults.set_object(int(value), 'menuMusicVolume')
+        self.defaults.synchronize()
+
+    def menu_music_gain(self) -> float:
+        """The percentage as a gain, squared so that each step sounds about as big as the last: straight
+        percentages barely change anything near the top and drop to nothing in the last step or two."""
+        return (self.menu_music_volume() / 100.0) ** 2
+
     #: The version the player answered "no" to, so the same build is not offered at every launch.  Asking
     #: again for a *newer* build is right, so this stores which one was refused rather than a flag.
     def skipped_update(self) -> str:

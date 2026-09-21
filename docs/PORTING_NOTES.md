@@ -65,6 +65,7 @@ hints.
 | Ctrl+Tab / Ctrl+Shift+Tab | last / first element, as End / Home do |
 | Down / Up (the unused pair) | next / previous tab or category, where the screen has them |
 | Ctrl+Down / Ctrl+Up (the unused pair) | last / first tab or category |
+| Page Up / Page Down | no gesture: the menu music volume, up / down (a port addition, see Divergences) |
 
 PORT ADDITION: which pair of arrows moves the cursor is a setting - Left and Right by default, Up and Down
 instead if Settings -> Miscellaneous -> Menu arrows is switched (`GameParameters.menu_axis`, defaults key
@@ -393,6 +394,18 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   leaving a screen records the label the cursor was on and returning puts it back there - matching by label,
   since the rows are new objects after the rebuild.  Off, a screen opens at its first element the way the
   original always does.
+* PORT ADDITION: a menu music volume, changed with Page Up and Page Down on any menu screen
+  (`screens.menu_music_volume_key`) and kept in settings (`GameParameters.menu_music_volume`, defaults key
+  `menuMusicVolume`), 0 to 100% in steps of 10, 100% by default; Reset all settings puts it back.  The keys
+  do nothing while the screen underneath is the gameplay, so the pause and revive screens leave them alone
+  too, and a key being captured for a binding in Settings -> Keyboard takes Page Up like any other.  It
+  applies to the three sounds of the `main_menu` playlist - `main_menu_open`, `main_menu_theme` and
+  `game_over_theme`, which is all that playlist holds - through `S3DSound.volume`, a factor on top of the
+  gain the game sets (0.4 on the sting and on the theme, `startMenuMusic:` blocks 0x100082f74, 0x10008308c,
+  0x10008324c).  100% is that gain unchanged, so the music is never louder than the
+  original's.  The volume is kept apart from `gain` because `reduceMainMenuThemeVolume` 0x100083460 fades by
+  taking 0.01 off the gain every 0.05 s until it reaches 0: scaling the gain would change how long the fade
+  lasts.  The percentage is squared into a gain so the steps sound even.  The ends hold rather than wrap.
 * DIVERGENCE: a dead player can no longer fire, melee, reload or switch weapons.  `showDeathOverlay` brings
   the death overlay to the front of the gameplay view and gives it `userInteractionEnabled` (0x10005b9e4 and
   0x10005ba20; the challenge controller's own at 0x1000db814), so on a phone it swallows every touch and the

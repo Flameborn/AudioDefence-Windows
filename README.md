@@ -153,7 +153,7 @@ Settings, saves and the log live in `%APPDATA%\AudioDefence`, in three files:
 | file | what is in it |
 |---|---|
 | `save.json` | progress: coins, diamonds, weapons, power-ups, missions, challenges, statistics |
-| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text |
+| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume |
 | `keys.json` | the key bindings |
 
 Deleting the folder starts a fresh profile — the first run then begins on Gyro
@@ -174,6 +174,7 @@ screen the way VoiceOver reads them, with their labels, hints and "button".
 | Enter | activate |
 | Shift+Enter | a row's second action, where it has one |
 | Escape / Backspace | back |
+| Page Up / Page Down | menu music louder / quieter |
 
 Hold a key that moves one element — the arrows, Tab or Shift+Tab — and it
 repeats, so a long list can be walked through without tapping. It starts
@@ -314,7 +315,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **93 divergences** and **15 original quirks kept on purpose**.
+There are **94 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -455,6 +456,9 @@ replacing them.
   setting, Shift+Enter to the previous.
 - **Settings → Miscellaneous → Remember cursor position** (off by default) returns the cursor to the row
   you left a screen on.
+- **A menu music volume**: Page Up and Page Down, on any menu, in steps of 10% from 100% — the original's
+  own level, never louder — down to silent. It is kept with your settings. Only the menu music: in a game,
+  and on the pause screen, the keys do nothing and the game's music and ambience are untouched.
 - **Settings → Miscellaneous → Reset all settings** puts every setting back to its default, except your key
   bindings.
 

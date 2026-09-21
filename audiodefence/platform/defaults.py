@@ -22,7 +22,8 @@ from .. import paths
 #: are about to be joined by joystick bindings, and nobody wants those in the middle of a save.
 #: Keys not named here are progress and go to save.json, which is the safe default for anything new.
 SETTINGS_KEYS = frozenset({'buttonMode', 'controlScheme', 'sensivity', 'menuAxis', 'debugMapVisible',
-                          'tutorialText', 'rememberFocus', 'checkUpdates', 'skippedUpdate'})
+                          'tutorialText', 'rememberFocus', 'checkUpdates', 'skippedUpdate',
+                          'menuMusicVolume'})
 INPUT_KEYS = frozenset({'keymap'})
 
 

@@ -50,6 +50,30 @@ class Screen:
         Speech.shared().speak(text, interrupt)
 
 
+def menu_music_volume_key(screen, event) -> bool:
+    """PORT ADDITION: Page Up and Page Down make the menu music louder and quieter, on every menu screen.
+
+    Not in a game: while the screen underneath is the gameplay, the pause and revive screens over it
+    leave the keys alone too, since no menu music plays there.  The volume goes from 0 to 100% in steps
+    of 10 and holds at both ends; 100% is the music as loud as the original plays it, never louder.
+    Returns True when the key was used."""
+    if event.key not in (pygame.K_PAGEUP, pygame.K_PAGEDOWN):
+        return False
+    from .gameplay_screen import GameplayScreen
+    if isinstance(getattr(screen.host, 'screen', None), GameplayScreen):
+        return False
+    from ..app import App
+    from ..game.parameters import GameParameters
+    params = GameParameters.shared()
+    steps = params.MENU_MUSIC_VOLUMES
+    step = 1 if event.key == pygame.K_PAGEUP else -1
+    volume = steps[min(max(steps.index(params.menu_music_volume()) + step, 0), len(steps) - 1)]
+    params.set_menu_music_volume(volume)
+    App.apply_menu_music_volume()
+    Speech.shared().speak('Menu music volume %i%%' % volume)
+    return True
+
+
 class MenuItem:
     def __init__(self, label, action=None, hint: str | None = None, enabled=True):
         self._label = label
@@ -122,6 +146,8 @@ class MenuScreen(Screen):
 
     def key_down(self, event) -> None:
         from .accessibility import navigation_key       # imported here: accessibility imports this module
+        if menu_music_volume_key(self, event):
+            return
         k = event.key
         move = navigation_key(event)
         if move in ('next', 'previous'):

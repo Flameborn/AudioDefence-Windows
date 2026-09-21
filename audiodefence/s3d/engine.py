@@ -113,8 +113,9 @@ class S3DEngine:
             self.al.alSource3f(src, oal.AL_POSITION, 0.0, 0.0, 0.0)
             self.al.alSourcei(src, oal.AL_DIRECT_CHANNELS_SOFT, 1)
             self.al.alSourcei(src, oal.AL_SOURCE_SPATIALIZE_SOFT, 0)
-            # the same gain the sound itself would use: dry sounds are gain * fade_gain (see _apply_gain)
-            self.al.alSourcef(src, oal.AL_GAIN, max(0.0, float(sound.gain) * float(sound.fade_gain)))
+            # the same gain the sound itself would use: dry sounds are gain * fade_gain * volume (_apply_gain)
+            gain = float(sound.gain) * float(sound.fade_gain) * float(getattr(sound, 'volume', 1.0))
+            self.al.alSourcef(src, oal.AL_GAIN, max(0.0, gain))
             self.al.alSourcePlay(src)
         except Exception:
             log.exception('could not play a copy of %s', getattr(sound, 'path', '?'))
@@ -530,6 +531,7 @@ class S3DSound:
         self._load_generation = 0
         self._load_waiters: list = []
         self.copies: list = []         # PORT ADDITION: see copy()
+        self.volume = 1.0              # PORT ADDITION: see set_volume()
 
     def __repr__(self) -> str:
         return f'<S3DSound {self.key}>'
@@ -662,6 +664,14 @@ class S3DSound:
 
     def set_gain(self, gain: float) -> None:                        # 0x100100b34
         self.gain = float(gain)
+        if self._source:
+            self._apply_gain()
+
+    def set_volume(self, volume: float) -> None:
+        """PORT ADDITION: a player's volume, on top of the gain the game sets.  It is kept apart from `gain`
+        because the game does arithmetic on that - the menu music fades out by taking 0.01 off it every
+        0.05 s until it reaches 0 - and scaling it there would change how long the fade lasts."""
+        self.volume = float(volume)
         if self._source:
             self._apply_gain()
 
@@ -929,7 +939,7 @@ class S3DSound:
         al.alGetError()
 
     def _apply_gain(self) -> None:
-        g = self.gain * self.fade_gain
+        g = self.gain * self.fade_gain * self.volume
         if self._spatial:
             g *= S3DEngine.master_spatialised_gain * getattr(self, '_distance_gain', 1.0)
         self.al.alSourcef(self._source, oal.AL_GAIN, max(0.0, g))

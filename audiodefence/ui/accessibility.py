@@ -30,7 +30,7 @@ import logging
 import pygame
 
 from ..s3d.engine import S3DEngine
-from .screens import Screen
+from .screens import Screen, menu_music_volume_key
 
 log = logging.getLogger('ui.a11y')
 
@@ -457,6 +457,8 @@ class AccessibleScreen(Screen):
             self.speak(self.focus.spoken())
 
     def key_down(self, event) -> None:
+        if menu_music_volume_key(self, event):             # PORT ADDITION: Page Up / Page Down
+            return
         k = event.key
         shift = bool(event.mod & pygame.KMOD_SHIFT)
         move = navigation_key(event)
