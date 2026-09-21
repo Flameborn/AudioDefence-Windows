@@ -8,7 +8,9 @@ vibrate sound - so everything here is the port's own, for players with a control
 * a **shot that hits** is a short tap, and a shot that hits several zombies at once a firmer one;
 * a **melee hit** is a heavier thud than a shot, and a swing that misses is felt as nothing.
 
-Every pad that can rumble does, through SDL.  Nothing here waits: a pulse is sent and the pad times it.
+Every pad that can rumble does, through SDL.  A DualSense on USB is played its fine haptics instead
+(haptic_audio.py): the heartbeat recording the game has just played, felt as it is heard, and low knocks for
+the hits.  Nothing here waits: a pulse is sent and the pad times it.
 """
 from __future__ import annotations
 
@@ -37,30 +39,55 @@ class Haptics:
         self.sent: list = []                              # the last pulses, for tests: (low, high, ms)
 
     # --- what the game calls -------------------------------------------------------------------------
-    def heartbeat(self, closeness: float) -> None:
+    def heartbeat(self, closeness: float, recording: str | None = None) -> None:
         """One beat.  `closeness` is ADPlayer's, 0 at the edge of hearing to 1 at arm's length; the beat's
-        strength follows the sound's own gain curve (closeness squared * 0.7 + 0.3)."""
+        strength follows the sound's own gain curve (closeness squared * 0.7 + 0.3).  `recording` is the
+        heartbeat file the game has just played, which a DualSense's haptics play as they are."""
         strength = max(0.0, min(1.0, closeness)) ** 2 * 0.7 + 0.3
         low, high, ms = HEARTBEAT
-        self._pulse(low * strength, high * strength, ms)
+        self._feel(('recording', recording), strength, (low * strength, high * strength, ms))
 
     def hit(self, count: int = 1) -> None:
         """A shot, or an explosion, that hit `count` zombies."""
         if count > 0:
-            self._pulse(*(MULTI_HIT if count > 1 else HIT))
+            self._feel(('wave', 'multi_hit' if count > 1 else 'hit'), 1.0, MULTI_HIT if count > 1 else HIT)
 
     def melee_hit(self) -> None:
-        self._pulse(*MELEE_HIT)
+        self._feel(('wave', 'melee'), 1.0, MELEE_HIT)
 
     # --- the pads ------------------------------------------------------------------------------------
-    def _pulse(self, low: float, high: float, ms: int) -> None:
+    def _feel(self, fine, gain: float, rumble) -> None:
+        """A DualSense with its haptics gets `fine` (a recording or one of haptic_audio.WAVES) at `gain`;
+        every other pad the rumble pulse (low, high, ms)."""
         from ..game.parameters import GameParameters
+        from .haptic_audio import WAVES, HapticAudio
         from .pad import Pads
         pads = Pads.shared()
         if not pads.pads or not GameParameters.shared().vibration():
             return
+        skip = set()
+        if pads.dualsenses and HapticAudio.shared().available():
+            audio = HapticAudio.shared()
+            kind, what = fine
+            wave = audio.recording(what) if kind == 'recording' and what else WAVES.get(what)
+            if wave is None and kind == 'recording':
+                wave = WAVES['melee']                     # no file given: a heartbeat-like knock
+            audio.play(wave, gain)
+            self.played = (self.played + [(what, round(gain, 3))])[-20:]
+            skip = set(pads.dualsenses)
+        self._pulse(*rumble, skip=skip)
+
+    played: list = []                                     # the last haptics played, for tests: (what, gain)
+
+    def _pulse(self, low: float, high: float, ms: int, skip=frozenset()) -> None:
+        from .pad import Pads
+        pads = Pads.shared()
+        if all(iid in skip for iid in pads.pads):
+            return
         self.sent = (self.sent + [(round(low, 3), round(high, 3), ms)])[-20:]
-        for pad in list(pads.pads.values()):
+        for iid, pad in list(pads.pads.items()):
+            if iid in skip:
+                continue
             rumble = getattr(pad, 'rumble', None)
             if rumble is None:
                 continue

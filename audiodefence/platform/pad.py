@@ -475,6 +475,9 @@ class Pads:
         self.accelerometers.discard(iid)
         self.dualsenses.discard(iid)
         self.triggers_set.pop(iid, None)
+        if not self.dualsenses:                           # its sound card goes with it
+            from .haptic_audio import HapticAudio
+            HapticAudio.shared().close()
         for key in [k for k in self.pushed if k[0] == iid]:
             del self.pushed[key]
         out = [(False, source, source[1]) for source in list(self.held) if source[0] == iid]
@@ -531,6 +534,8 @@ class Pads:
     def stop(self) -> None:
         """The game is closing: a DualSense keeps a trigger effect until it is told otherwise."""
         self.set_triggers('off')
+        from .haptic_audio import HapticAudio
+        HapticAudio.shared().close()
 
     # --- turning --------------------------------------------------------------------------------------
     def turn(self) -> float:

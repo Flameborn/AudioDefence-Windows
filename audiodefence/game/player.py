@@ -58,7 +58,7 @@ class Player:
             heart.play()
             heart.set_gain(closeness * closeness * 0.7 + 0.3)
         from ..platform.haptics import Haptics            # PORT ADDITION: felt on a controller as well
-        Haptics.shared().heartbeat(closeness)
+        Haptics.shared().heartbeat(closeness, heart.path)
 
     def start_tinitus_with_intensity(self, intensity: float) -> None:   # 0x1000b6940
         self.start_tinnitus_with_duration(intensity * 10.0 + 3.0, intensity * 0.8 + 0.1)

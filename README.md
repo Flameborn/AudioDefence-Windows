@@ -274,7 +274,11 @@ that can feel movement — a DualSense, a DualShock 4 or a Switch Pro.
 A controller that can vibrate lets you feel the game: the **heartbeat** when a
 zombie is close, on every beat and harder the closer it is; a short tap when a
 **shot hits**, firmer when it hits several; and a heavier thud when a **melee**
-attack connects. A miss is felt as nothing. On a **DualSense** the triggers
+attack connects. A miss is felt as nothing. A **DualSense on USB** goes
+further: its grips play the game's own heartbeat — the very recording you hear,
+felt in your hands — and low knocks for the hits, through the fine haptics
+PlayStation games use rather than plain rumble. Over Bluetooth Windows does not
+offer that, and it rumbles like any other pad. On a **DualSense** the triggers
 change too while you play: R2 resists like a gun's trigger and gives way where
 it fires, and under Button L2 pulls against a light spring where it reloads.
 In the menus and on the pause screen they are plain again, and they are set

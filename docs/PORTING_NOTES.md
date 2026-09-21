@@ -463,7 +463,11 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   The proximity heartbeat (`ADPlayer`, player.py) pulses the heavy motor on each beat, scaled as the sound
   is (closeness squared * 0.7 + 0.3); `shotWithWeapon:` 0x1000c4dfc, `shotWithSpecialWeapon:` 0x1000c4b38
   and a projectile's explosion (`solveExplosionOfProjectile:` 0x1000c6360, whose explosion now returns what
-  it hit) pulse on a hit - a tap for one, firmer for several, a thud for melee.  Shaking a pad that has an
+  it hit) pulse on a hit - a tap for one, firmer for several, a thud for melee.  A DualSense on USB is a
+  four-channel sound card to Windows as well, whose third and fourth channels drive its two haptic actuators;
+  `platform/haptic_audio.py` opens it through SDL's audio (pygame._sdl2.audio, 48 kHz float) and plays the
+  heartbeat recording the game has just played, low-passed to the actuators' range, and short sine knocks
+  for the hits, instead of rumble for that pad.  Over Bluetooth there is no such card and it rumbles.  Shaking a pad that has an
   accelerometer (SDL's sensor, reached through pygame's own SDL2.dll) calls `motionEnded:withEvent:`
   0x10005a108 as the phone's shake does, so it swings the melee weapon under Gesture and does nothing under
   Button; the threshold is 25 m/s2 against gravity's 9.8, once per half second.  A DualSense's adaptive
