@@ -27,6 +27,7 @@ Settings has a Joystick tab. It names the controller you have connected, turns v
 The Shield zombie, and a few others, no longer die in silence when the killing hit is critical, which happened often with melee. Their hit sound was cut off and no death sound played.
 When two zombies die close together at the end of a wave, the second one's death sound is no longer cut off.
 A DualSense plugged in by USB plays the heartbeat you hear in its grips, using the fine haptics PlayStation games use instead of plain rumble.
+With a controller connected, the tutorial text names its buttons instead of the keys, like: use the R2 button to fire your weapon.
 
 26.09.20:
 Initial release.

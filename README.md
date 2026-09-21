@@ -551,7 +551,8 @@ replacing them.
   [Sharing a result](#sharing-a-result).
 - **Restart challenge**, on the pause menu during a challenge, so a challenge you have already lost does not
   have to be played to the end.
-- **The tutorial announcer's lines are also spoken as text**, naming the keys you have actually bound. The
+- **The tutorial announcer's lines are also spoken as text**, naming the keys you have actually bound — or,
+  with a controller connected, its buttons ("use the R2 button to fire"). The
   announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
   **Settings → Miscellaneous → Tutorial text** chooses when, or turns it off: Enter steps to the next
   setting, Shift+Enter to the previous.

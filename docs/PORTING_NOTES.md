@@ -550,7 +550,9 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   sounds with a placeholder - `announcer_tutorial_aim_CONTROLMODE`, `announcer_tutorial_shoot_BUTTONMODE` -
   which `init_sound` 0x1000b3594 resolves against the control scheme and the button mode, so the three aim
   variants share one line and each button/gesture pair shares another.  Rebinding a key changes what is
-  said.  `aimhelp` and `aimprompt` name no key and have no line.  Settings -> Miscellaneous -> Tutorial
+  said.  With a controller connected the lines name its buttons instead ("the R2 button", "a stick
+  flicked up"), and aiming is "Push either stick left or right to aim".  `aimhelp` and `aimprompt` name
+  no key and have no line.  Settings -> Miscellaneous -> Tutorial
   text chooses "As the announcer speaks" (the default), "After the announcer finishes", or "Off".
 * PORT ADDITION: an action can hold several keys, and the binding rows say how.  Enter adds a key,
   Shift+Enter replaces every key the action has, and Delete removes the one added last; an action is never
