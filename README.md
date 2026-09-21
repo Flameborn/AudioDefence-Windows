@@ -19,12 +19,12 @@ playing it and describing what they heard.
 
 The port is built for a screen reader, not adapted to one afterwards. It speaks
 through **NVDA** when NVDA is running; through **JAWS**, **ZoomText**, **System
-Access**, **PC-Talker**, **ZDSR**, **Boy PC Reader**, **Sense Reader** or
-**Window-Eyes** when one of those is (through the Prism library); and through
-the **SAPI 5** voice when none is — nothing else is required, and there is no
-visual mode worth using. A screen reader started or closed while the game runs
-is followed within a few seconds. Narrator is not one of them: with only
-Narrator running you hear the SAPI 5 voice. The game is the same whichever
+Access**, **PC-Talker**, **ZDSR**, **Boy PC Reader**, **Sense Reader**,
+**Window-Eyes** or **Narrator** when one of those is (through the Prism
+library); and through the **SAPI 5** voice when none is — nothing else is
+required, and there is no visual mode worth using. A screen reader started or
+closed while the game runs is followed within a few seconds. The game is the
+same whichever
 speaks: with SAPI 5 you get every screen and the spoken game exactly as an NVDA
 player does. Every screen the original offered a VoiceOver user is here, read in the
 order VoiceOver read it, with the same labels and hints, and a good number of

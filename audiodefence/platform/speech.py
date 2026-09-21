@@ -1,5 +1,5 @@
 """Screen reader output: NVDA through its controller client; otherwise another screen reader through
-Prism (JAWS, ZoomText, System Access and the rest); otherwise SAPI 5.
+Prism (JAWS, ZoomText, System Access and the rest, and Narrator); otherwise SAPI 5.
 
 This replaces VoiceOver's reading of labels and UIAccessibilityPostNotification announcements, and the port
 counts as a VoiceOver player whichever of them is speaking (Speech.screen_reader_running).
@@ -9,6 +9,7 @@ from __future__ import annotations
 import ctypes
 import logging
 import time
+from ctypes import wintypes
 
 from .. import paths
 
@@ -47,18 +48,58 @@ class _Nvda:
             self.dll.nvdaController_cancelSpeech()
 
 
+class _ProcessEntry(ctypes.Structure):                  # PROCESSENTRY32W
+    _fields_ = [('dwSize', wintypes.DWORD), ('cntUsage', wintypes.DWORD), ('th32ProcessID', wintypes.DWORD),
+                ('th32DefaultHeapID', ctypes.c_size_t), ('th32ModuleID', wintypes.DWORD),
+                ('cntThreads', wintypes.DWORD), ('th32ParentProcessID', wintypes.DWORD),
+                ('pcPriClassBase', ctypes.c_long), ('dwFlags', wintypes.DWORD),
+                ('szExeFile', ctypes.c_wchar * 260)]
+
+
+def process_running(exe: str) -> bool:
+    """Whether a program with this file name ('narrator.exe') is running, from Windows' process list.
+    A few milliseconds; False wherever the list cannot be read."""
+    try:
+        k32 = ctypes.WinDLL('kernel32')
+        k32.CreateToolhelp32Snapshot.restype = wintypes.HANDLE
+        k32.CreateToolhelp32Snapshot.argtypes = [wintypes.DWORD, wintypes.DWORD]
+        k32.Process32FirstW.argtypes = [wintypes.HANDLE, ctypes.POINTER(_ProcessEntry)]
+        k32.Process32NextW.argtypes = [wintypes.HANDLE, ctypes.POINTER(_ProcessEntry)]
+        k32.CloseHandle.argtypes = [wintypes.HANDLE]
+        snap = k32.CreateToolhelp32Snapshot(2, 0)       # TH32CS_SNAPPROCESS
+    except (OSError, AttributeError):
+        return False
+    if not snap or snap == wintypes.HANDLE(-1).value:    # INVALID_HANDLE_VALUE
+        return False
+    try:
+        entry = _ProcessEntry()
+        entry.dwSize = ctypes.sizeof(entry)
+        exe = exe.lower()
+        more = k32.Process32FirstW(snap, ctypes.byref(entry))
+        while more:
+            if entry.szExeFile.lower() == exe:
+                return True
+            more = k32.Process32NextW(snap, ctypes.byref(entry))
+        return False
+    finally:
+        k32.CloseHandle(snap)
+
+
 class _Readers:
     """PORT ADDITION: the screen readers other than NVDA, through Prism (the prismatoid package, optional).
 
     NVDA keeps its own controller client above, which is asked before every line whether NVDA is running.
-    Prism also offers plain voices (OneCore, its own SAPI) and UI Automation notifications (Narrator), and
-    ranks them below the screen readers; those are left out, so with no screen reader running the voice is
-    the same SAPI 5 one as before, and UI Automation - which can succeed with nothing listening - cannot
-    swallow the speech.  A screen reader started while the game runs is looked for every few seconds, and
-    one that stops or fails is let go at once and SAPI 5 speaks the line instead.  Prism is loaded only
-    once NVDA is found not to be running, so an NVDA player never loads it."""
+    Prism also offers plain voices (OneCore, its own SAPI); those are left out, so with no screen reader
+    running the voice is the same SAPI 5 one as before.  Narrator is reached through Prism's UI
+    Automation notifications ('UIA'), which Prism ranks last and which report themselves ready whether
+    Narrator is running or not - sent with nothing listening, a line would be lost - so the game asks
+    Windows itself whether Narrator.exe is running, and uses them only then.  A screen reader started
+    while the game runs is looked for every few seconds, and one that stops or fails is let go at once and
+    SAPI 5 speaks the line instead.  Prism is loaded only once NVDA is found not to be running, so an NVDA
+    player never loads it."""
 
-    SKIP = frozenset({'NVDA', 'OneCore', 'SAPI', 'UIA'})
+    SKIP = frozenset({'NVDA', 'OneCore', 'SAPI'})
+    NARRATOR = 'UIA'                                      # Prism's name for what Narrator reads
     PROBE_EVERY = 5.0                                     # seconds between looks, while none is speaking
     CHECK_EVERY = 1.0                                     # seconds between asking the one in use
 
@@ -79,8 +120,10 @@ class _Readers:
             self.ctx = None
             self.ids = []
 
-    @staticmethod
-    def _running(backend) -> bool:
+    @classmethod
+    def _running(cls, backend) -> bool:
+        if backend.name == cls.NARRATOR:
+            return process_running('narrator.exe')
         try:
             return bool(backend.features.is_supported_at_runtime)
         except Exception:
@@ -103,6 +146,8 @@ class _Readers:
         if self.reader is None and now >= self.next_probe:
             self.next_probe = now + self.PROBE_EVERY
             for bid in self.ids:
+                if self.ctx.name_of(bid) == self.NARRATOR and not process_running('narrator.exe'):
+                    continue                              # not even made, with Narrator off
                 try:
                     backend = self.ctx.create(bid)
                 except Exception:
