@@ -60,6 +60,16 @@ def _inline(text: str) -> str:
     return re.sub('\x00(\\d+)\x00', lambda m: '<code>%s</code>' % spans[int(m.group(1))], text)
 
 
+def _slug(heading_html: str, seen: dict) -> str:
+    """The id GitHub gives a heading, so a link like [Updates](#updates) lands in the page as it does there:
+    the text in lower case, without punctuation, spaces made hyphens, and -1, -2 on a repeat."""
+    text = html.unescape(re.sub(r'<[^>]+>', '', heading_html)).lower()
+    slug = re.sub(r'[^\w\- ]', '', text).replace(' ', '-')
+    count = seen.get(slug, 0)
+    seen[slug] = count + 1
+    return slug if count == 0 else '%s-%d' % (slug, count)
+
+
 def _cells(row: str) -> list[str]:
     return [c.strip() for c in row.strip().strip('|').split('|')]
 
@@ -69,6 +79,7 @@ def convert(md: str, title: str | None = None) -> str:
     out: list[str] = []
     para: list[str] = []
     list_open = False
+    slugs: dict[str, int] = {}
     i = 0
 
     def close_para():
@@ -96,7 +107,8 @@ def convert(md: str, title: str | None = None) -> str:
         if m:
             close_para(); close_list()
             level = min(len(m.group(1)), 6)
-            out.append('<h%d>%s</h%d>' % (level, _inline(m.group(2)), level))
+            text = _inline(m.group(2))
+            out.append('<h%d id="%s">%s</h%d>' % (level, _slug(text, slugs), text, level))
             i += 1
             continue
 
@@ -158,7 +170,7 @@ def convert(md: str, title: str | None = None) -> str:
 
     body = '\n'.join(out)
     if title is None:
-        m = re.search(r'<h1>(.*?)</h1>', body)
+        m = re.search(r'<h1[^>]*>(.*?)</h1>', body)
         title = re.sub(r'<[^>]+>', '', m.group(1)) if m else 'Read me'
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
