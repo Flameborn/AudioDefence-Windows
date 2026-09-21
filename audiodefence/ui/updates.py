@@ -6,8 +6,9 @@ The engine is in ``platform/updater.py``; this is the part the player meets.  Th
   result back to the run loop with ``call_soon_threadsafe`` so nothing off the main thread touches a
   screen.  The main menu asks it to look quietly when it opens; its Check for updates button asks it to
   look and to say so either way.
-* ``offer`` - the Yes/No the player answers.  It is the game's own alert, so it is read and driven the
-  way every other screen is, rather than a Windows dialog a screen reader would announce differently.
+* ``offer`` - the Yes, No or Skip this version the player answers.  It is the game's own alert, so it is
+  read and driven the way every other screen is, rather than a Windows dialog a screen reader would
+  announce differently.
 * ``DownloadScreen`` - what is on screen while the files come down: it says how far along it is at
   intervals rather than on every file, because a hundred announcements a second is not progress, and
   Escape stops it.
@@ -143,12 +144,25 @@ def offer(host, release, on_declined=None) -> None:
     def yes():
         host.push_overlay(DownloadScreen(host, release))
 
+    # "No" is not now: the next start asks again.  "Skip this version" is never for this one: the check at
+    # start-up passes it over, and a newer release is offered as usual.  Check for updates on the main menu
+    # is a question the player asks, so it still offers a skipped version - which is how to change your mind.
     def no():
-        GameParameters.shared().set_skipped_update(release.tag)
         if on_declined is not None:
             on_declined()
 
-    host.push_overlay(AlertScreen(host, 'Update available', message, [('Yes', yes), ('No', no)]))
+    def skip():
+        GameParameters.shared().set_skipped_update(release.tag)
+        Screen.speak('Version %s skipped.' % version.text(release.tag))
+        if on_declined is not None:
+            on_declined()
+
+    host.push_overlay(AlertScreen(host, 'Update available', message, [
+        ('Yes', yes),
+        ('No', no, 'Asks again the next time the game starts.'),
+        ('Skip this version', skip, 'Not offered again when the game starts, though a newer version will be. '
+                                    'Check for updates on the main menu still finds it.'),
+    ]))
 
 
 # ==================================================================================== the download screen

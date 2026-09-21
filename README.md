@@ -254,12 +254,16 @@ never told.
 
 The game keeps itself up to date. When the main menu opens it asks GitHub
 whether there is a newer build, and says nothing at all unless there is one —
-if there is, it tells you the version and asks **Yes** or **No**. Saying no is
-remembered, so that build is not offered again; a later one still will be.
+if there is, it tells you the version and gives you three answers. **Yes**
+downloads it. **No** means not now: the next time the game starts, it asks
+again. **Skip this version** means not this one: that build is not offered
+again when the game starts, though a later one still will be.
 
 Because that check is silent when there is nothing to report, the main menu
 also has a **Check for updates** button, between Settings and Quit. It answers
 either way: it either offers the new version or tells you the one you are on.
+It offers a version you skipped as well, since you asked — which is how to
+change your mind.
 
 Say yes and it downloads, then offers to restart. It has to close to put the
 new files in place and starts itself again afterwards. **Your progress is never

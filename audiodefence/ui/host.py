@@ -17,8 +17,11 @@ class AlertScreen(MenuScreen):
     """UIAlertView: title, message, buttons."""
 
     def __init__(self, host, title: str, message: str, buttons):
+        """`buttons` are (label, action) pairs, or (label, action, hint) where a button needs saying more
+        about - a PORT ADDITION: UIAlertView buttons have no hints."""
         super().__init__(host, title=f'{title}. {message}')
-        self.items = [MenuItem(label, (lambda a=action: (host.pop_overlay(), a and a()))) for label, action in buttons]
+        self.items = [MenuItem(button[0], (lambda a=button[1]: (host.pop_overlay(), a and a())),
+                               hint=button[2] if len(button) > 2 else None) for button in buttons]
         self.back_action = lambda: host.pop_overlay()
 
 

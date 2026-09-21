@@ -535,7 +535,10 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   waits for the game to exit, copies them in, and starts it again - putting the backup back if the copy
   fails.  PowerShell rather than a `.cmd` because a player's folder can have non-ASCII characters in it.
   A download the player puts off is kept, marked ready, and offered again at the next start rather than
-  fetched twice; the sweep that clears staging folders leaves that one alone.
+  fetched twice; the sweep that clears staging folders leaves that one alone.  The offer has three answers:
+  Yes, No (asked again at the next start) and Skip this version (`GameParameters.skipped_update`: the check
+  at start-up passes that tag over, a newer one is offered, and Check for updates on the main menu, being
+  a question the player asked, still offers it).  The buttons carry hints, which UIAlertView's do not.
   `tools/verify_updater.py` proves the whole path offline, against a local server that serves ranges and
   a real hand-off, on a folder whose name has a space and Arabic in it.
 * PORT ADDITION: key names are spoken as the keys people call them.  pygame's names for the two Enter keys
