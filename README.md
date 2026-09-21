@@ -692,9 +692,8 @@ its own. It asks which build you want:
     8. Show what a release build would do, without building anything
     0. Quit
 
-Type the number and press Enter. PyInstaller's own few hundred lines of
-progress are kept quiet, so a screen reader hears only what matters, and the
-window waits for Enter at the end so you can hear how it went before it closes.
+Type the number and press Enter. The window waits for Enter at the end, so you
+can hear how it went before it closes.
 
 That is the whole build. The script checks what it needs, runs PyInstaller with
 the right arguments, copies the game's data next to the executable and says

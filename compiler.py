@@ -248,12 +248,8 @@ def problems_now() -> list[str]:
     return found
 
 
-def command(args, quiet: bool = False) -> list[str]:
+def command(args) -> list[str]:
     cmd = [sys.executable, '-m', 'PyInstaller', '--noconfirm', '--noupx', '--name', NAME]
-    if quiet:
-        # from the menu: PyInstaller's few hundred INFO lines would otherwise be read out one by one;
-        # warnings and errors still come through
-        cmd += ['--log-level', 'WARN']
     for src, dest in DATA:
         cmd += ['--add-data', src + os.pathsep + dest]
     for src, dest in BINARIES:
@@ -358,7 +354,7 @@ def test_build(exe: str) -> int:
     return 0 if read_log(text, run.returncode, log) else 1
 
 
-def main(argv=None, quiet: bool = False) -> int:
+def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog='compiler.py', description='build Audio Defence with PyInstaller')
     parser.add_argument('--onefile', action='store_true',
                         help='one executable instead of one folder (unpacks itself at every launch)')
@@ -386,11 +382,8 @@ def main(argv=None, quiet: bool = False) -> int:
             return 2
         say()
 
-    cmd = command(args, quiet)
-    if not quiet:
-        say('running: python ' + ' '.join(cmd[1:]))
-    elif not args.dry_run:
-        say('building with PyInstaller - this takes a minute or so, and only its warnings are read out ...')
+    cmd = command(args)
+    say('running: python ' + ' '.join(cmd[1:]))
     if args.dry_run:
         if args.no_game:
             say("the game's data would not be copied.")
@@ -513,7 +506,7 @@ def run(argv=None) -> int:
     if chosen is None:
         return 0
     try:
-        return main(chosen, quiet=True)
+        return main(chosen)
     finally:
         say()
         try:
