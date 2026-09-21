@@ -277,13 +277,14 @@ In the menus it stands in for the keys:
 
 | controller | what it does in the menus |
 |---|---|
-| D-pad or either stick | the arrows: move, and change tab on the other pair |
+| D-pad or either stick | the arrows: move through the screen, and change tab on the other pair |
 | Cross (A) | Enter: activate |
 | Square (X) | Shift+Enter: a row's second action |
 | Circle (B) | Escape: back |
-| L1 / R1 | previous / next tab or category |
+| L1 / R1 | previous / next row, without reaching for the D-pad |
+| Triangle (Y) held, with a direction or L1 / R1 | the first or last row, or the first or last tab |
 | L2 / R2 | menu music quieter / louder |
-| Triangle (Y) | Delete, on a key binding row |
+| Triangle (Y) tapped | Delete, on a key binding row |
 
 In a game:
 

@@ -12,9 +12,10 @@ What a controller does:
   melee, and next weapon and reload are L1 and L2 in Button mode, or a flick of a stick up or down in
   Gesture mode - the swipes the Up and Down arrows stand for on the keyboard.  Either stick turns, and
   turns as far as it is pushed: a little is slow, all the way is as fast as the turn keys.
-* **In the menus** it stands in for the keys the menus already know: the D-pad or a stick for the arrows,
-  the bottom button for Enter, the right one for Escape, the shoulders for the other arrow pair (tabs and
-  categories), the triggers for Page Down and Page Up (the menu music volume).  ``ui/host.py`` does that
+* **In the menus** it stands in for the keys the menus already know: the D-pad or a stick for the arrows -
+  which move through a screen and, on the other pair, change tab - the shoulders for moving through it as
+  well, the bottom button for Enter, the right one for Escape, the top one held for Control (to the first or
+  last) and tapped for Delete, the triggers for Page Down and Page Up (the menu music volume).  ``ui/host.py`` does that
   translation; the key presses it makes are marked ``pad`` so a key being captured in Settings is not
   taken from a controller.
 

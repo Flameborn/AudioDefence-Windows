@@ -191,17 +191,19 @@ def cross_axis_key(event) -> str | None:
 
 def cross_axis_text() -> str:
     """How to say those two keys, for a screen that tells the player about them - or, with a
-    controller's names chosen in Settings -> Miscellaneous, the buttons: the shoulders change tab
-    (ui/host.py) and the D-pad moves, "L1 and R1 change tab, D-pad left and right move through it"."""
+    controller's names chosen in Settings -> Miscellaneous, the buttons: the D-pad changes tab on the
+    pair the movement is not using and the shoulders move as well (ui/host.py), "D-pad up and down
+    change tab, D-pad left and right or L1 and R1 move through it"."""
     from ..game.parameters import GameParameters
     params = GameParameters.shared()
     vertical = params.menu_axis() == 'vertical'
     kind = params.controller_names()
     if kind:
         from ..platform.pad import input_name
-        return '%s and %s change tab, D-pad %s move through it' % (
-            input_name('leftshoulder', kind), input_name('rightshoulder', kind),
-            'up and down' if vertical else 'left and right')
+        return 'D-pad %s change tab, D-pad %s or %s and %s move through it' % (
+            'left and right' if vertical else 'up and down',
+            'up and down' if vertical else 'left and right',
+            input_name('leftshoulder', kind), input_name('rightshoulder', kind))
     if vertical:
         return 'Left and Right change tab, Up and Down move through it'
     return 'Up and Down change tab, Left and Right move through it'
