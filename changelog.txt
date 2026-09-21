@@ -24,6 +24,8 @@ A controller vibrates with the heartbeat when a zombie is close, harder the clos
 Shaking the controller swings your melee weapon in Gesture mode, like shaking the phone did.
 On a DualSense, R2 feels like a gun's trigger while you play, and in Button mode L2 has a light pull for reloading.
 Settings has a Joystick tab. It names the controller you have connected, turns vibration and the trigger feel on or off, and lets you change which button does what.
+The Shield zombie, and a few others, no longer die in silence when the killing hit is critical, which happened often with melee. Their hit sound was cut off and no death sound played.
+When two zombies die close together at the end of a wave, the second one's death sound is no longer cut off.
 
 26.09.20:
 Initial release.

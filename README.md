@@ -399,7 +399,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **99 divergences** and **15 original quirks kept on purpose**.
+There are **101 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -517,6 +517,12 @@ Faults in the game's own logic, not in how it describes itself. Each was read ag
   when both picked the same one, the first to be shot or to change step stopped it under the other, which
   walked on without a sound. The same sharing made a second death silent after a revive, when it was a
   zombie of the same kind again — always, for the Shield zombie. Each zombie now has sounds of its own.
+- **A critical kill is never silent.** The Shield, WeakZombieD, ZombieC and the passers-by have no death
+  sound of their own for a critical hit, and the original played nothing instead — after stopping the hit
+  sound that was playing. Melee weapons are often critical, so a Shield killed with one tended to fall
+  silent. They now die with their ordinary death sound.
+- **Two zombies dying together are both heard to the end.** The first to fall silent could unload the
+  other's sounds and cut its death off half way; a zombie's sounds now wait until it is quiet.
 - 3D positioning is correct from the first frame; the original relies on the gyroscope firing to correct it.
 
 ### 5. Engine and presentation

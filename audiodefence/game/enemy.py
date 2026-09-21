@@ -658,11 +658,17 @@ class Enemy:
         if pl is None:
             self.pain_sound = None
             return
+        self.pain_sound = None                            # both of the original's branches set it anew
         if self.next_shot_will_be_critical:
             self.pain_sound = self.voice_of(pl.any_sound_containing('death_crit'))
             if self.pain_sound is None:
                 self.pain_sound = self.voice_of(pl.any_sound_containing('_diecrit_'))
-        else:
+        # DIVERGENCE: the original (0x1000637f0) looks for the critical death only on a critical kill, and a
+        # type without one - Shield, WeakZombieD, ZombieC, the cars, cows, the diamond, the machine and the
+        # power-up container - dies in silence, having just stopped its own hit sound above: a melee kill
+        # on a Shield (melee weapons are critical 5-25% of the time) cut the hit off and played nothing.
+        # A critical kill with no critical sound of its own falls back on the ordinary death.
+        if self.pain_sound is None:
             self.pain_sound = self.voice_of(pl.any_sound_containing('_death_'))
             if self.pain_sound is None:
                 self.pain_sound = self.voice_of(pl.any_sound_containing('_die_'))

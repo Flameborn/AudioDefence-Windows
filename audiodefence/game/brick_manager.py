@@ -191,12 +191,33 @@ class BrickManager:
             AmbientManager.shared().brick_with_ambiant_started(brick.ambiant_name)
 
     def check_playlist_deactivation(self) -> None:              # 0x1000c2da8
+        """A dying enemy's last sound has ended (-[ADEnemy update:] 0x10005eb94): unload the playlists the
+        waves since have stopped using, one after another - each deactivate: completion calls this again
+        (_block_invoke 0x1000c2f24), so one call empties the list.  The port had dropped that chain and
+        unloaded one playlist per death."""
         if self.deactivation_list:
-            name = next(iter(self.deactivation_list))
+            # DIVERGENCE: the original takes any name from the list ([deactivationList anyObject]).  A wave
+            # is cleared, and the next one's unused playlists listed, the moment its last enemy starts to
+            # die, so when two die close together the first to fall silent unloaded the other's playlist -
+            # and stopped its death sound half way (the chain unloads everything listed).  A playlist whose
+            # enemy is still being heard is left for a later call; that enemy's own end makes it.
+            name = next((n for n in self.deactivation_list if not self._playlist_still_heard(n)), None)
+            if name is None:
+                return
             self.deactivation_list.discard(name)
             pl = S3DEngine.engine().play_list_with_name(name)
-            if pl is not None:
-                pl.deactivate(lambda _pl: None)
+            if pl is not None:                            # nil receives nothing, so the chain ends there
+                pl.deactivate(lambda _pl: self.check_playlist_deactivation())
+
+    def _playlist_still_heard(self, name: str) -> bool:          # PORT ADDITION: see above
+        for b in self.bricks:
+            for e in b.enemies:
+                if e.sounds_prefix != name:
+                    continue
+                for s in (e.sound, e.pain_sound, e.explosion_sound):
+                    if s is not None and s.playing:
+                        return True
+        return False
 
     def load_next_brick(self) -> None:                          # 0x1000c3058
         self.player_is_dead = False

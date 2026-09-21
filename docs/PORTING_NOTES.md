@@ -178,6 +178,18 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   Shield zombie has one attack sound, so its second kill in a run was always silent.  The file is still
   chosen by the playlist with the same random draws; a copy has its own source, position and end callback
   on the same buffer, and the playlist stops and unloads the copies with its own sounds.
+* A critical kill of an enemy with no critical death sound falls back on its ordinary death.
+  `playDeathSound` 0x100063688 looks for `death_crit`, then `_diecrit_` on a critical kill and for nothing
+  else, having first stopped the enemy's hit sound (0x1000637a4); Shield, WeakZombieD, ZombieC and the
+  passers-by and pickups have no critical death, so a critical kill cut their hit sound off and played
+  nothing.  Melee weapons are critical 5 to 25% of the time, so meleeing a Shield did it often.
+* A playlist whose enemy is still being heard is not unloaded yet.  When a dying enemy's last sound ends,
+  -[ADEnemy update:] 0x10005eb94 sends `checkPlaylistDeactivation` 0x1000c2da8, which unloads `anyObject`
+  of the playlists the waves since stopped using, and its deactivate: completion (0x1000c2f24) sends it
+  again until the list is empty.  A wave is cleared the moment its last enemy starts to die, so when two
+  died close together the first to fall silent unloaded the other's playlist and stopped its death sound
+  half way.  Such a playlist now waits for a later call, which the enemy's own end makes.  (The port had
+  dropped the completion's chain and unloaded one playlist per death; it is back.)
 * Sound files are decoded ahead of time on a background thread when their playlist is activated, and streamed
   sounds (music, ambience) load in the background like the original's engine-queue loading, so first plays do
   not stall the game (the port used to decode on the main thread: 3-70 ms per new sound, 0.3-0.5 s for an
