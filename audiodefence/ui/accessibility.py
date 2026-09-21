@@ -69,6 +69,10 @@ class View:
         self.ordered = ordered                 # keep the children's order (UITableView)
         self.children: list[View] = []
         self.enabled = True                    # UIControl enabled
+        # PORT ADDITION: a label of the port's that names a key a controller button stands for in a menu
+        # ("press Enter to upgrade"): it is said in the controller's words when those are chosen and one
+        # is connected, worked out as it is spoken so a controller coming or going is followed at once
+        self.label_key_words = False
         self.user_interaction_enabled = True
         self.selected = False                  # a selected UITableViewCell: VoiceOver says "Selected"
         self.elements_hidden = False           # accessibilityElementsHidden (the view and its subtree)
@@ -108,11 +112,17 @@ class View:
         return True
 
     def spoken(self) -> str:
-        parts = (['Selected'] if self.selected else []) + [self.label]
+        label = self.label
+        if getattr(self, 'label_key_words', False):       # PORT ADDITION: see __init__
+            from ..platform.pad import menu_words
+            label = menu_words(label)
+        parts = (['Selected'] if self.selected else []) + [label]
         if self.traits == BUTTON:
             if not self.enabled:
                 parts.append('dimmed')
             parts.append('button')
+        elif self.traits == CELL and not self.enabled:      # PORT ADDITION: a row that cannot be used now
+            parts.append('dimmed')
         elif self.traits == HEADER:
             parts.append('heading')
         text = ', '.join(p for p in parts if p)
@@ -180,9 +190,19 @@ def cross_axis_key(event) -> str | None:
 
 
 def cross_axis_text() -> str:
-    """How to say those two keys, for a screen that tells the player about them."""
+    """How to say those two keys, for a screen that tells the player about them - or, with a
+    controller's names chosen in Settings -> Miscellaneous, the buttons: the shoulders change tab
+    (ui/host.py) and the D-pad moves, "L1 and R1 change tab, D-pad left and right move through it"."""
     from ..game.parameters import GameParameters
-    if GameParameters.shared().menu_axis() == 'vertical':
+    params = GameParameters.shared()
+    vertical = params.menu_axis() == 'vertical'
+    kind = params.controller_names()
+    if kind:
+        from ..platform.pad import input_name
+        return '%s and %s change tab, D-pad %s move through it' % (
+            input_name('leftshoulder', kind), input_name('rightshoulder', kind),
+            'up and down' if vertical else 'left and right')
+    if vertical:
         return 'Left and Right change tab, Up and Down move through it'
     return 'Up and Down change tab, Left and Right move through it'
 

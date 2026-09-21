@@ -472,7 +472,8 @@ class PowerUpTab(_Tab):
             # PORT INPUT: the original appends "double tap to view" / "double tap to upgrade"
             detail = '%s %s' % (detail, 'press Enter to view' if inv.level_for_power_up(pu.get('name')) >= 4
                                 else 'press Enter to upgrade')
-            t.cell(pu.get('displayName'), detail, action=lambda r=row: self.did_select_row(r))
+            cell = t.cell(pu.get('displayName'), detail, action=lambda r=row: self.did_select_row(r))
+            cell.label_key_words = True                   # PORT ADDITION: or the controller's button
 
     def did_select_row(self, row: int) -> None:           # tableView:didSelectRowAtIndexPath: 0x10003b4ec
         _play_click()

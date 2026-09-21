@@ -247,9 +247,10 @@ class GameParameters:
     def trigger_effects(self) -> bool:
         return self.trigger_level() != 'off'
 
-    #: PORT ADDITION: whether the hints and the tutorial text name the keyboard's keys or, while one is
-    #: connected, a game controller's buttons (platform/pad.menu_words, game/tutorial_text.py).  Keys by
-    #: default, as they always did.
+    #: PORT ADDITION: whether the hints, the tutorial text and the other lines that name a key name the
+    #: keyboard's keys or the connected controller's buttons (platform/pad.menu_words,
+    #: game/tutorial_text.py).  With no controller connected - at startup, or when the last one goes - it
+    #: goes back to keys (Pads._keys_when_none).  Keys by default, as they always did.
     KEY_NAMES = (('keys', 'Keyboard keys'), ('buttons', 'Controller buttons'))
     DEFAULT_KEY_NAMES = 'keys'
 
@@ -261,10 +262,30 @@ class GameParameters:
         self.defaults.set_object(value, 'keyNames')
         self.defaults.synchronize()
 
-    def controller_names(self) -> bool:
-        """Whether to name a controller's buttons right now: chosen, and a controller connected."""
+    def names_controller(self):
+        """The connected controller whose buttons the lines name, by the name it gives itself - the one
+        chosen when several kinds are connected, else the one connected last - or None to name keys."""
+        if self.key_names() != 'buttons':
+            return None
         from ..platform.pad import Pads
-        return self.key_names() == 'buttons' and Pads.shared().connected()
+        models = Pads.shared().connected_models()
+        if not models:
+            return None
+        chosen = self.defaults.object('keyNamesController')
+        return chosen if chosen in models else models[-1]
+
+    def set_names_controller(self, model) -> None:
+        self.defaults.set_object(model, 'keyNamesController')
+        self.defaults.synchronize()
+
+    def controller_names(self):
+        """The names to use for that controller's buttons - 'playstation', 'xbox', 'nintendo' or
+        'generic' (pad.NAMES) - or None to name keys."""
+        model = self.names_controller()
+        if model is None:
+            return None
+        from ..platform.pad import family
+        return family(model)
 
     #: The version the player answered "no" to, so the same build is not offered at every launch.  Asking
     #: again for a *newer* build is right, so this stores which one was refused rather than a flag.

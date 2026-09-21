@@ -51,27 +51,16 @@ def topic_for(sound_key: str):
     return topic if topic in LINES else None
 
 
-#: PORT ADDITION: with a game controller connected, and Settings -> Joystick -> Names in hints and tutorial
-#: set to Controller buttons, the lines name its buttons instead - "the {fire} key" becomes "the R2 button", a
-#: flick of a stick "a stick flicked up" - and aiming, which is a stick and not two keys, has a line of its
-#: own
+#: PORT ADDITION: with Settings -> Miscellaneous -> Names in hints and tutorial set to a controller, the
+#: lines name its buttons instead - "the {fire} key" becomes "the R2 button", a flick of a stick "a stick
+#: flicked up" (pad.button_words) - and aiming, which is a stick and not two keys, has a line of its own
 PAD_AIM = 'Push either stick left or right to aim.'
-
-
-def _pad_words(action: str):
-    """How a line names an action's controller binding: 'the R2 button', 'a stick flicked up', or None."""
-    from ..platform.pad import PadMap, Pads
-    names = PadMap.shared().names(action)
-    if not names:
-        return None
-    words = ['a stick flicked %s' % name[len('stick'):] if name in ('stickup', 'stickdown')
-             else 'the %s button' % Pads.shared().name_of(name) for name in names]
-    return ' or '.join(words)
 
 
 def text_for(sound_key: str):
     """The line for this announcer sound, with the keys that are bound right now, or None - or, when the
-    player has chosen it and a controller is connected, with its buttons."""
+    player has chosen a controller's names, with its buttons."""
+    from ..platform.pad import button_words
     from .parameters import GameParameters
     topic = topic_for(sound_key)
     if topic is None:
@@ -82,7 +71,7 @@ def text_for(sound_key: str):
         if topic == 'aim':
             return PAD_AIM
         for action in set(re.findall(r'\{(\w+)\}', line)):
-            words = _pad_words(action)
+            words = button_words(action)
             if words is not None:                         # an action with no button keeps its key
                 line = line.replace('the {%s} key' % action, words)
     for action in set(re.findall(r'\{(\w+)\}', line)):

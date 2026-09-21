@@ -136,6 +136,7 @@ class TarotCardViewController:
             self._view.children.clear()                   # [[view subviews] makeObjectsPerformSelector:removeFromSuperview]
             # [[ADButtonWithFont alloc] initWithFrame:view.frame]: no -awakeFromNib, so no click sound
             self.accessible_card = View('', self._view.frame, traits=BUTTON, parent=self._view, name='accessibleCard')
+            self.accessible_card.label_key_words = True   # PORT ADDITION: "press Enter to change", or a button
             self._relative[id(self.accessible_card)] = self._view.frame
             self.refresh_card()
         else:

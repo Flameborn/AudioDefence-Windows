@@ -66,6 +66,13 @@ class GameplayScreen(Screen):
 
     @staticmethod
     def skip_intro_announcement() -> str:
+        from ..game.parameters import GameParameters
+        model = GameParameters.shared().names_controller()
+        if model is not None:                             # PORT ADDITION: in the controller's words
+            from ..platform.pad import PadMap
+            padmap = PadMap.for_model(model)
+            if padmap.names('skip'):
+                return 'Press %s to skip intro' % padmap.text('skip')
         return 'Press Enter to skip intro'
 
     def layout_changed(self) -> None:
@@ -116,15 +123,16 @@ class GameplayScreen(Screen):
     def key_up(self, event) -> None:
         self.release(KeyMap.shared().action_for(event.key), event.key)
 
-    # PORT ADDITION: a game controller presses the same actions as the keys, from its own bindings; `source`
-    # tells one held button or key from another, as the key code does for the keyboard.
+    # PORT ADDITION: a game controller presses the same actions as the keys, from its own bindings - each
+    # kind of controller has its own; `source` tells one held button or key from another, as the key code
+    # does for the keyboard, and starts with the pad it came from.
     def pad_down(self, source, name: str) -> None:
-        from ..platform.pad import PadMap
-        self.press(PadMap.shared().action_for(name), source)
+        from ..platform.pad import Pads
+        self.press(Pads.shared().padmap_for(source[0]).action_for(name), source)
 
     def pad_up(self, source, name: str) -> None:
-        from ..platform.pad import PadMap
-        self.release(PadMap.shared().action_for(name), source)
+        from ..platform.pad import Pads
+        self.release(Pads.shared().padmap_for(source[0]).action_for(name), source)
 
     def press(self, action, k) -> None:
         """An action's key or button went down; `k` is which one."""
@@ -243,7 +251,7 @@ class GameplayScreen(Screen):
         which swings the melee weapon under Gesture and does nothing under Button.  And a DualSense's
         triggers are given their feel while the game is in front: R2 a gun's trigger that breaks where it
         fires, L2 a light spring where it reloads.  In a pause, a death or the menus they are plain again."""
-        from ..platform.pad import PadMap, Pads
+        from ..platform.pad import Pads
         pads = Pads.shared()
         if not pads.pads:
             return
@@ -253,12 +261,13 @@ class GameplayScreen(Screen):
                    and not isinstance(c, OpenerGameplayController))
         if pads.shaken() and playing:
             c.motion_ended(True)
-        padmap = PadMap.shared()
         level = GameParameters.shared().trigger_level()
         playing = playing and level != 'off'
-        gun = playing and 'righttrigger' in padmap.names('fire')
-        reload = playing and 'lefttrigger' in padmap.names('reload')
-        pads.set_triggers('gun and reload' if gun and reload else 'gun' if gun else 'off', level)
+        for iid in list(pads.dualsenses):                 # each by its own bindings
+            padmap = pads.padmap_for(iid)
+            gun = playing and 'righttrigger' in padmap.names('fire')
+            reload = playing and 'lefttrigger' in padmap.names('reload')
+            pads.set_triggers('gun and reload' if gun and reload else 'gun' if gun else 'off', level, iid)
 
     # --- per pass --------------------------------------------------------------------------------
     def frame(self) -> None:

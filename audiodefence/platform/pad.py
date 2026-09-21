@@ -126,18 +126,34 @@ _MENU_KEY_WORDS = ((r'Shift plus Enter|Shift\+Enter|Shift Enter', 'x'), (r'\bEnt
 
 def menu_words(text):
     """A hint as it should be spoken: as written, or - when the player has chosen Controller buttons in
-    Settings -> Joystick and a controller is connected - with the keys it names turned into the controller
-    buttons that do the same in a menu: "Press Cross to select", "Square for the previous"."""
+    Settings -> Miscellaneous -> Names in hints and tutorial and a controller is connected - with the keys it
+    names turned into that controller's buttons that do the same in a menu: "Press Cross to select", "Square
+    for the previous"."""
     if not text:
         return text
     from ..game.parameters import GameParameters
-    if not GameParameters.shared().controller_names():
+    kind = GameParameters.shared().controller_names()
+    if not kind:
         return text
     import re
-    pads = Pads.shared()
     for pattern, name in _MENU_KEY_WORDS:
-        text = re.sub(pattern, pads.name_of(name), text)
+        text = re.sub(pattern, input_name(name, kind), text)
     return text
+
+
+def button_words(action: str, mode: str | None = None):
+    """How a line names an action's binding on the controller the lines name (GameParameters.
+    names_controller): 'the R2 button', 'a stick flicked up', or None when there is none."""
+    from ..game.parameters import GameParameters
+    model = GameParameters.shared().names_controller()
+    if model is None:
+        return None
+    padmap = PadMap.for_model(model)
+    names = padmap.names(action, mode)
+    if not names:
+        return None
+    return ' or '.join('a stick flicked %s' % name[len('stick'):] if name in ('stickup', 'stickdown')
+                       else 'the %s button' % padmap.name_of(name) for name in names)
 
 
 # --- what the buttons do in play ------------------------------------------------------------------------
@@ -152,6 +168,10 @@ PAD_DEFAULTS = {
     'skip': ('a',),
     'timer': ('x',),
 }
+#: keys.json: every kind of controller that has been connected, by the name it gives itself, with its
+#: bindings.  Before that there was one set for all of them ('padmap'); the first kind connected after takes
+#: it over.
+PAD_PROFILES_KEY = 'padmaps'
 PAD_DEFAULTS_KEY = 'padmap'
 
 
@@ -161,18 +181,29 @@ def _default_bindings() -> dict:
 
 
 class PadMap:
-    """The controller's bindings, like KeyMap's: the defaults, and a player's changes kept in keys.json."""
+    """One kind of controller's bindings, like KeyMap's: the defaults, and a player's changes kept in
+    keys.json.  Each kind - by the name the controller gives itself, "DualSense Wireless Controller", "Xbox
+    Series X Controller" - has its own, made from the defaults and saved the first time it is connected."""
 
-    _shared: 'PadMap | None' = None
+    _profiles: dict = {}
 
     @classmethod
-    def shared(cls) -> 'PadMap':
-        if cls._shared is None:
-            cls._shared = PadMap()
-        return cls._shared
+    def for_model(cls, model: str) -> 'PadMap':
+        model = model or 'Controller'
+        padmap = cls._profiles.get(model)
+        if padmap is None:
+            padmap = cls._profiles[model] = PadMap(model)
+        return padmap
 
-    def __init__(self):
-        stored = UserDefaults.standard().object(PAD_DEFAULTS_KEY)
+    def __init__(self, model: str):
+        self.model = model
+        defaults = UserDefaults.standard()
+        profiles = defaults.object(PAD_PROFILES_KEY)
+        stored = profiles.get(model) if isinstance(profiles, dict) else None
+        new = not isinstance(stored, dict)
+        legacy = defaults.object(PAD_DEFAULTS_KEY) if new else None
+        if isinstance(legacy, dict):
+            stored = legacy
         self.bindings = _default_bindings()
         if isinstance(stored, dict):
             for action, value in stored.items():
@@ -184,6 +215,11 @@ class PadMap:
                             self.bindings[action][mode] = [str(n) for n in names]
                 elif isinstance(value, list):
                     self.bindings[action] = [str(n) for n in value]
+        if new:                                           # a kind not seen before gets a profile now
+            self.save()
+            if isinstance(legacy, dict):
+                defaults.remove(PAD_DEFAULTS_KEY)
+                defaults.synchronize()
 
     @staticmethod
     def mode() -> str:
@@ -202,13 +238,16 @@ class PadMap:
                 return action
         return None
 
+    def name_of(self, name: str) -> str:
+        """An input in this kind of controller's own names: 'righttrigger' -> 'R2' or 'RT'."""
+        return input_name(name, family(self.model), self.model)
+
     def text(self, action: str, mode: str | None = None) -> str:
-        """'R2', or 'L1 or Triangle', in the names of the controller plugged in."""
+        """'R2', or 'L1 or Triangle', in this controller's names."""
         names = self.names(action, mode)
         if not names:
             return 'not set'
-        pads = Pads.shared()
-        return ' or '.join(pads.name_of(n) for n in names)
+        return ' or '.join(self.name_of(n) for n in names)
 
     def is_default(self, action: str, mode: str | None = None) -> bool:
         default = PAD_DEFAULTS[action]
@@ -270,7 +309,10 @@ class PadMap:
             else:
                 stored[action] = list(bound)
         defaults = UserDefaults.standard()
-        defaults.set_object(stored, PAD_DEFAULTS_KEY)
+        profiles = defaults.object(PAD_PROFILES_KEY)
+        profiles = dict(profiles) if isinstance(profiles, dict) else {}
+        profiles[self.model] = stored
+        defaults.set_object(profiles, PAD_PROFILES_KEY)
         defaults.synchronize()
 
 
@@ -350,6 +392,8 @@ class Pads:
     def __init__(self):
         self.pads: dict = {}                              # SDL instance id -> Controller
         self.names: dict = {}                             # SDL instance id -> the pad's name
+        self.seen: dict = {}                              # the same, kept after it goes (a button let go)
+        self.editing = None                               # whose buttons Settings -> Joystick sets
         self.axes: dict = {}                              # SDL instance id -> six axes, -1 to 1
         self.pushed: dict = {}                            # (instance id, stick) -> 'stickup' or the like
         self.held: set = set()                            # sources down now
@@ -369,10 +413,23 @@ class Pads:
             count = controller.get_count()
         except (pygame.error, ImportError) as exc:
             log.warning('game controllers are not available: %s', exc)
+            self._keys_when_none()
             return
         self.started = True
         for index in range(count):
             self._open(index)
+        self._keys_when_none()
+
+    def _keys_when_none(self) -> None:
+        """With no controller connected - the game starting without one, or the last one going, wherever
+        the player is - Names in hints and tutorial goes back to Keyboard keys, and is saved so."""
+        if self.pads:
+            return
+        from ..game.parameters import GameParameters
+        params = GameParameters.shared()
+        if params.key_names() != 'keys':
+            params.set_key_names('keys')
+            log.info('no controller connected: the hints name keys again')
 
     def _open(self, index: int):
         from pygame._sdl2 import controller
@@ -387,8 +444,9 @@ class Pads:
         if iid in self.pads:
             return None
         self.pads[iid] = pad
-        self.names[iid] = str(getattr(pad, 'name', '') or 'Controller')
+        self.names[iid] = self.seen[iid] = str(getattr(pad, 'name', '') or 'Controller')
         self.axes[iid] = [0.0] * 6
+        PadMap.for_model(self.names[iid])                 # a kind seen for the first time gets its profile
         self._open_extras(iid)
         log.info('controller connected: %s (%s names%s%s)', self.names[iid], family(self.names[iid]),
                  ', shake' if iid in self.accelerometers else '',
@@ -414,15 +472,29 @@ class Pads:
     def connected(self) -> bool:
         return bool(self.pads)
 
-    def kind(self) -> str:
-        """The names to speak: the most recently connected pad's."""
-        return family(self.last_name()) if self.pads else 'generic'
-
     def last_name(self) -> str:
         return self.names[next(reversed(self.names))] if self.names else ''
 
-    def name_of(self, name: str) -> str:
-        return input_name(name, self.kind(), self.last_name())
+    def connected_models(self) -> list:
+        """The kinds of controller connected, by name, each once, the one connected last at the end."""
+        models = []
+        for name in self.names.values():
+            if name in models:
+                models.remove(name)
+            models.append(name)
+        return models
+
+    def padmap_for(self, iid) -> 'PadMap':
+        """The bindings of the pad with this instance id, even just after it went."""
+        return PadMap.for_model(self.names.get(iid) or self.seen.get(iid) or '')
+
+    def editing_model(self):
+        """Whose buttons Settings -> Joystick sets: the one chosen there, while it is connected, else the
+        one connected last; None with none connected."""
+        models = self.connected_models()
+        if not models:
+            return None
+        return self.editing if self.editing in models else models[-1]
 
     # --- events ---------------------------------------------------------------------------------------
     def handle(self, event):
@@ -512,6 +584,7 @@ class Pads:
         out = [(False, source, source[1]) for source in list(self.held) if source[0] == iid]
         self.held -= {source for _p, source, _n in out}
         log.info('controller disconnected: %s', name)
+        self._keys_when_none()
         if self.speak:
             self.speak('%s disconnected.' % name)
         if self.changed:
@@ -544,18 +617,18 @@ class Pads:
         return False
 
     # --- the DualSense's triggers --------------------------------------------------------------------
-    def set_triggers(self, feel, level: str = 'medium') -> None:
-        """Give every DualSense the trigger feel `feel` names - 'gun' (R2 only), 'gun and reload' (R2
-        and L2) or 'off' - at `level` ('light', 'medium' or 'strong'), unless it has it already.  Other pads
-        have no such thing and are left alone."""
+    def set_triggers(self, feel, level: str = 'medium', only=None) -> None:
+        """Give every DualSense - or only the one with instance id `only` - the trigger feel `feel` names
+        - 'gun' (R2 only), 'gun and reload' (R2 and L2) or 'off' - at `level` ('light', 'medium' or
+        'strong'), unless it has it already.  Other pads have no such thing and are left alone."""
         lib = sdl()
         if lib is None:
             return
         if level not in GUN_TRIGGER:
             feel = 'off'
         wanted = feel if feel == 'off' else '%s, %s' % (feel, level)
-        for iid in list(self.dualsenses):
-            if self.triggers_set.get(iid) == wanted or iid not in self.handles:
+        for iid in ([only] if only is not None else list(self.dualsenses)):
+            if iid not in self.dualsenses or self.triggers_set.get(iid) == wanted or iid not in self.handles:
                 continue
             right = GUN_TRIGGER[level] if feel in ('gun', 'gun and reload') else TRIGGER_OFF
             left = RELOAD_TRIGGER[level] if feel == 'gun and reload' else TRIGGER_OFF

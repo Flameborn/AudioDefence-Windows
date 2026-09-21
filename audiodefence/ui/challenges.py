@@ -255,7 +255,8 @@ class AccessibleChallengeSelectorScreen(ViewControllerScreen):
             status = self.status_for_challenge_with_dict(d)
             # PORT INPUT: the original hint is "double tap to play this challenge"
             hint = None if status == 'locked' else 'Press Enter to play this challenge.'
-            t.cell(d.get('title'), status, hint=hint, action=lambda r=row: self.did_select_row(r))
+            cell = t.cell(d.get('title'), status, hint=hint, action=lambda r=row: self.did_select_row(r))
+            cell.label_key_words = True                   # PORT ADDITION: "press Enter to go to armory"
 
     @staticmethod
     def status_for_challenge_with_dict(d: dict) -> str:   # statusForChallengeWithDict: 0x100054960

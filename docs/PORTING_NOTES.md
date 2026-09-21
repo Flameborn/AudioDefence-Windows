@@ -492,15 +492,29 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   by default, and reset by Reset all settings; a stored true or false from before is read as Medium or
   Off).  Vibration scales every pulse (a half, 0.8, full); the trigger levels are the effect's strength
   byte (R2 0x28 / 0x50 / 0x90, L2 0x18 / 0x30 / 0x50 - Medium is well under the 0xC0 R2 had at first, which
-  was too stiff).  While a pad is connected, Names in hints and tutorial (`keyNames`, Keyboard keys by
-  default) makes every row's hint name the pad's menu buttons for the keys it names (`pad.menu_words`:
-  Shift+Enter, Enter, Delete and Escape become Square, Cross, Triangle and Circle, or X, A, Y and B) and
-  the tutorial text its game buttons.  A pad coming or going tells the host (`Pads.changed` ->
-  `ScreenManager.pads_changed`), so Settings -> Joystick lays itself out again and a button being set for a
-  pad that has gone is given up.  The same Settings screen rebinds its buttons as Keyboard does keys
-  (`PadMap.add` / `set` / `remove_last`, per scheme for Next weapon and Reload); while a button is being
-  set the host hands the screen the pad's presses as they are (`takes_pad_input`).  A stick pushed sideways
-  and the guide button cannot be bound.
+  was too stiff).  Settings -> Miscellaneous -> Names in hints and tutorial (`keyNames`: Keyboard keys by
+  default, or Controller buttons) names a connected pad's buttons, in its family's names (`pad.family`,
+  from the name SDL gives it): every row's hint turns the keys a menu button stands for into that button
+  (`pad.menu_words`: Shift+Enter, Enter, Delete and Escape become Square, Cross, Triangle and Circle, or X,
+  A, Y and B), as do the three labels of the port's that name Enter (a power-up's "press Enter to upgrade",
+  a tarot card's "press Enter to change", a challenge's "press Enter to go to armory";
+  `View.label_key_words`, worked out as they are spoken, so a pad coming or going is followed at once), and
+  the tutorial text, the skip-intro line, `cross_axis_text` ("L1 and R1 change tab, D-pad left and right
+  move through it") and the Button / Gesture rows name its game buttons.  With several kinds connected,
+  Controller for names (`keyNamesController`) chooses which; otherwise it is the one connected last.  With
+  none connected the row is dimmed (a dimmed cell says so, as a dimmed button does), and starting the game
+  with none, or the last one going wherever the player is, sets `keyNames` back to Keyboard keys and saves
+  it (`Pads._keys_when_none`).  A pad coming or going tells the host (`Pads.changed` ->
+  `ScreenManager.pads_changed`), so Settings -> Joystick and Miscellaneous lay themselves out again and a
+  button being set for a pad that has gone is given up.  Each kind of pad has its own bindings
+  (`PadMap.for_model`, `padmaps` in keys.json, keyed by that name), made from the defaults and saved the
+  first time it connects; the one set there was before (`padmap`) is taken over by the first kind connected
+  after.  In play each pad's buttons go through its own (`Pads.padmap_for`), and each DualSense's trigger
+  feel follows its own Fire and Reload.  Settings -> Joystick rebinds the buttons of the pad its Controller
+  row names (with several kinds connected, Enter and Shift+Enter step through them) as Keyboard does keys
+  (`PadMap.add` / `set` / `remove_last`, per scheme for Next weapon and Reload), and lists none with no pad
+  connected; while a button is being set the host hands the screen the pad's presses as they are
+  (`takes_pad_input`).  A stick pushed sideways and the guide button cannot be bound.
 * PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
   puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
   turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,
@@ -573,7 +587,7 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   sounds with a placeholder - `announcer_tutorial_aim_CONTROLMODE`, `announcer_tutorial_shoot_BUTTONMODE` -
   which `init_sound` 0x1000b3594 resolves against the control scheme and the button mode, so the three aim
   variants share one line and each button/gesture pair shares another.  Rebinding a key changes what is
-  said.  With a controller connected and Settings -> Joystick -> Names in hints and tutorial on Controller
+  said.  With a controller connected and Settings -> Miscellaneous -> Names in hints and tutorial on Controller
   buttons, the lines name its buttons instead ("the R2 button", "a stick flicked up"), and aiming is "Push
   either stick left or right to aim".  `aimhelp` and `aimprompt` name
   no key and have no line.  Settings -> Miscellaneous -> Tutorial

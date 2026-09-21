@@ -48,11 +48,33 @@ AIMING_ROWS = (('Gyro', 'Turns slowest', 1),
                ('Tilt', 'Turns fastest', 3))
 
 # BUTTON_MODE / GESTURE_MODE describe where to tap and how to swipe; the port's keys do both, so the rows
-# say what the mode changes for a keyboard player instead.
-CONTROL_ROWS = (('Button', 'Your keys press the four corner buttons of the phone layout, so W switches '
-                           'weapon and R reloads', True),
-                ('Gesture', 'Your keys tap and swipe anywhere on the screen, so Up switches weapon and '
-                            'Down reloads', False))
+# say what the mode changes for a keyboard player instead - with the keys bound in that mode, or the
+# buttons, when a controller's names are chosen (Settings -> Miscellaneous).
+CONTROL_ROWS = (('Button', True), ('Gesture', False))
+
+
+def control_description(button: bool) -> str:
+    mode = 'button' if button else 'gesture'
+    switch, reload = _mode_words('next_weapon', mode), _mode_words('reload', mode)
+    if GameParameters.shared().controller_names():
+        if button:
+            return ('Your controller presses the four corner buttons of the phone layout, so %s switches '
+                    'weapon and %s reloads' % (switch, reload))
+        return ('Your controller taps and swipes anywhere on the screen, so %s switches weapon and %s '
+                'reloads' % (switch, reload))
+    if button:
+        return ('Your keys press the four corner buttons of the phone layout, so %s switches weapon and %s '
+                'reloads' % (switch, reload))
+    return 'Your keys tap and swipe anywhere on the screen, so %s switches weapon and %s reloads' % (switch,
+                                                                                                     reload)
+
+
+def _mode_words(action: str, mode: str) -> str:
+    """An action's keys in a control scheme - or its buttons, when a controller's names are chosen."""
+    if GameParameters.shared().controller_names():
+        from ..platform.pad import button_words
+        return button_words(action, mode) or 'no button'
+    return KeyMap.shared().keys_text(action, mode)
 
 # PORT UI: Keyboard holds the key bindings alone, and Joystick a game controller's - its buttons, and
 # whether it vibrates.  Miscellaneous is last and holds the rest: how the cursor moves through a screen,
@@ -75,6 +97,7 @@ class ControlSchemePanel:
         self.capturing_replaces = False                   # Shift+Enter: the new key replaces the others
         self.pad_capturing = None                         # the action waiting for a controller button
         self.pad_capturing_replaces = False
+        self.pad_capturing_model = None                   # and the controller whose profile it goes to
         frame = (center[0] - 220.0, center[1] - 122.0, 440.0, 244.0)
         self.view = View('', frame, accessible=False, parent=parent, name='#21')
         self.table_view = View('', frame, accessible=False, parent=self.view, ordered=True, name='#13')
@@ -100,8 +123,8 @@ class ControlSchemePanel:
                    hint='Press Enter for the next value, Shift plus Enter for the previous.',
                    action=self.step_sensitivity, shift_action=self.step_sensitivity_back)
         elif self.category == 'controls':                 # cellForControlAtIndex: 0x1000b5d64
-            for title, description, button in CONTROL_ROWS:
-                cell = t.cell(title, description, hint=SELECT_HINT,
+            for title, button in CONTROL_ROWS:
+                cell = t.cell(title, control_description(button), hint=SELECT_HINT,
                               action=lambda b=button: self.select_button_mode(b))
                 cell.selected = bool(params.button_mode) == button
         elif self.category == 'sound':                    # cellForSound: 0x1000b619c
@@ -109,10 +132,12 @@ class ControlSchemePanel:
                    hint='Press Enter to toggle in-game announcements.', action=self.toggle_announcer)
             t.cell('Test headphones', hint='Press Enter to test your headphones.', action=self.test_headphones)
         elif self.category == 'misc':                     # PORT ADDITION: everything else
-            t.cell('Menu arrows', self.menu_axis_text(),
-                   hint='Press Enter to move through menus with the other pair; Control with an arrow, '
-                        'or with Tab, jumps to the first or last.',
-                   action=self.toggle_menu_axis)
+            if params.controller_names():                 # the Control and Tab keys have no button
+                axis_hint = 'Press Enter to move through menus with the other pair of D-pad directions.'
+            else:
+                axis_hint = ('Press Enter to move through menus with the other pair; Control with an arrow, '
+                             'or with Tab, jumps to the first or last.')
+            t.cell('Menu arrows', self.menu_axis_text(), hint=axis_hint, action=self.toggle_menu_axis)
             t.cell('Remember cursor position', 'ON' if params.remember_focus() else 'OFF',
                    hint='Press Enter to toggle: when on, going back to a screen returns the cursor to the '
                         'row you left it on instead of the first one.',
@@ -120,6 +145,21 @@ class ControlSchemePanel:
             t.cell('Tutorial text', self.tutorial_text_text(),
                    hint='Press Enter for the next setting and Shift plus Enter for the previous.',
                    action=self.step_tutorial_text, shift_action=self.step_tutorial_text_back)
+            from ..platform.pad import Pads
+            models = Pads.shared().connected_models()
+            row = t.cell('Names in hints and tutorial', dict(params.KEY_NAMES)[params.key_names()],
+                         hint="Whether the hints and the tutorial text name the keyboard's keys or the "
+                              "connected controller's buttons. Press Enter or Shift plus Enter to switch. It "
+                              'goes back to Keyboard keys whenever no controller is connected.',
+                         action=self.toggle_key_names, shift_action=self.toggle_key_names)
+            row.enabled = bool(models)                    # dimmed with no controller (pad._keys_when_none)
+            if len(models) > 1:                           # several kinds connected: which one to name
+                row = t.cell('Controller for names', params.names_controller() or models[-1],
+                             hint='Which connected controller the hints and the tutorial text name the '
+                                  'buttons of. Press Enter for the next controller and Shift plus Enter for '
+                                  'the previous.',
+                             action=self.step_names_controller, shift_action=self.step_names_controller_back)
+                row.enabled = params.key_names() == 'buttons'
             t.cell('Check for updates when the game starts', 'ON' if params.check_updates() else 'OFF',
                    hint='Press Enter to toggle: when on, the main menu looks for a new build and tells '
                         'you only if there is one.',
@@ -147,7 +187,16 @@ class ControlSchemePanel:
         elif self.category == 'joystick':                 # PORT ADDITION: a game controller
             from ..platform.pad import PAD_DEFAULTS, PadMap, Pads
             pads = Pads.shared()
-            t.cell('Controller', pads.last_name() if pads.connected() else 'none connected')
+            models = pads.connected_models()
+            editing = pads.editing_model()
+            if len(models) > 1:                           # several kinds: whose buttons the rows below set
+                t.cell('Controller', '%s, %d of %d' % (editing, models.index(editing) + 1, len(models)),
+                       hint="The buttons below are this controller's. Press Enter for the next controller "
+                            'and Shift plus Enter for the previous.',
+                       action=self.step_editing, shift_action=self.step_editing_back)
+            else:
+                t.cell('Controller', editing or 'none connected',
+                       hint=None if editing else 'Connect a controller to set its buttons.')
             levels = dict(params.FEEL_LEVELS)
             t.cell('Vibration', levels[params.vibration_level()],
                    hint='How strongly the controller vibrates, for hits, kills, explosions, the heartbeat '
@@ -159,14 +208,12 @@ class ControlSchemePanel:
                         'pull where it reloads. Press Enter for the next setting and Shift plus Enter for '
                         'the previous.',
                    action=self.step_trigger_level, shift_action=self.step_trigger_level_back)
-            if pads.connected():                          # only while there is a controller to name
-                t.cell('Names in hints and tutorial', dict(params.KEY_NAMES)[params.key_names()],
-                       hint="Whether the hints and the tutorial text name the keyboard's keys or this "
-                            "controller's buttons. Press Enter or Shift plus Enter to switch.",
-                       action=self.toggle_key_names, shift_action=self.toggle_key_names)
             t.cell('Turn', 'either stick, sideways',
                    hint='The further a stick is pushed, the faster you turn.')
-            padmap = PadMap.shared()
+            if editing is None:                           # the buttons are set for a connected controller
+                self.click_on_every_row()
+                return
+            padmap = PadMap.for_model(editing)
             scheme = mode_text(padmap.mode())
             for action in PAD_DEFAULTS:
                 detail = padmap.text(action)
@@ -177,8 +224,8 @@ class ControlSchemePanel:
                              shift_action=lambda a=action: self.capture_pad(a, replace=True))
                 row.pad_binding_action = action           # what Delete acts on, for this row
             t.cell('Restore default buttons',
-                   hint='Press Enter to put every controller button back to its default, in both control '
-                        'schemes.',
+                   hint="Press Enter to put every one of this controller's buttons back to its default, in "
+                        'both control schemes.',
                    action=self.restore_pad)
         self.click_on_every_row()
 
@@ -253,10 +300,10 @@ class ControlSchemePanel:
     def select_button_mode(self, button: bool) -> None:
         GameParameters.shared().set_button_mode(button)
         self.reload_data()
-        keymap = KeyMap.shared()                          # Next weapon and Reload are bound per scheme
+        mode = 'button' if button else 'gesture'          # Next weapon and Reload are bound per scheme
         self.announce('%s selected, %s switches weapon, %s reloads'
                       % ('Button' if button else 'Gesture',
-                         keymap.keys_text('next_weapon'), keymap.keys_text('reload')))
+                         _mode_words('next_weapon', mode), _mode_words('reload', mode)))
 
     # --- sound -----------------------------------------------------------------------------------
     def toggle_announcer(self) -> None:
@@ -328,6 +375,7 @@ class ControlSchemePanel:
         params.set_vibration_level(params.DEFAULT_VIBRATION)
         params.set_trigger_level(params.DEFAULT_TRIGGER_FEEL)
         params.set_key_names(params.DEFAULT_KEY_NAMES)
+        params.set_names_controller(None)
         App.apply_menu_music_volume()
         self.reload_data()
         self.announce('All settings reset to default. Your key and controller bindings are unchanged.')
@@ -364,44 +412,79 @@ class ControlSchemePanel:
         self.reload_data()
         self.announce('Names in hints and tutorial: %s' % dict(params.KEY_NAMES)[params.key_names()])
 
-    def capture_pad(self, action: str, replace: bool = False) -> None:
+    def step_names_controller(self, step: int = 1) -> None:
+        from ..platform.pad import Pads
+        params = GameParameters.shared()
+        models = Pads.shared().connected_models()
+        current = params.names_controller()
+        if len(models) < 2 or current is None:
+            return
+        params.set_names_controller(models[(models.index(current) + step) % len(models)])
+        self.reload_data()
+        self.announce('Controller for names: %s' % params.names_controller())
+
+    def step_names_controller_back(self) -> None:
+        self.step_names_controller(-1)
+
+    def step_editing(self, step: int = 1) -> None:
+        """Several kinds of controller connected: the next one's buttons, to see and set."""
+        from ..platform.pad import Pads
+        pads = Pads.shared()
+        models = pads.connected_models()
+        if len(models) < 2:
+            return
+        pads.editing = models[(models.index(pads.editing_model()) + step) % len(models)]
+        self.reload_data()
+        self.announce('%s, %d of %d' % (pads.editing, models.index(pads.editing) + 1, len(models)))
+
+    def step_editing_back(self) -> None:
+        self.step_editing(-1)
+
+    def _pad_profile(self):
+        """The bindings being shown and set: the controller chosen in the Controller row."""
         from ..platform.pad import PadMap, Pads
-        if not Pads.shared().connected():
+        model = self.pad_capturing_model or Pads.shared().editing_model()
+        return PadMap.for_model(model) if model else None
+
+    def capture_pad(self, action: str, replace: bool = False) -> None:
+        padmap = self._pad_profile()
+        if padmap is None:
             self.announce('Connect a controller first.')
             return
         self.pad_capturing = action
         self.pad_capturing_replaces = replace
+        self.pad_capturing_model = padmap.model           # the buttons go to this controller's profile
         self.announce('Press the button to %s %s, or Escape on the keyboard to keep %s'
-                      % ('use instead of' if replace else 'add to', KeyMap.label(action),
-                         PadMap.shared().text(action)))
+                      % ('use instead of' if replace else 'add to', KeyMap.label(action), padmap.text(action)))
 
     def handle_captured_pad(self, name: str) -> None:
         """The next controller input while a button is being set."""
-        from ..platform.pad import PadMap, Pads
         action = self.pad_capturing
         if action is None:
             return
-        padmap = PadMap.shared()
+        padmap = self._pad_profile()
         if name in padmap.UNBINDABLE:
             why = ('Pushing a stick sideways turns' if name in ('stickleft', 'stickright')
-                   else '%s is kept by Windows' % Pads.shared().name_of(name))
+                   else '%s is kept by Windows' % padmap.name_of(name))
             self.announce('%s. Press another button, or Escape to keep %s' % (why, padmap.text(action)))
             return
         replace = self.pad_capturing_replaces
-        self.pad_capturing, self.pad_capturing_replaces = None, False
+        self.pad_capturing, self.pad_capturing_replaces, self.pad_capturing_model = None, False, None
         padmap.set(action, name) if replace else padmap.add(action, name)
         self.reload_data()
         self.announce('%s is now %s' % (KeyMap.label(action), padmap.text(action)))
 
     def cancel_pad_capture(self) -> None:
-        from ..platform.pad import PadMap
+        padmap = self._pad_profile()
         action, self.pad_capturing, self.pad_capturing_replaces = self.pad_capturing, None, False
-        if action is not None:
-            self.announce('%s keeps %s' % (KeyMap.label(action), PadMap.shared().text(action)))
+        self.pad_capturing_model = None
+        if action is not None and padmap is not None:
+            self.announce('%s keeps %s' % (KeyMap.label(action), padmap.text(action)))
 
     def remove_pad(self, action: str) -> None:
-        from ..platform.pad import PadMap, Pads
-        padmap = PadMap.shared()
+        padmap = self._pad_profile()
+        if padmap is None:
+            return
         name = padmap.remove_last(action)
         if name is None:
             self.announce('%s keeps %s: an action needs at least one button'
@@ -409,13 +492,15 @@ class ControlSchemePanel:
             return
         self.reload_data()
         self.announce('%s removed from %s, now %s'
-                      % (Pads.shared().name_of(name), KeyMap.label(action), padmap.text(action)))
+                      % (padmap.name_of(name), KeyMap.label(action), padmap.text(action)))
 
     def restore_pad(self) -> None:
-        from ..platform.pad import PadMap
-        PadMap.shared().restore_defaults()
+        padmap = self._pad_profile()
+        if padmap is None:
+            return
+        padmap.restore_defaults()
         self.reload_data()
-        self.announce('Default controller buttons restored in both control schemes')
+        self.announce('Default buttons restored for the %s, in both control schemes' % padmap.model)
 
     def toggle_menu_axis(self) -> None:
         params = GameParameters.shared()
@@ -534,14 +619,15 @@ class SettingsScreen(ViewControllerScreen):
         super().key_down(event)
 
     def pads_changed(self) -> None:
-        """PORT ADDITION: a controller came or went.  The Joystick category names it, and offers the
-        choice of names only while there is one, so it is laid out again; a button being set for a
-        controller that has gone is given up."""
+        """PORT ADDITION: a controller came or went.  The Joystick category names it and shows its
+        buttons, and Miscellaneous names it or dims the choice, so they are laid out again; a button being
+        set for a controller that has gone is given up."""
         from ..platform.pad import Pads
         panel = self.control_scheme
-        if panel.pad_capturing is not None and not Pads.shared().connected():
+        if (panel.pad_capturing is not None
+                and panel.pad_capturing_model not in Pads.shared().connected_models()):
             panel.cancel_pad_capture()
-        if panel.category == 'joystick':
+        if panel.category in ('joystick', 'misc'):
             panel.reload_data()
 
     # PORT ADDITION: while a controller button is being set, the host hands this screen the controller's

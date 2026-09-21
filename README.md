@@ -153,8 +153,8 @@ Settings, saves and the log live in `%APPDATA%\AudioDefence`, in three files:
 | file | what is in it |
 |---|---|
 | `save.json` | progress: coins, diamonds, weapons, power-ups, missions, challenges, statistics |
-| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, how strong the vibration and the trigger feel are, and whether hints name keys or controller buttons |
-| `keys.json` | the key bindings, and a controller's |
+| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, how strong the vibration and the trigger feel are, and whether hints name keys or controller buttons, and which controller's |
+| `keys.json` | the key bindings, and each kind of controller's, by its name |
 
 Deleting the folder starts a fresh profile — the first run then begins on Gyro
 with the default key bindings.
@@ -298,12 +298,6 @@ screen they are plain again, and they are set back when the game closes.
 strong the **Vibration** and the **Trigger feel** are: Off, Light, Medium (the
 default) or Strong, with Enter for the next and Shift+Enter for the previous.
 Each step of Vibration gives a pulse at the new strength so you can feel it.
-While a controller is connected, **Names in hints and tutorial** chooses
-whether the hints and the tutorial text name the keyboard's keys (the default)
-or the controller's buttons: "Press Cross to copy the results", "use the R2
-button to fire your weapon". Enter or Shift+Enter switches it. Connect a
-controller while the game is open and the row appears, and the names follow;
-unplug it and they go back to keys.
 
 It also lets you change which button does what, the way Keyboard does for keys:
 Enter (Cross) on an action
@@ -311,11 +305,31 @@ adds a button, Shift+Enter (Square) replaces them all, Delete (Triangle)
 removes the last one, and Escape on the keyboard cancels. Next weapon and
 Reload are set for the control scheme you are in, as on the keyboard. A stick
 pushed sideways cannot be bound — it turns — and neither can the PS or Xbox
-button, which Windows or Steam often keeps. **Restore default buttons** puts
-them all back, and Reset all settings leaves them alone. If Steam is running it
+button, which Windows or Steam often keeps. Each kind of controller keeps its
+own buttons, by the name it gives itself — a DualSense's, a DualShock 4's, an
+Xbox pad's — made from the defaults the first time it is connected, so setting
+up one never changes another. With two or more kinds connected, the
+**Controller** row says which one's buttons are listed ("DualSense Wireless
+Controller, 1 of 2"), and Enter or Shift+Enter goes to the next or previous.
+**Restore default buttons** puts that controller's buttons back, and Reset all
+settings leaves them alone. With no controller connected the buttons are not
+listed. If Steam is running it
 may take the controller over and present it as an Xbox pad; the game still
 works, but for your own controller's button names, turn Steam Input off for
 the game.
+
+**Settings → Miscellaneous → Names in hints and tutorial** chooses whether the
+hints and the tutorial text name the keyboard's keys (the default) or the
+connected controller's buttons, as that controller calls them: "Press Cross to
+copy the results", "use the R2 button to fire your weapon" on a PlayStation
+pad, "Press A" and "RT" on an Xbox one. Enter or Shift+Enter switches it. So do
+the other lines that name a key: the tab and category keys ("L1 and R1 change
+tab, D-pad left and right move through it"), the Button and Gesture rows, and
+"Press Cross to skip intro". With two or more kinds of controller connected,
+**Controller for names** under it chooses which one. With no controller
+connected the row is dimmed and it is Keyboard keys: starting the game without
+one, or unplugging the last one wherever you are, sets it back to Keyboard keys
+and saves that, so choose Controller buttons again when you next play with one.
 
 ## Sharing a result
 
@@ -586,7 +600,8 @@ replacing them.
 - **Game controllers**: a DualSense, DualShock, Xbox, Switch Pro or most other pads, in the menus and in
   play, with a stick that turns as fast as it is pushed, vibration for the heartbeat, hits, kills,
   explosions and your death, the phone's shake, and a DualSense's triggers that feel like a gun, each at
-  the strength you choose. The hints and the tutorial can name its buttons instead of the keys. See
+  the strength you choose. Each kind of controller keeps its own buttons, and the hints and the tutorial
+  can name its buttons instead of the keys. See
   [With a game controller](#with-a-game-controller).
 
 ### Original quirks kept on purpose
