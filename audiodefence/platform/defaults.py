@@ -23,7 +23,7 @@ from .. import paths
 #: Keys not named here are progress and go to save.json, which is the safe default for anything new.
 SETTINGS_KEYS = frozenset({'buttonMode', 'controlScheme', 'sensivity', 'menuAxis', 'debugMapVisible',
                           'tutorialText', 'rememberFocus', 'checkUpdates', 'skippedUpdate',
-                          'menuMusicVolume', 'vibration', 'triggerEffects'})
+                          'menuMusicVolume', 'vibration', 'triggerEffects', 'keyNames'})
 INPUT_KEYS = frozenset({'keymap', 'padmap'})
 
 

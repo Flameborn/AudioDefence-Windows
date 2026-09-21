@@ -60,7 +60,7 @@ hints.
 | Left / Shift+Tab | flick left: previous element |
 | Ctrl+Right / Ctrl+Left, End / Home | first / last element |
 | Enter | double tap: activate (Space did too, until it was taken off) |
-| Shift+Enter | a row's second action, where it has one (Settings: the previous value on a row that steps through several - turn sensitivity, tutorial text) |
+| Shift+Enter | a row's second action, where it has one (Settings: the previous value on a row that steps through several - turn sensitivity, tutorial text, vibration, trigger feel) |
 | Escape / Backspace | two-finger scrub: `accessibilityPerformEscape` (the Back button on screens with a status bar) |
 | Ctrl+Tab / Ctrl+Shift+Tab | last / first element, as End / Home do |
 | Down / Up (the unused pair) | next / previous tab or category, where the screen has them |
@@ -461,23 +461,41 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   stands for.  SDL is asked (before pygame.init) to let PlayStation pads rumble over Bluetooth.
 * PORT ADDITION: what a controller makes you feel (`platform/haptics.py`).  The original never vibrates.
   The proximity heartbeat (`ADPlayer`, player.py) pulses the heavy motor on each beat, scaled as the sound
-  is (closeness squared * 0.7 + 0.3); `shotWithWeapon:` 0x1000c4dfc, `shotWithSpecialWeapon:` 0x1000c4b38
-  and a projectile's explosion (`solveExplosionOfProjectile:` 0x1000c6360, whose explosion now returns what
-  it hit) pulse on a hit - a tap for one, firmer for several, a thud for melee.  A DualSense on USB is a
-  four-channel sound card to Windows as well, whose third and fourth channels drive its two haptic actuators;
-  `platform/haptic_audio.py` opens it through SDL's audio (pygame._sdl2.audio, 48 kHz float) and plays the
-  heartbeat recording the game has just played, low-passed to the actuators' range, and short sine knocks
-  for the hits, instead of rumble for that pad.  Over Bluetooth there is no such card and it rumbles.  Shaking a pad that has an
-  accelerometer (SDL's sensor, reached through pygame's own SDL2.dll) calls `motionEnded:withEvent:`
-  0x10005a108 as the phone's shake does, so it swings the melee weapon under Gesture and does nothing under
-  Button; the threshold is 25 m/s2 against gravity's 9.8, once per half second.  A DualSense's adaptive
-  triggers get the pad's simple effects through `SDL_GameControllerSendEffect` - R2 resists between a quarter
-  and a half of its travel and gives way where it fires, L2 (reload under Button) a light spring - only while
-  the game is in front; a pause, the menus and closing the game set them plain.  Settings -> Joystick names
-  the pad, switches both (`vibration` and `triggerEffects` in settings.json, on by default, reset by Reset
-  all settings) and rebinds its buttons as Keyboard does keys (`PadMap.add` / `set` / `remove_last`,
-  per scheme for Next weapon and Reload); while a button is being set the host hands the screen the pad's
-  presses as they are (`takes_pad_input`).  A stick pushed sideways and the guide button cannot be bound.
+  is (closeness squared * 0.7 + 0.3).  The rest is felt where it happens to a zombie, so a bullet, a melee
+  blow, a projectile and a power-up are all caught the same way: `hitByWeapon:` 0x100060b30 and
+  `hitByExplosionAtPosition:...powerupname:` 0x100061284 (which `hitByProjectile:` 0x100061098 calls) pulse
+  by the damage the zombie actually lost (0.5 + 0.5 * (damage / 80) ^ 0.6 of full strength, so a Micro SMG
+  hit is felt and a Bazooka's is felt more), melee as a longer, heavier thud; a shot the shield takes
+  (state 6 in `hitByWeapon:`) is a light knock; `die` 0x100061ac8 is a kill; `attack` 0x100060304, the blow
+  that kills you, a second of heavy rumble.  `solveExplosionWithDictionary:...` 0x1000c5c40 - a projectile,
+  a Farty going off (`explode` 0x100061e6c), the fireworks power-ups - is a rumble by its distance from you
+  (full within a metre or so, never under a fifth), and `blowEnemiesAway:` 0x1000c3e88 (the tornado) a soft
+  gust when it pushes anything.  What happens in one pass of the run loop is felt once: each kind at its
+  strongest, a little firmer for each more of it, the motors at the strongest kind.  A DualSense on USB is
+  a four-channel sound card to Windows as well, whose third and fourth channels drive its two haptic
+  actuators; `platform/haptic_audio.py` opens it through SDL's audio (pygame._sdl2.audio, 48 kHz float) and
+  plays the heartbeat recording the game has just played, low-passed to the actuators' range, and short
+  sine knocks, thuds and filtered-noise rumbles for the rest, instead of rumble for that pad.  Over
+  Bluetooth there is no such card and it rumbles.  Shaking a pad that has an accelerometer (SDL's sensor,
+  reached through pygame's own SDL2.dll) calls `motionEnded:withEvent:` 0x10005a108 as the phone's shake
+  does, so it swings the melee weapon under Gesture and does nothing under Button; the threshold is 25 m/s2
+  against gravity's 9.8, once per half second.  A DualSense's adaptive triggers get the pad's simple
+  effects through `SDL_GameControllerSendEffect` - R2 resists between a quarter and a half of its travel
+  and gives way where it fires, L2 (reload under Button) a light spring - only while the game is in front;
+  a pause, the menus and closing the game set them plain.  Settings -> Joystick names the pad, sets how
+  strong both are - Off, Light, Medium or Strong (`vibration` and `triggerEffects` in settings.json; Medium
+  by default, and reset by Reset all settings; a stored true or false from before is read as Medium or
+  Off).  Vibration scales every pulse (a half, 0.8, full); the trigger levels are the effect's strength
+  byte (R2 0x28 / 0x50 / 0x90, L2 0x18 / 0x30 / 0x50 - Medium is well under the 0xC0 R2 had at first, which
+  was too stiff).  While a pad is connected, Names in hints and tutorial (`keyNames`, Keyboard keys by
+  default) makes every row's hint name the pad's menu buttons for the keys it names (`pad.menu_words`:
+  Shift+Enter, Enter, Delete and Escape become Square, Cross, Triangle and Circle, or X, A, Y and B) and
+  the tutorial text its game buttons.  A pad coming or going tells the host (`Pads.changed` ->
+  `ScreenManager.pads_changed`), so Settings -> Joystick lays itself out again and a button being set for a
+  pad that has gone is given up.  The same Settings screen rebinds its buttons as Keyboard does keys
+  (`PadMap.add` / `set` / `remove_last`, per scheme for Next weapon and Reload); while a button is being
+  set the host hands the screen the pad's presses as they are (`takes_pad_input`).  A stick pushed sideways
+  and the guide button cannot be bound.
 * PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
   puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
   turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,
@@ -550,8 +568,9 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   sounds with a placeholder - `announcer_tutorial_aim_CONTROLMODE`, `announcer_tutorial_shoot_BUTTONMODE` -
   which `init_sound` 0x1000b3594 resolves against the control scheme and the button mode, so the three aim
   variants share one line and each button/gesture pair shares another.  Rebinding a key changes what is
-  said.  With a controller connected the lines name its buttons instead ("the R2 button", "a stick
-  flicked up"), and aiming is "Push either stick left or right to aim".  `aimhelp` and `aimprompt` name
+  said.  With a controller connected and Settings -> Joystick -> Names in hints and tutorial on Controller
+  buttons, the lines name its buttons instead ("the R2 button", "a stick flicked up"), and aiming is "Push
+  either stick left or right to aim".  `aimhelp` and `aimprompt` name
   no key and have no line.  Settings -> Miscellaneous -> Tutorial
   text chooses "As the announcer speaks" (the default), "After the announcer finishes", or "Off".
 * PORT ADDITION: an action can hold several keys, and the binding rows say how.  Enter adds a key,

@@ -153,7 +153,7 @@ Settings, saves and the log live in `%APPDATA%\AudioDefence`, in three files:
 | file | what is in it |
 |---|---|
 | `save.json` | progress: coins, diamonds, weapons, power-ups, missions, challenges, statistics |
-| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, vibration and the trigger feel |
+| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped, how strong the vibration and the trigger feel are, and whether hints name keys or controller buttons |
 | `keys.json` | the key bindings, and a controller's |
 
 Deleting the folder starts a fresh profile — the first run then begins on Gyro
@@ -271,22 +271,42 @@ is shaking the phone: under Gesture it swings your melee weapon, as it did in
 the original, and under Button it does nothing, as it did not. It needs a pad
 that can feel movement — a DualSense, a DualShock 4 or a Switch Pro.
 
-A controller that can vibrate lets you feel the game: the **heartbeat** when a
-zombie is close, on every beat and harder the closer it is; a short tap when a
-**shot hits**, firmer when it hits several; and a heavier thud when a **melee**
-attack connects. A miss is felt as nothing. A **DualSense on USB** goes
-further: its grips play the game's own heartbeat — the very recording you hear,
-felt in your hands — and low knocks for the hits, through the fine haptics
-PlayStation games use rather than plain rumble. Over Bluetooth Windows does not
-offer that, and it rumbles like any other pad. On a **DualSense** the triggers
-change too while you play: R2 resists like a gun's trigger and gives way where
-it fires, and under Button L2 pulls against a light spring where it reloads.
-In the menus and on the pause screen they are plain again, and they are set
-back when the game closes.
+A controller that can vibrate lets you feel the game:
 
-**Settings → Joystick** names the controller that is connected, switches
-**Vibration** and the **Trigger feel** on and off, and lets you change which
-button does what, the way Keyboard does for keys: Enter (Cross) on an action
+- the **heartbeat** when a zombie is close, on every beat and harder the closer
+  it is;
+- a **hit**, as hard as it hurt: a big gun's hit is felt more than a small
+  one's, a melee blow is a heavier thud, and several hits at once are firmer
+  still. A shot the Shield zombie's shield takes is a light knock, and a miss
+  is felt as nothing;
+- a **kill**, whatever did it;
+- an **explosion** — a Farty going off, a rocket, a power-up's blast — harder
+  the closer it is, and the zombies it hurts;
+- the tornado's **gust** pushing the zombies back;
+- and **your own death**, a long heavy rumble when a zombie gets you.
+
+A **DualSense on USB** goes further: its grips play the game's own heartbeat —
+the very recording you hear, felt in your hands — and its own knocks, thuds
+and rumbles for the rest, through the fine haptics PlayStation games use rather
+than plain rumble. Over Bluetooth Windows does not offer that, and it rumbles
+like any other pad. On a **DualSense** the triggers change too while you play:
+R2 resists like a gun's trigger and gives way where it fires, and under Button
+L2 pulls against a light spring where it reloads. In the menus and on the pause
+screen they are plain again, and they are set back when the game closes.
+
+**Settings → Joystick** names the controller that is connected, and sets how
+strong the **Vibration** and the **Trigger feel** are: Off, Light, Medium (the
+default) or Strong, with Enter for the next and Shift+Enter for the previous.
+Each step of Vibration gives a pulse at the new strength so you can feel it.
+While a controller is connected, **Names in hints and tutorial** chooses
+whether the hints and the tutorial text name the keyboard's keys (the default)
+or the controller's buttons: "Press Cross to copy the results", "use the R2
+button to fire your weapon". Enter or Shift+Enter switches it. Connect a
+controller while the game is open and the row appears, and the names follow;
+unplug it and they go back to keys.
+
+It also lets you change which button does what, the way Keyboard does for keys:
+Enter (Cross) on an action
 adds a button, Shift+Enter (Square) replaces them all, Delete (Triangle)
 removes the last one, and Escape on the keyboard cancels. Next weapon and
 Reload are set for the control scheme you are in, as on the keyboard. A stick
@@ -552,7 +572,7 @@ replacing them.
 - **Restart challenge**, on the pause menu during a challenge, so a challenge you have already lost does not
   have to be played to the end.
 - **The tutorial announcer's lines are also spoken as text**, naming the keys you have actually bound — or,
-  with a controller connected, its buttons ("use the R2 button to fire"). The
+  if you choose, a connected controller's buttons ("use the R2 button to fire"). The
   announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
   **Settings → Miscellaneous → Tutorial text** chooses when, or turns it off: Enter steps to the next
   setting, Shift+Enter to the previous.
@@ -564,8 +584,9 @@ replacing them.
 - **Settings → Miscellaneous → Reset all settings** puts every setting back to its default, except your key
   bindings.
 - **Game controllers**: a DualSense, DualShock, Xbox, Switch Pro or most other pads, in the menus and in
-  play, with a stick that turns as fast as it is pushed, vibration for the heartbeat and for hits, the
-  phone's shake, and a DualSense's triggers that feel like a gun. See
+  play, with a stick that turns as fast as it is pushed, vibration for the heartbeat, hits, kills,
+  explosions and your death, the phone's shake, and a DualSense's triggers that feel like a gun, each at
+  the strength you choose. The hints and the tutorial can name its buttons instead of the keys. See
   [With a game controller](#with-a-game-controller).
 
 ### Original quirks kept on purpose

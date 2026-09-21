@@ -94,7 +94,8 @@ class MenuItem:
         if not self.enabled:
             text += ', dimmed'
         if self.hint:
-            text += f'. {self.hint}'
+            from ..platform.pad import menu_words         # PORT ADDITION: in a controller's words, if chosen
+            text += f'. {menu_words(self.hint)}'
         return text
 
 

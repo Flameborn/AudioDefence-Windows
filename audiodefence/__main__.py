@@ -70,6 +70,7 @@ def main(argv=None) -> int:
     Pads.shared().speak = lambda text: Speech.shared().speak(text, False)
 
     host = ScreenManager()
+    Pads.shared().changed = host.pads_changed           # Settings -> Joystick follows a controller in and out
     running = [True]
     host.request_quit = lambda: running.__setitem__(0, False)
     app = App.delegate()

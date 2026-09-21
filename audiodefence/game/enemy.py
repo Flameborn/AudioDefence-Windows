@@ -316,6 +316,8 @@ class Enemy:
         bm = BrickManager.shared()
         if bm.player_is_dead:
             return
+        from ..platform.haptics import Haptics            # PORT ADDITION: the zombie has you
+        Haptics.shared().player_killed()
         self.set_state(4)
         self.play_any_sound_containing('_attack', False, False)
         if self.sound is not None:
@@ -382,6 +384,8 @@ class Enemy:
         if BrickManager.shared().player_is_dead:
             return
         if self._state == 6:
+            from ..platform.haptics import Haptics        # PORT ADDITION: the shield takes it: a knock
+            Haptics.shared().blocked()
             snd = self.voice_of(self.playlist.any_sound_containing('shieldimpact')) if self.playlist else None
             if snd is not None:
                 snd.set_planar((self.position[0], self.position[1], 0.0))
@@ -404,6 +408,8 @@ class Enemy:
             mod = mods.gun_damages_modifier()
         lost = dmg * mod
         self.set_life(self._life - lost)
+        from ..platform.haptics import Haptics            # PORT ADDITION: felt as hard as it hurt
+        Haptics.shared().hit(lost, isinstance(weapon, MeleeWeapon))
         log.debug('[%s] life : %f (lost %f)', self.name, self._life, lost)
         self.play_impact_and_hit_sound_for_damages(lost, isinstance(weapon, MeleeWeapon))
         if self.dodge_dictionary is not None and self._life > 0.0:
@@ -436,6 +442,8 @@ class Enemy:
             fixed = (dispersal / 100.0) * damages
             dmg = fixed + (damages - fixed) * falloff        # 0x1000613a0..0x1000613b0
         self.set_life(self._life - dmg)
+        from ..platform.haptics import Haptics            # PORT ADDITION: felt as hard as it hurt
+        Haptics.shared().hit(dmg)
         r = crand.random()
         delay = float(r % 50) / 200.0 + 0.2
         RunLoop.main().call_later(delay, lambda d=dmg: self.play_hit_sound_for_damages(d))
@@ -459,6 +467,8 @@ class Enemy:
         bm = BrickManager.shared()
         if bm.player_is_dead:
             return
+        from ..platform.haptics import Haptics            # PORT ADDITION: a kill, by whatever did it
+        Haptics.shared().kill()
         if self.explosion_dictionary is not None:
             self.explode()
             self.set_state(5)

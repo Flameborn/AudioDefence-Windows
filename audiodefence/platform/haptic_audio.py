@@ -7,7 +7,8 @@ That is how PlayStation games make a DualSense feel like rain or a heartbeat rat
 rumble cannot reach it - so the port opens that sound card itself and plays into those two channels.
 
 What is played is the game's own: the heartbeat recording the game has just played is felt in the hands,
-filtered to the low range the actuators render, and a hit and a melee blow are short low thumps.  Over
+filtered to the low range the actuators render; a hit, a melee blow, a kill, an explosion, the tornado's
+gust and the player's death each have a waveform of their own (WAVES).  Over
 Bluetooth Windows offers no such sound card, and the controller falls back to SDL's rumble (haptics.py).
 
 The mixing runs on SDL's audio thread, a few hundred samples at a time; everything else happens on the
@@ -32,25 +33,28 @@ LOW_PASS_HZ = 250.0
 RETRY_SECONDS = 5.0
 
 
-def _one_pole(signal: np.ndarray, cutoff: float) -> np.ndarray:
-    a = np.exp(-2.0 * np.pi * cutoff / RATE)
-    out = np.empty_like(signal)
-    y = 0.0
-    for i, x in enumerate(signal):                        # short signals: a plain loop is fast enough
-        y = (1.0 - a) * x + a * y
-        out[i] = y
-    return out
+def low_pass(signal: np.ndarray, cutoff: float) -> np.ndarray:
+    """Everything above `cutoff` rolled away steeply (a fourth-order curve), in one pass over the spectrum."""
+    if len(signal) < 2:
+        return signal.astype(np.float32)
+    spectrum = np.fft.rfft(signal)
+    hertz = np.fft.rfftfreq(len(signal), 1.0 / RATE)
+    spectrum *= 1.0 / (1.0 + (hertz / cutoff) ** 4)
+    return np.fft.irfft(spectrum, len(signal)).astype(np.float32)
+
+
+def _normal(wave: np.ndarray) -> np.ndarray:
+    peak = float(np.abs(wave).max()) if len(wave) else 0.0
+    return (wave / peak).astype(np.float32) if peak > 0 else wave.astype(np.float32)
 
 
 def from_sound(data: np.ndarray, rate: int) -> np.ndarray:
-    """A recording as an actuator waveform: mono, at 48 kHz, low-passed twice, peak at 1."""
+    """A recording as an actuator waveform: mono, at 48 kHz, low-passed, peak at 1."""
     mono = data.mean(axis=1) if data.ndim > 1 else data
     if rate != RATE and len(mono) > 1:
         positions = np.arange(int(len(mono) * RATE / rate)) * (rate / RATE)
         mono = np.interp(positions, np.arange(len(mono)), mono)
-    wave = _one_pole(_one_pole(mono.astype(np.float32), LOW_PASS_HZ), LOW_PASS_HZ)
-    peak = float(np.abs(wave).max()) if len(wave) else 0.0
-    return (wave / peak).astype(np.float32) if peak > 0 else wave.astype(np.float32)
+    return _normal(low_pass(mono.astype(np.float32), LOW_PASS_HZ))
 
 
 def thump(hertz: float, seconds: float) -> np.ndarray:
@@ -59,8 +63,51 @@ def thump(hertz: float, seconds: float) -> np.ndarray:
     return (np.sin(2 * np.pi * hertz * t) * np.exp(-t / (seconds / 4.0))).astype(np.float32)
 
 
-#: the knocks for what has no recording of its own (a hit's sound is a gun's, not something to feel)
-WAVES = {'hit': thump(170.0, 0.035), 'multi_hit': thump(150.0, 0.06), 'melee': thump(70.0, 0.11)}
+def rumble(seconds: float, cutoff: float, seed: int, hold: float = 0.3) -> np.ndarray:
+    """A low rumble - noise under `cutoff` - that comes in at once and fades over `seconds`, holding at
+    full for the first `hold` of it."""
+    n = int(RATE * seconds)
+    noise = np.random.default_rng(seed).standard_normal(n).astype(np.float32)
+    t = np.arange(n) / RATE
+    fade = np.clip((seconds - t) / (seconds * (1.0 - hold)), 0.0, 1.0) ** 2
+    return _normal(low_pass(noise, cutoff) * np.minimum(1.0, t / 0.005) * fade)
+
+
+def _mix(a: np.ndarray, b: np.ndarray, gain: float) -> np.ndarray:
+    """`a` with `b` laid over it at `gain`, the shorter one padded with silence."""
+    out = np.zeros(max(len(a), len(b)), np.float32)
+    out[:len(a)] += a
+    out[:len(b)] += gain * b
+    return _normal(out)
+
+
+class _Waves(dict):
+    """The waveforms for what has no recording of its own (a hit's sound is a gun's, not something to
+    feel), made the first time each is wanted."""
+    MAKERS = {
+        'heartbeat': lambda: thump(55.0, 0.12),               # when no recording is given
+        'hit': lambda: thump(170.0, 0.05),
+        'melee': lambda: thump(70.0, 0.13),
+        'blocked': lambda: thump(260.0, 0.03),
+        'kill': lambda: _mix(thump(55.0, 0.2), thump(90.0, 0.12), 0.5),
+        'explosion': lambda: rumble(0.6, 90.0, 1),
+        'gust': lambda: rumble(0.4, 60.0, 2, hold=0.1) * 0.7,
+        'death': lambda: _mix(rumble(1.1, 70.0, 3, hold=0.4), thump(40.0, 1.0), 0.6),
+    }
+
+    def __missing__(self, kind):
+        maker = self.MAKERS.get(kind)
+        if maker is None:
+            return None
+        wave = self[kind] = maker().astype(np.float32)
+        return wave
+
+    def get(self, kind, default=None):
+        wave = self[kind]
+        return default if wave is None else wave
+
+
+WAVES = _Waves()
 
 
 class HapticAudio:

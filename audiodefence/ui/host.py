@@ -137,6 +137,13 @@ class ScreenManager:
             if top is not None:
                 top.mouse_motion(event)
 
+    def pads_changed(self) -> None:
+        """PORT ADDITION: a controller came or went; a screen that shows something about it is told."""
+        top = self.top()
+        refresh = getattr(top, 'pads_changed', None)
+        if refresh is not None:
+            refresh()
+
     # PORT ADDITION: a game controller.  In play its buttons are the game's own actions (pad.PadMap); on any
     # other screen they are the keys that screen already understands, so every menu works with a pad without
     # knowing one exists.  The key presses made here carry `pad`, so a key being captured in Settings is

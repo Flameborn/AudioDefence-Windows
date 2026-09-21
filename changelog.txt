@@ -27,7 +27,13 @@ Settings has a Joystick tab. It names the controller you have connected, turns v
 The Shield zombie, and a few others, no longer die in silence when the killing hit is critical, which happened often with melee. Their hit sound was cut off and no death sound played.
 When two zombies die close together at the end of a wave, the second one's death sound is no longer cut off.
 A DualSense plugged in by USB plays the heartbeat you hear in its grips, using the fine haptics PlayStation games use instead of plain rumble.
-With a controller connected, the tutorial text names its buttons instead of the keys, like: use the R2 button to fire your weapon.
+The Joystick tab has a Names in hints and tutorial option, there while a controller is connected. Set it to Controller buttons and the hints and the tutorial text name the controller's buttons instead of the keys, like: press Cross to copy the results, or use the R2 button to fire your weapon. Enter or Shift+Enter switches it.
+Connecting or unplugging a controller while the game is open updates the Joystick tab at once.
+Vibration and the trigger feel each have four settings in the Joystick tab: Off, Light, Medium and Strong. Enter goes to the next and Shift+Enter to the previous.
+R2's trigger feel is much softer than it was, at Medium.
+A hit is felt as hard as it hurts, so a big gun's hit is stronger than a small one's.
+The controller vibrates when a zombie dies, for an explosion, harder the closer it is, when the tornado pushes zombies back, when a shot hits the Shield zombie's shield, and when a zombie kills you.
+Hits from power-ups and explosions are felt too.
 
 26.09.20:
 Initial release.

@@ -5,12 +5,21 @@ vibrate sound - so everything here is the port's own, for players with a control
 
 * the **heartbeat** that plays when a zombie is close (``ADPlayer``'s proximity heartbeat, player.py) is
   felt on each beat, harder the closer the zombie is, as the sound is louder;
-* a **shot that hits** is a short tap, and a shot that hits several zombies at once a firmer one;
-* a **melee hit** is a heavier thud than a shot, and a swing that misses is felt as nothing.
+* a **hit** on a zombie is felt as hard as the damage it did - a Micro SMG round a tap, a Sawn-off blast or
+  a Bazooka a jolt - gunfire sharp, a melee blow a heavy thud; a shield that stops a shot is a small knock;
+* a zombie **killed**, by anything, is a thump of its own;
+* an **explosion** - a grenade, a rocket, the fireworks, a Farty or a car going up - is a rumble, heavier
+  the closer it is;
+* a gust of the **tornado** pushing the zombies back is a soft push;
+* and **dying** - a zombie reaching you - is a long, heavy shudder.
+
+What happens in one pass of the game loop is felt as one pulse: a shotgun blast into three zombies is one
+jolt, firmer for the extra two, not three buzzes over each other.  Settings -> Joystick -> Vibration scales
+it all (light, medium, strong) or turns it off.
 
 Every pad that can rumble does, through SDL.  A DualSense on USB is played its fine haptics instead
-(haptic_audio.py): the heartbeat recording the game has just played, felt as it is heard, and low knocks for
-the hits.  Nothing here waits: a pulse is sent and the pad times it.
+(haptic_audio.py): the heartbeat recording the game has just played, felt as it is heard, and a waveform of
+its own for each of the rest.  Nothing here waits: a pulse is sent and the pad times it.
 """
 from __future__ import annotations
 
@@ -18,12 +27,30 @@ import logging
 
 log = logging.getLogger('platform.haptics')
 
-#: (low-frequency motor, high-frequency motor, milliseconds): the heavy motor is the thump, the light one
-#: the buzz, so a heartbeat is nearly all thump and a gunshot's hit mostly buzz
-HEARTBEAT = (1.0, 0.1, 70)
-HIT = (0.25, 0.6, 50)
-MULTI_HIT = (0.45, 0.8, 70)
-MELEE_HIT = (0.9, 0.35, 120)
+#: Settings -> Joystick -> Vibration: how much of each pulse is felt
+LEVEL_SCALE = {'off': 0.0, 'light': 0.5, 'medium': 0.8, 'strong': 1.0}
+
+#: kind -> (low-frequency motor, high-frequency motor, milliseconds) at strength s: the heavy motor is the
+#: thump, the light one the buzz, so a melee blow is mostly thump and a bullet's hit mostly buzz
+SHAPES = {
+    'heartbeat': lambda s: (s, 0.1 * s, 70),
+    'hit': lambda s: (0.7 * s, s, int(70 + 80 * s)),
+    'melee': lambda s: (s, 0.4 * s, int(90 + 90 * s)),
+    'blocked': lambda s: (0.15 * s, 0.5 * s, 40),
+    'kill': lambda s: (0.8 * s, 0.5 * s, 150),
+    'explosion': lambda s: (s, 0.6 * s, int(250 + 350 * s)),
+    'gust': lambda s: (0.4 * s, 0.2 * s, 350),
+    'death': lambda s: (s, 0.9 * s, 1000),
+}
+
+#: the damage a hit does, as how hard it is felt: every hit that lands is at least half strength - a Micro
+#: SMG round (5 damage) is 0.59, a Revolver's (10) 0.64 - and damage adds the rest, up to the full jolt at
+#: 80, a Bazooka's or a Claymore's at their best
+FULL_DAMAGE = 80.0
+
+
+def damage_strength(damage: float) -> float:
+    return min(1.0, 0.5 + 0.5 * (max(0.0, damage) / FULL_DAMAGE) ** 0.6)
 
 
 class Haptics:
@@ -37,47 +64,84 @@ class Haptics:
 
     def __init__(self):
         self.sent: list = []                              # the last pulses, for tests: (low, high, ms)
+        self.played: list = []                            # the last haptics played, for tests: (what, gain)
+        self.pending: dict = {}                           # kind -> [strongest, how many] this pass
+        self.flush_due = False
 
     # --- what the game calls -------------------------------------------------------------------------
     def heartbeat(self, closeness: float, recording: str | None = None) -> None:
-        """One beat.  `closeness` is ADPlayer's, 0 at the edge of hearing to 1 at arm's length; the beat's
-        strength follows the sound's own gain curve (closeness squared * 0.7 + 0.3).  `recording` is the
-        heartbeat file the game has just played, which a DualSense's haptics play as they are."""
+        """One beat, felt at once.  `closeness` is ADPlayer's, 0 at the edge of hearing to 1 at arm's
+        length; the beat's strength follows the sound's own gain curve (closeness squared * 0.7 + 0.3).
+        `recording` is the heartbeat file the game has just played, which a DualSense plays as it is."""
         strength = max(0.0, min(1.0, closeness)) ** 2 * 0.7 + 0.3
-        low, high, ms = HEARTBEAT
-        self._feel(('recording', recording), strength, (low * strength, high * strength, ms))
+        self._send({'heartbeat': [strength, 1]}, recording)
 
-    def hit(self, count: int = 1) -> None:
-        """A shot, or an explosion, that hit `count` zombies."""
-        if count > 0:
-            self._feel(('wave', 'multi_hit' if count > 1 else 'hit'), 1.0, MULTI_HIT if count > 1 else HIT)
+    def hit(self, damage: float, melee: bool = False) -> None:
+        """A zombie hit for `damage`, by a melee weapon or by anything else: a bullet, a blast, a
+        power-up."""
+        self._add('melee' if melee else 'hit', damage_strength(damage))
 
-    def melee_hit(self) -> None:
-        self._feel(('wave', 'melee'), 1.0, MELEE_HIT)
+    def blocked(self) -> None:
+        """A shot a zombie's shield stopped."""
+        self._add('blocked', 0.5)
 
-    # --- the pads ------------------------------------------------------------------------------------
-    def _feel(self, fine, gain: float, rumble) -> None:
-        """A DualSense with its haptics gets `fine` (a recording or one of haptic_audio.WAVES) at `gain`;
-        every other pad the rumble pulse (low, high, ms)."""
+    def kill(self) -> None:
+        self._add('kill', 0.8)
+
+    def explosion(self, distance: float) -> None:
+        """An explosion `distance` from the player: full within a metre or so, a murmur at eight."""
+        self._add('explosion', max(0.2, min(1.0, 1.0 - (distance - 1.0) / 7.0)))
+
+    def gust(self) -> None:
+        self._add('gust', 0.6)
+
+    def player_killed(self) -> None:
+        self._add('death', 1.0)
+
+    def sample(self) -> None:
+        """What Settings plays when the strength is changed: a melee blow at that strength, at once."""
+        self._send({'melee': [0.8, 1]})
+
+    # --- one pulse per pass --------------------------------------------------------------------------
+    def _add(self, kind: str, strength: float) -> None:
+        entry = self.pending.setdefault(kind, [0.0, 0])
+        entry[0] = max(entry[0], strength)
+        entry[1] += 1
+        if not self.flush_due:
+            self.flush_due = True
+            from .runloop import RunLoop
+            RunLoop.main().call_soon(self._flush)
+
+    def _flush(self) -> None:
+        events, self.pending, self.flush_due = self.pending, {}, False
+        if events:
+            self._send(events)
+
+    def _send(self, events: dict, recording: str | None = None) -> None:
+        """events: kind -> [strongest, count].  Several of a kind are the strongest, and a little more for
+        each of the rest; the pulse sent is the strongest of the kinds on each motor, and the longest."""
         from ..game.parameters import GameParameters
         from .haptic_audio import WAVES, HapticAudio
         from .pad import Pads
         pads = Pads.shared()
-        if not pads.pads or not GameParameters.shared().vibration():
+        scale = LEVEL_SCALE.get(GameParameters.shared().vibration_level(), 0.0)
+        if not pads.pads or scale <= 0.0:
             return
+        strengths = {kind: min(1.0, s + 0.1 * (n - 1)) for kind, (s, n) in events.items()}
         skip = set()
         if pads.dualsenses and HapticAudio.shared().available():
             audio = HapticAudio.shared()
-            kind, what = fine
-            wave = audio.recording(what) if kind == 'recording' and what else WAVES.get(what)
-            if wave is None and kind == 'recording':
-                wave = WAVES['melee']                     # no file given: a heartbeat-like knock
-            audio.play(wave, gain)
-            self.played = (self.played + [(what, round(gain, 3))])[-20:]
+            for kind, s in strengths.items():
+                wave = audio.recording(recording) if kind == 'heartbeat' and recording else WAVES.get(kind)
+                audio.play(wave, s * scale)
+                self.played = (self.played + [(kind, round(s * scale, 3))])[-20:]
             skip = set(pads.dualsenses)
-        self._pulse(*rumble, skip=skip)
-
-    played: list = []                                     # the last haptics played, for tests: (what, gain)
+        low = high = 0.0
+        ms = 0
+        for kind, s in strengths.items():
+            k_low, k_high, k_ms = SHAPES[kind](s)
+            low, high, ms = max(low, k_low * scale), max(high, k_high * scale), max(ms, k_ms)
+        self._pulse(low, high, ms, skip)
 
     def _pulse(self, low: float, high: float, ms: int, skip=frozenset()) -> None:
         from .pad import Pads

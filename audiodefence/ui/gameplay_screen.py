@@ -254,10 +254,11 @@ class GameplayScreen(Screen):
         if pads.shaken() and playing:
             c.motion_ended(True)
         padmap = PadMap.shared()
-        playing = playing and GameParameters.shared().trigger_effects()
+        level = GameParameters.shared().trigger_level()
+        playing = playing and level != 'off'
         gun = playing and 'righttrigger' in padmap.names('fire')
         reload = playing and 'lefttrigger' in padmap.names('reload')
-        pads.set_triggers('gun and reload' if gun and reload else 'gun' if gun else 'off')
+        pads.set_triggers('gun and reload' if gun and reload else 'gun' if gun else 'off', level)
 
     # --- per pass --------------------------------------------------------------------------------
     def frame(self) -> None:

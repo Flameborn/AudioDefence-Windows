@@ -211,27 +211,60 @@ class GameParameters:
         percentages barely change anything near the top and drop to nothing in the last step or two."""
         return (self.menu_music_volume() / 100.0) ** 2
 
-    #: PORT ADDITION: whether a game controller vibrates (platform/haptics.py), and whether a DualSense's
-    #: triggers are given their feel in play (platform/pad.py).  Both on by default: a player holding a
-    #: controller that can do either expects it to.
-    DEFAULT_VIBRATION = True
-    DEFAULT_TRIGGER_EFFECTS = True
+    #: PORT ADDITION: how strongly a game controller vibrates (platform/haptics.py), and how stiff a
+    #: DualSense's triggers are in play (platform/pad.py): off, light, medium or strong.  Medium by default:
+    #: a player holding a controller that can do either expects it to, and not to be shaken out of it.  An
+    #: older settings file kept these as on and off, which read as medium and off.
+    FEEL_LEVELS = (('off', 'Off'), ('light', 'Light'), ('medium', 'Medium'), ('strong', 'Strong'))
+    DEFAULT_VIBRATION = 'medium'
+    DEFAULT_TRIGGER_FEEL = 'medium'
+
+    def _level(self, key: str, default: str) -> str:
+        value = self.defaults.object(key)
+        if value is True:
+            return default
+        if value is False:
+            return 'off'
+        return value if value in dict(self.FEEL_LEVELS) else default
+
+    def vibration_level(self) -> str:
+        return self._level('vibration', self.DEFAULT_VIBRATION)
+
+    def set_vibration_level(self, level: str) -> None:
+        self.defaults.set_object(level, 'vibration')
+        self.defaults.synchronize()
 
     def vibration(self) -> bool:
-        value = self.defaults.object('vibration')
-        return self.DEFAULT_VIBRATION if value is None else bool(value)
+        return self.vibration_level() != 'off'
 
-    def set_vibration(self, value: bool) -> None:
-        self.defaults.set_bool(bool(value), 'vibration')
+    def trigger_level(self) -> str:
+        return self._level('triggerEffects', self.DEFAULT_TRIGGER_FEEL)
+
+    def set_trigger_level(self, level: str) -> None:
+        self.defaults.set_object(level, 'triggerEffects')
         self.defaults.synchronize()
 
     def trigger_effects(self) -> bool:
-        value = self.defaults.object('triggerEffects')
-        return self.DEFAULT_TRIGGER_EFFECTS if value is None else bool(value)
+        return self.trigger_level() != 'off'
 
-    def set_trigger_effects(self, value: bool) -> None:
-        self.defaults.set_bool(bool(value), 'triggerEffects')
+    #: PORT ADDITION: whether the hints and the tutorial text name the keyboard's keys or, while one is
+    #: connected, a game controller's buttons (platform/pad.menu_words, game/tutorial_text.py).  Keys by
+    #: default, as they always did.
+    KEY_NAMES = (('keys', 'Keyboard keys'), ('buttons', 'Controller buttons'))
+    DEFAULT_KEY_NAMES = 'keys'
+
+    def key_names(self) -> str:
+        value = self.defaults.object('keyNames')
+        return value if value in dict(self.KEY_NAMES) else self.DEFAULT_KEY_NAMES
+
+    def set_key_names(self, value: str) -> None:
+        self.defaults.set_object(value, 'keyNames')
         self.defaults.synchronize()
+
+    def controller_names(self) -> bool:
+        """Whether to name a controller's buttons right now: chosen, and a controller connected."""
+        from ..platform.pad import Pads
+        return self.key_names() == 'buttons' and Pads.shared().connected()
 
     #: The version the player answered "no" to, so the same build is not offered at every launch.  Asking
     #: again for a *newer* build is right, so this stores which one was refused rather than a flag.

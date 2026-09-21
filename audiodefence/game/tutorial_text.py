@@ -4,8 +4,8 @@ The tutorial's announcer lines tell you which part of the phone to touch - tilt 
 corner button.  None of that exists on a keyboard, so a player following the audio is told to do something
 they cannot do.  Each line is given an equivalent here, written for this port by the user, with the key
 names filled in from the live key map: rebind Fire and the shoot line says the new key.  With a game
-controller connected the same lines name its buttons instead (``_pad_words``), and aiming gets a line of
-its own, since it is a stick rather than two keys.
+controller connected, and the player's choice in Settings -> Joystick, the same lines name its buttons
+instead (``_pad_words``), and aiming gets a line of its own, since it is a stick rather than two keys.
 
 The brick scripts name these sounds with a placeholder - ``announcer_tutorial_aim_CONTROLMODE``,
 ``announcer_tutorial_shoot_BUTTONMODE`` - which ``ADSound.init_sound`` 0x1000b3594 resolves against the
@@ -51,9 +51,10 @@ def topic_for(sound_key: str):
     return topic if topic in LINES else None
 
 
-#: PORT ADDITION: with a game controller connected the lines name its buttons instead - "the {fire} key"
-#: becomes "the R2 button", a flick of a stick "a stick flicked up" - and aiming, which is a stick and not
-#: two keys, has a line of its own
+#: PORT ADDITION: with a game controller connected, and Settings -> Joystick -> Names in hints and tutorial
+#: set to Controller buttons, the lines name its buttons instead - "the {fire} key" becomes "the R2 button", a
+#: flick of a stick "a stick flicked up" - and aiming, which is a stick and not two keys, has a line of its
+#: own
 PAD_AIM = 'Push either stick left or right to aim.'
 
 
@@ -69,15 +70,15 @@ def _pad_words(action: str):
 
 
 def text_for(sound_key: str):
-    """The line for this announcer sound, with the keys that are bound right now, or None - or, while a
-    controller is connected, with its buttons."""
-    from ..platform.pad import Pads
+    """The line for this announcer sound, with the keys that are bound right now, or None - or, when the
+    player has chosen it and a controller is connected, with its buttons."""
+    from .parameters import GameParameters
     topic = topic_for(sound_key)
     if topic is None:
         return None
     keymap = KeyMap.shared()
     line = LINES[topic]
-    if Pads.shared().connected():
+    if GameParameters.shared().controller_names():
         if topic == 'aim':
             return PAD_AIM
         for action in set(re.findall(r'\{(\w+)\}', line)):

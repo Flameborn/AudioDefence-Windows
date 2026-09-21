@@ -117,6 +117,29 @@ def input_name(name: str, kind: str = 'generic', controller_name: str = '') -> s
     return NAMES.get(kind, NAMES['generic']).get(name) or COMMON_NAMES.get(name) or name
 
 
+# --- the hints, in a controller's words -----------------------------------------------------------------
+#: the keys the port's hints name, and the controller input that stands for each in a menu (ui/host.py):
+#: longest first, so "Shift plus Enter" is not read as a Shift and an Enter
+_MENU_KEY_WORDS = ((r'Shift plus Enter|Shift\+Enter|Shift Enter', 'x'), (r'\bEnter\b', 'a'),
+                   (r'\bDelete\b', 'y'), (r'\bEscape\b', 'b'))
+
+
+def menu_words(text):
+    """A hint as it should be spoken: as written, or - when the player has chosen Controller buttons in
+    Settings -> Joystick and a controller is connected - with the keys it names turned into the controller
+    buttons that do the same in a menu: "Press Cross to select", "Square for the previous"."""
+    if not text:
+        return text
+    from ..game.parameters import GameParameters
+    if not GameParameters.shared().controller_names():
+        return text
+    import re
+    pads = Pads.shared()
+    for pattern, name in _MENU_KEY_WORDS:
+        text = re.sub(pattern, pads.name_of(name), text)
+    return text
+
+
 # --- what the buttons do in play ------------------------------------------------------------------------
 #: action -> default inputs; a dict means one binding per control scheme, as in keymap.py.  Turning has no
 #: entry: it is the sticks' sideways movement, read as a speed rather than pressed (Pads.turn).
@@ -288,10 +311,12 @@ def sdl():
 # breaks.  Positions and strength run 0 to 255.
 DS5_RIGHT_TRIGGER, DS5_LEFT_TRIGGER = 0x04, 0x08
 TRIGGER_OFF = (0x05,)
-#: R2 resists from a quarter of its travel and breaks at half, where it fires (TRIGGER_DOWN)
-GUN_TRIGGER = (0x02, 0x40, 0x80, 0xC0)
-#: L2, the reload under Button, pulls against a light spring
-RELOAD_TRIGGER = (0x01, 0x40, 0x50)
+#: R2 resists from a quarter of its travel and breaks at half, where it fires (TRIGGER_DOWN), as stiffly as
+#: Settings -> Joystick -> Trigger feel says.  0xC0 was found too hard to fire with; strong is well below.
+GUN_TRIGGER = {'light': (0x02, 0x40, 0x80, 0x28), 'medium': (0x02, 0x40, 0x80, 0x50),
+               'strong': (0x02, 0x40, 0x80, 0x90)}
+#: L2, the reload under Button, pulls against a spring
+RELOAD_TRIGGER = {'light': (0x01, 0x40, 0x18), 'medium': (0x01, 0x40, 0x30), 'strong': (0x01, 0x40, 0x50)}
 
 
 def ds5_effect(right=None, left=None) -> bytes:
@@ -335,6 +360,7 @@ class Pads:
         self.last_shake = 0.0
         self.started = False
         self.speak = None                                 # set by the host: says a pad came or went
+        self.changed = None                               # set by the host: the screens are told
 
     def start(self) -> None:
         try:
@@ -403,8 +429,11 @@ class Pads:
         """[(pressed, source, input), ...] for a controller event; None for anything else."""
         t = event.type
         if t == pygame.CONTROLLERDEVICEADDED:
-            if self.started and self._open(event.device_index) is not None and self.speak:
-                self.speak('%s connected.' % self.last_name())
+            if self.started and self._open(event.device_index) is not None:
+                if self.speak:
+                    self.speak('%s connected.' % self.last_name())
+                if self.changed:
+                    self.changed()
             return []
         if t == pygame.CONTROLLERDEVICEREMOVED:
             return self._removed(self._iid(event))
@@ -485,6 +514,8 @@ class Pads:
         log.info('controller disconnected: %s', name)
         if self.speak:
             self.speak('%s disconnected.' % name)
+        if self.changed:
+            self.changed()
         return out
 
     # --- shaking --------------------------------------------------------------------------------------
@@ -513,20 +544,24 @@ class Pads:
         return False
 
     # --- the DualSense's triggers --------------------------------------------------------------------
-    def set_triggers(self, feel) -> None:
+    def set_triggers(self, feel, level: str = 'medium') -> None:
         """Give every DualSense the trigger feel `feel` names - 'gun' (R2 only), 'gun and reload' (R2
-        and L2) or 'off' - unless it has it already.  Other pads have no such thing and are left alone."""
+        and L2) or 'off' - at `level` ('light', 'medium' or 'strong'), unless it has it already.  Other pads
+        have no such thing and are left alone."""
         lib = sdl()
         if lib is None:
             return
+        if level not in GUN_TRIGGER:
+            feel = 'off'
+        wanted = feel if feel == 'off' else '%s, %s' % (feel, level)
         for iid in list(self.dualsenses):
-            if self.triggers_set.get(iid) == feel or iid not in self.handles:
+            if self.triggers_set.get(iid) == wanted or iid not in self.handles:
                 continue
-            right = GUN_TRIGGER if feel in ('gun', 'gun and reload') else TRIGGER_OFF
-            left = RELOAD_TRIGGER if feel == 'gun and reload' else TRIGGER_OFF
+            right = GUN_TRIGGER[level] if feel in ('gun', 'gun and reload') else TRIGGER_OFF
+            left = RELOAD_TRIGGER[level] if feel == 'gun and reload' else TRIGGER_OFF
             data = ds5_effect(right, left)
             if lib.SDL_GameControllerSendEffect(self.handles[iid], data, len(data)) == 0:
-                self.triggers_set[iid] = feel
+                self.triggers_set[iid] = wanted
             else:
                 log.info('the trigger effect could not be sent to %s', self.names.get(iid))
                 self.dualsenses.discard(iid)              # do not try again every frame

@@ -148,14 +148,22 @@ class ControlSchemePanel:
             from ..platform.pad import PAD_DEFAULTS, PadMap, Pads
             pads = Pads.shared()
             t.cell('Controller', pads.last_name() if pads.connected() else 'none connected')
-            t.cell('Vibration', 'ON' if params.vibration() else 'OFF',
-                   hint='Press Enter to toggle: the heartbeat, and the shots and melee attacks that hit, '
-                        'felt on the controller.',
-                   action=self.toggle_vibration)
-            t.cell('Trigger feel', 'ON' if params.trigger_effects() else 'OFF',
-                   hint="Press Enter to toggle: on a DualSense, R2 feels like a gun's trigger while you "
-                        'play, and L2 has a light pull where it reloads.',
-                   action=self.toggle_trigger_effects)
+            levels = dict(params.FEEL_LEVELS)
+            t.cell('Vibration', levels[params.vibration_level()],
+                   hint='How strongly the controller vibrates, for hits, kills, explosions, the heartbeat '
+                        'and your death. Press Enter for the next setting and Shift plus Enter for the '
+                        'previous.',
+                   action=self.step_vibration, shift_action=self.step_vibration_back)
+            t.cell('Trigger feel', levels[params.trigger_level()],
+                   hint="How stiff a DualSense's triggers are while you play: R2 like a gun's trigger, L2 a "
+                        'pull where it reloads. Press Enter for the next setting and Shift plus Enter for '
+                        'the previous.',
+                   action=self.step_trigger_level, shift_action=self.step_trigger_level_back)
+            if pads.connected():                          # only while there is a controller to name
+                t.cell('Names in hints and tutorial', dict(params.KEY_NAMES)[params.key_names()],
+                       hint="Whether the hints and the tutorial text name the keyboard's keys or this "
+                            "controller's buttons. Press Enter or Shift plus Enter to switch.",
+                       action=self.toggle_key_names, shift_action=self.toggle_key_names)
             t.cell('Turn', 'either stick, sideways',
                    hint='The further a stick is pushed, the faster you turn.')
             padmap = PadMap.shared()
@@ -317,27 +325,44 @@ class ControlSchemePanel:
         params.set_remember_focus(params.DEFAULT_REMEMBER_FOCUS)
         params.set_check_updates(params.DEFAULT_CHECK_UPDATES)
         params.set_menu_music_volume(params.DEFAULT_MENU_MUSIC_VOLUME)
-        params.set_vibration(params.DEFAULT_VIBRATION)
-        params.set_trigger_effects(params.DEFAULT_TRIGGER_EFFECTS)
+        params.set_vibration_level(params.DEFAULT_VIBRATION)
+        params.set_trigger_level(params.DEFAULT_TRIGGER_FEEL)
+        params.set_key_names(params.DEFAULT_KEY_NAMES)
         App.apply_menu_music_volume()
         self.reload_data()
         self.announce('All settings reset to default. Your key and controller bindings are unchanged.')
 
     # --- joystick (PORT ADDITION) ----------------------------------------------------------------
-    def toggle_vibration(self) -> None:
-        params = GameParameters.shared()
-        params.set_vibration(not params.vibration())
-        self.reload_data()
-        self.announce('Vibration %s' % ('ON' if params.vibration() else 'OFF'))
-        if params.vibration():                            # so it can be felt that it is on
-            from ..platform.haptics import Haptics
-            Haptics.shared().melee_hit()
+    @staticmethod
+    def _next_level(level: str, step: int) -> str:
+        levels = [key for key, _text in GameParameters.FEEL_LEVELS]
+        return levels[(levels.index(level) + step) % len(levels)]
 
-    def toggle_trigger_effects(self) -> None:
+    def step_vibration(self, step: int = 1) -> None:
         params = GameParameters.shared()
-        params.set_trigger_effects(not params.trigger_effects())
+        params.set_vibration_level(self._next_level(params.vibration_level(), step))
         self.reload_data()
-        self.announce('Trigger feel %s' % ('ON' if params.trigger_effects() else 'OFF'))
+        self.announce('Vibration %s' % dict(params.FEEL_LEVELS)[params.vibration_level()])
+        from ..platform.haptics import Haptics            # so the new strength can be felt
+        Haptics.shared().sample()
+
+    def step_vibration_back(self) -> None:
+        self.step_vibration(-1)
+
+    def step_trigger_level(self, step: int = 1) -> None:
+        params = GameParameters.shared()
+        params.set_trigger_level(self._next_level(params.trigger_level(), step))
+        self.reload_data()
+        self.announce('Trigger feel %s' % dict(params.FEEL_LEVELS)[params.trigger_level()])
+
+    def step_trigger_level_back(self) -> None:
+        self.step_trigger_level(-1)
+
+    def toggle_key_names(self) -> None:
+        params = GameParameters.shared()
+        params.set_key_names('keys' if params.key_names() == 'buttons' else 'buttons')
+        self.reload_data()
+        self.announce('Names in hints and tutorial: %s' % dict(params.KEY_NAMES)[params.key_names()])
 
     def capture_pad(self, action: str, replace: bool = False) -> None:
         from ..platform.pad import PadMap, Pads
@@ -507,6 +532,17 @@ class SettingsScreen(ViewControllerScreen):
             self.control_scheme.move_category(where)
             return
         super().key_down(event)
+
+    def pads_changed(self) -> None:
+        """PORT ADDITION: a controller came or went.  The Joystick category names it, and offers the
+        choice of names only while there is one, so it is laid out again; a button being set for a
+        controller that has gone is given up."""
+        from ..platform.pad import Pads
+        panel = self.control_scheme
+        if panel.pad_capturing is not None and not Pads.shared().connected():
+            panel.cancel_pad_capture()
+        if panel.category == 'joystick':
+            panel.reload_data()
 
     # PORT ADDITION: while a controller button is being set, the host hands this screen the controller's
     # presses as they are, instead of the keys they stand for in a menu

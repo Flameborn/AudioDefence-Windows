@@ -293,9 +293,14 @@ class BrickManager:
         App.delegate().start_menu_music('main_menu_theme')
 
     def blow_enemies_away(self, distance: float) -> None:      # 0x1000c3e88
+        pushed = False
         for t in self.all_potential_targets():
             if t.can_be_shot_at():
                 t.blow_away(distance)
+                pushed = True
+        if pushed:                                        # PORT ADDITION: the tornado's gust, felt
+            from ..platform.haptics import Haptics
+            Haptics.shared().gust()
 
     def closest_enemy(self):                                    # 0x1000c3ffc
         best = None
@@ -353,10 +358,6 @@ class BrickManager:
         hits = self.calculate_hit_enemies(weapon, S3DEngine.engine().head_orientation)
         for t in hits:
             t.hit_by_weapon(weapon)
-        if hits:                                          # PORT ADDITION: felt on a controller
-            from ..platform.haptics import Haptics
-            haptics = Haptics.shared()
-            haptics.melee_hit() if isinstance(weapon, MeleeWeapon) else haptics.hit(len(hits))
         if isinstance(weapon, MeleeWeapon):
             if not hits:
                 weapon.play_miss_sound()
@@ -387,9 +388,6 @@ class BrickManager:
                 notify_stats('UPDATE_MELEE_WEAPON_DATA', weapon.name, False)
             else:
                 notify_stats('UPDATE_WEAPON_DATA', weapon.name, True, False, False, False, -1.0)
-        if count:                                         # PORT ADDITION: felt on a controller
-            from ..platform.haptics import Haptics
-            Haptics.shared().melee_hit() if melee else Haptics.shared().hit(count)
         if melee:
             if count == 0:
                 weapon.play_miss_sound()
@@ -426,6 +424,8 @@ class BrickManager:
 
     def solve_explosion_with_dictionary(self, d: dict, position, weapon_name, ignore_tinnitus: bool) -> None:
         """0x1000c5c40"""
+        from ..platform.haptics import Haptics            # PORT ADDITION: every explosion felt, by distance
+        Haptics.shared().explosion((position[0] ** 2 + position[1] ** 2) ** 0.5)
         hits = []
         radius = ns_float_value(d.get('radius'))
         for t in self.all_potential_targets():
@@ -445,15 +445,11 @@ class BrickManager:
                 gvc.player.start_tinitus_with_intensity(p2 / -25 + 1)
         notify_stats('UPDATE_WEAPON_DATA', weapon_name, True, len(hits) != 0, False, False, -1.0)
         self.check_deaths_for_hit_enemies(hits, weapon_name)
-        return hits                                       # PORT ADDITION: for the controller's vibration
 
     def solve_explosion_of_projectile(self, projectile) -> None:   # 0x1000c6360
         w = projectile.weapon
         d = {'radius': projectile.explosion_radius, 'damages': w.damages, 'dispersal': w.dispersal}
-        hits = self.solve_explosion_with_dictionary(d, projectile.position, w.name, False)
-        if hits:                                          # PORT ADDITION: felt on a controller, as a shot is
-            from ..platform.haptics import Haptics
-            Haptics.shared().hit(len(hits))
+        self.solve_explosion_with_dictionary(d, projectile.position, w.name, False)
 
     def check_deaths_for_hit_enemies(self, hits: list, weapon_name) -> None:   # 0x1000c66a4
         from .missions import MissionManager
