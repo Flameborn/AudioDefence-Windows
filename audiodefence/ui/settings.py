@@ -54,11 +54,11 @@ CONTROL_ROWS = (('Button', 'Your keys press the four corner buttons of the phone
                 ('Gesture', 'Your keys tap and swipe anywhere on the screen, so Up switches weapon and '
                             'Down reloads', False))
 
-# PORT UI: Menus holds the settings that describe how the cursor moves through a screen, which is true
-# whatever you are driving it with; Keyboard holds the key bindings alone, so a Joystick category can sit
-# beside it later without anything moving again.
+# PORT UI: Keyboard holds the key bindings alone, so a Joystick category can sit beside it later without
+# anything moving again.  Miscellaneous is last and holds the rest: how the cursor moves through a
+# screen, whether the game looks for updates, and the one button that puts every setting back.
 CATEGORIES = (('aiming', 'Aiming'), ('controls', 'Controls'), ('sound', 'Sound'),
-              ('menus', 'Menus'), ('keyboard', 'Keyboard'), ('updates', 'Updates'))
+              ('keyboard', 'Keyboard'), ('misc', 'Miscellaneous'))
 SELECT_HINT = 'Press Enter to select.'
 
 
@@ -94,9 +94,6 @@ class ControlSchemePanel:
             t.cell('Turn sensitivity', self.sensitivity_text(),
                    hint='Press Enter for the next value, Shift plus Enter for the previous.',
                    action=self.step_sensitivity, shift_action=self.step_sensitivity_back)
-            t.cell('Restore aiming defaults',
-                   hint='Press Enter to put Gyro and the turn sensitivity back to default.',
-                   action=self.restore_aiming)
         elif self.category == 'controls':                 # cellForControlAtIndex: 0x1000b5d64
             for title, description, button in CONTROL_ROWS:
                 cell = t.cell(title, description, hint=SELECT_HINT,
@@ -109,7 +106,7 @@ class ControlSchemePanel:
             t.cell('Tutorial text', self.tutorial_text_text(),   # PORT ADDITION
                    hint='Press Enter for the next setting and Shift plus Enter for the previous.',
                    action=self.step_tutorial_text, shift_action=self.step_tutorial_text_back)
-        elif self.category == 'menus':                    # PORT ADDITION: how the cursor moves
+        elif self.category == 'misc':                     # PORT ADDITION: everything else
             t.cell('Menu arrows', self.menu_axis_text(),
                    hint='Press Enter to move through menus with the other pair; Control with an arrow, '
                         'or with Tab, jumps to the first or last.',
@@ -118,10 +115,14 @@ class ControlSchemePanel:
                    hint='Press Enter to toggle: when on, going back to a screen returns the cursor to the '
                         'row you left it on instead of the first one.',
                    action=self.toggle_remember_focus)
-            t.cell('Restore menu defaults',
-                   hint='Press Enter to put the menu arrows back to %s and turn the cursor memory off.'
-                        % self.menu_axis_text(GameParameters.DEFAULT_MENU_AXIS),
-                   action=self.restore_menus)
+            t.cell('Check for updates when the game starts', 'ON' if params.check_updates() else 'OFF',
+                   hint='Press Enter to toggle: when on, the main menu looks for a new build and tells '
+                        'you only if there is one.',
+                   action=self.toggle_check_updates)
+            t.cell('Reset all settings',
+                   hint='Press Enter to put every setting back to its default. Your key bindings stay as '
+                        'they are.',
+                   action=self.reset_all_settings)
         elif self.category == 'keyboard':                 # PORT ADDITION: the key bindings
             keymap = KeyMap.shared()
             scheme = mode_text(keymap.mode())
@@ -138,28 +139,6 @@ class ControlSchemePanel:
             t.cell('Restore default keys',
                    hint='Press Enter to put every key back to its default, in both control schemes.',
                    action=self.restore_keys)
-        elif self.category == 'updates':                  # PORT ADDITION: there is no App Store here
-            from ..platform import updater, version
-            from .updates import UpdateService
-            t.cell('This version', version.text(),
-                   hint='The build you are playing. Press Enter to check for a newer one.',
-                   action=self.check_for_updates)
-            t.cell('Check for updates',
-                   hint='Press Enter to ask GitHub whether there is a newer build.',
-                   action=self.check_for_updates)
-            release = UpdateService.shared().release
-            if release is not None:
-                t.cell('Download version %s' % version.text(release.tag),
-                       hint='Press Enter to download and install it. Your progress is kept.',
-                       action=self.install_update)
-            t.cell('Check when the game starts', 'ON' if params.check_updates() else 'OFF',
-                   hint='Press Enter to toggle: when on, the main menu looks for a new build and tells '
-                        'you only if there is one.',
-                   action=self.toggle_check_updates)
-            allowed, why_not = updater.can_update()
-            if not allowed:
-                t.cell('Updating is not available here', why_not.capitalize(),
-                       hint='Nothing to press.')
         self.click_on_every_row()
 
     def click_on_every_row(self) -> None:
@@ -229,13 +208,6 @@ class ControlSchemePanel:
     def step_sensitivity_back(self) -> None:
         self.step_sensitivity(-1)
 
-    def restore_aiming(self) -> None:
-        params = GameParameters.shared()
-        params.set_control_scheme(1)
-        params.set_sensivity(params.DEFAULT_SENSIVITY)
-        self.reload_data()
-        self.announce('Aiming restored: Gyro, sensitivity %s' % self.sensitivity_text())
-
     # --- controls --------------------------------------------------------------------------------
     def select_button_mode(self, button: bool) -> None:
         GameParameters.shared().set_button_mode(button)
@@ -287,25 +259,32 @@ class ControlSchemePanel:
         self.reload_data()
         self.announce('Remember cursor position %s' % ('ON' if params.remember_focus() else 'OFF'))
 
-    # --- updates (PORT ADDITION) -----------------------------------------------------------------
+    # --- miscellaneous (PORT ADDITION) -----------------------------------------------------------
     def toggle_check_updates(self) -> None:
         params = GameParameters.shared()
         params.set_check_updates(not params.check_updates())
         self.reload_data()
-        self.announce('Check when the game starts %s' % ('ON' if params.check_updates() else 'OFF'))
+        self.announce('Check for updates when the game starts %s'
+                      % ('ON' if params.check_updates() else 'OFF'))
 
-    def check_for_updates(self) -> None:
-        """The same check the main menu's button makes; here it also grows the Download row."""
-        from .updates import check_now
-        check_now(self.screen.host, self.announce, after=self.reload_data)
+    def reset_all_settings(self) -> None:
+        """Every setting on these pages back to where a new profile starts, except the key bindings -
+        they have their own Restore default keys, and joystick bindings will be kept out the same way.
 
-    def install_update(self) -> None:
-        from .updates import UpdateService, offer
-        release = UpdateService.shared().release
-        if release is None:
-            self.announce('There is nothing to install.')
-            return
-        offer(self.screen.host, release)
+        Each value is what the setting's own getter answers when nothing is stored, so a reset profile
+        and a new one cannot disagree.  The setters are all the Settings rows ever call, so going
+        through them here misses nothing the rows would have done."""
+        params = GameParameters.shared()
+        params.set_control_scheme(1)                              # last_control_scheme with nothing stored
+        params.set_sensivity(params.DEFAULT_SENSIVITY)
+        params.set_button_mode(GameParameters.screen_reader_running)   # last_button_mode, likewise
+        params.set_announcer(True)                                # last_announcer_value, likewise
+        params.set_tutorial_text_mode(params.DEFAULT_TUTORIAL_TEXT)
+        params.set_menu_axis(params.DEFAULT_MENU_AXIS)
+        params.set_remember_focus(params.DEFAULT_REMEMBER_FOCUS)
+        params.set_check_updates(params.DEFAULT_CHECK_UPDATES)
+        self.reload_data()
+        self.announce('All settings reset to default. Your key bindings are unchanged.')
 
     def toggle_menu_axis(self) -> None:
         params = GameParameters.shared()
@@ -354,15 +333,6 @@ class ControlSchemePanel:
         KeyMap.shared().restore_defaults()
         self.reload_data()
         self.announce('Default keys restored in both control schemes')
-
-    def restore_menus(self) -> None:
-        params = GameParameters.shared()
-        params.set_menu_axis(GameParameters.DEFAULT_MENU_AXIS)
-        params.set_remember_focus(GameParameters.DEFAULT_REMEMBER_FOCUS)
-        self.reload_data()
-        self.announce('Menu defaults restored: arrows %s, remember cursor position %s'
-                      % (self.menu_axis_text(),
-                         'ON' if params.remember_focus() else 'OFF'))
 
 
 @register('ADSettingsViewController')

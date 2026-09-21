@@ -207,15 +207,15 @@ spoken the way people say them, so the two Enter keys are "Enter" and "Numpad
 Enter".
 
 The arrows that move through a screen are a setting: Left and Right by
-default, or Up and Down if you prefer them, in **Settings → Menus → Menu
+default, or Up and Down if you prefer them, in **Settings → Miscellaneous → Menu
 arrows**. Whichever pair you choose, Ctrl with it jumps to the first or last
 element, and Tab, Shift+Tab, Home and End work either way.
 
 The other pair changes tab. In the armory, Down and Up step through Weapons,
 Loadout and Powerup without walking to the bottom of the list first,
 and each one is named before it reads what you land on; Settings opens straight
-inside **Aiming**, and the same two keys move it to Controls, Sound and
-Keyboard — there is no list of categories to go through first. Choose Up and Down
+inside **Aiming**, and the same two keys move it to Controls, Sound, Keyboard
+and Miscellaneous — there is no list of categories to go through first. Choose Up and Down
 for moving through a screen and the two swap over, so the tabs land on Left and
 Right. Ctrl with the tab pair jumps to the first or last tab, exactly as Ctrl
 with the other pair jumps to the first or last element; Tab stays with the
@@ -224,7 +224,9 @@ from wherever you are. The ends hold rather than wrap, as everywhere else.
 
 Settings speaks every change and clicks like the original's buttons. Escape
 leaves it; the turn sensitivity and the key bindings live in Aiming and
-Keyboard. Quit is on the main menu.
+Keyboard. **Settings → Miscellaneous → Reset all settings** puts every setting
+back to how a new profile starts, except your key bindings, which Keyboard has
+its own Restore default keys for. Quit is on the main menu.
 
 ## Sharing a result
 
@@ -267,8 +269,12 @@ updater reads the archive's index over the network and compares it with what
 you already have, file by file, so a build that only fixes code is a download
 of a few megabytes rather than the whole game again.
 
-If you would rather it did not look, **Settings → Updates** has a switch for
-it, along with the version you are on and the same Check for updates button. Answering "Not yet" to a restart keeps the download:
+If you would rather it did not look, **Settings → Miscellaneous → Check for
+updates when the game starts** switches it off. The main menu's Check for
+updates button asks whenever you like, and its hint is the version you are on.
+Run from source, that button is a line saying updating is not available — a
+checkout is updated with git, not from a release. Answering "Not yet" to a
+restart keeps the download:
 the next time you start the game it offers to finish the job rather than
 fetching anything a second time.
 
@@ -355,7 +361,7 @@ nothing, or says something no keyboard player can act on.
 - Zombiepedia's preview button, its Next and Previous buttons, and the armory's upgrade button were
   unlabelled, double-labelled or silent about their price. Four strings written in capitals are spoken in
   sentence case; the screen keeps the capitals.
-- **Settings → Menus → Remember cursor position** (off by default) returns the cursor to the row you left
+- **Settings → Miscellaneous → Remember cursor position** (off by default) returns the cursor to the row you left
   a screen on.
 
 ### 3. Original bugs fixed

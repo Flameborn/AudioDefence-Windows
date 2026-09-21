@@ -1,7 +1,7 @@
 unrelease:
 The game checks for updates by itself and tells you when one is out. An update downloads only the files that changed, so a small fix is a small download, and your progress, settings and keys are untouched.
-Settings has an Updates page: the version you are on, a Check for updates button, and a switch for whether it checks at start-up.
 The main menu has a Check for updates button, between Settings and Quit, for when you want to ask it yourself.
+The main menu's Check for updates button tells you which version you are on. Run from source, it says updating is not available there instead, because a copy from GitHub updates with git.
 The pause menu has a Restart challenge button, between Resume and End Game. A challenge you have already lost no longer has to be played to the end. Endless games do not have it.
 The screen at the end of a run has a Copy results button, after an endless game and after a challenge you won or lost. It puts the results on the clipboard so you can paste them to somebody.
 The screen after a failed challenge reads out your kills, accuracy and time, which it never used to say.
@@ -12,6 +12,9 @@ A tarot card says how many diamonds you have now. Spend some in the armory, come
 After upgrading a power-up, the Upgrade button shows the new price at once. It used to offer the old one for about a second.
 Copy results puts a short list on the clipboard now: just the numbers, without the section headings or the game's version. After an Endless game it starts with the two tarot cards you played with.
 Copying results says Results copied to clipboard, instead of a long sentence.
+The Menus page in Settings is called Miscellaneous now and comes last. Besides the menu arrows and remember cursor position, it has the switch for checking for updates when the game starts.
+Settings, Miscellaneous has a Reset all settings button. It puts every setting back to its default and leaves your key bindings alone.
+The Restore aiming defaults and Restore menu defaults buttons are gone, now that Reset all settings does both.
 
 26.09.20:
 Initial release.

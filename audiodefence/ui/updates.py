@@ -4,7 +4,8 @@ The engine is in ``platform/updater.py``; this is the part the player meets.  Th
 
 * ``UpdateService`` - one worker thread at a time, doing the waiting-on-a-network parts, handing every
   result back to the run loop with ``call_soon_threadsafe`` so nothing off the main thread touches a
-  screen.  The main menu asks it to look quietly; Settings asks it to look and to say so either way.
+  screen.  The main menu asks it to look quietly when it opens; its Check for updates button asks it to
+  look and to say so either way.
 * ``offer`` - the Yes/No the player answers.  It is the game's own alert, so it is read and driven the
   way every other screen is, rather than a Windows dialog a screen reader would announce differently.
 * ``DownloadScreen`` - what is on screen while the files come down: it says how far along it is at
@@ -230,8 +231,8 @@ def ask_to_restart(host, staging: str, remove, message: str) -> None:
                                   [('Restart now', yes), ('Not yet', later)]))
 
 
-def check_now(host, speak, after=None) -> None:
-    """A check the player asked for, from the main menu or from Settings.
+def check_now(host, speak) -> None:
+    """A check the player asked for, with the main menu's Check for updates button.
 
     The quiet check at start-up says nothing when there is no update, which is right when nobody asked;
     a check somebody pressed has to answer either way, or it looks broken."""
@@ -247,8 +248,6 @@ def check_now(host, speak, after=None) -> None:
         if release is None:
             speak('You have the newest version, %s.' % version.text())
             return
-        if after is not None:
-            after()                                       # Settings grows a Download row at this point
         offer(host, release)
 
     if service.check(result):

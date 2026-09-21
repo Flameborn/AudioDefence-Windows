@@ -67,7 +67,7 @@ hints.
 | Ctrl+Down / Ctrl+Up (the unused pair) | last / first tab or category |
 
 PORT ADDITION: which pair of arrows moves the cursor is a setting - Left and Right by default, Up and Down
-instead if Settings -> Menus -> Menu arrows is switched (`GameParameters.menu_axis`, defaults key
+instead if Settings -> Miscellaneous -> Menu arrows is switched (`GameParameters.menu_axis`, defaults key
 `menuAxis`).  The unused pair does nothing in a menu; Tab, Shift+Tab, Home and End are not affected.  A
 swipe has no direction to choose, so none of this comes from the original.
 
@@ -373,7 +373,7 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   `AccessibleScreen.first_content_element` skips the status bar's subtree (view #87, which owns Back, the
   currencies and Armory) when nothing else has decided where to go.  They are all still there, one step
   back.
-* PORT ADDITION: Settings -> Menus -> Remember cursor position, **off by default**.  When it is on,
+* PORT ADDITION: Settings -> Miscellaneous -> Remember cursor position, **off by default**.  When it is on,
   leaving a screen records the label the cursor was on and returning puts it back there - matching by label,
   since the rows are new objects after the rebuild.  Off, a screen opens at its first element the way the
   original always does.

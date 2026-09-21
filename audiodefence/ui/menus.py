@@ -144,11 +144,20 @@ class MainMenuScreen(ViewControllerScreen):
         # PORT ADDITION: the App Store updated the phone game, so the two buttons below it have no
         # counterpart in the nib.  This view is not a table, so the cursor follows the frames rather than
         # the order they are made in: both sit below the nib's buttons, and Quit below the other, to read
-        # Play, Info, Settings, Check for updates, Quit.  Check for updates is on the menu and not only in
-        # Settings because the start-up check is silent when there is nothing to report, and a player who
-        # hears nothing cannot tell that from a thing that is not working.
-        Button('Check for updates', (426, 330, 117, 41), parent=v, actions=[self.check_for_updates],
-               name='Check for updates (port)')
+        # Play, Info, Settings, Check for updates, Quit.  Check for updates is here because the start-up
+        # check is silent when there is nothing to report, and a player who hears nothing cannot tell that
+        # from a thing that is not working.  Its hint is the version, which is the other thing a player
+        # asking about updates wants to know.  Run from source there is nothing to update from - a
+        # checkout moves with git - so the button is replaced by a line that says so.
+        from .. import paths
+        from ..platform import version
+        if paths.FROZEN:
+            updates = Button('Check for updates', (426, 330, 117, 41), parent=v,
+                             actions=[self.check_for_updates], name='Check for updates (port)')
+            updates.hint = 'Current version is %s.' % version.text()
+        else:
+            View('Updating is not available here. This is the source version, so it updates with git '
+                 'rather than from a release.', (426, 330, 117, 41), parent=v, name='No updates (port)')
         # PORT ADDITION: iOS has no Quit.
         Button('Quit', (426, 379, 117, 41), parent=v, actions=[self.quit_button_pressed], name='Quit (port)')
         self.cheat_menu = Button('', (191, 240, 187, 33), parent=v, actions=[self.cheat_button_pressed],
