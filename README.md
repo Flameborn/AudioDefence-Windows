@@ -153,7 +153,7 @@ Settings, saves and the log live in `%APPDATA%\AudioDefence`, in three files:
 | file | what is in it |
 |---|---|
 | `save.json` | progress: coins, diamonds, weapons, power-ups, missions, challenges, statistics |
-| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume |
+| `settings.json` | control scheme, button mode, turn sensitivity, menu arrows, cursor memory, tutorial text, menu music volume, the update check and a version you skipped |
 | `keys.json` | the key bindings |
 
 Deleting the folder starts a fresh profile — the first run then begins on Gyro
@@ -235,14 +235,32 @@ its own Restore default keys for. Quit is on the main menu.
 
 Every screen at the end of a run has a **Copy results** button, below the other
 buttons so it is read last: after an endless game, after a challenge you
-completed, and after one you failed. It puts what the screen told you — the
-stars, the rewards and the statistics, whichever of them that screen shows —
-on the clipboard as plain text, ready to paste into a message.
+completed, and after one you failed. It puts a short list on the clipboard as
+plain text, ready to paste into a message, and says "Results copied to
+clipboard." After an Endless game it looks like this:
 
-The text is taken from the rows of the screen itself rather than worked out
-again, so what you paste is what you were read. The original had one way to
-share a score, a Twitter sheet, which needed an account and an iPhone; this
-needs neither.
+    Audio Defence Endless Statistics
+
+    Tarot card 1: Electric Shield
+    Tarot card 2: Zombies With Helmets!
+    Coins Earned: 7802
+    Diamonds Earned: 14
+    Score: 11882144
+    Kills: 162
+    Accuracy: 76.53 %
+    Survival time: 17:04
+    Maximum combo: 483
+
+After a challenge the heading is *Audio Defence Challenge Statistics*, then the
+challenge's name and whether you completed or failed it, then the stars,
+rewards and statistics that screen shows. There are no tarot cards in a
+challenge.
+
+The numbers are taken from the rows of the screen itself rather than worked
+out again, so they are the ones you were read; only the wording is shorter.
+The coins and diamonds are just the numbers, and the section headings and the
+game's version are left out. The original had one way to share a score, a
+Twitter sheet, which needed an account and an iPhone; this needs neither.
 
 The failed screen is the exception, because the original tells you nothing
 there at all — a tip, and two buttons. It now reads out your kills, accuracy
