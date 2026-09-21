@@ -210,7 +210,7 @@ def check() -> Release | None:
         raise UpdateError('the newest release has no version number')
     here = version.current()
     if not here:
-        log.info('this build has no VERSION file, so %s is not offered', release.tag)
+        log.info('this build has no version, so %s is not offered', release.tag)
         return None
     if not version.is_newer(release.tag, here):
         log.info('%s is the newest release and this build is %s', release.tag, here)

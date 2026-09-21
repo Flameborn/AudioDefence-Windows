@@ -563,7 +563,7 @@ went with it.
                         stand-in that reads them
         app.py          the app delegate: launch, menu music, navigation
     compiler.py          builds the executable, and the release zip (see below)
-    VERSION             the release tag this build calls itself, e.g. 26.09.20-2
+    VERSION             the release tag, e.g. 26.09.20-2, built into the executable
     game/               the original game's own files (see below)
     assets/hrtf/        the HRTF recovered from the binary
     analysis/           the reverse engineering: disassembly, digests, dumps
@@ -815,12 +815,21 @@ build would do to the changelog without writing anything.
 which release of that day it is, counting from 1. The first release on the 20th
 of September 2026 is `26.09.20-1`; a second one the same day is `26.09.20-2`.
 The compiler never works the number out: it follows whatever you wrote in
-`VERSION`, and the changelog entry is named the same. A build with no `VERSION` file does not know what it is and never
-offers an update, which is the one way to ship something that cannot be
-updated afterwards.
+`VERSION`, and the changelog entry is named the same.
 
-A build also carries four pieces of text beside the executable: `changelog.txt`
-and `VERSION` as they are, `license.txt` (the repository's `LICENSE`, renamed so
+The build carries the number inside the executable rather than beside it: the
+compiler reads `VERSION` from the repository and compiles it in. So there is no
+`VERSION` file in a built game's folder, and nothing a player edits or deletes
+there can change what the game thinks it is, or stop it from updating. A
+`VERSION` file an older build left beside the executable is ignored. You only
+ever change the number in the repository's `VERSION`. A build made with an
+option while the repository has no `VERSION` file carries no number and never
+offers an update, which is the one way to ship something that cannot be
+updated afterwards; the release build never does this, because it starts the
+file first.
+
+A build also carries three pieces of text beside the executable:
+`changelog.txt`, `license.txt` (the repository's `LICENSE`, renamed so
 Windows opens it without asking what with), and `readme.html` — this file,
 converted at build time by
 `tools/md_to_html.py`, which needs nothing installed. HTML rather than Markdown

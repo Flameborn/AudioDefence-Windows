@@ -3,9 +3,12 @@
 The iOS original has a version - `CFBundleShortVersionString` in `Info.plist` - but it is the phone
 game's, not this port's, and the App Store did the updating.  A Windows build has to carry its own.
 
-The number lives in one place, the `VERSION` file, which `compiler.py` copies beside the executable the way
-it copies `changelog.txt`.  It holds the release tag exactly as GitHub has it, so cutting a release is
-copy-and-paste rather than a conversion.
+The number is written in one place, the repository's `VERSION` file.  It holds the release tag exactly as
+GitHub has it, so cutting a release is copy-and-paste rather than a conversion.  Run from source, the game
+reads that file.  A build carries the number inside the executable instead: `compiler.py` writes it into
+a small module, `BAKED_MODULE`, which PyInstaller compiles in.  Nothing beside the executable is read, so
+a file there cannot be edited to change what the game thinks it is, or deleted so that it never updates
+again - and the `VERSION` file an older build left beside the executable is ignored.
 
 The format is `YY.MM.DD-XX`: the last two digits of the year, the month, the day, and the build number
 within that day, counting from 1.  `26.09.20-1` is the first release of the 20th of September 2026 and
@@ -18,6 +21,7 @@ than to offer an update over a build we cannot place.
 """
 from __future__ import annotations
 
+import importlib
 import logging
 import os
 
@@ -27,25 +31,29 @@ log = logging.getLogger('platform.version')
 
 FILENAME = 'VERSION'
 UNKNOWN = ''
-
-
-def _candidates():
-    """Beside the executable in a build, at the top of the repository when run from source."""
-    yield os.path.join(paths.EXE_DIR, FILENAME)
-    yield os.path.join(paths.ROOT, FILENAME)
+#: the module compiler.py writes into a build, holding the VERSION it was built from as `VERSION`
+BAKED_MODULE = '_audiodefence_build'
 
 
 def current() -> str:
-    """This build's version, or '' when there is no VERSION file to read."""
-    for path in _candidates():
+    """This build's version, or '' when it has none: a build made with no VERSION file in the repository,
+    or a checkout without one."""
+    if paths.FROZEN:
         try:
-            with open(path, encoding='utf-8') as fh:
-                text = fh.read().strip()
-        except OSError:
-            continue
-        if text:
-            return text.splitlines()[0].strip()
-    log.info('no %s file; this build has no version of its own', FILENAME)
+            text = str(getattr(importlib.import_module(BAKED_MODULE), 'VERSION', '') or '').strip()
+        except ImportError:
+            text = UNKNOWN
+        if not text:
+            log.info('this build was made without a version, so it never offers an update')
+        return text
+    try:
+        with open(os.path.join(paths.ROOT, FILENAME), encoding='utf-8') as fh:
+            text = fh.read().strip()
+    except OSError:
+        text = ''
+    if text:
+        return text.splitlines()[0].strip()
+    log.info('no %s file; this checkout has no version of its own', FILENAME)
     return UNKNOWN
 
 

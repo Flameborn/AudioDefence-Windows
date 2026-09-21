@@ -20,8 +20,9 @@ under this version's heading in the repository's changelog.txt, and the copy bes
 on that version.  Every build ends by saying whether there is anything to commit.  Run with no flags and no
 keyboard (from a script), it is the release build straight away, without the menu.
 
-The port, the HRTF and the vendored DLLs go inside the build; the game's own files do not - they are
-copied next to the executable, where audiodefence/paths.py looks for them when frozen.  See the README.
+The port, the HRTF, the vendored DLLs and the version - read from VERSION in the repository - go inside
+the build; the game's own files do not - they are copied next to the executable, where
+audiodefence/paths.py looks for them when frozen.  See the README.
 """
 from __future__ import annotations
 
@@ -32,6 +33,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import zipfile
 
@@ -47,7 +49,6 @@ BINARIES = (('vendor/openal/soft_oal.dll', 'vendor/openal'),    # the audio engi
 #: called here, and what it is called there.  LICENSE has no extension, which is the convention on GitHub
 #: but means Windows asks what to open it with, so it ships as a .txt.
 SIDE_FILES = (('changelog.txt', 'changelog.txt'),
-              ('VERSION', 'VERSION'),
               ('LICENSE', 'license.txt'))
 
 #: built beside the executable from the Markdown they are written in, rather than committed as well and
@@ -249,12 +250,32 @@ def problems_now() -> list[str]:
     return found
 
 
-def command(args) -> list[str]:
+# The version goes inside the build, not beside it: the repository's VERSION, written into a small module in
+# a temporary folder that PyInstaller compiles into the executable, where the game reads it
+# (audiodefence/platform/version.py).  A file beside the executable could be edited, or deleted - and a game
+# that had lost it would never offer another update.
+def baked_module() -> str:
+    from audiodefence.platform.version import BAKED_MODULE
+    return BAKED_MODULE
+
+
+def write_baked_version(version: str) -> str:
+    """The module that carries the version into the build, in a temporary folder of its own; the build
+    removes the folder when PyInstaller is done with it.  Returns the folder."""
+    folder = tempfile.mkdtemp(prefix='audiodefence-version-')
+    with open(os.path.join(folder, baked_module() + '.py'), 'w', encoding='utf-8', newline='\n') as fh:
+        fh.write('# written by compiler.py: the version this build was made from\nVERSION = %r\n' % version)
+    return folder
+
+
+def command(args, baked_folder: str) -> list[str]:
     cmd = [sys.executable, '-m', 'PyInstaller', '--noconfirm', '--noupx', '--name', NAME]
     for src, dest in DATA:
         cmd += ['--add-data', src + os.pathsep + dest]
     for src, dest in BINARIES:
         cmd += ['--add-binary', src + os.pathsep + dest]
+    # nothing imports the version module by name, so it is named outright, and found in its own folder
+    cmd += ['--paths', baked_folder, '--hidden-import', baked_module()]
     # both are imported only when first needed, so name them outright rather than hope the analysis finds them
     cmd += ['--collect-all', 'av', '--collect-submodules', 'comtypes']
     if not args.console:
@@ -380,9 +401,15 @@ def main(argv=None) -> int:
             return 2
         say()
 
-    cmd = command(args)
+    # the version the executable carries: a release build starts VERSION when there is none (once PyInstaller
+    # has succeeded), so it carries the number it is about to write; a build with a flag carries what is there
+    baked = build_version() or ('' if flagged else FIRST_VERSION)
+    folder = '<a temporary folder>' if args.dry_run else write_baked_version(baked)
+    cmd = command(args, folder)
     say('running: python ' + ' '.join(cmd[1:]))
     if args.dry_run:
+        say('the executable would carry version %s, from VERSION in the repository' % baked if baked else
+            'the executable would carry no version, because there is no VERSION file: it would never update')
         if args.no_game:
             say("the game's data would not be copied.")
         else:
@@ -420,7 +447,11 @@ def main(argv=None) -> int:
         return 0
 
     started = time.perf_counter()
-    if subprocess.run(cmd).returncode != 0:
+    try:
+        failed = subprocess.run(cmd).returncode != 0
+    finally:
+        shutil.rmtree(folder, ignore_errors=True)        # compiled in by now, or never going to be
+    if failed:
         say("PyInstaller failed - its own output above says why.")
         return 1
     say('built in %.0f seconds.' % (time.perf_counter() - started))

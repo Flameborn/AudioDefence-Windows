@@ -518,8 +518,10 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   `KILL_GAMEPLAY_CLEANUP`, named where `killGameplay` schedules it so the two cannot drift apart.
 * PORT ADDITION: the game updates itself, which on iOS was the App Store's job and has no counterpart in
   the binary.  `platform/updater.py` asks GitHub for the newest release, compares its tag with the
-  `VERSION` file beside the executable, and offers what it finds through the game's own alert rather than
-  a Windows dialog, so a screen reader reads it like every other screen.  Two things are worth knowing.
+  version compiled into the executable (`compiler.py` writes the repository's `VERSION` into a module,
+  `version.BAKED_MODULE`, so no file beside the executable can change it or be lost), and offers what it
+  finds through the game's own alert rather than a Windows dialog, so a screen reader reads it like every
+  other screen.  Two things are worth knowing.
   First, nothing a player owns is at risk by construction: every write the game makes goes to
   `paths.user_dir()`, the installed folder is read-only while the game runs, and the updater will not
   write outside the folder the executable is in - so replacing program files cannot touch a save.

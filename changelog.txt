@@ -19,6 +19,7 @@ The Restore aiming defaults and Restore menu defaults buttons are removed. Use R
 Two zombies of the same kind no longer cut off each other's sound. One of them could go quiet and keep walking towards you.
 After a revive, being killed by the same kind of zombie again plays its attack sound. It used to be silent, every time with the Shield zombie.
 Page Up and Page Down set the volume of the menu music, on any menu. It goes from 100%, as loud as the music has always been, down to silent, and does nothing in a game.
+The game keeps its version number inside itself now, not in a VERSION file beside it, so editing or deleting that file can no longer stop it from updating. A VERSION file left from an older version is not used any more.
 
 26.09.20:
 Initial release.
