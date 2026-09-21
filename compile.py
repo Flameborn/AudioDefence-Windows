@@ -241,13 +241,9 @@ def main(argv=None) -> int:
     parser.add_argument('--test', action='store_true', help='start the result afterwards and check its log')
     parser.add_argument('--no-package', action='store_true',
                         help='do not zip the folder afterwards; a build makes the release archive by default')
-    # --package was the flag when zipping was opt-in.  Kept so that typing it is not an error, and says so.
-    parser.add_argument('--package', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('--dry-run', action='store_true', help='print what would be done, build nothing')
     args = parser.parse_args(argv)
     os.chdir(HERE)                                      # the paths above are relative to the project
-    if args.package:
-        say('--package is what a build does anyway now; --no-package is the one that changes anything.')
 
     found = problems_now()
     if found:
