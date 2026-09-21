@@ -17,7 +17,7 @@ dist\\AudioDefence-Win-<VERSION>.zip, which is what a release's asset is and wha
 
 The release build - no flags at all - also files the changelog first: the lines under "unrelease:" go
 under this version's heading in the repository's changelog.txt, and the copy beside the executable opens
-on that version.  It ends by saying what it changed, for you to commit.  Run with no flags and no
+on that version.  Every build ends by saying whether there is anything to commit.  Run with no flags and no
 keyboard (from a script), it is the release build straight away, without the menu.
 
 The port, the HRTF and the vendored DLLs go inside the build; the game's own files do not - they are
@@ -294,8 +294,6 @@ def copy_side_files(dest_root: str) -> None:
             say('  %s is not here, so it was not copied.' % name)
             continue
         shutil.copy2(src, os.path.join(dest_root, shipped_as))
-        say('%s is beside the executable%s.'
-            % (shipped_as, '' if shipped_as == name else ', from %s' % name))
     for md_name, page in GENERATED_PAGES:
         write_page(md_name, os.path.join(dest_root, page))
 
@@ -321,7 +319,6 @@ def write_page(md_name: str, dest: str) -> None:
         return
     with open(dest, 'w', encoding='utf-8', newline='\n') as f:
         f.write(module.convert(md))
-    say('%s is beside the executable, built from %s.' % (os.path.basename(dest), md_name))
 
 
 def read_log(text: str, returncode: int, log: str) -> bool:
@@ -446,11 +443,19 @@ def main(argv=None) -> int:
     say()
     say('the game is %s' % exe)
     say("the folder around it is what you hand over, and the game's own files in it are Somethin' Else's.")
-    if changed:
-        say()
-        say('%s changed in the repository: commit %s before you tag the release.'
-            % (' and '.join(changed), 'them' if len(changed) > 1 else 'it'))
-    return test_build(exe) if args.test else 0
+    result = test_build(exe) if args.test else 0
+    say()
+    say(commit_notice(changed))                         # last, so it is the thing left to hear
+    return result
+
+
+def commit_notice(changed: list) -> str:
+    """Whether the build left anything in the repository to commit.  Only the release build ever does."""
+    if not changed:
+        return 'Nothing in the repository was changed, so there is no need to commit.'
+    many = len(changed) > 1
+    return ('%s %s changed: commit and push %s before you tag the release.'
+            % (' and '.join(changed), 'were' if many else 'was', 'them' if many else 'it'))
 
 
 # --- the menu ----------------------------------------------------------------------------------------

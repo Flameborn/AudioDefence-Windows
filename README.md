@@ -742,8 +742,9 @@ In order:
 
 - put the version in `VERSION`, exactly as GitHub will have it: `26.09.21-1`
 - double-click `compiler.py` and choose **1, Release build**
-- commit what it tells you changed — `changelog.txt`, and `VERSION` if it had
-  to make one
+- commit and push what it tells you changed — `changelog.txt`, and `VERSION`
+  if it had to make one. Every build ends by saying whether there is anything
+  to commit.
 - tag the release `26.09.21-1` and upload `dist\AudioDefence-Win-26.09.21-1.zip`
 
 The release build — choice 1, or `py compiler.py` with no options from a
@@ -768,9 +769,10 @@ second build finds `unrelease:` already empty.
 **Every other choice** — the test build, the clean build, the build without
 the zip and the rest, or any of their options typed out — leaves the changelog
 exactly as it is, because those builds are for trying something, not for
-releasing it. If such a build is zipped, it says so: its changelog still opens
-with `unrelease:`. Choice 8, *Show what a release build would do*, reads out
-what the release build would do to the changelog without writing anything.
+releasing it, and they end by saying there is no need to commit. If such a
+build is zipped, it says so: its changelog still opens with `unrelease:`.
+Choice 8, *Show what a release build would do*, reads out what the release
+build would do to the changelog without writing anything.
 
 `VERSION` is **`YY.MM.DD-XX`**: last two digits of the year, month, day, and
 which release of that day it is, counting from 1. The first release on the 20th
