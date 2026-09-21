@@ -36,6 +36,7 @@ The controller vibrates when a zombie dies, for an explosion, harder the closer 
 Hits from power-ups and explosions are felt too.
 On the Endless screen, the Play button is dimmed along with the Armory and Back buttons while the cards are dealt, and all three are ready once the cards are down.
 Playing with the SAPI 5 voice instead of NVDA works like playing with NVDA. Before, the challenge screens said they were not ported yet, and the game itself was not described.
+The game speaks through JAWS, ZoomText, System Access and other screen readers too, not only NVDA. Before, it used the SAPI 5 voice with them. A screen reader started or closed while the game is open is followed within a few seconds.
 
 26.09.20:
 Initial release.

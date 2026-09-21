@@ -18,10 +18,15 @@ playing it and describing what they heard.
 ## Accessibility
 
 The port is built for a screen reader, not adapted to one afterwards. It speaks
-through **NVDA** when NVDA is running, and falls back to the **SAPI 5** voice
-when it is not — nothing else is required, and there is no visual mode worth
-using. The game is the same either way: with SAPI 5 you get every screen and
-the spoken game exactly as an NVDA player does. Every screen the original offered a VoiceOver user is here, read in the
+through **NVDA** when NVDA is running; through **JAWS**, **ZoomText**, **System
+Access**, **PC-Talker**, **ZDSR**, **Boy PC Reader**, **Sense Reader** or
+**Window-Eyes** when one of those is (through the Prism library); and through
+the **SAPI 5** voice when none is — nothing else is required, and there is no
+visual mode worth using. A screen reader started or closed while the game runs
+is followed within a few seconds. Narrator is not one of them: with only
+Narrator running you hear the SAPI 5 voice. The game is the same whichever
+speaks: with SAPI 5 you get every screen and the spoken game exactly as an NVDA
+player does. Every screen the original offered a VoiceOver user is here, read in the
 order VoiceOver read it, with the same labels and hints, and a good number of
 places where the original said the wrong thing or nothing at all have been
 fixed. They are all listed under *How faithful this is*.
@@ -107,14 +112,15 @@ Python, you have what you need.
 
 Then the packages to play:
 
-    py -m pip install pygame-ce numpy av comtypes
+    py -m pip install pygame-ce numpy av comtypes prismatoid
 
 | package | what needs it |
 |---|---|
 | `pygame-ce` | the window, the keyboard and the frame loop (`audiodefence/__main__.py`, `ui/`) |
 | `numpy` | the audio maths: decoding, mixing, the Freeverb reverb (`s3d/`) |
 | `av` (PyAV) | decodes the game's `.m4a` sounds (`s3d/decoder.py`) — without it no sound plays |
-| `comtypes` | the SAPI 5 voice, used when NVDA is not running (`platform/speech.py`); skip it if you always play with NVDA |
+| `comtypes` | the SAPI 5 voice, used when no screen reader is running (`platform/speech.py`); skip it if you always play with NVDA |
+| `prismatoid` | Prism, for speech through the screen readers other than NVDA — JAWS, ZoomText, System Access and the rest (`platform/speech.py`); it brings `cffi` with it. Without it those players hear the SAPI 5 voice instead; skip it if you always play with NVDA |
 
 Nothing else is imported outside the standard library. OpenAL Soft
 (`vendor/openal/soft_oal.dll`) and the NVDA controller client
@@ -893,7 +899,9 @@ release build.
 
 PyInstaller is the only extra package, and it goes in the same Python you play
 with: a build is made by following the game's own imports, so `pygame-ce`,
-`numpy`, `av` and `comtypes` have to be installed there too. The script names
+`numpy`, `av`, `comtypes` and `prismatoid` have to be installed there too.
+`prismatoid` is optional to play from source but not to build: a release has to
+carry it, or JAWS players would hear SAPI 5. The script names
 anything that is missing and stops rather than building half a game. 64-bit
 Python on Windows produces a 64-bit Windows executable, and only that — there
 is no cross-compiling to another system.
@@ -1032,15 +1040,21 @@ What no script can check for you is the sound. Start it normally and listen to
 the main menu — once with NVDA, and once with NVDA closed so that SAPI is
 exercised. (SAPI goes through `comtypes`, which builds its COM wrappers in
 memory in a frozen program instead of writing them to disk, so it is worth
-hearing rather than assuming.)
+hearing rather than assuming.) If you have another screen reader, such as JAWS,
+listen once with that too: it goes through Prism, whose compiled half the
+build carries in `_internal\prism\_native`.
 
 ### If something is missing from the build
 
-`av` and `comtypes` are both imported the first time they are needed rather
-than at the top of a module (`s3d/decoder.py`, `platform/speech.py`), so they
-are what PyInstaller's analysis is likeliest to walk past. The script already
-names them outright — `--collect-all av`, `--collect-submodules comtypes` — so
-the usual two failures are covered. For anything else that turns up as a
+`av`, `comtypes` and Prism (`prism`) are all imported the first time they are
+needed rather than at the top of a module (`s3d/decoder.py`,
+`platform/speech.py`), so they are what PyInstaller's analysis is likeliest to
+walk past. The script already names them outright — `--collect-all av`,
+`--collect-submodules comtypes`, `--collect-all prism` — so the usual failures
+are covered. Prism needs two more: its compiled Python module,
+`prism\_native\_prism_cffi.pyd`, sits in a folder that is not a package, so
+`--collect-all` leaves it behind and the script adds it by name; and
+`--hidden-import _cffi_backend`, which that module needs and nothing names. For anything else that turns up as a
 `ModuleNotFoundError` in a frozen run, add `--hidden-import NAME` to the list
 in `command()` in `compiler.py`.
 
@@ -1084,8 +1098,10 @@ in the wrong shape: it needs `meta/` and `sounds/` at its top level. Point
 `--game` at another copy if it lives elsewhere.
 
 **Nothing is spoken.** With NVDA running the port talks to it through
-`vendor/nvda/nvdaControllerClient64.dll`; without NVDA it falls back to SAPI 5,
-which needs `comtypes`. The log says which one it took.
+`vendor/nvda/nvdaControllerClient64.dll`; with another screen reader it goes
+through Prism, which needs `prismatoid`; with none it falls back to SAPI 5,
+which needs `comtypes`. The log says which one it took ("speech: JAWS, through
+Prism", or "Prism not available" when it could not load it).
 
 **A screen reads in an odd order.** The reading order is reconstructed from the
 NIB frames (`audiodefence/ui/accessibility.py`), so it approximates VoiceOver's

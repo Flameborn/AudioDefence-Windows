@@ -41,7 +41,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 NAME = 'AudioDefence'
 ENTRY = 'AudioDefence.py'
 
-PLAY_PACKAGES = (('pygame', 'pygame-ce'), ('numpy', 'numpy'), ('av', 'av'), ('comtypes', 'comtypes'))
+PLAY_PACKAGES = (('pygame', 'pygame-ce'), ('numpy', 'numpy'), ('av', 'av'), ('comtypes', 'comtypes'),
+                 ('prism', 'prismatoid'))
 DATA = (('assets/hrtf', 'assets/hrtf'),)                        # the game's own HRTF
 BINARIES = (('vendor/openal/soft_oal.dll', 'vendor/openal'),    # the audio engine itself
             ('vendor/nvda/nvdaControllerClient64.dll', 'vendor/nvda'))
@@ -277,6 +278,17 @@ def write_baked_version(version: str) -> str:
     return folder
 
 
+def prism_native_modules() -> list[str]:
+    """Prism's compiled Python modules in its prism/_native folder, which --collect-all leaves behind."""
+    spec = importlib.util.find_spec('prism')
+    if spec is None or not spec.submodule_search_locations:
+        return []
+    folder = os.path.join(list(spec.submodule_search_locations)[0], '_native')
+    if not os.path.isdir(folder):
+        return []
+    return sorted(os.path.join(folder, name) for name in os.listdir(folder) if name.endswith('.pyd'))
+
+
 def command(args, baked_folder: str) -> list[str]:
     cmd = [sys.executable, '-m', 'PyInstaller', '--noconfirm', '--noupx', '--name', NAME]
     for src, dest in DATA:
@@ -285,8 +297,14 @@ def command(args, baked_folder: str) -> list[str]:
         cmd += ['--add-binary', src + os.pathsep + dest]
     # nothing imports the version module by name, so it is named outright, and found in its own folder
     cmd += ['--paths', baked_folder, '--hidden-import', baked_module()]
-    # both are imported only when first needed, so name them outright rather than hope the analysis finds them
-    cmd += ['--collect-all', 'av', '--collect-submodules', 'comtypes']
+    # these are imported only when first needed, so name them outright rather than hope the analysis finds
+    # them.  Prism loads its compiled half from a folder of its own, prism/_native: --collect-all brings
+    # the DLL there but not the Python module beside it (the folder is not a package), so that is added by
+    # name, and it needs cffi's own compiled module, which nothing names either
+    cmd += ['--collect-all', 'av', '--collect-submodules', 'comtypes',
+            '--collect-all', 'prism', '--hidden-import', '_cffi_backend']
+    for src in prism_native_modules():
+        cmd += ['--add-binary', src + os.pathsep + 'prism/_native']
     if not args.console:
         # no console window beside the game's own; a failed start-up writes crash.txt and says so instead
         cmd += ['--windowed']

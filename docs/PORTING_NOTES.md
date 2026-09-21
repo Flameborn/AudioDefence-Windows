@@ -21,7 +21,7 @@ The log is written to `%APPDATA%\AudioDefence\audiodefence.log`; saves live in t
 |---|---|
 | audio engine (S3D on OpenAL Soft, HRTF from the embedded IRCAM set, original Freeverb reverb) | `s3d/` |
 | run loop, NSTimer, notifications, NSUserDefaults, C rand | `platform/` |
-| speech (NVDA controller client, SAPI fallback) | `platform/speech.py` |
+| speech (NVDA controller client, other screen readers through Prism, SAPI fallback) | `platform/speech.py` |
 | parameters, modifiers, inventory, persistent + in-game stats | `game/parameters.py`, `modifiers.py`, `inventory.py`, `persistent_stats.py`, `ingame_stats.py` |
 | enemies, passers-by (cows, cars, jukebox, machine), diamonds, power-up containers | `game/enemy.py`, `passerby.py`, `passerby_manager.py` |
 | bricks, brick manager, scripted sounds | `game/brick.py`, `brick_manager.py`, `adsound.py` |
@@ -57,8 +57,8 @@ hints.
 PORT INPUT: `UIAccessibilityIsVoiceOverRunning()` is always true here (`Speech.screen_reader_running`).
 The original's other branch is its sighted game - `ADChallengeSelectorViewController`,
 `ADArmoryViewController`, `ADGameOverEndlessViewController` and the rest, none of them ported, since the
-port has nothing to look at - and every screen is spoken, by NVDA when it is running and by SAPI 5 when it
-is not.  Asking whether NVDA was running sent a player on SAPI 5 down the sighted path: "... is not ported
+port has nothing to look at - and every screen is spoken, by NVDA when it is running, by another screen
+reader through Prism when one of those is, and by SAPI 5 when none is.  Asking whether NVDA was running sent a player on SAPI 5 down the sighted path: "... is not ported
 yet" on opening a world's challenges, no spoken game view (`AccessibleGameView`), and Gesture rather than
 Button mode on a new profile.
 
