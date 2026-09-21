@@ -1,30 +1,23 @@
 unrelease:
 The game checks for updates by itself and tells you when one is out. An update downloads only the files that changed, so a small fix is a small download, and your progress, settings and keys are untouched.
-The main menu has a Check for updates button, between Settings and Quit, for when you want to ask it yourself.
-The main menu's Check for updates button tells you which version you are on. Run from source, it says updating is not available there instead, because a copy from GitHub updates with git.
+The main menu has a Check for updates button, between Settings and Quit, for when you want to ask it yourself. It also tells you which version you are on. Run from source, it says updating is not available there instead, because a copy from GitHub updates with git.
 The pause menu has a Restart challenge button, between Resume and End Game. A challenge you have already lost no longer has to be played to the end. Endless games do not have it.
-The screen at the end of a run has a Copy results button, after an endless game and after a challenge you won or lost. It puts the results on the clipboard so you can paste them to somebody.
+The screen at the end of a run has a Copy results button, after an endless game and after a challenge you won or lost. It puts a short list of your results on the clipboard so you can paste them to somebody, and says Results copied to clipboard.
 The screen after a failed challenge reads out your kills, accuracy and time, which it never used to say.
 Changing a tarot card reads the new card out. Before, it changed in silence and you had to arrow off it and back to hear what you had.
 Melee is on both Control keys now, left and right, so whichever hand is free can reach it.
 The statistics screen counts the coins and diamonds you earn. Money earned and Diamonds collected used to stay at nought for ever.
 A tarot card says how many diamonds you have now. Spend some in the armory, come straight back, and it used to quote the old number.
 After upgrading a power-up, the Upgrade button shows the new price at once. It used to offer the old one for about a second.
-Copy results puts a short list on the clipboard now: just the numbers, without the section headings or the game's version. After an Endless game it starts with the two tarot cards you played with.
-Copying results says Results copied to clipboard, instead of a long sentence.
-The Menus tab in Settings is called Miscellaneous now and comes last. Besides the menu arrows and remember cursor position, it has the switch for checking for updates when the game starts.
-Tutorial text has moved from the Sound tab to the Miscellaneous tab.
-The Miscellaneous tab has a Reset all settings button. It sets everything back to default, except your keys.
-The Restore aiming defaults and Restore menu defaults buttons are removed. Use Reset all settings instead.
+The Menus tab in Settings is called Miscellaneous now and comes last. It has the menu arrows, remember cursor position, tutorial text, which has moved there from the Sound tab, and the switch for checking for updates when the game starts.
+The Miscellaneous tab has a Reset all settings button. It sets everything back to default, except your keys, and replaces the Restore aiming defaults and Restore menu defaults buttons.
 Two zombies of the same kind no longer cut off each other's sound. One of them could go quiet and keep walking towards you.
 After a revive, being killed by the same kind of zombie again plays its attack sound. It used to be silent, every time with the Shield zombie.
 Page Up and Page Down set the volume of the menu music, on any menu. It goes from 100%, as loud as the music has always been, down to silent, and does nothing in a game.
 The game keeps its version number inside itself now, not in a VERSION file beside it, so editing or deleting that file can no longer stop it from updating. A VERSION file left from an older version is not used any more.
 When an update is offered, No now only means not now, and the game asks again the next time it starts. To stop being asked about that version, there is a new Skip this version button. A newer version is still offered, and Check for updates on the main menu still finds a skipped one.
-The screens after an Endless game and after a challenge read one line for each result, the same lines Copy results pastes. After Endless the first line is the tarot cards you played with; after a challenge it is the challenge and whether you completed or failed it.
-Copy results comes right after the results now, before the other buttons.
+The screens at the end of a run read one line for each result, the same lines Copy results copies, with Copy results right after them and before the other buttons. After an Endless game the first line is the tarot cards you played with; after a challenge it is the challenge and whether you completed or failed it.
 The Play again button after an Endless game is called Close. It still takes you back to the Endless screen.
-Copy results puts both tarot cards on one line.
 
 26.09.20:
 Initial release.
