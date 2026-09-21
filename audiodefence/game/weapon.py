@@ -442,14 +442,33 @@ class MeleeWeapon(Weapon):
         if self.weapon_manager is not None:
             self.weapon_manager.did_shot_with_melee()
 
-    def play_hit_sound(self) -> None:                     # 0x100007538
+    def play_hit_sound(self, position=None) -> None:      # 0x100007538
+        """DIVERGENCE (user request): the hit comes from whatever was hit, not from the player.
+
+        A melee weapon has two sounds, `_miss_` and `_hit_`, and the original plays both with
+        `setSpatialized:NO` (0x100007538, 0x100007610), so they arrive at the head like the gun sounds do.
+        For the miss that is right - it is your own swing through the air, and it has no target.  For the
+        hit it is not: something was struck, in a particular direction, and that direction is the whole
+        point of an audio game.  It mattered more here than it looks, because the enemy plays nothing of
+        its own for a melee hit - `playImpactAndHitSoundForDamages:melee:` 0x10006150c skips the impact
+        sound when `melee` is YES - so this sound is the only cue for where the blow landed.
+
+        The gain stays 0.8 and the engine does the rest: `_distance_gain` is 1/d (0x1000ef780), so a
+        zombie at arm's length is louder than one at the edge of the weapon's three-unit reach, which is
+        how every other positional sound in the game behaves."""
         snd = self.playlist.any_sound_containing('_hit_') if self.playlist else None
-        if snd is not None:
+        if snd is None:
+            return
+        if position is None:                              # nothing to place it at: as it was
             snd.set_spatialized(False)
-            snd.set_gain(0.8)
-            snd.play(False)
+        else:
+            snd.set_planar((position[0], position[1], 0.0))
+            snd.set_spatialized(True)
+        snd.set_gain(0.8)
+        snd.play(False)
 
     def play_miss_sound(self) -> None:                    # 0x100007610
+        """Not spatialised, and right not to be: a miss is your own swing, and it hit nothing."""
         snd = self.playlist.any_sound_containing('_miss_') if self.playlist else None
         if snd is not None:
             snd.set_spatialized(False)

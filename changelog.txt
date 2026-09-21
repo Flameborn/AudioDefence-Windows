@@ -11,6 +11,7 @@ On the tarot card screen, a card now tells you the right number of diamonds you 
 After upgrading a power-up, the Upgrade button shows the new price at once. It used to offer the old one for about a second.
 The Menus tab in Settings is called Miscellaneous now and comes last. It has the menu arrows, remember cursor position, tutorial text, which has moved there from the Sound tab, and the switch for checking for updates when the game starts.
 The Miscellaneous tab has a Reset all settings button. It sets everything back to default, except your keys.
+When a melee weapon hits, the hit is heard from the zombie you hit, not from in front of you. The swing you hear when you miss still comes from you, because it hit nothing.
 Two zombies of the same kind no longer cut off each other's sound. One of them could go quiet and keep walking towards you.
 After a revive, being killed by the same kind of zombie again plays its attack sound. It used to be silent, every time with the Shield zombie.
 Page Up and Page Down set the volume of the menu music, on any menu. It goes from 100%, as loud as the music has always been, down to silent, and does nothing in a game.

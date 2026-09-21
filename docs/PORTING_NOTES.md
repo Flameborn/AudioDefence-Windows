@@ -632,6 +632,19 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   reload and however long the pause.  Pausing mid-reload was a free reload and a way to stop the clock
   while getting one.  `Weapon.pause` / `.resume` pause the reload and continuous sounds and re-base the
   wall clock on resume, and `pauseGame` / `resumeGame` send them through the weapon manager.
+* DIVERGENCE (user request): a melee hit is heard from whatever it hit.  A melee weapon has two sounds,
+  `_miss_` and `_hit_`, and the original plays both with `setSpatialized:NO`
+  (`-[ADMeleeWeapon playHitSound]` 0x100007538, `playMissSound` 0x100007610), so both arrive at the head
+  the way the gun sounds do.  For the miss that is right - it is your own swing through the air and it
+  hit nothing - and it is left alone.  For the hit it is not: something was struck, in a direction, and
+  the direction is the point of the game.  It matters more than it looks, because the enemy plays
+  nothing of its own for a melee hit: `playImpactAndHitSoundForDamages:melee:` 0x10006150c skips the
+  impact sound entirely when `melee` is YES, so the weapon's `_hit_` is the only cue for where the blow
+  landed.  `BrickManager._struck` picks the nearest of the hit enemies - a melee weapon is never
+  `multihit`, so `calculateHitEnemies` 0x1000c41c4 has already narrowed it to one - and its position is
+  passed to `playHitSound`.  The gain stays at 0.8 and the engine does the distance: `_distance_gain` is
+  1/d (`csl::IntensityAttenuationCue::vfunc_2` 0x1000ef780), so a zombie at arm's length is louder than
+  one at the edge of the weapon's three-unit reach.
 * PORT ADDITION: Restart challenge on the pause screen.  `ADPauseViewController` offers Resume
   (`validateButtonPressed` 0x100055bbc) and End Game (`quitButtonTouched` 0x1000559c0) and nothing else,
   so a challenge already lost - a time limit missed, an accuracy that cannot be recovered - had to be

@@ -7,7 +7,7 @@ are proved, in the order an update happens:
 1. **Only what changed is downloaded.**  A release whose audio is identical and whose program is not must
    come down as a few bytes, not as the whole archive.
 2. **The player's path through it works.**  The main menu's quiet check offers the update, Yes downloads
-   it, the restart prompt appears, and No is remembered so the same build is not offered again.
+   it, the restart prompt appears, No asks again next start, and Skip this version does not.
 3. **The swap happens after the game exits.**  The hand-off script waits, replaces the files, removes the
    ones the new build drops, leaves everything else alone, starts the game again and clears up.
 
@@ -181,6 +181,15 @@ def main() -> int:
     paths.EXE_DIR = install
     paths.user_dir = lambda: WORK
     from audiodefence.platform import updater, version
+
+    # A build carries its version inside itself now (version.BAKED_MODULE, written by compiler.py), and
+    # ignores any VERSION file beside the executable, so pretending to be frozen means pretending to
+    # have been built with one.  The module is swapped for the new version when the swap happens below,
+    # exactly as a real update replaces the executable that holds it.
+    import types
+    baked = types.ModuleType(version.BAKED_MODULE)
+    baked.VERSION = OLD
+    sys.modules[version.BAKED_MODULE] = baked
     from audiodefence.platform.runloop import RunLoop
     from audiodefence.ui import screens, updates
     updater.LATEST_RELEASE = base + '/api'
@@ -227,17 +236,31 @@ def main() -> int:
     if not host.overlays:
         return report()
     offer = host.overlays[-1]
-    check([item.label for item in offer.items] == ['Yes', 'No'], 'the offer is a Yes or No')
+    labels = [item.label for item in offer.items]
+    check(labels == ['Yes', 'No', 'Skip this version'], 'the offer is Yes, No or Skip this version')
     check(version.text(NEW) in said[-1], 'the new version is said aloud')
-    offer.index = 1
-    offer.activate()                                      # No
-    check(skipped['tag'] == NEW, 'answering No is remembered for that version')
+
+    # No means not now: nothing is remembered and the next start asks again.
+    offer.index = labels.index('No')
+    offer.activate()
+    check(skipped['tag'] == '', 'answering No remembers nothing')
+    updates.UpdateService._shared = None
+    again = FakeHost(menu)
+    updates.check_on_start(again, menu)
+    check(pump(loop, 45, until=lambda: bool(again.overlays)), 'and the next start asks again')
+
+    # Skip this version is never again for this one.
+    if again.overlays:
+        skip_at = [i.label for i in again.overlays[-1].items].index('Skip this version')
+        again.overlays[-1].index = skip_at
+        again.overlays[-1].activate()
+    check(skipped['tag'] == NEW, 'Skip this version is remembered for that version')
 
     updates.UpdateService._shared = None
     quiet = FakeHost(menu)
     updates.check_on_start(quiet, menu)
     pump(loop, 20, until=lambda: bool(quiet.overlays))
-    check(not quiet.overlays, 'and the same version is not offered again')
+    check(not quiet.overlays, 'and a skipped version is not offered at start-up again')
 
     # (b) accepting: download, put off, and finish it at the next start
     skipped['tag'] = ''
@@ -317,6 +340,7 @@ def main() -> int:
 
     now = open(os.path.join(install, 'VERSION'), encoding='utf-8').read().strip()
     check(now == NEW, 'the version is the new one afterwards')
+    baked.VERSION = now                                   # the swapped-in build knows what it is
     check(os.path.isfile(os.path.join(install, '_internal', 'fresh.pyd')), 'the added file is there')
     check(not os.path.isfile(os.path.join(install, '_internal', 'stale.pyd')), 'the dropped file is gone')
     check(os.path.isfile(marker), 'the game is started again')
