@@ -34,6 +34,7 @@ R2's trigger feel is much softer than it was, at Medium.
 A hit is felt as hard as it hurts, so a big gun's hit is stronger than a small one's.
 The controller vibrates when a zombie dies, for an explosion, harder the closer it is, when the tornado pushes zombies back, when a shot hits the Shield zombie's shield, and when a zombie kills you.
 Hits from power-ups and explosions are felt too.
+On the Endless screen, the Play button is dimmed along with the Armory and Back buttons while the cards are dealt, and all three are ready once the cards are down.
 
 26.09.20:
 Initial release.

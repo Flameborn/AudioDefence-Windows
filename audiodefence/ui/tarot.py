@@ -309,9 +309,13 @@ class TarotScreen(ViewControllerScreen):
         self.info_text.label = data.spoken_text(self.info_text.text)
         self.tarot_cards = []
         if self.host.screen_reader_running():
-            # the original already lets a VoiceOver player press Play before the deal finishes
+            # the original already lets a VoiceOver player press Play before the deal finishes.
+            # DIVERGENCE: the Armory and Back buttons are dimmed until then (deactivate_buttons), and Play
+            # was the one button on the screen that was not; it is dimmed with them now, and comes back
+            # when the cards are dealt, as it does for a sighted player.
             self.play_button.alpha = 1.0
-            self.play_button.user_interaction_enabled = True
+            self.play_button.enabled = False
+            self.play_button.user_interaction_enabled = False
         else:
             self.play_button.user_interaction_enabled = False
         sb.deactivate_buttons()
@@ -332,6 +336,7 @@ class TarotScreen(ViewControllerScreen):
         if sb is not None:
             sb.armory_button.alpha = 1.0                  # 1 s animation (missionButton is nil)
             sb.activate_buttons()
+        self.play_button.enabled = True
         self.play_button.user_interaction_enabled = True
         if sb is not None:
             sb.armory_loadout_enabled = True

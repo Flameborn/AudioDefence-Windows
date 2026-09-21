@@ -228,6 +228,11 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   reading order for those seconds: long enough to arrow past where the Armory button is about to appear and
   think it is missing.  The port keeps the lock-out but dims them instead of hiding them, so the screen has
   the same shape throughout and the buttons say why they cannot be pressed yet.
+* `-[ADTarotViewController viewDidLoad]` 0x10003461c makes Play visible and usable at once while VoiceOver
+  runs - the sighted path leaves it off until the deal's block (`viewDidLoad_block_invoke` 0x100034e84,
+  2.3 s later) - while `deactivateButtons` locks Back and Armory for those seconds, so Play was the one
+  button on the screen that worked during the deal.  The port dims Play with them, and the block brings it
+  back when the cards are dealt, as it does for a sighted player.
 * The armory's nib label (#2) is an element VoiceOver reads; the port says its line when the armory opens -
   after the tab it opens on, "Weapons. Up and Down change tab..." - and leaves it out of the reading order.
   The four tab buttons (#38, #6, #76, #10) are left out too: the arrows change tab and name what they land
