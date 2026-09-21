@@ -452,7 +452,7 @@ def main(argv=None) -> int:
 def commit_notice(changed: list) -> str:
     """Whether the build left anything in the repository to commit.  Only the release build ever does."""
     if not changed:
-        return 'Nothing in the repository was changed, so there is no need to commit.'
+        return 'Nothing in the changelog was changed, so there is no need to commit.'
     many = len(changed) > 1
     return ('%s %s changed: commit and push %s before you tag the release.'
             % (' and '.join(changed), 'were' if many else 'was', 'them' if many else 'it'))
