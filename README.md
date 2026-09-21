@@ -710,20 +710,44 @@ small fix a small download, and nothing can do either with a rar without
 shipping an extractor. `py compile.py` builds it: the zip is what a build makes
 unless you say `--no-package`.
 
-Three things move together and must agree — the `VERSION` file, the git tag,
-and the heading at the top of `changelog.txt`. In order:
+New changes go in `changelog.txt` under one heading at the top, `unrelease:`,
+one line each. You never rename that heading yourself — the build files it.
+In order:
 
-- give the `unrelease:` section in `changelog.txt` the version, `26.09.21-1:`
-- put the same version in `VERSION`, exactly as GitHub will have it
-- run `py compile.py`
+- put the version in `VERSION`, exactly as GitHub will have it: `26.09.21-1`
+- run `py compile.py`, with **no flags**
+- commit what it tells you changed — `changelog.txt`, and `VERSION` if it had
+  to make one
 - tag the release `26.09.21-1` and upload `dist\AudioDefence-Win-26.09.21-1.zip`
 
-The format is **`YY.MM.DD-XX`**: last two digits of the year, month, day, and
+A plain `py compile.py` is a release, and before it copies anything it does
+three things to the repository:
+
+- the lines under `unrelease:` move to the entry for this version, headed
+  without the `-1`: `26.09.21:`. If that entry is already there — a second
+  build the same day — they go to the bottom of it instead of starting another.
+- `unrelease:` stays at the top, empty, ready for whatever changes next. If
+  someone has deleted that line, it is put back.
+- if there is no `VERSION` file, one is made, starting at `1.0.0-1`.
+
+The copy of the changelog beside the executable is the same, less the empty
+`unrelease:` line, so it opens on the newest version. Every version's lines are
+followed by one blank line, so where one version ends is something you hear.
+Nothing under `unrelease:` means nothing is moved and the repository's
+changelog is not touched. Building twice without committing is harmless: the
+second build finds `unrelease:` already empty.
+
+**Any flag** — `--test`, `--clean`, `--no-package` or the rest — leaves the
+changelog exactly as it is, because a build with a flag is for trying
+something, not for releasing it. If such a build is zipped, it says so: its
+changelog still opens with `unrelease:`. `py compile.py --dry-run` shows what a
+plain build would do to the changelog without writing anything.
+
+`VERSION` is **`YY.MM.DD-XX`**: last two digits of the year, month, day, and
 which release of that day it is, counting from 1. The first release on the 20th
 of September 2026 is `26.09.20-1`; a second one the same day is `26.09.20-2`.
-
-A build says so if `VERSION` is missing or the changelog still says
-`unrelease:`. A build with no `VERSION` file does not know what it is and never
+The changelog has one entry per day, `26.09.20:`, whichever build of it you are
+reading. A build with no `VERSION` file does not know what it is and never
 offers an update, which is the one way to ship something that cannot be
 updated afterwards.
 

@@ -6,8 +6,12 @@
     py compile.py --dry-run      say what would happen, build nothing
     py compile.py --no-package   the folder alone, without the release zip
 
-A build ends by zipping the folder into dist\AudioDefence-Win-<VERSION>.zip, which is what a release's
+A build ends by zipping the folder into dist\\AudioDefence-Win-<VERSION>.zip, which is what a release's
 asset is and what the updater reads; --no-package is the way to skip that.
+
+A plain build - no flags at all - is a release, and it files the changelog first: the lines under
+"unrelease:" go under this version's heading in the repository's changelog.txt, and the copy beside
+the executable opens on that version.  It ends by saying what it changed, for you to commit.
 
 The port, the HRTF and the vendored DLLs go inside the build; the game's own files do not - they are
 copied next to the executable, where audiodefence/paths.py looks for them when frozen.  See the README.
@@ -17,6 +21,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -87,20 +92,129 @@ def package(dest_root: str) -> str:
     return archive
 
 
-def release_warnings() -> list:
-    """What would make this a bad thing to publish."""
+# --- the changelog -----------------------------------------------------------------------------------
+# changelog.txt collects what has changed under one heading, "unrelease:", at the top.  A plain build -
+# py compile.py with no flags at all - files those lines under the version being built, in the
+# repository's changelog, and ships a copy that opens on that version instead.  Any flag leaves the
+# changelog exactly as it is: a build with a flag is a build for trying something, not a release.
+
+#: The heading the changelog collects unreleased changes under: the whole line, colon and all.
+UNRELEASE = 'unrelease:'
+#: What VERSION starts at when a plain build finds there is none.
+FIRST_VERSION = '1.0.0-1'
+#: A heading is one word ending in a colon - "unrelease:", "26.09.20:".  The entries are sentences, so a
+#: line with a space in it, colons and all, is never taken for one.
+_HEADING = re.compile(r'^[^\s:]+:$')
+
+
+def changelog_heading(version: str) -> str:
+    """'26.09.21-1' -> '26.09.21:'.  The -1, -2 count the builds of a day; they belong to VERSION and the
+    zip's name, and a day's changes are one entry in the notes whichever build of it you are reading."""
+    return version.rsplit('-', 1)[0] + ':'
+
+
+def _parse_changelog(text: str) -> list:
+    """[[heading, [lines]], ...] in the order of the file.  Blank lines only separate one version from
+    the next, so they are not kept; anything above the first heading is a block with no heading."""
+    blocks = []
+    for line in text.replace('\r\n', '\n').split('\n'):
+        if _HEADING.match(line.strip()):
+            blocks.append([line.strip(), []])
+        elif line.strip():
+            if not blocks:
+                blocks.append([None, []])
+            blocks[-1][1].append(line)
+    return blocks
+
+
+def _render_changelog(blocks: list) -> str:
+    """A heading, its lines, then one blank line before the next heading, all the way down - so where
+    one version's changes end is something you hear, not something you have to work out."""
+    return '\n\n'.join('\n'.join(([heading] if heading else []) + lines) for heading, lines in blocks) + '\n'
+
+
+def plan_changelog(text: str, version: str):
+    """What a plain build does to the repository's changelog: (text, changed, what it did).
+
+    The lines under unrelease: move to this version's entry - a new one just below unrelease:, or the
+    bottom of the one already there when this is a second build of the same day - and unrelease: stays
+    at the top, empty, for whatever changes next.  With nothing under it the text comes back as it was.
+    If the unrelease: line has been deleted, it is put back."""
+    blocks = _parse_changelog(text)
+    notes = []
+    at = next((i for i, (heading, _lines) in enumerate(blocks) if heading == UNRELEASE), None)
+    if at is None:
+        blocks.insert(0, [UNRELEASE, []])
+        at = 0
+        notes.append('there was no "%s" line, so one was put back at the top' % UNRELEASE)
+    moving, heading = blocks[at][1], changelog_heading(version)
+    if moving:
+        blocks[at][1] = []
+        entry = next((block for block in blocks if block[0] == heading), None)
+        if entry is not None:
+            entry[1].extend(moving)
+            notes.append('%d line(s) from "%s" went to the bottom of %s' % (len(moving), UNRELEASE, heading))
+        else:
+            blocks.insert(at + 1, [heading, moving])
+            notes.append('%d line(s) from "%s" became the new entry %s' % (len(moving), UNRELEASE, heading))
+    else:
+        notes.append('nothing is under "%s", so no entry was added' % UNRELEASE)
+    changed = bool(moving) or len(notes) > 1
+    return (_render_changelog(blocks) if changed else text), changed, notes
+
+
+def without_unrelease(text: str) -> str:
+    """The changelog a player reads: the same, less the empty unrelease: heading, so it opens on the
+    newest version.  A heading that still has lines under it is left alone rather than lose them."""
+    return _render_changelog([b for b in _parse_changelog(text) if not (b[0] == UNRELEASE and not b[1])])
+
+
+def prepare_release_files() -> list:
+    """A plain build's work on the repository, done before anything is copied: VERSION started if there
+    is none, and the changelog's unreleased lines filed under this version.  Returns the files it
+    changed, so the build can say at the end that they want committing."""
+    changed = []
+    if not build_version():
+        with open(os.path.join(HERE, 'VERSION'), 'w', encoding='utf-8', newline='\n') as fh:
+            fh.write(FIRST_VERSION + '\n')
+        say('VERSION did not exist, so it has been started at %s.' % FIRST_VERSION)
+        changed.append('VERSION')
+    path = os.path.join(HERE, 'changelog.txt')
+    text = open(path, encoding='utf-8').read() if os.path.isfile(path) else ''
+    new, did, notes = plan_changelog(text, build_version())
+    for note in notes:
+        say('changelog: %s' % note)                 # no full stop: most notes end on a heading's colon
+    if did:
+        with open(path, 'w', encoding='utf-8', newline='\n') as fh:
+            fh.write(new)
+        changed.append('changelog.txt')
+    return changed
+
+
+def strip_shipped_changelog(dest_root: str) -> None:
+    """Take the empty unrelease: heading out of the copy beside the executable - the copy only."""
+    path = os.path.join(dest_root, 'changelog.txt')
+    if os.path.isfile(path):
+        text = open(path, encoding='utf-8').read()
+        with open(path, 'w', encoding='utf-8', newline='\n') as fh:
+            fh.write(without_unrelease(text))
+
+
+def release_warnings(changelog: str) -> list:
+    """What would make this a bad thing to publish, judged on the changelog the build actually carries."""
     found = []
     if not build_version():
         found.append('there is no VERSION file, so the built game will not know what version it is '
                      'and will never offer an update')
     try:
-        with open(os.path.join(HERE, 'changelog.txt'), encoding='utf-8') as fh:
-            first = fh.readline().strip().lower()
-        if first.startswith('unrelease'):
-            found.append('changelog.txt still starts with "%s": give that section the version number '
-                         'and bump VERSION to match the tag you are about to push' % first.rstrip(':'))
+        with open(changelog, encoding='utf-8') as fh:
+            first = fh.readline().strip()
+        if first == UNRELEASE:
+            found.append('the changelog in this build still opens with "%s", because a build with a flag '
+                         'leaves the changelog as it is; run py compile.py with no flags to file those '
+                         'lines under the version' % UNRELEASE)
     except OSError:
-        found.append('changelog.txt is not here, so the release notes would be empty')
+        found.append('there is no changelog.txt, so the release notes would be empty')
     return found
 
 
@@ -248,6 +362,9 @@ def main(argv=None) -> int:
     parser.add_argument('--dry-run', action='store_true', help='print what would be done, build nothing')
     args = parser.parse_args(argv)
     os.chdir(HERE)                                      # the paths above are relative to the project
+    # a plain build is a release: only then is the changelog filed under the version
+    flagged = any((args.onefile, args.no_game, args.console, args.clean, args.test, args.no_package))
+    plain = not flagged and not args.dry_run
 
     found = problems_now()
     if found:
@@ -272,13 +389,29 @@ def main(argv=None) -> int:
                    '' if os.path.isfile(os.path.join(HERE, name)) else ' - but it is not here'))
         for md_name, page in GENERATED_PAGES:
             say('%s would be built there from %s' % (page, md_name))
+        if flagged:
+            say('the changelog would be copied as it is, because a build with a flag leaves it alone.')
+        else:                                           # what the same command without --dry-run would do
+            version = build_version() or FIRST_VERSION
+            if not build_version():
+                say('VERSION does not exist, so it would be started at %s.' % FIRST_VERSION)
+            path = os.path.join(HERE, 'changelog.txt')
+            text = open(path, encoding='utf-8').read() if os.path.isfile(path) else ''
+            _new, did, notes = plan_changelog(text, version)
+            say('without --dry-run, the changelog in the repository would be %s:'
+                % ('changed' if did else 'left alone'))
+            for note in notes:
+                say('  %s' % note)
+            say("and the build's copy would open on %s, without the %s line."
+                % (changelog_heading(version), UNRELEASE))
+        zip_version = build_version() or (FIRST_VERSION if not flagged else '<no VERSION file>')
         if args.no_package:
             say('it would not be zipped, because of --no-package.')
         else:
-            say('it would then be packed into dist%s%s-Win-%s.zip'
-                % (os.sep, NAME, build_version() or '<no VERSION file>'))
-        for warning in release_warnings():
-            say('before releasing: ' + warning)
+            say('it would then be packed into dist%s%s-Win-%s.zip' % (os.sep, NAME, zip_version))
+        if flagged:
+            for warning in release_warnings(os.path.join(HERE, 'changelog.txt')):
+                say('before releasing: ' + warning)
         return 0
 
     started = time.perf_counter()
@@ -290,10 +423,14 @@ def main(argv=None) -> int:
     dest_root = output_dir(args)
     if not args.no_game:
         copy_game(dest_root)
+    # only once PyInstaller has succeeded: a failed build must not leave the repository changed
+    changed = prepare_release_files() if plain else []
     copy_side_files(dest_root)
+    if plain:
+        strip_shipped_changelog(dest_root)
 
     if not args.no_package:
-        for warning in release_warnings():
+        for warning in release_warnings(os.path.join(dest_root, 'changelog.txt')):
             say('before releasing: ' + warning)
         package(dest_root)
 
@@ -301,6 +438,10 @@ def main(argv=None) -> int:
     say()
     say('the game is %s' % exe)
     say("the folder around it is what you hand over, and the game's own files in it are Somethin' Else's.")
+    if changed:
+        say()
+        say('%s changed in the repository: commit %s before you tag the release.'
+            % (' and '.join(changed), 'them' if len(changed) > 1 else 'it'))
     return test_build(exe) if args.test else 0
 
 
