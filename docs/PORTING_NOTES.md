@@ -464,13 +464,6 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   reload and however long the pause.  Pausing mid-reload was a free reload and a way to stop the clock
   while getting one.  `Weapon.pause` / `.resume` pause the reload and continuous sounds and re-base the
   wall clock on resume, and `pauseGame` / `resumeGame` send them through the weapon manager.
-* DIVERGENCE (user request): melee no longer cancels a reload.  `shootWithMelee` 0x1000aaa98 interrupts
-  a reload in progress and *then* asks `isWeaponReadyToShoot` 0x1000aa350, which by then answers yes
-  because interrupting put the weapon back in Idle - so melee did not override the check, it cleared the
-  state the check reads.  Firing has always waited, `readyToShoot` 0x10001537c answering no in the
-  reload states.  With the interrupt gone melee asks the same question and gets the same answer, so it
-  needs no gate of its own.  (`interruptReload` is still there for the weapon switch, which is the other
-  caller and is meant to cancel.)
 * PORT ADDITION: Restart challenge on the pause screen.  `ADPauseViewController` offers Resume
   (`validateButtonPressed` 0x100055bbc) and End Game (`quitButtonTouched` 0x1000559c0) and nothing else,
   so a challenge already lost - a time limit missed, an accuracy that cannot be recovered - had to be
@@ -662,6 +655,14 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
 
 
 ## Original quirks kept on purpose
+
+* Melee cancels a reload.  `shootWithMelee` 0x1000aaa98 interrupts a reload in progress and *then* asks
+  `isWeaponReadyToShoot` 0x1000aa350, which by then answers yes because interrupting put the weapon back
+  in Idle: melee does not override the check, it clears the state the check reads.  Firing waits instead,
+  `readyToShoot` 0x10001537c answering no in the reload states, so the two do not behave alike.  This was
+  changed on 2026-09-21 so that melee waited as firing does, and reverted the same day at the user's
+  request: swinging the machete mid-reload is something the game lets you do, and losing the reload is
+  what it costs.  (`interruptReload` has a second caller, the weapon switch, which is meant to cancel.)
 
 These are the original's, reproduced deliberately.  Each is either a design decision rather than a fault, a
 change that would alter how the game plays or sounds rather than what it tells you, or something with no

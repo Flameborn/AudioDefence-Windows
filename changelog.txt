@@ -1,3 +1,6 @@
+unrelease:
+Melee cancels a reload again, the way it does in the original game. The last build made melee wait for the reload to finish, but swinging the machete while the pistol reloads is something the game lets you do, and losing that reload is what it costs you.
+
 26.09.21-1:
 Changing a tarot card reads the new card out now. The card changed under the cursor without saying anything, so the only way to hear what you had drawn was to arrow off it and back on.
 The pause menu has a Restart challenge button, between Resume and End Game. It starts the challenge again with the same sound a level normally starts with. A challenge you have already lost, on time or on accuracy, no longer has to be played out to the end or ended and then found again in the list. Endless games do not have it, having no challenge to restart.

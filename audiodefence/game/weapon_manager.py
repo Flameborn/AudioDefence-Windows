@@ -330,12 +330,15 @@ class WeaponManager:
         return self.projectile_array
 
     def shoot_with_melee(self) -> None:                   # 0x1000aaa98
-        # DIVERGENCE (user request): the original interrupts a reload in progress (0x1000aab3c) and then
-        # asks whether the weapon is ready - which it now is, because interrupting put it back in Idle.
-        # That is how melee cut a reload short: not by overriding the check, but by clearing the state
-        # the check reads.  With the interrupt gone, `isWeaponReadyToShoot` 0x1000aa350 answers for melee
-        # exactly what it already answered for firing, so melee waits for a reload the way firing does
-        # and no gate of its own is needed.
+        # KEPT (user request): melee cancels a reload, as the original does.  The interrupt at 0x1000aab3c
+        # puts the weapon back in Idle, and `isWeaponReadyToShoot` 0x1000aa350 - asked straight after -
+        # therefore answers yes: melee does not override the check, it clears the state the check reads.
+        # Taking the interrupt out would make melee wait for a reload the way firing does, which is
+        # tidier and is not the game: swinging a machete while the pistol is reloading is something the
+        # original lets you do, and the reload you gave up is the price.
+        cw = self.current_weapon
+        if cw is not None and (cw.state == 6 or cw.state == 8):
+            cw.interrupt_reload()
         if self.is_weapon_ready_to_shoot():
             self.melee_weapon.single_shot()
 
