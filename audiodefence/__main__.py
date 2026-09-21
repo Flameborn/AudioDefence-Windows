@@ -45,6 +45,9 @@ def main(argv=None) -> int:
     if not os.path.isdir(paths.BUNDLE):
         log.error("the game's data is not where the port looks for it: put the original audiodefence.app "
                   "in the project's game folder, or pass --game PATH (see the README)")
+    if not paths.FROZEN:
+        from .platform import version
+        version.current()                               # a checkout with no VERSION file gets one now
 
     import pygame
     from .app import App

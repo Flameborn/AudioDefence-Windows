@@ -108,11 +108,16 @@ def package(dest_root: str) -> str:
 
 #: The heading the changelog collects unreleased changes under: the whole line, colon and all.
 UNRELEASE = 'unrelease:'
-#: What VERSION starts at when a plain build finds there is none.
-FIRST_VERSION = '1.0.0-1'
 #: A heading is one word ending in a colon - "unrelease:", "26.09.20:".  The entries are sentences, so a
 #: line with a space in it, colons and all, is never taken for one.
 _HEADING = re.compile(r'^[^\s:]+:$')
+
+
+def first_version() -> str:
+    """What VERSION starts at when a plain build finds there is none: today's first release, '26.09.21-1'
+    on the 21st of September 2026 - the same number the game run from source starts it at."""
+    from audiodefence.platform.version import today
+    return today()
 
 
 def changelog_heading(version: str) -> str:
@@ -178,15 +183,19 @@ def without_unrelease(text: str) -> str:
     return _render_changelog([b for b in _parse_changelog(text) if not (b[0] == UNRELEASE and not b[1])])
 
 
-def prepare_release_files() -> list:
+def prepare_release_files(start_at: str | None = None) -> list:
     """A plain build's work on the repository, done before anything is copied: VERSION started if there
     is none, and the changelog's unreleased lines filed under this version.  Returns the files it
-    changed, so the build can say at the end that they want committing."""
+    changed, so the build can say at the end that they want committing.
+
+    `start_at` is the number a missing VERSION is started at: the build passes the one it compiled into
+    the executable, so a build that runs past midnight does not write the next day's date."""
     changed = []
     if not build_version():
+        start_at = start_at or first_version()
         with open(os.path.join(HERE, 'VERSION'), 'w', encoding='utf-8', newline='\n') as fh:
-            fh.write(FIRST_VERSION + '\n')
-        say('VERSION did not exist, so it has been started at %s.' % FIRST_VERSION)
+            fh.write(start_at + '\n')
+        say('VERSION did not exist, so it has been started at %s.' % start_at)
         changed.append('VERSION')
     path = os.path.join(HERE, 'changelog.txt')
     text = open(path, encoding='utf-8').read() if os.path.isfile(path) else ''
@@ -403,7 +412,7 @@ def main(argv=None) -> int:
 
     # the version the executable carries: a release build starts VERSION when there is none (once PyInstaller
     # has succeeded), so it carries the number it is about to write; a build with a flag carries what is there
-    baked = build_version() or ('' if flagged else FIRST_VERSION)
+    baked = build_version() or ('' if flagged else first_version())
     folder = '<a temporary folder>' if args.dry_run else write_baked_version(baked)
     cmd = command(args, folder)
     say('running: python ' + ' '.join(cmd[1:]))
@@ -424,9 +433,9 @@ def main(argv=None) -> int:
         if flagged:
             say('the changelog would be copied as it is, because a build with a flag leaves it alone.')
         else:                                           # what the same command without --dry-run would do
-            version = build_version() or FIRST_VERSION
+            version = build_version() or first_version()
             if not build_version():
-                say('VERSION does not exist, so it would be started at %s.' % FIRST_VERSION)
+                say('VERSION does not exist, so it would be started at %s.' % first_version())
             path = os.path.join(HERE, 'changelog.txt')
             text = open(path, encoding='utf-8').read() if os.path.isfile(path) else ''
             _new, did, notes = plan_changelog(text, version)
@@ -436,7 +445,7 @@ def main(argv=None) -> int:
                 say('  %s' % note)
             say("and the build's copy would open on %s, without the %s line."
                 % (changelog_heading(version), UNRELEASE))
-        zip_version = build_version() or (FIRST_VERSION if not flagged else '<no VERSION file>')
+        zip_version = build_version() or (first_version() if not flagged else '<no VERSION file>')
         if args.no_package:
             say('it would not be zipped, because of --no-package.')
         else:
@@ -460,7 +469,7 @@ def main(argv=None) -> int:
     if not args.no_game:
         copy_game(dest_root)
     # only once PyInstaller has succeeded: a failed build must not leave the repository changed
-    changed = prepare_release_files() if plain else []
+    changed = prepare_release_files(baked) if plain else []
     copy_side_files(dest_root)
     if plain:
         strip_shipped_changelog(dest_root)
@@ -510,7 +519,7 @@ def menu() -> list | None:
     """Ask which build.  Returns the flags for it, or None to quit."""
     version = build_version()
     say('Audio Defence compiler.  VERSION is %s.'
-        % (version or 'missing - a release build will start it at %s' % FIRST_VERSION))
+        % (version or 'missing - a release build will start it at %s' % first_version()))
     say()
     for number, (text, _flags) in enumerate(MENU, 1):
         say('  %d. %s' % (number, text))

@@ -794,7 +794,8 @@ script — does three things to the repository before it copies anything:
   release build starts a new entry.
 - `unrelease:` stays at the top, empty, ready for whatever changes next. If
   someone has deleted that line, it is put back.
-- if there is no `VERSION` file, one is made, starting at `1.0.0-1`.
+- if there is no `VERSION` file, one is made, starting at today's first
+  release: `26.09.21-1` on the 21st of September 2026.
 
 The copy of the changelog beside the executable is the same, less the empty
 `unrelease:` line, so it opens on the newest version. Every version's lines are
@@ -827,6 +828,8 @@ option while the repository has no `VERSION` file carries no number and never
 offers an update, which is the one way to ship something that cannot be
 updated afterwards; the release build never does this, because it starts the
 file first.
+Run from source, the game does the same as a release build when there is no
+`VERSION` file: it makes one, at today's first release.
 
 A build also carries three pieces of text beside the executable:
 `changelog.txt`, `license.txt` (the repository's `LICENSE`, renamed so

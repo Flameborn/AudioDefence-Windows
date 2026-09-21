@@ -5,7 +5,7 @@ game's, not this port's, and the App Store did the updating.  A Windows build ha
 
 The number is written in one place, the repository's `VERSION` file.  It holds the release tag exactly as
 GitHub has it, so cutting a release is copy-and-paste rather than a conversion.  Run from source, the game
-reads that file.  A build carries the number inside the executable instead: `compiler.py` writes it into
+reads that file, and makes it when there is none (see `today`).  A build carries the number inside the executable instead: `compiler.py` writes it into
 a small module, `BAKED_MODULE`, which PyInstaller compiles in.  Nothing beside the executable is read, so
 a file there cannot be edited to change what the game thinks it is, or deleted so that it never updates
 again - and the `VERSION` file an older build left beside the executable is ignored.
@@ -24,6 +24,7 @@ from __future__ import annotations
 import importlib
 import logging
 import os
+import time
 
 from .. import paths
 
@@ -35,9 +36,15 @@ UNKNOWN = ''
 BAKED_MODULE = '_audiodefence_build'
 
 
+def today() -> str:
+    """The first release of today, '26.09.21-1' on the 21st of September 2026: what a missing VERSION file
+    is started at, by a release build in compiler.py and by the game run from source."""
+    return time.strftime('%y.%m.%d') + '-1'
+
+
 def current() -> str:
     """This build's version, or '' when it has none: a build made with no VERSION file in the repository,
-    or a checkout without one."""
+    or a checkout with none where one cannot be made."""
     if paths.FROZEN:
         try:
             text = str(getattr(importlib.import_module(BAKED_MODULE), 'VERSION', '') or '').strip()
@@ -46,15 +53,24 @@ def current() -> str:
         if not text:
             log.info('this build was made without a version, so it never offers an update')
         return text
+    path = os.path.join(paths.ROOT, FILENAME)
     try:
-        with open(os.path.join(paths.ROOT, FILENAME), encoding='utf-8') as fh:
+        with open(path, encoding='utf-8') as fh:
             text = fh.read().strip()
     except OSError:
         text = ''
     if text:
         return text.splitlines()[0].strip()
-    log.info('no %s file; this checkout has no version of its own', FILENAME)
-    return UNKNOWN
+    # a checkout without one: start it at today's first release, as a release build would
+    started = today()
+    try:
+        with open(path, 'w', encoding='utf-8', newline='\n') as fh:
+            fh.write(started + '\n')
+    except OSError as exc:
+        log.warning('there is no %s file, and one could not be made (%s)', FILENAME, exc)
+        return UNKNOWN
+    log.info('there was no %s file, so it has been started at %s', FILENAME, started)
+    return started
 
 
 def parse(version: str) -> tuple:
