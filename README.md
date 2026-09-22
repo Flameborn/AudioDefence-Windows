@@ -296,7 +296,7 @@ In a game:
 | L1, or a stick flicked up under Gesture | next weapon |
 | L2, or a stick flicked down under Gesture | reload |
 | Options | pause, and Options again to resume |
-| Triangle (Y) | skip the narration |
+| Cross (A) | skip the narration |
 | Square | read the challenge timer |
 
 Under **Gesture** a stick flicked up or down is the swipe, as the Up and Down

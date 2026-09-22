@@ -172,7 +172,7 @@ PAD_DEFAULTS = {
     'next_weapon': {'button': ('leftshoulder',), 'gesture': ('stickup',)},
     'reload': {'button': ('lefttrigger',), 'gesture': ('stickdown',)},
     'pause': ('start',),
-    'skip': ('y',),                                       # the top button, away from Cross, which selects
+    'skip': ('a',),
     'timer': ('x',),
 }
 #: keys.json: every kind of controller that has been connected, by the name it gives itself, with its
