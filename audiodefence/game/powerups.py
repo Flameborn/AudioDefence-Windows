@@ -37,6 +37,31 @@ def _get(d, key):
     return d.get(key) if isinstance(d, dict) else None
 
 
+def felt_when_it_starts(power_up) -> None:
+    """PORT ADDITION: the swell is felt from the moment the power-up's own sound starts (user request).
+
+    A sound that is not on the card when `play:` is called starts a moment later (S3DSound.play_when_loaded
+    -> activate -> the decode), and a launch sound is one of those: it is loaded by being played.  So this
+    waits a pass at a time for the sound to be playing rather than shaking the pad while the arena is still
+    quiet.  It gives up after a second of passes and is felt anyway, a swell late being better than none."""
+    from ..platform.haptics import Haptics
+    sound = power_up.felt_sound()
+    seconds = power_up.felt_start()
+    if sound is None:
+        Haptics.shared().power_up_started(seconds)
+        return
+    passes = [60]
+
+    def when_playing():
+        if passes[0] <= 0 or sound.playing:
+            Haptics.shared().power_up_started(seconds)
+            return
+        passes[0] -= 1
+        RunLoop.main().call_soon(when_playing)
+
+    when_playing()
+
+
 def _explosion_sign(r: int) -> int:
     """(2 & ~(rand() << 1)) - 1: +1 for an even rand(), -1 for an odd one."""
     return (2 & ~(r << 1)) - 1
@@ -109,9 +134,8 @@ class PowerUp:
         if announce is None:
             return                                        # messages to nil: use is never reached
         def started(_s):                                  # activate:_block_invoke 0x10001dc6c
-            from ..platform.haptics import Haptics        # PORT ADDITION: the power-up takes effect
-            Haptics.shared().power_up_started(self.felt_start())
             self.use()
+            felt_when_it_starts(self)                     # PORT ADDITION: felt with the sound it starts
 
         announce.add_3d_sound_end_callback(started)
         if not GameParameters.shared().last_announcer_value():
@@ -121,15 +145,20 @@ class PowerUp:
     #: PORT ADDITION: how long the power-up starting is felt for when it has nothing of its own to go by,
     #: and the most it is felt for however long its start sound runs.  The Tornado's launch is 5.7 seconds
     #: and the Fireworks' 5.6 - the whole thing coming in, not a start - and a rumble that long stops being
-    #: something starting and becomes something wrong with the pad.  The Tesla's 2.7 is a start, so the cap
-    #: is just under it; the Minigun's spin-up (1.5) and everything shorter are felt whole.
+    #: something starting and becomes something wrong with the pad.  The Tesla's deploy is 2.74, so the cap
+    #: leaves room for it: it, the Minigun's spin-up (1.5) and everything shorter are felt whole.
     FELT_START = 0.6
-    FELT_START_MAX = 2.5
+    FELT_START_MAX = 3.0
 
     def felt_start(self) -> float:
         """PORT ADDITION: the seconds the start is felt for - as long as the sound that starts it, so what
         is felt and what is heard end together (user request)."""
         return self.FELT_START
+
+    def felt_sound(self):
+        """PORT ADDITION: the sound the swell starts with - the deploy after the announcement.  None where
+        the power-up has nothing of its own, and then it is felt as soon as it is used."""
+        return None
 
     def _launch_seconds(self, key: str) -> float:
         """PORT ADDITION: how long a launch sound runs, or FELT_START if it cannot be known yet.
@@ -190,6 +219,9 @@ class MinigunPowerUp(PowerUp):
         self.time_since_activation = 0.0
         self.active = True
 
+    def felt_sound(self):                                 # PORT ADDITION
+        return self.loop_sound
+
     def update(self, dt: float) -> None:                  # 0x1000b2934
         from .brick_manager import BrickManager
         if not self.active:
@@ -235,6 +267,9 @@ class FireworksPowerUp(PowerUp):
 
     def felt_start(self) -> float:                        # PORT ADDITION
         return self._launch_seconds('fireworks_launch')
+
+    def felt_sound(self):                                 # PORT ADDITION
+        return self.playlist.sound('fireworks_launch') if self.playlist is not None else None
 
     def use(self) -> None:                                # 0x100091860
         from .brick_manager import BrickManager
@@ -311,6 +346,9 @@ class TornadoPowerUp(PowerUp):
 
     def felt_start(self) -> float:                        # PORT ADDITION
         return self._launch_seconds('tornado_launch')
+
+    def felt_sound(self):                                 # PORT ADDITION
+        return self.playlist.sound('tornado_launch') if self.playlist is not None else None
 
     def use(self) -> None:                                # 0x100097714
         from .weapon_manager import WeaponManager
@@ -391,6 +429,9 @@ class TeslaPowerUp(PowerUp):
 
     def felt_start(self) -> float:                        # PORT ADDITION
         return self._launch_seconds('tesla_launch')
+
+    def felt_sound(self):                                 # PORT ADDITION
+        return self.playlist.sound('tesla_launch') if self.playlist is not None else None
 
     def use(self) -> None:                                # 0x1000d7774
         super().use()
