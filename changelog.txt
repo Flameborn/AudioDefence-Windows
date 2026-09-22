@@ -1,4 +1,5 @@
 unrelease:
+Melee weapons sound as they did before again. The swing and the hit both come from where you are, the way the original game has it, after the last version moved the hit out to the zombie you were hitting.
 The menus are felt on a game controller: a click for each row or tab you land on, a firmer one when you press a button or change a setting, and two knocks for a screen - low to high going in, high to low coming back out. Joystick vibration scales them, and Off silences them.
 The three vibration strengths feel further apart, and all of them are a little stronger. Medium and Strong used to be hard to tell apart.
 Shooting a diamond and shooting a power-up container each have a feel of their own instead of a zombie's, and the power-up is felt again when it takes effect after the announcement. That one starts with the power-up's own sound, the deploy after the announcement, and lasts as long as it does - the Tesla coil going up, the Minigun spinning up - up to three seconds.

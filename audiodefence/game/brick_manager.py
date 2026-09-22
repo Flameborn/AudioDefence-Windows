@@ -353,14 +353,6 @@ class BrickManager:
                 hits.append(t)
         return hits
 
-    @staticmethod
-    def _struck(hits):                                          # PORT ADDITION
-        """Which of the hit enemies the melee sound comes from: the nearest.
-
-        A melee weapon is never `multihit`, so `calculateHitEnemies` 0x1000c41c4 has already narrowed
-        this to one.  Taking the nearest rather than the first keeps it right if one ever is."""
-        return min(hits, key=lambda t: t.squared_distance) if hits else None
-
     def shot_with_special_weapon(self, weapon) -> None:         # 0x1000c4b38
         from .weapon import MeleeWeapon
         hits = self.calculate_hit_enemies(weapon, S3DEngine.engine().head_orientation)
@@ -370,7 +362,7 @@ class BrickManager:
             if not hits:
                 weapon.play_miss_sound()
                 return
-            weapon.play_hit_sound(self._struck(hits).position)
+            weapon.play_hit_sound()
         elif not hits:
             return
         self.check_deaths_for_hit_enemies(hits, weapon.name)
@@ -400,7 +392,7 @@ class BrickManager:
             if count == 0:
                 weapon.play_miss_sound()
                 return
-            weapon.play_hit_sound(self._struck(hits).position)
+            weapon.play_hit_sound()
         elif count == 0:
             return
         self.check_deaths_for_hit_enemies(hits, weapon.name)

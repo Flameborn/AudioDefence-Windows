@@ -9,7 +9,6 @@ between calls (CACurrentMediaTime), not by the timer's dt; only fireRateTimer us
 from __future__ import annotations
 
 import logging
-import math
 import time
 
 from ..platform import crand
@@ -443,54 +442,21 @@ class MeleeWeapon(Weapon):
         if self.weapon_manager is not None:
             self.weapon_manager.did_shot_with_melee()
 
-    def play_hit_sound(self, position=None) -> None:      # 0x100007538
-        """DIVERGENCE (user request): the swing stays with you, the impact comes from what you hit.
+    def play_hit_sound(self) -> None:                     # 0x100007538
+        """Not spatialised, as the original has it.
 
-        A melee weapon has two recordings, `_miss_` and `_hit_`, and the original plays both with
-        `setSpatialized:NO` (0x100007538, 0x100007610), so a swing that connects arrives at the head
-        exactly like one that does not.  `_hit_` is not just the impact, though: it is the swing *and*
-        the impact in one file - the wok's is 0.97 s, a rising whoosh and then the clang, where `_miss_`
-        is 0.67 s of whoosh alone - so placing it on the enemy takes the swing over there with it, and
-        the blow no longer starts in your hands.
-
-        So a connecting swing plays both: the `_miss_` whoosh where you are, and `_hit_` out at whatever
-        it landed on.  It matters that something is heard out there, because the enemy plays nothing of
-        its own for a melee blow - `playImpactAndHitSoundForDamages:melee:` 0x10006150c skips the impact
-        sound when `melee` is YES - so this is the only cue for where the blow went home."""
-        playlist = self.playlist
-        if playlist is None:
-            return
-        if position is not None:
-            swing = playlist.any_sound_containing('_miss_')
-            if swing is not None:
-                swing.set_spatialized(False)
-                swing.set_gain(0.8)
-                swing.play(False)
-        snd = playlist.any_sound_containing('_hit_')
-        if snd is None:
-            return
-        if position is None:                              # nothing to place it at: as it was
+        REVERTED (user request): a version of this port placed the hit on the enemy that was struck and
+        played `_miss_` at the player for the swing, on the reasoning that a blow you can hear the
+        direction of is what an audio game is for.  Players did not want it.  `_hit_` is the swing and
+        the impact in one recording, so splitting the two across two positions cut across the sound
+        rather than opening it up, and it was a deliberate change to a game that was not asking for one:
+        a melee weapon sounding from the hand is what the original does, on purpose, and this port's
+        business is that game rather than a better idea of it."""
+        snd = self.playlist.any_sound_containing('_hit_') if self.playlist else None
+        if snd is not None:
             snd.set_spatialized(False)
             snd.set_gain(0.8)
-        else:
-            snd.set_planar((position[0], position[1], 0.0))
-            snd.set_spatialized(True)
-            snd.set_gain(self.spatial_gain(0.8, position))
-        snd.play(False)
-
-    @staticmethod
-    def spatial_gain(gain: float, position) -> float:
-        """The gain to ask for so a placed sound is as loud as the same sound at the head.
-
-        The engine attenuates by distance - `_distance_gain` is 1/d, `csl::IntensityAttenuationCue`
-        0x1000ef780 - so handing it the flat gain makes a sound quieter the further off it is, and a
-        melee hit three units away came out at a third of its old loudness.  Multiplying by the distance
-        first cancels that, which is what the original does for its own impact sounds: the gain at
-        0x100061544 is `sqrt(x*x + y*y) / 10 * 5`, a distance divided by two, so that after the 1/d they
-        all land at the same loudness whatever the range.  Direction is what the placement is for; the
-        loudness is not supposed to carry the news."""
-        distance = math.sqrt(position[0] ** 2 + position[1] ** 2)
-        return gain * max(distance, 1.0 / S3DEngine.engine().max_spatial_gain)
+            snd.play(False)
 
     def play_miss_sound(self) -> None:                    # 0x100007610
         """Not spatialised, and right not to be: a miss is your own swing, and it hit nothing."""

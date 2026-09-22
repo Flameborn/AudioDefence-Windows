@@ -719,27 +719,21 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   reload and however long the pause.  Pausing mid-reload was a free reload and a way to stop the clock
   while getting one.  `Weapon.pause` / `.resume` pause the reload and continuous sounds and re-base the
   wall clock on resume, and `pauseGame` / `resumeGame` send them through the weapon manager.
-* DIVERGENCE (user request): a melee swing is heard in two places - the swing where the player is, the
-  hit out at whatever it landed on.  A melee weapon has two recordings, `_miss_` and `_hit_`, and the
-  original plays both with `setSpatialized:NO` (`-[ADMeleeWeapon playHitSound]` 0x100007538,
-  `playMissSound` 0x100007610), so a swing that connects arrives at the head exactly like one that does
-  not, and nothing says which direction the blow went in.
-  The catch is that `_hit_` is not the impact on its own: it is the swing *and* the impact in one file.
-  The wok's is 0.97 s - a rising whoosh, then the clang - where `_miss_` is 0.67 s of whoosh alone.
-  Placing `_hit_` on the enemy therefore takes the swing over there with it, and the blow stops starting
-  in the player's hands, which is worse than where it began.  So a connecting swing plays both: `_miss_`
-  unspatialised for the swing, and `_hit_` placed on the target for the hit.
-  It matters that something is heard out there at all, because the enemy plays nothing of its own for a
-  melee blow - `playImpactAndHitSoundForDamages:melee:` 0x10006150c skips the impact sound when `melee`
-  is YES - so this is the only cue for where the blow went home.  `BrickManager._struck` picks the
-  nearest of the hit enemies; a melee weapon is never `multihit`, so `calculateHitEnemies` 0x1000c41c4
-  has already narrowed that to one.
-  The gain is multiplied by the distance before it is handed over (`Weapon.spatial_gain`), because the
-  engine divides by it: `_distance_gain` is 1/d (`csl::IntensityAttenuationCue::vfunc_2` 0x1000ef780),
-  and handing it the flat 0.8 made a hit three units away a third as loud as it used to be.  The
-  original does the same thing for its own impact sounds - the gain at 0x100061544 is
-  `sqrt(x*x + y*y) / 10 * 5`, a distance halved - so that they all land at one loudness whatever the
-  range.  Direction is what the placement is for; the loudness is not meant to carry the news.
+* TRIED AND REVERTED: placing the melee hit on the enemy.  A melee weapon has two recordings, `_miss_`
+  and `_hit_`, and the original plays both with `setSpatialized:NO` (`-[ADMeleeWeapon playHitSound]`
+  0x100007538, `playMissSound` 0x100007610), so a swing that connects arrives at the head exactly like
+  one that does not.  A version of this port placed `_hit_` on the enemy that was struck and played
+  `_miss_` at the player for the swing, since the enemy makes no sound of its own for a melee blow -
+  `playImpactAndHitSoundForDamages:melee:` 0x10006150c skips the impact sound when `melee` is YES - so
+  nothing at all said where the blow landed.
+  It shipped in 26.09.22-1 and the players did not want it, which settles it.  Two reasons worth keeping
+  here so that nobody reaches for this again.  `_hit_` is not the impact on its own: it is the swing
+  *and* the impact in one file, the wok's being 0.97 s of rising whoosh into the clang where `_miss_` is
+  0.67 s of whoosh alone.  Splitting that across two positions cuts across a recording that was made as
+  one, and it was heard as the impact being clipped rather than as the blow opening out.  And it was a
+  deliberate change to a game that had not asked for one: a melee weapon sounding from the hand is what
+  the original does, on purpose, and this port's business is that game rather than a better idea of it.
+  The gain arithmetic that went with it is gone too; it is in the history if it is ever wanted.
 * PORT ADDITION: Restart challenge on the pause screen.  `ADPauseViewController` offers Resume
   (`validateButtonPressed` 0x100055bbc) and End Game (`quitButtonTouched` 0x1000559c0) and nothing else,
   so a challenge already lost - a time limit missed, an accuracy that cannot be recovered - had to be
