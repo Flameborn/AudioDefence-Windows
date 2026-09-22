@@ -24,7 +24,8 @@ from .. import paths
 SETTINGS_KEYS = frozenset({'buttonMode', 'controlScheme', 'sensivity', 'menuAxis', 'debugMapVisible',
                           'tutorialText', 'rememberFocus', 'checkUpdates', 'skippedUpdate',
                           'menuMusicVolume', 'vibration', 'triggerEffects', 'keyNames',
-                          'keyNamesController', 'speechOutput', 'sapiVoice', 'sapiRate', 'sapiRateBoost',
+                          'keyNamesController', 'speechOutput', 'fineHaptics', 'sapiVoice', 'sapiRate',
+                          'sapiRateBoost',
                           'sapiPitch', 'sapiVolume'})
 INPUT_KEYS = frozenset({'keymap', 'padmap', 'padmaps'})
 

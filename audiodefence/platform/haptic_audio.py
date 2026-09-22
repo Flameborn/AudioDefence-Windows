@@ -73,6 +73,13 @@ def rumble(seconds: float, cutoff: float, seed: int, hold: float = 0.3) -> np.nd
     return _normal(low_pass(noise, cutoff) * np.minimum(1.0, t / 0.005) * fade)
 
 
+def fat(wave: np.ndarray, amount: float = 3.0) -> np.ndarray:
+    """The same wave with more in it: soft saturation, which lifts everything under the peak without
+    going over it.  The actuators answer to how much of the wave there is, not to its highest point, so a
+    thump that only touches 1.0 for an instant is felt as weak; this fills it out."""
+    return _normal(np.tanh(wave * amount).astype(np.float32))
+
+
 def _mix(a: np.ndarray, b: np.ndarray, gain: float) -> np.ndarray:
     """`a` with `b` laid over it at `gain`, the shorter one padded with silence."""
     out = np.zeros(max(len(a), len(b)), np.float32)
@@ -88,13 +95,14 @@ class _Waves(dict):
         'heartbeat': lambda: thump(55.0, 0.12),               # when no recording is given
         # a knock you feel in the palm, with a tick on top so it still reads as a bullet: the actuators
         # answer low and longer far better than the short 170 Hz tick this was
-        'hit': lambda: _mix(thump(110.0, 0.09), thump(200.0, 0.03), 0.35),
-        'melee': lambda: thump(70.0, 0.13),
+        'hit': lambda: fat(_mix(thump(110.0, 0.09), thump(200.0, 0.03), 0.35)),
+        'melee': lambda: fat(thump(70.0, 0.13)),
         'blocked': lambda: thump(260.0, 0.03),
-        'kill': lambda: _mix(thump(55.0, 0.2), thump(90.0, 0.12), 0.5),
-        'explosion': lambda: rumble(0.6, 90.0, 1),
+        'kill': lambda: fat(_mix(thump(55.0, 0.2), thump(90.0, 0.12), 0.5)),
+        # a blast: low, long, and held at full for half of it, with a thump at the front for the shock
+        'explosion': lambda: fat(_mix(rumble(0.8, 70.0, 1, hold=0.5), thump(45.0, 0.25), 0.8), 4.0),
         'gust': lambda: rumble(0.4, 60.0, 2, hold=0.1) * 0.7,
-        'death': lambda: _mix(rumble(1.1, 70.0, 3, hold=0.4), thump(40.0, 1.0), 0.6),
+        'death': lambda: fat(_mix(rumble(1.1, 70.0, 3, hold=0.4), thump(40.0, 1.0), 0.6), 4.0),
     }
 
     def __missing__(self, kind):

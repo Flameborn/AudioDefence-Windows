@@ -333,6 +333,12 @@ letting go all the way. Under Button, L2 pulls against a light spring where it
 reloads. In the menus and on the pause
 screen they are plain again, and they are set back when the game closes.
 
+**Settings → Miscellaneous → Fine haptics** (on by default) chooses how a
+controller that has both plays what you feel: through the fine haptics in its
+grips, or through its motors like any other pad. Turn it off to feel a
+DualSense as an ordinary controller. With no such controller connected, the
+motors are used whatever it says.
+
 **Settings → Miscellaneous** sets how strong **Joystick vibration** and the
 **Trigger feel** are: Off, Light, Medium (the default) or Strong, with Enter
 for the next and Shift+Enter for the previous. Each step of Joystick vibration

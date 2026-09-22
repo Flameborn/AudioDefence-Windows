@@ -27,8 +27,15 @@ import logging
 
 log = logging.getLogger('platform.haptics')
 
-#: Settings -> Miscellaneous -> Joystick vibration: how much of each pulse is felt
-LEVEL_SCALE = {'off': 0.0, 'light': 0.5, 'medium': 0.8, 'strong': 1.0}
+#: Settings -> Miscellaneous -> Joystick vibration: how much of each pulse is felt.  Strong is everything
+#: the pad has - a waveform is played at its full height and a motor at full - so more than this has to come
+#: from the pulses themselves (haptic_audio.fat, RUMBLE_AS_WELL), not from here.
+LEVEL_SCALE = {'off': 0.0, 'light': 0.6, 'medium': 0.85, 'strong': 1.0}
+
+#: what a DualSense feels through its motors as well as its fine haptics: the big, low things, where the
+#: motors have the weight the little actuators cannot give.  The rest is the fine haptics alone, which are
+#: finer than a motor and do not drown the game's sound.
+RUMBLE_AS_WELL = frozenset({'explosion', 'death', 'kill'})
 
 #: kind -> (low-frequency motor, high-frequency motor, milliseconds) at strength s: the heavy motor is the
 #: thump, the light one the buzz, so a melee blow is mostly thump and a bullet's hit mostly buzz
@@ -90,8 +97,9 @@ class Haptics:
         self._add('kill', 0.8)
 
     def explosion(self, distance: float) -> None:
-        """An explosion `distance` from the player: full within a metre or so, a murmur at eight."""
-        self._add('explosion', max(0.2, min(1.0, 1.0 - (distance - 1.0) / 7.0)))
+        """An explosion `distance` from the player: full within a metre or so, and never less than half,
+        since a blast is a blast even across the arena."""
+        self._add('explosion', max(0.5, min(1.0, 1.0 - (distance - 1.0) / 14.0)))
 
     def gust(self) -> None:
         self._add('gust', 0.6)
@@ -130,20 +138,29 @@ class Haptics:
         if not pads.pads or scale <= 0.0:
             return
         strengths = {kind: min(1.0, s + 0.1 * (n - 1)) for kind, (s, n) in events.items()}
-        skip = set()
-        if pads.dualsenses and HapticAudio.shared().available():
+        fine = set()
+        if pads.dualsenses and GameParameters.shared().fine_haptics() and HapticAudio.shared().available():
             audio = HapticAudio.shared()
             for kind, s in strengths.items():
                 wave = audio.recording(recording) if kind == 'heartbeat' and recording else WAVES.get(kind)
                 audio.play(wave, s * scale)
                 self.played = (self.played + [(kind, round(s * scale, 3))])[-20:]
-            skip = set(pads.dualsenses)
+            fine = set(pads.dualsenses)
+        self._pulse(*self._shape(strengths, scale), skip=fine)
+        if fine:                                          # and the motors too, for the big ones
+            heavy = {kind: s for kind, s in strengths.items() if kind in RUMBLE_AS_WELL}
+            if heavy:
+                self._pulse(*self._shape(heavy, scale), skip=set(pads.pads) - fine)
+
+    @staticmethod
+    def _shape(strengths: dict, scale: float):
+        """The one pulse these events come to: the strongest of them on each motor, and the longest."""
         low = high = 0.0
         ms = 0
         for kind, s in strengths.items():
             k_low, k_high, k_ms = SHAPES[kind](s)
             low, high, ms = max(low, k_low * scale), max(high, k_high * scale), max(ms, k_ms)
-        self._pulse(low, high, ms, skip)
+        return low, high, ms
 
     def _pulse(self, low: float, high: float, ms: int, skip=frozenset()) -> None:
         from .pad import Pads

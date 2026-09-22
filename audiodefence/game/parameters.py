@@ -264,6 +264,19 @@ class GameParameters:
         self.defaults.set_object(value, 'keyNames')
         self.defaults.synchronize()
 
+    #: PORT ADDITION: Settings -> Miscellaneous -> Fine haptics: whether a controller that has them plays
+    #: what you feel in its grips (a DualSense over USB) or through its motors like any other pad.  On by
+    #: default; with no such controller connected the motors are used whatever this says.
+    DEFAULT_FINE_HAPTICS = True
+
+    def fine_haptics(self) -> bool:
+        value = self.defaults.object('fineHaptics')
+        return self.DEFAULT_FINE_HAPTICS if value is None else self.defaults.bool('fineHaptics')
+
+    def set_fine_haptics(self, value: bool) -> None:
+        self.defaults.set_bool(bool(value), 'fineHaptics')
+        self.defaults.synchronize()
+
     #: PORT ADDITION: Settings -> Miscellaneous -> Speech output: Automatic, or one screen reader or voice
     #: only (platform/speech.py OUTPUTS).  Automatic by default, as it always was.
     DEFAULT_SPEECH_OUTPUT = 'auto'

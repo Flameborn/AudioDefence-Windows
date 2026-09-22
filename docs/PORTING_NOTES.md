@@ -493,7 +493,15 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   a four-channel sound card to Windows as well, whose third and fourth channels drive its two haptic
   actuators; `platform/haptic_audio.py` opens it through SDL's audio (pygame._sdl2.audio, 48 kHz float) and
   plays the heartbeat recording the game has just played, low-passed to the actuators' range, and short
-  sine knocks, thuds and filtered-noise rumbles for the rest, instead of rumble for that pad.  Over
+  sine knocks, thuds and filtered-noise rumbles for the rest, saturated (`haptic_audio.fat`) so each
+  carries as much as it can under a peak of 1, which is what those actuators answer to.  An
+  explosion, a death and a kill go to that pad's motors as well (`RUMBLE_AS_WELL`), the fine haptics
+  having no weight for the big low things; a bullet's hit and the rest are the fine haptics alone,
+  which do not drown the game's sound.  Settings -> Miscellaneous -> Fine haptics (`fineHaptics`, on by
+  default) turns the grips off, so such a pad is felt through its motors like any other - for hearing what
+  everyone else feels, and for a pad whose fine haptics are not wanted.  Vibration scales every pulse
+  (0.6, 0.85, 1), and Strong is
+  the pad at full, so anything more has to come from the pulses themselves.  Over
   Bluetooth there is no such card and it rumbles.  Shaking a pad that has an accelerometer (SDL's sensor,
   reached through pygame's own SDL2.dll) calls `motionEnded:withEvent:` 0x10005a108 as the phone's shake
   does, so it swings the melee weapon under Gesture and does nothing under Button; the threshold is 25 m/s2

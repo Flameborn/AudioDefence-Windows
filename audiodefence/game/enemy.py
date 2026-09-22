@@ -86,6 +86,7 @@ class Enemy:
         self.destroyed = False
         self._revive_done = False                          # PORT ADDITION: see attack()
         self._voices = {}                                  # PORT ADDITION: see voice_of()
+        self._overlapping = {}                             # and overlapping_voice_of()
         self.parent_brick = None
         self.required_playlist_activation = False
         self.playlist_activated = False
@@ -541,6 +542,32 @@ class Enemy:
             twin.activate()
         return twin
 
+    #: how many voices one enemy keeps for a sound that can be asked for again before it has finished
+    OVERLAPPING_VOICES = 3
+
+    def overlapping_voice_of(self, shared):
+        """DIVERGENCE: a voice for a sound that comes again before the last one has finished - the impact
+        of one bullet after another, and the impacts of two zombies hit together.
+
+        The impacts come from one playlist for the whole game ('impact', loaded by the brick manager), so in
+        the original every zombie plays them through the same S3DSound: the second hit restarts the first,
+        wherever it was - a burst from the Micro SMG is one thud, and a zombie hit while another is being
+        hit silences it.  Here each enemy keeps a few voices of its own for such a sound and takes one that
+        is not playing, so the hits lie over each other and each is heard from its own zombie.  With all of
+        them busy the oldest gives way, which is what the original did every time."""
+        if shared is None:
+            return None
+        voices = self._overlapping.setdefault(shared.key, [])
+        for voice in voices:
+            if shared.loaded and not voice.loaded:        # the playlist was unloaded and loaded again
+                voice.activate()
+            if not voice.playing:
+                return voice
+        if len(voices) < self.OVERLAPPING_VOICES:
+            voices.append(shared.copy())
+            return voices[-1]
+        return voices[0]
+
     def play_any_sound_containing(self, text: str, looping: bool = True, spatialized: bool = True) -> float:
         """-[ADEnemy playAnySoundContaining:looping:spatialized:] 0x100062420 (1-arg form 0x100062d90)."""
         if self.sound is not None:
@@ -587,17 +614,20 @@ class Enemy:
         if not melee:
             snd = None
             if self.use_own_impact_sounds:
-                snd = self.voice_of(self.playlist.any_sound_containing('impact_')) if self.playlist else None
+                snd = (self.overlapping_voice_of(self.playlist.any_sound_containing('impact_'))
+                       if self.playlist else None)
             else:
                 impact = S3DEngine.engine().play_list_with_name('impact')
                 if impact is not None:
+                    # this playlist is the whole game's, so these are per-enemy voices (see there)
                     if self.multi_hit_factor >= 2:
-                        snd = impact.any_sound_containing(f'impactmulti_{self.multi_hit_factor}')
+                        snd = self.overlapping_voice_of(
+                            impact.any_sound_containing(f'impactmulti_{self.multi_hit_factor}'))
                     elif self.multi_hit_factor in (0, 1):
                         if self._life > 0.0:
-                            snd = impact.any_sound_containing('impact_')
+                            snd = self.overlapping_voice_of(impact.any_sound_containing('impact_'))
                         else:
-                            snd = impact.any_sound_containing('KillConfirm_')
+                            snd = self.overlapping_voice_of(impact.any_sound_containing('KillConfirm_'))
             if snd is not None:
                 snd.set_planar((self.position[0], self.position[1], 0.0))
                 snd.set_spatialized(True)

@@ -171,6 +171,11 @@ class ControlSchemePanel:
                         'and your death. Press Enter for the next setting and Shift plus Enter for the '
                         'previous.',
                    action=self.step_vibration, shift_action=self.step_vibration_back)
+            t.cell('Fine haptics', 'ON' if params.fine_haptics() else 'OFF',
+                   hint='Press Enter to toggle: when on, a controller that can play what you feel in its '
+                        'grips does so - a DualSense plugged in by USB - instead of shaking its motors. '
+                        'With no such controller the motors are used either way.',
+                   action=self.toggle_fine_haptics)
             t.cell('Trigger feel', levels[params.trigger_level()],
                    hint="Only for a DualSense controller; other controllers have no trigger feel. How stiff "
                         "its triggers are while you play: R2 like a gun's trigger, L2 a pull where it "
@@ -390,6 +395,7 @@ class ControlSchemePanel:
         params.set_menu_music_volume(params.DEFAULT_MENU_MUSIC_VOLUME)
         params.set_vibration_level(params.DEFAULT_VIBRATION)
         params.set_trigger_level(params.DEFAULT_TRIGGER_FEEL)
+        params.set_fine_haptics(params.DEFAULT_FINE_HAPTICS)
         params.set_key_names(params.DEFAULT_KEY_NAMES)
         params.set_names_controller(None)
         params.set_speech_output(params.DEFAULT_SPEECH_OUTPUT)
@@ -418,6 +424,14 @@ class ControlSchemePanel:
     #: PORT ADDITION: seconds a stepped Trigger feel is left on the pad, to squeeze R2 and feel it.  The
     #: triggers are a game's feel, and the game is not running while you are choosing it.
     TRIGGER_SAMPLE = 8.0
+
+    def toggle_fine_haptics(self) -> None:
+        params = GameParameters.shared()
+        params.set_fine_haptics(not params.fine_haptics())
+        self.reload_data()
+        self.announce('Fine haptics %s' % ('ON' if params.fine_haptics() else 'OFF'))
+        from ..platform.haptics import Haptics            # so the difference can be felt at once
+        Haptics.shared().sample()
 
     def step_trigger_level(self, step: int = 1) -> None:
         params = GameParameters.shared()
