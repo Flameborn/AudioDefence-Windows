@@ -195,6 +195,7 @@ class MinigunPowerUp(PowerUp):
         self.minigun_weapon = None
         self.minigun_duration = 0.0
         self.loop_sound = None
+        self.felt_next = 0.0                              # PORT ADDITION: when the gun is next felt
 
     #: PORT ADDITION: the Minigun has no launch sound; it spins up instead, and update: holds its fire
     #: for this long (the 1.5 there), which is what its starting sounds like.
@@ -229,6 +230,11 @@ class MinigunPowerUp(PowerUp):
         self.time_since_activation = self.time_since_activation + dt
         if self.time_since_activation <= 1.5:
             return
+        from ..platform.haptics import Haptics            # PORT ADDITION: the gun felt while it fires,
+        self.felt_next = self.felt_next - dt              # with the hits it lands felt over it
+        if self.felt_next <= 0.0:
+            self.felt_next = Haptics.SUSTAIN
+            Haptics.shared().minigun_firing()
         self.next_bullet_time = self.next_bullet_time - dt
         if self.next_bullet_time < 0.0:
             self.next_bullet_time = self.minigun_weapon.fire_rate
@@ -454,6 +460,8 @@ class TeslaPowerUp(PowerUp):
         enemy = BrickManager.shared().closest_enemy()
         if enemy is not None:
             enemy.set_life(0.0)
+            from ..platform.haptics import Haptics        # PORT ADDITION: the coil's own crack, over
+            Haptics.shared().zap()                        # the kill set_life: has just made
             zap = self.playlist.any_sound_containing('zap') if self.playlist is not None else None
             if zap is not None:
                 zap.set_spatialized(True)

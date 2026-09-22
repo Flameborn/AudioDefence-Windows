@@ -520,7 +520,13 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   decoded file the playlist prewarmed, and anything still undecoded falls back to 0.6 s rather than making
   the game wait.  `FELT_START_MAX` caps it at 3 s: the Tornado's launch is 5.7 s and the Fireworks' 5.6,
   which is the whole thing coming in rather than a start, and a rumble that long reads as a pad fault; the
-  Tesla's 2.74 s deploy is under the cap and is felt whole.  The menus
+  Tesla's 2.74 s deploy is under the cap and is felt whole.  Two of the four are then felt while they work
+  (user request): `-[ADMinigunPowerUp update:]` 0x1000b2934 asks for the gun's own buzz every
+  `Haptics.SUSTAIN` (0.12 s) once it is past the spin-up, which goes through the pass's pulse like anything
+  else - so a hit it lands is felt *over* the gun rather than instead of it, the motors taking the stronger
+  of the two and the grips playing both - and `-[ADTeslaPowerUp update:]` 0x1000d786c cracks when the coil
+  takes a zombie, over the kill `setLife:` has just made: high where the kill is low, so the two read as
+  one thing.  Neither reaches a DualSense's motors, which the grips carry better.  The menus
   are felt too, and at a strength the hand notices (user request): `ui/accessibility.menu_tick` for the
   cursor moving (`_move`, `_jump`, `MenuScreen.move` and the category and tab keys), 60 ms on both motors,
   as firm as the pulse Settings plays when a strength is stepped; `menu_toggle` for anything activated

@@ -13,6 +13,8 @@ vibrate sound - so everything here is the port's own, for players with a control
 * an **explosion** - a grenade, a rocket, the fireworks, a Farty or a car going up - is a rumble, heavier
   the closer it is;
 * a gust of the **tornado** pushing the zombies back is a soft push;
+* the **Minigun** is felt the whole time it fires, under the hits it lands rather than in place of them,
+  and the **Tesla** coil's zap is a crack of its own on top of the kill it makes;
 * **dying** - a zombie reaching you - is a long, heavy shudder;
 * and the **menus** are felt: a click as the cursor moves from one element or tab to the next, a firmer
   one when something is activated - a setting stepped or toggled, a button pressed - and a pair of knocks
@@ -59,6 +61,8 @@ SHAPES = {
     'death': lambda s: (s, 0.9 * s, 1000),
     # the menus: a click firm enough to be felt through a thumb on the stick, but short, since the cursor
     # can move as fast as the key repeats.  Going into a screen and coming back out are longer and heavier.
+    'minigun': lambda s: (0.4 * s, 0.75 * s, 160),        # the gun itself, kept up while it fires
+    'zap': lambda s: (0.4 * s, s, 120),                   # the Tesla coil taking one: bright and sharp
     'menu': lambda s: (0.7 * s, s, 60),
     'toggle': lambda s: (0.8 * s, s, 90),
     'enter': lambda s: (0.7 * s, 0.9 * s, 120),
@@ -114,6 +118,20 @@ class Haptics:
 
     def kill(self) -> None:
         self._add('kill', 0.8)
+
+    #: how often the Minigun's own feel is asked for while it fires.  Short enough that the pulses run into
+    #: one another, long enough that the grips are not given the same waveform sixty times a second.
+    SUSTAIN = 0.12
+
+    def minigun_firing(self) -> None:
+        """The Minigun while it fires, asked for every SUSTAIN seconds.  It goes through the pass's own
+        pulse like everything else, so a hit it lands is felt over it rather than instead of it: the
+        motors take the stronger of the two and the grips play both (user request)."""
+        self._add('minigun', 0.55)
+
+    def zap(self) -> None:
+        """The Tesla coil taking a zombie: a crack over the kill it makes."""
+        self._add('zap', 0.95)
 
     def diamond(self) -> None:
         """A diamond shot down: yours, and felt as its own thing rather than as a kill."""

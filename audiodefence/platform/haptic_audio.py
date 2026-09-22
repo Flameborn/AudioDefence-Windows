@@ -127,6 +127,9 @@ class _Waves(dict):
         'death': lambda: fat(_mix(rumble(1.1, 70.0, 3, hold=0.4), thump(40.0, 1.0), 0.6), 4.0),
         # the menus: a click with enough in it to be felt, and two knocks for a screen - low to high going
         # in, high to low coming back out, so which way you went is felt as well as heard
+        # the Minigun's own buzz, made to run into the next one, and the Tesla's crack: high and rough
+        'minigun': lambda: fat(_mix(steady(0.16, 120.0, 6), thump(90.0, 0.05), 0.5), 3.0),
+        'zap': lambda: fat(_mix(steady(0.09, 500.0, 7), thump(180.0, 0.05), 0.6), 3.5),
         'menu': lambda: fat(_mix(thump(150.0, 0.05), thump(260.0, 0.02), 0.4), 4.0),
         'toggle': lambda: fat(_mix(thump(120.0, 0.07), thump(220.0, 0.03), 0.5), 4.0),
         'enter': lambda: fat(_then(thump(140.0, 0.05), thump(230.0, 0.05), 0.06), 3.5),
