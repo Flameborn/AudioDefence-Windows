@@ -502,8 +502,15 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   (state 6 in `hitByWeapon:`) is a light knock; `die` 0x100061ac8 is a kill; `attack` 0x100060304, the blow
   that kills you, a second of heavy rumble.  `solveExplosionWithDictionary:...` 0x1000c5c40 - a projectile,
   a Farty going off (`explode` 0x100061e6c), the fireworks power-ups - is a rumble by its distance from you
-  (full within a metre or so, never under a fifth), and `blowEnemiesAway:` 0x1000c3e88 (the tornado) a soft
-  gust when it pushes anything.  What happens in one pass of the run loop is felt once: each kind at its
+  (full within a metre or so, never under a half), and `blowEnemiesAway:` 0x1000c3e88 (the tornado) a soft
+  gust when it pushes anything.  A diamond and a power-up container die like anything else, so `die` hands
+  what it is felt as to `Enemy.felt_death`, which `ADDiamondDropper` and `ADPowerUpContainer` override
+  (passerby.py): two bright ticks for the diamond, a crack for the crate, neither a kill's low thump.  The
+  power-up itself is felt when it takes effect rather than when the crate opens - `-[ADPowerUp activate]`
+  0x10001db08 reads the announcement first and `activate:_block_invoke` 0x10001dc6c uses the power-up when
+  it has been read, so the swell goes there, in front of the `use` the block already made.  Moving through
+  a menu is felt too (`ui/accessibility.menu_tick`, from `_move`, `_jump`, `MenuScreen.move` and the
+  category and tab keys): a tick on the light motor, 30 ms, the lightest thing here.  What happens in one pass of the run loop is felt once: each kind at its
   strongest, a little firmer for each more of it, the motors at the strongest kind.  A DualSense on USB is
   a four-channel sound card to Windows as well, whose third and fourth channels drive its two haptic
   actuators; `platform/haptic_audio.py` opens it through SDL's audio (pygame._sdl2.audio, 48 kHz float) and
@@ -515,8 +522,11 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   which do not drown the game's sound.  Settings -> Miscellaneous -> Fine haptics (`fineHaptics`, on by
   default) turns the grips off, so such a pad is felt through its motors like any other - for hearing what
   everyone else feels, and for a pad whose fine haptics are not wanted.  Vibration scales every pulse
-  (0.6, 0.85, 1), and Strong is
-  the pad at full, so anything more has to come from the pulses themselves.  Over
+  (0.4, 0.7, 1), and Strong is
+  the pad at full, so anything more has to come from the pulses themselves.  The three were 0.6, 0.85 and 1,
+  where Medium and Strong felt alike - a waveform is felt by its height the way a sound is heard by it, and
+  0.85 of full is under a decibel and a half down - so they were set well apart and then lifted a little
+  (both user requests).  Over
   Bluetooth there is no such card and it rumbles.  Shaking a pad that has an accelerometer (SDL's sensor,
   reached through pygame's own SDL2.dll) calls `motionEnded:withEvent:` 0x10005a108 as the phone's shake
   does, so it swings the melee weapon under Gesture and does nothing under Button; the threshold is 25 m/s2
@@ -531,7 +541,7 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   and Trigger feel set how strong both are - Off, Light, Medium or Strong (`vibration` and `triggerEffects`
   in settings.json; Medium by default, and reset by Reset all settings; a stored true or false from before
   is read as Medium or Off), and the Trigger feel's hint says that only a DualSense has
-  one.  Vibration scales every pulse (a half, 0.8, full); the trigger levels are the effect's strength
+  one.  Vibration scales every pulse (0.4, 0.7, full); the trigger levels are the effect's strength
   byte (R2 0x14 / 0x28 / 0x50, L2 0x0C / 0x18 / 0x30).  The scale was softened a step after playing with
   it: 0xC0 was too stiff to fire with, and at 0x28 / 0x50 / 0x90 Medium was still hard, so what was Light is
   Medium now and Light is softer than anything there was.  Stepping the row gives a connected DualSense that

@@ -40,6 +40,14 @@ HEADER = 'header'
 CELL = 'cell'               # a UITableViewCell: selectable, read without a trait
 
 
+def menu_tick() -> None:
+    """PORT ADDITION: a tick on the controller as the cursor moves - one element or one tab to the next -
+    so a menu is felt as well as heard (user request).  Settings -> Miscellaneous -> Joystick vibration
+    scales it with everything else, and Off silences it."""
+    from ..platform.haptics import Haptics
+    Haptics.shared().menu()
+
+
 def play_button_click() -> None:
     """-[ADButtonWithFont playSound] 0x100073578 (also ADStatusBarViewController 0x10001cde8 and
     ADPlayMenuViewController 0x1000aba0c, which are the same code)."""
@@ -471,12 +479,14 @@ class AccessibleScreen(Screen):
             i = 0 if step > 0 else len(elements) - 1
         i = max(0, min(len(elements) - 1, i))           # VoiceOver does not wrap
         self.focus = elements[i]
+        menu_tick()
         self.speak(self.focus.spoken())
 
     def _jump(self, last: bool) -> None:
         elements = self.elements()
         if elements:
             self.focus = elements[-1] if last else elements[0]
+            menu_tick()
             self.speak(self.focus.spoken())
 
     def key_down(self, event) -> None:

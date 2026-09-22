@@ -290,6 +290,11 @@ class DiamondDropper(Enemy):
             self.sound.set_planar((self.position[0], self.position[1], 0.0))
         self.time_in_state = self.time_in_state + dt
 
+    def felt_death(self) -> None:
+        """PORT ADDITION: two bright ticks, not a kill's thump: a diamond is money, not a zombie."""
+        from ..platform.haptics import Haptics
+        Haptics.shared().diamond()
+
     def glow(self) -> None:                               # 0x10007e7b8
         self.set_state(101)
         self.play_any_sound_containing('_glow_')
@@ -341,6 +346,12 @@ class PowerUpContainer(PasserBy):
             wm.init_power_up(self.power_up_type)
         else:
             wm.init_random_power_up()
+
+    def felt_death(self) -> None:
+        """PORT ADDITION: the crate cracking open, with the announcement and the power-up itself to come
+        (powerups.py, ADPowerUp activate)."""
+        from ..platform.haptics import Haptics
+        Haptics.shared().power_up_container()
 
     def die(self) -> None:                                # 0x100069b80
         from .weapon_manager import WeaponManager

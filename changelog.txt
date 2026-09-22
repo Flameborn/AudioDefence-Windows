@@ -1,4 +1,7 @@
 unrelease:
+Moving through a menu is felt on a game controller: a light tick for each row or tab you land on. Joystick vibration scales it, and Off silences it.
+The three vibration strengths feel further apart, and all of them are a little stronger. Medium and Strong used to be hard to tell apart.
+Shooting a diamond and shooting a power-up container each have a feel of their own instead of a zombie's, and the power-up is felt again when it takes effect after the announcement.
 Some typing mistakes in the game's own writing are corrected.
 The Miscellaneous tab has a Fine haptics option, on by default. With it on, a DualSense plugged in by USB plays what you feel in its grips; turn it off and it shakes its motors like any other controller. With no such controller connected the motors are used either way.
 An explosion is felt on the controller from further away. It used to fade to almost nothing across the arena.

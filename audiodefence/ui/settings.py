@@ -27,7 +27,8 @@ from ..game import data
 from ..game.parameters import GameParameters
 from ..platform.keymap import ACTIONS, BY_MODE, KeyMap, key_text, mode_text
 from ..s3d.engine import S3DEngine
-from .accessibility import CELL, Button, View, cross_axis_key, cross_axis_text, play_button_click
+from .accessibility import (CELL, Button, View, cross_axis_key, cross_axis_text, menu_tick,
+                            play_button_click)
 from .challenges import _TableLoader, _play_buttons_sound
 from .host import register
 from .viewcontroller import ViewControllerScreen
@@ -292,6 +293,7 @@ class ControlSchemePanel:
             i = 0 if where == 'first' else len(keys) - 1
         else:
             i = max(0, min(len(keys) - 1, keys.index(self.category) + step))   # the ends hold, as elsewhere
+        menu_tick()                                       # PORT ADDITION: felt as well as heard
         self.open_category(keys[i])                       # at an end: says where we still are
 
     # --- aiming ----------------------------------------------------------------------------------

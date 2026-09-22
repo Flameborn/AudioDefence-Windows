@@ -460,6 +460,12 @@ class Enemy:
     def set_life_to_zero(self) -> None:
         self._life = 0.0
 
+    def felt_death(self) -> None:
+        """PORT ADDITION: what this dying is felt as on a controller.  A zombie is a kill; a diamond and a
+        power-up container have their own (passerby.py), being a reward rather than a killing."""
+        from ..platform.haptics import Haptics
+        Haptics.shared().kill()
+
     def die(self) -> None:                                # 0x100061ac8
         from .ambient import AmbientManager
         from .brick_manager import BrickManager
@@ -468,8 +474,7 @@ class Enemy:
         bm = BrickManager.shared()
         if bm.player_is_dead:
             return
-        from ..platform.haptics import Haptics            # PORT ADDITION: a kill, by whatever did it
-        Haptics.shared().kill()
+        self.felt_death()                                # PORT ADDITION: a kill, by whatever did it
         if self.explosion_dictionary is not None:
             self.explode()
             self.set_state(5)

@@ -108,7 +108,12 @@ class PowerUp:
         announce = self.playlist.any_sound_containing('announce') if self.playlist is not None else None
         if announce is None:
             return                                        # messages to nil: use is never reached
-        announce.add_3d_sound_end_callback(lambda _s: self.use())
+        def started(_s):                                  # activate:_block_invoke 0x10001dc6c
+            from ..platform.haptics import Haptics        # PORT ADDITION: the power-up takes effect
+            Haptics.shared().power_up_started()
+            self.use()
+
+        announce.add_3d_sound_end_callback(started)
         if not GameParameters.shared().last_announcer_value():
             announce.set_gain(0.0)
         announce.play(False)

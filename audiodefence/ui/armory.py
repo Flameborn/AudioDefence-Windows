@@ -26,7 +26,7 @@ from ..platform.defaults import UserDefaults, ns_float_value, ns_int_value
 from ..platform.runloop import RunLoop
 from ..platform.tracker import Tracker
 from ..s3d.engine import S3DEngine
-from .accessibility import Button, View, _is_inside, cross_axis_key, cross_axis_text
+from .accessibility import Button, View, _is_inside, cross_axis_key, cross_axis_text, menu_tick
 from .challenges import _TableLoader
 from .host import AlertScreen, register
 from .viewcontroller import ViewControllerScreen
@@ -598,6 +598,7 @@ class ArmoryScreen(ViewControllerScreen):
             i = 0 if where == 'first' else len(keys) - 1
         else:
             i = max(0, min(len(keys) - 1, keys.index(current) + step))  # the ends hold, as elsewhere
+        menu_tick()                                       # PORT ADDITION: felt as well as heard
         buttons = {'weapons': self.weapons_button, 'loadout': self.load_out_button,
                    'powerup': self.power_up_button}
         if keys[i] != current:

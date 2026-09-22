@@ -129,10 +129,12 @@ class MenuScreen(Screen):
         return self.items[self.index] if self.items else None
 
     def move(self, step: int) -> None:
+        from .accessibility import menu_tick             # imported here: accessibility imports this module
         if not self.items:
             return
         # VoiceOver stops at the first and last element rather than wrapping round, and so does this
         self.index = max(0, min(len(self.items) - 1, self.index + step))
+        menu_tick()                                       # PORT ADDITION: felt as well as heard
         self.speak(self.items[self.index].spoken())
 
     def activate(self) -> None:
@@ -146,7 +148,7 @@ class MenuScreen(Screen):
             item.action()
 
     def key_down(self, event) -> None:
-        from .accessibility import navigation_key       # imported here: accessibility imports this module
+        from .accessibility import menu_tick, navigation_key   # here: accessibility imports this module
         if menu_music_volume_key(self, event):
             return
         k = event.key
@@ -155,6 +157,7 @@ class MenuScreen(Screen):
             self.move(1 if move == 'next' else -1)
         elif move in ('first', 'last') and self.items:
             self.index = 0 if move == 'first' else len(self.items) - 1
+            menu_tick()
             self.speak(self.items[self.index].spoken())
         elif k in (pygame.K_RETURN, pygame.K_KP_ENTER):   # not Space: it is the fire key in a game
             self.activate()

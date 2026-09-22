@@ -80,6 +80,22 @@ def fat(wave: np.ndarray, amount: float = 3.0) -> np.ndarray:
     return _normal(np.tanh(wave * amount).astype(np.float32))
 
 
+def growing(wave: np.ndarray) -> np.ndarray:
+    """The same wave coming up instead of dying away: something starting rather than something hitting.
+    The ramp goes on after the saturation, which would otherwise flatten it out."""
+    ramp = np.linspace(0.2, 1.0, len(wave), dtype=np.float32) ** 2
+    return _normal(wave * ramp)
+
+
+def _then(a: np.ndarray, b: np.ndarray, gap: float) -> np.ndarray:
+    """`a`, and `b` `gap` seconds after it starts: two knocks felt as one thing."""
+    i = int(RATE * gap)
+    out = np.zeros(max(len(a), i + len(b)), np.float32)
+    out[:len(a)] += a
+    out[i:i + len(b)] += b
+    return _normal(out)
+
+
 def _mix(a: np.ndarray, b: np.ndarray, gain: float) -> np.ndarray:
     """`a` with `b` laid over it at `gain`, the shorter one padded with silence."""
     out = np.zeros(max(len(a), len(b)), np.float32)
@@ -95,14 +111,19 @@ class _Waves(dict):
         'heartbeat': lambda: thump(55.0, 0.12),               # when no recording is given
         # a knock you feel in the palm, with a tick on top so it still reads as a bullet: the actuators
         # answer low and longer far better than the short 170 Hz tick this was
-        'hit': lambda: fat(_mix(thump(110.0, 0.09), thump(200.0, 0.03), 0.35)),
-        'melee': lambda: fat(thump(70.0, 0.13)),
+        'hit': lambda: fat(_mix(thump(110.0, 0.09), thump(200.0, 0.03), 0.35), 4.0),
+        'melee': lambda: fat(thump(70.0, 0.13), 4.0),
         'blocked': lambda: thump(260.0, 0.03),
-        'kill': lambda: fat(_mix(thump(55.0, 0.2), thump(90.0, 0.12), 0.5)),
+        'kill': lambda: fat(_mix(thump(55.0, 0.2), thump(90.0, 0.12), 0.5), 4.0),
         # a blast: low, long, and held at full for half of it, with a thump at the front for the shock
         'explosion': lambda: fat(_mix(rumble(0.8, 70.0, 1, hold=0.5), thump(45.0, 0.25), 0.8), 4.0),
         'gust': lambda: rumble(0.4, 60.0, 2, hold=0.1) * 0.7,
         'death': lambda: fat(_mix(rumble(1.1, 70.0, 3, hold=0.4), thump(40.0, 1.0), 0.6), 4.0),
+        'menu': lambda: thump(190.0, 0.02),                   # the cursor moving: a tick and no more
+        'diamond': lambda: _then(thump(300.0, 0.04), thump(450.0, 0.035), 0.07),   # two bright ticks
+        'powerup': lambda: fat(_mix(thump(120.0, 0.12), thump(260.0, 0.05), 0.5), 4.0),   # the crate opens
+        # the power-up taking hold: a rumble that grows instead of dying away, with a thump under it
+        'powerup_use': lambda: growing(fat(_mix(rumble(0.6, 80.0, 5, hold=0.9), thump(50.0, 0.25), 0.5), 4.0)),
     }
 
     def __missing__(self, kind):

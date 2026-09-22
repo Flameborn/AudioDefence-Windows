@@ -8,10 +8,13 @@ vibrate sound - so everything here is the port's own, for players with a control
 * a **hit** on a zombie is felt as hard as the damage it did - a Micro SMG round a tap, a Sawn-off blast or
   a Bazooka a jolt - gunfire sharp, a melee blow a heavy thud; a shield that stops a shot is a small knock;
 * a zombie **killed**, by anything, is a thump of its own;
+* a **diamond** shot down is two bright ticks, a power-up **container** shot open a crack, and the power-up
+  **taking effect** after its announcement a swell into the thing itself;
 * an **explosion** - a grenade, a rocket, the fireworks, a Farty or a car going up - is a rumble, heavier
   the closer it is;
 * a gust of the **tornado** pushing the zombies back is a soft push;
-* and **dying** - a zombie reaching you - is a long, heavy shudder.
+* **dying** - a zombie reaching you - is a long, heavy shudder;
+* and moving through a **menu** - to the next element, or the next tab - is a tick under your thumb.
 
 What happens in one pass of the game loop is felt as one pulse: a shotgun blast into three zombies is one
 jolt, firmer for the extra two, not three buzzes over each other.  Settings -> Miscellaneous -> Joystick vibration scales
@@ -29,25 +32,33 @@ log = logging.getLogger('platform.haptics')
 
 #: Settings -> Miscellaneous -> Joystick vibration: how much of each pulse is felt.  Strong is everything
 #: the pad has - a waveform is played at its full height and a motor at full - so more than this has to come
-#: from the pulses themselves (haptic_audio.fat, RUMBLE_AS_WELL), not from here.
-LEVEL_SCALE = {'off': 0.0, 'light': 0.6, 'medium': 0.85, 'strong': 1.0}
+#: from the pulses themselves (haptic_audio.fat, RUMBLE_AS_WELL), not from here.  The three are set well
+#: apart (user request): at 0.6 / 0.85 / 1 the top two felt alike, a waveform being felt by its height the
+#: way a sound is heard by it - 0.85 of full is barely a decibel and a half down - where a third, two
+#: thirds and full are three different things.  All three were then lifted a little (user request), the
+#: pulses themselves having as much in them as they can hold.
+LEVEL_SCALE = {'off': 0.0, 'light': 0.4, 'medium': 0.7, 'strong': 1.0}
 
 #: what a DualSense feels through its motors as well as its fine haptics: the big, low things, where the
 #: motors have the weight the little actuators cannot give.  The rest is the fine haptics alone, which are
 #: finer than a motor and do not drown the game's sound.
-RUMBLE_AS_WELL = frozenset({'explosion', 'death', 'kill'})
+RUMBLE_AS_WELL = frozenset({'explosion', 'death', 'kill', 'powerup_use'})
 
 #: kind -> (low-frequency motor, high-frequency motor, milliseconds) at strength s: the heavy motor is the
 #: thump, the light one the buzz, so a melee blow is mostly thump and a bullet's hit mostly buzz
 SHAPES = {
     'heartbeat': lambda s: (s, 0.1 * s, 70),
-    'hit': lambda s: (0.7 * s, s, int(70 + 80 * s)),
+    'hit': lambda s: (0.85 * s, s, int(70 + 80 * s)),
     'melee': lambda s: (s, 0.4 * s, int(90 + 90 * s)),
     'blocked': lambda s: (0.15 * s, 0.5 * s, 40),
-    'kill': lambda s: (0.8 * s, 0.5 * s, 150),
+    'kill': lambda s: (0.95 * s, 0.65 * s, 180),
     'explosion': lambda s: (s, 0.6 * s, int(250 + 350 * s)),
     'gust': lambda s: (0.4 * s, 0.2 * s, 350),
     'death': lambda s: (s, 0.9 * s, 1000),
+    'menu': lambda s: (0.0, 0.5 * s, 30),                 # a tick on the light motor, gone before the next
+    'diamond': lambda s: (0.1 * s, s, 90),                # bright and quick, where a kill is a low thump
+    'powerup': lambda s: (0.8 * s, 0.9 * s, 220),         # the crate cracking open
+    'powerup_use': lambda s: (s, 0.7 * s, 600),           # and the power-up taking hold: a long swell
 }
 
 #: the damage a hit does, as how hard it is felt: every hit that lands is well felt - a Micro SMG round
@@ -96,6 +107,19 @@ class Haptics:
     def kill(self) -> None:
         self._add('kill', 0.8)
 
+    def diamond(self) -> None:
+        """A diamond shot down: yours, and felt as its own thing rather than as a kill."""
+        self._add('diamond', 0.9)
+
+    def power_up_container(self) -> None:
+        """A power-up container shot open, with the announcement to come."""
+        self._add('powerup', 0.9)
+
+    def power_up_started(self) -> None:
+        """The power-up taking effect, once its announcement has been read - the Minigun in your hands,
+        the Fireworks going up, the Tornado turning, the Tesla coil on."""
+        self._add('powerup_use', 1.0)
+
     def explosion(self, distance: float) -> None:
         """An explosion `distance` from the player: full within a metre or so, and never less than half,
         since a blast is a blast even across the arena."""
@@ -106,6 +130,12 @@ class Haptics:
 
     def player_killed(self) -> None:
         self._add('death', 1.0)
+
+    def menu(self) -> None:
+        """The cursor moving through a menu: to the next element, or the next tab.  Sent at once rather
+        than gathered into the next pass, a menu being no game loop, and light enough to be a tick under
+        the thumb rather than something the hand has to wait out."""
+        self._send({'menu': [0.6, 1]})
 
     def sample(self) -> None:
         """What Settings plays when the strength is changed: a hit at that strength, at once - a hit being
