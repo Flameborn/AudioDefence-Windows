@@ -15,7 +15,7 @@ def _load(name: str):
     if not os.path.isfile(path):
         return None
     with open(path, 'rb') as fh:
-        return plistlib.load(fh)
+        return _correct(plistlib.load(fh))                # PORT ADDITION: the original's typos (TYPOS)
 
 
 def plist(name: str):
@@ -53,12 +53,22 @@ def spoken_text(text: str) -> str:
     return text.lower()[:1].upper() + text.lower()[1:]
 
 
-#: PORT ADDITION: what the original spelled wrong, put right where the port reads it out (user request).
-#: The game's own files are not touched, so a copy of the app given with --game is corrected too.  Each is
-#: matched with the words around it, so nothing else can be caught by accident.
+#: PORT ADDITION: what the original spelled wrong, put right as its text is read in (user request).  The
+#: game's own files are not touched, so a copy of the app given with --game is corrected too.  Each is
+#: matched with the words around it, so nothing else can be caught by accident.  Only mistakes are here -
+#: not the original's British and American spellings side by side, nor Dr Bastard with and without his dot.
 TYPOS = (
-    ('inflated like ballons', 'inflated like balloons'),      # the Farty's page in the encyclopedia
-    ('keep al the gas', 'keep all the gas'),
+    ('inflated like ballons', 'inflated like balloons'),      # the Farty, in the encyclopedia
+    ('keep al the gas', 'keep all the gas'),                  # the Farty again
+    ('become more aggresive', 'become more aggressive'),      # a tip in Endless, training grounds 3
+    ('playing anticlimatic music', 'playing anticlimactic music'),   # a tarot card
+    ('Shoot it stop it for a while', 'Shoot it to stop it for a while'),   # another tarot card
+    ('In the the Mayan Ruin', 'In the Mayan Ruin'),           # the first challenge in the Mayan arena
+    ('a fierce thunderstom', 'a fierce thunderstorm'),        # the storm challenge
+    ('for a few seconds you if they blow up', 'for a few seconds if they blow up'),   # Meet The Farty
+    ('And remeber to use your melee', 'And remember to use your melee'),   # The Mixed Bag
+    ('but careful, It takes ages', 'but careful, it takes ages'),   # the Machine Gun in the armory
+    ('if you think a Zombie is in front of you', 'If you think a Zombie is in front of you'),   # a loading tip
 )
 
 
@@ -72,10 +82,22 @@ def corrected(text):
     return out
 
 
+def _correct(value):
+    """The same plist with every piece of writing in it corrected, so every screen that reads one gets it
+    right - the tips, the objectives, the tarot cards, the weapons and the encyclopedia alike."""
+    if isinstance(value, str):
+        return corrected(value)
+    if isinstance(value, dict):
+        return {k: _correct(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_correct(v) for v in value]
+    return value
+
+
 def localized(key: str, value: str = '') -> str:
     """[[NSBundle mainBundle] localizedStringForKey:key value:value table:nil]: the key itself when missing
     and value is empty."""
     s = _strings().get(key)
     if s is not None:
-        return s
+        return corrected(s)                               # PORT ADDITION: the original's typos (TYPOS)
     return value if value else key

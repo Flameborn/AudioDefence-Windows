@@ -357,10 +357,17 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   Retry at 364 (#70, #32, #3) - and the reading order follows the frames, so the three were read in
   that order; the port puts Retry's frame first in the row instead, as Try again already comes before
   Challenge selection on the failed screen.  Nothing here is looked at, so the row is only an order.
-* Two of the original's spelling mistakes are put right where the port reads them out (user request,
-  `data.TYPOS`, `data.corrected`): the Farty's page in the encyclopedia says its zombies are
-  "inflated like ballons" and that there is no way to "keep al the gas inside".  The game's own
-  enemies.plist is left as it is, so a copy of the app given with --game is corrected too.
+* Eleven of the original's spelling mistakes are put right as its text is read in (user request,
+  `data.TYPOS`, applied in `data._load` and `data.localized`, so every screen that shows a piece of the
+  game's writing gets it right): the Farty's page says its zombies are "inflated like ballons" and that
+  there is no way to "keep al the gas inside"; a training-grounds tip has zombies "more aggresive"; a
+  tarot card has "anticlimatic" music and another says "Shoot it stop it for a while"; the first Mayan
+  challenge is set "In the the Mayan Ruin Arena"; the storm challenge has a "thunderstom"; Meet The Farty
+  warns of being deafened "for a few seconds you if they blow up"; The Mixed Bag says "remeber"; the
+  Machine Gun "but careful, It takes ages to reload"; and a loading tip opens in lower case.  The game's
+  own files are left as they are, so a copy of the app given with --game is corrected too.  Spellings that
+  are only the original's own habits - British beside American, Dr Bastard with and without his dot - are
+  left alone.
 * The Endless game over screen's PLAY AGAIN button (nib #47) is called Close (user request).  It still does
   what playAgainButtonPressed: 0x10009bf54 does - leave for the Endless card screen - and its hint says so.
 * PORT UI: Settings (and the settings part of the pause screen) opens its options as categories - Aiming,
