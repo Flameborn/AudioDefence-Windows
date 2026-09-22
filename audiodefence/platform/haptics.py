@@ -43,14 +43,15 @@ SHAPES = {
     'death': lambda s: (s, 0.9 * s, 1000),
 }
 
-#: the damage a hit does, as how hard it is felt: every hit that lands is at least half strength - a Micro
-#: SMG round (5 damage) is 0.59, a Revolver's (10) 0.64 - and damage adds the rest, up to the full jolt at
-#: 80, a Bazooka's or a Claymore's at their best
+#: the damage a hit does, as how hard it is felt: every hit that lands is well felt - a Micro SMG round
+#: (5 damage) is 0.68, a Revolver's (10) 0.71 - and damage adds the rest, up to the full jolt at 80, a
+#: Bazooka's or a Claymore's at their best.  The floor was 0.5, which left a small gun's hit faint.
 FULL_DAMAGE = 80.0
+HIT_FLOOR = 0.6
 
 
 def damage_strength(damage: float) -> float:
-    return min(1.0, 0.5 + 0.5 * (max(0.0, damage) / FULL_DAMAGE) ** 0.6)
+    return min(1.0, HIT_FLOOR + (1.0 - HIT_FLOOR) * (max(0.0, damage) / FULL_DAMAGE) ** 0.6)
 
 
 class Haptics:
@@ -99,8 +100,9 @@ class Haptics:
         self._add('death', 1.0)
 
     def sample(self) -> None:
-        """What Settings plays when the strength is changed: a melee blow at that strength, at once."""
-        self._send({'melee': [0.8, 1]})
+        """What Settings plays when the strength is changed: a hit at that strength, at once - a hit being
+        what is felt most often, and what the strength is usually being chosen for."""
+        self._send({'hit': [0.8, 1]})
 
     # --- one pulse per pass --------------------------------------------------------------------------
     def _add(self, kind: str, strength: float) -> None:

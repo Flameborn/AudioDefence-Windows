@@ -86,7 +86,9 @@ class _Waves(dict):
     feel), made the first time each is wanted."""
     MAKERS = {
         'heartbeat': lambda: thump(55.0, 0.12),               # when no recording is given
-        'hit': lambda: thump(170.0, 0.05),
+        # a knock you feel in the palm, with a tick on top so it still reads as a bullet: the actuators
+        # answer low and longer far better than the short 170 Hz tick this was
+        'hit': lambda: _mix(thump(110.0, 0.09), thump(200.0, 0.03), 0.35),
         'melee': lambda: thump(70.0, 0.13),
         'blocked': lambda: thump(260.0, 0.03),
         'kill': lambda: _mix(thump(55.0, 0.2), thump(90.0, 0.12), 0.5),

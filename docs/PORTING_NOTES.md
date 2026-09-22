@@ -477,7 +477,7 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   is (closeness squared * 0.7 + 0.3).  The rest is felt where it happens to a zombie, so a bullet, a melee
   blow, a projectile and a power-up are all caught the same way: `hitByWeapon:` 0x100060b30 and
   `hitByExplosionAtPosition:...powerupname:` 0x100061284 (which `hitByProjectile:` 0x100061098 calls) pulse
-  by the damage the zombie actually lost (0.5 + 0.5 * (damage / 80) ^ 0.6 of full strength, so a Micro SMG
+  by the damage the zombie actually lost (0.6 + 0.4 * (damage / 80) ^ 0.6 of full strength, the floor raised from 0.5, which left a small gun faint, so a Micro SMG
   hit is felt and a Bazooka's is felt more), melee as a longer, heavier thud; a shot the shield takes
   (state 6 in `hitByWeapon:`) is a light knock; `die` 0x100061ac8 is a kill; `attack` 0x100060304, the blow
   that kills you, a second of heavy rumble.  `solveExplosionWithDictionary:...` 0x1000c5c40 - a projectile,
