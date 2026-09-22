@@ -53,22 +53,30 @@ def spoken_text(text: str) -> str:
     return text.lower()[:1].upper() + text.lower()[1:]
 
 
-#: PORT ADDITION: what the original spelled wrong, put right as its text is read in (user request).  The
+#: PORT ADDITION: words the original spelled wrong, put right as its text is read in (user request).  The
 #: game's own files are not touched, so a copy of the app given with --game is corrected too.  Each is
-#: matched with the words around it, so nothing else can be caught by accident.  Only mistakes are here -
-#: not the original's British and American spellings side by side, nor Dr Bastard with and without his dot.
+#: matched with the words around it, so nothing else can be caught by accident.
+#:
+#: Spelling, capitals and a word typed twice.  How the original writes is otherwise its own: its British
+#: and American spellings side by side, Dr Bastard with and without his dot, and the words it chooses - a
+#: missing one ("Shoot it stop it for a while") and one too many ("for a few seconds you if they blow up")
+#: are left as they are.
 TYPOS = (
     ('inflated like ballons', 'inflated like balloons'),      # the Farty, in the encyclopedia
     ('keep al the gas', 'keep all the gas'),                  # the Farty again
     ('become more aggresive', 'become more aggressive'),      # a tip in Endless, training grounds 3
     ('playing anticlimatic music', 'playing anticlimactic music'),   # a tarot card
-    ('Shoot it stop it for a while', 'Shoot it to stop it for a while'),   # another tarot card
-    ('In the the Mayan Ruin', 'In the Mayan Ruin'),           # the first challenge in the Mayan arena
     ('a fierce thunderstom', 'a fierce thunderstorm'),        # the storm challenge
-    ('for a few seconds you if they blow up', 'for a few seconds if they blow up'),   # Meet The Farty
     ('And remeber to use your melee', 'And remember to use your melee'),   # The Mixed Bag
-    ('but careful, It takes ages', 'but careful, it takes ages'),   # the Machine Gun in the armory
+    ('In the the Mayan Ruin', 'In the Mayan Ruin'),           # the first challenge in the Mayan arena
+    # capitals in the wrong place: a sentence that opens in lower case, and words that begin with a capital
+    # in the middle of one.  The nouns the game capitalises on purpose - Zombie, Melee, Diamonds, the
+    # Loadout Tab - and its title-case titles are left as they are.
     ('if you think a Zombie is in front of you', 'If you think a Zombie is in front of you'),   # a loading tip
+    ('but careful, It takes ages', 'but careful, it takes ages'),     # the Machine Gun in the armory
+    ("Each Upgrade boosts the Fireworks'", "Each upgrade boosts the Fireworks'"),   # the other four say so
+    ('Unlocked After beating', 'Unlocked after beating'),     # Endless, before it is unlocked
+    ('Defeat All level 1 Bricks', 'Defeat all level 1 Bricks'),   # training grounds 1
 )
 
 

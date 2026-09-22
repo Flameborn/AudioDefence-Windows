@@ -357,17 +357,19 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   Retry at 364 (#70, #32, #3) - and the reading order follows the frames, so the three were read in
   that order; the port puts Retry's frame first in the row instead, as Try again already comes before
   Challenge selection on the failed screen.  Nothing here is looked at, so the row is only an order.
-* Eleven of the original's spelling mistakes are put right as its text is read in (user request,
-  `data.TYPOS`, applied in `data._load` and `data.localized`, so every screen that shows a piece of the
-  game's writing gets it right): the Farty's page says its zombies are "inflated like ballons" and that
-  there is no way to "keep al the gas inside"; a training-grounds tip has zombies "more aggresive"; a
-  tarot card has "anticlimatic" music and another says "Shoot it stop it for a while"; the first Mayan
-  challenge is set "In the the Mayan Ruin Arena"; the storm challenge has a "thunderstom"; Meet The Farty
-  warns of being deafened "for a few seconds you if they blow up"; The Mixed Bag says "remeber"; the
-  Machine Gun "but careful, It takes ages to reload"; and a loading tip opens in lower case.  The game's
-  own files are left as they are, so a copy of the app given with --game is corrected too.  Spellings that
-  are only the original's own habits - British beside American, Dr Bastard with and without his dot - are
-  left alone.
+* What the original typed wrong is put right as its text is read in (user request, `data.TYPOS`, applied in
+  `data._load` and `data.localized`, so every screen that shows a piece of the game's writing gets it
+  right).  Six misspelled words: the Farty's page says its zombies are "inflated like ballons" and that
+  there is no way to "keep al the gas inside"; a training-grounds tip has zombies "more aggresive"; a tarot
+  card has "anticlimatic" music; the storm challenge has a "thunderstom"; The Mixed Bag says "remeber".  A
+  word typed twice: "In the the Mayan Ruin Arena".  And five capitals in the wrong place: a loading tip
+  opening "if you think a Zombie", the Machine Gun's "but careful, It takes ages", the Fireworks' "Each
+  Upgrade" where the other four power-ups say "Each upgrade", "Unlocked After beating" on Endless, and
+  "Defeat All level 1 Bricks".  The game's own files are left as they are, so a copy of the app given with
+  --game is corrected too.  How the original writes is otherwise its own: its British and American
+  spellings side by side, Dr Bastard with and without his dot, the nouns it capitalises on purpose (Zombie,
+  Melee, the Loadout Tab), its title-case titles, and the words it chose - a missing one ("Shoot it stop it
+  for a while") and one too many ("for a few seconds you if they blow up") - are all left alone.
 * The Endless game over screen's PLAY AGAIN button (nib #47) is called Close (user request).  It still does
   what playAgainButtonPressed: 0x10009bf54 does - leave for the Endless card screen - and its hint says so.
 * PORT UI: Settings (and the settings part of the pause screen) opens its options as categories - Aiming,
