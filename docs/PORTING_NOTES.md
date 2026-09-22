@@ -352,6 +352,11 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   starts with the challenge's name and "Result: Completed" or "Result: Failed".  The failed screen, which
   shows no figures in the original, reads its rows first and its tip after them.  Copy results reads the
   same rows, adding only its heading.
+* The challenge completed screen reads Retry first, then Challenge selection and Next challenge (user
+  request).  The nib lays them across one row - Challenge selection at x 5, Next challenge at 189,
+  Retry at 364 (#70, #32, #3) - and the reading order follows the frames, so the three were read in
+  that order; the port puts Retry's frame first in the row instead, as Try again already comes before
+  Challenge selection on the failed screen.  Nothing here is looked at, so the row is only an order.
 * The Endless game over screen's PLAY AGAIN button (nib #47) is called Close (user request).  It still does
   what playAgainButtonPressed: 0x10009bf54 does - leave for the Endless card screen - and its hint says so.
 * PORT UI: Settings (and the settings part of the pause screen) opens its options as categories - Aiming,
@@ -631,8 +636,9 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   which `init_sound` 0x1000b3594 resolves against the control scheme and the button mode, so the three aim
   variants share one line and each button/gesture pair shares another.  Rebinding a key changes what is
   said.  With a controller connected and Settings -> Miscellaneous -> Names in hints and tutorial on Controller
-  buttons, the lines name its buttons instead ("the R2 button", "a stick flicked up"), and aiming is "Push
-  either stick left or right to aim".  `aimhelp` and `aimprompt` name
+  buttons, the lines name its buttons instead ("the R2 button", "a stick flicked up"), aiming is "Push
+  either stick left or right to aim", and under Gesture the melee line offers the shake as well ("or shake
+  the controller") when the controller being named has the sensor for it (`Pads.can_shake`).  `aimhelp` and `aimprompt` name
   no key and have no line.  Settings -> Miscellaneous -> Tutorial
   text chooses "As the announcer speaks" (the default), "After the announcer finishes", or "Off".
 * PORT ADDITION: an action can hold several keys, and the binding rows say how.  Enter adds a key,
@@ -793,7 +799,8 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   sighted original.
 
   Not in this list, because it was a fault rather than a choice: the challenge-completed screen's three
-  buttons - Challenge selection, Next challenge and Retry - do call `playButtonSound` 0x100049300 in the
+  buttons - Retry, Challenge selection and Next challenge, read in that order (see Divergences) - do call
+  `playButtonSound` 0x100049300 in the
   original (at 0x048884, 0x0489e0 and 0x048bc0), which plays `click_button` at gain 3, and the port had
   simply missed it.  They click now because the original does.
 * PORT ADDITION: the Credits screen names the studio, and carries the port's own credits.

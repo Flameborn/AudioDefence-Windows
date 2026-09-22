@@ -55,6 +55,9 @@ def topic_for(sound_key: str):
 #: lines name its buttons instead - "the {fire} key" becomes "the R2 button", a flick of a stick "a stick
 #: flicked up" (pad.button_words) - and aiming, which is a stick and not two keys, has a line of its own
 PAD_AIM = 'Push either stick left or right to aim.'
+#: and under Gesture a controller that can feel movement swings the melee weapon when it is shaken, as the
+#: phone did, so the melee line says so - on the controller that is being named, if that one can be shaken
+PAD_SHAKE = ', or shake the controller'
 
 
 def text_for(sound_key: str):
@@ -67,13 +70,19 @@ def text_for(sound_key: str):
         return None
     keymap = KeyMap.shared()
     line = LINES[topic]
-    if GameParameters.shared().controller_names():
+    params = GameParameters.shared()
+    if params.controller_names():
         if topic == 'aim':
             return PAD_AIM
         for action in set(re.findall(r'\{(\w+)\}', line)):
             words = button_words(action)
             if words is not None:                         # an action with no button keeps its key
                 line = line.replace('the {%s} key' % action, words)
+        if topic == 'melee' and not params.button_mode:
+            from ..platform.pad import Pads
+            model = params.names_controller()
+            if model and Pads.shared().can_shake(model):
+                line = line.rstrip('.') + PAD_SHAKE + '.'
     for action in set(re.findall(r'\{(\w+)\}', line)):
         line = line.replace('{%s}' % action, keymap.keys_text(action))
     return line

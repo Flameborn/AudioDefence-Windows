@@ -30,7 +30,7 @@ class ScreenManager:
         self.screen: Screen | None = None                 # presented controller's screen
         self.overlays: list[Screen] = []                  # modal presentations on top of it
         self._held = None                                 # (event, screen, when the next repeat is due)
-        self._pad_jump = False                            # Triangle held: the menus' Control (see below)
+        self._pad_jump = False                            # Cross held: the menus' Control (see below)
         self._pad_jumped = False                          # and whether it was used as that, not tapped
         self.request_quit = lambda: log.info('quit requested with no window running')
 
@@ -161,18 +161,18 @@ class ScreenManager:
         takes = getattr(top, 'takes_pad_input', None)
         if pressed and takes is not None and takes():     # Settings is waiting for a button to bind
             if name == self.JUMP_BUTTON:
-                self._pad_jumped = True                   # bound, so letting it go is not a Delete
+                self._pad_jumped = True                   # bound, so letting it go is not an Enter
             top.pad_input(name)
             return
         if name == self.JUMP_BUTTON:
             self._pad_jump = pressed
             if pressed:
                 self._pad_jumped = False
-                return
+                return                                    # held, it may yet be the Control: wait and see
             if self._pad_jumped:                          # it was the Control, not a press of its own
                 return
-            for kind in (pygame.KEYDOWN, pygame.KEYUP):   # tapped alone: Delete, as a binding row wants
-                self.handle_event(pygame.event.Event(kind, key=pygame.K_DELETE, mod=0, unicode='',
+            for kind in (pygame.KEYDOWN, pygame.KEYUP):   # tapped alone: Enter, which is what it is for
+                self.handle_event(pygame.event.Event(kind, key=pygame.K_RETURN, mod=0, unicode='',
                                                      scancode=0, pad=True))
             return
         key = self._pad_menu_key(name)
@@ -186,10 +186,10 @@ class ScreenManager:
         self.handle_event(pygame.event.Event(pygame.KEYDOWN if pressed else pygame.KEYUP, key=code, mod=mod,
                                              unicode='', scancode=0, pad=True))
 
-    #: PORT ADDITION: Triangle held is the menus' Control: with a direction or a shoulder it goes to the
-    #: first or last, as Control with an arrow does.  Tapped on its own it is Delete, which is what a
-    #: binding row uses it for.
-    JUMP_BUTTON = 'y'
+    #: PORT ADDITION: Cross held is the menus' Control: with a direction or a shoulder it goes to the first
+    #: or last, as Control with an arrow does.  Tapped on its own it is Enter, which it does on the way up,
+    #: since until it is let go it may yet be the Control.
+    JUMP_BUTTON = 'a'
 
     def _pad_menu_key(self, name: str):
         """The key a controller input stands for in the menus, as (key, modifiers), or None."""
@@ -206,7 +206,7 @@ class ScreenManager:
                 'dpleft': pygame.K_LEFT, 'dpright': pygame.K_RIGHT,
                 'stickup': pygame.K_UP, 'stickdown': pygame.K_DOWN,
                 'stickleft': pygame.K_LEFT, 'stickright': pygame.K_RIGHT,
-                'a': pygame.K_RETURN, 'b': pygame.K_ESCAPE,
+                'b': pygame.K_ESCAPE, 'y': pygame.K_DELETE,
                 'leftshoulder': move_previous, 'rightshoulder': move_next,
                 'lefttrigger': pygame.K_PAGEDOWN, 'righttrigger': pygame.K_PAGEUP}
         if name == 'x':                                   # a row's second action, as Shift+Enter is

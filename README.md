@@ -282,9 +282,9 @@ In the menus it stands in for the keys:
 | Square (X) | Shift+Enter: a row's second action |
 | Circle (B) | Escape: back |
 | L1 / R1 | previous / next row, without reaching for the D-pad |
-| Triangle (Y) held, with a direction or L1 / R1 | the first or last row, or the first or last tab |
+| Cross (A) held, with a direction or L1 / R1 | the first or last row, or the first or last tab |
 | L2 / R2 | menu music quieter / louder |
-| Triangle (Y) tapped | Delete, on a key binding row |
+| Triangle (Y) | Delete, on a key binding row |
 
 In a game:
 
@@ -296,7 +296,7 @@ In a game:
 | L1, or a stick flicked up under Gesture | next weapon |
 | L2, or a stick flicked down under Gesture | reload |
 | Options | pause, and Options again to resume |
-| Cross | skip the narration |
+| Triangle (Y) | skip the narration |
 | Square | read the challenge timer |
 
 Under **Gesture** a stick flicked up or down is the swipe, as the Up and Down
@@ -480,7 +480,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **103 divergences** and **15 original quirks kept on purpose**.
+There are **105 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 
@@ -629,7 +629,8 @@ replacing them.
 - **Restart challenge**, on the pause menu during a challenge, so a challenge you have already lost does not
   have to be played to the end.
 - **The tutorial announcer's lines are also spoken as text**, naming the keys you have actually bound — or,
-  if you choose, a connected controller's buttons ("use the R2 button to fire"). The
+  if you choose, a connected controller's buttons ("use the R2 button to fire"), and under Gesture the melee
+  line offers the shake too, on a controller that can be shaken. The
   announcer tells you to tilt the device, swipe, or tap a corner button, none of which a keyboard can do.
   **Settings → Miscellaneous → Tutorial text** chooses when, or turns it off: Enter steps to the next
   setting, Shift+Enter to the previous.

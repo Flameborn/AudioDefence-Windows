@@ -601,12 +601,16 @@ class AccessibleChallengeCompletedScreen(AccessibleGameOverEndlessScreen):
     def load_view(self) -> None:                          # 0x100069224
         v = self.view = View('', (0, 0, 480, 320), accessible=False, name='#41')
         self.table_view = View('', (0, 25, 480, 259), accessible=False, parent=v, ordered=True, name='#4')
-        Button('Challenge selection', (5, 285, 154, 30), parent=v, font_button=False,
-               actions=[self.mission_select_button_pressed], name='#70')
-        self.next_challenge_button = Button('Next challenge', (189, 285, 154, 30), parent=v, font_button=False,
-                                            actions=[self.next_mission_button_pressed], name='#32')
-        Button('Retry', (364, 285, 98, 30), parent=v, font_button=False, actions=[self.retry_button_pressed],
+        # DIVERGENCE: the nib puts these three in a row - Challenge selection at x 5, Next challenge at 189,
+        # Retry at 364 - so they are read in that order.  Retry is read first now (user request), the way
+        # Try again comes before Challenge selection on the failed screen; they keep their widths and their
+        # row, since nothing here is looked at.
+        Button('Retry', (5, 285, 98, 30), parent=v, font_button=False, actions=[self.retry_button_pressed],
                name='#3')
+        Button('Challenge selection', (110, 285, 154, 30), parent=v, font_button=False,
+               actions=[self.mission_select_button_pressed], name='#70')
+        self.next_challenge_button = Button('Next challenge', (270, 285, 154, 30), parent=v, font_button=False,
+                                            actions=[self.next_mission_button_pressed], name='#32')
         # PORT ADDITION: between the results and the three nib buttons, so it is read straight after what it
         # copies (user request).  Its centre is a row above theirs, so the reading order cannot merge them.
         copy = Button(results.COPY_LABEL, (164, 250, 154, 30), parent=v, font_button=False,

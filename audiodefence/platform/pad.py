@@ -14,8 +14,8 @@ What a controller does:
   turns as far as it is pushed: a little is slow, all the way is as fast as the turn keys.
 * **In the menus** it stands in for the keys the menus already know: the D-pad or a stick for the arrows -
   which move through a screen and, on the other pair, change tab - the shoulders for moving through it as
-  well, the bottom button for Enter, the right one for Escape, the top one held for Control (to the first or
-  last) and tapped for Delete, the triggers for Page Down and Page Up (the menu music volume).  ``ui/host.py`` does that
+  well, the bottom button for Enter, and held for Control (to the first or last), the right one for Escape, the
+  top one for Delete, the triggers for Page Down and Page Up (the menu music volume).  ``ui/host.py`` does that
   translation; the key presses it makes are marked ``pad`` so a key being captured in Settings is not
   taken from a controller.
 
@@ -172,7 +172,7 @@ PAD_DEFAULTS = {
     'next_weapon': {'button': ('leftshoulder',), 'gesture': ('stickup',)},
     'reload': {'button': ('lefttrigger',), 'gesture': ('stickdown',)},
     'pause': ('start',),
-    'skip': ('a',),
+    'skip': ('y',),                                       # the top button, away from Cross, which selects
     'timer': ('x',),
 }
 #: keys.json: every kind of controller that has been connected, by the name it gives itself, with its
@@ -500,6 +500,11 @@ class Pads:
                 models.remove(name)
             models.append(name)
         return models
+
+    def can_shake(self, model: str) -> bool:
+        """Whether a connected controller of this kind has the movement sensor a shake needs - a DualSense,
+        a DualShock 4 or a Switch Pro has; most others have not."""
+        return any(iid in self.accelerometers for iid, name in self.names.items() if name == model)
 
     def padmap_for(self, iid) -> 'PadMap':
         """The bindings of the pad with this instance id, even just after it went."""

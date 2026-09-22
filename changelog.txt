@@ -1,4 +1,7 @@
 unrelease:
+On the screen after a challenge you completed, the Retry button is read first, before Challenge selection and Next challenge, the way Try again comes first after a challenge you lost.
+In Gesture mode, the tutorial line for the melee weapon says you can shake the controller as well, when the controller you have can be shaken.
+On a game controller, Skip narration is Triangle by default instead of Cross. A controller you have already used keeps the buttons you have, until you press Restore default buttons.
 
 26.09.22-1:
 The game checks for updates by itself and tells you when one is out. An update downloads only the files that changed, so a small fix is a small download, and your progress, settings and keys are untouched.
