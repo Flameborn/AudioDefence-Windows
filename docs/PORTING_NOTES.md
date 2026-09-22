@@ -508,7 +508,14 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   (passerby.py): two bright ticks for the diamond, a crack for the crate, neither a kill's low thump.  The
   power-up itself is felt when it takes effect rather than when the crate opens - `-[ADPowerUp activate]`
   0x10001db08 reads the announcement first and `activate:_block_invoke` 0x10001dc6c uses the power-up when
-  it has been read, so the swell goes there, in front of the `use` the block already made.  The menus
+  it has been read, so the swell goes there, in front of the `use` the block already made.  It runs as long
+  as the sound that starts the power-up (user request), waveform and motor pulse alike: `PowerUp.felt_start`
+  is the Tesla's, the Tornado's and the Fireworks' launch sound, and for the Minigun, which has none, the
+  1.5 s `update:` 0x1000b2934 holds its fire for while it spins up.  A launch sound has no duration when it
+  is asked for - it is loaded when it is played, a moment later - so the length comes from the decoded file
+  the playlist prewarmed, and anything still undecoded falls back to 0.6 s rather than making the game wait.
+  `FELT_START_MAX` caps it at 2.5 s: the Tornado's launch is 5.7 s and the Fireworks' 5.6, which is the
+  whole thing coming in rather than a start, and a rumble that long reads as a pad fault.  The menus
   are felt too, and at a strength the hand notices (user request): `ui/accessibility.menu_tick` for the
   cursor moving (`_move`, `_jump`, `MenuScreen.move` and the category and tab keys), 60 ms on both motors,
   as firm as the pulse Settings plays when a strength is stepped; `menu_toggle` for anything activated

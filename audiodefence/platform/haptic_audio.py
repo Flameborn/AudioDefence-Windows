@@ -80,6 +80,12 @@ def fat(wave: np.ndarray, amount: float = 3.0) -> np.ndarray:
     return _normal(np.tanh(wave * amount).astype(np.float32))
 
 
+def steady(seconds: float, cutoff: float, seed: int) -> np.ndarray:
+    """Filtered noise that holds at full the whole way: something to shape, where `rumble` already has a
+    shape of its own.  It is a rumble twice as long with its fade left behind."""
+    return rumble(seconds * 2.0, cutoff, seed, hold=0.5)[:int(RATE * seconds)].copy()
+
+
 def growing(wave: np.ndarray) -> np.ndarray:
     """The same wave coming up instead of dying away: something starting rather than something hitting.
     The ramp goes on after the saturation, which would otherwise flatten it out."""
@@ -128,8 +134,27 @@ class _Waves(dict):
         'diamond': lambda: _then(thump(300.0, 0.04), thump(450.0, 0.035), 0.07),   # two bright ticks
         'powerup': lambda: fat(_mix(thump(120.0, 0.12), thump(260.0, 0.05), 0.5), 4.0),   # the crate opens
         # the power-up taking hold: a rumble that grows instead of dying away, with a thump under it
-        'powerup_use': lambda: growing(fat(_mix(rumble(0.6, 80.0, 5, hold=0.9), thump(50.0, 0.25), 0.5), 4.0)),
+        'powerup_use': lambda: growing(fat(_mix(steady(0.6, 80.0, 5), thump(50.0, 0.25), 0.5), 4.0)),
     }
+
+    #: the ones that can be made to measure, for something whose length is not ours to choose - the
+    #: power-up's start sound.  Each length is made once and kept, as the fixed ones are.
+    SIZED = {
+        'powerup_use': lambda seconds: growing(fat(_mix(steady(seconds, 80.0, 5),
+                                                        thump(50.0, min(0.25, seconds * 0.4)), 0.5), 4.0)),
+    }
+
+    def sized(self, kind: str, seconds: float):
+        """The waveform for `kind`, `seconds` long where that kind can be made to measure."""
+        maker = self.SIZED.get(kind)
+        if maker is None:
+            return self.get(kind)
+        seconds = round(max(0.15, min(6.0, seconds)), 1)
+        key = '%s:%.1f' % (kind, seconds)
+        wave = dict.get(self, key)
+        if wave is None:
+            wave = self[key] = maker(seconds).astype(np.float32)
+        return wave
 
     def __missing__(self, kind):
         maker = self.MAKERS.get(kind)

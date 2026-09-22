@@ -110,13 +110,44 @@ class PowerUp:
             return                                        # messages to nil: use is never reached
         def started(_s):                                  # activate:_block_invoke 0x10001dc6c
             from ..platform.haptics import Haptics        # PORT ADDITION: the power-up takes effect
-            Haptics.shared().power_up_started()
+            Haptics.shared().power_up_started(self.felt_start())
             self.use()
 
         announce.add_3d_sound_end_callback(started)
         if not GameParameters.shared().last_announcer_value():
             announce.set_gain(0.0)
         announce.play(False)
+
+    #: PORT ADDITION: how long the power-up starting is felt for when it has nothing of its own to go by,
+    #: and the most it is felt for however long its start sound runs.  The Tornado's launch is 5.7 seconds
+    #: and the Fireworks' 5.6 - the whole thing coming in, not a start - and a rumble that long stops being
+    #: something starting and becomes something wrong with the pad.  The Tesla's 2.7 is a start, so the cap
+    #: is just under it; the Minigun's spin-up (1.5) and everything shorter are felt whole.
+    FELT_START = 0.6
+    FELT_START_MAX = 2.5
+
+    def felt_start(self) -> float:
+        """PORT ADDITION: the seconds the start is felt for - as long as the sound that starts it, so what
+        is felt and what is heard end together (user request)."""
+        return self.FELT_START
+
+    def _launch_seconds(self, key: str) -> float:
+        """PORT ADDITION: how long a launch sound runs, or FELT_START if it cannot be known yet.
+
+        A sound only has a duration once it is on the card, and a launch sound is loaded when it is played,
+        which is a moment after this is asked.  Its file is decoded already, though - activating the
+        playlist prewarms it - so the length comes from there when the sound itself has none.  A file that
+        is somehow not decoded yet is left alone rather than decoded here, where the game would wait."""
+        sound = self.playlist.sound(key) if self.playlist is not None else None
+        if sound is None:
+            return self.FELT_START
+        seconds = sound.duration
+        if seconds <= 0.0:
+            from ..s3d import decoder
+            if decoder.is_cached(sound.path):
+                data, rate = decoder.decode(sound.path)
+                seconds = len(data) / float(rate) if rate else 0.0
+        return min(seconds, self.FELT_START_MAX) if seconds > 0.0 else self.FELT_START
 
     def _clean_with_kill_report(self) -> None:
         """Shared tail of the Minigun/Fireworks/Tesla clean: report and reset enemyKillsWithPowerup."""
@@ -135,6 +166,10 @@ class MinigunPowerUp(PowerUp):
         self.minigun_weapon = None
         self.minigun_duration = 0.0
         self.loop_sound = None
+
+    #: PORT ADDITION: the Minigun has no launch sound; it spins up instead, and update: holds its fire
+    #: for this long (the 1.5 there), which is what its starting sounds like.
+    FELT_START = 1.5
 
     def preload(self) -> None:                            # 0x1000b242c
         from .weapon import Weapon
@@ -197,6 +232,9 @@ class FireworksPowerUp(PowerUp):
         self.playlist = S3DEngine.engine().play_list_with_name('fireworks')
         if self.playlist is not None:
             self.playlist.activate()
+
+    def felt_start(self) -> float:                        # PORT ADDITION
+        return self._launch_seconds('fireworks_launch')
 
     def use(self) -> None:                                # 0x100091860
         from .brick_manager import BrickManager
@@ -270,6 +308,9 @@ class TornadoPowerUp(PowerUp):
         self.playlist = S3DEngine.engine().play_list_with_name('tornado')
         if self.playlist is not None:
             self.playlist.activate()
+
+    def felt_start(self) -> float:                        # PORT ADDITION
+        return self._launch_seconds('tornado_launch')
 
     def use(self) -> None:                                # 0x100097714
         from .weapon_manager import WeaponManager
@@ -347,6 +388,9 @@ class TeslaPowerUp(PowerUp):
         self.name = d.get('name')
         self.max_number_of_kills = ns_int_value(_get(_level_dictionary('tesla'), 'kills'))
         self.time_between_kills = ns_float_value(d.get('timeBetweenKills'))   # stored, never read
+
+    def felt_start(self) -> float:                        # PORT ADDITION
+        return self._launch_seconds('tesla_launch')
 
     def use(self) -> None:                                # 0x1000d7774
         super().use()

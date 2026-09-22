@@ -65,7 +65,8 @@ SHAPES = {
     'back': lambda s: (0.9 * s, 0.45 * s, 120),
     'diamond': lambda s: (0.1 * s, s, 90),                # bright and quick, where a kill is a low thump
     'powerup': lambda s: (0.8 * s, 0.9 * s, 220),         # the crate cracking open
-    'powerup_use': lambda s: (s, 0.7 * s, 600),           # and the power-up taking hold: a long swell
+    'powerup_use': lambda s: (s, 0.7 * s, 600),           # and the power-up taking hold: a long swell,
+                                                          # as long as its start sound where it has one
 }
 
 #: the damage a hit does, as how hard it is felt: every hit that lands is well felt - a Micro SMG round
@@ -122,10 +123,12 @@ class Haptics:
         """A power-up container shot open, with the announcement to come."""
         self._add('powerup', 0.9)
 
-    def power_up_started(self) -> None:
+    def power_up_started(self, seconds: float | None = None) -> None:
         """The power-up taking effect, once its announcement has been read - the Minigun in your hands,
-        the Fireworks going up, the Tornado turning, the Tesla coil on."""
-        self._add('powerup_use', 1.0)
+        the Fireworks going up, the Tornado turning, the Tesla coil on.  `seconds` is how long the thing
+        that starts it takes - the launch sound, or the Minigun's spin-up - so what is felt and what is
+        heard end together (user request); without it, the shape's own 600 ms."""
+        self._send({'powerup_use': [1.0, 1]}, seconds=seconds)
 
     def explosion(self, distance: float) -> None:
         """An explosion `distance` from the player: full within a metre or so, and never less than half,
@@ -176,9 +179,12 @@ class Haptics:
         if events:
             self._send(events)
 
-    def _send(self, events: dict, recording: str | None = None) -> None:
+    def _send(self, events: dict, recording: str | None = None, seconds: float | None = None) -> None:
         """events: kind -> [strongest, count].  Several of a kind are the strongest, and a little more for
-        each of the rest; the pulse sent is the strongest of the kinds on each motor, and the longest."""
+        each of the rest; the pulse sent is the strongest of the kinds on each motor, and the longest.
+
+        `seconds` makes this pulse last that long instead of the shape's own time, waveform and all, so
+        what is felt runs with the sound it goes with."""
         from ..game.parameters import GameParameters
         from .haptic_audio import WAVES, HapticAudio
         from .pad import Pads
@@ -191,15 +197,21 @@ class Haptics:
         if pads.dualsenses and GameParameters.shared().fine_haptics() and HapticAudio.shared().available():
             audio = HapticAudio.shared()
             for kind, s in strengths.items():
-                wave = audio.recording(recording) if kind == 'heartbeat' and recording else WAVES.get(kind)
+                if kind == 'heartbeat' and recording:
+                    wave = audio.recording(recording)
+                else:
+                    wave = WAVES.sized(kind, seconds) if seconds else WAVES.get(kind)
                 audio.play(wave, s * scale)
                 self.played = (self.played + [(kind, round(s * scale, 3))])[-20:]
             fine = set(pads.dualsenses)
-        self._pulse(*self._shape(strengths, scale), skip=fine)
+        long_ms = int(seconds * 1000) if seconds else 0
+        low, high, ms = self._shape(strengths, scale)
+        self._pulse(low, high, long_ms or ms, skip=fine)
         if fine:                                          # and the motors too, for the big ones
             heavy = {kind: s for kind, s in strengths.items() if kind in RUMBLE_AS_WELL}
             if heavy:
-                self._pulse(*self._shape(heavy, scale), skip=set(pads.pads) - fine)
+                low, high, ms = self._shape(heavy, scale)
+                self._pulse(low, high, long_ms or ms, skip=set(pads.pads) - fine)
 
     @staticmethod
     def _shape(strengths: dict, scale: float):
