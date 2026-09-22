@@ -12,7 +12,8 @@ GYRO, SWIPE, TILT = 1, 2, 3
 class GameParameters:
     _shared: 'GameParameters | None' = None
     #: UIAccessibilityIsVoiceOverRunning() equivalent: always, in the port (platform/speech.py
-    #: Speech.screen_reader_running, which __main__ copies here)
+    #: Speech.screen_reader_running, which __main__ copies here).  Nothing reads it since a fresh profile
+    #: started choosing Gesture for itself (DEFAULT_BUTTON_MODE); it is what the original asked there.
     screen_reader_running = True
 
     @classmethod
@@ -67,10 +68,16 @@ class GameParameters:
         self.defaults.set_bool(self._button_mode, 'buttonMode')
         self.defaults.synchronize()
 
+    #: DIVERGENCE: what a fresh profile plays in.  The original asks VoiceOver (0x1000a3aec), which puts
+    #: every blind player in Button mode; the port starts in Gesture instead (user request).  Only a
+    #: profile with nothing stored is affected: the mode is written the first time the game runs, so
+    #: anyone who has played keeps what they had, whether they chose it or the original chose it for them.
+    DEFAULT_BUTTON_MODE = False
+
     def last_button_mode(self) -> bool:                   # 0x1000a3aec
         if self.defaults.object('buttonMode') is not None:
             return self.defaults.bool('buttonMode')
-        return GameParameters.screen_reader_running
+        return self.DEFAULT_BUTTON_MODE
 
     # --- sensitivity -----------------------------------------------------------------------------
     @property

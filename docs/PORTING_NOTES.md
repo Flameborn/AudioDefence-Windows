@@ -59,8 +59,8 @@ The original's other branch is its sighted game - `ADChallengeSelectorViewContro
 `ADArmoryViewController`, `ADGameOverEndlessViewController` and the rest, none of them ported, since the
 port has nothing to look at - and every screen is spoken, by NVDA when it is running, by another screen
 reader through Prism when one of those is, and by SAPI 5 when none is.  Asking whether NVDA was running sent a player on SAPI 5 down the sighted path: "... is not ported
-yet" on opening a world's challenges, no spoken game view (`AccessibleGameView`), and Gesture rather than
-Button mode on a new profile.
+yet" on opening a world's challenges and no spoken game view (`AccessibleGameView`).  It also chose the
+button mode, which a new profile now picks for itself (see Divergences).
 
 | key | VoiceOver gesture |
 |---|---|
@@ -594,9 +594,15 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   (`PadMap.add` / `set` / `remove_last`, per scheme for Next weapon and Reload), and lists none with no pad
   connected; while a button is being set the host hands the screen the pad's presses as they are
   (`takes_pad_input`).  A stick pushed sideways and the guide button cannot be bound.
+* A fresh profile plays in **Gesture** (user request).  `-[ADGameParameters lastButtonMode]` 0x1000a3aec
+  answers `UIAccessibilityIsVoiceOverRunning()` when `buttonMode` is not stored, which in the port is
+  always true and so put every new player in Button mode; `GameParameters.DEFAULT_BUTTON_MODE` is False
+  instead.  Only a profile with nothing stored is affected: `__init__` writes the mode the first time the
+  game runs, so anyone who has played keeps what they had, whether they chose it or the original chose it
+  for them.  Settings -> Controls still steps between the two.
 * PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
   puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
-  turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,
+  turn sensitivity, the button mode (Gesture, as a new profile is), the announcer on, tutorial text,
   menu arrows, cursor memory, the update check, the menu music volume, the vibration and the trigger feel,
   the names in hints and tutorial, and the speech output - through the same setters the rows use.  The key
   bindings are left alone (Settings -> Keyboard has its own Restore default keys), and so are the

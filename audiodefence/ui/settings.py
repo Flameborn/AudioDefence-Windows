@@ -388,7 +388,7 @@ class ControlSchemePanel:
         params = GameParameters.shared()
         params.set_control_scheme(1)                              # last_control_scheme with nothing stored
         params.set_sensivity(params.DEFAULT_SENSIVITY)
-        params.set_button_mode(GameParameters.screen_reader_running)   # last_button_mode, likewise
+        params.set_button_mode(params.DEFAULT_BUTTON_MODE)        # last_button_mode, likewise
         params.set_announcer(True)                                # last_announcer_value, likewise
         params.set_tutorial_text_mode(params.DEFAULT_TUTORIAL_TEXT)
         params.set_menu_axis(params.DEFAULT_MENU_AXIS)
