@@ -1,4 +1,5 @@
 unrelease:
+Two spelling mistakes on the Farty's page in the encyclopedia are put right: balloons, and keep all the gas.
 The Miscellaneous tab has a Fine haptics option, on by default. With it on, a DualSense plugged in by USB plays what you feel in its grips; turn it off and it shakes its motors like any other controller. With no such controller connected the motors are used either way.
 An explosion is felt more from further away. It used to fade to almost nothing across the arena.
 On the screen after a challenge you completed, the Retry button is read first, before Challenge selection and Next challenge, the way Try again comes first after a challenge you lost.

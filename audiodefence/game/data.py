@@ -53,6 +53,25 @@ def spoken_text(text: str) -> str:
     return text.lower()[:1].upper() + text.lower()[1:]
 
 
+#: PORT ADDITION: what the original spelled wrong, put right where the port reads it out (user request).
+#: The game's own files are not touched, so a copy of the app given with --game is corrected too.  Each is
+#: matched with the words around it, so nothing else can be caught by accident.
+TYPOS = (
+    ('inflated like ballons', 'inflated like balloons'),      # the Farty's page in the encyclopedia
+    ('keep al the gas', 'keep all the gas'),
+)
+
+
+def corrected(text):
+    """A piece of the game's own writing with its spelling mistakes put right (TYPOS)."""
+    if not text:
+        return text
+    out = str(text)
+    for wrong, right in TYPOS:
+        out = out.replace(wrong, right)
+    return out
+
+
 def localized(key: str, value: str = '') -> str:
     """[[NSBundle mainBundle] localizedStringForKey:key value:value table:nil]: the key itself when missing
     and value is empty."""

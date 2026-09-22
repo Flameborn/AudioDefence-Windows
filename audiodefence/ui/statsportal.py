@@ -262,7 +262,8 @@ class EncyclopediaScreen(ViewControllerScreen):
             name = self.display_name_to_name_map.get(display)
             bestiary = (self.enemies_plist.get(name) or {}).get('bestiary') or {}
             stats = self.enemy_persistent_data.get(display) or {}
-            setup = {'Bio': bestiary.get('Bio'), 'Killed': ns_int_value(stats.get('Killed')),
+            setup = {'Bio': data.corrected(bestiary.get('Bio')),   # PORT ADDITION: see data.TYPOS
+                     'Killed': ns_int_value(stats.get('Killed')),
                      'Casualty': ns_int_value(stats.get('Casualty')), 'Total Kills': total_kills}
             locked = self.display_name_to_unlock_requirement[display] > total_kills
             if locked:

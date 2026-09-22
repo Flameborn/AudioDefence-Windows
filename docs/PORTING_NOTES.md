@@ -357,6 +357,10 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   Retry at 364 (#70, #32, #3) - and the reading order follows the frames, so the three were read in
   that order; the port puts Retry's frame first in the row instead, as Try again already comes before
   Challenge selection on the failed screen.  Nothing here is looked at, so the row is only an order.
+* Two of the original's spelling mistakes are put right where the port reads them out (user request,
+  `data.TYPOS`, `data.corrected`): the Farty's page in the encyclopedia says its zombies are
+  "inflated like ballons" and that there is no way to "keep al the gas inside".  The game's own
+  enemies.plist is left as it is, so a copy of the app given with --game is corrected too.
 * The Endless game over screen's PLAY AGAIN button (nib #47) is called Close (user request).  It still does
   what playAgainButtonPressed: 0x10009bf54 does - leave for the Endless card screen - and its hint says so.
 * PORT UI: Settings (and the settings part of the pause screen) opens its options as categories - Aiming,
