@@ -155,7 +155,7 @@ def build_mac_trees():
     write(os.path.join(newbuild, 'VERSION'), NEW + '\n')
 
     import compiler
-    archive = os.path.join(WORK, 'serve', 'AudioDefence-Mac-%s.zip' % NEW)
+    archive = os.path.join(WORK, 'serve', system.archive_name(NEW, 'Mac'))
     os.makedirs(os.path.dirname(archive), exist_ok=True)
     compiler.write_zip(newbuild, archive, 'AudioDefence')
     return install, newbuild, archive
@@ -177,7 +177,7 @@ def build_windows_trees():
     write(os.path.join(newbuild, 'VERSION'), NEW + '\n')
     write(os.path.join(newbuild, '_internal', 'fresh.pyd'), b'a file the new build adds')
 
-    archive = os.path.join(WORK, 'serve', 'AudioDefence-Win-%s.zip' % NEW)
+    archive = os.path.join(WORK, 'serve', system.archive_name(NEW, 'Win'))
     os.makedirs(os.path.dirname(archive), exist_ok=True)
     top = os.path.dirname(newbuild)
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zf:
@@ -225,13 +225,16 @@ def main() -> int:
     install, newbuild, archive = build_trees()
     server, base = start_server(os.path.dirname(archive))
     zip_url = '%s/%s' % (base, os.path.basename(archive))
-    # the other platform's zip is on the release too, and listed first: each build must take its own
-    decoy = 'AudioDefence-%s-%s.zip' % ('Win' if system.MAC else 'Mac', NEW)
+    # the other platform's zip is on the release too, and each build must take its own.  GitHub's API lists
+    # a release's assets by name, ignoring case, whatever order they were uploaded in, so they are listed
+    # here the same way
+    decoy = system.archive_name(NEW, 'Win' if system.MAC else 'Mac')
+    assets = [{'name': decoy, 'browser_download_url': base + '/nothing-here.zip', 'size': 1},
+              {'name': os.path.basename(archive), 'browser_download_url': zip_url, 'size': os.path.getsize(archive)}]
+    assets.sort(key=lambda asset: asset['name'].lower())
     RangeHandler.api_body = json.dumps({
         'tag_name': NEW, 'name': 'Test release', 'body': 'A change worth downloading.',
-        'assets': [{'name': decoy, 'browser_download_url': base + '/nothing-here.zip', 'size': 1},
-                   {'name': os.path.basename(archive), 'browser_download_url': zip_url,
-                    'size': os.path.getsize(archive)}]}).encode()
+        'assets': assets}).encode()
 
     from audiodefence import paths
     paths.FROZEN = True
@@ -271,6 +274,13 @@ def main() -> int:
     print('1. the plan downloads only what changed')
     release = updater.Release(json.loads(RangeHandler.api_body))
     check(release.asset_name == os.path.basename(archive), "this platform's own zip is the one taken")
+    backwards = dict(json.loads(RangeHandler.api_body), assets=assets[::-1])
+    check(updater.Release(backwards).asset_name == os.path.basename(archive),
+          'and still is when the zips are listed the other way round')
+    # a Windows build from before the Mac port takes the first zip on the release, whatever it is called
+    first = next(asset['name'] for asset in assets if asset['name'].lower().endswith('.zip'))
+    check(first == system.archive_name(NEW, 'Win'),
+          'the Windows zip is listed first, so a build from before the Mac port takes it too')
     plan = updater.build_plan(release)
     wanted = sorted(relative for relative, _entry in plan.fetch)
     fetch, remove, unchanged = EXPECTED['mac' if system.MAC else 'windows']

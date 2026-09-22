@@ -28,8 +28,21 @@ MAC = sys.platform == 'darwin'
 
 #: how the port names itself: in the log, the credits, and the release archive's name
 PORT_NAME = 'Mac' if MAC else 'Windows'
-#: the release archive's platform tag, 'AudioDefence-Win-26.09.22-1.zip' or 'AudioDefence-Mac-...'
+#: the release archive's platform tag
 ARCHIVE_TAG = 'Mac' if MAC else 'Win'
+#: what each platform's release zip is called, before its version.  The Mac's has no dash after
+#: AudioDefence, and has to stay that way: GitHub's API lists a release's assets by name, ignoring case,
+#: whatever order they were uploaded in, and every Windows build from before the Mac port takes the first
+#: zip it is given.  A dash sorts before any letter, so 'AudioDefence-Win-' comes before 'AudioDefenceMac-'.
+#: 'AudioDefence-Mac-' would come first, and an old Windows build would unpack the Mac app into its folder
+#: and delete everything in _internal and game as files the new build had dropped.
+ARCHIVE_PREFIXES = {'Win': 'AudioDefence-Win-', 'Mac': 'AudioDefenceMac-'}
+
+
+def archive_name(version: str = '', tag: str = ARCHIVE_TAG) -> str:
+    """The release zip's name: 'AudioDefence-Win-26.09.22-1.zip', or 'AudioDefenceMac-26.09.22-1.zip'."""
+    prefix = ARCHIVE_PREFIXES[tag]
+    return (prefix + version if version else prefix.rstrip('-')) + '.zip'
 
 
 def quit_hint() -> str:

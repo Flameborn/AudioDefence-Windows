@@ -125,7 +125,7 @@ version is out and installs it for you, downloading only the files that
 changed — see [Updates](#updates) below.
 
 **On the Mac** it is the same folder with `AudioDefence.app` in it instead, in
-`AudioDefence-Mac-<version>.zip` on the same release — see
+`AudioDefenceMac-<version>.zip` on the same release — see
 [On the Mac](#on-the-mac).
 
 **From source** is everything below: the repository as it stands, run with the
@@ -217,12 +217,12 @@ app. Nothing in the game itself asks which it is on:
 | speech | NVDA, the other screen readers through Prism, SAPI 5 | VoiceOver, then the system voice |
 | settings, saves, log | `%APPDATA%\AudioDefence` | `~/Library/Application Support/AudioDefence` |
 | OpenAL Soft | `vendor/openal/soft_oal.dll` | `vendor/openal-mac/libopenal.dylib` |
-| release zip | `AudioDefence-Win-<version>.zip` | `AudioDefence-Mac-<version>.zip` |
+| release zip | `AudioDefence-Win-<version>.zip` | `AudioDefenceMac-<version>.zip` |
 | leaving the game | Alt+F4, or Quit | Cmd+Q, or Quit |
 
 ### Playing the built game
 
-Unzip `AudioDefence-Mac-<version>.zip` and move the `AudioDefence` folder
+Unzip `AudioDefenceMac-<version>.zip` and move the `AudioDefence` folder
 somewhere of your own — your Applications folder will do — then open
 `AudioDefence.app` in it. The app is not signed with an Apple developer
 certificate, so the first time macOS refuses to open it: open **System
@@ -278,15 +278,19 @@ or double-click `compiler.command`. It is the same compiler with the same
 menu and flags, less the one-file build, which on a Mac would unpack itself
 on every launch. It leaves `dist/AudioDefence` holding `AudioDefence.app`,
 readme.html, changelog.txt and license.txt, and zips it into
-`dist/AudioDefence-Mac-<version>.zip`, keeping the app's links and execute
+`dist/AudioDefenceMac-<version>.zip`, keeping the app's links and execute
 bits so Finder unzips a working app. The game's data goes inside the app, at
 `Contents/Resources/game`, less the original's iOS executable and its code
 signature, and the app is signed again, ad hoc, once it is complete.
 
-Put the Mac zip on the same release as the Windows one. Each build's updater
-takes the zip made for it, by the `Win` or `Mac` in its name; upload the
-Windows zip first, so that a Windows build from before the Mac port — which
-takes the first zip it finds — still finds its own.
+Put the Mac zip on the same release as the Windows one, in either order. Each
+build's updater takes the zip made for it, by its name. Keep the names exactly
+as the compiler makes them. GitHub lists a release's files alphabetically,
+not in the order they were uploaded, and a Windows build from before the Mac
+port takes the first zip it finds. `AudioDefence-Win-` sorts before
+`AudioDefenceMac-` because a dash comes before any letter. A Mac zip called
+`AudioDefence-Mac-` would come first, and those older Windows builds would
+install it over themselves.
 
 `vendor/openal-mac/libopenal.dylib` is OpenAL Soft 1.25.2 built for arm64,
 the same version as the Windows DLL. `tools/build_openal_mac.sh` rebuilds it

@@ -22,7 +22,7 @@ The script is PowerShell rather than a .cmd because a player's folder can have n
 and batch handles those badly.
 
 **The Mac.**  The same, with the Mac's names: the saves are in ``~/Library/Application Support/AudioDefence``,
-the release asset is ``AudioDefence-Mac-<VERSION>.zip`` (each build takes the zip made for it, off the same
+the release asset is ``AudioDefenceMac-<VERSION>.zip`` (each build takes the zip made for it, off the same
 release), what is replaced is ``AudioDefence.app`` beside readme.html and the rest, and the hand-off is a
 shell script, which puts the files in with ``ditto`` and opens the app again.  An app is full of symbolic
 links, so the zip keeps them as links (with each file's execute bit), and they are compared, fetched and put
@@ -74,6 +74,7 @@ class Release:
         self.asset_name = ''
         self.asset_url = ''
         self.asset_size = 0
+        # the zips' names, and why the Mac's has no dash, are in host.ARCHIVE_PREFIXES
         zips = [asset for asset in data.get('assets') or () if str(asset.get('name', '')).lower().endswith('.zip')]
         for asset in sorted(zips, key=lambda asset: -self.suits(str(asset.get('name', '')))):
             if self.suits(str(asset.get('name', ''))):
@@ -85,13 +86,14 @@ class Release:
     @staticmethod
     def suits(name: str) -> int:
         """How well a zip on the release fits this build: 2 for this platform's own
-        ('AudioDefence-Mac-26.09.22-1.zip' on the Mac), 1 on Windows for a zip that names no platform, as the
-        first releases' did, 0 for the other platform's, which is never taken."""
+        ('AudioDefenceMac-26.09.22-1.zip' on the Mac, host.archive_name), 1 on Windows for a zip that names
+        no platform, as the first releases' did, 0 for the other platform's, which is never taken."""
         low = name.lower()
-        if ('-%s' % host.ARCHIVE_TAG.lower()) in low:
+        if low.startswith(host.ARCHIVE_PREFIXES[host.ARCHIVE_TAG].lower()):
             return 2
-        other = 'win' if host.MAC else 'mac'
-        return 0 if host.MAC or ('-%s' % other) in low else 1
+        others = [prefix.lower() for tag, prefix in host.ARCHIVE_PREFIXES.items() if tag != host.ARCHIVE_TAG]
+        others.append('audiodefence-mac-')                # the Mac zip's name before it lost its dash
+        return 0 if host.MAC or any(low.startswith(other) for other in others) else 1
 
     def __repr__(self) -> str:
         return '<Release %s %s>' % (self.tag, self.asset_name or 'no zip')

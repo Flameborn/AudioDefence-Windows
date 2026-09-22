@@ -16,8 +16,9 @@ A build makes one folder, dist\\AudioDefence, with the game's data copied in, an
 dist\\AudioDefence-Win-<VERSION>.zip, which is what a release's asset is and what the updater reads.
 
 On the Mac (uv run compiler.py) the same folder holds AudioDefence.app, with the game's data inside the app
-rather than beside it, and the zip is dist/AudioDefence-Mac-<VERSION>.zip.  Both zips go on the same release;
-each build's updater takes its own.
+rather than beside it, and the zip is dist/AudioDefenceMac-<VERSION>.zip.  Both zips go on the same release;
+each build's updater takes its own.  The Mac's name has no dash so that it sorts after the Windows zip's
+(see ARCHIVE_PREFIXES in audiodefence/platform/host.py).
 
 The release build - no flags at all - also files the changelog first: the lines under "unrelease:" go
 under this version's heading in the repository's changelog.txt, and the copy beside the executable opens
@@ -97,8 +98,7 @@ def package(dest_root: str) -> str:
     gives a player a folder rather than a heap of files in their Downloads.
     """
     version = build_version()
-    name = '%s-%s-%s' % (NAME, host.ARCHIVE_TAG, version) if version else '%s-%s' % (NAME, host.ARCHIVE_TAG)
-    archive = os.path.join(HERE, 'dist', name + '.zip')
+    archive = os.path.join(HERE, 'dist', host.archive_name(version))
     if os.path.isfile(archive):
         os.remove(archive)
     say()
@@ -108,8 +108,7 @@ def package(dest_root: str) -> str:
     say('  %d files, %.0f MB, in %.0f seconds.'
         % (count, os.path.getsize(archive) / (1 << 20), time.perf_counter() - started))
     if host.MAC:
-        say('upload this to the release tagged %s, beside the Windows zip - after it, so that a Windows build '
-            'too old to tell the two apart finds its own first.' % (version or 'with its version'))
+        say('upload this to the release tagged %s, beside the Windows zip.' % (version or 'with its version'))
     else:
         say('upload this as the release asset, and tag the release %s.' % (version or 'with its version'))
     return archive
@@ -582,7 +581,7 @@ def main(argv=None) -> int:
         if args.no_package:
             say('it would not be zipped, because of --no-package.')
         else:
-            say('it would then be packed into dist%s%s-%s-%s.zip' % (os.sep, NAME, host.ARCHIVE_TAG, zip_version))
+            say('it would then be packed into dist%s%s' % (os.sep, host.archive_name(zip_version)))
         if flagged:
             for warning in release_warnings(os.path.join(HERE, 'changelog.txt')):
                 say('before releasing: ' + warning)
