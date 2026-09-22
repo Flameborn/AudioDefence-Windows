@@ -138,12 +138,14 @@ class MenuScreen(Screen):
         self.speak(self.items[self.index].spoken())
 
     def activate(self) -> None:
+        from .accessibility import menu_toggle           # imported here: accessibility imports this module
         item = self.current()
         if item is None:
             return
         if not item.enabled:
             self.speak(item.spoken())
             return
+        menu_toggle()                                   # PORT ADDITION: felt as well as heard
         if item.action is not None:
             item.action()
 

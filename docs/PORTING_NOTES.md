@@ -508,9 +508,16 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   (passerby.py): two bright ticks for the diamond, a crack for the crate, neither a kill's low thump.  The
   power-up itself is felt when it takes effect rather than when the crate opens - `-[ADPowerUp activate]`
   0x10001db08 reads the announcement first and `activate:_block_invoke` 0x10001dc6c uses the power-up when
-  it has been read, so the swell goes there, in front of the `use` the block already made.  Moving through
-  a menu is felt too (`ui/accessibility.menu_tick`, from `_move`, `_jump`, `MenuScreen.move` and the
-  category and tab keys): a tick on the light motor, 30 ms, the lightest thing here.  What happens in one pass of the run loop is felt once: each kind at its
+  it has been read, so the swell goes there, in front of the `use` the block already made.  The menus
+  are felt too, and at a strength the hand notices (user request): `ui/accessibility.menu_tick` for the
+  cursor moving (`_move`, `_jump`, `MenuScreen.move` and the category and tab keys), 60 ms on both motors,
+  as firm as the pulse Settings plays when a strength is stepped; `menu_toggle` for anything activated
+  (`View.activate` and `MenuScreen.activate`, so every setting stepped or toggled and every button
+  pressed), firmer and longer; and `ScreenManager._felt_screen_change` for a screen, two knocks low to high
+  going in (`push_overlay`, `load_view_controller`) and high to low coming back out (`pop_overlay`, only
+  where it refocuses - the pops that clear the stack are not a way back), so which way you went is felt as
+  well as heard.  None of these reach a DualSense's motors: the grips carry them, and the motors would
+  drone through a menu.  What happens in one pass of the run loop is felt once: each kind at its
   strongest, a little firmer for each more of it, the motors at the strongest kind.  A DualSense on USB is
   a four-channel sound card to Windows as well, whose third and fourth channels drive its two haptic
   actuators; `platform/haptic_audio.py` opens it through SDL's audio (pygame._sdl2.audio, 48 kHz float) and

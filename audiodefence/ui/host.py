@@ -64,6 +64,7 @@ class ScreenManager:
         if self.screen is not None:
             self.screen.on_dismiss()
         self.screen = screen
+        self._felt_screen_change(True)                    # PORT ADDITION: the screen you are on is felt
         screen.on_present()
 
     def present_over(self, _from_vc, screen) -> None:
@@ -72,6 +73,7 @@ class ScreenManager:
 
     def push_overlay(self, screen: Screen) -> None:
         self.overlays.append(screen)
+        self._felt_screen_change(True)                    # PORT ADDITION: going into a screen is felt
         screen.on_present()
 
     def pop_overlay(self, refocus: bool = True) -> None:
@@ -80,6 +82,8 @@ class ScreenManager:
         screen = self.overlays.pop()
         screen.on_dismiss()
         top = self.top()
+        if refocus:                                       # PORT ADDITION: and coming back out of one
+            self._felt_screen_change(False)               # the pops that clear the stack are not a way back
         if refocus and top is not None:
             presented = getattr(screen, 'presented_controller', False)
             if presented and hasattr(top, 'reappear'):
@@ -93,6 +97,16 @@ class ScreenManager:
                 from ..game.parameters import GameParameters
                 restore = GameParameters.shared().remember_focus()
             top.on_focus(restore=restore)
+
+    @staticmethod
+    def _felt_screen_change(entering: bool) -> None:
+        """PORT ADDITION: two knocks on a controller for a screen, low to high going in and high to low
+        coming back out (user request).  Joystick vibration scales them like everything else."""
+        from ..platform.haptics import Haptics
+        if entering:
+            Haptics.shared().screen_entered()
+        else:
+            Haptics.shared().screen_left()
 
     def quit_game(self) -> None:
         """PORT ADDITION: iOS apps have no Quit, so the main menu's Quit button ends the run loop.

@@ -1,5 +1,5 @@
 unrelease:
-Moving through a menu is felt on a game controller: a light tick for each row or tab you land on. Joystick vibration scales it, and Off silences it.
+The menus are felt on a game controller: a click for each row or tab you land on, a firmer one when you press a button or change a setting, and two knocks for a screen - low to high going in, high to low coming back out. Joystick vibration scales them, and Off silences them.
 The three vibration strengths feel further apart, and all of them are a little stronger. Medium and Strong used to be hard to tell apart.
 Shooting a diamond and shooting a power-up container each have a feel of their own instead of a zombie's, and the power-up is felt again when it takes effect after the announcement.
 Some typing mistakes in the game's own writing are corrected.

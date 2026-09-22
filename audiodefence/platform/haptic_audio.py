@@ -119,7 +119,12 @@ class _Waves(dict):
         'explosion': lambda: fat(_mix(rumble(0.8, 70.0, 1, hold=0.5), thump(45.0, 0.25), 0.8), 4.0),
         'gust': lambda: rumble(0.4, 60.0, 2, hold=0.1) * 0.7,
         'death': lambda: fat(_mix(rumble(1.1, 70.0, 3, hold=0.4), thump(40.0, 1.0), 0.6), 4.0),
-        'menu': lambda: thump(190.0, 0.02),                   # the cursor moving: a tick and no more
+        # the menus: a click with enough in it to be felt, and two knocks for a screen - low to high going
+        # in, high to low coming back out, so which way you went is felt as well as heard
+        'menu': lambda: fat(_mix(thump(150.0, 0.05), thump(260.0, 0.02), 0.4), 4.0),
+        'toggle': lambda: fat(_mix(thump(120.0, 0.07), thump(220.0, 0.03), 0.5), 4.0),
+        'enter': lambda: fat(_then(thump(140.0, 0.05), thump(230.0, 0.05), 0.06), 3.5),
+        'back': lambda: fat(_then(thump(230.0, 0.05), thump(140.0, 0.06), 0.06), 3.5),
         'diamond': lambda: _then(thump(300.0, 0.04), thump(450.0, 0.035), 0.07),   # two bright ticks
         'powerup': lambda: fat(_mix(thump(120.0, 0.12), thump(260.0, 0.05), 0.5), 4.0),   # the crate opens
         # the power-up taking hold: a rumble that grows instead of dying away, with a thump under it

@@ -14,7 +14,9 @@ vibrate sound - so everything here is the port's own, for players with a control
   the closer it is;
 * a gust of the **tornado** pushing the zombies back is a soft push;
 * **dying** - a zombie reaching you - is a long, heavy shudder;
-* and moving through a **menu** - to the next element, or the next tab - is a tick under your thumb.
+* and the **menus** are felt: a click as the cursor moves from one element or tab to the next, a firmer
+  one when something is activated - a setting stepped or toggled, a button pressed - and a pair of knocks
+  going into a screen, the other way round coming back out of it.
 
 What happens in one pass of the game loop is felt as one pulse: a shotgun blast into three zombies is one
 jolt, firmer for the extra two, not three buzzes over each other.  Settings -> Miscellaneous -> Joystick vibration scales
@@ -55,7 +57,12 @@ SHAPES = {
     'explosion': lambda s: (s, 0.6 * s, int(250 + 350 * s)),
     'gust': lambda s: (0.4 * s, 0.2 * s, 350),
     'death': lambda s: (s, 0.9 * s, 1000),
-    'menu': lambda s: (0.0, 0.5 * s, 30),                 # a tick on the light motor, gone before the next
+    # the menus: a click firm enough to be felt through a thumb on the stick, but short, since the cursor
+    # can move as fast as the key repeats.  Going into a screen and coming back out are longer and heavier.
+    'menu': lambda s: (0.7 * s, s, 60),
+    'toggle': lambda s: (0.8 * s, s, 90),
+    'enter': lambda s: (0.7 * s, 0.9 * s, 120),
+    'back': lambda s: (0.9 * s, 0.45 * s, 120),
     'diamond': lambda s: (0.1 * s, s, 90),                # bright and quick, where a kill is a low thump
     'powerup': lambda s: (0.8 * s, 0.9 * s, 220),         # the crate cracking open
     'powerup_use': lambda s: (s, 0.7 * s, 600),           # and the power-up taking hold: a long swell
@@ -133,9 +140,21 @@ class Haptics:
 
     def menu(self) -> None:
         """The cursor moving through a menu: to the next element, or the next tab.  Sent at once rather
-        than gathered into the next pass, a menu being no game loop, and light enough to be a tick under
-        the thumb rather than something the hand has to wait out."""
-        self._send({'menu': [0.6, 1]})
+        than gathered into the next pass, a menu being no game loop."""
+        self._send({'menu': [0.85, 1]})
+
+    def toggled(self) -> None:
+        """Something activated: a setting stepped or toggled, a button pressed.  Firmer than moving the
+        cursor, a change being worth more than a step (user request)."""
+        self._send({'toggle': [0.9, 1]})
+
+    def screen_entered(self) -> None:
+        """A screen opened, or the one you were on replaced."""
+        self._send({'enter': [1.0, 1]})
+
+    def screen_left(self) -> None:
+        """A screen closed: the same two knocks the other way round, so going back feels like going back."""
+        self._send({'back': [0.9, 1]})
 
     def sample(self) -> None:
         """What Settings plays when the strength is changed: a hit at that strength, at once - a hit being

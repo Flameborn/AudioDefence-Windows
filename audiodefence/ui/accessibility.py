@@ -48,6 +48,13 @@ def menu_tick() -> None:
     Haptics.shared().menu()
 
 
+def menu_toggle() -> None:
+    """PORT ADDITION: a firmer click than the cursor's when something is activated - a setting stepped or
+    toggled, a button pressed - so a change is felt as well as heard (user request)."""
+    from ..platform.haptics import Haptics
+    Haptics.shared().toggled()
+
+
 def play_button_click() -> None:
     """-[ADButtonWithFont playSound] 0x100073578 (also ADStatusBarViewController 0x10001cde8 and
     ADPlayMenuViewController 0x1000aba0c, which are the same code)."""
@@ -144,6 +151,7 @@ class View:
         Shift held, an element that has a second action runs that one instead."""
         if self.traits not in (BUTTON, CELL) or not self.enabled or not self.interaction_allowed():
             return False
+        menu_toggle()                                   # PORT ADDITION: a change is felt as well as heard
         for fn in list(self.shift_actions if (shift and self.shift_actions) else self.actions):
             fn()
         return True
