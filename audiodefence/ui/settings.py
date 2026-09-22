@@ -218,7 +218,7 @@ class ControlSchemePanel:
                    hint='Press Enter to put every key back to its default, in both control schemes.',
                    action=self.restore_keys)
         elif self.category == 'joystick':                 # PORT ADDITION: a game controller
-            from ..platform.pad import PAD_DEFAULTS, PadMap, Pads
+            from ..platform.pad import PAD_DEFAULTS, PAD_LABELS, PadMap, Pads
             pads = Pads.shared()
             models = pads.connected_models()
             editing = pads.editing_model()
@@ -231,7 +231,9 @@ class ControlSchemePanel:
                 t.cell('Controller', editing or 'none connected',
                        hint=None if editing else 'Connect a controller to set its buttons.')
             t.cell('Turn', 'either stick, sideways',
-                   hint='The further a stick is pushed, the faster you turn.')
+                   hint='The further a stick is pushed, the faster you turn. The sticks always turn and '
+                        'cannot be changed; to turn with buttons instead, set Alternate turn left and '
+                        'Alternate turn right below.')
             if editing is None:                           # the buttons are set for a connected controller
                 self.click_on_every_row()
                 return
@@ -241,7 +243,11 @@ class ControlSchemePanel:
                 detail = padmap.text(action)
                 if isinstance(PAD_DEFAULTS[action], dict):   # bound per control scheme, as on the keyboard
                     detail = '%s, in %s mode' % (detail, scheme)
-                row = t.cell(KeyMap.label(action), detail, hint=PAD_BINDING_HINT,
+                hint = PAD_BINDING_HINT
+                if action in ('turn_left', 'turn_right'):
+                    hint = ('This turns at the same speed as the keyboard does, however hard you press; '
+                            'the sticks turn as far as they are pushed. ') + hint
+                row = t.cell(PAD_LABELS.get(action, KeyMap.label(action)), detail, hint=hint,
                              action=lambda a=action: self.capture_pad(a),
                              shift_action=lambda a=action: self.capture_pad(a, replace=True))
                 row.pad_binding_action = action           # what Delete acts on, for this row
@@ -388,7 +394,7 @@ class ControlSchemePanel:
         params = GameParameters.shared()
         params.set_control_scheme(1)                              # last_control_scheme with nothing stored
         params.set_sensivity(params.DEFAULT_SENSIVITY)
-        params.set_button_mode(GameParameters.screen_reader_running)   # last_button_mode, likewise
+        params.set_button_mode(params.DEFAULT_BUTTON_MODE)        # last_button_mode, likewise
         params.set_announcer(True)                                # last_announcer_value, likewise
         params.set_tutorial_text_mode(params.DEFAULT_TUTORIAL_TEXT)
         params.set_menu_axis(params.DEFAULT_MENU_AXIS)

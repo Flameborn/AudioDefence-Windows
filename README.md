@@ -291,12 +291,13 @@ In a game:
 | controller | what it does in a game |
 |---|---|
 | either stick, sideways | turn — a small push turns slowly, all the way as fast as the arrow keys |
+| D-pad left / right | turn, at the same speed as the arrow keys (Alternate turn left / right — the only turning you can rebind) |
 | R2 | fire |
 | R1 | melee |
 | L1, or a stick flicked up under Gesture | next weapon |
 | L2, or a stick flicked down under Gesture | reload |
 | Options | pause, and Options again to resume |
-| Triangle (Y) | skip the narration |
+| Cross (A) | skip the narration |
 | Square | read the challenge timer |
 
 Under **Gesture** a stick flicked up or down is the swipe, as the Up and Down
@@ -486,7 +487,7 @@ copy what the game does rather than what it ought to do — its bugs included. E
 that is listed below, and `docs/PORTING_NOTES.md` carries the same list with the address of the method each
 one came from, so any of them can be checked against the binary or put back.
 
-There are **106 divergences** and **15 original quirks kept on purpose**.
+There are **107 divergences** and **15 original quirks kept on purpose**.
 
 ### 1. Windows standing in for a phone
 

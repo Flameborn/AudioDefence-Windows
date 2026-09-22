@@ -5,7 +5,8 @@ corner button.  None of that exists on a keyboard, so a player following the aud
 they cannot do.  Each line is given an equivalent here, written for this port by the user, with the key
 names filled in from the live key map: rebind Fire and the shoot line says the new key.  With a game
 controller connected, and the player's choice in Settings -> Joystick, the same lines name its buttons
-instead (``_pad_words``), and aiming gets a line of its own, since it is a stick rather than two keys.
+instead (``_pad_words``), and aiming gets a line of its own, since it is a stick rather than two keys -
+and the buttons that turn as well, when there are any, by whatever they are bound to.
 
 The brick scripts name these sounds with a placeholder - ``announcer_tutorial_aim_CONTROLMODE``,
 ``announcer_tutorial_shoot_BUTTONMODE`` - which ``ADSound.init_sound`` 0x1000b3594 resolves against the
@@ -53,8 +54,11 @@ def topic_for(sound_key: str):
 
 #: PORT ADDITION: with Settings -> Miscellaneous -> Names in hints and tutorial set to a controller, the
 #: lines name its buttons instead - "the {fire} key" becomes "the R2 button", a flick of a stick "a stick
-#: flicked up" (pad.button_words) - and aiming, which is a stick and not two keys, has a line of its own
-PAD_AIM = 'Push either stick left or right to aim.'
+#: flicked up" (pad.button_words) - and aiming, which is a stick and not two keys, has a line of its own.
+#: The buttons that turn are named after it, by what they are bound to now (user request); with neither of
+#: them bound to anything the line is the sticks alone, as it was.
+PAD_AIM = 'To aim, push either stick left or right.'
+PAD_AIM_BUTTONS = '%s, or press %s.'
 #: and under Gesture a controller that can feel movement swings the melee weapon when it is shaken, as the
 #: phone did, so the melee line says so - on the controller that is being named, if that one can be shaken
 PAD_SHAKE = ', or shake the controller'
@@ -73,7 +77,8 @@ def text_for(sound_key: str):
     params = GameParameters.shared()
     if params.controller_names():
         if topic == 'aim':
-            return PAD_AIM
+            turns = [words for words in (button_words('turn_left'), button_words('turn_right')) if words]
+            return PAD_AIM_BUTTONS % (PAD_AIM.rstrip('.'), ' or '.join(turns)) if turns else PAD_AIM
         for action in set(re.findall(r'\{(\w+)\}', line)):
             words = button_words(action)
             if words is not None:                         # an action with no button keeps its key

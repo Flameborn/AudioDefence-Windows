@@ -11,7 +11,10 @@ What a controller does:
 * **In play** its buttons are bound to the same actions as the keys (``PAD_DEFAULTS``): R2 fires, R1 is
   melee, and next weapon and reload are L1 and L2 in Button mode, or a flick of a stick up or down in
   Gesture mode - the swipes the Up and Down arrows stand for on the keyboard.  Either stick turns, and
-  turns as far as it is pushed: a little is slow, all the way is as fast as the turn keys.
+  turns as far as it is pushed: a little is slow, all the way is as fast as the turn keys; the sticks are
+  the pad's own and cannot be bound.  For a player who would rather not turn with a stick, two buttons turn
+  as well - the D-pad, left and right, to begin with - and those can be bound like any other: they turn at
+  the keyboard's speed, since a button is either down or up.
 * **In the menus** it stands in for the keys the menus already know: the D-pad or a stick for the arrows -
   which move through a screen and, on the other pair, change tab - the shoulders for moving through it as
   well, the bottom button for Enter, and held for Control (to the first or last), the right one for Escape, the
@@ -164,21 +167,28 @@ def button_words(action: str, mode: str | None = None):
 
 
 # --- what the buttons do in play ------------------------------------------------------------------------
-#: action -> default inputs; a dict means one binding per control scheme, as in keymap.py.  Turning has no
-#: entry: it is the sticks' sideways movement, read as a speed rather than pressed (Pads.turn).
+#: action -> default inputs; a dict means one binding per control scheme, as in keymap.py.  Turning is
+#: here as two buttons, which turn at the keyboard's speed; the sticks turn as well, sideways and by how
+#: far they are pushed (Pads.turn), and are not bound to anything - they are the pad's own.
 PAD_DEFAULTS = {
     'fire': ('righttrigger',),
     'melee': ('rightshoulder',),
     'next_weapon': {'button': ('leftshoulder',), 'gesture': ('stickup',)},
     'reload': {'button': ('lefttrigger',), 'gesture': ('stickdown',)},
+    'turn_left': ('dpleft',),                             # the sticks turn as well, and are not bound here
+    'turn_right': ('dpright',),
     'pause': ('start',),
-    'skip': ('y',),                                       # the top button, away from Cross, which selects
+    'skip': ('a',),
     'timer': ('x',),
 }
 #: keys.json: every kind of controller that has been connected, by the name it gives itself, with its
 #: bindings.  Before that there was one set for all of them ('padmap'); the first kind connected after takes
 #: it over.
 PAD_PROFILES_KEY = 'padmaps'
+#: what Settings -> Joystick calls a row, where the keyboard's name for the action would not do: the
+#: sticks turn too, and are a row of their own above these, so the buttons that turn are named apart.
+PAD_LABELS = {'turn_left': 'Alternate turn left', 'turn_right': 'Alternate turn right'}
+
 PAD_DEFAULTS_KEY = 'padmap'
 
 

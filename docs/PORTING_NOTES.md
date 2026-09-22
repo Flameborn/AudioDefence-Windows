@@ -59,8 +59,8 @@ The original's other branch is its sighted game - `ADChallengeSelectorViewContro
 `ADArmoryViewController`, `ADGameOverEndlessViewController` and the rest, none of them ported, since the
 port has nothing to look at - and every screen is spoken, by NVDA when it is running, by another screen
 reader through Prism when one of those is, and by SAPI 5 when none is.  Asking whether NVDA was running sent a player on SAPI 5 down the sighted path: "... is not ported
-yet" on opening a world's challenges, no spoken game view (`AccessibleGameView`), and Gesture rather than
-Button mode on a new profile.
+yet" on opening a world's challenges and no spoken game view (`AccessibleGameView`).  It also chose the
+button mode, which a new profile now picks for itself (see Divergences).
 
 | key | VoiceOver gesture |
 |---|---|
@@ -593,10 +593,23 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   row names (with several kinds connected, Enter and Shift+Enter step through them) as Keyboard does keys
   (`PadMap.add` / `set` / `remove_last`, per scheme for Next weapon and Reload), and lists none with no pad
   connected; while a button is being set the host hands the screen the pad's presses as they are
-  (`takes_pad_input`).  A stick pushed sideways and the guide button cannot be bound.
+  (`takes_pad_input`).  A stick pushed sideways and the guide button cannot be bound.  Turning is both:
+  either stick turns as far as it is pushed and is the pad's own, while `turn_left` and `turn_right` are
+  bound to the D-pad to begin with and can be set to any button (user request; `PAD_LABELS` names their
+  rows Alternate turn left and Alternate turn right, under the Turn row that says what the sticks do).  A
+  button turns at the keyboard's speed, being down or up with nothing in between, and goes through the
+  same `GameplayScreen.press` the turn keys do; while one is held it decides, and the sticks have it back
+  as soon as it is let go.  `_turn_keys` maps what is held - a key code, or a pad button's source - to the
+  action it pressed, so the last one pressed decides whichever it came from.
+* A fresh profile plays in **Gesture** (user request).  `-[ADGameParameters lastButtonMode]` 0x1000a3aec
+  answers `UIAccessibilityIsVoiceOverRunning()` when `buttonMode` is not stored, which in the port is
+  always true and so put every new player in Button mode; `GameParameters.DEFAULT_BUTTON_MODE` is False
+  instead.  Only a profile with nothing stored is affected: `__init__` writes the mode the first time the
+  game runs, so anyone who has played keeps what they had, whether they chose it or the original chose it
+  for them.  Settings -> Controls still steps between the two.
 * PORT ADDITION: Settings -> Miscellaneous -> Reset all settings (`ControlSchemePanel.reset_all_settings`)
   puts every setting back to what its getter answers when nothing is stored - control scheme 1 (Gyro), the
-  turn sensitivity, the button mode (on when a screen reader is running), the announcer on, tutorial text,
+  turn sensitivity, the button mode (Gesture, as a new profile is), the announcer on, tutorial text,
   menu arrows, cursor memory, the update check, the menu music volume, the vibration and the trigger feel,
   the names in hints and tutorial, and the speech output - through the same setters the rows use.  The key
   bindings are left alone (Settings -> Keyboard has its own Restore default keys), and so are the
@@ -694,9 +707,13 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   which `init_sound` 0x1000b3594 resolves against the control scheme and the button mode, so the three aim
   variants share one line and each button/gesture pair shares another.  Rebinding a key changes what is
   said.  With a controller connected and Settings -> Miscellaneous -> Names in hints and tutorial on Controller
-  buttons, the lines name its buttons instead ("the R2 button", "a stick flicked up"), aiming is "Push
-  either stick left or right to aim", and under Gesture the melee line offers the shake as well ("or shake
-  the controller") when the controller being named has the sensor for it (`Pads.can_shake`).  `aimhelp` and `aimprompt` name
+  buttons, the lines name its buttons instead ("the R2 button", "a stick flicked up"), aiming is "To aim,
+  push either stick left or right", with the buttons that turn named after it by whatever they are bound to
+  ("or press the D-pad left button or the D-pad right button", `PAD_AIM_BUTTONS`; with neither bound the
+  sticks stand alone).  It says what it is for first, as the melee line does, since a screen reader reads
+  the chain of buttons straight through and the purpose would otherwise arrive last.  Under Gesture the
+  melee line offers the shake as well ("or shake the controller") when the controller being named has the
+  sensor for it (`Pads.can_shake`).  `aimhelp` and `aimprompt` name
   no key and have no line.  Settings -> Miscellaneous -> Tutorial
   text chooses "As the announcer speaks" (the default), "After the announcer finishes", or "Off".
 * PORT ADDITION: an action can hold several keys, and the binding rows say how.  Enter adds a key,

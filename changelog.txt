@@ -1,4 +1,6 @@
 unrelease:
+You can turn with buttons on a game controller instead of a stick: the D-pad, left and right, to begin with. Settings, Joystick has them as Alternate turn left and Alternate turn right, and you can set them to any buttons you like. They turn at the same speed as the keyboard, and the sticks keep turning as they always did. When the tutorial names your controller, the aiming line names them too, by whatever you have set them to.
+A new profile starts in Gesture mode instead of Button mode. If you have played before, the mode you are in is the one you had.
 Melee weapons sound as they did before again. The swing and the hit both come from where you are, the way the original game has it, after the last version moved the hit out to the zombie you were hitting.
 The menus are felt on a game controller: a click for each row or tab you land on, a firmer one when you press a button or change a setting, and two knocks for a screen - low to high going in, high to low coming back out. Joystick vibration scales them, and Off silences them.
 The three vibration strengths feel further apart, and all of them are a little stronger. Medium and Strong used to be hard to tell apart.
@@ -9,7 +11,6 @@ The Miscellaneous tab has a Fine haptics option, on by default. With it on, a Du
 An explosion is felt on the controller from further away. It used to fade to almost nothing across the arena.
 On the screen after a challenge you completed, the Retry button is read first, before Challenge selection and Next challenge, the way Try again comes first after a challenge you lost.
 In Gesture mode, the tutorial line for the melee weapon says you can shake the controller as well, when the controller you have can be shaken.
-On a game controller, Skip narration is Triangle by default instead of Cross. A controller you have already used keeps the buttons you have, until you press Restore default buttons.
 
 26.09.22-1:
 The game checks for updates by itself and tells you when one is out. An update downloads only the files that changed, so a small fix is a small download, and your progress, settings and keys are untouched.
