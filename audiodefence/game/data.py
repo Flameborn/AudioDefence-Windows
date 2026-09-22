@@ -57,10 +57,9 @@ def spoken_text(text: str) -> str:
 #: game's own files are not touched, so a copy of the app given with --game is corrected too.  Each is
 #: matched with the words around it, so nothing else can be caught by accident.
 #:
-#: Spelling, capitals and a word typed twice.  How the original writes is otherwise its own: its British
-#: and American spellings side by side, Dr Bastard with and without his dot, and the words it chooses - a
-#: missing one ("Shoot it stop it for a while") and one too many ("for a few seconds you if they blow up")
-#: are left as they are.
+#: Spelling, capitals, a word typed twice, a word missing and a word too many.  How the original writes is
+#: otherwise its own: its British and American spellings side by side, Dr Bastard with and without his dot,
+#: the nouns it capitalises on purpose and its title-case titles are left as they are.
 TYPOS = (
     ('inflated like ballons', 'inflated like balloons'),      # the Farty, in the encyclopedia
     ('keep al the gas', 'keep all the gas'),                  # the Farty again
@@ -77,6 +76,9 @@ TYPOS = (
     ("Each Upgrade boosts the Fireworks'", "Each upgrade boosts the Fireworks'"),   # the other four say so
     ('Unlocked After beating', 'Unlocked after beating'),     # Endless, before it is unlocked
     ('Defeat All level 1 Bricks', 'Defeat all level 1 Bricks'),   # training grounds 1
+    # a word missing, and a word too many.  Meet The Farty says it wrong where tutorial_8 says it right
+    ('Shoot it stop it for a while', 'Shoot it to stop it for a while'),   # the Generator Malfunction card
+    ('for a few seconds you if they blow up', 'for a few seconds if they blow up'),   # Meet The Farty's tip
 )
 
 

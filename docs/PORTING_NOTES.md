@@ -365,11 +365,13 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   word typed twice: "In the the Mayan Ruin Arena".  And five capitals in the wrong place: a loading tip
   opening "if you think a Zombie", the Machine Gun's "but careful, It takes ages", the Fireworks' "Each
   Upgrade" where the other four power-ups say "Each upgrade", "Unlocked After beating" on Endless, and
-  "Defeat All level 1 Bricks".  The game's own files are left as they are, so a copy of the app given with
-  --game is corrected too.  How the original writes is otherwise its own: its British and American
-  spellings side by side, Dr Bastard with and without his dot, the nouns it capitalises on purpose (Zombie,
-  Melee, the Loadout Tab), its title-case titles, and the words it chose - a missing one ("Shoot it stop it
-  for a while") and one too many ("for a few seconds you if they blow up") - are all left alone.
+  "Defeat All level 1 Bricks".  A word missing: the Generator Malfunction tarot card says "Shoot it stop it
+  for a while".  And a word too many: Meet The Farty's tip warns of being deafened "for a few seconds you
+  if they blow up", where tutorial_8's tip already says the same thing correctly.  The game's own files are
+  left as they are, so a copy of the app given with --game is corrected too.  How the original writes is
+  otherwise its own: its British and American spellings side by side, Dr Bastard with and without his dot,
+  the nouns it capitalises on purpose (Zombie, Melee, the Loadout Tab) and its title-case titles are left
+  alone.
 * The Endless game over screen's PLAY AGAIN button (nib #47) is called Close (user request).  It still does
   what playAgainButtonPressed: 0x10009bf54 does - leave for the Endless card screen - and its hint says so.
 * PORT UI: Settings (and the settings part of the pause screen) opens its options as categories - Aiming,
