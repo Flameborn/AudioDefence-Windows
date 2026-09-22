@@ -43,7 +43,7 @@ class GameplayScreen(Screen):
         self.controller = controller
         controller.host = self
         self.motion = KeyboardMotion()
-        self._turn_keys: list[int] = []
+        self._turn_keys: dict = {}                        # what is turning now: key or button -> action
         self._space_down = False
         self._corner_down: dict[int, tuple] = {}
         self._pan_translation = 0.0
@@ -162,8 +162,8 @@ class GameplayScreen(Screen):
             # releases cleanly.
             return
         if action in ('turn_left', 'turn_right'):
-            if k not in self._turn_keys:
-                self._turn_keys.append(k)
+            if k not in self._turn_keys:                  # a key repeat does not take the turn over again
+                self._turn_keys[k] = action
             self._update_turn()
             return
         if isinstance(c, OpenerGameplayController):
@@ -208,8 +208,7 @@ class GameplayScreen(Screen):
     def release(self, action, k) -> None:
         c = self.controller
         if action in ('turn_left', 'turn_right'):
-            if k in self._turn_keys:
-                self._turn_keys.remove(k)
+            self._turn_keys.pop(k, None)
             self._update_turn()
             return
         agv = self._agv()
@@ -229,10 +228,10 @@ class GameplayScreen(Screen):
                 agv.touches_ended()
 
     def _update_turn(self) -> None:
-        """The turn keys decide while one is held; otherwise a controller's stick does, at the speed it is
-        pushed to (PORT ADDITION: the keys only ever turn at full speed)."""
-        if self._turn_keys:
-            direction = 1 if KeyMap.shared().action_for(self._turn_keys[-1]) == 'turn_right' else -1
+        """A turn key or a turn button decides while one is held; otherwise a controller's stick does, at
+        the speed it is pushed to (PORT ADDITION: a key or a button only ever turns at full speed)."""
+        if self._turn_keys:                               # the last one pressed decides, key or button
+            direction = 1 if next(reversed(self._turn_keys.values())) == 'turn_right' else -1
         else:
             direction = self._stick_turn()
         if direction != self.motion.direction:

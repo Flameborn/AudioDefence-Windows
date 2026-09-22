@@ -291,6 +291,7 @@ In a game:
 | controller | what it does in a game |
 |---|---|
 | either stick, sideways | turn — a small push turns slowly, all the way as fast as the arrow keys |
+| D-pad left / right | turn, at the same speed as the arrow keys (Alternate turn left / right — the only turning you can rebind) |
 | R2 | fire |
 | R1 | melee |
 | L1, or a stick flicked up under Gesture | next weapon |

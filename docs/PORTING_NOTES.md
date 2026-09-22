@@ -593,7 +593,14 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   row names (with several kinds connected, Enter and Shift+Enter step through them) as Keyboard does keys
   (`PadMap.add` / `set` / `remove_last`, per scheme for Next weapon and Reload), and lists none with no pad
   connected; while a button is being set the host hands the screen the pad's presses as they are
-  (`takes_pad_input`).  A stick pushed sideways and the guide button cannot be bound.
+  (`takes_pad_input`).  A stick pushed sideways and the guide button cannot be bound.  Turning is both:
+  either stick turns as far as it is pushed and is the pad's own, while `turn_left` and `turn_right` are
+  bound to the D-pad to begin with and can be set to any button (user request; `PAD_LABELS` names their
+  rows Alternate turn left and Alternate turn right, under the Turn row that says what the sticks do).  A
+  button turns at the keyboard's speed, being down or up with nothing in between, and goes through the
+  same `GameplayScreen.press` the turn keys do; while one is held it decides, and the sticks have it back
+  as soon as it is let go.  `_turn_keys` maps what is held - a key code, or a pad button's source - to the
+  action it pressed, so the last one pressed decides whichever it came from.
 * A fresh profile plays in **Gesture** (user request).  `-[ADGameParameters lastButtonMode]` 0x1000a3aec
   answers `UIAccessibilityIsVoiceOverRunning()` when `buttonMode` is not stored, which in the port is
   always true and so put every new player in Button mode; `GameParameters.DEFAULT_BUTTON_MODE` is False
