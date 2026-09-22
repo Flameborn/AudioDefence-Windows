@@ -707,11 +707,13 @@ The heading itself goes through the original scroll-view model: a 430-point `lin
   which `init_sound` 0x1000b3594 resolves against the control scheme and the button mode, so the three aim
   variants share one line and each button/gesture pair shares another.  Rebinding a key changes what is
   said.  With a controller connected and Settings -> Miscellaneous -> Names in hints and tutorial on Controller
-  buttons, the lines name its buttons instead ("the R2 button", "a stick flicked up"), aiming is "Push
-  either stick left or right to aim", with the buttons that turn named after it by whatever they are bound
-  to ("or press the D-pad left button or the D-pad right button", `PAD_AIM_BUTTONS`; with neither bound the
-  sticks stand alone), and under Gesture the melee line offers the shake as well ("or shake the
-  controller") when the controller being named has the sensor for it (`Pads.can_shake`).  `aimhelp` and `aimprompt` name
+  buttons, the lines name its buttons instead ("the R2 button", "a stick flicked up"), aiming is "To aim,
+  push either stick left or right", with the buttons that turn named after it by whatever they are bound to
+  ("or press the D-pad left button or the D-pad right button", `PAD_AIM_BUTTONS`; with neither bound the
+  sticks stand alone).  It says what it is for first, as the melee line does, since a screen reader reads
+  the chain of buttons straight through and the purpose would otherwise arrive last.  Under Gesture the
+  melee line offers the shake as well ("or shake the controller") when the controller being named has the
+  sensor for it (`Pads.can_shake`).  `aimhelp` and `aimprompt` name
   no key and have no line.  Settings -> Miscellaneous -> Tutorial
   text chooses "As the announcer speaks" (the default), "After the announcer finishes", or "Off".
 * PORT ADDITION: an action can hold several keys, and the binding rows say how.  Enter adds a key,

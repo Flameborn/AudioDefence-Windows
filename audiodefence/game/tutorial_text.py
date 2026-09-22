@@ -57,7 +57,7 @@ def topic_for(sound_key: str):
 #: flicked up" (pad.button_words) - and aiming, which is a stick and not two keys, has a line of its own.
 #: The buttons that turn are named after it, by what they are bound to now (user request); with neither of
 #: them bound to anything the line is the sticks alone, as it was.
-PAD_AIM = 'Push either stick left or right to aim.'
+PAD_AIM = 'To aim, push either stick left or right.'
 PAD_AIM_BUTTONS = '%s, or press %s.'
 #: and under Gesture a controller that can feel movement swings the melee weapon when it is shaken, as the
 #: phone did, so the melee line says so - on the controller that is being named, if that one can be shaken
