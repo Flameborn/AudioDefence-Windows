@@ -167,8 +167,9 @@ def button_words(action: str, mode: str | None = None):
 
 
 # --- what the buttons do in play ------------------------------------------------------------------------
-#: action -> default inputs; a dict means one binding per control scheme, as in keymap.py.  Turning has no
-#: entry: it is the sticks' sideways movement, read as a speed rather than pressed (Pads.turn).
+#: action -> default inputs; a dict means one binding per control scheme, as in keymap.py.  Turning is
+#: here as two buttons, which turn at the keyboard's speed; the sticks turn as well, sideways and by how
+#: far they are pushed (Pads.turn), and are not bound to anything - they are the pad's own.
 PAD_DEFAULTS = {
     'fire': ('righttrigger',),
     'melee': ('rightshoulder',),

@@ -1,5 +1,5 @@
 unrelease:
-You can turn with buttons on a game controller instead of a stick: the D-pad, left and right, to begin with. Settings, Joystick has them as Alternate turn left and Alternate turn right, and you can set them to any buttons you like. They turn at the same speed as the keyboard, and the sticks keep turning as they always did.
+You can turn with buttons on a game controller instead of a stick: the D-pad, left and right, to begin with. Settings, Joystick has them as Alternate turn left and Alternate turn right, and you can set them to any buttons you like. They turn at the same speed as the keyboard, and the sticks keep turning as they always did. When the tutorial names your controller, the aiming line names them too, by whatever you have set them to.
 A new profile starts in Gesture mode instead of Button mode. If you have played before, the mode you are in is the one you had.
 The menus are felt on a game controller: a click for each row or tab you land on, a firmer one when you press a button or change a setting, and two knocks for a screen - low to high going in, high to low coming back out. Joystick vibration scales them, and Off silences them.
 The three vibration strengths feel further apart, and all of them are a little stronger. Medium and Strong used to be hard to tell apart.
